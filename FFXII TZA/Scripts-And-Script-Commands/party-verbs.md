@@ -18,7 +18,16 @@ why a scene pauses for a moment after a character joins or leaves.
 
 The party block at `[0x02EBF190]` carries nine two-byte seats per [slot map](../Party/party-slots.md#the-nine-seats): map 0 at `+0x5A48` is the
 master the mutators edit, map 3 at `+0x5A7E` the gameplay roster the party verbs read, map 1 at
-`+0x5A5A` the set combat is servicing, and `+0x5AA4` the leader's selector (`0x003271D0`).
+`+0x5A5A` the set combat is servicing, and `+0x5AA4` the leader's selector¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003271D0` |
+
+</details>
 
 Selectors 0 to 6 are the main characters and 7 to
 25 guests (`0x00322350` tests `selector − 7 < 19`). `0x0031B510` collects the roster's first four
@@ -27,10 +36,20 @@ from the whole map, and `0x00263750(slot)` returns the live actor of roster slot
 pointer array at `0x0209A1F0`.
 
 Both collectors take an output array and a limit, read the low byte of each two-byte seat of map 3 (`+0x5A7E`), write
-the kept selectors packed in slot order, stop once the limit is reached (`0x0031B540`, `0x00320830`), and return how many
+the kept selectors packed in slot order, stop once the limit is reached¹, and return how many
 they wrote. `0x0031B510` reads slots 0 to 3 and skips `0xFF` (`0x0031B562`; its loop, `0x0031B540`-`0x0031B57C`); `0x00320800`
 reads slots 0 to 8 and keeps 0 to 6 and 26 to 254, skipping guests and `0xFF` (`0x00320852` to `0x0032085C`). Each slot
-index also passes `0x00322C50(0x17, slot)`, which accepts 0 to 8 (`0x00322FAF`), so it refuses no slot.
+index also passes `0x00322C50(0x17, slot)`, which accepts 0 to 8², so it refuses no slot.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B540`, `0x00320830` |
+| ² | `0x00322FAF` |
+
+</details>
 
 ### Changing the battle party
 
@@ -47,39 +66,120 @@ index also passes `0x00322C50(0x17, slot)`, which accepts 0 to 8 (`0x00322FAF`),
 
 Each begin except the shared add/remove begin `0x0034C030` raises busy bit `0x80000` (`0x003601B0(0x13)`)
 before it touches the party, and the three that rebuild the roster first hide the four roster actors
-with `0x002ECD50(actor, 0)`, called through the jump `0x0026DC40`. `0x0034C030` only stores state 0
-(`0x0034C039`) and the popped selector (`0x0034C048`); for those two verbs the poll raises the bit,
-before the add (`0x0034C3B1`) and after the remove (`0x0034CE3B`).
+with `0x002ECD50(actor, 0)`, called through the jump `0x0026DC40`. `0x0034C030` only stores state 0¹ and the popped selector²; for those two verbs the poll raises the bit,
+before the add³ and after the remove⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034C039` |
+| ² | `0x0034C048` |
+| ³ | `0x0034C3B1` |
+| ⁴ | `0x0034CE3B` |
+
+</details>
 
 Guest and main selectors are checked by `0x00322350`: a verb for one kind silently ignores the other.
 The add and remove polls leave that check to `0x003172E0` and `0x00328B20`, which act only on a selector
-of 6 or below (`0x003172ED`, `0x00328B27`); `setbattlemember` uses the main-character mask instead and
+of 6 or below¹; `setbattlemember` uses the main-character mask instead and
 does not check the leader it sets.
 
-The member activation `0x00316DF0` also grants goods. The main add `0x003172E0` (`0x003173D2`) and the seating step
-`0x00326110` (`0x003261A6`) that the guest add `0x003170E0` tail-jumps to run it.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003172ED`, `0x00328B27` |
+
+</details>
+
+The member activation `0x00316DF0` also grants goods. The main add `0x003172E0`¹ and the seating step
+`0x00326110`² that the guest add `0x003170E0` tail-jumps to run it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003173D2` |
+| ² | `0x003261A6` |
+
+</details>
 
 So does the seat writer `0x00329080(seat, sel, flags)`, when `0x00322C50(0x17, seat, 1)` accepts the seat, `sel` is not
-`0xFF`, `0x00322C50(2, sel, 1)` accepts it, it is at most `0x27` and bit `0x1` of `flags` is set
-(`0x003290B0`-`0x0032916A`). The new-game fill `0x00329CC0` runs it with second argument 1 behind the same two tests of the
-selector (`0x00329D63`-`0x00329D92`).
+`0xFF`, `0x00322C50(2, sel, 1)` accepts it, it is at most `0x27` and bit `0x1` of `flags` is set¹. The new-game fill `0x00329CC0` runs it with second argument 1 behind the same two tests of the
+selector².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003290B0`-`0x0032916A` |
+| ² | `0x00329D63`-`0x00329D92` |
+
+</details>
 
 With `sel` = `0xFF`, `0x00329080` empties the seat instead, when `0x00322C50(0x17, seat, 0)` accepts it and the selector
 there is at most `0x27`: only when bit `0x1` of `flags` is set it hands that record to `0x00323540`, which deactivates
-only an active main character (rows 0-6) and leaves any other record as it is (`0x0032354A`-`0x0032355C`), and it writes
-`0xFFFF` (`0x003290C2`-`0x00329122`).
+only an active main character (rows 0-6) and leaves any other record as it is¹, and it writes
+`0xFFFF`².
 
-`0x00329080` returns 1 when it writes the seat and 0 when it refuses (`0x0032911D`, `0x0032917E`, `0x00329185`). The scenario
-presets pass `flags` 3 (`0x00239DC3`), and the commit `0x003261D0` and the list fill `0x003273D0` pass it as 0 (`0x00326454`,
-`0x00327763`), so these write the seats without activating or deactivating anyone.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032354A`-`0x0032355C` |
+| ² | `0x003290C2`-`0x00329122` |
+
+</details>
+
+`0x00329080` returns 1 when it writes the seat and 0 when it refuses¹. The scenario
+presets pass `flags` 3², and the commit `0x003261D0` and the list fill `0x003273D0` pass it as 0³, so these write the seats without activating or deactivating anyone.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032911D`, `0x0032917E`, `0x00329185` |
+| ² | `0x00239DC3` |
+| ³ | `0x00326454`, `0x00327763` |
+
+</details>
 
 `0x00316DF0` grants only to a party record, kind `+5` 0 with a selector `+4` of 0-25, that is not yet active, bit `0x10`
-clear (`0x00316DFE`, `0x00316E42`-`0x00316E6A`). Rows 0-6 add each of their five equipment words to the inventory and equip
-it (`0x00300B80`, `0x0030C410`, `0x00316E82`-`0x00316E85`).
+clear¹. Rows 0-6 add each of their five equipment words to the inventory and equip
+it².
 
-Then, for rows 0-25, unless the record's bit `0x8` is set (`0x00316EB3`), it adds each enabled gambit slot's condition
-and, for rows 0-6 only, the id its action row names at `+0x22` (`0x00316EC3`-`0x00316F92`), and up to ten items with their
-counts (`0x00300B80`) and an amount of gil (`0x003004B0`) from a row of the party definitions `0x02EBF130`.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00316DFE`, `0x00316E42`-`0x00316E6A` |
+| ² | `0x00300B80`, `0x0030C410`, `0x00316E82`-`0x00316E85` |
+
+</details>
+
+Then, for rows 0-25, unless the record's bit `0x8` is set¹, it adds each enabled gambit slot's condition
+and, for rows 0-6 only, the id its action row names at `+0x22`², and up to ten items with their
+counts³ and an amount of gil⁴ from a row of the party definitions `0x02EBF130`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00316EB3` |
+| ² | `0x00316EC3`-`0x00316F92` |
+| ³ | `0x00300B80` |
+| ⁴ | `0x003004B0` |
+
+</details>
 
 See [Party members](../Party/party-members.md), [inventory](../Items-Equipment-Shops-And-Licenses/inventory.md) and
 [gil](../Rewards-EXP-Gil-And-Loot/gil.md).
@@ -91,10 +191,20 @@ into the unlocked slots among 0 to 2 in order; a request that runs past slot 2 a
 with nothing applied. Slot 3 is never filled by it.
 
 Every mutator copies map 0 into the snapshot at `0x022C2580`, edits the snapshot, and calls
-`0x003261D0(0)`: it compacts slots 0 to 3 and 4 to 8 separately, rebuilds the roster pointer array
-(`0x00269C70`), writes the nine slots back (`0x00329080`), snapshots the four combat units'
-selectors to `0x022C257C` and starts the read-in task (`0x0037CA80`). The member verbs therefore do
+`0x003261D0(0)`: it compacts slots 0 to 3 and 4 to 8 separately, rebuilds the roster pointer array¹, writes the nine slots back², snapshots the four combat units'
+selectors to `0x022C257C` and starts the read-in task³. The member verbs therefore do
 not need `partyallread`: the read-in the shared poll waits on is started by the mutator.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00269C70` |
+| ² | `0x00329080` |
+| ³ | `0x0037CA80` |
+
+</details>
 
 The shared poll `0x003506A0` asks `0x003596B0` whether the party read-in is still pending: the
 read-in task's end test `0x0037CB50` reports done when no task exists (`0x02EBF400` null) or its slot
@@ -103,29 +213,66 @@ verb keeps waiting; when done the poll clears bit `0x80000` and returns 0.
 
 The two per-verb polls `0x0034C370` and `0x0034CDF0` do the add or remove on their first visit (states
 0 and 1, returning 1), then wait the same way in state 2: they return 1 while `0x003596B0` reports
-pending and, once it reports done, clear bit `0x80000` and return 0 (`0x0034C398`, `0x0034CE18`). A
-state other than 0 to 2 returns 1 without acting (`0x0034C388`, `0x0034CE08`).
+pending and, once it reports done, clear bit `0x80000` and return 0¹. A
+state other than 0 to 2 returns 1 without acting².
 
-`partyallread` (`0x03EB`, begin `0x0034CCD0`) raises bit `0x80000` and starts the read-in task (`0x0037C980`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034C398`, `0x0034CE18` |
+| ² | `0x0034C388`, `0x0034CE08` |
+
+</details>
+
+`partyallread` (`0x03EB`, begin `0x0034CCD0`) raises bit `0x80000` and starts the read-in task¹;
 `partyallread2` (`0x046F`, `0x0034D8B0`: `0x00314D40(1)`, then `0x0037CA00` as a tail jump, `0x0034D8B4`-`0x0034D8C2`) runs it
 in reverse slot order. Their poll `0x0034E3E0` waits on the same end test, calling `0x00314D40(1)` each frame, and their
 result `0x0034D460` follows ([the read-in state machine](../Characters-And-Objects/actor-model-rebuild.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037C980` |
+
+</details>
 
 ### The appearance verbs
 
 Seven verbs share one shape: pop a value, collect the members with `0x0031B670` (selector 0) and
 `0x0031B680` (selector 1), and call one setter on each of up to four in both groups. The collector
-`0x0031B5A0` walks the first four slots of map 1, resolves each selector to a battle unit
-(`0x002367A0`), keeps units with byte `+0` bit `0x10` whose record at `+0x698` has byte `+5` clear, and
+`0x0031B5A0` walks the first four slots of map 1, resolves each selector to a battle unit¹, keeps units with byte `+0` bit `0x10` whose record at `+0x698` has byte `+5` clear, and
 splits them on whether the record's byte `+4` lies in 7 to 25: selector 1 takes the guests,
 selector 0 everyone else. The object handed to the setter is the unit's `+0x10`, the actor record.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002367A0` |
+
+</details>
+
 `0x0031B670` and `0x0031B680` set the group (0 or 1) and jump into `0x0031B5A0`, which writes the kept
 actor records packed into the caller's array, stops once the caller's limit (4 in every verb here)
-is reached (`0x0031B5D2`), and returns how many it wrote. A selector that `0x002367A0` resolves to no
-unit, or a unit whose `+0x698` record is null, is skipped (`0x0031B606`, `0x0031B617`). The slot index
+is reached¹, and returns how many it wrote. A selector that `0x002367A0` resolves to no
+unit, or a unit whose `+0x698` record is null, is skipped². The slot index
 passes `0x00322C50(0x17, slot)`, which accepts 0 to 8, so the `0xFF` fallback at `0x0031B5E9` is never
 taken for slots 0 to 3. Each kept unit lands in exactly one group (`0x0031B629` to `0x0031B62F`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B5D2` |
+| ² | `0x0031B606`, `0x0031B617` |
+
+</details>
 
 | Verb | Id | Handler | Setter | What it writes |
 |---|---|---|---|---|
@@ -148,60 +295,130 @@ forms (`0x053F` `0x0034F890`, `0x0541` `0x003507B0`) push the flag 0, and the `_
 
 `0x003580C0` first calls `0x00263A30` on the actor's byte `+0x15` and word `+0`, a lookup that stores
 nothing and whose result is dropped (`0x003580EF` overwrites it). It pops the flag, the float and the
-motion in that order, resolves the actor's presentation (`0x002E97B0`) and its model entry
-(presentation `+8`), and returns at once when either is null (`0x00358113`, `0x00358120`).
+motion in that order, resolves the actor's presentation¹ and its model entry
+(presentation `+8`), and returns at once when either is null².
 
-The slot is the presentation's motion lane, byte `+0x12` (`0x002E9C00`, `0x00358175`). When the entry
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E97B0` |
+| ² | `0x00358113`, `0x00358120` |
+
+</details>
+
+The slot is the presentation's motion lane, byte `+0x12`¹. When the entry
 is loaded (`0x002E4C30` above 0 for a lane of 0 or more, `0x00358166`) or no selector is set (a negative
 lane, accepted only when `0x002ED6F0` on the entry's `+0x14` id returns 0 lanes, `0x00358155`), it runs
 `0x002EAC90(actor)` and then `0x003DDBB0(actor, slot, motion, float)` for flag 0 or `0x003DDB40` for flag
-1, the two standard-motion starts; `0x003DDB40` takes any non-zero flag (`0x00358183`). Otherwise
+1, the two standard-motion starts; `0x003DDB40` takes any non-zero flag². Otherwise
 nothing is started.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E9C00`, `0x00358175` |
+| ² | `0x00358183` |
+
+</details>
+
 `0x003DDBB0(actor, slot, motion, float)` does not read `slot`. Through `0x002E8170` it sets or clears bit `0x80000` of the
-render record's `+0x284` from bit `0x80` of byte `+0xD` of `0x00263F40(actor)` (`0x003DDBC8`-`0x003DDBD7`); `0x002E8170`
+render record's `+0x284` from bit `0x80` of byte `+0xD` of `0x00263F40(actor)`¹; `0x002E8170`
 writes only when the actor's presentation `+0xC0` is set, its first dword and word `+0` index are not −1, the record
-address `[0x022C6F28] + index × 0x740` is not 0 and that record's `+0x284` is non-zero (`0x002E8173`-`0x002E81AB`).
+address `[0x022C6F28] + index × 0x740` is not 0 and that record's `+0x284` is non-zero².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DDBC8`-`0x003DDBD7` |
+| ² | `0x002E8173`-`0x002E81AB` |
+
+</details>
 
 It then takes the stance motion `0x01EFE9D0[motion & 0xFFFFFF]` when bit `0x1000000` of `motion` is set, and
-`(byte +0x15 of actor) << 20 | motion | 0x1000` otherwise (`0x003DDBDC`-`0x003DDBFE`), and ends with
-`0x002EB4F0(actor, that, float)` as a tail jump (`0x003DDC02`-`0x003DDC17`).
+`(byte +0x15 of actor) << 20 | motion | 0x1000` otherwise¹, and ends with
+`0x002EB4F0(actor, that, float)` as a tail jump².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DDBDC`-`0x003DDBFE` |
+| ² | `0x003DDC02`-`0x003DDC17` |
+
+</details>
 
 `party_motionsync_and_relax` (`0x0573`, begin `0x00342910`, poll `0x00342EC0`) marks the four roster
 slots in the scratch block and, per visit, for each present slot not yet done asks `0x002673D0` and
-`0x002E7330`; while both answer 0 the verb stays busy, otherwise it plays the idle motion
-(`0x002EB430`) and marks the slot done.
+`0x002E7330`; while both answer 0 the verb stays busy, otherwise it plays the idle motion¹ and marks the slot done.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EB430` |
+
+</details>
 
 The marks are scratch bytes `+4` to `+7`, one per roster slot. The begin writes 0 for a slot whose
-actor `0x00263750` returns and `0xFF` for an empty one (`0x0034293A`, `0x0034293F`), so a slot empty at
-the begin is never waited on. Each poll visit resolves the actor again (`0x00342EE6`) and skips a slot
-whose byte is not 0 (`0x00342EEB`) or whose actor is now null (`0x00342EF6`); it writes 1 for done
-(`0x00342F16`) and returns 1 while any visited slot answered 0 to both, otherwise 0 (`0x00342F1B`,
-`0x00342F30`).
+actor `0x00263750` returns and `0xFF` for an empty one¹, so a slot empty at
+the begin is never waited on. Each poll visit resolves the actor again² and skips a slot
+whose byte is not 0³ or whose actor is now null⁴; it writes 1 for done⁵ and returns 1 while any visited slot answered 0 to both, otherwise 0⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034293A`, `0x0034293F` |
+| ² | `0x00342EE6` |
+| ³ | `0x00342EEB` |
+| ⁴ | `0x00342EF6` |
+| ⁵ | `0x00342F16` |
+| ⁶ | `0x00342F1B`, `0x00342F30` |
+
+</details>
 
 `partystdmotiondispose` (`0x014B`, a jump into `0x0037C3C0`) releases the standard motion of the four
 roster actors: for each roster slot 0 to 3 whose actor `0x00263750` returns, `0x002E6BB0(actor, 1)`
 enters the shared body `0x002E6BD0` with a third argument of 0. The sibling entry `0x002E6BC0` gives 1
-instead, and a second argument of 0 queues nothing (`0x002E6C75`).
+instead, and a second argument of 0 queues nothing¹.
 
-The body returns at once for a null actor (`0x002E6BD3`) and then works on the presentation at actor
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E6C75` |
+
+</details>
+
+The body returns at once for a null actor¹ and then works on the presentation at actor
 `+0xC0`:
 
-1. When the presentation is set and its first dword is not −1, it stops the render record's motion (`0x002E6C2E`,
-   `0x00427280`-`0x00427294`: dword `+0x294` = `(+0x294 & 0xFFFDFA5F) | 4`, then the tail jump `0x00422C20`) when the
-   presentation's word `+0` index is not −1, the record address `[0x022C6F28] + index × 0x740` is not 0 (`0x002E6C23`)
-   and that render record has a non-zero `+0x284`; either way it then stores 0 in actor `+0xEC` (`0x002E6C33`).
-2. With no presentation, or a negative motion lane (presentation byte `+0x12`, `0x002E6C58`), it
-   returns there.
-3. Otherwise it drops one count from the lane and one from lane 0 in the actor's binding
-   (presentation dword `+4`) with `0x002EB890` (`0x002E6C63`, `0x002E6C6D`), which decrements each lane's
-   count word and writes no group word.
-4. It queues the lane, then lane 0, for unload when nothing holds it (`0x002E3F00`, `0x002E6C94`; lane 0 at
-   `0x002E3FAC` to `0x002E3FED`); with a third argument of 1, not a lane that
-   `0x002E9C60(presentation +0x8, lane)` reports held (`0x002E6C79` to `0x002E6C8D`).
-5. It sets the lane byte to `0xFF` (`0x002E6CAC`) and, for a render record found as in step 1 (index
-   not −1, `+0x284` non-zero), stores `0x0020E620(0)`, the encoded null address, in `+0x42C` and
-   `+0x430` (`0x002E6CDA`, `0x002E6D0D`) and clears its `+0x284` bit `0x40000` (`0x002E6D3A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E6BD3` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When the presentation is set and its first dword is not −1, it stops the render record's motion (`0x002E6C2E`, `0x00427280`-`0x00427294`: dword `+0x294` = `(+0x294 & 0xFFFDFA5F) \| 4`, then the tail jump `0x00422C20`) when the presentation's word `+0` index is not −1, the record address `[0x022C6F28] + index × 0x740` is not 0 and that render record has a non-zero `+0x284`; either way it then stores 0 in actor `+0xEC`. | `0x002E6C23`<br>`0x002E6C33` |
+| 2 | With no presentation, or a negative motion lane (presentation byte `+0x12`, `0x002E6C58`), it returns there. |   |
+| 3 | Otherwise it drops one count from the lane and one from lane 0 in the actor's binding (presentation dword `+4`) with `0x002EB890`, which decrements each lane's count word and writes no group word. | `0x002E6C63`, `0x002E6C6D` |
+| 4 | It queues the lane, then lane 0, for unload when nothing holds it (`0x002E3F00`, `0x002E6C94`; lane 0 at `0x002E3FAC` to `0x002E3FED`); with a third argument of 1, not a lane that `0x002E9C60(presentation +0x8, lane)` reports held (`0x002E6C79` to `0x002E6C8D`). |   |
+| 5 | It sets the lane byte to `0xFF` and, for a render record found as in step 1 (index not −1, `+0x284` non-zero), stores `0x0020E620(0)`, the encoded null address, in `+0x42C` and `+0x430` and clears its `+0x284` bit `0x40000`. | `0x002E6CAC`<br>`0x002E6CDA`, `0x002E6D0D`<br>`0x002E6D3A` |
 
 ### Queries and captures
 
@@ -223,6 +440,9 @@ result.
 
 ## Layouts
 
+<details>
+<summary>Show the memory layouts</summary>
+
 ```python
 party block   [0x02EBF190]: +0x5A48 u16[9] master (map 0), +0x5A5A u16[9] combat set (map 1), +0x5A7E u16[9] gameplay roster (map 3), +0x5AA4 u8 leader
 snapshot      0x022C2580 u16[9]: the edited copy of map 0; 0x003261D0 compacts it, writes it back and starts the read-in
@@ -233,7 +453,12 @@ appearance    actor +0x08 bits 0x2 and 0x4 (map-id pair), bit 0x8 and +0x09 bit 
 motion frame  push motion, float, flag; 0x003580C0 pops flag, float, motion
 ```
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -244,6 +469,8 @@ motion frame  push motion, float, flag; 0x003580C0 pops flag, float, motion
 | queries | `getbattlemember` 93, `getbattlemembertotal` 26, `getbattlememberonlytotal` 25, `ispartymember` 13 |
 | collector bound | four slots for the roster and the combat set, nine for the non-guest map |
 
+</details>
+
 ## Operations
 
 A party change: one begin, then one poll per frame until the read-in task finishes. An appearance
@@ -252,6 +479,9 @@ since each kept unit falls in exactly one group (`0x0031B629` to `0x0031B62F`). 
 action cancels and four synthetic calls.
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The party block's three maps and leader byte, the roster pointer array, busy bit `0x80000`, and the
 per-actor bytes the setters write.
@@ -263,6 +493,8 @@ two 16-byte stores of 0, and the second store covers slots 2 and 3:
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x0209A200` | `ptr[2]` | 0 (zero-filled tail of `.data`) | roster slots 2 and 3: the live actors of the third and fourth party members | `0x00269C70` (`0x00269CC8`, 0 for the old slot; `0x00269CE1`, the actor), from `0x002681C0`, `0x003261D0`, `0x003273D0` and `0x0050C610`; 0 from `0x0025BFB0` (`0x0025C01F`), `0x002695A0` (`0x002695B7`) and `0x0026DB30` (`0x0026DB5A`) | by slot from the array's start, which `0x0025B2E0` (`0x0025B2FC`), `0x0025C230` (`0x0025C39B`), `0x0025C830` (`0x0025CC56`), `0x0025D9E0` (`0x0025DC4D`), `0x00263560` (`0x002635A1`), the getters `0x00263750` (`0x00263758`), `0x00263770` (`0x00263780`) and `0x002637B0` (`0x002637B8`), `0x00268530` (`0x00268545`), `0x00268690` (`0x002686BB`), `0x00269530` (`0x00269541`), `0x00269C70` (`0x00269C82`), `0x0026C3E0` (`0x0026C41B`) and `0x0026C5D0` (`0x0026C5E5`) form |
+
+</details>
 
 ## Modding notes
 
@@ -290,29 +522,30 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 8 calls with 4 other topics</summary>
 
-**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
-
-| Function | | Functions |
-|---|---|---|
-| `0x002695A0` | calls | `0x002341C0` |
-
 **Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md), [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263560` | is called by | `0x0022B8C0`, `0x0022BC20` |
-| `0x002695A0` | calls | `0x00229F10` |
+| [`0x002695A0`](../World-Areas-And-Travel/save-and-teleport-crystals.md) (on save and teleport crystals) | calls | [`0x002341C0`](../World-Areas-And-Travel/traps.md) (on traps) |
+| [`0x00263560`](world-lock.md) (on world lock) | is called by | [`0x0022B8C0`](../Graphics/graphics-thread-handshake.md) (on graphics thread handshake)<br>[`0x0022BC20`](../Graphics/graphics-thread-handshake.md) (on graphics thread handshake) |
+| [`0x002695A0`](../World-Areas-And-Travel/save-and-teleport-crystals.md) (on save and teleport crystals) | calls | [`0x00229F10`](../Engine-Core/startup-constants.md) (on startup constants) |
 
 **Game files and data tables** (explained on [debug menu](../Engine-Core/debug-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002ED6F0` | is called by | `0x002EEEE0` |
+| [`0x002ED6F0`](script-name-bindings.md) (on script name bindings) | is called by | [`0x002EEEE0`](../Engine-Core/debug-menu.md) (on debug menu) |
 
 **Status effects and KO** (explained on [battle verbs](battle-verbs.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00322C50` | is called by | `0x0030E130`, `0x0030FED0`, `0x00310DB0` |
+| [`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x0030E130`](../Status-Effects-And-KO/battle-buffs.md) Battle stats: modify status layer state and process side effects (on battle buffs)<br>[`0x0030FED0`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Battle stats: recompute derived state and auto statuses (on equipping an item)<br>[`0x00310DB0`](../Battle-Actions/action-results.md) Battle unit: run periodic combat maintenance (on action results) |
 
 </details>

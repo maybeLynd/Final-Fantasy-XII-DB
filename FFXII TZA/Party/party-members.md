@@ -34,119 +34,237 @@ function accepts. The names are under Shipped data.
 
 ### Adding a main character
 
-`0x003172E0(sel)` adds a main character (`0x003172E0`-`0x003173E9`):
+`0x003172E0(sel)` adds a main character¹:
 
-1. It refuses a selector above 6, and one already in any of map 0's nine seats (`0x00317310`-`0x00317329`), so nobody
-   is in the party twice.
-2. `0x00321100` finds a free reserve seat, the first of seats 4-8 of map 3 whose id check fails or whose byte is
-   `0xFF` (`0x0032110A`-`0x00321148`); there is no free seat when all five are taken, and the add fails.
-3. Map 0 is copied to the staging map `0x022C2580`, and the selector is written to that seat if it is empty there
-   (`0x00317343`-`0x00317396`). When the staged seat is not `0xFFFF`, the add returns −1 without activating or
-   committing (`0x00317373`, `0x003173EB`); the refusals in steps 1 and 2 return −1 too (`0x003172F2`).
-4. The member's record is activated with `0x00316DF0` and the change is committed with `0x003261D0(0)`
-   (`0x003173BE`-`0x003173D9`); the add then returns 0 (`0x003173DE`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003172E0`-`0x003173E9` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It refuses a selector above 6, and one already in any of map 0's nine seats, so nobody is in the party twice. | `0x00317310`-`0x00317329` |
+| 2 | `0x00321100` finds a free reserve seat, the first of seats 4-8 of map 3 whose id check fails or whose byte is `0xFF`; there is no free seat when all five are taken, and the add fails. | `0x0032110A`-`0x00321148` |
+| 3 | Map 0 is copied to the staging map `0x022C2580`, and the selector is written to that seat if it is empty there. When the staged seat is not `0xFFFF`, the add returns −1 without activating or committing; the refusals in steps 1 and 2 return −1 too. | `0x00317343`-`0x00317396`<br>`0x00317373`, `0x003173EB`<br>`0x003172F2` |
+| 4 | The member's record is activated with `0x00316DF0` and the change is committed with `0x003261D0(0)`; the add then returns 0. | `0x003173BE`-`0x003173D9`<br>`0x003173DE` |
 
 ### Adding a guest
 
-`0x003170E0(sel)` adds a guest (`0x003170E0`-`0x003171AE`). It refuses a selector outside 7-25 and one already seated,
+`0x003170E0(sel)` adds a guest¹. It refuses a selector outside 7-25 and one already seated,
 like the main add. It then tries active seats 3, 2 and 1 of map 3, in that order, and takes the first whose id
-check fails or whose byte is `0xFF` (`0x0031711A`-`0x00317157`). Seat 0 is never tried, but the commit closes up the
+check fails or whose byte is `0xFF`². Seat 0 is never tried, but the commit closes up the
 active seats, so a guest given seat 3 while seat 2 is empty ends up in seat 2.
 
-The seated test looks for the selector in map 0's nine seats (`0x00317100`-`0x00317113`). `0x003170E0` returns -1 for a
-refusal and when seats 3, 2 and 1 all fail (`0x00317159`-`0x0031715E`, `0x00317170`); otherwise it tail-jumps to
-`0x00326110` (`0x003171AE`) and returns what that returns.
+<details>
+<summary>Where in the code</summary>
 
-`0x00326110(sel, seat, 0, 1)` then copies map 0 to the staging map (`0x00326129`-`0x00326140`). When the seat's word there
-is not `0xFFFF` (empty), or the selector is `0xFF`, it returns -1 without writing, activating or committing
-(`0x0032615A`-`0x0032616A`, `0x003261BE`); otherwise it writes the selector to the seat, activates the record with
-`0x00316DF0`, commits with `0x003261D0(0)` and returns 0 (`0x00326185`-`0x003261B6`).
+| | Code |
+|---|---|
+| ¹ | `0x003170E0`-`0x003171AE` |
+| ² | `0x0031711A`-`0x00317157` |
+
+</details>
+
+The seated test looks for the selector in map 0's nine seats¹. `0x003170E0` returns -1 for a
+refusal and when seats 3, 2 and 1 all fail²; otherwise it tail-jumps to
+`0x00326110`³ and returns what that returns.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00317100`-`0x00317113` |
+| ² | `0x00317159`-`0x0031715E`, `0x00317170` |
+| ³ | `0x003171AE` |
+
+</details>
+
+`0x00326110(sel, seat, 0, 1)` then copies map 0 to the staging map¹. When the seat's word there
+is not `0xFFFF` (empty), or the selector is `0xFF`, it returns -1 without writing, activating or committing²; otherwise it writes the selector to the seat, activates the record with
+`0x00316DF0`, commits with `0x003261D0(0)` and returns 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00326129`-`0x00326140` |
+| ² | `0x0032615A`-`0x0032616A`, `0x003261BE` |
+| ³ | `0x00326185`-`0x003261B6` |
+
+</details>
 
 ### Removing a member or a guest
 
-`0x00328B20(sel)` removes a main character and `0x003288F0(sel)` a guest (`0x00328B20`-`0x00328BC2`,
-`0x003288F0`-`0x0032898E`). Each refuses a selector outside its range or not seated in map 0. It copies map 0 to the
+`0x00328B20(sel)` removes a main character and `0x003288F0(sel)` a guest¹. Each refuses a selector outside its range or not seated in map 0. It copies map 0 to the
 staging map, empties the member's seat with `0xFFFF`, deactivates the record with `0x00323540` and commits with
 `0x003261D0(0)`. The staging map is `0x022C2580`. Each returns -1
-for a refusal (`0x00328925`, `0x00328B2C`, `0x00328B59`) and 0 after the commit (`0x00328988`, `0x00328BBC`); the guest
-range is 7-25 (`0x003288F4`-`0x003288F9`) and the main range 0-6 (`0x00328B27`).
+for a refusal² and 0 after the commit³; the guest
+range is 7-25⁴ and the main range 0-6⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00328B20`-`0x00328BC2`, `0x003288F0`-`0x0032898E` |
+| ² | `0x00328925`, `0x00328B2C`, `0x00328B59` |
+| ³ | `0x00328988`, `0x00328BBC` |
+| ⁴ | `0x003288F4`-`0x003288F9` |
+| ⁵ | `0x00328B27` |
+
+</details>
 
 ### What a join brings
 
-`0x00316DF0(record)` activates a member record that is not yet active, record flag bit `0x10` (`0x00316DFE`):
+`0x00316DF0(record)` activates a member record that is not yet active, record flag bit `0x10`¹:
 
-1. It runs the catch-up below (`0x00316E1D`), unless its second argument has bit `0x2` set and flag bit `0x2000` of the
-   party block, read by `0x00236740()`, is clear; it then skips steps 1 and 2 (`0x00316E0F`-`0x00316E1B`). The adds give 0;
-   the seat writer `0x00329080(seat, selector, 3)` of the scenario presets gives 3 (`0x00329167`-`0x0032916A`), so a member
-   seated there gets no catch-up and no level 90 only while that bit is clear.
-2. When flag bit `0x2000` of the party block is set and the record has never been active, flag bit `0x8`, the level is set
-   to 90 with `0x0030C470(record, 90, 0)` (`0x00316E25`-`0x00316E3D`).
-3. For a main character, each of the five equipment words is added to the inventory, and to the count of equipped
-   pieces (`0x00316E87`-`0x00316EB1`).
-4. On the record's first activation, flag bit `0x8` clear, each enabled gambit slot's condition is added, and for a main
-   character also the id the slot's action row names at `+0x22`, the magick or technick it uses (`0x00316EC3`-`0x00316F92`).
-   An item id there goes to the unused channel 4 and adds nothing ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)).
-5. On that first activation the up to ten ids the party row lists at `+0x58` are added, with counts at
-   `+0x34` (`0x00316FE1`-`0x00317019`), and the gil at row `+0x3E` (`0x0031701B`-`0x00317034`).
-6. HP is set to max HP, or twice max HP under Bubble; under Disease it stays, but at least 1
-   (`0x00317048`-`0x00317082`). Flag bits `0x8` and `0x10` are then set.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00316DFE` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It runs the catch-up below, unless its second argument has bit `0x2` set and flag bit `0x2000` of the party block, read by `0x00236740()`, is clear; it then skips steps 1 and 2. The adds give 0; the seat writer `0x00329080(seat, selector, 3)` of the scenario presets gives 3, so a member seated there gets no catch-up and no level 90 only while that bit is clear. | `0x00316E1D`<br>`0x00316E0F`-`0x00316E1B`<br>`0x00329167`-`0x0032916A` |
+| 2 | When flag bit `0x2000` of the party block is set and the record has never been active, flag bit `0x8`, the level is set to 90 with `0x0030C470(record, 90, 0)`. | `0x00316E25`-`0x00316E3D` |
+| 3 | For a main character, each of the five equipment words is added to the inventory, and to the count of equipped pieces. | `0x00316E87`-`0x00316EB1` |
+| 4 | On the record's first activation, flag bit `0x8` clear, each enabled gambit slot's condition is added, and for a main character also the id the slot's action row names at `+0x22`, the magick or technick it uses. An item id there goes to the unused channel 4 and adds nothing ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)). | `0x00316EC3`-`0x00316F92` |
+| 5 | On that first activation the up to ten ids the party row lists at `+0x58` are added, with counts at `+0x34`, and the gil at row `+0x3E`. | `0x00316FE1`-`0x00317019`<br>`0x0031701B`-`0x00317034` |
+| 6 | HP is set to max HP, or twice max HP under Bubble; under Disease it stays, but at least 1. Flag bits `0x8` and `0x10` are then set. | `0x00317048`-`0x00317082` |
 
 Steps 3-5 run only for a party record, kind byte `+5` 0, whose selector `+4` is 0-25; any other record goes from
-step 2 straight to step 6 (`0x00316E42`-`0x00316E6A`).
+step 2 straight to step 6¹.
 
-`0x00323540(record)` deactivates an active main character (`0x00323540`-`0x003235BA`): each of the five equipment words
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00316E42`-`0x00316E6A` |
+
+</details>
+
+`0x00323540(record)` deactivates an active main character¹: each of the five equipment words
 leaves the equipped count and the inventory, and flag bit `0x10` is cleared. A guest's equipment is never counted, and
 the first-join items and gil are not taken back.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00323540`-`0x003235BA` |
+
+</details>
+
 ### Catching up on a join
 
-`0x00317480(record)` sets a joining member's level and LP from the party (`0x00317480`-`0x00317667`). The party row's
-byte `+0x2C`, bits `0x18`, says when: 1 on the first activation only, 2 on every activation, anything else never
-(`0x003174D9`-`0x0031750D`).
+`0x00317480(record)` sets a joining member's level and LP from the party¹. The party row's
+byte `+0x2C`, bits `0x18`, says when: 1 on the first activation only, 2 on every activation, anything else never².
 
-1. It takes the two other active main characters with the highest levels, record `+0x1C2`
-   (`0x00317540`-`0x003175B4`).
-2. The level becomes their average level, at least 1, plus the row's byte `+0x2E`, through `0x0030C470`
-   (`0x00317600`-`0x0031762C`).
-3. The LP at `+0x190` becomes the row's word `+0x44` plus their average LP, counting the licences they own
-   (`0x003237C0`), minus the cost of the licences the member owns; the result is kept between 0 and 99,999
-   (`0x003175DF`, `0x00317614`-`0x00317652`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00317480`-`0x00317667` |
+| ² | `0x003174D9`-`0x0031750D` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It takes the two other active main characters with the highest levels, record `+0x1C2`. | `0x00317540`-`0x003175B4` |
+| 2 | The level becomes their average level, at least 1, plus the row's byte `+0x2E`, through `0x0030C470`. | `0x00317600`-`0x0031762C` |
+| 3 | The LP at `+0x190` becomes the row's word `+0x44` plus their average LP, counting the licences they own, minus the cost of the licences the member owns; the result is kept between 0 and 99,999. | `0x003237C0`<br>`0x003175DF`, `0x00317614`-`0x00317652` |
 
 With no other active main character, the level is 1 plus the row's byte. The shipped values are under Shipped
 data.
 
 The party row is the table's word `+8` times the selector `+4` plus the value `0x0020E600` returns for the table's
-`+0xC`, added in 32 bits (`0x003174BC`-`0x003174D1`). Nothing guards it: when `[0x02EBF130]` is null (`0x0031749E`) or
-`0x0020E600` returns 0 (`0x003174AB`), the row base is 0 and `0x003174D9` reads the byte at address `0x2C`, which faults,
+`+0xC`, added in 32 bits¹. Nothing guards it: when `[0x02EBF130]` is null² or
+`0x0020E600` returns 0³, the row base is 0 and `0x003174D9` reads the byte at address `0x2C`, which faults,
 because the first 64 KB of a Windows x64 process are never mapped.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003174BC`-`0x003174D1` |
+| ² | `0x0031749E` |
+| ³ | `0x003174AB` |
+
+</details>
 
 ### The commit and the wait
 
-`0x003261D0(mode)` commits the staging map (`0x003261D0`-`0x003264F1`):
+`0x003261D0(mode)` commits the staging map¹:
 
-1. It closes up the active seats 0-3 and, apart from them, the reserve seats 4-8: each member moves forward over
-   the empty seats before it (`0x003262C2`-`0x003262F5`, `0x003262F7`-`0x00326327`). A removed member's seat does not
-   stay empty.
-2. Each of the new seats 0-3 keeps the roster actor that already shows its member, and the other seats take the
-   actors left over (`0x00326340`-`0x00326404`); the four are then installed with `0x00269C70` (`0x00326416`,
-   `0x00326435`).
-3. The nine seats of map 0 are written with `0x00329080(seat, selector, 0)` (`0x00326450`-`0x00326467`).
-4. With mode 0, for each fighting unit `0x00236820(i)`, i 0-3, `0x003261D0` first clears byte `+0x23` of the unit's actor
-   `+0x10` with `0x0037B4B0(actor)` when both are present, then records at `0x022C257C` the unit's party row, or `0xFF`
-   for no unit or one whose byte `+0x00` bit `0x4` is clear; the model read-in then starts with `0x0037CA80()`
-   (`0x00326471`-`0x003264B8`), which rebuilds the maps too (below).
+<details>
+<summary>Where in the code</summary>
 
-   With mode 1, `0x003266C0` rebuilds the maps instead (`0x003264BF`). Every function on this page calls `0x003261D0` with
+| | Code |
+|---|---|
+| ¹ | `0x003261D0`-`0x003264F1` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It closes up the active seats 0-3 and, apart from them, the reserve seats 4-8: each member moves forward over the empty seats before it. A removed member's seat does not stay empty. | `0x003262C2`-`0x003262F5`, `0x003262F7`-`0x00326327` |
+| 2 | Each of the new seats 0-3 keeps the roster actor that already shows its member, and the other seats take the actors left over; the four are then installed with `0x00269C70`. | `0x00326340`-`0x00326404`<br>`0x00326416`, `0x00326435` |
+| 3 | The nine seats of map 0 are written with `0x00329080(seat, selector, 0)`. | `0x00326450`-`0x00326467` |
+| 4 | With mode 0, for each fighting unit `0x00236820(i)`, i 0-3, `0x003261D0` first clears byte `+0x23` of the unit's actor `+0x10` with `0x0037B4B0(actor)` when both are present, then records at `0x022C257C` the unit's party row, or `0xFF` for no unit or one whose byte `+0x00` bit `0x4` is clear; the model read-in then starts with `0x0037CA80()`, which rebuilds the maps too (below). | `0x00326471`-`0x003264B8` |
+
+   With mode 1, `0x003266C0` rebuilds the maps instead¹. Every function on this page calls `0x003261D0` with
    0.
 
-When the allocator `0x002F16B0` gives `0x0037CA80` a task, `0x0037CA80` ends with a tail jump to `0x00233CF0` (`0x0037CA9A`,
-`0x0037CAE7`), which calls `0x0030D8B0(0)`, `0x003266C0()` and `0x00311E10(1)` in that order (`0x00233CF6`-`0x00233D05`), so mode
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003264BF` |
+
+</details>
+
+When the allocator `0x002F16B0` gives `0x0037CA80` a task, `0x0037CA80` ends with a tail jump to `0x00233CF0`¹, which calls `0x0030D8B0(0)`, `0x003266C0()` and `0x00311E10(1)` in that order², so mode
 0 also runs the control-mode transition dispatcher `0x0030D8B0`, which mode 1's direct `0x003266C0` call does not.
 `0x00233CF0` is told on [Party control modes](../Engine-Core/party-control-modes.md).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037CA9A`, `0x0037CAE7` |
+| ² | `0x00233CF6`-`0x00233D05` |
+
+</details>
+
 Every membership verb raises bit `0x13` of the busy mask `0x022CB720` with `0x003601B0`
 ([Zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)). The verbs' poll handlers wait until
-`0x003596B0` reports the read-in done, then clear the bit with `0x003601C0` (`0x0034C38A`-`0x0034C398`, `0x003506A6`-`0x003506B4`).
+`0x003596B0` reports the read-in done, then clear the bit with `0x003601C0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034C38A`-`0x0034C398`, `0x003506A6`-`0x003506B4` |
+
+</details>
 
 ### The script verbs
 
@@ -163,63 +281,147 @@ Every membership verb raises bit `0x13` of the busy mask `0x022CB720` with `0x00
 | `0x35E` `ispartymember(sel)` | `0x00353CB0` | a guest: in the fighting seats (`0x003596D0`); a main character: in the party (`0x00359740`) |
 | `0x361` `getpartymembermask` | `0x003542C0` | the bit mask of the seated selectors outside the guest range (`0x00359C00`), bit `selector & 31` of each (`0x00359C3A`) |
 
-The table lists the verbs that change membership and two that test it; `0x357` `getbattlemember` (`0x0034F5A0`) and
-`0x35D` `isbattlemember` (`0x00353780`) are further queries.
+The table lists the verbs that change membership and two that test it; `0x357` `getbattlemember`¹ and
+`0x35D` `isbattlemember`² are further queries.
 
-`setbattlemember`, `setbattlememberone` and `addguestbattlemember` first hide the four roster actors of slots 0 to 3
-(`0x00263750`) with `0x002ECD50(actor, 0)`, through its thunk `0x0026DC40` (`0x0034D520`-`0x0034D53B`, `0x00350CF5`-`0x00350D10`,
-`0x003521A6`-`0x003521C1`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034F5A0` |
+| ² | `0x00353780` |
+
+</details>
+
+`setbattlemember`, `setbattlememberone` and `addguestbattlemember` first hide the four roster actors of slots 0 to 3¹ with `0x002ECD50(actor, 0)`, through its thunk `0x0026DC40`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263750` |
+| ² | `0x0034D520`-`0x0034D53B`, `0x00350CF5`-`0x00350D10`, `0x003521A6`-`0x003521C1` |
+
+</details>
 
 For a class-3 actor whose bind state `+0x18` is not 1, `0x002ECD50(actor, 0)` clears bit `0x1` of byte `+0x10` of the
 presentation record `[actor + 0xC0]`, since `0x002ECD50` writes the low bit of its second argument there, and then
 tail-jumps to `0x002E8FD0(actor)`, which refreshes the actor's visibility; `0x002ECD50` itself takes nothing out of a
-group (`0x002ECD50`-`0x002ECD76`). `0x002ECD50` is told on [Party during
+group¹. `0x002ECD50` is told on [Party during
 scenes](../Scripts-And-Script-Commands/party-during-scenes.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002ECD50`-`0x002ECD76` |
+
+</details>
 
 ### Choosing who fights
 
-`setbattlemember(a, b, c)` takes three selectors in the order the script pushes them, `-1` for no selector
-(`0x0034D547`-`0x0034D57B`). When every one given has its bit, the selector modulo 32 (`0x0034D568`), among
-the main characters of the party (`0x00359C00`, `0x0034D57D`-`0x0034D58F`),
+`setbattlemember(a, b, c)` takes three selectors in the order the script pushes them, `-1` for no selector¹. When every one given has its bit, the selector modulo 32², among
+the main characters of the party³,
 `0x00328DB0(list, 3)` moves them into fighting seats 0-2:
 
-1. A fighting seat is held when its member's record has flag bit `0x1` set, the `setbattlememberlock` bit, or is a
-   guest (`0x00328E20`-`0x00328E7F`).
-2. A listed member already in seats 0-2 holds its seat; the others are swapped, in order, into the first free
-   seat of 0-2 in the staging map (`0x00328E97`-`0x00328F6D`). With no free seat left the change is dropped.
-3. The result is committed with `0x003261D0(0)` (`0x00328F71`).
+<details>
+<summary>Where in the code</summary>
 
-The held seats are read from map 1, seats 0-3, through `0x002367A0` (`0x00328E0D`-`0x00328E7F`); the listed members are
-found in map 0 and swapped in its staging copy `0x022C2580` (`0x00328EB0`, `0x00328EED`-`0x00328F65`). A listed selector
+| | Code |
+|---|---|
+| ¹ | `0x0034D547`-`0x0034D57B` |
+| ² | `0x0034D568` |
+| ³ | `0x00359C00`, `0x0034D57D`-`0x0034D58F` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A fighting seat is held when its member's record has flag bit `0x1` set, the `setbattlememberlock` bit, or is a guest. | `0x00328E20`-`0x00328E7F` |
+| 2 | A listed member already in seats 0-2 holds its seat; the others are swapped, in order, into the first free seat of 0-2 in the staging map. With no free seat left the change is dropped. | `0x00328E97`-`0x00328F6D` |
+| 3 | The result is committed with `0x003261D0(0)`. | `0x00328F71` |
+
+The held seats are read from map 1, seats 0-3, through `0x002367A0`¹; the listed members are
+found in map 0 and swapped in its staging copy `0x022C2580`². A listed selector
 that is not seated in map 0 refuses the whole change, and so does running out of free seats: `0x00328DB0` then
-returns -1 and commits nothing (`0x00328EA3`-`0x00328EC8`, `0x00328F40`-`0x00328F43`). It returns 0 after the commit
-(`0x00328F76`). It reads at least three list entries, an entry of `-1` giving no selector (`0x00328DE3`-`0x00328DFA`,
-`0x00328E97`).
+returns -1 and commits nothing³. It returns 0 after the commit⁴. It reads at least three list entries, an entry of `-1` giving no selector⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00328E0D`-`0x00328E7F` |
+| ² | `0x00328EB0`, `0x00328EED`-`0x00328F65` |
+| ³ | `0x00328EA3`-`0x00328EC8`, `0x00328F40`-`0x00328F43` |
+| ⁴ | `0x00328F76` |
+| ⁵ | `0x00328DE3`-`0x00328DFA`, `0x00328E97` |
+
+</details>
 
 If the leader's selector is not among the three, the first one given becomes the leader through `0x00327850`
 (`0x0034D5A0`-`0x0034D5C3`, [Party leader](party-leader.md)).
 
 ### A member's actor in the roster
 
-`0x00269C70(actor, slot)` installs an actor in the four-slot roster `0x0209A1F0` (`0x00269C70`-`0x00269D55`):
+`0x00269C70(actor, slot)` installs an actor in the four-slot roster `0x0209A1F0`¹:
 
-1. The actor's old slot, record byte `+0x12`, is emptied, and its record is reset to `+0x12 = 0xFF`,
-   `+0xF = 3` (`0x00269CB7`-`0x00269CD9`).
-2. The actor is stored in the slot, `+0x12` becomes the slot and `+0xF` becomes 2, or 3 for a slot outside 0-3
-   (`0x00269CDD`-`0x00269CF3`). A slot of `-1` stores nothing and writes `0xFF`, the same as the reset, so it removes
-   the actor cleanly; a slot above 3 is stored without a bounds check (`0x00269CE1`).
-3. When no leader is set, the actor is requested as leader (`0x00269D21`-`0x00269D34`).
+<details>
+<summary>Where in the code</summary>
 
-The actor that held the slot before is only notified (`0x00269C91`-`0x00269CAD`); its record keeps `+0x12` and
+| | Code |
+|---|---|
+| ¹ | `0x00269C70`-`0x00269D55` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The actor's old slot, record byte `+0x12`, is emptied, and its record is reset to `+0x12 = 0xFF`, `+0xF = 3`. | `0x00269CB7`-`0x00269CD9` |
+| 2 | The actor is stored in the slot, `+0x12` becomes the slot and `+0xF` becomes 2, or 3 for a slot outside 0-3. A slot of `-1` stores nothing and writes `0xFF`, the same as the reset, so it removes the actor cleanly; a slot above 3 is stored without a bounds check. | `0x00269CDD`-`0x00269CF3`<br>`0x00269CE1` |
+| 3 | When no leader is set, the actor is requested as leader. | `0x00269D21`-`0x00269D34` |
+
+The actor that held the slot before is only notified¹; its record keeps `+0x12` and
 `+0xF`, so it still names the slot until it is installed again.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00269C91`-`0x00269CAD` |
+
+</details>
 
 The notice sets byte `+0x152` of its controller `+0xC0` to 1 and refreshes its movement mode with `0x002681E0`
 ([Player movement](../Movement-And-Pathfinding/player-movement.md)). After step 2 the slot's actor gets `+0x152`
-= 0 and the same refresh (`0x00269CFB`-`0x00269D17`), and after step 3 the installed actor is refreshed once more
-(`0x00269D39`-`0x00269D41`). Both notices and step 3 run only for a slot 0-3 (`0x00269C8C`, `0x00269CF6`, `0x00269D1C`).
+= 0 and the same refresh¹, and after step 3 the installed actor is refreshed once more². Both notices and step 3 run only for a slot 0-3³.
 
-Steps 1 and 2 need a non-null actor (`0x00269CB2`). With a null actor the slot keeps its occupant, which gets
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00269CFB`-`0x00269D17` |
+| ² | `0x00269D39`-`0x00269D41` |
+| ³ | `0x00269C8C`, `0x00269CF6`, `0x00269D1C` |
+
+</details>
+
+Steps 1 and 2 need a non-null actor¹. With a null actor the slot keeps its occupant, which gets
 `+0x152` = 1 and then 0 again.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00269CB2` |
+
+</details>
 
 ### Whom the others follow
 
@@ -229,10 +431,21 @@ Every member who is not controlled follows the leader; the formation and its one
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 ### Party rows
 
-The names are the row's name word at `+0x30`, read from text bank 8 of `battle_pack.bin` section 61
-(`0x0023AB03`, `0x0031C6B1`, `0x0032958E`).
+The names are the row's name word at `+0x30`, read from text bank 8 of `battle_pack.bin` section 61¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023AB03`, `0x0031C6B1`, `0x0032958E` |
+
+</details>
 
 | Rows | Kind | Names |
 |---|---|---|
@@ -308,14 +521,29 @@ member and guest verbs.
 No script calls `removebattlemember`, `setbattlememberone` or `setbattlememberlock`, and no script adds Reks or a
 guest row above 14. The other eight language folders make the same calls.
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The staging map `0x022C2580` is nine `u16` seats laid out like map 0: seats 0-3 fight, seats 4-8 are the reserve.
 Each membership change copies map 0 into it (16 bytes for seats 0-7, then seat 8), changes it by seat index, and
-`0x003261D0` closes up seats 0-3 and seats 4-8 and writes all nine back to map 0 through `0x00329080(seat, selector, 0)`
-(`0x003262BB`-`0x00326327`, `0x00326450`-`0x00326467`). `0x003273D0` instead fills all nine from a list it is handed, `0xFF`
-giving `0xFFFF` (`0x0032741D`-`0x003274D8`), and closes them up the same way (`0x003275CB`-`0x00327632`). All nine are 0 in
+`0x003261D0` closes up seats 0-3 and seats 4-8 and writes all nine back to map 0 through `0x00329080(seat, selector, 0)`¹. `0x003273D0` instead fills all nine from a list it is handed, `0xFF`
+giving `0xFFFF`², and closes them up the same way³. All nine are 0 in
 the file.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003262BB`-`0x00326327`, `0x00326450`-`0x00326467` |
+| ² | `0x0032741D`-`0x003274D8` |
+| ³ | `0x003275CB`-`0x00327632` |
+
+</details>
 
 ### Which seats an access reaches
 
@@ -332,9 +560,25 @@ Most accesses take the seat as an index, so the seats each one can reach decide 
 | `0x003261D0`, the commit | close-up and actor match: read `0x003262D1`, `0x00326340`, `0x00326346`, `0x003263CC`; written `0x003262E1`, `0x003262E6` | close-up: read `0x00326303`; written `0x00326313`, `0x00326318` |
 | `0x003273D0`, the list fill | close-up and actor match: read `0x003275E0`, `0x00327646`, `0x0032764C`, `0x003276D7`; written `0x003275EF`, `0x003275F3` | close-up: read `0x00327610`; written `0x0032761F`, `0x00327623` |
 
-Both `0x003261D0` (`0x00326450`) and `0x003273D0` (`0x00327760`) read every seat when they write the map back. The 16-byte
-copy of seats 0-7 is at `0x0031734B` (`0x003172E0`), `0x00326131` (`0x00326110`), `0x00328758` (`0x003286E0`), `0x00328826`
-(`0x003287A0`), `0x00328940` (`0x003288F0`), `0x00328B74` (`0x00328B20`) and `0x00328EF5` (`0x00328DB0`).
+Both `0x003261D0`¹ and `0x003273D0`² read every seat when they write the map back. The 16-byte
+copy of seats 0-7 is at `0x0031734B`³, `0x00326131`⁴, `0x00328758`⁵, `0x00328826`⁶, `0x00328940`⁷, `0x00328B74`⁸ and `0x00328EF5`⁹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00326450` |
+| ² | `0x00327760` |
+| ³ | `0x003172E0` |
+| ⁴ | `0x00326110` |
+| ⁵ | `0x003286E0` |
+| ⁶ | `0x003287A0` |
+| ⁷ | `0x003288F0` |
+| ⁸ | `0x00328B20` |
+| ⁹ | `0x00328DB0` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -347,22 +591,52 @@ copy of seats 0-7 is at `0x0031734B` (`0x003172E0`), `0x00326131` (`0x00326110`)
 | `0x022C258E` | `u16` | 0 | seat 7 of the staging map, a reserve seat | the 16-byte copy; `0x003273D0` (`0x003274BF`); by seat index: `0x003172E0` (`0x00317396`), `0x003286E0` (`0x0032877F`), `0x003287A0` (`0x003288B5`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F5D`); the close-up of `0x003261D0` (`0x00326313`, `0x00326318`) and of `0x003273D0` (`0x0032761F`, `0x00327623`) | `0x003172E0` (`0x0031736B`); `0x003286E0` (`0x00328779`); `0x003287A0` (`0x00328890`, `0x003288AD`); `0x00328DB0` (`0x00328F4C`); `0x003261D0` (`0x00326303`, `0x00326450`); `0x003273D0` (`0x00327610`, `0x00327760`) |
 | `0x022C2590` | `u16` | 0 | seat 8 of the staging map, the last reserve seat | the copy: `0x003172E0` (`0x0031735A`), `0x00326110` (`0x00326140`), `0x003286E0` (`0x00328766`), `0x003287A0` (`0x00328840`), `0x003288F0` (`0x0032894F`), `0x00328B20` (`0x00328B83`), `0x00328DB0` (`0x00328F04`); `0x003273D0` (`0x003274D8`); by seat index: `0x003172E0` (`0x00317396`), `0x003286E0` (`0x0032877F`), `0x003287A0` (`0x003288B5`), `0x003288F0` (`0x0032895E`), `0x00328B20` (`0x00328B92`), `0x00328DB0` (`0x00328F5D`); the close-up of `0x003261D0` (`0x00326313`, `0x00326318`) and of `0x003273D0` (`0x0032761F`, `0x00327623`) | `0x003172E0` (`0x0031736B`); `0x003286E0` (`0x00328779`); `0x003287A0` (`0x00328890`, `0x003288AD`); `0x00328DB0` (`0x00328F4C`); `0x003261D0` (`0x00326303`, `0x00326450`); `0x003273D0` (`0x00327610`, `0x00327760`) |
 
-No other instruction reaches seats 1-8. The two close-up loops also take the address of seat 4 (`0x00326334`,
-`0x0032763F`).
+No other instruction reaches seats 1-8. The two close-up loops also take the address of seat 4¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00326334`, `0x0032763F` |
+
+</details>
 
 The staging map's address is also taken by `0x0031A300` and `0x00324380`, which write one byte per unit 0-3 from
 `0x022C257C`, below the map. The one indexed table read that could reach it, `0x00308E80(i)` on the unit pointers at
-`0x022C24E0 + i x 8`, has one caller, the debug menu's "Chara Name" readout (`0x001CFC2A`), whose index field `+0x10A8`
-holds only the 0 its constructor `0x001CCB20` stores (`0x001CCE34`, `0x001CCF79`), so it reads the first pointer and never the map.
+`0x022C24E0 + i x 8`, has one caller, the debug menu's "Chara Name" readout¹, whose index field `+0x10A8`
+holds only the 0 its constructor `0x001CCB20` stores², so it reads the first pointer and never the map.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001CFC2A` |
+| ² | `0x001CCE34`, `0x001CCF79` |
+
+</details>
+
+</details>
 
 ## Modding notes
 
 - For rows 0-6 a join adds each worn piece to the owned and worn counts and a leave subtracts it, so gear given to
-  a member who later leaves goes with them (`0x00316E87`-`0x00316EB1`, `0x00323540`-`0x003235BA`). Guest rows 7-25 skip
-  both, so a guest's gear never reaches the inventory, while their first-join items and gil do (`0x00316FE1`-`0x00317034`).
+  a member who later leaves goes with them¹. Guest rows 7-25 skip
+  both, so a guest's gear never reaches the inventory, while their first-join items and gil do².
 - A guest's seat is the highest free active seat; with seats 1-3 all taken, the guest add fails without a message.
 - The catch-up and first-join columns are plain bytes of the party row, so a modded row changes them without code.
 - Locking a member with `setbattlememberlock` keeps `setbattlemember` from moving it out of its fighting seat.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00316E87`-`0x00316EB1`, `0x00323540`-`0x003235BA` |
+| ² | `0x00316FE1`-`0x00317034` |
+
+</details>
 
 ## Related
 
@@ -382,39 +656,51 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Enemy AI and gambits** (explained on [glossary](../Engine-Core/glossary.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002367A0` | is called by | `0x00301AD0` |
+| [`0x002367A0`](party-members.md) | is called by | [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets) |
 
 **Platform** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001CCB20` | calls | `0x005CC930` |
+| [`0x001CCB20`](party-members.md) | calls | [`0x005CC930`](../PhyreEngine/phyre-modules.md) (on phyre modules) |
 
 **Characters and objects** (explained on [actor record](../Characters-And-Objects/actor-record.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E8FD0` | is called by | `0x00265B60`, `0x002E35B0` |
+| [`0x002E8FD0`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: refresh presentation visibility (on party during scenes) | is called by | [`0x00265B60`](../Characters-And-Objects/actor-record.md) (on actor record)<br>[`0x002E35B0`](../Menus-And-HUD/clan-primer.md) (on clan primer) |
 
 **Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263750` | is called by | `0x00226BE0` |
+| [`0x00263750`](../Graphics/model-asset-list.md) (on model asset list) | is called by | [`0x00226BE0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock) |
 
 **Saving, loading and settings** (explained on [native limits](../Engine-Core/native-limits.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236740` | is called by | `0x00583D60` |
+| [`0x00236740`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) | is called by | [`0x00583D60`](../Saving-Loading-And-Settings/save-file-format.md) Save image: finalize header and checksum (on save file format) |
 
 **Menus and HUD** (explained on [action definition row](../Battle-Actions/action-definition-row.md), [target selection](../Battle-Actions/target-selection.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236820` | is called by | `0x0031EB20`, `0x00322A80` |
+| [`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item) | is called by | [`0x0031EB20`](../Battle-Actions/action-definition-row.md) Battle menu: build command entry list (on action definition row)<br>[`0x00322A80`](../Battle-Actions/target-selection.md) (on target selection) |
 
 </details>
 

@@ -24,13 +24,31 @@ requesting screen gave.
 A standalone menu picture is requested as a kind-7 resource with a texture entry: `0x002493D0` files the
 request (`0x00249210` with a last argument of 1, so the buffer is taken top-down with `0x0036A190`), takes an entry
 from the 64-entry texture table at `0x0208F580` (`0x0024A4E0` with the caller's name and flags, `0x48` bytes each)
-and stores it at request `+0x18` (`0x002493FB`). It sets the completion `0x00249670` at request `+0x10`
-(`0x002493FF`), which jumps to the binder `0x0024A1D0(entry, file)`, and returns the entry.
+and stores it at request `+0x18`¹. It sets the completion `0x00249670` at request `+0x10`², which jumps to the binder `0x0024A1D0(entry, file)`, and returns the entry.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002493FB` |
+| ² | `0x002493FF` |
+
+</details>
 
 Nothing tests the entry: with all 64 entries busy it is null, and when the file arrives the binder faults on its
-read of entry `+0x40` (`0x0024A206`). The pack binders call `0x0024A1D0` directly on TIM2s inside a pack (`0x00246A10`
+read of entry `+0x40`¹. The pack binders call `0x0024A1D0` directly on TIM2s inside a pack (`0x00246A10`
 binds five from the pack at `0x0208EA88` by its directory offsets), and `0x0024A480` binds one with a caller-supplied
 CLUT.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024A206` |
+
+</details>
 
 ## Layouts
 
@@ -116,16 +134,30 @@ Sprite record (8 bytes):
 
 A sprite is named by a code, `set << 8 | group`, and a frame; its record is record
 `index[index[set] + group] + frame`. `0x0029F580` binds the code's first record to a widget: it reads the code from
-the widget template `+0x0E` and stores the record address at widget `+0x20` (`0x0029F586`-`0x0029F5BC`). The draw
-`0x0029F5D0` then takes record `widget +0x0A` from that address (`0x0029F5DA`-`0x0029F622`), looks the palette up
-through `paletteOff` (`0x0029F65E`-`0x0029F6B4`) and writes the palette number to the draw context `+0x5C`
-(`0x0029F6BC`).
+the widget template `+0x0E` and stores the record address at widget `+0x20`¹. The draw
+`0x0029F5D0` then takes record `widget +0x0A` from that address², looks the palette up
+through `paletteOff`³ and writes the palette number to the draw context `+0x5C`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029F586`-`0x0029F5BC` |
+| ² | `0x0029F5DA`-`0x0029F622` |
+| ³ | `0x0029F65E`-`0x0029F6B4` |
+| ⁴ | `0x0029F6BC` |
+
+</details>
 
 The set count in `index[0]` is read only as set 0's start: neither the code nor the frame is checked against
 the table. The tag and the three dwords after it are read by none of the 87 functions that compute a record
 address.
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -189,10 +221,20 @@ their tables:
 
 Of these request sites, the 70 kind 7 request sites pass no id of `title_c` (`0x3C`), `titlemenu1`
 (`0x3E`), `titlemenu2` (`0x3F`), `lic_over` (`0x7B`), `w_win_c` (`0xB2`), `map_gra_c` (`0xB3`) or `l_mapunder`
-(`0xB7`): 63 files. `0x00562F90` skips entries 8 and 9 of `0x00D231C0` (`0x00562FE0`-`0x00562FE8`), the names
+(`0xB7`): 63 files. `0x00562F90` skips entries 8 and 9 of `0x00D231C0`¹, the names
 `w_win_c` and `map_gra_c`. `loca_00` (`0xE8`), the picture of area 0, is not requested by `0x003C1D70`, which
-returns for area 0 before the request (`0x003C1D92`-`0x003C1D95`). The six `title_logo_fore3.tm2` files have no kind
+returns for area 0 before the request². The six `title_logo_fore3.tm2` files have no kind
 7 id (named by no path array, above).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00562FE0`-`0x00562FE8` |
+| ² | `0x003C1D92`-`0x003C1D95` |
+
+</details>
 
 A kind 7 site, formula or table therefore gives the id of 338 of the 408 pictures with the shipped data, and no id
 of the other 70: the 63 copies of those seven names,
@@ -201,12 +243,34 @@ picture's kind 7 id, request site, screen and use.
 
 `0x00579AF0` loads `q_c00` to `q_c05` as entries 0 to 5 of `0x00D237E0` (ids `0xC1` to `0xC6`, label `q_img_c`) and
 `q_under_c` as entry 6. The Hunts row builder `0x00577C30` picks sheet `2 x (picture / 24)`, plus 1 once the hunt is
-done, and the cell `picture % 24` (`0x00577CE0`-`0x00577CFF`); a sheet number of 6 or more gives sheet 0
-(`0x00577CEE`-`0x00577CF1`). The hunts' pictures run from 19 to 63 ([Quest menu files](quest-menu-files.md)).
+done, and the cell `picture % 24`¹; a sheet number of 6 or more gives sheet 0². The hunts' pictures run from 19 to 63 ([Quest menu files](quest-menu-files.md)).
 
-The sheets are those seven files: `0x00579AF0` stores their requests at `[0x02CA9748] + 0xD8` (`0x00579F2F`-`0x00579F50`,
-`0x003934B7`), creates the Hunts pane through `0x00577F00` with that address (`0x00579CD8`-`0x00579CFF`), the pane keeps
-it at `+0xC8` (`0x0057800F`), and `0x005780D0` hands it to `0x00577C30` as the sheet array (`0x0057810A`-`0x00578116`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00577CE0`-`0x00577CFF` |
+| ² | `0x00577CEE`-`0x00577CF1` |
+
+</details>
+
+The sheets are those seven files: `0x00579AF0` stores their requests at `[0x02CA9748] + 0xD8`¹, creates the Hunts pane through `0x00577F00` with that address², the pane keeps
+it at `+0xC8`³, and `0x005780D0` hands it to `0x00577C30` as the sheet array⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00579F2F`-`0x00579F50`, `0x003934B7` |
+| ² | `0x00579CD8`-`0x00579CFF` |
+| ³ | `0x0057800F` |
+| ⁴ | `0x0057810A`-`0x00578116` |
+
+</details>
+
+</details>
 
 ## Loader behaviour
 
@@ -218,12 +282,11 @@ picture count:
 - It stores the file at entry `+0x18` and picture `+0x10` at `+0x20`, copies TEX0 bits under mask `0x3F00000` (the PSM)
   into entry `+0x38` bits `0x3F00` and the bits under mask `0x78000000000000` into the bits under mask `0x3C000`, and names the texture from the entry's
   name, or the name plus `%03d` of entry `+0x40`.
-- PSM `0x13`: the pixels (`0x00181250`) and the CLUT (`0x00181000`) are registered; PSM `0x14`: `0x00181190` and
+- PSM `0x13`: the pixels¹ and the CLUT² are registered; PSM `0x14`: `0x00181190` and
   `0x00180E70`. Any other PSM registers nothing, and the entry is still marked bound (`+0x38` bit `0x40`).
 - `0x00181250` and `0x00181190` pass the pixels, width, height and both rounded up to a power of two to
   `0x00184140` (8-bit, `0x001812E3`) or `0x00183EE0` (4-bit, `0x00181223`), then register the texture that call returns
-  under the name with `0x001B21D0` on the sprite batcher `[0x01F811E8]` (`0x001B1C00`), as a tail jump (`0x00181308`,
-  `0x00181248`).
+  under the name with `0x001B21D0` on the sprite batcher `[0x01F811E8]`³, as a tail jump⁴.
 - `0x00181000` registers one 256-colour palette per 256 CLUT colours (`0x400` bytes apart, `0x001B20B0`);
   `0x00180E70` one 16-colour palette per 16 colours (`0x40` apart). Both reorder when
   `clutType << 8 | imageType` is `0x105`, `0x205`, `0x305`, `0x4104`, `0x4204` or `0x4304`.
@@ -232,24 +295,51 @@ picture count:
 - For PSM `0x14` the binder also keeps a copy of the CLUT at entry `+0x10` with the same bit `0x8` and `0x10`
   swap; for `0x13` the entry points at the file's CLUT. A CLUT given to `0x0024A480` (entry `+0x28`, count in
   `+0x38` the bits from `0x40000` up) replaces the file's when its colour count is below `0x4000`
-  (`0x0024A4AA`); with a larger count `0x0024A480` stores neither, and the file's CLUT is used.
+ ⁵; with a larger count `0x0024A480` stores neither, and the file's CLUT is used.
 - The `0x14` copy is a block of `((colours + 255) >> 8) × 0x400` bytes from `0x0036A190` in arena 3
-  (`0x0036C1D0(3, 12)`, popped by `0x0036C140`), filled with `colours >> 4` groups of 16 (`0x0024A2A0`-`0x0024A32E`).
+  (`0x0036C1D0(3, 12)`, popped by `0x0036C140`), filled with `colours >> 4` groups of 16⁶.
   Nothing checks the block: a null one makes the first store write at address 0, which faults, whenever there are
-  16 colours or more (`0x0024A304`).
-- After naming the texture the binder stores `0x00181520(entry)` at entry `+0x44` (`0x0024A25E`-`0x0024A266`).
+  16 colours or more⁷.
+- After naming the texture the binder stores `0x00181520(entry)` at entry `+0x44`⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00181250` |
+| ² | `0x00181000` |
+| ³ | `0x001B1C00` |
+| ⁴ | `0x00181308`, `0x00181248` |
+| ⁵ | `0x0024A4AA` |
+| ⁶ | `0x0024A2A0`-`0x0024A32E` |
+| ⁷ | `0x0024A304` |
+| ⁸ | `0x0024A25E`-`0x0024A266` |
+
+</details>
 
 ### The registry gate
 
 `0x0039BEC0(buffer)` registers a loaded glyph sheet and returns its slot, or 0:
 
-- null buffer: 0 (`0x0039BEC9`);
+- null buffer: 0¹;
 - the first four bytes are compared with `"TIM2"` at `0x00D11470` (`0x0039BEE3`, `strncmp` with 4); any
   difference: 0;
 - the low nibble of the dword at file `+0x40`, the first picture's block flags, must be 1
-  (`0x0039BEF0`–`0x0039BEF4`), or 0;
-- slots 1 to 7 of `0x02AEE810` are scanned for the first empty one (`0x0039BF02`, `0x0039BF1C`); with no empty slot: 0;
+ ², or 0;
+- slots 1 to 7 of `0x02AEE810` are scanned for the first empty one³; with no empty slot: 0;
 - the buffer is stored there, `0x0039BF50` lays out every slot again, and the slot number is returned.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039BEC9` |
+| ² | `0x0039BEF0`-`0x0039BEF4` |
+| ³ | `0x0039BF02`, `0x0039BF1C` |
+
+</details>
 
 The compare at `0x0039BF31` tests the empty slot against the buffer, so it never matches: registering the
 same buffer twice takes two slots. Nothing else in the header is checked.
@@ -260,48 +350,100 @@ same buffer twice takes two slots. Nothing else in the header is checked.
 also written by the font-pack completion `0x0039C150`.
 
 - Font pack: `0x0039C3F0` requests kind 7, id `0xD5` into `0x02AEE868` with completion `0x0039C150`. It returns at once
-  while `0x02AEE868` is set (`0x0039C3FC`); otherwise it sizes the file with `0x0032E400`, allocates that many bytes with
-  `0x003EFCD0` (arena 3, `0x0039C43B`), files the read with `0x0032E620` (`0x0039C45D`) and then stores the buffer at
-  `0x02AEE868` (`0x0039C467`).
+  while `0x02AEE868` is set¹; otherwise it sizes the file with `0x0032E400`, allocates that many bytes with
+  `0x003EFCD0` (arena 3, `0x0039C43B`), files the read with `0x0032E620`² and then stores the buffer at
+  `0x02AEE868`³.
 - That completion fills an empty slot 0 with the pack's directory entry 0, and an empty slot 7 with entry 6 when
   entry 6 is not `0xFFFFFFFF` and the language test `0x00254A10` is false. It then calls `0x0039BF50` and sets the
-  ready flag `0x02AEE890`, a dword (`0x0039C3C6`).
-- With `0x02AEE868` null the completion returns and stores nothing (`0x0039C163`-`0x0039C16D`). Entries 1 to 5
+  ready flag `0x02AEE890`, a dword⁴.
+- With `0x02AEE868` null the completion returns and stores nothing⁵. Entries 1 to 5
   go to `0x02AEE850`, `0x02AEE870`, `0x02AEE878`, `0x02AEE880` and `0x02AEE888`, each only while that pointer is 0
-  (`0x0039C1B5`-`0x0039C26B`). `0x02AEE800` takes slot 0 plus `0x40` while it is 0, and `0x02AEE808` slot 7
-  plus `0x40` while it is 0 and slot 7 is set (`0x0039C295`-`0x0039C2CB`).
+ ⁶. `0x02AEE800` takes slot 0 plus `0x40` while it is 0, and `0x02AEE808` slot 7
+  plus `0x40` while it is 0 and slot 7 is set⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039C3FC` |
+| ² | `0x0039C45D` |
+| ³ | `0x0039C467` |
+| ⁴ | `0x0039C3C6` |
+| ⁵ | `0x0039C163`-`0x0039C16D` |
+| ⁶ | `0x0039C1B5`-`0x0039C26B` |
+| ⁷ | `0x0039C295`-`0x0039C2CB` |
+
+</details>
 
   With entry 1 it also stores the entry's address + `0x10` in `0x02AEE858` and
   `that address + its word +0x0C` in `0x02AEE860`, and calls the empty stub `0x0016D6A0`
-  (`0x0039C1C5`-`0x0039C1F3`). While slot 7 is set, `0x02AEE880` is then overwritten with entry 7
-  (`0x0039C244`-`0x0039C254`). After `0x0039BF50` come `0x0017FBC0(1)` and, when the language test is false,
-  `0x0017FB90(3, 7)` (`0x0039C272`-`0x0039C290`).
+ ¹. While slot 7 is set, `0x02AEE880` is then overwritten with entry 7
+ ². After `0x0039BF50` come `0x0017FBC0(1)` and, when the language test is false,
+  `0x0017FB90(3, 7)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039C1C5`-`0x0039C1F3` |
+| ² | `0x0039C244`-`0x0039C254` |
+| ³ | `0x0039C272`-`0x0039C290` |
+
+</details>
 - `0x0029CAC0(buffer)` (from `0x00330060`) keeps a six-entry `{pointer, count}` table at `0x0209C320`: a buffer
-  already there has its count raised and is not registered again (`0x0029CAD0`, `0x0029CB03`); a new one takes the
-  first empty entry with count 1 and goes to `0x0039BEC0` as a tail jump (`0x0029CAF4`-`0x0029CAFE`); with six in use
-  nothing happens (`0x0029CAF3`). The entry is filled before the gate, so a buffer `0x0039BEC0` refuses still holds it.
+  already there has its count raised and is not registered again¹; a new one takes the
+  first empty entry with count 1 and goes to `0x0039BEC0` as a tail jump²; with six in use
+  nothing happens³. The entry is filled before the gate, so a buffer `0x0039BEC0` refuses still holds it.
 - The match compares the empty entries too, so a null buffer raises the count of the first empty one. `0x0029CB10`
-  lowers the count of the buffer's entry (`0x0029CB36`) and, at 0, unregisters the buffer with `0x0039BB60`
-  (`0x0029CB3C`) and empties the entry (`0x0029CB41`); a buffer not in the table changes nothing (`0x0029CB30`).
+  lowers the count of the buffer's entry⁴ and, at 0, unregisters the buffer with `0x0039BB60`
+ ⁵ and empties the entry⁶; a buffer not in the table changes nothing⁷.
 - `0x0037F1F0`, on a request record whose type byte is 4, registers the buffer and calls `0x0017FBC0(5)`; `0x0037F860`
   unregisters it with `0x0017FA70(5)`.
 - `0x003BC4E0`, the map-data widget, registers the TIM2 inside the guide file it holds at `+0xF8` (at that
   file's u16 `+0x0A`, `0xFFFF` for no picture, `0x003BD8F0`), with `0x0017FBC0(4)`; it, `0x003BBFB0` and `0x003BC970`
   unregister it with `0x0017FA70(4)`.
 - `0x00575710`, the handbook page, registers the TIM2 at the bundle's i32 `+0x0C` (unless -1) when its slot
-  byte `+0xC8` is 1 (`0x0057572E`-`0x00575738`), with `0x0017FBC0(6)` when its kind byte `+0xD2` is 4;
+  byte `+0xC8` is 1⁸, with `0x0017FBC0(6)` when its kind byte `+0xD2` is 4;
   `0x00575640` unregisters it.
   - For kind 5 it hands the sheet to the font manager as `handbook_monster<NNN>.txt`, `NNN` being the word
     `+0xCC`: `0x0017FA90(NNN + 1, 1, name, 7)`, `0x0017FB70(NNN + 1)`, `0x0017F790(NNN, sheet)` and `0x0017FBE0()`
-    (`0x00575782`-`0x005757D9`).
+   ⁹.
 - `0x0039BB60(buffer)` clears the first of slots 1 to 7 whose low 32 bits equal the buffer's and lays out
   every slot again; a buffer not found changes nothing.
 - `0x0039BB30` (from `0x0029CE40`, which also zeroes the `0x0209C320` table) clears `0xF0` bytes from
   `0x02AEE810`, including the font-pack pointer, and calls `0x0039C3F0`, which requests the pack again.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029CAD0`, `0x0029CB03` |
+| ² | `0x0029CAF4`-`0x0029CAFE` |
+| ³ | `0x0029CAF3` |
+| ⁴ | `0x0029CB36` |
+| ⁵ | `0x0029CB3C` |
+| ⁶ | `0x0029CB41` |
+| ⁷ | `0x0029CB30` |
+| ⁸ | `0x0057572E`-`0x00575738` |
+| ⁹ | `0x00575782`-`0x005757D9` |
+
+</details>
+
 The table `0x0209C320` holds six 16-byte entries, a buffer pointer at `+0x00` and a count at `+0x08`. `0x0029CE40` zeroes
-every entry with plain stores (`0x0029CE7A`-`0x0029CEC2`); `0x0029CAC0` and `0x0029CB10` reach the entries only through the
+every entry with plain stores¹; `0x0029CAC0` and `0x0029CB10` reach the entries only through the
 table's address. All are 0 in the file (the zero-filled tail of `.data`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029CE7A`-`0x0029CEC2` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -312,19 +454,48 @@ No other instruction reaches these globals: no other RIP-relative, image-base-re
 names them, and the table's address is taken only by `0x0029CAC0` and `0x0029CB10`.
 
 `0x0039BAD0(buffer)` returns the slot from 1 to 7 whose low 32 bits match, or 0. `0x0039BA30(slot, mode)`
-returns null for an empty slot (`0x0039BA49`), else the first picture's block (picture `+0x30`). With mode 0 it
-returns null when that block's flags have a bit of `0x18000` set (`0x0039BA63`). A non-zero mode calls `0x00254A10`
-(`0x0039BA80`): while it is false the first picture's block is returned whatever its flags (`0x0039BA87`).
+returns null for an empty slot¹, else the first picture's block (picture `+0x30`). With mode 0 it
+returns null when that block's flags have a bit of `0x18000` set². A non-zero mode calls `0x00254A10`³: while it is false the first picture's block is returned whatever its flags⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039BA49` |
+| ² | `0x0039BA63` |
+| ³ | `0x0039BA80` |
+| ⁴ | `0x0039BA87` |
+
+</details>
 
 With a non-zero mode and `0x00254A10` true it walks the file's `+0x06` pictures by `totalSize` and returns the first
-block, of a picture whose `headerSize` is above `0x30`, whose flags have `0x8000` and not `0x10000`
-(`0x0039BA95`-`0x0039BAA9`), or null (`0x0039BAB7`).
+block, of a picture whose `headerSize` is above `0x30`, whose flags have `0x8000` and not `0x10000`¹, or null².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039BA95`-`0x0039BAA9` |
+| ² | `0x0039BAB7` |
+
+</details>
 
 ### Script glyph sheets (EBP section 6)
 
 A script container (`.ebp`) can carry a glyph sheet in directory slot 6
 ([script container](../EBP-Script-Files/ebp-script-container.md)). When the container arrives,
-`0x003304A0` passes that section, with the manager slot in the low four bits, to `0x00330060` (`0x00330565`), which:
+`0x003304A0` passes that section, with the manager slot in the low four bits, to `0x00330060`¹, which:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00330565` |
+
+</details>
 
 1. stores it at `0x022C6CF0[g]` and in the area record (`0x0026C860`, `0x02098EC0 + g × 0x288`);
 2. clears pending bit `0x40` of `0x022C6E48[g]`;
@@ -333,11 +504,20 @@ A script container (`.ebp`) can carry a glyph sheet in directory slot 6
    no-op `0x0016D6A0`, so nothing is logged);
 4. registers it through `0x0029CAC0`.
 
-`0x001B4590(font, entry)` is that attach (`0x001B483F`): it places the entry in the first empty of the font's
+`0x001B4590(font, entry)` is that attach¹: it places the entry in the first empty of the font's
 16 slots at `+0x278` (nothing happens when all are taken) and registers the slot with the text renderer
 `[0x01F811F8]` through `0x001E7F90`: by the entry's kind `+0x18` alone while its byte `+0x00` is clear, otherwise
 through the list the key `(font id << 5) + kind` finds in the font's tree at `+0x30` (kinds 2 and 3 when
 `+0x18` is 0), when `0x001FDD60(list, entry +0x14)` accepts it. `0x001B6510` attaches an entry the same way.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B483F` |
+
+</details>
 
 ### Layout and upload
 
@@ -347,30 +527,80 @@ three offsets are converted only while flag `0x4000` is clear, which the pass th
 grows by the picture's height, and the walk of a slot stops once the counter exceeds 60 times the dword at
 `0x01E0CDC4` (23 in the executable).
 
-The test follows each picture (`0x0039C08A`-`0x0039C09A`) and the counter is never reset, so once it is over the
+The test follows each picture¹ and the counter is never reset, so once it is over the
 limit each later slot still lays out its first picture and then stops.
 
-`0x0039BDA0`, called from the screen bodies (`0x00252840`, `0x002528A0`, `0x00252990`, `0x00252A20`, `0x00252A70`),
-returns at once while `0x02AEE890` is clear (`0x0039BDB7`). Otherwise it sends the font pack's 32 x 16 picture to
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039C08A`-`0x0039C09A` |
+
+</details>
+
+`0x0039BDA0`, called from the screen bodies¹,
+returns at once while `0x02AEE890` is clear². Otherwise it sends the font pack's 32 x 16 picture to
 block `0x32FC` as a 32-bit image (PSM 0) one 64-pixel unit wide at `x = 0`, `y = 0`, with the width and height
-from that picture's header (`0x0039BDBD`-`0x0039BE07`).
+from that picture's header³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00252840`, `0x002528A0`, `0x00252990`, `0x00252A20`, `0x00252A70` |
+| ² | `0x0039BDB7` |
+| ³ | `0x0039BDBD`-`0x0039BE07` |
+
+</details>
 
 It then sends every picture of every slot, with a block or without one, to block `0x2A00`, 640 pixels wide,
-4-bit (PSM `0x14`), at `x = 0` and `y` = the same running row, `width` x `height` from the picture header
-(`0x0039BE40`-`0x0039BE72`). The row grows by every picture's height (`0x0039BE7D`) with no limit, so a slot whose
+4-bit (PSM `0x14`), at `x = 0` and `y` = the same running row, `width` x `height` from the picture header¹. The row grows by every picture's height² with no limit, so a slot whose
 layout stopped before its last picture is still sent whole, and every later picture then goes below the row its
 `bandBase` and `bandRow` name.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039BE40`-`0x0039BE72` |
+| ² | `0x0039BE7D` |
+
+</details>
+
 `0x003EFDF0(block, pixels, buffer width, PSM, x, y, width, height)` builds each transfer in the current packet
-buffer (`0x02EBEFC0` + `0x18` x `[0x02EBEFF0]`): GS registers `0x50` to `0x53` under an A+D tag (`0x003A2090`), the
+buffer (`0x02EBEFC0` + `0x18` x `[0x02EBEFF0]`): GS registers `0x50` to `0x53` under an A+D tag¹, the
 pixels from `picture + headerSize` through `0x003A21A0` as `0x003A1F20(width, height, PSM) / 4` quadwords, rounded
-down, plus one (`0x003EFE22`-`0x003EFE4F`, `0x003EFF85`), then `0x3F` under a second tag. It ends by flipping the packet
-buffers with `0x003A1DB0` (`0x003F001A`).
+down, plus one², then `0x3F` under a second tag. It ends by flipping the packet
+buffers with `0x003A1DB0`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A2090` |
+| ² | `0x003EFE22`-`0x003EFE4F`, `0x003EFF85` |
+| ³ | `0x003F001A` |
+
+</details>
 
 The font pack's picture is kept apart by `0x0039C150`: `0x02AEE858` points at its picture header, `0x10` bytes past the
-TIM2 file at `0x02AEE850` (`0x0039C1D0`), and `0x02AEE860` at its pixels, the header plus its `u16 +0x0C` header size
-(`0x0039C1DF`). `0x0039BDA0` reads both for the 32 x 16 transfer (`0x0039BDBD`, `0x0039BDC8`), and so does `0x0039BD50`
-(`0x0039BD5D`, `0x0039BD77`).
+TIM2 file at `0x02AEE850`¹, and `0x02AEE860` at its pixels, the header plus its `u16 +0x0C` header size². `0x0039BDA0` reads both for the 32 x 16 transfer³, and so does `0x0039BD50`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039C1D0` |
+| ² | `0x0039C1DF` |
+| ³ | `0x0039BDBD`, `0x0039BDC8` |
+| ⁴ | `0x0039BD5D`, `0x0039BD77` |
+
+</details>
 
 ## Modding notes
 
@@ -385,8 +615,18 @@ TIM2 file at `0x02AEE850` (`0x0039C1D0`), and `0x02AEE860` at its pixels, the he
   nibble 1; its pixels are uploaded as 4-bit rows at most 640 wide.
 - At most seven registered sheets fit in slots 1 to 7, fewer when slot 7 is the font pack's. An eighth
   returns 0, the same as a bad header, and the caller gets no image.
-- Registry matches use the low 32 bits of the buffer address (`0x0039BB60`, `0x0039BAD0`), and `0x00575710` and
-  `0x003BD8F0` form the sheet's address with 32-bit arithmetic (`0x00575763`).
+- Registry matches use the low 32 bits of the buffer address¹, and `0x00575710` and
+  `0x003BD8F0` form the sheet's address with 32-bit arithmetic².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039BB60`, `0x0039BAD0` |
+| ² | `0x00575763` |
+
+</details>
 
 ## Related
 
@@ -405,28 +645,30 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Controls and input** (explained on [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022A4B0` | calls | `0x00291C80` |
-| `0x0032E620` | is called by | `0x00291C80` |
+| [`0x0022A4B0`](tim2-images.md) | calls | [`0x00291C80`](../Graphics/effect-file-list.md) (on effect file list) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00291C80`](../Graphics/effect-file-list.md) (on effect file list) |
 
 **Scripts and script commands** (explained on [file requests and the read queue](file-requests-and-the-read-queue.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E400` | is called by | `0x0050DF70` |
-| `0x0032E620` | is called by | `0x0050DFE0` |
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0050DF70`](resource-lifecycle.md) (on resource lifecycle) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0050DFE0`](file-requests-and-the-read-queue.md) (on file requests and the read queue) |
 
-**World, areas and travel**
+**World, areas and travel** (explained on [ps2data bin families](ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [resource arena and relocation](resource-arena-and-relocation.md), [standard file formats](standard-file-formats.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md), [async load manager](async-load-manager.md), [graphics settings](../Engine-Core/graphics-settings.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E400` | is called by | `0x00268750`, `0x003319D0`, `0x00378030`, `0x00379A10`, `0x003EA820` |
-| `0x0032E620` | is called by | `0x00268750`, `0x00378030`, `0x003EA820` |
-| `0x0036A190` | is called by | `0x00268750`, `0x00377DC0`, `0x00378030`, `0x00378BC0` |
-
-**World, areas and travel** (explained on [ps2data bin families](ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [resource arena and relocation](resource-arena-and-relocation.md), [standard file formats](standard-file-formats.md))
-
-**World, areas and travel** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [async load manager](async-load-manager.md), [graphics settings](../Engine-Core/graphics-settings.md))
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00268750`](ps2data-bin-families.md) Map ref: begin load resources (on ps2data bin families)<br>[`0x003319D0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x00378030`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack)<br>[`0x00379A10`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list)<br>[`0x003EA820`](ard-area-battle-data.md) Area ard: load or unload field resource (on ard area battle data) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00268750`](ps2data-bin-families.md) Map ref: begin load resources (on ps2data bin families)<br>[`0x00378030`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack)<br>[`0x003EA820`](ard-area-battle-data.md) Area ard: load or unload field resource (on ard area battle data) |
+| [`0x0036A190`](resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00268750`](ps2data-bin-families.md) Map ref: begin load resources (on ps2data bin families)<br>[`0x00377DC0`](../Graphics/effect-files-efx-efb.md) (on effect files efx efb)<br>[`0x00378030`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack)<br>[`0x00378BC0`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) |
 
 </details>

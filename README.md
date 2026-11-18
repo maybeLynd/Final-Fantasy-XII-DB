@@ -54,7 +54,6 @@ For modders and programmers: how the program is put together and the formats of 
 - [Third-party libraries](FFXII%20TZA/Third-Party-Libraries/README.md) - Libraries compiled into the executable.
 - [Compiler and C runtime](FFXII%20TZA/Compiler-And-C-Runtime/README.md) - Code the compiler and the C runtime library add to the executable.
 - [EBP script files](FFXII%20TZA/EBP-Script-Files/README.md) - The format of the .ebp files that hold area and event scripts.
-- [PKFL package files](FFXII%20TZA/PKFL-Package-Files/README.md) - The format of the PKFL package files.
 
 ## Kinds of page
 

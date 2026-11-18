@@ -14,17 +14,27 @@ loads its summon actor from there. A field that is both, or neither, follows eac
 
 ### At actor bind
 
-`ActorManager_BindLoadedDefinitionPayload` (`0x0026C8C0`) binds the payload of any of the five actor manager slots.
-Only when slot 0, the field, is bound (`0x0026C95D`-`0x0026C95F`) does it handle two heaps whose pointers are
-`0x02099DD0` and `0x02099DD8` (`0x0026C9B5`-`0x0026CA39`):
+`ActorManager_BindLoadedDefinitionPayload`¹ binds the payload of any of the five actor manager slots.
+Only when slot 0, the field, is bound² does it handle two heaps whose pointers are
+`0x02099DD0` and `0x02099DD8`³:
 
-1. It takes the id registered for slot 0, `0x0032F240(0)`, the id the field was loaded by: the slot loader
-   `0x0032FCA0` stores it (`0x0032FD09`) and requests the field's own files by it (`0x0032FD3F`) (`0x0026C9B7`).
-2. It releases each heap that exists: heap 13 at `0x02099DD0` and heap 14 at `0x02099DD8`, through `0x00369760`,
-   `0x0036D160` and `0x003697F0` (`0x0026C9BC`-`0x0026CA17`).
-3. When `0x00377440(id)` reports the id absent from the event memory list, `0x0025A990` makes heap 13 again
-   (`0x0026CA1E`-`0x0026CA29`).
-4. When `0x00377480(id)` returns 0, `0x0025AA30` makes heap 14 again (`0x0026CA2E`-`0x0026CA39`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026C8C0` |
+| ² | `0x0026C95D`-`0x0026C95F` |
+| ³ | `0x0026C9B5`-`0x0026CA39` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It takes the id registered for slot 0, `0x0032F240(0)`, the id the field was loaded by: the slot loader `0x0032FCA0` stores it and requests the field's own files by it. | `0x0032FD09`<br>`0x0032FD3F`<br>`0x0026C9B7` |
+| 2 | It releases each heap that exists: heap 13 at `0x02099DD0` and heap 14 at `0x02099DD8`, through `0x00369760`, `0x0036D160` and `0x003697F0`. | `0x0026C9BC`-`0x0026CA17` |
+| 3 | When `0x00377440(id)` reports the id absent from the event memory list, `0x0025A990` makes heap 13 again. | `0x0026CA1E`-`0x0026CA29` |
+| 4 | When `0x00377480(id)` returns 0, `0x0025AA30` makes heap 14 again. | `0x0026CA2E`-`0x0026CA39` |
 
 ### The two heaps
 
@@ -34,42 +44,114 @@ Only when slot 0, the field, is bound (`0x0026C95D`-`0x0026C95F`) does it handle
 | 14 | `0x02099DD8` | `0x19000`, 100 KiB | `SMNMEM` | `0x0025AA30` |
 
 Each maker releases an existing heap first, through `0x00369760(heap)`, `0x0036D160(heap)` and `0x003697F0(block)`, and
-sets its pointer to 0 (`0x0025A99E`-`0x0025A9BE`, `0x0025AA3E`-`0x0025AA5E`). It then allocates the block from pool 5
-(`0x0036C1D0(5, 5)`, `0x0036A190`), stores the result in the pointer even when it is null, and pops the pool selection
-(`0x0036C140`). Only a block that is not null is named (`0x0036C660`) and registered under its heap number with
-`0x00369D30(heap, block, size, 0)`, a tail jump (`0x0025A9F2`-`0x0025AA21`, `0x0025AA92`-`0x0025AAC1`).
+sets its pointer to 0¹. It then allocates the block from pool 5
+(`0x0036C1D0(5, 5)`, `0x0036A190`), stores the result in the pointer even when it is null, and pops the pool selection². Only a block that is not null is named³ and registered under its heap number with
+`0x00369D30(heap, block, size, 0)`, a tail jump⁴.
 
-The slot reset `0x002628B0` releases both heaps the same way when slot 0 is reset (`0x00262DC3`-`0x00262DC5`,
-`0x00262DD3`-`0x00262E28`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025A99E`-`0x0025A9BE`, `0x0025AA3E`-`0x0025AA5E` |
+| ² | `0x0036C140` |
+| ³ | `0x0036C660` |
+| ⁴ | `0x0025A9F2`-`0x0025AA21`, `0x0025AA92`-`0x0025AAC1` |
+
+</details>
+
+The slot reset `0x002628B0` releases both heaps the same way when slot 0 is reset¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00262DC3`-`0x00262DC5`, `0x00262DD3`-`0x00262E28` |
+
+</details>
 
 The slot loaders take the payloads of slots 1 and 2 from heap 13 and the payload of slot 3 from heap 14 when those
-heaps exist, and from pool 5 otherwise (`0x0032F8F6`-`0x0032F96B`, `0x0032FE00`-`0x0032FE40`). So a field on the list
+heaps exist, and from pool 5 otherwise¹. So a field on the list
 loads slots 1 and 2 from the general pool, and a town loads slot 3 from it. A heap is also absent when its block
-cannot be had: `0x0036A190` returns 0 when both of its tries fail (`0x0036A1C9`, `0x0036A1F0`, `0x0036A1FB`), and
-`0x0025A990` then leaves heap 13 unmade (`0x0025A9F2`-`0x0025A9F5`).
+cannot be had: `0x0036A190` returns 0 when both of its tries fail², and
+`0x0025A990` then leaves heap 13 unmade³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032F8F6`-`0x0032F96B`, `0x0032FE00`-`0x0032FE40` |
+| ² | `0x0036A1C9`, `0x0036A1F0`, `0x0036A1FB` |
+| ³ | `0x0025A9F2`-`0x0025A9F5` |
+
+</details>
 
 ### The two tests
 
-`0x00377440(id)` reads the list at `0x02ADD0A8`: no list, an empty list or an id not in it all count as absent
-(`0x00377440`-`0x0037747A`). It compares the id with each `u16` entry from `+0x0A`, up to the `u16` count at `+0x08`,
-and returns 1 for absent (`0x00377475`) and 0 when an entry matches (`0x0037747B`).
+`0x00377440(id)` reads the list at `0x02ADD0A8`: no list, an empty list or an id not in it all count as absent¹. It compares the id with each `u16` entry from `+0x0A`, up to the `u16` count at `+0x08`,
+and returns 1 for absent² and 0 when an entry matches³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00377440`-`0x0037747A` |
+| ² | `0x00377475` |
+| ³ | `0x0037747B` |
+
+</details>
 
 `0x00377480(id)` returns bit `0x8000` of the id's record in the field record table `0x02ADD100`,
 the town bit ([Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)), and 0 for an id outside the table
-(the unsigned compare with the count at `+4`, `0x0037748C`) or while the table is not loaded (`0x0037748A`).
+(the unsigned compare with the count at `+4`, `0x0037748C`) or while the table is not loaded¹.
 So the summon memory heap is made only for fields that are not towns, and for every field while the table is
 not loaded.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037748A` |
+
+</details>
+
 ### The list file
 
-The list is `common/eventmemorylist.bin`, kind 9 file `0x29`, requested by `0x00378540` under the name `EVTMEM`
-(`0x003787E6`-`0x00378841`); its completion `0x00378A50` stores the pointer in `0x02ADD0A8`.
+The list is `common/eventmemorylist.bin`, kind 9 file `0x29`, requested by `0x00378540` under the name `EVTMEM`¹; its completion `0x00378A50` stores the pointer in `0x02ADD0A8`.
 
-The buffer comes from `0x00267990(size)` (`0x003787FB`), which allocates the file's size in arena 5 (`0x0036C1D0(5)`,
-`0x0036A190`) and labels the block with the file name cut from `..\..\katano\ateldecode.c` (`0x0036C750`) and the tag
-`0x1698` (`0x0036C660`). `0x00378540` then labels it again with the name `EVTMEM` and tag 0 (`0x00378810`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003787E6`-`0x00378841` |
+
+</details>
+
+The buffer comes from `0x00267990(size)`¹, which allocates the file's size in arena 5 (`0x0036C1D0(5)`,
+`0x0036A190`) and labels the block with the file name cut from `..\..\katano\ateldecode.c`² and the tag
+`0x1698`³. `0x00378540` then labels it again with the name `EVTMEM` and tag 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003787FB` |
+| ² | `0x0036C750` |
+| ³ | `0x0036C660` |
+| ⁴ | `0x00378810` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -77,9 +159,16 @@ The buffer comes from `0x00267990(size)` (`0x003787FB`), which allocates the fil
 | `+0x08` | `u16` | count | 8 |
 | `+0x0A` | `u16[8]` | ids | the field ids that get no event memory |
 
+</details>
+
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 The one shipped file is 26 bytes and lists the ids 0, 49, 668, 670, 782, 871, 872 and 912.
+
+</details>
 
 ## Modding notes
 

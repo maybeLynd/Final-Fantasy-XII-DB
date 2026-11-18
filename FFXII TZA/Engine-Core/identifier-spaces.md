@@ -27,8 +27,8 @@ The identifiers fall into six families:
   back into the actor, and `0x0031B7E0` goes one step further to the actor's unit, and only while `0x02089340` bit `0x10`
   is set.
 - **A target class is not an actor group.** The class is the low nibble of actor byte `+0x0E` that
-  setfreetargettype writes (`0x00269FE0`), and showtargettype and hidetargettype compare it whole
-  (`0x0026DDB4`-`0x0026DDBB`). The group verbs compare the group `0x00263BE0` computes from it: nibbles 1, 2 and 7
+  setfreetargettype writes¹, and showtargettype and hidetargettype compare it whole
+ ². The group verbs compare the group `0x00263BE0` computes from it: nibbles 1, 2 and 7
   give group 0, nibble 3 gives group 2, and every other nibble gives group 1.
 - **A party seat is not a member.** A seat (0 to 8, in one of five slot maps) holds a member selector. The selector
   is the row of the party table and of the forty member records.
@@ -40,6 +40,16 @@ The identifiers fall into six families:
   retired.
 - **A text id has two forms.** `0x002F9860` reads `group × 1000 + row`, while `0x002F9920` searches the rows for a row's
   own id under `group × 10000`. The two agree only where a file numbers its rows from `group × 10000` in order.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00269FE0` |
+| ² | `0x0026DDB4`-`0x0026DDBB` |
+
+</details>
 
 ## Columns
 
@@ -69,321 +79,253 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 320 calls with 60 other topics</summary>
 
-**Characters and objects**
+**Characters and objects** (explained on [frame update order](frame-update-order.md), [time stop and freeze](time-stop-and-freeze.md), [ps2 cpu emulation](ps2-cpu-emulation.md), [npc names](../Characters-And-Objects/npc-names.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [target selection](../Battle-Actions/target-selection.md), [script requests](../Scripts-And-Script-Commands/script-requests.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party control modes](party-control-modes.md), [force fight mode](force-fight-mode.md), [party data](../Party/party-data.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002621D0` | calls | `0x00358940` |
-| `0x00263990` | is called by | `0x0025C230`, `0x0025C830`, `0x00268D10`, `0x00272CB0`, `0x00272CE0` |
-| `0x00263BE0` | is called by | `0x0035A7A0`, `0x0035A990`, `0x0046BAC0` |
-| `0x00269FE0` | calls | `0x00268EA0` |
-| `0x00269FE0` | is called by | `0x00238BF0` |
-| `0x002DF980` | is called by | `0x0032FCA0` |
-| `0x002E97C0` | is called by | `0x0037B4D0` |
-| `0x002E9810` | is called by | `0x0037B4D0` |
-| `0x0030E360` | calls | `0x00300FC0` |
-
-**Characters and objects**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0030F760` | calls | `0x00236820`, `0x00236850` |
-| `0x0031B7E0` | calls | `0x00263E30`, `0x003588B0` |
-| `0x00322C50` | is called by | `0x002367A0`, `0x0023A570`, `0x0031B810`, `0x003266C0`, `0x00329CC0` |
-| `0x003589B0` | is called by | `0x00234480`, `0x0025C230`, `0x0025C830`, `0x00268650`, `0x00268D10`, `0x0037B4D0`, `0x003B6F80` |
-
-**Characters and objects** (explained on [frame update order](frame-update-order.md), [time stop and freeze](time-stop-and-freeze.md), [ps2 cpu emulation](ps2-cpu-emulation.md), [npc names](../Characters-And-Objects/npc-names.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
-
-**Characters and objects** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [target selection](../Battle-Actions/target-selection.md), [script requests](../Scripts-And-Script-Commands/script-requests.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
-
-**Characters and objects** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party control modes](party-control-modes.md), [force fight mode](force-fight-mode.md), [party data](../Party/party-data.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md))
+| [`0x002621D0`](../Scripts-And-Script-Commands/script-interpreter.md) Vm native command: execute lifecycle (on script interpreter) | calls | [`0x00358940`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor manager: get record by ordinal (on party during scenes) |
+| [`0x00263990`](../Menus-And-HUD/enemy-names-on-screen.md) (on enemy names on screen) | is called by | [`0x0025C230`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x0025C830`](../Menus-And-HUD/text-npc-names.md) (on text npc names)<br>[`0x00268D10`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x00272CB0`](../Menus-And-HUD/enemy-names-on-screen.md) (on enemy names on screen)<br>[`0x00272CE0`](../Characters-And-Objects/npc-names.md) (on npc names) |
+| [`0x00263BE0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x0035A7A0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x0035A990`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x0046BAC0`](../Battle-Actions/target-selection.md) (on target selection) |
+| [`0x00269FE0`](identifier-spaces.md) | calls | [`0x00268EA0`](../Scripts-And-Script-Commands/script-requests.md) (on script requests) |
+| [`0x00269FE0`](identifier-spaces.md) | is called by | [`0x00238BF0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) Battle unit: refresh actor runtime from definition (on movement bodies and separation) |
+| [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) |
+| [`0x002E97C0`](identifier-spaces.md) | is called by | [`0x0037B4D0`](../Characters-And-Objects/actor-record-fields.md) (on actor record fields) |
+| [`0x002E9810`](identifier-spaces.md) | is called by | [`0x0037B4D0`](../Characters-And-Objects/actor-record-fields.md) (on actor record fields) |
+| [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects | calls | [`0x00300FC0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
+| [`0x0030F760`](identifier-spaces.md) Battle unit: commit action | calls | [`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item)<br>[`0x00236850`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets) |
+| [`0x0031B7E0`](identifier-spaces.md) | calls | [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse)<br>[`0x003588B0`](../Menus-And-HUD/map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
+| [`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x002367A0`](../Party/party-members.md) (on party members)<br>[`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction)<br>[`0x0031B810`](../Enemy-AI-And-Gambits/enmity.md) Battle unit: find mapped definition selector by index (on enmity)<br>[`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots)<br>[`0x00329CC0`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle slot map: initialize mapping classes (on strong and weak mode) |
+| [`0x003589B0`](../Graphics/effect-anchors-and-targets.md) Actor handle: encode registry entry (on effect anchors and targets) | is called by | [`0x00234480`](../Characters-And-Objects/battle-unit-fields.md) Battle unit: allocate slot and bind actor (on battle unit fields)<br>[`0x0025C230`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x0025C830`](../Menus-And-HUD/text-npc-names.md) (on text npc names)<br>[`0x00268650`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x00268D10`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x0037B4D0`](../Characters-And-Objects/actor-record-fields.md) (on actor record fields)<br>[`0x003B6F80`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
 
 **Sound and music** (explained on [sound effects](../Sound-And-Music/sound-effects.md), [audio manager](../Sound-And-Music/audio-manager.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0021B5B0` | calls | `0x00212950`, `0x00224540` |
-| `0x0021B5B0` | is called by | `0x00210C00` |
-| `0x003A1180` | is called by | `0x00271500` |
+| [`0x0021B5B0`](identifier-spaces.md) | calls | [`0x00212950`](../Sound-And-Music/sound-effects.md) (on sound effects)<br>[`0x00224540`](../Sound-And-Music/audio-manager.md) (on audio manager) |
+| [`0x0021B5B0`](identifier-spaces.md) | is called by | [`0x00210C00`](../Sound-And-Music/sound-effects.md) (on sound effects) |
+| [`0x003A1180`](identifier-spaces.md) | is called by | [`0x00271500`](../Battle-Actions/quickenings-and-summons.md) (on quickenings and summons) |
 
-**Enemy AI and gambits**
+**Enemy AI and gambits** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [glossary](glossary.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [battle units](../Characters-And-Objects/battle-units.md), [frame update order](frame-update-order.md), [enmity](../Enemy-AI-And-Gambits/enmity.md), [gambit screen](../Menus-And-HUD/gambit-screen.md), [item and ability ids](item-and-ability-ids.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0030F760` | is called by | `0x00305AB0`, `0x00305CC0` |
-| `0x0031B7E0` | is called by | `0x00301AD0` |
-| `0x00322C50` | is called by | `0x00301AD0`, `0x003215C0`, `0x00321630`, `0x00321770`, `0x00321850`, `0x003219D0`, `0x00321B00`, `0x00321E40`, `0x00327A10`, `0x00327CB0` |
+| [`0x0030F760`](identifier-spaces.md) Battle unit: commit action | is called by | [`0x00305AB0`](../Enemy-AI-And-Gambits/gambits.md) Battle unit: select and commit next action (on gambits)<br>[`0x00305CC0`](../Enemy-AI-And-Gambits/gambits.md) Battle unit: try select and commit ai order from set (on gambits) |
+| [`0x0031B7E0`](identifier-spaces.md) | is called by | [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets) |
+| [`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets)<br>[`0x003215C0`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: read for combatant id (on enmity)<br>[`0x00321630`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: get highest relevant (on enmity)<br>[`0x00321770`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: any above threshold (on enmity)<br>[`0x00321850`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: write for combatant id (on enmity)<br>[`0x003219D0`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: propagate to perceiving foes (on enmity)<br>[`0x00321B00`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: adjust other relevant combatants (on enmity)<br>[`0x00321E40`](../Battle-Actions/weapon-motion-list.md) Battle enmity: clamp and store (on weapon motion list)<br>[`0x00327A10`](../Menus-And-HUD/widgets.md) Gambit config: classify action target pair compatibility (on widgets)<br>[`0x00327CB0`](../Enemy-AI-And-Gambits/gambits.md) Gambit config: load authored preset and rebuild runtime orders (on gambits) |
 
-**Enemy AI and gambits** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [glossary](glossary.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [battle units](../Characters-And-Objects/battle-units.md), [frame update order](frame-update-order.md))
+**Battle actions** (explained on [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md), [action phases](../Battle-Actions/action-phases.md), [hp and ko](../Damage-And-Battle-Formulas/hp-and-ko.md), [action results](../Battle-Actions/action-results.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [battle units](../Characters-And-Objects/battle-units.md), [quickenings and summons](../Battle-Actions/quickenings-and-summons.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [frame update order](frame-update-order.md), [force fight mode](force-fight-mode.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [command availability](../Battle-Actions/command-availability.md), [action definition row](../Battle-Actions/action-definition-row.md), [call signatures](call-signatures.md), [bestiary](../Enemy-Spawning/bestiary.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
 
-**Enemy AI and gambits** (explained on [enmity](../Enemy-AI-And-Gambits/enmity.md), [gambit screen](../Menus-And-HUD/gambit-screen.md), [item and ability ids](item-and-ability-ids.md))
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Battle actions**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003008A0` | is called by | `0x00300280`, `0x0030EF20` |
-| `0x0030E360` | calls | `0x0030B8E0`, `0x0030B9B0` |
-| `0x0030E360` | is called by | `0x002FDDA0`, `0x00304850`, `0x0030EB10` |
-| `0x0030F760` | calls | `0x0030AB40`, `0x003105D0` |
-| `0x0030F760` | is called by | `0x0030FA00`, `0x00312FA0` |
-
-**Battle actions**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0031B7E0` | is called by | `0x002FE660`, `0x002FFB60`, `0x00304850`, `0x00305110`, `0x00305230`, `0x00305430`, `0x003082F0`, `0x00309990`, `0x0030A250`, `0x0030C010`, `0x0030C970`, `0x0030CBE0` |
-| `0x0031B7E0` | is also called by | `0x0030D160`, `0x0030DB70`, `0x0030EEA0`, `0x0030F760`, `0x00310780`, `0x00311B20`, `0x00312FA0`, `0x00313120`, `0x00313CD0`, `0x00313DB0` |
-
-**Battle actions**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00322C50` | is called by | `0x002FFCF0`, `0x003060E0`, `0x00309300`, `0x003093D0`, `0x0030CBE0`, `0x0030DB70`, `0x0031A7B0` |
-| `0x003589B0` | is called by | `0x00319F50`, `0x00325260` |
-
-**Battle actions** (explained on [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md), [action phases](../Battle-Actions/action-phases.md), [hp and ko](../Damage-And-Battle-Formulas/hp-and-ko.md), [action results](../Battle-Actions/action-results.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md))
-
-**Battle actions** (explained on [battle units](../Characters-And-Objects/battle-units.md), [quickenings and summons](../Battle-Actions/quickenings-and-summons.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [frame update order](frame-update-order.md), [force fight mode](force-fight-mode.md))
-
-**Battle actions** (explained on [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [command availability](../Battle-Actions/command-availability.md), [action definition row](../Battle-Actions/action-definition-row.md), [call signatures](call-signatures.md))
-
-**Battle actions** (explained on [bestiary](../Enemy-Spawning/bestiary.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
-
-**Damage and battle formulas**
-
-| Function | | Functions |
-|---|---|---|
-| `0x003008A0` | is called by | `0x003112F0` |
-| `0x0030E360` | calls | `0x003112F0`, `0x0031B860`, `0x00386A50`, `0x00386A70` |
-| `0x0030E360` | is called by | `0x00300530`, `0x003112F0` |
-| `0x0031B9F0` | is called by | `0x00320AB0` |
-| `0x00322C50` | is called by | `0x002FEF30` |
-| `0x00387730` | is called by | `0x00387BB0`, `0x0038FCE0` |
-| `0x003A1180` | is called by | `0x003112F0` |
+| [`0x003008A0`](../Scripts-And-Script-Commands/reward-verbs.md) Inventory: modify encoded item and update discovery state (on reward verbs) | is called by | [`0x00300280`](../Rewards-EXP-Gil-And-Loot/gil.md) Battle action: refund reserved execution resources (on gil)<br>[`0x0030EF20`](../Rewards-EXP-Gil-And-Loot/gil.md) Battle action: prepare execution resources (on gil) |
+| [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects | calls | [`0x0030B8E0`](../Status-Effects-And-KO/status-changes.md) (on status changes)<br>[`0x0030B9B0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets) |
+| [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects | is called by | [`0x002FDDA0`](../Battle-Actions/battle-orders.md) Battle unit: execute direct state command order (on battle orders)<br>[`0x00304850`](../Battle-Actions/action-phases.md) Battle unit: advance standard action state (on action phases)<br>[`0x0030EB10`](../Damage-And-Battle-Formulas/hp-and-ko.md) (on hp and ko) |
+| [`0x0030F760`](identifier-spaces.md) Battle unit: commit action | calls | [`0x0030AB40`](../Battle-Actions/action-range.md) Battle target: classify relationship class (on action range)<br>[`0x003105D0`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Battle unit: cancel and reset current action (on equipping an item) |
+| [`0x0030F760`](identifier-spaces.md) Battle unit: commit action | is called by | [`0x0030FA00`](../Battle-Actions/combos.md) Battle action: try continue combo sequence (on combos)<br>[`0x00312FA0`](../Scripts-And-Script-Commands/battle-verbs.md) Battle unit: try commit engage auto attack (on battle verbs) |
+| [`0x0031B7E0`](identifier-spaces.md) | is called by | [`0x002FE660`](../Story-Events-And-Hunts/story-progress.md) (on story progress)<br>[`0x002FFB60`](../Battle-Actions/target-selection.md) Battle action: check current action interrupt reason (on target selection)<br>[`0x00304850`](../Battle-Actions/action-phases.md) Battle unit: advance standard action state (on action phases)<br>[`0x00305110`](../Battle-Actions/action-phases.md) (on action phases)<br>[`0x00305230`](../Battle-Actions/action-phases.md) (on action phases)<br>[`0x00305430`](../Battle-Actions/action-phases.md) (on action phases)<br>[`0x003082F0`](../Characters-And-Objects/battle-units.md) (on battle units)<br>[`0x00309990`](../Battle-Actions/action-phases.md) (on action phases)<br>[`0x0030A250`](identifier-spaces.md)<br>[`0x0030C010`](../Battle-Actions/combos.md) (on combos)<br>[`0x0030C970`](../Battle-Actions/action-phases.md) (on action phases)<br>[`0x0030CBE0`](../Graphics/effect-file-list.md) (on effect file list) |
+| [`0x0031B7E0`](identifier-spaces.md) | is also called by | [`0x0030D160`](../Battle-Actions/area-of-effect.md) Battle: build action target set (on area of effect)<br>[`0x0030DB70`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x0030EEA0`](../Battle-Actions/action-phases.md) (on action phases)<br>[`0x0030F760`](identifier-spaces.md) Battle unit: commit action<br>[`0x00310780`](../Battle-Actions/action-commit.md) Battle unit: release target relation and action state (on action commit)<br>[`0x00311B20`](../Menus-And-HUD/battle-menu.md) Battle unit: issue command by focus handles with optional party fanout (on battle menu)<br>[`0x00312FA0`](../Scripts-And-Script-Commands/battle-verbs.md) Battle unit: try commit engage auto attack (on battle verbs)<br>[`0x00313120`](../Battle-Actions/concurrence-list.md) (on concurrence list)<br>[`0x00313CD0`](../Battle-Actions/action-commit.md) Battle unit: process pending action selection queue (on action commit)<br>[`0x00313DB0`](../Battle-Actions/action-phases.md) (on action phases) |
+| [`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x002FFCF0`](force-fight-mode.md) Battle action: check action availability reason (on force fight mode)<br>[`0x003060E0`](../Items-Equipment-Shops-And-Licenses/magick-list.md) Battle action: check definition category availability (on magick list)<br>[`0x00309300`](../Battle-Actions/action-range.md) Battle action: get primary range scalar (on action range)<br>[`0x003093D0`](../Battle-Actions/action-list.md) Battle action: get subtype3 field22 or ffff (on action list)<br>[`0x0030CBE0`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x0030DB70`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x0031A7B0`](../Battle-Actions/command-availability.md) Battle action: check global category disable reason (on command availability) |
+| [`0x003589B0`](../Graphics/effect-anchors-and-targets.md) Actor handle: encode registry entry (on effect anchors and targets) | is called by | [`0x00319F50`](../Status-Effects-And-KO/ko-and-game-over.md) Battle unit: handle actor timeline event (on ko and game over)<br>[`0x00325260`](../Status-Effects-And-KO/ko-and-game-over.md) Battle unit: handle action timeline event (on ko and game over) |
 
 **Damage and battle formulas** (explained on [traps](../World-Areas-And-Travel/traps.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [action results](../Battle-Actions/action-results.md), [subsystem update flags](subsystem-update-flags.md), [force fight mode](force-fight-mode.md), [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md))
 
-**Gameplay**
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00309440` | is called by | `0x0031C5D0`, `0x00322C50` |
-| `0x0030E360` | calls | `0x00307D10`, `0x003299B0` |
-| `0x0030F760` | calls | `0x00316CD0`, `0x00316CF0` |
-| `0x0031B7E0` | is called by | `0x0030BB30`, `0x00312B40`, `0x0031ADB0`, `0x00339630` |
-| `0x0031B9F0` | calls | `0x00322C50` |
-| `0x00322C50` | is called by | `0x0031B9F0`, `0x0031C5D0` |
-| `0x00328990` | calls | `0x0031C5D0` |
-| `0x003589B0` | is called by | `0x0031ADB0` |
+| [`0x003008A0`](../Scripts-And-Script-Commands/reward-verbs.md) Inventory: modify encoded item and update discovery state (on reward verbs) | is called by | [`0x003112F0`](../Rewards-EXP-Gil-And-Loot/gil.md) Battle formula: apply target result (on gil) |
+| [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects | calls | [`0x003112F0`](../Rewards-EXP-Gil-And-Loot/gil.md) Battle formula: apply target result (on gil)<br>[`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log)<br>[`0x00386A50`](../Status-Effects-And-KO/battle-buffs.md) (on battle buffs)<br>[`0x00386A70`](../Status-Effects-And-KO/status-changes.md) (on status changes) |
+| [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects | is called by | [`0x00300530`](../Characters-And-Objects/battle-unit-fields.md) Battle stats: modify hp and process lethal state (on battle unit fields)<br>[`0x003112F0`](../Rewards-EXP-Gil-And-Loot/gil.md) Battle formula: apply target result (on gil) |
+| [`0x0031B9F0`](identifier-spaces.md) Battle slot map: resolve mapped battle slot | is called by | [`0x00320AB0`](subsystem-update-flags.md) (on subsystem update flags) |
+| [`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x002FEF30`](../Enemy-Spawning/bestiary.md) Battle stats: rebuild effective stats and affinity state (on bestiary) |
+| [`0x00387730`](../Status-Effects-And-KO/statuses.md) Battle status: compute default dword parameter (on statuses) | is called by | [`0x00387BB0`](../Rewards-EXP-Gil-And-Loot/loot-drops.md) Battle formula: append status add operation (on loot drops)<br>[`0x0038FCE0`](../Status-Effects-And-KO/statuses.md) (on statuses) |
+| [`0x003A1180`](identifier-spaces.md) | is called by | [`0x003112F0`](../Rewards-EXP-Gil-And-Loot/gil.md) Battle formula: apply target result (on gil) |
 
-**Gameplay** (explained on [item and ability ids](item-and-ability-ids.md), [force fight mode](force-fight-mode.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [native limits](native-limits.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+**Gameplay** (explained on [item and ability ids](item-and-ability-ids.md), [force fight mode](force-fight-mode.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [native limits](native-limits.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [action definition row](../Battle-Actions/action-definition-row.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [bestiary](../Enemy-Spawning/bestiary.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [party member status record](../Characters-And-Objects/party-member-status-record.md))
 
-**Gameplay** (explained on [action definition row](../Battle-Actions/action-definition-row.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [bestiary](../Enemy-Spawning/bestiary.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [party member status record](../Characters-And-Objects/party-member-status-record.md))
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Controls and input**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00197160` | calls | `0x00196480`, `0x0079D1D0`, `0x0079E650`, `0x0079E6A0`, `0x0079E6D0` |
-| `0x00197160` | is called by | `0x00196FF0` |
-| `0x00254B50` | is called by | `0x00253C70`, `0x002E09A0` |
-| `0x00263BE0` | is called by | `0x00226BE0` |
-| `0x0032A8A0` | is called by | `0x00253C70` |
-| `0x0035B2F0` | is called by | `0x0035B650` |
+| [`0x00309440`](identifier-spaces.md) | is called by | [`0x0031C5D0`](item-and-ability-ids.md) (on item and ability ids)<br>[`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) |
+| [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects | calls | [`0x00307D10`](force-fight-mode.md) Battle unit: update engagement state flag (on force fight mode)<br>[`0x003299B0`](../Damage-And-Battle-Formulas/hp-and-ko.md) Battle unit: dispatch actor presentation event (on hp and ko) |
+| [`0x0030F760`](identifier-spaces.md) Battle unit: commit action | calls | [`0x00316CD0`](../Battle-Actions/area-of-effect.md) Battle target buffer: try append actor work (on area of effect)<br>[`0x00316CF0`](../Enemy-AI-And-Gambits/gambits.md) Battle target buffer: reset preserving flag0 (on gambits) |
+| [`0x0031B7E0`](identifier-spaces.md) | is called by | [`0x0030BB30`](../Enemy-AI-And-Gambits/enmity.md) Battle unit: has current focus engagement evidence (on enmity)<br>[`0x00312B40`](../Battle-Actions/battle-orders.md) (on battle orders)<br>[`0x0031ADB0`](../Movement-And-Pathfinding/animation-driven-movement.md) (on animation driven movement)<br>[`0x00339630`](../Battle-Actions/action-phases.md) (on action phases) |
+| [`0x0031B9F0`](identifier-spaces.md) Battle slot map: resolve mapped battle slot | calls | [`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) |
+| [`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x0031B9F0`](identifier-spaces.md) Battle slot map: resolve mapped battle slot<br>[`0x0031C5D0`](item-and-ability-ids.md) (on item and ability ids) |
+| [`0x00328990`](../Items-Equipment-Shops-And-Licenses/licenses.md) (on licenses) | calls | [`0x0031C5D0`](item-and-ability-ids.md) (on item and ability ids) |
+| [`0x003589B0`](../Graphics/effect-anchors-and-targets.md) Actor handle: encode registry entry (on effect anchors and targets) | is called by | [`0x0031ADB0`](../Movement-And-Pathfinding/animation-driven-movement.md) (on animation driven movement) |
 
 **Controls and input** (explained on [controls](../Controls-And-Input/controls.md), [frame update order](frame-update-order.md), [force fight mode](force-fight-mode.md), [time stop and freeze](time-stop-and-freeze.md), [jump thunks](jump-thunks.md))
 
-**Items, equipment, shops and licenses**
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00252E60` | is called by | `0x00325F40` |
-| `0x003008A0` | calls | `0x00309F30` |
-| `0x003008A0` | is called by | `0x002FD530`, `0x002FD640`, `0x002FD780`, `0x002FEEB0`, `0x00300B80`, `0x00300BA0`, `0x0030B180`, `0x0030C410`, `0x0030F9A0`, `0x0030FAA0`, `0x0030FBE0`, `0x00310870` |
+| [`0x00197160`](../Controls-And-Input/controls.md) Input manager: translate binding profile to control state (on controls) | calls | [`0x00196480`](identifier-spaces.md)<br>[`0x0079D1D0`](identifier-spaces.md)<br>[`0x0079E650`](../Controls-And-Input/controls.md) (on controls)<br>[`0x0079E6A0`](../Controls-And-Input/escape.md) (on escape)<br>[`0x0079E6D0`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x00197160`](../Controls-And-Input/controls.md) Input manager: translate binding profile to control state (on controls) | is called by | [`0x00196FF0`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x00254B50`](../World-Areas-And-Travel/game-over.md) (on game over) | is called by | [`0x00253C70`](../Controls-And-Input/controls.md) (on controls)<br>[`0x002E09A0`](../Menus-And-HUD/menus.md) (on menus) |
+| [`0x00263BE0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00226BE0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock) |
+| [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) | is called by | [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x0035B2F0`](../Game-Files-And-Data-Tables/small-bin-tables.md) (on small bin tables) | is called by | [`0x0035B650`](../Game-Files-And-Data-Tables/small-bin-tables.md) (on small bin tables) |
 
-**Items, equipment, shops and licenses**
+**Items, equipment, shops and licenses** (explained on [item and ability ids](item-and-ability-ids.md), [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [stats](../Damage-And-Battle-Formulas/stats.md), [party data](../Party/party-data.md), [party table](../Party/party-table.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [quickening and esper list](../Battle-Actions/quickening-and-esper-list.md), [command availability](../Battle-Actions/command-availability.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00322C50` | is called by | `0x003096F0`, `0x0030B180`, `0x0030B4B0`, `0x0030B510`, `0x0030B570`, `0x0030B630`, `0x00317930`, `0x0031A510`, `0x00323910`, `0x00323C60`, `0x00323D10`, `0x00323EC0` |
-| `0x00322C50` | is also called by | `0x00325F40` |
+| [`0x00252E60`](../Items-Equipment-Shops-And-Licenses/inventory.md) Inventory derived index: add present item (on inventory) | is called by | [`0x00325F40`](../Items-Equipment-Shops-And-Licenses/inventory.md) Inventory derived index: update on presence transition (on inventory) |
+| [`0x003008A0`](../Scripts-And-Script-Commands/reward-verbs.md) Inventory: modify encoded item and update discovery state (on reward verbs) | calls | [`0x00309F30`](item-and-ability-ids.md) (on item and ability ids) |
+| [`0x003008A0`](../Scripts-And-Script-Commands/reward-verbs.md) Inventory: modify encoded item and update discovery state (on reward verbs) | is called by | [`0x002FD530`](../Items-Equipment-Shops-And-Licenses/inventory.md) Inventory bundle class09: apply gil and nested items (on inventory)<br>[`0x002FD640`](item-and-ability-ids.md) Inventory bundle class0 a: apply nested items (on item and ability ids)<br>[`0x002FD780`](item-and-ability-ids.md) Inventory bundle class0 d: apply nested items (on item and ability ids)<br>[`0x002FEEB0`](../Rewards-EXP-Gil-And-Loot/gil.md) (on gil)<br>[`0x00300B80`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors)<br>[`0x00300BA0`](../Items-Equipment-Shops-And-Licenses/inventory.md) (on inventory)<br>[`0x0030B180`](../Items-Equipment-Shops-And-Licenses/bazaar.md) Battle id class d: reset purchased entry and nested prerequisite state (on bazaar)<br>[`0x0030C410`](../Items-Equipment-Shops-And-Licenses/inventory.md) (on inventory)<br>[`0x0030F9A0`](../Items-Equipment-Shops-And-Licenses/inventory.md) (on inventory)<br>[`0x0030FAA0`](../Party/party-data.md) Inventory equipment: restore temporary snapshot and clear backup (on party data)<br>[`0x0030FBE0`](../Items-Equipment-Shops-And-Licenses/equipment.md) Inventory equipment: snapshot and clear temporary state (on equipment)<br>[`0x00310870`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
+| [`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x003096F0`](../Damage-And-Battle-Formulas/stats.md) Equipment: check matching secondary partner selected or owned (on stats)<br>[`0x0030B180`](../Items-Equipment-Shops-And-Licenses/bazaar.md) Battle id class d: reset purchased entry and nested prerequisite state (on bazaar)<br>[`0x0030B4B0`](item-and-ability-ids.md) (on item and ability ids)<br>[`0x0030B510`](../Battle-Actions/action-list.md) (on action list)<br>[`0x0030B570`](../Items-Equipment-Shops-And-Licenses/bazaar.md) Battle id class d: set runtime flag bit1 if supported (on bazaar)<br>[`0x0030B630`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar)<br>[`0x00317930`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Equipment: check item eligible for slot (on equipping an item)<br>[`0x0031A510`](../Items-Equipment-Shops-And-Licenses/equipment.md) Battle stats: set equipment slot by mapped id (on equipment)<br>[`0x00323910`](../Items-Equipment-Shops-And-Licenses/buying-a-license.md) Battle stats: set license node state and apply side effects (on buying a license)<br>[`0x00323C60`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Battle stats: has required license for equipment (on equipping an item)<br>[`0x00323D10`](../Items-Equipment-Shops-And-Licenses/licenses.md) Battle stats: check license node acquire reason (on licenses)<br>[`0x00323EC0`](../Battle-Actions/command-availability.md) Battle stats: has required license for action (on command availability) |
+| [`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is also called by | [`0x00325F40`](../Items-Equipment-Shops-And-Licenses/inventory.md) Inventory derived index: update on presence transition (on inventory) |
 
-**Items, equipment, shops and licenses** (explained on [item and ability ids](item-and-ability-ids.md), [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [stats](../Damage-And-Battle-Formulas/stats.md))
+**Movement and pathfinding** (explained on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [force fight mode](force-fight-mode.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md), [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md), [world lock](../Scripts-And-Script-Commands/world-lock.md))
 
-**Items, equipment, shops and licenses** (explained on [party data](../Party/party-data.md), [party table](../Party/party-table.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [quickening and esper list](../Battle-Actions/quickening-and-esper-list.md), [command availability](../Battle-Actions/command-availability.md))
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Movement and pathfinding**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031B7E0` | is called by | `0x00312730`, `0x00336710`, `0x00337A50`, `0x00338140` |
-| `0x00322C50` | is called by | `0x0031BAC0`, `0x00326BB0` |
-| `0x003589B0` | is called by | `0x002E5610`, `0x002EBFA0` |
-
-**Movement and pathfinding** (explained on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [force fight mode](force-fight-mode.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md))
-
-**Movement and pathfinding** (explained on [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md), [world lock](../Scripts-And-Script-Commands/world-lock.md))
-
-**Party**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0030F760` | calls | `0x0031B7E0` |
-| `0x00322C50` | is called by | `0x003170E0`, `0x0031AC00`, `0x0031B510`, `0x00320800`, `0x00321100`, `0x00326500`, `0x003287A0`, `0x00328DB0`, `0x00329080` |
-| `0x00328990` | is called by | `0x00328BD0` |
-| `0x003589B0` | is called by | `0x00269C70`, `0x00326500`, `0x00353530`, `0x0050C610`, `0x0050D2F0` |
+| [`0x0031B7E0`](identifier-spaces.md) | is called by | [`0x00312730`](../EBP-Script-Files/ebp-position-entries.md) Battle locomotion: decode order goal (on ebp position entries)<br>[`0x00336710`](../Movement-And-Pathfinding/battle-locomotion.md) Battle locomotion: build solver context (on battle locomotion)<br>[`0x00337A50`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00338140`](../Battle-Actions/action-range.md) Battle locomotion: resolve target spacing and avoidance (on action range) |
+| [`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x0031BAC0`](../Party/party-slots.md) (on party slots)<br>[`0x00326BB0`](../Party/party-data.md) (on party data) |
+| [`0x003589B0`](../Graphics/effect-anchors-and-targets.md) Actor handle: encode registry entry (on effect anchors and targets) | is called by | [`0x002E5610`](../Movement-And-Pathfinding/heading-speed-to-position-delta.md) Movement: integrate position and measure displacement (on heading speed to position delta)<br>[`0x002EBFA0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock) |
 
 **Party** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party data](../Party/party-data.md), [party control modes](party-control-modes.md), [player movement](../Movement-And-Pathfinding/player-movement.md))
 
-**Graphics**
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00247510` | is called by | `0x002D2DB0`, `0x00579420` |
-| `0x00263990` | is called by | `0x002B0280` |
-| `0x002DF980` | is called by | `0x001BB2B0` |
-| `0x002F9920` | is called by | `0x0037E5B0`, `0x0037E8D0` |
-| `0x0030F760` | calls | `0x00313B30` |
-| `0x003589B0` | is called by | `0x003A4290`, `0x003A56F0`, `0x00465120`, `0x00465690`, `0x00506700` |
-| `0x0036A000` | is called by | `0x003DD4C0` |
+| [`0x0030F760`](identifier-spaces.md) Battle unit: commit action | calls | [`0x0031B7E0`](identifier-spaces.md) |
+| [`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x003170E0`](../Party/party-members.md) Party configuration: add selector07 to25 to available primary index (on party members)<br>[`0x0031AC00`](../Party/party-data.md) (on party data)<br>[`0x0031B510`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x00320800`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x00321100`](../Party/party-members.md) (on party members)<br>[`0x00326500`](../Party/party-leader.md) Party focus: select and request default actor (on party leader)<br>[`0x003287A0`](../Party/party-members.md) Party configuration: demote other runtime roster selectors to non roster (on party members)<br>[`0x00328DB0`](../Party/party-members.md) Party configuration: reconcile runtime roster first three from requested selectors (on party members)<br>[`0x00329080`](../Scripts-And-Script-Commands/party-verbs.md) Party configuration: set definition selector for index (on party verbs) |
+| [`0x00328990`](../Items-Equipment-Shops-And-Licenses/licenses.md) (on licenses) | is called by | [`0x00328BD0`](../Scripts-And-Script-Commands/reward-verbs.md) (on reward verbs) |
+| [`0x003589B0`](../Graphics/effect-anchors-and-targets.md) Actor handle: encode registry entry (on effect anchors and targets) | is called by | [`0x00269C70`](../Party/party-members.md) (on party members)<br>[`0x00326500`](../Party/party-leader.md) Party focus: select and request default actor (on party leader)<br>[`0x00353530`](../Movement-And-Pathfinding/player-movement.md) (on player movement)<br>[`0x0050C610`](../Party/party-leader.md) (on party leader)<br>[`0x0050D2F0`](../Characters-And-Objects/actor-lifecycle.md) (on actor lifecycle) |
 
-**Graphics**
+**Graphics** (explained on [menu lists](../Menus-And-HUD/menu-lists.md), [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [file size tables fst](../Game-Files-And-Data-Tables/file-size-tables-fst.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [authored expressions](../Game-Files-And-Data-Tables/authored-expressions.md), [effect element runtime](../Graphics/effect-element-runtime.md), [effect element types](../Graphics/effect-element-types.md), [battle numbers](../Menus-And-HUD/battle-numbers.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [character se tables chse](../Game-Files-And-Data-Tables/character-se-tables-chse.md), [startup constants](startup-constants.md), [bone trails](../Graphics/bone-trails.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377190` | is called by | `0x00463FF0`, `0x00464B30`, `0x00464F20`, `0x0047BE20` |
-| `0x00377360` | is called by | `0x00464050`, `0x00464B80`, `0x00465120`, `0x0047BF70` |
-| `0x003A1180` | is called by | `0x0046CC70` |
-| `0x003B38B0` | calls | `0x003EDAD0` |
-| `0x0051CC30` | is called by | `0x003E6770` |
-
-**Graphics** (explained on [menu lists](../Menus-And-HUD/menu-lists.md), [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [file size tables fst](../Game-Files-And-Data-Tables/file-size-tables-fst.md))
-
-**Graphics** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [authored expressions](../Game-Files-And-Data-Tables/authored-expressions.md), [effect element runtime](../Graphics/effect-element-runtime.md))
-
-**Graphics** (explained on [effect element types](../Graphics/effect-element-types.md), [battle numbers](../Menus-And-HUD/battle-numbers.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [character se tables chse](../Game-Files-And-Data-Tables/character-se-tables-chse.md))
-
-**Graphics** (explained on [startup constants](startup-constants.md), [bone trails](../Graphics/bone-trails.md))
+| [`0x00247510`](identifier-spaces.md) | is called by | [`0x002D2DB0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00579420`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
+| [`0x00263990`](../Menus-And-HUD/enemy-names-on-screen.md) (on enemy names on screen) | is called by | [`0x002B0280`](../Menus-And-HUD/text-drawing.md) (on text drawing) |
+| [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x001BB2B0`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests) |
+| [`0x002F9920`](../Menus-And-HUD/clan-primer-entries.md) (on clan primer entries) | is called by | [`0x0037E5B0`](../Game-Files-And-Data-Tables/quest-menu-files.md) (on quest menu files)<br>[`0x0037E8D0`](../Game-Files-And-Data-Tables/quest-menu-files.md) (on quest menu files) |
+| [`0x0030F760`](identifier-spaces.md) Battle unit: commit action | calls | [`0x00313B30`](../Party/party-slots.md) Battle unit: broadcast party combat target relation (on party slots) |
+| [`0x003589B0`](../Graphics/effect-anchors-and-targets.md) Actor handle: encode registry entry (on effect anchors and targets) | is called by | [`0x003A4290`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x003A56F0`](../Graphics/effect-element-runtime.md) (on effect element runtime)<br>[`0x00465120`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x00465690`](../Graphics/lens-flares.md) (on lens flares)<br>[`0x00506700`](../Menus-And-HUD/battle-numbers.md) (on battle numbers) |
+| [`0x0036A000`](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md) (on resource arena and relocation) | is called by | [`0x003DD4C0`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal) |
+| [`0x00377190`](../Graphics/effect-element-types.md) (on effect element types) | is called by | [`0x00463FF0`](identifier-spaces.md)<br>[`0x00464B30`](identifier-spaces.md)<br>[`0x00464F20`](identifier-spaces.md)<br>[`0x0047BE20`](../Graphics/effect-element-types.md) (on effect element types) |
+| [`0x00377360`](identifier-spaces.md) | is called by | [`0x00464050`](../Graphics/effect-element-types.md) (on effect element types)<br>[`0x00464B80`](../Graphics/effect-element-types.md) (on effect element types)<br>[`0x00465120`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x0047BF70`](../Graphics/effect-element-types.md) (on effect element types) |
+| [`0x003A1180`](identifier-spaces.md) | is called by | [`0x0046CC70`](../Sound-And-Music/animation-sounds.md) (on animation sounds) |
+| [`0x003B38B0`](../Graphics/character-effects.md) (on character effects) | calls | [`0x003EDAD0`](../Graphics/effect-files-efx-efb.md) (on effect files efx efb) |
+| [`0x0051CC30`](../Graphics/bone-trails.md) (on bone trails) | is called by | [`0x003E6770`](../Graphics/bone-trails.md) (on bone trails) |
 
 **Game files and data tables** (explained on [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md), [debug logging](debug-logging.md), [debug menu](debug-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002DF960` | is called by | `0x00409FE0` |
-| `0x002DF980` | is called by | `0x001DA290`, `0x002EEEE0` |
-| `0x003B38B0` | is called by | `0x00409FE0` |
+| [`0x002DF960`](../Game-Files-And-Data-Tables/file-size-tables-fst.md) (on file size tables fst) | is called by | [`0x00409FE0`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal) |
+| [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x001DA290`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x002EEEE0`](debug-menu.md) (on debug menu) |
+| [`0x003B38B0`](../Graphics/character-effects.md) (on character effects) | is called by | [`0x00409FE0`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x0030E360` | calls | `0x00312280` |
-| `0x003A1180` | is called by | `0x0030C650` |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Saving, loading and settings**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00247510` | is called by | `0x0057E950`, `0x0057EBB0`, `0x00580840`, `0x005819F0`, `0x00581B70`, `0x00582860` |
-| `0x0032A8A0` | calls | `0x002EF2B0` |
-| `0x0032A8A0` | is called by | `0x00583D60` |
-| `0x0032A930` | calls | `0x002EF2B0` |
+| [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects | calls | [`0x00312280`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle unit: process defeat rewards and loot (on strong and weak mode) |
+| [`0x003A1180`](identifier-spaces.md) | is called by | [`0x0030C650`](../Menus-And-HUD/hud.md) Battle stats: advance level to target and recompute growth (on hud) |
 
 **Saving, loading and settings** (explained on [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [game application](game-application.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md))
 
-**Scripts and script commands**
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002621D0` | calls | `0x003DC240`, `0x003DC270`, `0x003DC2A0` |
-| `0x002621D0` | is called by | `0x0025E4C0` |
-| `0x00264D60` | is called by | `0x00348DF0`, `0x0034ADA0`, `0x00352A50`, `0x00352EC0`, `0x003534F0`, `0x003545B0`, `0x00354F20`, `0x003555F0`, `0x00356B70`, `0x0050EAB0` |
-| `0x00269F40` | is called by | `0x0034B9A0`, `0x0034C170` |
-| `0x00269FE0` | is called by | `0x003528C0` |
+| [`0x00247510`](identifier-spaces.md) | is called by | [`0x0057E950`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen)<br>[`0x0057EBB0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen)<br>[`0x00580840`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen)<br>[`0x005819F0`](../Saving-Loading-And-Settings/saving-and-loading-transaction.md) Save slot scan: controller callback (on saving and loading transaction)<br>[`0x00581B70`](../Saving-Loading-And-Settings/saving-and-loading-transaction.md) Save slot probe: storage completion callback (on saving and loading transaction)<br>[`0x00582860`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
+| [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) |
+| [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) | is called by | [`0x00583D60`](../Saving-Loading-And-Settings/save-file-format.md) Save image: finalize header and checksum (on save file format) |
+| [`0x0032A930`](identifier-spaces.md) Persistent flag: query bank2048 | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) |
 
-**Scripts and script commands**
+**Scripts and script commands** (explained on [native commands](../Scripts-And-Script-Commands/native-commands.md), [script interpreter](../Scripts-And-Script-Commands/script-interpreter.md), [archades scenes](../Story-Events-And-Hunts/archades-scenes.md), [archades scripts](../Story-Events-And-Hunts/archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md), [npc names](../Characters-And-Objects/npc-names.md), [battle units](../Characters-And-Objects/battle-units.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [effect anchors and targets](../Graphics/effect-anchors-and-targets.md), [actor record](../Characters-And-Objects/actor-record.md), [sound effects](../Sound-And-Music/sound-effects.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E97C0` | is called by | `0x003409F0`, `0x00341840`, `0x003418B0`, `0x00342640`, `0x00344200`, `0x00344550`, `0x00345A60`, `0x003463F0`, `0x00354A40`, `0x00355210` |
-| `0x002E9810` | is called by | `0x0033F330`, `0x003409F0`, `0x003414A0`, `0x003418B0`, `0x00343A30`, `0x00343B00`, `0x00344200`, `0x00344F00`, `0x00354400`, `0x00354A40` |
-| `0x0032A8A0` | is called by | `0x0034E0B0` |
-| `0x0032A930` | is called by | `0x0034E980` |
+| [`0x002621D0`](../Scripts-And-Script-Commands/script-interpreter.md) Vm native command: execute lifecycle (on script interpreter) | calls | [`0x003DC240`](identifier-spaces.md)<br>[`0x003DC270`](../Scripts-And-Script-Commands/verb-dispatch.md) (on verb dispatch)<br>[`0x003DC2A0`](../Scripts-And-Script-Commands/verb-dispatch.md) (on verb dispatch) |
+| [`0x002621D0`](../Scripts-And-Script-Commands/script-interpreter.md) Vm native command: execute lifecycle (on script interpreter) | is called by | [`0x0025E4C0`](../Scripts-And-Script-Commands/script-interpreter.md) World actor script vm: interpret bytecode (on script interpreter) |
+| [`0x00264D60`](../Menus-And-HUD/aerodrome-airship-dialogue.md) (on aerodrome airship dialogue) | is called by | [`0x00348DF0`](../Story-Events-And-Hunts/archades-scripts.md) (on archades scripts)<br>[`0x0034ADA0`](../Story-Events-And-Hunts/nalbina-town-scripts.md) (on nalbina town scripts)<br>[`0x00352A50`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x00352EC0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x003534F0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x003545B0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x00354F20`](identifier-spaces.md)<br>[`0x003555F0`](identifier-spaces.md)<br>[`0x00356B70`](../Characters-And-Objects/npc-names.md) (on npc names)<br>[`0x0050EAB0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections) |
+| [`0x00269F40`](identifier-spaces.md) | is called by | [`0x0034B9A0`](../Story-Events-And-Hunts/archades-scripts.md) (on archades scripts)<br>[`0x0034C170`](../Characters-And-Objects/npc-names.md) (on npc names) |
+| [`0x00269FE0`](identifier-spaces.md) | is called by | [`0x003528C0`](../Characters-And-Objects/battle-units.md) (on battle units) |
+| [`0x002E97C0`](identifier-spaces.md) | is called by | [`0x003409F0`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00341840`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x003418B0`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00342640`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00344200`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00344550`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00345A60`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x003463F0`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00354A40`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00355210`](../World-Areas-And-Travel/treasure-chests.md) (on treasure chests) |
+| [`0x002E9810`](identifier-spaces.md) | is called by | [`0x0033F330`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x003409F0`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x003414A0`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x003418B0`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00343A30`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00343B00`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00344200`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00344F00`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00354400`](../World-Areas-And-Travel/treasure-chests.md) (on treasure chests)<br>[`0x00354A40`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings) |
+| [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) | is called by | [`0x0034E0B0`](../Story-Events-And-Hunts/archades-scripts.md) (on archades scripts) |
+| [`0x0032A930`](identifier-spaces.md) Persistent flag: query bank2048 | is called by | [`0x0034E980`](../Story-Events-And-Hunts/bhujerba-scripts.md) (on bhujerba scripts) |
+| [`0x003589B0`](../Graphics/effect-anchors-and-targets.md) Actor handle: encode registry entry (on effect anchors and targets) | is called by | [`0x00342150`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x00342D40`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x003438F0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x00349C90`](../Characters-And-Objects/actor-lifecycle.md) (on actor lifecycle)<br>[`0x0034B5D0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x0034BB80`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x00352270`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x00352940`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x00354F20`](identifier-spaces.md)<br>[`0x003555F0`](identifier-spaces.md)<br>[`0x00357620`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x0050C7A0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) |
+| [`0x0036A000`](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md) (on resource arena and relocation) | is called by | [`0x0050DEB0`](identifier-spaces.md) |
+| [`0x003A1180`](identifier-spaces.md) | is called by | [`0x00357040`](../Sound-And-Music/sound-banks.md) (on sound banks) |
+| [`0x003DC240`](identifier-spaces.md) | is called by | [`0x002621D0`](../Scripts-And-Script-Commands/script-interpreter.md) Vm native command: execute lifecycle (on script interpreter) |
 
-**Scripts and script commands**
+**Status effects and KO** (explained on [frame update order](frame-update-order.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [force fight mode](force-fight-mode.md), [item and ability ids](item-and-ability-ids.md), [status changes](../Status-Effects-And-KO/status-changes.md), [battle units](../Characters-And-Objects/battle-units.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003589B0` | is called by | `0x00342150`, `0x00342D40`, `0x003438F0`, `0x00349C90`, `0x0034B5D0`, `0x0034BB80`, `0x00352270`, `0x00352940`, `0x00354F20`, `0x003555F0`, `0x00357620`, `0x0050C7A0` |
-| `0x0036A000` | is called by | `0x0050DEB0` |
-| `0x003A1180` | is called by | `0x00357040` |
-| `0x003DC240` | is called by | `0x002621D0` |
-
-**Scripts and script commands** (explained on [native commands](../Scripts-And-Script-Commands/native-commands.md), [script interpreter](../Scripts-And-Script-Commands/script-interpreter.md), [archades scenes](../Story-Events-And-Hunts/archades-scenes.md), [archades scripts](../Story-Events-And-Hunts/archades-scripts.md))
-
-**Scripts and script commands** (explained on [ebp text sections](../EBP-Script-Files/ebp-text-sections.md), [npc names](../Characters-And-Objects/npc-names.md), [battle units](../Characters-And-Objects/battle-units.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
-
-**Scripts and script commands** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [effect anchors and targets](../Graphics/effect-anchors-and-targets.md), [actor record](../Characters-And-Objects/actor-record.md), [sound effects](../Sound-And-Music/sound-effects.md))
-
-**Status effects and KO**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0030E360` | calls | `0x00300140`, `0x00301140`, `0x0030E360`, `0x0030FED0`, `0x003876D0`, `0x00387730` |
-| `0x0030E360` | is called by | `0x0030E360`, `0x0030E990`, `0x0030EAE0`, `0x0030F690`, `0x0030FED0` |
-| `0x00322C50` | is called by | `0x0030E130`, `0x0030FED0`, `0x00310DB0` |
-| `0x00387730` | is called by | `0x0030E360` |
-
-**Status effects and KO** (explained on [frame update order](frame-update-order.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [force fight mode](force-fight-mode.md), [item and ability ids](item-and-ability-ids.md), [status changes](../Status-Effects-And-KO/status-changes.md))
-
-**Status effects and KO** (explained on [battle units](../Characters-And-Objects/battle-units.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
+| [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects | calls | [`0x00300140`](../Status-Effects-And-KO/status-changes.md) Battle unit: reset action control for status transition (on status changes)<br>[`0x00301140`](../Graphics/effect-file-loading.md) Battle unit: recover from terminal status set if clear (on effect file loading)<br>[`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects<br>[`0x0030FED0`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Battle stats: recompute derived state and auto statuses (on equipping an item)<br>[`0x003876D0`](../Game-Files-And-Data-Tables/authored-data-tables.md) Battle status: compute default short timer (on authored data tables)<br>[`0x00387730`](../Status-Effects-And-KO/statuses.md) Battle status: compute default dword parameter (on statuses) |
+| [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects | is called by | [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects<br>[`0x0030E990`](../Status-Effects-And-KO/status-changes.md) (on status changes)<br>[`0x0030EAE0`](../Status-Effects-And-KO/status-changes.md) (on status changes)<br>[`0x0030F690`](../Damage-And-Battle-Formulas/augments.md) Battle stats: remove statuses from mask and recompute (on augments)<br>[`0x0030FED0`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Battle stats: recompute derived state and auto statuses (on equipping an item) |
+| [`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x0030E130`](../Status-Effects-And-KO/battle-buffs.md) Battle stats: modify status layer state and process side effects (on battle buffs)<br>[`0x0030FED0`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Battle stats: recompute derived state and auto statuses (on equipping an item)<br>[`0x00310DB0`](../Battle-Actions/action-results.md) Battle unit: run periodic combat maintenance (on action results) |
+| [`0x00387730`](../Status-Effects-And-KO/statuses.md) Battle status: compute default dword parameter (on statuses) | is called by | [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects |
 
 **Story, events and hunts** (explained on [npc names](../Characters-And-Objects/npc-names.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263990` | calls | `0x0032A930` |
-| `0x0032A8A0` | calls | `0x00377970` |
+| [`0x00263990`](../Menus-And-HUD/enemy-names-on-screen.md) (on enemy names on screen) | calls | [`0x0032A930`](identifier-spaces.md) Persistent flag: query bank2048 |
+| [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) | calls | [`0x00377970`](../Story-Events-And-Hunts/story-flags.md) (on story flags) |
 
-**Menus and HUD**
+**Menus and HUD** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [controls](../Controls-And-Input/controls.md), [game over](../World-Areas-And-Travel/game-over.md), [license board screen](../Menus-And-HUD/license-board-screen.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [gambit screen](../Menus-And-HUD/gambit-screen.md), [inventory screen](../Menus-And-HUD/inventory-screen.md), [text handbook unrequested](../Menus-And-HUD/text-handbook-unrequested.md), [item and ability ids](item-and-ability-ids.md), [menu screens](../Menus-And-HUD/menu-screens.md), [battle menu](../Menus-And-HUD/battle-menu.md), [action availability](../Controls-And-Input/action-availability.md), [augments](../Damage-And-Battle-Formulas/augments.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [action definition row](../Battle-Actions/action-definition-row.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [zone asset list](../World-Areas-And-Travel/zone-asset-list.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00247510` | is called by | `0x00252030`, `0x002C59D0`, `0x003EEEC0`, `0x00557B90`, `0x00561390`, `0x0056B4D0`, `0x0056E140`, `0x0056F810` |
-| `0x00252F40` | is called by | `0x0057CF20`, `0x0057D620` |
-| `0x00254B50` | calls | `0x00280A00`, `0x0028F970`, `0x0035D080`, `0x0035D660`, `0x0035D980`, `0x003C87B0`, `0x003C8990` |
-| `0x00254B50` | is called by | `0x00254B40` |
-| `0x00263990` | is called by | `0x002AC5F0` |
-| `0x00280A00` | calls | `0x0028E860` |
-
-**Menus and HUD**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00280A00` | is called by | `0x00254B50` |
-| `0x002F9920` | is called by | `0x003BE950` |
-| `0x0031B7E0` | is called by | `0x0031EB20` |
-| `0x00322C50` | is called by | `0x0031EB20` |
-| `0x0032A8A0` | is called by | `0x00281AE0`, `0x0029C530` |
-
-**Menus and HUD** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [controls](../Controls-And-Input/controls.md), [game over](../World-Areas-And-Travel/game-over.md), [license board screen](../Menus-And-HUD/license-board-screen.md))
-
-**Menus and HUD** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [gambit screen](../Menus-And-HUD/gambit-screen.md), [inventory screen](../Menus-And-HUD/inventory-screen.md), [text handbook unrequested](../Menus-And-HUD/text-handbook-unrequested.md), [item and ability ids](item-and-ability-ids.md))
-
-**Menus and HUD** (explained on [menu screens](../Menus-And-HUD/menu-screens.md), [battle menu](../Menus-And-HUD/battle-menu.md), [action availability](../Controls-And-Input/action-availability.md), [augments](../Damage-And-Battle-Formulas/augments.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md))
-
-**Menus and HUD** (explained on [action definition row](../Battle-Actions/action-definition-row.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [zone asset list](../World-Areas-And-Travel/zone-asset-list.md))
-
-**World, areas and travel**
-
-| Function | | Functions |
-|---|---|---|
-| `0x002DF980` | is called by | `0x00379A10` |
-| `0x002F9920` | is called by | `0x003C0450`, `0x00576A50` |
-| `0x0030E360` | calls | `0x00377C20` |
-| `0x0030F760` | calls | `0x00377C20` |
+| [`0x00247510`](identifier-spaces.md) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002C59D0`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen)<br>[`0x003EEEC0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00557B90`](../Menus-And-HUD/license-board-screen.md) (on license board screen)<br>[`0x00561390`](../Graphics/menu-effects.md) (on menu effects)<br>[`0x0056B4D0`](../Menus-And-HUD/gambit-screen.md) (on gambit screen)<br>[`0x0056E140`](../Menus-And-HUD/inventory-screen.md) (on inventory screen)<br>[`0x0056F810`](../Menus-And-HUD/dialogs.md) (on dialogs) |
+| [`0x00252F40`](identifier-spaces.md) | is called by | [`0x0057CF20`](../Menus-And-HUD/shop-screens.md) (on shop screens)<br>[`0x0057D620`](../Menus-And-HUD/shop-screens.md) (on shop screens) |
+| [`0x00254B50`](../World-Areas-And-Travel/game-over.md) (on game over) | calls | [`0x00280A00`](../World-Areas-And-Travel/game-over.md) (on game over)<br>[`0x0028F970`](../World-Areas-And-Travel/game-over.md) (on game over)<br>[`0x0035D080`](../Menus-And-HUD/menus.md) (on menus)<br>[`0x0035D660`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x0035D980`](../Controls-And-Input/action-availability.md) (on action availability)<br>[`0x003C87B0`](../Controls-And-Input/controls.md) (on controls)<br>[`0x003C8990`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x00254B50`](../World-Areas-And-Travel/game-over.md) (on game over) | is called by | [`0x00254B40`](../Menus-And-HUD/menus.md) (on menus) |
+| [`0x00263990`](../Menus-And-HUD/enemy-names-on-screen.md) (on enemy names on screen) | is called by | [`0x002AC5F0`](../Menus-And-HUD/text-drawing.md) (on text drawing) |
+| [`0x00280A00`](../World-Areas-And-Travel/game-over.md) (on game over) | calls | [`0x0028E860`](../Compiler-And-C-Runtime/thunks-and-import-stubs.md) (on thunks and import stubs) |
+| [`0x00280A00`](../World-Areas-And-Travel/game-over.md) (on game over) | is called by | [`0x00254B50`](../World-Areas-And-Travel/game-over.md) (on game over) |
+| [`0x002F9920`](../Menus-And-HUD/clan-primer-entries.md) (on clan primer entries) | is called by | [`0x003BE950`](identifier-spaces.md) |
+| [`0x0031B7E0`](identifier-spaces.md) | is called by | [`0x0031EB20`](../Battle-Actions/action-definition-row.md) Battle menu: build command entry list (on action definition row) |
+| [`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x0031EB20`](../Battle-Actions/action-definition-row.md) Battle menu: build command entry list (on action definition row) |
+| [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) | is called by | [`0x00281AE0`](../Game-Files-And-Data-Tables/binmenu-images.md) (on binmenu images)<br>[`0x0029C530`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) |
 
 **World, areas and travel** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [force fight mode](force-fight-mode.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x00379A10`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) |
+| [`0x002F9920`](../Menus-And-HUD/clan-primer-entries.md) (on clan primer entries) | is called by | [`0x003C0450`](../Game-Files-And-Data-Tables/menu-map-files.md) (on menu map files)<br>[`0x00576A50`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) |
+| [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects | calls | [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
+| [`0x0030F760`](identifier-spaces.md) Battle unit: commit action | calls | [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
 
 </details>

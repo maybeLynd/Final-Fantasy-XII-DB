@@ -29,8 +29,18 @@ shape [static initialisation and teardown](../Compiler-And-C-Runtime/static-init
 describes (`0x008760A0`: `0x008760AE`, `0x00876116`, `0x00876100`-`0x0087610A`).
 
 The three inserts `0x008760A0`, `0x00876490` and `0x008768A0` are the same code on their own heads. The duplicate test
-compares the name byte for byte with that of every object on the list (`0x008760D0`-`0x008760FE`); the push stores the
-old head at the object's `+0x10`, makes the object the head and returns 0 (`0x00876100`-`0x0087610A`).
+compares the name byte for byte with that of every object on the list¹; the push stores the
+old head at the object's `+0x10`, makes the object the head and returns 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008760D0`-`0x008760FE` |
+| ² | `0x00876100`-`0x0087610A` |
+
+</details>
 
 | Class | Objects | vtable | Head | Insert | Named-semantic descriptor |
 |---|---|---|---|---|---|
@@ -50,7 +60,16 @@ Each object's teardown stores the class vtable back into the object and unlinks 
 `0x008B9957`, `0x008B99A3`-`0x008B99AA`). The teardowns run from the runtime's exit table, which the game's normal quit
 does not reach ([static initialisation and teardown](../Compiler-And-C-Runtime/static-initialisation-and-teardown.md)).
 The deleting destructors `0x00876020`, `0x00876410` and `0x008767F0` do the same store and unlink through the object
-they are given (`0x00876030`, `0x00876420`, `0x00876800`).
+they are given¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00876030`, `0x00876420`, `0x00876800` |
+
+</details>
 
 ### The named-semantic descriptors
 
@@ -64,23 +83,55 @@ name. `0x00875F00`, `0x008762F0` and `0x008766D0` build them once each, under th
 | `0x02EB82E0` | `PInputAxisSemantic` | `0x20` | `0x00876870` | `0x00876520` | `0x01CD80E0` | `0x00876670` | `0x00876590` |
 | `0x02EB8350` | `PInputJoypadButtonSemantic` | `0x20` | `0x00876870` | `0x00876930` | `0x01CD8480` | `0x00876A80` | `0x008769A0` |
 
-- `0x00876870` returns the object's name and its length with the terminator (`0x00876870`-`0x00876894`).
+- `0x00876870` returns the object's name and its length with the terminator¹.
 - The resolvers walk the list comparing names, store the object found through their first argument and return
-  `0x13` when no object has the name (`0x00876130`-`0x00876196`).
-- Slot 9 returns the object with a name, or 0 (`0x00876280`-`0x008762D6`); slot 10 copies every object pointer into
-  an array (`0x008761A0`).
+  `0x13` when no object has the name².
+- Slot 9 returns the object with a name, or 0³; slot 10 copies every object pointer into
+  an array⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00876870`-`0x00876894` |
+| ² | `0x00876130`-`0x00876196` |
+| ³ | `0x00876280`-`0x008762D6` |
+| ⁴ | `0x008761A0` |
+
+</details>
 
 These are the type-reference hooks of [Phyre reflection](../PhyreEngine/phyre-reflection.md): the
 loader resolves a semantic member through `+0x48`. The PInputs module register `0x00875E10`
-([Phyre modules](../PhyreEngine/phyre-modules.md)) adds the three descriptors to the type tree
-(`0x00875EA0`, `0x00875EBA`, `0x00875EE1`).
+([Phyre modules](../PhyreEngine/phyre-modules.md)) adds the three descriptors to the type tree¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00875EA0`, `0x00875EBA`, `0x00875EE1` |
+
+</details>
 
 ### The input sources
 
 A source is an object of one of 25 classes derived from `PInputSource` (descriptor `0x02EB52F0`, `0x28` bytes). The
-base class reflects four members, registered by `0x0086DA70`: `m_typeSemantic` at `+0x10` (`0x0086DB02`), `m_id` at
-`+0x18` (`0x0086DB71`), `m_invert` at `+0x1C` (`0x0086DBE0`) and `m_scale` at `+0x20` (`0x0086DC4F`). Six classes add
+base class reflects four members, registered by `0x0086DA70`: `m_typeSemantic` at `+0x10`¹, `m_id` at
+`+0x18`², `m_invert` at `+0x1C`³ and `m_scale` at `+0x20`⁴. Six classes add
 semantic pointers, each typed by a named-semantic descriptor:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0086DB02` |
+| ² | `0x0086DB71` |
+| ³ | `0x0086DBE0` |
+| ⁴ | `0x0086DC4F` |
+
+</details>
 
 | Class | Size | vtable | Members | Member type | Registered at |
 |---|---|---|---|---|---|
@@ -103,32 +154,81 @@ installs (`0x0016A440` stores `0x01CD24E8`, whose slot 10 `0x01CD2538` holds the
 classes the entry only calls the real constructor (`0x00869670` calls `0x0086C460` at `0x0086968F`); the other entries
 construct in place.
 
-No instruction calls a slot-10 entry directly. The default-buffer builder `0x00639A60` calls it through the descriptor
-(`0x00639B20`, `0x00639B3E`) to build the class's default instance at descriptor `+0xC0`. A source a cluster creates is a
+No instruction calls a slot-10 entry directly. The default-buffer builder `0x00639A60` calls it through the descriptor¹ to build the class's default instance at descriptor `+0xC0`. A source a cluster creates is a
 byte copy of that instance (`0x0063C961`-`0x0063C974`: the descriptor's `+0x38` bytes from `+0xC0`); only a descriptor
-with no default instance has slot 10 construct it (`0x0063C990`).
+with no default instance has slot 10 construct it².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00639B20`, `0x00639B3E` |
+| ² | `0x0063C990` |
+
+</details>
 
 - Every constructor stores the vtable, the class descriptor at `+0x08`, its type semantic at `+0x10`, 0 at `+0x18`
-  and `+0x1C`, and 1.0 at `+0x20` (`0x0086C460`-`0x0086C49B`, `0x00866FA0`-`0x00866FD0`).
-- The pad-button, key and mouse-delta constructors then clear `+0x30` and `+0x38` and run their slot 1 (`0x0086C4B0`,
-  `0x0086C510`, `0x0086C5E0`, `0x0086C640`), so a new key source holds the key `Empty` object in both pointers.
-- The pad-axis constructor clears `+0x30` and `+0x28` itself (`0x00869E65`, `0x00869E69`).
+  and `+0x1C`, and 1.0 at `+0x20`¹.
+- The pad-button, key and mouse-delta constructors then clear `+0x30` and `+0x38` and run their slot 1², so a new key source holds the key `Empty` object in both pointers.
+- The pad-axis constructor clears `+0x30` and `+0x28` itself³.
 - The mouse-button constructor sets `+0x30` to the mouse-button `Empty` object `0x01F462E8` and reads its code through
-  that object's slot 1 (`0x0086C568`-`0x0086C57D`).
+  that object's slot 1⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0086C460`-`0x0086C49B`, `0x00866FA0`-`0x00866FD0` |
+| ² | `0x0086C4B0`, `0x0086C510`, `0x0086C5E0`, `0x0086C640` |
+| ³ | `0x00869E65`, `0x00869E69` |
+| ⁴ | `0x0086C568`-`0x0086C57D` |
+
+</details>
 
 The semantic pointers are filled by name when the reflection loader builds a source from data, through the
 descriptor's `+0x48` resolver. Slot 2 copies a source: it creates a new object of the same class with
 `0x0063A990` (`PCluster::create`), copies `+0x30`, `+0x38` where the class has it, `+0x18`, `+0x1C` and `+0x20`,
-and runs the copy's slot 1 (`0x00873100`-`0x0087315C`).
+and runs the copy's slot 1¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00873100`-`0x0087315C` |
+
+</details>
 
 The pad-button slot 2 `0x00873100` calls `0x0063A990(cluster, 1, 0x02EB54F0, 0)` for one `PInputSourceJoypadButton` in
-the cluster it is given as its second argument (`0x0087310A`-`0x00873121`), takes the object 8 bytes before the
-pointer returned (`0x0087312B`), copies `+0x1C` as a byte and the others whole, and returns the copy (`0x0087315F`).
+the cluster it is given as its second argument¹, takes the object 8 bytes before the
+pointer returned², copies `+0x1C` as a byte and the others whole, and returns the copy³.
 
-The key slot 2 `0x00873170` is the same code with the key descriptor `0x02EB53F0` (`0x0087317D`), and so are the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0087310A`-`0x00873121` |
+| ² | `0x0087312B` |
+| ³ | `0x0087315F` |
+
+</details>
+
+The key slot 2 `0x00873170` is the same code with the key descriptor `0x02EB53F0`¹, and so are the
 mouse-delta copies `0x00873610` and `0x00873680` with `0x02EB57F0` and `0x02EB58F0`. The pad-axis copy `0x00873090` and the
-mouse-button copy `0x008735A0` copy `+0x30` alone besides `+0x18`, `+0x1C` and `+0x20` (`0x008730CA`-`0x008730DE`,
-`0x008735DA`-`0x008735EE`).
+mouse-button copy `0x008735A0` copy `+0x30` alone besides `+0x18`, `+0x1C` and `+0x20`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0087317D` |
+| ² | `0x008730CA`-`0x008730DE`, `0x008735DA`-`0x008735EE` |
+
+</details>
 
 ### Slot 1: from semantics to codes
 
@@ -145,38 +245,71 @@ second), replacing a semantic outside the class's band with an `Empty` object fi
 
 The pad-button, key and mouse slots read a code through the semantic's own slot 1 (`call [rax+8]` at `0x00873FF9`,
 `0x0087400E`, `0x0087403A`, `0x00874050`, `0x00874099`, `0x008740AE`, `0x008740DA`, `0x008740F0`, `0x00874135`, `0x00874157`,
-`0x00874185`, `0x008741A9`, `0x008741CB`, `0x008741E1`). The axis slot calls `0x00879750` directly (`0x00873FC2`), since the axis
-vtable has no slot 1. In `0x00874170` the test of `+0x38` reads the code of `+0x30` (`0x008741A2`).
+`0x00874185`, `0x008741A9`, `0x008741CB`, `0x008741E1`). The axis slot calls `0x00879750` directly¹, since the axis
+vtable has no slot 1. In `0x00874170` the test of `+0x38` reads the code of `+0x30`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00873FC2` |
+| ² | `0x008741A2` |
+
+</details>
 
 ### Where the input mapper lives
 
 The player's controls are read through one input mapper that lasts the whole run. It is part of the application
-object itself, at its `+0xE00`: the application's constructor `0x00792350` runs the mapper constructor `0x00792DD0` there
-(`0x00792515`) and then stores that address at `+0xDF8` (`0x00792557`). The mapper's descriptor destroy slot `0x0061ECF0`
+object itself, at its `+0xE00`: the application's constructor `0x00792350` runs the mapper constructor `0x00792DD0` there¹ and then stores that address at `+0xDF8`². The mapper's descriptor destroy slot `0x0061ECF0`
 only returns 1, so nothing tears the mapper down.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00792515` |
+| ² | `0x00792557` |
+
+</details>
 
 ### Reading a source: the evaluator chain
 
-The application's input object at `+0xDF8`, which its script method `getInputMapper` returns (`0x0079D000`), is a
+The application's input object at `+0xDF8`, which its script method `getInputMapper` returns¹, is a
 `PInputMapper` (descriptor `0x02EA5560`, named at `0x00791D16`) whose
-reflected member `m_inputMap`, at `+0x00`, points at a `PInputMap` (`0x00795627`). Three functions read sources against
+reflected member `m_inputMap`, at `+0x00`, points at a `PInputMap`². Three functions read sources against
 the devices:
 
-1. `0x0079CFB0(application, name)` takes the input mapper, finds the action with that name in the input map's
-   `m_inputActions` with `0x00873C70` (`0x0079CFCE`), returning 0.0 when there is no map or no such action, and jumps to
-   `0x0079E2C0` (`0x0079CFE3`).
-2. `0x0079E2C0(mapper, action)` runs `0x0079DA10` on each of the action's sources (`0x0079E31B`) and keeps the value of
-   largest magnitude (`0x0079E329`-`0x0079E344`).
-   - The sources are the pointer array at the action's `+0x18`, counted by its `+0x10` under mask `0x7FFFFFFF`; a
-     null action or a count of 0 returns 0.0 (`0x0079E2D8`-`0x0079E2E9`), and `0x0079CFB0` never passes a null action
-     (`0x0079CFD6`).
-   - The kept value starts at 0.0 and is replaced only by a strictly larger magnitude (`jbe` at `0x0079E342`), so
-     the first of two equal magnitudes wins; the value returned keeps its sign (`0x0079E344`, `0x0079E365`).
-3. `0x0079DA10(mapper, source)` picks the device by comparing the source's `+0x10` with the 25 type objects, in the
-   order of the table below, and multiplies the result by `m_scale`: `result × m_scale` (`mulss`, `0x0079E291`).
+<details>
+<summary>Where in the code</summary>
 
-The sign is 1.0 (`0x01CEBBA8`), or -1.0 (`0x01CEBC9C`) when `m_invert` is set (`0x0079DA1D`-`0x0079DA5E`). A negative
+| | Code |
+|---|---|
+| ¹ | `0x0079D000` |
+| ² | `0x00795627` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x0079CFB0(application, name)` takes the input mapper, finds the action with that name in the input map's `m_inputActions` with `0x00873C70`, returning 0.0 when there is no map or no such action, and jumps to `0x0079E2C0`. | `0x0079CFCE`<br>`0x0079CFE3` |
+| 2 | `0x0079E2C0(mapper, action)` runs `0x0079DA10` on each of the action's sources and keeps the value of largest magnitude.<br>• The sources are the pointer array at the action's `+0x18`, counted by its `+0x10` under mask `0x7FFFFFFF`; a null action or a count of 0 returns 0.0, and `0x0079CFB0` never passes a null action.<br>• The kept value starts at 0.0 and is replaced only by a strictly larger magnitude (`jbe` at `0x0079E342`), so the first of two equal magnitudes wins; the value returned keeps its sign. | `0x0079E31B`<br>`0x0079E329`-`0x0079E344`<br>`0x0079E2D8`-`0x0079E2E9`<br>`0x0079CFD6`<br>`0x0079E344`, `0x0079E365` |
+| 3 | `0x0079DA10(mapper, source)` picks the device by comparing the source's `+0x10` with the 25 type objects, in the order of the table below, and multiplies the result by `m_scale`: `result × m_scale` (`mulss`, `0x0079E291`). |   |
+
+The sign is 1.0¹, or -1.0² when `m_invert` is set³. A negative
 semantic flips the sign (`xorps` with `0x01CEBDA0`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01CEBBA8` |
+| ² | `0x01CEBC9C` |
+| ³ | `0x0079DA1D`-`0x0079DA5E` |
+
+</details>
 
 | Type | Compare | What the evaluator reads |
 |---|---|---|
@@ -202,15 +335,34 @@ For the touch, motion and vision types, each class reads one value:
 | `VisionTrackerX`, `Y`, `Z` | the first, second and third float of the mapper's vector | `0x0079E25B`, `0x0079E270`, `0x0079E285` |
 
 For a pad axis with codes 1, 2, 4 or 5 the value is zeroed only when both it and its partner axis (`+0x58` with
-`+0x60`, `+0x68` with `+0x70`) are inside their dead zones, the float at each record's `+0x24`
-(`0x0079DB04`-`0x0079DB52`).
+`+0x60`, `+0x68` with `+0x70`) are inside their dead zones, the float at each record's `+0x24`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079DB04`-`0x0079DB52` |
+
+</details>
 
 ### The one entry
 
 `0x0079CFB0` has no caller. Its only reference is the `lea` at `0x00794A52`, where `0x007943E0` builds the caller object
 `0x02EAC670` (vtable `0x01CB3BD8`, function `0x0079CFB0`) for the method `getInput` that it registers on the application
-class (`0x007949E2`). `0x007943E0` runs from the application's slot 1, `0x0079F9E0` (`0x0079F9E4`). `0x0079E2C0` and
-`0x0079DA10` each have one caller (`0x0079CFE3`, `0x0079E31B`).
+class¹. `0x007943E0` runs from the application's slot 1, `0x0079F9E0`². `0x0079E2C0` and
+`0x0079DA10` each have one caller³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007949E2` |
+| ² | `0x0079F9E4` |
+| ³ | `0x0079CFE3`, `0x0079E31B` |
+
+</details>
 
 So a source is read against the devices only when a script calls `getInput` on the application, and only through a
 source that the reflection loader built from data. No game function reads a semantic or a source: outside their
@@ -385,26 +537,34 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Application** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00792350` | is called by | `0x0015BC40` |
+| [`0x00792350`](../PhyreEngine/phyre-application.md) (on phyre application) | is called by | [`0x0015BC40`](../Engine-Core/game-application.md) (on game application) |
 
 **Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00879750` | is called by | `0x00221ED0`, `0x00222390` |
+| [`0x00879750`](phyre-input-semantics.md) | is called by | [`0x00221ED0`](phyre-input-semantics.md)<br>[`0x00222390`](phyre-input-semantics.md) |
 
 **Platform** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00792350` | calls | `0x005CD0A0` |
+| [`0x00792350`](../PhyreEngine/phyre-application.md) (on phyre application) | calls | [`0x005CD0A0`](../Compiler-And-C-Runtime/runtime-services.md) (on runtime services) |
 
 **Graphics** (explained on [game application](../Engine-Core/game-application.md), [random number generators](../Random-Numbers/random-number-generators.md), [movies](../Graphics/movies.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0063A990` | is called by | `0x0018D850`, `0x001946E0`, `0x001B72B0` |
+| [`0x0063A990`](phyre-input-semantics.md) | is called by | [`0x0018D850`](../Graphics/render-parameters-and-shader-assets.md) (on render parameters and shader assets)<br>[`0x001946E0`](../Random-Numbers/random-number-generators.md) (on random number generators)<br>[`0x001B72B0`](phyre-input-semantics.md) |
 
 </details>

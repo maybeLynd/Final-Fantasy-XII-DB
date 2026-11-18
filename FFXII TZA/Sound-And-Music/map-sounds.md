@@ -24,16 +24,13 @@ their own positions, and the weather picks up to three entries as the ambience.
 
 When the map pack binds its sound, `0x003635E0(list, bank, handle)`:
 
-1. unbinds the previous list (`0x00363750`);
-2. takes the pack's bank, or `list + [list + 0x0C]` when the pack gives no bank;
-3. opens every `SeSep` record in `[list + 0x08]` bytes through `0x002DF070` ([Sound banks](sound-banks.md)) and calls
-   `0x002DEE90(-1)`, which returns at once because the load query answers 0 for a negative id
-   ([Audio manager](audio-manager.md)); `0x002DEE90(-1)` runs three times, twice before the walk with the return
-   stub `0x005C5230` between them and once after it (`0x00363612`-`0x00363635`);
-4. frees the pack's bank block (`0x003697F0`), only when the pack gave a bank (`0x0036363A`-`0x00363642`);
-5. keeps the handle at `0x022CBA88` and the list at `0x022CBAF8`, and resets the ambience volume to `0x7F`: the volume
-   `0x022CBA94` and the fade's start and end volumes `0x022CBA98` and `0x022CBA99` become `0x7F`, its step `0x022CBA9C` 0
-   and its progress `0x022CBAA0` 1.0 (`0x00363657`-`0x0036368C`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | unbinds the previous list; | `0x00363750` |
+| 2 | takes the pack's bank, or `list + [list + 0x0C]` when the pack gives no bank; |   |
+| 3 | opens every `SeSep` record in `[list + 0x08]` bytes through `0x002DF070` ([Sound banks](sound-banks.md)) and calls `0x002DEE90(-1)`, which returns at once because the load query answers 0 for a negative id ([Audio manager](audio-manager.md)); `0x002DEE90(-1)` runs three times, twice before the walk with the return stub `0x005C5230` between them and once after it; | `0x00363612`-`0x00363635` |
+| 4 | frees the pack's bank block, only when the pack gave a bank; | `0x003697F0`<br>`0x0036363A`-`0x00363642` |
+| 5 | keeps the handle at `0x022CBA88` and the list at `0x022CBAF8`, and resets the ambience volume to `0x7F`: the volume `0x022CBA94` and the fade's start and end volumes `0x022CBA98` and `0x022CBA99` become `0x7F`, its step `0x022CBA9C` 0 and its progress `0x022CBAA0` 1.0. | `0x00363657`-`0x0036368C` |
 
 ### Playing an entry
 
@@ -42,49 +39,137 @@ When the map pack binds its sound, `0x003635E0(list, bank, handle)`:
 | `mapsoundplay(i)` | `0x2BA` | `0x00346260` | entry `i` through `0x002DF010` at pan `0x40`, volume `0x7F`, unless `0x00267310` answers non-zero for the actor |
 | `mapsoundplay_2bb(i, pan, volume)` | `0x2BB` | `0x00346990` | entry `i` through `0x002DEF40` with the given pan and volume |
 
-Both play nothing when no list is bound or `i` is at or past the count, compared unsigned (`0x00346291`, `0x003469D5`).
-`mapsoundplay` reads the skip byte of the calling actor's manager, actor byte `+0x15`, through `0x00267310`
-(`0x00346296`-`0x003462A5`). Each verb writes the play call's result as its value through `0x0026B4E0`, or 0 when it
-plays nothing (`0x0034628A`, `0x003469CE`, `0x003462C9`, `0x00346A01`).
+Both play nothing when no list is bound or `i` is at or past the count, compared unsigned¹.
+`mapsoundplay` reads the skip byte of the calling actor's manager, actor byte `+0x15`, through `0x00267310`². Each verb writes the play call's result as its value through `0x0026B4E0`, or 0 when it
+plays nothing³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00346291`, `0x003469D5` |
+| ² | `0x00346296`-`0x003462A5` |
+| ³ | `0x0034628A`, `0x003469CE`, `0x003462C9`, `0x00346A01` |
+
+</details>
 
 ### Emitters
 
 The pack's `SP1` block holds the map's sound emitters. For each one, `0x003638B0` reads its first word as a list index
-and plays the id at the emitter's position, `+0x20`-`+0x28`, through `0x002DEFA0` (`0x0036397F`-`0x00363996`) when:
+and plays the id at the emitter's position, `+0x20`-`+0x28`, through `0x002DEFA0`¹ when:
 
-- the emitter's signed byte `+0x1A` is negative and the second argument is above 0 (`0x003638DC`-`0x003638EA`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036397F`-`0x00363996` |
+
+</details>
+
+- the emitter's signed byte `+0x1A` is negative and the second argument is above 0¹;
 - its handle `+0x04` is 0, or `0x002DEE80(handle)` answers 0, which clears bit `0x1` and the handle first
-  (`0x00363909`-`0x0036391E`);
-- a list is bound (`0x00363982`), the index is in range and the id is not negative;
+ ²;
+- a list is bound³, the index is in range and the id is not negative;
 - `0x00229EA0` answers 2 and `0x022CBB2E` is set;
 - the emitter's flag byte `+0x08` has bits `0x30` clear, and bit `0x4` clear or bit `0x8` set.
 
-`0x003638B0` first clears bit `0x40` of `+0x08` (`0x003638C7`). It returns a `+0x1A` of 0 or more at once. With a
-second argument of 0 or less it sets bit `0x40` again and returns its fourth argument (`0x003638DC`-`0x003638F1`);
-every other path also returns the fourth argument (`0x003639FF`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003638DC`-`0x003638EA` |
+| ² | `0x00363909`-`0x0036391E` |
+| ³ | `0x00363982` |
+
+</details>
+
+`0x003638B0` first clears bit `0x40` of `+0x08`¹. It returns a `+0x1A` of 0 or more at once. With a
+second argument of 0 or less it sets bit `0x40` again and returns its fourth argument²;
+every other path also returns the fourth argument³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003638C7` |
+| ² | `0x003638DC`-`0x003638F1` |
+| ³ | `0x003639FF` |
+
+</details>
 
 While the handle still plays, with bits `0x30` clear and `0x022CBB2E` set, it sends a changed map sound volume
-`0x022CBA94` to it (`0x002DF150`) and keeps that volume at `+0x19` (`0x00363942`-`0x00363956`). A play passes the position
-with w 1.0 and the emitter itself (`0x003639A2`-`0x003639E5`), then stores the volume at `+0x19`, sets bit `0x1`, and
-keeps the handle at `+0x04` and the third argument's low byte at `+0x18` (`0x003639E2`-`0x003639F1`).
+`0x022CBA94` to it¹ and keeps that volume at `+0x19`². A play passes the position
+with w 1.0 and the emitter itself³, then stores the volume at `+0x19`, sets bit `0x1`, and
+keeps the handle at `+0x04` and the third argument's low byte at `+0x18`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DF150` |
+| ² | `0x00363942`-`0x00363956` |
+| ³ | `0x003639A2`-`0x003639E5` |
+| ⁴ | `0x003639E2`-`0x003639F1` |
+
+</details>
 
 Each update `0x00362850` marks every emitter with bit `0x40`, runs the emitters it reaches through `0x003631B0`, and then
 `0x00363F30(list, area)` stops the handle at `+0x04` of every emitter still marked or with bit `0x10` or `0x20` set (mask
-`0x70`), or of all of them while `0x022CBB2E` is clear or when `area`, the `0x00362E50` result, is 0 (`0x002DF0F0`).
+`0x70`), or of all of them while `0x022CBB2E` is clear or when `area`, the `0x00362E50` result, is 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DF0F0` |
+
+</details>
 
 It clears the bit `0x40` mark of every emitter, and `0x00362850` then clears bit `0x8` of every emitter. `0x00363180(i)` sets
-bit `0x8` of emitter `i` (`0x00362DC0`), so a bit `0x4` emitter plays for that pass; the map pack's switch records call it
+bit `0x8` of emitter `i`¹, so a bit `0x4` emitter plays for that pass; the map pack's switch records call it
 from `0x003E8440` and `0x003E8690`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00362DC0` |
+
+</details>
 
 ### What an emitter is reached by
 
-`0x00362850` walks two lists each update. The first is the list of the listener's cell in the grid at `SP1 +0x08`
-(`0x00362B5E`-`0x00362B76`). The second, at `SP1 +0x10`, is walked on every pass when that offset is not 0
-(`0x00362B84`-`0x00362BB7`).
+`0x00362850` walks two lists each update. The first is the list of the listener's cell in the grid at `SP1 +0x08`¹. The second, at `SP1 +0x10`, is walked on every pass when that offset is not 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00362B5E`-`0x00362B76` |
+| ² | `0x00362B84`-`0x00362BB7` |
+
+</details>
 
 `0x00362E50` turns the listener's x and z into a column and a row, and returns no list when the point lies outside the
-grid (`0x00362E8D`-`0x00362EE8`). The cell's word holds the list's offset in the section, and 0 means no list
-(`0x00362F35`-`0x00362F3C`).
+grid¹. The cell's word holds the list's offset in the section, and 0 means no list².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00362E8D`-`0x00362EE8` |
+| ² | `0x00362F35`-`0x00362F3C` |
+
+</details>
 
 ```python
 column = (x - min_x) / cell_x, from 0 to columns - 1    0x00362EEA-0x00362F17
@@ -108,10 +193,20 @@ v = (near - far) * (R - D) / R + far  # 0x00361AA9-0x00361AD4
 volume = v * percent / 100, from 0 to 127  # 0x00361AD6-0x00361AEA
 ```
 
-The volume is 0 when the weather byte is 0 or `D` is above `R` (`0x00361A9E`-`0x00361AA7`). The arc comes first: while
+The volume is 0 when the weather byte is 0 or `D` is above `R`¹. The arc comes first: while
 `+0x58` is below pi, a bearing from the point to the listener that is `+0x58` or more away from `+0x54` gives
-volume 0 and pan 64 (`0x0036189E`-`0x0036193F`). `0x00361810` returns `D`, or 1.0 from the arc path (`0x00361B9A`,
-`0x0036192C`).
+volume 0 and pan 64². `0x00361810` returns `D`, or 1.0 from the arc path³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00361A9E`-`0x00361AA7` |
+| ² | `0x0036189E`-`0x0036193F` |
+| ³ | `0x00361B9A`, `0x0036192C` |
+
+</details>
 
 | Shape | Point | `inset` | `height` | Arc |
 |---|---|---|---|---|
@@ -124,10 +219,21 @@ Bit `0x80` of the shape byte is cleared for the dispatch. `0x00361B22` reads it:
 reversal for a sound behind the listener.
 
 An emitter whose `+0x1A` is not negative is a reverb level and starts no sound: `0x003638B0` returns the value without
-reading the list (`0x003638DC`-`0x003638E3`). `0x003631B0` keeps a returned value only when `D` is exactly 0, so only inside
-the shape (`0x00363349`-`0x00363350`). The second list runs after the first and starts from its result, so a level from
+reading the list¹. `0x003631B0` keeps a returned value only when `D` is exactly 0, so only inside
+the shape². The second list runs after the first and starts from its result, so a level from
 the second list replaces one from the cell's. With no level found, the update starts from the last one sent,
-`0x022CBA80` (`0x00362870`).
+`0x022CBA80`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003638DC`-`0x003638E3` |
+| ² | `0x00363349`-`0x00363350` |
+| ³ | `0x00362870` |
+
+</details>
 
 ### Reverb
 
@@ -146,7 +252,16 @@ instruction reads the count.
 
 ### Weather ambience
 
-`0x00363B40` picks the ambience when the weather is set (`0x002620E0`):
+`0x00363B40` picks the ambience when the weather is set¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002620E0` |
+
+</details>
 
 1. It reads up to three entries of the list's weather table, or of the `SP1` block's table at `+0x04` when the list
    has no weather table, into three selections at `0x022CBB58`. An index in range whose id is above 0 is kept, and each
@@ -160,15 +275,34 @@ instruction reads the count.
 
 Every update `0x00362850` also runs the two ambience steps:
 
-- `0x00362C60` releases the previous map's kept ambiences (`0x003636A0`), resets the volume ramp and clears the fading
+- `0x00362C60` releases the previous map's kept ambiences¹, resets the volume ramp and clears the fading
   handle `0x022CBA74` once the old one has stopped, or once the countdown `0x022CBA78`, run down by 2 per pass, goes
   below 0. It sends a changed ambience volume
-  `0x022CBA92` to the playing handle `0x022CBA70` (`0x002DF150`).
+  `0x022CBA92` to the playing handle `0x022CBA70`².
 - `0x00362D20` moves the map sound volume `0x022CBA94` from `0x022CBA98` towards `0x022CBA99` by the step `0x022CBA9C` per
   pass. Character and effect sounds take their volume byte from `0x022CBA94` ([Spatial sound](spatial-sound.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003636A0` |
+| ² | `0x002DF150` |
+
+</details>
+
 `0x00362C60` sends the ambience volume `0x022CBA92` to the playing handle `0x022CBA70` with `0x002DF150` only when it differs
-from the volume last sent (`0x00362CE6`-`0x00362D0A`):
+from the volume last sent¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00362CE6`-`0x00362D0A` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -176,7 +310,16 @@ from the volume last sent (`0x00362CE6`-`0x00362D0A`):
 
 No other instruction reaches it. The indexed tables below it are the music track slots `0x022CB9F0`-`0x022CBA63`
 ([music](music.md)), four of `0x18` bytes, and the cutscene skip masks `0x022CB9C0` and `0x022CB9D8`, `u32[5]` each,
-`0x18` bytes apart (`0x003604D0`, `0x003605A0`, `0x00360710`, `0x00360980`, `0x00360A50`).
+`0x18` bytes apart¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003604D0`, `0x003605A0`, `0x00360710`, `0x00360980`, `0x00360A50` |
+
+</details>
 
 `0x00363E40(frames)` stops the ambience:
 
@@ -192,19 +335,46 @@ No other instruction reaches it. The indexed tables below it are the music track
 
 ### Unbinding
 
-`0x00363750` first clears `0x022CBA90` (`0x0036375D`). With no list bound at `0x022CBAF8` it only clears that pointer
-(`0x00363764`, `0x0036382A`). Otherwise it releases every listed id through `0x002DF050`, except an id from 1,000 to
-1,999 that is in the keep list (`0x00363774`-`0x003637E4`). It copies the three selections, the keep list and its count,
-`0x022CBB58`-`0x022CBB77`, over `0x022CBB38`-`0x022CBB57` (`0x003637F0`-`0x00363810`) and releases the handle (`0x002DEB40`)
-when `0x022CBA88` is not negative. It then sets `0x022CBA88` to -1 and clears `0x022CBAF8` (`0x00363817`-`0x0036382A`).
+`0x00363750` first clears `0x022CBA90`¹. With no list bound at `0x022CBAF8` it only clears that pointer². Otherwise it releases every listed id through `0x002DF050`, except an id from 1,000 to
+1,999 that is in the keep list³. It copies the three selections, the keep list and its count,
+`0x022CBB58`-`0x022CBB77`, over `0x022CBB38`-`0x022CBB57`⁴ and releases the handle⁵
+when `0x022CBA88` is not negative. It then sets `0x022CBA88` to -1 and clears `0x022CBAF8`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036375D` |
+| ² | `0x00363764`, `0x0036382A` |
+| ³ | `0x00363774`-`0x003637E4` |
+| ⁴ | `0x003637F0`-`0x00363810` |
+| ⁵ | `0x002DEB40` |
+| ⁶ | `0x00363817`-`0x0036382A` |
+
+</details>
 
 ### The previous map's keep list
 
-The copy keeps the previous map's ambiences loaded until the next ambience is picked. `0x003636A0` then releases
-(`0x002DF050`) each of the previous ids at `0x022CBB44` that is above 0 and not in the current keep list `0x022CBB64`
-(count `0x022CBB70`) (`0x003636A6`-`0x00363716`), so an ambience both maps keep stays loaded. It runs from the weather
-pick (`0x00363D47`, `0x00363DE1`), `0x00362C60` (`0x00362C8C`), `0x00363E40` (`0x00363E93`, `0x00363EE9`), `0x002628B0`
-(`0x00262920`), `0x003601D0` (`0x00360317`) and `0x00363560` (`0x0036359B`).
+The copy keeps the previous map's ambiences loaded until the next ambience is picked. `0x003636A0` then releases¹ each of the previous ids at `0x022CBB44` that is above 0 and not in the current keep list `0x022CBB64`
+(count `0x022CBB70`)², so an ambience both maps keep stays loaded. It runs from the weather
+pick³, `0x00362C60`⁴, `0x00363E40`⁵, `0x002628B0`⁶, `0x003601D0`⁷ and `0x00363560`⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DF050` |
+| ² | `0x003636A6`-`0x00363716` |
+| ³ | `0x00363D47`, `0x00363DE1` |
+| ⁴ | `0x00362C8C` |
+| ⁵ | `0x00363E93`, `0x00363EE9` |
+| ⁶ | `0x00262920` |
+| ⁷ | `0x00360317` |
+| ⁸ | `0x0036359B` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -216,10 +386,21 @@ These are all their accesses. The one indexed access near `0x022CBB48` is `0x003
 ### The map sound volume fade
 
 `0x003634B0(frames, volume)` fades the map sound volume `0x022CBA94` to `volume`: with
-`n = (i32)(frames × 0x003691D0()) / 2 + 1` (`0x003634BE`-`0x003634DE`), `frames` scaled by `0x003691D0`, truncated, halved
-toward zero and plus 1, a positive n starts the fade from the current volume with a step of `1.0 / n`
-(`0x003634C3`-`0x0036350F`); otherwise it sets the volume at once (`0x00363522`-`0x00363549`). Each update `0x00362D20` adds the
-step to the progress, stops at 1.0, and sets the volume (`0x00362D20`-`0x00362D98`):
+`n = (i32)(frames × 0x003691D0()) / 2 + 1`¹, `frames` scaled by `0x003691D0`, truncated, halved
+toward zero and plus 1, a positive n starts the fade from the current volume with a step of `1.0 / n`²; otherwise it sets the volume at once³. Each update `0x00362D20` adds the
+step to the progress, stops at 1.0, and sets the volume⁴:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003634BE`-`0x003634DE` |
+| ² | `0x003634C3`-`0x0036350F` |
+| ³ | `0x00363522`-`0x00363549` |
+| ⁴ | `0x00362D20`-`0x00362D98` |
+
+</details>
 
 ```python
 volume = from x (1 - progress) + to x progress
@@ -244,37 +425,77 @@ sets to 6, 44 and 150, are on [Spatial sound](spatial-sound.md).
 ### Event sound lists
 
 A cutscene's sounds come from SPP1 lists in the event's `.snd`, a PKFL pack of 16 sub-files whose `0x88`-byte
-directory the event loader reads into `0x022C6E98` (`0x0032FE94`). Each event manager has eight sound slots of `0x38`
+directory the event loader reads into `0x022C6E98`¹. Each event manager has eight sound slots of `0x38`
 bytes from `0x02B59360`, indexed `manager x 8 + slot`, and slot `k` reads sub-file `k`:
 
-1. `eventsoundread` `0x151` (`0x00344660` -> `0x003DF3E0`) empties the slot (`0x003DEC90`), sets its bit in the
-   manager's mask at `0x02B59C20` and asks for the sub-file (`0x003DF440`, `0x0032F2F0`). The verb does nothing while the
-   manager is skipping (`0x00267310`), and `0x003DF440` parks a slot in state 1 instead of reading during a skip.
-2. When the read is in, `0x003DF2C0` splits the sub-file into its two parts (`0x0036B970`), the list and its `SeSep`
-   records, and `0x003DF360` opens the banks (`0x002DF070`), keeps the bank handle at slot `+0x00` and sets state 4.
-   That handle is `0x002DF070`'s answer, the last `0x001DBE60` result, or 0 when it opens no bank (`0x002DF07D`,
-   `0x002DF0DE`, `0x003DF3BF`).
-3. `eventsoundreadsync` `0x152` waits on `0x00345250` while the slot is in state 2, 3 or 4 (`0x003DF0F0`, `0x003DF0A0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032FE94` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `eventsoundread` `0x151` (`0x00344660` -> `0x003DF3E0`) empties the slot, sets its bit in the manager's mask at `0x02B59C20` and asks for the sub-file. The verb does nothing while the manager is skipping, and `0x003DF440` parks a slot in state 1 instead of reading during a skip. | `0x003DEC90`<br>`0x003DF440`, `0x0032F2F0`<br>`0x00267310` |
+| 2 | When the read is in, `0x003DF2C0` splits the sub-file into its two parts, the list and its `SeSep` records, and `0x003DF360` opens the banks, keeps the bank handle at slot `+0x00` and sets state 4. That handle is `0x002DF070`'s answer, the last `0x001DBE60` result, or 0 when it opens no bank. | `0x0036B970`<br>`0x002DF070`<br>`0x002DF07D`, `0x002DF0DE`, `0x003DF3BF` |
+| 3 | `eventsoundreadsync` `0x152` waits on `0x00345250` while the slot is in state 2, 3 or 4. | `0x003DF0F0`, `0x003DF0A0` |
 
 `eventsoundplay` `0x153` (`0x00345930` -> `0x003DF200`) plays list entry `word & 0xFFFFFF` of slot `(word >> 24) - 4`
-centred (`0x002DF010`); `eventsoundplay_16a` `0x16A` (`0x00350700` -> `0x003DF130`) gives a pan and volume (`0x002DEF40`).
+centred¹; `eventsoundplay_16a` `0x16A` (`0x00350700` -> `0x003DF130`) gives a pan and volume².
 Both need state 1 or 5 and an entry below the count, store the entry's `i16` from the table at list `+0x18` at
-`0x022C2534` (`0x00314D50`), or -1 without one, and clear `0x022C2530` (`0x00314000`).
+`0x022C2534`³, or -1 without one, and clear `0x022C2530`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DF010` |
+| ² | `0x002DEF40` |
+| ³ | `0x00314D50` |
+| ⁴ | `0x00314000` |
+
+</details>
 
 `eventsounddispose` `0x154` (`0x00347470` -> `0x003DEC90`) waits out a read or bank load and then releases the slot: in
-state 5 it releases every listed id (`0x002DF050`) and calls `0x002DEB40` for each of the list's `+0x10` words from
+state 5 it releases every listed id¹ and calls `0x002DEB40` for each of the list's `+0x10` words from
 `+0x12`; in state 1 `0x003DEFC0` only frees the blocks and the mask bit. When a list's `+0x10` is set, `0x003DF2C0` also
-passes the slot's byte `+0x11` and `mapNo % 10` to `0x0032F3A0` (`0x003DF30D`-`0x003DF32E`).
+passes the slot's byte `+0x11` and `mapNo % 10` to `0x0032F3A0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DF050` |
+| ² | `0x003DF30D`-`0x003DF32E` |
+
+</details>
 
 ## Layouts
 
 All multi-byte fields are little-endian.
 
 Offsets in the header are from the start of the list, and so are the three offsets it holds: the `SeSep` records
-at `+0x0C` (`0x00363607`-`0x0036360A`, `0x003DF3A2`-`0x003DF3A6`), the weather table at `+0x1A` (`0x00363BA2`-`0x00363BB3`)
-and, in event lists, the `i16` table at `+0x18` (`0x003DF277`-`0x003DF283`). The id list starts at `+0x20`, right
-after the header: entry *i* is at `+0x20 + 4 * i` (`0x0034629A`, `0x003469DA`, `0x00363BE6`, `0x003DF269`). Offsets in
+at `+0x0C`¹, the weather table at `+0x1A`²
+and, in event lists, the `i16` table at `+0x18`³. The id list starts at `+0x20`, right
+after the header: entry *i* is at `+0x20 + 4 * i`⁴. Offsets in
 the id entry and the weather table are from the start of the entry and of the table.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00363607`-`0x0036360A`, `0x003DF3A2`-`0x003DF3A6` |
+| ² | `0x00363BA2`-`0x00363BB3` |
+| ³ | `0x003DF277`-`0x003DF283` |
+| ⁴ | `0x0034629A`, `0x003469DA`, `0x00363BE6`, `0x003DF269` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -337,10 +558,21 @@ The listener grid at `SP1 +0x08`, read by `0x00362E50`:
 | `10`, `14` | `i32` | columns and rows |
 | `+0x20` | `u16[]` | one list offset per cell |
 
-A list holds `u16` entries, each an index into the emitter index, with bit `0x8000` on the last
-(`0x00363244`-`0x0036335C`).
+A list holds `u16` entries, each an index into the emitter index, with bit `0x8000` on the last¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00363244`-`0x0036335C` |
+
+</details>
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | | |
 |---|---|
@@ -358,9 +590,18 @@ Every id names a shipped bank, `se001/se001NNN`, `se010/se010NNN` or `se050/se05
 the ambiences that survive an unbind.
 
 `env99.spp` (`ps2data/sound/se/map/position_map/spp/env/`, 3,392 bytes) is the one list outside a pack. It is kind 1,
-id 24 of the path arrays, sized 3,392 in all twelve size tables, and its path string (`0x00A2EBF8`) is referenced only
+id 24 of the path arrays, sized 3,392 in all twelve size tables, and its path string¹ is referenced only
 by entry 24 of the ten kind 1 arrays. It lists the eleven ambience ids 1,001 to 1,011 with `hasMapNo` 0, `mapNo`
 `0xFFFF` and no weather table (`weatherAt` 0).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00A2EBF8` |
+
+</details>
 
 - Its eleven `SeSep` records start at `+0x70` (`bankOffset`), fill `bankLength` 3,272 bytes and are the eleven ids
   in list order, 144 to 524 bytes each; eight zero bytes follow them.
@@ -377,8 +618,17 @@ by entry 24 of the ten kind 1 arrays. It lists the eleven ambience ids 1,001 to 
 `Database/Tools/catalogues/sp1_emitters.py` produces all four.
 
 The emitters come from a field's own pack and the list from its block pack: mode 1 keeps slot 16, and only mode 0
-keeps slot 10 (`0x00378BC0`). Each of the 456 own packs has one block pack. At the 1,865 listed emitters the own
+keeps slot 10¹. Each of the 456 own packs has one block pack. At the 1,865 listed emitters the own
 pack's slot 10 gives the same id, so the first word's meaning does not change between the two lists.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00378BC0` |
+
+</details>
 
 | | |
 |---|---|
@@ -438,21 +688,18 @@ pack's slot 10 gives the same id, so the first word's meaning does not change be
 
 All but one id name a shipped bank under `se600`-`se610`; `600070` has no bank.
 
+</details>
+
 ## Loader behaviour
 
-1. `0x002DF070` rounds the length up to 16 and stops at a record that is not `SeSep` or is longer than what remains.
-   It reads a record's length with bit `0x80000000` cleared (`0x002DF0A9`) and walks only while more than 16 bytes
-   remain (`0x002DF086`, `0x002DF0CE`), so a length of 16 or less opens no bank.
-2. The verbs bound the index unsigned, the emitter and weather readers after a sign test.
-3. The weather pick reads at most three entries, so a table's entries 4-7 change nothing.
-4. Only `slot < count` is tested before the selection is read, so a count of 4 with weather slot 4 reads the keep
-   list's first cell as a selection; shipped tables have at most 3.
-5. The list is used in place: the map bind keeps its address at `0x022CBAF8` (`0x00363662`), an event slot at its
-   `+0x08` (`0x003DF399`), and every reader indexes it there.
-6. No loader checks the list itself. The map bind reads only its `+0x08` and `+0x0C` (`0x00363607`, `0x00363627`); the
-   event bind reads those (`0x003DF3A2`, `0x003DF3B1`) and `+0x10` and `+0x12` (`0x003DF301`, `0x003DF306`). No reader
-   on this page tests the count, `+0x0C`, `+0x18` or `+0x1A` against the list's size, and no reader compares the
-   magic: the bytes `SPP1` occur nowhere in the image.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x002DF070` rounds the length up to 16 and stops at a record that is not `SeSep` or is longer than what remains. It reads a record's length with bit `0x80000000` cleared and walks only while more than 16 bytes remain, so a length of 16 or less opens no bank. | `0x002DF0A9`<br>`0x002DF086`, `0x002DF0CE` |
+| 2 | The verbs bound the index unsigned, the emitter and weather readers after a sign test. |   |
+| 3 | The weather pick reads at most three entries, so a table's entries 4-7 change nothing. |   |
+| 4 | Only `slot < count` is tested before the selection is read, so a count of 4 with weather slot 4 reads the keep list's first cell as a selection; shipped tables have at most 3. |   |
+| 5 | The list is used in place: the map bind keeps its address at `0x022CBAF8`, an event slot at its `+0x08`, and every reader indexes it there. | `0x00363662`<br>`0x003DF399` |
+| 6 | No loader checks the list itself. The map bind reads only its `+0x08` and `+0x0C`; the event bind reads those and `+0x10` and `+0x12`. No reader on this page tests the count, `+0x0C`, `+0x18` or `+0x1A` against the list's size, and no reader compares the magic: the bytes `SPP1` occur nowhere in the image. | `0x00363607`, `0x00363627`<br>`0x003DF3A2`, `0x003DF3B1`<br>`0x003DF301`, `0x003DF306` |
 
 ## Modding notes
 
@@ -477,14 +724,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003775D0` | calls | `0x0037AA90` |
+| [`0x003775D0`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) | calls | [`0x0037AA90`](../EBP-Script-Files/ebp-lighting-lgt2.md) (on ebp lighting lgt2) |
 
 **Story, events and hunts** (explained on [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0035CA70` | calls | `0x0032AB60` |
+| [`0x0035CA70`](../Menus-And-HUD/map-screens.md) (on map screens) | calls | [`0x0032AB60`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: set primary (on story flags) |
 
 </details>

@@ -16,10 +16,18 @@ characters. The type is authored in the effect file, one byte per element defini
 ### Where the type comes from
 
 An element definition is an `0xA00` record; its header byte `+0x0E` is the type, copied to the
-definition's `+0x44` by `0x003A9A70` and to the element's byte `+0` at birth by `0x002F2D60`
-(`0x002F30F2`–`0x002F30F6`). How the five method tables dispatch on it, and when each method runs, is on
+definition's `+0x44` by `0x003A9A70` and to the element's byte `+0` at birth by `0x002F2D60`¹. How the five method tables dispatch on it, and when each method runs, is on
 [effect element runtime](effect-element-runtime.md); the record grammar is on
 [effect files](effect-files-efx-efb.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F30F2`-`0x002F30F6` |
+
+</details>
 
 The tables give 65 types an arm, with 248 distinct handlers. Types `0x00`–`0x0A`, `0x40`, `0x41`,
 `0x60`–`0x67`, `0x80`–`0x97`, `0xA0`–`0xA2`, `0xA5`, `0xD0` and `0xD1`, except `0x09`, `0x63`, `0x64`
@@ -45,24 +53,62 @@ Every birth method except `0x70`'s calls the base birth `0x002F2D60`, and every 
 `0x002F2530` then `0x00442600`. Types `0x41` and `0xD0` share `0x00464F10`, a jump to the base alone. The
 tails end in the cull, release and spawn fork of the runtime page.
 
-Type 1's tail `0x00442600` does this before the fork (`0x00442624`-`0x0044270D`):
+Type 1's tail `0x00442600` does this before the fork¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00442624`-`0x0044270D` |
+
+</details>
 
 - it copies the position `+0x60` to `+0x230` and, when the element has a parent object at `+0x10`, turns
-  it by that object's matrix `+0x40` (`0x0039AF70`, `0x00398F90`);
+  it by that object's matrix `+0x40`¹;
 - it moves `+0x70` to `+0x80` and the new `+0x230` to `+0x70`;
-- it stores the integer track at definition `+0xD0`, sampled at the frame `+0x44` (`0x004314E0`), at `+0x244`;
-- it stores the colour track at definition `+0x80` (`0x0042FDB0`) at `+0x240` and, unless the colour `+0x1F0`
-  is `0x80808080`, combines it with that colour (`0x0026EE00`);
+- it stores the integer track at definition `+0xD0`, sampled at the frame `+0x44`², at `+0x244`;
+- it stores the colour track at definition `+0x80`³ at `+0x240` and, unless the colour `+0x1F0`
+  is `0x80808080`, combines it with that colour⁴;
 - when definition byte `+0x49` is `0x20` or more it samples the integer track at definition `+0x30` and,
   unless the value is 100, sets the alpha byte `+0x243` to alpha x value / 100;
 - it copies the colour `+0x240` to `+0x1F4`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039AF70`, `0x00398F90` |
+| ² | `0x004314E0` |
+| ³ | `0x0042FDB0` |
+| ⁴ | `0x0026EE00` |
+
+</details>
+
 The fork is `0x005002E0(definition, +0x230)`: on 0 the tail calls the release `0x002F31C0(element, element's
-+0x08)`, otherwise `0x003A8950(2, element)` (`0x0044270A`-`0x00442732`).
++0x08)`, otherwise `0x003A8950(2, element)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0044270A`-`0x00442732` |
+
+</details>
 
 The base setup is `0x00500470(definition, delta)`: it rebases the two encoded dwords at each of `+0x00`,
-`+0x10`, `+0x20` and `+0x30` of the definition with `0x004304F0` and returns `definition + 0x80`
-(`0x0050047F`-`0x005004AA`).
+`+0x10`, `+0x20` and `+0x30` of the definition with `0x004304F0` and returns `definition + 0x80`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0050047F`-`0x005004AA` |
+
+</details>
 
 In the tables below "Authored" is the number of `0xA00` definitions of the type over every shipped
 stream, then the number of archive files holding them; a sub-range type's handlers are its
@@ -71,9 +117,18 @@ sub-range ones.
 ### The type names
 
 `0x002FBA60(type)` returns the name of a type from a byte table at `0x002FBDEC` and a list of strings
-from `0x00D0F9F0`; any other type below 256, and any type above, gives `"NONE TYPE NAME"` (`0x00D10150`).
+from `0x00D0F9F0`; any other type below 256, and any type above, gives `"NONE TYPE NAME"`¹.
 The type-1 context builder `0x002FC4A0` prints these names for the element types of the stream it has
 parsed while `0x022BE950` is set. The prefix is `TsElementType_` unless the row says `Nh`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00D10150` |
+
+</details>
 
 | Types | Names |
 |---|---|
@@ -95,14 +150,36 @@ parsed while `0x022BE950` is set. The prefix is `TsElementType_` unless the row 
 
 Type `0xA1`, VLENSFLARE, drives the eight lens-flare slots at `0x02ADBB40`.
 
-While it parses a type-1 stream, `0x002FC4A0` records every definition's type. It clears `0x914` bytes from `0x02EC29C0`
-(`0x002FC570`), sets `0x02EC32C4` and `0x02EC32CC` to 1 (`0x002FC5BC`, `0x002FC5C7`), runs the parse `0x003EDAD0` (`0x002FC5D2`)
-and then clears `0x02EC32C4` (`0x002FC5E7`).
+While it parses a type-1 stream, `0x002FC4A0` records every definition's type. It clears `0x914` bytes from `0x02EC29C0`¹, sets `0x02EC32C4` and `0x02EC32CC` to 1², runs the parse `0x003EDAD0`³
+and then clears `0x02EC32C4`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FC570` |
+| ² | `0x002FC5BC`, `0x002FC5C7` |
+| ³ | `0x002FC5D2` |
+| ⁴ | `0x002FC5E7` |
+
+</details>
 
 While both words are set, the setup dispatcher `0x005004C0` appends the
 definition's type byte `+0x44` to the 512 dwords at `0x02EC29C0` and adds 1 to the count `0x02EC32D0`. When 512 are
-recorded it clears `0x02EC32CC` instead (`0x005004C0`-`0x00500501`). With `0x022BE950` set, `0x002FC4A0` then prints the
-count, each recorded type with its name (`0x002FBA60`) and each distinct type once (`0x002FC5F5`-`0x002FC7E7`).
+recorded it clears `0x02EC32CC` instead¹. With `0x022BE950` set, `0x002FC4A0` then prints the
+count, each recorded type with its name² and each distinct type once³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005004C0`-`0x00500501` |
+| ² | `0x002FBA60` |
+| ³ | `0x002FC5F5`-`0x002FC7E7` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -127,43 +204,92 @@ count, each recorded type with its name (`0x002FBA60`) and each distinct type on
 
 - `0x00` has no draw method: it moves and fires spawn slots only.
 - `0x01` is a point. Its draw sets `0x02AEE908` to the integer track at definition `+0x30` and
-  `0x02AEE900` to definition byte `+0x49 >> 5`, then calls `0x0039C550` (`0x004425B2`–`0x004425E8`), which
+  `0x02AEE900` to definition byte `+0x49 >> 5`, then calls `0x0039C550`¹, which
   projects the point and emits a one-vertex `GiPrim` (kind 0 in the blended emitter, `0x0039DA7A`).
 - Before that, the point's draw `0x00442550` hands the element's `+0x244` to `0x0039B620`, which adds the
   instance's depth offset and stores the sum at `0x02AEE7F0`. It sets w `+0x23C` to 1.0 and takes the colour
-  as `0x002F1F40` of the position `+0x230` times the colour `+0x240` (`0x0026EE00`, `0x00442567`–`0x004425AA`). The
-  track is sampled at the element's `+0x44` and stored sign-extended to 64 bits (`0x004425B6`–`0x004425C6`).
-- `0x0039C550(point, colour)` installs `0x02AEECB0` (`0x0039B550`) and draws nothing when `0x00399600` rejects the
-  point (`0x0039C589`). The draw's test of the type byte `+0` against 0 (`0x00442556`) is never met: its one
-  caller, the draw dispatcher `0x002F4020` (`0x002F4129`), calls `0x00442550` for type 1 only.
-- `0x03` is a line: its draw calls `0x0039C4C0` (`0x004427D0`), which projects both ends, drops the line
-  when either end is rejected, and emits a two-vertex `GiPrim` of kind 1 (`0x0039C4EB`–`0x0039C52B`,
-  `0x0039D769`, `0x0039D83C`).
-- The line's draw `0x004427D0` works like the point's with two ends: the depth from `+0x258` (`0x0039B620`),
+  as `0x002F1F40` of the position `+0x230` times the colour `+0x240`². The
+  track is sampled at the element's `+0x44` and stored sign-extended to 64 bits³.
+- `0x0039C550(point, colour)` installs `0x02AEECB0`⁴ and draws nothing when `0x00399600` rejects the
+  point⁵. The draw's test of the type byte `+0` against 0⁶ is never met: its one
+  caller, the draw dispatcher `0x002F4020`⁷, calls `0x00442550` for type 1 only.
+- `0x03` is a line: its draw calls `0x0039C4C0`⁸, which projects both ends, drops the line
+  when either end is rejected, and emits a two-vertex `GiPrim` of kind 1⁹.
+- The line's draw `0x004427D0` works like the point's with two ends: the depth from `+0x258`¹⁰,
   w 1.0 at `+0x23C` and `+0x24C`, the same blend pair from definition `+0x30` and `+0x49`, and one colour
-  per end, `0x002F1F40` of `+0x230` times `+0x250` and of `+0x240` times `+0x254` (`0x004427F6`–`0x00442890`).
-- It calls `0x0039C4C0(+0x230, +0x240, colour 1, colour 2)` (`0x004428C3`), which installs `0x02AEECB0`
-  (`0x0039B550`) before projecting. Its test of the type byte `+0` (`0x004427E5`) is never met either: the
-  dispatcher calls it for type 3 only (`0x002F4146`).
-- `0x02` and `0x0A` draw sprite frames through `0x00501A50` and `0x00502280` (`0x004490D0`, `0x0044BAC0`).
+  per end, `0x002F1F40` of `+0x230` times `+0x250` and of `+0x240` times `+0x254`¹¹.
+- It calls `0x0039C4C0(+0x230, +0x240, colour 1, colour 2)`¹², which installs `0x02AEECB0`
+ ¹³ before projecting. Its test of the type byte `+0`¹⁴ is never met either: the
+  dispatcher calls it for type 3 only¹⁵.
+- `0x02` and `0x0A` draw sprite frames through `0x00501A50` and `0x00502280`¹⁶.
   Both frame drawers pick a row of a kind-`0x50` record with `0x00502EA0`.
 - `0x04`, `0x06` and `0x07` share the grid emitters `0x004434D0` and `0x00444340`, which all three draws
   call.
 - `0x05` draws a mesh; see "Type 0x05 and the mesh record" below.
 - `0x06` and `0x07` share one setup, `0x00538EB0`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004425B2`-`0x004425E8` |
+| ² | `0x0026EE00`, `0x00442567`-`0x004425AA` |
+| ³ | `0x004425B6`-`0x004425C6` |
+| ⁴ | `0x0039B550` |
+| ⁵ | `0x0039C589` |
+| ⁶ | `0x00442556` |
+| ⁷ | `0x002F4129` |
+| ⁸ | `0x004427D0` |
+| ⁹ | `0x0039C4EB`-`0x0039C52B`, `0x0039D769`, `0x0039D83C` |
+| ¹⁰ | `0x0039B620` |
+| ¹¹ | `0x004427F6`-`0x00442890` |
+| ¹² | `0x004428C3` |
+| ¹³ | `0x0039B550` |
+| ¹⁴ | `0x004427E5` |
+| ¹⁵ | `0x002F4146` |
+| ¹⁶ | `0x004490D0`, `0x0044BAC0` |
+
+</details>
+
 Type `0x04`'s draw `0x004453D0` returns at once when the element's byte `+0` is 0 or its dword `+0x254`, the
-number of steps of a ring, is 0 (`0x004453EE`, `0x004453FA`). It copies the element's matrix `+0x290` to a
+number of steps of a ring, is 0¹. It copies the element's matrix `+0x290` to a
 local and, by the value v = `([+0x4A] >> 2) & 7` of definition byte `+0x4A`, runs
 `0x00398030(0x02AEEC30, local)` (v = 1) or `0x00398030(0x02AEEC70, local)` (v = 2), or turns it with `0x00434900`
-(v = 4) or `0x00434A70` (v = 5) and runs `0x00398030(0x02AEEA60, local)`; any other v leaves it as it is
-(`0x00445461`-`0x004454C5`).
+(v = 4) or `0x00434A70` (v = 5) and runs `0x00398030(0x02AEEA60, local)`; any other v leaves it as it is².
 
-`0x0039AF70(local)` then copies the matrix to `0x022D91B0`, where `0x00399110` reads it
-(`0x004454CA`-`0x004454CF`, `0x00399134`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004453EE`, `0x004453FA` |
+| ² | `0x00445461`-`0x004454C5` |
+
+</details>
+
+`0x0039AF70(local)` then copies the matrix to `0x022D91B0`, where `0x00399110` reads it¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004454CA`-`0x004454CF`, `0x00399134` |
+
+</details>
 
 The three rings have `+0x254` + 1 points each. Point i of a ring is (r sin(i x step), h, r cos(i x step))
-with step = `+0x240` / `+0x254` (`0x00445560`-`0x00445665`). With a = `+0x248`, R = `+0x250` and k = `+0x268`:
+with step = `+0x240` / `+0x254`¹. With a = `+0x248`, R = `+0x250` and k = `+0x268`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00445560`-`0x00445665` |
+
+</details>
 
 | Ring | Radius r | Height h |
 |---|---|---|
@@ -171,25 +297,62 @@ with step = `+0x240` / `+0x254` (`0x00445560`-`0x00445665`). With a = `+0x248`, 
 | 1 | `+0x24C` + R k cos a | R k sin a |
 | 2 | `+0x24C` + R cos a | R sin a |
 
-The points then go through `0x00399110` (`0x00445678`), and after the ring colours and the normals of
+The points then go through `0x00399110`¹, and after the ring colours and the normals of
 [the grid emitters' block](#the-grid-emitters-block) the draw calls `0x0039B620` with the element's `+0x258`
-and `0x0039B550` with `0x02AEECB0` (`0x00445755`-`0x00445767`). With bit `0x1` of definition byte `+0x672` it then
-calls `0x0039A150`; otherwise it calls `0x00399B80`, and a non-zero answer ends the draw
-(`0x0044576C`-`0x00445798`).
+and `0x0039B550` with `0x02AEECB0`². With bit `0x1` of definition byte `+0x672` it then
+calls `0x0039A150`; otherwise it calls `0x00399B80`, and a non-zero answer ends the draw³.
 
-The texture rows take v = 0, `+0x244` x `+0x268` and `+0x244`
-(`0x004457A4`-`0x004457E2`). The same bit picks the emitter at the end: `0x00444340` when set, `0x004434D0` when
-clear (`0x00445AEC`-`0x00445AFF`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00445678` |
+| ² | `0x00445755`-`0x00445767` |
+| ³ | `0x0044576C`-`0x00445798` |
+
+</details>
+
+The texture rows take v = 0, `+0x244` x `+0x268` and `+0x244`¹. The same bit picks the emitter at the end: `0x00444340` when set, `0x004434D0` when
+clear².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004457A4`-`0x004457E2` |
+| ² | `0x00445AEC`-`0x00445AFF` |
+
+</details>
 
 Before the layers type `0x04`'s draw sets the composer state's `+0x1F1` bits `0x7` = `([+0x4A] >> 2) & 7` and
 bit `0x8` from bit `0x1` of definition byte `+0x672`, clears the count byte `+0x1F0` and leaves the other
-bits of `+0x1F1` (`0x00445847`-`0x004458B8`).
+bits of `+0x1F1`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00445847`-`0x004458B8` |
+
+</details>
 
 Before the emitter, and in type `0x05` before the composer, both draws go through the definition's four
-`0xF0`-byte layer blocks, from `+0x1B0` for type `0x05` and from `+0x2B0` for type `0x04`
-(`0x00449CE0`-`0x0044A03A`, `0x004458D0`-`0x00445A91`). A block whose kind byte `+0xA0` is 0 is skipped. An accepted
+`0xF0`-byte layer blocks, from `+0x1B0` for type `0x05` and from `+0x2B0` for type `0x04`¹. A block whose kind byte `+0xA0` is 0 is skipped. An accepted
 block becomes layer k of the composer's state, k counting from 0, and the state's count byte `+0x1F0` goes
-up by one. With no accepted layer nothing is drawn (`0x00449D8B`, `0x00445A97`).
+up by one. With no accepted layer nothing is drawn².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00449CE0`-`0x0044A03A`, `0x004458D0`-`0x00445A91` |
+| ² | `0x00449D8B`, `0x00445A97` |
+
+</details>
 
 By kind, before a block is accepted:
 
@@ -205,9 +368,27 @@ Kind 1 of type `0x05` decodes a mesh handle: the block's `+0xB0`, or with bit `0
 `+0x590` the handle of the mesh index `+0x294`. The block is skipped when the mesh is null or its word
 `+0x1C` is 0. With a `+0x1C` of 1 the first pointer of the mesh's list `+0x184` must be non-null; its qwords
 `+0x10` and `+0x18` go to state `+0x70 + 16k` and the state's kind byte becomes 2. With a larger count
-each non-null pointer j of the list gives its two qwords to state `+0xB0 + 16j` (`0x00449E4B`-`0x00449F21`).
+each non-null pointer j of the list gives its two qwords to state `+0xB0 + 16j`¹.
 
-An accepted layer stores, from the block (`0x00449F26`-`0x0044A03A`, `0x0044598A`-`0x00445A6F`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00449E4B`-`0x00449F21` |
+
+</details>
+
+An accepted layer stores, from the block¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00449F26`-`0x0044A03A`, `0x0044598A`-`0x00445A6F` |
+
+</details>
 
 | State | Value |
 |---|---|
@@ -222,25 +403,54 @@ An accepted layer stores, from the block (`0x00449F26`-`0x0044A03A`, `0x0044598A
 | dword `+0x190 + 4k` | `+0xAC` |
 
 It also samples four of the block's tracks at the frame `+0x44`: the colour track `+0x40` into state
-`+0x138 + 4k` (`0x0042FDB0`), the float tracks `+0` and `+0x10` into `+0x50 + 8k` and `+0x54 + 8k`, and
-the float track `+0x90` into `+0x1D8 + 4k` (`0x004309C0`). To the first two it adds the element's pair for
+`+0x138 + 4k`¹, the float tracks `+0` and `+0x10` into `+0x50 + 8k` and `+0x54 + 8k`, and
+the float track `+0x90` into `+0x1D8 + 4k`². To the first two it adds the element's pair for
 that block: `+0x298 + 8i` and `+0x29C + 8i` in type `0x05`, `+0x26C + 8i` and `+0x270 + 8i` in type
 `0x04`, i the block number. Type `0x05` alone then stores `[+0x50 + 8k] x 0x0017FFD0()` there when
-`0x0024E640()` answers 4 (`0x00449FD1`-`0x00449FE4`).
+`0x0024E640()` answers 4³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0042FDB0` |
+| ² | `0x004309C0` |
+| ³ | `0x00449FD1`-`0x00449FE4` |
+
+</details>
 
 After the layers type `0x05`'s draw keeps the mesh-index track value at state `+0x1EC`. When the handle of
 that index decodes to null the index becomes 0. Otherwise, when the next handle decodes too, the state
 float `+0x1EC` loses the index and keeps the fraction; when also the mesh's word `+0x14` is not above the
 next mesh's, the draw stores the next mesh at state `+0x48` and its id byte, definition
-`+0x570 + index + 1`, at state `+0x1E8` (`0x0044A03F`-`0x0044A107`). With bit `0x10` set, and for a value out
+`+0x570 + index + 1`, at state `+0x1E8`¹. With bit `0x10` set, and for a value out
 of range, `+0x1EC` is 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0044A03F`-`0x0044A107` |
+
+</details>
 
 ### The point and line blend modes
 
 `0x02AEE900`, definition byte `+0x49` bits under mask `0xE0`, picks the emitter. Mode 0 builds the primitive and
 submits it at once (`0x0039D890` for a point, `0x0039D5A0` for a line). Modes 1 to 7 append a draw-list
 entry first and set the primitive's blend word: `0x01EFAC20[mode]`, or in mode 6 the `+0x30` track
-value from `0x02AEE908` (`0x0039DA89`–`0x0039DAAC`, `0x0039D859`–`0x0039D875`).
+value from `0x02AEE908`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039DA89`-`0x0039DAAC`, `0x0039D859`-`0x0039D875` |
+
+</details>
 
 | Mode | Blend word |
 |---:|---|
@@ -259,35 +469,96 @@ Every effect point, line and polygon reaches the renderer through a pair of emit
 its command at once (blend mode 0, through `0x0020E630(command, 2)`), the other files it on the draw
 list first and sets the blend word as above (modes 1 to 7). The blended ones fill the `0x28`-byte
 entry the same way: the smallest of the vertices' 24-bit depths as the key `+8`, the pass nibble
-`0x02AEE910` in the bits under mask `0xF0000000`, and the flag word `+0x20` = `0x02AEF41C × 4` (`0x003A2C70`), plus `2` when
-`0x0024E460` returns 1 or `0x02AEF418` is set (`0x0039DD60`, `0x0039EC30`).
+`0x02AEE910` in the bits under mask `0xF0000000`, and the flag word `+0x20` = `0x02AEF41C × 4`¹, plus `2` when
+`0x0024E460` returns 1 or `0x02AEF418` is set².
 
-`0x0039EC30` ends by a jump to `0x00182F50` and returns that function's answer (`0x0039EEE0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A2C70` |
+| ² | `0x0039DD60`, `0x0039EC30` |
+
+</details>
+
+`0x0039EC30` ends by a jump to `0x00182F50` and returns that function's answer¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039EEE0` |
+
+</details>
 
 The point emitter `0x0039D970` is the exception for the key: it takes only the 16-bit word at the
-vertex's `+4`, the low 16 bits of the depth (`0x0039D9B5`), where the line emitter `0x0039D6C0` keeps 24 bits
-of each end and the smaller one (`0x0039D6FD`-`0x0039D724`). The blended point and line emitters clear the
+vertex's `+4`, the low 16 bits of the depth¹, where the line emitter `0x0039D6C0` keeps 24 bits
+of each end and the smaller one². The blended point and line emitters clear the
 entry's `+0x00` and `+0x10` and store the command at `+0x18`; `+0xC` is 0 for the point and 1 for the line and quad
-emitters (`0x0039D9CC`, `0x0039D736`, `0x0039ECD6`). The point and line emitters append without comparing the
-count `0x02F8F2C6` with the list's size (`0x0039DA05`, `0x0039D775`).
+emitters³. The point and line emitters append without comparing the
+count `0x02F8F2C6` with the list's size⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039D9B5` |
+| ² | `0x0039D6FD`-`0x0039D724` |
+| ³ | `0x0039D9CC`, `0x0039D736`, `0x0039ECD6` |
+| ⁴ | `0x0039DA05`, `0x0039D775` |
+
+</details>
 
 Each emitter takes vertices that the translated vector routines have already projected into the GS
 form and converts them back with `0x0039CDC0(points, out, n)`. It reads each vertex as two 16-bit
 coordinates in sixteenths of a pixel and a 24-bit depth, clamps the depth to `[0x02AEEBA0]` ..
-`[0x02AEEBA4]` (`0x0039CE70`, `0x0039CE78`), multiplies the vertex by the matrix `0x02AEEB20` (`0x00202B70`),
+`[0x02AEEBA4]`¹, multiplies the vertex by the matrix `0x02AEEB20`²,
 divides by w, and scales x by the 16:9 factor `0x0017FFD0` when `0x0024E640` returns 1. `0x0039CF10` does
 the same for vertices that are already floats, without the depth clamp.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039CE70`, `0x0039CE78` |
+| ² | `0x00202B70` |
+
+</details>
+
 `0x00202B70(out, matrix, vector)` forms the product in a local through `0x00217060`, out[j] = the sum over i
-of vector[i] x matrix[i][j], and copies its 16 bytes to `out` (`0x00202B79`-`0x00202B86`).
+of vector[i] x matrix[i][j], and copies its 16 bytes to `out`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00202B79`-`0x00202B86` |
+
+</details>
 
 Most emitters fill a `GiPrim` (`0x008642A0`, which returns the command plus 8); the blended textured
-quads use a `GiPolyGT4T` (`0x00864D10`) or a `GiSprite` (`0x008647C0`) instead.
-`0x008642A0` takes `0x68` bytes from the arena `0x01F7F4C0` (`0x001A1470`), writes the address `0x01CCFAF0` at the
+quads use a `GiPolyGT4T`¹ or a `GiSprite`² instead.
+`0x008642A0` takes `0x68` bytes from the arena `0x01F7F4C0`³, writes the address `0x01CCFAF0` at the
 command's `+0x00` and stores the command at `+0x08` of the node it is given; it runs `0x00864210` on the
 command with its second argument and sets the command's
-`+0x58` to 1. When the arena gives nothing it stores 0 at the node's `+0x08` and returns 0
-(`0x008642B4`-`0x00864318`).
+`+0x58` to 1. When the arena gives nothing it stores 0 at the node's `+0x08` and returns 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00864D10` |
+| ² | `0x008647C0` |
+| ³ | `0x001A1470` |
+| ⁴ | `0x008642B4`-`0x00864318` |
+
+</details>
 
 | Shape | Immediate | Blended | Vertices | Kind | Command | Called from |
 |---|---|---|---:|---:|---|---|
@@ -305,10 +576,19 @@ command with its second argument and sets the command's
 | ribbon segment, colour lists | `0x003A05F0` | `0x003A0040` | 4 | 4 | `GiPrim`; blended `GiPolyGT4T` | `0x0039C800` |
 
 The four point and line emitters write each vertex colour as four floats from the colour word's bytes,
-in byte order, at `[+0x10]` of the pointer `0x008642A0` returns (`0x0039D8E7`-`0x0039D936`,
-`0x0039D5E4`-`0x0039D689`). They set `+0x40` to the kind and `+0x48` to 0, and `+0x44` to 1 in the blended
-emitters and 0 in the immediate ones. The point emitters also set the dword `+0x50` to 0 (`0x0039D8DF`,
-`0x0039DA20`), which `0x008642A0` sets to 1 (`0x008642FC`); the line emitters leave it at 1.
+in byte order, at `[+0x10]` of the pointer `0x008642A0` returns¹. They set `+0x40` to the kind and `+0x48` to 0, and `+0x44` to 1 in the blended
+emitters and 0 in the immediate ones. The point emitters also set the dword `+0x50` to 0², which `0x008642A0` sets to 1³; the line emitters leave it at 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039D8E7`-`0x0039D936`, `0x0039D5E4`-`0x0039D689` |
+| ² | `0x0039D8DF`, `0x0039DA20` |
+| ³ | `0x008642FC` |
+
+</details>
 
 "Kind" is the primitive number the `GiPrim` carries; its execute `0x00863D80` looks it up in the eight-entry table
 `0x01F44D20` (0, 1, 6, 2, 3, 4, 6, 6) and passes the result to the device's draw slot `+0x20`. The callers `0x004355D0`,
@@ -318,18 +598,36 @@ types `0x04`, `0x06` and `0x07`. Their texture coordinates pass through `0x0039B
 multiplies it by the vertex's `q`.
 
 `0x004355D0` returns 1 without composing anything for a kind-7 effect `0x200`–`0x23F` drawn while the pass id
-is 0 (`0x0024E410`) while the debug console's "Enable VFX Display" row (`+0xAC0` of `[0x01F81428]`,
+is 0¹ while the debug console's "Enable VFX Display" row (`+0xAC0` of `[0x01F81428]`,
 `0x001D50D0`) holds 2: `0x00180100` answers whether that row is not 2.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024E410` |
+
+</details>
 
 ### The sprite and ribbon front ends
 
 The sprite drawers `0x00501A50` and `0x00502280` (types `0x02` and `0x0A`) reach the quad emitters
 through two front ends: while bit `0x40` of the request's byte `+0x46` is clear, bit `0x1` picks between
-them (`0x00501A50`).
+them¹.
 
-- `0x0039C5D0` asks `0x0024D330` first. For 1 it installs the matrix `0x02AEECB0` (`0x0039B550`), projects
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00501A50` |
+
+</details>
+
+- `0x0039C5D0` asks `0x0024D330` first. For 1 it installs the matrix `0x02AEECB0`¹, projects
   the four corners with `0x00399B80`, which returns non-zero when a corner falls outside, multiplies
-  each texture coordinate by its corner's `q` (`0x0039B780`), and calls the sprite pair. For 0 it
+  each texture coordinate by its corner's `q`², and calls the sprite pair. For 0 it
   hands the call to `0x0039C6B0`, which projects with the float routine `0x0039A770` and uses the
   float-path pair.
 - `0x0024D330` returns 0 only when the current context's byte `+0` is 3 and the effect ticket its
@@ -337,6 +635,16 @@ them (`0x00501A50`).
   checks the ticket id against the slot and returns that number, or −1 for a stale id.
 - `0x0039CCB0` projects the corners one at a time (`0x00399B10`, which calls `0x00399600` per point and
   stops at the first rejected one) and passes the texture coordinates through unchanged.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039B550` |
+| ² | `0x0039B780` |
+
+</details>
 
 Type `0x08`'s draw `0x0044A620` builds a grid of (`+0x270` + 1) × (`+0x274` + 1) points. Untextured,
 it draws each cell with `0x0039C770`, which projects two points from each of two rows with
@@ -359,14 +667,30 @@ segment between two rails of points:
 | `+0x58` | `i32` |  | segment count |
 | `+0x5C` | `i32` |  | segments after which the rectangle starts again from `+0x38` |
 
-The ribbon drawer skips a segment when either rail's pair of points is rejected by `0x00399B80`
-(`0x0039C800`).
+The ribbon drawer skips a segment when either rail's pair of points is rejected by `0x00399B80`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039C800` |
+
+</details>
 
 Element orientations come from `0x00398480(angles, out, order)`, which builds a rotation matrix from
-three angles in one of six axis orders; type `0x08` passes the definition byte `+0x48` as the order
-(`0x0044A7E0`). Orders 1 to 3 multiply three single-axis rotations (`0x003985B0`, `0x00398910`,
-`0x00398C50`) in different orders; orders 0, 4 and 5 are written out in `0x00398DD0`, `0x00398A90` and `0x00398730`, which take
+three angles in one of six axis orders; type `0x08` passes the definition byte `+0x48` as the order¹. Orders 1 to 3 multiply three single-axis rotations² in different orders; orders 0, 4 and 5 are written out in `0x00398DD0`, `0x00398A90` and `0x00398730`, which take
 sine and cosine from the 32,768-step sine table `0x01F004E0`, the cosine as the entry a quarter turn on.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0044A7E0` |
+| ² | `0x003985B0`, `0x00398910`, `0x00398C50` |
+
+</details>
 
 The three single-axis functions take `(matrix, angle)` with the angle in radians: the table index is
 `trunc(angle / 6.2831855 x 32768) & 0x7FFF`, and the cosine index is `(index + 0x2000) & 0x7FFF`
@@ -374,63 +698,187 @@ The three single-axis functions take `(matrix, angle)` with the angle in radians
 builds a rotation from the row `0x01EF93F0` (0, 0, 0, 1) and its three
 cyclic shifts, and hands it with the matrix to `0x00397ED0`:
 
-- `0x003985B0`, about x: [1][1] = [2][2] = cosine, [1][2] = sine, [2][1] = -sine (`0x003986A4`-`0x00398706`).
-- `0x00398910`, about y: [0][0] = [2][2] = cosine, [2][0] = sine, [0][2] = -sine (`0x00398A04`-`0x00398A5E`).
-- `0x00398C50`, about z: [0][0] = [1][1] = cosine, [0][1] = sine, [1][0] = -sine (`0x00398D8F`-`0x00398DA6`).
+- `0x003985B0`, about x: [1][1] = [2][2] = cosine, [1][2] = sine, [2][1] = -sine¹.
+- `0x00398910`, about y: [0][0] = [2][2] = cosine, [2][0] = sine, [0][2] = -sine².
+- `0x00398C50`, about z: [0][0] = [1][1] = cosine, [0][1] = sine, [1][0] = -sine³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003986A4`-`0x00398706` |
+| ² | `0x00398A04`-`0x00398A5E` |
+| ³ | `0x00398D8F`-`0x00398DA6` |
+
+</details>
 
 `0x00397ED0(rotation, matrix)` replaces `matrix` by `matrix` x rotation (new row i = the sum over k of
-`matrix`[i][k] x rotation row k) and returns it (`0x00397EED`-`0x00398007`).
+`matrix`[i][k] x rotation row k) and returns it¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00397EED`-`0x00398007` |
+
+</details>
 
 `0x003977B0(a, b)` replaces the matrix `a` by a product with `b`: it copies `a`, then writes each new row i
-of `a` as the sum over k of `b`[i][k] x the old row k, and returns `a` (`0x003977CD`-`0x003978EE`).
+of `a` as the sum over k of `b`[i][k] x the old row k, and returns `a`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003977CD`-`0x003978EE` |
+
+</details>
 
 The direction helpers `0x003A2440`, `0x003A2570` and `0x003A2690` build an orthonormal matrix whose row 0,
 1 or 2 is the normalised direction, with the other rows from cross products with the given up
-vector (`0x003A27C0`, `0x00398390`), and write the derived up vector back.
+vector¹, and write the derived up vector back.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A27C0`, `0x00398390` |
+
+</details>
 
 ### Sprite rows: 0x00502EA0
 
 `0x00502EA0(record, index, mode)` returns the index-th row, among the rows of `0x90` bytes from
 record `+0x10` whose byte `+0x70` has bit `0x1` set. Mode 0 first clamps the index to `[+0x3C] − 1`,
 mode 1 takes it modulo `[+0x3C]`, mode 2 accepts it up to the row count `+0x38`, and any other mode
-returns 0; no match returns 0 (`0x00502EA0`–`0x00502F21`).
+returns 0; no match returns 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00502EA0`-`0x00502F21` |
+
+</details>
 
 ### The sprite frame drawer: 0x00501A50
 
 `0x00501A50(record, draw, mode)` is the sprite frame drawer that the draws of types `0x02` and `0x0A` call when their
-definition byte `+0x160` (`0x004490D0`) or `+0x280` (`0x0044BAC0`) is 0; with that byte set they call `0x00502280` instead
-(`0x0044941E`, `0x004494F3`, `0x0044C167`, `0x0044C288`). The mode is 0 at each draw's second call, and at its first call bit
+definition byte `+0x160`¹ or `+0x280`² is 0; with that byte set they call `0x00502280` instead³. The mode is 0 at each draw's second call, and at its first call bit
 `0x8` of word `+0x180` (type `0x02`, `0x0044945A`-`0x0044947B`) or bit `0x4` of word `+0x2A4` (type `0x0A`,
 `0x0044C14E`-`0x0044C191`).
 
-After the stack probe `0x00808F10()` it asks `0x00502EA0(record, the draw's word +0x44, mode)` for the row that word
-names, the mode in `r8` as it came in, and returns 0 when there is none (`0x00501A64`-`0x00501A92`). Both exits pass the
-frame check `0x00808C40` (`0x00502134`-`0x0050213E`).
+<details>
+<summary>Where in the code</summary>
 
-It keeps the four rows of the matrix `0x02AEECB0` and copies them to `0x022D9300`-`0x022D9330` (`0x00501AB0`-`0x00501B01`). It
-forms each corner in `0x022D9300`, with the frame offsets at `0x022D9310` (`0x00501C04`-`0x00501D0C`). At its end it writes
-the four rows again to `0x02AEECB0` and `0x022D9300`-`0x022D9330` and returns 1 (`0x005020AA`-`0x00502122`).
+| | Code |
+|---|---|
+| ¹ | `0x004490D0` |
+| ² | `0x0044BAC0` |
+| ³ | `0x0044941E`, `0x004494F3`, `0x0044C167`, `0x0044C288` |
+
+</details>
+
+After the stack probe `0x00808F10()` it asks `0x00502EA0(record, the draw's word +0x44, mode)` for the row that word
+names, the mode in `r8` as it came in, and returns 0 when there is none¹. Both exits pass the
+frame check `0x00808C40`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00501A64`-`0x00501A92` |
+| ² | `0x00502134`-`0x0050213E` |
+
+</details>
+
+It keeps the four rows of the matrix `0x02AEECB0` and copies them to `0x022D9300`-`0x022D9330`¹. It
+forms each corner in `0x022D9300`, with the frame offsets at `0x022D9310`². At its end it writes
+the four rows again to `0x02AEECB0` and `0x022D9300`-`0x022D9330` and returns 1³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00501AB0`-`0x00501B01` |
+| ² | `0x00501C04`-`0x00501D0C` |
+| ³ | `0x005020AA`-`0x00502122` |
+
+</details>
 
 With bit `0x1` of the draw's byte `+0x46` set it builds a local matrix: `0x00250010(local)`, then `0x00398C50(local)` with
 the draw's float `+0x28` in `xmm1` unless that float is 0, then `0x0039ADE0(local, draw + 0x10)`. It stores the draw's
 first 16 bytes at `0x02AEEC60` with 1.0 at `0x02AEEC6C` and calls `0x00397ED0(0x02AEEC30, local)`. With the bit clear the
-matrix is the one the draw's `+0x38` points to. Either way it calls `0x00397910(0x02AEECB0, matrix, 0x02AEECB0)`
-(`0x00501B09`-`0x00501B83`).
+matrix is the one the draw's `+0x38` points to. Either way it calls `0x00397910(0x02AEECB0, matrix, 0x02AEECB0)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00501B09`-`0x00501B83` |
+
+</details>
 
 With bit `0x40` set it also prepares the clipper's matrix in a local: a copy of the four rows at `0x02AEDDF0` when bit
-`0x1` is set, else the answer of `0x00397910(0x02AEDDF0, [draw + 0x38], local)` (`0x00501B88`-`0x00501BD6`).
+`0x1` is set, else the answer of `0x00397910(0x02AEDDF0, [draw + 0x38], local)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00501B88`-`0x00501BD6` |
+
+</details>
 
 Then it walks rows from the one found. The walk ends after a row with bit `0x2` of `+0x70`, or when the next row has
-bit `0x1` (`0x0050208B`-`0x0050209C`).
+bit `0x1`¹.
 
-Per row it forms the four corners and sets the blend pair as the row table below gives (`0x00501C00`-`0x00501DA0`); a
-negated x or y is minus the row's own value, the frame offset left out (`0x00501D20`-`0x00501D8A`). It takes the colour
-`0x0026EE00(local, row + 0x60, draw + 0x40)` (`0x00501DAA`-`0x00501DB7`) and builds the texture's register pair inline, by
-the rule given for `0x005030F0` below (`0x00501DBC`-`0x00501E2F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0050208B`-`0x0050209C` |
+
+</details>
+
+Per row it forms the four corners and sets the blend pair as the row table below gives¹; a
+negated x or y is minus the row's own value, the frame offset left out². It takes the colour
+`0x0026EE00(local, row + 0x60, draw + 0x40)`³ and builds the texture's register pair inline, by
+the rule given for `0x005030F0` below⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00501C00`-`0x00501DA0` |
+| ² | `0x00501D20`-`0x00501D8A` |
+| ³ | `0x00501DAA`-`0x00501DB7` |
+| ⁴ | `0x00501DBC`-`0x00501E2F` |
+
+</details>
 
 With bit `0x40` clear it passes the corners, the row's four texture pairs, the colour and the register pair to the
-front end that bit `0x1` picks, `0x0039CCB0` when set and `0x0039C5D0` when clear (`0x00501E33`-`0x00501E3A`,
-`0x00502069`-`0x00502086`).
+front end that bit `0x1` picks, `0x0039CCB0` when set and `0x0039C5D0` when clear¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00501E33`-`0x00501E3A`, `0x00502069`-`0x00502086` |
+
+</details>
 
 With bit `0x40` set the quad is drawn as two triangles, corners 0, 1, 2 and then corners 1, 2, 3. Each fills three
 `0x40`-byte vertices of a local block, position at `+0x00` and texture pair at `+0x20`, and calls the clipper
@@ -438,33 +886,96 @@ With bit `0x40` set the quad is drawn as two triangles, corners 0, 1, 2 and then
 
 Otherwise the drawer copies the returned positions and texture pairs out of the block, runs
 `0x0039A150(positions, P, W, n)` on the positions and `0x0039B780(pairs, T, W, n)` on the pairs, and files them through
-`0x0043DF80(P, T, W, register pair, colours, n)`, `P`, `T` and `W` being locals, with the one colour repeated per vertex
-(`0x00501E40`-`0x00501F52`, `0x00501F57`-`0x00502062`).
+`0x0043DF80(P, T, W, register pair, colours, n)`, `P`, `T` and `W` being locals, with the one colour repeated per vertex¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00501E40`-`0x00501F52`, `0x00501F57`-`0x00502062` |
+
+</details>
 
 `0x00521450(matrix, block)` first transforms each of the three positions by the matrix, as a row vector, and stores the
-result at the vertex's `+0x30`, the block's `+0x30`, `+0x70` and `+0xB0` (`0x00521493`-`0x005218EB`). It copies the
-matrix's rows to `0x022D92F0`-`0x022D9320` and works in `0x022D91A0`, `0x022D91F0`-`0x022D9210`, `0x022D9240` and `0x022D9250`
-(`0x00521493`-`0x005218CC`, `0x0052195B`-`0x0052196F`).
+result at the vertex's `+0x30`, the block's `+0x30`, `+0x70` and `+0xB0`¹. It copies the
+matrix's rows to `0x022D92F0`-`0x022D9320` and works in `0x022D91A0`, `0x022D91F0`-`0x022D9210`, `0x022D9240` and `0x022D9250`².
 
-It stores 10000.0 (`0x00902EF4`) and then 0.0001 (`0x01CEBB60`), each as a qword with a high dword of 0, at `0x022D8FB0`,
-and copies its 16 bytes to `0x022D9380` and then to `0x022D9390` (`0x0052146A`-`0x005214FC`, `0x0052177A`-`0x005218B3`);
-`0x00521BB0` reads the two (`0x00521C46`, `0x005221CD`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00521493`-`0x005218EB` |
+| ² | `0x00521493`-`0x005218CC`, `0x0052195B`-`0x0052196F` |
+
+</details>
+
+It stores 10000.0¹ and then 0.0001², each as a qword with a high dword of 0, at `0x022D8FB0`,
+and copies its 16 bytes to `0x022D9380` and then to `0x022D9390`³;
+`0x00521BB0` reads the two⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00902EF4` |
+| ² | `0x01CEBB60` |
+| ³ | `0x0052146A`-`0x005214FC`, `0x0052177A`-`0x005218B3` |
+| ⁴ | `0x00521C46`, `0x005221CD` |
+
+</details>
 
 Then it makes six passes over the polygon, one per 16-byte entry of the table at `0x01F2C760`. An entry's dword `+0x04`
 holds the pass's bit twice, once for each end of an edge: `0x820`, `0x410`, `0x208`, `0x104`, `0x82` and `0x41`. A
-pass copies vertex 0 after the last vertex and walks the edges; a polygon with no vertex skips the walk
-(`0x00521900`-`0x0052193C`).
+pass copies vertex 0 after the last vertex and walks the edges; a polygon with no vertex skips the walk¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00521900`-`0x0052193C` |
+
+</details>
 
 For each end of an edge it builds six outside bits from the stored x, y and z against `a`, the absolute value of w:
-`0x1` for x above `a`, `0x2` for x below `-a`, `0x4` and `0x8` the same for y, `0x10` and `0x20` for z
-(`0x00521950`-`0x00521A86`). The two ends' bits are kept in one word at `0x022D9130`, copied to `0x022D9478`.
+`0x1` for x above `a`, `0x2` for x below `-a`, `0x4` and `0x8` the same for y, `0x10` and `0x20` for z¹. The two ends' bits are kept in one word at `0x022D9130`, copied to `0x022D9478`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00521950`-`0x00521A86` |
+
+</details>
 
 With the pass's bit clear at both ends the edge's first end is copied to the output. With it set at both, nothing is
 written. With it set at the second end only, the first end is copied and `0x00521BB0(out, first, second, entry)` adds
-one vertex after it. With it set at the first end only, `0x00521BB0` alone adds one (`0x00521A8C`-`0x00521B3A`).
+one vertex after it. With it set at the first end only, `0x00521BB0` alone adds one¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00521A8C`-`0x00521B3A` |
+
+</details>
 
 The passes swap the block's two buffers, at `+0x000` and `+0x400`, as input and output, so after six the result is at
-`+0x000`, where the drawer reads it. The function returns the vertex count (`0x00521B40`-`0x00521B6C`).
+`+0x000`, where the drawer reads it. The function returns the vertex count¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00521B40`-`0x00521B6C` |
+
+</details>
 
 ### Sprite row helpers
 
@@ -477,25 +988,65 @@ The record in the file is read by `0x00502CB0`: a `u16` row count, the `u8` text
 all 4,321 records. The slot bytes name kind-`0x52` and kind-`0x53` records of key 0, all in the same stream.
 
 A file row's last four bytes, `+0x6C` to `+0x6F`, land at `+0x70` to `+0x73`. Bit `0x1` of the flags makes the row
-selectable by `0x00502EA0` (`0x00502EF3`). Bit `0x2` stops the row walks (`0x0050223A`, `0x00502BDE`) and is on the final
+selectable by `0x00502EA0`¹. Bit `0x2` stops the row walks² and is on the final
 row of every record. The palette slot is 0 on all 6,998 rows, and a row without bit `0x80` has its texture index as
 its source byte, so `0x005030F0` replaces the palette word only for the 1,234 rows with a palette source.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00502EF3` |
+| ² | `0x0050223A`, `0x00502BDE` |
+
+</details>
 
 [`effect-sprite-records.tsv`](effect-sprite-records.tsv) has one row per record and
 [`effect-sprite-rows.tsv`](effect-sprite-rows.tsv) one per row of each distinct content, with the selectors.
 [`effect-sprite-row-values.tsv`](effect-sprite-row-values.tsv) has the same rows' other stored values.
 
 `0x00502CB0` copies file bytes `+0x00` to `+0x63` to the same offsets and file `+0x64` to `+0x6B` to row `+0x68` to
-`+0x6F` (`0x00502D68`), and does not write row `+0x64` to `+0x67`.
+`+0x6F`¹, and does not write row `+0x64` to `+0x67`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00502D68` |
+
+</details>
 
 It first runs `0x00501950` on the record, then keeps the row count at `+0x38`, the texture count at `+0x3A`,
-the palette count at `+0x3B` and the `u32` at `+0x3C` (`0x00502CCA`-`0x00502CEB`). The rows go into a new block of
-count x `0x90` bytes at `+0x10` (`0x00502CEE`-`0x00502CFF`).
+the palette count at `+0x3B` and the `u32` at `+0x3C`¹. The rows go into a new block of
+count x `0x90` bytes at `+0x10`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00502CCA`-`0x00502CEB` |
+| ² | `0x00502CEE`-`0x00502CFF` |
+
+</details>
 
 The texture slot bytes are copied to a block at `+0x18` and resolved one by one through
-`0x003AA280(0, 0x52, slot)` into the handle array `+0x28` (`0x00502D8B`-`0x00502DFC`). The palette slot bytes go
+`0x003AA280(0, 0x52, slot)` into the handle array `+0x28`¹. The palette slot bytes go
 to `+0x20` and through `0x003AA280(0, 0x53, slot)` into `+0x30`, a step it skips whole when the palette count
-is 0 (`0x00502E07`-`0x00502E7A`). It returns the stream position after the last byte it read (`0x00502E81`).
+is 0². It returns the stream position after the last byte it read³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00502D8B`-`0x00502DFC` |
+| ² | `0x00502E07`-`0x00502E7A` |
+| ³ | `0x00502E81` |
+
+</details>
 
 | Row bytes | Holds | Read at |
 |---|---|---|
@@ -525,10 +1076,21 @@ rows, `0x48` on 2,553, `0x44` on 894, `0x42` on 37 and `0x49` on 2.
 
 Many types describe what they draw with `0xF0`-byte blocks inside their definition; type `0x04`'s
 setup `0x00538C80` has four of them from `+0x2B0`. A setup prepares each with `0x00431770(block, base)`,
-which rebases the track group at `+0x00` (`0x00430AF0`), the group at `+0x40` (`0x0042FCF0`) and the
+which rebases the track group at `+0x00`¹, the group at `+0x40`² and the
 offsets `+0x90`, `+0x94`, `+0xE0` and `+0xE4`, clears `+0xA9` unless `+0xAA` has bit `0x10` or `0x20`, binds
-the source records (`0x00431610`) and returns the address after the block. `0x00431610` binds by the
+the source records³ and returns the address after the block. `0x00431610` binds by the
 source kind `+0xA0`; a number of 0 leaves the handle at 0:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00430AF0` |
+| ² | `0x0042FCF0` |
+| ³ | `0x00431610` |
+
+</details>
 
 | `+0xA0` | Records bound (`0x003AA280`) |
 |---:|---|
@@ -537,15 +1099,34 @@ source kind `+0xA0`; a number of 0 leaves the handle at 0:
 | 3 | the kind-`0x50` sprite rows `+0xA5` into `+0xBC` and the kind-`0x51` frame sequence `+0xA6` into `+0xC0` |
 
 `0x003AA280(key, kind, number)` returns the first node of the record store `[0x02EBEF70]`, walked from the
-head `+0` along the encoded links (`0x0020E600`), whose word `+0xC`, byte `+0xE` and byte `+0xF`, each
-sign-extended, equal the three arguments, or 0 at the end of the list (`0x003AA28F`-`0x003AA2CD`).
+head `+0` along the encoded links¹, whose word `+0xC`, byte `+0xE` and byte `+0xF`, each
+sign-extended, equal the three arguments, or 0 at the end of the list².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020E600` |
+| ² | `0x003AA28F`-`0x003AA2CD` |
+
+</details>
 
 The draws read the block back through `0x00431830`. For source kind 2 it returns the texture's
 register word (`+0x10`) with the palette address of slot `+0xA4` in its high half; when the byte
 `+0xD0` is set it instead derives a palette from the source palette with `0x00431B10(block + 0xD0,
 …)`, 16 entries when the palette's byte `+0x10` is `0x80` and 256 otherwise, and puts that
 palette's address there. For source kind 3
-it steps the frame sequence (`0x005039A0`) and picks the row with `0x00502EA0`.
+it steps the frame sequence¹ and picks the row with `0x00502EA0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005039A0` |
+
+</details>
 
 ### Track values in other units
 
@@ -563,9 +1144,19 @@ turns the group at `+0x80` from degrees to radians (`π/180`), divides the group
 ### Generated palettes
 
 `0x00431B10(op, colours, n, frame, texture)` derives a palette from `n` source colours. It unpacks the
-colours into the work area `0x02CA4EE0` (`0x003CD840`), reads the operation's track `op + 0x10` at
-`frame` (`0x004314E0`), and runs the operation the kind byte `op + 0x00` names; any other kind
+colours into the work area `0x02CA4EE0`¹, reads the operation's track `op + 0x10` at
+`frame`², and runs the operation the kind byte `op + 0x00` names; any other kind
 returns 0 and the source palette stays:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CD840` |
+| ² | `0x004314E0` |
+
+</details>
 
 | Kind | Body | Fields it reads |
 |---:|---|---|
@@ -580,33 +1171,90 @@ With bit `0x8` of `+0x03` set the operation gets `n − 1` and a flag instead of
 texture)` then
 reserves room for the palette in the emulated GS memory (`0x002D81D0`, which can refuse), takes an
 `n × 4 + 0x10`-byte block linked on the current record table's list `+0x10`, packs the colours into
-it (`0x003D2B60`), writes them into the palette texture (`0x00183640`) and returns the GS address.
+it¹, writes them into the palette texture² and returns the GS address.
 
-`0x00183640(texture, colours, n, rows)` maps the texture (`0x0017EBD0`) and does nothing more when the map fails.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003D2B60` |
+| ² | `0x00183640` |
+
+</details>
+
+`0x00183640(texture, colours, n, rows)` maps the texture¹ and does nothing more when the map fails.
 It copies the colours through `0x00679570`, with n x 4 as that call's fourth argument and `rows` as its sixth,
 only when the mapped pointer is not null; that call copies nothing when its fifth or its sixth argument is
-0 (`0x00679582`-`0x0067958C`).
+0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017EBD0` |
+| ² | `0x00679582`-`0x0067958C` |
+
+</details>
 
 It then commits through `0x0062C360` with the slot
 `[0x01F7F5A0] % ([+0x30] & 0x7FFFFFFF)`, the divisor 1 when those bits of the texture's `+0x30` are 0. On a
 commit that returns 0 it keeps that
-slot at `+0x0C` and clears the byte `+0x08` (`0x00183674`-`0x001836E3`).
+slot at `+0x0C` and clears the byte `+0x08`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00183674`-`0x001836E3` |
+
+</details>
 
 The draws of types `0x02`, `0x0A`, `0x84`, `0x85`, `0x88`, `0x89`, `0x8A`, `0x8B`, `0x96` and `0xA1`
 call `0x00431B10` themselves; type `0x02`'s draw `0x004490D0` passes definition `+0x160` and the
-palette of its first sprite row (`0x00503000`).
+palette of its first sprite row¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00503000` |
+
+</details>
 
 ### Frame sequences: the kind-0x51 record
 
 A kind-`0x51` record holds `+0x10` entries of 16 bytes at `+0x18`, read by `0x00503880` from a `u16` count and the
 entries after it. An entry's byte `+8` is its opcode: 0 shows a frame for byte `+9` ticks, 1 jumps to the entry in
 word `+0xC`, and 2 ends the sequence. Word `+0xA` is the sprite row. The floats at `+0` and `+4` are stored at the
-draw's `+0x30` and `+0x34` and added to each corner's x and y (`0x004494DB`, `0x00501C18`, `0x00501C27`).
+draw's `+0x30` and `+0x34` and added to each corner's x and y¹.
 Word `+0xE` is loaded with the element and no routine reads it.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004494DB`, `0x00501C18`, `0x00501C27` |
+
+</details>
+
 `0x00503880` also builds two totals: the word `+0x12` is the sum of byte `+9` over every opcode-0 entry, and the
-word `+0x14` the same sum over the first 32 entries only (`0x00503935`-`0x00503977`). It returns the stream
-position after the entries (`0x0050397E`).
+word `+0x14` the same sum over the first 32 entries only¹. It returns the stream
+position after the entries².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00503935`-`0x00503977` |
+| ² | `0x0050397E` |
+
+</details>
 
 The shipped entries have 939 shows and 2 jumps, each back to entry 0, and no opcode 2. Their floats and word `+0xE`
 are 0. 109 of the 111 distinct contents end on a show, so the end of the list stops them. In 34 of the 6,208 pairs
@@ -639,83 +1287,211 @@ sprite frame drawers `0x00501A50` and `0x00502280` use them.
 
 The colour bytes become floats. The two list emitters key the entry on the smallest of the three
 vertices' 24-bit depth words, OR in the pass nibble, and set the primitive's blend word to
-`0x01EFAC20[0x02AEE900]`, or to `0x02AEE908` in mode 6, as the point emitter does
-(`0x0043DFCF`–`0x0043E012`, `0x0043E3EC`–`0x0043E401`; `0x0043E48E`–`0x0043E4D0`, `0x0043E760`–`0x0043E775`).
+`0x01EFAC20[0x02AEE900]`, or to `0x02AEE908` in mode 6, as the point emitter does¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0043DFCF`-`0x0043E012`, `0x0043E3EC`-`0x0043E401`; `0x0043E48E`-`0x0043E4D0`, `0x0043E760`-`0x0043E775` |
+
+</details>
 
 ### Type 0x05 and the mesh record
 
 Type `0x05`'s birth `0x00449970` returns at once when the base birth `0x002F2D60` answers 0. Otherwise it calls
 `0x0044A180` on the element and draws four pairs: for i = 0 to 3 the definition's floats `+0x274 + 0xF0 x i`
 and `+0x278 + 0xF0 x i` go through `0x003D8E50` into the element's `+0x298 + 8i` and `+0x29C + 8i`, a float
-of 0 giving 0 with no draw (`0x004499AA`-`0x00449A14`).
+of 0 giving 0 with no draw¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004499AA`-`0x00449A14` |
+
+</details>
 
 When definition byte `+0x590` has bit `0x10` set, the birth also picks the mesh index `+0x294`. With a count
 `+0x591` above 1 it takes `0x003A6E60(count)`; when the handle at definition `+0x5A0` of that index decodes
-to null (`0x0020E600`) it takes the first of the 32 handles that does not, or 0 when every one does. With a
-count of 1 or 0 it stores 0. With the bit clear it does not write `+0x294`. It returns 1
-(`0x00449A16`-`0x00449A90`).
+to null¹ it takes the first of the 32 handles that does not, or 0 when every one does. With a
+count of 1 or 0 it stores 0. With the bit clear it does not write `+0x294`. It returns 1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020E600` |
+| ² | `0x00449A16`-`0x00449A90` |
+
+</details>
 
 `0x0044A180(element)` is the tail the birth calls. At the frame `+0x44` it samples three vector tracks through
 `0x00430B90(&local, track, frame)`: definition `+0xD0` into the element's `+0x110`, plus the element's `+0xE0` when
 definition byte `+0x49` has bit `0x8`; definition `+0x110` into the element's `+0x120`, times the element's `+0x100`
-float by float when it has bit `0x4`; and definition `+0x150` into the element's `+0x230` (`0x0044A1AB`-`0x0044A330`).
+float by float when it has bit `0x4`; and definition `+0x150` into the element's `+0x230`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0044A1AB`-`0x0044A330` |
+
+</details>
 
 It stores the integer track `+0x1A0`, `0x004314E0(definition + 0x1A0, frame)`, at `+0x290` and the colour track `+0x80`,
 `0x0042FDB0(definition + 0x80, frame)`, at `+0x240`, and calls `0x0026EE00(+0x240, +0x240, +0x1F0)` unless the element
-colour `+0x1F0` is `0x80808080` (`0x0044A335`-`0x0044A376`).
+colour `+0x1F0` is `0x80808080`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0044A335`-`0x0044A376` |
+
+</details>
 
 With `v` the integer track `+0x30`, `0x004314E0(definition + 0x30, frame)`, unless `v` is 100 the byte `+0x243` becomes
 `[+0x243] × v / 100`: the byte is taken unsigned, the product is 32-bit, the division by 100 is signed and truncates
-toward zero, and only the low byte is stored (`0x0044A37B`-`0x0044A3A7`). The dword `+0x240` is then copied to `+0x1F4`
-(`0x0044A3AD`-`0x0044A3BA`).
+toward zero, and only the low byte is stored¹. The dword `+0x240` is then copied to `+0x1F4`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0044A37B`-`0x0044A3A7` |
+| ² | `0x0044A3AD`-`0x0044A3BA` |
+
+</details>
 
 It builds the matrix `+0x250` with `0x00398480(+0x110, +0x250, definition byte +0x48)`, adds the element's `+0x60` to
-`+0x230`, moves `+0x90` to `+0xA0` and stores the new `+0x230` at `+0x90` (`0x0044A3C0`-`0x0044A466`). With a parent
+`+0x230`, moves `+0x90` to `+0xA0` and stores the new `+0x230` at `+0x90`¹. With a parent
 `+0x10` it runs `0x0039AF70(parent)` and `0x00398F90(+0x230, +0x230)`, and then `0x00397ED0(parent + 0x40, +0x250)` when
-definition byte `+0x4A` has no bit of `0x1C` (`0x0044A46E`-`0x0044A494`). It moves `+0x70` to `+0x80` and stores `+0x230`
-at `+0x70` (`0x0044A499`-`0x0044A4A9`).
+definition byte `+0x4A` has no bit of `0x1C`². It moves `+0x70` to `+0x80` and stores `+0x230`
+at `+0x70`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0044A3C0`-`0x0044A466` |
+| ² | `0x0044A46E`-`0x0044A494` |
+| ³ | `0x0044A499`-`0x0044A4A9` |
+
+</details>
 
 Each of the three vector operations above, `+0x110 + [+0xE0]`, `+0x120 × [+0x100]` and `+0x230 + [+0x60]`, works in
 the globals `0x022D92E0` and `0x022D92F0`: it stores its first operand at `0x022D92E0` and its second at `0x022D92F0`, writes
-the four result floats over `0x022D92E0`, and copies those 16 bytes to the element (`0x0044A1DC`-`0x0044A255`,
-`0x0044A28A`-`0x0044A303`, `0x0044A3D8`-`0x0044A43C`).
+the four result floats over `0x022D92E0`, and copies those 16 bytes to the element¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0044A1DC`-`0x0044A255`, `0x0044A28A`-`0x0044A303`, `0x0044A3D8`-`0x0044A43C` |
+
+</details>
 
 The value `([definition+0x4A] >> 2) & 7` then picks one more step: for 3 it takes the 64 bytes that
 `0x002F3570(local, element)` returns, for 6 those that `0x002F35C0(local, element, +0xA0, +0x90)` returns, and passes a
-copy of them to `0x00397910(copy, +0x250, +0x250)`; any other value makes no call (`0x0044A4AE`-`0x0044A523`). It runs
-`0x003970F0(+0x250, +0x120)` when definition byte `+0x4B` has bit `0x2` and `0x0039ADE0(+0x250, +0x120)` otherwise
-(`0x0044A528`-`0x0044A53F`).
+copy of them to `0x00397910(copy, +0x250, +0x250)`; any other value makes no call¹. It runs
+`0x003970F0(+0x250, +0x120)` when definition byte `+0x4B` has bit `0x2` and `0x0039ADE0(+0x250, +0x120)` otherwise².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0044A4AE`-`0x0044A523` |
+| ² | `0x0044A528`-`0x0044A53F` |
+
+</details>
 
 Last it copies `+0x230` to `+0x280` with 1.0 at `+0x28C` and ends in the fork the other tails have:
-`0x005002E0(definition, +0x230)`, on 0 the release `0x002F31C0(element, [+0x08])`, otherwise `0x003A8950(2, element)`
-(`0x0044A544`-`0x0044A57E`).
+`0x005002E0(definition, +0x230)`, on 0 the release `0x002F31C0(element, [+0x08])`, otherwise `0x003A8950(2, element)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0044A544`-`0x0044A57E` |
+
+</details>
 
 The draw `0x00449AB0` returns at once when the element's byte `+0` is 0, when bits `0x1C` of definition byte
 `+0x4A` are `0xC` and the element's `+0x40` is 0, or when the first handle, definition `+0x5A0`, decodes to
-null (`0x00449ACC`-`0x00449B07`). It then calls `0x0039B620` with the element's `+0x290`, and fills the composer's
-state at `[0x01FD4A78] + 0x800`: the colour at state `+0x40` is the fade colour (`0x002F1F40`) times the
-element colour `+0x240` (`0x0026EE00`), and the 64 bytes at state `+0` are the element's `+0x250` to
-`+0x28F` (`0x00449B30`-`0x00449B8F`).
+null¹. It then calls `0x0039B620` with the element's `+0x290`, and fills the composer's
+state at `[0x01FD4A78] + 0x800`: the colour at state `+0x40` is the fade colour² times the
+element colour `+0x240`³, and the 64 bytes at state `+0` are the element's `+0x250` to
+`+0x28F`⁴.
 
-Before the layers it sets the state's flag bytes from definition bytes `+0x4A` and `+0x590`
-(`0x00449B93`-`0x00449C7F`): `+0x1F1` bits `0x7` = `([+0x4A] >> 2) & 7`; bit `0x8` when `+0x590` has bit `0x1` or
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00449ACC`-`0x00449B07` |
+| ² | `0x002F1F40` |
+| ³ | `0x0026EE00` |
+| ⁴ | `0x00449B30`-`0x00449B8F` |
+
+</details>
+
+Before the layers it sets the state's flag bytes from definition bytes `+0x4A` and `+0x590`¹: `+0x1F1` bits `0x7` = `([+0x4A] >> 2) & 7`; bit `0x8` when `+0x590` has bit `0x1` or
 `0x20`; bits `0x10`, `0x20` and `0x40` from `+0x590` bits `0x2`, `0x4` and `0x8`; bit `0x80` from `+0x590`
 bit `0x20`; `+0x1F2` bits `0x1` and `0x2` from `+0x590` bits `0x40` and `0x80`. It clears the state's
 `+0x1E8`, `+0x48` and count byte `+0x1F0`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00449B93`-`0x00449C7F` |
+
+</details>
+
 `0x00449AB0` draws one mesh. When definition byte `+0x590` has bit `0x10` clear, the mesh index `+0x294`
 is the integer part of the float track at definition `+0x190`, or 0 when that is not positive or
-not below 32 (`0x00449DA7`–`0x00449DF9`). It publishes the blend pair as the point does and passes the
-handle `[definition + 0x5A0 + index × 4]`, decoded, to the model composer `0x004355D0`
-(`0x0044A11C`–`0x0044A15B`). The handles are kind-`0x54` records.
+not below 32¹. It publishes the blend pair as the point does and passes the
+handle `[definition + 0x5A0 + index × 4]`, decoded, to the model composer `0x004355D0`². The handles are kind-`0x54` records.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00449DA7`-`0x00449DF9` |
+| ² | `0x0044A11C`-`0x0044A15B` |
+
+</details>
 
 The setup `0x00538DB0(definition, base)` passes `base` with each part of the definition to its routine:
 `0x00500470` for the definition, `0x0042FCF0` for `+0x80`, `0x00430AF0` for `+0xD0`, `+0x110` and `+0x150`,
-`0x004304F0` for `+0x190` and `+0x1A0`, and `0x00431770` for each of the four `0xF0`-byte blocks from `+0x1B0`
-(`0x00538DC9`-`0x00538E45`).
+`0x004304F0` for `+0x190` and `+0x1A0`, and `0x00431770` for each of the four `0xF0`-byte blocks from `+0x1B0`¹.
 It then fills the 32 handle dwords at `+0x5A0` from the id bytes at `+0x570`: each is `0x0020E620` of
-`0x003AA280(0, 0x54, id)` for a non-zero id and of 0 for a zero id (`0x00538E47`-`0x00538E90`). It returns the
-definition + `0x620` (`0x00538E97`).
+`0x003AA280(0, 0x54, id)` for a non-zero id and of 0 for a zero id². It returns the
+definition + `0x620`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00538DC9`-`0x00538E45` |
+| ² | `0x00538E47`-`0x00538E90` |
+| ³ | `0x00538E97` |
+
+</details>
 
 ### How the composer prepares a mesh
 
@@ -728,113 +1504,306 @@ first builds the mesh's vertices into the scratch block `[0x02AEED50]`:
 - `0x00435050` otherwise: it copies the arrays unblended.
 
 `0x00434CD0` always blends the positions: `0x00431F10(out, own, other, 1 - t, t, count)` with the handles `+0x20`
-and the count word `+0x14`, into the scratch positions `[0x02AEED58]` (`0x00434DB2`-`0x00434DE0`). Its other
+and the count word `+0x14`, into the scratch positions `[0x02AEED58]`¹. Its other
 blends are `0x00433830` for the 4-byte arrays (handles `+0x28`, count word `+0x18`), `0x004344C0`
 for the 8-byte arrays (handles `+0x2C`, the same count) and `0x00432030` for the vectors (handles `+0x24`,
-count word `+0x16`), each called with the two decoded arrays, the output, the count and the weight 1 - t
-(`0x00434F09`-`0x0043500D`).
+count word `+0x16`), each called with the two decoded arrays, the output, the count and the weight 1 - t².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00434DB2`-`0x00434DE0` |
+| ² | `0x00434F09`-`0x0043500D` |
+
+</details>
 
 `0x00432300` then gets the 4-byte array, blended or not, with the state's `+0x40` and
-the count (`0x00434F38`-`0x00434F47`). `0x00434CD0` returns 1, or 0 when state byte `+0x1F1` has bit `0x8` clear
-and `0x00399B80` answers non-zero (`0x00434ED9`-`0x00434F04`, `0x00435012`).
+the count¹. `0x00434CD0` returns 1, or 0 when state byte `+0x1F1` has bit `0x8` clear
+and `0x00399B80` answers non-zero².
 
-By address in `0x00434CD0`: it keeps the 64 bytes at `0x02AEECB0` in registers from the start (`0x00434D25`-`0x00434D72`) and
-writes them back on both paths (`0x00434E77`-`0x00434E8F`, `0x00434EE2`-`0x00434EFC`). While loading them it also stores two
-scratch pointers: `[0x02AEED58]` = `[0x02AEED50] + 32 × word +0x16` (`0x00434D62`) and `[0x02AEED90]` = that
-`+ 16 × word +0x14 + 24 × word +0x18` (`0x00434D8D`). Its call `0x00434C50(state, byte +0x1F1 & 7)`, told below, is at
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00434F38`-`0x00434F47` |
+| ² | `0x00434ED9`-`0x00434F04`, `0x00435012` |
+
+</details>
+
+By address in `0x00434CD0`: it keeps the 64 bytes at `0x02AEECB0` in registers from the start¹ and
+writes them back on both paths². While loading them it also stores two
+scratch pointers: `[0x02AEED58]` = `[0x02AEED50] + 32 × word +0x16`³ and `[0x02AEED90]` = that
+`+ 16 × word +0x14 + 24 × word +0x18`⁴. Its call `0x00434C50(state, byte +0x1F1 & 7)`, told below, is at
 `0x00434D9E`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00434D25`-`0x00434D72` |
+| ² | `0x00434E77`-`0x00434E8F`, `0x00434EE2`-`0x00434EFC` |
+| ³ | `0x00434D62` |
+| ⁴ | `0x00434D8D` |
+
+</details>
 
 Bit `0x8` of byte `+0x1F1` is tested at `0x00434DF1`-`0x00434E07`: set, the positions go through
 `0x0039A150(positions, positions, e, count)`, with `e` the pointer the function stored at `0x02AEED90`, and then to the
-`0x0024E410()` test (`0x00434E0D`-`0x00434E19`); clear, they go through `0x00399B80(positions, positions, e, count)`
-(`0x00434ED9`). Bit `0x10` is tested at `0x00434E97`-`0x00434E9F`: set, the object's own 4-byte array is decoded through
-`0x0020E600(object dword +0x28)` (`0x00434EA8`) and handed unblended to
+`0x0024E410()` test¹; clear, they go through `0x00399B80(positions, positions, e, count)`². Bit `0x10` is tested at `0x00434E97`-`0x00434E9F`: set, the object's own 4-byte array is decoded through
+`0x0020E600(object dword +0x28)`³ and handed unblended to
 `0x00432300(decoded array, state + 0x40, output, count)`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00434E0D`-`0x00434E19` |
+| ² | `0x00434ED9` |
+| ³ | `0x00434EA8` |
+
+</details>
 
 Bits `0x20` and `0x40` are tested at `0x00434F4C` and `0x00434FAF`: set, the object's own 8-byte or vector array, decoded
 the same way, is copied to the output by `memcpy` through the import thunk, `0x00861EBA(output, decoded array, length)`,
-the length `8 × word +0x18` for the 8-byte array (`0x00434F6D`) and `16 × word +0x16` for the vectors (`0x00434FD0`)
-(`0x00434F56`-`0x00434F74`, `0x00434FB9`-`0x00434FD7`). The blends decode each of their two arrays through `0x0020E600(handle)`
-as well (`0x00434DB2`-`0x00434DC5`, `0x00434F09`-`0x00434FF1`).
+the length `8 × word +0x18` for the 8-byte array¹ and `16 × word +0x16` for the vectors²³. The blends decode each of their two arrays through `0x0020E600(handle)`
+as well⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00434F6D` |
+| ² | `0x00434FD0` |
+| ³ | `0x00434F56`-`0x00434F74`, `0x00434FB9`-`0x00434FD7` |
+| ⁴ | `0x00434DB2`-`0x00434DC5`, `0x00434F09`-`0x00434FF1` |
+
+</details>
 
 `0x00434CD0` and `0x00435050` both call `0x00434C50(state, byte +0x1F1 & 7)`, which multiplies the state's matrix by
 `0x02AEEC30` (mode 1), `0x02AEEC70` (mode 2) or `0x02AEEA60` (modes 4 and 5); mode 4 first turns the matrix toward
-the point `0x02AEEAD0` from the position `+0x30` (`0x00434900`), and mode 5 turns it about one axis by
-the `atan2` of the same direction (`0x00434A70`). Then they project the positions; a rejected mesh
+the point `0x02AEEAD0` from the position `+0x30`¹, and mode 5 turns it about one axis by
+the `atan2` of the same direction². Then they project the positions; a rejected mesh
 draws nothing (`0x00399B80` at `0x00434ED9` and `0x0043526E`).
 
-- With byte `+0x1F1` bit `0x8` and `0x0024E410` true, the projection is not tested and the first six (`0x00434CD0`) or
-  four (`0x00435050`) projected vertices are overwritten with fixed screen values, one set for locale ids 1–6
-  (`0x00229E40`) and another for the rest. In `0x00435050` the rest takes one of two sets: one when the first vertex's
-  screen x is below the second's (`0x00435218`), the other when it is not.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00434900` |
+| ² | `0x00434A70` |
+
+</details>
+
+- With byte `+0x1F1` bit `0x8` and `0x0024E410` true, the projection is not tested and the first six¹ or
+  four² projected vertices are overwritten with fixed screen values, one set for locale ids 1–6
+ ³ and another for the rest. In `0x00435050` the rest takes one of two sets: one when the first vertex's
+  screen x is below the second's⁴, the other when it is not.
 - In `0x00434CD0` the six vertices lie 16 bytes apart. The word `+0x00` becomes `0x7233` in vertices 0, 2 and 4 and
-  `0x8DCC` in vertices 1, 3 and 5 (`0x00434E1B`-`0x00434E38`). The word `+0x02` becomes `0x80FF`, `0x80FF`, `0x7813`,
-  `0x7813`, `0x7FCC`, `0x7FCC` in vertices 0 to 5 for a locale id, `0x00229E40()`, of 1 to 6 (`0x00434E3C`-`0x00434E73`),
-  and `0x7ED0`, `0x7ED0`, `0x75E3`, `0x75E3`, `0x7D9C`, `0x7D9C` for any other (`0x00434EB8`-`0x00434ED7`).
+  `0x8DCC` in vertices 1, 3 and 5⁵. The word `+0x02` becomes `0x80FF`, `0x80FF`, `0x7813`,
+  `0x7813`, `0x7FCC`, `0x7FCC` in vertices 0 to 5 for a locale id, `0x00229E40()`, of 1 to 6⁶,
+  and `0x7ED0`, `0x7ED0`, `0x75E3`, `0x75E3`, `0x7D9C`, `0x7D9C` for any other⁷.
 - Byte `+0x1F1` at `0x80` or above hands the mesh to `0x00438860`; bit `0x8` hands it to `0x00437130`.
   Otherwise `0x004355D0` runs its own loop over the `+0x1F0` layers.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00434CD0` |
+| ² | `0x00435050` |
+| ³ | `0x00229E40` |
+| ⁴ | `0x00435218` |
+| ⁵ | `0x00434E1B`-`0x00434E38` |
+| ⁶ | `0x00434E3C`-`0x00434E73` |
+| ⁷ | `0x00434EB8`-`0x00434ED7` |
+
+</details>
 
 `0x00437130` is the same per-layer loop less the mode-4 step and with a test that skips faces, both told below. In both,
 a layer of mode 5 emits flat triangles and quads, mode 1 textured ones whose texture comes from the face's byte at
 `+0x188`, and any other mode textured ones with the layer's texture; blend mode 0 files at once and any other mode
 through the draw list.
 
-By address, the head of `0x004355D0` (`0x004355FF`-`0x00435697`) answers 1 when `0x00180100` answers 0 (`0x00435611`); 0 when
-bit `0x4` of `+0x18C` is clear (`0x00435620`), when bit `0x1` is clear (tested after `+0x1E8`, `0x0043562E`, `0x0043565E`)
-or when `0x00434CD0` or `0x00435050` answers 0 (`0x0043563D`, `0x0043566D`); and what `0x00438860` or `0x00437130` answers when it
-hands the mesh on (`0x00435686`, `0x00435697`).
+By address, the head of `0x004355D0`¹ answers 1 when `0x00180100` answers 0²; 0 when
+bit `0x4` of `+0x18C` is clear³, when bit `0x1` is clear (tested after `+0x1E8`, `0x0043562E`, `0x0043565E`)
+or when `0x00434CD0` or `0x00435050` answers 0⁴; and what `0x00438860` or `0x00437130` answers when it
+hands the mesh on⁵.
 
-The loop runs layer k from 0 while k is below the state's count byte `+0x1F0`, in `0x004355D0` (`0x0043570D`-`0x00436CBA`)
-and in `0x00437130` (`0x004371C2`-`0x00438811`); both answer 1 after it, and with no layer (`0x00436CF0`, `0x00438837`). In the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004355FF`-`0x00435697` |
+| ² | `0x00435611` |
+| ³ | `0x00435620` |
+| ⁴ | `0x0043563D`, `0x0043566D` |
+| ⁵ | `0x00435686`, `0x00435697` |
+
+</details>
+
+The loop runs layer k from 0 while k is below the state's count byte `+0x1F0`, in `0x004355D0`¹
+and in `0x00437130`²; both answer 1 after it, and with no layer³. In the
 steps below each range pair gives `0x004355D0` first; the arguments are those read in `0x00437130`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0043570D`-`0x00436CBA` |
+| ² | `0x004371C2`-`0x00438811` |
+| ³ | `0x00436CF0`, `0x00438837` |
+
+</details>
+
 `S` is the scratch block `[0x02AEED50]`, and `N`, `C` and `U` are the object's words `+0x16`, `+0x18` and `+0x1A`.
-`base` is the mesh's colours, the `C` dwords at `S + 32N + 16 ×` word `+0x14` (`0x004356DD`), and `out` the layer's,
-the `C` dwords after them (`0x004356F7`).
+`base` is the mesh's colours, the `C` dwords at `S + 32N + 16 ×` word `+0x14`¹, and `out` the layer's,
+the `C` dwords after them².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004356DD` |
+| ² | `0x004356F7` |
+
+</details>
 
 A layer starts by storing its blend mode, state byte `+0x134 + k`, in `0x02AEE900` and the state's qword `+0x1B8 + 8k`
-in `0x02AEE908` (`0x00435799`-`0x0043579F`, `0x0043723C`-`0x00437242`).
+in `0x02AEE908`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00435799`-`0x0043579F`, `0x0043723C`-`0x00437242` |
+
+</details>
 
 With a non-zero lighting byte `+0x1A4 + k` it calls `0x00397910(0x02AEEBF0, state, local)`, `0x0039B960(row, row)` on each
-of the local's first three rows and `0x0039AF70(local)` (`0x004357A6`-`0x004357F3`, `0x00437249`-`0x00437296`). Then, with b the
+of the local's first three rows and `0x0039AF70(local)`¹. Then, with b the
 lighting byte and state byte `+0x1A0 + k` equal to 1, it calls `0x003952D0(S, S + 16N, N, 1 - b)` for a negative b and
 `0x00394E50(S, S + 16N, N, b - 1)` otherwise; with another `+0x1A0 + k` it calls `0x003954E0(S, S + 16N, N, 1 - b, f)` or
-`0x00395050(S, S + 16N, N, b - 1, f)`, `f` the float `+0x190 + 4k` (`0x004357F8`-`0x0043586E`, `0x0043729B`-`0x00437311`).
+`0x00395050(S, S + 16N, N, b - 1, f)`, `f` the float `+0x190 + 4k`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004357A6`-`0x004357F3`, `0x00437249`-`0x00437296` |
+| ² | `0x004357F8`-`0x0043586E`, `0x0043729B`-`0x00437311` |
+
+</details>
 
 The layer's colours follow. With state byte `+0x1A8 + k` set, `0x00432300(state + 0x40, state + 0x138 + 4k, out, 1)`
 makes one colour and the loop copies it to the other `C - 1`. Otherwise, unless the layer colour `+0x138 + 4k` is
 `0x80808080`, `0x00432300(base, state + 0x138 + 4k, out, C)` makes them all; with that value the base colours serve as
-they are (`0x00435873`-`0x004359D1`, `0x00437316`-`0x00437471`).
+they are¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00435873`-`0x004359D1`, `0x00437316`-`0x00437471` |
+
+</details>
 
 After lighting the colours then pass through `0x00432CC0(colours, out, S + 16N, t, C, N)`, `t` the answer of
-`0x0020E600(object dword +0x174)` (`0x00435873`-`0x0043592F`, `0x00437316`-`0x004373DC`); without lighting there is no such call
-(`0x0043594D`-`0x004359D1`, `0x004373F4`-`0x00437471`).
+`0x0020E600(object dword +0x174)`¹; without lighting there is no such call².
 
-The mapping byte `+0x1B0 + k` picks the layer's texture pairs (`0x004359E5`-`0x00435BF4`, `0x00437486`-`0x004376C7`). Values 1
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00435873`-`0x0043592F`, `0x00437316`-`0x004373DC` |
+| ² | `0x0043594D`-`0x004359D1`, `0x004373F4`-`0x00437471` |
+
+</details>
+
+The mapping byte `+0x1B0 + k` picks the layer's texture pairs¹. Values 1
 to 4 start alike: `0x00397910(m, state, local)` with `m` = `0x02AEEA20` for 1 and 3 and `0x02AEEBF0` for 2 and 4,
 `0x0039B960(row, row)` on three rows, and `0x0039AF70(local)`, which for 1 comes after `0x00394DA0(0x02AEEAA0, a, d)`, `a` the
 vector (0, 0, 1, 0) at `0x008C5FB0`. Any other value keeps the mesh's own pairs.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004359E5`-`0x00435BF4`, `0x00437486`-`0x004376C7` |
+
+</details>
+
 The values then differ. For 3 and 4: `0x00396A30(S, S + 16N, N)`, or `0x00396560(S, S + 16N, N)` when state byte
 `+0x1B4 + k` is not 0. For 1: `0x00395CF0(S, S + 16N, d, N)`, or `0x00395780(S, S + 16N, d, N)` by the same byte. For 2:
 `0x003962F0(S, S + 16N, state + 0x1D8 + 4k, N)`. All four end with `0x00396F20(S + 16N, t, layer pairs, C)`, and 2 adds
-`0x00394B70(S + 32N, u, layer pairs, U)`, `u` the answer of `0x0020E600(object dword +0x170)` (`0x00435A2C`-`0x00435BF4`,
-`0x004374DE`-`0x004376C7`).
+`0x00394B70(S + 32N, u, layer pairs, U)`, `u` the answer of `0x0020E600(object dword +0x170)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00435A2C`-`0x00435BF4`, `0x004374DE`-`0x004376C7` |
+
+</details>
 
 The scrolling byte `+0x1AC + k` then picks one call on the pairs: 1 `0x0043E7B0(pairs, layer pairs, U)`, 2
 `0x00434630(pairs, layer pairs, state + 0x150 + 16k, U)`, 3 `0x00434760(pairs, layer pairs, state + 0x150 + 16k, U)`; any
-other value makes none (`0x00435BFE`-`0x00435C79`, `0x004376CC`-`0x00437746`).
+other value makes none¹.
 
-State byte `+0x1F2` adds an offset step (`0x00435C8D`-`0x00435DA2`, `0x00437764`-`0x0043780C`). With bit `0x1` it calls
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00435BFE`-`0x00435C79`, `0x004376CC`-`0x00437746` |
+
+</details>
+
+State byte `+0x1F2` adds an offset step¹. With bit `0x1` it calls
 `0x0043E840(pairs, dst, state + 0x50 + 8k, U)` and then stores 0.5 in both floats of the pair `+0x50 + 8k`. Without it,
 with bit `0x2`, it calls `0x0043E840(pairs, dst, p, U)` with `p` two copies of the float `+0x1EC`, and adds 0.5 to both
 floats of the pair. `dst` is the layer's own pair buffer when the pairs are still the mesh's, else the pairs
 themselves.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00435C8D`-`0x00435DA2`, `0x00437764`-`0x0043780C` |
+
+</details>
+
 Only `0x004355D0` has the mode-4 step, and only on the paths without bit `0x1`: for a layer of mode 4 the pair `(x, y)`
 becomes `(x / 1.15, y × 1.15)`, the 1.15 being the float at `0x00D1247C`, after a call of `0x0053DD10()`, which always
-answers 1 (`mov eax, 1`). With bit `0x2` this comes before the 0.5 is added (`0x00435D23`-`0x00435D6F`); with neither bit
-no 0.5 is added (`0x00435D71`-`0x00435DA2`).
+answers 1 (`mov eax, 1`). With bit `0x2` this comes before the 0.5 is added¹; with neither bit
+no 0.5 is added².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00435D23`-`0x00435D6F` |
+| ² | `0x00435D71`-`0x00435DA2` |
+
+</details>
 
 The mode byte `+0x130 + k` then picks the emitters; each mode has a half for blend mode 0 and one for the rest, and
 each half draws the triangles, word `+0x10` of the object, and then the quads, word `+0x12`. The vertex indices are
@@ -842,26 +1811,62 @@ words of the list `0x0020E600(object dword +0x170)`: three for each triangle, th
 face's three or four vertices, copied to a local. In `0x00437130` alone a face is skipped when the first qword of any of
 those copies is 0 (`0x0043789C`-`0x004378BF` and the same test before each emitter call).
 
-Mode 5 (`0x00435DB1`-`0x0043606B`, `0x0043781A`-`0x00437B26`) calls `0x0039E820(face, colours)` and `0x0039EC30(face, colours)`
+Mode 5¹ calls `0x0039E820(face, colours)` and `0x0039EC30(face, colours)`
 for triangles and quads, and with blend mode 0 `0x0039E6B0(face, colours)` and `0x0039EA70(face, colours)`; the colours
 are the face's, three or four dwords of the layer's colours, and each vertex index is read through its own call of
 `0x0020E600(object dword +0x170)`.
 
-Mode 1 (`0x0043608C`-`0x004366B6`, `0x00437B47`-`0x004381B7`) reads one byte per face from the list
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00435DB1`-`0x0043606B`, `0x0043781A`-`0x00437B26` |
+
+</details>
+
+Mode 1¹ reads one byte per face from the list
 `0x0020E600(object dword +0x188)`. It calls `0x0039B840(pairs, w, q, state + 0x50 + 8k)` and
 `0x0039F4B0(face, w, q, state + 0xB0 + 16 × byte, colours)` for a triangle, `0x0039B860(pairs, w, q, state + 0x50 + 8k)`
 and `0x0039F9F0(face, w, q, state + 0xB0 + 16 × byte, colours)` for a quad; `q` holds one float per vertex and `w` is
 the local the first call fills.
 
-With blend mode 0 mode 1's second calls (`0x004363D4`-`0x004366B6`, `0x00437EAC`-`0x004381B7`) are
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0043608C`-`0x004366B6`, `0x00437B47`-`0x004381B7` |
+
+</details>
+
+With blend mode 0 mode 1's second calls¹ are
 `0x0039F2B0(face, w, q, texture, colours)` and `0x0039F780(face, w, q, texture, colours)`. Here too each index, for the
 vertex and again for its float, is read through `0x0020E600(object dword +0x170)`.
 
-Every other mode (`0x004366E7`-`0x00436C57`, `0x004381DF`-`0x004387C1`) makes the same eight calls with the layer's texture
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004363D4`-`0x004366B6`, `0x00437EAC`-`0x004381B7` |
+
+</details>
+
+Every other mode¹ makes the same eight calls with the layer's texture
 `state + 0x70 + 16k` in place of the face's: `0x0039B840(pairs, w, q, state + 0x50 + 8k)` with
 `0x0039F4B0(face, w, q, state + 0x70 + 16k, colours)` or `0x0039F2B0(face, w, q, state + 0x70 + 16k, colours)`, and
 `0x0039B860(pairs, w, q, state + 0x50 + 8k)` with `0x0039F9F0(face, w, q, state + 0x70 + 16k, colours)` or
 `0x0039F780(face, w, q, state + 0x70 + 16k, colours)`, the indices again through `0x0020E600(object dword +0x170)`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004366E7`-`0x00436C57`, `0x004381DF`-`0x004387C1` |
+
+</details>
 
 The composers share two helpers with the element types at `0x004434D0`, `0x00444340`, `0x004584E0` and
 `0x004595C0`: `0x00394DA0(matrix, vector, out)` multiplies the vector by the matrix without its
@@ -882,10 +1887,19 @@ the 128-slot registry at `0x02ADBFE0` (`0x20` bytes a slot, handle `serial << 8 
 `+8`) through `0x00377190`, whose only callers are those four births. Their draw methods only set a
 bit: `0x00464090` sets bit `0x2` of `+0x248`, `0x00464BC0` bit `0x1` of `+0x23C`.
 
-`0x00377190(element)` takes the first slot whose handle dword `+0x00` is 0 and returns 0 when all 128 are taken
-(`0x003771A0`-`0x003771B5`). Otherwise it raises the count `0x02ADBFC0`, stores the element at `+8` and the handle at
+`0x00377190(element)` takes the first slot whose handle dword `+0x00` is 0 and returns 0 when all 128 are taken¹. Otherwise it raises the count `0x02ADBFC0`, stores the element at `+8` and the handle at
 `+0x00`, appends the slot at the tail of the live list (`0x02ADBFC8` and `0x02ADBFD0`, links `+0x10` and `+0x18`) and
-returns the handle (`0x003771B6`-`0x00377223`).
+returns the handle².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003771A0`-`0x003771B5` |
+| ² | `0x003771B6`-`0x00377223` |
+
+</details>
 
 The releases `0x00464050` (`0x40`), `0x00464B80` (`0x41`), `0x00465120` (`0xD0`) and `0x0047BF70` (`0x42`)
 free the slot through `0x00377360(handle)`, which finds it in the registry's live list (head
@@ -894,56 +1908,118 @@ handle and unlinks it.
 
 `0x00464050` first releases a non-zero dword `+0x244` through `0x003ABCA0` and zeroes it, then frees the
 registry handle `+0x24C`; `0x00464B80` does the same with `+0x234` through `0x003B42B0` and the registry handle
-`+0x238` (`0x00464059`-`0x0046407D`, `0x00464B89`-`0x00464BAD`). `0x0047BF70` frees its pool handle `+0x230` through
-`0x003D8300` before the registry handle `+0x234` (`0x0047BF79`-`0x0047BF8F`). `0x003ABCA0` and `0x003B42B0` change
-nothing when no record of their list, `0x02B3F508` and `0x02B404C8`, holds the handle (`0x003ABCA0`-`0x003ABCBD`,
-`0x003B42B0`-`0x003B42CD`).
+`+0x238`¹. `0x0047BF70` frees its pool handle `+0x230` through
+`0x003D8300` before the registry handle `+0x234`². `0x003ABCA0` and `0x003B42B0` change
+nothing when no record of their list, `0x02B3F508` and `0x02B404C8`, holds the handle³.
 
-`0x00377230` walks the registry from `MainLoop_Draw` (`0x0022B268`) and the menu frame (`0x0022B940`),
-checks visibility with the group gate and the per-instance gate (`0x00377292`–`0x003772A2`), and calls
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00464059`-`0x0046407D`, `0x00464B89`-`0x00464BAD` |
+| ² | `0x0047BF79`-`0x0047BF8F` |
+| ³ | `0x003ABCA0`-`0x003ABCBD`, `0x003B42B0`-`0x003B42CD` |
+
+</details>
+
+`0x00377230` walks the registry from `MainLoop_Draw`¹ and the menu frame²,
+checks visibility with the group gate and the per-instance gate³, and calls
 the type's apply body: `0x004640A0` (`0x40`), `0x00464BD0` (`0x41`), `0x0047BD30` (`0x42`) and `0x00465690`
-(`0xD0`) (`0x003772EA`–`0x00377336`).
+(`0xD0`)⁴.
 
-The walk runs from the head `0x02ADBFC8` through `+0x18` (`0x00377236`, `0x0037733B`). It skips an element
-whose `+0x224` is set while the cadence test returns 0 (`0x00377264`–`0x00377275`). Otherwise it makes the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022B268` |
+| ² | `0x0022B940` |
+| ³ | `0x00377292`-`0x003772A2` |
+| ⁴ | `0x003772EA`-`0x00377336` |
+
+</details>
+
+The walk runs from the head `0x02ADBFC8` through `+0x18`¹. It skips an element
+whose `+0x224` is set while the cadence test returns 0². Otherwise it makes the
 element's instance current with `0x002F3860`, which takes the emitter's `+0x10`, or the element's `+0x18`
 for type `0xF0`, and runs `0x0024ED80`. It then runs `0x0024C060` and ANDs the gates `0x0024D4E0(kind)` and
-`0x0024D770(instance, 0)` (`0x0037727E`–`0x003772A7`).
+`0x0024D770(instance, 0)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00377236`, `0x0037733B` |
+| ² | `0x00377264`-`0x00377275` |
+| ³ | `0x0037727E`-`0x003772A7` |
+
+</details>
 
 Before each apply the walk stores that result: bit `0x2` of `+0x248` for `0x40`, bit `0x1` of `+0x23C`
-for `0x41`, the whole byte `+0x238` for `0x42`, and bit `0x80` of the word `+0x232` for `0xD0`
-(`0x003772D1`–`0x0037732F`). A type-`0xF0` arm calls `0x0046EDD0`, the vibration refresh in
-[Timeline tracks](effect-element-runtime.md#timeline-tracks), without a store (`0x003772C2`–`0x003772CA`); the
+for `0x41`, the whole byte `+0x238` for `0x42`, and bit `0x80` of the word `+0x232` for `0xD0`¹. A type-`0xF0` arm calls `0x0046EDD0`, the vibration refresh in
+[Timeline tracks](effect-element-runtime.md#timeline-tracks), without a store²; the
 registry never holds one, as its only filler `0x00377190` is called by the four births alone. Any other
 type gets no call.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003772D1`-`0x0037732F` |
+| ² | `0x003772C2`-`0x003772CA` |
+
+</details>
+
 - `0x40` makes a light. `0x004640A0` fills a request and creates it with `0x003AB960` the first time,
-  keeping the handle at `+0x244`, and updates it with `0x003AC920` afterwards (`0x00464387`–`0x004643A0`).
+  keeping the handle at `+0x244`, and updates it with `0x003AC920` afterwards¹.
   Definition byte `+0x120` picks the request word: 1 gives `0x8001`, 2 gives `0x8006`, anything else
-  `0x8002` (`0x004640C3`–`0x0046410A`). The pool is on [character lighting](character-lighting-and-shadows.md).
-- `0x40`'s create test is `+0x244` = 0 (`0x00464387`), so when the pool is full and `0x003AB960` answers 0
-  (`0x003AB985`), the next apply calls `0x003AB960` again.
+  `0x8002`². The pool is on [character lighting](character-lighting-and-shadows.md).
+- `0x40`'s create test is `+0x244` = 0³, so when the pool is full and `0x003AB960` answers 0
+ ⁴, the next apply calls `0x003AB960` again.
 - `0x003AC920(request)` fills the derived floats of a request by its type byte `+0x00`. With r the float
   `+0x0C`, type 2 stores 1 / (r x r) at `+0x30`, type 3 stores it at `+0x40`, and type 4 stores it at
   `+0x48` and 1 / (`+0x40` - `+0x44`) at `+0x4C`. Any type other than 2 to 5 stores nothing
-  (`0x003AC920`-`0x003ACA56`).
+ ⁵.
 - For request type 5 `0x003AC920` stores 1 / (r x r), r again the float `+0x0C`, at `+0x30`, the squared
   length of the vector `+0x20` at `+0x38`, its dot product with the vector `+0x40` at `+0x3C`, and 1 / the
-  squared distance between the two vectors at `+0x34` (`0x003AC947`-`0x003AC9EA`).
+  squared distance between the two vectors at `+0x34`⁶.
 - `0x41`'s apply keeps a record in the 64-entry pool of `0x60`-byte records at `[0x02B404E0]` through
   `0x003B4160`.
 - `0x42`'s birth reads three floats at definition `+0x124`, `+0x128` and `+0x12C` and the track group
   at `+0x80`, and takes a slot in the 32-entry, `0x60`-byte pool at `0x02B4D7D0` through `0x003D7FF0`
-  (`0x0047BE64`–`0x0047BF08`).
-- The birth `0x0047BE20` returns 0 when the base birth `0x002F2D60` does (`0x0047BE38`). It reads the floats only
+ ⁷.
+- The birth `0x0047BE20` returns 0 when the base birth `0x002F2D60` does⁸. It reads the floats only
   when the current instance's kind byte is 10 or more; below that it uses 1.0, `[0x01DFE0BC]` and 1.0
-  (`0x0047BE5F`–`0x0047BEA6`).
+ ⁹.
 - The request holds the floats at `+0`, `+4` and `+8`, definition byte `+0x122` at `+0x0C`, the low seven
   bits of byte `+0x123` in `+0x0D` (bit `0x80` of `+0x0D` is not written), 1 at `+0x0E` and the image
-  offset of `+0x80` (`0x0020E620`) at `+0x10` (`0x0047BEAE`–`0x0047BF04`).
+  offset of `+0x80`¹⁰ at `+0x10`¹¹.
 - It keeps the pool handle at `+0x230` and the registry handle `0x00377190` at `+0x234`, calls
   `0x003D8D70(pool handle, 0)`, sets `+0x238` to 1, and calls `0x003D8DE0` with the parent's `+0x30`, or its own
-  `+0x70` without a parent `+0x10`. It returns 1 (`0x0047BF10`–`0x0047BF53`).
+  `+0x70` without a parent `+0x10`. It returns 1¹².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00464387`-`0x004643A0` |
+| ² | `0x004640C3`-`0x0046410A` |
+| ³ | `0x00464387` |
+| ⁴ | `0x003AB985` |
+| ⁵ | `0x003AC920`-`0x003ACA56` |
+| ⁶ | `0x003AC947`-`0x003AC9EA` |
+| ⁷ | `0x0047BE64`-`0x0047BF08` |
+| ⁸ | `0x0047BE38` |
+| ⁹ | `0x0047BE5F`-`0x0047BEA6` |
+| ¹⁰ | `0x0020E620` |
+| ¹¹ | `0x0047BEAE`-`0x0047BF04` |
+| ¹² | `0x0047BF10`-`0x0047BF53` |
+
+</details>
 
 - The `0x42` pool slots are named by `serial << 8 | slot`, checked at slot `+0x04`. `0x003D8300(handle)`,
   from the release `0x0047BF70`, `0x003E69A0` and `0x003E7140`, frees a slot: it lowers the count
@@ -952,8 +2028,18 @@ type gets no call.
 - `0x003D8D70(handle, b)` stores byte `+0x3F` and `0x003D8DE0(handle, v)` the three floats
   `+0x10`–`+0x18`; the birth, the update and `0x003E6910` call both. `0x003D8DA0(mode)`,
   from the field camera's target read `0x003D9E20`, stores 1.0 for mode 1, 0.6 for mode 2 and 0
-  otherwise at `0x02B4D7B8`; `0x003D8C30` also writes 1.0 there (`0x003D8D12`), and `0x003D83A0` is its only reader
-  (`0x003D8BC3`).
+  otherwise at `0x02B4D7B8`; `0x003D8C30` also writes 1.0 there¹, and `0x003D83A0` is its only reader
+ ².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003D8D12` |
+| ² | `0x003D8BC3` |
+
+</details>
 
 ### Types 0x60 to 0x74
 
@@ -1023,40 +2109,64 @@ the microprogram the template's header installs. `0xA6`, `0xA8` and `0xAB` share
   of four slots whose dword is not zero (`+0x30`, stride `0x110`; `0x0054B3A3`-`0x0054B3DC`).
 - `0x00543940` starts from (the dword its second argument points to + `0x78`) x 16 bytes, adds `0x190` bytes for
   each of the four dwords at `+0x740`, `+0x790`, `+0x7E0` and `+0x830` that is not 0, and returns the total in
-  16-byte units (`0x00543940`-`0x00543993`). `0x00544590` adds one quadword per 20 entries to `0x130`.
+  16-byte units¹. `0x00544590` adds one quadword per 20 entries to `0x130`.
 - `0x00545EF0` (type `0x6A`) starts from `(+0x1C + 0x17) x 16` bytes and adds, per tile, `0x60` plus
   `w x h x 16` when bit `0x2` of `+0x64` is set. Tiles start every 21 grid points along `+0x10` and `+0x14`
   while the start is below the count minus 1, and `w = min(22, +0x10 - start)`, `h` likewise; it returns
-  the total `>> 4` (`0x00545EF0`-`0x00545FAE`).
+  the total `>> 4`².
 - `0x0054BD40` and `0x0054D610` add the two index blocks
   of every piece and, per enabled layer byte `+0xE0`–`+0xE3`, `0x60` bytes per piece.
 - `0x00540F40(packet, chain, count, key)` computes the flag word, 2 when `0x0024E460` or `0x003A3D20`
   returns non-zero, ORed with `0x003A2C70()`, and passes everything to `0x00540DB0` with the flag word as the fifth
-  argument (`0x00540F65`–`0x00540F96`).
+  argument³.
 - `0x00540DB0` appends the draw-list entry at `[0x02F8F2F8] + 0x28 × [0x02F8F2C6]` and raises the count word with no
-  bound check (`0x00540DBF`-`0x00540DE9`): 0 in the qwords `+0x00` and `+0x10`, the key's low 24 bits with
+  bound check⁴: 0 in the qwords `+0x00` and `+0x10`, the key's low 24 bits with
   `0x02AEE910 << 4` ORed
-  into the top byte at `+0x08` and the chain count at `+0x0C` (`0x00540DF1`-`0x00540E08`).
+  into the top byte at `+0x08` and the chain count at `+0x0C`⁵.
 - `0x00540DB0` then builds the flag word again: `0x0024E460()` and, when that returns 0, `0x003A3D20()`, 2 when
   either is non-zero, ORed with `0x003A2C70()` and with its fifth argument, stored at `+0x20`
-  (`0x00540E0C`-`0x00540E33`). It stores the node `0x0020E680()` returns at `+0x18` and has
-  `0x001DB7E0(node)` build the command on it (`0x00540E36`-`0x00540E47`).
+ ⁶. It stores the node `0x0020E680()` returns at `+0x18` and has
+  `0x001DB7E0(node)` build the command on it⁷.
 - It then walks `chain × 16` bytes of the packet by the high nibble of each tag's byte `+0x03`
-  (`0x00540E70`-`0x00540F0C`). For 1 it appends in place the range that starts at the tag's `+0x08`,
+ ⁸. For 1 it appends in place the range that starts at the tag's `+0x08`,
   `0x001DB7D0(command, tag + 8, n × 16 + 8)` with `n` the tag's word `+0x00`, and steps past it
-  (`0x00540E88`-`0x00540EA5`).
+ ⁹.
 - For 3 and for 0 it takes `n × 16 + 8` bytes from `0x0019C5A0(n × 16 + 8)`, puts the tag's qword `+0x08` first,
   copies `n × 16` bytes behind it from the 32-bit address in the tag's dword `+0x04`,
   `0x00861EBA(block + 8, address, n × 16)`, and appends that block, `0x001DB7D0(command, block, n × 16 + 8)`
-  (`0x00540EB3`-`0x00540EF1`); a 3 steps one tag on and a 0 ends the walk (`0x00540EF6`-`0x00540F01`).
-- Any other nibble does not step (`0x00540EB1`, `0x00540F09`), and a chain count of 0 or less skips the walk
-  (`0x00540E55`-`0x00540E58`). The function ends in a jump to `0x0020E670(node)` (`0x00540F21`-`0x00540F30`).
+ ¹⁰; a 3 steps one tag on and a 0 ends the walk¹¹.
+- Any other nibble does not step¹², and a chain count of 0 or less skips the walk
+ ¹³. The function ends in a jump to `0x0020E670(node)`¹⁴.
 - `0x00540C20(packet, chain, count, key)`, used by `0xA9` alone, appends an entry with the packet at
   `+0x00`, the key and pass nibble at `+0x08`, the chain count at `+0x0C` and a null function at
-  `+0x10`, and builds no command (`0x00540C20`–`0x00540C6B`). `0xA9` sets `0x02AEF418` around the call
-  when its key is `0xFFFE00` or more and `0x0024E2E0` returns 0 (`0x005287A6`–`0x005287C2`).
+  `+0x10`, and builds no command¹⁵. `0xA9` sets `0x02AEF418` around the call
+  when its key is `0xFFFE00` or more and `0x0024E2E0` returns 0¹⁶.
 - The key is the projected depth of the element position for `0x68` and `0x69` (`0x00202B70` with
   `0x02AEEBB0`, then z / w); `0xA3` and `0xAB` use `0xFFFFFF` and the rest use 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00543940`-`0x00543993` |
+| ² | `0x00545EF0`-`0x00545FAE` |
+| ³ | `0x00540F65`-`0x00540F96` |
+| ⁴ | `0x00540DBF`-`0x00540DE9` |
+| ⁵ | `0x00540DF1`-`0x00540E08` |
+| ⁶ | `0x00540E0C`-`0x00540E33` |
+| ⁷ | `0x00540E36`-`0x00540E47` |
+| ⁸ | `0x00540E70`-`0x00540F0C` |
+| ⁹ | `0x00540E88`-`0x00540EA5` |
+| ¹⁰ | `0x00540EB3`-`0x00540EF1` |
+| ¹¹ | `0x00540EF6`-`0x00540F01` |
+| ¹² | `0x00540EB1`, `0x00540F09` |
+| ¹³ | `0x00540E55`-`0x00540E58` |
+| ¹⁴ | `0x00540F21`-`0x00540F30` |
+| ¹⁵ | `0x00540C20`-`0x00540C6B` |
+| ¹⁶ | `0x005287A6`-`0x005287C2` |
+
+</details>
 
 ### Type 0x6A: the ripple surface
 
@@ -1069,7 +2179,16 @@ and the grid's point counts (`+0x3F0`, `+0x3F4`) into the element block at `+0x2
   = (2c²t²/d²) / (μt + 2)` into block `+0x30`, `+0x34` and `+0x38`, the half extents `(n − 1)d / 2`, and at `+0x1C`
   the sum over the tiles of one more than each tile's points across (22 at most);
 - `0x005450E0` zeroes the `n × m` points; `0x005263F0` then runs once per warm-up frame, the count from
-  definition word `+0x3FC` (`0x00525FDA`–`0x0052601D`).
+  definition word `+0x3FC`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00525FDA`-`0x0052601D` |
+
+</details>
 
 `0x005263F0` is the update tail. Definition byte `+0x3FF` bits `0x8`, `0x2` and `0x4` enable three disturbances,
 each a strength track (`+0x250`, `+0x260`, `+0x270`) and a position track (`+0x280`, `+0x2C0`,
@@ -1079,13 +2198,32 @@ step `0x00545650` as many times as the integer track `+0x3C0` gives, at most 5.
 
 Before its disturbances `0x005263F0` samples tracks through `0x004309C0(track, frame)` at the frame `[+0x44] + [+0x2F0]`
 of the element. Four float tracks, definition `+0x90`, `+0xA0`, `+0xB0` and `+0xC0`, go to the block's `+0x70`,
-`+0x74`, `+0x78` and `+0x7C` (`0x00526421`-`0x00526492`). With bit `0x1` of the block's byte `+0x64`, four more, `+0x380`,
-`+0x390`, `+0x3A0` and `+0x3B0`, go to the block's `+0x90`, `+0x94`, `+0x98` and `+0x9C` (`0x0052656B`-`0x005265DD`).
+`+0x74`, `+0x78` and `+0x7C`¹. With bit `0x1` of the block's byte `+0x64`, four more, `+0x380`,
+`+0x390`, `+0x3A0` and `+0x3B0`, go to the block's `+0x90`, `+0x94`, `+0x98` and `+0x9C`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00526421`-`0x00526492` |
+| ² | `0x0052656B`-`0x005265DD` |
+
+</details>
 
 With bit `0x1` of the element's byte `+0x2FA` it also samples the vector tracks `+0x120` and `+0x160` through
 `0x00430B90(&local, track, frame)`. With `v1` and `v2` their first two floats and `a`, `b` the element's floats `+0x314`
 and `+0x318`, the block's `+0x20` and `+0x24` become `a + v2.x` and `b + v2.y`, and its `+0x28` and `+0x2C` become
-`a + v1.x + v2.x` and `b + v1.y + v2.y` (`0x00526497`-`0x00526566`). Without the bit those four floats keep their values.
+`a + v1.x + v2.x` and `b + v1.y + v2.y`¹. Without the bit those four floats keep their values.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00526497`-`0x00526566` |
+
+</details>
 
 - `0x00545310(grid, x, y, h)` sets a 3 × 3 stamp: `h` at the point, `h / 2` at its four neighbours and
   `h / 4` at the corners; `0x00545490` adds the same stamp. Points within two of the edge are left alone.
@@ -1107,86 +2245,238 @@ line forms after moving `y` back by `w >> 1`).
 The stamp call gets the block, `x`, `y` and the strength: `0x00545310(block, x, y, strength)`, or
 `0x00545490(block, x, y, strength)` when definition byte `+0x3F9` is not 0. With bit `0x20` of `+0x3FF` it is
 `0x00546DB0(block, x, y, strength, w, f1, f2)`, or `0x00547060(block, x, y, strength, w, f1, f2)` when `+0x3F9` is not 0,
-the last three being the element's word `+0x2F4` and its floats `+0x2FC` and `+0x308` (`0x00526632`-`0x005266C0`,
-`0x00526712`-`0x005267A0`, `0x005267F2`-`0x00526880`).
+the last three being the element's word `+0x2F4` and its floats `+0x2FC` and `+0x308`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00526632`-`0x005266C0`, `0x00526712`-`0x005267A0`, `0x005267F2`-`0x00526880` |
+
+</details>
 
 The step count comes from `0x004314E0(track +0x3C0, frame)` at the same frame; a negative count runs no step and a count
-above 5 runs 5 steps of `0x00545650(block)` (`0x00526903`-`0x0052693C`).
+above 5 runs 5 steps of `0x00545650(block)`¹.
 
-Before the steps the tail builds the surface's matrix: the identity (`0x00203170`) with the vector track at
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00526903`-`0x0052693C` |
+
+</details>
+
+Before the steps the tail builds the surface's matrix: the identity¹ with the vector track at
 definition `+0x340` (`0x00430B90(&local, track, frame)`) plus the element position `+0x60` as its position, which
 `0x00202D70(matrix, matrix, parent)` replaces, when there is a parent, by the product with the 64 bytes at
-the parent's `+0x00` on the left (`0x00526885`-`0x005268E9`). With bit `0x80` of `+0x3FF` it then calls
-`0x00545FB0(grid, matrix)`, the grid being the element block `+0x230` (`0x00526424`, `0x005268EE`-`0x005268FE`).
+the parent's `+0x00` on the left². With bit `0x80` of `+0x3FF` it then calls
+`0x00545FB0(grid, matrix)`, the grid being the element block `+0x230`³.
 
-`0x00545FB0` turns the grid's four corners by the matrix (`0x00202B70`) and walks the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00203170` |
+| ² | `0x00526885`-`0x005268E9` |
+| ³ | `0x00526424`, `0x005268EE`-`0x005268FE` |
+
+</details>
+
+`0x00545FB0` turns the grid's four corners by the matrix¹ and walks the
 [character render records](character-render-records.md) chained from the dword `[0x022C6F28] + 0x48800`.
-For every record it first calls `0x00421E20(record, 0x100, 0, local)` and does not test the answer
-(`0x005463BD`-`0x005463C2`): for a record that call leaves without writing, one with no skeleton entry (`+0x18`
+For every record it first calls `0x00421E20(record, 0x100, 0, local)` and does not test the answer²: for a record that call leaves without writing, one with no skeleton entry (`+0x18`
 is -1, `0x00421E49`) among its exits, the point p below is what the local held before.
 
-The four corners are made flat before they are turned (`0x00545FF1`-`0x005460D3`). With `a` and `b` the grid block's
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00202B70` |
+| ² | `0x005463BD`-`0x005463C2` |
+
+</details>
+
+The four corners are made flat before they are turned¹. With `a` and `b` the grid block's
 floats `+0x40` and `+0x44`, `w = ([+0x10] - 1) × [+0x48]` and `h = ([+0x14] - 1) × [+0x4C]`, they are `(a, 0, b)`,
 `(a - w, 0, b)`, `(a - w, 0, b - h)` and `(a, 0, b - h)`, each with 1.0 as its fourth float, and
 `0x00202B70(corner, matrix, corner)` turns each in place. In `w` and `h` the count is a dword, 1 is taken from it in 32
 bits, and the result goes to the float as an unsigned value before the product.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00545FF1`-`0x005460D3` |
+
+</details>
+
 From the turned corners `c0` to `c3` it takes `e1 = c1 - c0` and `e2 = c0 - c3` and calls `0x00202E10(n, e1, e2)`, which
 writes to `n` the cross product `e1 × e2` with 0 as the fourth float. It takes the length of `n` with
-`0x00861F14(squared length)` (`0x00546187`) and brings `n` to length 1, or to 0 when that length is below the float at
-`0x00908E10`, 0.000001 (`0x005460D8`-`0x005461E2`).
+`0x00861F14(squared length)`¹ and brings `n` to length 1, or to 0 when that length is below the float at
+`0x00908E10`, 0.000001².
 
-It keeps the lengths of `e1` and `e2`, each `0x00861F14(squared length)`, the `sqrtf` of the squared length
-(`0x005461A2`-`0x00546241`). It then builds four vectors `(-(t.z - s.z), 0, t.x - s.x)`, one for each edge from `s` to
-`t`: `c0` to `c1`, `c1` to `c2`, `c2` to `c3` and `c3` to `c0`, and passes each to `0x00380800(v, v)`
-(`0x0054621A`-`0x0054631D`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00546187` |
+| ² | `0x005460D8`-`0x005461E2` |
+
+</details>
+
+It keeps the lengths of `e1` and `e2`, each `0x00861F14(squared length)`, the `sqrtf` of the squared length¹. It then builds four vectors `(-(t.z - s.z), 0, t.x - s.x)`, one for each edge from `s` to
+`t`: `c0` to `c1`, `c1` to `c2`, `c2` to `c3` and `c3` to `c0`, and passes each to `0x00380800(v, v)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005461A2`-`0x00546241` |
+| ² | `0x0054621A`-`0x0054631D` |
+
+</details>
 
 The walk starts at the index in the dword `[0x022C6F28] + 0x48800` and ends at an index of -1. The record of index `i`
-is `[0x022C6F28] + 0x740 × i`, and the next index is the record's signed word `+0x04` (`0x00546322`-`0x00546332`,
-`0x005463A0`-`0x005463BA`, `0x00546656`-`0x00546666`).
+is `[0x022C6F28] + 0x740 × i`, and the next index is the record's signed word `+0x04`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00546322`-`0x00546332`, `0x005463A0`-`0x005463BA`, `0x00546656`-`0x00546666` |
+
+</details>
 
 It takes a record whose word `+6` is -1, whose `+0x284` has bits `0x4000` and `0x4` set and whose `+0x2AE`
-has bit `0x2` clear (`0x005463C2`-`0x005463EA`), and for it:
+has bit `0x2` clear¹, and for it:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005463C2`-`0x005463EA` |
+
+</details>
 
 - once, while bit `0x4` of record `+0x4B7` is clear: with p row 3 of the matrix `0x00421E20` wrote, it
   first copies p to the point kept at `+0x630` when that point's x and z are both 0, measures
   the distance d of p from the kept point, stores the curve value `0x0046FAE0(min(d, 0.15) / 0.15, 1, 0)` at
-  `+0x63C`, keeps p and sets the bit (`0x005463F0`-`0x005464C0`);
+  `+0x63C`, keeps p and sets the bit¹;
 - it goes on only when the record position `+0x140` lies inside all four edges of the grid and within
-  0.4 of its plane (`0x005464C8`-`0x0054658D`);
+  0.4 of its plane²;
 - it adds a stamp at the grid cell under the position with `0x00545490`, the height being record `+0x63C`
-  times the grid's float `+0xB4` (`0x00546593`-`0x00546651`).
+  times the grid's float `+0xB4`³.
 
-The draw `0x00526080` first makes the colour: the fade colour (`0x002F1F40`) times the element colour `+0x1F0`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005463F0`-`0x005464C0` |
+| ² | `0x005464C8`-`0x0054658D` |
+| ³ | `0x00546593`-`0x00546651` |
+
+</details>
+
+The draw `0x00526080` first makes the colour: the fade colour¹ times the element colour `+0x1F0`
 unless that is `0x80808080`. The colour track at definition `+0xD0`, sampled at the frame `+0x44` plus the
-element's `+0x2F0` (`0x0042FDB0`), is combined with that product (`0x0026EE00`) unless the product is
-`0x80808080`, and passed with element `+0x2B0` to `0x00462260` (`0x005260BF`-`0x00526126`).
+element's `+0x2F0`², is combined with that product³ unless the product is
+`0x80808080`, and passed with element `+0x2B0` to `0x00462260`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F1F40` |
+| ² | `0x0042FDB0` |
+| ³ | `0x0026EE00` |
+| ⁴ | `0x005260BF`-`0x00526126` |
+
+</details>
 
 It draws nothing more when the element's `+0x2BC` is 0, when definition byte `+0x200` is 0, 1, 3 or 5, or
-when that byte is 2 or 4 and `0x00431830` answers null for definition `+0x160` (`0x0052612B`-`0x0052617B`). A
+when that byte is 2 or 4 and `0x00431830` answers null for definition `+0x160`¹. A
 byte above 5 goes on without that call: the second and third qwords named below are then not written, and
-the first is 0 with bit `0x40` of definition byte `+0x3FF`, else what the local held (`0x0052614A`,
-`0x005261AB`-`0x005261C8`).
+the first is 0 with bit `0x40` of definition byte `+0x3FF`, else what the local held².
 
-Its matrix starts as the identity (`0x00203170`) with the position: the vector track at definition `+0x340`
-plus the element position `+0x60` (`0x005261F7`-`0x00526247`). When definition byte `+0x3FB` is set it sets the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052612B`-`0x0052617B` |
+| ² | `0x0052614A`, `0x005261AB`-`0x005261C8` |
+
+</details>
+
+Its matrix starts as the identity¹ with the position: the vector track at definition `+0x340`
+plus the element position `+0x60`². When definition byte `+0x3FB` is set it sets the
 cells [1][1] and [2][2] to 0, [1][2] to -1.0 and [2][1] to 1.0, and its last call is
-`0x00202D70(matrix, 0x02AEE960, matrix)`, the matrix on the left of the projection (`0x0052625D`-`0x00526318`).
+`0x00202D70(matrix, 0x02AEE960, matrix)`, the matrix on the left of the projection³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00203170` |
+| ² | `0x005261F7`-`0x00526247` |
+| ³ | `0x0052625D`-`0x00526318` |
+
+</details>
 
 Otherwise `0x00202D70(matrix, matrix, parent)` puts the 64 bytes at the parent's `+0x00` on the matrix's left
 when there is a parent, and the last call is `0x00202D70(matrix, copy, matrix)` with a copy of the four rows
 from `0x02AEEBB0`, the matrix on the left; row 3, lane 2 of the copy first gains, as a
-float, the integer track at definition `+0x80` (`0x004314E0`) plus the dword `+0x338` of `[0x02F97348]`
-(`0x0052628D`-`0x00526318`).
+float, the integer track at definition `+0x80`¹ plus the dword `+0x338` of `[0x02F97348]`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004314E0` |
+| ² | `0x0052628D`-`0x00526318` |
+
+</details>
 
 Four qwords follow the matrix in the block it hands on: the second qword `0x00431830` wrote, or 0 when bit
 `0x40` of definition byte `+0x3FF` is set; the first qword it wrote; the blend word
 `0x01EFAC20[word +0x20A AND 7]`; and `0x31001` when `+0x3FB` is set, `0x53003` when `+0x3FA` is set and
-`0x51001` otherwise (`0x00526181`-`0x005261F3`).
+`0x51001` otherwise¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00526181`-`0x005261F3` |
+
+</details>
 
 After the packet is built as the other sub-range draws build theirs, the draw stops when `0x005466E0`
-produced a count of 0 (`0x0052636A`-`0x0052636F`); otherwise it ends with `0x00540DB0`, its fifth argument
-2 x `0x0024E460()`, OR 1 when definition byte `+0x200` is 4 and byte `+0x208` is 5 (`0x00526371`-`0x005263A6`).
+produced a count of 0¹; otherwise it ends with `0x00540DB0`, its fifth argument
+2 x `0x0024E460()`, OR 1 when definition byte `+0x200` is 4 and byte `+0x208` is 5².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052636A`-`0x0052636F` |
+| ² | `0x00526371`-`0x005263A6` |
+
+</details>
 
 ### Types 0x73 and 0x74: the flying pieces
 
@@ -1196,8 +2486,16 @@ record per piece (count at `+0x968`) and randomises its ranges; `0x0054C6B0` the
 start velocity and spin, the direction chosen by the low three bits of block byte `+0x4E`.
 
 Both update tails first sample the definition's tracks at the element frame `+0x44` into the block at element
-`+0x230`, floats through `0x004309C0` and vectors through `0x00430B90`, and then jump to the walk with that block
-(`0x0052E28D`-`0x0052E3E2`, `0x0052F41D`-`0x0052F550`). The block offsets below are counted from `+0x230`:
+`+0x230`, floats through `0x004309C0` and vectors through `0x00430B90`, and then jump to the walk with that block¹. The block offsets below are counted from `+0x230`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052E28D`-`0x0052E3E2`, `0x0052F41D`-`0x0052F550` |
+
+</details>
 
 | Definition track offset | Kind | `0x73` block | `0x74` block |
 |---|---|---|---|
@@ -1213,30 +2511,68 @@ Both update tails first sample the definition's tracks at the element frame `+0x
 | `+0x330` | float | `+0xC4` | `+0xC0` |
 | `+0x340` | float | `+0xFC` | `+0xD8` |
 
-`0x73` alone samples two more float tracks, `+0x350` into `+0x3C` and `+0x360` into `+0x9C`
-(`0x0052E3A5`-`0x0052E3CB`).
+`0x73` alone samples two more float tracks, `+0x350` into `+0x3C` and `+0x360` into `+0x9C`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052E3A5`-`0x0052E3CB` |
+
+</details>
 
 Each step, `0x0054C440` (`0x73`, from the update tail `0x0052E270`) and `0x0054DD30` (`0x74`, from `0x0052F400`) walk the
 pieces. The second component `+0x24` of a piece's velocity `+0x20` loses gravity, its position `+0x70` adds the
 velocity and its angles `+0x00` add the spin `+0x10`, each scaled by one of two parameter sets.
 
 `0x0054C440` chooses the set by the piece's thresholds `+0x0C` and `+0x98` against the block's values `+0xC4` and
-`+0x3C` (`0x0054C4AE`-`0x0054C4E2`). `0x0054DD30` takes `c` = the block's `+0xC0` and `c + (1 - c) x [+0xD8]`
-(`0x0054DD53`-`0x0054DD7B`): a piece's `+0x0C` up to `c` takes the first set (`0x0054DDAD`), up to the second value the
-second set (`0x0054DECD`), and above it the piece is passed over for that step, neither moved nor rotated
-(`0x0054DED0`, `0x0054DFFB`). `0x0046D560` then rebuilds the rotation at `+0x40` of each piece that moved.
+`+0x3C`¹. `0x0054DD30` takes `c` = the block's `+0xC0` and `c + (1 - c) x [+0xD8]`²: a piece's `+0x0C` up to `c` takes the first set³, up to the second value the
+second set⁴, and above it the piece is passed over for that step, neither moved nor rotated⁵. `0x0046D560` then rebuilds the rotation at `+0x40` of each piece that moved.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0054C4AE`-`0x0054C4E2` |
+| ² | `0x0054DD53`-`0x0054DD7B` |
+| ³ | `0x0054DDAD` |
+| ⁴ | `0x0054DECD` |
+| ⁵ | `0x0054DED0`, `0x0054DFFB` |
+
+</details>
 
 In `0x0054C440` the step is `v.y -= [+0xC0] x [+0x44] x s x k.y`, then per axis `pos += s x k x v` and
 `angle += r x spin x q`. Set A is `s` = block `+0x58`, `k` = `+0x80`-`+0x88`, `r` = `+0x70`-`+0x78`,
-`q` = `+0x5C`; set B is `+0x90`, `+0xB0`-`+0xB8`, `+0xA0`-`+0xA8` and `+0x94` (`0x0054C4AE`-`0x0054C67E`).
+`q` = `+0x5C`; set B is `+0x90`, `+0xB0`-`+0xB8`, `+0xA0`-`+0xA8` and `+0x94`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0054C4AE`-`0x0054C67E` |
+
+</details>
 
 Set A applies when piece `+0x0C <= [+0xC4]` or piece `+0x98 <= [+0x3C]`. Otherwise set B applies, unless
 piece `+0x0C > (1 - [+0xC4]) x [+0xFC] + [+0xC4]` and piece `+0x98 > (1 - [+0x3C]) x [+0x9C] + [+0x3C]`, which
 leaves the piece unmoved that step.
 
-- `0x0054C440` moves only a piece whose `+0x30` points to itself (`0x0054C4A4`).
+- `0x0054C440` moves only a piece whose `+0x30` points to itself¹.
 - `0x0054DD30` rotates the velocity step by the matrix at block `+0x150` when bit `0x2` of `+0x9C` is set
-  (`0x00202B90`).
+ ².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0054C4A4` |
+| ² | `0x00202B90` |
+
+</details>
 
 ### Births of the other sub-range types
 
@@ -1248,11 +2584,11 @@ leaves the piece unmoved that step.
   - `L1 = [+0xAC] + 0x003D8E50([+0x120])` and `L2 = [+0xBC] + 0x003D8E50([+0x124])`, written back to `+0xAC`
     and `+0xBC`.
   - With bit `0x8` set it leaves `+0xA0` alone, adds `0x003D8E50([+0x134])` to `+0x130` and stores
-    `[+0xAC] + 0x003D8E50([+0x120])` at `+0x120` (`0x00541F07`-`0x00541F39`). With bit `0x10` set it adds
+    `[+0xAC] + 0x003D8E50([+0x120])` at `+0x120`¹. With bit `0x10` set it adds
     `0x003D8E50([+0x13C])` to `+0x138` and stores `[+0xBC] + 0x003D8E50([+0x124])` at `+0x124`
-    (`0x00541FD9`-`0x0054200B`).
+   ².
   - It ends by clearing the byte `+0x38` and the dword `+0x48` and storing
-    (1.0 / (the word `+0x3A` + 1)) × 0.99 at `+0x44` (`0x00542013`-`0x00542041`).
+    (1.0 / (the word `+0x3A` + 1)) × 0.99 at `+0x44`³.
 - The same birth calls `0x00542060`, which draws six more in `[−0.5, 0.5)`.
 - `0x69`'s birth `0x00523C30` calls `0x005439A0`, which clears block `+0x04` and `+0x14` and stores
   the float `1 / (count + 1)`, the count being block `+0x00`, at `+0x18`.
@@ -1263,11 +2599,11 @@ leaves the piece unmoved that step.
   - `0x00532E80(block, count, layers)` sizes `0x6B`'s packet. With n the strand count, the word `+0xB0` of
     the block (element `+0x330`), and c the dword `count` points to, it returns c + 1 + 32 x n quadwords,
     plus 5 x (n + 6) for each of the three dwords `+0x88`, `+0x8C` and `+0x90` of `layers` that is not 0
-    (`0x00532E80`-`0x00532EE4`).
+   ⁴.
   - Each field is `base + 0x003D8E50(1.0) x range`, with the strand field, block base and block range:
     `+0x10`, `+0xC8`, `+0xCC`; `+0x14`, `+0xF8`, `+0xFC`; `+0x18`, `+0x100`, `+0x104`; `+0x424`, `+0xD8`,
     `+0xDC`; `+0x434`, `+0xC0`, `+0xC4`; `+0x438`, `+0xE8`, `+0xEC`; `+0x43C`, `+0xF0`, `+0xF4`
-    (`0x00532EF0`-`0x00533242`).
+   ⁵.
   - `+0x08` takes `+0xE0`, `+0xE4` the same way when block `+0x140` bit `0x2` is set, else
     `(+0x14 + +0x18) x 0.5`; `+0x1C` is `0x003D8E50(1.0) x` block `+0x1C`.
   - The direction is `+0x420 = L sin a`, `+0x428 = L cos a`, `+0x42C = 1.0`, with `L` from `+0xD0`, `+0xD4`
@@ -1282,19 +2618,19 @@ leaves the piece unmoved that step.
   - It copies the dwords `+0x840`-`+0x84C` to `+0x408`-`+0x414`,
     `+0x850`-`+0x864` to `+0x3D8`-`+0x3EC`, `+0x868`-`+0x874` to `+0x3F8`-`+0x404`, `+0x878` and `+0x87C` to
     `+0x3D0` and `+0x3D4`, `+0x888` and `+0x88C` to `+0x2C8` and `+0x2CC`, `+0x890` and `+0x894` to `+0x2F0`
-    and `+0x2F4`, `+0x898` and `+0x89C` to `+0x2D0` and `+0x2D4` (`0x0052A160`-`0x0052A2DA`).
+    and `+0x2F4`, `+0x898` and `+0x89C` to `+0x2D0` and `+0x2D4`⁶.
   - It copies the bytes `+0x882` and `+0x883` to the words `+0x3F0` and `+0x3F2`, and the byte `+0x884` to
-    `+0x2FC` (`0x0052A172`-`0x0052A201`).
+    `+0x2FC`⁷.
   - The definition byte `+0x887` is split into bytes: bit `0x1` to `+0x2E6`, `0x2` to `+0x2E3`, `0x4` to
     `+0x2E4`, `0x8` to `+0x2E5`, `0x10` to `+0x2FD`, and the three bits above to `+0x2E7`; `+0x2FB` is set
-    to 0 (`0x0052A1A0`-`0x0052A210`).
-  - It allocates count x `0x450` bytes for the strand records (`0x0036A190`), kept at `+0x3C8`. When that
+    to 0⁸.
+  - It allocates count x `0x450` bytes for the strand records⁹, kept at `+0x3C8`. When that
     fails it calls `0x0036C140` and `0x002F31C0(element, element's +0x08)` and returns 0; otherwise it runs
-    `0x00547DD0` on the request and `0x0052A8B0` on the element and returns 1 (`0x0052A2E0`-`0x0052A33A`).
+    `0x00547DD0` on the request and `0x0052A8B0` on the element and returns 1¹⁰.
   - Each field is `base + 0x003D8E50(range)`, with the record field, block base and range: `+0x10`, `+0x158`,
     `+0x15C`; `+0x08`, `+0x188`, `+0x18C`; `+0x0C`, `+0x190`, `+0x194`; `+0x434`, `+0x168`, `+0x16C`;
     `+0x444`, `+0x150`, `+0x154`; `+0x448`, `+0x178`, `+0x17C`; `+0x44C`, `+0x180`, `+0x184`
-    (`0x00547DD0`-`0x005480D7`).
+   ¹¹.
   - `+0x04 = u16 +0x170 + 0x003A6E60(u16 +0x172)`; `+0x14`-`+0x1C` are each `0x003D8E50([+0x48])` and
     `+0x20`-`+0x28` each `0x003D8E50([+0x4C])`.
   - The direction is `+0x430 = L sin a`, `+0x438 = L cos a`, `+0x43C = 1.0`, with
@@ -1308,29 +2644,67 @@ leaves the piece unmoved that step.
 - The tail `0x0052B5E0` starts by clearing the qword `+0x110` and setting `+0x11C` to 1.0, adds element
   `+0xE0` to `+0x110` with bit `0x8` of definition byte `+0x49`, sets the floats `+0x120`, `+0x124` and
   `+0x12C` to 1.0, with bit `0x4` times element `+0x100`, and samples the vector track at definition `+0x90`
-  into `+0x230` through `0x00430B90(&local, track, frame)` (`0x0052B5FE`-`0x0052B789`).
+  into `+0x230` through `0x00430B90(&local, track, frame)`¹².
 - It then builds the matrix `+0x240` with `0x00398480(+0x110, +0x240, definition byte +0x48)`, adds `+0x60` to
   `+0x230`, and with a parent runs `0x0039AF70(parent)` and `0x00398F90` on `+0x230` in place, then
-  `0x00397ED0(parent + 0x40, +0x240)` when definition byte `+0x4A` has no bit of `0x1C` (`0x0052B78E`-`0x0052B841`).
+  `0x00397ED0(parent + 0x40, +0x240)` when definition byte `+0x4A` has no bit of `0x1C`¹³.
 - The tail `0x0052B5E0` also runs `0x003970F0` on the matrix `+0x240` with element `+0x120` when definition
-  byte `+0x4B` has bit `0x2`, and `0x0039ADE0` otherwise (`0x0052B846`-`0x0052B861`).
+  byte `+0x4B` has bit `0x2`, and `0x0039ADE0` otherwise¹⁴.
 - Between the matrix step and the chain step it copies the 16 bytes at `+0x230` to `+0x270` and stores 1.0 at `+0x27C`
-  (`0x0052B866`-`0x0052B875`), samples 23 float tracks, 20 into fields of the request `+0x280` and two as factors (the
-  table below), copies the dword `[[0x02F97348] + 0x324]` to the request's `+0x160` (`0x0052BA82`-`0x0052BA8F`), and calls
-  `0x0054B0E0(request, +0x270)` only when the frame `+0x44` is 0 (`0x0052BA95`-`0x0052BAA1`).
-- The chain step is `0x0054B1F0(request, r, f, n)` (`0x0052BB30`). `r` is a `0x20`-byte record on the stack: the float
+ ¹⁵, samples 23 float tracks, 20 into fields of the request `+0x280` and two as factors (the
+  table below), copies the dword `[[0x02F97348] + 0x324]` to the request's `+0x160`¹⁶, and calls
+  `0x0054B0E0(request, +0x270)` only when the frame `+0x44` is 0¹⁷.
+- The chain step is `0x0054B1F0(request, r, f, n)`¹⁸. `r` is a `0x20`-byte record on the stack: the float
   tracks `+0x3F0`, `+0x420`, `+0x400`, `+0x410` and `+0x430`, each `0x004309C0(track, frame)`, at its `+0x00`, `+0x04`,
   `+0x08`, `+0x0C` and `+0x10`, and the address of `+0x270` at its `+0x18`. `f` is 1 while the element's `+0x3FC` is
-  0, and `n` is the element's float `+0x3C` cut to an integer (`0x0052BAA6`-`0x0052BB2A`).
+  0, and `n` is the element's float `+0x3C` cut to an integer¹⁹.
 - After the chain step `0x0054B1F0` it calls the birth tail `0x0052BBD0` again when the element's `+0x3F8` is not 0, and
-  it sets `+0x3FC` to 1 on a frame where `0x00314960()` answers 0 (`0x0052BB35`-`0x0052BB53`).
+  it sets `+0x3FC` to 1 on a frame where `0x00314960()` answers 0²⁰.
 - Before the fork it copies the 16 bytes at `+0x70` to `+0x80` and calls `0x0054A690(request, +0x70, mode)` with
-  `mode = [definition+0x7E8] >> 3`, the byte (`0x0052BB5D`-`0x0052BB7C`); a mode above 2 leaves `+0x70` as it was
-  (`0x0054A71C`). It ends in the same fork as the other tails (`0x005002E0`, then `0x002F31C0` or `0x003A8950(2, element)`;
+  `mode = [definition+0x7E8] >> 3`, the byte²¹; a mode above 2 leaves `+0x70` as it was
+ ²². It ends in the same fork as the other tails (`0x005002E0`, then `0x002F31C0` or `0x003A8950(2, element)`;
   `0x0052BB81`-`0x0052BBA6`).
 
-The 23 float tracks of `0x0052B5E0`, each sampled at the frame `+0x44` through `0x004309C0(track, frame)`
-(`0x0052B87F`-`0x0052BA7D`); `t` (the track `+0xF0`) and `m` (the track `+0x110`) are kept as factors and stored nowhere:
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00541F07`-`0x00541F39` |
+| ² | `0x00541FD9`-`0x0054200B` |
+| ³ | `0x00542013`-`0x00542041` |
+| ⁴ | `0x00532E80`-`0x00532EE4` |
+| ⁵ | `0x00532EF0`-`0x00533242` |
+| ⁶ | `0x0052A160`-`0x0052A2DA` |
+| ⁷ | `0x0052A172`-`0x0052A201` |
+| ⁸ | `0x0052A1A0`-`0x0052A210` |
+| ⁹ | `0x0036A190` |
+| ¹⁰ | `0x0052A2E0`-`0x0052A33A` |
+| ¹¹ | `0x00547DD0`-`0x005480D7` |
+| ¹² | `0x0052B5FE`-`0x0052B789` |
+| ¹³ | `0x0052B78E`-`0x0052B841` |
+| ¹⁴ | `0x0052B846`-`0x0052B861` |
+| ¹⁵ | `0x0052B866`-`0x0052B875` |
+| ¹⁶ | `0x0052BA82`-`0x0052BA8F` |
+| ¹⁷ | `0x0052BA95`-`0x0052BAA1` |
+| ¹⁸ | `0x0052BB30` |
+| ¹⁹ | `0x0052BAA6`-`0x0052BB2A` |
+| ²⁰ | `0x0052BB35`-`0x0052BB53` |
+| ²¹ | `0x0052BB5D`-`0x0052BB7C` |
+| ²² | `0x0054A71C` |
+
+</details>
+
+The 23 float tracks of `0x0052B5E0`, each sampled at the frame `+0x44` through `0x004309C0(track, frame)`¹; `t` (the track `+0xF0`) and `m` (the track `+0x110`) are kept as factors and stored nowhere:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052B87F`-`0x0052BA7D` |
+
+</details>
 
 | Request fields offset | Definition tracks | Stored at |
 |---|---|---|
@@ -1408,56 +2782,110 @@ are drawn even when the instance's flag byte `+0x36A` bit `0x1` is clear (the ru
 | `0xD1` | `0x003D9040` | `0x003D9000` | `0x0016D6A0` | `0x0053AA30` | `0x003D90C0` | 765 / 406 |
 
 - `0xD0` changes how chosen characters look. Its apply `0x00465690` works from the flag word `+0x232`
-  (`0x004656DB`) and passes each chosen character to `0x00465CD0`, which it calls from eight sites. `0xD0`
+ ¹ and passes each chosen character to `0x00465CD0`, which it calls from eight sites. `0xD0`
   and `0x41` share the update `0x00464F10`.
 - With bit `0x1` of `+0x232` set the apply scales the scene colour per channel,
   `0x020926C0 x= 1 + w x (c / 128 - 1)`: `c` is the four colour bytes of `0x0042FDB0([+0x20] + 0x80, [+0x44])`
   and `w` the alpha byte of the `0x002F1F40` fade over 128 while bit `0x80` is set, else 0; bit `0x80` is then cleared
-  (`0x004656C6`-`0x0046578F`).
+ ².
 - `0xD1` draws nothing (its draw is `0x0016D6A0`). Its update tail `0x003D92C0` publishes the element at
-  `0x02092628` (`0x003D9698`); `0x00258B90`, which the field frame runs with its camera work
+  `0x02092628`³; `0x00258B90`, which the field frame runs with its camera work
   ([frame update order](../Engine-Core/frame-update-order.md)), copies its `0x340` bytes into the
   block at `0x02096FA0`, keeps that block's address at `0x020972E0` and clears the pointer
-  (`0x00258CC4`–`0x00258D4D`).
-- It makes the copy only when `0x001EDDA0` answers 0 (`0x00258C36`-`0x00258C46`). On a frame with nothing
+ ⁴.
+- It makes the copy only when `0x001EDDA0` answers 0⁵. On a frame with nothing
   published it puts the kept address `0x020972E0` back at `0x02092628` and goes on with no new copy, and
-  returns at once when that is null too (`0x00258C4A`-`0x00258C66`).
+  returns at once when that is null too⁶.
 - Before the copy, `0x00258B90` looks at the mode byte `0x02092630`. Mode 0 goes on unless the function's
   argument is 1. Mode 1 goes on only when the byte `+0x370` of `[0x02096A18]` is set and its `+0x366` is 0 or
-  not above `+0x367`. Any other mode goes on (`0x00258C68`-`0x00258CB1`). Going on is `0x003D9150`, the copy
+  not above `+0x367`. Any other mode goes on⁷. Going on is `0x003D9150`, the copy
   and the clearing of `0x02092628`; a return before it leaves `0x02092628` as it stands
-  (`0x00258CB7`-`0x00258D4D`).
+ ⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004656DB` |
+| ² | `0x004656C6`-`0x0046578F` |
+| ³ | `0x003D9698` |
+| ⁴ | `0x00258CC4`-`0x00258D4D` |
+| ⁵ | `0x00258C36`-`0x00258C46` |
+| ⁶ | `0x00258C4A`-`0x00258C66` |
+| ⁷ | `0x00258C68`-`0x00258CB1` |
+| ⁸ | `0x00258CB7`-`0x00258D4D` |
+
+</details>
 
 - `0x003D9150` does nothing when the dword `+0x334 + 4 x key` of the block it is given is 0, key being the
-  dword `+0x330` (`0x003D9163`), or the block's byte `+0x00` is 0 (`0x003D91B9`), or when `0x001EDDA0` answers 0
-  and `0x001EDAD0` then answers non-zero (`0x003D9171`-`0x003D91B3`).
+  dword `+0x330`¹, or the block's byte `+0x00` is 0², or when `0x001EDDA0` answers 0
+  and `0x001EDAD0` then answers non-zero³.
 - `0x003D9150` (from `0x00258B90`) turns the published element, or the kept copy on a frame without
   one, into a camera, unless the half-rate
   cadence test and `0x001EDAD0` hold it back: for that block's key `+0x330` it takes the eye and target
   (`+0x230` / `+0x240`, 32 bytes a key, swapped when the definition's byte `+0x240` is set) and the
   roll (`+0x320`, 4 bytes a key) and fills the camera `0x02096ED0` with them through `0x003CC080`.
 - With the definition's byte `+0x241` bit `0x1` set it uses `0x003CC970` instead, which first pulls the
-  eye out of the map's collision (`0x0026E500`, `0x00230B60`). The field of view is the key's `+0x328`,
+  eye out of the map's collision⁴. The field of view is the key's `+0x328`,
   with `1 / tan(fov / 2)` at `0x02096EE0`. It writes the camera into camera record 4, or 6 when `+0x241` bit `0x4` is set, with mode 3 and its active
-  bit raised (`0x0025A2C0`, `0x0025A500`, `0x0025A520`); see [scripted camera](scripted-camera.md).
-- `0xD1`'s release `0x003D90C0` first zeroes `0x02092628` when it holds this element (`0x003D90CB`-`0x003D90D9`),
+  bit raised⁵; see [scripted camera](scripted-camera.md).
+- `0xD1`'s release `0x003D90C0` first zeroes `0x02092628` when it holds this element⁶,
   then marks `0x02092631` or `0x02092632`. When the byte at `[0x02F97348]` is 1 it lowers the byte `+0x37A` there
-  by 1 and calls `0x002EA8B0(3, 0)` when that reaches 0 (`0x003D910A`-`0x003D912A`). It ends with `0x00314960`: a
-  non-zero answer leads to a tail jump to `0x00259240` (`0x003D912F`-`0x003D913C`).
+  by 1 and calls `0x002EA8B0(3, 0)` when that reaches 0⁷. It ends with `0x00314960`: a
+  non-zero answer leads to a tail jump to `0x00259240`⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003D9163` |
+| ² | `0x003D91B9` |
+| ³ | `0x003D9171`-`0x003D91B3` |
+| ⁴ | `0x0026E500`, `0x00230B60` |
+| ⁵ | `0x0025A2C0`, `0x0025A500`, `0x0025A520` |
+| ⁶ | `0x003D90CB`-`0x003D90D9` |
+| ⁷ | `0x003D910A`-`0x003D912A` |
+| ⁸ | `0x003D912F`-`0x003D913C` |
+
+</details>
 
 ### The kind-0x54 mesh record
 
 A mesh is an `0xB00` record of kind `0x54`: a `0x190`-byte object built by `0x004354E0` and loaded by
-`0x00436D00(object, payload)`, which first calls the kind's destroy body `0x004352C0` (`0x00436D20`). The loader copies each array into a new block unless the object's `+0x18C` has bit
-`0x8`, in which case it keeps a pointer into the stream (`0x00436D98`–`0x00436DDE`).
+`0x00436D00(object, payload)`, which first calls the kind's destroy body `0x004352C0`¹. The loader copies each array into a new block unless the object's `+0x18C` has bit
+`0x8`, in which case it keeps a pointer into the stream².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00436D20` |
+| ² | `0x00436D98`-`0x00436DDE` |
+
+</details>
 
 The id bytes name kind-`0x52` texture records: each is resolved through
-`0x003AA280(key, 0x52, id)` with the record's own key word, into the handle array at `+0x184`
-(`0x004370B8`–`0x004370FE`).
+`0x003AA280(key, 0x52, id)` with the record's own key word, into the handle array at `+0x184`¹.
 `0x00436D00` returns the stream position after the id bytes. When the id count `+0x1C` is 0 it returns the
-position it had reached and builds neither `+0x180` nor `+0x184` (`0x00437047`-`0x00437105`).
+position it had reached and builds neither `+0x180` nor `+0x184`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004370B8`-`0x004370FE` |
+| ² | `0x00437047`-`0x00437105` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Kind-`0x54` payload (from `0x00436D00`):
 
@@ -1494,7 +2922,12 @@ Definition fields the verified draws read:
 | `+0x590` | `u8` |  | bit `0x10` mesh-index mode |
 | `+0x5A0` | `u32[32]` |  | mesh handles |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -1538,6 +2971,8 @@ Every row of the two mesh tables matches the shipped file it names.
 | `chunk_type` | the chunk's type word, `0xa00` in all 5,204 |
 | `mode_0x590` | the definition's byte `+0x590` (chunk `+0x10 + 0x590`), in hex; bit `0x10`, which must be clear for the mesh index to come from the track, is set only in `0x1f`, 2 rows; `0x0e` in 2,853 rows and `0x0d` in 1,724 |
 
+</details>
+
 ## Operations
 
 One base update and one type tail per live element per simulation step; one draw call per drawn
@@ -1545,6 +2980,9 @@ element per frame; one apply per registered element (`0x40`, `0x41`, `0x42`, `0x
 frame.
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The registry `0x02ADBFE0` (128 slots), the light pool behind `0x003AB960`, the pools at `[0x02B404E0]` and
 `0x02B4D7D0`, the blend pair `0x02AEE900` / `0x02AEE908`, and the published element `0x02092628`.
@@ -1567,19 +3005,48 @@ The templates table of [PS2 VIF1 / VU1 emulation](../Engine-Core/ps2-vif1-vu1-em
 commands among those words per builder.
 
 Apart from their stores into the packet and to the stack, these sixteen builders write only through calls. `0x004A8860`
-and `0x004C4A50` clear their whole packet with `memset` through the import thunk `0x00861EC0`, `0x190` and `0x150` bytes
-(`0x004A8871`, `0x004C4A61`); `0x00492D40` clears `0x9C0` bytes from `+0x1E8` and `0x1F0` bytes from `+0xBC0` (`0x00493024`,
-`0x0049306B`).
+and `0x004C4A50` clear their whole packet with `memset` through the import thunk `0x00861EC0`, `0x190` and `0x150` bytes¹; `0x00492D40` clears `0x9C0` bytes from `+0x1E8` and `0x1F0` bytes from `+0xBC0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004A8871`, `0x004C4A61` |
+| ² | `0x00493024`, `0x0049306B` |
+
+</details>
 
 Four of them stamp headers through the two helpers that the engine page gives. The template header
 `0x008631E0(object, program, 0)` stores the 16-bit value 1 at `+0x00`, the kind `0x30` at `+0x03` and the record handle
-at `+0x04`, and files the program in the record table (`0x008631E0`-`0x00863233`). The plain header
-`0x008631D0(object, count)` stores the count as a 16-bit value at `+0x00`, the kind `0x10` at `+0x03` and 0 at `+0x04`
-(`0x008631D0`-`0x008631DE`).
+at `+0x04`, and files the program in the record table¹. The plain header
+`0x008631D0(object, count)` stores the count as a 16-bit value at `+0x00`, the kind `0x10` at `+0x03` and 0 at `+0x04`².
 
-`0x004A8860` calls `0x008631E0(packet, 0x004A6C20, 0)` and then `0x008631D0(packet + 0x10, 0x17)` (`0x004A8883`, `0x004A889F`);
-`0x004C3610` calls `0x008631E0(packet, 0x004C2160, 0)` and `0x008631D0(packet + 0x10, 0x11)` (`0x004C3623`, `0x004C363F`).
-`0x004D3D60` calls `0x008631D0(packet, 7)` (`0x004D3D6E`) and `0x004D3FE0` `0x008631D0(packet, 0xC)` (`0x004D3FEE`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008631E0`-`0x00863233` |
+| ² | `0x008631D0`-`0x008631DE` |
+
+</details>
+
+`0x004A8860` calls `0x008631E0(packet, 0x004A6C20, 0)` and then `0x008631D0(packet + 0x10, 0x17)`¹;
+`0x004C3610` calls `0x008631E0(packet, 0x004C2160, 0)` and `0x008631D0(packet + 0x10, 0x11)`².
+`0x004D3D60` calls `0x008631D0(packet, 7)`³ and `0x004D3FE0` `0x008631D0(packet, 0xC)`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004A8883`, `0x004A889F` |
+| ² | `0x004C3623`, `0x004C363F` |
+| ³ | `0x004D3D6E` |
+| ⁴ | `0x004D3FEE` |
+
+</details>
 
 ### Templates the draws patch in place
 
@@ -1587,16 +3054,25 @@ at `+0x04`, and files the program in the record table (`0x008631E0`-`0x00863233`
 [PS2 VIF1 / VU1 emulation](../Engine-Core/ps2-vif1-vu1-emulation.md). Its builder fills it once, from
 `0x0037DF90` or `0x0037E0F0`. Each draw then does three things:
 
-1. It stores the element's values into the template's payload words.
-2. It passes the template `+0x18`, and the length to the template's end, to a registrar: `0x003A34D0`, `0x003A35E0`,
-   `0x003A33B0` or `0x003A2F70`.
-3. The registrar builds the command through `0x001DB840`. That function keeps only the pointer and the length
-   (`0x001DB340`, `0x001DB3B4`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It stores the element's values into the template's payload words. |   |
+| 2 | It passes the template `+0x18`, and the length to the template's end, to a registrar: `0x003A34D0`, `0x003A35E0`, `0x003A33B0` or `0x003A2F70`. |   |
+| 3 | The registrar builds the command through `0x001DB840`. That function keeps only the pointer and the length. | `0x001DB340`, `0x001DB3B4` |
 
 The words are therefore read from the template itself when the command runs. `0x001DB550` passes each chunk to
-`0x0022C940` (`0x001DB5E0`). The decoder `0x0022C970` reads each command word at `0x0022C9D6`. For UNPACK V4-32,
+`0x0022C940`¹. The decoder `0x0022C970` reads each command word at `0x0022C9D6`. For UNPACK V4-32,
 `0x0022BFF0` copies element `j` of the payload into VU cell `addr + j`. It reads lane x at `0x0022C650`, y at
 `0x0022C658`, z at `0x0022C65E` and w at `0x0022C666`. The "place" column gives the cell and lane each row lands in.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DB5E0` |
+
+</details>
 
 | Type | Draw | Template (builder) | Chunk | Rows |
 |---|---|---|---|---:|
@@ -1624,10 +3100,19 @@ The words are therefore read from the template itself when the command runs. `0x
 | `0xAA` | `0x00528B50` | `0x02AED200` (`0x004EC960`) | `0x02AED218`, `0x118` | 20 |
 
 No other function writes these words, with one exception. `0x0045E930` passes `0x02AE9020` to `0x0039ADE0`, which
-scales four rows in place (`0x0039ADF0`-`0x0039AEB9`): `[0x02AE9020 + 16i + 4j] × [s + 4i]` for row i and lane j, with
-`s` the value `0x0017FFD0` returns followed by 1.0, 1.0 and 1.0, when `0x0024E640()` answers non-zero
-(`0x0045F048`-`0x0045F07B`). A few draws read a word back before storing it again; the table lists those reads with the
+scales four rows in place¹: `[0x02AE9020 + 16i + 4j] × [s + 4i]` for row i and lane j, with
+`s` the value `0x0017FFD0` returns followed by 1.0, 1.0 and 1.0, when `0x0024E640()` answers non-zero². A few draws read a word back before storing it again; the table lists those reads with the
 draw.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039ADF0`-`0x0039AEB9` |
+| ² | `0x0045F048`-`0x0045F07B` |
+
+</details>
 
 ### Packets copied with memcpy
 
@@ -1657,7 +3142,16 @@ bytes, and the table names the load for each word.
 ### Type 0x67's draw frame
 
 `0x67`'s draw `0x00460170` keeps its working values in `.data`, not on the stack. It fills the template `0x02AEC660`
-through a pointer and submits it with `0x003A33B0` (`0x004607A2`).
+through a pointer and submits it with `0x003A33B0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004607A2` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -1679,21 +3173,49 @@ through a pointer and submits it with `0x003A33B0` (`0x004607A2`).
 | `0x02CA5F88` | `u32` | 0 (zero-filled tail of `.data`) | `0x0042FDB0` of the colour track at definition `+0x4D0`, which multiplies the fade colour when it is not `0x80808080` | `0x00460170` (`0x0046034C`) | `0x0026EE00` (`0x0026EE49`) |
 | `0x02CA5F8C` | `i32` | 0 (zero-filled tail of `.data`) | the loop count: the nine colours (`0x0046039A`-`0x0046042E`), then the strands of element `+0x330` | `0x00460170` (`0x0046039A`, `0x00460425`, `0x004605B9`, `0x004606F6`) | `0x00460170` (`0x0046040F`) |
 
-No instruction reads `0x02CA5F20`-`0x02CA5F4F` after `0x00398030` writes them (`0x00460570`).
+No instruction reads `0x02CA5F20`-`0x02CA5F4F` after `0x00398030` writes them¹.
 `0x00398030(a, b)` loads rows 0 to 2 of both matrices and rewrites rows 0 to 2 of `b`: new row i of `b` is
 the sum over k = 0 to 2 of `b`[i][k] x row k of `a`, all four floats of each row. It uses neither row 3
-nor the fourth float of a row of `b`, leaves `a` as it was and returns `b` (`0x00398069`-`0x0039836E`).
+nor the fourth float of a row of `b`, leaves `a` as it was and returns `b`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00460570` |
+| ² | `0x00398069`-`0x0039836E` |
+
+</details>
 
 ### Type 0xAB's draw frame
 
 `0xAB`'s draw `0x0052C070` also keeps its working values in `.data`. It draws up to four layers, one for each
 draw-source block of the definition (`+0x690`, `0xF0` apart). A layer is a polygon of nine points in a 3 × 3
 grid: the builder `0x0054B3E0` lists their colours centre first and then round the edge, points 4, 0, 1, 2, 5, 8,
-7, 6, 3 and 0 again (`0x0054B994`-`0x0054BA16`). Each layer has a `0x110`-byte block in the request at `0x02CA8530`,
+7, 6, 3 and 0 again¹. Each layer has a `0x110`-byte block in the request at `0x02CA8530`,
 from `0x02CA8560`; `0x0054B3A0` sizes the packet from the layers whose dword `+0` is set, and `0x0054B3E0` builds it.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0054B994`-`0x0054BA16` |
+
+</details>
+
 The source kind of the layer's block, byte `+0xA0` (definition `+0x730` + `0xF0` × layer), picks the arm
-through the table `0x0052CF40` (`0x0052C452`-`0x0052C474`):
+through the table `0x0052CF40`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052C452`-`0x0052C474` |
+
+</details>
 
 | Kind | Arm | The layer |
 |---:|---|---|
@@ -1739,16 +3261,26 @@ A layer of kind 2 to 5 that is ready gets word `+0x100` = `0x5D` (`0x4D` for kin
 
 ### The grid emitters' block
 
-The draws of types `0x04` (`0x004453D0`), `0x06` (`0x00447020`) and `0x07` (`0x00447ED0`) describe their surface to the
+The draws of types `0x04`¹, `0x06`² and `0x07`³ describe their surface to the
 grid emitters `0x004434D0` and `0x00444340` through eight array pointers and seven counts at `0x02AEED58`-`0x02AEEDB3`.
 The surface is a grid of rows of points, the rows running round the shape.
 
-1. Each draw carves the arrays out of the `0x20000`-byte scratch block at `[0x02AEED50]`, one after the other, and
-   fills the counts.
-2. It calls `0x00444340` when definition byte `+0x672` (type `0x04`) or `+0x6D2` (`0x06`, `0x07`) has bit `0x1` set,
-   and `0x004434D0` otherwise (`0x00445AEC`-`0x00445AFF`, `0x004477CD`-`0x004477E0`, `0x00448797`-`0x004487A8`).
-3. The emitters draw one quad per grid cell and layer with the quad emitters (`0x0039EA70`, `0x0039EC30`,
-   `0x0039F780`, `0x0039F9F0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004453D0` |
+| ² | `0x00447020` |
+| ³ | `0x00447ED0` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Each draw carves the arrays out of the `0x20000`-byte scratch block at `[0x02AEED50]`, one after the other, and fills the counts. |   |
+| 2 | It calls `0x00444340` when definition byte `+0x672` (type `0x04`) or `+0x6D2` (`0x06`, `0x07`) has bit `0x1` set, and `0x004434D0` otherwise. | `0x00445AEC`-`0x00445AFF`, `0x004477CD`-`0x004477E0`, `0x00448797`-`0x004487A8` |
+| 3 | The emitters draw one quad per grid cell and layer with the quad emitters. | `0x0039EA70`, `0x0039EC30`, `0x0039F780`, `0x0039F9F0` |
 
 Their argument is a layer list the draw fills at `[0x01FD4A78]` + `0x800`, one layer for each draw-source block that
 has a source (`0x004458D0`-`0x00445A91` for `0x04`). Its count is byte `+0x1F0`. Per layer it holds:
@@ -1784,10 +3316,21 @@ points, (`0x02AEEDA4` + 1 + `0x02AEEDAC`) × (`0x02AEEDA8` + 1).
 `0x0024C060` rebuilds the effect matrices before the states that update an instance and before the group draw
 ([effect element runtime](effect-element-runtime.md)).
 
-`0x0024C060` sets `0x02AEE9A0` to the identity (`0x00250010`) at its start, whatever the byte at `[0x02F97348]`
-is, and once more after `0x0039D480` (`0x0024C0B6`, `0x0024C108`, `0x0024C2C9`). The camera
+`0x0024C060` sets `0x02AEE9A0` to the identity¹ at its start, whatever the byte at `[0x02F97348]`
+is, and once more after `0x0039D480`². The camera
 matrix of the product stored at `0x02AEEC30` is a local one: the rows `0x02AEEAA0`, `0x02AEEAB0` and `0x02AEEAC0`
-with (0, 0, 0, 1) as row 3 (`0x0024C302`-`0x0024C345`).
+with (0, 0, 0, 1) as row 3³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00250010` |
+| ² | `0x0024C0B6`, `0x0024C108`, `0x0024C2C9` |
+| ³ | `0x0024C302`-`0x0024C345` |
+
+</details>
 
 Rows that no other row of the page covers:
 
@@ -1815,18 +3358,46 @@ Rows that no other row of the page covers:
 
 ### The view
 
-The view `0x02AEE9E0` holds four rows. `0x0024C060` copies them from the camera view `0x02AEDE70`-`0x02AEDEAF`
-(`0x0024C10D`-`0x0024C13E`), or for a menu effect (instance kind 4, `[0x02F97348]` byte 0 = 4) sets the identity through
-`0x00250010` (`0x0024C0BB`, `0x0024C0C2`). `0x0039D430`, called from `0x003ED8A0` (`0x003ED94F`), copies all four from the matrix it
+The view `0x02AEE9E0` holds four rows. `0x0024C060` copies them from the camera view `0x02AEDE70`-`0x02AEDEAF`¹, or for a menu effect (instance kind 4, `[0x02F97348]` byte 0 = 4) sets the identity through
+`0x00250010`². `0x0039D430`, called from `0x003ED8A0`³, copies all four from the matrix it
 is given. Every access below is 16 bytes.
 
-`0x0024C060` passes the view's address to two functions. `0x00397910` multiplies it, `0x02AEEBF0 = 0x02AEEA20 × 0x02AEE9E0`
-(`0x00397910(a, b, out)` forms `b × a`), by the effect matrix `0x02AEEA20` into `0x02AEEBF0` (`0x0024C2CE`-`0x0024C2E3`).
+<details>
+<summary>Where in the code</summary>
 
-For a menu effect `0x0039D480` copies the view to the camera rotation `0x02AEEAA0`-`0x02AEEADF`
-(`0x0024C226`, `0x0024C2B1`-`0x0024C2BD`). Its rows are `0x02AEEAA0`, `0x02AEEAB0`, `0x02AEEAC0` and `0x02AEEAD0` (`0x0039D4AB`, `0x0039D4BB`,
-`0x0039D4C6`, `0x0039D4D1`); `0x0024C060` reads the first three for the camera-facing matrix (`0x0024C302`, `0x0024C310`, `0x0024C328`),
+| | Code |
+|---|---|
+| ¹ | `0x0024C10D`-`0x0024C13E` |
+| ² | `0x0024C0BB`, `0x0024C0C2` |
+| ³ | `0x003ED94F` |
+
+</details>
+
+`0x0024C060` passes the view's address to two functions. `0x00397910` multiplies it, `0x02AEEBF0 = 0x02AEEA20 × 0x02AEE9E0`
+(`0x00397910(a, b, out)` forms `b × a`), by the effect matrix `0x02AEEA20` into `0x02AEEBF0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024C2CE`-`0x0024C2E3` |
+
+</details>
+
+For a menu effect `0x0039D480` copies the view to the camera rotation `0x02AEEAA0`-`0x02AEEADF`¹. Its rows are `0x02AEEAA0`, `0x02AEEAB0`, `0x02AEEAC0` and `0x02AEEAD0`²; `0x0024C060` reads the first three for the camera-facing matrix³,
 and `0x00460BC0` reads `0x02AEEAB0` at `0x00460DAA`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024C226`, `0x0024C2B1`-`0x0024C2BD` |
+| ² | `0x0039D4AB`, `0x0039D4BB`, `0x0039D4C6`, `0x0039D4D1` |
+| ³ | `0x0024C302`, `0x0024C310`, `0x0024C328` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -1858,20 +3429,53 @@ The four built-in type-`0x42` definitions and the projection copy the effect cam
 | `0x02AEE5D0` | `vec` | 0 (zero-filled tail of `.data`) | row 3 of that copy | `0x0039AED0` (`0x0039AF11`); `0x0039AF20` (`0x0039AF59`) | `0x0039AFA0` (`0x0039B08A`, copied to `0x022D9330` at `0x0039B09A`) |
 
 `0x003D7FF0`, the `0x42` pool's slot taker, first refuses a request whose byte `+0x0E` is 2 while `0x02B4D7A2` is not 0: it
-returns 0 (`0x003D7FF6`-`0x003D8008`). Otherwise it copies the request's 32 bytes to slot `+0x30`. When the slot byte `+0x3E` is 2 it
+returns 0¹. Otherwise it copies the request's 32 bytes to slot `+0x30`. When the slot byte `+0x3E` is 2 it
 holds slot `+0x40` to at most 3, takes that entry of `0x02B4E3D0`, adds `0x80` (the definition's track group) and
-stores its image offset (`0x0020E620`) back at `+0x40` (`0x003D8086`-`0x003D80B4`). Entry 0, `0x02B4E3D0`, is `0x01EFE3A0`, the body
+stores its image offset² back at `+0x40`³. Entry 0, `0x02B4E3D0`, is `0x01EFE3A0`, the body
 of the record at `0x01EFE390`, and entry 3, `0x02B4E3E8`, the body `0x01EFE820` of the record at `0x01EFE810`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003D7FF6`-`0x003D8008` |
+| ² | `0x0020E620` |
+| ³ | `0x003D8086`-`0x003D80B4` |
+
+</details>
+
 Before the copy, `0x003D7FF0` takes the first slot whose handle `+0x04` is 0 and returns 0 when all 32
-are taken (`0x003D8015`-`0x003D8045`). It stamps the slot's `+0x50` with `0x00181DD0()`, raises the byte count
-`0x02B4D7A0` and stores the handle (`0x003D8046`-`0x003D8074`); after the copy it clears `+0x3F` (`0x003D808A`).
+are taken¹. It stamps the slot's `+0x50` with `0x00181DD0()`, raises the byte count
+`0x02B4D7A0` and stores the handle²; after the copy it clears `+0x3F`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003D8015`-`0x003D8045` |
+| ² | `0x003D8046`-`0x003D8074` |
+| ³ | `0x003D808A` |
+
+</details>
 
 After the `+0x40` step it clears `+0x00` and `+0x20`, copies the dwords `+0x98` and `+0x9C` of the block
-`+0x40` names (`0x0020E600`) to `+0x28` and `+0x2C`, and sets `+0x44` to that block's `+0x90` times `+0x38`,
-`+0x48` to 1.2 and `+0x4C` to 1 / `+0x44` (`0x003D80B7`-`0x003D811C`). It appends the slot at the tail of the
+`+0x40` names¹ to `+0x28` and `+0x2C`, and sets `+0x44` to that block's `+0x90` times `+0x38`,
+`+0x48` to 1.2 and `+0x4C` to 1 / `+0x44`². It appends the slot at the tail of the
 list `0x02B4D7A8` / `0x02B4D7B0`, with the links `+0x08` and `+0x0C` encoded by `0x0020E620`, and returns the
-handle (`0x003D80EF`-`0x003D8174`).
+handle³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020E600` |
+| ² | `0x003D80B7`-`0x003D811C` |
+| ³ | `0x003D80EF`-`0x003D8174` |
+
+</details>
 
 ### Templates the type arms patch
 
@@ -1900,52 +3504,127 @@ template `+0x18` and its length to a registrar. The rows of
 
 The arms of `0x8C`, `0x92`, `0x94` and `0x95` call `0x003A2F70` when the blend mode of the draw-source block at
 definition `+0x1A0` (`0x8C`, `0x94`, `0x95`) or `+0x1B0` (`0x92`) is 0, and `0x003A33B0` with a draw-list key
-otherwise (`0x00455C04`, `0x0045A964`, `0x0045B15F`, `0x0045B542`).
+otherwise¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00455C04`, `0x0045A964`, `0x0045B15F`, `0x0045B542` |
+
+</details>
 
 Some arms submit their chunk twice. They read the two-bit field `(byte >> 1) & 3` of a definition byte: `+0x294`
-for `0x8C` and `+0x2A4` for `0x92`, the bytes that chose the arm (`0x004557B2`, `0x0045A495`), and `+0x384` for the three
-arms of `0x90` (`0x004583D5`, `0x00458B91`, `0x004592BC`). With 3 they store 2 in a pass word before the first submission
+for `0x8C` and `+0x2A4` for `0x92`, the bytes that chose the arm¹, and `+0x384` for the three
+arms of `0x90`². With 3 they store 2 in a pass word before the first submission
 and 0 before the second. With 2 they submit once with 2, and with 1 or 0 once with 0. The pass words are `0x02AE0280`
 (`0x8C`), `0x02AE09D0` and `0x02AE1940` (`0x90`), `0x02AE2F90` (`0x92`), and bit `0x2` of `0x02AE1BF8` (`0x90`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004557B2`, `0x0045A495` |
+| ² | `0x004583D5`, `0x00458B91`, `0x004592BC` |
+
+</details>
 
 No other function writes these words. The only boot writers are each template's builder and its `memset`.
 
 ### Type 0x97's packet
 
 9 rows. `0x97`'s draw `0x0045BAD0` hands the element to `0x0045BAE0`, which fills the `.data` packet `0x02AE3460`
-(`0x1C0` bytes) that no builder touches. It copies the packet in one of two ways (`0x0045BE4F`):
+(`0x1C0` bytes) that no builder touches. It copies the packet in one of two ways¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0045BE4F` |
+
+</details>
 
 - when the blend mode of the draw-source block at definition `+0x1A0` is 0, with `0x003A2E30`, which copies it with
   `memcpy` at `0x003A2E71`;
-- otherwise with `0x003A31A0`, which moves the first `0x20` bytes itself (`0x003A32D2`-`0x003A32DE`) and copies the rest
+- otherwise with `0x003A31A0`, which moves the first `0x20` bytes itself¹ and copies the rest
   with `memcpy` at `0x003A3305`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A32D2`-`0x003A32DE` |
+
+</details>
+
 Packet `+0x60`, `0x02AE34C0`, holds a six-light block of [character lighting](character-lighting-and-shadows.md).
-`0x003AC110` builds it (`0x0045BCCD`): it clears `0xE0` bytes with `memset` (`0x003AC190`), stores the light directions by
-component at `+0x00`-`+0x5F` and each light's colour at `+0x60` + 16 × light (`0x003AC5AC`).
+`0x003AC110` builds it¹: it clears `0xE0` bytes with `memset`², stores the light directions by
+component at `+0x00`-`+0x5F` and each light's colour at `+0x60` + 16 × light³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0045BCCD` |
+| ² | `0x003AC190` |
+| ³ | `0x003AC5AC` |
+
+</details>
 
 The draw then takes the two direction blocks, at `+0x00` and `+0x30`, into the element's space. `0x00202D50` is a rigid
-inverse: it writes the transposed rotation and minus the turned translation, with w 1.0 (`0x00217610`-`0x00217780`).
+inverse: it writes the transposed rotation and minus the turned translation, with w 1.0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00217610`-`0x00217780` |
+
+</details>
 
 The draw inverts each block, multiplies it by the inverse of the element's matrix, `inv(block) × inv(E)`
-(`0x00397910` at `0x0045BD63`, `0x0045BD74`), and writes the inverse back (`0x0045BD91`, `0x0045BDA1`), so
-`block = inv(inv(block) × inv(E))`, with `inv` the rigid inverse `0x00202D50`, `E` the element's matrix
-(`0x0045BCFF`-`0x0045BD08`) and `×` the product `b × a` that `0x00397910(a, b, out)` forms. The write-back of the `+0x30`
-block also covers block `+0x60`, the colour of light 0, so the draw saves those 16 bytes first (`0x0045BD79`) and
-restores them after (`0x0045BDB7`).
+(`0x00397910` at `0x0045BD63`, `0x0045BD74`), and writes the inverse back¹, so
+`block = inv(inv(block) × inv(E))`, with `inv` the rigid inverse `0x00202D50`, `E` the element's matrix² and `×` the product `b × a` that `0x00397910(a, b, out)` forms. The write-back of the `+0x30`
+block also covers block `+0x60`, the colour of light 0, so the draw saves those 16 bytes first³ and
+restores them after⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0045BD91`, `0x0045BDA1` |
+| ² | `0x0045BCFF`-`0x0045BD08` |
+| ³ | `0x0045BD79` |
+| ⁴ | `0x0045BDB7` |
+
+</details>
 
 ### Type 0x71's sub-range templates
 
-41 rows. `0x71`'s draw `0x0052A360` calls its builder `0x005480E0` with the request at element `+0x280`
-(`0x0052A389`, `0x0052A83A`) and a block of its own as fifth argument (`0x0052A830`). Before the call the draw fills:
+41 rows. `0x71`'s draw `0x0052A360` calls its builder `0x005480E0` with the request at element `+0x280`¹ and a block of its own as fifth argument². Before the call the draw fills:
 
-1. request `+0xB0` to `+0x130`: the nine colours, the colour tracks at definition `+0x180` + `0x50` × colour at the
-   element's frame, each as four words (`0x00462260`, `0x0052A4BB`-`0x0052A567`);
-2. per layer L 0 to 2, from the draw-source block at definition `+0x570` + `0xF0` × L: the enable byte `+0x78` + L,
-   the kind byte `+0x60` + L, the layer colour at `+0x80` + `0x10` × L, and in the block its two texture register
-   words, blend word and blend flags (`0x0052A5B2`-`0x0052A6A5`);
-3. block `+0x00`-`+0x7F`: the effect-to-camera matrix `0x02AEEBF0` and the projection `0x02AEE960`, with the depth offset
-   added to the projection's z (`0x0052A777`-`0x0052A7F0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052A389`, `0x0052A83A` |
+| ² | `0x0052A830` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | request `+0xB0` to `+0x130`: the nine colours, the colour tracks at definition `+0x180` + `0x50` × colour at the element's frame, each as four words; | `0x00462260`, `0x0052A4BB`-`0x0052A567` |
+| 2 | per layer L 0 to 2, from the draw-source block at definition `+0x570` + `0xF0` × L: the enable byte `+0x78` + L, the kind byte `+0x60` + L, the layer colour at `+0x80` + `0x10` × L, and in the block its two texture register words, blend word and blend flags; | `0x0052A5B2`-`0x0052A6A5` |
+| 3 | block `+0x00`-`+0x7F`: the effect-to-camera matrix `0x02AEEBF0` and the projection `0x02AEE960`, with the depth offset added to the projection's z. | `0x0052A777`-`0x0052A7F0` |
 
 The builder stores into three templates and copies each into the packet:
 
@@ -1956,27 +3635,83 @@ The builder stores into three templates and copies each into the packet:
 | `0x02AE8830` (`0x004D3FE0`) | one layer's values, for each enabled layer (`0x005487F5`-`0x0054888C`) | `0x00548865`-`0x005488EE` |
 
 The request's floats come from `0x0052A8B0`, which the update `0x0052A0F0` and the birth `0x0052A130` call: it samples the
-definition's float tracks at the element's frame into them (`0x0052AB62`-`0x0052AD23`). The birth copies the rest from
-the definition (`0x0052A159`-`0x0052A2E7`).
+definition's float tracks at the element's frame into them¹. The birth copies the rest from
+the definition².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052AB62`-`0x0052AD23` |
+| ² | `0x0052A159`-`0x0052A2E7` |
+
+</details>
 
 `0x0052A8B0` first samples three vector tracks at the frame `+0x44`: definition `+0xC0` into `+0x110`, plus
 element `+0xE0` with bit `0x8` of definition byte `+0x49`; `+0x100` into `+0x120`, times element `+0x100`
-with bit `0x4`; and `+0x80` into `+0x230`, each through `0x00430B90(&local, track, frame)` (`0x0052A8C8`-`0x0052AA5C`).
+with bit `0x4`; and `+0x80` into `+0x230`, each through `0x00430B90(&local, track, frame)`¹.
 
-It builds the matrix `+0x240` with `0x00398480(+0x110, +0x240, definition byte +0x48)` (`0x0052AA61`-`0x0052AA66`), which
-writes nothing for an order above 5 (`0x00398484`), and adds the position `+0x60` to `+0x230` (`0x0052AA6B`-`0x0052AAE2`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052A8C8`-`0x0052AA5C` |
+
+</details>
+
+It builds the matrix `+0x240` with `0x00398480(+0x110, +0x240, definition byte +0x48)`¹, which
+writes nothing for an order above 5², and adds the position `+0x60` to `+0x230`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052AA61`-`0x0052AA66` |
+| ² | `0x00398484` |
+| ³ | `0x0052AA6B`-`0x0052AAE2` |
+
+</details>
 
 With a parent it runs `0x0039AF70(parent)` and `0x00398F90` on
-`+0x230` in place, then `0x00397ED0(parent + 0x40, +0x240)` when definition byte `+0x4A` has no bit of `0x1C`
-(`0x0052AAE6`-`0x0052AB10`).
+`+0x230` in place, then `0x00397ED0(parent + 0x40, +0x240)` when definition byte `+0x4A` has no bit of `0x1C`¹.
 
-Before the float tracks `0x0052A8B0` moves `+0x70` to `+0x80` and the new position `+0x230` to `+0x70`
-(`0x0052AB15`-`0x0052AB2F`), runs `0x003970F0` on the matrix `+0x240` with element `+0x120` when definition byte
-`+0x4B` has bit `0x2`, and `0x0039ADE0` otherwise (`0x0052AB34`-`0x0052AB41`), and stores the position at `+0x270`
-with 1.0 at `+0x27C` (`0x0052AB46`-`0x0052AB58`).
+<details>
+<summary>Where in the code</summary>
 
-The 21 float tracks of `0x0052A8B0`, each sampled at the frame `+0x44` through `0x004309C0(track, frame)`
-(`0x0052AB62`-`0x0052AD23`); `m` is the track `+0x140`, which is kept as a factor and stored nowhere:
+| | Code |
+|---|---|
+| ¹ | `0x0052AAE6`-`0x0052AB10` |
+
+</details>
+
+Before the float tracks `0x0052A8B0` moves `+0x70` to `+0x80` and the new position `+0x230` to `+0x70`¹, runs `0x003970F0` on the matrix `+0x240` with element `+0x120` when definition byte
+`+0x4B` has bit `0x2`, and `0x0039ADE0` otherwise², and stores the position at `+0x270`
+with 1.0 at `+0x27C`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052AB15`-`0x0052AB2F` |
+| ² | `0x0052AB34`-`0x0052AB41` |
+| ³ | `0x0052AB46`-`0x0052AB58` |
+
+</details>
+
+The 21 float tracks of `0x0052A8B0`, each sampled at the frame `+0x44` through `0x004309C0(track, frame)`¹; `m` is the track `+0x140`, which is kept as a factor and stored nowhere:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052AB62`-`0x0052AD23` |
+
+</details>
 
 | Request fields offset | Definition tracks | Stored at |
 |---|---|---|
@@ -1990,8 +3725,18 @@ The 21 float tracks of `0x0052A8B0`, each sampled at the frame `+0x44` through `
 
 After the float tracks it calls the step
 `0x00548A00(request, matrix)` once and, when the element's `+0x434` is not 0, clears `+0x434` and calls it 32
-more times (`0x0052AD29`-`0x0052AD5F`). It ends in the fork: `0x005002E0(definition, +0x230)`, on 0 the release
-`0x002F31C0`, otherwise `0x003A8950(2, element)` (`0x0052AD61`-`0x0052AD86`).
+more times¹. It ends in the fork: `0x005002E0(definition, +0x230)`, on 0 the release
+`0x002F31C0`, otherwise `0x003A8950(2, element)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052AD29`-`0x0052AD5F` |
+| ² | `0x0052AD61`-`0x0052AD86` |
+
+</details>
 
 ### The position helpers' working values
 
@@ -2008,38 +3753,82 @@ The update and the birth of six types each call a helper that keeps its working 
 
 Each helper does the same steps (`0x004630D0` for `0xA2`):
 
-1. It keeps the element and its definition, element `+0x20` (`0x004630EE`, `0x004630F9`).
-2. It adds the element's position `+0x60` to its position word, turns the sum by the parent's matrix when element
-   `+0x10` is set (`0x0039AF70`, then `0x00398F90` in place), and stores it as the world position `+0x70`
-   (`0x004630DD`-`0x004631A5`).
-3. When the flag byte is set it stores `1 − factor × min(d, limit)` in the result field, with `d` the distance from
-   the position word to the camera position `0x02AEDF20` (`0x004631AA`-`0x00463336`). Otherwise it stores 1.0
-   (`0x00463344`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It keeps the element and its definition, element `+0x20`. | `0x004630EE`, `0x004630F9` |
+| 2 | It adds the element's position `+0x60` to its position word, turns the sum by the parent's matrix when element `+0x10` is set (`0x0039AF70`, then `0x00398F90` in place), and stores it as the world position `+0x70`. | `0x004630DD`-`0x004631A5` |
+| 3 | When the flag byte is set it stores `1 − factor × min(d, limit)` in the result field, with `d` the distance from the position word to the camera position `0x02AEDF20`. Otherwise it stores 1.0. | `0x004631AA`-`0x00463336`<br>`0x00463344` |
 
 Before the distance each of the six functions calls `0x0036DD80`, which stores (0, 0, 0, 1.0) at `0x01EF93F0`; it
 then takes the 1.0 at `0x01EF93FC` as the weight of each squared difference and as the 1 of the result,
-and the 0.0 at `0x01EF93F0` as a term added to both (`0x00527F4A`-`0x00527FEB`). The square root is `0x00861F14`,
+and the 0.0 at `0x01EF93F0` as a term added to both¹. The square root is `0x00861F14`,
 the import `sqrtf`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00527F4A`-`0x00527FEB` |
+
+</details>
 
 The sum in step 2 starts from the position word's value after the previous call of the same helper, for any
 element, not from 0. The common step `0x002F3890` of [effect element runtime](effect-element-runtime.md) takes `+0x60`
-alone (`0x002F38BD`, `0x002F38E2`).
+alone¹.
 
-`0x005259E0` (`0xA6`) measures `d` from a second sum: it adds `+0x60` to the position word again and turns it again
-(`0x00525AC7`-`0x00525B69`), without storing that sum in the element. `0x0052CF60` (`0xAB`) afterwards replaces `+0x70`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F38BD`, `0x002F38E2` |
+
+</details>
+
+`0x005259E0` (`0xA6`) measures `d` from a second sum: it adds `+0x60` to the position word again and turns it again¹, without storing that sum in the element. `0x0052CF60` (`0xAB`) afterwards replaces `+0x70`
 with element `+0x230`: the vector track at definition `+0xB90` at the element's frame plus `+0x60`, turned by the
-parent's matrix (`0x0052D1F1`-`0x0052D31F`). It first moves the old `+0x70` into `+0x80` (`0x0052D314`).
+parent's matrix². It first moves the old `+0x70` into `+0x80`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00525AC7`-`0x00525B69` |
+| ² | `0x0052D1F1`-`0x0052D31F` |
+| ³ | `0x0052D314` |
+
+</details>
 
 On the way it builds the element's matrix `+0x240`: the rotation `0x00398480` makes from the angles at
 `+0x110` in the axis order of definition byte `+0x48` (`0x0052D206`-`0x0052D235`; `0x00398480` writes nothing for
 an order above 5, `0x00398484`). When there is a parent and definition byte `+0x4A` has no bit of `0x1C`,
 `0x00397ED0(parent's matrix +0x40, +0x240)` replaces `+0x240` by `+0x240` × the parent's matrix, the
-element's matrix on the left
-(`0x0052D2D3`-`0x0052D2F6`).
+element's matrix on the left¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052D2D3`-`0x0052D2F6` |
+
+</details>
 
 It then runs `0x003970F0` on that matrix with element `+0x120` when
-definition byte `+0x4B` has bit `0x2`, and `0x0039ADE0` otherwise (`0x0052D306`-`0x0052D338`), and stores the new
-position at `+0x270` with 1.0 at `+0x27C` (`0x0052D33D`-`0x0052D34C`).
+definition byte `+0x4B` has bit `0x2`, and `0x0039ADE0` otherwise¹, and stores the new
+position at `+0x270` with 1.0 at `+0x27C`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0052D306`-`0x0052D338` |
+| ² | `0x0052D33D`-`0x0052D34C` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -2074,6 +3863,8 @@ position at `+0x270` with 1.0 at `+0x27C` (`0x0052D33D`-`0x0052D34C`).
 | `0x02CA8510` | `vec` | 0 (zero-filled tail of `.data`) | the limit, definition `+0xBE4`, then the result vector; x goes to element `+0x2A0` | `0x0052CF60` (`0x0052D067`, `0x0052D077`, `0x0052D1D6`) | `0x0052CF60` (`0x0052D07F`) |
 | `0x02CA8514` | `f32` | 0 (zero-filled tail of `.data`) | the factor, definition `+0xBE8`; then `dy²` | `0x0052CF60` (`0x0052D077`, `0x0052D1D6`) | `0x0052CF60` (`0x0052D07F`) |
 
+</details>
+
 ## Modding notes
 
 - A definition's type byte decides everything; a type without an arm in a table gets no behaviour
@@ -2102,31 +3893,37 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 11 calls with 5 other topics</summary>
 
-**Sound and music**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00181DD0` | is called by | `0x00332C40`, `0x003B99D0`, `0x003D7CE0`, `0x003D7DC0`, `0x003D7E90` |
-| `0x002628B0` | calls | `0x00360B50`, `0x00360DD0`, `0x003636A0` |
-
 **Sound and music** (explained on [animation sounds](../Sound-And-Music/animation-sounds.md), [effect anchors and targets](effect-anchors-and-targets.md), [sound banks](../Sound-And-Music/sound-banks.md), [effect element runtime](effect-element-runtime.md), [music](../Sound-And-Music/music.md), [game over](../World-Areas-And-Travel/game-over.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00181DD0`](effect-drawing.md) (on effect drawing) | is called by | [`0x00332C40`](../Sound-And-Music/spatial-sound.md) (on spatial sound)<br>[`0x003B99D0`](effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x003D7CE0`](effect-drawing.md) (on effect drawing)<br>[`0x003D7DC0`](effect-drawing.md) (on effect drawing)<br>[`0x003D7E90`](effect-drawing.md) (on effect drawing) |
+| [`0x002628B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | calls | [`0x00360B50`](../Sound-And-Music/music.md) (on music)<br>[`0x00360DD0`](../Characters-And-Objects/actor-lifecycle.md) (on actor lifecycle)<br>[`0x003636A0`](../Sound-And-Music/map-sounds.md) (on map sounds) |
 
 **Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002628B0` | calls | `0x002EF2B0` |
+| [`0x002628B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) |
 
 **World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0036A190` | is called by | `0x00378540` |
+| [`0x0036A190`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00378540`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
 
 **Gameplay** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00203170` | is called by | `0x00339630` |
+| [`0x00203170`](legacy-ps2-gs-layer.md) (on legacy ps2 gs layer) | is called by | [`0x00339630`](../Battle-Actions/action-phases.md) (on action phases) |
 
 </details>

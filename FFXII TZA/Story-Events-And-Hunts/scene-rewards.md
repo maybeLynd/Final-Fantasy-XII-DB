@@ -23,8 +23,17 @@ reward package (`0x9xxx`) gives its gil and items together.
 | `subgill` | `0x2E8` | amount | takes gil (`0x00346E30`) | 63 |
 
 Every item verb goes through `0x0032A810` or `0x0032A830`, which call the inventory change `0x00300B80` or `0x00300BA0` and
-floor the count they return at 0 (`0x0032A81C`-`0x0032A820`, `0x0032A83C`-`0x0032A840`); the gil verbs go through
+floor the count they return at 0¹; the gil verbs go through
 `0x0032A7F0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032A81C`-`0x0032A820`, `0x0032A83C`-`0x0032A840` |
+
+</details>
 
 ### Where the item comes from
 

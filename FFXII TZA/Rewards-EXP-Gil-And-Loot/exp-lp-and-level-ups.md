@@ -35,7 +35,16 @@ enemy (stats byte `+0x05` = 1) whose byte `+0xE9A` has bit `0x8` clear, and when
 holds: `+0xE9A` has bits `0x1` and `0x4` set, or the enemy's status words `+0x64 | +0x3C` have bit `0x2` set
 while `+0xE9A` bit `0x2` is set, or the killer is a party member (killer stats byte `+0x05` = 0).
 
-`0x00312280` returns at once for a null enemy, before any call (`0x00312280`-`0x00312283`).
+`0x00312280` returns at once for a null enemy, before any call¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312280`-`0x00312283` |
+
+</details>
 
 ### Recipients
 
@@ -49,10 +58,21 @@ reports the town flag. The list is built at `0x022C1740`. For each kept record i
 
 Both formulas use `d = stats.b[+0x1C2] - stats.b[+0x88]` of the defeated
 enemy: its level minus the stats byte `+0x88` that `0x0030C470` writes from its third argument for an
-enemy record (`0x0030C4B1`). The enemy carries two reward rows, installed by `0x0023A570`:
-`[+0xE70]` is the base row, row `+0x22` of the table in registry slot `0x02EBF148` (`0x0023A9A5`), and
-`[+0xE78]` is the per-level row, row `+0x24` of the table in slot `0x02EBF140` (`0x0023A9F4`), the row
+enemy record¹. The enemy carries two reward rows, installed by `0x0023A570`:
+`[+0xE70]` is the base row, row `+0x22` of the table in registry slot `0x02EBF148`², and
+`[+0xE78]` is the per-level row, row `+0x24` of the table in slot `0x02EBF140`³, the row
 indices coming from the enemy's definition row.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030C4B1` |
+| ² | `0x0023A9A5` |
+| ³ | `0x0023A9F4` |
+
+</details>
 
 ### EXP
 
@@ -78,29 +98,75 @@ A recipient gets 0 unless all of these hold:
 - its type id `+0x04` is outside `0x1B`-`0x27`;
 - it is not out of play.
 
-The enemy must be a non-null unit whose stats record `+0x698` is non-null and of kind 1, or the result is 0
-(`0x002F8C11`-`0x002F8C2E`); `0x002F90C0` makes the same test (`0x002F9104`-`0x002F9119`). With no recipient (a null first
-argument) the four tests above are skipped (`0x002F8BCF`).
+The enemy must be a non-null unit whose stats record `+0x698` is non-null and of kind 1, or the result is 0¹; `0x002F90C0` makes the same test². With no recipient (a null first
+argument) the four tests above are skipped³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F8C11`-`0x002F8C2E` |
+| ² | `0x002F9104`-`0x002F9119` |
+| ³ | `0x002F8BCF` |
+
+</details>
 
 The type id is the record's `chr_data` row: 0-6 the main characters, 7-25 guests and story
 variants, `0x1A` the Chocobo and `0x1B`-`0x27` the thirteen Espers (see the stat growth page).
 
-Party control mode 1 is bit `0x1` of `[0x02EBF190] + 0x5B04` with the bits under mask `0xE` clear outside town areas
-(`0x0030D9A0`). The script verb `btlAtelSetSummonMode` sets and clears that bit through `0x00313550`. In
+Party control mode 1 is bit `0x1` of `[0x02EBF190] + 0x5B04` with the bits under mask `0xE` clear outside town areas¹. The script verb `btlAtelSetSummonMode` sets and clears that bit through `0x00313550`. In
 that mode the receiving unit is found in two steps.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030D9A0` |
+
+</details>
+
 First `0x00313800()` finds the position, 0 to 8, of byte `[0x02EBF190] + 0x5AD5` in the slot table at
-`+0x5A48` through `0x00320890`, or -1 when the byte is `0xFF` or no slot holds it (`0x002F8C3D`).
+`+0x5A48` through `0x00320890`, or -1 when the byte is `0xFF` or no slot holds it¹.
 `0x00320AB0(position, 1)` then reads the member byte of the table at `+0x5A5A` for that position and answers
 the record `[0x02EBF190] + 8 + byte × 0x1C8`, or null for a position `0x00322C50(0x17, position, 0)` refuses and
-for a byte above `0x27` (`0x002F8C47`-`0x002F8C4E`).
+for a byte above `0x27`².
 
-The recipient must be that record (`0x002F8C53`-`0x002F8C56`) and must still pass the recipient gate above, or
-nobody receives EXP. A call with no record skips the comparison and returns the whole amount
-(`0x002F8C42`-`0x002F8C45`, `0x002F8D21`-`0x002F8D24`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F8C3D` |
+| ² | `0x002F8C47`-`0x002F8C4E` |
+
+</details>
+
+The recipient must be that record¹ and must still pass the recipient gate above, or
+nobody receives EXP. A call with no record skips the comparison and returns the whole amount².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F8C53`-`0x002F8C56` |
+| ² | `0x002F8C42`-`0x002F8C45`, `0x002F8D21`-`0x002F8D24` |
+
+</details>
 
 `0x00320890(id)` answers the index, 0 to 8, of the first of the nine table words whose
-low byte equals the id, and -1 for an id of `0xFF` or no match (`0x00320890`-`0x003208BE`).
+low byte equals the id, and -1 for an id of `0xFF` or no match¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320890`-`0x003208BE` |
+
+</details>
 
 ### LP
 
@@ -136,56 +202,125 @@ whose augment byte `+0x1A` carries the augment:
 
 `0x00312280` then applies both amounts to each recipient:
 
-1. When the recipient's stats byte `+0x69` or `+0x79` has bit `0x10` set, `level × LP × 5` is added to
-   the kill's gil and the recipient's LP becomes 0 (see the gil page).
-2. Unless bit `0x4000` of `[0x02EBF190] + 4` is set (`0x00236780`), EXP is added to `+0x18C`, capped at
-   99,999,999. Bit `0x4000` is New Game- (see below).
-3. The new level: starting from `+0x1C2`, the level rises while `0x002F8F20(level)` is positive and not
-   above the EXP total.
-4. LP is added to `+0x190`, capped at 99,999, and metered as counter kind 11 (`0x00316A50(0xB, LP)`).
-5. `0x0030C650(record, newLevel, 0)` applies the level change.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When the recipient's stats byte `+0x69` or `+0x79` has bit `0x10` set, `level × LP × 5` is added to the kill's gil and the recipient's LP becomes 0 (see the gil page). |   |
+| 2 | Unless bit `0x4000` of `[0x02EBF190] + 4` is set, EXP is added to `+0x18C`, capped at 99,999,999. Bit `0x4000` is New Game- (see below). | `0x00236780` |
+| 3 | The new level: starting from `+0x1C2`, the level rises while `0x002F8F20(level)` is positive and not above the EXP total. |   |
+| 4 | LP is added to `+0x190`, capped at 99,999, and metered as counter kind 11 (`0x00316A50(0xB, LP)`). |   |
+| 5 | `0x0030C650(record, newLevel, 0)` applies the level change. |   |
 
 How bit `0x4000` gets set ([New Game+ and New Game-](strong-and-weak-mode.md)):
 
 - The script verb `btlAtelResetNgMinus` (`0x308B`, `0x0050F490` jumping to `0x00238A50`) and the title's
-  "Begin New Game-" row (`0x00240182`) set bit `0x4` of `0x02089344`.
-- `0x00239960` moves it into bit `0x4000` when it applies a scenario preset (`0x00239A6C`-`0x00239A7E`); a new game
-  applies preset 0 at its first area start (`0x003942F9`).
+  "Begin New Game-" row¹ set bit `0x4` of `0x02089344`.
+- `0x00239960` moves it into bit `0x4000` when it applies a scenario preset²; a new game
+  applies preset 0 at its first area start³.
 - The preset step keeps bits `0x1000`, `0x2000` and `0x4000` across the battle-state reset
-  (`0x002399D7`-`0x00239A45`).
+ ⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00240182` |
+| ² | `0x00239A6C`-`0x00239A7E` |
+| ³ | `0x003942F9` |
+| ⁴ | `0x002399D7`-`0x00239A45` |
+
+</details>
 
 After the loop, `0x0028FB80(enemy id, exp, lp)` posts the amounts, clamped to 999,999 and 999, to the HUD's reward display
 (`0x00289D00` on `[0x0209BE80] + 0x5380`, once for EXP and once for LP). It uses EXP and LP computed with no
 recipient (`0x002F8BB0(0, enemy)`, `0x002F90C0(0, enemy)`): divided as above but never doubled, and EXP
-is passed as 0 while bit `0x4000` of `[0x02EBF190] + 4` (New Game-) is set (`0x00236780`,
-`0x00312505`-`0x00312513`), so no EXP number is posted then: `0x00289BD0` posts nothing for 0
-(`0x00289BD0`-`0x00289BD3`).
+is passed as 0 while bit `0x4000` of `[0x02EBF190] + 4` (New Game-) is set¹, so no EXP number is posted then: `0x00289BD0` posts nothing for 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236780`, `0x00312505`-`0x00312513` |
+| ² | `0x00289BD0`-`0x00289BD3` |
+
+</details>
 
 The clamps are made by the defeat routine before the call, `exp < 0 ? 0 : min(exp, 999999)` for the EXP and
-`lp < 0 ? 0 : min(lp, 999)` for the LP (`0x003124B4`, `0x003124DE`-`0x00312502`), a negative amount becoming 0;
+`lp < 0 ? 0 : min(lp, 999)` for the LP¹, a negative amount becoming 0;
 `0x0028FB80` hands on the values it is given, and `0x00289BD0` posts nothing for a 0. With no HUD at `[0x0209BE80]`
-`0x0028FB80` posts nothing (`0x0028FB8F`-`0x0028FB99`). It
-gives `0x00289D00` a last argument of 0 for the EXP and 1 for the LP (`0x0028FBA7`, `0x0028FBB6`).
+`0x0028FB80` posts nothing². It
+gives `0x00289D00` a last argument of 0 for the EXP and 1 for the LP³.
 
-`0x00289D00(part, id, amount, kind)` posts nothing when `0x003588B0(id)` finds no actor
-(`0x00289D28`-`0x00289D30`); otherwise it calls `0x002E9D10(id, buffer)` on a 16-byte stack buffer it does not
-clear and then `0x00289BD0(part, buffer, amount, kind)` (`0x00289D32`-`0x00289D4C`).
-`0x00289BD0` itself posts nothing for an amount of 0 (`0x00289BD0`-`0x00289BD3`) or when none of its twelve
-entries is free (`0x00289C00`-`0x00289C1F`).
+<details>
+<summary>Where in the code</summary>
 
-`0x002E9D10` writes nothing when `0x003588B0` finds no actor (`0x002E9D19`-`0x002E9D21`). It zeroes the buffer's
-first 12 bytes when the actor's pointer `+0xC0` is null or the dword it points to is -1
-(`0x002E9D23`-`0x002E9D32`, `0x002E9D6F`-`0x002E9D74`).
+| | Code |
+|---|---|
+| ¹ | `0x003124B4`, `0x003124DE`-`0x00312502` |
+| ² | `0x0028FB8F`-`0x0028FB99` |
+| ³ | `0x0028FBA7`, `0x0028FBB6` |
+
+</details>
+
+`0x00289D00(part, id, amount, kind)` posts nothing when `0x003588B0(id)` finds no actor¹; otherwise it calls `0x002E9D10(id, buffer)` on a 16-byte stack buffer it does not
+clear and then `0x00289BD0(part, buffer, amount, kind)`².
+`0x00289BD0` itself posts nothing for an amount of 0³ or when none of its twelve
+entries is free⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00289D28`-`0x00289D30` |
+| ² | `0x00289D32`-`0x00289D4C` |
+| ³ | `0x00289BD0`-`0x00289BD3` |
+| ⁴ | `0x00289C00`-`0x00289C1F` |
+
+</details>
+
+`0x002E9D10` writes nothing when `0x003588B0` finds no actor¹. It zeroes the buffer's
+first 12 bytes when the actor's pointer `+0xC0` is null or the dword it points to is -1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E9D19`-`0x002E9D21` |
+| ² | `0x002E9D23`-`0x002E9D32`, `0x002E9D6F`-`0x002E9D74` |
+
+</details>
 
 Otherwise the word that pointer points to is an index, sign-extended:
 the first 12 bytes stay as they were when that word is `0xFFFF`, when the address
-`[0x022C6F28] + index * 0x740` is 0, or when the dword `+0x284` of the record at that address is 0
-(`0x002E9D34`-`0x002E9D58`); else `0x003E5700` copies the 16 bytes at that record's `+0x670` into the buffer
-(`0x002E9D5A`-`0x002E9D5D`, `0x003E5700`-`0x003E570B`). Whenever `0x003588B0` found an actor it then stores 1.0 at
-the buffer's `+0x0C` (`0x002E9D62`, `0x002E9D77`).
+`[0x022C6F28] + index * 0x740` is 0, or when the dword `+0x284` of the record at that address is 0¹; else `0x003E5700` copies the 16 bytes at that record's `+0x670` into the buffer². Whenever `0x003588B0` found an actor it then stores 1.0 at
+the buffer's `+0x0C`³.
 
-With no recipient the EXP is not zeroed by the Stagnation bit either (`0x002F8D24`), and in party control mode 1 it
-is the whole amount, since the `0x00313800` member is not compared (`0x002F8C42`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E9D34`-`0x002E9D58` |
+| ² | `0x002E9D5A`-`0x002E9D5D`, `0x003E5700`-`0x003E570B` |
+| ³ | `0x002E9D62`, `0x002E9D77` |
+
+</details>
+
+With no recipient the EXP is not zeroed by the Stagnation bit either¹, and in party control mode 1 it
+is the whole amount, since the `0x00313800` member is not compared².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F8D24` |
+| ² | `0x002F8C42` |
+
+</details>
 
 ### The level table
 
@@ -205,6 +340,9 @@ level 21 at 61,056, level 31 at 223,374, level 51 at 1,249,590, level 71 at 4,07
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
 | party record `+0x18C` | `u32` | EXP, cap 99,999,999 | `0x00312280` |
@@ -213,6 +351,8 @@ level 21 at 61,056, level 31 at 223,374, level 51 at 1,249,590, level 71 at 4,07
 | enemy `+0xE70` | `void*` | base reward row: `+0x2F` LP, `+0x30` gil, `+0x34` EXP | `0x0023A9A5` |
 | enemy `+0xE78` | `void*` | per-level reward row, same offsets | `0x0023A9F4` |
 | `0x0209A2A9` | `u8` | no-LP flag | `0x0026A580`, `0x00266D77` |
+
+</details>
 
 ## Modding notes
 

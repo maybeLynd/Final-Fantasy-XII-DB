@@ -41,7 +41,16 @@ The rebaser `0x0030B6A0(state)` adds the state block's address to every non-zero
 pointer is the low 32 bits of the sum, `0x0030B6C0`-`0x0030B6ED`) and leaves the pointer of a zero offset as it was,
 writes the cumulative bases (`+0x40` of each record takes the sum of the earlier records' `+0x3C` counts,
 `0x0030B6F1`-`0x0030B6F5`), zeroes `0x200` bytes at state `+0x57C8` (the whole loot sold tally, `0x0030B702`-`0x0030B737`) and
-masks `0x80` bytes at `+0x59C8` with `0xF8` (`0x0030B739`-`0x0030B75B`).
+masks `0x80` bytes at `+0x59C8` with `0xF8`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030B739`-`0x0030B75B` |
+
+</details>
 
 It runs from `0x00233C10` and from `0x00238A80`, which first points `0x02EBF190` at `0x002EF640() + 0x4E68C` in the save
 runtime buffer and is called only by the payload reset `0x002EF650` ([save data
@@ -77,12 +86,30 @@ calls the descriptor's mutate handler with the same five arguments, and returns 
 
 The channel readers share one set of guards: each returns -1 for `0xFFFF` and for nibble `0xF`, and 0 for an index at
 or past the class's count or a class with no query handler (`0x00309F3C`-`0x00309F82` and `0x00309F96`-`0x00309F9D` in
-`0x00309F30`). `0x00309F30(id, channel)` sends channel 4 to `0x002FD970(id, 4)` whatever the class (`0x00309F84`-`0x00309F91`),
+`0x00309F30`). `0x00309F30(id, channel)` sends channel 4 to `0x002FD970(id, 4)` whatever the class¹,
 which for items reads the ever-owned bit of region C, and otherwise tail-jumps to the query handler with the channel
-as the mode (`0x00309F9F`-`0x00309FA6`).
+as the mode².
 
-`0x00309EC0(id)`, `0x0030AE30(id)` and `0x0030ADC0(id)` tail-jump to the query handler with the mode fixed at 0, 1 and 3
-(`0x00309F1A`-`0x00309F20`, `0x0030AE8A`-`0x0030AE93`, `0x0030AE1A`-`0x0030AE23`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00309F84`-`0x00309F91` |
+| ² | `0x00309F9F`-`0x00309FA6` |
+
+</details>
+
+`0x00309EC0(id)`, `0x0030AE30(id)` and `0x0030ADC0(id)` tail-jump to the query handler with the mode fixed at 0, 1 and 3¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00309F1A`-`0x00309F20`, `0x0030AE8A`-`0x0030AE93`, `0x0030AE1A`-`0x0030AE23` |
+
+</details>
 
 When the channel is 1 and the value went from nothing to something it also sets bits of the
 state block's flag dword `[0x02EBF190] + 4`: bit `0x1` for a magick, plus a school bit found in two
@@ -93,14 +120,33 @@ technick; `0x80` for a quickening `0xC000` to `0xC011` and `0x100` for `0xC012` 
 The packed-count classes (items, equipment, loot) keep one 16-bit word per id in region A: mask `0x3FF` the owned
 total (`w & 0x3FF`), capped at 99, mask `0xFC00` the copies being worn. The query handler `0x002FD8D0(id, mode)`
 returns total minus worn for mode 0 (which can go negative), the total for mode 1, the worn count for mode 2 and the
-region-B byte for mode 3; any other mode returns 0 (`0x002FD903`), and so does a null region pointer (`0x002FD90D`,
-`0x002FD91E`, `0x002FD932`, `0x002FD949`), so mode 3 answers 0 for items and equipment, which have no region B.
+region-B byte for mode 3; any other mode returns 0¹, and so does a null region pointer², so mode 3 answers 0 for items and equipment, which have no region B.
 
-Channels 0 and 2 move the worn count (`0x002FD198`, `0x002FD3E5`-`0x002FD3F1`). None of the 39 calls of `0x003008A0`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD903` |
+| ² | `0x002FD90D`, `0x002FD91E`, `0x002FD932`, `0x002FD949` |
+
+</details>
+
+Channels 0 and 2 move the worn count¹. None of the 39 calls of `0x003008A0`
 passes channel 0: 32 pass channel 1, the wrappers `0x0030C410` and `0x0030F9A0` that add or remove one worn copy
-pass channel 2, `0x0030B220`-`0x0030B256` and `0x003108E8` pass channel 3 and `0x003004A2` channel 4. The equip setters
-(`0x00318B40`, `0x0031A410`, `0x0031A510`, `0x0031A630`) call the two wrappers, and so do a member joining and leaving
-the party (`0x00316DF0`, `0x00323540`) ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)).
+pass channel 2, `0x0030B220`-`0x0030B256` and `0x003108E8` pass channel 3 and `0x003004A2` channel 4. The equip setters² call the two wrappers, and so do a member joining and leaving
+the party³ ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD198`, `0x002FD3E5`-`0x002FD3F1` |
+| ² | `0x00318B40`, `0x0031A410`, `0x0031A510`, `0x0031A630` |
+| ³ | `0x00316DF0`, `0x00323540` |
+
+</details>
 
 The mutate handler `0x002FD150` by channel:
 
@@ -116,70 +162,179 @@ The mutate handler `0x002FD150` by channel:
 
 The bitset classes (magicks, technicks, gambit conditions, key items, quickenings) keep one bit per id in region A:
 word `index >> 4`, bit `index & 0xF`. `0x002FD970(id, mode)` returns that bit for modes 0 and 1, 0 for mode 2, and the
-byte-addressed bit of region B or C for modes 3 and 4 (byte `index >> 3`, bit `index & 7`); any other mode returns 0
-(`0x002FDA2C`), and so does a null region pointer (`0x002FD9BB`, `0x002FD9F9`, `0x002FDA36`), which every bitset class has for
+byte-addressed bit of region B or C for modes 3 and 4 (byte `index >> 3`, bit `index & 7`); any other mode returns 0¹, and so does a null region pointer², which every bitset class has for
 B and C, so modes 3 and 4 answer 0 for them.
 
-`0x002FD420` ignores the channel: the new value is `delta` (absolute) or the bit plus `delta`, a negative clears it and
-anything above 1 saturates to 1. It returns 0 without a store when the class's region-A pointer `+0x08` is null
-(`0x002FD461`-`0x002FD46D`); otherwise it stores the word (`0x002FD4E9`), calls the hook `0x00325F40(id, old bit, new bit)` on
-every call (`0x002FD4F6`), calls the obtain line `0x0046A630(id, delta)` only for a relative change with flag bit `0x1`
-(`0x002FD4FB`-`0x002FD509`), and returns the new bit.
+<details>
+<summary>Where in the code</summary>
 
-The obtain line `0x0046A630(id, delta)` posts nothing for id `0xFFFF` or a delta of 0
-(`0x0046A661`-`0x0046A668`); otherwise it hands the battle-log poster `0x0046AB10(0, event, context)` a
+| | Code |
+|---|---|
+| ¹ | `0x002FDA2C` |
+| ² | `0x002FD9BB`, `0x002FD9F9`, `0x002FDA36` |
+
+</details>
+
+`0x002FD420` ignores the channel: the new value is `delta` (absolute) or the bit plus `delta`, a negative clears it and
+anything above 1 saturates to 1. It returns 0 without a store when the class's region-A pointer `+0x08` is null¹; otherwise it stores the word², calls the hook `0x00325F40(id, old bit, new bit)` on
+every call³, calls the obtain line `0x0046A630(id, delta)` only for a relative change with flag bit `0x1`⁴, and returns the new bit.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD461`-`0x002FD46D` |
+| ² | `0x002FD4E9` |
+| ³ | `0x002FD4F6` |
+| ⁴ | `0x002FD4FB`-`0x002FD509` |
+
+</details>
+
+The obtain line `0x0046A630(id, delta)` posts nothing for id `0xFFFF` or a delta of 0¹; otherwise it hands the battle-log poster `0x0046AB10(0, event, context)` a
 zeroed `0x30`-byte context holding the id at `+0x20` and the delta at `+0x24`, with event `0x25` for a
-delta of 1 and `0x24` for any other (`0x0046A637`-`0x0046A67B`); both events are the "You obtain" line
+delta of 1 and `0x24` for any other²; both events are the "You obtain" line
 ([battle log](../Battle-Actions/battle-log.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046A661`-`0x0046A668` |
+| ² | `0x0046A637`-`0x0046A67B` |
+
+</details>
+
 The four handler-only classes act on other classes, only for `absolute` 0 and channel 1; any other
-call returns 0 at once (`0x002FD53F`-`0x002FD54C`, `0x002FD64F`-`0x002FD65C`, `0x002FD78F`-`0x002FD79C`,
-`0x002FD88F`-`0x002FD898`), and every path that returns gives 0.
+call returns 0 at once¹, and every path that returns gives 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD53F`-`0x002FD54C`, `0x002FD64F`-`0x002FD65C`, `0x002FD78F`-`0x002FD79C`, `0x002FD88F`-`0x002FD898` |
+
+</details>
 
 Classes 14, 15 and 18 find the row as
 `0x0020E600([table + 0x0C]) + (id - base) × u16 [table + 8]` in 32-bit arithmetic, and take row address
-0 when the slot is null or that decoded base is 0 (`0x002FD56A`-`0x002FD5A6`, `0x002FD66E`-`0x002FD6AA`,
-`0x002FD7AE`-`0x002FD7F0`); their first read through that address then faults (class 14 at `0x002FD5A9`, class 15
+0 when the slot is null or that decoded base is 0¹; their first read through that address then faults (class 14 at `0x002FD5A9`, class 15
 at `0x002FD6C0` or `0x002FD704`, class 18 at `0x002FD7F2`), so those paths do not return:
 
-- class 14 (`0x002FD530`): row `{u32 gil, u16 item, u16 count, u16 item, u16 count}` of the table at
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD56A`-`0x002FD5A6`, `0x002FD66E`-`0x002FD6AA`, `0x002FD7AE`-`0x002FD7F0` |
+
+</details>
+
+- class 14¹: row `{u32 gil, u16 item, u16 count, u16 item, u16 count}` of the table at
   `0x02EBF070`; gil through `0x00254EE0(0x00253690() + gil × delta)` clamped at 0, with the gil
   "obtain" line `0x00469E80(gained)` when flag bit `0x1` is set, then each item that is not `0xFFFF`
   through `0x003008A0(item, count × delta, 0, 1, flags)`;
-- class 15 (`0x002FD640`): six `u16` ids in the row of `0x02EBF068`, the first triple, or the second
+- class 15²: six `u16` ids in the row of `0x02EBF068`, the first triple, or the second
   when flag bit `0x2` is set, each granted with `delta` through `0x003008A0(id, delta, 0, 1, flags)`;
   the first triple tests each id for `0xFFFF` on its own, the second grants its sixth id whenever
   its fifth is not `0xFFFF`;
-- class 18 (`0x002FD780`): three `(u16 item, u8 count)` pairs at `+4`, `+8` and `+0xC` of the row of
+- class 18³: three `(u16 item, u8 count)` pairs at `+4`, `+8` and `+0xC` of the row of
   `0x02EBF058`, each with a non-zero count granted as `count × delta` through
   `0x003008A0(item, count × delta, 0, 1, flags)`, with no `0xFFFF` test on the item;
-- class 19 (`0x002FD880`): gil through `0x00254EE0(0x00253690() + (id & 0xFFF) × delta)`, clamped at 0:
+- class 19⁴: gil through `0x00254EE0(0x00253690() + (id & 0xFFF) × delta)`, clamped at 0:
   the id is the amount; it reads no row, ignores the flags and posts no obtain line
-  (`0x002FD89A`-`0x002FD8B4`).
+ ⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD530` |
+| ² | `0x002FD640` |
+| ³ | `0x002FD780` |
+| ⁴ | `0x002FD880` |
+| ⁵ | `0x002FD89A`-`0x002FD8B4` |
+
+</details>
 
 `0x00325F40(id, old, new)` is called after every change and acts only on a 0 to non-zero or non-zero to 0 transition;
-any other pair returns (`0x00325F6D`-`0x00325F84`). It validates the id with the class-1 arm and returns when that fails
-(`0x00325F55`-`0x00325F67`), returns for a nibble above 10 (the eleven `{map, count}` pairs at `0x01EED1B0` cover nibbles 0
+any other pair returns¹. It validates the id with the class-1 arm and returns when that fails², returns for a nibble above 10 (the eleven `{map, count}` pairs at `0x01EED1B0` cover nibbles 0
 to 10, and 9 and 10 are null), maps the nibble (and for equipment the row's category byte `+9` of `0x02EBF0F8`;
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00325F6D`-`0x00325F84` |
+| ² | `0x00325F55`-`0x00325F67` |
+
+</details>
+
 with that slot null or its decoded row base 0 the byte read is the one at address 9, `0x00325FDF`-`0x00325FE1`) through
-the signed-byte maps to a category list, and appends (`0x00252E60`) or removes (`0x002535D0`) the id in that list, passing
-the list number and `id << 16` (`0x00326018`-`0x0032601D`); it returns without a call when the map is null, the map index
-is at or past the map's count, or the map byte is negative (`0x00325FFE`-`0x00326016`).
+the signed-byte maps to a category list, and appends¹ or removes² the id in that list, passing
+the list number and `id << 16`³; it returns without a call when the map is null, the map index
+is at or past the map's count, or the map byte is negative⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00252E60` |
+| ² | `0x002535D0` |
+| ³ | `0x00326018`-`0x0032601D` |
+| ⁴ | `0x00325FFE`-`0x00326016` |
+
+</details>
 
 The remover walks the list's count (`[0x020927C0] + 0x47B8 + 4 × list`) for the first entry equal to the id, writes
-`0xFFFF` over it and calls the compactor `0x002534C0(list)` (`0x00253650`-`0x0025366D`); an id not in the list leaves it
-unchanged, and a list number above 11 is taken as list 0 after a call to the empty stub `0x0016D6A0`
-(`0x002535F2`-`0x00253621`). Those lists are what the menus page through.
+`0xFFFF` over it and calls the compactor `0x002534C0(list)`¹; an id not in the list leaves it
+unchanged, and a list number above 11 is taken as list 0 after a call to the empty stub `0x0016D6A0`². Those lists are what the menus page through.
 
-The appender `0x00252E60(list, id << 16)` takes the id from the argument's high 16 bits (`0x00252EC1`) and a list
-number above 11 as list 0 after a call to the empty stub `0x0016D6A0` (`0x00252E7C`-`0x00252EA9`). It walks the list's
-count: an entry equal to the id ends the call with no change (`0x00252EE5`), and so does a `0xFFFF` entry met before
-the count (`0x00252EEB`, `0x00252F32`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00253650`-`0x0025366D` |
+| ² | `0x002535F2`-`0x00253621` |
+
+</details>
+
+The appender `0x00252E60(list, id << 16)` takes the id from the argument's high 16 bits¹ and a list
+number above 11 as list 0 after a call to the empty stub `0x0016D6A0`². It walks the list's
+count: an entry equal to the id ends the call with no change³, and so does a `0xFFFF` entry met before
+the count⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00252EC1` |
+| ² | `0x00252E7C`-`0x00252EA9` |
+| ³ | `0x00252EE5` |
+| ⁴ | `0x00252EEB`, `0x00252F32` |
+
+</details>
 
 When the count has reached the list's capacity, the signed word `+2` of its 8-byte record in `0x02092760`, the
-appender stores nothing (`0x00252EF7`-`0x00252EFD`). Otherwise it writes the id at entry `count`, raises the count
-`[0x020927C0] + 0x47B8 + 4 × list` and calls `0x002CD650` (`0x00252EFF`-`0x00252F18`).
+appender stores nothing¹. Otherwise it writes the id at entry `count`, raises the count
+`[0x020927C0] + 0x47B8 + 4 × list` and calls `0x002CD650`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00252EF7`-`0x00252EFD` |
+| ² | `0x00252EFF`-`0x00252F18` |
+
+</details>
 
 ### The thirty-two-class validator
 
@@ -222,19 +377,39 @@ the ids fixes the three sub-ranges in immediates of its own:
 | `0x8040`-`0x805F` | g_daiji_data `0x02EBF088` | `id - 0x8040` at most `0x1F` as an unsigned 16-bit value (`0x0031D2B4`-`0x0031D2BF`) | 22 |
 | `0x8060`-`0x81FF` | q_daiji_data `0x02EBF080` | `id - 0x8060` at most `0x19F` as an unsigned 16-bit value (`0x0031D472`-`0x0031D482`) | 20 |
 
-- The query filler's class-13 arm (`0x0031D0EF`) reads the row's name word `+8`, description word `+6`, byte `+4`
+- The query filler's class-13 arm¹ reads the row's name word `+8`, description word `+6`, byte `+4`
   (record `+0x2C`) and word `+2` (record `+0x30`) from the sub-table the test picks. A validated id past `0x81FF`
   skips all four (`0x0031D482` to `0x0031D638`): the record gets only the two channels and `+0x28` = -1, the name
   stays null and the fill returns 0.
 - The description line `0x00292B70` returns nothing for a kind-10 entry outside `0x8060`-`0x81FF`
   (`0x00292C3A`-`0x00292C4A`, [text codes](../Menus-And-HUD/text-codes.md)).
 - The Key Items list builders `0x0057CF20` and `0x0057D620` hand `0x0057DAD0` a `{u32 end, u32 start}` pair for list
-  kinds 20, 21 and 22 (`0x0057D432`-`0x0057D45E`, `0x0057D9D1`-`0x0057D9FD`), and `0x0057DAD0` keeps an id only when
-  `start <= id < end` (`0x0057DB2C`-`0x0057DB3B`).
+  kinds 20, 21 and 22², and `0x0057DAD0` keeps an id only when
+  `start <= id < end`³.
 - The class-13 descriptor holds 512 ids and a 32-word bitset, so the owned bits end at `0x81FF` too.
 
-s_daiji_data (`0x02EBF078`) ships with no rows, so the summed count is 64 + 32 + 416 = 512 and every one of these
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031D0EF` |
+| ² | `0x0057D432`-`0x0057D45E`, `0x0057D9D1`-`0x0057D9FD` |
+| ³ | `0x0057DB2C`-`0x0057DB3B` |
+
+</details>
+
+s_daiji_data¹ ships with no rows, so the summed count is 64 + 32 + 416 = 512 and every one of these
 bounds ends at the same id. A row added to any sub-table moves the validator's end and none of the others.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02EBF078` |
+
+</details>
 
 ### From a content id to its row
 
@@ -242,35 +417,26 @@ One rule takes an encoded id to the authored row it names. Its parts are above a
 [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md); this section only joins them,
 reading the validator `0x00322C50` and the query filler `0x0031C5D0` as the two routines that apply it.
 
-1. **Class.** `0x00309440(id)` gives `(id >> 12) + 5`, the descriptor's `+0x38`, or −1 for nibble `0xF`. A
-   caller that already holds a class (classes 2-4 and 20-32 have no nibble) passes it directly; the
-   class-1 arms of both routines derive it this way and re-enter (`0x00322C7E`-`0x00322C8B`, `0x0031C61F`-`0x0031C639`).
-2. **Base and slot.** The class's arm pairs a base with a registry slot (the table in The thirty-two-class
-   validator): base `(class − 5) << 12` for the inventory classes 5-19, `0xA000` for 30 and 31, which share
-   class 15's arm (`0x00322EC2`, `0x0031D745`), and 0 for 2-4, 20-29 and 32 (`0x00322C9A`-`0x00323028`).
-3. **Table.** The slot holds the table its loader bound.
-   - For every class with a bound slot except 3 and 4 that is the pack load `0x00236C30(1)`, which passes the
-     sign-extended dword `[[0x0208E680] + entry]` of one battle_pack directory entry to `0x003845F0(&slot, table)`
-     (33 sites, `0x00236C86`-`0x0023701E`), to a bespoke binder (the same dword in `ecx`, `0x00236D73`) or to
-     `0x003846F0`.
-   - Class 12's slot `0x02EBF0D0` is bound by no loader (its one reference is the read at `0x00322DFE`), and
-     classes 1, 19, 22 and 23 have no slot.
-   - Which entry each slot takes is the Shipped data table on
-     [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md#shipped-data).
-   - Classes 3 and 4 use the area-table slots `0x02EBF120` and `0x02EBF150`, bound from the `.ard` by `0x003EA710`
-     through `0x0023A160` (categories 2 and 0) and unbound by `0x003EA820` at each area load (`0x0023A160(category, 0)`,
-     `0x003EA8E1`-`0x003EA90D`), so they change with the area.
-4. **Row.** `row = id − base`, valid when `0 ≤ row < [table + 0x04]`: the validator's shared tail refuses
-   `id < base` and `id > base + count − 1` (`0x0032302E`-`0x0032303B`), with count 0 for a null slot.
-5. **Address.** `address = 0x0020E600([table + 0x0C]) + u16[table + 0x08] × row`, in 32-bit arithmetic
-   ([finding a row](../Game-Files-And-Data-Tables/authored-data-tables.md#finding-a-row)).
-   - `+0x0C` is the row array's offset until `0x003845F0` adds the table's low 32 bits to it, when it is non-zero
-     (`0x00384600`-`0x0038460E`); it is `0x20`, the header size, in every battle_pack `st2e` table that has rows (35
-     tables, named by 64 directory entries) and in every `.ard` category-0 and category-2 table that has rows.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | **Class.** `0x00309440(id)` gives `(id >> 12) + 5`, the descriptor's `+0x38`, or −1 for nibble `0xF`. A caller that already holds a class (classes 2-4 and 20-32 have no nibble) passes it directly; the class-1 arms of both routines derive it this way and re-enter. | `0x00322C7E`-`0x00322C8B`, `0x0031C61F`-`0x0031C639` |
+| 2 | **Base and slot.** The class's arm pairs a base with a registry slot (the table in The thirty-two-class validator): base `(class − 5) << 12` for the inventory classes 5-19, `0xA000` for 30 and 31, which share class 15's arm, and 0 for 2-4, 20-29 and 32. | `0x00322EC2`, `0x0031D745`<br>`0x00322C9A`-`0x00323028` |
+| 3 | **Table.** The slot holds the table its loader bound.<br>• For every class with a bound slot except 3 and 4 that is the pack load `0x00236C30(1)`, which passes the sign-extended dword `[[0x0208E680] + entry]` of one battle_pack directory entry to `0x003845F0(&slot, table)` (33 sites, `0x00236C86`-`0x0023701E`), to a bespoke binder (the same dword in `ecx`, `0x00236D73`) or to `0x003846F0`.<br>• Class 12's slot `0x02EBF0D0` is bound by no loader (its one reference is the read at `0x00322DFE`), and classes 1, 19, 22 and 23 have no slot.<br>• Which entry each slot takes is the Shipped data table on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md#shipped-data).<br>• Classes 3 and 4 use the area-table slots `0x02EBF120` and `0x02EBF150`, bound from the `.ard` by `0x003EA710` through `0x0023A160` (categories 2 and 0) and unbound by `0x003EA820` at each area load (`0x0023A160(category, 0)`, `0x003EA8E1`-`0x003EA90D`), so they change with the area. |   |
+| 4 | **Row.** `row = id − base`, valid when `0 ≤ row < [table + 0x04]`: the validator's shared tail refuses `id < base` and `id > base + count − 1`, with count 0 for a null slot. | `0x0032302E`-`0x0032303B` |
+| 5 | **Address.** `address = 0x0020E600([table + 0x0C]) + u16[table + 0x08] × row`, in 32-bit arithmetic ([finding a row](../Game-Files-And-Data-Tables/authored-data-tables.md#finding-a-row)).<br>• `+0x0C` is the row array's offset until `0x003845F0` adds the table's low 32 bits to it, when it is non-zero; it is `0x20`, the header size, in every battle_pack `st2e` table that has rows (35 tables, named by 64 directory entries) and in every `.ard` category-0 and category-2 table that has rows. | `0x00384600`-`0x0038460E` |
 
-The filler's class-6 arm applies the rule: `eax = 0x0020E600([[0x02EBF0F8] + 0xC])` (`0x0031C886`-`0x0031C890`), then
-`movzx ebp, word ptr [rbx + 6]`, `sub ebp, 0x1000`, `movzx ecx, word ptr [r8 + 8]`, `imul ebp, ecx`, `add ebp, eax`
-(`0x0031C89C`-`0x0031C8AE`).
+The filler's class-6 arm applies the rule: `eax = 0x0020E600([[0x02EBF0F8] + 0xC])`¹, then
+`movzx ebp, word ptr [rbx + 6]`, `sub ebp, 0x1000`, `movzx ecx, word ptr [r8 + 8]`, `imul ebp, ecx`, `add ebp, eax`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031C886`-`0x0031C890` |
+| ² | `0x0031C89C`-`0x0031C8AE` |
+
+</details>
 
 The same shape with its own base is at
 `0x0031CB08` (7), `0x0031CC72` (8), `0x0031CE1E`-`0x0031CE2A` (9, `0x4000` in `r14d`), `0x0031CFC3` (11), `0x0031D6B6` (14),
@@ -283,17 +449,17 @@ in the second key-item sub-range, so it is row 5 of g_daiji_data (`0x02EBF088`, 
 
 The exceptions, each read at its bytes:
 
-- **Class 13, key items.** The validator sums the four sub-tables' counts from `0x8000` (`0x00322E28`-`0x00322E8C`),
-  but a row is `id − 0x8000` in m_daiji_data (`0x0031D164`), `id − 0x8040` in g_daiji_data (`0x0031D30E`) or
-  `id − 0x8060` in q_daiji_data (`0x0031D4D1`), chosen by the sub-range tests in the table above; s_daiji_data
+- **Class 13, key items.** The validator sums the four sub-tables' counts from `0x8000`¹,
+  but a row is `id − 0x8000` in m_daiji_data², `id − 0x8040` in g_daiji_data³ or
+  `id − 0x8060` in q_daiji_data⁴, chosen by the sub-range tests in the table above; s_daiji_data
   ships no rows and is reached by no reader.
-- **Class 19, gil.** No table: the arm is compiled in as `0xE000`-`0xEFFF` (`0x00322F63`-`0x00322F68`), so the last
-  valid id is `0xEFFE`; the gil handler `0x002FD880` takes the amount as `id & 0xFFF` (`0x002FD8A2`) and the
-  filler only validates and returns −1 (`0x0031C63B`-`0x0031C64A`).
-- **Classes 22 and 23.** No table: literal counts 4 and 9 (`0x00322FA6`, `0x00322FAF`), ids 0-3 and 0-8; the filler
+- **Class 19, gil.** No table: the arm is compiled in as `0xE000`-`0xEFFF`⁵, so the last
+  valid id is `0xEFFE`; the gil handler `0x002FD880` takes the amount as `id & 0xFFF`⁶ and the
+  filler only validates and returns −1⁷.
+- **Classes 22 and 23.** No table: literal counts 4 and 9⁸, ids 0-3 and 0-8; the filler
   returns 0 without a row.
 - **Class 12.** Slot `0x02EBF0D0` is never written, so its count is 0 and every id is refused.
-- **Class 10.** The filler's arm reads no row (`0x0031CF28`-`0x0031CF71`); gambit_data is read by `0x00327CB0`, which
+- **Class 10.** The filler's arm reads no row⁹; gambit_data is read by `0x00327CB0`, which
   fills a new stats record's gambit block from a preset, and by `0x00235AF0` ([gambits](../Enemy-AI-And-Gambits/gambits.md)).
 - **Base-0 classes** (2-5, 20, 21, 24-29 and 32). The id is the row. The query record takes it at `+4` for 2-4,
   20, 21, 24-29 and 32 (and the bare id for 22 and 23, which have no row) and at `+6` for 5 (The query record
@@ -308,6 +474,23 @@ The exceptions, each read at its bytes:
   because the base cell `0x01F83530` is never written) reads near address 0
   ([finding a row](../Game-Files-And-Data-Tables/authored-data-tables.md#finding-a-row)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00322E28`-`0x00322E8C` |
+| ² | `0x0031D164` |
+| ³ | `0x0031D30E` |
+| ⁴ | `0x0031D4D1` |
+| ⁵ | `0x00322F63`-`0x00322F68` |
+| ⁶ | `0x002FD8A2` |
+| ⁷ | `0x0031C63B`-`0x0031C64A` |
+| ⁸ | `0x00322FA6`, `0x00322FAF` |
+| ⁹ | `0x0031CF28`-`0x0031CF71` |
+
+</details>
+
 ### The query record
 
 `0x0031C5D0(record)` fills a `0x98`-byte record whose `+0` is the class and whose `+4` is the row
@@ -321,17 +504,36 @@ It clears the name pointer at `+0x18` and dispatches through the 32-entry table 
   descriptor's query handler with modes 0 and 1);
 - class-specific scalars from `+0x28` on.
 
-Every arm's failed validation returns -2 (`0x0031C650`). Class 1 derives the class from the id,
+Every arm's failed validation returns -2¹. Class 1 derives the class from the id,
 stores it at `+0` and re-dispatches; class 12 returns -2 at once; class 19 and any class above
-32 validate the row and return -1 on a valid one (`0x0031C63B`); classes 4, 22 and 23 validate and
+32 validate the row and return -1 on a valid one²; classes 4, 22 and 23 validate and
 return 0 with no other output. A successful fill leaves fields it did not write as they were, so
 the record is partial, not a fresh value.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031C650` |
+| ² | `0x0031C63B` |
+
+</details>
+
 Two static records serve most callers: `0x0035D330(class, row)` writes the row form into `0x022CA520` and `0x0035D380(class,
 id)` the id form into `0x022CA480`; each stores the class at `+0` and the row (dword `+4`) or the id (word `+6`) and
-calls `0x0031C5D0` on the record (`0x0035D336`-`0x0035D34C`, `0x0035D386`-`0x0035D39D`). Both zero all `0x98` bytes when the
-fill returns negative: they call the empty stub `0x0016D6A0(0x800)` and then `0x00861EC0(record, 0, 0x98)`
-(`0x0035D355`-`0x0035D36A`, `0x0035D3A6`-`0x0035D3BB`). Both return the record's address either way.
+calls `0x0031C5D0` on the record¹. Both zero all `0x98` bytes when the
+fill returns negative: they call the empty stub `0x0016D6A0(0x800)` and then `0x00861EC0(record, 0, 0x98)`². Both return the record's address either way.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035D336`-`0x0035D34C`, `0x0035D386`-`0x0035D39D` |
+| ² | `0x0035D355`-`0x0035D36A`, `0x0035D3A6`-`0x0035D3BB` |
+
+</details>
 
 The row form has 159 call sites in 75 functions and the id form 15; `0x0035E070` fills the row record itself for class 1
 with the id in the high word of `+4`, and eleven other functions hand `0x0031C5D0` their own record at fourteen sites.
@@ -349,10 +551,19 @@ The id-form record's id word:
 |---|---|---|---|---|---|
 | `0x022CA486` | `u16` | 0 (zero-filled tail) | `+6` of the id-form record `0x022CA480`: the id the caller asks about | `0x0035D380`, the id argument (`0x0035D396`), from its 15 call sites (the first `0x0027BADE`, the last `0x0057DF35`); the `0x98`-byte clear (`0x0035D3BB`) when the fill returns negative | `0x0031C5D0`, through the record's address (`0x0035D38C`), in its class arms: 73 word reads of `+6`, from `0x0031C61F` to `0x0031D9EF`; the list code that reads the returned record's id word: `0x0057DB7A`, `0x0057DCC0`, `0x0057DCD8`, `0x0057DDED`, `0x0057DF89` |
 
-The menus are those callers: the gambit screen's row and page builders (`0x00567B60`, `0x0056B100`,
-`0x0056AE80`), the licence screens (`0x00558CE0`, `0x005618E0`) and the battle menu's title
+The menus are those callers: the gambit screen's row and page builders¹, the licence screens² and the battle menu's title
 `0x0027D480` use the row form ([gambit screen](../Menus-And-HUD/gambit-screen.md),
 [menu screens](../Menus-And-HUD/menu-screens.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00567B60`, `0x0056B100`, `0x0056AE80` |
+| ² | `0x00558CE0`, `0x005618E0` |
+
+</details>
 
 Of the 87 functions that call `0x0035D330` or `0x0035D380`, 21 read the name at `+0x18` and no other field; the
 equipment block `+0x3C` to `+0x60` is read by the equip menus, the licence bytes `+0x21` to `+0x25` by the
@@ -363,43 +574,123 @@ copies them.
 into the class for a query through the twelve-byte map at `0x00D113B8`: categories 0-3 give class 6 (equipment), 4
 gives 5 (items), 5 gives 9 (technicks), 6 gives 8 (magicks), 7 gives 7 (loot), 8 gives 10 (gambit presets), 9
 gives 11 (gambit conditions), 10 gives 12 and 11 gives 18 (bazaar goods); a category of 12 or more, compared
-unsigned, gives -1 (`0x003933B0`-`0x003933C2`). The
-shop rows (`0x0056E410`, `0x0056E49D`) and the hunt pane (`0x003F41C0`, `0x003F4210`) take that class to `0x0035D380`.
+unsigned, gives -1¹. The
+shop rows² and the hunt pane³ take that class to `0x0035D380`.
 
-The hunt pane gives it the menu category of the row's id, `0x002FABD0(id)` (`0x003F4206`-`0x003F4210`). The shop rows'
-`0x0056E410` gives it the screen's help kind instead, byte `+0x191` (`0x0056E48A`-`0x0056E49D`), which `0x0056DC30` sets
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003933B0`-`0x003933C2` |
+| ² | `0x0056E410`, `0x0056E49D` |
+| ³ | `0x003F41C0`, `0x003F4210` |
+
+</details>
+
+The hunt pane gives it the menu category of the row's id, `0x002FABD0(id)`¹. The shop rows'
+`0x0056E410` gives it the screen's help kind instead, byte `+0x191`², which `0x0056DC30` sets
 from the selected tab's id ([Shop screens](../Menus-And-HUD/shop-screens.md)): 0 to 3 for the tab ids 1, 5, 9 and 10
 (Weapons, Armor, Accessories, Ammunition), 4 for 11 (Items), 5 for 15, 6 for 16, 7 for 26 (Loot), 9 for 13 and
 `0xB` for the Bazaar's tab id 0 (`0x0056DC30`-`0x0056DC97`; the Buy, Sell and Bazaar lists `0x00D23C70`, `0x00D23CC0`
 and `0x00D23C60`).
 
-On a Buy tab the help kind equals the menu category the tab lists, its kind less 20 (`0x0057CFB9`, `0x0057D016`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F4206`-`0x003F4210` |
+| ² | `0x0056E48A`-`0x0056E49D` |
+
+</details>
+
+On a Buy tab the help kind equals the menu category the tab lists, its kind less 20¹:
 tab id 15 lists technicks and 16 magicks, 13 gambits. So the class is the one of the tab's goods: 6 on the four
 equipment tabs, 5 on Items, 9 on Technicks, 8 on Magicks, 7 on Loot, 11 on Gambits and 18 on the Bazaar.
 
-`0x0056E410` looks the cursor row's id, word `+8`, up in that class (`0x0056E4A2`-`0x0056E4A8`). When the record's
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0057CFB9`, `0x0057D016` |
+
+</details>
+
+`0x0056E410` looks the cursor row's id, word `+8`, up in that class¹. When the record's
 channel 1, `+0x24`, is 0, or on the Bazaar when `0x0030B4B0(id)` answers 0 (bit `0x4` of the good's byte
 `+0x59C8 + (id & 0xFFF)` in `[0x02EBF190]` clear, `0x0030B4EA`-`0x0030B505`), it keeps the next row's id instead, the
 previous row's on the last row and the same row's when the list holds at most one row, sets the tab slot's words
-`+2` and `+4` to -1 and returns 1 (`0x0056E4AD`-`0x0056E509`).
+`+2` and `+4` to -1 and returns 1².
 
-Otherwise it keeps the row's own id and returns 0 (`0x0056E50D`-`0x0056E51B`); with no rows it keeps the slot as it
-is and returns 0 (`0x0056E449`). Either way it then rebuilds the tab through `0x005655F0(screen, slot, +0x190)`
-(`0x0056E523`-`0x0056E535`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0056E4A2`-`0x0056E4A8` |
+| ² | `0x0056E4AD`-`0x0056E509` |
+
+</details>
+
+Otherwise it keeps the row's own id and returns 0¹; with no rows it keeps the slot as it
+is and returns 0². Either way it then rebuilds the tab through `0x005655F0(screen, slot, +0x190)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0056E50D`-`0x0056E51B` |
+| ² | `0x0056E449` |
+| ³ | `0x0056E523`-`0x0056E535` |
+
+</details>
 
 The tab slot is `screen + 0xF0 + 8 × n`, where `n` is the dword `+0x180` under mask `0x03E00000`,
-shifted right 21 and sign-extended from five bits (`0x0056E419`-`0x0056E43B`). Rows are `0x20` bytes each
-in the array the list `[screen + 0xC0]` keeps at `+0xC8` (`0x0056E43F`, `0x0056E493`-`0x0056E49A`).
+shifted right 21 and sign-extended from five bits¹. Rows are `0x20` bytes each
+in the array the list `[screen + 0xC0]` keeps at `+0xC8`².
 
-When the row array is not null (`0x0056E446`-`0x0056E449`), the cursor row is counted in the object at
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0056E419`-`0x0056E43B` |
+| ² | `0x0056E43F`, `0x0056E493`-`0x0056E49A` |
+
+</details>
+
+When the row array is not null¹, the cursor row is counted in the object at
 the screen's `+0xD8`: its sign-extended words `+0xF2` and `+0xF4` added, times its byte `+0xEC`, plus
-its signed bytes `+0xEE` and `+0xED` (`0x0056E44F`-`0x0056E491`). The same range loads the screen's byte
-`+0x191`, the argument of `0x003933B0` (`0x0056E48A`). The row count compared in the gone-row rule is
-that object's word `+0xE8`, zero-extended (`0x0056E4C9`-`0x0056E4E5`).
+its signed bytes `+0xEE` and `+0xED`². The same range loads the screen's byte
+`+0x191`, the argument of `0x003933B0`³. The row count compared in the gone-row rule is
+that object's word `+0xE8`, zero-extended⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0056E446`-`0x0056E449` |
+| ² | `0x0056E44F`-`0x0056E491` |
+| ³ | `0x0056E48A` |
+| ⁴ | `0x0056E4C9`-`0x0056E4E5` |
+
+</details>
 
 After the rebuild `0x0056E410` frees that row array with `0x003697F0` when it is not null. Whether it was
-null or not, it then puts the screen's `+0xE0` pointer in its place and clears `+0xE0`
-(`0x0056E53A`-`0x0056E561`).
+null or not, it then puts the screen's `+0xE0` pointer in its place and clears `+0xE0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0056E53A`-`0x0056E561` |
+
+</details>
 
 ### The empty id
 
@@ -411,18 +702,41 @@ when no item is reserved.
 One-byte fields use `0xFF` the same way: the relation pool at `0x02CA81F0` links its 16-byte records through byte
 indices at `+0xD` and `+0xE`, and `0x00512CD0(owner, record)` unlinks a record. A record whose `+0xD` is `0xFF` sits at
 one end of the owner's chain: its `+0xE` neighbour's `+0xD` becomes `0xFF` and the owner's `+0xC` takes that
-neighbour's `+0xC`, or becomes `0xFF` when the record's `+0xE` is `0xFF` too (`0x00512CD0`-`0x00512D02`).
+neighbour's `+0xC`, or becomes `0xFF` when the record's `+0xE` is `0xFF` too¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00512CD0`-`0x00512D02` |
+
+</details>
 
 A record whose `+0xE` is `0xFF` sits at the other end and is handled the same way through its `+0xD` neighbour's
-`+0xE` and the owner's `+0xD` (`0x00512D06`-`0x00512D2B`). A record with both links joins its two neighbours: the `+0xD`
+`+0xE` and the owner's `+0xD`¹. A record with both links joins its two neighbours: the `+0xD`
 neighbour's `+0xE` takes the `+0xE` neighbour's `+0xC`, and the `+0xE` neighbour's `+0xD` the `+0xD` neighbour's
-`+0xC` (`0x00512D2F`-`0x00512D5D`). The record's own links stay as they were. It then clears the low nibble of the
-record's `+0xF` and decrements the owner's count byte `+0xE` and the pool count `0x02EBA481` (`0x00512D62`-`0x00512D6B`).
+`+0xC`². The record's own links stay as they were. It then clears the low nibble of the
+record's `+0xF` and decrements the owner's count byte `+0xE` and the pool count `0x02EBA481`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00512D06`-`0x00512D2B` |
+| ² | `0x00512D2F`-`0x00512D5D` |
+| ³ | `0x00512D62`-`0x00512D6B` |
+
+</details>
 
 `0xFF` marks a missing neighbour because index 0 is a real record and the only free value is the largest the byte can
 hold.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ```
 encoded id (u16): nibble = id >> 12 (0..0xE), index = id & 0xFFF; class = nibble + 5; 0xFFFF = the empty id
@@ -501,7 +815,12 @@ Bazaar good row (36):
 | `+0x16-0x21` | `u8[12]` | loot | (u16 loot, u16 count)[3] |
 | `+0x22` | `u16` | word22 |  |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -512,6 +831,8 @@ Bazaar good row (36):
 | owned-count cap | 99; worn field 6 bits |
 | refused ids | `0xFFFF`, `0x1000` (Unarmed) in the modify path |
 
+</details>
+
 ## Operations
 
 Per grant or loss: `0x003008A0` once, the handler once, the derived-index hook on a presence
@@ -521,9 +842,14 @@ runs on the state block.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The descriptor table's run-time fields (pointers and cumulative bases), the inventory regions of
 the party block, the discovery dword, the derived-index lists, the two static query
 records.
+
+</details>
 
 ## Modding notes
 

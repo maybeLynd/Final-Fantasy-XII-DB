@@ -23,8 +23,18 @@ once and does not stack.
 
 ### The rebuild
 
-`0x0030FED0(stats, flags)` rebuilds a unit's augment set. It forces flag bits `0x202` on (`0x0030FEFB`) and
-starts from an empty 128-bit set (`0x0030FF02`-`0x0030FF0A`). Its 25 call sites:
+`0x0030FED0(stats, flags)` rebuilds a unit's augment set. It forces flag bits `0x202` on¹ and
+starts from an empty 128-bit set². Its 25 call sites:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030FEFB` |
+| ² | `0x0030FF02`-`0x0030FF0A` |
+
+</details>
 
 | Caller | Sites |
 |---|---|
@@ -48,31 +58,75 @@ The wanted set is the OR of these sources:
 | equipment | everyone | byte `+0x1A` of each equipped item of group 3 (helms, armor, accessories), unless it is `0xFF` | `0x00310071`-`0x00310121` |
 | licenses | everyone | the eight `u16` at `+0x08`-`+0x16` of each owned node (bit *i* of stats `+0x194`, *i* < 361) whose type byte `+0x05` is 15-18, skipping `0xFFFF` | `0x00310127`-`0x003102DF` |
 
-Every source sets its augment's bit in the one 128-bit set at `[rsp + 0x40]` with `bts` (`0x0030FF9D`, `0x0030FFC2`,
-`0x0031000A`, `0x0031005C`, `0x00310114`, `0x003101C5`-`0x003102CF`), so two sources of one augment (two pieces of gear, or
+Every source sets its augment's bit in the one 128-bit set at `[rsp + 0x40]` with `bts`¹, so two sources of one augment (two pieces of gear, or
 gear and a license) give one bit, and the augment does not stack.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030FF9D`, `0x0030FFC2`, `0x0031000A`, `0x0031005C`, `0x00310114`, `0x003101C5`-`0x003102CF` |
+
+</details>
+
 The License node's type is classed by `0x003241D0` and `0x00323890`: types 15-17 are group `0x1B` and type 18
-group `0x1C`, and both groups are class 2, the only class that adds augments (`0x00310192`-`0x0031019E`).
+group `0x1C`, and both groups are class 2, the only class that adds augments¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00310192`-`0x0031019E` |
+
+</details>
 
 ### Applying the difference
 
-The wanted set is compared with the augment layer `+0x78` (`0x003102E5`-`0x00310336`):
+The wanted set is compared with the augment layer `+0x78`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003102E5`-`0x00310336` |
+
+</details>
 
 ```python
 added = (wanted ^ layer) & wanted      -> 0x0030E130(stats, id, 0, flags, mode 3)
 removed = (wanted ^ layer) & layer       -> 0x0030E130(stats, id, 0, flags, mode 1)
 ```
 
-The walk covers ids 0-127 (`0x00310338`-`0x003103A3`). Mode 3 sets the bit in `+0x78` and mode 1 clears it,
+The walk covers ids 0-127¹. Mode 3 sets the bit in `+0x78` and mode 1 clears it,
 each with the side effects of `0x0030E130`. Then the stats rebuild `0x002FEF30` runs (`0x003103AD`,
 [Stats](stats.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00310338`-`0x003103A3` |
+
+</details>
 
 ### Auto-statuses and immunities from gear
 
 The stats rebuild ORs two status words into the stats record
 ([Stats](stats.md)): the character row's words `+0x48` and `+0x4C`, and each equipped item's attribute
-words `+0x08` and `+0x0C` (`0x002FF0A3`-`0x002FF0D9`, `0x002FF505`-`0x002FF51E`):
+words `+0x08` and `+0x0C`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF0A3`-`0x002FF0D9`, `0x002FF505`-`0x002FF51E` |
+
+</details>
 
 | Stats word offset | From row | From item | What it does |
 |---|---|---|---|
@@ -81,7 +135,16 @@ words `+0x08` and `+0x0C` (`0x002FF0A3`-`0x002FF0D9`, `0x002FF505`-`0x002FF51E`)
 
 The status write `0x0030E360` picks its word by mode (jump table `0x0030E88C`): modes 0, 1 and 2 clear a bit in
 `+0x64`, `+0x3C` and `+0x38`; modes 3, 4 and 5 set it, mode 3 refusing a status already in `+0x64` or in
-`+0x38` (`0x0030E4E7`-`0x0030E564`).
+`+0x38`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030E4E7`-`0x0030E564` |
+
+</details>
 
 ### An enemy's scripted augments and immunities
 
@@ -89,15 +152,29 @@ Two script commands set an enemy's two masks:
 
 - **`btlAtelSetAbility(a, b)`**: the handler `0x00510440` pops two numbers and jumps to `0x002390B0`, which
   clears `+0xE80` and sets the augments of the two words in reverse bit order: bit *j* of the first argument
-  sets augment 31 - *j*, bit *j* of the second sets augment 63 - *j* (`0x002390D8`-`0x00239161`). Only augments 0-63
+  sets augment 31 - *j*, bit *j* of the second sets augment 63 - *j*¹. Only augments 0-63
   can be set this way.
-  - The handler's first pop (`0x00267E10`) is the word pushed last, the second argument, and it is `0x002390B0`'s
+  - The handler's first pop² is the word pushed last, the second argument, and it is `0x002390B0`'s
     first word.
   - For an actor without a battle unit (`0x0031B760` gives 0) `0x002390B0` returns at once and clears nothing
-    (`0x002390CA`).
+   ³.
 - **`btlAtelSetStatus(table)`**: the handler `0x005103B0` resolves its argument to 8 bytes of script data and
-  jumps to `0x002394C0`, which returns at once for an actor without a battle unit (`0x002394D9`), zeroes
-  `+0xE90` (`0x002394FC`) and reads 32 two-bit codes, one per status (`0x00239504`-`0x00239527`):
+  jumps to `0x002394C0`, which returns at once for an actor without a battle unit⁴, zeroes
+  `+0xE90`⁵ and reads 32 two-bit codes, one per status⁶:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002390D8`-`0x00239161` |
+| ² | `0x00267E10` |
+| ³ | `0x002390CA` |
+| ⁴ | `0x002394D9` |
+| ⁵ | `0x002394FC` |
+| ⁶ | `0x00239504`-`0x00239527` |
+
+</details>
 
 | Code | Effect |
 |---:|---|
@@ -107,14 +184,34 @@ Two script commands set an enemy's two masks:
 | `0` | nothing |
 
 The 8 bytes hold the codes four to a byte, from the low bits up: the code of status `i` is
-`(byte[i >> 2] >> (2 × (i & 3))) & 3` (`0x00239504`-`0x00239527`).
+`(byte[i >> 2] >> (2 × (i & 3))) & 3`¹.
 
-"Fresh" means bits `0x1` and `0x4` of the spawn record's first dword are clear (`0x002394DF`-`0x002394F9`); the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00239504`-`0x00239527` |
+
+</details>
+
+"Fresh" means bits `0x1` and `0x4` of the spawn record's first dword are clear¹; the
 spawn record pointer `+0x6A0` is read with no null test, so a null one faults at `0x002394F7`. Codes 1 and 2 add
-the status with `0x0030EAE0(record +0x698, 0, status, -1, -1, 0x297)` (`0x00239556`-`0x00239577`). After the
+the status with `0x0030EAE0(record +0x698, 0, status, -1, -1, 0x297)`². After the
 stats rebuild, `0x0030FED0` turns every bit of `+0xE90` into an immunity with `0x0030E360(..., mode 5)`,
-which sets it in `+0x38` (`0x003103B2`-`0x00310413`). The stats rebuild clears `+0x38` first, so the loop puts
+which sets it in `+0x38`³. The stats rebuild clears `+0x38` first, so the loop puts
 the immunities back on every rebuild.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002394DF`-`0x002394F9` |
+| ² | `0x00239556`-`0x00239577` |
+| ³ | `0x003103B2`-`0x00310413` |
+
+</details>
 
 ### Enemy affinity changes
 
@@ -130,7 +227,16 @@ The result applier sets that bit when it changes an enemy's affinities
 
 ### The clamps
 
-Last, the rebuild limits three values without going through the HP write (`0x003104BF`-`0x00310594`):
+Last, the rebuild limits three values without going through the HP write¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003104BF`-`0x00310594` |
+
+</details>
 
 | Value | Limit |
 |---|---|
@@ -139,76 +245,152 @@ Last, the rebuild limits three values without going through the HP write (`0x003
 | Mist pool `+0x06` | max MP times the MP bars `+0x37` (0 counting as 1), or 0 under augment 39 (Emptiness) |
 
 The values only go down. Then `0x0030E060` sets the charge count `+0x4E` to `+0x06 / +0x28` when `+0x37` is
-not 0, and to 0 otherwise (`0x0030E0AF`-`0x0030E0C3`, `0x0031059C`); it does nothing when max MP `+0x28` is 0 or less
-(`0x0030E093`). With the rebuild's flags bit `0x2` clear, a changed count also goes to `0x0016D6A0`, a bare `ret`
-(`0x0030E0C6`-`0x0030E0D5`). The new count is stored in `+0x4E` on every path past `0x0030E093` (`0x0030E111`).
+not 0, and to 0 otherwise¹; it does nothing when max MP `+0x28` is 0 or less². With the rebuild's flags bit `0x2` clear, a changed count also goes to `0x0016D6A0`, a bare `ret`³. The new count is stored in `+0x4E` on every path past `0x0030E093`⁴.
 
-When the rebuild's flags have `0x400` without `0x10` and the record has a battle unit (`0x0031B860`),
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030E0AF`-`0x0030E0C3`, `0x0031059C` |
+| ² | `0x0030E093` |
+| ³ | `0x0030E0C6`-`0x0030E0D5` |
+| ⁴ | `0x0030E111` |
+
+</details>
+
+When the rebuild's flags have `0x400` without `0x10` and the record has a battle unit¹,
 a changed count is posted as a hit or heal reaction with the difference (`0x003283D0`, `0x0030E102`;
 [HP and KO](hp-and-ko.md)), which `0x003283D0` posts as a battle number through `0x003BBD00` (`0x00328462`,
 [Battle numbers](../Menus-And-HUD/battle-numbers.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B860` |
+
+</details>
+
 ### Damage Spikes
 
 Damage Spikes (58) is bit `0x4` of the layer bytes `+0x6F` and `+0x7F`. After the recipe's slots the resolver calls
-`0x00390F20(source, target, &context)` (`0x003863F8`), which tests it on the target first (`0x00390F2F`-`0x00390F46`). When the target holds it in either layer
+`0x00390F20(source, target, &context)`¹, which tests it on the target first². When the target holds it in either layer
 and the damage the action resolved, the scratch word `0x02AEE004` ([Damage formula](damage-formula.md)), is not -1,
 the user's HP loss `0x02AEE014` grows by the damage divided by 20, truncated, or is set to it while it is -1, and is
-then held to 9,999 (`0x00390F48`-`0x00390F85`):
+then held to 9,999³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003863F8` |
+| ² | `0x00390F2F`-`0x00390F46` |
+| ³ | `0x00390F48`-`0x00390F85` |
+
+</details>
 
 ```python
 spikes = trunc(damage / 20)                  multiply by 0x66666667, keep the high word >> 3, round toward 0
 userHpLoss = min(9999, (userHpLoss == -1 ? 0 : userHpLoss) + spikes)
 ```
 
-The damage is read before Greater Barrier's cut later in the same function (`0x00390F8B`-`0x00390FC3`). The resolver
-then puts the user's HP gain minus that loss in result `+0x20` (`0x00386642`, `0x0038665B`). A 2,000-damage hit costs the
+The damage is read before Greater Barrier's cut later in the same function¹. The resolver
+then puts the user's HP gain minus that loss in result `+0x20`². A 2,000-damage hit costs the
 attacker 100 HP, and a hit of 19 or less costs nothing.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00390F8B`-`0x00390FC3` |
+| ² | `0x00386642`, `0x0038665B` |
+
+</details>
 
 ### Saboteur
 
 Saboteur (18) is bit `0x4` of the layer bytes `+0x6A` and `+0x7A` and of the context byte `+0x1C`. Its one
 fixed-position reader is the hit-rate slot 21 of the calculator, `0x00388F20`, which tests it in the merged context
-(`+0x1C` bit `0x4`, `0x00388F2A`) and sets the hit chance `0x02AEDFE0` to 100 when it is set (`0x00388F37`); otherwise
+(`+0x1C` bit `0x4`, `0x00388F2A`) and sets the hit chance `0x02AEDFE0` to 100 when it is set¹; otherwise
 the chance is the action row's `+0x12` less the target's Vitality plus the user's Magick Power
 (`[0x02AEDFE0] = row[+0x12] - target[+0x2C] + user[+0x2B]`, `0x00388F8C`-`0x00388FA1`; [Formula slots](formula-slots.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00388F37` |
+
+</details>
 
 The recipes whose lists hold slot 21 are 3, 8, 9, 10, 12, 14, 15, 68 and 72.
 
 Five functions test an augment by a computed id, and this is what each does with 18:
 
-- the context merge `0x003847C0` walks ids 0-127 (`0x00384851`) and copies each layer bit into the context
-  (`0x00384827`, `0x00384831`, `0x0038484C`), which is how the bit reaches `0x00388F2A`;
+- the context merge `0x003847C0` walks ids 0-127¹ and copies each layer bit into the context
+ ², which is how the bit reaches `0x00388F2A`;
 - the enemy-order selector tests augment `s` for opcodes 32 and 33 (`0x00302494`, `0x0030249B`;
   [Enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md)). 22 shipped orders test Saboteur (18) on
   the deciding enemy itself ([Enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md), whose [`enemy-orders.tsv`](../Enemy-AI-And-Gambits/enemy-orders.tsv) lists them):
   - 7 "has" tests, each guarding an order that clears it (action word `0x40E4`);
   - 15 "lacks" tests, each guarding an order that sets it (`0x40A4`);
   - in the areas frs_a, rui_c, rui_d, mnt_b, gil_g, pbc_c, mfr_c, gil_e, gil_f, tri_e, tri_f and tri_h;
-- the state change `0x0030E130` tests the id's bit in both layers before and after the change (`0x0030E1BE`,
-  `0x0030E1C9`; `0x0030E269`, `0x0030E26F`) to tell whether the state changed; the orders above reach it with 18, and so
+- the state change `0x0030E130` tests the id's bit in both layers before and after the change³ to tell whether the state changed; the orders above reach it with 18, and so
   does the rebuild below;
 - the timer pass `0x00385570` walks every id and reads the timer slot `+0x06` of each set augment's row
-  (`0x00385619`); row 18's slot is `0xFF` ([Augment list](augment-list.md)), so the pass goes on to the next id
-  (`0x0038561D`);
+ ⁴; row 18's slot is `0xFF` ([Augment list](augment-list.md)), so the pass goes on to the next id
+ ⁵;
 - the stats rebuild `0x002FEF30` tests only the 44 ids of its three lists `0x00D10290`, `0x00D102A0` and `0x00D102B0`
   (`0x002FF5CA`, `0x002FF668`, `0x002FF708`, loop ends `0x002FF638`, `0x002FF6D6`, `0x002FF776`), and 18 is in none of them.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00384851` |
+| ² | `0x00384827`, `0x00384831`, `0x0038484C` |
+| ³ | `0x0030E1BE`, `0x0030E1C9`; `0x0030E269`, `0x0030E26F` |
+| ⁴ | `0x00385619` |
+| ⁵ | `0x0038561D` |
+
+</details>
 
 Two functions read the layers whole:
 
 - the rebuild from licences and equipment `0x0030FED0` XORs the old layer bytes with the new
-  (`0x00310310`-`0x0031032E`) and calls `0x0030E130` for every id whose bit went off (`0x00310378`) or came on
-  (`0x00310396`), 18 included, so a licence or equipment change that turns Saboteur on or off is applied through
+ ¹ and calls `0x0030E130` for every id whose bit went off² or came on
+ ³, 18 included, so a licence or equipment change that turns Saboteur on or off is applied through
   the same state change as an order;
 - the party-member status builder `0x00329220` ORs the two layers into the record's `+0x4C`-`+0x5B`
   (`0x00329480`-`0x003294AF`; [Party member status record](../Characters-And-Objects/party-member-status-record.md)); of that
-  copy only `+0x51` bit `0x2` (augment 41) is ever read (`0x002BFFAA`), so the copied bit `0x40000` is read by nothing.
+  copy only `+0x51` bit `0x2` (augment 41) is ever read⁴, so the copied bit `0x40000` is read by nothing.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00310310`-`0x0031032E` |
+| ² | `0x00310378` |
+| ³ | `0x00310396` |
+| ⁴ | `0x002BFFAA` |
+
+</details>
 
 No other instruction in the executable tests bit `0x40000`: no instruction reaches bit `0x4` of the stats record's `+0x1C`, `+0x6A` or
 `+0x7A` outside the eight functions above, and the bit is stored nowhere but the two layers, the context byte and
 the status record's copy.
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Source | Count in the `us` data |
 |---|---|
@@ -218,6 +400,8 @@ the status record's copy.
 
 Each augment's text is entry *id* of the augment text bank (text word `0x5000` + id in the augment table
 `0x02EBF040`), for example 74 "Increases max HP by 30" and 20 "Gain MP after dealing magick damage".
+
+</details>
 
 ## Modding notes
 
@@ -244,8 +428,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002AC5F0` | calls | `0x00229E40` |
+| [`0x002AC5F0`](../Menus-And-HUD/text-drawing.md) (on text drawing) | calls | [`0x00229E40`](../Story-Events-And-Hunts/script-language-differences.md) (on script language differences) |
 
 </details>

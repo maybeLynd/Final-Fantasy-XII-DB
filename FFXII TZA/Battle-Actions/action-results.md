@@ -17,9 +17,18 @@ be affected at that moment, nothing in the record is applied.
 
 ### The record
 
-`0x003848E0(record)` (205 bytes) prepares the record. It zeroes `+0x08`-`+0x147`
-(`0x003848EF`-`0x003848F5`), leaves `+0x00`-`+0x07` to the caller, sets bit `0x1` of `+0x2C`, and sets the
-"nothing to do" values (`0x003848FA`-`0x003849A0`):
+`0x003848E0(record)` (205 bytes) prepares the record. It zeroes `+0x08`-`+0x147`¹, leaves `+0x00`-`+0x07` to the caller, sets bit `0x1` of `+0x2C`, and sets the
+"nothing to do" values²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003848EF`-`0x003848F5` |
+| ² | `0x003848FA`-`0x003849A0` |
+
+</details>
 
 - `-1` in the dword at `+0x38` and in the dwords at `+0x138` and `+0x13C`;
 - `-1` in the words at `+0x30`, `+0x11C` (both level bytes `0xFF`), `+0x11E`-`+0x124`, `+0x130` and
@@ -27,88 +36,91 @@ be affected at that moment, nothing in the record is applied.
 - `0xFF` in the bytes `+0x3C`-`+0x41`;
 - `-1` in all 32 dwords from `+0x5C` and all 32 words from `+0xDC`.
 
-It is called by the resolver `0x00385F60` (`0x0038600F`), the preview `0x00385680` (`0x0038586C`) and the four
+It is called by the resolver `0x00385F60`¹, the preview `0x00385680`² and the four
 status-result builders `0x00385DF0`, `0x00386A50`, `0x00386A70` and `0x00386AE0`. The record lives on the
 stack of the function that starts the action or status change, which first clears all `0x148` bytes with
 `memset` (below).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038600F` |
+| ² | `0x0038586C` |
+
+</details>
+
 ### The applier
 
 `0x003112F0(record, sourceStats, targetStats, actionId, flags)` (2,040 bytes) is called
-by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic maintenance `0x00310DB0`
+by the effect applier `0x00307300`¹, the periodic maintenance `0x00310DB0`
 (three calls), the effect-bit write `0x0030E130` and the status write `0x0030E360`. The last three pass a null
-`sourceStats` at all five calls (`0x0030E2D8`, `0x0030E636`, `0x00310FA5`, `0x003110A2`, `0x0031126A`); the effect applier
-passes the user's stats record `+0x698` (`0x0030741E`, `0x00307AAA`).
+`sourceStats` at all five calls²; the effect applier
+passes the user's stats record `+0x698`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00307436`, `0x00307ABD` |
+| ² | `0x0030E2D8`, `0x0030E636`, `0x00310FA5`, `0x003110A2`, `0x0031126A` |
+| ³ | `0x0030741E`, `0x00307AAA` |
+
+</details>
 
 Three pointers are tested before the steps that use them: a null target unit (`0x0031B860(targetStats)`) skips steps 3,
-5 and 12 and the clear of step 14 (`0x0031137F`, `0x00311402`, `0x00311919`, `0x00311AA3`); a null `targetStats` skips the
-target level of step 4, steps 6-8, 10 and 11 and the rebuild (`0x003113C6`, `0x003114C9`, `0x00311778`, `0x00311AAF`); a null
-`sourceStats` skips the user level of step 4 and step 9 (`0x003113E4`, `0x003116F3`), so neither runs at the five calls
+5 and 12 and the clear of step 14¹; a null `targetStats` skips the
+target level of step 4, steps 6-8, 10 and 11 and the rebuild²; a null
+`sourceStats` skips the user level of step 4 and step 9³, so neither runs at the five calls
 above that pass one. In order:
 
-1. **Skip test.** Unless bit `0x1` of `flags` is set, nothing is applied when `0x0030B9B0(targetUnit,
-   sourceUnit)` is non-zero - the global part `0x0030B770` or the unit part `0x0030B7F0` of the eligibility
-   mask, with the hostile flag from the relationship class ([Area of effect](area-of-effect.md))
-   (`0x00311354`-`0x00311367`).
-2. **Metadata** `0x00385BA0`: `+0x138` (when not -1) goes to the byte `[0x02EBF190]+0x5B0E`, `+0x13C` to the
-   dword `[0x02EBF190]+0x5B00`; a non-zero steal byte `+0x32`/`+0x33`/`+0x34` clears bit `0x1`/`0x2`/`0x4` of
-   `[targetUnit+0x6A0]+0x14`; with `+0x1C` = 1 the battle-message events are posted (`0x00469EC0`).
-   - `+0x13C` is skipped when it is -1 as well (`0x00385BDE`), and the byte stored from `+0x138` is its
-     low byte (`0x00385BC9`).
-   - The steal bytes are tested `+0x34` first, then `+0x33` and `+0x32`; each finds the target unit
-     afresh with `0x0031B860(targetStats)`, kept in `0x02EBF188`, and a null unit or a null `+0x6A0` skips
-     that clear (`0x00385BF0`-`0x00385C6B`).
-   - The poster is called as `0x00469EC0(word [0x02AEDFD4], sourceStats, targetStats, result)`
-     (`0x00385C75`-`0x00385C85`).
-3. Bit `0x80000` of `+0x2C` sets bit `0x8` of the target unit's `+0xE9A`; bit `0x4000` of `+0x140` passes sound `0x34`
-   to `0x003A1180` and, unless that answers -1, plays it with `0x002DF220(handle, 0x40, 0x7F)`; then bit `0x4` is set
-   (`0x0031137F`-`0x003113BF`).
-4. **Levels.** A target level `+0x11C` other than `0xFF` is applied with `0x0030C650(target, level, 0)`,
-   and the user's `+0x11D` likewise (`0x003113C6`-`0x003113FD`).
-5. **Steal and poach.**
-   - For an enemy-side target, each non-zero steal byte `k` (`+0x32`-`+0x34`) adds one of the item at
-     `[targetUnit+0xE60]+0x32+2k` (when not `0xFFFF`) with `0x003008A0`, clears bit `1 << k` of
-     `[targetUnit+0x6A0]+0x14` (already cleared by step 2) and calls `0x00316A50(3)` through the thunk
-     `0x00253770` (`0x00311475`).
-   - For a target of either side, a poach item `+0x38` other than -1 is added with `0x003008A0` (`0x00311402`-`0x003114A8`).
-   - A poach that rolled an empty `0xFFFF` word stores item 0 (`0x003907AB`), so the applier passes item 0, the
-     Potion ([item list](../Items-Equipment-Shops-And-Licenses/item-list.md)): `0x003008A0` refuses only `0xFFFF`,
-     `0x1000`, a group above `0xE` and an index past the group's count (`0x003008C0`-`0x00300927`), and group 0
-     counts `0x40` ids and hands them to `0x002FD150` (`0x00300960`).
-6. **Statuses.** Each bit `n` of the add mask `+0x54` calls `0x0030E360(target, source, n, +0x5C[n], +0xDC[n], ..., 3)`
-   (add); each bit of the remove mask `+0x58` calls `0x0030E360(target, source, n, 0, 0, ..., 0)` (remove). Bits `0x10`
-   and `0x20` of `+0x140` choose a flag passed to those calls (`0x003114C9`-`0x003115AF`).
-7. **Status parameters.** Every `+0x5C[n]` that is not negative is copied to target `+0xBC + 4n` (the status
-   durations) and every i16 `+0xDC[n]` that is not negative to target `+0x13C + 2n` (`0x003115B6`-`0x00311606`,
-   `0x003115F6`).
-8. **Target HP and MP.** With bit `0x100` of `+0x2C`, `+0x24` is applied to the target's HP - set outright
-   (`0x00300520`) with bit `0x8`, otherwise added (`0x00300530`, the HP write). With bit `0x4000`, `+0x2A` goes to the
-   target's MP - set (`0x00300C90`) with bit `0x10`, otherwise added (`0x00300CE0`). A non-zero `+0x1D` adds
-   `+0x1D * [target+0x28]` (whole max-MP units) to the target's secondary resource (`0x00300BC0`) (`0x00311608`-`0x003116E0`).
-9. **User HP and MP.** With bit `0x80` of `+0x2C`, `+0x20` is applied to the user's HP (set with bit `0x2`);
-   with bit `0x2000`, `+0x28` to the user's MP (set with bit `0x4`) (`0x00311700`-`0x00311775`).
-10. **Augment bits.** `+0x3C` and `+0x3D` (when not `0xFF`) are set in the target's augment layer (`0x0030E130` mode 2);
-    `+0x3E`-`+0x41` are cleared (mode 0), each also only when not `0xFF` (`0x003117F7`); bits `0x40` and `0x80` of
-    `+0x140` choose the flags. The eight timers `+0x42`-`+0x50` that are not negative are copied to target
-    `+0x17C`-`+0x18A` (`0x00311778`-`0x00311894`).
-11. **Enemy stat changes.** For an enemy-side target, each of `+0x11E`, `+0x120`, `+0x122`, `+0x124`
-    that is not -1 sets the target's modifier so that the stat becomes that value: `+0x08 += v - str`
-    (`+0x2A`), `+0x0A += v - mag` (`+0x2B`), `+0x12 += v - def` (`+0x2F`), `+0x14 += v - mres`
-    (`+0x30`) (`0x0031189B`-`0x00311915`).
-12. **Enemy affinity bytes.** For an enemy-side target, `+0x128`-`+0x12B` are OR-ed into bytes
-    `+0x7B`, `+0x79`, `+0x78`, `+0x7A` of `[targetUnit+0x6A0]`, and `+0x12C`-`+0x12F` cleared out of
-    the same bytes; each change sets bit `0x80` of that record's first dword (`0x00311919`-`0x00311A7E`).
-13. **Gil.** A non-zero `+0x08` is subtracted from the party's gil, not below 0 (`0x00253690`,
-    `0x00254EE0`) (`0x00311A84`-`0x00311A9E`).
-14. Bits `0x4` and `0x8` of the target unit's `+0xE9A` are cleared; when bit `0x200` of `flags` is clear and step 6 or
-    10 made a call, or step 11 met a value other than -1 or step 12 a non-zero byte (`0x00311AB4`, `0x00311ABB`), the
-    target's stats are rebuilt (`0x0030FED0(target, 0)`) (`0x00311AA3`-`0x00311AC5`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031137F`, `0x00311402`, `0x00311919`, `0x00311AA3` |
+| ² | `0x003113C6`, `0x003114C9`, `0x00311778`, `0x00311AAF` |
+| ³ | `0x003113E4`, `0x003116F3` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | **Skip test.** Unless bit `0x1` of `flags` is set, nothing is applied when `0x0030B9B0(targetUnit, sourceUnit)` is non-zero - the global part `0x0030B770` or the unit part `0x0030B7F0` of the eligibility mask, with the hostile flag from the relationship class ([Area of effect](area-of-effect.md)). | `0x00311354`-`0x00311367` |
+| 2 | **Metadata** `0x00385BA0`: `+0x138` (when not -1) goes to the byte `[0x02EBF190]+0x5B0E`, `+0x13C` to the dword `[0x02EBF190]+0x5B00`; a non-zero steal byte `+0x32`/`+0x33`/`+0x34` clears bit `0x1`/`0x2`/`0x4` of `[targetUnit+0x6A0]+0x14`; with `+0x1C` = 1 the battle-message events are posted.<br>• `+0x13C` is skipped when it is -1 as well, and the byte stored from `+0x138` is its low byte.<br>• The steal bytes are tested `+0x34` first, then `+0x33` and `+0x32`; each finds the target unit afresh with `0x0031B860(targetStats)`, kept in `0x02EBF188`, and a null unit or a null `+0x6A0` skips that clear.<br>• The poster is called as `0x00469EC0(word [0x02AEDFD4], sourceStats, targetStats, result)`. | `0x00469EC0`<br>`0x00385BDE`<br>`0x00385BC9`<br>`0x00385BF0`-`0x00385C6B`<br>`0x00385C75`-`0x00385C85` |
+| 3 | Bit `0x80000` of `+0x2C` sets bit `0x8` of the target unit's `+0xE9A`; bit `0x4000` of `+0x140` passes sound `0x34` to `0x003A1180` and, unless that answers -1, plays it with `0x002DF220(handle, 0x40, 0x7F)`; then bit `0x4` is set. | `0x0031137F`-`0x003113BF` |
+| 4 | **Levels.** A target level `+0x11C` other than `0xFF` is applied with `0x0030C650(target, level, 0)`, and the user's `+0x11D` likewise. | `0x003113C6`-`0x003113FD` |
+| 5 | **Steal and poach.**<br>• For an enemy-side target, each non-zero steal byte `k` (`+0x32`-`+0x34`) adds one of the item at `[targetUnit+0xE60]+0x32+2k` (when not `0xFFFF`) with `0x003008A0`, clears bit `1 << k` of `[targetUnit+0x6A0]+0x14` (already cleared by step 2) and calls `0x00316A50(3)` through the thunk `0x00253770`.<br>• For a target of either side, a poach item `+0x38` other than -1 is added with `0x003008A0`.<br>• A poach that rolled an empty `0xFFFF` word stores item 0, so the applier passes item 0, the Potion ([item list](../Items-Equipment-Shops-And-Licenses/item-list.md)): `0x003008A0` refuses only `0xFFFF`, `0x1000`, a group above `0xE` and an index past the group's count, and group 0 counts `0x40` ids and hands them to `0x002FD150`. | `0x00311475`<br>`0x00311402`-`0x003114A8`<br>`0x003907AB`<br>`0x003008C0`-`0x00300927`<br>`0x00300960` |
+| 6 | **Statuses.** Each bit `n` of the add mask `+0x54` calls `0x0030E360(target, source, n, +0x5C[n], +0xDC[n], ..., 3)` (add); each bit of the remove mask `+0x58` calls `0x0030E360(target, source, n, 0, 0, ..., 0)` (remove). Bits `0x10` and `0x20` of `+0x140` choose a flag passed to those calls. | `0x003114C9`-`0x003115AF` |
+| 7 | **Status parameters.** Every `+0x5C[n]` that is not negative is copied to target `+0xBC + 4n` (the status durations) and every i16 `+0xDC[n]` that is not negative to target `+0x13C + 2n`. | `0x003115B6`-`0x00311606`, `0x003115F6` |
+| 8 | **Target HP and MP.** With bit `0x100` of `+0x2C`, `+0x24` is applied to the target's HP - set outright with bit `0x8`, otherwise added (`0x00300530`, the HP write). With bit `0x4000`, `+0x2A` goes to the target's MP - set with bit `0x10`, otherwise added. A non-zero `+0x1D` adds `+0x1D * [target+0x28]` (whole max-MP units) to the target's secondary resource. | `0x00300520`<br>`0x00300C90`<br>`0x00300CE0`<br>`0x00300BC0`<br>`0x00311608`-`0x003116E0` |
+| 9 | **User HP and MP.** With bit `0x80` of `+0x2C`, `+0x20` is applied to the user's HP (set with bit `0x2`); with bit `0x2000`, `+0x28` to the user's MP (set with bit `0x4`). | `0x00311700`-`0x00311775` |
+| 10 | **Augment bits.** `+0x3C` and `+0x3D` (when not `0xFF`) are set in the target's augment layer (`0x0030E130` mode 2); `+0x3E`-`+0x41` are cleared (mode 0), each also only when not `0xFF`; bits `0x40` and `0x80` of `+0x140` choose the flags. The eight timers `+0x42`-`+0x50` that are not negative are copied to target `+0x17C`-`+0x18A`. | `0x003117F7`<br>`0x00311778`-`0x00311894` |
+| 11 | **Enemy stat changes.** For an enemy-side target, each of `+0x11E`, `+0x120`, `+0x122`, `+0x124` that is not -1 sets the target's modifier so that the stat becomes that value: `+0x08 += v - str` (`+0x2A`), `+0x0A += v - mag` (`+0x2B`), `+0x12 += v - def` (`+0x2F`), `+0x14 += v - mres` (`+0x30`). | `0x0031189B`-`0x00311915` |
+| 12 | **Enemy affinity bytes.** For an enemy-side target, `+0x128`-`+0x12B` are OR-ed into bytes `+0x7B`, `+0x79`, `+0x78`, `+0x7A` of `[targetUnit+0x6A0]`, and `+0x12C`-`+0x12F` cleared out of the same bytes; each change sets bit `0x80` of that record's first dword. | `0x00311919`-`0x00311A7E` |
+| 13 | **Gil.** A non-zero `+0x08` is subtracted from the party's gil, not below 0. | `0x00253690`, `0x00254EE0`<br>`0x00311A84`-`0x00311A9E` |
+| 14 | Bits `0x4` and `0x8` of the target unit's `+0xE9A` are cleared; when bit `0x200` of `flags` is clear and step 6 or 10 made a call, or step 11 met a value other than -1 or step 12 a non-zero byte, the target's stats are rebuilt (`0x0030FED0(target, 0)`). | `0x00311AB4`, `0x00311ABB`<br>`0x00311AA3`-`0x00311AC5` |
 
 `0x00300C90(stats, value, tag)`, the MP set of steps 8 and 9, calls `0x00300CE0(stats, value - i16 +0x4C, tag)`, and, when
 `value` is above the i16 `+0x06` read after that call, the secondary-resource add
-`0x00300BC0(stats, value - i16 +0x06, tag)` (`0x00300C9F`-`0x00300CC4`).
+`0x00300BC0(stats, value - i16 +0x06, tag)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00300C9F`-`0x00300CC4` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -155,9 +167,18 @@ above that pass one. In order:
 
 ### Where records live and who clears them
 
-A record is a local of one of nine functions. Eight clear all `0x148` bytes with `memset` (`0x00861EC0`)
+A record is a local of one of nine functions. Eight clear all `0x148` bytes with `memset`¹
 before use; the ninth, `0x00319F50`, hands its record straight to the resolver, whose `0x003848E0` clears
 `+0x08`-`+0x147`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00861EC0` |
+
+</details>
 
 | Function | Clears at | Hands the record to |
 |---|---|---|
@@ -172,17 +193,43 @@ before use; the ninth, `0x00319F50`, hands its record straight to the resolver, 
 | `0x00319F50` | no clear of its own (`0x003848E0` in the resolver clears `+0x08`-`+0x147`) | the resolver `0x00385F60` |
 
 The resolver and the preview also put the record's address at `+0x10` of the evaluation context that
-`0x003847C0` builds (`0x003847FF`), and the 202 action-effect handlers of the table `0x01EFA5C0` reach it there.
+`0x003847C0` builds¹, and the 202 action-effect handlers of the table `0x01EFA5C0` reach it there.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003847FF` |
+
+</details>
 
 The bytes `+0x05`-`+0x07`, `+0x0C`-`+0x0F`, `+0x1E`-`+0x1F`, `+0x35`-`+0x37`, `+0x52`-`+0x53`, `+0x126`-`+0x127`,
 `+0x132`-`+0x133` and `+0x144`-`+0x147` are written only by these clears and by `0x003848E0`'s `memset` of
-`+0x08`-`+0x147` (`0x003848F5`), and read by no instruction; `+0x30` is also written `0xFFFF` (`0x0038490B`). No function
+`+0x08`-`+0x147`¹, and read by no instruction; `+0x30` is also written `0xFFFF`². No function
 copies a record whole.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003848F5` |
+| ² | `0x0038490B` |
+
+</details>
+
+</details>
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The applier writes only to the records it is given and the globals named in the steps
 (`[0x02EBF190]+0x5B00`/`+0x5B0E` and the party's gil).
+
+</details>
 
 ## Modding notes
 
@@ -210,9 +257,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Game files and data tables** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00319F50` | calls | `0x001D6AE0` |
+| [`0x00319F50`](../Status-Effects-And-KO/ko-and-game-over.md) Battle unit: handle actor timeline event (on ko and game over) | calls | [`0x001D6AE0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump) |
 
 </details>
 

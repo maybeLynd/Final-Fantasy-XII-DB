@@ -31,54 +31,73 @@ The play calls sit in `0x002DEE80`-`0x002DF530` and reach the audio manager thro
 | `0x002DF120` | handle, position | moves a playing placed sound, except while `0x003603C0` answers non-zero |
 | `0x002DF1E0` | bank id, frames, volume | sets the volume of every sound of that six-digit bank, at once or over frames |
 
-Volume is masked to 0-127 and pan to a byte before the controller (`0x00210C03`-`0x00210C0C`).
+Volume is masked to 0-127 and pan to a byte before the controller¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00210C03`-`0x00210C0C` |
+
+</details>
 
 ### The gates
 
-1. `0x00249C60(slot)` and `0x00249CA0(slot)` return -1 at once while `0x02091098` is not 0 (`0x00249C64`-`0x00249C8B`,
-   `0x00249CA4`-`0x00249CCB`), and `0x0024A1A0(handle)` returns at once without setting a value
-   (`0x0024A1A6`-`0x0024A1AF`); `0x00249FC0` is its only writer. Other callers of `0x002DF220`, such as `0x00271500`,
-   `0x003A0E20` and the script verb body `0x00357040`, do not read it.
-2. Every play entry answers 0 while the byte `0x022CB726` is set (`0x003603C0`, read at `0x002DF23B`). `0x003601D0` sets it
-   after stopping every block-bank sound and releasing every six-digit bank (`0x00360252`-`0x003602A4`); `0x00360110` and
-   `0x00360370` clear it.
-3. The id builders `0x003A1180`, `0x003A1070` and `0x003A1100` answer -1 when `0x00267330(0)` is non-zero; it reads byte `+0x10`
-   of record 0 at `0x02098E10` (`0x00267333`-`0x00267341`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00249C60(slot)` and `0x00249CA0(slot)` return -1 at once while `0x02091098` is not 0, and `0x0024A1A0(handle)` returns at once without setting a value; `0x00249FC0` is its only writer. Other callers of `0x002DF220`, such as `0x00271500`, `0x003A0E20` and the script verb body `0x00357040`, do not read it. | `0x00249C64`-`0x00249C8B`, `0x00249CA4`-`0x00249CCB`<br>`0x0024A1A6`-`0x0024A1AF` |
+| 2 | Every play entry answers 0 while the byte `0x022CB726` is set (`0x003603C0`, read at `0x002DF23B`). `0x003601D0` sets it after stopping every block-bank sound and releasing every six-digit bank; `0x00360110` and `0x00360370` clear it. | `0x00360252`-`0x003602A4` |
+| 3 | The id builders `0x003A1180`, `0x003A1070` and `0x003A1100` answer -1 when `0x00267330(0)` is non-zero; it reads byte `+0x10` of record 0 at `0x02098E10`. | `0x00267333`-`0x00267341` |
 
 ### The play handle
 
-`0x00212950` counts handles in `0x01FD36B4`, from 1 to `0x7FFFFFFF` and then round again (`0x00212950`-`0x00212965`). The
+`0x00212950` counts handles in `0x01FD36B4`, from 1 to `0x7FFFFFFF` and then round again¹. The
 handle is returned even when no bank owns the id, and is kept in the voice at `+0x18`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00212950`-`0x00212965` |
+
+</details>
 
 ### Which bank
 
 `0x00210C00` sends a block-bank request to `0x0021B5B0` and a six-digit request to `0x00219EA0`:
 
-1. A block bank is the one whose block registry slot `+0x3C` equals `id / 512`; the sound slot is `id & 0x1FF`
-   (`0x002245D3`).
-2. A six-digit bank is the one whose `+0x38` equals the whole id, and its voice takes slot 0 (`0x002257D0`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A block bank is the one whose block registry slot `+0x3C` equals `id / 512`; the sound slot is `id & 0x1FF`. | `0x002245D3` |
+| 2 | A six-digit bank is the one whose `+0x38` equals the whole id, and its voice takes slot 0. | `0x002257D0` |
 
 ### Starting a block-bank voice
 
-`0x00224570(bank, handle, id, pan, volume, placed, position)` starts the voice (`0x002245AC`-`0x0022483F`). The
-sixth argument is a byte and the seventh a qword (`0x00224593`, `0x00224727`, `0x002247AC`): `0x00224540` passes 0
-and null, and `0x00223EB0` passes 1 and its own fourth argument, with pan 0 and volume 0
-(`0x00223EB4`-`0x00223EC1`). The steps:
+`0x00224570(bank, handle, id, pan, volume, placed, position)` starts the voice¹. The
+sixth argument is a byte and the seventh a qword²: `0x00224540` passes 0
+and null, and `0x00223EB0` passes 1 and its own fourth argument, with pan 0 and volume 0³. The steps:
 
-1. While the bank is still loading it waits (`0x002245AC`-`0x002245C5`).
-2. The slot must be in the bank's map, and its sound entry present in the loaded `.sab` (`0x007A8CF0`,
-   `0x0022463F`-`0x00224651`).
-3. The slot's flag byte decides the rest, below.
-4. Otherwise it takes a voice and stores a copy of the flag byte in byte `+9` of the slot's entry: 0 with
-   bit `0x80`, `(flags & 1) | 0x40` with bit `0x20`, the flag byte itself otherwise
-   (`0x00224766`-`0x0022477C`). In the voice it stores slot `+0x14`, id with bit `0x80000000` set `+0x24`,
-   handle `+0x18` and state 1 `+0x10` (`0x00224784`-`0x002247A7`).
-5. With the sixth argument 0 or the seventh null it stores kind 2 at `+0x2C`, calls `0x00221C70` and sets
-   pan and volume (`0x002247DB`-`0x00224812`). With both set it stores kind 3, calls
-   `0x00221940(bank, voice, seventh, bank)` and sets neither (`0x002247AC`-`0x002247D4`).
-6. It posts the start to the driver (`0x007A78B0`, `0x00224825`), resets the voice with `0x002256B0` when the
-   post answers non-zero (`0x0022482A`-`0x00224831`) and calls the bank's vtable slot `+0x50` with the voice
-   (`0x00224836`-`0x0022483F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002245AC`-`0x0022483F` |
+| ² | `0x00224593`, `0x00224727`, `0x002247AC` |
+| ³ | `0x00223EB4`-`0x00223EC1` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | While the bank is still loading it waits. | `0x002245AC`-`0x002245C5` |
+| 2 | The slot must be in the bank's map, and its sound entry present in the loaded `.sab`. | `0x007A8CF0`, `0x0022463F`-`0x00224651` |
+| 3 | The slot's flag byte decides the rest, below. |   |
+| 4 | Otherwise it takes a voice and stores a copy of the flag byte in byte `+9` of the slot's entry: 0 with bit `0x80`, `(flags & 1) \| 0x40` with bit `0x20`, the flag byte itself otherwise. In the voice it stores slot `+0x14`, id with bit `0x80000000` set `+0x24`, handle `+0x18` and state 1 `+0x10`. | `0x00224766`-`0x0022477C`<br>`0x00224784`-`0x002247A7` |
+| 5 | With the sixth argument 0 or the seventh null it stores kind 2 at `+0x2C`, calls `0x00221C70` and sets pan and volume. With both set it stores kind 3, calls `0x00221940(bank, voice, seventh, bank)` and sets neither. | `0x002247DB`-`0x00224812`<br>`0x002247AC`-`0x002247D4` |
+| 6 | It posts the start to the driver, resets the voice with `0x002256B0` when the post answers non-zero and calls the bank's vtable slot `+0x50` with the voice. | `0x007A78B0`, `0x00224825`<br>`0x0022482A`-`0x00224831`<br>`0x00224836`-`0x0022483F` |
 
 | Flag bit | Effect |
 |---|---|
@@ -91,13 +110,36 @@ voice with a 4.8 s fade in.
 
 ### Volume
 
-`0x002257E0(voice, volume, frames)` clamps the volume to 0-127 (`0x002257EC`-`0x0022580A`) and posts
-`volume / 127` over `frames / 60` seconds to the driver's `Sound::SetVolume` (`0x007BEAF0`).
-A volume below 0 becomes 0 (`0x002257EC`) and one of 127 or more becomes 127 (`0x0022580A`). The result is kept in the
-voice at `+0x1C` (`0x00225811`), and the post goes through `0x007A81F0` with the driver sound at voice `+8` and -1 as
-its last argument (`0x0022580D`, `0x00225827`).
+`0x002257E0(voice, volume, frames)` clamps the volume to 0-127¹ and posts
+`volume / 127` over `frames / 60` seconds to the driver's `Sound::SetVolume`².
+A volume below 0 becomes 0³ and one of 127 or more becomes 127⁴. The result is kept in the
+voice at `+0x1C`⁵, and the post goes through `0x007A81F0` with the driver sound at voice `+8` and -1 as
+its last argument⁶.
 
-The three Config rows are options commands `0x13`, `0x14` and `0x15` (`0x002408F1`, `0x00240902`, `0x00240913`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002257EC`-`0x0022580A` |
+| ² | `0x007BEAF0` |
+| ³ | `0x002257EC` |
+| ⁴ | `0x0022580A` |
+| ⁵ | `0x00225811` |
+| ⁶ | `0x0022580D`, `0x00225827` |
+
+</details>
+
+The three Config rows are options commands `0x13`, `0x14` and `0x15`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002408F1`, `0x00240902`, `0x00240913` |
+
+</details>
 
 | Row | Body | Stored at | Category |
 |---|---|---|---:|
@@ -105,35 +147,86 @@ The three Config rows are options commands `0x13`, `0x14` and `0x15` (`0x002408F
 | Sound Effects | `0x002DE290` | options `+0x0A` | 2 |
 | Voice | `0x002DE310` | options `+0x0C` | 3 |
 
-Each clamps its value to 0-100, divides it by 100 and ramps its category's volume (`0x00210ED0`, `0x007AA570`). A sound
-takes the category named by byte `+6` of its sound header (`0x007BD570`), and the category's volume multiplies its own
-(`0x007A9F40`, `0x007AA894`-`0x007AA924`).
+Each clamps its value to 0-100, divides it by 100 and ramps its category's volume¹. A sound
+takes the category named by byte `+6` of its sound header², and the category's volume multiplies its own³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00210ED0`, `0x007AA570` |
+| ² | `0x007BD570` |
+| ³ | `0x007A9F40`, `0x007AA894`-`0x007AA924` |
+
+</details>
 
 ### Pan
 
-`0x002256F0(voice, pan, frames)` turns the pan, a 32-bit argument it compares signed with `0x7F` (`0x00225743`), into
-the driver's pan and front-back values (`0x00225743`-`0x00225783`):
+`0x002256F0(voice, pan, frames)` turns the pan, a 32-bit argument it compares signed with `0x7F`¹, into
+the driver's pan and front-back values²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00225743` |
+| ² | `0x00225743`-`0x00225783` |
+
+</details>
 
 | Pan | Driver pan | Front-back |
 |---|---|---|
 | up to `0x7F` | `(pan - 0x40) / 128` | +1 |
 | above `0x7F` | `(0xBF - pan) / 128` | -1 |
 
-The driver turns pan into an angle of `pan * pi`, and a front-back of -1 adds half a turn (`0x007B875B`-`0x007B8769`).
+The driver turns pan into an angle of `pan * pi`, and a front-back of -1 adds half a turn¹.
 So `0x40` is straight ahead, `0x00` 270 degrees, `0x7F` about 89 degrees, `0xBF` straight behind and `0xFF` 90 degrees:
-`0x80`-`0xFF` is the rear half, run the other way. The output count is always 8 (`0x007AF06A`), so the eight-speaker
-ring is used. A pan change moves at no more than 5.0 per second (`0x007BE510`).
+`0x80`-`0xFF` is the rear half, run the other way. The output count is always 8², so the eight-speaker
+ring is used. A pan change moves at no more than 5.0 per second³.
 
-`0x002256F0` reaches the driver sound at voice `+8` in two posts: first command `0x12` with 1 (`0x007A7E00`,
-`0x0022576A`), which turns that 5.0 limit on, then command `0x10` with the pan, the front-back value, 0 and
-`frames / 60` seconds (`0x007A7E90`, `0x0022578E`). It keeps the pan in the voice at `+0x20`, a dword (`0x002257A2`). Its
-earlier call of `0x0016D6A0` (`0x0022573E`), with 0 when voice `+0x2C` is 3, 5 or 9 and 1 otherwise
-(`0x0022571E`-`0x00225739`), returns at once: that body is a bare `ret` (`0x0016D6A0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B875B`-`0x007B8769` |
+| ² | `0x007AF06A` |
+| ³ | `0x007BE510` |
+
+</details>
+
+`0x002256F0` reaches the driver sound at voice `+8` in two posts: first command `0x12` with 1¹, which turns that 5.0 limit on, then command `0x10` with the pan, the front-back value, 0 and
+`frames / 60` seconds². It keeps the pan in the voice at `+0x20`, a dword³. Its
+earlier call of `0x0016D6A0`⁴, with 0 when voice `+0x2C` is 3, 5 or 9 and 1 otherwise⁵, returns at once: that body is a bare `ret`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A7E00`, `0x0022576A` |
+| ² | `0x007A7E90`, `0x0022578E` |
+| ³ | `0x002257A2` |
+| ⁴ | `0x0022573E` |
+| ⁵ | `0x0022571E`-`0x00225739` |
+| ⁶ | `0x0016D6A0` |
+
+</details>
 
 ### Fades
 
-`0x007A9E50(t, curve)` is the fade shape, `t` the float first argument and `curve` the second (`0x007A9E54`,
-`0x007A9E57`), with six curves from the jump table at `0x007A9F1C`:
+`0x007A9E50(t, curve)` is the fade shape, `t` the float first argument and `curve` the second¹, with six curves from the jump table at `0x007A9F1C`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A9E54`, `0x007A9E57` |
+
+</details>
 
 | Curve | Shape |
 |---:|---|
@@ -146,17 +239,25 @@ earlier call of `0x0016D6A0` (`0x0022573E`), with 0 when voice `+0x2C` is 3, 5 o
 
 A curve outside 0-5 gives 0: the test at `0x007A9E5A` is unsigned. The ramp setter `0x007CA560` has 97 calls:
 
-1. 75 pass curve 0: every method of the driver's `Sound` in `0x007BE0B0`-`0x007BEF30`, among them volume (`0x007BEBF2`),
-   pan, pitch and stop, and the category volume ramps (`0x007AA4F0`-`0x007AA570`). So every volume, pan, pitch and stop
-   ramp on a voice or a category is linear.
-2. The music player reads its curve from its own data, such as byte `+1` of a record (`0x007C3960`, `0x007C5127`,
-   `0x007CBCEF`) or byte `+0xC` of a player's parameter block (`0x007E7F3D`).
-3. The driver's `Filter` effect picks curves 4 and 5 for its own parameter ramps (`0x007D1840`, `0x007D1A10`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | 75 pass curve 0: every method of the driver's `Sound` in `0x007BE0B0`-`0x007BEF30`, among them volume, pan, pitch and stop, and the category volume ramps. So every volume, pan, pitch and stop ramp on a voice or a category is linear. | `0x007BEBF2`<br>`0x007AA4F0`-`0x007AA570` |
+| 2 | The music player reads its curve from its own data, such as byte `+1` of a record or byte `+0xC` of a player's parameter block. | `0x007C3960`, `0x007C5127`, `0x007CBCEF`<br>`0x007E7F3D` |
+| 3 | The driver's `Filter` effect picks curves 4 and 5 for its own parameter ramps. | `0x007D1840`, `0x007D1A10` |
 
 ### Rate-limited ramps
 
 A ramp whose `+0x24` is 1 never moves faster than its rates. When `0x007CA560` gives a ramp a new target it keeps the
-duration it was asked for, unless that would beat the rate (`0x007CA5D2`-`0x007CA631`):
+duration it was asked for, unless that would beat the rate¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007CA5D2`-`0x007CA631` |
+
+</details>
 
 ```python
 if ramp+0x24 == 1:
@@ -164,8 +265,17 @@ if ramp+0x24 == 1:
     else:                duration = max(duration, (current - target) / |ramp+0x2C|)
 ```
 
-The driver's `Sound` re-targets its ramp at `+0x3C8` to 0 the same way (`0x007BE207`-`0x007BE26E`). Three places turn the
+The driver's `Sound` re-targets its ramp at `+0x3C8` to 0 the same way¹. Three places turn the
 limit on, and every constructor turns it off (`+0x24` = 0):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007BE207`-`0x007BE26E` |
+
+</details>
 
 | Ramps | Turned on by | Rise `+0x28` | Fall `+0x2C` |
 |---|---|---|---|
@@ -173,36 +283,90 @@ limit on, and every constructor turns it off (`+0x24` = 0):
 | a sound's curved ramp `+0x88` | `Sound` slot 11 `0x007BEC70` with its flag set (`0x007BEC9F`, `0x007BECA7`) | 5.0 | 5.0 |
 | a sound's `+0x248` and `+0x278` | `0x007BDDA0`, when byte `+1` of the sound header's entry is 1 (`0x007BDEB7`, `0x007BDEBC`) | entry `+0x10` | entry `+0x14` |
 
-With the flag clear, slots 10 and 11 set `+0x24` to 0 (`0x007BE579`-`0x007BE585`, `0x007BECBD`), and `0x007BDDA0` does for an
-entry whose byte `+1` is not 1 (`0x007BDEC1`). The header's entries are `0x20` bytes from header word `+0x4C`, at most
-two, counted by header byte `+0x4E` (`0x007CFF40`). `0x007BFFA0`, which copies a sound into its replacement (`0x007B4C65`),
-copies `+0x24`-`+0x2F` of eleven of its ramps (`0x007BFFA0`-`0x007C04E1`).
+With the flag clear, slots 10 and 11 set `+0x24` to 0¹, and `0x007BDDA0` does for an
+entry whose byte `+1` is not 1². The header's entries are `0x20` bytes from header word `+0x4C`, at most
+two, counted by header byte `+0x4E`³. `0x007BFFA0`, which copies a sound into its replacement⁴,
+copies `+0x24`-`+0x2F` of eleven of its ramps⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007BE579`-`0x007BE585`, `0x007BECBD` |
+| ² | `0x007BDEC1` |
+| ³ | `0x007CFF40` |
+| ⁴ | `0x007B4C65` |
+| ⁵ | `0x007BFFA0`-`0x007C04E1` |
+
+</details>
 
 ### Stopping a sound
 
-`0x002DF0F0(handle, 0)` stops the sound with that handle with a 0.1 s fade (`0x00222390`). By id it sends a block-bank
-request as `id | 0x80000000` (`0x00210C65`), which `0x0021B640` acts on only for -1, -2 and -4 (`0x0021B647`), so one
+`0x002DF0F0(handle, 0)` stops the sound with that handle with a 0.1 s fade¹. By id it sends a block-bank
+request as `id | 0x80000000`², which `0x0021B640` acts on only for -1, -2 and -4³, so one
 block-bank sound cannot be stopped by its id.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00222390` |
+| ² | `0x00210C65` |
+| ³ | `0x0021B647` |
+
+</details>
 
 `0x002716F0(handle)` stops a handle only when it is not negative and `0x002DEE80` answers that it still plays; its
 only caller is the special-attack window `0x002D5EB0` ([Menu screens](../Menus-And-HUD/menu-screens.md)).
 
 ### Stopping after a delay
 
-`0x003B3EA0(handle, frames)` starts a fade-out of `frames` (`0x002DF170`) and queues the handle in the first free entry of
-32 at `0x02EBCC80`, with a countdown of `frames` plus a quarter of `frames`, the quarter at least 2
-(`0x003B3EE6`-`0x003B3EFB`); with all 32 in use the handle is faded but not queued (`0x003B3ECE`). `0x003B3D20`, run from
+`0x003B3EA0(handle, frames)` starts a fade-out of `frames`¹ and queues the handle in the first free entry of
+32 at `0x02EBCC80`, with a countdown of `frames` plus a quarter of `frames`, the quarter at least 2²; with all 32 in use the handle is faded but not queued³. `0x003B3D20`, run from
 `0x0024D540`,
-counts each entry down and stops its handle at 0 (`0x002DF0F0`), closing the queue up. When `0x003E7DE0` answers non-zero
+counts each entry down and stops its handle at 0⁴, closing the queue up. When `0x003E7DE0` answers non-zero
 it instead calls `0x003B3E40`, which stops every queued handle at once and empties the queue.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DF170` |
+| ² | `0x003B3EE6`-`0x003B3EFB` |
+| ³ | `0x003B3ECE` |
+| ⁴ | `0x002DF0F0` |
+
+</details>
 
 ## Layouts
 
+<details>
+<summary>Show the memory layouts</summary>
+
 A ramp, `0x30` bytes with the vtable `0x01CB44A0`. The driver builds them in seven places: a category's two arrays at
-`+0x38` and `+0x40` (`0x007AA199`), five in a bus from `+0x38` (`0x007AC5B0`), two in an external source voice at `+0x490`
-and `+0x4C0` (`0x007B8D8D`), thirteen in a sound from `+0x188` (`0x007BC978`), seven in a track from `+0x38` (`0x007E7AB7`),
-two in each of a track's four `0x70`-byte pairs from `+0x1F8` (`0x007F3DF2`), and two in a sound source object at `+0x48`
-and `+0x80` (`0x007EF946`). A sound's four curved ramps from `+0x88` (`0x01CB5A20`, `0x007BC903`) start with one.
+`+0x38` and `+0x40`¹, five in a bus from `+0x38`², two in an external source voice at `+0x490`
+and `+0x4C0`³, thirteen in a sound from `+0x188`⁴, seven in a track from `+0x38`⁵,
+two in each of a track's four `0x70`-byte pairs from `+0x1F8`⁶, and two in a sound source object at `+0x48`
+and `+0x80`⁷. A sound's four curved ramps from `+0x88`⁸ start with one.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AA199` |
+| ² | `0x007AC5B0` |
+| ³ | `0x007B8D8D` |
+| ⁴ | `0x007BC978` |
+| ⁵ | `0x007E7AB7` |
+| ⁶ | `0x007F3DF2` |
+| ⁷ | `0x007EF946` |
+| ⁸ | `0x01CB5A20`, `0x007BC903` |
+
+</details>
 
 `AudioParameterRamp` (`0x30` bytes, offsets from the start of the record):
 
@@ -221,12 +385,25 @@ and `+0x80` (`0x007EF946`). A sound's four curved ramps from `+0x88` (`0x01CB5A2
 | `+0x28` | `f32` | riseRate | the most the value may rise per second when limited: duration is at least the rise over this (`0x007CA5F6`, `0x007BE23A`); 5.0 from `0x007BE510` (`0x007BE533`) and `0x007BEC70` (`0x007BEC9F`); the header entry's `+0x10` from `0x007BDDA0` (`0x007BDEB7`); copied by `0x007BFFA0` |
 | `+0x2C` | `f32` | fallRate | the most the value may fall per second when limited (`0x007CA617`, `0x007BE256`); 5.0 from `0x007BE510` (`0x007BE547`, `0x007BE555`, `0x007BE563`) and `0x007BEC70` (`0x007BECA7`); the header entry's `+0x14` from `0x007BDDA0` (`0x007BDEBC`); copied by `0x007BFFA0` |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The delayed-stop queue is 32 entries of 8 bytes from `0x02EBCC80`: a byte that marks the entry used at `+0`, the
 countdown in frames (`u16`) at `+2` and the sound handle (`u32`) at `+4`. When an entry's countdown ends,
-`0x003B3D20` moves every later entry down one, so the last entry is read as the source of the move, and empties the last
-(`0x003B3D88`-`0x003B3DD2`).
+`0x003B3D20` moves every later entry down one, so the last entry is read as the source of the move, and empties the last¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B3D88`-`0x003B3DD2` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -236,6 +413,8 @@ countdown in frames (`u16`) at `+2` and the sound handle (`u32`) at `+4`. When a
 
 No other instruction reaches these three. The queue's addresses are taken by `0x003B3D20`, `0x003B3E10`, `0x003B3E40` and
 `0x003B3EA0` only.
+
+</details>
 
 ## Modding notes
 

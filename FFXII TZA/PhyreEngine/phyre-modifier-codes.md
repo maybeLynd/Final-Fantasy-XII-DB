@@ -23,9 +23,19 @@ outputs, input table, output table, …)` fills it: the name at `+0x00`, the inp
 descriptions as two arrays the record does not own (count with bit `0x80000000` set, as in a `PArray`), the
 parameter fetch at `+0x40` and the kernel at `+0x48`, and `0xFFFFFFFF` at `+0x70`.
 
-It also zeroes the link `+0x08` and the qwords `+0x30`, `+0x38`, `+0x60` and `+0x68` (`0x006D58DA`,
-`0x006D5914`, `0x006D5920`-`0x006D5928`), stores its ninth argument at `+0x58` and the dword of its eleventh
-at `+0x50` (`0x006D5906`, `0x006D590E`), and returns the record (`0x006D5911`).
+It also zeroes the link `+0x08` and the qwords `+0x30`, `+0x38`, `+0x60` and `+0x68`¹, stores its ninth argument at `+0x58` and the dword of its eleventh
+at `+0x50`², and returns the record³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006D58DA`, `0x006D5914`, `0x006D5920`-`0x006D5928` |
+| ² | `0x006D5906`, `0x006D590E` |
+| ³ | `0x006D5911` |
+
+</details>
 
 ### The registry
 
@@ -33,8 +43,18 @@ Records are kept on one singly linked list headed by `0x02E9FD60`, linked throug
 `0x006D5A60` adds a record at the front; it returns `0x11` for a record without a name and `0x12` when
 the name is already registered. `0x006D6F90` unlinks a record.
 
-`0x006D6F90` also clears the record's link `+0x08` (`0x006D6FD7`, `0x006D6FDA`). A record that is not on the
-list is left as it is, and the body returns 0 on every path (`0x006D6FCD`, `0x006D6FDE`).
+`0x006D6F90` also clears the record's link `+0x08`¹. A record that is not on the
+list is left as it is, and the body returns 0 on every path².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006D6FD7`, `0x006D6FDA` |
+| ² | `0x006D6FCD`, `0x006D6FDE` |
+
+</details>
 
 The dynamic-geometry module's init `0x006C45F0` registers fourteen records after its reflected types,
 stopping at the first failure, and its shutdown `0x006C4750` unlinks them again. The nine morph
@@ -45,23 +65,62 @@ Both go through the records in one order: `Morph22`, `Morph32`, `Morph42`, `Morp
 `Morph43`, `Morph24`, `Morph34`, `Morph44`, then `Skin`, `SkinLocal`, `SkinLocalTangent`, `SkinVertex`
 and `SkinVertexLocal`. The init registers through the jump `0x006D5A50` to `0x006D5A60`.
 
-On a failure the init returns that code, `0x11` or `0x12` (`0x006C4744`), which stops the module init
+On a failure the init returns that code, `0x11` or `0x12`¹, which stops the module init
 walk; otherwise it returns the last registration's result (tail jump at `0x006C473F`). The shutdown
-stops at the first non-zero result of `0x006D6F90` (`0x006C4762`); that body always returns 0, so the
+stops at the first non-zero result of `0x006D6F90`²; that body always returns 0, so the
 shutdown unlinks all fourteen and returns 0 (tail jump at `0x006C4847`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006C4744` |
+| ² | `0x006C4762` |
+
+</details>
 
 `PModifier` is a named type: its descriptor, built by `0x006D5810`, carries the resolver `0x006D5AF0`,
 which looks a name up in the list and returns `0x13` when no code has it, so a reference to a code
 is stored as its name and resolved through the list. A null name also gives `0x13`, and with `0x13`
-the record pointer is set to null (`0x006D5AFD`, `0x006D5B46`).
+the record pointer is set to null¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006D5AFD`, `0x006D5B46` |
+
+</details>
 
 `0x006D5810` builds the descriptor once, behind the guard `0x02E9FDD0`, at `0x02E9FD70`. It gives `0x006B6820`
 the type name at `0x00D8D7A0`, `0x78`, 8, `0x006CD4C0` (which gives a record's name and the name's length
-plus 1) and the resolver (`0x006D588A`). It then sets the descriptor's vtable `0x00D8D7B8` (`0x006D5896`),
-registers `0x008B7590` with `atexit` (`0x006D58A4`) and returns `0x02E9FD70` on every call.
+plus 1) and the resolver¹. It then sets the descriptor's vtable `0x00D8D7B8`²,
+registers `0x008B7590` with `atexit`³ and returns `0x02E9FD70` on every call.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006D588A` |
+| ² | `0x006D5896` |
+| ³ | `0x006D58A4` |
+
+</details>
 
 `0x008B7590` is two instructions: it loads the descriptor's address `0x02E9FD70` as the one argument and
-jumps to `0x006B68A0` (`0x008B7590`-`0x008B7597`).
+jumps to `0x006B68A0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008B7590`-`0x008B7597` |
+
+</details>
 
 ### The parameter fetch
 
@@ -74,16 +133,29 @@ parameters take; with a null buffer it only returns the size.
   `0x006C4470` returns. Any other input, and every input when the instance has no weight array, gets
   1.0.
 - `0x006D5CC0` (`Skin`, `SkinVertex`) writes one 64-byte matrix per entry of the input's pair list
-  (two `u16` indices per entry): the product (`0x00185100`) of the matrix at the first index in the
+  (two `u16` indices per entry): the product¹ of the matrix at the first index in the
   array at `+0x28` and the matrix at the second index in the array of the object at `+0x20`.
 - `0x006D5B60` (`SkinLocal`, `SkinLocalTangent`, `SkinVertexLocal`) does the same and multiplies in
   one more matrix, the result of `0x00187460` on the matrix stored just before the `+0x28` array. That
-  matrix comes first: `0x00185100` takes it and the first-index matrix (`0x006D5BF1`), then takes that
-  product and the second-index matrix (`0x006D5C04`).
+  matrix comes first: `0x00185100` takes it and the first-index matrix², then takes that
+  product and the second-index matrix³.
 - In both skinning fetches the offsets are on the invocation's first pointer: the pair list is at
   `+0x38` (count `+0x08`, bit `0x80000000` masked; entries `+0x10`), and the object is the pointer
-  stored first at `+0x20`, with its array at `+0x18` (`0x006D5CC9`-`0x006D5CFF`, `0x006D5B6D`-`0x006D5BAC`).
-  The size returned is the count × 64 on every path (`0x006D5CDC`, `0x006D5B80`).
+  stored first at `+0x20`, with its array at `+0x18`⁴.
+  The size returned is the count × 64 on every path⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00185100` |
+| ² | `0x006D5BF1` |
+| ³ | `0x006D5C04` |
+| ⁴ | `0x006D5CC9`-`0x006D5CFF`, `0x006D5B6D`-`0x006D5BAC` |
+| ⁵ | `0x006D5CDC`, `0x006D5B80` |
+
+</details>
 
 ### The morph kernels
 
@@ -96,6 +168,9 @@ output. A kernel takes the weights, the element count, the source pointers and t
 4. with two to four left it writes, per float, the sum of each kept source times its weight.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 PModifier record (`0x78`):
 
@@ -117,7 +192,12 @@ PModifier record (`0x78`):
 | `+0x68` | `u64` |  | 0 from `0x006D58D0` |
 | `+0x70` | `u32` |  | value `0xFFFFFFFF` |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 The fourteen registered codes, read from the records:
 
@@ -138,12 +218,17 @@ The fourteen registered codes, read from the records:
 | `Morph43` | `0x02EA0300` | 4 | 1 | `0x006D9200` | `0x006D87D0` |
 | `Morph44` | `0x02EA0570` | 4 | 1 | `0x006D9200` | `0x006D8B00` |
 
+</details>
+
 ## Operations
 
 - Find a code by name: `0x006D5AF0(&record, name)`; 0 and the record, or `0x13` and a null record.
 - Add a code: `0x006D5A60(record)` after `0x006D58D0`; remove it with `0x006D6F90(record)`.
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 ### The morph records' statics
 
@@ -169,16 +254,34 @@ Two more steps belong to each initialiser:
 
 - It gives `0x006D58D0` 0 as the ninth and eleventh arguments, so the record's `+0x58` and `+0x50` are 0
   (`Morph22`: `0x0016800A`, `0x00167FF3`).
-- It ends with a tail jump to `atexit` (`0x00808B90`) for its exit teardown, which passes the record to
+- It ends with a tail jump to `atexit`¹ for its exit teardown, which passes the record to
   `0x006D5940`: the nine teardowns `0x008B7610` to `0x008B7690`, `0x10` apart, in the initialisers' address order
   (`Morph22`, `Morph23`, `Morph24`, `Morph32`, `Morph33`, `Morph34`, `Morph42`, `Morph43`, `Morph44`).
   - That is not the order they run in (`Morph22`: `0x008B7610`, jump at `0x001680C1`; `Morph23`: `0x008B7620`, loaded
     at `0x0016813D`; `Morph44`: `0x008B7690`, jump at `0x00168841`).
 
-The initialisers run in initialiser-table order (`0x008C45C8`-`0x008C4608`): `Morph22`, `Morph32`, `Morph42`,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808B90` |
+
+</details>
+
+The initialisers run in initialiser-table order¹: `Morph22`, `Morph32`, `Morph42`,
 `Morph23`, `Morph33`, `Morph43`, `Morph24`, `Morph34`, `Morph44`. Each stores the head `0x02E9FDE0` in its `+0x78`
 and makes its record the head. No instruction reads the head or a link except these initialisers' own loads of
 the head, so nothing walks this list; the registry the resolver uses is `0x02E9FD60`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008C45C8`-`0x008C4608` |
+
+</details>
 
 [phyre-modifier-codes-state.tsv](phyre-modifier-codes-state.tsv) has one row per static: the head, the nine links
 of `Morph22` to `Morph44` and their 90 entry words, with each writer and reader as `function (site, value)`.
@@ -189,6 +292,8 @@ of `Morph22` to `Morph44` and their 90 entry words, with each writer and reader 
 | record `+0x78`, 8 rows | `void*` | 0 | the record before it in initialiser order | its initialiser | - |
 | entry `+0x00`, 40 rows | `void*` | 0 | semantic: 0 | its initialiser | - |
 | entry `+0x08`, 40 rows | `u32` | 0 | data type: 1, 2 or 3 | its initialiser | - |
+
+</details>
 
 ## Modding notes
 

@@ -30,71 +30,126 @@ that entry.
 
 ### What the player sees in an index
 
-1. A section is listed once one of its entries is unlocked (`0x00571F60`, `0x00572017`).
-2. Its unlocked entries follow in record order, and a locked entry takes no row (`0x005720B9`-`0x005720F6`). The blank
-   rows after them (`0x00572103`-`0x00572135`) are added only when fewer entries were listed than `0x00576740` counted as
-   unlocked, and both counts use the same test (`0x00576CA0`), so they are never added.
-   - `0x00576CA0(kind, index)` passes a kind it does not handle, a negative one or one above 7
-     (`0x00576CA4`-`0x00576CB7`). Kinds 0 to 5 and 7 ask `0x003154B0` with the category `0x00D23750[kind]`, the same
-     number except kind 5, the Bestiary, which asks category 6 (`0x00576CF5`-`0x00576D08`).
-   - Kind 6, the Hunts, answers 0 with no data manager `[0x02CA9738]`, while bit `0x2` of its `+0x100` is set or
-     with no quest table `+0xF8`, and otherwise the answer of `0x0037F060(1, index, table)` (`0x00576CC1`-`0x00576CEE`).
-3. A Bestiary section's caption reads "???" until part of one of its maps has been explored (`0x00576A50`); the
-   regional sections list those maps, the last seven sections no map.
-4. A Bestiary row shows the number of defeats still needed for the next text slot, unless the entry's flag says
-   otherwise (`0x00571817`-`0x005718B0`); the `countdown` column gives which rows show it.
-5. For the thirteen Espers the us index row shows the summon's short name, "Belias", in place of the entry's name
-   "Belias, the Gigas" (`0x005717E2`-`0x005717F2`).
-   - `0x00571710` shows the countdown only when the row's layout has a countdown cell (byte `+2` not `0xFF`), the
-     entry's flag `+0x14` bit `0x1` is clear, it has slots (`+0x15`) and its count `+0x16` is below the last slot's
-     threshold, one byte per slot from `+0x18` (`0x00571805`-`0x00571848`).
-   - The number, written by `0x0029FF60`, is a threshold less the count: the one after the last threshold the count
-     has reached, the second when the count is below the first, or the only one (`0x0057184A`-`0x005718B0`). The
-     cell's bit `0x1` at `+0x08` is set exactly when it shows (`0x005718B5`-`0x005718C5`).
-   - The short name is the entry's `+0x08`, used when it is set and `0x00254A10` returns 0 (`0x005717DF`-`0x005717F8`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A section is listed once one of its entries is unlocked. | `0x00571F60`, `0x00572017` |
+| 2 | Its unlocked entries follow in record order, and a locked entry takes no row. The blank rows after them are added only when fewer entries were listed than `0x00576740` counted as unlocked, and both counts use the same test, so they are never added.<br>• `0x00576CA0(kind, index)` passes a kind it does not handle, a negative one or one above 7. Kinds 0 to 5 and 7 ask `0x003154B0` with the category `0x00D23750[kind]`, the same number except kind 5, the Bestiary, which asks category 6.<br>• Kind 6, the Hunts, answers 0 with no data manager `[0x02CA9738]`, while bit `0x2` of its `+0x100` is set or with no quest table `+0xF8`, and otherwise the answer of `0x0037F060(1, index, table)`. | `0x005720B9`-`0x005720F6`<br>`0x00572103`-`0x00572135`<br>`0x00576CA0`<br>`0x00576CA4`-`0x00576CB7`<br>`0x00576CF5`-`0x00576D08`<br>`0x00576CC1`-`0x00576CEE` |
+| 3 | A Bestiary section's caption reads "???" until part of one of its maps has been explored; the regional sections list those maps, the last seven sections no map. | `0x00576A50` |
+| 4 | A Bestiary row shows the number of defeats still needed for the next text slot, unless the entry's flag says otherwise; the `countdown` column gives which rows show it. | `0x00571817`-`0x005718B0` |
+| 5 | For the thirteen Espers the us index row shows the summon's short name, "Belias", in place of the entry's name "Belias, the Gigas".<br>• `0x00571710` shows the countdown only when the row's layout has a countdown cell (byte `+2` not `0xFF`), the entry's flag `+0x14` bit `0x1` is clear, it has slots (`+0x15`) and its count `+0x16` is below the last slot's threshold, one byte per slot from `+0x18`.<br>• The number, written by `0x0029FF60`, is a threshold less the count: the one after the last threshold the count has reached, the second when the count is below the first, or the only one. The cell's bit `0x1` at `+0x08` is set exactly when it shows.<br>• The short name is the entry's `+0x08`, used when it is set and `0x00254A10` returns 0. | `0x005717E2`-`0x005717F2`<br>`0x00571805`-`0x00571848`<br>`0x0057184A`-`0x005718B0`<br>`0x005718B5`-`0x005718C5`<br>`0x005717DF`-`0x005717F8` |
 
 ### How an entry unlocks
 
 The word unused covers these families' pages. The four records at `0x00D23688` hold kinds 6, 5, 7 and 4, so no category
-opens families 0 to 3. Their files still load and their unlock tables are still bound (`0x00576F50`).
+opens families 0 to 3. Their files still load and their unlock tables are still bound¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00576F50` |
+
+</details>
 
 Traveler's Tips and the four unused families keep one unlock bit per entry at save `+0x32CC`. Each time an index is
-built, `0x00577550` tests the entry's record of `menuhandbook_<family>.dat` (`0x00575E80`) and sets or clears the bit
-(`0x00315910`), so an entry follows its condition both ways. In the shipped files the only test used is the story
+built, `0x00577550` tests the entry's record of `menuhandbook_<family>.dat`¹ and sets or clears the bit², so an entry follows its condition both ways. In the shipped files the only test used is the story
 counter ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00575E80` |
+| ² | `0x00315910` |
+
+</details>
 
 - Traveler's Tips: 11 entries always, 5 by the story counter (105, 230, 244 and 1380 twice);
 - `story`: all 69 by the story counter; `world`: 5 by the story counter, the other 69 always; `person` and
   `knowledge`: always.
 
-A Bestiary entry is unlocked by a rule of `menuhandbook.bin` (`0x003154B0`), or with no rule by its own kill count:
+A Bestiary entry is unlocked by a rule of `menuhandbook.bin`¹, or with no rule by its own kill count:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003154B0` |
+
+</details>
 
 - with no rule, once this monster has been defeated: its kill count, save byte `+0x3404` + entry less 1, is above 0
-  (`0x00315420`); 367 entries;
+ ¹; 367 entries;
 - a type 0 rule, once the story counter reaches the rule's value; 14 entries;
 - a type 1 rule, once the monster of another entry has been defeated: Enkidu (252) opens with Gilgamesh (251).
 - a rule of any other type, or no rule table bound at `0x022C2550`, falls back to the entry's own kill count; an entry
-  number of `0x200` or more is never unlocked (`0x00315533`-`0x00315539`, `0x0031553B`-`0x0031558E`, `0x003155C5`-`0x003155C8`).
+  number of `0x200` or more is never unlocked².
 - `0x003154B0` finds the rule as the first of the table's records whose low 12 bits are the entry number
-  (`0x0031556D`-`0x0031557B`); type 0 passes when the story counter (`0x00265270`), as a signed 16-bit value, has reached
-  the rule's value (`0x003155D0`-`0x003155E8`).
+ ³; type 0 passes when the story counter⁴, as a signed 16-bit value, has reached
+  the rule's value⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00315420` |
+| ² | `0x00315533`-`0x00315539`, `0x0031553B`-`0x0031558E`, `0x003155C5`-`0x003155C8` |
+| ³ | `0x0031556D`-`0x0031557B` |
+| ⁴ | `0x00265270` |
+| ⁵ | `0x003155D0`-`0x003155E8` |
+
+</details>
 
 Two entries are not counted by defeats at all (`0x00315820` skips them through `0x00315D50`). The field-frame sweep
 `0x00316930` sets each one's count to 1 once its quest passes `0x00315DC0`: Gilgamesh (251) with quest 167, "Battle on
 the Big Bridge", at progress 100, and Shadowseer (259) with quest 170, "God or Devil?", at progress 70, or when the
 quest is cleared. It does so only while the count is at most 0 (save byte 0 or 1, `0x003169E0`-`0x003169FA`), and stores
-2 in the byte (`0x00316A0C`).
+2 in the byte¹.
 
-`0x00315DC0(quest)` fails for quest -1 and passes for a cleared quest (`0x0046B1A0`) (`0x00315DC8`-`0x00315DDE`). It also
-passes when the handbook table `[0x022C2550]` or one of the two offset hops to its quest list is missing
-(`0x00315DE9`-`0x00315E10`, `0x00315E75`). Otherwise it passes when the quest is in that list and its progress
-(`0x0046B180`) has reached the list's value for it, and fails for a quest not in the list (`0x00315E2C`-`0x00315E6D`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00316A0C` |
+
+</details>
+
+`0x00315DC0(quest)` fails for quest -1 and passes for a cleared quest¹². It also
+passes when the handbook table `[0x022C2550]` or one of the two offset hops to its quest list is missing³. Otherwise it passes when the quest is in that list and its progress⁴ has reached the list's value for it, and fails for a quest not in the list⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046B1A0` |
+| ² | `0x00315DC8`-`0x00315DDE` |
+| ³ | `0x00315DE9`-`0x00315E10`, `0x00315E75` |
+| ⁴ | `0x0046B180` |
+| ⁵ | `0x00315E2C`-`0x00315E6D` |
+
+</details>
 
 ### What an entry shows
 
 - Traveler's Tips: the name and one text. No picture is drawn (`0x00575B80` skips this family).
-- Bestiary: the name, the kill count (`0x005760A0`), a picture, and two, three or seven text slots, read in order;
-  the first slot whose condition fails ends the list (`0x00576300`, `0x00576E30`).
+- Bestiary: the name, the kill count¹, a picture, and two, three or seven text slots, read in order;
+  the first slot whose condition fails ends the list².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005760A0` |
+| ² | `0x00576300`, `0x00576E30` |
+
+</details>
 
 A Bestiary entry's slots all follow one mode, the mode word of its record in `menuhandbook_monster.dat`:
 
@@ -106,18 +161,18 @@ A Bestiary entry's slots all follow one mode, the mode word of its record in `me
 
 - Slot 0 is two lines, such as "Plant" and "Cactus"; later slots carry a heading before code `0x03`, mostly
   "Observations" or "Description" for slot 1, and texts such as "Aletap Rumors" or "The Town Crier" for slot 2.
-- The mode 0 test is unsigned, so a count of -1, a monster never counted, passes every slot (`0x00576EBD`-`0x00576EC4`).
+- The mode 0 test is unsigned, so a count of -1, a monster never counted, passes every slot¹.
   It runs only for a listed entry, and an entry without a rule is listed only once its count is above 0, so -1
   meets it only for an entry a rule opens. Of those 15, 13 use mode 1 and Enkidu (252) mode 2, whose tests are
-  signed (`0x00576EE4`, `0x00576EF0`).
+  signed².
 - Rogue Tomato (211) alone pairs a rule with mode 0: its rule, story counter 78, comes from the `in` copy of
   `menuhandbook.bin` and its slots, 1 defeat each, from the us `menuhandbook_monster.dat`. The `in`, `ch`, `kr`,
   `cn`, `de`, `fr`, `it` and `es` copies of that table give it mode 1, story counter 78 for each slot.
 - The story counter reaches 78 in `dst_a01`'s `トマト監視監督.トマト監視`, its one shipping write of 78, after
   `while (scratch1_var_1 != 2)`. That variable is scratch1 word 3, where `0x00307030` posts a completed mode 1 group
-  (`0x00307063`); the two Rogue Tomato units are groups 1 and 2 (`btlAtelSetEventFlagGroup(1, 1)` and `(2, 1)`).
+ ³; the two Rogue Tomato units are groups 1 and 2 (`btlAtelSetEventFlagGroup(1, 1)` and `(2, 1)`).
 - A group completes only in the KO sequence (`0x00306F00` at `0x0030082F`), after the KO that `0x003171C0` counts:
-  both units are unit type 0, mode 1 (`0x002396D6`), so the class-nibble skip does not apply.
+  both units are unit type 0, mode 1⁴, so the class-nibble skip does not apply.
 - No other write brings the counter to 78 or more first: every other script write of 78 or more runs only
   once the counter is 78 or more, or never runs
   ([story counter values](../Story-Events-And-Hunts/story-counter-values.md)). So the count is at least 1
@@ -131,21 +186,29 @@ A Bestiary entry's slots all follow one mode, the mode word of its record in `me
   (lines 272-276), which every floor path from the entrance to the exit into North Sprawl crosses, and the rat
   fight ends by writing 33 and jumping to Muthru Bazaar (lines 321, 327).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00576EBD`-`0x00576EC4` |
+| ² | `0x00576EE4`, `0x00576EF0` |
+| ³ | `0x00307063` |
+| ⁴ | `0x002396D6` |
+
+</details>
+
 The read marks and the new-entry badge are described on [Clan Primer](clan-primer.md).
 
 ### Where the values come from
 
-1. Each family's kind-7 base id is the `u16` at `0x00D23740` + 2 × family; the us path array names its
-   `menuhandbook_<family>.bin` catalog (base), `.dat` unlock table (base + 1) and numbered files (base + 2 + n).
-2. The names: families 0-4 through `0x002F9920`, text group id / 10000 and the row whose id equals it; the Bestiary
-   through battle-text bank 8 (`0x003214B0`). The Esper short names are the class-20 names `0x0035D330(0x14, 0x106 + k)`,
-   the summon actions 262-274 of [Action list](../Battle-Actions/action-list.md).
-3. The unlock rules, slot thresholds and section gates as above; the rules come from the `in` copy of
-   `menuhandbook.bin`, the one the path array names (kind-7 id `0xC8`, loaded by `0x003158B0`).
-4. The text of each slot from the entry's text bundle, through the glyphs of the us font
-   ([Text codes](text-codes.md), [Fonts](fonts.md)).
-5. A section's map numbers are Map entries, named by the areas that carry them in
-   [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Each family's kind-7 base id is the `u16` at `0x00D23740` + 2 × family; the us path array names its `menuhandbook_<family>.bin` catalog (base), `.dat` unlock table (base + 1) and numbered files (base + 2 + n). |   |
+| 2 | The names: families 0-4 through `0x002F9920`, text group id / 10000 and the row whose id equals it; the Bestiary through battle-text bank 8. The Esper short names are the class-20 names `0x0035D330(0x14, 0x106 + k)`, the summon actions 262-274 of [Action list](../Battle-Actions/action-list.md). | `0x003214B0` |
+| 3 | The unlock rules, slot thresholds and section gates as above; the rules come from the `in` copy of `menuhandbook.bin`, the one the path array names (kind-7 id `0xC8`, loaded by `0x003158B0`). |   |
+| 4 | The text of each slot from the entry's text bundle, through the glyphs of the us font ([Text codes](text-codes.md), [Fonts](fonts.md)). |   |
+| 5 | A section's map numbers are Map entries, named by the areas that carry them in [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md). |   |
 
 ## Columns
 
@@ -209,9 +272,18 @@ inline icon as `[icon X]`, X its letter; colour and layout codes leave nothing (
   through 247 text ids, each "NOT USED" in the `fr` text. The other 58 are 57 `world` names and one `knowledge`
   name, place names such as "The Garamsythe Waterway" and "The Archadian Empire"; 47 of them use the text id of a
   Bestiary caption.
-- Each of their text bundles carries its own glyph sheet, which `0x00575710` registers (`0x0039BEC0`), and their strings
+- Each of their text bundles carries its own glyph sheet, which `0x00575710` registers¹, and their strings
   read as nonsense through the us font, so the texts file leaves them out. Each entry has one text slot, except 28
   `world` entries with two.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039BEC0` |
+
+</details>
 
 ### The Bestiary
 
@@ -249,158 +321,170 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [glossary](../Engine-Core/glossary.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003171C0` | calls | `0x00263C20` |
+| [`0x003171C0`](../Enemy-Spawning/bestiary.md) (on bestiary) | calls | [`0x00263C20`](../Engine-Core/glossary.md) Actor runtime: get class nibble (on glossary) |
 
 **Enemy AI and gambits** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0046B180` | is called by | `0x00321190` |
-| `0x0046B1A0` | is called by | `0x00321190` |
+| [`0x0046B180`](clan-primer-entries.md) | is called by | [`0x00321190`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets) |
+| [`0x0046B1A0`](clan-primer-entries.md) | is called by | [`0x00321190`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets) |
 
 **Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00306F00` | is called by | `0x00300530` |
+| [`0x00306F00`](../Enemy-Spawning/enemy-respawning.md) Spawn group: record member death and handle completion (on enemy respawning) | is called by | [`0x00300530`](../Characters-And-Objects/battle-unit-fields.md) Battle stats: modify hp and process lethal state (on battle unit fields) |
 
 **Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00254A10` | calls | `0x00229E40` |
-| `0x00265270` | is called by | `0x001EC760` |
-| `0x00316930` | is called by | `0x0022A770` |
+| [`0x00254A10`](text-string-tables.md) (on text string tables) | calls | [`0x00229E40`](../Story-Events-And-Hunts/script-language-differences.md) (on script language differences) |
+| [`0x00265270`](clan-primer-entries.md) Field data: get variable0 | is called by | [`0x001EC760`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x00316930`](../Steam-And-Achievements/achievements.md) (on achievements) | is called by | [`0x0022A770`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 **Developer** (explained on [json configs](../Game-Files-And-Data-Tables/json-configs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001EB9C0` | calls | `0x001C6320` |
+| [`0x001EB9C0`](clan-primer.md) (on clan primer) | calls | [`0x001C6320`](../Game-Files-And-Data-Tables/json-configs.md) (on json configs) |
 
 **Gameplay** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00306F00` | calls | `0x003299B0` |
-| `0x0035D330` | calls | `0x0031C5D0` |
-| `0x00576A50` | calls | `0x00309EC0` |
+| [`0x00306F00`](../Enemy-Spawning/enemy-respawning.md) Spawn group: record member death and handle completion (on enemy respawning) | calls | [`0x003299B0`](../Damage-And-Battle-Formulas/hp-and-ko.md) Battle unit: dispatch actor presentation event (on hp and ko) |
+| [`0x0035D330`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors) | calls | [`0x0031C5D0`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids) |
+| [`0x00576A50`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) | calls | [`0x00309EC0`](../Enemy-AI-And-Gambits/gambit-conditions.md) (on gambit conditions) |
 
 **Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265270` | is called by | `0x00253C70` |
+| [`0x00265270`](clan-primer-entries.md) Field data: get variable0 | is called by | [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) |
 
-**Steam and achievements**
+**Steam and achievements** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [achievements](../Steam-And-Achievements/achievements.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md), [jump thunks](../Engine-Core/jump-thunks.md), [bestiary](../Enemy-Spawning/bestiary.md), [frame update order](../Engine-Core/frame-update-order.md), [shops](../Items-Equipment-Shops-And-Licenses/shops.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00255120` | is called by | `0x003160C0` |
-| `0x00265270` | is called by | `0x003154B0`, `0x003161A0` |
-| `0x00315420` | is called by | `0x003154B0`, `0x00315E90`, `0x003161A0` |
-| `0x003154B0` | calls | `0x00315420` |
-| `0x00315820` | calls | `0x00315D50` |
-| `0x00315D50` | is called by | `0x00315820` |
-| `0x00315DC0` | is called by | `0x00316930` |
-| `0x00316930` | calls | `0x00315E90`, `0x003162E0` |
-| `0x00316930` | is called by | `0x00316670` |
-
-**Steam and achievements**
-
-| Function | | Functions |
-|---|---|---|
-| `0x003779F0` | is called by | `0x003160C0` |
-| `0x0046B180` | is called by | `0x00316480` |
-| `0x0046B1A0` | is called by | `0x00316480` |
-| `0x005760A0` | calls | `0x00315420` |
-| `0x00576CA0` | calls | `0x003154B0` |
-| `0x00576E30` | calls | `0x00315420` |
-| `0x00577550` | calls | `0x00316930` |
-
-**Steam and achievements** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [achievements](../Steam-And-Achievements/achievements.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md), [jump thunks](../Engine-Core/jump-thunks.md), [bestiary](../Enemy-Spawning/bestiary.md))
-
-**Steam and achievements** (explained on [frame update order](../Engine-Core/frame-update-order.md), [shops](../Items-Equipment-Shops-And-Licenses/shops.md))
-
-**Graphics**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00254A10` | is called by | `0x002B0280`, `0x002D2DB0` |
-| `0x00265270` | is called by | `0x001CD0E0` |
-| `0x002F9920` | is called by | `0x0037E5B0`, `0x0037E8D0` |
-| `0x0035D330` | is called by | `0x003BBD00`, `0x00506700` |
-| `0x0046B1A0` | is called by | `0x00578450` |
+| [`0x00255120`](clan-primer-entries.md) | is called by | [`0x003160C0`](../Steam-And-Achievements/achievements.md) (on achievements) |
+| [`0x00265270`](clan-primer-entries.md) Field data: get variable0 | is called by | [`0x003154B0`](clan-primer-entries.md)<br>[`0x003161A0`](../Steam-And-Achievements/achievements.md) (on achievements) |
+| [`0x00315420`](clan-primer-entries.md) | is called by | [`0x003154B0`](clan-primer-entries.md)<br>[`0x00315E90`](../Steam-And-Achievements/achievements.md) (on achievements)<br>[`0x003161A0`](../Steam-And-Achievements/achievements.md) (on achievements) |
+| [`0x003154B0`](clan-primer-entries.md) | calls | [`0x00315420`](clan-primer-entries.md) |
+| [`0x00315820`](../Enemy-Spawning/bestiary.md) (on bestiary) | calls | [`0x00315D50`](../Rewards-EXP-Gil-And-Loot/kill-rewards.md) (on kill rewards) |
+| [`0x00315D50`](../Rewards-EXP-Gil-And-Loot/kill-rewards.md) (on kill rewards) | is called by | [`0x00315820`](../Enemy-Spawning/bestiary.md) (on bestiary) |
+| [`0x00315DC0`](clan-primer-entries.md) | is called by | [`0x00316930`](../Steam-And-Achievements/achievements.md) (on achievements) |
+| [`0x00316930`](../Steam-And-Achievements/achievements.md) (on achievements) | calls | [`0x00315E90`](../Steam-And-Achievements/achievements.md) (on achievements)<br>[`0x003162E0`](../Steam-And-Achievements/achievements.md) (on achievements) |
+| [`0x00316930`](../Steam-And-Achievements/achievements.md) (on achievements) | is called by | [`0x00316670`](../Steam-And-Achievements/achievements.md) (on achievements) |
+| [`0x003779F0`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x003160C0`](../Steam-And-Achievements/achievements.md) (on achievements) |
+| [`0x0046B180`](clan-primer-entries.md) | is called by | [`0x00316480`](../Items-Equipment-Shops-And-Licenses/shops.md) (on shops) |
+| [`0x0046B1A0`](clan-primer-entries.md) | is called by | [`0x00316480`](../Items-Equipment-Shops-And-Licenses/shops.md) (on shops) |
+| [`0x005760A0`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) | calls | [`0x00315420`](clan-primer-entries.md) |
+| [`0x00576CA0`](clan-primer-entries.md) | calls | [`0x003154B0`](clan-primer-entries.md) |
+| [`0x00576E30`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) | calls | [`0x00315420`](clan-primer-entries.md) |
+| [`0x00577550`](clan-primer.md) (on clan primer) | calls | [`0x00316930`](../Steam-And-Achievements/achievements.md) (on achievements) |
 
 **Graphics** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [menu lists](menu-lists.md), [debug menu](../Engine-Core/debug-menu.md), [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [augments](../Damage-And-Battle-Formulas/augments.md), [battle numbers](battle-numbers.md))
 
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00254A10`](text-string-tables.md) (on text string tables) | is called by | [`0x002B0280`](text-drawing.md) (on text drawing)<br>[`0x002D2DB0`](widgets.md) (on widgets) |
+| [`0x00265270`](clan-primer-entries.md) Field data: get variable0 | is called by | [`0x001CD0E0`](../Engine-Core/graphics-settings.md) (on graphics settings) |
+| [`0x002F9920`](clan-primer-entries.md) | is called by | [`0x0037E5B0`](../Game-Files-And-Data-Tables/quest-menu-files.md) (on quest menu files)<br>[`0x0037E8D0`](../Game-Files-And-Data-Tables/quest-menu-files.md) (on quest menu files) |
+| [`0x0035D330`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors) | is called by | [`0x003BBD00`](../Random-Numbers/which-roll-uses-which-generator.md) (on which roll uses which generator)<br>[`0x00506700`](battle-numbers.md) (on battle numbers) |
+| [`0x0046B1A0`](clan-primer-entries.md) | is called by | [`0x00578450`](../Game-Files-And-Data-Tables/quest-menu-files.md) (on quest menu files) |
+
 **Game files and data tables** (explained on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265270` | is called by | `0x001DA220`, `0x001DA970` |
-| `0x003158B0` | calls | `0x00249180` |
-| `0x00575B80` | calls | `0x0024A440` |
+| [`0x00265270`](clan-primer-entries.md) Field data: get variable0 | is called by | [`0x001DA220`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x001DA970`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests) |
+| [`0x003158B0`](../Steam-And-Achievements/achievements.md) (on achievements) | calls | [`0x00249180`](../Game-Files-And-Data-Tables/ps2data-bin-families.md) (on ps2data bin families) |
+| [`0x00575B80`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) | calls | [`0x0024A440`](../Story-Events-And-Hunts/script-language-differences.md) (on script language differences) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003171C0` | is called by | `0x00312280` |
+| [`0x003171C0`](../Enemy-Spawning/bestiary.md) (on bestiary) | is called by | [`0x00312280`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle unit: process defeat rewards and loot (on strong and weak mode) |
 
 **Saving, loading and settings** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00254A10` | is called by | `0x005832B0` |
-| `0x0046B180` | calls | `0x002EF2B0` |
-| `0x0046B1A0` | calls | `0x002EF2B0` |
+| [`0x00254A10`](text-string-tables.md) (on text string tables) | is called by | [`0x005832B0`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) |
+| [`0x0046B180`](clan-primer-entries.md) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) |
+| [`0x0046B1A0`](clan-primer-entries.md) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) |
 
 **Scripts and script commands** (explained on [quests](../Story-Events-And-Hunts/quests.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0046B180` | is called by | `0x00351F90` |
-| `0x0046B1A0` | is called by | `0x0033FAA0` |
+| [`0x0046B180`](clan-primer-entries.md) | is called by | [`0x00351F90`](clan-primer-entries.md) |
+| [`0x0046B1A0`](clan-primer-entries.md) | is called by | [`0x0033FAA0`](clan-primer-entries.md) |
 
 **Enemy spawning** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00306F00` | calls | `0x002360D0` |
+| [`0x00306F00`](../Enemy-Spawning/enemy-respawning.md) Spawn group: record member death and handle completion (on enemy respawning) | calls | [`0x002360D0`](../Battle-Actions/boss-fights.md) (on boss fights) |
 
-**Story, events and hunts** (explained on [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md))
+**Story, events and hunts** (explained on [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265270` | is called by | `0x001ED240` |
+| [`0x00265270`](clan-primer-entries.md) Field data: get variable0 | is called by | [`0x001ED240`](../Graphics/model-effects-and-motion-commands.md) G0999; (on model effects and motion commands) |
+| [`0x00265270`](clan-primer-entries.md) Field data: get variable0 | is called by | [`0x00377970`](../Story-Events-And-Hunts/story-flags.md) (on story flags) |
+| [`0x00575E80`](clan-primer-entries.md) | calls | [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) |
 
-**Story, events and hunts** (explained on [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [identifier spaces](../Engine-Core/identifier-spaces.md))
+**World, areas and travel** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [changing areas](../World-Areas-And-Travel/changing-areas.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [force fight mode](../Engine-Core/force-fight-mode.md), [debug menu](../Engine-Core/debug-menu.md), [party control modes](../Engine-Core/party-control-modes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265270` | is called by | `0x00377970` |
-| `0x00575E80` | calls | `0x0032A8A0` |
-
-**World, areas and travel**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00255120` | is called by | `0x00576A50` |
-| `0x00265270` | is called by | `0x001EDCD0`, `0x003145E0`, `0x003EAA70` |
-| `0x002F9920` | is called by | `0x003C0450`, `0x00576A50` |
-| `0x00307030` | is called by | `0x00234590` |
-| `0x003154B0` | calls | `0x00265270` |
-| `0x003779F0` | is called by | `0x00576A50` |
-| `0x00575E80` | calls | `0x00265270` |
-| `0x00576740` | calls | `0x00576A50` |
-| `0x00576A50` | calls | `0x003148F0` |
-| `0x00576E30` | calls | `0x00265270` |
-
-**World, areas and travel** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [changing areas](../World-Areas-And-Travel/changing-areas.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md))
-
-**World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [debug menu](../Engine-Core/debug-menu.md), [party control modes](../Engine-Core/party-control-modes.md))
+| [`0x00255120`](clan-primer-entries.md) | is called by | [`0x00576A50`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) |
+| [`0x00265270`](clan-primer-entries.md) Field data: get variable0 | is called by | [`0x001EDCD0`](../Graphics/model-effects-and-motion-commands.md) M1126 (on model effects and motion commands)<br>[`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump)<br>[`0x003EAA70`](../Sound-And-Music/sound-banks.md) (on sound banks) |
+| [`0x002F9920`](clan-primer-entries.md) | is called by | [`0x003C0450`](../Game-Files-And-Data-Tables/menu-map-files.md) (on menu map files)<br>[`0x00576A50`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) |
+| [`0x00307030`](../Enemy-Spawning/enemy-respawning.md) (on enemy respawning) | is called by | [`0x00234590`](../Battle-Actions/quickenings-and-summons.md) Battle system: run field frame orchestrator (on quickenings and summons) |
+| [`0x003154B0`](clan-primer-entries.md) | calls | [`0x00265270`](clan-primer-entries.md) Field data: get variable0 |
+| [`0x003779F0`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x00576A50`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) |
+| [`0x00575E80`](clan-primer-entries.md) | calls | [`0x00265270`](clan-primer-entries.md) Field data: get variable0 |
+| [`0x00576740`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) | calls | [`0x00576A50`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) |
+| [`0x00576A50`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) | calls | [`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) |
+| [`0x00576E30`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) | calls | [`0x00265270`](clan-primer-entries.md) Field data: get variable0 |
 
 </details>

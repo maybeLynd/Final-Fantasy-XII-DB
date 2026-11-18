@@ -10,8 +10,17 @@
 because each of the 39 lists that hold no value has one line of its own. The reader `0x001B4C00` (through `0x001B6030`,
 which runs it only while the font manager `[0x01F81200]` exists, `0x001B604A`-`0x001B606D`)
 adds each list for its key with `0x001FDB90` and writes value i with `0x001FDB50`; `0x001E9860` then returns the record
-of glyph `list[index]` for text whose key has a list (`0x001E9880`-`0x001E988B`), as [Fonts](fonts.md) describes. The
+of glyph `list[index]` for text whose key has a list¹, as [Fonts](fonts.md) describes. The
 lines keep the file order.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E9880`-`0x001E988B` |
+
+</details>
 
 [Font files](fonts-files.md) says which `.fex` files are requested and how the table rebuilds every `.fex` byte
 for byte.
@@ -34,8 +43,17 @@ glyph as `{expansion glyph N}`, because N means a different character in each fo
 | `text`, `resolved` | the text as the source table has it, and with each joined mark replaced by its character |
 
 The `kr`, `ch` and `cn` folders use the font folder of their own name, and `in` uses `jp`, whose `fontquest.dat` has
-the 121 records of the `in` sheet. `de`, `es`, `fr`, `it` and `us` use `us` (`0x001B44A0`). A mark joins on the record
+the 121 records of the `in` sheet. `de`, `es`, `fr`, `it` and `us` use `us`¹. A mark joins on the record
 whose key is N.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B44A0` |
+
+</details>
 
 Every mark in `menumap_guide00.bin` and in the quest files joins. Marks in `menumap_guide01.bin` to `04` stay as
 written: the schedule never requests those files, so no font is bound to their pictures, and the `us` font
@@ -45,17 +63,48 @@ folder, which `es`, `fr`, `it` and `us` read, has no `fontguide.dat`.
 
 ### The path of a list
 
-A list's key is `0x00674A00` of a name (`0x001B6350`): for a `fontex_expand` or `fontex_subtitle` list a path
+A list's key is `0x00674A00` of a name¹: for a `fontex_expand` or `fontex_subtitle` list a path
 `event\<folder>\<name>` or `plan_map\<folder>\<name>`, and for a `fontmonster` list `handbook_monster<NNN>.txt`.
 
-`0x001B6350(manager, id, kind, name, value)`, called only from `0x0017FA90` (`0x0017FAC4`), files a request for such a
-font on the font manager. It takes a record from the pool at the manager's `+0x190` (`0x001BA860`), stores 1 at
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B6350` |
+
+</details>
+
+`0x001B6350(manager, id, kind, name, value)`, called only from `0x0017FA90`¹, files a request for such a
+font on the font manager. It takes a record from the pool at the manager's `+0x190`², stores 1 at
 `+0x00`, 0 at `+0x08`, the id at `+0x04`, the kind byte at `+0x10`, the name's hash at `+0x14` and the value at
-`+0x18` (`0x001B63A4`-`0x001B63D2`), and appends the record to the pending vector at `+0x250` (`0x001B63D5`-`0x001B63EC`),
-through `0x001AB570` when the vector is full (`0x001B640C`-`0x001B6414`).
+`+0x18`³, and appends the record to the pending vector at `+0x250`⁴,
+through `0x001AB570` when the vector is full⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017FAC4` |
+| ² | `0x001BA860` |
+| ³ | `0x001B63A4`-`0x001B63D2` |
+| ⁴ | `0x001B63D5`-`0x001B63EC` |
+| ⁵ | `0x001B640C`-`0x001B6414` |
+
+</details>
 
 A request whose id and kind match a pending record is dropped before a record is taken: `0x001B6350` then only calls
-the empty stub `0x0016D6A0` (`0x001B6380`-`0x001B638D`, `0x001B63F1`-`0x001B6407`).
+the empty stub `0x0016D6A0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B6380`-`0x001B638D`, `0x001B63F1`-`0x001B6407` |
+
+</details>
 
 The `path` column gives the path that hashes to the key among 1,281 candidates: every `<folder>\<name>` pair of
 folder names under `plan_master/<lang>/event/` and `plan_master/<lang>/plan_map/` of the nine language trees, 346 of
@@ -125,30 +174,30 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001BA860` | is called by | `0x002120E0` |
+| [`0x001BA860`](fonts-expansion-lists.md) | is called by | [`0x002120E0`](../Sound-And-Music/audio-manager.md) (on audio manager) |
 
-**Graphics** (explained on [character render object](../Graphics/character-render-object.md), [add motion tables](../Graphics/add-motion-tables.md), [file size tables fst](../Game-Files-And-Data-Tables/file-size-tables-fst.md))
+**Graphics** (explained on [character render object](../Graphics/character-render-object.md), [add motion tables](../Graphics/add-motion-tables.md), [file size tables fst](../Game-Files-And-Data-Tables/file-size-tables-fst.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001AB570` | is called by | `0x001BD4A0`, `0x001BDD20` |
-| `0x001BA860` | is called by | `0x001BB2B0`, `0x001BB920` |
+| [`0x001AB570`](fonts-expansion-lists.md) | is called by | [`0x001BD4A0`](../Graphics/character-render-object.md) (on character render object)<br>[`0x001BDD20`](../Graphics/add-motion-tables.md) (on add motion tables) |
+| [`0x001BA860`](fonts-expansion-lists.md) | is called by | [`0x001BB2B0`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x001BB920`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests) |
 
-**Graphics** (explained on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md))
+**Game files and data tables** (explained on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [fonts](fonts.md), [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [fonts files](fonts-files.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [sprite batcher](../Graphics/sprite-batcher.md))
 
-**Game files and data tables**
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001AB570` | is called by | `0x0019E7B0` |
-| `0x001B4C00` | is called by | `0x001B6030` |
-| `0x001BA860` | is called by | `0x0019E7B0`, `0x0019EB60`, `0x001A0A90`, `0x001B5480`, `0x001B5610`, `0x001B5750`, `0x0020B680` |
-| `0x00674A00` | is called by | `0x001A7A50`, `0x001A9050`, `0x001B1440`, `0x001B1C10`, `0x0020BE50`, `0x0020C1B0` |
-
-**Game files and data tables** (explained on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [fonts](fonts.md), [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [fonts files](fonts-files.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md))
-
-**Game files and data tables** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [sprite batcher](../Graphics/sprite-batcher.md))
+| [`0x001AB570`](fonts-expansion-lists.md) | is called by | [`0x0019E7B0`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests) |
+| [`0x001B4C00`](fonts-expansion-lists.md) | is called by | [`0x001B6030`](fonts-expansion-lists.md) |
+| [`0x001BA860`](fonts-expansion-lists.md) | is called by | [`0x0019E7B0`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x0019EB60`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x001A0A90`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001B5480`](fonts-files.md) (on fonts files)<br>[`0x001B5610`](fonts-files.md) (on fonts files)<br>[`0x001B5750`](fonts-files.md) (on fonts files)<br>[`0x0020B680`](../Game-Files-And-Data-Tables/file-path-resolution.md) (on file path resolution) |
+| [`0x00674A00`](fonts.md) (on fonts) | is called by | [`0x001A7A50`](../World-Areas-And-Travel/map-art.md) (on map art)<br>[`0x001A9050`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats)<br>[`0x001B1440`](../Graphics/sprite-batcher.md) (on sprite batcher)<br>[`0x001B1C10`](../Graphics/sprite-batcher.md) (on sprite batcher)<br>[`0x0020BE50`](../Engine-Core/call-signatures.md) (on call signatures)<br>[`0x0020C1B0`](../Game-Files-And-Data-Tables/file-path-resolution.md) (on file path resolution) |
 
 </details>

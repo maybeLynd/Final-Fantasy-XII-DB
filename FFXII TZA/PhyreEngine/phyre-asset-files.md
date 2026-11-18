@@ -26,34 +26,98 @@ looks it up in the manager's loaded set. A hit raises the entry's reference coun
 cluster; a miss loads the file through `0x00637C50` and records it.
 
 The loaded set is a tree whose root is the manager's `+0x40`: the lookup takes the first node whose dword
-key `+0x20` is not below the hash and keeps it only when that key equals the hash (`0x0019CB59`-`0x0019CB92`).
+key `+0x20` is not below the hash and keeps it only when that key equals the hash¹.
 It runs between `0x005CD4F0(manager)` and `0x005CD820(manager)`. A hit increments the entry's count `+0x04`
-and returns the entry's `+0x08` (`0x0019CBA1`-`0x0019CBB5`).
+and returns the entry's `+0x08`².
 
-A miss takes an entry from the manager's pool `+0x60` (`0x001BA860`, `0x0019CBC3`) and sets its byte `+0x00`
-to 1, its `+0x10` to the third argument, which all six callers give as 0, and its count `+0x04` to 1
-(`0x0019CBCB`-`0x0019CBD1`). It loads into the entry with `0x00637C50(entry + 8, path)` (`0x0019CBDF`).
+<details>
+<summary>Where in the code</summary>
 
-When that returns non-zero or leaves `+0x08` null (`0x0019CBE4`-`0x0019CBED`), it clears the byte `+0x00` and
-the count, gives the entry back to the pool with `0x002124C0` and returns 0 (`0x0019CC20`-`0x0019CC36`).
-Otherwise it stores the entry under the hash in the map at `+0x28` (`0x0020B5F0`, `0x0019CC06`, `0x0019CC0B`),
-again between `0x005CD4F0` and `0x005CD820`, and returns the entry's `+0x08` (`0x0019CC0E`-`0x0019CC1B`).
+| | Code |
+|---|---|
+| ¹ | `0x0019CB59`-`0x0019CB92` |
+| ² | `0x0019CBA1`-`0x0019CBB5` |
 
-`0x00637C50` opens the path as a `PStreamReaderFile` (`0x00597970`),
+</details>
+
+A miss takes an entry from the manager's pool `+0x60`¹ and sets its byte `+0x00`
+to 1, its `+0x10` to the third argument, which all six callers give as 0, and its count `+0x04` to 1². It loads into the entry with `0x00637C50(entry + 8, path)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001BA860`, `0x0019CBC3` |
+| ² | `0x0019CBCB`-`0x0019CBD1` |
+| ³ | `0x0019CBDF` |
+
+</details>
+
+When that returns non-zero or leaves `+0x08` null¹, it clears the byte `+0x00` and
+the count, gives the entry back to the pool with `0x002124C0` and returns 0².
+Otherwise it stores the entry under the hash in the map at `+0x28`³,
+again between `0x005CD4F0` and `0x005CD820`, and returns the entry's `+0x08`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019CBE4`-`0x0019CBED` |
+| ² | `0x0019CC20`-`0x0019CC36` |
+| ³ | `0x0020B5F0`, `0x0019CC06`, `0x0019CC0B` |
+| ⁴ | `0x0019CC0E`-`0x0019CC1B` |
+
+</details>
+
+`0x00637C50` opens the path as a `PStreamReaderFile`¹,
 returns 1 for a null path and 10 when the file does not open, and then calls the cluster reader
 `0x0059E070` repeatedly, one cluster after another, until the stream position reaches the file size.
 Each cluster gets its own `0xA0`-byte container, chained through `+0x98`.
 
-`0x00637C50(out, path)` builds each container with `0x00633070`, points its list at `+0x88` at itself and
-clears `+0x98`, and stores the first one at `out` (`0x00637CA4`-`0x00637CE3`); a failed allocation gives
-`0xD` (`0x00637CF5`, `0x00637DAF`). A new container is made only after a cluster reads without error while
-the stream position `+0x18` has not reached the size `+0x1C`, and goes on the end of the chain
-(`0x00637D29`-`0x00637DA0`); a size of `0xFFFFFFFF` skips that end test (`0x00637D03`, `0x00637D2D`).
+<details>
+<summary>Where in the code</summary>
 
-Every exit once the stream is open calls `0x0059BD40` on it (`0x00637CF0`, `0x00637DB9`) and then `0x00598100`
-(`0x00637DE8`); the exit for a file that does not open calls `0x00598100` alone (`0x00637C9A`, `0x00637DE3`). On an
+| | Code |
+|---|---|
+| ¹ | `0x00597970` |
+
+</details>
+
+`0x00637C50(out, path)` builds each container with `0x00633070`, points its list at `+0x88` at itself and
+clears `+0x98`, and stores the first one at `out`¹; a failed allocation gives
+`0xD`². A new container is made only after a cluster reads without error while
+the stream position `+0x18` has not reached the size `+0x1C`, and goes on the end of the chain³; a size of `0xFFFFFFFF` skips that end test⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00637CA4`-`0x00637CE3` |
+| ² | `0x00637CF5`, `0x00637DAF` |
+| ³ | `0x00637D29`-`0x00637DA0` |
+| ⁴ | `0x00637D03`, `0x00637D2D` |
+
+</details>
+
+Every exit once the stream is open calls `0x0059BD40` on it¹ and then `0x00598100`²; the exit for a file that does not open calls `0x00598100` alone³. On an
 error the first container is destroyed (`0x006336E0`, then `0x00584730`), `out` is cleared and the error is
-returned (`0x00637DBE`-`0x00637DDC`); a full read returns 0 (`0x00637DE1`).
+returned⁴; a full read returns 0⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00637CF0`, `0x00637DB9` |
+| ² | `0x00637DE8` |
+| ³ | `0x00637C9A`, `0x00637DE3` |
+| ⁴ | `0x00637DBE`-`0x00637DDC` |
+| ⁵ | `0x00637DE1` |
+
+</details>
 
 ## Layouts
 
@@ -138,8 +202,16 @@ nine-word records and `nMembers` six-word records) and the one the validator `0x
 | `+0x1C` | `u32` | extraSize | bytes of the block after the pool |
 | `+0x20` | `u32[nTypes]` |  | pool offsets of the type names class record  x nClasses        9 words each member record x nMembers        6 words each char[poolSize]                  NUL-terminated names byte[extraSize]                 indexed by class word 8 |
 
-The loader requires `size == 0x20 + extraSize + 4 × (nTypes + 9 × nClasses + 6 × nMembers) + poolSize`
-(`0x0059E070`), which places the extra block after the pool.
+The loader requires `size == 0x20 + extraSize + 4 × (nTypes + 9 × nClasses + 6 × nMembers) + poolSize`¹, which places the extra block after the pool.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059E070` |
+
+</details>
 
 Class record:
 
@@ -238,6 +310,9 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x20` | `f32[4]` | m_maxBounds | m_maxBounds (f32[4]), registered by `0x006D9FC0` (`0x00632960` at `0x006DA20D`); no shipped .phyre file declares POccluderGeometryObject |
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured over the whole archive, reading each `.phyre` file in the loader's stream order.
 
@@ -546,6 +621,8 @@ Each `PSkinBoneRemap` names a bone and a skeleton matrix, and that matrix's `PSk
 in all 67,532. Each of the 1,341,188 vertices has `SkinWeights` that sum to 1, every position with a weight is inside
 its segment's list, and every position has a weighted vertex.
 
+</details>
+
 ## Loader behaviour
 
 ### Preconditions
@@ -553,7 +630,16 @@ its segment's list, and every position has a weighted vertex.
 `0x0059E070` returns `0x15` when the byte `0x02CA9D90` is zero and `0xB` when the stream is not open. The
 byte is set by `0x0059D550`, which registers the cluster-header and instance-list classes: it calls
 `0x005983E0` and `0x00598C50`, registers the `PClusterHeader` descriptor `0x02CAA0A0` by name with `0x006388C0`
-and its members with `0x00639450`, calls `0x00598DF0`, and then sets the byte (`0x0059D57D`) and returns 0.
+and its members with `0x00639450`, calls `0x00598DF0`, and then sets the byte¹ and returns 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059D57D` |
+
+</details>
 
 `0x0059D550` is slot 1 of the module vtable `0x00D26C40`, a module that static-initialiser code links into
 the module list (`0x0016035C` stores the vtable), and the engine's start-up `0x005A08E0` calls slot 1 of
@@ -565,48 +651,47 @@ every listed module before any asset loads. Slot 2 of the same vtable, the modul
 `0x0059A3B0` is the only header reader; its one caller `0x0059E070` seeds the buffer with `RYHP` and 84,
 zeroes the rest and passes platform checking as the constant 1.
 
-1. It reads 84 bytes; fewer returns 9.
-2. If the marker is not `RYHP` it byte-swaps the whole header (`0x0063E2E0` with descriptor
-   `0x02CAA0A0`) and tests again: still wrong returns 6; right sets the swapped flag, so a big-endian
-   file is accepted.
-3. It calls `0x00686D00` (`0x44583131`) and `0x0069E780` (`0x424C4C54`); a different platform, or a physics
-   id that is neither Bullet nor 0, returns 6. Both compares are skipped when the platform-check
-   argument is 0 (`0x0059A44D`, `0x0059A45C`).
-4. It gives the namespace buffer `m_packedNamespaceSize` bytes (`0xD` when that fails) and returns 6
-   when the buffer is null, which is what a zero-size namespace leaves. A buffer whose size word already
-   equals that size is kept (`0x0059A479`); otherwise the new one comes from `0x0017D260(size, 4)` and the old
-   one is released through `0x00584730` unless bit `0x80000000` of its size word is set (`0x0059A484`-`0x0059A4C8`).
-5. With `m_size` 84 it reads the namespace (`0x0059A6F0`: one read, 9 when short, then `0x0059C180` when
-   the file was swapped). A shorter header takes the surplus already read as the start of the
-   namespace (6 when the surplus is larger than the namespace); a longer one is read on into a
-   second buffer (`0xD`, 9).
-6. It writes `m_size` to its sixth argument (`0x0059A4E4`). For an `m_size` other than 84 in a swapped
-   file it first swaps the header back to file order (`0x0059A501`), and a longer header's second buffer
-   (`0x0067B100`) gets all `m_size` bytes, the 84 already read first (`0x0059A52E`-`0x0059A56F`).
-7. After a shorter header, `0x0059A6F0` reads the rest of the namespace and is given
-   `namespace + surplus` (`0x0059A5B1`), which is the address it hands to `0x0059C180` (`0x0059A748`).
-8. `0x0059A6F0` skips its read when the size is 0 or the buffer null, and swaps after a short read too
-   (`0x0059A710`-`0x0059A748`); `0x0059A3B0` returns 0 when the namespace is read in full (`0x0059A5E0`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It reads 84 bytes; fewer returns 9. |   |
+| 2 | If the marker is not `RYHP` it byte-swaps the whole header (`0x0063E2E0` with descriptor `0x02CAA0A0`) and tests again: still wrong returns 6; right sets the swapped flag, so a big-endian file is accepted. |   |
+| 3 | It calls `0x00686D00` and `0x0069E780`; a different platform, or a physics id that is neither Bullet nor 0, returns 6. Both compares are skipped when the platform-check argument is 0. | `0x44583131`<br>`0x424C4C54`<br>`0x0059A44D`, `0x0059A45C` |
+| 4 | It gives the namespace buffer `m_packedNamespaceSize` bytes (`0xD` when that fails) and returns 6 when the buffer is null, which is what a zero-size namespace leaves. A buffer whose size word already equals that size is kept; otherwise the new one comes from `0x0017D260(size, 4)` and the old one is released through `0x00584730` unless bit `0x80000000` of its size word is set. | `0x0059A479`<br>`0x0059A484`-`0x0059A4C8` |
+| 5 | With `m_size` 84 it reads the namespace (`0x0059A6F0`: one read, 9 when short, then `0x0059C180` when the file was swapped). A shorter header takes the surplus already read as the start of the namespace (6 when the surplus is larger than the namespace); a longer one is read on into a second buffer (`0xD`, 9). |   |
+| 6 | It writes `m_size` to its sixth argument. For an `m_size` other than 84 in a swapped file it first swaps the header back to file order, and a longer header's second buffer gets all `m_size` bytes, the 84 already read first. | `0x0059A4E4`<br>`0x0059A501`<br>`0x0067B100`<br>`0x0059A52E`-`0x0059A56F` |
+| 7 | After a shorter header, `0x0059A6F0` reads the rest of the namespace and is given `namespace + surplus`, which is the address it hands to `0x0059C180`. | `0x0059A5B1`<br>`0x0059A748` |
+| 8 | `0x0059A6F0` skips its read when the size is 0 or the buffer null, and swaps after a short read too; `0x0059A3B0` returns 0 when the namespace is read in full. | `0x0059A710`-`0x0059A748`<br>`0x0059A5E0` |
 
 `0x0059E070` then requires the byte-order mark and the size identity, or returns 6.
 
 `0x0059C180` swaps the namespace of a big-endian file in place: its eight header words, every word of
-the type-name table (`0x0059A8B0`), the nine words of every class record (`0x0059A780`) and the six
+the type-name table¹, the nine words of every class record² and the six
 words of every member record. The string pool is left as it is.
-The `extraSize` block after the pool is left as it is too. The eight header words are swapped first
-(`0x0059C186`-`0x0059C1C4`), so the counts it then reads are in host order, and the type-name table is
-swapped last, by a tail jump (`0x0059C245`).
+The `extraSize` block after the pool is left as it is too. The eight header words are swapped first³, so the counts it then reads are in host order, and the type-name table is
+swapped last, by a tail jump⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059A8B0` |
+| ² | `0x0059A780` |
+| ³ | `0x0059C186`-`0x0059C1C4` |
+| ⁴ | `0x0059C245` |
+
+</details>
 
 ### Binding the schema
 
 - `0x0059AAE0` allocates one table entry per type (`0x18` bytes), class (`0x30`) and member (`0x38`).
   The three tables share one block, each part `(count × size + 0xF) & ~0xF` bytes long
-  (`0x0059AB04`-`0x0059AB30`).
+ ¹.
 - A block whose size word already equals the total is reused; otherwise the new one comes from
-  `0x0017D260(total, 0x10)`, `0xD` when that fails (`0x0059ABEC`), and the old one is released through
-  `0x00584730` unless bit `0x80000000` of its size word is set (`0x0059AB3E`-`0x0059AB7C`).
-- `0x0059AAE0` then zero-fills the block (`0x00861EC0`), hands the type, class and member parts with their
-  counts to `0x0059FCA0` for the views at `+0x18`, `+0x28` and `+0x38` (`0x0059ABA2`-`0x0059ABCA`) and returns 0.
+  `0x0017D260(total, 0x10)`, `0xD` when that fails², and the old one is released through
+  `0x00584730` unless bit `0x80000000` of its size word is set³.
+- `0x0059AAE0` then zero-fills the block⁴, hands the type, class and member parts with their
+  counts to `0x0059FCA0` for the views at `+0x18`, `+0x28` and `+0x38`⁵ and returns 0.
 - `0x0059B430` finds each type and class name in the engine's registry (`0x006373D0`, keyed by a hash of
   1973, × 33 plus the low five bits of each byte), sets each class's parent from word 0, and matches
   each member to the runtime class's member of the same name, walking its bases. A class name is
@@ -617,17 +702,39 @@ swapped last, by a tail jump (`0x0059C245`).
   in the current runtime"`) and do not stop the load.
 - `0x00599500` finds the class bound to `PClusterHeader` (`0x13` when no class is bound), converts the header
   through the file's schema, and checks the platform again (6).
-- That class is the `0x30`-byte table entry whose `+0x10` is the descriptor `0x02CAA0A0` (`0x00599543`). The
-  conversion `0x00599670(entry, source, header, 1)` (`0x0059962A`) reads from a local copy of the 84 bytes
-  (`0x005995E6`-`0x00599619`), or, when `m_size` is above 84, from the second buffer whose pointer is at `+0x08` of
-  `0x00599500`'s own third argument (`0x0059951B`, `0x005995E0`), and writes into the header.
+- That class is the `0x30`-byte table entry whose `+0x10` is the descriptor `0x02CAA0A0`⁶. The
+  conversion `0x00599670(entry, source, header, 1)`⁷ reads from a local copy of the 84 bytes
+ ⁸, or, when `m_size` is above 84, from the second buffer whose pointer is at `+0x08` of
+  `0x00599500`'s own third argument⁹, and writes into the header.
 - `0x00599500`'s only caller `0x0059E070` passes as that third argument the pair it also passes to `0x0059A3B0` as the
-  fourth argument (`0x0059E142`, `0x0059E200`).
-- For a swapped file it swaps an 84-byte header back to file order before the copy (`0x00599592`) and
-  swaps the converted header after it (`0x00599642`). The platform check compares `m_platformID` with
-  `0x00686D00` (`0x00599647`-`0x00599656`); a match returns 0.
-- `0x0059AC00` builds a dynamic class (`0x00632E80`) for each class record with flag `0x01` and no
+  fourth argument¹⁰.
+- For a swapped file it swaps an 84-byte header back to file order before the copy¹¹ and
+  swaps the converted header after it¹². The platform check compares `m_platformID` with
+  `0x00686D00`¹³; a match returns 0.
+- `0x0059AC00` builds a dynamic class¹⁴ for each class record with flag `0x01` and no
   runtime class, under its parent; one left unbuilt returns `0x13`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059AB04`-`0x0059AB30` |
+| ² | `0x0059ABEC` |
+| ³ | `0x0059AB3E`-`0x0059AB7C` |
+| ⁴ | `0x00861EC0` |
+| ⁵ | `0x0059ABA2`-`0x0059ABCA` |
+| ⁶ | `0x00599543` |
+| ⁷ | `0x0059962A` |
+| ⁸ | `0x005995E6`-`0x00599619` |
+| ⁹ | `0x0059951B`, `0x005995E0` |
+| ¹⁰ | `0x0059E142`, `0x0059E200` |
+| ¹¹ | `0x00599592` |
+| ¹² | `0x00599642` |
+| ¹³ | `0x00599647`-`0x00599656` |
+| ¹⁴ | `0x00632E80` |
+
+</details>
 
 ### Reading the instance data
 
@@ -636,31 +743,31 @@ swapped last, by a tail jump (`0x0059C245`).
 - `0x00686D10` copies the three D3D11 sizes into the `0x28`-byte local that `0x00686C20` has just zeroed
   (`0x0059E343`; the header's dwords `+0x48`, `+0x4C` and `+0x50` to its `+0x20`, `+0x1C` and `+0x24`),
   and `0x0059E780` reads the list
-  headers (`0x00596FC0`), returning 6 for a `m_classID` outside the class table.
-- `0x0059E780` returns the result of `0x00596FC0` when it is not 0 (`0x0059E7CD`). For each list it stores the
-  class entry in the load record's per-list array at `+0x58` (`0x0059E801`). When the entry's runtime
+  headers¹, returning 6 for a `m_classID` outside the class table.
+- `0x0059E780` returns the result of `0x00596FC0` when it is not 0². For each list it stores the
+  class entry in the load record's per-list array at `+0x58`³. When the entry's runtime
   descriptor has a non-zero word `+0xE0`, the total its third argument points at first becomes
-  `(t + a - 1) & ~(a - 1)` for a non-zero alignment a, the word `+0xE4` (`0x0059E81F`-`0x0059E830`).
-- The total then grows by `m_count × [+0xE0]` (`0x0059E83C`-`0x0059E843`), and its fourth argument keeps the
-  largest such a (`0x0059E832`-`0x0059E839`). It returns 0 after the last list (`0x0059E852`).
+  `(t + a - 1) & ~(a - 1)` for a non-zero alignment a, the word `+0xE4`⁴.
+- The total then grows by `m_count × [+0xE0]`⁵, and its fourth argument keeps the
+  largest such a⁶. It returns 0 after the last list⁷.
 - `0x0059D6A0` sizes and allocates each list's objects. A list whose class has no runtime counterpart
   is skipped with a log line (`0x005CDAA0`, level 2, the format at `0x00D26D50`, which names the class and
   says it is skipped, `0x0059D74C`), written in the sizing walk for every such list; when its class carries
-  flag `0x04`, the allocation walk then returns 6 (`0x0059D836`-`0x0059D840`).
+  flag `0x04`, the allocation walk then returns 6⁸.
 - For a list with runtime descriptor D it takes `o = m_count × s`, s being D's instance size `+0x38`, and
   `p = ((m_arraysSize + 0x17) & ~7) + h + 8 × m_pointersInArraysCount`, where h is `m_objectsSize - o`
-  for a header class (D `+0xFC` bit `0x4`) and 0 for any other (`0x0059D753`-`0x0059D781`).
+  for a header class (D `+0xFC` bit `0x4`) and 0 for any other⁹.
 - When D's word `+0xE0` is not 0, p becomes `(p + a - 1) & ~(a - 1)` for a non-zero a, D's word `+0xE4`,
-  and then `p + m_count × [+0xE0]` (`0x0059D784`-`0x0059D7A8`).
+  and then `p + m_count × [+0xE0]`¹⁰.
 - The block size is built list by list as `t = ((t + b - 1) & ~(b - 1)) + p + o`, b being D's alignment
-  `+0x3C` (`0x0059D7AB`-`0x0059D7BB`); `0x0063DD30(cluster, t, t, m_instanceListCount)` is called only when t
-  is not 0 (`0x0059D7D1`-`0x0059D7E5`).
+  `+0x3C`¹¹; `0x0063DD30(cluster, t, t, m_instanceListCount)` is called only when t
+  is not 0¹².
 - The allocation walk takes each list's record from `0x006394E0(cluster, m_count, D, p)`, `0xD` when that
   gives null, clears the record's byte `+0x7D` and stores the record in the list's slot of the array at
-  `+0x48`; a skipped list's slot gets null (`0x0059D8AB`-`0x0059D8C2`). It returns 0 (`0x0059D8D6`).
+  `+0x48`; a skipped list's slot gets null¹³. It returns 0¹⁴.
 - `0x0063DD30` allocates the cluster's one block (alignment `0x20`): a `0x20`-byte header, the objects' size
   rounded up to 8 and one `0x80`-byte list record per list. It links the block on the cluster's
-  chain at `+0x48` and gives the records to its pool at `+0x50` (`0x00680100`); a second block gets
+  chain at `+0x48` and gives the records to its pool at `+0x50`¹⁵; a second block gets
   `0x16`.
 - `0x0059F500` reads each list's `m_objectsSize` bytes into a scratch buffer and its `m_arraysSize`
   bytes straight into the list's array area, 9 on a short read; a skipped list's `m_size` bytes are
@@ -673,26 +780,61 @@ swapped last, by a tail jump (`0x0059C245`).
   class's descriptor slot `+0x00` forwards over every object (`0x0059FDB0(descriptor, objects, count, 1)` at
   `0x0059D674`), the byte-order walk of [reflection](phyre-reflection.md). It returns `0x13` for an out-of-range or
   unbound class and `0x11` when the list has no object area.
-  - The objects handed to `0x0059FDB0` start at `objects + [D+0xF8] - [D+0xF4]` (`0x0059D659`-`0x0059D671`). A
+  - The objects handed to `0x0059FDB0` start at `objects + [D+0xF8] - [D+0xF4]`¹⁶. A
     class is unbound when its table entry's file record `+0x08` or runtime descriptor `+0x10` is null
-    (`0x0059D5D9`-`0x0059D5ED`). A header class's tail is copied with `0x00861EBA` from the file size
-    `[record+4] & 0x0FFFFFFF` on (`0x0059D631`-`0x0059D64E`). Every other path returns 0 (`0x0059D67E`).
+   ¹⁷. A header class's tail is copied with `0x00861EBA` from the file size
+    `[record+4] & 0x0FFFFFFF` on¹⁸. Every other path returns 0¹⁹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00596FC0` |
+| ² | `0x0059E7CD` |
+| ³ | `0x0059E801` |
+| ⁴ | `0x0059E81F`-`0x0059E830` |
+| ⁵ | `0x0059E83C`-`0x0059E843` |
+| ⁶ | `0x0059E832`-`0x0059E839` |
+| ⁷ | `0x0059E852` |
+| ⁸ | `0x0059D836`-`0x0059D840` |
+| ⁹ | `0x0059D753`-`0x0059D781` |
+| ¹⁰ | `0x0059D784`-`0x0059D7A8` |
+| ¹¹ | `0x0059D7AB`-`0x0059D7BB` |
+| ¹² | `0x0059D7D1`-`0x0059D7E5` |
+| ¹³ | `0x0059D8AB`-`0x0059D8C2` |
+| ¹⁴ | `0x0059D8D6` |
+| ¹⁵ | `0x00680100` |
+| ¹⁶ | `0x0059D659`-`0x0059D671` |
+| ¹⁷ | `0x0059D5D9`-`0x0059D5ED` |
+| ¹⁸ | `0x0059D631`-`0x0059D64E` |
+| ¹⁹ | `0x0059D67E` |
+
+</details>
 
 ### User fixups
 
-`0x0059E880` reads the user-fixup data and the 12-byte records (`0x00597130`). Each record's type is a
+`0x0059E880` reads the user-fixup data and the 12-byte records¹. Each record's type is a
 type-table or class entry; one without a bound descriptor returns `0x13`. A `PAssetReferenceImport`
-record (descriptor `0x02D3E780`) is kept as raw bytes; any other is resolved through its descriptor
-(`0x0063DC30`). A null result is logged (`"Resolving fixup for '%s' returned NULL pointer"`, with a hex
+record (descriptor `0x02D3E780`) is kept as raw bytes; any other is resolved through its descriptor². A null result is logged (`"Resolving fixup for '%s' returned NULL pointer"`, with a hex
 dump of data under 32 bytes) and the load goes on.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00597130` |
+| ² | `0x0063DC30` |
+
+</details>
 
 ### Header classes and the fixup tables
 
-- `0x0059D940` reads the header-class words and the 16-byte child records (`0x00597070`) and fixes up
+- `0x0059D940` reads the header-class words and the 16-byte child records¹ and fixes up
   the header-class objects and their child objects, logging a child whose class has no runtime
   version and a runtime class larger than the file's.
-- Four header classes carry arrays after their fixed part, and their static initialisers (`0x001605C0`,
-  `0x001615C0`, `0x00167DB0`, `0x001688F0`) clear flag `0x2` and set `0x4` at `+0xFC` (`0x001615C0` sets `0x8` as
+- Four header classes carry arrays after their fixed part, and their static initialisers² clear flag `0x2` and set `0x4` at `+0xFC` (`0x001615C0` sets `0x8` as
   well; the other three clear it) and store a function at descriptor `+0x100` that hands each array to
   the visitor with its element type: through its slot `+0x08`, or through `+0x10` with a second location.
 - Each initialiser first calls a builder on its descriptor, then stores the descriptor's vtable, the
@@ -701,53 +843,52 @@ dump of data under 32 bytes) and the load goes on.
   `0x001615C0` builds `0x02CB7480` with `0x005D9B30`, vtable `0x00D3BC30`, function `0x005FE350`, exit `0x008AB0B0`.
 - `0x00167DB0` builds `0x02E5E430` with `0x006CFDB0`, vtable `0x00D8B050`, function `0x006D4CF0`, exit `0x008B7150`;
   `0x001688F0` builds `0x02EA0850` with `0x006D9F00`, vtable `0x00D8DFA8`, function `0x006DA380`, exit `0x008B78B0`.
-  Each exit routine stores another vtable at the descriptor (`0x00D2B298`, `0x00D3ADA8`, `0x00D8AE20`,
-  `0x00D8DE98`) and jumps to `0x00633390`.
+  Each exit routine stores another vtable at the descriptor³ and jumps to `0x00633390`.
 - `0x006D4CF0` serves `PModifierNetworkInfoPacket` (`0x20` bytes), and does nothing when the visitor's
   slot `+0x18` answers true: `+0x04` modifier codes and `+0x08` modifier instances (`0x20` bytes
   each), then `+0x0C` + `+0x0E` two-byte buffer entries.
 - All three go through slot `+0x08` with the types `0x02E5E130`, `0x02E5E230` and `0x02E5E330`, starting at
   `0x20`, `0x20 × (1 + c)` and `0x20 × (1 + c + i)` from the packet for c codes and i instances; an
-  array whose count is 0 is not handed over (`0x006D4D32`-`0x006D4DB9`).
+  array whose count is 0 is not handed over⁴.
 - `0x006DA380` serves `POccluderGeometryObject` (`0x30` bytes): `(+0x00 + 3) / 4` `Matrix4`, then
   `+0x04` `Point3`, then `+0x08` × 4 bytes.
 - It does not call the visitor's slot `+0x18` and hands all three through slot `+0x08` whatever the
   counts: q = `(+0x00 + 3) / 4` records of the type `0x006B08A0` returns at `0x30`, then `+0x04` of the
   type `0x006B0B20` returns at `0x30 + 64 × q`, then `+0x08 × 4` entries of `PUInt8` (`0x01F2E460`, size 1,
-  from `0x0062FFC0`) at `16 × (3 + 4 × q + n)` for n = `+0x04`, all from the object (`0x006DA39B`-`0x006DA435`).
+  from `0x0062FFC0`) at `16 × (3 + 4 × q + n)` for n = `+0x04`, all from the object⁵.
 - On its first call, under the guard `0x02CF94FC`, `0x0062FFC0` only registers the exit
   teardown `0x008AFE10` with `0x00808B90`; every call answers the address `0x01F2E460`
-  (`0x0062FFDF`-`0x00630020`).
+ ⁶.
 - `0x005BFF30` serves `PAnimationClipBinding` (`0x08` bytes), and does nothing when the visitor's slot
   `+0x18` answers true: `(+0x06 + 3) & ~3` two-byte entries at `+0x08` (the type `0x006300A0` returns),
   then `+0x02` + `+0x04` four-byte `PAnimationClipBindingChannelMap` records, both through slot `+0x08`
-  (`0x005BFF6B`-`0x005BFFF4`).
+ ⁷.
 - It then hands, from the next 8-byte boundary, `+0x02` `PAnimationClipBindingDataBlockCache` records
   through slot `+0x10`; the second location is `(e + a - 1) & ~(a - 1)`, the end of the two arrays rounded up to
   the alignment a the visitor's `+0x08` object answers for that type (its slot `+0x18`, `0x005BFFF8`-`0x005C0058`),
   with e = `8 + 2 × ((+0x06 + 3) & ~3) + 4 × (+0x02 + +0x04)`.
-- The first location is an address rounded up to 8 (`0x005C002F`-`0x005C0041`); the second is an offset rounded up and
-  added to the record (`0x005C002C`-`0x005C0049`).
+- The first location is an address rounded up to 8⁸; the second is an offset rounded up and
+  added to the record⁹.
 - `0x005FE350` serves `PParameterBuffer` (`0x20` bytes), and does nothing when slot `+0x18` answers true:
   for each of the `+0x10` (mask `0x7FFFFFFF`) `PShaderParameterDefinition` records at `+0x18`, `0x18` bytes
   each, it hands one parameter to slot `+0x10` at the record's `+0x10` offset into the buffer
-  (`0x005FE3C7`-`0x005FE40A`).
+ ¹⁰.
 - A parameter type `+0x02` of `0x42`-`0x44`, `0x47`-`0x49` or `0x4B`-`0x50` is one `PShaderParameterCaptureBuffer`
   record: `0x42` Texture2D, `0x43` Texture3D, `0x44` TextureCubeMap, `0x47` Sampler, `0x48`
   StructuredBuffer, `0x49` RWStructuredBuffer, `0x4B` ByteAddressBuffer, `0x4C` RWByteAddressBuffer, `0x4D`
-  RWTexture2D, `0x4E` RWTexture3D, `0x4F` DataBlock, `0x50` IndexDataBlock (`0x005FE40D`-`0x005FE651`).
-- `0x4A` is one `PShaderParameterCaptureConstantBuffer` (`0x005FE575`-`0x005FE59A`).
+  RWTexture2D, `0x4E` RWTexture3D, `0x4F` DataBlock, `0x50` IndexDataBlock¹¹.
+- `0x4A` is one `PShaderParameterCaptureConstantBuffer`¹².
 - Any other parameter is `+0x00` (or 1) times the 1, 2, 3, 4, 12 or 16 elements of the basic type its
   data type `+0x03` selects through the type getters `0x0062FF50`-`0x006301F0`, each behind a thread-safe static
-  (`0x005FE656`-`0x005FE7E5`);
+ ¹³;
   a data type with no descriptor is logged by name through `0x005CDAA0` with the format at `0x00D4A688`
-  (`0x005FE802`-`0x005FE81C`).
+ ¹⁴.
 - The second location is the same record's `+0x10` offset in the array the visitor's `+0x08` object
   returns for `+0x18` through its slot `+0x20`, when that array's class is or derives from
-  `PShaderParameterDefinition` (`0x005D8EB0`).
+  `PShaderParameterDefinition`¹⁵.
 - Without that array the second location is the first, and both are null unless the offset is at least 4
   and offset plus size (mask `0x1FFF` of `+0x12`) lies within `+0x00`, both as unsigned compares
-  (`0x005FE36F`-`0x005FE40A`).
+ ¹⁶.
 - `0x0059CE30`, `0x0059C700` and `0x0059C250` then read the pointer-array, pointer and array tables. Each
   reads its `*Size` bytes and decodes every list's share into fixed entries (16 bytes for array and
   pointer-array entries, `0x1C` for pointer entries; `0x00595EF0`, `0x00596890`, built on the 7-bit
@@ -759,6 +900,30 @@ dump of data under 32 bytes) and the load goes on.
   address plus the class's layout base `+0xF8`, or null when the index is not below the list's
   count (`+0x70`) or the slot lies on the list's chain at `+0x10`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00597070` |
+| ² | `0x001605C0`, `0x001615C0`, `0x00167DB0`, `0x001688F0` |
+| ³ | `0x00D2B298`, `0x00D3ADA8`, `0x00D8AE20`, `0x00D8DE98` |
+| ⁴ | `0x006D4D32`-`0x006D4DB9` |
+| ⁵ | `0x006DA39B`-`0x006DA435` |
+| ⁶ | `0x0062FFDF`-`0x00630020` |
+| ⁷ | `0x005BFF6B`-`0x005BFFF4` |
+| ⁸ | `0x005C002F`-`0x005C0041` |
+| ⁹ | `0x005C002C`-`0x005C0049` |
+| ¹⁰ | `0x005FE3C7`-`0x005FE40A` |
+| ¹¹ | `0x005FE40D`-`0x005FE651` |
+| ¹² | `0x005FE575`-`0x005FE59A` |
+| ¹³ | `0x005FE656`-`0x005FE7E5` |
+| ¹⁴ | `0x005FE802`-`0x005FE81C` |
+| ¹⁵ | `0x005D8EB0` |
+| ¹⁶ | `0x005FE36F`-`0x005FE40A` |
+
+</details>
+
 ### D3D11 data and completion
 
 `0x00686DE0` reads the index buffer into the cluster's `PIndexDataBlockD3D11` and `PMeshSegmentD3D11`
@@ -769,9 +934,20 @@ objects, the vertex buffer into its `PDataBlockD3D11` objects, and then texture 
 load), and runs `0x0059F7A0`, which builds the cluster's `PMapPair` records.
 
 `0x0059F7A0` keeps those records in a local ordered map: a tree head with a `PMapPair` pool of
-`0x28`-byte nodes `0x30` bytes after it (`0x0067FFB0`). It clears the map on return; when an exception
-leaves it, the unwind action `0x00597F30` does the same: it resets the head's links (`0x0067F6F0`),
-frees the pool's blocks (`0x006803D0`, `0x00680030`) and calls `0x0067F580` on the head twice.
+`0x28`-byte nodes `0x30` bytes after it¹. It clears the map on return; when an exception
+leaves it, the unwind action `0x00597F30` does the same: it resets the head's links²,
+frees the pool's blocks³ and calls `0x0067F580` on the head twice.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067FFB0` |
+| ² | `0x0067F6F0` |
+| ³ | `0x006803D0`, `0x00680030` |
+
+</details>
 
 For the `PClassDescriptorDynamic` lists, `0x0059BDC0` finds the `0x30`-byte class entry whose `+0x10`
 is a given descriptor. `0x00686DE0` steps through the objects with `0x00686D40`, which skips the slots on a list's chain at
@@ -779,9 +955,18 @@ is a given descriptor. `0x00686DE0` steps through the objects with `0x00686D40`,
 loaded `PDataBlockD3D11` as an immutable buffer (bind flags 9, misc flags `0x20`) of the block's data
 size, initialised from the file data at the block's offset; 9 when creation fails.
 
-`0x0059E300` starts by zeroing its `0x28`-byte list cursor (`0x00686C20`). When it returns, `0x0059E070` frees the four arrays at `+0x20`–`+0x58` of the load record it passed
-(`0x00597F80`). `0x0059FC20` copies the text between two pointers into new memory with `0x005994A0`
+`0x0059E300` starts by zeroing its `0x28`-byte list cursor¹. When it returns, `0x0059E070` frees the four arrays at `+0x20`–`+0x58` of the load record it passed². `0x0059FC20` copies the text between two pointers into new memory with `0x005994A0`
 (alignment 2) and terminates it; 5 when the end lies before the start, `0xD` without memory.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00686C20` |
+| ² | `0x00597F80` |
+
+</details>
 
 ### Asset references and idmaps.txt
 
@@ -790,43 +975,80 @@ Every `.phyre` file has a `PAssetReference` list; a reference names the file's c
 Related).
 
 - The constructor `0x006753A0(reference, name, a, b)`, called by the descriptor's construct slot
-  `0x00674BE0`, sets up the node at `+0x08`, copies the name (`0x001C26B0`), stores `a` and `b` at
+  `0x00674BE0`, sets up the node at `+0x08`, copies the name¹, stores `a` and `b` at
   `+0x38` and `+0x40`, clears `+0x48` and calls the registration `0x00677BA0`, whose result it drops
-  (`0x00675403`-`0x00675409`).
+ ².
 - `0x00677BA0` registers a named reference only: with `+0x30` at 0 it returns `0x15` before it touches the
-  node, the hash or the registry (`0x00677BBF`-`0x00677BD2`). The one call of the constructor (`0x00674C2A`)
-  passes a null name (`0x00674C25`), which `0x001C26B0` answers with 0 (`0x001C26B9`-`0x001C2713`), so that
+  node, the hash or the registry³. The one call of the constructor⁴
+  passes a null name⁵, which `0x001C26B0` answers with 0⁶, so that
   reference is not registered.
 - It points the node's three links at `+0x08` itself, clears the key's 32-bit hash `+0x20` and name
-  `+0x28`, keeps the copy at `+0x30` and returns the reference (`0x006753C6`-`0x00675409`).
-- For a loaded list, slot `+0x70` (`0x00674B50`) runs `0x00676450`: each reference gets the list's
+  `+0x28`, keeps the copy at `+0x30` and returns the reference⁷.
+- For a loaded list, slot `+0x70`⁸ runs `0x00676450`: each reference gets the list's
   cluster at `+0x48`, its name hash (`0x00677350`, seed `0x7B5`) and name in its key, and is inserted
   under the lock `0x02D3E880`. A reference without a name returns `0x15` and a name already
   registered `0x12`, which ends the load.
 - `0x00676450` steps through the list's `+0x70` objects from `+0x58` by the instance size `+0x38` of the
-  descriptor at `+0x50` (`0x00676476`-`0x00676486`). The name is the pointer at `+0x30` with bit `0x1`
-  cleared (`0x006764B4`-`0x006764BF`); the cluster is stored before that test (`0x006764B0`).
+  descriptor at `+0x50`⁹. The name is the pointer at `+0x30` with bit `0x1`
+  cleared¹⁰; the cluster is stored before that test¹¹.
 - The key is the hash at `+0x20` and the name at `+0x28`, after the node at `+0x08` is pointed at itself
-  again (`0x006764C8`-`0x006764E7`). On first use, under the guard `0x02D3EC9C`, the registry anchor
+  again¹². On first use, under the guard `0x02D3EC9C`, the registry anchor
   `0x01F2EA70` gets its six links pointed at itself and the exit routine `0x008B1C00` goes to `0x00808B90`
-  (`0x0067650C`-`0x0067656D`).
+ ¹³.
 - Under the lock (`0x005CD4F0`, released by `0x005CD820`), `0x006750C0` looks the reference up, a hit giving
-  `0x12`; on a miss `0x006750C0` itself links the node at the end of its walk (`0x0067516D`-`0x0067517F`) and
-  `0x0067F700` rebalances the tree (`0x006764FA`-`0x006765A4`). After the last reference it returns 0
-  (`0x006765D2`).
+  `0x12`; on a miss `0x006750C0` itself links the node at the end of its walk¹⁴ and
+  `0x0067F700` rebalances the tree¹⁵. After the last reference it returns 0
+ ¹⁶.
 - The registry orders keys with `0x00675EF0`: by hash, then, when both names contain `#`, by the text
   after the last `#` (case-sensitive) and then by the part before it (length first, then
   case-insensitive), and otherwise by the whole names case-insensitively.
-- `0x00675EF0` compares the hashes unsigned (`0x00675F05`-`0x00675F1A`), finds the last `#` with `strrchr`
-  (`0x00675F38`, `0x00675F4A`) and compares the suffixes byte by byte (`0x00675F70`-`0x00675F86`). It calls
+- `0x00675EF0` compares the hashes unsigned¹⁷, finds the last `#` with `strrchr`
+ ¹⁸ and compares the suffixes byte by byte¹⁹. It calls
   `_strnicmp` for equal-length prefixes and `_stricmp` for whole names with the second key's name first
-  (`0x00675F8D`-`0x00675FB2`, `0x00675FD7`-`0x00675FDF`), so those two return the reverse of a first-key compare.
+ ²⁰, so those two return the reverse of a first-key compare.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C26B0` |
+| ² | `0x00675403`-`0x00675409` |
+| ³ | `0x00677BBF`-`0x00677BD2` |
+| ⁴ | `0x00674C2A` |
+| ⁵ | `0x00674C25` |
+| ⁶ | `0x001C26B9`-`0x001C2713` |
+| ⁷ | `0x006753C6`-`0x00675409` |
+| ⁸ | `0x00674B50` |
+| ⁹ | `0x00676476`-`0x00676486` |
+| ¹⁰ | `0x006764B4`-`0x006764BF` |
+| ¹¹ | `0x006764B0` |
+| ¹² | `0x006764C8`-`0x006764E7` |
+| ¹³ | `0x0067650C`-`0x0067656D` |
+| ¹⁴ | `0x0067516D`-`0x0067517F` |
+| ¹⁵ | `0x006764FA`-`0x006765A4` |
+| ¹⁶ | `0x006765D2` |
+| ¹⁷ | `0x00675F05`-`0x00675F1A` |
+| ¹⁸ | `0x00675F38`, `0x00675F4A` |
+| ¹⁹ | `0x00675F70`-`0x00675F86` |
+| ²⁰ | `0x00675F8D`-`0x00675FB2`, `0x00675FD7`-`0x00675FDF` |
+
+</details>
 
 `0x00676BD0(id)` finds a reference by id. On first use it loads
 `/GameData/D3D11/ArtData/shared/idmaps.txt` into a map of id pairs with `0x00677030` (alternate CRLF
 lines as key and value) and registers its teardown `0x008B1B10`. An id found as a key is replaced by
-its value; the result is hashed and looked up in the registry (`0x00674F60`) under the same lock.
+its value; the result is hashed and looked up in the registry¹ under the same lock.
 `0x0063B040`, which works through a cluster's `PAssetReferenceImport` lists, and `0x00677CE0` call it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00674F60` |
+
+</details>
 
 The map is a guarded local static of `0x00676BD0` at `0x02D3ECA8` (guard `0x02D3ECE0`, `_Init_thread_header` at
 `0x00676C44`), laid out like the thread-name map of [runtime services](../Compiler-And-C-Runtime/runtime-services.md):
@@ -834,11 +1056,29 @@ The map is a guarded local static of `0x00676BD0` at `0x02D3ECA8` (guard `0x02D3
 - `+0x08`, `0x02D3ECB0`, and `+0x10`, `0x02D3ECB8`: the anchor's two links, both set to the anchor.
 - `+0x18`, `0x02D3ECC0`: the root, set to 0.
 - `+0x20`, `0x02D3ECC8`: the colour byte, set to 0 (`0x00676C54`, an 8-byte store, then `0x00676C7E`, one byte).
-- `+0x28`, `0x02D3ECD0`: the count, set to 0 (`0x00676C84`).
+- `+0x28`, `0x02D3ECD0`: the count, set to 0¹.
 - `+0x30`, `0x02D3ECD8`: the plain EASTL allocator vtable `0x008F6500`.
 
-The byte `0x02D3ECA0` records that `idmaps.txt` has been loaded (`0x00676CA2`-`0x00676CAA`). The search walks from the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00676C84` |
+
+</details>
+
+The byte `0x02D3ECA0` records that `idmaps.txt` has been loaded¹. The search walks from the
 root and treats the anchor as "not found":
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00676CA2`-`0x00676CAA` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -878,11 +1118,22 @@ pair and `0x00675440` destroys one.
 - A replacement `chr/` or `chr_shadow/` mesh needs, for each segment, a stream of every render data type
   that the passes of its material's variant define, in its vertex blocks or its dynamic mesh's streams
   ([`phyre-asset-files-shader-pass-streams-chr.tsv`](phyre-asset-files-shader-pass-streams-chr.tsv)); a type
-  left open stops that segment's draw and the instance's later ones (`0x0060A010`, `0x0060BF33`).
+  left open stops that segment's draw and the instance's later ones¹.
 - The match compares render data types only, and the input layout takes each element's format from the
-  variant's vertex program (`0x0061E0B0`), so each stream keeps the format of the shipped stream of its type.
+  variant's vertex program², so each stream keeps the format of the shipped stream of its type.
   Keep one stream per block, as every shipped block has: when the segment's word `+0x28`, cleared at
-  construction (`0x0065EA5D`), is below a block's stream count, the match tries only the stream at that index.
+  construction³, is below a block's stream count, the match tries only the stream at that index.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0060A010`, `0x0060BF33` |
+| ² | `0x0061E0B0` |
+| ³ | `0x0065EA5D` |
+
+</details>
 
 ## Related
 
@@ -902,18 +1153,15 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 25 calls with 2 other topics</summary>
 
-**Sound and music**
-
-| Function | | Functions |
-|---|---|---|
-| `0x001BA860` | is called by | `0x002120E0` |
-| `0x002124C0` | is called by | `0x00212050`, `0x00212300` |
-| `0x005CD4F0` | is called by | `0x00212050`, `0x002120E0`, `0x00212300`, `0x00219C40`, `0x0021B290`, `0x00220C70`, `0x00220CE0`, `0x00220D40`, `0x00221140`, `0x002211B0`, `0x00221220` |
-
 **Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x005CD820` | is called by | `0x00212050`, `0x002120E0`, `0x00212300`, `0x00219C40`, `0x0021B290`, `0x00220C70`, `0x00220CE0`, `0x00220D40`, `0x00221140`, `0x002211B0`, `0x00221220` |
+| [`0x001BA860`](../Menus-And-HUD/fonts-expansion-lists.md) (on fonts expansion lists) | is called by | [`0x002120E0`](../Sound-And-Music/audio-manager.md) (on audio manager) |
+| [`0x002124C0`](phyre-asset-files.md) | is called by | [`0x00212050`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x00212300`](phyre-asset-files.md) |
+| [`0x005CD4F0`](../Engine-Core/call-signatures.md) (on call signatures) | is called by | [`0x00212050`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x002120E0`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x00212300`](phyre-asset-files.md)<br>[`0x00219C40`](phyre-asset-files.md)<br>[`0x0021B290`](phyre-asset-files.md)<br>[`0x00220C70`](phyre-asset-files.md)<br>[`0x00220CE0`](phyre-asset-files.md)<br>[`0x00220D40`](phyre-asset-files.md)<br>[`0x00221140`](phyre-asset-files.md)<br>[`0x002211B0`](phyre-asset-files.md)<br>[`0x00221220`](phyre-asset-files.md) |
+| [`0x005CD820`](phyre-asset-files.md) | is called by | [`0x00212050`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x002120E0`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x00212300`](phyre-asset-files.md)<br>[`0x00219C40`](phyre-asset-files.md)<br>[`0x0021B290`](phyre-asset-files.md)<br>[`0x00220C70`](phyre-asset-files.md)<br>[`0x00220CE0`](phyre-asset-files.md)<br>[`0x00220D40`](phyre-asset-files.md)<br>[`0x00221140`](phyre-asset-files.md)<br>[`0x002211B0`](phyre-asset-files.md)<br>[`0x00221220`](phyre-asset-files.md) |
 
 </details>

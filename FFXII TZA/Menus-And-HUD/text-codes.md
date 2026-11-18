@@ -12,59 +12,144 @@ the shipped text of all nine languages.
 
 ### How a string is read
 
-The text interpreter `0x002AC5F0` reads a string one unit at a time, until a `00` byte or the painter's terminator word
-(`0x002AC663`):
+The text interpreter `0x002AC5F0` reads a string one unit at a time, until a `00` byte or the painter's terminator word¹:
 
-1. A byte `0x01`-`0x0F` is a text code: `0x01`-`0x0E` a control byte, `0x0F` the lead of an escape. It indexes the 15-entry table at `0x002AE334` (`0x002AC682`-`0x002AC697`).
-2. A byte `0x10`-`0x1F` is the lead byte of a two-byte character, and any other byte is a one-byte character
-   (`0x002AC2F0`).
-3. After a `0x0F`, the next byte is the selector. A selector from `0x20` to `0x70` picks one of 35 arms at `0x002AE370`
-   through the byte map at `0x002AE3FC`; any other selector is drawn as a character.
+<details>
+<summary>Where in the code</summary>
 
-The callers that measure and draw text (`0x002B1FB0`, `0x002B2150`) send every byte below `0x10` to the interpreter.
+| | Code |
+|---|---|
+| ¹ | `0x002AC663` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A byte `0x01`-`0x0F` is a text code: `0x01`-`0x0E` a control byte, `0x0F` the lead of an escape. It indexes the 15-entry table at `0x002AE334`. | `0x002AC682`-`0x002AC697` |
+| 2 | A byte `0x10`-`0x1F` is the lead byte of a two-byte character, and any other byte is a one-byte character. | `0x002AC2F0` |
+| 3 | After a `0x0F`, the next byte is the selector. A selector from `0x20` to `0x70` picks one of 35 arms at `0x002AE370` through the byte map at `0x002AE3FC`; any other selector is drawn as a character. |   |
+
+The callers that measure and draw text¹ send every byte below `0x10` to the interpreter.
 The pager's markup parser `0x002A8C50` walks the same strings to pace them. It acts on `0x03`, on the choice list
 `0x0E` (the option setup at `0x002A9066`) and on the escapes `#`, `-`, `/`, `;`, `p`, `"` and `=`.
 
-The pager's pacing step (`0x002A9747`) runs once the characters walked reach the shown count `+0x8C`, and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B1FB0`, `0x002B2150` |
+
+</details>
+
+The pager's pacing step¹ runs once the characters walked reach the shown count `+0x8C`, and
 only when the pager's second argument is 0. It then stops the walk at a character, at the escapes `>`,
 `8` and `.` and at any escape byte of `0x40` or above except `p`; at `p`, at the other escapes and at a
-control byte it goes on (`0x002A9747`-`0x002A9787`).
+control byte it goes on².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A9747` |
+| ² | `0x002A9747`-`0x002A9787` |
+
+</details>
 
 `0x002A8C50(state, stop)` works on a copy of the `0xD0`-byte text state and starts at
-text `+0x28` plus the word `+0x8A` (`0x002A8C7D`-`0x002A8D1E`). With the dword `+0xC0` equal to
-1 it only sets that dword to 0 and the mode byte `+0xB0` to 1 and calls `0x002ABF70`
-(`0x002A8CE6`, `0x002A8D24`-`0x002A8D32`, `0x002A9942`); with `0x01E0CDC8` equal to 0 it returns
-without that call (`0x002A8D37`-`0x002A8D3E`).
+text `+0x28` plus the word `+0x8A`¹. With the dword `+0xC0` equal to
+1 it only sets that dword to 0 and the mode byte `+0xB0` to 1 and calls `0x002ABF70`²; with `0x01E0CDC8` equal to 0 it returns
+without that call³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A8C7D`-`0x002A8D1E` |
+| ² | `0x002A8CE6`, `0x002A8D24`-`0x002A8D32`, `0x002A9942` |
+| ³ | `0x002A8D37`-`0x002A8D3E` |
+
+</details>
 
 A non-zero `stop` byte ends the walk at the first token equal to it: the copy's floats
-`+0x34`, `+0x38`, `+0x3C` and `+0x4C` go back to the state (`0x002A8D76`-`0x002A8D7E`,
-`0x002A97A0`-`0x002A97C8`). A byte from `0x10` to `0x1F` counts as one character of two
-bytes, a byte from `0x20` as one of one byte (`0x002A8D84`-`0x002A8D9B`). Every exit but
-the `0x01E0CDC8` one ends in `0x002ABF70(state)` (`0x002A9942`-`0x002A9945`).
+`+0x34`, `+0x38`, `+0x3C` and `+0x4C` go back to the state¹. A byte from `0x10` to `0x1F` counts as one character of two
+bytes, a byte from `0x20` as one of one byte². Every exit but
+the `0x01E0CDC8` one ends in `0x002ABF70(state)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A8D76`-`0x002A8D7E`, `0x002A97A0`-`0x002A97C8` |
+| ² | `0x002A8D84`-`0x002A8D9B` |
+| ³ | `0x002A9942`-`0x002A9945` |
+
+</details>
 
 At the end of the string (byte 0) the pager asks `0x001EDDA0()` when the byte `+0x9B` is
 0, the word `+0x8C` is 0 or the walked count is above `+0x92` and at most `+0x90`, and
 the mode byte is not 4 or 6: an answer of 0 sets the dword `+0xC0` to 1, any other
-sets the mode byte to 1 (`0x002A98DD`-`0x002A9923`).
+sets the mode byte to 1¹.
 
-A `0x03` ends the walk when the mode byte is 4 or 6 (`0x002A8DD0`-`0x002A8DE8`). Otherwise,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A98DD`-`0x002A9923` |
+
+</details>
+
+A `0x03` ends the walk when the mode byte is 4 or 6¹. Otherwise,
 with the byte `+0x9B` equal to 0, it takes the wait arm `0x002A97CD` when the word `+0x8C`
-is 0 or the walked count is above `+0x92` and at most `+0x90` (`0x002A8DEE`-`0x002A8E0F`).
+is 0 or the walked count is above `+0x92` and at most `+0x90`².
 Any other `0x03` turns the page when the confirm state `+0x54` is 3 and the mode byte 0,
-and ends the walk when not (`0x002A8E15`-`0x002A8E21`).
+and ends the walk when not³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A8DD0`-`0x002A8DE8` |
+| ² | `0x002A8DEE`-`0x002A8E0F` |
+| ³ | `0x002A8E15`-`0x002A8E21` |
+
+</details>
 
 The page turn writes the copy back, moves `+0x8A` past the token, clears bits
 `0x180000` of `+0xB0`, sets `+0x90` and `+0x92` to minus the rate value `+0x9E`, zeroes
 `+0x54`, `+0x88`, `+0x8C`, `+0x9B` and `+0xA9`, sets `+0xAE` to `0xFF` and calls
-`0x002B2150(state, text, 0, out)`, `out` being a float on its stack
-(`0x002A8E27`-`0x002A8F11`).
+`0x002B2150(state, text, 0, out)`, `out` being a float on its stack¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A8E27`-`0x002A8F11` |
+
+</details>
 
 The float `+0x04` then takes that `out` value when it is above 0, and otherwise
 `([[+0x60]] >> 9) & 0x1F` as a float, a field of the first dword of the object the
-pointer `+0x60` names (`0x002A8F16`-`0x002A8F34`). The pager then copies the state again,
-takes the text position from `+0x28` and `+0x8A` and counts from 0
-(`0x002A8F39`-`0x002A8FD2`). With a type-out rate `+0x9C` of 0 it calls
-`0x002B3E90(state, text)`, and the walk goes on (`0x002A8FD6`-`0x002A8FE9`).
+pointer `+0x60` names¹. The pager then copies the state again,
+takes the text position from `+0x28` and `+0x8A` and counts from 0². With a type-out rate `+0x9C` of 0 it calls
+`0x002B3E90(state, text)`, and the walk goes on³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A8F16`-`0x002A8F34` |
+| ² | `0x002A8F39`-`0x002A8FD2` |
+| ³ | `0x002A8FD6`-`0x002A8FE9` |
+
+</details>
 
 ### Code lengths
 
@@ -81,41 +166,97 @@ selector, is:
 | `0F )` | 3 + the larger of 1 and bits `0x7` of the first payload byte | `0x003FFBC0` |
 | `0F *` | 4 + bits under mask `0x7F` of the second payload byte | `0x003FFD70` |
 
-Control byte `0x08` is 3 bytes (`0x002AD011`), control bytes `0x0B`-`0x0D` move nothing (`0x002AC6CA`), and the
+Control byte `0x08` is 3 bytes¹, control bytes `0x0B`-`0x0D` move nothing², and the
 choice list `0x0E` runs to its closing `00`: 5 bytes, `ceil(count / 7)` more when bit `0x1` of its fourth byte
 is set, and each option's length byte and text ([Choice lists](#choice-lists), `0x003FFDF0`). Every other control
 byte is 1 byte.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AD011` |
+| ² | `0x002AC6CA` |
+
+</details>
 
 The parsers `0x003FFAB0`, `0x003FFB00` and `0x003FFBC0` look their argument up through `0x0039BA00(v)`, which returns the
 5-byte record `v & 0x1FF` of the table at `[0x02AEE870]` (`fontpack_it.bin` entry 2), counting from its byte 1, and
 record 0 when that is 0.
 
 `0x003937C0(out, size, text)` copies at most `size` - 1 bytes of a string and a terminator: for a template that
-starts with `ex` (`0x00364980`) it stops at a zero two-byte unit and writes a two-byte terminator, otherwise it
+starts with `ex`¹ it stops at a zero two-byte unit and writes a two-byte terminator, otherwise it
 stops at a zero byte and writes one. The battle log's
 `0x00393740` and `0x00408640`, `0x00408700` and `0x00408960` use it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00364980` |
+
+</details>
 
 ### Choice lists
 
 Control byte `0x0E` (`0x002AC825`, parser `0x003FFDF0`) is a choice list. Bits `0x7F` of its first byte give the option count;
 when bit `0x1` of the fourth byte is set, a field of one bit per option follows, one byte per seven options. Each option
 is a length byte (bits `0x7F`) and that many bytes of text, which may hold codes of its own. An option whose bit is set
-in the text context's mask `+0x84` is left out (`0x002AC957`). The list stops on its own `00`, so a list always ends
+in the text context's mask `+0x84` is left out¹. The list stops on its own `00`, so a list always ends
 its string.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AC957` |
+
+</details>
 
 `0x003FFDF0(p, count, second, third, flag20, flag2, mask, options)` reads the token at `p`. It always stores the
 count, and stores bits `0x7F` of the second and third bytes, and bits `0x20` and `0x2` of the fourth byte as 0 or 1,
-only where the caller passes a place for them (`0x003FFDFC`-`0x003FFE45`).
+only where the caller passes a place for them¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FFDFC`-`0x003FFE45` |
+
+</details>
 
 With bit `0x1` set the mask points at the fifth byte and the options start `ceil(count / 7)` bytes after it,
-`options = mask + (count - 1) / 7 + 1` for a count above 0 and `options = mask` for a signed count of 0 or below
-(`0x003FFE5B`-`0x003FFEAD`); with the bit clear the mask is 0 and the options start at the fifth byte
-(`0x003FFE4F`-`0x003FFEAD`).
+`options = mask + (count - 1) / 7 + 1` for a count above 0 and `options = mask` for a signed count of 0 or below¹; with the bit clear the mask is 0 and the options start at the fifth byte².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FFE5B`-`0x003FFEAD` |
+| ² | `0x003FFE4F`-`0x003FFEAD` |
+
+</details>
 
 It then steps over the options, each a length byte (bits `0x7F`) and that many bytes, to the closing `00` and answers
-that byte's offset from `p` (`0x003FFEB0`-`0x003FFED6`). The message window (`0x002A902C`) keeps the count at `+0xA2` and
+that byte's offset from `p`¹. The message window² keeps the count at `+0xA2` and
 the third byte as the cancel row `+0xA5`, a value above the count becoming the count less 1, and turns the bit
-`0x20` answer into bit `0x40000` of `+0xB0` (`0x002A983C`-`0x002A9877`).
+`0x20` answer into bit `0x40000` of `+0xB0`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FFEB0`-`0x003FFED6` |
+| ² | `0x002A902C` |
+| ³ | `0x002A983C`-`0x002A9877` |
+
+</details>
 
 ### Control bytes
 
@@ -133,7 +274,16 @@ the third byte as the cancel row `+0xA5`, a value above the count becoming the c
 | `0x0B`-`0x0D` | no effect: the interpreter returns without moving |
 | `0x0E` | a choice list, above |
 
-The four blank control bytes scale with the text size and letter spacing (`0x002ACC97`-`0x002ACCE3`).
+The four blank control bytes scale with the text size and letter spacing¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002ACC97`-`0x002ACCE3` |
+
+</details>
 
 ### Layout and size escapes
 
@@ -182,7 +332,16 @@ The four blank control bytes scale with the text size and letter spacing (`0x002
 
 The escapes `,`, `1`, `l`, `m`, `n` and `V` are read and stepped over with no effect (`V` at `0x002AE2F0`, in the icon
 range but sent to its own arm by the byte map `0x002AE3FC`). `0F 0` and `0F _` have no arm, so the selector is drawn
-as a character (`0x002ACFC2`).
+as a character¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002ACFC2` |
+
+</details>
 
 ### Template escapes
 
@@ -191,11 +350,24 @@ some escapes from its arguments. It is reached through `0x002B4090` and `0x002B4
 arguments in order, eight bytes each; with `typed` each escape names an entry of an array of `0x10`-byte arguments,
 type 1 a number and type 2 a string (for example `0x002B4ADA`-`0x002B4AFF`).
 
-`0x002B40C0` first scans the template with `0x002B4810(template, slots)` (`0x002B4108`), which types the argument slots the
+`0x002B40C0` first scans the template with `0x002B4810(template, slots)`¹, which types the argument slots the
 escapes name, stepping by `0x002B1FB0` lengths and switching on the byte after each `0F` (table `0x002B4990`, index bytes
-`0x002B49A8`): `-` (`0x003FFC60`) and `l` (`0x003FFCE0`) set `slots + 8 + 16 x slot` to 1, `1` (`0x003FFF10`) and `m`
-(`0x003FFB90`) set it to 2, the slot being the byte the parser returns; `+` and `,` (`0x003FFAB0`) set the next qword of
+`0x002B49A8`): `-`² and `l`³ set `slots + 8 + 16 x slot` to 1, `1`⁴ and `m`⁵ set it to 2, the slot being the byte the parser returns; `+` and `,`⁶ set the next qword of
 the list at `slots + 0x88` (16-byte stride) to 1. Every other code does nothing.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B4108` |
+| ² | `0x003FFC60` |
+| ³ | `0x003FFCE0` |
+| ⁴ | `0x003FFF10` |
+| ⁵ | `0x003FFB90` |
+| ⁶ | `0x003FFAB0` |
+
+</details>
 
 | Escape | Becomes |
 |---|---|
@@ -207,13 +379,32 @@ the list at `slots + 0x88` (16-byte stride) to 1. Every other code does nothing.
 | `0F m` | with `typed`: a word row's singular, or for a count above 1 its plural (below) |
 | `0F n` | with `typed`: variant `k + 2` of a word row; for locale ids 1-6 and 9 (`0x00254A10` answers 0) its first letter is capitalised when no character has been copied before it; codes of `0x0F` and below do not count (`0x002B51B5`-`0x002B51BD`) |
 
-Any other unit is copied. A result that does not fit ends `out` at `size - 1` and returns `0xFFFF` (`0x002B51C3`).
+Any other unit is copied. A result that does not fit ends `out` at `size - 1` and returns `0xFFFF`¹.
 `0x002B58B0(row, k)` returns string `k` of a word row ([battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B51C3` |
+
+</details>
 
 `0x002B4550(size, out, row)` builds a plural: string 1 of the row is the plural template and string 0 the base word.
 Control byte `0x08` with a two-byte count `& 0x7FFF` copies that many bytes of the base word, or the whole word
-when the count is above its length (`0x002B467C`-`0x002B4685`), control byte `0x09` the whole word, and anything
-else is copied (`0x002B45E3`-`0x002B46A2`).
+when the count is above its length¹, control byte `0x09` the whole word, and anything
+else is copied².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B467C`-`0x002B4685` |
+| ² | `0x002B45E3`-`0x002B46A2` |
+
+</details>
 
 `0x002B3770(size, out, &pos, value, digits, pad, fullwidth, space)` writes a number with `0x003EFD00` and turns each digit
 into the font's glyph code through the font sheet's first character map, or the second with `fullwidth`; a digit the
@@ -224,20 +415,49 @@ Three writers build codes for menu strings:
 - `0x002AB870(size, out, rgba)` writes the colour code `0F )`, 8 bytes with its terminator, the same encoding as the
   `0F ,` arm;
 - `0x002AC2C0(n)` returns the static code `0F ? 81 n` at `0x01E0CDFC`;
-- `0x002B5240(record)` copies a string, replacing each `0F 8` with the name it stands for (`0x002639E0`), and
+- `0x002B5240(record)` copies a string, replacing each `0F 8` with the name it stands for¹, and
   `0x002B5680(size, out, in)` copies one without its line breaks `0x02` and baseline codes `0F <`.
 
-`0x002B5240(record)` returns at once for a null record (`0x002B5243`). It reads the output buffer at `+0x00`
-and the text at `+0x08` and first sets the colour `+0x28` to `0x80808080` (`0x002B5259`-`0x002B526F`). With a
-null text or a null output buffer it returns there, leaving `+0x22` and the buffer as they were
-(`0x002B5276`-`0x002B5282`). It reads the capacity word `+0x20` at `0x002B52A1`.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002639E0` |
+
+</details>
+
+`0x002B5240(record)` returns at once for a null record¹. It reads the output buffer at `+0x00`
+and the text at `+0x08` and first sets the colour `+0x28` to `0x80808080`². With a
+null text or a null output buffer it returns there, leaving `+0x22` and the buffer as they were³. It reads the capacity word `+0x20` at `0x002B52A1`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B5243` |
+| ² | `0x002B5259`-`0x002B526F` |
+| ³ | `0x002B5276`-`0x002B5282` |
+
+</details>
 
 A token that would take the read offset past the capacity empties the output and
-stores 0 at `+0x22` (`0x002B52BB`-`0x002B52C7`, `0x002B537E`-`0x002B5388`); a name of null ends
-the copy there (`0x002B52F7`). In both that case and a finished copy `+0x22` gets the
-copied length plus 1
-(`0x002B534B`-`0x002B5356`). The capacity test uses the offset in the text, so a name
+stores 0 at `+0x22`¹; a name of null ends
+the copy there². In both that case and a finished copy `+0x22` gets the
+copied length plus 1³. The capacity test uses the offset in the text, so a name
 longer than its token is copied with no test of its own.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B52BB`-`0x002B52C7`, `0x002B537E`-`0x002B5388` |
+| ² | `0x002B52F7` |
+| ³ | `0x002B534B`-`0x002B5356` |
+
+</details>
 
 ### Two-byte number templates
 
@@ -262,15 +482,37 @@ fit. Its callers include `0x0029FF60`, `0x002D66D0`, `0x002D7A90`, `0x00407450`,
 
 `0x00292B70(out, entry)` writes the description line of a list entry, `{kind, id in the high word}`, into a
 `0x1F8`-byte buffer. It takes the kind's template from `0x00295C20`, runs the kind's handler from the 16-entry
-table `0x01E0C490`, closes the gaps in the argument list and formats it (`0x002B4090`). The shops (`0x0057BEE0`), the
-equip list (`0x003FCEE0`), `0x00293170` and `0x00564430` call it.
+table `0x01E0C490`, closes the gaps in the argument list and formats it¹. The shops², the
+equip list³, `0x00293170` and `0x00564430` call it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B4090` |
+| ² | `0x0057BEE0` |
+| ³ | `0x003FCEE0` |
+
+</details>
 
 Three kinds are narrowed first:
 
-- kind 3, equipment: ammunition (`0x002CCA00`) becomes 2; otherwise the row's `+0x4C` gives 1 for 0, 3 for 1,
-  4 for 2 and 3, and 5 for 4, the mapping `0x00292F60` also gives the equip menu (`0x003FF920`);
-- kind 6 with an id from `0x4000` to `0x4017` (`0x002CCB00`) becomes 7;
+- kind 3, equipment: ammunition¹ becomes 2; otherwise the row's `+0x4C` gives 1 for 0, 3 for 1,
+  4 for 2 and 3, and 5 for 4, the mapping `0x00292F60` also gives the equip menu²;
+- kind 6 with an id from `0x4000` to `0x4017`³ becomes 7;
 - kind 10 needs an id from `0x8060` to `0x81FF`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002CCA00` |
+| ² | `0x003FF920` |
+| ³ | `0x002CCB00` |
+
+</details>
 
 | Kind | Handler | What it reads |
 |---|---|---|
@@ -282,16 +524,39 @@ Three kinds are narrowed first:
 
 `0x00292B70` writes no line and returns 0 for:
 
-- kind 0 or a kind above 15 (`0x00292C0D`-`0x00292C16`);
-- kinds 0, 11 and 13, whose entries of `0x01E0C490` are null (`0x00292D12`-`0x00292D19`). A kind 3 entry whose row `+0x4C` is
-  above 4 also becomes kind 0 (`0x00292CE9`);
-- an id of `0xFFFF` with kind 3, 6 or 10 (`0x00292C9E`, `0x00292C7B`, `0x00292C2D`), and a kind 10 id outside
-  `0x8060`-`0x81FF` (`0x00292C3A`-`0x00292C4A`);
-- a handler that returns 0 (`0x00292D3E`).
+- kind 0 or a kind above 15¹;
+- kinds 0, 11 and 13, whose entries of `0x01E0C490` are null². A kind 3 entry whose row `+0x4C` is
+  above 4 also becomes kind 0³;
+- an id of `0xFFFF` with kind 3, 6 or 10⁴, and a kind 10 id outside
+  `0x8060`-`0x81FF`⁵;
+- a handler that returns 0⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00292C0D`-`0x00292C16` |
+| ² | `0x00292D12`-`0x00292D19` |
+| ³ | `0x00292CE9` |
+| ⁴ | `0x00292C9E`, `0x00292C7B`, `0x00292C2D` |
+| ⁵ | `0x00292C3A`-`0x00292C4A` |
+| ⁶ | `0x00292D3E` |
+
+</details>
 
 `0x00293CE0(list, bits, text, count, n, flag)` adds to an argument list a text `0x4B27` + b for each set bit b
-of a byte, with `text` before or after them depending on the language (`0x00254A10`, `0x00264150`); the kind 3, 4
+of a byte, with `text` before or after them depending on the language¹; the kind 3, 4
 and 5 handlers use it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00254A10`, `0x00264150` |
+
+</details>
 
 ### Codes no shipped text uses
 
@@ -324,8 +589,17 @@ The 14,652 credits strings in `menu03.bin` are UTF-16 (tag `ex00`, written by `0
 script section 2 holds 949,262 of the 1,083,172 codes other than the space `0x04` in the `total` column (87.6%).
 
 Sixteen strings in `evt_t0080.ebp` and `evt_t0086.ebp` of the `ch`, `cn`, `in` and `kr` trees hold choice lists
-whose option lengths do not fit the 7-bit field. The interpreter masks the length the same way (`0x002AC946`), so it
+whose option lengths do not fit the 7-bit field. The interpreter masks the length the same way¹, so it
 reads past those options; their codes are counted separately.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AC946` |
+
+</details>
 
 ## Columns
 
@@ -364,8 +638,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Movement and pathfinding** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001EDDA0` | is called by | `0x0025DF00` |
+| [`0x001EDDA0`](../Graphics/effect-lifecycle.md) (on effect lifecycle) | is called by | [`0x0025DF00`](../Characters-And-Objects/field-runtime.md) World actor: update runtime and script execution state (on field runtime) |
 
 </details>

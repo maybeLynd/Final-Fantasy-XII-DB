@@ -73,7 +73,17 @@ slot 79       scale = 1 + Mag * (Lv + Mag) / 256        0x0038AE56-0x0038AE9F
 slot 72       scale = Str * (Lv + Str) / 256            0x0038A68F-0x0038A6C5
 ```
 
-The divisions are float multiplications by 1/256 (`0x009088D8`), or a division by 218.0 (`0x00D112D0`).
+The divisions are float multiplications by 1/256¹, or a division by 218.0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x009088D8` |
+| ² | `0x00D112D0` |
+
+</details>
 
 ### Attack, variance and defence
 
@@ -85,29 +95,70 @@ variance = (MT19937 % (int)(AP * 0.125 * 100)) / 100      0 when AP * 0.125 < 0.
 attack = AP + variance                                   so AP <= attack < 1.125 * AP
 ```
 
-The defence is the target's Defense `+0x2F`, except slot 69 (poles), which takes Magick Resist `+0x30`
-(`0x0038A446`).
+The defence is the target's Defense `+0x2F`, except slot 69 (poles), which takes Magick Resist `+0x30`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038A446` |
+
+</details>
 
 ### Guns and measures
 
-Slot 70 (`0x0038A470`) puts Attack Power plus a variance in both the scale and the attack, each with its own
-draw, and stores a defence of 0 (`0x0038A4C1`-`0x0038A57D`):
+Slot 70¹ puts Attack Power plus a variance in both the scale and the attack, each with its own
+draw, and stores a defence of 0²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038A470` |
+| ² | `0x0038A4C1`-`0x0038A57D` |
+
+</details>
 
 ```python
 damage = (AP + variance1) * (AP + variance2)
 ```
 
-Recipe 27's outcome step is slot 44 (`0x00389A50`). It rolls only the hit chance against `MT19937 % 100`
-(`0x00389A59`-`0x00389A72`). The melee step 41 (`0x003896B0`) and the bow step 42 (`0x00389820`) also test the
-target's shield, weapon and innate evade bands (`0x02AEDFF0`, `0x02AEDFF4`, `0x02AEDFEC`), and the crossbow step
-43 (`0x00389950`) the shield and weapon bands, but only when the target's battle unit has bit `0x800000` of its first
+Recipe 27's outcome step is slot 44¹. It rolls only the hit chance against `MT19937 % 100`². The melee step 41³ and the bow step 42⁴ also test the
+target's shield, weapon and innate evade bands⁵, and the crossbow step
+43⁶ the shield and weapon bands, but only when the target's battle unit has bit `0x800000` of its first
 dword (`0x003896C0`-`0x003896DD`, the same test at `0x00389847` and `0x00389977`); otherwise they make the same
 plain hit roll as slot 44.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00389A50` |
+| ² | `0x00389A59`-`0x00389A72` |
+| ³ | `0x003896B0` |
+| ⁴ | `0x00389820` |
+| ⁵ | `0x02AEDFF0`, `0x02AEDFF4`, `0x02AEDFEC` |
+| ⁶ | `0x00389950` |
+
+</details>
+
 ### Axes, hammers and hand-bombs
 
-Recipe 23 uses slot 126 (`0x0038DB50`) in place of 125; slots 165, 171, 176 and 182 still follow. It works like
-`0x0038D280` but replaces the scale with a random share of it (`0x0038DBF7`-`0x0038DC48`):
+Recipe 23 uses slot 126¹ in place of 125; slots 165, 171, 176 and 182 still follow. It works like
+`0x0038D280` but replaces the scale with a random share of it²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038DB50` |
+| ² | `0x0038DBF7`-`0x0038DC48` |
+
+</details>
 
 ```python
 share = (MT19937 % (int)(scale * 100)) / 100        0 when scale < 0.01
@@ -118,18 +169,48 @@ damage = (attack - defence) * share
 
 Slot 72 checks Brawler (augment 9; context `+0x1B` bit `0x2`, `0x0038A6B1`).
 With that augment and nothing in the off hand (word `+0x52` is `0x1000` or not an item), the attack is
-half of `Lv + Str` plus a 12.5 % variance (`0x0038A6B1`-`0x0038A77B`). Otherwise it is Attack Power plus the
-variance (`0x0038A785`-`0x0038A7EE`).
+half of `Lv + Str` plus a 12.5 % variance¹. Otherwise it is Attack Power plus the
+variance².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038A6B1`-`0x0038A77B` |
+| ² | `0x0038A785`-`0x0038A7EE` |
+
+</details>
 
 The Brawler variance is drawn on `Lv + Str` as the other one is on Attack Power, and the half is taken of the sum,
-`(Lv + Str + variance) * 0.5` (`0x0038A70D`-`0x0038A773`). An off-hand word that is not an item is one at or above
-`0x1000` plus the equipment table's row count `+0x04` (`0x0038A6D3`-`0x0038A6ED`).
+`(Lv + Str + variance) * 0.5`¹. An off-hand word that is not an item is one at or above
+`0x1000` plus the equipment table's row count `+0x04`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038A70D`-`0x0038A773` |
+| ² | `0x0038A6D3`-`0x0038A6ED` |
+
+</details>
 
 ### Bows and crossbows in strong wind
 
-The first list of recipe 25 runs slot 35 (`0x003895D0`) and that of recipe 26 slot 36 (`0x00389610`). When
+The first list of recipe 25 runs slot 35¹ and that of recipe 26 slot 36². When
 the wielder lacks augment 2 (Accuracy Boost) (context `+0x1A` bit `0x4`) and the wind class `0x02099DAC` is 2, they scale the hit
 chance `0x02AEDFE0`. The Cameo Belt (equipment row 372, class 21) has augment byte `+0x1A` = 2:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003895D0` |
+| ² | `0x00389610` |
+
+</details>
 
 | Slot | Weapons | Hit chance factor | Sites |
 |---:|---|---:|---|
@@ -138,95 +219,194 @@ chance `0x02AEDFE0`. The Cameo Belt (equipment row 372, class 21) has augment by
 
 ### Critical hits
 
-Recipes 25, 26 and 27 start their committed list with slot 29 (`0x00389140`); the other weapon recipes
+Recipes 25, 26 and 27 start their committed list with slot 29¹; the other weapon recipes
 have slot 28, the empty `0x0016D6A0`. Slot 29 sets result `+0x18` bit `0x1` when byte `+0x1C` of the main-hand
-row is above `MT19937 % 100` (`0x003891B3`-`0x003891D9`). Slot 98 (`0x0038BE00`) then doubles the scale when that
-bit is set (`0x0038BE04`-`0x0038BE1A`).
+row is above `MT19937 % 100`². Slot 98³ then doubles the scale when that
+bit is set⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00389140` |
+| ² | `0x003891B3`-`0x003891D9` |
+| ³ | `0x0038BE00` |
+| ⁴ | `0x0038BE04`-`0x0038BE1A` |
+
+</details>
 
 A main-hand word at or above `0x1000` plus the equipment table's row count `+0x04` gives slot 29 a chance of 0, so
-no critical, though the roll is still drawn (`0x0038916A`-`0x00389176`, `0x003891B7`).
+no critical, though the roll is still drawn¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038916A`-`0x00389176`, `0x003891B7` |
+
+</details>
 
 ### Numerology
 
-Recipe 56 (action `0xB0`, Numerology) runs slot 49 (`0x00389C60`) and slot 144 (`0x0038EAF0`). The count is byte
+Recipe 56 (action `0xB0`, Numerology) runs slot 49¹ and slot 144². The count is byte
 `+0x5B0E` of the party block `[0x02EBF190]`:
 
-1. The hit chance becomes `row[+0x12] - count * count / 4` (`0x00389D0B`-`0x00389D19`).
-2. With a stored preview (bit `0x1` of the user's 64-byte record `+0x12`) and a count below 17, a roll under
-   that chance writes `count + 1` into result `+0x138`; a miss or a count of 17 or more writes 0 and fails
-   the action (`0x00389D24`-`0x00389DAE`). Without a stored preview it fails at count 0, and at a higher count
-   rolls the hit chance, writes no new count and fails the action on a miss (`0x00389D7E`-`0x00389DAE`).
-3. Both rolls compare the chance with the roll as unsigned 32-bit numbers (`0x00389D48`-`0x00389D4F`,
-   `0x00389D9B`-`0x00389DA2`), so a chance below 0, from a row byte below `count * count / 4`, reads as a number
-   above 99 and the roll hits.
-4. Slot 144 deals `2 ^ count`, the count before this use (`pow(2.0, count)`, `0x0038EAF4`-`0x0038EB1B`).
+<details>
+<summary>Where in the code</summary>
 
-`0x00385BA0` copies result `+0x138` into `+0x5B0E` afterwards (`0x00385BAF`-`0x00385BD1`), so the damage runs 1,
+| | Code |
+|---|---|
+| ¹ | `0x00389C60` |
+| ² | `0x0038EAF0` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The hit chance becomes `row[+0x12] - count * count / 4`. | `0x00389D0B`-`0x00389D19` |
+| 2 | With a stored preview (bit `0x1` of the user's 64-byte record `+0x12`) and a count below 17, a roll under that chance writes `count + 1` into result `+0x138`; a miss or a count of 17 or more writes 0 and fails the action. Without a stored preview it fails at count 0, and at a higher count rolls the hit chance, writes no new count and fails the action on a miss. | `0x00389D24`-`0x00389DAE`<br>`0x00389D7E`-`0x00389DAE` |
+| 3 | Both rolls compare the chance with the roll as unsigned 32-bit numbers, so a chance below 0, from a row byte below `count * count / 4`, reads as a number above 99 and the roll hits. | `0x00389D48`-`0x00389D4F`, `0x00389D9B`-`0x00389DA2` |
+| 4 | Slot 144 deals `2 ^ count`, the count before this use (`pow(2.0, count)`, `0x0038EAF4`-`0x0038EB1B`). |   |
+
+`0x00385BA0` copies result `+0x138` into `+0x5B0E` afterwards¹, so the damage runs 1,
 2, 4 and so on up to 65,536.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00385BAF`-`0x00385BD1` |
+
+</details>
 
 ### Traveler
 
-Recipe 60 (action `0xB4`, Traveler) runs slot 146 (`0x0038EBE0`). `0x00320D50` returns the walked distance in
+Recipe 60 (action `0xB4`, Traveler) runs slot 146¹. `0x00320D50` returns the walked distance in
 the party block (`+0x5AC8` and `+0x5ACC`):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038EBE0` |
+
+</details>
 
 ```python
 d = ((total % 1000) - [+0x5B00] + 1000) % 1000            0x0038EC49-0x0038EC93
 damage = 10*d if d >= 990, 3*d if d >= 500, 2*d if d >= 100, else d      0x0038ECC3-0x0038ED01
 ```
 
-It stores `total % 1000` in result `+0x13C` (`0x0038ECBC`), which `0x00385BA0` moves into `+0x5B00`
-(`0x00385BD7`-`0x00385BEA`). Without a stored preview it deals the record's last value again (`0x0038ED17`).
-The damage goes to the HP loss `0x02AEE004` and into the dword `+0x00` of the user's 64-byte record
-(`0x0038ECD5`-`0x0038ECD7`, `0x0038ECFF`-`0x0038ED01`), the value a later use without a stored preview deals again.
+It stores `total % 1000` in result `+0x13C`¹, which `0x00385BA0` moves into `+0x5B00`². Without a stored preview it deals the record's last value again³.
+The damage goes to the HP loss `0x02AEE004` and into the dword `+0x00` of the user's 64-byte record⁴, the value a later use without a stored preview deals again.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038ECBC` |
+| ² | `0x00385BD7`-`0x00385BEA` |
+| ³ | `0x0038ED17` |
+| ⁴ | `0x0038ECD5`-`0x0038ECD7`, `0x0038ECFF`-`0x0038ED01` |
+
+</details>
 
 ### Knot of Rust and Dark Matter
 
-Recipe 16 (Knot of Rust `0x91`, Devour Soul `0xC4`) runs slot 121 (`0x0038D970`), recipe 17 (Dark Matter
-`0x90`, Soul Purge `0xC5`) slot 122 (`0x0038DA00`):
+Recipe 16 (Knot of Rust `0x91`, Devour Soul `0xC4`) runs slot 121¹, recipe 17 (Dark Matter
+`0x90`, Soul Purge `0xC5`) slot 122²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038D970` |
+| ² | `0x0038DA00` |
+
+</details>
 
 - **Deposit:** the user's max HP (doubled under Bubble; under Disease its current HP, at least 1) divided
   by `MT19937 % 10 + 1` is the damage, and a third of it is added to the bank, at most 60,000
-  (`0x0038D976`-`0x0038D9F2`). The bank is the word `rustBank` at `+0x5B0C` of the party block `[0x02EBF190]`
+ ¹. The bank is the word `rustBank` at `+0x5B0C` of the party block `[0x02EBF190]`
   (`0x0038D9C1`, `0x0038D9DE`; [Party data](../Party/party-data.md)), one bank for every user.
 - **Withdrawal:** with a stored preview, the bank moves into the user's record and is emptied; the damage
-  is the record's value (`0x0038DA49`-`0x0038DA6A`).
+  is the record's value².
 - **Which row:** `0x0038DA00` takes its argument as the user's record when it is not null and its byte
-  `+0x05` is 0; the row is then `0x0208D480 + 64 × byte +0x04` (`0x0038DA04`-`0x0038DA1C`, `0x0038DA3D`).
+  `+0x05` is 0; the row is then `0x0208D480 + 64 × byte +0x04`³.
   Otherwise it calls `0x0031B860`, stores the answer in `0x02EBF188` and takes the row
-  `0x0208DE80 + 64 × byte +0xEA9` of the answer (`0x0038DA1E`-`0x0038DA41`).
+  `0x0208DE80 + 64 × byte +0xEA9` of the answer⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038D976`-`0x0038D9F2` |
+| ² | `0x0038DA49`-`0x0038DA6A` |
+| ³ | `0x0038DA04`-`0x0038DA1C`, `0x0038DA3D` |
+| ⁴ | `0x0038DA1E`-`0x0038DA41` |
+
+</details>
 
   A null answer is not passed over: its dword at address 0 is read for `0x02AEE004`
-  (`0x0038DA2A`-`0x0038DA2D`, `0x0038DA75`). Without bit `0x1` of the row's byte `+0x12` the bank is left
-  as it is and the row's first dword alone goes to `0x02AEE004` (`0x0038DA49`-`0x0038DA4D`,
-  `0x0038DA68`-`0x0038DA6A`). With the bit, the row's first dword takes the bank word zero-extended
-  before the bank is set to 0 (`0x0038DA4F`-`0x0038DA61`).
+ ¹. Without bit `0x1` of the row's byte `+0x12` the bank is left
+  as it is and the row's first dword alone goes to `0x02AEE004`². With the bit, the row's first dword takes the bank word zero-extended
+  before the bank is set to 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038DA2A`-`0x0038DA2D`, `0x0038DA75` |
+| ² | `0x0038DA49`-`0x0038DA4D`, `0x0038DA68`-`0x0038DA6A` |
+| ³ | `0x0038DA4F`-`0x0038DA61` |
+
+</details>
 
 ### Gil Toss
 
-Recipe 61 (action `0xB5`, Gil Toss) has slot 18 (`0x00388D50`) in its first list and slot 147 (`0x0038ED40`) in
+Recipe 61 (action `0xB5`, Gil Toss) has slot 18¹ in its first list and slot 147² in
 its committed list:
 
-1. For the user's current target (`+0x710`), slot 18 sums the current HP of the four party slots that are
-   not KO, Stone or X-Zone, up to 10,000 (`0x00388DEE`-`0x00388E21`).
-2. When that is more than the party's gil, the action fails and sets result `+0x140` bit `0x800`
-   (`0x00388E24`-`0x00388E45`); otherwise the sum goes into the user's record and result `+0x08`, the gil cost
-   (`0x00388E51`-`0x00388E57`). For every other target slot 18 copies the stored sum into result `+0x08`
-   (`0x00388E5C`-`0x00388E62`).
-3. Slot 147 deals the record's value divided by the user's target count `+0x77C`, and fails when there
-   are no targets or the share is 0 (`0x0038EDB4`-`0x0038EDFF`). A user without a battle unit fails too (`0x0038EDB2`);
-   failing sets `0x02AEDFBC` (`0x0038EDFF`) and writes no HP loss, and the share goes to the HP loss `0x02AEE004`
-   (`0x0038EDDF`).
-   - Every call, failing or not, stores the user's battle unit from `0x0031B860`, or 0, at `0x02EBF188`
-     (`0x0038EDA8`, before the failure tests; also `0x0038ED7A` and `0x0038EDC4`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00388D50` |
+| ² | `0x0038ED40` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | For the user's current target (`+0x710`), slot 18 sums the current HP of the four party slots that are not KO, Stone or X-Zone, up to 10,000. | `0x00388DEE`-`0x00388E21` |
+| 2 | When that is more than the party's gil, the action fails and sets result `+0x140` bit `0x800`; otherwise the sum goes into the user's record and result `+0x08`, the gil cost. For every other target slot 18 copies the stored sum into result `+0x08`. | `0x00388E24`-`0x00388E45`<br>`0x00388E51`-`0x00388E57`<br>`0x00388E5C`-`0x00388E62` |
+| 3 | Slot 147 deals the record's value divided by the user's target count `+0x77C`, and fails when there are no targets or the share is 0. A user without a battle unit fails too; failing sets `0x02AEDFBC` and writes no HP loss, and the share goes to the HP loss `0x02AEE004`.<br>• Every call, failing or not, stores the user's battle unit from `0x0031B860`, or 0, at `0x02EBF188` (`0x0038EDA8`, before the failure tests; also `0x0038ED7A` and `0x0038EDC4`). | `0x0038EDB4`-`0x0038EDFF`<br>`0x0038EDB2`<br>`0x0038EDFF`<br>`0x0038EDDF` |
 
 ## Modding notes
 
 - A weapon's recipe is byte `+0x19` of its equipment row; giving a sword recipe 27 makes it ignore
   Defense and evasion.
-- The 12.5 % variance and the 1/256 and 1/218 factors are constants in `.rdata` (`0x00915508`, `0x009088D8`,
-  `0x00D112D0`) that other slots share.
+- The 12.5 % variance and the 1/256 and 1/218 factors are constants in `.rdata`¹ that other slots share.
 - A weapon's critical chance is byte `+0x1C` of its row; only recipes 25-27 read it.
 - The strong-wind factors are the floats at `0x008F3108` and `0x01CEBB70`, both shared.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00915508`, `0x009088D8`, `0x00D112D0` |
+
+</details>
 
 ## Related
 
@@ -245,21 +425,27 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Items, equipment, shops and licenses** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031B860` | is called by | `0x0031A410`, `0x0031A510`, `0x0031A630`, `0x00323910` |
+| [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log) | is called by | [`0x0031A410`](../Items-Equipment-Shops-And-Licenses/equipment.md) Battle stats: set equipment slot by stats index (on equipment)<br>[`0x0031A510`](../Items-Equipment-Shops-And-Licenses/equipment.md) Battle stats: set equipment slot by mapped id (on equipment)<br>[`0x0031A630`](../Items-Equipment-Shops-And-Licenses/equipment.md) Battle stats: set equipment slot direct (on equipment)<br>[`0x00323910`](../Items-Equipment-Shops-And-Licenses/buying-a-license.md) Battle stats: set license node state and apply side effects (on buying a license) |
 
 **Movement and pathfinding** (explained on [status timers](../Status-Effects-And-KO/status-timers.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031B860` | is called by | `0x0033CB10`, `0x0033D890` |
+| [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log) | is called by | [`0x0033CB10`](../Status-Effects-And-KO/status-timers.md) (on status timers)<br>[`0x0033D890`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031B860` | is called by | `0x002F8BB0`, `0x0030C650` |
+| [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log) | is called by | [`0x002F8BB0`](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md) Reward: compute experience for recipient (on stat growth per level)<br>[`0x0030C650`](../Menus-And-HUD/hud.md) Battle stats: advance level to target and recompute growth (on hud) |
 
 </details>
 

@@ -114,14 +114,26 @@ fontpack's offsets lead to in the font state, not in the file. A sheet stays in 
 entry points into it (`sheet + sheetOffset`), and `0x003649A0` sends a cell's texels from there.
 
 `0x00365990` sends the palette block from state `+0x190` to GS address `0x3500` as a 32-bit-colour rectangle 16
-colours wide and `[+0x244]` rows high (`0x00474600`, `0x003A22A0`). The shipped font block's `value` is 9, so that is
+colours wide and `[+0x244]` rows high¹. The shipped font block's `value` is 9, so that is
 20 rows and 1,280 bytes: the 640-byte palette block and the first 640 bytes of face 0's sheet, which follows it
 in every file.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00474600`, `0x003A22A0` |
+
+</details>
 
 Sheet slot `s` is face `s - 1`, so the six staff-roll faces are faces 6 to 11 and their sheets sit at state
 `+0x140` to `+0x168`.
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -165,34 +177,83 @@ Every glyph record of the 12 tables in the five distinct `fontpack_fs.bin` conte
 |---|---:|---|
 | [`btm-exfont-bitmaps-fontpack-glyphs-rows.tsv`](btm-exfont-bitmaps-fontpack-glyphs-rows.tsv) | 3,178 | glyph record: face, the table's offset, count and bytes `+0x08` to `+0x0F`, index, code and character, cell and rounded size, bytes `+0x04` to `+0x07`, sheet offset and cell length |
 
+</details>
+
 ## Loader behaviour
 
 ### Requesting a sheet
 
 `0x00365810(slot, mode)` does nothing while `0x022CBE00` is null. When face `slot - 1` has no sheet yet, it takes the
 size from the size table (`0x0032E400(7, id)`, `0x00365882`), allocates it (`0x002497E0` when `mode` is 0,
-`0x00249810` otherwise), stores the buffer at state `+0x110 + 8 x (slot - 1)` and files a kind-7 request
-(`0x0032E620`, `0x003658C7`) whose completion is `0x00364380` with `slot - 1` as its value. It never checks the size.
+`0x00249810` otherwise), stores the buffer at state `+0x110 + 8 x (slot - 1)` and files a kind-7 request¹ whose completion is `0x00364380` with `slot - 1` as its value. It never checks the size.
 In both cases it then passes `slot + 10`, the `font_stf` font ids 17 to 22, to `0x0017FC00`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032E620`, `0x003658C7` |
+
+</details>
 
 `0x0017FC00(id)` registers the font with the text renderer at `[0x01F811F8]`: `0x001E7F90` takes a 16-byte
 record from the renderer's list at `+0xE70`, fills it with `{id, 0x20 * n + id, 0, 2}` (`n` the
 first dword of the object at `[0x01F81200]`) and files it under the key `(2 << 32) | id` in the tree at
-`+0xF30`, adding the key when it is missing (`0x001E78D0`).
+`+0xF30`, adding the key when it is missing¹.
 
-`0x0017FC00` reads `n` with no null test of `[0x01F81200]` (`0x001B5FC5`, `0x001FDF70`). `0x001E7F90` does not test the
-record it takes: `0x001BA860` returns null when the list's count `+0x48` is 0 (`0x001BA887`), and the first store
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E78D0` |
+
+</details>
+
+`0x0017FC00` reads `n` with no null test of `[0x01F81200]`¹. `0x001E7F90` does not test the
+record it takes: `0x001BA860` returns null when the list's count `+0x48` is 0², and the first store
 at `0x001E7FD2` then faults. A key already in the tree keeps its node, whose record pointer `+0x28` is replaced
-by the new record (`0x001E805E`).
+by the new record³.
 
-`0x00364380` ORs `1 << (slot - 1)` into the ready word (`0x00364393`) and returns at once when the state pointer is
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B5FC5`, `0x001FDF70` |
+| ² | `0x001BA887` |
+| ³ | `0x001E805E` |
+
+</details>
+
+`0x00364380` ORs `1 << (slot - 1)` into the ready word¹ and returns at once when the state pointer is
 null. `0x003657E0(slot)` reads that bit. `0x00365810` does not request a face whose buffer is already set.
 
-`0x00365570(slot)`, run by `0x0053EEA0`, gives a face back: it frees the sheet (`0x003697F0`), clears its ready bit
-and unregisters the font id `slot + 10` (`0x0017FC70`). `0x00365990()`, run by `0x00252840`, `0x002528A0`,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00364393` |
+
+</details>
+
+`0x00365570(slot)`, run by `0x0053EEA0`, gives a face back: it frees the sheet¹, clears its ready bit
+and unregisters the font id `slot + 10`². `0x00365990()`, run by `0x00252840`, `0x002528A0`,
 `0x00252990`, `0x00252A20` and the frame's UI step `0x00252A70`, acts only while bit `0x40000000` of the ready word is set:
 it calls `0x0039BD50(0x34E0)` and uploads the buffer at state `+0x190` with `0x00474600(buffer, 0x3500, 0, 0x10,
 [+0x244])`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003697F0` |
+| ² | `0x0017FC70` |
+
+</details>
 
 ### The glyph tables
 
@@ -205,129 +266,210 @@ completion `0x003643A0`. That completion stores the font block pointer and calls
 table's address at `+0x10 + 8n` and the end of its records at `+0x90 + 8n`, stepping by each table's `next`
 offset.
 
-`0x003658F0` does nothing while `0x022CBE00` is null or the fontpack pointer `+0x000` is already set (`0x0036591E`,
-`0x00365924`). Otherwise it takes the size from the size table (`0x0032E400(7, 0xD2)`), allocates it (`0x004745D0`),
-stores the buffer at `+0x000` and files the kind-7 request (`0x0032E620`, `0x00365967`) with no check of the size.
+`0x003658F0` does nothing while `0x022CBE00` is null or the fontpack pointer `+0x000` is already set¹. Otherwise it takes the size from the size table (`0x0032E400(7, 0xD2)`), allocates it²,
+stores the buffer at `+0x000` and files the kind-7 request³ with no check of the size.
 
-`0x003643A0` returns at once while `0x022CBE00` is null (`0x003643AE`) and reads the fontpack pointer `+0x000` with no
-null test (`0x003643B7`). Beside the font block pointer it stores the palette block pointer at `+0x190`, calls
-`0x00366080`, sets bits `0x40000000` and `0x80000000` of `+0x240` (`0x003643D2`) and binds faces 0, 2, 3 and 4. For
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036591E`, `0x00365924` |
+| ² | `0x004745D0` |
+| ³ | `0x0032E620`, `0x00365967` |
+
+</details>
+
+`0x003643A0` returns at once while `0x022CBE00` is null¹ and reads the fontpack pointer `+0x000` with no
+null test². Beside the font block pointer it stores the palette block pointer at `+0x190`, calls
+`0x00366080`, sets bits `0x40000000` and `0x80000000` of `+0x240`³ and binds faces 0, 2, 3 and 4. For
 each it fills the sheet slot only while that is null, and sets the face's ready bit and registers its font id
-(`0xB`, `0xD`, `0xE`, `0xF`, through `0x0017FC00`) either way (`0x003643E5`-`0x0036449E`).
+(`0xB`, `0xD`, `0xE`, `0xF`, through `0x0017FC00`) either way⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003643AE` |
+| ² | `0x003643B7` |
+| ³ | `0x003643D2` |
+| ⁴ | `0x003643E5`-`0x0036449E` |
+
+</details>
 
 `0x00366080` also stores the font block's `value`, rounded up to even and doubled, `(value + (value & 1)) * 2`, at
-`+0x244` (`0x0036608E`-`0x0036609F`). It stores table 0 whatever `tableCount` holds and checks no count: with more
+`+0x244`¹. It stores table 0 whatever `tableCount` holds and checks no count: with more
 than 16 tables the table pointers run on into the ends at `+0x90`, and the ends into the sheets at `+0x110`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036608E`-`0x0036609F` |
+
+</details>
 
 ### The staff-roll task
 
-`0x0053EB90` requests slots 7 to 12 with mode 1 (`0x0053EC9A`) and the logo picture `sf_logo_c.tm2` (kind 7,
-`0x47`). On later updates it returns until `0x003657E0` reports all six slots ready (`0x0053EBF3`). `0x0053ED10`
+`0x0053EB90` requests slots 7 to 12 with mode 1¹ and the logo picture `sf_logo_c.tm2` (kind 7,
+`0x47`). On later updates it returns until `0x003657E0` reports all six slots ready². `0x0053ED10`
 starts it (through `0x00511540`).
 
-On its message 1 `0x0053EB90` also stores itself in the task pointer `0x02CA8A78` (`0x0053EC58`), calls `0x0016D6A0`, a
-bare `ret 0` that does no work (`0x0053EC5F`), and requests text groups 25 and 26 through `0x002FA560` when they are
-not resident (`0x0053EC64`-`0x0053EC8B`). It requests the logo only while `0x02CA8A88` is 0: through `0x002493D0` on a
-request group from `0x00249580`, storing the picture in `0x02CA8A88` and closing the group (`0x0053ECA6`-`0x0053ECEE`).
-It ends with `0x00247950(task, 0)` (`0x0053ECF3`-`0x0053ECF8`).
+<details>
+<summary>Where in the code</summary>
 
-`0x00249580` returns 0 when its twelve records at `0x02090790` are all taken (`0x002495A0`), and `0x0053EB90` passes that
-to `0x002493D0` and `0x00249410` without a test; `0x00249410` sets bit `0x2` of the dword at the group's address
-(`0x00249425`), which faults for 0.
+| | Code |
+|---|---|
+| ¹ | `0x0053EC9A` |
+| ² | `0x0053EBF3` |
 
-A later update also returns until text groups 25 and 26 are resident (`0x0053EC07`-`0x0053EC25`) and until message 16
-has set its `+0xC0` to 1 (`0x0053EBCF`, `0x0053EC2B`). Then it clears `0x02CA8A78` and releases itself (`0x0053EC3A`,
-`0x0053EC41`). Other messages go to `0x005C5230` (`0x0053EBCA`).
+</details>
+
+On its message 1 `0x0053EB90` also stores itself in the task pointer `0x02CA8A78`¹, calls `0x0016D6A0`, a
+bare `ret 0` that does no work², and requests text groups 25 and 26 through `0x002FA560` when they are
+not resident³. It requests the logo only while `0x02CA8A88` is 0: through `0x002493D0` on a
+request group from `0x00249580`, storing the picture in `0x02CA8A88` and closing the group⁴.
+It ends with `0x00247950(task, 0)`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053EC58` |
+| ² | `0x0053EC5F` |
+| ³ | `0x0053EC64`-`0x0053EC8B` |
+| ⁴ | `0x0053ECA6`-`0x0053ECEE` |
+| ⁵ | `0x0053ECF3`-`0x0053ECF8` |
+
+</details>
+
+`0x00249580` returns 0 when its twelve records at `0x02090790` are all taken¹, and `0x0053EB90` passes that
+to `0x002493D0` and `0x00249410` without a test; `0x00249410` sets bit `0x2` of the dword at the group's address², which faults for 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002495A0` |
+| ² | `0x00249425` |
+
+</details>
+
+A later update also returns until text groups 25 and 26 are resident¹ and until message 16
+has set its `+0xC0` to 1². Then it clears `0x02CA8A78` and releases itself³. Other messages go to `0x005C5230`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053EC07`-`0x0053EC25` |
+| ² | `0x0053EBCF`, `0x0053EC2B` |
+| ³ | `0x0053EC3A`, `0x0053EC41` |
+| ⁴ | `0x0053EBCA` |
+
+</details>
 
 The drawing task `0x0053E0B0` passes each line to `0x003649A0`: when the line asks
 for a shadow, first with its face index plus 1 (the shadow face) at an offset, then with the face index.
 
 ### Finding and drawing a cell
 
-`0x003649A0` draws nothing for a face whose ready bit is clear. For each character it takes a cached entry
-(`0x00365FD0`) or calls `0x00364210(code, face)`:
+`0x003649A0` draws nothing for a face whose ready bit is clear. For each character it takes a cached entry¹ or calls `0x00364210(code, face)`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00365FD0` |
+
+</details>
 
 - `0x00364210` first recycles the least recently used cache entry: it moves the head of the list at
   `[0x022CBE00] + 0x228` to the tail `+0x230` and, when the entry held texels, clears it (key `0xFF0000`, texel and
-  record pointers null) (`0x0036422B`-`0x00364272`).
-- It then scans face `n`'s table for the code and returns null when it is absent (`0x003642A1`), so that character
+  record pointers null)¹.
+- It then scans face `n`'s table for the code and returns null when it is absent², so that character
   is skipped and the recycled entry stays as the first step left it: empty when it held texels, while an entry
-  whose texel pointer was already null keeps its key and record (`0x00364260`). The table pointer
-  `[+0x10 + 8n]` is read with no null test (`0x00364280`), so a face with no table faults there.
+  whose texel pointer was already null keeps its key and record³. The table pointer
+  `[+0x10 + 8n]` is read with no null test⁴, so a face with no table faults there.
 - It rounds `cellW` and `cellH` each with `r = v <= 8 ? 8 : v <= 16 ? 16 : v <= 32 ? 32 : v <= 64 ? 64 : 128`
-  (`0x003642D0`-`0x00364342`).
+ ⁵.
 - The entry gets the record, the rounded size and `sheet + sheetOffset`, or a null texel pointer when face
   `n` has no sheet. No offset is checked against the sheet's size. It also gets the code at `+0x10`, the face
-  at `+0x12` and 1 at `+0x13` (`0x003642AF`-`0x003642CB`), and `0x00364210` returns the entry (`0x0036435D`,
-  `0x00364371`).
+  at `+0x12` and 1 at `+0x13`⁶, and `0x00364210` returns the entry⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036422B`-`0x00364272` |
+| ² | `0x003642A1` |
+| ³ | `0x00364260` |
+| ⁴ | `0x00364280` |
+| ⁵ | `0x003642D0`-`0x00364342` |
+| ⁶ | `0x003642AF`-`0x003642CB` |
+| ⁷ | `0x0036435D`, `0x00364371` |
+
+</details>
 
 For a cell with texels, `0x003649A0` builds a GS upload of `roundW x roundH` texels in pixel format `0x14`
 (4 bits per texel, `0x00474650` at `0x00364BFF`); `0x003A1F20` sizes such a transfer as `width x height / 8` words,
-half a byte per texel. The pen advance and the screen quad come from the `font_stf` font with id `face + 11`
-(`0x0017FD00`, `0x0017F8C0`): the quad drawn through `0x0017F7C0` uses that font's glyph record for its atlas
+half a byte per texel. The pen advance and the screen quad come from the `font_stf` font with id `face + 11`¹: the quad drawn through `0x0017F7C0` uses that font's glyph record for its atlas
 rectangle, and only when the colour's alpha byte is non-zero.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017FD00`, `0x0017F8C0` |
+
+</details>
 
 In order, `0x003649A0(state)` does this, the offsets being of its one argument unless a name is given:
 
-1. It selects the font: `0x0017FA10(0x3001, 0x44, flag)`, `0x0017FD00(face + 11)` and
-   `0x0017FB00([+0x20])`, the face being the byte `+0x60` and the flag 1 for faces 0, 3
-   and 4 and 0 for the others (`0x00364A20`-`0x00364A61`).
-2. When `0x002DDC50()` answers non-zero and the face is 6 to 11, the float `+0x04` becomes
-   `+0x04 × 0x00254A00()` (`0x00364A66`-`0x00364A85`).
-3. The word `+0x56` becomes 0 when the floats `+0x00`, `+0x04` and `+0x08` are all 1.0 and
-   1 otherwise (`0x00364A8B`-`0x00364AD5`); it later chooses the value sent to GS register
-   `0x14`: `0x20` for 1, 0 for 0 (`0x00365069`-`0x00365087`).
-4. It copies the colour `+0x30` to `+0x34` and starts reading the line 4 bytes into the
-   text at `+0x28` (`0x00364ADA`-`0x00364AEA`).
-5. A character with no cache entry from `0x00365FD0` or `0x00364210`, or with no glyph record
-   from `0x0017F8C0(code)`, is skipped (`0x00364BAE`-`0x00364BC5`).
-6. The byte `+0x61` picks the palette block of the two texture words: below `0x20` the
-   block is `0x34E0 + 4 × (byte >> 4)`, from `0x20` it is `0x3500 + 4 × ((byte - 0x20) >> 4)`,
-   and the low four bits go in the second word; each word also holds an answer of
-   `0x003A1FE0`, called twice on either way (`0x00364C31`-`0x00364D81`).
-7. The quad: `+0x40` and `+0x44` take the glyph record's dwords `+0x10` and `+0x14` as
-   floats (`0x0017F9C0`), and the pen x `+0x38` first gains the record's dword `+0x20`
-   (`0x0017F8E0`). The corner is x `+0x38`, y `+0x3C` plus the integer `+0x50`; the width is
-   the integer `+0x48` when it is not 0 and `+0x40` otherwise, the height `+0x4C` or
-   `+0x44` in the same way (`0x00364DA5`-`0x00364E3F`).
-8. Each of the four values becomes `value × +0x00`; then the width becomes `width × +0x04`
-   and the height `height × +0x08` (`0x00364E45`-`0x00364EE9`). Only when the float `+0x0C` is not 0 the
-   four corners go through `0x00202B90` with the matrix at `[0x022CBE00] + 0x1E0`
-   (`0x00364EC3`-`0x00364F59`). `0x0016D6A0` then takes the four corners with the pointer
-   `+0x20` (`0x00364F5E`-`0x00364F78`).
-9. The packet sends 0 to register `0x3F`, `0x44` to `0x42`, `0x3001` to `0x47`, 5 to
-   register 8, the two texture words to register 6, the value of step 3 to `0x14` and
-   `0x154` to register 0 (`0x00364FAD`-`0x003650AB`).
-10. When the colour `+0x30` differs from the one last sent, it sends the four colour
-    bytes with 1.0 to register 1, calls `0x0017F850` and repeats the three calls of step 1
-    (`0x003650AF`-`0x00365141`).
-11. Four vertices follow, each a word for register 3 and one for register 5. The
-    texture corners run from `(0.5 × 16, 0.5 × 16)` to `((b2 + 0.5) × 16, (b3 + 0.5) × 16)`,
-    `b2` and `b3` being bytes `+2` and `+3` of the cell record, the cache entry's `+0x20`
-    (`0x00364DA9`); the other word is the corner from `0x0016D6A0` with the word `+0x54` as
-    depth (`0x00365146`-`0x00365301`). `0x003A2020` closes the packet (`0x00365309`).
-12. The pen x `+0x38` gains `advance × +0x04`, the advance being the glyph record's dword
-    `+0x1C` (`0x0017F9C0`, `0x00365364`-`0x00365382`); the cell record goes to `[0x022CBE00] + 0x238`
-    (`0x00365388`) and `0x0017FAE0` takes the glyph record.
-13. A packet of `0x180` entries or more is sent with `0x003A1DB0` and a new one started
-    (`0x00365394`-`0x003653C8`).
-14. The `0x0017F7C0` quad of the page's sentence takes its atlas rectangle from the glyph
-    record's dwords `+0x08`, `+0x0C`, `+0x08 + +0x10` and `+0x0C + +0x14`, the four colour
-    bytes, the word `+0x54` and a mode value (`0x003653D7`-`0x003654DF`).
-15. The mode value is `0x1B` for face 0 with a byte `+0x61` below `0x20`, and `0x1A` or
-    `0x1B` for face 0 above it (`0x1A` only for `0x21`); for another face it is the byte
-    (less `0x20` from `0x20`) when the flag of step 1 is 1 and -1 when it is 0
-    (`0x00364CCC`-`0x00364CEA`, `0x00364D84`-`0x00364DA1`, `0x003654A9`).
-16. At the end of the line it calls `0x0017F850`, and `0x003A1DB0` when a character was
-    added since the last send of step 13 (`0x00365399`, `0x003653CD`, `0x00365539`-`0x0036554B`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It selects the font: `0x0017FA10(0x3001, 0x44, flag)`, `0x0017FD00(face + 11)` and `0x0017FB00([+0x20])`, the face being the byte `+0x60` and the flag 1 for faces 0, 3 and 4 and 0 for the others. | `0x00364A20`-`0x00364A61` |
+| 2 | When `0x002DDC50()` answers non-zero and the face is 6 to 11, the float `+0x04` becomes `+0x04 × 0x00254A00()`. | `0x00364A66`-`0x00364A85` |
+| 3 | The word `+0x56` becomes 0 when the floats `+0x00`, `+0x04` and `+0x08` are all 1.0 and 1 otherwise; it later chooses the value sent to GS register `0x14`: `0x20` for 1, 0 for 0. | `0x00364A8B`-`0x00364AD5`<br>`0x00365069`-`0x00365087` |
+| 4 | It copies the colour `+0x30` to `+0x34` and starts reading the line 4 bytes into the text at `+0x28`. | `0x00364ADA`-`0x00364AEA` |
+| 5 | A character with no cache entry from `0x00365FD0` or `0x00364210`, or with no glyph record from `0x0017F8C0(code)`, is skipped. | `0x00364BAE`-`0x00364BC5` |
+| 6 | The byte `+0x61` picks the palette block of the two texture words: below `0x20` the block is `0x34E0 + 4 × (byte >> 4)`, from `0x20` it is `0x3500 + 4 × ((byte - 0x20) >> 4)`, and the low four bits go in the second word; each word also holds an answer of `0x003A1FE0`, called twice on either way. | `0x00364C31`-`0x00364D81` |
+| 7 | The quad: `+0x40` and `+0x44` take the glyph record's dwords `+0x10` and `+0x14` as floats, and the pen x `+0x38` first gains the record's dword `+0x20`. The corner is x `+0x38`, y `+0x3C` plus the integer `+0x50`; the width is the integer `+0x48` when it is not 0 and `+0x40` otherwise, the height `+0x4C` or `+0x44` in the same way. | `0x0017F9C0`<br>`0x0017F8E0`<br>`0x00364DA5`-`0x00364E3F` |
+| 8 | Each of the four values becomes `value × +0x00`; then the width becomes `width × +0x04` and the height `height × +0x08`. Only when the float `+0x0C` is not 0 the four corners go through `0x00202B90` with the matrix at `[0x022CBE00] + 0x1E0`. `0x0016D6A0` then takes the four corners with the pointer `+0x20`. | `0x00364E45`-`0x00364EE9`<br>`0x00364EC3`-`0x00364F59`<br>`0x00364F5E`-`0x00364F78` |
+| 9 | The packet sends 0 to register `0x3F`, `0x44` to `0x42`, `0x3001` to `0x47`, 5 to register 8, the two texture words to register 6, the value of step 3 to `0x14` and `0x154` to register 0. | `0x00364FAD`-`0x003650AB` |
+| 10 | When the colour `+0x30` differs from the one last sent, it sends the four colour bytes with 1.0 to register 1, calls `0x0017F850` and repeats the three calls of step 1. | `0x003650AF`-`0x00365141` |
+| 11 | Four vertices follow, each a word for register 3 and one for register 5. The texture corners run from `(0.5 × 16, 0.5 × 16)` to `((b2 + 0.5) × 16, (b3 + 0.5) × 16)`, `b2` and `b3` being bytes `+2` and `+3` of the cell record, the cache entry's `+0x20`; the other word is the corner from `0x0016D6A0` with the word `+0x54` as depth. `0x003A2020` closes the packet. | `0x00364DA9`<br>`0x00365146`-`0x00365301`<br>`0x00365309` |
+| 12 | The pen x `+0x38` gains `advance × +0x04`, the advance being the glyph record's dword `+0x1C`; the cell record goes to `[0x022CBE00] + 0x238` and `0x0017FAE0` takes the glyph record. | `0x0017F9C0`, `0x00365364`-`0x00365382`<br>`0x00365388` |
+| 13 | A packet of `0x180` entries or more is sent with `0x003A1DB0` and a new one started. | `0x00365394`-`0x003653C8` |
+| 14 | The `0x0017F7C0` quad of the page's sentence takes its atlas rectangle from the glyph record's dwords `+0x08`, `+0x0C`, `+0x08 + +0x10` and `+0x0C + +0x14`, the four colour bytes, the word `+0x54` and a mode value. | `0x003653D7`-`0x003654DF` |
+| 15 | The mode value is `0x1B` for face 0 with a byte `+0x61` below `0x20`, and `0x1A` or `0x1B` for face 0 above it (`0x1A` only for `0x21`); for another face it is the byte (less `0x20` from `0x20`) when the flag of step 1 is 1 and -1 when it is 0. | `0x00364CCC`-`0x00364CEA`, `0x00364D84`-`0x00364DA1`, `0x003654A9` |
+| 16 | At the end of the line it calls `0x0017F850`, and `0x003A1DB0` when a character was added since the last send of step 13. | `0x00365399`, `0x003653CD`, `0x00365539`-`0x0036554B` |
 
 ### Control codes and measuring
 
-`0x003649A0` reads the line as 16-bit codes and hands each to `0x003647E0` first (`0x00364B58`), which
+`0x003649A0` reads the line as 16-bit codes and hands each to `0x003647E0` first¹, which
 consumes the codes `0x01`-`0x03`, `0x20` and `0x3000` and the escape `0x7B`, returns `0x0000` at the end of
 the line, and returns any other code, `0x04`-`0x1F` among them, for drawing. `0x00364530`
-walks the same codes without drawing to measure the line; `0x003656A0` calls it (`0x00365778`), and the
+walks the same codes without drawing to measure the line; `0x003656A0` calls it², and the
 staff roll's line layout `0x0053DD20` measures through `0x003656A0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00364B58` |
+| ² | `0x00365778` |
+
+</details>
 
 | Code | `0x003647E0` (drawing) | `0x00364530` (measuring) |
 |---|---|---|
@@ -340,11 +482,20 @@ staff roll's line layout `0x0053DD20` measures through `0x003656A0`.
 | `0x007B` | `0x00366110` reads the escape up to its `0x7D`, with its last argument 1 | the same, with 0 |
 
 For any other code `0x00364530` finds the face's record (the 12-byte entries at `+0x10` of the face table)
-and the `font_stf` glyph (`0x0017FD00(face + 11)`, `0x0017F8C0(code)`), advances by the glyph's `+0x20`
-(`0x0017F8E0`) plus its `+0x1C` (`0x0017F9C0`) times the scale `+0x04`, keeps the cell size `+0x10`, `+0x14` in
+and the `font_stf` glyph (`0x0017FD00(face + 11)`, `0x0017F8C0(code)`), advances by the glyph's `+0x20`¹ plus its `+0x1C`² times the scale `+0x04`, keeps the cell size `+0x10`, `+0x14` in
 `+0x40`, `+0x44` and the record at `[0x022CBE00] + 0x238`, and returns the largest `(+0x4C, or +0x44 when
 that is 0) + +0x50`, times `+0x08`, it saw. At the end, with `+0x62` set, it adds the last record's byte
 `+0x02` less its byte `+0x04`, times the scale, when that is positive.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017F8E0` |
+| ² | `0x0017F9C0` |
+
+</details>
 
 ## Modding notes
 
@@ -376,16 +527,20 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001BA860` | is called by | `0x002120E0` |
+| [`0x001BA860`](../Menus-And-HUD/fonts-expansion-lists.md) (on fonts expansion lists) | is called by | [`0x002120E0`](../Sound-And-Music/audio-manager.md) (on audio manager) |
 
 **Saving, loading and settings** (explained on [resource arena and relocation](resource-arena-and-relocation.md), [mrp menu resource packages](mrp-menu-resource-packages.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00247950` | is called by | `0x00280140` |
-| `0x00249410` | is called by | `0x00582790` |
-| `0x00249580` | is called by | `0x00582790` |
+| [`0x00247950`](as7-menu-graphics.md) (on as7 menu graphics) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
+| [`0x00249410`](mrp-menu-resource-packages.md) (on mrp menu resource packages) | is called by | [`0x00582790`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
+| [`0x00249580`](mrp-menu-resource-packages.md) (on mrp menu resource packages) | is called by | [`0x00582790`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
 
 </details>

@@ -47,6 +47,9 @@ by two, `m` by 11, and `c`, `n` and `s` by 25; any other letter becomes kind 1.
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 Measured over all 10,036 EBP2 containers in the nine language trees.
 
 | Fact | Value |
@@ -119,7 +122,18 @@ The image header names entries in two more places. Both are in `header-reference
   above 0 name a letter `t` entry: entry 0 in 364 scripts, 4 in 19 and 5 in 2. All 1,966 `setuptreasure` calls are in
   zone scripts.
 - The list at `+0x80`, in 141 zone scripts, 698 pairs, each id a reference of the form above. `0x0035A270`
-  (`0x0035A2E7`) and `0x0035AB50` (`0x0035ABC7`) walk it, and `0x0037C3F0` reads one id (`0x0037C50B`).
+ ¹ and `0x0035AB50`² walk it, and `0x0037C3F0` reads one id³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035A2E7` |
+| ² | `0x0035ABC7` |
+| ³ | `0x0037C50B` |
+
+</details>
 
 | `named_by` | Entries | Meaning |
 |---|---|---|
@@ -135,8 +149,17 @@ their script, with no bind verb; the `verbs` column shows which.
 
 A call's `conditions` are the blocks around it in its function. A function runs when a request is filed for it
 ([script requests](../Scripts-And-Script-Commands/script-requests.md)): by a REQ-family verb in another function, by
-the engine through `0x003DBB60`, or from the start list (`0x00266C50`). The
+the engine through `0x003DBB60`, or from the start list¹. The
 rows are from the `us` scripts, and the manifests are the same in all nine trees, as the table above says.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00266C50` |
+
+</details>
 
 ### Columns of the three tables
 
@@ -161,17 +184,19 @@ rows are from the `us` scripts, and the manifests are the same in all nine trees
 | header: `mask` | the pair's second dword, in hexadecimal, `-` for the chest word |
 | header: `setuptreasure_calls` | the script's `setuptreasure` calls, `-` for a list pair |
 
+</details>
+
 ## Loader behaviour
 
 ### Binding
 
 - The walker sets pending bit `0x200` of the manager's word in `0x022C6E48` when slot 12 is present
-  (`0x003304F0`), then calls `0x0032FB70` (`0x003305FA`).
+ ¹, then calls `0x0032FB70`².
 - `0x0032FB70` splits the argument into manager index (low four bits) and pointer, stores the pointer
-  at `0x022C6DA8 + index × 8` (`0x0032FB9B`) and passes it to `0x0026CE40`, which stores it at `+0x100` of
+  at `0x022C6DA8 + index × 8`³ and passes it to `0x0026CE40`, which stores it at `+0x100` of
   the manager's `0x288`-byte record (`0x0026CE51`;
   [actor managers](../Characters-And-Objects/actor-managers.md)).
-- It clears bit `0x200` (`0x0032FBB3`) and, when the pending word has emptied, runs the manager's finaliser
+- It clears bit `0x200`⁴ and, when the pending word has emptied, runs the manager's finaliser
   `0x0032F1B0`.
 - When the pending word holds no bit other than bit `0x1`, it also clears bit `0x08` of byte `+0x11` of the
   manager record that `0x00263FF0` returns.
@@ -179,8 +204,22 @@ rows are from the `us` scripts, and the manifests are the same in all nine trees
   `0x002EACC0(0x00331990, [0x022C6D28])`.
 - Nothing is parsed, copied or checked at load. The pointer refers into the loaded file, so the table
   is live for as long as the script stays loaded.
-- The manager bind `0x0026C8C0` zeroes `+0x100` (`0x0026CC31`) and the manager reset `0x0032ED80` reads and
-  clears the `0x022C6DA8` copy (`0x0032F0B7`, `0x0032F0F0`).
+- The manager bind `0x0026C8C0` zeroes `+0x100`⁵ and the manager reset `0x0032ED80` reads and
+  clears the `0x022C6DA8` copy⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003304F0` |
+| ² | `0x003305FA` |
+| ³ | `0x0032FB9B` |
+| ⁴ | `0x0032FBB3` |
+| ⁵ | `0x0026CC31` |
+| ⁶ | `0x0032F0B7`, `0x0032F0F0` |
+
+</details>
 
 ### Reading
 

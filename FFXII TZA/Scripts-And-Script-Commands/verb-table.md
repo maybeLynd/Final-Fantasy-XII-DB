@@ -38,18 +38,52 @@ The loader is the `0xC8`-byte task at `0x02CA8A78` with procedure `0x0053EB90` t
 | `+0xC0` | `u32` | logoLoaded | set to 1 by message 16 (a resource batch has loaded), the logo picture sf_logo_c.tm2 the construct message requested (`0x0053EBCF`); each tick (message 2) waits until the six font slots 7-12 are ready (`0x003657E0`), texts `0x19` and `0x1A` are resident (`0x002F8040`) and this is set (`0x0053EC2B`), then clears the task pointer `0x02CA8A78` and releases itself (`0x0053EC3A`, `0x0053EC41`), which lets the fsroll_initialize poll go on |
 | `+0xC4` | `u8[4]` | pad0C4 | read and written by no function; nothing fixes its width |
 
-The logo picture outlives the loader. The loader's message 1 requests `sf_logo_c` (`0x00D22E80`) through `0x002493D0`
-when `0x02CA8A88` is still 0 (`0x0053ECA6`-`0x0053ECE7`). Command 6 of `0x0053F0D0` puts the picture in the next line of the
-roll's table, with line kind 3 (`0x0053F1EA`-`0x0053F209`). The finaliser task `0x0053EEA0`, on its message 1, releases the
-picture (`0x0024A680(picture, 1)`) and clears the pointer when `0x02CA8A88` is not null (`0x0053EF15`-`0x0053EF32`).
+The logo picture outlives the loader. The loader's message 1 requests `sf_logo_c`¹ through `0x002493D0`
+when `0x02CA8A88` is still 0². Command 6 of `0x0053F0D0` puts the picture in the next line of the
+roll's table, with line kind 3³. The finaliser task `0x0053EEA0`, on its message 1, releases the
+picture (`0x0024A680(picture, 1)`) and clears the pointer when `0x02CA8A88` is not null⁴.
 
-Message 1 also stores the task in `0x02CA8A78` (`0x0053EF1E`), releases the texts `0x19` and `0x1A` that `0x002F8040` finds
-resident (`0x002F83E0`, `0x0053EF39`-`0x0053EF64`), gives back the font slots 7 to 12 (`0x00365570`, `0x0053EF70`-`0x0053EF7D`),
-and calls `0x00249580(task)`, `0x00249410` on its answer and `0x00247950(task, 0)` (`0x0053EF7F`-`0x0053EF9F`). Message 2 waits
-for the task's dword `+0xC0`: once it is set, it clears `0x02CA8A78` and releases the task (`0x00245020`,
-`0x0053EEED`-`0x0053EF03`).
+<details>
+<summary>Where in the code</summary>
 
-Message 16 sets `+0xC0` to 1 (`0x0053EED1`-`0x0053EED8`); any other message goes to `0x005C5230` (`0x0053EEAA`-`0x0053EECC`).
+| | Code |
+|---|---|
+| ¹ | `0x00D22E80` |
+| ² | `0x0053ECA6`-`0x0053ECE7` |
+| ³ | `0x0053F1EA`-`0x0053F209` |
+| ⁴ | `0x0053EF15`-`0x0053EF32` |
+
+</details>
+
+Message 1 also stores the task in `0x02CA8A78`¹, releases the texts `0x19` and `0x1A` that `0x002F8040` finds
+resident², gives back the font slots 7 to 12³,
+and calls `0x00249580(task)`, `0x00249410` on its answer and `0x00247950(task, 0)`⁴. Message 2 waits
+for the task's dword `+0xC0`: once it is set, it clears `0x02CA8A78` and releases the task⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053EF1E` |
+| ² | `0x002F83E0`, `0x0053EF39`-`0x0053EF64` |
+| ³ | `0x00365570`, `0x0053EF70`-`0x0053EF7D` |
+| ⁴ | `0x0053EF7F`-`0x0053EF9F` |
+| ⁵ | `0x00245020`, `0x0053EEED`-`0x0053EF03` |
+
+</details>
+
+Message 16 sets `+0xC0` to 1¹; any other message goes to `0x005C5230`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053EED1`-`0x0053EED8` |
+| ² | `0x0053EEAA`-`0x0053EECC` |
+
+</details>
 
 So `fsroll_initialize` holds the script until six font slots, two texts and the `sf_logo_c` logo picture are all
 loaded. The logo then appears as one line of the staff roll, and a finishing task releases it afterwards.
@@ -183,19 +217,46 @@ index -1, the three floats at `+0x14`-`+0x1C` to -1.0 and the default flags.
 The two lists have head records of the same shape: the bound list at `0x02B5EB20` and the free list at `0x02B5EB70`. Each
 record links through `+0x00` (next) and `+0x08` (previous). `0x003EB750` zeroes both heads' links (`0x02B5EB20` and
 `0x02B5EB28` at `0x003EB77A` and `0x003EB773`, `0x02B5EB70` and `0x02B5EB78` at `0x003EB79B` and `0x003EB794`) and their words
-`+0x40` (`0x02B5EB60` at `0x003EB781`, `0x02B5EBB0` at `0x003EB7A2`), and resets their bindings at `+0x10` (`0x00265F90`,
-`0x003EB788`, `0x003EB7A9`). It also zeroes the 32 entries of the pointer table `0x02B5EA20` (`0x003EB7AE`-`0x003EB7E7`).
+`+0x40` (`0x02B5EB60` at `0x003EB781`, `0x02B5EBB0` at `0x003EB7A2`), and resets their bindings at `+0x10`¹. It also zeroes the 32 entries of the pointer table `0x02B5EA20`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265F90`, `0x003EB788`, `0x003EB7A9` |
+| ² | `0x003EB7AE`-`0x003EB7E7` |
+
+</details>
 
 `0x003EB750` then takes the 32 records in turn: each gets its index in byte `+0x42`, a zero word `+0x40` and a reset
-binding `+0x10`, and is pushed onto the free list with `+0x08` pointing at the free head (`0x003EB800`-`0x003EB842`). The
+binding `+0x10`, and is pushed onto the free list with `+0x08` pointing at the free head¹. The
 bind `0x003EB250` takes the free list's first record and puts it on the bound list. `0x003EB470`, `0x003EB500` and
 `0x003EB5F0` put records back on the free list.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EB800`-`0x003EB842` |
+
+</details>
+
 The field signs are 8 slots in four arrays: a text pointer at `0x02B59C40 + 8 x n`, a second pointer at
 `0x02B59C80 + 8 x n`, the live word at `0x02B59CC0 + 4 x n` and the first argument at `0x02B59CE0 + 4 x n`.
-`0x003DF760(a, n, live, text, second)` fills slot n (`0x003DF76F`-`0x003DF787`), and `0x003DF5B0` zeroes every slot
-(`0x003DF5BC`-`0x003DF65D`). `0x003DF810` passes the highest live slot to `0x0029CAB0`, a jump to `0x002900C0`, or clears the
+`0x003DF760(a, n, live, text, second)` fills slot n¹, and `0x003DF5B0` zeroes every slot². `0x003DF810` passes the highest live slot to `0x0029CAB0`, a jump to `0x002900C0`, or clears the
 sign when no slot is live. The 12 callers of `0x003DF760` pass slots 1 to 7:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DF76F`-`0x003DF787` |
+| ² | `0x003DF5BC`-`0x003DF65D` |
+
+</details>
 
 - 1 and 2: the contact passes `0x0025C230` and `0x0025C830`;
 - 3: the interaction pass `0x00268D10`;
@@ -206,23 +267,57 @@ sign when no slot is live. The 12 callers of `0x003DF760` pass slots 1 to 7:
 
 None of them passes slot 0, so slot 0 stays clear.
 
-`0x003DF810` keeps a copy of the slot it shows: the text pointer at `0x02B59D00` (`0x003DF8B1`), the second pointer at
-`0x02B59D08` (`0x003DF8BD`), the live word at `0x02B59D10` (`0x003DF8D4`) and the first argument at `0x02B59D14`
-(`0x003DF8C9`). It sets all four to 0 when no slot is live (`0x003DF852`-`0x003DF866`). `0x003DF7B0` (`0x003DF7EA`-`0x003DF7FE`)
-and `0x003DF670` (`0x003DF6BD`-`0x003DF6D0`) do the same when they hide the sign because the mask `0x02B59D18` is non-zero.
-`0x003DF5B0` sets `0x02B59D10` to 1 (`0x003DF5B2`) and clears the mask `0x02B59D18` (`0x003DF664`).
+`0x003DF810` keeps a copy of the slot it shows: the text pointer at `0x02B59D00`¹, the second pointer at
+`0x02B59D08`², the live word at `0x02B59D10`³ and the first argument at `0x02B59D14`⁴. It sets all four to 0 when no slot is live⁵. `0x003DF7B0`⁶
+and `0x003DF670`⁷ do the same when they hide the sign because the mask `0x02B59D18` is non-zero.
+`0x003DF5B0` sets `0x02B59D10` to 1⁸ and clears the mask `0x02B59D18`⁹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DF8B1` |
+| ² | `0x003DF8BD` |
+| ³ | `0x003DF8D4` |
+| ⁴ | `0x003DF8C9` |
+| ⁵ | `0x003DF852`-`0x003DF866` |
+| ⁶ | `0x003DF7EA`-`0x003DF7FE` |
+| ⁷ | `0x003DF6BD`-`0x003DF6D0` |
+| ⁸ | `0x003DF5B2` |
+| ⁹ | `0x003DF664` |
+
+</details>
 
 No instruction reads the copy: every reference to `0x02B59D00`-`0x02B59D17` is one of these stores, no instruction
 reaches it through a base register or the image base, and the file holds no pointer to it.
 
 The mask's bit `0x1` belongs to `0x003DF670`, which the frame update runs after `0x003DEB30`
-([frame update order](../Engine-Core/frame-update-order.md)). It clears the bit (`0x003DF691`) when the
-party-focus actor (`0x003590D0`, resolved by `0x003588B0`) passes `0x002EA6A0`, and sets it (`0x003DF69A`) otherwise.
+([frame update order](../Engine-Core/frame-update-order.md)). It clears the bit¹ when the
+party-focus actor (`0x003590D0`, resolved by `0x003588B0`) passes `0x002EA6A0`, and sets it² otherwise.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DF691` |
+| ² | `0x003DF69A` |
+
+</details>
 
 `0x002EA6A0` answers 1 for an actor whose byte `+0x04` is 1 and whose binding `+0xC0` has a render index other than
 -1 and a non-null pointer `+0x08` to a record with bit `0x2` in its byte `+0x18`. While the mask is non-zero,
-`0x003DF670` hides the sign (`0x0029CAB0(0, 0, 0, 0)`, `0x003DF6AC`-`0x003DF6B6`); when it is 0, it jumps to `0x003DF810`
-(`0x003DF6A7`).
+`0x003DF670` hides the sign (`0x0029CAB0(0, 0, 0, 0)`, `0x003DF6AC`-`0x003DF6B6`); when it is 0, it jumps to `0x003DF810`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DF6A7` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -263,11 +358,13 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md), [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00245020` | is called by | `0x00280140` |
-| `0x00247950` | is called by | `0x00280140` |
-| `0x00249410` | is called by | `0x00582790` |
-| `0x00249580` | is called by | `0x00582790` |
+| [`0x00245020`](../Menus-And-HUD/widgets.md) (on widgets) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
+| [`0x00247950`](../Game-Files-And-Data-Tables/as7-menu-graphics.md) (on as7 menu graphics) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
+| [`0x00249410`](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md) (on mrp menu resource packages) | is called by | [`0x00582790`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
+| [`0x00249580`](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md) (on mrp menu resource packages) | is called by | [`0x00582790`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
 
 </details>

@@ -28,18 +28,26 @@ The per-frame caller `0x00314370` visits the five manager slots and, for each li
 shot tick `0x003DA050` and then the shake tick `0x003DCFB0`. `0x003DA050(slot)` does nothing without a
 shot list at `+0xD8`; otherwise:
 
-1. For frames 0 (main) and 1 (sub), when the channel named in `+0x18[frame]` is not idle, it
-   tells that channel's player its frame (`0x002563C0`, player `+0x184`).
-2. For each non-idle channel that has not finished, the step is `0x02B4E4B0 × rate × 0x01DFE0BC`; the
-   clock grows by it once the channel's run byte is set, and the first positive step sets that
-   byte.
-3. It evaluates the shot at the clock (`0x002555A0` → `0x00258350`), or, when the manager's skip byte
-   `+0x201` is set (`0x00267300`), runs it to its end (`0x00257A00`).
-4. A player at its end marker (`0x002567B0` returns 2) marks the channel finished, state 2.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | For frames 0 (main) and 1 (sub), when the channel named in `+0x18[frame]` is not idle, it tells that channel's player its frame (`0x002563C0`, player `+0x184`). |   |
+| 2 | For each non-idle channel that has not finished, the step is `0x02B4E4B0 × rate × 0x01DFE0BC`; the clock grows by it once the channel's run byte is set, and the first positive step sets that byte. |   |
+| 3 | It evaluates the shot at the clock (`0x002555A0` → `0x00258350`), or, when the manager's skip byte `+0x201` is set, runs it to its end. | `0x00267300`<br>`0x00257A00` |
+| 4 | A player at its end marker (`0x002567B0` returns 2) marks the channel finished, state 2. |   |
 
 A finished channel skips only step 2: steps 3 and 4 still run for it every frame, at a clock that no
-longer grows (`0x003DA0E9`-`0x003DA0ED`, `0x003DA11E`). Step 3 passes the manager's dword `+0x28`, the
-channel's dword `+0x110 + 0x18 × channel` and the channel number (`0x003DA11E`-`0x003DA13A`).
+longer grows¹. Step 3 passes the manager's dword `+0x28`, the
+channel's dword `+0x110 + 0x18 × channel` and the channel number².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DA0E9`-`0x003DA0ED`, `0x003DA11E` |
+| ² | `0x003DA11E`-`0x003DA13A` |
+
+</details>
 
 `0x01DFE0BC` is 1.0 at 30 fps and 0.5 at 60 fps
 ([game settings](../Saving-Loading-And-Settings/game-settings.md)), so a shot plays at the same speed at
@@ -48,11 +56,10 @@ either frame rate.
 The shake tick `0x003DCFB0(slot)` keeps one shake table per manager, `0x3D0` bytes from `0x02ADDA78` for the manager
 `+0x28`, with a `0xF0`-byte row per channel:
 
-1. For each of the two frames whose channel `+0x1C[frame]` is set and running, it stores `0x003DA190` of the channel's
-   `+0x174` word through `0x0037DB40(manager, channel, value)`, the dword at `0x02ADDA7C + manager × 0x3D0 + channel ×
-   0xF0` (`0x003DD026`).
-2. For each of the four running channels, it reads the dword at `0x02ADDA78 + manager × 0x3D0 + channel × 0xF0`
-   through `0x0037DCC0(manager, channel)` (`0x003DD075`); a value of 2 marks the channel finished.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | For each of the two frames whose channel `+0x1C[frame]` is set and running, it stores `0x003DA190` of the channel's `+0x174` word through `0x0037DB40(manager, channel, value)`, the dword at `0x02ADDA7C + manager × 0x3D0 + channel × 0xF0`. | `0x003DD026` |
+| 2 | For each of the four running channels, it reads the dword at `0x02ADDA78 + manager × 0x3D0 + channel × 0xF0` through `0x0037DCC0(manager, channel)`; a value of 2 marks the channel finished. | `0x003DD075` |
 
 ### Publishing a shot
 
@@ -60,11 +67,31 @@ The shake tick `0x003DCFB0(slot)` keeps one shake table per manager, `0x3D0` byt
 manager 0 last, so the lowest manager wins a conflict. For each player with a frame (its frame
 `+0x184` is not −1, `0x0025561A`) it calls `0x0025A3B0(frame, 5, view)`:
 
-- frame 0 copies the player's 0xD0-byte view (`+0x210`) into camera record 5 (`0x0025A2C0`);
-- frame 1, or any other non-zero frame, copies it into the sub view `0x02097B80` (`0x0025A3D0`, `0x0025A3B4`).
+- frame 0 copies the player's 0xD0-byte view (`+0x210`) into camera record 5¹;
+- frame 1, or any other non-zero frame, copies it into the sub view `0x02097B80`².
 
-After either copy `0x002555D0` itself sets record 5's mode to 3 (`0x0025A500`, `0x00255638`) and notes that it
-wrote (`0x0025563D`), so a player on frame 1 alone also gives record 5 mode 3 and, below, bit `0x20`.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025A2C0` |
+| ² | `0x0025A3D0`, `0x0025A3B4` |
+
+</details>
+
+After either copy `0x002555D0` itself sets record 5's mode to 3¹ and notes that it
+wrote², so a player on frame 1 alone also gives record 5 mode 3 and, below, bit `0x20`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025A500`, `0x00255638` |
+| ² | `0x0025563D` |
+
+</details>
 
 Once the field is loaded (`[0x02ADD0D8]` through `0x00377DB0`), both copies then replace the view's floats `+0x00`
 and `+0x04`: with `0x02098DE0` / `0x02098DE4` while byte `0x02098DE8` is set, else with `0x0209A6EC` / `0x0209A6F0`,
@@ -72,10 +99,18 @@ dwords 2 and 3 of the map pack's section 11 (`0x0025A359`-`0x0025A3A0`, `0x0025A
 [MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
 
 Then the two transition cameras: when `0x00257520` is blending it writes record 5 from `0x02096410`
-with mode 3, and when `0x00255850` is moving it writes record 5 from `0x02096290`, also with mode 3
-(`0x002556AC`, `0x002556B9`). Last,
+with mode 3, and when `0x00255850` is moving it writes record 5 from `0x02096290`, also with mode 3¹. Last,
 `0x0025A520(5, any)` sets bit `0x20` of the active mask `0x02098DEC` when any of these wrote, and clears it
 otherwise.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002556AC`, `0x002556B9` |
+
+</details>
 
 ### The camera records and the active view
 
@@ -92,33 +127,83 @@ Eight camera records of 0x110 bytes sit at `0x02097300`. `0x00259820` takes the 
 It keeps the result at `0x020972F0` and submits it at priority `0x14` (below). With no bit set it
 submits nothing. So record 5 outranks records 0-4 and yields to 6 and 7.
 
-`0x00259820` first stores the record's view address, record `+0x20`, at `0x020972F0` (`0x00259893`), which is
-`0x20` when no bit is set. On every call it also asks `0x001825C0(0, −1.0, 0)` (`0x0025989C`), the
+`0x00259820` first stores the record's view address, record `+0x20`, at `0x020972F0`¹, which is
+`0x20` when no bit is set. On every call it also asks `0x001825C0(0, −1.0, 0)`², the
 depth-of-field request of [field camera](field-camera.md), with mode 0, distance −1.0 and a null point.
 
-Mode 1 passes `0x00259820`'s own argument first, `0x00259990(arg, +0xF4, view)` (`0x00259916`-`0x00259921`). The
-rebuild of the other modes ends in `0x00259A90` (`0x002598F6`), which, once the field is loaded, replaces the
-view's `+0x00` and `+0x04` as the copies into record 5 do (`0x00259A99`-`0x00259ADE`). After the submission
-`0x020972F0` is copied to `0x020972F8` (`0x0025993E`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00259893` |
+| ² | `0x0025989C` |
+
+</details>
+
+Mode 1 passes `0x00259820`'s own argument first, `0x00259990(arg, +0xF4, view)`¹. The
+rebuild of the other modes ends in `0x00259A90`², which, once the field is loaded, replaces the
+view's `+0x00` and `+0x04` as the copies into record 5 do³. After the submission
+`0x020972F0` is copied to `0x020972F8`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00259916`-`0x00259921` |
+| ² | `0x002598F6` |
+| ³ | `0x00259A99`-`0x00259ADE` |
+| ⁴ | `0x0025993E` |
+
+</details>
 
 ### Resetting the records
 
 `0x00259E90`, from the boot `0x00266D10`, runs the follow-camera set-up `0x00259B30`, clears the active
 mask `0x02098DEC`, the bytes `0x02098DE9` to `0x02098DEB` and the words `0x02098DE0`, `0x02098DE4`, `0x02098DE8`
 and `0x020972F0`, and resets every record: eye `(−3, 4, −8, 1)`, target `(0, 0, 0, 1)`, the view
-zeroed and rebuilt (`0x003CBFF0`), mode and parameter 0. It zeroes and rebuilds the sub view `0x02097B80`
+zeroed and rebuilt¹, mode and parameter 0. It zeroes and rebuilds the sub view `0x02097B80`
 and the behind camera's view `0x02097C50` the same way.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CBFF0` |
+
+</details>
 
 `0x0025A890`, from the render manager's target rebuild `0x00188B10`, sets the field of view of the eight
 record views, `0x02097B80` and `0x02097C50` back to π/4 at `+0x08` and `+0x0C`, with `+0x10` =
-`1 / tan(π/8)` (`0x003CBAD0`). `0x00258130`, from the same rebuild (`0x00188B27`), runs `0x003CBAD0` on twenty more
+`1 / tan(π/8)`¹. `0x00258130`, from the same rebuild², runs `0x003CBAD0` on twenty more
 views from `0x02092A40`: five groups `0xBB0` apart, four views `0x2E0` apart in each.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CBAD0` |
+| ² | `0x00188B27` |
+
+</details>
+
 The debug verbs `debug_camerasrc` (`0x2013`, `0x0050E5B0`) and `debug_cameradst` (`0x2012`, `0x0050E530`)
-pop three floats each and write them, with w 1.0, as record 1's eye (`0x0025A4A0`) or target
-(`0x0025A4D0`); the third float popped is x. `debug_cameraescape` (`0x2077`, `0x0050CD30`) pops three ints
+pop three floats each and write them, with w 1.0, as record 1's eye¹ or target²; the third float popped is x. `debug_cameraescape` (`0x2077`, `0x0050CD30`) pops three ints
 and stores the first popped as a byte at `+0x188` of the shot player chosen by the third (manager) and
 the second (channel) (`0x00257AA0`; players at `0x02092830 + manager × 0xBB0 + channel × 0x2E0`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025A4A0` |
+| ² | `0x0025A4D0` |
+
+</details>
 
 ### Returning to the behind camera
 
@@ -128,9 +213,18 @@ call `0x00257830`, which arms a blend:
 
 - duration `frames × 0x01DFE0B8`, the counter at 0;
 - the start pose, entry `index` of the poses at `0x02096370` (0x40 apart) that the shot player
-  writes, turned into polar form about its target (`0x003CC130`) and stored back into the entry: the
-  yaw at `+0x28`, the pitch at `+0x2C` and the distance at `+0x30` (`0x00257881`-`0x0025789D`,
-  `0x003CC1C4`-`0x003CC23A`);
+  writes, turned into polar form about its target¹ and stored back into the entry: the
+  yaw at `+0x28`, the pitch at `+0x2C` and the distance at `+0x30`²;
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CC130` |
+| ² | `0x00257881`-`0x0025789D`, `0x003CC1C4`-`0x003CC23A` |
+
+</details>
 
 - the polar form is the distance, the yaw `atan2(dx, dz)`, and the pitch read after turning the
   offset back by the yaw about the up axis with `0x005068C0(matrix, axis, angle)`, which builds the
@@ -158,13 +252,31 @@ a shot row and arms `0x00255C50`, whose move `0x00255850` writes record 5 from `
 
 Each transition keeps a duration and a counter: `0x02096270`/`0x02096274` for the move to the event camera,
 `0x020963F8`/`0x020963FC` for the swing back to the behind camera. A transition is done when the duration
-is 0 or the counter has reached it (`0x00255C20`, `0x00257800`).
+is 0 or the counter has reached it¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00255C20`, `0x00257800` |
+
+</details>
 
 - `behindtoeventcamerasync` (`0x0350`, `0x0034A530`) and `resumebehindcamerasync` (`0x01E5`,
   `0x003445E0`) hold the script until their transition is done.
-- When the manager is skipping (`0x00267310`), they instead set the counter to the duration less one
+- When the manager is skipping¹, they instead set the counter to the duration less one
   and run the step once (`0x00255CB0` with `0x00255850`, `0x002578B0` with `0x00257520`), so the camera lands on
   its final pose, and release the script.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267310` |
+
+</details>
 
 ### The behind camera's field of view and roll
 
@@ -178,16 +290,34 @@ then grows by 1 until it passes the duration. The gather adds the offsets to the
 field-of-view scalars, which reach `0x02AEDF98` and `0x02AEDF9C` through `0x00382B70`.
 
 `behindcamerafovyrollsync` (`0x023B`, `0x0034A600`) holds the script while the counter has not passed
-the duration (`0x002564B0`); a skip sets the counter one past it (`0x00256500`).
+the duration¹; a skip sets the counter one past it².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002564B0` |
+| ² | `0x00256500` |
+
+</details>
 
 At each field start `0x00259B30` clears the ramp through `0x003DA2C0`, which calls `0x002564D0(0, 0, 0, 0)`:
 both targets, the ease, the duration and the counter become 0, so the offsets are 0 until a script
 sets them again.
 
-`getbehindcameradir` (`0x0343`, `0x00347070`) returns the behind camera's direction in eighths
-(`0x002565C0`): from the view `0x002593A0` returns it takes `atan2` of the eye minus the target in x and z
+`getbehindcameradir` (`0x0343`, `0x00347070`) returns the behind camera's direction in eighths¹: from the view `0x002593A0` returns it takes `atan2` of the eye minus the target in x and z
 (`+0x90`, `+0x98` minus `+0xA0`, `+0xA8`), adds π/8, wraps it into 0 to 2π and divides by π/4, giving
 0 to 7. When the eye and the target share x and z it returns 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002565C0` |
+
+</details>
 
 ### The summon camera's subject
 
@@ -205,19 +335,37 @@ Each field frame `0x00256F60` (from `0x0022A770`) boxes the subject and every ot
 five managers on screen with `0x00255CF0`. That function places the points `(−r, 0, 0)` and `(r, h, 0)`
 in the camera's orientation at the actor's position, `r` and `h` from `0x00265090` and `0x00263940`,
 projects both through `0x02AEDDB0`, divides x and y by the fourth value of each projected point, the float at
-`+0x0C` (`0x00255E17`), and subtracts 1792 and 1824,
+`+0x0C`¹, and subtracts 1792 and 1824,
 giving the corners of a 512 × 448 frame. Then for each other actor:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00255E17` |
+
+</details>
 
 - the mark is cleared when the actor's depth value `+0x08` is not above the subject's or the two boxes
   do not overlap;
 - the mark is set when the actor's box reaches more than 16 into the subject's box on all four sides;
 - otherwise the word stays as it was.
 
-While a mark changed or a fade runs (`0x02096510`), `0x00255FF0(step)` moves every other live actor's
+While a mark changed or a fade runs¹, `0x00255FF0(step)` moves every other live actor's
 level by the step `0x02096514` (`0x20`, set by `0x002556F0`): up toward 255 when marked, down toward 0
 when not. It writes the word back, sets the actor's render record colour `+0x220` to `+0x228` to
 1.0 and its alpha `+0x22C` to `(255 − level) / 255`, and returns 1 once every level has arrived,
 which ends the fade. So the marked actors, those that cover the subject, fade out over eight frames.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02096510` |
+
+</details>
 
 ### Running a shot to its end
 
@@ -227,13 +375,32 @@ for kind 2, 0 for kind −1 and 1 for any other kind; `0x00258B50` returns the p
 channel selects the transition player at `0x02096520` instead.
 
 The transition player is a `0x2E0`-byte shot player like the twenty in the groups. The actor-system reset
-`0x002556F0` clears it (`0x00861EC0` at `0x002557C9`), stores −1 in its frame `+0x184` (`0x020966A4`, `0x002557D5`), resets
-its view `+0x210` through `0x003CBFF0` (`0x002557DF`) and then stores 0 in the frame (`0x002557F3`), so it starts on frame
+`0x002556F0` clears it (`0x00861EC0` at `0x002557C9`), stores −1 in its frame `+0x184`¹, resets
+its view `+0x210` through `0x003CBFF0`² and then stores 0 in the frame³, so it starts on frame
 0, the main view.
 
-The shot evaluation `0x00258350` reads that frame when it is given a negative channel
-(`0x002583CB`, `0x002583D2`) and writes the evaluated pose into entry `frame` of the poses at `0x02096370`, `0x40` apart
-(`0x00258687`-`0x002586D2`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x020966A4`, `0x002557D5` |
+| ² | `0x002557DF` |
+| ³ | `0x002557F3` |
+
+</details>
+
+The shot evaluation `0x00258350` reads that frame when it is given a negative channel¹ and writes the evaluated pose into entry `frame` of the poses at `0x02096370`, `0x40` apart².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002583CB`, `0x002583D2` |
+| ² | `0x00258687`-`0x002586D2` |
+
+</details>
 
 The clear of the frames, `0x00255810` (from the tick `0x00314020` at `0x003140F0` and from `0x003143D0` at `0x003143EB`), walks the twenty group players
 (`0x00255820`-`0x0025584D`, from `0x020929B4` in steps of `0xBB0`).
@@ -243,14 +410,34 @@ The clear of the frames, `0x00255810` (from the tick `0x00314020` at `0x003140F0
 `0x003829D0(camera, priority)` files a 0xD0-byte camera into the first free of eight 0xE0-byte
 slots at `0x02AED630`, with the priority at `+0xD4` and the submitted flag at `+0xD0`; with all
 eight taken it drops the camera. When `0x00181DD0` reports an override it first applies three vectors
-from `0x00181CD0`, `0x00181C50` and `0x00181CB0` to the camera (`0x003CC000`). It rebuilds the caller's camera
+from `0x00181CD0`, `0x00181C50` and `0x00181CB0` to the camera¹. It rebuilds the caller's camera
 in place from the eye `0x00181C50()` with x and y negated, the target `0x00181CB0()` and the up vector
-`0x00181CD0()` with y negated (`0x003829F7`-`0x00382A57`).
+`0x00181CD0()` with y negated².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CC000` |
+| ² | `0x003829F7`-`0x00382A57` |
+
+</details>
 
 Last, filed or dropped, it tells the render manager which view the camera is: `0x001821F0` when the
-camera is the sub view `0x02097B80` (`0x00259FA0`), else `0x00182340` (`0x00382B15`-`0x00382B28`); they reach
+camera is the sub view `0x02097B80`¹, else `0x00182340`²; they reach
 `0x00185A10` and `0x001860E0`, which set the manager's view byte `+0x1C` to 1 and to 0 (`0x00185A1D`,
 `0x001860E6`; [map art](../World-Areas-And-Travel/map-art.md)). There are three submitters:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00259FA0` |
+| ² | `0x00382B15`-`0x00382B28` |
+
+</details>
 
 | Caller | Camera | Priority |
 |---|---|---|
@@ -273,13 +460,13 @@ The shake gather `0x0037D4C0` hands two offset vectors and two scalars to `0x003
 them at `0x02AEDF70` (eye), `0x02AEDF80` (target), `0x02AEDF98` (roll) and `0x02AEDF9C` (field of view).
 The update then:
 
-1. adds `0x02AEDF9C` to the field of view `+0x08` and recomputes `+0x10 = 1 / tan(fov / 2)`;
-2. adds `0x02AEDF98` to the roll `+0xC4`;
-3. turns both offsets by the camera's matrix `+0x60` (`0x02AED5C0`) and adds them to the eye `+0x90`
-   and the target `+0xA0`, so a shake moves in the camera's own frame;
-4. rebuilds the matrices from eye, target and roll (`0x003CBD60`);
-5. does the same to a stack copy whose field of view is `+0x0C`, replaced by π/4 when above 1.0,
-   plus the shake.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | adds `0x02AEDF9C` to the field of view `+0x08` and recomputes `+0x10 = 1 / tan(fov / 2)`; |   |
+| 2 | adds `0x02AEDF98` to the roll `+0xC4`; |   |
+| 3 | turns both offsets by the camera's matrix `+0x60` and adds them to the eye `+0x90` and the target `+0xA0`, so a shake moves in the camera's own frame; | `0x02AED5C0` |
+| 4 | rebuilds the matrices from eye, target and roll; | `0x003CBD60` |
+| 5 | does the same to a stack copy whose field of view is `+0x0C`, replaced by π/4 when above 1.0, plus the shake. |   |
 
 ### The matrices
 
@@ -313,18 +500,37 @@ Besides the scripted shakes, `0x0037D4C0` adds an accumulator row `0x02EBF380 + 
 `0x02EBF3C0`; the area unload `0x002628B0` and the manager bind `0x0026CE60` also write it.
 
 `0x0037D970`
-computes the row's values from the camera's eye and target (`0x003D83A0`) every time, and writes the
+computes the row's values from the camera's eye and target¹ every time, and writes the
 row only when the pointer `0x02089350` is set or both `0x02EBF3C4` and `0x02EBF3C0` are set.
 `0x02EBF3C4` is the Screen Shake option, stored by `0x0037DDC0`
 ([config screen](../Menus-And-HUD/config-screen.md)). With the option off the row is not refreshed and
 keeps its last values; the scripted shakes are not gated.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003D83A0` |
+
+</details>
+
 ### Handing the camera to the renderer
 
 After the build the camera update calls `0x00182640` with the camera matrix `0x02AEDEB0`, the aspect, the
-field of view `+0x08`, the frame-mode zoom (`0x00229D60`), the camera's `+0x00` and `+0x04` (the near and
+field of view `+0x08`, the frame-mode zoom¹, the camera's `+0x00` and `+0x04` (the near and
 far distances `0x003CBB30` uses) and a flag that is set while the bound map `[0x0209A670]` has a non-zero
-`+0x120`. `0x00182640` runs `0x001897C0` on the render manager (`0x00189120`).
+`+0x120`. `0x00182640` runs `0x001897C0` on the render manager².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00229D60` |
+| ² | `0x00189120` |
+
+</details>
 
 `0x001897C0` stores the near and far distances, the field of view, the aspect and the zoom at manager
 `+0xCBC`, `+0xCC0`, `+0xCC4`, `+0xCC8` and `+0xCCC`; with the flag set and `+0xCD0` greater than the
@@ -345,6 +551,9 @@ field of view, zoom and near distance, and the far distance raised to at least 1
 `+0x08`, then `0x0018A120(+0xE8)`. `0x00186670`, `0x00187950` and `0x00189570` call it.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Camera record [8] at `0x02097300`, stride `0x110`:
 
@@ -378,7 +587,12 @@ Submission slot [8] at `0x02AED630`, stride `0xE0`:
 | `+0xD0` | `u32` | submitted | 1 until the next update |
 | `+0xD4` | `i32` | priority |  |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Counted in the decompiled `us` scripts (1,114 files):
 
@@ -399,7 +613,12 @@ Counted in the decompiled `us` scripts (1,114 files):
 [`scripted-camera-camerashake-channels.tsv`](scripted-camera-camerashake-channels.tsv) by start channel and bank index, with
 the scripts that make them.
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 Every global below is 0 at load (the zero-filled tail of `.data`).
 
@@ -415,10 +634,19 @@ then adds the shake to the eye and the roll:
 | `0x02AED5F8` | `f32` | 0 | the eye's z, `+0x98` | `0x003820C0`: the winner's copy (`0x003822B5`), plus the turned eye offset (`0x0038247E`) | `0x003820C0` (`0x0038233D`, `0x00382468`, `0x0038256A`); `0x003CBD60` (`0x003CBDC3`); `0x003CBFA0` (`0x003CBFD1`); `0x0037D970` (`0x0037D9B5`); `0x00202C90` and `0x00203080` as part of the vector `0x02AED5F0`; `0x002F1F40` (`0x002F1FDC`, `0x002F2018`), `0x0043F2B0` (`0x0043F2FE`, `0x0043F368`) and `0x005002E0` (`0x00500324`, `0x0050038A`), each a 16-byte load of the row `0x02AED5F0` |
 | `0x02AED624` | `f32` | 0 | the roll, `+0xC4` | `0x003820C0`: the winner's copy (`0x003822D6`, 16 bytes over `0x02AED620`-`0x02AED62F`), plus the shake roll `0x02AEDF98` (`0x003823DA`) | `0x003820C0` (`0x0038235D` in its copy to the stack, `0x003823BE`); `0x003CBD60` (`0x003CBE05`) |
 
-`0x003CBD60` runs on the camera from `0x00382486` (`0x00382406`), and `0x003CBFA0`, the vector from the eye to the target,
+`0x003CBD60` runs on the camera from `0x00382486`¹, and `0x003CBFA0`, the vector from the eye to the target,
 runs on it from `0x0029BC80`, `0x002DF2C0`, `0x002DF560` and `0x003F1A60`. The 16-byte copy `0x00202C90` takes the eye
 `0x02AED5F0` from `0x002C7660`, `0x002C7B10`, `0x003F2CF0`, `0x003F3010`, `0x003F5100`, `0x003F5260`, `0x003F5430` and `0x003FB3E0`; the
 vector difference `0x00203080` takes it from `0x0028A090`, `0x003F1A60`, `0x003F35C0`, `0x003F7200`, `0x00505570` and `0x00505E00`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00382406` |
+
+</details>
 
 ### The submitted flags
 
@@ -435,14 +663,33 @@ Slot n's submitted flag is the `u32` at `0x02AED630` + n × `0xE0` + `0xD0`. Slo
 | `0x02AEDD20` | 7 | `0x00382910` (`0x00382954`); `0x003820C0` (`0x00382213`); `0x003829D0` | `0x003820C0` (`0x00382204`); `0x003829D0` |
 
 `0x003820C0` takes a slot whose flag equals 1 and `0x003829D0` files into the first slot whose flag is 0, setting the
-priority `+0xD4` (`0x00382B01`) before the flag. A slot wins with a signed compare of its priority against the best
+priority `+0xD4`¹ before the flag. A slot wins with a signed compare of its priority against the best
 so far (`0x0038212B`, `0x0038214D` and on).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00382B01` |
+
+</details>
 
 ### The view's override elements
 
-`0x003820C0` copies the working camera's view `+0x20` (`0x02AED580`) to `0x02AEDE70` with `0x00202C70` (`0x0038267A`). When
-`0x00181DD0` reports an override it then replaces eight elements from the matrix `m` that `0x00181CF0` returns
-(`0x00382694`-`0x00382712`); the element `+0x00`, `0x02AEDE70`, takes `-m[+0x0C]`:
+`0x003820C0` copies the working camera's view `+0x20`¹ to `0x02AEDE70` with `0x00202C70`². When
+`0x00181DD0` reports an override it then replaces eight elements from the matrix `m` that `0x00181CF0` returns³; the element `+0x00`, `0x02AEDE70`, takes `-m[+0x0C]`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02AED580` |
+| ² | `0x0038267A` |
+| ³ | `0x00382694`-`0x00382712` |
+
+</details>
 
 | Global | Element | Type | Start | Override value |
 |---|---|---|---|---|
@@ -454,21 +701,52 @@ so far (`0x0038212B`, `0x0038214D` and on).
 | `0x02AEDEA0` | `+0x30` | `f32` | 0 | `m[+0x20]` (`0x00382705`) |
 | `0x02AEDEA4` | `+0x34` | `f32` | 0 | `m[+0x24]` (`0x00382712`) |
 
-The view is read as whole 16-byte rows by `0x0024C060` (`0x0024C10D`-`0x0024C130`), `0x004FDDA0` (`0x004FDDB2`-`0x004FDDEE`) and
-`0x0051CDE0` (`0x0051CF17`-`0x0051CF8E`), and as a matrix through `0x00202C70`, `0x00202D70` and `0x00202D50` by `0x0028DC00`,
-`0x002F4520`, `0x002F5550`, `0x003820C0` (`0x00382752`, `0x0038276C`, `0x003827D5`), `0x003F0170`, `0x003F0610`, `0x003F3710`,
+The view is read as whole 16-byte rows by `0x0024C060`¹, `0x004FDDA0`² and
+`0x0051CDE0`³, and as a matrix through `0x00202C70`, `0x00202D70` and `0x00202D50` by `0x0028DC00`,
+`0x002F4520`, `0x002F5550`, `0x003820C0`⁴, `0x003F0170`, `0x003F0610`, `0x003F3710`,
 `0x003F5430` and `0x003F7930`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024C10D`-`0x0024C130` |
+| ² | `0x004FDDB2`-`0x004FDDEE` |
+| ³ | `0x0051CF17`-`0x0051CF8E` |
+| ⁴ | `0x00382752`, `0x0038276C`, `0x003827D5` |
+
+</details>
 
 ### The Screen Shake rows
 
 The accumulator `0x02EBF380 + draw × 0x20` of the Screen Shake option holds two rows of `0x20` bytes,
 `0x02EBF380`-`0x02EBF3BF`, indexed by the same draw number in both functions. `0x0037D970` writes a row's `+0x00`-`+0x08`
-and, with one 16-byte store, `+0x0C`-`+0x1B` (`0x0037DA23`-`0x0037DA45`).
+and, with one 16-byte store, `+0x0C`-`+0x1B`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037DA23`-`0x0037DA45` |
+
+</details>
 
 The gather `0x0037D4C0` adds `+0x00`-`+0x08` to
-the eye offset, `+0x0C`-`+0x14` to the target offset and `+0x18` to the roll it hands to `0x00382B70`
-(`0x0037D769`-`0x0037D7C4`); it does not read `+0x1C`. `0x0037D890`, which `0x00314020` (`0x003140F5`) and `0x003143D0`
-(`0x003143F0`) run, zeroes both rows with eight 8-byte stores (`0x0037D917`-`0x0037D948`).
+the eye offset, `+0x0C`-`+0x14` to the target offset and `+0x18` to the roll it hands to `0x00382B70`¹; it does not read `+0x1C`. `0x0037D890`, which `0x00314020`² and `0x003143D0`³ run, zeroes both rows with eight 8-byte stores⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037D769`-`0x0037D7C4` |
+| ² | `0x003140F5` |
+| ³ | `0x003143F0` |
+| ⁴ | `0x0037D917`-`0x0037D948` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -483,9 +761,24 @@ the eye offset, `+0x0C`-`+0x14` to the target offset and `+0x18` to the roll it 
 ### The two transitions' state
 
 The move to the event camera is armed by `0x00255C50` and stepped by `0x00255850`; the swing back is armed by `0x00257830`
-and stepped by `0x00257520`. Besides their durations and counters they keep the values below. `behindtoeventcamera` (`0x00349FA0`) pops four values: the ease kind (`0x00349FC7`), a
-second integer (`0x00349FD1`), the frame count (`0x00349FDB`) and the shot row (`0x00349FEE`); `0x003DA300` turns the row into
-the CML1 row's word `+0x14` (`0x003DA31F`) and passes the manager's dword `+0x28` (`0x003DA316`).
+and stepped by `0x00257520`. Besides their durations and counters they keep the values below. `behindtoeventcamera`¹ pops four values: the ease kind², a
+second integer³, the frame count⁴ and the shot row⁵; `0x003DA300` turns the row into
+the CML1 row's word `+0x14`⁶ and passes the manager's dword `+0x28`⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00349FA0` |
+| ² | `0x00349FC7` |
+| ³ | `0x00349FD1` |
+| ⁴ | `0x00349FDB` |
+| ⁵ | `0x00349FEE` |
+| ⁶ | `0x003DA31F` |
+| ⁷ | `0x003DA316` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -505,11 +798,23 @@ the CML1 row's word `+0x14` (`0x003DA31F`) and passes the manager's dword `+0x28
 
 ### The transition player
 
-The transition player at `0x02096520` is a `0x2E0`-byte shot player. `0x002556F0` clears all of it (`0x002557C9`). It is
-set up by the move's first step (`0x00255850`), by `camerahitcheck`'s run `0x002567E0`, which uses it as its scratch
-player, and by the shot start `0x00257230` for a negative channel (`0x00257258`). The shot walk `0x00258350` uses it when
-it is given a negative channel (`0x002583CB`), and through it the path offsets `0x002554E0`, `0x00256960` and `0x00256CA0`
+The transition player at `0x02096520` is a `0x2E0`-byte shot player. `0x002556F0` clears all of it¹. It is
+set up by the move's first step², by `camerahitcheck`'s run `0x002567E0`, which uses it as its scratch
+player, and by the shot start `0x00257230` for a negative channel³. The shot walk `0x00258350` uses it when
+it is given a negative channel⁴, and through it the path offsets `0x002554E0`, `0x00256960` and `0x00256CA0`
 write its two offset vectors (`+0xF0` eye, `+0x100` target), the evaluator `0x003CC740` storing x, y and z.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002557C9` |
+| ² | `0x00255850` |
+| ³ | `0x00257258` |
+| ⁴ | `0x002583CB` |
+
+</details>
 
 | Global | Field | Type | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -537,6 +842,8 @@ write its two offset vectors (`+0xF0` eye, `+0x100` target), the evaluator `0x00
 | `0x02AEDF84` | `f32` | 0 | the target shake offset's y | `0x00382910` (`0x00382967`, 8 bytes over `0x02AEDF84`-`0x02AEDF8B`); `0x00382B70` (`0x00382BB4`) | `0x00202B90` (`0x00202B94`) from `0x003823E7` and `0x003824FC` |
 | `0x02AEDF88` | `f32` | 0 | the target shake offset's z | `0x00382910` (`0x00382967`); `0x00382B70` (`0x00382BC1`) | `0x00202B90` (`0x00202B9A`) from `0x003823E7` and `0x003824FC` |
 | `0x02AEDF8C` | `f32` | 0 | the target shake offset's w: 1.0 at boot, then the gather's fourth float | `0x00382910`, 1.0 (`0x00382975`, 8 bytes: 1.0 and `0x02AEDF90` = 0); `0x00382B70` (`0x00382BCE`) | no instruction names it apart from these stores |
+
+</details>
 
 ## Modding notes
 
@@ -568,8 +875,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Gameplay** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00203080` | is called by | `0x00339630` |
+| [`0x00203080`](../Battle-Actions/action-range.md) (on action range) | is called by | [`0x00339630`](../Battle-Actions/action-phases.md) (on action phases) |
 
 </details>

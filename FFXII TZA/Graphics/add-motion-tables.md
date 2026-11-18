@@ -27,11 +27,24 @@ read their files whole:
 - the first boot frame `0x0022A0B0` runs `0x0036FFF0` (`./PS2Data/add_motion/SkeletonMapping.bin`) and
   `0x0037CCC0` (`./PS2Data/add_motion/HighModelReplace.bin`).
 
-`0x001BE3E0` builds the registry only while `0x01F81250` is 0: it allocates `0x28` bytes (`0x00210EC0`) and stores the
-result there, 0 when the allocation fails, in which case `0x001BDC40` is not run (`0x001BE3ED`-`0x001BE414`). `0x001BDC40`
+`0x001BE3E0` builds the registry only while `0x01F81250` is 0: it allocates `0x28` bytes¹ and stores the
+result there, 0 when the allocation fails, in which case `0x001BDC40` is not run². `0x001BDC40`
 clears the list pointers `+0x00`, `+0x08` and `+0x10`, gives `+0x18` the vtable `0x00902720` through `0x001EDF00`, which
-drops the name it is handed (`0x001BDC73`), sets the table selector `+0x20` to 0 (`0x001BDC79`) and then runs
-`0x001BDD20` (`0x001BDC7F`).
+drops the name it is handed³, sets the table selector `+0x20` to 0⁴ and then runs
+`0x001BDD20`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00210EC0` |
+| ² | `0x001BE3ED`-`0x001BE414` |
+| ³ | `0x001BDC73` |
+| ⁴ | `0x001BDC79` |
+| ⁵ | `0x001BDC7F` |
+
+</details>
 
 ## Layouts
 
@@ -92,6 +105,9 @@ the file ends with a -1 where a record would start
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 | Fact | Value |
 |---|---|
 | `add_motion_list.txt` | 251 bytes, 23 lines; 22 end with CRLF, the last (`hs0020_01`) does not |
@@ -118,12 +134,14 @@ the file ends with a -1 where a record would start
 | `sha256_16` | the first 16 hex digits of the `.adm` file's SHA-256, on the row of the file's track 0 (39 rows, one per file); empty on the file's other tracks (107 rows) |
 | `group_keys_or_ids` | one entry per group of the track, separated by spaces, as many as `groups` on all 146 rows: for a kind 0 track the group's key, its three angles in degrees written `x/y/z` (for example `0/45/0`); for a kind 1 track the group's id (`0 1 2 3` on 29 tracks) |
 
+</details>
+
 ## Loader behaviour
 
 ### add_motion_list.txt and .adm
 
 - `0x001BDD20` reads the list into a stack buffer of the file size plus 1, rounded up to 16
-  (`0x001BDDBA`–`0x001BDDDE`), and cuts it at each CRLF with `strstr`; a name is taken only when a CRLF
+ ¹, and cuts it at each CRLF with `strstr`; a name is taken only when a CRLF
   follows it. Nothing writes a zero byte after the text, so the search after the last CRLF runs past
   the file's last byte into uninitialised stack bytes, up to the first zero.
 - The shipped list therefore yields 22 names only while those stack bytes hold no CRLF before a zero.
@@ -135,38 +153,73 @@ the file ends with a -1 where a record would start
 - `0x001BE1A0` trusts every count: nothing is checked against the file size. It allocates
   `track count x 0x10`, `group count x 0x28` and `records per group x 0x1C` bytes, each a 64-bit `mul`
   whose result becomes `0xFFFFFFFFFFFFFFFF` on overflow (`cmovo`, `0x001BE210`, `0x001BE299`, `0x001BE319`).
-- It reads the counts as signed 16-bit values (`0x001BE1FB`, `0x001BE28B`, `0x001BE314`). It zeroes the 32-byte record and
-  each track and group array after allocating it (`0x001BE1E3`-`0x001BE1F7`, `0x001BE231`, `0x001BE2BE`), fills each record
-  array by copying, and returns the record (`0x001BE3CD`). The file comes in its second argument (`0x001BE1B1`); `rcx`
-  is replaced by the size `0x20` before any use (`0x001BE1AC`).
+- It reads the counts as signed 16-bit values². It zeroes the 32-byte record and
+  each track and group array after allocating it³, fills each record
+  array by copying, and returns the record⁴. The file comes in its second argument⁵; `rcx`
+  is replaced by the size `0x20` before any use⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001BDDBA`-`0x001BDDDE` |
+| ² | `0x001BE1FB`, `0x001BE28B`, `0x001BE314` |
+| ³ | `0x001BE1E3`-`0x001BE1F7`, `0x001BE231`, `0x001BE2BE` |
+| ⁴ | `0x001BE3CD` |
+| ⁵ | `0x001BE1B1` |
+| ⁶ | `0x001BE1AC` |
+
+</details>
 
 ### Which table a model uses
 
 - `0x002EDF90(index, request, resource)` keeps a state at render record `+0x6C8` (0 unbound, 1 and 2
   bound, 3 and 4 released). The record is `[0x022C6F28] + index x 0x740` for the signed 16-bit index; an index of -1,
-  a record address of 0 or a record whose `+0x284` is 0 is left as it is (`0x002EDF93`-`0x002EDFBC`). Its caller is
+  a record address of 0 or a record whose `+0x284` is 0 is left as it is¹. Its caller is
   `0x002E3110`, the part attach of the [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md).
-- On an unbound record the request becomes the state (`0x002EDFCE`); request 2 then runs `0x00863110` with the record's
-  `+0x6E8` and `+0x6F0` (`0x002EDFD4`-`0x002EDFEA`), so request 1 binds it without a lookup. On a bound record request 0
-  releases, 1 to 3 and 2 to 4 (`0x002EDFEF`-`0x002EE00C`), and request 1 or 2 restores a released state, 3 to 1 and 4
-  to 2 (`0x002EE017`-`0x002EE038`); other requests change nothing.
+- On an unbound record the request becomes the state²; request 2 then runs `0x00863110` with the record's
+  `+0x6E8` and `+0x6F0`³, so request 1 binds it without a lookup. On a bound record request 0
+  releases, 1 to 3 and 2 to 4⁴, and request 1 or 2 restores a released state, 3 to 1 and 4
+  to 2⁵; other requests change nothing.
 - In its mode 4 `0x002E3110` sends request 1 for the entry `[+0xC0]` and 2 for the one `0x90` bytes after it, and in
   mode 2 request 0 to both, skipping an entry whose dword `+0x00` is -1; the entry's word `+0x00` is the index and its
-  `+0x04` the resource (`0x002E3444`-`0x002E34D2`).
+  `+0x04` the resource⁶.
 - `0x00863110` takes the file name of the resource between the last backslash and the first dot into
   a 16-byte buffer and calls `0x001BE430`, which stores the record with that name at `+0x6E8` and the one
   named `<name>_town` at `+0x6F0`.
 - The resource is an id: `0x002E98F0` splits it into a kind and an index, adding `0x33` to a kind 1 index, and
-  `0x002DF980` reads the path from the table `0x0215F000` (`0x00863137`-`0x00863144`). The backslash is searched for back
-  from the path's end (`0x0086315C`-`0x00863167`) and the dot with `strchr` (`0x00863174`); `strncpy` copies the name at
-  its own length into the zeroed buffer, with no test against its 16 bytes (`0x0086317A`-`0x00863194`).
+  `0x002DF980` reads the path from the table `0x0215F000`⁷. The backslash is searched for back
+  from the path's end⁸ and the dot with `strchr`⁹; `strncpy` copies the name at
+  its own length into the zeroed buffer, with no test against its 16 bytes¹⁰.
 - `0x001BE430(registry, name, base, town)` compares the name of every record in the registry's list with `name` and
-  with `<name>_town`, built with `0x0017D2E0` and `%s_town` (`0x001BE457`-`0x001BE466`, `0x001BE481`-`0x001BE4FC`). Each
+  with `<name>_town`, built with `0x0017D2E0` and `%s_town`¹¹. Each
   match is stored, so the last record of a name wins; a name with no record leaves its field as it was, and a null
   output is skipped.
 - `0x003714A0`, run for every skeleton while its pose is composed, uses `+0x6F0` when it is set and
-  bit `0x8000` of the current field's word in the table at `0x02ADD100` is set (`0x00377C20`); the registry's
-  `+0x20` (`0x0017FFB0`) forces the town table with 1 and the base table with 2.
+  bit `0x8000` of the current field's word in the table at `0x02ADD100` is set¹²; the registry's
+  `+0x20`¹³ forces the town table with 1 and the base table with 2.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EDF93`-`0x002EDFBC` |
+| ² | `0x002EDFCE` |
+| ³ | `0x002EDFD4`-`0x002EDFEA` |
+| ⁴ | `0x002EDFEF`-`0x002EE00C` |
+| ⁵ | `0x002EE017`-`0x002EE038` |
+| ⁶ | `0x002E3444`-`0x002E34D2` |
+| ⁷ | `0x00863137`-`0x00863144` |
+| ⁸ | `0x0086315C`-`0x00863167` |
+| ⁹ | `0x00863174` |
+| ¹⁰ | `0x0086317A`-`0x00863194` |
+| ¹¹ | `0x001BE457`-`0x001BE466`, `0x001BE481`-`0x001BE4FC` |
+| ¹² | `0x00377C20` |
+| ¹³ | `0x0017FFB0` |
+
+</details>
 
 ### Applying a track
 
@@ -175,62 +228,133 @@ name that bone. Then for each track:
 
 - **Kind 0** (needs two groups or more). The driving bone is looked up in the skeleton that the posed
   skeleton's `+0x0C` names. It takes that bone's angle `+0x190 + 4 × angle` and
-  the same angle of the bone's matrix at `+0x230` (`0x003719F7`–`0x00371A4A`) and uses their difference
+  the same angle of the bone's matrix at `+0x230`¹ and uses their difference
   in degrees; `0x00180060` / `0x00180090` can replace it with a set value.
 - `0x00180060` answers the byte `+0xCF1` of the object `0x001D50D0()` gives and `0x00180090`
   its float `+0xCF4`; each answers 0 when `0x001D50D0()` gives no object
-  (`0x00180064`-`0x00180073`, `0x00180094`-`0x001800B0`).
+ ².
 - Kind 0 then finds the pair of groups `k`, `k + 1` whose keys (group `+0x00`, groups `0x28` bytes apart)
   hold the value `v`, the first or last pair when `v` lies outside them. With
   `t = (v - key[k]) / (key[k + 1] - key[k])` each record's three angles (record `+0x04`-`+0x0C`) become
-  `(1 - t) x a[k] + t x a[k + 1]`, so `t` runs past 0 or 1 beyond the end keys (`0x00371B13`-`0x00371C82`).
-- **Kind 1**. It asks `0x004776D0` for the value of sequencer slot `+0x02` (`0x00371F64`) and applies the
+  `(1 - t) x a[k] + t x a[k + 1]`, so `t` runs past 0 or 1 beyond the end keys³.
+- **Kind 1**. It asks `0x004776D0` for the value of sequencer slot `+0x02`⁴ and applies the
   group whose id equals it; with no such group nothing is applied.
 - Either way the angles are turned into radians, written to bone `+0x190`–`+0x198` and every bone
-  linked through `+0x278`, and rebuilt into the bone's rotation with `0x0046D380` (`0x00371D27`,
-  `0x00372087`).
+  linked through `+0x278`, and rebuilt into the bone's rotation with `0x0046D380`⁵.
 - `0x0046D380(matrix, x, y, z)` looks each angle, in radians, up in the sine table `0x01F004E0` of 32768 entries: the
   index is `angle / 2pi x 32768`, truncated and masked with `0x7FFF`, and the cosine is the entry `0x2000` further
-  on, wrapping (`0x0046D39E`-`0x0046D485`).
+  on, wrapping⁶.
 - With `sx` for the sine of `x` and `cx` for its cosine, `0x0046D380` writes the rows `(cy cz, cy sz, -sy, 0)`,
   `(sx sy cz - cx sz, sx sy sz + cx cz, sx cy, 0)`,
-  `(cx sy cz + sx sz, cx sy sz - sx cz, cx cy, 0)` and `(0, 0, 0, 1)` (`0x0046D49F`-`0x0046D550`).
+  `(cx sy cz + sx sz, cx sy sz - sx cz, cx cy, 0)` and `(0, 0, 0, 1)`⁷.
 - Here the matrix is the scratch `0x02CA43D0`; the posing code copies its first three rows to bone `+0xC0`-`+0xEC`
   and the bone's `+0x1B0`-`+0x1B8` to `+0xF0`-`+0xF8` (`0x00371D2C`-`0x00371E0D`, the same from `0x0037208C`).
 - Switching between the base and town tables saves and restores the affected bones' state through
   the arrays at record `+0x720`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003719F7`-`0x00371A4A` |
+| ² | `0x00180064`-`0x00180073`, `0x00180094`-`0x001800B0` |
+| ³ | `0x00371B13`-`0x00371C82` |
+| ⁴ | `0x00371F64` |
+| ⁵ | `0x00371D27`, `0x00372087` |
+| ⁶ | `0x0046D39E`-`0x0046D485` |
+| ⁷ | `0x0046D49F`-`0x0046D550` |
+
+</details>
 
 ### skeletonmapping.bin
 
 `0x0036FFF0` reads the file whole into a stack buffer of `(size + 1 + 0xF) & ~0xF` bytes, the file size plus 1,
 rounded up to 16 (`lea rax, [rcx + 0xf]`, `and rax, 0xfffffffffffffff0`, `0x00370040`-`0x00370077`). A size of 0
 (`0x001D6EE0` also gives 0 for a null handle) returns at once, before the close,
-and leaves `0x02AD9E30` and `0x02AD9E38` as they are (`0x0037003A`).
+and leaves `0x02AD9E30` and `0x02AD9E38` as they are¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037003A` |
+
+</details>
 
 It copies each name (32 bytes, `strncpy`) into a `0x30`-byte record at `[0x02AD9E30]` (count
-`0x02AD9E38`, `0x00370086`) with the value array at `+0x28`: it stores n at `+0x20` (`0x003700F6`), allocates n × 4 bytes
-with `0x0019C580` (`0x00370102`) and copies the n values (`0x00370120`-`0x0037013B`). No count is checked against the file
+`0x02AD9E38`, `0x00370086`) with the value array at `+0x28`: it stores n at `+0x20`¹, allocates n × 4 bytes
+with `0x0019C580`² and copies the n values³. No count is checked against the file
 size.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003700F6` |
+| ² | `0x00370102` |
+| ³ | `0x00370120`-`0x0037013B` |
+
+</details>
 
 `0x00372820` keeps the last record whose name matches the
 model at skeleton `+0xB0`. While the render record's add-motion state is 2 and the record has a
-partner skeleton, `0x003703A0` builds the skinning matrix of each mapped bone from the partner's bone
-(`0x0037065D`–`0x0037078C`).
+partner skeleton, `0x003703A0` builds the skinning matrix of each mapped bone from the partner's bone¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037065D`-`0x0037078C` |
+
+</details>
 
 ### highmodelreplace.bin
 
-`0x0037CCC0` reads the file whole into a stack buffer the same way (`0x0037CD08`-`0x0037CD3F`); a size of 0 returns 0 at
-once, before the close (`0x0037CD02`).
+`0x0037CCC0` reads the file whole into a stack buffer the same way¹; a size of 0 returns 0 at
+once, before the close².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037CD08`-`0x0037CD3F` |
+| ² | `0x0037CD02` |
+
+</details>
 
 It counts the records, then fills `0x30`-byte rows at `[0x02ADD940]` (count `0x02ADD938`): model,
 b and c at `+0x00`, the pair count at `+0x0C`, replacements from `+0x10` and progress values from
-`+0x20`. The table is count × `0x30` bytes from `0x0019C580`, zeroed with `0x00861EC0` (`0x0037CD90`-`0x0037CDA4`), and the
-body returns 0 (`0x0037CE59`).
+`+0x20`. The table is count × `0x30` bytes from `0x0019C580`, zeroed with `0x00861EC0`¹, and the
+body returns 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037CD90`-`0x0037CDA4` |
+| ² | `0x0037CE59` |
+
+</details>
 
 Nothing limits a record to four pairs: a fifth pair's replacement lands on the first progress value at `+0x20`
-and its progress value at `+0x30`, past the row (`0x0037CE1E`, `0x0037CE30`). `0x0037CB90` looks a model up; its use is
+and its progress value at `+0x30`, past the row¹. `0x0037CB90` looks a model up; its use is
 described with the binding verbs in [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
 against the [story progress](../Story-Events-And-Hunts/story-progress.md) word.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037CE1E`, `0x0037CE30` |
+
+</details>
 
 ### The individual records
 
@@ -278,14 +402,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001D6EE0` | is called by | `0x00210760` |
+| [`0x001D6EE0`](add-motion-tables.md) | is called by | [`0x00210760`](../Sound-And-Music/sound-engine-config.md) (on sound engine config) |
 
 **Saving, loading and settings** (explained on [save file format](../Saving-Loading-And-Settings/save-file-format.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0019C580` | is called by | `0x00866200` |
+| [`0x0019C580`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation) | is called by | [`0x00866200`](../Saving-Loading-And-Settings/save-file-format.md) (on save file format) |
 
 </details>

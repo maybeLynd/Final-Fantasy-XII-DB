@@ -59,46 +59,114 @@ and returns at once when the object is missing, running (`+0xFC`) or holds
 A kind outside 1 to 14 does nothing (`0x0053F113` to `0x0053F3A0`). Kinds 1 and 8 to 14 do not move the cursor: their
 closing `add [rbx+0xF0], r9d` adds the 0 that `0x0053F10A` put in r9d.
 
-The roll object starts in line mode 1 (`0x0053E4EE`).
+The roll object starts in line mode 1¹.
 
-`0x0053ED10`, the begin of `fsroll_initialize` (`0x00511540`), builds the `0xC8`-byte loader `0x0053EB90` while
-`[0x02CA8A78]` is 0 and then the roll while `[0x02CA8A80]` is 0, each with a zero record (`0x0053ED14`-`0x0053ED4F`). On
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053E4EE` |
+
+</details>
+
+`0x0053ED10`, the begin of `fsroll_initialize`¹, builds the `0xC8`-byte loader `0x0053EB90` while
+`[0x02CA8A78]` is 0 and then the roll while `[0x02CA8A80]` is 0, each with a zero record². On
 message 1 the roll stores itself at `[0x02CA8A80]`, puts the screen size `0x01E0C1D8` and `0x01E0C1DC` at `+0x9C` and
-`+0x9E` and 0 at `+0x98` (`0x0053E4A6`-`0x0053E4CD`).
+`+0x9E` and 0 at `+0x98`³.
 
-The word store that sets the speed to 1 also sets the alignment `+0x100` to 0 (`0x0053E4D9`). Message 1 then sets
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00511540` |
+| ² | `0x0053ED14`-`0x0053ED4F` |
+| ³ | `0x0053E4A6`-`0x0053E4CD` |
+
+</details>
+
+The word store that sets the speed to 1 also sets the alignment `+0x100` to 0¹. Message 1 then sets
 `+0x1494` to `0x80`, the cursor `+0xF0` to the screen height and `+0xC0` to the block `0x00249810(2, 0x10000)`, cleared
-to zero (`0x0053E4E2`-`0x0053E51D`). Each font's bytes `+0xCE` and `+0xCF` become 2 and 2, and its float at
-`+0xD0` + 8 x font becomes 1.0 (`0x0053E527`-`0x0053E559`); it ends with `0x00247930(roll, 0x69)` (`0x0053E563`). The
+to zero². Each font's bytes `+0xCE` and `+0xCF` become 2 and 2, and its float at
+`+0xD0` + 8 x font becomes 1.0³; it ends with `0x00247930(roll, 0x69)`⁴. The
 roll's other messages:
 
-- Message 2: when `0x001EDEC0(+0xB4)` answers non-zero it runs `0x0053E640(roll)` (`0x0053E479`-`0x0053E48F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053E4D9` |
+| ² | `0x0053E4E2`-`0x0053E51D` |
+| ³ | `0x0053E527`-`0x0053E559` |
+| ⁴ | `0x0053E563` |
+
+</details>
+
+- Message 2: when `0x001EDEC0(+0xB4)` answers non-zero it runs `0x0053E640(roll)`¹.
 - Message 4: when `0x002DDC50()` answers non-zero it calls `0x002D8BB0(+0x38, 1)` and `0x00249FD0` with the box x 0, y
-  `0xC`, the screen width and the screen height less `0x18` (`0x0053E400`-`0x0053E443`). It then calls `0x0053E0B0(roll)`
-  (`0x0053E44B`), and `0x002D8BB0(+0x38, 0)` when `0x002DDC50()` again answers non-zero (`0x0053E450`-`0x0053E462`).
+  `0xC`, the screen width and the screen height less `0x18`². It then calls `0x0053E0B0(roll)`
+ ³, and `0x002D8BB0(+0x38, 0)` when `0x002DDC50()` again answers non-zero⁴.
 - Message 18: with `+0xC0` set it passes the block to `0x003697F0` and sets `+0xC0` and the line count `+0xC8` to 0;
-  `[0x02CA8A80]` becomes 0 either way (`0x0053E3C7`-`0x0053E3E7`).
-- Any other message goes to the default `0x005C5230` (`0x0053E3B0`-`0x0053E3C2`).
+  `[0x02CA8A80]` becomes 0 either way⁵.
+- Any other message goes to the default `0x005C5230`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053E479`-`0x0053E48F` |
+| ² | `0x0053E400`-`0x0053E443` |
+| ³ | `0x0053E44B` |
+| ⁴ | `0x0053E450`-`0x0053E462` |
+| ⁵ | `0x0053E3C7`-`0x0053E3E7` |
+| ⁶ | `0x0053E3B0`-`0x0053E3C2` |
+
+</details>
 
 ### A text line
 
 `0x0053DD20(line, roll, font, v)` fills the line's 32-byte record:
 
 - **The text.** When bit `0x8000` of v is set, the text is id 25000 + (v & `0x7FFF`), else id 26000 + v
-  (`0x0053DD90`-`0x0053DDA5`), looked up by `0x002F9860`.
+ ¹, looked up by `0x002F9860`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053DD90`-`0x0053DDA5` |
+
+</details>
 
   Text group 25 is `menu03.bin` (loader id 65) and group 26 is
   `menu04.bin` (loader id 66), so a value with bit `0x8000` shows row v & `0x7FFF` of `menu03.bin`, the roles, and any
   other value shows row v of `menu04.bin`, the names. Both files are lists of `ex00` rows in UTF-16
   ([Text codes](text-codes.md)).
-- **Line mode 1** (`0x0053DFFB`-`0x0053E0A3`): the line takes a row of its own at the cursor. Alignment 0 puts its left
+- **Line mode 1**¹: the line takes a row of its own at the cursor. Alignment 0 puts its left
   edge at the offset, 1 puts its right edge the offset from the right edge of the roll's width `+0x9C`, 2
   centres it; any other value puts it at the left edge.
-- **Line mode 2** (`0x0053DF17`-`0x0053DFE4`): lines go two to a row. The first ends the offset left of the centre, at
+- **Line mode 2**²: lines go two to a row. The first ends the offset left of the centre, at
   the cursor; the second starts the offset right of the centre on the same row, and the cursor then moves by the
-  difference between the two lines' heights (`0x0053DFD0`-`0x0053DFE1`).
-- Mode 3 puts three lines to a row (`0x0053DDFE`-`0x0053DEBA`); the roll does not use it.
-- The slot then advances, (slot + 1) mod the mode (`0x0053DECE`-`0x0053DEE8`).
+  difference between the two lines' heights³.
+- Mode 3 puts three lines to a row⁴; the roll does not use it.
+- The slot then advances, (slot + 1) mod the mode⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053DFFB`-`0x0053E0A3` |
+| ² | `0x0053DF17`-`0x0053DFE4` |
+| ³ | `0x0053DFD0`-`0x0053DFE1` |
+| ⁴ | `0x0053DDFE`-`0x0053DEBA` |
+| ⁵ | `0x0053DECE`-`0x0053DEE8` |
+
+</details>
 
 The faces are the staff-roll fonts of [Staff-roll font bitmaps](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md).
 
@@ -109,9 +177,19 @@ The faces are the staff-roll fonts of [Staff-roll font bitmaps](../Game-Files-An
 Middleware / "S-FORCE" is a trademark of Sony Corporation.", the THX pm3 Certified Studio logo with its trademark
 line, and "The End".
 
-The roll shows cells 0, 2 and 3 as its last three pictures (order 945, 946 and 950). The picture record's `+0x20` is the file's TIM2 picture header (`0x0024A238`), and the recorder reads cell n from the
+The roll shows cells 0, 2 and 3 as its last three pictures (order 945, 946 and 950). The picture record's `+0x20` is the file's TIM2 picture header¹, and the recorder reads cell n from the
 eight-byte records of the header's eXt block at file offset `0x70` + 8 x n: u16 u, u16 v, then the width and height
-in the bits under mask `0xFFFFFF` of the next dword (`0x0053F26E`-`0x0053F28A`).
+in the bits under mask `0xFFFFFF` of the next dword².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024A238` |
+| ² | `0x0053F26E`-`0x0053F28A` |
+
+</details>
 
 | Cell | Place on the sheet | Picture |
 |---|---|---|
@@ -122,11 +200,21 @@ in the bits under mask `0xFFFFFF` of the next dword (`0x0053F26E`-`0x0053F28A`).
 
 ### The fades
 
-`fsroll_fade(a, b, c, d)` (`0x00511E00`) does not go through the recorder: it jumps to `0x0053EFC0`, which appends a
+`fsroll_fade(a, b, c, d)`¹ does not go through the recorder: it jumps to `0x0053EFC0`, which appends a
 20-byte fade record to the roll object's 128 at `+0xA90` (count `+0x1492`) unless the object is missing or running
-(`+0xFC`, `0x0053EFD7`), and moves the cursor `+0xF0` on by a + 3 (`0x0053F0B6`-`0x0053F0B9`). b, c and d are 30 fps frame
+(`+0xFC`, `0x0053EFD7`), and moves the cursor `+0xF0` on by a + 3². b, c and d are 30 fps frame
 counts, multiplied by `0x01DFE0B4`, `b > -1 ? b × [0x01DFE0B4] : b` and the same for d (`cmp dx, -1` at `0x0053F04C`,
 `cmp r9w, -1` at `0x0053F07E`; `c × [0x01DFE0B4]` at `0x0053F000`); a b or d of -1 or less is kept as it is.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00511E00` |
+| ² | `0x0053F0B6`-`0x0053F0B9` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -138,19 +226,48 @@ counts, multiplied by `0x01DFE0B4`, `b > -1 ? b × [0x01DFE0B4] : b` and the sam
 | `+0x10` | `i16` | jump | a (`0x0053F043`) |
 
 The runner `0x0053E640` starts a fade when the scroll `+0xEC` reaches its place less the screen height `0x01E0C1DC`,
-`+0xEC >= place - [0x01E0C1DC]` (`0x0053E9B9`-`0x0053E9E9`): the scroll becomes the place less the screen height plus a,
-at most the roll's end, the cursor `+0xF0`: `+0xEC = min(place - [0x01E0C1DC] + a, +0xF0)` (`0x0053EA87`-`0x0053EA9F`).
-The countdown `+0xF8` becomes the total (`0x0053EAA5`-`0x0053EAAA`), and the roll stops scrolling in state 6, phase 1
-(`0x0053EAB2`-`0x0053EAB9`).
+`+0xEC >= place - [0x01E0C1DC]`¹: the scroll becomes the place less the screen height plus a,
+at most the roll's end, the cursor `+0xF0`: `+0xEC = min(place - [0x01E0C1DC] + a, +0xF0)`².
+The countdown `+0xF8` becomes the total³, and the roll stops scrolling in state 6, phase 1⁴.
 
-Phase 1 raises the text level `+0x1494`, the alpha of the roll's text colour (`0x0053E101`), from 0 to `0x80` over b
-frames; phase 3 holds it for c frames; phase 2 lowers it to 0 over d frames, and a negative d skips it
-(`0x0053E6A6`-`0x0053E78F`).
+<details>
+<summary>Where in the code</summary>
 
-When the countdown reaches 0 the runner takes the next fade (`+0x1490`) and scrolls again, state 1
-(`0x0053E796`-`0x0053E7AA`); while the level is 0 it keeps scrolling within the same frame (`0x0053EA3E`-`0x0053EA46`). While
-the roll waits for the movie (state 5) each pending fade's place moves with the lines still below the screen
-(`0x0053E7E3`-`0x0053E868`). The roll script calls `fsroll_fade` 67 times.
+| | Code |
+|---|---|
+| ¹ | `0x0053E9B9`-`0x0053E9E9` |
+| ² | `0x0053EA87`-`0x0053EA9F` |
+| ³ | `0x0053EAA5`-`0x0053EAAA` |
+| ⁴ | `0x0053EAB2`-`0x0053EAB9` |
+
+</details>
+
+Phase 1 raises the text level `+0x1494`, the alpha of the roll's text colour¹, from 0 to `0x80` over b
+frames; phase 3 holds it for c frames; phase 2 lowers it to 0 over d frames, and a negative d skips it².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053E101` |
+| ² | `0x0053E6A6`-`0x0053E78F` |
+
+</details>
+
+When the countdown reaches 0 the runner takes the next fade (`+0x1490`) and scrolls again, state 1¹; while the level is 0 it keeps scrolling within the same frame². While
+the roll waits for the movie (state 5) each pending fade's place moves with the lines still below the screen³. The roll script calls `fsroll_fade` 67 times.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053E796`-`0x0053E7AA` |
+| ² | `0x0053EA3E`-`0x0053EA46` |
+| ³ | `0x0053E7E3`-`0x0053E868` |
+
+</details>
 
 ### The language trees
 
@@ -173,6 +290,9 @@ each. Their credit files hold three sets of text:
   and 35,532 bytes.
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 [staff-roll.tsv](staff-roll.tsv): the 950 lines in the order the roll shows them.
 
@@ -200,6 +320,8 @@ names in `us`, 4 and 20 in `in`, 36 and 262 in the European set).
 Both tables are read from the decompiled `us` listing of `men_z0005` and the credit files `menu03.bin` and
 `menu04.bin` of each text set.
 
+</details>
+
 ## Modding notes
 
 - A line's text is a row number, so a roll can be re-credited by editing `menu03.bin` and `menu04.bin` alone;
@@ -222,77 +344,75 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Engine core** (explained on [global state accessors](../Engine-Core/global-state-accessors.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0053E380` | calls | `0x001EDEC0` |
+| [`0x0053E380`](staff-roll.md) | calls | [`0x001EDEC0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) |
 
 **Controls and input** (explained on [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00249810` | is called by | `0x00291C80` |
+| [`0x00249810`](staff-roll.md) | is called by | [`0x00291C80`](../Graphics/effect-file-list.md) (on effect file list) |
 
-**Graphics**
+**Graphics** (explained on [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md), [menu lists](menu-lists.md), [escape](../Controls-And-Input/escape.md), [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [btm exfont bitmaps](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md), [call signatures](../Engine-Core/call-signatures.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001EDEC0` | is called by | `0x002B7B80`, `0x002BAF80`, `0x002BC3E0`, `0x002D2DB0`, `0x00366B80` |
-| `0x00249FD0` | calls | `0x003A1DB0` |
-| `0x00249FD0` | is called by | `0x002B8EE0` |
-| `0x002D8BB0` | is called by | `0x0053E0B0` |
-| `0x002DDC50` | is called by | `0x003649A0`, `0x00366110`, `0x003F0170`, `0x00505570`, `0x00505E00` |
-| `0x0053E0B0` | calls | `0x003649A0` |
-| `0x0053E380` | calls | `0x0053E0B0` |
-
-**Graphics** (explained on [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md), [menu lists](menu-lists.md), [escape](../Controls-And-Input/escape.md), [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md))
-
-**Graphics** (explained on [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [btm exfont bitmaps](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md), [call signatures](../Engine-Core/call-signatures.md))
+| [`0x001EDEC0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) | is called by | [`0x002B7B80`](map-screens.md) (on map screens)<br>[`0x002BAF80`](widgets.md) (on widgets)<br>[`0x002BC3E0`](widgets.md) (on widgets)<br>[`0x002D2DB0`](widgets.md) (on widgets)<br>[`0x00366B80`](../Controls-And-Input/escape.md) (on escape) |
+| [`0x00249FD0`](../Game-Files-And-Data-Tables/ui-typed-lists.md) (on ui typed lists) | calls | [`0x003A1DB0`](../PhyreEngine/the-frame.md) Render command: submit current buffer and swap (on the frame) |
+| [`0x00249FD0`](../Game-Files-And-Data-Tables/ui-typed-lists.md) (on ui typed lists) | is called by | [`0x002B8EE0`](map-screens.md) (on map screens) |
+| [`0x002D8BB0`](staff-roll.md) | is called by | [`0x0053E0B0`](staff-roll.md) |
+| [`0x002DDC50`](battle-numbers.md) (on battle numbers) | is called by | [`0x003649A0`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps)<br>[`0x00366110`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps)<br>[`0x003F0170`](hud.md) (on hud)<br>[`0x00505570`](battle-numbers.md) (on battle numbers)<br>[`0x00505E00`](battle-numbers.md) (on battle numbers) |
+| [`0x0053E0B0`](staff-roll.md) | calls | [`0x003649A0`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps) |
+| [`0x0053E380`](staff-roll.md) | calls | [`0x0053E0B0`](staff-roll.md) |
 
 **Game files and data tables** (explained on [verb table](../Scripts-And-Script-Commands/verb-table.md), [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0053EB90` | calls | `0x002493D0`, `0x00249580` |
+| [`0x0053EB90`](staff-roll.md) | calls | [`0x002493D0`](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md) (on mrp menu resource packages)<br>[`0x00249580`](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md) (on mrp menu resource packages) |
 
 **Saving, loading and settings** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001EDEC0` | is called by | `0x00582860` |
-
-**Scripts and script commands**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00511610` | calls | `0x00267E10` |
-| `0x00511760` | calls | `0x00267E10` |
-| `0x00511810` | calls | `0x00267E10` |
-| `0x00511830` | calls | `0x00267E10` |
-| `0x00511890` | calls | `0x00267E10` |
-| `0x00511900` | calls | `0x00267E10` |
-| `0x00511980` | calls | `0x00267E10` |
-| `0x005119A0` | calls | `0x00267E10` |
-| `0x005119F0` | calls | `0x00267E10` |
-| `0x00511A40` | calls | `0x00267E10` |
-| `0x00511A60` | calls | `0x00267E10` |
-| `0x00511AC0` | calls | `0x00267E10` |
-| `0x00511B30` | calls | `0x00267E10` |
-
-**Scripts and script commands**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00511BD0` | calls | `0x00267E10` |
-| `0x00511DE0` | calls | `0x00267E10` |
-| `0x00511E00` | calls | `0x00267E10` |
-| `0x0053ED10` | is called by | `0x00511540` |
-| `0x0053EFC0` | is called by | `0x00511E00` |
-| `0x0053F0D0` | is called by | `0x00511610`, `0x00511760`, `0x00511810`, `0x00511830`, `0x00511890`, `0x00511900`, `0x00511980`, `0x005119A0`, `0x005119F0`, `0x00511A40`, `0x00511A60`, `0x00511AC0` |
+| [`0x001EDEC0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) | is called by | [`0x00582860`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 
 **Scripts and script commands** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [btm exfont bitmaps](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md), [verb table](../Scripts-And-Script-Commands/verb-table.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0053F0D0` | is also called by | `0x00511B30`, `0x00511BD0`, `0x00511DE0` |
+| [`0x00511610`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511760`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511810`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511830`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511890`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511900`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511980`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x005119A0`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x005119F0`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511A40`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511A60`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511AC0`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511B30`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511BD0`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511DE0`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00511E00`](staff-roll.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x0053ED10`](staff-roll.md) | is called by | [`0x00511540`](staff-roll.md) |
+| [`0x0053EFC0`](staff-roll.md) | is called by | [`0x00511E00`](staff-roll.md) |
+| [`0x0053F0D0`](staff-roll.md) | is called by | [`0x00511610`](staff-roll.md)<br>[`0x00511760`](staff-roll.md)<br>[`0x00511810`](staff-roll.md)<br>[`0x00511830`](staff-roll.md)<br>[`0x00511890`](staff-roll.md)<br>[`0x00511900`](staff-roll.md)<br>[`0x00511980`](staff-roll.md)<br>[`0x005119A0`](staff-roll.md)<br>[`0x005119F0`](staff-roll.md)<br>[`0x00511A40`](staff-roll.md)<br>[`0x00511A60`](staff-roll.md)<br>[`0x00511AC0`](staff-roll.md) |
+| [`0x0053F0D0`](staff-roll.md) | is also called by | [`0x00511B30`](staff-roll.md)<br>[`0x00511BD0`](staff-roll.md)<br>[`0x00511DE0`](staff-roll.md) |
 
 </details>

@@ -20,17 +20,45 @@ time.
 `0x00D26C90`, over the abstract `PStream` at `0x00D26C60`). It sets the Win32 handle `+0x28` to −1, the
 archive reader `+0x30` to 0, the cache view `+0x40` to −1, the key `+0x48` to 0 and the selector byte
 `+0x38`, and, for a non-null name, runs the resolver `0x0059EE90(stream + 0x20, name, 1)`. It keeps a
-copy of the name at `+0x10` (`0x001C26B0`) and the size the resolver found at `+0x20`. The constructor
+copy of the name at `+0x10`¹ and the size the resolver found at `+0x20`. The constructor
 ignores the resolver's status.
 
-The size starts at 0 (`0x0059798E`). After the resolver the constructor stores `0xB` in the dword `+0x08`
-(`0x005979C2`), 0 in the dword `+0x18`, and in the dword `+0x1C` the size, or −1 when the size is 0
-(`0x005979E9`-`0x00597A06`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C26B0` |
+
+</details>
+
+The size starts at 0¹. After the resolver the constructor stores `0xB` in the dword `+0x08`², 0 in the dword `+0x18`, and in the dword `+0x1C` the size, or −1 when the size is 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059798E` |
+| ² | `0x005979C2` |
+| ³ | `0x005979E9`-`0x00597A06` |
+
+</details>
 
 `0x00597930` builds the same `0x30`-byte frame without the stream. Its arguments are the frame, the name,
 `cacheable` and the selector: it sets size 0, handle −1, no archive reader, view −1, key 0 and the
-selector byte `+0x18` (`0x00597938`-`0x00597954`), runs the resolver with the caller's `cacheable` only for
-a non-null name (`0x0059795D`), copies no name and returns the frame.
+selector byte `+0x18`¹, runs the resolver with the caller's `cacheable` only for
+a non-null name², copies no name and returns the frame.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00597938`-`0x00597954` |
+| ² | `0x0059795D` |
+
+</details>
 
 | Slot | Body | What it does |
 |---|---|---|
@@ -50,57 +78,82 @@ destructor, reinstalls that vtable and frees an owned name the same way.
 
 - `0x00597A20` builds a `PStreamReaderFile` with no name: handle −1, view −1, no archive reader, and
   selector 1. It also sets size 0, key 0 and a null name, stores `0xB` in `+0x08`, 0 in `+0x18` and −1 in
-  `+0x1C` (`0x00597A2A`-`0x00597A5B`), and returns the stream.
+  `+0x1C`¹, and returns the stream.
 - `0x00597A70(stream, name)` builds a `PStreamWriterFile` (over `PStream`) with selector 0; it runs the
   resolver on the name with `cacheable` 0 and keeps a copy of the name. The resolver runs only for a
-  non-null name (`0x00597AA9`); the frame starts as in the reader constructors, the vtable is `0x00D26CD0`
-  (`0x00597AD3`), `+0x08` gets `0xB` and `+0x18` 0, and `+0x1C` is not written.
+  non-null name²; the frame starts as in the reader constructors, the vtable is `0x00D26CD0`
+ ³, `+0x08` gets `0xB` and `+0x18` 0, and `+0x1C` is not written.
 - `0x0059BD80(frame)` and `0x0059D900(frame)` are Close and IsOpen on the `+0x20` frame alone, for code
   that holds a frame without its stream; `0x001D6E80(frame)` closes one and frees it.
-- `0x0059FBA0(frame, offset, origin)` seeks with an origin: through the archive reader (`0x00215220`),
+- `0x0059FBA0(frame, offset, origin)` seeks with an origin: through the archive reader⁴,
   `SetFilePointer`, or a positive view (`0x0020C180` → `0x00217AD0`), the first that is set, and returns
   −1 when no route is.
-- Each `0x0059FBA0` route is a tail jump that returns its own result (`0x0059FBAC`, `0x0059FBC7`,
-  `0x0059FBD5`). `SetFilePointer` gets the offset as the low 32 bits with a null high part and the
+- Each `0x0059FBA0` route is a tail jump that returns its own result⁵. `SetFilePointer` gets the offset as the low 32 bits with a null high part and the
   origin as the move method; the view route enters `0x0020C180` through `0x001D6CE0`, which adds the cache
-  manager (`0x0020C700`).
+  manager⁶.
 - `0x0020C180(manager, view, offset, origin)` answers -1 itself for a null view
-  (`0x0020C186`-`0x0020C199`) and otherwise jumps to `0x00217AD0(view, offset, origin)`
-  (`0x0020C18B`-`0x0020C194`).
+ ⁷ and otherwise jumps to `0x00217AD0(view, offset, origin)`
+ ⁸.
 - `0x0019EAA0(…, name)` opens a name (selector 1), closes it when it opened, and returns whether it did.
 - `0x0059D510(stream, buffer, n)` reads through slot 5, adds the count to the stream's dword `+0x18`,
   and returns 0 when all n bytes came and 9 otherwise.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00597A2A`-`0x00597A5B` |
+| ² | `0x00597AA9` |
+| ³ | `0x00597AD3` |
+| ⁴ | `0x00215220` |
+| ⁵ | `0x0059FBAC`, `0x0059FBC7`, `0x0059FBD5` |
+| ⁶ | `0x0020C700` |
+| ⁷ | `0x0020C186`-`0x0020C199` |
+| ⁸ | `0x0020C18B`-`0x0020C194` |
+
+</details>
 
 ### The resolver
 
 `0x0059EE90(frame, name, cacheable)`:
 
-1. When the byte `0x01F83440` is set (`0x001D6B20`) and the name starts with
-   `PS2Data\obj_finish\in\chara\c10\` followed by `c1004`, `c1005`, `c1006` or `c1019` and a
-   backslash (`0x00865390` → `0x001DB050`, a case-sensitive prefix compare), the selector becomes 5.
-2. Selectors 3, 4 and 5 log nothing; selector 0 logs `[FFXII_data_notcache] %s`; any other selector
-   logs `[FFXII_data] %s` (`0x00D27910`, `0x00D27930`).
-3. Route 1, the RAM cache, is tried when `0x01F83440` is set, the selector is non-zero, `cacheable`
-   is set and the name passes the filter below. A view of 0 or more is a hit: the size goes to the
-   frame and the resolver returns 0.
-4. Otherwise route 2, the archive: the name is copied with one leading `/` or `\` dropped, a
-   lower-case backslash copy is converted to UTF-16 (`0x00599250`) and not used further, and a second
-   copy skips every leading `.`, `/` or `\`, turns `\` into `/` and lower-cases `A`-`Z`. That copy is
-   looked up in the archive (`0x0019AEE0`).
-5. A miss logs `[FFXII_ERROR] Big file open failed %s` (`0x00D27948`) and returns 10. A hit stores the
-   reader at frame `+0x10` and the size, copies the file into the cache when the backfill flag below is
-   set, and returns 0.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When the byte `0x01F83440` is set and the name starts with `PS2Data\obj_finish\in\chara\c10\` followed by `c1004`, `c1005`, `c1006` or `c1019` and a backslash (`0x00865390` → `0x001DB050`, a case-sensitive prefix compare), the selector becomes 5. | `0x001D6B20` |
+| 2 | Selectors 3, 4 and 5 log nothing; selector 0 logs `[FFXII_data_notcache] %s`; any other selector logs `[FFXII_data] %s`. | `0x00D27910`, `0x00D27930` |
+| 3 | Route 1, the RAM cache, is tried when `0x01F83440` is set, the selector is non-zero, `cacheable` is set and the name passes the filter below. A view of 0 or more is a hit: the size goes to the frame and the resolver returns 0. |   |
+| 4 | Otherwise route 2, the archive: the name is copied with one leading `/` or `\` dropped, a lower-case backslash copy is converted to UTF-16 and not used further, and a second copy skips every leading `.`, `/` or `\`, turns `\` into `/` and lower-cases `A`-`Z`. That copy is looked up in the archive. | `0x00599250`<br>`0x0019AEE0` |
+| 5 | A miss logs `[FFXII_ERROR] Big file open failed %s` and returns 10. A hit stores the reader at frame `+0x10` and the size, copies the file into the cache when the backfill flag below is set, and returns 0. | `0x00D27948` |
 
 The backfill flag is set on a route-1 miss when the byte
-`0x01F83441` (`0x001D6B90`) is 0 or the selector is 5, and then when `0x001D6B70` (byte `+0x88` of `0x001DADA0()`) is set or the
+`0x01F83441`¹ is 0 or the selector is 5, and then when `0x001D6B70` (byte `+0x88` of `0x001DADA0()`) is set or the
 selector is not 1. The flag is computed only on the route-1 path, and the key the backfill files
 under is the one route 1 stored, so a name that fails the filter, or is opened with selector 0 or
 without `cacheable`, is never copied into the cache.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D6B90` |
+
+</details>
+
 For step 1, `0x001DB050` builds each of the four prefixes in turn from `0x01DFD010` and the names at
-`0x01DFCFE8`, copies that many characters of the name (`strncpy`) and compares them
-(`0x001DB161`-`0x001DB195`), returning 1 on the first match and 0 after the fourth. A name no longer than
-the prefix never matches (`0x001DB13C`).
+`0x01DFCFE8`, copies that many characters of the name (`strncpy`) and compares them¹, returning 1 on the first match and 0 after the fourth. A name no longer than
+the prefix never matches².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DB161`-`0x001DB195` |
+| ² | `0x001DB13C` |
+
+</details>
 
 ### The name filter
 
@@ -113,21 +166,41 @@ three- or four-character extension and every name ending in `b` or `m`.
 
 ### Route 1: the RAM file cache
 
-`0x001D6D20` takes the cache manager (`0x0020C700`) and calls `0x0020C1B0(manager, name, selector, &size,
+`0x001D6D20` takes the cache manager¹ and calls `0x0020C1B0(manager, name, selector, &size,
 &key)`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020C700` |
+
+</details>
 
 - `0x0020C440` builds the key: it skips leading characters until the first letter or digit, turns `/`
   into `\`, copies through CRT `toupper` while dropping the first of two adjacent backslashes, and
   strips trailing spaces.
-- A null name leaves the key empty (`0x0020C443`). The name is first copied whole into a 256-byte stack
-  buffer with no length check (`0x0020C480`-`0x0020C48C`), so a name longer than 255 characters overruns it;
-  the key goes the same way into the 256-byte buffer `0x0020C1B0` gives (`0x0020C1F6`-`0x0020C213`).
+- A null name leaves the key empty¹. The name is first copied whole into a 256-byte stack
+  buffer with no length check², so a name longer than 255 characters overruns it;
+  the key goes the same way into the 256-byte buffer `0x0020C1B0` gives³.
 - An empty key returns −1. Otherwise the key is hashed with `0x00674A00` (seed `0x1505`,
   `hash × 33 + (signed char)c`, bit `0x80000000` cleared) and the hash is stored through the key pointer before
   the search.
 - Under the manager's lock (`+0x58`), the tree rooted at `+0x38` (header `+0x28`) is searched with
   unsigned compares on each node's dword `+0x20`. A miss returns −1.
 - A hit writes the entry's size, then `0x0020C300` builds the view.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020C443` |
+| ² | `0x0020C480`-`0x0020C48C` |
+| ³ | `0x0020C1F6`-`0x0020C213` |
+
+</details>
 
 `0x0020C300(manager, key, data, size, selector, kind)` adds one to the manager's `+0x88` and to the
 entry's byte `+0x10`, then stamps the entry:
@@ -136,39 +209,107 @@ entry's byte `+0x10`, then stamps the entry:
 - otherwise kind 5 or selector 5: no stamp;
 - otherwise selector 3: word `+0x0E` takes the word at `[manager + 0x18] + 0xE8`;
 - otherwise selector 1, 2 or 4: word `+0x0C` takes the manager's word `+0x80`;
-- otherwise, selector 0 or above 5: no stamp (`0x0020C398`-`0x0020C3A0`).
+- otherwise, selector 0 or above 5: no stamp¹.
 
-It then allocates a 16-byte view `{data, size, position 0}` (`0x00217A60`). When that allocation fails
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020C398`-`0x0020C3A0` |
+
+</details>
+
+It then allocates a 16-byte view `{data, size, position 0}`¹. When that allocation fails
 it returns 0, which the resolver takes as a hit: the stream is left with no readable backing, IsOpen
 true, and every Read returning 0.
 
-It finds the entry by key each time it touches it (`0x0020B5F0`) and runs under the manager's lock, which
-both of its callers hold: `0x0020C1B0` for a hit (`0x0020C23C`, `0x0020C2A8`) and `0x0020B680` for a key that is
-already present (`0x0020B6B3`, `0x0020B726`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00217A60` |
+
+</details>
+
+It finds the entry by key each time it touches it¹ and runs under the manager's lock, which
+both of its callers hold: `0x0020C1B0` for a hit² and `0x0020B680` for a key that is
+already present³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020B5F0` |
+| ² | `0x0020C23C`, `0x0020C2A8` |
+| ³ | `0x0020B6B3`, `0x0020B726` |
+
+</details>
 
 ### Reading a cache view
 
 A view read `0x00217A70(view, buffer, n)` returns `FFFFFFFF` for a null buffer. It computes
 `position + n` as a 32-bit sum and, when that exceeds the size, takes `size − position` instead; it
 copies that many bytes from `data + position` and advances the position. A wrapped sum keeps the full
-request. It returns the count it copied; a count of 0 copies nothing and returns 0 (`0x00217AAA`).
+request. It returns the count it copied; a count of 0 copies nothing and returns 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00217AAA` |
+
+</details>
 
 A view seek `0x00217AD0(view, offset, origin)` sets the position to the offset (origin 0), the
 position plus the offset (1) or the size plus the offset (2), leaves it for any other origin, and then
-clamps it to the size; there is no lower clamp. The clamp compares unsigned (`0x00217AFF`), so a position
-that would go below 0 lands on the size. The seek returns the new position (`0x00217B05`).
+clamps it to the size; there is no lower clamp. The clamp compares unsigned¹, so a position
+that would go below 0 lands on the size. The seek returns the new position².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00217AFF` |
+| ² | `0x00217B05` |
+
+</details>
 
 Releasing a view, `0x0020B9A0(manager, key, view)`, takes the lock, finds the entry by key and lowers its
 byte `+0x10` by one unless it is 0, and then frees the 16-byte view whether or not the key was found.
-It returns 1; a null view returns 0 at once, without the lock (`0x0020B9BA`), and `0x001D6AA0` passes the
-answer on as 0 or 1 (`0x001D6AC8`). The cached bytes stay in the cache.
+It returns 1; a null view returns 0 at once, without the lock¹, and `0x001D6AA0` passes the
+answer on as 0 or 1². The cached bytes stay in the cache.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020B9BA` |
+| ² | `0x001D6AC8` |
+
+</details>
 
 In `0x0020B9A0` the lock is `manager + 0x58`, taken with `0x005CD4F0` and dropped with
-`0x005CD820`; the entry is looked up by the dword key `+0x20` in the tree at `manager + 0x28`
-(`0x0020B9C0`-`0x0020BA22`). The counted byte is `+0x10` of the object the entry's `+0x28` points
-to, not of the entry itself (`0x0020BA0D`-`0x0020BA1B`).
-Between the unlock and the free the view goes to `0x0016D6A0`, which only returns
-(`0x0020BA2A`); the free is `0x00809950(view, 0x10)` (`0x0020BA2F`-`0x0020BA37`).
+`0x005CD820`; the entry is looked up by the dword key `+0x20` in the tree at `manager + 0x28`¹. The counted byte is `+0x10` of the object the entry's `+0x28` points
+to, not of the entry itself².
+Between the unlock and the free the view goes to `0x0016D6A0`, which only returns³; the free is `0x00809950(view, 0x10)`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020B9C0`-`0x0020BA22` |
+| ² | `0x0020BA0D`-`0x0020BA1B` |
+| ³ | `0x0020BA2A` |
+| ⁴ | `0x0020BA2F`-`0x0020BA37` |
+
+</details>
 
 `0x0020C150(cache, view, buffer, n)` is the read that slot 5 reaches through `0x001D6CA0`: it calls
 `0x00217A70` when the view and the count are both non-zero and returns 0 otherwise.
@@ -182,28 +323,65 @@ reader and the Win32 handle, and inserts the buffer under the key with the selec
 (`0x001D6A20` → `0x0020B680`). The view the insertion returns becomes the stream's `+0x40`, so later reads
 come from the cache; a result of 0 or less frees the buffer again.
 
-With no buffer it returns −1 at once and reads and closes nothing (`0x0059A9E1`). The value the log
-prints is the key (`0x0059AA47`), and a short read is still inserted, under the full size. The handle
-is closed with `SetEndOfFile` and then `CloseHandle` and set to −1 (`0x0059AA7B`-`0x0059AA8B`). The free
-after a result of 0 or less goes through `0x001D6B00` (`0x0059AABC`); when the key was already present
+With no buffer it returns −1 at once and reads and closes nothing¹. The value the log
+prints is the key², and a short read is still inserted, under the full size. The handle
+is closed with `SetEndOfFile` and then `CloseHandle` and set to −1³. The free
+after a result of 0 or less goes through `0x001D6B00`⁴; when the key was already present
 `0x0020B680` has freed the buffer before, so a failed view allocation there frees it twice.
 
-`0x0020B680(cache, key, &buffer, size, kind)`, under the lock `+0x58` (`0x0020B6B3`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059A9E1` |
+| ² | `0x0059AA47` |
+| ³ | `0x0059AA7B`-`0x0059AA8B` |
+| ⁴ | `0x0059AABC` |
+
+</details>
+
+`0x0020B680(cache, key, &buffer, size, kind)`, under the lock `+0x58`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020B6B3` |
+
+</details>
 
 - **New key.** It adds a descriptor `{data +0, size +8, word +0x0C, word +0x0E, byte +0x10 = 1,
-  kind +0x14}` under the key (`0x0020B5F0`). Kind 5 gets `+0x0C` = 0; kind 3 gets `+0x0E` from
+  kind +0x14}` under the key¹. Kind 5 gets `+0x0C` = 0; kind 3 gets `+0x0E` from
   `[cache + 0x18] + 0xE8`; any other kind gets `+0x0C` from the cache's word `+0x80` and `+0x0E` =
   −1. It returns a new view and adds the size to the cache's byte total `+0x90`.
-- The descriptor is a record from the pool (`0x001BA860`, `0x0020B746`). Kind 5 also gets `+0x0E` = 0 (one
-  dword store, `0x0020B778`) and kind 3 gets `+0x0C` = 0 (`0x0020B79F`). The lock is released before the
-  view is made (`0x0020B7E8`); a failed view allocation returns 0 and leaves the entry with its one view
-  counted (`0x0020B802`).
+- The descriptor is a record from the pool². Kind 5 also gets `+0x0E` = 0 (one
+  dword store, `0x0020B778`) and kind 3 gets `+0x0C` = 0³. The lock is released before the
+  view is made⁴; a failed view allocation returns 0 and leaves the entry with its one view
+  counted⁵.
 - With the pool empty no descriptor is filed, but the view is still made over the buffer and the size
-  still added to `+0x90` (`0x0020B75B`); no entry then holds the buffer, so neither eviction nor the view
+  still added to `+0x90`⁶; no entry then holds the buffer, so neither eviction nor the view
   release frees it.
-- **Key already present.** It frees the incoming buffer (`0x0020B0F0`) and returns a view of the
+- **Key already present.** It frees the incoming buffer⁷ and returns a view of the
   existing entry through `0x0020C300`, which gets this call's kind as its selector and the entry's own
-  kind (`0x0020B6F4`-`0x0020B726`).
+  kind⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020B5F0` |
+| ² | `0x001BA860`, `0x0020B746` |
+| ³ | `0x0020B79F` |
+| ⁴ | `0x0020B7E8` |
+| ⁵ | `0x0020B802` |
+| ⁶ | `0x0020B75B` |
+| ⁷ | `0x0020B0F0` |
+| ⁸ | `0x0020B6F4`-`0x0020B726` |
+
+</details>
 
 ### The cache's memory budget and eviction
 
@@ -214,10 +392,23 @@ with `{data 0, size 0, +0x0C 0, +0x0E −1, views 0, kind 1}`.
 
 `0x0020B150(pool, n, flag)` zeroes the vector, starts empty sets at pool `+0x20` and `+0x58`, sizes the
 vector to n records of `0x18` bytes (`0x0020C560`, which also shrinks a longer one) and files each
-record's address in the `+0x20` set (`0x00199DB0`, `0x0020B270`-`0x0020B29F`). The lock at pool `+0x90` is set
-up (`0x005CC8A0`) and created only for a non-zero flag (`0x005CD0A0`, `0x0020B2A1`). The cache passes 0
-(`0x0020B3B1`) and n = (`[0x01F83448]` >> 31) × 10,000, held to 10,000 to 1,000,000 (`0x0020B37C`-`0x0020B3A6`).
-`0x001BA860` hands out records from the `+0x20` set, and 0 when it is empty (`0x001BA887`).
+record's address in the `+0x20` set¹. The lock at pool `+0x90` is set
+up² and created only for a non-zero flag³. The cache passes 0⁴ and n = (`[0x01F83448]` >> 31) × 10,000, held to 10,000 to 1,000,000⁵.
+`0x001BA860` hands out records from the `+0x20` set, and 0 when it is empty⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00199DB0`, `0x0020B270`-`0x0020B29F` |
+| ² | `0x005CC8A0` |
+| ³ | `0x005CD0A0`, `0x0020B2A1` |
+| ⁴ | `0x0020B3B1` |
+| ⁵ | `0x0020B37C`-`0x0020B3A6` |
+| ⁶ | `0x001BA887` |
+
+</details>
 
 
 `0x0020B130(cache, size)` refuses an allocation when the usage `+0x10` is above the limit `+0x00`;
@@ -227,29 +418,70 @@ from the usage and frees it.
 
 When the allocation fails, `0x0020BFA0` takes the lock `+0x58` and frees unprotected entries in
 ascending key order, walking the key map from its first node (`+0x30`, the header's left link) with `0x0016D6D0`, until
-`max(200,000,000, 3 × size)` bytes are released, `3 × size` a 32-bit product (`0x0020BFF0`). It never
+`max(200,000,000, 3 × size)` bytes are released, `3 × size` a 32-bit product¹. It never
 reads its third argument.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020BFF0` |
+
+</details>
+
 Each freed entry leaves the byte total, the key map and the count `+0x48`: its buffer goes through
-`0x0020B0F0`, its record back to the pool at `+0x98` (`0x002124C0`) and its node to the allocator at `+0x50`
-(`0x0020C0C0`). An entry is protected when:
+`0x0020B0F0`, its record back to the pool at `+0x98`¹ and its node to the allocator at `+0x50`². An entry is protected when:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002124C0` |
+| ² | `0x0020C0C0` |
+
+</details>
 
 - its byte `+0x10` is non-zero or its kind is 5;
 - its word `+0x0E` is not negative and equals `[[cache + 0x18] + 0xE8]`;
 - its word `+0x0C` is positive and equals the cache's `+0x80` or `+0x84`.
 
 When the walk reaches the end short of the target it calls `0x0020B840(cache, remaining, 1, 0)`; a walk
-that meets the target stops there. It then retries the allocation (`0x0020C10F`). While that fails it
-walks again from the first node, unless the last walk reached the end, in which case it returns null
-(`0x0020C11C`); it unlocks before it returns (`0x0020C127`).
+that meets the target stops there. It then retries the allocation¹. While that fails it
+walks again from the first node, unless the last walk reached the end, in which case it returns null²; it unlocks before it returns³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020C10F` |
+| ² | `0x0020C11C` |
+| ³ | `0x0020C127` |
+
+</details>
 
 `0x0020B840` applies the same tests (the `+0x0E` and `+0x0C` ones only while its fourth argument is 0,
 the `+0x84` one only while its third is 0), walks twice when the first pass falls short, and returns
 whether the walk reached the end of the list. The second walk runs only while the third argument is 0;
-it then sets it and asks for what the first walk left (`0x0020B96B`-`0x0020B976`), so the call from
-`0x0020BFA0` walks once. An amount of 0 returns 1 at once (`0x0020B86D`).
+it then sets it and asks for what the first walk left¹, so the call from
+`0x0020BFA0` walks once. An amount of 0 returns 1 at once².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020B96B`-`0x0020B976` |
+| ² | `0x0020B86D` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Stream:
 
@@ -308,7 +540,12 @@ Cache manager:
 | other | doubled `\` collapsed, trailing spaces stripped | nothing |
 | hash | 33-multiplicative, 31 bits | MD5, 128 bits |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 `.dat` and `.bin` name no single format; the leading four bytes of every shipped entry under them:
 
@@ -324,6 +561,8 @@ The formats behind them are on the
 [character SE tables](character-se-tables-chse.md) and
 [loader-bound bin families](ps2data-bin-families.md) pages.
 
+</details>
+
 ## Operations
 
 Per open: one key build and tree search when route 1 applies, otherwise two string copies, one MD5 and
@@ -331,8 +570,13 @@ one archive lookup; a backfill reads the whole file once more into the cache.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The cache manager (its tree, entry list, byte totals, limit, usage and protected words), the two cache
 flags `0x01F83440` and `0x01F83441`, and each open stream's backing fields.
+
+</details>
 
 ## Modding notes
 

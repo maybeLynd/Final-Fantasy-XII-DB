@@ -8,7 +8,16 @@
 
 The main story counter is the signed 16-bit word at the start of the save payload. Script variable slot 0 is bound to
 the payload base (`0x0026CAF8`-`0x0026CAFD`, through the slot pointer `0x02098E58` and `0x002EF2B0`), and the native reader
-is `FieldData_GetVariable0` (`0x00265270`). [Story flags](story-flags.md) shows the menus and map groups it unlocks.
+is `FieldData_GetVariable0`¹. [Story flags](story-flags.md) shows the menus and map groups it unlocks.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265270` |
+
+</details>
 
 The `unlocks` column gives what is gated on the counter reaching each value, placed on the lowest value here at or
 above the gate's threshold, with `(at least N)` when the two differ: the shop lists whose condition is story progress
@@ -130,8 +139,17 @@ names cover 310 of the 313 values.
   line with the shipped name.
 
 The map names come from the field each writing script loads as: the script's field id in the `us` zone path
-table (`0x01EE23A0`), the area name at that id in `planmapname.bin`, and the region from the field's group word in
+table¹, the area name at that id in `planmapname.bin`, and the region from the field's group word in
 `map_ref.bin`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01EE23A0` |
+
+</details>
 
 Actor and function names are the ones the scripts carry.
 

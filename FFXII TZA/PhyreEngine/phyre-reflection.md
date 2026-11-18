@@ -19,41 +19,114 @@ Each reflected class has one descriptor, a `Phyre::PClassDescriptor` object of `
 constructor `0x00632D80(descriptor, namespace, name, size, alignment, parent, adjust)` empties the six
 list heads, stores the name pointer at `+0x30`, the instance size at `+0x38`, the alignment at
 `+0x3C`, the namespace at `+0x70`, the parent descriptor at `+0x78` and the adjustment at `+0xF0`,
-and takes the next value of the global counter `0x02CF8260` as its index at `+0xE8` (`0x00632E39`-`0x00632E45`).
+and takes the next value of the global counter `0x02CF8260` as its index at `+0xE8`¹.
 `0x00632C90` is the same without a parent or adjustment.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00632E39`-`0x00632E45` |
+
+</details>
+
 Both also point the three type-tree links `+0x08`, `+0x10` and `+0x18` at `+0x08`, zero the hash `+0x20` and the
-key `+0x28` (`0x00632D8E`-`0x00632DA1`), zero the hooks `+0x40` and `+0x48`, install the vtable `0x00D581C0`
-(`0x00632DCE`), zero the five words `+0xC0` to `+0xE0`, store `0xFFFFFFFF` at `+0xEC` and return the descriptor.
-`0x00632D80` zeroes `+0xF4` and `+0xF8` with one 8-byte store (`0x00632E62`) and the flags `+0xFC` (`0x00632E69`).
-`0x00632C90` stores 0 in `+0x78` (`0x00632CEC`) and zeroes `+0xF0` to `+0xFF` with two 8-byte stores (`0x00632D63`,
-`0x00632D6A`).
+key `+0x28`¹, zero the hooks `+0x40` and `+0x48`, install the vtable `0x00D581C0`², zero the five words `+0xC0` to `+0xE0`, store `0xFFFFFFFF` at `+0xEC` and return the descriptor.
+`0x00632D80` zeroes `+0xF4` and `+0xF8` with one 8-byte store³ and the flags `+0xFC`⁴.
+`0x00632C90` stores 0 in `+0x78`⁵ and zeroes `+0xF0` to `+0xFF` with two 8-byte stores⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00632D8E`-`0x00632DA1` |
+| ² | `0x00632DCE` |
+| ³ | `0x00632E62` |
+| ⁴ | `0x00632E69` |
+| ⁵ | `0x00632CEC` |
+| ⁶ | `0x00632D63`, `0x00632D6A` |
+
+</details>
 
 The vtable it installs is replaced by the class's own: `PClassDescriptorAbstract<T>`,
 `PClassDescriptorConcrete<T>` or `PClassDescriptorForType<T>`, all derived from `PClassDescriptor`,
 which derives from `Phyre::PType`.
 
-`PClassDescriptorDynamic` (`0x00632E80`) is a `0x140`-byte form that copies its name and is built at
+`PClassDescriptorDynamic`¹ is a `0x140`-byte form that copies its name and is built at
 load time for a class no code registers.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00632E80` |
+
+</details>
+
 `0x00632E80(descriptor, namespace, name, parent)` calls `0x00632D80` with the parent's instance size `+0x38` as the
-size, the parent's alignment `+0x3C` and the negated parent size as the adjustment (`0x00632EA6`-`0x00632EC1`). It reads
-the parent without a null test; `0x0059AC00` skips a class whose parent has no descriptor (`0x0059ACD5`), and
-`0x0062FB80` gives `PBase` (`0x02CF8270`).
+size, the parent's alignment `+0x3C` and the negated parent size as the adjustment¹. It reads
+the parent without a null test; `0x0059AC00` skips a class whose parent has no descriptor², and
+`0x0062FB80` gives `PBase`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00632EA6`-`0x00632EC1` |
+| ² | `0x0059ACD5` |
+| ³ | `0x02CF8270` |
+
+</details>
 
 It installs its vtable `0x00D58380`, zeroes the two words at `+0x100` and the three pairs at `+0x108`, stores the
 parent's size at `+0x104`, copies the name with `0x001C26B0` into `+0x138` (0 for a null name), points `+0x30` at the
-copy with bit `0x1` cleared and sets flag bit `0x1` (`0x00632F18`).
+copy with bit `0x1` cleared and sets flag bit `0x1`¹.
 
-It then computes the offsets (`0x0063E410`), grows the default instance and masks (`0x0063AE50`), clears flag bit
-`0x80000000` (`0x00632F3C`) and builds the default instance and masks (`0x00639A60`, then `0x00639C80`, each given 0),
-using no result of these calls. When the default instance `+0xC0` exists, the class is `PComponent` (`0x02E4E720`) or
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00632F18` |
+
+</details>
+
+It then computes the offsets¹, grows the default instance and masks², clears flag bit
+`0x80000000`³ and builds the default instance and masks (`0x00639A60`, then `0x00639C80`, each given 0),
+using no result of these calls. When the default instance `+0xC0` exists, the class is `PComponent`⁴ or
 derives from it, and the instance size is at least `0x18`, it stores the descriptor in the default instance's
-class-descriptor field `+0x10`, counted from the layout base `+0xF8` (`0x00632F5A`-`0x00632F8D`). It returns the
+class-descriptor field `+0x10`, counted from the layout base `+0xF8`⁵. It returns the
 descriptor.
 
-`0x0062FB80` builds one in place with no name under `PBase` in the default namespace (`0x006373D0`) when its address
-argument is non-null (`0x0062FB9E`), and returns 1 either way.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063E410` |
+| ² | `0x0063AE50` |
+| ³ | `0x00632F3C` |
+| ⁴ | `0x02E4E720` |
+| ⁵ | `0x00632F5A`-`0x00632F8D` |
+
+</details>
+
+`0x0062FB80` builds one in place with no name under `PBase` in the default namespace¹ when its address
+argument is non-null², and returns 1 either way.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006373D0` |
+| ² | `0x0062FB9E` |
+
+</details>
 
 Its attach slot
 `0x00639290` counts accepted members in the two words at `+0x100` and `+0x102`, and when they differ
@@ -61,27 +134,66 @@ first rebuilds the descriptor through `0x0063D550` (empty the six lists, copy th
 alignment, recompute the offsets through `0x0063E410`).
 
 Its attach slot `0x00639290(descriptor, member, third)` answers 0 at once, counting nothing, for a member whose
-qword `+0x20` equals the qword at `0x01F2DF28` (`0x0063929F`-`0x006392B5`). Otherwise, after the rebuild, it attaches
-through `0x0062EFD0(descriptor, member, third)`; a non-zero answer is returned with nothing counted
-(`0x006392E5`-`0x006392EE`). After the two counts it calls `0x0063D930(descriptor, third)` and answers 0
-(`0x006392F0`-`0x00639304`).
+qword `+0x20` equals the qword at `0x01F2DF28`¹. Otherwise, after the rebuild, it attaches
+through `0x0062EFD0(descriptor, member, third)`; a non-zero answer is returned with nothing counted². After the two counts it calls `0x0063D930(descriptor, third)` and answers 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063929F`-`0x006392B5` |
+| ² | `0x006392E5`-`0x006392EE` |
+| ³ | `0x006392F0`-`0x00639304` |
+
+</details>
 
 `0x0063D930(descriptor, third)` runs `0x0063AE50(descriptor)`, clears flag bit `0x80000000` of `+0xFC` and runs
-`0x00639A60(descriptor, third)` and `0x00639C80(descriptor, third)` (`0x0063D940`-`0x0063D960`). For a null `third`,
+`0x00639A60(descriptor, third)` and `0x00639C80(descriptor, third)`¹. For a null `third`,
 when the default instance `+0xC0` exists, the class is `0x02E4E720` or reaches it through `+0x78`, and the size
 `+0x38` is `0x18` or more, it stores the descriptor at `[+0xC0] + [+0xF8] + 0x10`, the dword `+0xF8` taken
-signed (`0x0063D965`-`0x0063D9A6`).
+signed².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063D940`-`0x0063D960` |
+| ² | `0x0063D965`-`0x0063D9A6` |
+
+</details>
 
 `0x0063D550` itself rebuilds when the two words differ or are both 0, and keeps the descriptor when they are equal
-and non-zero (`0x0063D556`-`0x0063D56C`). The rebuild points the six lists `+0x50`, `+0x80`, `+0x90`, `+0xA0`, `+0xB0`
-and `+0x60` at themselves and zeroes both words (`0x0063D572`-`0x0063D5E0`). With a parent `+0x78` it also stores the
+and non-zero¹. The rebuild points the six lists `+0x50`, `+0x80`, `+0x90`, `+0xA0`, `+0xB0`
+and `+0x60` at themselves and zeroes both words². With a parent `+0x78` it also stores the
 parent's size in `+0x104` and `+0x38`, its alignment in `+0x3C` and `-[parent+0x38]` in `+0xF0`, then calls
-`0x0063E410` (`0x0063D5EF`-`0x0063D60F`); without a parent the rebuild ends after the lists and the two words.
+`0x0063E410`³; without a parent the rebuild ends after the lists and the two words.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063D556`-`0x0063D56C` |
+| ² | `0x0063D572`-`0x0063D5E0` |
+| ³ | `0x0063D5EF`-`0x0063D60F` |
+
+</details>
 
 Rebuilt or not, `0x0063D550` then refreshes the name
-pointer `+0x30` from `+0x138` and tail-jumps to `0x0063AE50` (`0x0063D634`), which grows the default instance
+pointer `+0x30` from `+0x138` and tail-jumps to `0x0063AE50`¹, which grows the default instance
 `+0x110` and the two mask buffers `+0x120` and `+0x130` to the instance size `+0x38`, zeroes the added bytes
 and points `+0xC0`, `+0xC8` and `+0xD0` at them; it returns `0xD` when the allocation fails.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063D634` |
+
+</details>
 
 A dynamic class's members are placed one after another. `0x0063C630`, called from `0x006393A0`, takes
 the member's width and alignment from its type (8 and 8 for attribute bit `0x2`), aligns the running
@@ -96,65 +208,160 @@ at `+0x58`, and places the record through `0x0063D410` when its owner is dynamic
 
 A class is registered in two steps:
 
-1. Its descriptor is built. For most classes this runs before `main`: the C runtime's initialiser
-   table holds `0x001603E0`, which calls the Abstract constructor `0x005A7ED0` (`0x00632D80`, see below), clears
-   bit `0x2` (`0x001603F0`), installs the Concrete vtable `0x00D29E90` (`0x00160405`) and registers the teardown
-   `0x008A8E20` (`0x00160410`).
-   Template classes such as `PArray<T>` are built on first use inside a thread-safe static.
-2. Its members are registered by descriptor slot `+0x60` (for `PAnimatableComponent`, `0x005A25E0`
-   jumps to `0x005AD8F0`), each member behind its own thread-safe static, and the function ends in the
-   finaliser `0x00639450`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Its descriptor is built. For most classes this runs before `main`: the C runtime's initialiser table holds `0x001603E0`, which calls the Abstract constructor `0x005A7ED0` (`0x00632D80`, see below), clears bit `0x2`, installs the Concrete vtable `0x00D29E90` and registers the teardown `0x008A8E20`. Template classes such as `PArray<T>` are built on first use inside a thread-safe static. | `0x001603F0`<br>`0x00160405`<br>`0x00160410` |
+| 2 | Its members are registered by descriptor slot `+0x60` (for `PAnimatableComponent`, `0x005A25E0` jumps to `0x005AD8F0`), each member behind its own thread-safe static, and the function ends in the finaliser `0x00639450`. |   |
 
 For `PAnimatableComponent`, `0x005A7ED0` calls `0x00632D80(…, "PAnimatableComponent", 0x108, 8, …, 8)` on the
-static descriptor `0x02CAD140` (`0x005A7F1A`), the parent `…` being `PComponent` (`0x02E4E720`). It installs the
-Abstract vtable `0x00D29BF0` (`0x005A7F27`), sets flag `+0xFC` bit `0x2` (`0x005A7F2A`), registers the three buffers
-below (`0x0063DC80`, `0x0063DF90`, `0x0063DFA0`) and returns the descriptor (`0x005A7F5F`).
+static descriptor `0x02CAD140`¹, the parent `…` being `PComponent`². It installs the
+Abstract vtable `0x00D29BF0`³, sets flag `+0xFC` bit `0x2`⁴, registers the three buffers
+below⁵ and returns the descriptor⁶.
 
-The finaliser calls `0x00639160(namespace, descriptor)` (`0x00639460`), which looks the name `+0x30` up in the
-namespace (`0x0063BA10`, `0x0063917C`). Finding the descriptor itself, it returns at once (`0x00639189`). Finding another
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A7F1A` |
+| ² | `0x02E4E720` |
+| ³ | `0x005A7F27` |
+| ⁴ | `0x005A7F2A` |
+| ⁵ | `0x0063DC80`, `0x0063DF90`, `0x0063DFA0` |
+| ⁶ | `0x005A7F5F` |
+
+</details>
+
+The finaliser calls `0x00639160(namespace, descriptor)`¹, which looks the name `+0x30` up in the
+namespace². Finding the descriptor itself, it returns at once³. Finding another
 class of that name, it reports a second class of the same name: it tail-jumps to the log call `0x005CDAA0` on
 channel 2 with the message that a class descriptor of that name already exists in this namespace, and links
-nothing (`0x0063918F`-`0x006391AD`).
+nothing⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00639460` |
+| ² | `0x0063BA10`, `0x0063917C` |
+| ³ | `0x00639189` |
+| ⁴ | `0x0063918F`-`0x006391AD` |
+
+</details>
 
 Otherwise it links the descriptor's `+0x50` node into the namespace's
-class list: at the front, or straight after its parent when the parent belongs to the same namespace
-(`0x00639208`-`0x00639244`). When the namespace held no class before and is not the default namespace, it then links
-the namespace's own node `+0x00` at the front of the default namespace's child list `+0x28` (`0x0063924C`-`0x00639277`).
+class list: at the front, or straight after its parent when the parent belongs to the same namespace¹. When the namespace held no class before and is not the default namespace, it then links
+the namespace's own node `+0x00` at the front of the default namespace's child list `+0x28`².
 
-Before it links, a namespace in state 2 logs "Adding class '%s' to namespace after initialization" on channel 1
-(`0x006391E0`-`0x006391F2`).
-When the namespace state is 1 or 2 it also computes the layout offsets (`0x0063E410`). The finaliser
-then sets `+0xFC` bit `0x40000000`, the mark that members are registered (`0x00639465`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00639208`-`0x00639244` |
+| ² | `0x0063924C`-`0x00639277` |
+
+</details>
+
+Before it links, a namespace in state 2 logs "Adding class '%s' to namespace after initialization" on channel 1¹.
+When the namespace state is 1 or 2 it also computes the layout offsets². The finaliser
+then sets `+0xFC` bit `0x40000000`, the mark that members are registered³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006391E0`-`0x006391F2` |
+| ² | `0x0063E410` |
+| ³ | `0x00639465` |
+
+</details>
 
 For a dynamic class (bit `0x1` of `+0xFC`) the finaliser then resets the tree node at `+0x08`, its links at
 `+0x08`, `+0x10` and `+0x18` to the node itself and `+0x20` and `+0x28` to 0, and tail-jumps to `0x006388C0`, which
-enters the descriptor in the type tree (`0x00639478`-`0x0063949D`). Any other class returns there (`0x006394A7`).
+enters the descriptor in the type tree¹. Any other class returns there².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00639478`-`0x0063949D` |
+| ² | `0x006394A7` |
+
+</details>
 
 ### Layout offsets
 
 `0x0063E410` sums `+0xF0` over the class and every ancestor up to the root descriptor `0x02CF8270`
-into `+0xF4`, the root's own `+0xF0` left out (`0x0063E416`-`0x0063E448`), and stores the class's own non-negative
+into `+0xF4`, the root's own `+0xF0` left out¹, and stores the class's own non-negative
 `+0xF0` plus the parent's `+0xF8` in `+0xF8`, that is `max([+0xF0], 0) + [parent+0xF8]`, with 0 for the parent's
-part when there is no parent (`0x0063E44A`-`0x0063E47F`).
+part when there is no parent².
 
-A member's position in an object is its registered offset minus the owning class's `+0xF4`
-(`0x0063C910`, `0x00639C80`, `0x0063CB80`). `PAnimatableComponent` passes 8: its reflected layout starts
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063E416`-`0x0063E448` |
+| ² | `0x0063E44A`-`0x0063E47F` |
+
+</details>
+
+A member's position in an object is its registered offset minus the owning class's `+0xF4`¹. `PAnimatableComponent` passes 8: its reflected layout starts
 8 bytes into the object, after the vtable pointer. Its member visitor `0x005A2390` is handed the
-object and forms `object + 8` itself (`0x005A2399`), keeping a null object null (`0x005A23A8`), before
-it calls `0x0063E2E0` on `0x02CAD140` (`0x005A23B3`, `0x005A23D0`). Descriptor slot `+0x58` (`0x0063FC60`)
+object and forms `object + 8` itself², keeping a null object null³, before
+it calls `0x0063E2E0` on `0x02CAD140`⁴. Descriptor slot `+0x58`⁵
 steps back 8 bytes to call the object's own destructor.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063C910`, `0x00639C80`, `0x0063CB80` |
+| ² | `0x005A2399` |
+| ³ | `0x005A23A8` |
+| ⁴ | `0x005A23B3`, `0x005A23D0` |
+| ⁵ | `0x0063FC60` |
+
+</details>
 
 ### The type tree and the namespace
 
 `0x006388C0` registers a descriptor in the global type tree whose header is `0x01F2E780` (returned by
 `0x00637440`). It hashes the name `+0x30` from `0x7B5`, multiplying by 33 and adding the low five bits of each
-byte (`0x00638920`-`0x0063892A`) and stores the hash at `+0x20` and the name at `+0x28` (`0x00638976`, `0x0063897C`).
-`0x006314B0` then links `+0x08` into the ordered tree at the end of its walk (`0x00631589`-`0x0063159F`), `0x0067F700`
-rebalances the tree (`0x00638998`), and `0x006388C0` returns true.
+byte¹ and stores the hash at `+0x20` and the name at `+0x28`².
+`0x006314B0` then links `+0x08` into the ordered tree at the end of its walk³, `0x0067F700`
+rebalances the tree⁴, and `0x006388C0` returns true.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00638920`-`0x0063892A` |
+| ² | `0x00638976`, `0x0063897C` |
+| ³ | `0x00631589`-`0x0063159F` |
+| ⁴ | `0x00638998` |
+
+</details>
 
 It returns false when the name is already present (`0x006311D0` finds it, `0x0063894A`); when the name `+0x30` is
-null, before the tree is touched (`0x006388D4`-`0x006388E2`); and when `0x006314B0` returns non-zero, after `+0x20` and
-`+0x28` are written (`0x0063898A`).
+null, before the tree is touched¹; and when `0x006314B0` returns non-zero, after `+0x20` and
+`+0x28` are written².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006388D4`-`0x006388E2` |
+| ² | `0x0063898A` |
+
+</details>
 
 The lookup `0x006311D0` orders by hash first and compares the full string on equal hashes, so case-only
 differences collide in the hash but never match.
@@ -167,10 +374,19 @@ A namespace is a separate structure: the default one is `0x01F2E330` (returned b
 classes hang off `+0x10`, and child namespaces off `+0x28`. `0x0063BA10` searches a namespace's own
 classes, then each child namespace, with an exact byte comparison.
 
-`0x0063BA10(namespace, name)` returns 0 for a null name (`0x0063BA2D`) and reads the namespace without a null test
-(`0x0063BA33`). It walks the class list through each descriptor's `+0x50` node, skips a class without a name `+0x30`,
-and returns the first descriptor whose name matches. It then calls itself on each child namespace in turn
-(`0x0063BAAA`), so the search reaches every namespace below, and returns the first hit, or 0.
+`0x0063BA10(namespace, name)` returns 0 for a null name¹ and reads the namespace without a null test². It walks the class list through each descriptor's `+0x50` node, skips a class without a name `+0x30`,
+and returns the first descriptor whose name matches. It then calls itself on each child namespace in turn³, so the search reaches every namespace below, and returns the first hit, or 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063BA2D` |
+| ² | `0x0063BA33` |
+| ³ | `0x0063BAAA` |
+
+</details>
 
 ### Type references by name
 
@@ -189,17 +405,45 @@ The loader reaches `+0x48` through `0x0063DC30`, which returns `0x15` when the h
 The set-up `0x00634830` first runs `0x006388C0` on the descriptor `0x02CF8470` and stores the two hooks. Once, under
 the guard `0x02CF9070`, it asks `0x005A7A40(0x02CF8470, 0x00D58488)` for the method `isTypeOf`; when that answers
 null it links the node `0x01F2DFB0` at the tail `0x02CF8508` of the descriptor's method list `0x02CF8500`
-(`+0x90`); either way it registers the exit routine `0x008AF510` with `0x00808B90` (`0x00634844`-`0x006348F6`).
+(`+0x90`); either way it registers the exit routine `0x008AF510` with `0x00808B90`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00634844`-`0x006348F6` |
+
+</details>
 
 It then fills that node's caller, on every call: the caller object's address `0x01F2DFE0` at the node's
-`+0x28` (`0x01F2DFD8`), the vtable `0x00D59010` at `0x01F2DFE0`, and at `0x01F2DFE8` the member-function pointer
+`+0x28`¹, the vtable `0x00D59010` at `0x01F2DFE0`, and at `0x01F2DFE8` the member-function pointer
 `0x0063CB60` with a 0 adjustment in the dword `0x01F2DFF0`. It calls `0x00639160(the qword
 0x02CF84E0, 0x02CF8470)` and sets bit `0x40000000` of `0x02CF856C`. With bit `0x1` of that dword set it points
 `0x02CF8478`, `0x02CF8480` and `0x02CF8488` at `0x02CF8478`, clears the dword `0x02CF8490` and the qword
-`0x02CF8498` and ends in a jump to `0x006388C0(0x02CF8470)` (`0x006348FB`-`0x0063499A`).
+`0x02CF8498` and ends in a jump to `0x006388C0(0x02CF8470)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01F2DFD8` |
+| ² | `0x006348FB`-`0x0063499A` |
+
+</details>
 
 The `PType` name hook `0x00637350` first calls slot `+0x08` of the type; when that returns an object whose byte
-`+0xFC` has bit `0x1` set, the hook answers `0x12` and stores nothing (`0x0063736B`-`0x0063737C`).
+`+0xFC` has bit `0x1` set, the hook answers `0x12` and stores nothing¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063736B`-`0x0063737C` |
+
+</details>
 
 `0x0063DC90` installs such a pair. The `PAssetReferenceImport` descriptor `0x02D3E780` (registered by
 `0x00675DA0`) gets `0x00676F50` and `0x00677470`, which store a reference as a byte-swapped 16-bit index into
@@ -208,9 +452,19 @@ the pointer into the import record's list at `+0x10`; both return 7 when the clu
 list.
 
 A `PNamedSemanticDescriptor` (built by `0x006B6820`) uses the same two hooks for a registry of named
-objects. `PRenderDataType` (`0x00661A70`) resolves names with `0x0066F580` over the list `0x02D38DB8`,
-which `0x0066F4F0` fills, and `PModifier` (`0x006D5810`) with `0x006D5AF0` over `0x02E9FD60`; both return
+objects. `PRenderDataType`¹ resolves names with `0x0066F580` over the list `0x02D38DB8`,
+which `0x0066F4F0` fills, and `PModifier`² with `0x006D5AF0` over `0x02E9FD60`; both return
 `0x13` when no entry has the name.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00661A70` |
+| ² | `0x006D5810` |
+
+</details>
 
 ### Member records
 
@@ -220,27 +474,68 @@ new storage when attribute bit `0x1` is set. The constructor stores the type at 
 offset at `+0x48`, sets attribute bit `0x2` for the duration of the call when `flag` is 2, and calls
 descriptor slot `+0x40`.
 
-`0x00632FB0(node, owner, name, attrs)` is given the record's node `+0x08` by `0x00632960` (`0x00632987`). It points both
+`0x00632FB0(node, owner, name, attrs)` is given the record's node `+0x08` by `0x00632960`¹. It points both
 links of the node at itself and stores the owner at node `+0x10`, the name at node `+0x18` and the attribute word at
-node `+0x20` (`0x00632FBA`-`0x00632FCF`). With bit `0x1` it allocates `strlen(name) + 1` bytes through `0x0017D260`
-(`0x00633005`), copies the name and its terminator there with `memcpy` (`0x0063301C`) and stores the copy at node
-`+0x18`, or 0 when the allocation fails (`0x00633026`). It returns the node (`0x0063302F`).
+node `+0x20`². With bit `0x1` it allocates `strlen(name) + 1` bytes through `0x0017D260`³, copies the name and its terminator there with `memcpy`⁴ and stores the copy at node
+`+0x18`, or 0 when the allocation fails⁵. It returns the node⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00632987` |
+| ² | `0x00632FBA`-`0x00632FCF` |
+| ³ | `0x00633005` |
+| ⁴ | `0x0063301C` |
+| ⁵ | `0x00633026` |
+| ⁶ | `0x0063302F` |
+
+</details>
 
 The constructor also installs its vtable `0x00D580B0`, empties the annotation list at `+0x38` and clears the helper
 `+0x50`. It hands the slot the record and `context`, restores the attribute word afterwards and returns the record
-whatever the slot answers, so a member the slot refuses stays built but unlinked (`0x006329DD`-`0x006329F4`).
+whatever the slot answers, so a member the slot refuses stays built but unlinked¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006329DD`-`0x006329F4` |
+
+</details>
 
 Slot `+0x40` is `0x0062EFD0` in the base, Abstract, Concrete and ForType vtables. It refuses the member with 5 when
 `offset − [+0xF4] + width + [+0xF8]` exceeds the instance size, with `0x15` when it has no name and
 with `0x12` when `0x00597220` finds the name in the class or any ancestor; otherwise it appends the
-member to the list at `+0x80` and returns 0. Slot `+0x48` (`0x0062F080`) unlinks it again.
+member to the list at `+0x80` and returns 0. Slot `+0x48`¹ unlinks it again.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0062F080` |
+
+</details>
 
 The width comes from `0x0063C0C0(record, context)`: the context's pointer width (its slot `+0x08`; 8 with no context)
-when attribute bit `0x2` is set, or when the member is a dynamic array (kind 2) without bit `0x40`
-(`0x0063C128`-`0x0063C137`, `0x0063C172`-`0x0063C187`). Otherwise it is the type's size at `+0x38`, or, with a context,
-the size the context's slot `+0x10` gives the class that the type's own slot `+0x08` returns
-(`0x0063C0E4`-`0x0063C0F9`): a class descriptor returns itself there (`0x0016D680`), a `PType` returns 0 (`0x005C5230`)
+when attribute bit `0x2` is set, or when the member is a dynamic array (kind 2) without bit `0x40`¹. Otherwise it is the type's size at `+0x38`, or, with a context,
+the size the context's slot `+0x10` gives the class that the type's own slot `+0x08` returns²: a class descriptor returns itself there³, a `PType` returns 0⁴
 and keeps the size `+0x38`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063C128`-`0x0063C137`, `0x0063C172`-`0x0063C187` |
+| ² | `0x0063C0E4`-`0x0063C0F9` |
+| ³ | `0x0016D680` |
+| ⁴ | `0x005C5230` |
+
+</details>
 
 ### Member kinds
 
@@ -252,16 +547,37 @@ and keeps the size `+0x38`.
 | `0x00632BE0` | `PClassDataMemberEnum` | attribute bit `0x20`, a value at `+0x58` |
 
 The array, fixed-size and enum routes differ at attach time. `0x00632A10` forwards to `0x00632960` with its array kind
-as `flag` and context 0 (`0x00632A28`-`0x00632A41`), so a kind-2 member is checked against the instance size as
+as `flag` and context 0¹, so a kind-2 member is checked against the instance size as
 pointer-wide; it then stores the kind and the alignment and installs its vtable `0x00D58100`. `0x00632A70` and
-`0x00632BE0` build the record inline as `0x00632960` would, without the `flag` test, and give the attach slot context 0
-(`0x00632AE9`, `0x00632C54`); `0x00632BE0` ORs `0x20` into the word `0x00632FB0` stores (`0x00632C15`).
+`0x00632BE0` build the record inline as `0x00632960` would, without the `flag` test, and give the attach slot context 0²; `0x00632BE0` ORs `0x20` into the word `0x00632FB0` stores³.
 
-`0x00632A70` attaches before it stores the kind, the count and its vtable `0x00D58160` (`0x00632AF2`-`0x00632B0C`), so the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00632A28`-`0x00632A41` |
+| ² | `0x00632AE9`, `0x00632C54` |
+| ³ | `0x00632C15` |
+
+</details>
+
+`0x00632A70` attaches before it stores the kind, the count and its vtable `0x00D58160`¹, so the
 bound check of `0x0062EFD0` measures one element; `0x00632BE0` installs its vtable `0x00D580D8` and the value after the
-attach. All three return the record whatever the slot answers. Slot `+0x08` of the two array vtables (`0x0016D680`)
-returns the record, and that of the plain, enum and dynamic vtables (`0x005C5230`) returns 0; `0x0059D2D0`, `0x00599390`
+attach. All three return the record whatever the slot answers. Slot `+0x08` of the two array vtables²
+returns the record, and that of the plain, enum and dynamic vtables³ returns 0; `0x0059D2D0`, `0x00599390`
 and `0x0063C0C0` read the array kind through it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00632AF2`-`0x00632B0C` |
+| ² | `0x0016D680` |
+| ³ | `0x005C5230` |
+
+</details>
 
 A registering function can OR further attribute bits into the record after the call (bit `0x10`,
 `0x08` or `0x40`; `0x00633100` adds `0x4` when it attaches a dynamic-type helper at `+0x50`). The
@@ -284,58 +600,70 @@ names `WriteMask`, with the value `0x7FFFFFFF`, on the `m_count` member of a `PA
 
 `0x006B66C0(annotation, key, type, value)` points the two links of the node at `+0x08` at the node,
 installs the vtable `0x00D80930` at `+0x00`, stores the key at `+0x18`, the type at `+0x20` and the value
-dword at `+0x28`, and returns the annotation (`0x006B66C0`-`0x006B66E0`).
+dword at `+0x28`, and returns the annotation¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B66C0`-`0x006B66E0` |
+
+</details>
 
 `0x006B67D0(list head, annotation)` puts the annotation's node `+0x08` at the front of the list: the
 node's next is the old first, its previous is the head, and the head and the old first then point at the
-node (`0x006B67D0`-`0x006B67E1`).
+node¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B67D0`-`0x006B67E1` |
+
+</details>
 
 `0x006B67F0(list, key)` finds an annotation by key: it walks the annotation list it is given from its first node and
-returns the first annotation whose key `+0x18` is the given pointer, or 0 at the end of the list
-(`0x006B67F0`-`0x006B681D`).
+returns the first annotation whose key `+0x18` is the given pointer, or 0 at the end of the list¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B67F0`-`0x006B681D` |
+
+</details>
 
 ### Default instance and masks
 
-Each class registers three static buffers of its instance size: the default instance at `+0xC0`
-(`0x0063DC80`), and two masks at `+0xC8` (`0x0063DF90`) and `+0xD0` (`0x0063DFA0`). They are built on first
+Each class registers three static buffers of its instance size: the default instance at `+0xC0`¹, and two masks at `+0xC8`² and `+0xD0`³. They are built on first
 use, when `+0xFC` bit `0x80000000` is clear:
 
-1. `0x00639A60` fills `+0xC0` and `+0xC8` with `0xA5` and constructs the class into `+0xC8` through
-   slot `+0x50`. Unless bit `0x8` is set it constructs again into `+0xC0` and logs a
-   "position dependant constructor" message when the two differ. It copies `+0xC8` into `+0xC0`,
-   copies the default instances of inline object members with bit `0x40` or kind 4, and sets bit
-   `0x80000000`.
-2. A class whose slot `+0x50` has no constructor is built by `0x0063CB80` instead, from its parent's
-   and its members' default instances.
-3. In `0x00639A60` the paths in full: it returns at once when `+0xC0` or `+0xC8` is null or bit `0x80000000` is
-   already set (`0x00639A73`, `0x00639A83`, `0x00639A96`). A dynamic class (bit `0x1`) goes to `0x0063CB80`, given
-   `0x00639A60`'s own second argument, and to nothing else before bit `0x80000000` is set (`0x00639AB6`-`0x00639AC3`).
-4. Every other class gets the two `0xA5` fills (`memset`, `0x00639AD8`, `0x00639AEC`). An abstract class (bit `0x2`)
-   stops there and only has bit `0x80000000` set (`0x00639AF1`). The rest are constructed into `[+0xC8]` through
-   slot `+0x50` (`0x00639B20`); when the slot answers 0, `0x0063CB80(descriptor, 0)` builds the class (`0x00639BA4`).
-5. When the slot constructs and bit `0x8` is clear, the second construction into `[+0xC0]` (`0x00639B3E`) is
-   compared with `memcmp`, the message goes to channel 1 (`0x00639B52`-`0x00639B6A`), and that second object is
-   destroyed through slot `+0x58` at `[+0xC0] + [+0xF8]` (`0x00639B78`). After the copy (`memcpy`, `0x00639B8C`)
-   the object in `+0xC8` is destroyed through slot `+0x58` at `[+0xC8] + [+0xF8]` (`0x00639B9A`).
-6. On both construction paths it walks its own list `+0x80` (`0x00639BA9`-`0x00639C44`). A member is copied when its
-   type is a class (the type's slot `+0x08` answers a descriptor), attribute bit `0x2` is clear and bit `0x40` is
-   set or the kind is 4: the member class's default instance (`0x0063BB10`) goes to
-   `[+0xC0] + [+0xF8] + offset - [owner+0xF4]` with its size `+0x38` (`0x00639C2D`). Bit `0x80000000` is set at
-   `0x00639C55`.
-7. `0x0063CB80(descriptor, context)` first copies the parent's default instance (`0x0063BB10`) to
-   `[+0xC0] + [+0xF8] - [parent+0xF8]`: the parent's size `+0x38`, or the context's slot `+0x10` answer when that
-   is smaller, and only when the parent has a default instance and `size <= [+0x38]` of the class itself
-   (`0x0063CBAA`-`0x0063CBF8`).
-8. It then walks its own list `+0x80`. It skips a member with attribute bit `0x2`, a dynamic array (kind 2)
-   without bit `0x40` and a member whose type is not a class (`0x0063CC55`-`0x0063CC7A`).
-9. Each other member gets the default instance of its class (`0x0063BB10`) at
-   `[+0xC0] + [+0xF8] + offset - [owner+0xF4] - [type+0xF8] + [type+0xF4]`, once, or `[+0x60]` times one after
-   another for a fixed array (kind 1), each copy the width `0x0063C0C0` gives (`0x0063CCA8`-`0x0063CCE5`).
-10. `0x00639C80` fills `+0xC8` with `0xFF` and `+0xD0` with zero, copies the parent's masks, then
-   clears every byte a member covers in `+0xC8`, logging an overlap when a byte is already clear.
-   For a primitive member it writes the member's `WriteMask` into `+0xD0`, or `0xFF` bytes without
-   one; for an inline object it copies that class's masks. It sets bit `0x10000000` when no byte of
-   `+0xC8` is left set.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063DC80` |
+| ² | `0x0063DF90` |
+| ³ | `0x0063DFA0` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00639A60` fills `+0xC0` and `+0xC8` with `0xA5` and constructs the class into `+0xC8` through slot `+0x50`. Unless bit `0x8` is set it constructs again into `+0xC0` and logs a "position dependant constructor" message when the two differ. It copies `+0xC8` into `+0xC0`, copies the default instances of inline object members with bit `0x40` or kind 4, and sets bit `0x80000000`. |   |
+| 2 | A class whose slot `+0x50` has no constructor is built by `0x0063CB80` instead, from its parent's and its members' default instances. |   |
+| 3 | In `0x00639A60` the paths in full: it returns at once when `+0xC0` or `+0xC8` is null or bit `0x80000000` is already set. A dynamic class (bit `0x1`) goes to `0x0063CB80`, given `0x00639A60`'s own second argument, and to nothing else before bit `0x80000000` is set. | `0x00639A73`, `0x00639A83`, `0x00639A96`<br>`0x00639AB6`-`0x00639AC3` |
+| 4 | Every other class gets the two `0xA5` fills (`memset`, `0x00639AD8`, `0x00639AEC`). An abstract class (bit `0x2`) stops there and only has bit `0x80000000` set. The rest are constructed into `[+0xC8]` through slot `+0x50`; when the slot answers 0, `0x0063CB80(descriptor, 0)` builds the class. | `0x00639AF1`<br>`0x00639B20`<br>`0x00639BA4` |
+| 5 | When the slot constructs and bit `0x8` is clear, the second construction into `[+0xC0]` is compared with `memcmp`, the message goes to channel 1, and that second object is destroyed through slot `+0x58` at `[+0xC0] + [+0xF8]`. After the copy (`memcpy`, `0x00639B8C`) the object in `+0xC8` is destroyed through slot `+0x58` at `[+0xC8] + [+0xF8]`. | `0x00639B3E`<br>`0x00639B52`-`0x00639B6A`<br>`0x00639B78`<br>`0x00639B9A` |
+| 6 | On both construction paths it walks its own list `+0x80`. A member is copied when its type is a class (the type's slot `+0x08` answers a descriptor), attribute bit `0x2` is clear and bit `0x40` is set or the kind is 4: the member class's default instance goes to `[+0xC0] + [+0xF8] + offset - [owner+0xF4]` with its size `+0x38`. Bit `0x80000000` is set at `0x00639C55`. | `0x00639BA9`-`0x00639C44`<br>`0x0063BB10`<br>`0x00639C2D` |
+| 7 | `0x0063CB80(descriptor, context)` first copies the parent's default instance to `[+0xC0] + [+0xF8] - [parent+0xF8]`: the parent's size `+0x38`, or the context's slot `+0x10` answer when that is smaller, and only when the parent has a default instance and `size <= [+0x38]` of the class itself. | `0x0063BB10`<br>`0x0063CBAA`-`0x0063CBF8` |
+| 8 | It then walks its own list `+0x80`. It skips a member with attribute bit `0x2`, a dynamic array (kind 2) without bit `0x40` and a member whose type is not a class. | `0x0063CC55`-`0x0063CC7A` |
+| 9 | Each other member gets the default instance of its class at `[+0xC0] + [+0xF8] + offset - [owner+0xF4] - [type+0xF8] + [type+0xF4]`, once, or `[+0x60]` times one after another for a fixed array (kind 1), each copy the width `0x0063C0C0` gives. | `0x0063BB10`<br>`0x0063CCA8`-`0x0063CCE5` |
+| 10 | `0x00639C80` fills `+0xC8` with `0xFF` and `+0xD0` with zero, copies the parent's masks, then clears every byte a member covers in `+0xC8`, logging an overlap when a byte is already clear. For a primitive member it writes the member's `WriteMask` into `+0xD0`, or `0xFF` bytes without one; for an inline object it copies that class's masks. It sets bit `0x10000000` when no byte of `+0xC8` is left set. |   |
 
 So `+0xC8` marks the bytes no member describes and `+0xD0` the bits that belong to member values.
 `0x0063C5E0` and `0x0063C1A0` build a class's buffers when needed and return its `+0xD0` and `+0xC8`;
@@ -344,112 +672,252 @@ masks of inline object members.
 
 `0x0063BB10` returns the qword `+0xC0` at once when bit `0x80000000` of the flags `+0xFC` is set. Otherwise it
 calls the descriptor's slot `+0x60` when bit `0x40000000` is clear, then `0x00639A60(class, 0)` and
-`0x00639C80(class, 0)`, and returns `+0xC0` (`0x0063BB16`-`0x0063BB50`).
+`0x00639C80(class, 0)`, and returns `+0xC0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063BB16`-`0x0063BB50` |
+
+</details>
 
 `0x0063BC00` returns the qword `+0xD8` when it is not null. Otherwise it builds the buffers the same way when
 bit `0x80000000` is clear; with a default instance at `+0xC0` it sets bit `0x20000000` and returns that
-instance plus the signed dword `+0xF8`; with no default instance it returns the null `+0xD8`
-(`0x0063BC06`-`0x0063BC63`).
+instance plus the signed dword `+0xF8`; with no default instance it returns the null `+0xD8`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063BC06`-`0x0063BC63` |
+
+</details>
 
 ### Creating instances
 
 `0x0063A990(cluster, count, descriptor, …)` is `PCluster::create`. A class with `+0xFC` bit `0x8`
-logs "has no default constructor and cannot be allocated" and gets nothing (`0x0063A99A`-`0x0063A9BE`); a count of
-0 gets 0 (`0x0063A9CD`). Otherwise `0x00639510`
+logs "has no default constructor and cannot be allocated" and gets nothing¹; a count of
+0 gets 0². Otherwise `0x00639510`
 refuses an abstract class (bit `0x2`) and allocates `count × [+0x38]` bytes with alignment `[+0x3C]`,
 and `0x0063C910` initialises each instance in turn: it builds the buffers if needed, then copies the
 whole default instance over it.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063A99A`-`0x0063A9BE` |
+| ² | `0x0063A9CD` |
+
+</details>
+
 Without a default instance it constructs through slot `+0x50` and
 copies the default instance of every inline object member, across the class and its ancestors. `0x0063A990` hands
-its fourth argument to `0x00639510` as extra bytes (`0x0063A9D6`), steps from the list's `+0x58` by `[+0x38]` per
-object (`0x0063AA10`-`0x0063AA22`) and returns the first object, or 0 when `0x00639510` returns no list (`0x0063A9E9`).
+its fourth argument to `0x00639510` as extra bytes¹, steps from the list's `+0x58` by `[+0x38]` per
+object² and returns the first object, or 0 when `0x00639510` returns no list³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063A9D6` |
+| ² | `0x0063AA10`-`0x0063AA22` |
+| ³ | `0x0063A9E9` |
+
+</details>
 
 `0x0063C910(descriptor, object)` returns the object. When bit `0x80000000` is clear it first calls slot `+0x60`,
 the member registration, if bit `0x40000000` is clear, then builds the buffers (`0x00639A60`, `0x00639C80`, each
-given 0) (`0x0063C93D`-`0x0063C95C`). With a default instance it copies `[+0x38]` bytes from `+0xC0` to
-`object - [+0xF8]` (`0x0063C961`-`0x0063C974`). Without one it constructs at `object - [+0xF8]` through slot `+0x50`
-and returns 0 when the slot answers 0 (`0x0063C990`-`0x0063C995`, `0x0063CB40`).
+given 0)¹. With a default instance it copies `[+0x38]` bytes from `+0xC0` to
+`object - [+0xF8]`². Without one it constructs at `object - [+0xF8]` through slot `+0x50`
+and returns 0 when the slot answers 0³.
 
-After a construction it walks the list `+0x80` of the class and then of each ancestor `+0x78`
-(`0x0063C9C0`-`0x0063CB14`). It takes each member whose type is a class (the type's slot `+0x08` answers a
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063C93D`-`0x0063C95C` |
+| ² | `0x0063C961`-`0x0063C974` |
+| ³ | `0x0063C990`-`0x0063C995`, `0x0063CB40` |
+
+</details>
+
+After a construction it walks the list `+0x80` of the class and then of each ancestor `+0x78`¹. It takes each member whose type is a class (the type's slot `+0x08` answers a
 descriptor), without attribute bit `0x2` and not a dynamic array (kind 2): one element, or `[+0x60]` elements for
-a fixed array (kind 1) (`0x0063CA28`-`0x0063CA4C`). The first element is at
+a fixed array (kind 1)². The first element is at
 `object + offset - [owner+0xF4] + [type+0xF4]`, the next ones `[type+0x38]` apart.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063C9C0`-`0x0063CB14` |
+| ² | `0x0063CA28`-`0x0063CA4C` |
+
+</details>
+
 For each element, unless the class that owns the list is dynamic (bit `0x1`), it first destroys the element
-through the type's slot `+0x58` (`0x0063CA84`). It then builds the type's buffers when needed and copies
-`[type+0x38]` bytes of the type's `+0xC0` to `element - [type+0xF8]` (`0x0063CAD2`).
+through the type's slot `+0x58`¹. It then builds the type's buffers when needed and copies
+`[type+0x38]` bytes of the type's `+0xC0` to `element - [type+0xF8]`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063CA84` |
+| ² | `0x0063CAD2` |
+
+</details>
 
 `0x00639510(cluster, bytes, count, descriptor, extra)` returns the new instance list, or 0:
 
-1. A byte size or count of 0 gets 0 (`0x0063953B`, `0x00639543`).
-2. An abstract class logs "is abstract and an instance list cannot be allocated" on channel 1 and gets 0
-   (`0x0063954C`-`0x0063956B`).
-3. When `bytes < count * [+0x38]` it logs "Trying to allocate list of %d '%s' instances in %d bytes when %d bytes
-   are required" on channel 1 and gets 0 (`0x00639570`-`0x00639599`).
-4. It takes a list record from the cluster's pool at `+0x50` (`0x006394B0`, `0x006395A2`) and gets 0 when the pool
-   is out of records (`0x006395B2`). It grows the size to `bytes + extra` (`0x006395B4`) and sets the record up for the
-   descriptor and the cluster (`0x00633120`, `0x006395C6`).
-5. It takes the bytes at alignment `[+0x3C]` from the cluster's block at `+0x48` when they fit (`0x00639750`,
-   `0x006395D7`), and `0x00639780` sets the list up on them (`0x006395E8`).
-6. `0x00639780` allocates the bytes through `0x0017D260` when the block returned 0 (`0x006397DA`-`0x006397E0`), runs
-   `0x0063B3E0` on the list (`0x006397F0`), and stores the storage at `+0x60`, the first
-   object `[+0x60] + [descriptor+0xF8]` at `+0x58`, the count at `+0x70` and `+0x74`, the owned flag `+0x7C` and
-   `bytes - count * [+0x38]` at `+0x78` (`0x006397FC`-`0x00639824`).
-7. `0x00639780` refuses a count above 1 for a class with bit `0x4` (`0x006397BA`-`0x006397C7`) and a failed
-   allocation (`0x006397EB`); the record then goes back to the pool (`0x00631180`, `0x00639625`) and the result is 0.
-8. Otherwise it sets the loaded byte `+0x7D` (`0x006395F1`), appends the list to the cluster's list `+0x38`
-   (`0x006395F5`-`0x00639607`), enters it in the world's per-type table through `0x00639320` when the cluster has a
-   world `+0x78` (`0x0063960B`-`0x00639617`), and returns the list.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A byte size or count of 0 gets 0. | `0x0063953B`, `0x00639543` |
+| 2 | An abstract class logs "is abstract and an instance list cannot be allocated" on channel 1 and gets 0. | `0x0063954C`-`0x0063956B` |
+| 3 | When `bytes < count * [+0x38]` it logs "Trying to allocate list of %d '%s' instances in %d bytes when %d bytes are required" on channel 1 and gets 0. | `0x00639570`-`0x00639599` |
+| 4 | It takes a list record from the cluster's pool at `+0x50` and gets 0 when the pool is out of records. It grows the size to `bytes + extra` and sets the record up for the descriptor and the cluster. | `0x006394B0`, `0x006395A2`<br>`0x006395B2`<br>`0x006395B4`<br>`0x00633120`, `0x006395C6` |
+| 5 | It takes the bytes at alignment `[+0x3C]` from the cluster's block at `+0x48` when they fit, and `0x00639780` sets the list up on them. | `0x00639750`, `0x006395D7`<br>`0x006395E8` |
+| 6 | `0x00639780` allocates the bytes through `0x0017D260` when the block returned 0, runs `0x0063B3E0` on the list, and stores the storage at `+0x60`, the first object `[+0x60] + [descriptor+0xF8]` at `+0x58`, the count at `+0x70` and `+0x74`, the owned flag `+0x7C` and `bytes - count * [+0x38]` at `+0x78`. | `0x006397DA`-`0x006397E0`<br>`0x006397F0`<br>`0x006397FC`-`0x00639824` |
+| 7 | `0x00639780` refuses a count above 1 for a class with bit `0x4` and a failed allocation; the record then goes back to the pool and the result is 0. | `0x006397BA`-`0x006397C7`<br>`0x006397EB`<br>`0x00631180`, `0x00639625` |
+| 8 | Otherwise it sets the loaded byte `+0x7D`, appends the list to the cluster's list `+0x38`, enters it in the world's per-type table through `0x00639320` when the cluster has a world `+0x78`, and returns the list. | `0x006395F1`<br>`0x006395F5`-`0x00639607`<br>`0x0063960B`-`0x00639617` |
 
 The record set-up `0x00633120(record, descriptor, cluster)` points the record's two links `+0x00` and `+0x08` at
 itself, calls `0x0067FFB0(record + 0x10, the descriptor's size +0x38, 0, its alignment +0x3C, its name +0x30)`,
 points the two links at `+0x38` and `+0x40` at `+0x38`, stores the cluster at `+0x48` and the descriptor
 at `+0x50`, clears the qwords `+0x58` to `+0x70` and the dword `+0x78`, stores `0x101` in the word `+0x7C`
-and returns the record (`0x0063312F`-`0x0063318B`).
+and returns the record¹.
 
-`0x00639780(record, count, bytes, storage)` itself answers 0 when `count * [descriptor+0x38] > bytes`
-(`0x006397A9`-`0x006397B8`), and 1 on success (`0x00639822`). It allocates only when bytes is not 0 and no storage
-is given, and the owned flag `+0x7C` is 1 when no storage was given (`0x006397D0`-`0x0063981F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063312F`-`0x0063318B` |
+
+</details>
+
+`0x00639780(record, count, bytes, storage)` itself answers 0 when `count * [descriptor+0x38] > bytes`¹, and 1 on success². It allocates only when bytes is not 0 and no storage
+is given, and the owned flag `+0x7C` is 1 when no storage was given³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006397A9`-`0x006397B8` |
+| ² | `0x00639822` |
+| ³ | `0x006397D0`-`0x0063981F` |
+
+</details>
 
 `0x00631180(pool, record)` calls `0x0063B3E0(record)` and `0x00680030(record + 0x10)` and ends in a jump to
-`0x00680200(pool, record)` (`0x0063119D`-`0x006311BC`).
+`0x00680200(pool, record)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063119D`-`0x006311BC` |
+
+</details>
 
 ### The cluster's script methods
 
 `0x00635470` publishes four `PCluster` methods on the cluster descriptor `0x02CF8780`:
 
-- `create` (`0x0063AA50`) makes one object: it logs the same "no default constructor" message for bit
+- `create`¹ makes one object: it logs the same "no default constructor" message for bit
   `0x8`, and otherwise builds a one-object instance list through `0x00639510`, initialises the object
   at the list's `+0x58` with `0x0063C910` and returns the object with its descriptor.
 - `deleteObject` is `0x0063AD20`: it answers 1 for a null object and otherwise jumps to `0x0063ABF0` with its
-  arguments unchanged (`0x0063AD20`-`0x0063AD29`).
-- `deleteInstancesOfType` (`0x0063AAD0`) removes every instance list of exactly one class: it unlinks
-  the list, takes it off the per-type table, destroys its objects (`0x0063B3E0`), frees its blocks
-  (`0x00680030`) and returns the list record to the cluster's pool at `+0x50` (`0x00680200`).
-- `absorb` (`0x00638FB0`) moves every list of another cluster into this one (see below).
+  arguments unchanged².
+- `deleteInstancesOfType`³ removes every instance list of exactly one class: it unlinks
+  the list, takes it off the per-type table, destroys its objects⁴, frees its blocks
+ ⁵ and returns the list record to the cluster's pool at `+0x50`⁶.
+- `absorb`⁷ moves every list of another cluster into this one (see below).
 
-Each method is a `0x28`-byte node (`0x01F2E140`, `0x01F2E190`, `0x01F2E1E0`, `0x01F2E230`) built behind its own guard and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063AA50` |
+| ² | `0x0063AD20`-`0x0063AD29` |
+| ³ | `0x0063AAD0` |
+| ⁴ | `0x0063B3E0` |
+| ⁵ | `0x00680030` |
+| ⁶ | `0x00680200` |
+| ⁷ | `0x00638FB0` |
+
+</details>
+
+Each method is a `0x28`-byte node¹ built behind its own guard and
 appended to the descriptor's method list, whose anchor is `0x02CF8810`, the descriptor's `+0x90`, and whose tail word is
-`0x02CF8818`. Each append reads the tail, links the node after it and stores the node as the new tail (`0x006354EE`,
-`0x0063550D`; `0x0063559E`, `0x006355BD`; `0x0063564C`, `0x0063566B`; `0x006356FA`, `0x00635719`). The teardowns `0x008AF2B0`,
+`0x02CF8818`. Each append reads the tail, links the node after it and stores the node as the new tail². The teardowns `0x008AF2B0`,
 `0x008AF370`, `0x008AF310` and `0x008AF220` unlink the nodes at exit.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01F2E140`, `0x01F2E190`, `0x01F2E1E0`, `0x01F2E230` |
+| ² | `0x006354EE`, `0x0063550D`; `0x0063559E`, `0x006355BD`; `0x0063564C`, `0x0063566B`; `0x006356FA`, `0x00635719` |
+
+</details>
+
 Each of the four stores the node's previous link in `[next + 8]` and its next link in `[previous]`, then
-points the node's two qwords at the node itself: `0x008AF220` for the node `0x01F2E230` (`0x008AF22D`-`0x008AF250`),
-`0x008AF2B0` for `0x01F2E140` (`0x008AF2BD`-`0x008AF2E0`), `0x008AF310` for `0x01F2E1E0` (`0x008AF31D`-`0x008AF340`) and
-`0x008AF370` for `0x01F2E190` (`0x008AF37D`-`0x008AF3A0`).
+points the node's two qwords at the node itself: `0x008AF220` for the node `0x01F2E230`¹,
+`0x008AF2B0` for `0x01F2E140`², `0x008AF310` for `0x01F2E1E0`³ and
+`0x008AF370` for `0x01F2E190`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008AF22D`-`0x008AF250` |
+| ² | `0x008AF2BD`-`0x008AF2E0` |
+| ³ | `0x008AF31D`-`0x008AF340` |
+| ⁴ | `0x008AF37D`-`0x008AF3A0` |
+
+</details>
 
 Each also frees the node's name, copied into owned storage, through `0x00584730` when bit `0x1` of its
 attribute word `+0x20` is set: `0x008AF220` the pointer the qword `0x01F2E248` (`+0x18`) holds, under the byte
 `0x01F2E250`; `0x008AF2B0` `0x01F2E158` under `0x01F2E160`; `0x008AF310` `0x01F2E1F8` under `0x01F2E200`; and `0x008AF370`
-`0x01F2E1A8` under `0x01F2E1B0` (`0x008AF257`-`0x008AF267`, `0x008AF2E7`-`0x008AF2F7`, `0x008AF347`-`0x008AF357`,
-`0x008AF3A7`-`0x008AF3B7`).
+`0x01F2E1A8` under `0x01F2E1B0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008AF257`-`0x008AF267`, `0x008AF2E7`-`0x008AF2F7`, `0x008AF347`-`0x008AF357`, `0x008AF3A7`-`0x008AF3B7` |
+
+</details>
 
 `0x008AF490` walks the whole class list from the qword `0x01F2E340` at exit, each class being its node less
 `0x50` and the next node read from the class's `+0x50` before the class is used, and calls vtable slot
-`+0x38` with 1 on every class whose byte `+0xFC` has bit `0x1` set (`0x008AF49A`-`0x008AF4ED`).
+`+0x38` with 1 on every class whose byte `+0xFC` has bit `0x1` set¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008AF49A`-`0x008AF4ED` |
+
+</details>
 
 A cluster's `+0x78` points at the world it belongs to, whose per-type table (count `+0x10`, entries
 `+0x18`) holds `0x20`-byte entries indexed by each descriptor's
@@ -459,8 +927,17 @@ A cluster's `+0x78` points at the world it belongs to, whose per-type table (cou
 `0x00638FB0` first merges the other cluster's pool of list records into this one (`0x00680080`, which
 returns 5 when the two pools' record sizes differ). Each list then leaves the per-type table of the other cluster's world
 and that cluster's list, joins the end of this cluster's list and its world's table, takes this cluster at its `+0x48` and is
-passed to `0x00677550`, which, for a list of a class derived from `PAssetReference` (`0x02D3E680`),
+passed to `0x00677550`, which, for a list of a class derived from `PAssetReference`¹,
 sets every object's `+0x48` to that cluster. The other cluster's chain at `+0x48` is moved over last.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02D3E680` |
+
+</details>
 
 `0x0063D6B0(world, cluster)` takes a cluster whose `+0x78` is that world off it: it unlinks the
 cluster's node at `+0x88`, clears `+0x78` and removes each of its lists from the per-type table.
@@ -470,12 +947,22 @@ on the chain at `+0x10`, frees the storage when the list owns it (`+0x7C`) and z
 
 ### Member visits
 
-Descriptor slot `+0x00` walks the members of a class and its ancestors (`0x0063E2E0`) and hands each
+Descriptor slot `+0x00` walks the members of a class and its ancestors¹ and hands each
 to `0x0063CE80`, which applies the member type's own slot `+0x00` to every element through `0x0059FDB0`.
 The flag argument picks the order: non-zero walks each `+0x80` list forwards, zero backwards, and the
 flag is passed on to the member types. A type's slot `+0x00` is the step applied to one element; for
-`PQWord` (`PTypeDefault<PQWord>`, `0x0063E170`) it reverses the value's sixteen bytes in place (`0x00637E10`)
+`PQWord` (`PTypeDefault<PQWord>`, `0x0063E170`) it reverses the value's sixteen bytes in place²
 and returns 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063E2E0` |
+| ² | `0x00637E10` |
+
+</details>
 
 Eight core classes carry the walk inlined for their own descriptor, one copy per order, and their
 slot `+0x00` adapters only choose between the two copies and return 1:
@@ -499,30 +986,49 @@ starts that far into the object.
 The `atexit` thunk `0x008A8E20` puts back the `PClassDescriptorForType` vtable `0x00D29A38` and jumps to
 `0x00633390`, the base destructor:
 
-1. It installs the `PClassDescriptor` vtable and, when its index at `+0xE8` is the last one handed
-   out, decrements `0x02CF8260`.
-2. `0x0063D640` unlinks `+0x50` from its namespace and unlinks an emptied non-default namespace.
-   Called as `0x0063D640(namespace, descriptor)` (`0x006333E0`), it points the unlinked node `+0x50` at itself
-   (`0x0063D646`-`0x0063D665`).
-3. The namespace counts as emptied when its class list `+0x10` is now empty; when it is also not the default
-   namespace (`0x006373D0`), `0x0063D640` unlinks the namespace's own node `+0x00`, the node `0x00639160` links into
-   the default namespace's child list `+0x28`, and points it at itself (`0x0063D67E`-`0x0063D6A3`). Only the class
-   list is tested, not the child namespaces `+0x28`.
-4. It frees the records of `+0x90` and `+0xA0` whose attribute bit `0x1` is set, with their name,
-   then unlinks every remaining node of `+0x80`, `+0x90`, `+0xA0` and `+0xB0` without freeing it.
-5. `0x006B6700` unlinks every node of `+0x60`, and the `PType` vtable is installed last.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It installs the `PClassDescriptor` vtable and, when its index at `+0xE8` is the last one handed out, decrements `0x02CF8260`. |   |
+| 2 | `0x0063D640` unlinks `+0x50` from its namespace and unlinks an emptied non-default namespace. Called as `0x0063D640(namespace, descriptor)`, it points the unlinked node `+0x50` at itself. | `0x006333E0`<br>`0x0063D646`-`0x0063D665` |
+| 3 | The namespace counts as emptied when its class list `+0x10` is now empty; when it is also not the default namespace, `0x0063D640` unlinks the namespace's own node `+0x00`, the node `0x00639160` links into the default namespace's child list `+0x28`, and points it at itself. Only the class list is tested, not the child namespaces `+0x28`. | `0x006373D0`<br>`0x0063D67E`-`0x0063D6A3` |
+| 4 | It frees the records of `+0x90` and `+0xA0` whose attribute bit `0x1` is set, with their name, then unlinks every remaining node of `+0x80`, `+0x90`, `+0xA0` and `+0xB0` without freeing it. |   |
+| 5 | `0x006B6700` unlinks every node of `+0x60`, and the `PType` vtable is installed last. |   |
 
-A member's teardown `0x00633240` installs the `PClassDataMember` vtable `0x00D580B0` (`0x0063325E`), detaches the
-member through its owner's slot `+0x48` when its node `+0x08` is linked (`0x00633265`-`0x00633274`), drains its
-annotations `+0x38` (`0x006B6700`, `0x0063327C`) and, with attribute bit `0x1`, frees the copied name `+0x20`
-(`0x00584730`, `0x00633282`-`0x0063328C`).
+A member's teardown `0x00633240` installs the `PClassDataMember` vtable `0x00D580B0`¹, detaches the
+member through its owner's slot `+0x48` when its node `+0x08` is linked², drains its
+annotations `+0x38`³ and, with attribute bit `0x1`, frees the copied name `+0x20`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063325E` |
+| ² | `0x00633265`-`0x00633274` |
+| ³ | `0x006B6700`, `0x0063327C` |
+| ⁴ | `0x00584730`, `0x00633282`-`0x0063328C` |
+
+</details>
 
 The deleting destructors such as `0x005847E0` install their own vtable (`0x00D24540` in `0x005847E0`, `0x00584800`),
-call `0x00633390` and, when flag bit `0x1` is set, free the object with `_aligned_free` (`0x00584730`); with bit
+call `0x00633390` and, when flag bit `0x1` is set, free the object with `_aligned_free`¹; with bit
 `0x4` as well they call the empty `0x0016D6A0` and free nothing (in `0x005847E0` with the size `0x100`,
-`0x00584820`-`0x00584828`). Either way they return the object (`0x0058482E`).
+`0x00584820`-`0x00584828`). Either way they return the object².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00584730` |
+| ² | `0x0058482E` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 PType (base of every type and descriptor):
 
@@ -657,15 +1163,34 @@ Descriptor vtable slots (PClassDescriptorConcrete&lt;PAnimatableComponent&gt;, `
 | `+0x68` | `...` |  | push the object's held objects of a named class to a script and count them; -1 by default (`0x00660570`) |
 
 One class overrides slot `+0x68`: `PEntity` (`0x006AB3F0`, which reorders the arguments for `0x006AB540`). It looks the
-name up in the namespace (`0x0063BA10`), returns -1 unless that class is `PComponent` or derives from it, and
-otherwise pushes every component of the entity whose class is that class or derives from it (`0x00684090`)
+name up in the namespace¹, returns -1 unless that class is `PComponent` or derives from it, and
+otherwise pushes every component of the entity whose class is that class or derives from it²
 and returns how many it pushed.
-`0x00684090` loads the qword `+0x10` of its second argument as the third argument and jumps to `0x00682D20`
-(`0x00684090`-`0x00684094`).
+`0x00684090` loads the qword `+0x10` of its second argument as the third argument and jumps to `0x00682D20`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063BA10` |
+| ² | `0x00684090` |
+| ³ | `0x00684090`-`0x00684094` |
+
+</details>
 
 For a `PMatrix4x3` the wrapper's slot `+0x20` (`0x006B3A90` to `0x006B3610`) builds a 64-byte matrix from the
 twelve floats, as (`+0xC`, `+0x1C`, `+0x2C`, 0), (`+0`, `+4`, `+8`, 0), (`+0x10`, `+0x14`, `+0x18`, 0) and
-(`+0x20`, `+0x24`, `+0x28`, 1.0 from `0x01CEBBA8`), and pushes it as a script `Matrix` (`0x00684130`).
+(`+0x20`, `+0x24`, `+0x28`, 1.0 from `0x01CEBBA8`), and pushes it as a script `Matrix`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00684130` |
+
+</details>
 
 ### Reflected members
 
@@ -678,65 +1203,105 @@ also make stores that the fences do not list, and so does `0x005A1510`, the plac
 - `0x005A1510` stores 1.0 in the dwords `+0x08` and `+0x0C` and in the low dword of the qword `+0x50` (high dword
   0), the vtables `0x00D313B0`, `0x00D313E0` and `0x00D314E0` at `+0x10`, `+0x38` and `+0x58`, and 0 in the qwords
   `+0x00`, `+0x20`, `+0x28`, `+0x48`, `+0x68`, `+0x70` and `+0x78` and the dwords `+0x18`, `+0x30`, `+0x40`
-  and `+0x60` (`0x005A1510`-`0x005A1577`).
-- `0x005CEEF0` also clears the qword `+0x00` (`0x005CEEF7`).
+  and `+0x60`¹.
+- `0x005CEEF0` also clears the qword `+0x00`².
 - `0x005D3C60` also clears the qwords `+0x10`, `+0x20` and `+0x30` and the dwords `+0x18` and `+0x28`
-  (`0x005D3C70`-`0x005D3C7E`).
-- `0x005D5FE0` stores `0x01010105` in the dword `+0x00` and `0x400` in the qword `+0x18` (`0x005D5FE5`,
-  `0x005D5FFF`).
+ ³.
+- `0x005D5FE0` stores `0x01010105` in the dword `+0x00` and `0x400` in the qword `+0x18`⁴.
 - `0x005D7B60` stores the address `0x02CF7A30` in the qword `+0x00`, 2 in the dword `+0x18` and 0 in the qword
-  `+0x20` (`0x005D7B65`-`0x005D7B82`).
-- `0x005D7DE0` also clears the word `+0x00` (`0x005D7DE7`).
-- `0x0065EC80` stores `0x334` in the word `+0x0C` (`0x0065EC8D`).
-- `0x00660A20` also clears the dword `+0x08`, the qword `+0x10` and the dword `+0x18` (`0x00660A2A`-`0x00660A31`).
+  `+0x20`⁵.
+- `0x005D7DE0` also clears the word `+0x00`⁶.
+- `0x0065EC80` stores `0x334` in the word `+0x0C`⁷.
+- `0x00660A20` also clears the dword `+0x08`, the qword `+0x10` and the dword `+0x18`⁸.
 - `0x006611F0` also clears the dword `+0x08`, the qword `+0x10`, the dword `+0x20` and the qword `+0x28`
-  (`0x006611F9`-`0x00661206`).
+ ⁹.
 - `0x005D1700` stores the address `0x02CF7A30` in the qword `+0x00`, `0x300` in the word `+0x08`, 0 in the qword
-  `+0x0C`, the dword `+0x14` and the qword `+0x20`, and 2 in the dword `+0x18` (`0x005D1705`-`0x005D171E`,
-  `0x005D1725`).
+  `+0x0C`, the dword `+0x14` and the qword `+0x20`, and 2 in the dword `+0x18`¹⁰.
 - `0x005D27B0` stores the address `0x01F2DD80` in the qword `+0x00` and 0 in the dwords `+0x08`, `+0x18`, `+0x28`
-  and `+0x38` and the qwords `+0x10`, `+0x20`, `+0x30` and `+0x40` (`0x005D27B5`-`0x005D27D9`).
+  and `+0x38` and the qwords `+0x10`, `+0x20`, `+0x30` and `+0x40`¹¹.
 - `0x0065EA30` stores -1 in the dword `+0x04`, 0 in the dword `+0x08` and the qword `+0x10`, 6 in the dword
-  `+0x18`, and -1 in the qword `+0x1C` and the dword `+0x24` (`0x0065EA37`-`0x0065EA56`).
+  `+0x18`, and -1 in the qword `+0x1C` and the dword `+0x24`¹².
 - `0x006A7B10` stores the address `0x01F31F78` in the qword `+0x00` and 1.0 in the floats `+0x24`, `+0x2C` and
   `+0x38`; it leaves 0 in the dword `+0x08`, the qwords `+0x10` and `+0x18`, the dwords `+0x20`, `+0x28`,
-  `+0x30`, `+0x34` and `+0x3C`, the qword `+0x40` and the dwords `+0x48` and `+0x4C` (`0x006A7B15`-`0x006A7B5E`).
+  `+0x30`, `+0x34` and `+0x3C`, the qword `+0x40` and the dwords `+0x48` and `+0x4C`¹³.
 - `0x006C2960` stores -1 in the qword `+0x00` and 0 in the qwords `+0x08`, `+0x10` and `+0x18`
-  (`0x006C2967`-`0x006C2976`).
+ ¹⁴.
 - `0x006C4A60` also clears the qword `+0x00`, the dword `+0x08` and the qword `+0x10`; its qword store of
   10000.0 at `+0x1C` clears the dword `+0x20`. When the address block + `0x28` is not null it then stores 1.0
   in the float `+0x28` with 0 in the dword above it, 4 in the dword `+0x30` and 1 in the dword `+0x20`
-  (`0x006C4A78`-`0x006C4AA4`).
+ ¹⁵.
 - `0x006CFA50` also clears the qwords `+0x10`, `+0x28`, `+0x38`, `+0x40`, `+0x48` and `+0x68` and the dword
-  `+0x30` (`0x006CFA5A`-`0x006CFA7C`).
+  `+0x30`¹⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A1510`-`0x005A1577` |
+| ² | `0x005CEEF7` |
+| ³ | `0x005D3C70`-`0x005D3C7E` |
+| ⁴ | `0x005D5FE5`, `0x005D5FFF` |
+| ⁵ | `0x005D7B65`-`0x005D7B82` |
+| ⁶ | `0x005D7DE7` |
+| ⁷ | `0x0065EC8D` |
+| ⁸ | `0x00660A2A`-`0x00660A31` |
+| ⁹ | `0x006611F9`-`0x00661206` |
+| ¹⁰ | `0x005D1705`-`0x005D171E`, `0x005D1725` |
+| ¹¹ | `0x005D27B5`-`0x005D27D9` |
+| ¹² | `0x0065EA37`-`0x0065EA56` |
+| ¹³ | `0x006A7B15`-`0x006A7B5E` |
+| ¹⁴ | `0x006C2967`-`0x006C2976` |
+| ¹⁵ | `0x006C4A78`-`0x006C4AA4` |
+| ¹⁶ | `0x006CFA5A`-`0x006CFA7C` |
+
+</details>
 
 Other constructors and destructors of this page's classes:
 
 - `0x005ACFA0`, slot `+0x00` of the `PTimeIntervalController` vtable `0x00D313B0`, is that class's deleting
   destructor: it installs the base vtable `0x00D312F0`; with bit `0x1` of its second argument set and bit `0x4`
   clear it frees the object through `0x00584730`; with both set it calls the empty `0x0016D6A0` with the size
-  `0x28` and frees nothing; it returns the object (`0x005ACFB2`-`0x005ACFE1`).
+  `0x28` and frees nothing; it returns the object¹.
 - `0x005DBF60` installs the vtable `0x00D498B0` at `+0x00`; `0x005DC0B0` installs `0x00D498B0` and then `0x00D498D0`,
   stores its second argument at `+0x08` and clears the dwords `+0x10` and `+0x18` and the qword `+0x20`;
-  both return the object (`0x005DBF60`-`0x005DBF6A`, `0x005DC0B0`-`0x005DC0D7`).
+  both return the object².
 - `0x006161A0` runs `0x005DCC40` on the object, clears the dword `+0x30` and calls `0x00627800(object + 0x30, 1)`,
   clears the qwords `+0x78`, `+0x80`, `+0x88`, `+0x90`, `+0x98` and `+0xA0`, and returns the object
-  (`0x006161B6`-`0x00616205`).
-- `0x00627800(ring, count)` answers 0 at once when the count equals the dword `+0x00` (`0x0062781F`-`0x00627821`).
+ ³.
+- `0x00627800(ring, count)` answers 0 at once when the count equals the dword `+0x00`⁴.
   Otherwise it asks `0x0061CFA0(ring, count)` for a block; a null block for a non-zero count answers `0xD` with
-  nothing changed (`0x0062783A`-`0x0062784E`).
+  nothing changed⁵.
 - The old block of `0x00627800`, the pointer at `+0x08` for an old count above 1 and
-  the inline slot `+0x08` itself for an old count of 1 (`0x00627823`-`0x00627838`), the old count being the
-  dword `+0x00` without bit `0x80000000` (`0x0062781B`), is released with
+  the inline slot `+0x08` itself for an old count of 1⁶, the old count being the
+  dword `+0x00` without bit `0x80000000`⁷, is released with
   `0x00584730(old block)` when it is not
   the new block, not the inline slot and not null, and bit `0x80000000` of the count dword is clear
-  (`0x0062785C`-`0x00627879`). No record is copied.
+ ⁸. No record is copied.
 - It then stores the new block at `+0x08`, unless that is the inline slot, and the count at `+0x00`, and
-  answers 0 (`0x0062787E`-`0x0062788D`).
+  answers 0⁹.
 - `0x006332A0` installs the vtable `0x00D580B0`; when the node at `+0x08` is linked (its first qword is not its
   own address) it calls slot `+0x48` of the owner at `+0x18` with the member; it runs `0x006B6700` on `+0x38`;
   and it frees the name at `+0x20` with `0x00584730` when bit `0x1` of the byte `+0x28` is set
-  (`0x006332B7`-`0x006332EC`).
+ ¹⁰.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005ACFB2`-`0x005ACFE1` |
+| ² | `0x005DBF60`-`0x005DBF6A`, `0x005DC0B0`-`0x005DC0D7` |
+| ³ | `0x006161B6`-`0x00616205` |
+| ⁴ | `0x0062781F`-`0x00627821` |
+| ⁵ | `0x0062783A`-`0x0062784E` |
+| ⁶ | `0x00627823`-`0x00627838` |
+| ⁷ | `0x0062781B` |
+| ⁸ | `0x0062785C`-`0x00627879` |
+| ⁹ | `0x0062787E`-`0x0062788D` |
+| ¹⁰ | `0x006332B7`-`0x006332EC` |
+
+</details>
 
 `PConstantBufferBase` (`0xC` bytes, offsets from the start of the record):
 
@@ -913,7 +1478,16 @@ Other constructors and destructors of this page's classes:
 | `+0x24` | `u8[4]` | bytes24 | the bytes after m_localRange (`+0x20`) up to the end of the `0x28`-byte class; no registered member covers it (`0x005A9340` registers the `0x28`-byte class at `0x005A938A`) |
 
 For a negative `fmodf` result r, `0x005C5330` goes on with `r + sign * range` before it applies the sign and
-adds `m_localBase` (`0x005C5397`-`0x005C53B5`).
+adds `m_localBase`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C5397`-`0x005C53B5` |
+
+</details>
 
 `PTrigger` (`0x58` bytes, offsets from the start of the record):
 
@@ -984,35 +1558,56 @@ the bytes:
 - `0x006625D0` registers `PShape`: `0x00632D80(descriptor, the result of 0x006373D0, the name 0x00D66048, 0x38, 8,
   the result of 0x006372A0, 0)` at `0x00662620`; it then installs the vtable `0x00D66600`, sets bit `0x2` of
   `+0xFC` and hands `0x02D395D0`, `0x02D39610` and `0x02D39650` to `0x0063DC80`, `0x0063DF90` and `0x0063DFA0`
-  (`0x006625EB`-`0x0066265F`).
+ ¹.
 - `0x006BBAD0` registers `PModifierNetworkDynamicMesh`, a `0x78`-byte class, the same way at `0x006BBB1A` with
   the name at `0x00D81778`, the alignment 8, the base `0x02D3A140` and 0; the vtable is `0x00D81268`, bit `0x2` of
   `+0xFC` is set and
-  `0x02E57DE0`, `0x02E57E60` and `0x02E57EE0` go to the same three functions (`0x006BBAE6`-`0x006BBB59`).
+  `0x02E57DE0`, `0x02E57E60` and `0x02E57EE0` go to the same three functions².
 - `0x00791C20` registers `PDebugUtils`, name `0x01CB09D0`, size `0x58`, at `0x00791C70` with the alignment 8, the
   result of `0x006372A0` and 0; the vtable is `0x01CB0BD0`, bit `0x2` of `+0xFC` is set and `0x02EAC0A0`,
-  `0x02EAC100` and `0x02EAC160` go to the same three functions (`0x00791C3B`-`0x00791CAF`).
-- Each of the three returns its descriptor (`0x00662665`, `0x006BBB5F`, `0x00791CB5`).
+  `0x02EAC100` and `0x02EAC160` go to the same three functions³.
+- Each of the three returns its descriptor⁴.
 - `0x00662A50` installs the vtable `0x00D68DF0`, clears the qword `+0x08`, the dword `+0x10`, the qword `+0x18`,
-  the dword `+0x20`, the qword `+0x28` and the dword `+0x30`, and returns the object (`0x00662A50`-`0x00662A71`).
+  the dword `+0x20`, the qword `+0x28` and the dword `+0x30`, and returns the object⁵.
 - `0x00675700`, slot 0 of `0x00D6C378`, the vtable of the `m_asset` member's helper, stores that vtable, runs
   `0x00633770` on the object, frees the `0x20`-byte object through `0x00809950` when bit `0x1` of its second
-  argument is set, and returns the object (`0x0067570A`-`0x00675730`).
+  argument is set, and returns the object⁶.
 - `0x0067E690` and `0x006B4170`, slot 0 of the caller objects' vtables under State, install the vtable
   `0x00D27B80`, free the object through `0x00809950` when bit `0x1` of the second argument is set, with the
-  size `0x10` in `0x0067E690` and `0x18` in `0x006B4170`, and return the object (`0x0067E696`-`0x0067E6B2`,
-  `0x006B4176`-`0x006B4192`).
+  size `0x10` in `0x0067E690` and `0x18` in `0x006B4170`, and return the object⁷.
 - `0x006BE990`, the placement constructor of `PLight` (slot `+0x50` of the vtable `0x00D82B58`), skips a null
-  block and answers 1 (`0x006BE990`-`0x006BE9E1`).
+  block and answers 1⁸.
 - On a block `0x006BE990` stores 0.5 in the floats `+0x00`, `+0x04` and `+0x08` and 1.0 in `+0x0C`, 0 in the
   qwords `+0x10` and `+0x18`, the address `0x01F2ED48` in the qword `+0x20`, 0 in the dword `+0x28`, the float
   `0x3EC90FDB` in `+0x2C`, 1.0 in the float `+0x30` with 0 in the dword above it, and `0x7F7FFFFF` in the
-  dword `+0x38` with 0 in the dword above it (`0x006BE995`-`0x006BE9D7`).
+  dword `+0x38` with 0 in the dword above it⁹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006625EB`-`0x0066265F` |
+| ² | `0x006BBAE6`-`0x006BBB59` |
+| ³ | `0x00791C3B`-`0x00791CAF` |
+| ⁴ | `0x00662665`, `0x006BBB5F`, `0x00791CB5` |
+| ⁵ | `0x00662A50`-`0x00662A71` |
+| ⁶ | `0x0067570A`-`0x00675730` |
+| ⁷ | `0x0067E696`-`0x0067E6B2`, `0x006B4176`-`0x006B4192` |
+| ⁸ | `0x006BE990`-`0x006BE9E1` |
+| ⁹ | `0x006BE995`-`0x006BE9D7` |
+
+</details>
 
 `0x00819990`, which the note on the `+0x20` and `+0x18` reads under Project notes names, is the Lua collector's
 sweep of a table list's keys; it is described on [Lua runtime](../Third-Party-Libraries/lua-runtime.md).
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -1103,9 +1698,18 @@ address order. Every body of a list has the form below; sizes are body lengths i
 ### Columns of phyre-reflection-descriptor-flag-registrars.tsv and phyre-reflection-descriptor-flag-registrars-compact.tsv
 
 One row per initialiser, 34 and 5 rows in address order. Each body calls a constructor on a static descriptor,
-stores the descriptor's vtable, changes its flags word `+0xFC` and jumps to `atexit` (`0x00808B90`) with the
+stores the descriptor's vtable, changes its flags word `+0xFC` and jumps to `atexit`¹ with the
 teardown. The 64-byte bodies clear bit `0x2` and set bit `0x8` in one read-modify-write; the 53-byte bodies only
 clear bit `0x2`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808B90` |
+
+</details>
 
 | Column | Holds |
 |---|---|
@@ -1118,8 +1722,19 @@ clear bit `0x2`.
 
 ### Columns of phyre-reflection-guarded-class-registration-stubs.tsv
 
-One row per registrar, 99 rows in address order. Each body calls `_Init_thread_header` (`0x008092FC`),
-`_Init_thread_footer` (`0x0080929C`) and `atexit` (`0x00808B90`).
+One row per registrar, 99 rows in address order. Each body calls `_Init_thread_header`¹,
+`_Init_thread_footer`² and `atexit`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008092FC` |
+| ² | `0x0080929C` |
+| ³ | `0x00808B90` |
+
+</details>
 
 | Column | Holds |
 |---|---|
@@ -1210,26 +1825,45 @@ displacement, read or write, and where the object pointer comes from.
 | `PUtility` | [phyre-reflection-census-putility-accesses.tsv](phyre-reflection-census-putility-accesses.tsv) | 3 |
 | `PVertexStream` | [phyre-reflection-census-pvertex-stream-accesses.tsv](phyre-reflection-census-pvertex-stream-accesses.tsv) | 3 |
 
+</details>
+
 ## Operations
 
 - **Find a class by name.** `0x0063BA10(namespace, name)`; the default namespace is `0x006373D0()`.
 - **Find a type by name.** Hash as in `0x006388C0` and walk the tree at `0x01F2E780` with `0x006311D0`.
 - **Type-tree lookup.** `0x006311D0(header, key)` takes a key of the hash (`u32` at `+0x00`) and the name pointer
-  (`+0x08`). It starts at the header's `+0x18` and returns 0 for an empty tree (`0x006311E2`). At each descriptor it
-  compares the hash `+0x20` first and, on an equal hash, the name `+0x28` byte for byte (`0x0063120B`-`0x00631245`);
-  a match returns the descriptor, which is the link that reached it less 8 (`0x00631278`-`0x0063127D`).
+  (`+0x08`). It starts at the header's `+0x18` and returns 0 for an empty tree¹. At each descriptor it
+  compares the hash `+0x20` first and, on an equal hash, the name `+0x28` byte for byte²;
+  a match returns the descriptor, which is the link that reached it less 8³.
 - **Type-tree descent.** In `0x006311D0` a result of 1 (`node hash > key hash`, or on equal hashes
   `key name > node name` at the first differing byte) follows the descriptor's `+0x08` link and -1 follows
-  `+0x10` (`0x0063124C`-`0x00631250`); reaching the header returns 0 (`0x0063126B`-`0x00631270`).
+  `+0x10`⁴; reaching the header returns 0⁵.
 - **Find a member.** `0x00597220(descriptor, name)` searches the class, then its ancestors. It walks the list `+0x80`
   of each descriptor up the `+0x78` chain and returns the first member record whose name `+0x20` matches byte for
-  byte, skipping members without a name; it returns 0 for a null descriptor or name (`0x0059722B`, `0x00597233`) and
+  byte, skipping members without a name; it returns 0 for a null descriptor or name⁶ and
   when no member matches.
 - **Create instances.** `0x0063A990(cluster, count, descriptor, …)`; `0x0063C910(descriptor, object)`
   initialises one object from the default instance.
 - **Visit members.** Descriptor slot `+0x00` walks every member of the class and its ancestors.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006311E2` |
+| ² | `0x0063120B`-`0x00631245` |
+| ³ | `0x00631278`-`0x0063127D` |
+| ⁴ | `0x0063124C`-`0x00631250` |
+| ⁵ | `0x0063126B`-`0x00631270` |
+| ⁶ | `0x0059722B`, `0x00597233` |
+
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | What |
 |---|---|
@@ -1288,13 +1922,32 @@ The 69 array-type descriptors are in `array-getter`: each getter sets bit `0x2` 
 and clears it after installing the Concrete vtable.
 
 A getter keeps its class name in a static of its own and fills it from the first caller that passes a name. For
-`PArray<PUInt32>` the getter `0x005B4E00` builds the descriptor `0x02CB3B50` with the name in `0x02CB5BC8` (`0x005B4E78`,
-`0x005B4E9D`), 0 on the first call; once a caller passes a name while the descriptor's name `0x02CB3B80` is 0, it stores
-that name in both (`0x005B4F31`, `0x005B4F3F`, `0x005B4F46`).
+`PArray<PUInt32>` the getter `0x005B4E00` builds the descriptor `0x02CB3B50` with the name in `0x02CB5BC8`¹, 0 on the first call; once a caller passes a name while the descriptor's name `0x02CB3B80` is 0, it stores
+that name in both².
 
-`0x005B1D90` passes `[0x01F2D110]` (`0x005B1DB5`), which the image points at the text `PArray<PUInt32>` (`0x00D329D8`); the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005B4E78`, `0x005B4E9D` |
+| ² | `0x005B4F31`, `0x005B4F3F`, `0x005B4F46` |
+
+</details>
+
+`0x005B1D90` passes `[0x01F2D110]`¹, which the image points at the text `PArray<PUInt32>`²; the
 calls at `0x005B1DFF`, `0x005B82DC`, `0x005B82EE`, `0x005BB255`, `0x005C7982`, `0x005C7E32`, `0x005CACA0` and `0x005CACBB` give no
 name.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005B1DB5` |
+| ² | `0x00D329D8` |
+
+</details>
 
 All 69 getters are named this way. 682 direct calls reach them, not one by a jump, and no RIP-relative address form
 or 8-byte pointer in the image names a getter. 98 of the calls load the name from an image pointer to a static
@@ -1303,8 +1956,16 @@ string, the other 584 give no name, and no getter receives two different names.
 The 69 names, each with one call that passes it, are in
 [phyre-reflection-array-type-names.tsv](phyre-reflection-array-type-names.tsv), and the 69 rows of
 [phyre-reflection-phyre-class-default-buffers.tsv](phyre-reflection-phyre-class-default-buffers.tsv) carry them.
-Each getter passes the instance size to `0x00632D80` from a register it zeroes, as `0x005B4E00` does (`0x005B4E3E`,
-`0x005B4E99`): `0x10`, or `0x50` for `PSharray<PDataBlockBufferD3D11>` and `PSharray<PIndexDataBlockBufferD3D11>`.
+Each getter passes the instance size to `0x00632D80` from a register it zeroes, as `0x005B4E00` does¹: `0x10`, or `0x50` for `PSharray<PDataBlockBufferD3D11>` and `PSharray<PIndexDataBlockBufferD3D11>`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005B4E3E`, `0x005B4E99` |
+
+</details>
 
 Every instruction in the game that writes or reads a descriptor's `+0xFC` is a row of
 [phyre-reflection-class-flag-sites.tsv](phyre-reflection-class-flag-sites.tsv): 1006 rows, one per bit and access.
@@ -1326,15 +1987,34 @@ reads the whole word: every load ends in a bit test, a sign test, a bit extracti
 | `0x80000000` | default instance and masks built | set by `0x00639A60` (`0x00639C55`); cleared by `0x00632E80` (`0x00632F3C`), `0x0063D410` (`0x0063D4DB`) and `0x0063D930` (`0x0063D945`) | 13 sign tests: at the loads of the `0x40000000` readers other than `0x00639A40`, and at `0x00639A60` (`0x00639A94`) |
 
 No instruction writes or reads bits `0x40` to `0x4000000`. The whole word is written as 0 by the 10 core
-constructors `0x006316C0`-`0x00632780`, `0x00632C90` (`0x00632D6A`, 8 bytes from `+0xF8`) and `0x00632D80` (`0x00632E69`), and
+constructors `0x006316C0`-`0x00632780`, `0x00632C90` (`0x00632D6A`, 8 bytes from `+0xF8`) and `0x00632D80`¹, and
 stored back by the initialisers after they change their bits (43 sites), by the 10 core registrars after their
-`bts` (10 sites), and once more by `0x00635DC0` (`0x00635E7C`) after it sets and clears bit `0x2`.
+`bts` (10 sites), and once more by `0x00635DC0`² after it sets and clears bit `0x2`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00632E69` |
+| ² | `0x00635E7C` |
+
+</details>
 
 ### Array-type descriptor getters
 
 A getter such as `0x005B5130` (`PArray<float, 4>`) builds its descriptor, an `m_count` member, the `WriteMask`
 annotation on it and an `m_els` member, each behind its own thread-safe static, then registers the
-descriptor (`0x006388C0`, `0x00639450`). Ten of its statics are in `array-getter`:
+descriptor¹. Ten of its statics are in `array-getter`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006388C0`, `0x00639450` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -1367,7 +2047,16 @@ stores are direct (`data-member`):
 The core registrars build their member records inline, field by field, as `0x00632960` would; the owner's
 attach slot `+0x40` (`0x0062EFD0` in every core descriptor vtable) then links each record into `+0x80`. Their
 rows give every field. The `m_type` member of `PClassDataMemberDynamic` gets a dynamic-type helper at
-`0x01F2DF30` and attribute bit `0x4` (`0x00634668`).
+`0x01F2DF30` and attribute bit `0x4`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00634668` |
+
+</details>
 
 A method or script-function record (`callable`) is a `0x30`-byte `PClassMember`: list node `+0x00`/`+0x08`,
 owner `+0x10`, name `+0x18`, attributes `+0x20`, and at `+0x28` a pointer to its caller object, which
@@ -1381,8 +2070,19 @@ follows at `+0x30`. A `PMethodCallerConcrete` record is linked into the owner's 
 | caller `+0x00`, 49 rows | `void*` | 0 | the caller's vtable | the registrar | - |
 | caller `+0x08`, 49 rows | `void*` or `u8[16]` | 0 | the function called: 8 bytes for a function, or a 16-byte member-function pointer with a 0 adjustment at `+0x10` in 9 records | the registrar | - |
 
-For `PFunctionCallerConcrete<float>` (`0x00D34C08`) slots `+0x08` (`0x005C1350`) and `+0x10` (`0x005CBCC0`) call
+For `PFunctionCallerConcrete<float>`¹ slots `+0x08`² and `+0x10`³ call
 through `+0x08`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00D34C08` |
+| ² | `0x005C1350` |
+| ³ | `0x005CBCC0` |
+
+</details>
 
 ### Built-in and enum types
 
@@ -1392,39 +2092,89 @@ already holds their fields. `0x00637F20`, which registers every one of them by n
 them again behind each type's guard; seven of them are also built by other functions (`0x00637720` for `PType`;
 `0x006315B0` and `0x00637650` for `PUInt32`), as each row lists.
 
-The enum types `Phyre::PResult` (`0x02CB07A0`, getter `0x005A6670`), `PSamplerStateFilterFormatType`
-(`0x02CC02D0`, `0x005D8CA0`), `PSamplerStateWrapFormatType` (`0x02CC0330`, `0x005D8D70`) and `PCollisionGroup`
-(`0x02E4A0D0`, `0x0068F0F0`) are `PTypeDefault<unsigned int>` objects of size 4 built on first use; their exit
+The enum types `Phyre::PResult` (`0x02CB07A0`, getter `0x005A6670`), `PSamplerStateFilterFormatType`¹, `PSamplerStateWrapFormatType`² and `PCollisionGroup`³ are `PTypeDefault<unsigned int>` objects of size 4 built on first use; their exit
 teardowns put back the `PType` vtable `0x00D31168`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02CC02D0`, `0x005D8CA0` |
+| ² | `0x02CC0330`, `0x005D8D70` |
+| ³ | `0x02E4A0D0`, `0x0068F0F0` |
+
+</details>
 
 In both families the three tree links point at the object's own `+0x08` and the hash and key are 0;
 `0x006388C0` sets them when it registers a type.
 
 ### Core descriptors and the default namespace
 
-The core descriptors `PBase` (`0x02CF8270`), `PClassDataMemberDynamic`, `PClassDescriptor`,
-`PClassDescriptorDynamic`, `PClassMember`, `PCluster`, `PClusterDependencyList`, `PNamespace`, `PWorld`
-(`0x02CF8370`-`0x02CF8A80`) and `PSharray<PString>` (`0x02CF9530`) are built by their own code. Their rows cover:
+The core descriptors `PBase`¹, `PClassDataMemberDynamic`, `PClassDescriptor`,
+`PClassDescriptorDynamic`, `PClassMember`, `PCluster`, `PClusterDependencyList`, `PNamespace`, `PWorld`² and `PSharray<PString>`³ are built by their own code. Their rows cover:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02CF8270` |
+| ² | `0x02CF8370`-`0x02CF8A80` |
+| ³ | `0x02CF9530` |
+
+</details>
 
 - `+0xC0`, `+0xC8`, `+0xD0`: the three static buffers, stored by the initialiser, for `PBase` by its registrar
-  `0x006344A0` (`0x006344C0`-`0x006344DC`);
+  `0x006344A0`¹;
 - `+0x08`-`+0x28`: reset by the registrar only when bit `0x1` of `+0xFC` is set (`0x006344F8` and the same test
   in the others), which the class's own code leaves clear;
-- `PBase` `+0x38`: `0x006318A0` stores 1 through the descriptor (`0x00631913`), then the initialiser `0x00164180`
-  stores 0 (`0x00164197`), installs the vtable `0x00D582D0` at `+0x00` and registers the teardown `0x008AF190` with
-  `0x00808B90` (`0x00164190`-`0x001641B3`).
+- `PBase` `+0x38`: `0x006318A0` stores 1 through the descriptor², then the initialiser `0x00164180`
+  stores 0³, installs the vtable `0x00D582D0` at `+0x00` and registers the teardown `0x008AF190` with
+  `0x00808B90`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006344C0`-`0x006344DC` |
+| ² | `0x00631913` |
+| ³ | `0x00164197` |
+| ⁴ | `0x00164190`-`0x001641B3` |
+
+</details>
 
 `0x006344A0` is the registrar of `PBase` `0x02CF8270`. It sets bit `0x20` of the flags `0x02CF836C`, stores the
 addresses `0x02CF8FA0`, `0x02CF8FA1` and `0x02CF8FA2` at the descriptor's `+0xC0`, `+0xC8` and `+0xD0`, calls
 `0x00639160(the qword 0x02CF82E0, 0x02CF8270)` and sets bit `0x40000000`. With bit `0x1` of the flags set it points
 the three qwords `0x02CF8278`, `0x02CF8280` and `0x02CF8288` at `0x02CF8278`, clears the dword `0x02CF8290` and the
-qword `0x02CF8298` and ends in a jump to `0x006388C0(0x02CF8270)` (`0x006344A4`-`0x00634532`).
+qword `0x02CF8298` and ends in a jump to `0x006388C0(0x02CF8270)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006344A4`-`0x00634532` |
+
+</details>
 
 The default namespace `0x01F2E330` is built behind guard `0x02CF94EC` by whichever of `0x006316C0`-`0x00632780`,
 `0x00637A70`, `0x00638C90` and `0x0063C730` runs first, each storing the same empty lists. Its state word
-`0x01F2E350` is set to 1 by `0x00637A70` (`0x00637AB8`) while it computes every class's layout offsets, then to 2
-(`0x00637B60`) while it builds every class's default instance and masks; `0x00638C90` clears bit `0x40000000`
-of every class and sets it back to 0 (`0x00638DAB`).
+`0x01F2E350` is set to 1 by `0x00637A70`¹ while it computes every class's layout offsets, then to 2² while it builds every class's default instance and masks; `0x00638C90` clears bit `0x40000000`
+of every class and sets it back to 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00637AB8` |
+| ² | `0x00637B60` |
+| ³ | `0x00638DAB` |
+
+</details>
 
 ### Other registration statics
 
@@ -1443,17 +2193,47 @@ of every class and sets it back to 0 (`0x00638DAB`).
 
 The `PLOD` enumerations register their values in two named registries. `0x006D9680` adds a `PLODMetricType` (vtable
 `0x00D8DCA8`) to the list `0x02EA06D8`, and the initialisers `0x00168850`, `0x00168870` and `0x00168890` register
-`DistanceToBoundBox` (`0x01F323A8`), `DistanceToNode` (`0x01F32390`) and `ScreenSize` (`0x01F323C0`) through it.
+`DistanceToBoundBox`¹, `DistanceToNode`² and `ScreenSize`³ through it.
 
-`0x001688B0` and `0x001688D0` register the `PLODBlendType` (vtable `0x00D8DD88`) values `Distance` (`0x01F323D8`) and `Time`
-(`0x01F323F0`) through `0x006D9A70` into `0x02EA0748`. Each record holds its vtable at `+0x00`, its name at `+0x08` and the list
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01F323A8` |
+| ² | `0x01F32390` |
+| ³ | `0x01F323C0` |
+
+</details>
+
+`0x001688B0` and `0x001688D0` register the `PLODBlendType` (vtable `0x00D8DD88`) values `Distance`¹ and `Time`² through `0x006D9A70` into `0x02EA0748`. Each record holds its vtable at `+0x00`, its name at `+0x08` and the list
 link at `+0x10`; the teardowns `0x008B76B0`, `0x008B7710`, `0x008B7770`, `0x008B77E0` and `0x008B7840` unlink them at exit.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01F323D8` |
+| ² | `0x01F323F0` |
+
+</details>
 
 ### More method and script-function records
 
 The `callable` and `data-member` families also hold the records that 22 more member registrars build, from
-`PTimer` (`0x005A02D0`) to `PInputAction` (`0x0086D670`): 134 records, 125 in a method list and 9 in a script-function
+`PTimer`¹ to `PInputAction`²: 134 records, 125 in a method list and 9 in a script-function
 list, each row with the same fields and wording as above. Their registrars:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A02D0` |
+| ² | `0x0086D670` |
+
+</details>
 
 | Class | Registrar | Records |
 |---|---|---:|
@@ -1514,15 +2294,34 @@ above.
 
 The `data-member` family adds the direct stores of the member registrars of 30 more classes (four of them,
 `0x005E5400`, `0x00696470`, `0x006A7EE0` and `0x006C5A50`, also build method records above), from
-`PAnimationChannel` (`0x005AF0A0`) to `PTrigger` (`0x006A7EE0`): 43 vtable stores at `+0x00` (38
+`PAnimationChannel`¹ to `PTrigger`²: 43 vtable stores at `+0x00` (38
 `PClassDataMemberPhyreArray<T>`, 5 `PClassDataMemberPhyreSharray<T>`), each after `0x00632A10` builds the record,
 and 39 attribute ORs at `+0x28` (bit `0x10` in 28, bit `0x08` in 11) after the constructor stores the
 attributes.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005AF0A0` |
+| ² | `0x006A7EE0` |
+
+</details>
+
 `members-registered` adds the guard bytes of the descriptor getters of `CD3D11_RASTERIZER_DESC`
-(`0x02CF53C4`, stored at `0x0061438D` by `0x00613E80`), `CD3D11_DEPTH_STENCIL_DESC` (`0x02CF5B84`, `0x00613E5F`,
-`0x00613A30`) and `D3D11_RENDER_TARGET_BLEND_DESC` (`0x02CF5FB4`, `0x00614A6B`, `0x00614640`), each right after the
+(`0x02CF53C4`, stored at `0x0061438D` by `0x00613E80`), `CD3D11_DEPTH_STENCIL_DESC`¹ and `D3D11_RENDER_TARGET_BLEND_DESC`², each right after the
 getter's `call 0x00639450`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02CF5B84`, `0x00613E5F`, `0x00613A30` |
+| ² | `0x02CF5FB4`, `0x00614A6B`, `0x00614640` |
+
+</details>
 
 ### Light and shadow-caster types
 
@@ -1561,24 +2360,46 @@ The exit teardown, and the destructor `0x006BEC40` or `0x006C0FE0` (reached from
 
 - `0x00167C50` registers the static record `0x01F31F78`, `UnsetTrigger`, and `0x008B6FC0` unlinks it at exit.
 - `0x006CD390`, `PNamedSemanticDynamic::FindOrCreateDynamic`, answers null for a null name and finds a name in
-  the list `0x02E5C210` with `_stricmp`, returning the record found (`0x006CD39D`-`0x006CD3C7`).
+  the list `0x02E5C210` with `_stricmp`, returning the record found¹.
 - On a miss it reports through `0x005CDAA0(1, 0x00D4E5C0, name)` and takes a record from the pool `0x02E5C218`
   and a name slot from `0x02E5C240`; an empty pool is grown first with `0x00680150(pool, the dword 0x02E5C234)`
-  for the records and `0x00680150(pool, the dword 0x02E5C25C)` for the slots (`0x006CD3DD`-`0x006CD455`).
+  for the records and `0x00680150(pool, the dword 0x02E5C25C)` for the slots².
 - With both in hand it copies the name and its terminator with `0x00861EBA`, stores the slot at the record's
   `+0x00`, 0 at `+0x08` and 1 in the byte `+0x10`, and registers the record with `0x006CD4F0`. Without a
   record or without a slot it does none of this and returns the record it has, null or unfilled
-  (`0x006CD45C`-`0x006CD4A4`).
+ ³.
 - `0x006CD5B0`, slot `+0x50` of `PNamedSemanticDescriptorForDynamicType<PTriggerType>` (`0x00D89F40`, the descriptor
   `0x006CD270` builds at `0x02E5C270`), copies every record's address into an array.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006CD39D`-`0x006CD3C7` |
+| ² | `0x006CD3DD`-`0x006CD455` |
+| ³ | `0x006CD45C`-`0x006CD4A4` |
+
+</details>
+
 ### The per-type table size
 
-The engine set-up `0x005A08E0` calls `0x00638AE0` (`0x005A0AB7`), which walks every class descriptor (the list at
+The engine set-up `0x005A08E0` calls `0x00638AE0`¹, which walks every class descriptor (the list at
 `+0x10` of the object `0x006373D0` returns, linked through `+0x50`), gives every
-descriptor its per-type table entry at `+0xEC` (`0x00638C0A`). It stores the number of descriptors it walked. The run
-setup `0x0079F150` calls `0x0063C730` (`0x0079F539`), which reads that number and, when the world's per-type table (count
+descriptor its per-type table entry at `+0xEC`². It stores the number of descriptors it walked. The run
+setup `0x0079F150` calls `0x0063C730`³, which reads that number and, when the world's per-type table (count
 `+0x10`, entries `+0x18`) does not already hold one more than it, gives the table that many `0x20`-byte entries.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A0AB7` |
+| ² | `0x00638C0A` |
+| ³ | `0x0079F539` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -1588,31 +2409,76 @@ setup `0x0079F150` calls `0x0063C730` (`0x0079F539`), which reads that number an
 `0x006343E0(n + 1, the array +0x18, the smaller of n + 1 and the count without its top bit)` for a new
 array; a null answer with n + 1 not 0 ends the function with the result `0xD`. It frees the old array with
 `0x00584730` when that differs from the new one, is not null and the count's bit `0x80000000` is clear,
-then stores the new array and the count n + 1 (`0x0063C744`-`0x0063C7A7`).
+then stores the new array and the count n + 1¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063C744`-`0x0063C7A7` |
+
+</details>
 
 `0x006343E0(count, old, keep)` returns null for a count of 0 or when `0x0017D260(count * 0x20, 8)` gives
 nothing. It copies the first keep entries of `0x20` bytes from old, and gives each further entry two links
-at the entry itself, a null qword `+0x10` and -1 in the dword `+0x18` (`0x006343FE`-`0x00634474`). Whether or
-not the array was replaced, `0x0063C730` then links entries 1 to n at the tail of the list headed by entry 0
-(`0x0063C7AA`-`0x0063C7E6`).
+at the entry itself, a null qword `+0x10` and -1 in the dword `+0x18`¹. Whether or
+not the array was replaced, `0x0063C730` then links entries 1 to n at the tail of the list headed by entry 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006343FE`-`0x00634474` |
+| ² | `0x0063C7AA`-`0x0063C7E6` |
+
+</details>
 
 Once, under the guard `0x02CF94EC`, it makes the default namespace `0x01F2E330`: the two links at
 `0x01F2E330` point at it, the links `0x01F2E340` and `0x01F2E348` at `0x01F2E340`, the dword `0x01F2E350` is 0,
-the links `0x01F2E358` and `0x01F2E360` point at `0x01F2E358`, and `0x008AF490` is registered with `0x00808B90`
-(`0x0063C892`-`0x0063C900`).
+the links `0x01F2E358` and `0x01F2E360` point at `0x01F2E358`, and `0x008AF490` is registered with `0x00808B90`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063C892`-`0x0063C900` |
+
+</details>
 
 It then walks the class list from the qword `0x01F2E340`, each class being its node less `0x50` and the
 next node the class's `+0x50`. For a class whose dword `+0xEC` is not negative it counts the links of the
 chain through `+0x78` and stores that count in the dword `+0x18` of the entry numbered by `+0xEC`. The
-result is 0 (`0x0063C814`-`0x0063C87B`).
+result is 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063C814`-`0x0063C87B` |
+
+</details>
 
 ### Two `PCameraProjection` script methods
 
-The engine set-up also calls the `PCameraProjection` member registrar `0x006788C0` (`0x005A096E`). After registering
-`m_aspect`, it builds two method records, each behind its own thread-safe guard (`0x02D3F760`, `0x02D3F7C0`): `0x00632FB0`
+The engine set-up also calls the `PCameraProjection` member registrar `0x006788C0`¹. After registering
+`m_aspect`, it builds two method records, each behind its own thread-safe guard²: `0x00632FB0`
 builds the record with its name (`setNearPlane`, `setFarPlane`), and when `0x005A7A40` finds no method of that name
 the registrar appends the record to the method list at `+0x90` of the class the record names at `+0x10`. The
 record's `+0x00` takes the list's sentinel and `+0x08` the previous last record.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A096E` |
+| ² | `0x02D3F760`, `0x02D3F7C0` |
+
+</details>
 
 It then stores 0 in the record's
 caller pointer `+0x28`, builds the caller object beside the record and points `+0x28` at it.
@@ -1637,30 +2503,76 @@ record itself and frees the name buffer `+0x18` when bit `0x1` of `+0x20` is set
 The `PAssetReference` member registrar `0x00675740` registers `m_id`, `m_asset` and `m_assetType`, each behind its own
 thread-safe guard (`0x00632960` at `0x006757D9`, `0x0067584C`, `0x006758BE`). For `m_asset` it also builds, behind the guard
 `0x02D3E9F0`, a dynamic-type helper at `0x02D3E9D0`: `0x00633100` points the helper's `+0x08` at the member record
-`0x02D3E910`, sets the member's attribute bit `0x4` and stores the helper's address in the member's `+0x50`
-(`0x02D3E960`). The registrar then gives the helper its own vtable and member-function pointer.
+`0x02D3E910`, sets the member's attribute bit `0x4` and stores the helper's address in the member's `+0x50`¹. The registrar then gives the helper its own vtable and member-function pointer.
 
-Outside the guard, on every call, the registrar stores the helper's address in `0x02D3E960` again (`0x00675954`). At
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02D3E960` |
+
+</details>
+
+Outside the guard, on every call, the registrar stores the helper's address in `0x02D3E960` again¹. At
 exit `0x008B1D50` restores the vtable and runs `0x00633770`, which stores the base vtable `0x00D58098` and clears the
 member's `+0x50`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00675954` |
+
+</details>
 
 It then builds five records the way the `PCameraProjection` registrar above does: the methods `getID`, `getAsset`
 and `getAssetType` in the method list `+0x90` (looked up with `0x005A7A40`), and the script functions
 `GetAssetReferenceByAsset` and `GetAssetReferenceByID` in the script-function list `+0xA0` (looked up with
 `0x005A0470`). Each record's `+0x28` is set to 0 inside its guarded block. The caller object and the record's pointer
-to it are stored after the guard, on every call. The exit teardowns (`0x008B1CE0`, `0x008B1C20`, `0x008B1C80`, `0x008B1B40`,
-`0x008B1BA0`) unlink the records as above.
+to it are stored after the guard, on every call. The exit teardowns¹ unlink the records as above.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008B1CE0`, `0x008B1C20`, `0x008B1C80`, `0x008B1B40`, `0x008B1BA0` |
+
+</details>
 
 Each of the five unlinks its record the same way and points the record's two qwords at the record itself:
-`0x008B1B40` for `0x02D3EB20` (`0x008B1B4D`-`0x008B1B70`), `0x008B1BA0` for `0x02D3EB80` (`0x008B1BAD`-`0x008B1BD0`),
-`0x008B1C20` for `0x02D3EA60` (`0x008B1C2D`-`0x008B1C50`), `0x008B1C80` for `0x02D3EAC0` (`0x008B1C8D`-`0x008B1CB0`) and
-`0x008B1CE0` for `0x02D3EA00` (`0x008B1CED`-`0x008B1D10`).
+`0x008B1B40` for `0x02D3EB20`¹, `0x008B1BA0` for `0x02D3EB80`²,
+`0x008B1C20` for `0x02D3EA60`³, `0x008B1C80` for `0x02D3EAC0`⁴ and
+`0x008B1CE0` for `0x02D3EA00`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008B1B4D`-`0x008B1B70` |
+| ² | `0x008B1BAD`-`0x008B1BD0` |
+| ³ | `0x008B1C2D`-`0x008B1C50` |
+| ⁴ | `0x008B1C8D`-`0x008B1CB0` |
+| ⁵ | `0x008B1CED`-`0x008B1D10` |
+
+</details>
 
 Each also frees the record's name, copied into owned storage, through `0x00584730` when bit `0x1` of its
 attribute word `+0x20` is set: `0x008B1B40` the pointer the qword `0x02D3EB38` (`+0x18`) holds, under the byte
 `0x02D3EB40`; `0x008B1BA0` `0x02D3EB98` under `0x02D3EBA0`; `0x008B1C20` `0x02D3EA78` under `0x02D3EA80`; `0x008B1C80`
-`0x02D3EAD8` under `0x02D3EAE0`; and `0x008B1CE0` `0x02D3EA18` under `0x02D3EA20` (`0x008B1B77`-`0x008B1B87`,
-`0x008B1BD7`-`0x008B1BE7`, `0x008B1C57`-`0x008B1C67`, `0x008B1CB7`-`0x008B1CC7`, `0x008B1D17`-`0x008B1D27`).
+`0x02D3EAD8` under `0x02D3EAE0`; and `0x008B1CE0` `0x02D3EA18` under `0x02D3EA20`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008B1B77`-`0x008B1B87`, `0x008B1BD7`-`0x008B1BE7`, `0x008B1C57`-`0x008B1C67`, `0x008B1CB7`-`0x008B1CC7`, `0x008B1D17`-`0x008B1D27` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -1682,6 +2594,8 @@ attribute word `+0x20` is set: `0x008B1B40` the pointer the qword `0x02D3EB38` (
 | `0x02D3EBA8` | `void*` | 0 (zero-filled tail of `.data`) | `GetAssetReferenceByID` record (`0x02D3EB80`) `+0x28`: the caller object `0x02D3EBB0` | `0x00675740` (`0x00675CF0`, 0; `0x00675D70`, `0x02D3EBB0`) | callers of the script function, through the record |
 | `0x02D3EBB0` | `void*` | 0 (zero-filled tail of `.data`) | the caller object's vtable, `0x00D6C4F0` (slot 0 `0x0067E690`) | `0x00675740` (`0x00675D54`) | callers of the script function, through the record |
 | `0x02D3EBB8` | `void*` | 0 (zero-filled tail of `.data`) | the function the caller object calls, `0x00676BD0` | `0x00675740` (`0x00675D62`) | the caller object's slots, through the object |
+
+</details>
 
 ## Modding notes
 
@@ -1712,17 +2626,21 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [media decoder libraries](../Third-Party-Libraries/media-decoder-libraries.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x007F9360` | is called by | `0x007F7680`, `0x007F79C0`, `0x007F7B70`, `0x007F7CC0`, `0x007F7FF0`, `0x007F8140`, `0x007F8FD0`, `0x007F91B0`, `0x007FAE00`, `0x007FB400`, `0x007FB7F0`, `0x007FBF00` |
-| `0x007F9360` | is also called by | `0x007FC620`, `0x007FCD80`, `0x007FDA10` |
+| [`0x007F9360`](phyre-reflection.md) | is called by | [`0x007F7680`](../Third-Party-Libraries/media-decoder-libraries.md) (on media decoder libraries)<br>[`0x007F79C0`](phyre-reflection.md)<br>[`0x007F7B70`](phyre-reflection.md)<br>[`0x007F7CC0`](phyre-reflection.md)<br>[`0x007F7FF0`](../Third-Party-Libraries/media-decoder-libraries.md) (on media decoder libraries)<br>[`0x007F8140`](phyre-reflection.md)<br>[`0x007F8FD0`](phyre-reflection.md)<br>[`0x007F91B0`](phyre-reflection.md)<br>[`0x007FAE00`](phyre-reflection.md)<br>[`0x007FB400`](phyre-reflection.md)<br>[`0x007FB7F0`](phyre-reflection.md)<br>[`0x007FBF00`](phyre-reflection.md) |
+| [`0x007F9360`](phyre-reflection.md) | is also called by | [`0x007FC620`](phyre-reflection.md)<br>[`0x007FCD80`](phyre-reflection.md)<br>[`0x007FDA10`](phyre-reflection.md) |
 
 **Platform** (explained on [game application](../Engine-Core/game-application.md), [graphics adapters and vendor libraries](../Steam-And-Achievements/graphics-adapters-and-vendor-libraries.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x005A08E0` | calls | `0x005CC930` |
-| `0x00608A40` | calls | `0x005CD0A0` |
-| `0x0079F150` | calls | `0x005CC930`, `0x005CD0A0`, `0x006253D0` |
+| [`0x005A08E0`](phyre-modules.md) (on phyre modules) | calls | [`0x005CC930`](phyre-modules.md) (on phyre modules) |
+| [`0x00608A40`](phyre-reflection.md) | calls | [`0x005CD0A0`](../Compiler-And-C-Runtime/runtime-services.md) (on runtime services) |
+| [`0x0079F150`](phyre-application.md) (on phyre application) | calls | [`0x005CC930`](phyre-modules.md) (on phyre modules)<br>[`0x005CD0A0`](../Compiler-And-C-Runtime/runtime-services.md) (on runtime services)<br>[`0x006253D0`](phyre-application.md) (on phyre application) |
 
 </details>

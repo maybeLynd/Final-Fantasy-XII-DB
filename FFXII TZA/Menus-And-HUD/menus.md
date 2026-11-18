@@ -19,24 +19,26 @@ table, so a request is refused while a scene blocks it.
 
 ### The router
 
-`0x00254B50(request, parameter, flag)` opens a menu (`0x00254B50`-`0x00254C40`):
+`0x00254B50(request, parameter, flag)` opens a menu¹:
 
-1. It keeps the low 15 bits as the id (`0x00254B69`).
-2. It refuses while the request latch `0x02092734` is 1 (`0x00254B71`).
-3. It refuses when the combined action availability mask has a bit whose word in `0x01E0C2C0` holds the id (`0x00254B80`-`0x00254BC1`);
-   that can refuse ids 1, 2, 3, 5, 14 and 21 ([Action availability](../Controls-And-Input/action-availability.md)).
-   The test is `bt` on a register, which takes bit `id & 31` (`0x00254BC1`), so ids 33, 34, 35, 37, 46 and 53 and
-   every other id with the same low five bits are refused by the same words. A refusal returns 0 (`0x00254C40`).
-4. It closes what is open (`0x0017E7D0`, `0x0035DA80`, `0x003C8990`) and dispatches through the byte map `0x00254C70`
-   (`0x00254BD6`-`0x00254BF9`). The same three calls are `0x00254FC0`, which `0x0026C3E0` runs (`0x0026C4EC`).
-5. Ids 1 and 4 call `0x0035D660(id)`, 3 calls `0x0035D980(id)`, 5 calls `0x003C87B0(id)` and 24 calls `0x0035D080(id)`,
-   and the router returns the callee's answer; 12 calls `0x0028E970(12)` and returns 1 (`0x00254BFB`-`0x00254C2B`).
-6. Every other id, 0 and every id above 24 included, takes the generic arm (`0x00254C2D`-`0x00254C3E`). It calls
-   `0x0028F970()`, which, unless `[0x0209BE80]` is null or bit `0x2000` of its `+0x10F68` is set, clears bits `0x10`
-   and `0x400` of that dword and the word `+0x10FA0`, and sets bit `0x40` of `+0x10CFC` when the battle menu at
-   `+0xAB30` exists (`0x0028F97B`-`0x0028F9D4`, [HUD](hud.md)).
-7. The generic arm then calls `0x00280A00(request, parameter, flag)` with the whole first argument, bit `0x8000`
-   included, and returns that call's answer.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00254B50`-`0x00254C40` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It keeps the low 15 bits as the id. | `0x00254B69` |
+| 2 | It refuses while the request latch `0x02092734` is 1. | `0x00254B71` |
+| 3 | It refuses when the combined action availability mask has a bit whose word in `0x01E0C2C0` holds the id; that can refuse ids 1, 2, 3, 5, 14 and 21 ([Action availability](../Controls-And-Input/action-availability.md)). The test is `bt` on a register, which takes bit `id & 31`, so ids 33, 34, 35, 37, 46 and 53 and every other id with the same low five bits are refused by the same words. A refusal returns 0. | `0x00254B80`-`0x00254BC1`<br>`0x00254BC1`<br>`0x00254C40` |
+| 4 | It closes what is open and dispatches through the byte map `0x00254C70`. The same three calls are `0x00254FC0`, which `0x0026C3E0` runs. | `0x0017E7D0`, `0x0035DA80`, `0x003C8990`<br>`0x00254BD6`-`0x00254BF9`<br>`0x0026C4EC` |
+| 5 | Ids 1 and 4 call `0x0035D660(id)`, 3 calls `0x0035D980(id)`, 5 calls `0x003C87B0(id)` and 24 calls `0x0035D080(id)`, and the router returns the callee's answer; 12 calls `0x0028E970(12)` and returns 1. | `0x00254BFB`-`0x00254C2B` |
+| 6 | Every other id, 0 and every id above 24 included, takes the generic arm. It calls `0x0028F970()`, which, unless `[0x0209BE80]` is null or bit `0x2000` of its `+0x10F68` is set, clears bits `0x10` and `0x400` of that dword and the word `+0x10FA0`, and sets bit `0x40` of `+0x10CFC` when the battle menu at `+0xAB30` exists (`0x0028F97B`-`0x0028F9D4`, [HUD](hud.md)). | `0x00254C2D`-`0x00254C3E` |
+| 7 | The generic arm then calls `0x00280A00(request, parameter, flag)` with the whole first argument, bit `0x8000` included, and returns that call's answer. |   |
 
 ### The requests
 
@@ -57,21 +59,53 @@ table, so a request is refused while a scene blocks it.
 | `22` | generic | by parameter, below |
 | `24` | `0x0035D080` | the notice "All members of the party have fallen. ..." (`0x86F`), then the main menu |
 
-The generic route `0x00280A00` refuses while a menu widget sits at the root's `+0xC0` or `+0xB8` (`0x00280A1A`-`0x00280A30`).
+The generic route `0x00280A00` refuses while a menu widget sits at the root's `+0xC0` or `+0xB8`¹.
 Otherwise it sets the request word and latch through `0x00252B40(id, 1)` and builds the two widgets `0x0027FB70` and
 `0x00280140`, which open the screen by id.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00280A1A`-`0x00280A30` |
+
+</details>
+
 Both widgets get one create record whose `+0x08` points at `{id, parameter, flag, 0}` and whose `+0x10` holds
-the id sign-extended (`0x00280A32`-`0x00280A8C`). `0x00280A00` then calls
-`0x0028E860`, which runs `0x0028CA30` on the HUD's selection marker `+0x7EA0` (`0x00280A91`), and returns 1
-(`0x00280A96`); a refusal returns 0 and builds nothing (`0x00280AAD`).
+the id sign-extended¹. `0x00280A00` then calls
+`0x0028E860`, which runs `0x0028CA30` on the HUD's selection marker `+0x7EA0`², and returns 1³; a refusal returns 0 and builds nothing⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00280A32`-`0x00280A8C` |
+| ² | `0x00280A91` |
+| ³ | `0x00280A96` |
+| ⁴ | `0x00280AAD` |
+
+</details>
 
 ### Ids 2 and 22 with a parameter
 
-`0x002E1A60(selector, parameter)` posts the id `0x002E0DA0` gives (`0x002E1A6F`). It refuses while blocked is set,
-and for id 2 while `0x002E0FA0()` has bit `0x1` (`0x002E1AA6`-`0x002E1ABB`); otherwise it writes pending 1, the id
-and the parameter (`0x002E1ABD`-`0x002E1ACA`). It turns selector 6's parameter 0, 1 and 2 into `0x40`, `0x41`
-and `0x42`, and any other parameter into 0 (`0x002E1A7B`-`0x002E1AA1`):
+`0x002E1A60(selector, parameter)` posts the id `0x002E0DA0` gives¹. It refuses while blocked is set,
+and for id 2 while `0x002E0FA0()` has bit `0x1`²; otherwise it writes pending 1, the id
+and the parameter³. It turns selector 6's parameter 0, 1 and 2 into `0x40`, `0x41`
+and `0x42`, and any other parameter into 0⁴:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E1A6F` |
+| ² | `0x002E1AA6`-`0x002E1ABB` |
+| ³ | `0x002E1ABD`-`0x002E1ACA` |
+| ⁴ | `0x002E1A7B`-`0x002E1AA1` |
+
+</details>
 
 | Parameter | Opens |
 |---|---|
@@ -93,12 +127,33 @@ The mailbox at `0x0215F1A0` holds one request:
 | `+0x8` `u32` | the parameter |
 
 `0x0215F1AE` and `0x0215F1AF`, next to the mailbox, are two separate flags. The menu close `0x002E1BA0` sets both.
-`0x002E0650` clears `0x0215F1AE` and `0x002E0F80` reads it: `openfullscreenmenu_48d` clears it when it starts
-(`0x0034631C`) and polls it until a menu closes (`0x00352E04`). `0x002E0660` clears `0x0215F1AF` for
-`clear_callpartymenu_status` (`0x00357440`), and `0x002E0F90` reads it for `is_callpartymenu_status` (`0x0033F239`).
+`0x002E0650` clears `0x0215F1AE` and `0x002E0F80` reads it: `openfullscreenmenu_48d` clears it when it starts¹ and polls it until a menu closes². `0x002E0660` clears `0x0215F1AF` for
+`clear_callpartymenu_status`³, and `0x002E0F90` reads it for `is_callpartymenu_status`⁴.
 
-`0x002E1B10(id, parameter)` posts; for id 2 it also refuses on availability bit `0x1` (`0x002E1B27`-`0x002E1B33`). A second post before
-delivery overwrites the first and still answers 1 (`0x002E1B35`-`0x002E1B47`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034631C` |
+| ² | `0x00352E04` |
+| ³ | `0x00357440` |
+| ⁴ | `0x0033F239` |
+
+</details>
+
+`0x002E1B10(id, parameter)` posts; for id 2 it also refuses on availability bit `0x1`¹. A second post before
+delivery overwrites the first and still answers 1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E1B27`-`0x002E1B33` |
+| ² | `0x002E1B35`-`0x002E1B47` |
+
+</details>
 
 | Poster | Posts |
 |---|---|
@@ -117,11 +172,29 @@ The router is also called directly, without the mailbox:
 | `0x0035C7B0`, the party-fallen check | `24` | `0x0035C7FF`, through `0x00254B40` |
 | the target cycle widget `0x003C8B70` | `1` | `0x003C8F65`, through `0x00254B40` |
 
-`0x00254B40(id)` is `0x00254B50(id, 0, 0)`. The arbiter also runs request 5's route itself (`0x00254044`).
+`0x00254B40(id)` is `0x00254B50(id, 0, 0)`. The arbiter also runs request 5's route itself¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00254044` |
+
+</details>
 
 ### The script verbs
 
-`0x002E0DA0` turns a script selector into an id, keeping bit `0x8000` (`0x002E0DA6`-`0x002E0E00`):
+`0x002E0DA0` turns a script selector into an id, keeping bit `0x8000`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E0DA6`-`0x002E0E00` |
+
+</details>
 
 | Selector | 0 | 1 | 2 | 3 | 4 | 5 | 6 | above 6 |
 |---|---|---|---|---|---|---|---|---|
@@ -148,40 +221,79 @@ The router is also called directly, without the mailbox:
 
 `show_escapingwindow` (`0x458`) jumps from `0x002E2310` to the return stub `0x0016D6A0` and does nothing. Flags
 `0x1E`-`0x23` of the same array lock Config rows ([Config screen](config-screen.md)). `setmenudisablestatus` (`0x3A5`) sets or clears bit `1 << n` of
-`0x0215F1C4` through `0x002E1BE0` (`0x002E1BF7`-`0x002E1C0B`), one of the 16 words `0x002E0FA0` ORs together; `0x002E12E0` passes 0-18 and turns any other value into -1, which is refused.
+`0x0215F1C4` through `0x002E1BE0`¹, one of the 16 words `0x002E0FA0` ORs together; `0x002E12E0` passes 0-18 and turns any other value into -1, which is refused.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E1BF7`-`0x002E1C0B` |
+
+</details>
 
 Selector 5 with bit `0x8000`, the save menu, is called 1,148 times; selector 2, the shops, 98 times with 57 shops;
 selector 4, the notice board, 8 times; selector 0 with bit `0x8000`, the destination map, 18 times. Bit `0x8000` makes the screen
-open with no fade (`0x0027FF6D`-`0x0027FF77`).
+open with no fade¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027FF6D`-`0x0027FF77` |
+
+</details>
 
 ### Delivery
 
 The drain `0x002E09A0` runs once per world tick:
 
-1. While manager slot 0 is not ready, it throws the request away (`0x002E0B8B`-`0x002E0BAA`).
-2. A pending id 2 is dropped when `0x0037B330` answers non-zero or availability bit `0x1` or `0x8` is set (`0x002E0BC0`-`0x002E0C65`).
-3. While one of the eight message window slots at `0x0215F200` holds a window with its byte `+0x38` or bit `0x1`
-   of `+0x3E` set, or the request word `0x02092730` is non-zero and not 5, it keeps the request for a later tick
-   (`0x002E0C6C`-`0x002E0CC2`).
-4. It then tests `0x00226BA0` and `0x0053DD10` for ids other than 12, 15, 17, 18 and 19 (`0x002E0CC9`-`0x002E0CF3`), but
-   `0x0053DD10` always answers 1, so this never holds a request.
-5. It calls the router and clears pending whether or not the router opened anything (`0x002E0CFC`-`0x002E0D10`).
-6. It always clears blocked (`0x002E0D3E`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | While manager slot 0 is not ready, it throws the request away. | `0x002E0B8B`-`0x002E0BAA` |
+| 2 | A pending id 2 is dropped when `0x0037B330` answers non-zero or availability bit `0x1` or `0x8` is set. | `0x002E0BC0`-`0x002E0C65` |
+| 3 | While one of the eight message window slots at `0x0215F200` holds a window with its byte `+0x38` or bit `0x1` of `+0x3E` set, or the request word `0x02092730` is non-zero and not 5, it keeps the request for a later tick. | `0x002E0C6C`-`0x002E0CC2` |
+| 4 | It then tests `0x00226BA0` and `0x0053DD10` for ids other than 12, 15, 17, 18 and 19, but `0x0053DD10` always answers 1, so this never holds a request. | `0x002E0CC9`-`0x002E0CF3` |
+| 5 | It calls the router and clears pending whether or not the router opened anything. | `0x002E0CFC`-`0x002E0D10` |
+| 6 | It always clears blocked. | `0x002E0D3E` |
 
 ### While a menu is open
 
-When the router opens a full-screen id, 2, 6, 8-11, 15-19 or 22 (`0x00253BC0`), the drain sets action availability row 7 to
-`0x100203` and the main loop's mode to 4 (`0x002E0D2A`-`0x002E0D39`). Mode 4 captures the screen once and becomes mode 3,
-which waits each frame for the menu to close (`0x0022BB62`). Then the loop returns to mode 2, sets the flags `0x0215F1AE` and
-`0x0215F1AF` (`0x002E1BA0`) and clears row 7 (`0x0022BB81`-`0x0022BBC5`). While row 7 is set, the router refuses ids 1, 2, 3, 5 and
+When the router opens a full-screen id, 2, 6, 8-11, 15-19 or 22¹, the drain sets action availability row 7 to
+`0x100203` and the main loop's mode to 4². Mode 4 captures the screen once and becomes mode 3,
+which waits each frame for the menu to close³. Then the loop returns to mode 2, sets the flags `0x0215F1AE` and
+`0x0215F1AF`⁴ and clears row 7⁵. While row 7 is set, the router refuses ids 1, 2, 3, 5 and
 14.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00253BC0` |
+| ² | `0x002E0D2A`-`0x002E0D39` |
+| ³ | `0x0022BB62` |
+| ⁴ | `0x002E1BA0` |
+| ⁵ | `0x0022BB81`-`0x0022BBC5` |
+
+</details>
 
 A script mask close closes the menu's two band widgets too. `0x002E2400(fast)`, the body of `maskclose` and `maskclosefast`
 ([Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)), and the area unload `0x002E06B0` run
-`0x0029D210`, which closes the widget `0x0029CF90` at `[0x0209C380]`, which draws bands at the top and bottom of the frame
-(`0x002DC290`), and the side mask `0x0029D340` at `[0x0209C318]`
-(`0x00244F00`). For the fast close, argument 1 or `0x11`, they close with the default animation descriptor `0x00915198`,
-otherwise with `0x00916330` (`0x00247570`).
+`0x0029D210`, which closes the widget `0x0029CF90` at `[0x0209C380]`, which draws bands at the top and bottom of the frame¹, and the side mask `0x0029D340` at `[0x0209C318]`². For the fast close, argument 1 or `0x11`, they close with the default animation descriptor `0x00915198`,
+otherwise with `0x00916330`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DC290` |
+| ² | `0x00244F00` |
+| ³ | `0x00247570` |
+
+</details>
 
 ### What a menu hands back
 
@@ -195,21 +307,44 @@ otherwise with `0x00916330` (`0x00247570`).
 ### Ids nothing posts
 
 No shipped code path or script posts ids 4, 7, 8, 9, 13, 14, 16, 20, 21 and 23. The one exception is a developer verb,
-body `0x0050DAB0`, which posts any id its script passes (`0x0050DAC4`); no script calls it. Ids 15 and 18 are reached only by
+body `0x0050DAB0`, which posts any id its script passes¹; no script calls it. Ids 15 and 18 are reached only by
 selectors 3 and 1, which no script calls.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0050DAC4` |
+
+</details>
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The script menu host `0x002D70F0`, which `0x002D7070` builds for the parameters `0x40` and `0x41` above,
 marks itself open in the global below. The Party Menu's picture loader `0x002CEB40` tests it when it opens: while the
-host is open it sets bit `0x200000` of row 1 through `0x002E1C20(1, 21)` (`0x002CEDD4`-`0x002CEDE5`), which blocks the pause
+host is open it sets bit `0x200000` of row 1 through `0x002E1C20(1, 21)`¹, which blocks the pause
 menu ([Action availability](../Controls-And-Input/action-availability.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002CEDD4`-`0x002CEDE5` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x0209E66C` | `u32` | 0 | 1 while the script menu host is open | `0x002D70F0`: 1 on message 1 (`0x002D7361`), 0 on message 15 (`0x002D713A`) | `0x002CEB40`, on message 1 (`0x002CEDD4`) |
 
 No other instruction names `0x0209E66C`.
+
+</details>
 
 ## Modding notes
 
@@ -233,9 +368,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E1C20` | is called by | `0x00313A00` |
+| [`0x002E1C20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x00313A00`](../Battle-Actions/action-phases.md) (on action phases) |
 
 </details>
 

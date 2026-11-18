@@ -216,6 +216,9 @@ and 22 unused members.
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 The game's folder holds the archive `FFXII_TZA.vbf`, the `FileSizeTables` folder and `ConfigData` (with
 `keymap.ini` and the Gaussian filter settings) one level above `x64`. The `x64` folder holds these files:
 
@@ -249,11 +252,20 @@ program opens it. The controls the game uses are in the `keymap.ini` of the Docu
 - `[Setting]` gives the length of each of those lists (16, 8 and 3). `[Mouse]` gives Left 14, Middle 3 and Right
   15, which in the game's numbering are Triangle, the third mouse-button code and L1.
 - The text `ConfigData` occurs in no file of `x64`, the game, the launcher and the DLLs alike, and the archive has
-  no keymap entry. The game builds its one `keymap.ini` path from the Documents folder (`0x00197EE0`), and
+  no keymap entry. The game builds its one `keymap.ini` path from the Documents folder¹, and
   the launcher's Reset deletes the file of that name in the same folder (`Program.InitGlobalConfig`).
 - Put in the Documents folder in place of the game's file, it is not used: its first line, `[Setting]`, is neither
   a `[KeyboardN]` header nor a binding, so the read stops there with profile 1 empty. The game then installs its
   default controls and writes them over the file when it shuts down.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00197EE0` |
+
+</details>
 
 `ConfigData\GaussianFilter\GaussianFilterSetting.ini` (619 bytes, CRLF) holds a `[Setting]` section with `Count=5`
 and the sections `[Custom1]` to `[Custom5]`. Each gives a band of screen sizes by `StartWidth`, `EndWidth`,
@@ -265,15 +277,25 @@ and `BlendAmount` 0.5 in all five.
   `[Setting`, `BigKernel=`, `StartWidth=` or any other of its keys with its `=`, ASCII or UTF-16, in any case.
 - The game sets the three values itself. The developer console labels render-parameter fields `+0x19C` "Gaussian
   Filter big kernel" (0 3x3, 1 5x5, 2 7x7, 3 15x15), `+0x1A0` "Gaussian Filter factor" and `+0x1A4` "Gaussian
-  Filter blend amount" (`0x001CDFF0`, `0x001D0787`).
+  Filter blend amount"¹.
 - In play they are 3x3, the screen height divided by 1080.0 and 0.5, `+0x0C = h > 0 ? h / 1080.0 : 1.0` with h
-  the screen height (`0x002256A0`, `0x001DC3EB`-`0x001DC415`): the constructor `0x0018CD90` stores 0 and 0.5,
+  the screen height²: the constructor `0x0018CD90` stores 0 and 0.5,
   and the copiers take `+0x08`, `+0x0C` and `+0x10` of the object `0x001DC510` returns, which `0x001DC3D0` sets to 0,
   height / 1080.0 and 0.5 ([YEBIS and PPFX](../Third-Party-Libraries/yebis-ppfx-post-effects.md)).
 - Editing the file therefore changes nothing. At 1920 x 1080 the game's factor is 1.0, where the file says 0.91.
 - [`settings-launcher-gaussianfiltersetting-rows.tsv`](settings-launcher-gaussianfiltersetting-rows.tsv) lists its
   42 lines with their offsets, the game's value for each key and where the key's text occurs in the shipped
   programs.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001CDFF0`, `0x001D0787` |
+| ² | `0x002256A0`, `0x001DC3EB`-`0x001DC415` |
+
+</details>
 
 [The settings inputs](settings-launcher-inputs.tsv) table gives every key line of the two `ConfigData` files as a
 setting: 33 in `keymap.ini` and 36 in `GaussianFilterSetting.ini`. Each one's values, when it takes effect, what reads
@@ -295,6 +317,8 @@ it and what the player sees are given there, and no setting takes effect, becaus
 | `consumers` | what reads the line: on the 33 `keymap.ini` lines, the note that neither `FFXII_TZA.exe` nor `FFXII_TZA_GameSetting.exe` opens the file; on the 36 Gaussian filter lines, the note that no `.exe` or `.dll` in `x64` holds the text `GaussianFilterSetting` or `ConfigData` |
 | `visible_effect` | what the player sees, nothing on all 69 rows: on the 33 `keymap.ini` lines the cell names the Documents folder's `keymap.ini` as the file the game uses, and on the 15 `BigKernel`, `Factor` and `BlendAmount` lines it gives the value the game uses instead |
 | `inert_when` | `always` on all 69 rows, with the file that no shipped program opens |
+
+</details>
 
 ## Modding notes
 
@@ -324,23 +348,29 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002256A0` | is called by | `0x00221940`, `0x00221C70`, `0x00221E60`, `0x002238F0`, `0x00223F40`, `0x00223FA0`, `0x002240B0`, `0x00224180`, `0x00224290`, `0x00224360`, `0x00224470`, `0x00224A30` |
+| [`0x002256A0`](settings-launcher.md) | is called by | [`0x00221940`](../Sound-And-Music/spatial-sound.md) (on spatial sound)<br>[`0x00221C70`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x00221E60`](settings-launcher.md)<br>[`0x002238F0`](../Sound-And-Music/sound-effects.md) (on sound effects)<br>[`0x00223F40`](settings-launcher.md)<br>[`0x00223FA0`](../Menus-And-HUD/fonts-files.md) (on fonts files)<br>[`0x002240B0`](../Menus-And-HUD/fonts-files.md) (on fonts files)<br>[`0x00224180`](../Menus-And-HUD/fonts-files.md) (on fonts files)<br>[`0x00224290`](../Menus-And-HUD/fonts-files.md) (on fonts files)<br>[`0x00224360`](../Menus-And-HUD/fonts-files.md) (on fonts files)<br>[`0x00224470`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x00224A30`](settings-launcher.md) |
 
 **Graphics** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001DC510` | is called by | `0x00193AD0` |
-| `0x002256A0` | is called by | `0x00182E80` |
+| [`0x001DC510`](settings-launcher.md) | is called by | [`0x00193AD0`](settings-launcher.md) |
+| [`0x002256A0`](settings-launcher.md) | is called by | [`0x00182E80`](../Graphics/render-command-list.md) (on render command list) |
 
 **Menus and HUD** (explained on [graphics settings](../Engine-Core/graphics-settings.md), [yebis ppfx post effects](../Third-Party-Libraries/yebis-ppfx-post-effects.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0018CD90` | is called by | `0x0018EEE0` |
-| `0x001DC510` | calls | `0x001DC3D0` |
-| `0x002256A0` | is called by | `0x001DC3D0` |
+| [`0x0018CD90`](../PhyreEngine/phyre-post-effect-classes.md) (on phyre post effect classes) | is called by | [`0x0018EEE0`](../Graphics/post-processing.md) (on post processing) |
+| [`0x001DC510`](settings-launcher.md) | calls | [`0x001DC3D0`](../Third-Party-Libraries/yebis-ppfx-post-effects.md) (on yebis ppfx post effects) |
+| [`0x002256A0`](settings-launcher.md) | is called by | [`0x001DC3D0`](../Third-Party-Libraries/yebis-ppfx-post-effects.md) (on yebis ppfx post effects) |
 
 </details>

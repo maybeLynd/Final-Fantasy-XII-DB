@@ -7,10 +7,19 @@
 ## What it lists
 
 One row for each of the executable's 39,115 functions, from `0x00121000` to `0x008C15E0` and from one-instruction
-stubs (a `ret` or a `jmp`) to a body of 6,492 instructions (`0x004B1190`): the integer and float argument registers each function reads,
+stubs (a `ret` or a `jmp`) to a body of 6,492 instructions¹: the integer and float argument registers each function reads,
 its argument count (the highest argument position it reads), the arguments its entry stores in their home slots,
 and the stack arguments it reads. A second table lists every call and tail call, including those in `__except` blocks, with its target and the argument
 registers that reach it unchanged. Return values are not in these tables.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004B1190` |
+
+</details>
 
 ### What the code shows beyond the arguments
 
@@ -45,10 +54,19 @@ float.
 them.
 
 The return's width is the width callers read, because `return_register_at_ret` gives only the last write in the
-layout: above the `ret` of `0x003AA280` that is `xor eax, eax` (`0x003AA2CD`), and all 40 callers read the full `rax`.
+layout: above the `ret` of `0x003AA280` that is `xor eax, eax`¹, and all 40 callers read the full `rax`.
 Types,
 the meaning of each argument, the thread a function runs on and what must be set up first are on the system pages
 and cannot be read from these counts.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AA2CD` |
+
+</details>
 
 `Database/Tools/catalogues/call_contracts.py` writes the table.
 
@@ -90,8 +108,18 @@ entered through a pointer is not followed, so `-` says only that no start reache
 `0x005CD4F0` and one of its re-entrant form `0x005CD370`. 309 name a lock the trace could follow.
 
 The PhyreEngine lock `0x005CD4F0` keeps no owner: its state goes from 0 to 1, so a thread that already holds it waits
-with no time-out (`0x005CD473`, `0x005CD482`). `0x005CD370` stores the owner's thread id and only raises the hold count
-for that thread (`0x005CD3BE`, `0x005CD435`).
+with no time-out¹. `0x005CD370` stores the owner's thread id and only raises the hold count
+for that thread².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CD473`, `0x005CD482` |
+| ² | `0x005CD3BE`, `0x005CD435` |
+
+</details>
 
 #### Call groups
 
@@ -142,9 +170,17 @@ frame); `0x0073F920` reads every position from 5 to 45.
 
 Fifty-nine functions also read their own stack through a pointer that a loop advances: `0x001263AD` walks `rsp` itself
 up its local array, 16 bytes a pass. It copies nine 16-byte rows into the array, reads the first at `0x00126499`, and
-loops until its output pointer `rdi` (the fifth argument), advanced each pass by the stride in its sixth argument
-(`0x0012652C`), reaches the end `rdi + 8 * stride` set at `0x00126488` (`0x0012652F cmp rdi, rcx`): eight passes for a
+loops until its output pointer `rdi` (the fifth argument), advanced each pass by the stride in its sixth argument¹, reaches the end `rdi + 8 * stride` set at `0x00126488` (`0x0012652F cmp rdi, rcx`): eight passes for a
 non-zero stride, after which `0x00126534 pop rsp` loads the stack pointer saved just above the array.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0012652C` |
+
+</details>
 
 Those reads are in the `loop_reads` column, each with the pointer's offset when the loop is entered and its change
 per pass; how far they reach is set by the loop's exit test.
@@ -173,9 +209,18 @@ function's incoming value on every path to the site, so the callee receives that
 
 `home_spill` is a store of the incoming register into its own slot. A store of an argument register elsewhere does not
 count: `0x0030FE60` zeroes `ecx` and writes it through `rax` as a dword every 8 bytes over three 0x200-byte tables (from
-`0x022BE984`, `0x022BEB94` and `0x022BEDA4`) and as a word 4 bytes before each table (`0x0030FE7B`, `0x0030FE9B`, `0x0030FEBB`),
+`0x022BE984`, `0x022BEB94` and `0x022BEDA4`) and as a word 4 bytes before each table¹,
 and `0x00311CD0` stores `r9d` at `[rsp+0x20]` after `sub rsp, 0x38`, which is the fifth argument of its own call to
 `0x00311B20`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030FE7B`, `0x0030FE9B`, `0x0030FEBB` |
+
+</details>
 
 Neither is a home spill. 1,334 functions have one, among them `0x0018D680`, which then reads its arguments' bytes back
 from the slots.
@@ -251,44 +296,39 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [media decoder libraries](../Third-Party-Libraries/media-decoder-libraries.md), [audio effects](../Sound-And-Music/audio-effects.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00121000` | calls | `0x00121DB0`, `0x00124350` |
-| `0x00121000` | is called by | `0x007AC4F0` |
+| [`0x00121000`](call-signatures.md) | calls | [`0x00121DB0`](../Third-Party-Libraries/media-decoder-libraries.md) (on media decoder libraries)<br>[`0x00124350`](../Third-Party-Libraries/media-decoder-libraries.md) (on media decoder libraries) |
+| [`0x00121000`](call-signatures.md) | is called by | [`0x007AC4F0`](../Sound-And-Music/sound-engine-config.md) (on sound engine config) |
 
 **Platform** (explained on [debug menu](debug-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x005CD4F0` | is called by | `0x0019CC50` |
+| [`0x005CD4F0`](call-signatures.md) | is called by | [`0x0019CC50`](debug-menu.md) (on debug menu) |
 
-**Game files and data tables**
+**Game files and data tables** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [startup constants](startup-constants.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md), [audio manager](../Sound-And-Music/audio-manager.md), [memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md), [phyre asset files](../PhyreEngine/phyre-asset-files.md), [phyre reflection](../PhyreEngine/phyre-reflection.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0036A100` | is called by | `0x00249210`, `0x0024EF90`, `0x0024F240` |
-| `0x0036A190` | is called by | `0x00249210`, `0x0024A1D0`, `0x00259DF0`, `0x0032E7C0`, `0x00379E90`, `0x00384420`, `0x0051ED10` |
-| `0x005CD1E0` | is called by | `0x001DAAC0` |
-| `0x005CD4F0` | is called by | `0x001A0A90`, `0x001A0BB0`, `0x001A0C50`, `0x001A1240`, `0x001D9DA0`, `0x001D9FD0`, `0x001DA220`, `0x001DA970`, `0x001DADC0`, `0x0020B680`, `0x0020B9A0`, `0x0020BE50` |
-
-**Game files and data tables**
-
-| Function | | Functions |
-|---|---|---|
-| `0x005CD4F0` | is also called by | `0x0020BFA0`, `0x0020C1B0`, `0x002121C0`, `0x00212600`, `0x00675460`, `0x00676450`, `0x00676A70`, `0x00676BD0`, `0x00677BA0` |
-
-**Game files and data tables** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [startup constants](startup-constants.md))
-
-**Game files and data tables** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md))
-
-**Game files and data tables** (explained on [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md), [audio manager](../Sound-And-Music/audio-manager.md), [memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md))
-
-**Game files and data tables** (explained on [phyre asset files](../PhyreEngine/phyre-asset-files.md), [phyre reflection](../PhyreEngine/phyre-reflection.md))
+| [`0x0036A100`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00249210`](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md) (on mrp menu resource packages)<br>[`0x0024EF90`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats)<br>[`0x0024F240`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) |
+| [`0x0036A190`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00249210`](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md) (on mrp menu resource packages)<br>[`0x0024A1D0`](../Game-Files-And-Data-Tables/cl2-menu-colour-tables.md) (on cl2 menu colour tables)<br>[`0x00259DF0`](../Game-Files-And-Data-Tables/ps2data-bin-families.md) (on ps2data bin families)<br>[`0x0032E7C0`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue)<br>[`0x00379E90`](../Game-Files-And-Data-Tables/small-bin-tables.md) (on small bin tables)<br>[`0x00384420`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables)<br>[`0x0051ED10`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue) |
+| [`0x005CD1E0`](../Compiler-And-C-Runtime/runtime-services.md) (on runtime services) | is called by | [`0x001DAAC0`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests) |
+| [`0x005CD4F0`](call-signatures.md) | is called by | [`0x001A0A90`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A0BB0`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A0C50`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A1240`](call-signatures.md)<br>[`0x001D9DA0`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x001D9FD0`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x001DA220`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x001DA970`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x001DADC0`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x0020B680`](../Game-Files-And-Data-Tables/file-path-resolution.md) (on file path resolution)<br>[`0x0020B9A0`](../Game-Files-And-Data-Tables/file-path-resolution.md) (on file path resolution)<br>[`0x0020BE50`](call-signatures.md) |
+| [`0x005CD4F0`](call-signatures.md) | is also called by | [`0x0020BFA0`](../Game-Files-And-Data-Tables/file-path-resolution.md) (on file path resolution)<br>[`0x0020C1B0`](../Game-Files-And-Data-Tables/file-path-resolution.md) (on file path resolution)<br>[`0x002121C0`](call-signatures.md)<br>[`0x00212600`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x00675460`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation)<br>[`0x00676450`](../PhyreEngine/phyre-asset-files.md) (on phyre asset files)<br>[`0x00676A70`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation)<br>[`0x00676BD0`](../PhyreEngine/phyre-asset-files.md) (on phyre asset files)<br>[`0x00677BA0`](../PhyreEngine/phyre-asset-files.md) (on phyre asset files) |
 
 **World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0036A190` | is called by | `0x00378540` |
+| [`0x0036A190`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00378540`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
 
 </details>

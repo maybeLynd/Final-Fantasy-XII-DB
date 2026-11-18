@@ -27,9 +27,20 @@ The lists ship in two forms, both starting with the magic `MRP\0`:
   at `[0x0209AC30] + 8 × unit` and prepares it.
   - It fills and relocates every unit whose slot is still null, with no check for an empty `0xFFFFFFFF` entry,
     which the `in_sdver` pack (21 units) has twice; that pack is used only when `[0x01E0280C]` is 0, and it ships
-    as 1. A slot already set is left as it is and not relocated again (`0x002809A8`).
-  - With the pack pointer `[0x0209AC30] + 0x3D0` null it fills nothing (`0x00280993`); on both paths it ends by
-    jumping to `0x00280AD0` (`0x002809EE`).
+    as 1. A slot already set is left as it is and not relocated again¹.
+  - With the pack pointer `[0x0209AC30] + 0x3D0` null it fills nothing²; on both paths it ends by
+    jumping to `0x00280AD0`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002809A8` |
+| ² | `0x00280993` |
+| ³ | `0x002809EE` |
+
+</details>
 
 A list file is requested through `0x00249320` (or `0x00249350`), whose completion `0x00249660` prepares the buffer
 with `0x002A00F0`. The atlases its sprites name are separate TIM2 images, requested and registered by name
@@ -37,11 +48,22 @@ through `0x00249380` or `0x002493D0` (completion `0x00249670` → `0x0024A1D0`).
 user: `0x00582790` requests id 111 through `0x003933F0` and image id 127 (`Tm2_Menu\DataFace_c.tm2`) under the
 atlas name `dataface_c` through `0x00393460`.
 
-`0x00249380(dest, kind, id, name, flags)` files the request in arena 3 (`0x00249395`), and `0x002493D0` in the arena its
+`0x00249380(dest, kind, id, name, flags)` files the request in arena 3¹, and `0x002493D0` in the arena its
 fourth argument names. Both give `0x00249210` a last argument of 1, so the buffer is taken top-down, take a slot
-with `0x0024A4E0(name, flags)`, store it at request `+0x18` and the completion at `+0x10` (`0x002493B6`, `0x002493BA`)
+with `0x0024A4E0(name, flags)`, store it at request `+0x18` and the completion at `+0x10`²
 and return the slot. Nothing tests the slot: with all 64 busy it is null, and when the image arrives the binder
-faults on its read of slot `+0x40` (`0x0024A206`).
+faults on its read of slot `+0x40`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00249395` |
+| ² | `0x002493B6`, `0x002493BA` |
+| ³ | `0x0024A206` |
+
+</details>
 
 `0x002432B0` builds one list. It has 113 call sites in 108 functions; each of the six type constructors is called
 only by it.
@@ -67,13 +89,33 @@ All multi-byte fields are little-endian.
 `0x002A00F0` returns at once when byte `+3` is 1. Otherwise it rewrites `+0x08`, `+0x20` (through `0x002A1A80`) and
 `+0x28` from file offsets into the engine's 32-bit encoded addresses (`0x0020E620` subtracts the low half of the base
 at `0x01F83530`; `0x0020E600` adds the base back), rewrites each list record's `+0x10` and each row's `+0x08`, and
-sets byte `+3` to 1 (`0x002A016A`). A row's `+0x08` is an offset from the row table's start: it is added to the
-decoded row table address (`0x0020E600`, `0x002A012D`; `0x002A0145`-`0x002A014E`). No count or offset is checked against
+sets byte `+3` to 1¹. A row's `+0x08` is an offset from the row table's start: it is added to the
+decoded row table address². No count or offset is checked against
 the file size.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A016A` |
+| ² | `0x0020E600`, `0x002A012D`; `0x002A0145`-`0x002A014E` |
+
+</details>
+
 `0x002A1A80(file)` does the `+0x20` step and the records' `+0x10`: it adds `+0x20` to the low 32 bits of the file's
-address and encodes the sum (`0x002A1A96`-`0x002A1A9F`), then, for each of the `+0x1C` records, adds `+0x10` to the low
-32 bits of the record's own address and encodes that (`0x002A1AC7`-`0x002A1AD9`).
+address and encodes the sum¹, then, for each of the `+0x1C` records, adds `+0x10` to the low
+32 bits of the record's own address and encodes that².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A1A96`-`0x002A1A9F` |
+| ² | `0x002A1AC7`-`0x002A1AD9` |
+
+</details>
 
 A row tagged 1 at `+0x00` registers the name at its relocated `+0x08`, with a TIM2 image 16 bytes after the name,
 through `0x0024A440` (the readers are in `0x00406A60`). The 344 `.mrp` files and pack units have no rows; the two
@@ -221,6 +263,9 @@ Every node starts with the same 0x14 bytes:
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 Measured over every `.mrp` file and every `mrppack_ys.bin` unit in the archive.
 
 | Fact | Value |
@@ -272,23 +317,50 @@ is the record they select, and `x`, `y`, `width` and `height` are that record's 
 [Finding a sprite](../Menus-And-HUD/menu-sprites.md).
 
 `colour_top_left`, `colour_top_right`, `colour_bottom_left` and `colour_bottom_right` are the item's four words at
-`+0x14`, each as `red,green,blue,alpha`, in the order `0x002D9380` writes the corners and their bytes
-(`0x002D95CE`-`0x002D96E6`). Rows of other types have `-` there. Of the 20,181 type 2 items, 15,290 hold 128 in every
+`+0x14`, each as `red,green,blue,alpha`, in the order `0x002D9380` writes the corners and their bytes¹. Rows of other types have `-` there. Of the 20,181 type 2 items, 15,290 hold 128 in every
 byte of all four words and 4,891 hold something else; the words as stored are in the `type_fields_hex` column of
 [`ui-typed-lists-items-rows.tsv`](ui-typed-lists-items-rows.tsv).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D95CE`-`0x002D96E6` |
+
+</details>
+
 A type 7 strip has one selector, and `0xFF` takes byte 7 of its left
-piece (`0x0029F1CE`-`0x0029F1EB`, `0x0029F2A1`-`0x0029F2B9`). A fill with bit `0x2` of `fill_palette_flag` keeps the
-background's palette (`0x0029EE96`), so its `palette` comes from the background's selector and its `selector` is
+piece¹. A fill with bit `0x2` of `fill_palette_flag` keeps the
+background's palette², so its `palette` comes from the background's selector and its `selector` is
 still its own field.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029F1CE`-`0x0029F1EB`, `0x0029F2A1`-`0x0029F2B9` |
+| ² | `0x0029EE96` |
+
+</details>
 
 `status` is `ok` in 21,999 rows. The other 70 are:
 
 - 20 rows `past the picture's records`: frames 33 and 37 of `s_font_c` set 0 group 0, in unit 4 of all ten folders.
 - 20 rows of `quest.mrp` naming `q_img_c`, which is filled at run time from the sheets `q_c00` to `q_c05`
-  (`0x00579AF0`), so the rectangle depends on the hunt.
+ ¹, so the rectangle depends on the hunt.
 - 30 rows naming `logo_s_c` (`e3_logo.mrp`) or `nowload_c` (`nowload.mrp`): no file or pack entry of either
   name ships.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00579AF0` |
+
+</details>
 
 In the text table, `group` is `string_id / 10000`, and `text_file` and `text_index` are the row of that group whose
 own id equals `string_id`, as `0x002F9920` finds it. `text_us` is that row's string from
@@ -298,14 +370,27 @@ The 1,625 items with an id, 97 different ids, all resolve; `status` is `no text`
 
 The tables are written by `Database/Tools/catalogues/ui_sprites.py`.
 
+</details>
+
 ## Loader behaviour
 
 ### Measuring
 
 `0x002432B0(list, file, record, parent)` resolves `[file + 0x20]` with `0x0020E600`, takes the record at
-`index × 20`, the count from bits `0x3FF` (`0x002432E3`) and the first item from `[record + 0x10]`. It starts a total at
-`count × 8` and walks the items: type `item[1]` (`0x00243340`) picks a size from the jump table `0x00243514`, and the
-walk advances by `item[0]` (`0x0024337F`). Types 3, 6 and anything outside 1-9 add 0.
+`index × 20`, the count from bits `0x3FF`¹ and the first item from `[record + 0x10]`. It starts a total at
+`count × 8` and walks the items: type `item[1]`² picks a size from the jump table `0x00243514`, and the
+walk advances by `item[0]`³. Types 3, 6 and anything outside 1-9 add 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002432E3` |
+| ² | `0x00243340` |
+| ³ | `0x0024337F` |
+
+</details>
 
 | type | node size | constructor |
 |---|---|---|
@@ -319,20 +404,51 @@ walk advances by `item[0]` (`0x0024337F`). Types 3, 6 and anything outside 1-9 a
 
 ### The single allocation
 
-When the total is 0 the list's block pointer is null and nothing is built (`0x0024338C`). Otherwise `0x002497B0`
-allocates the whole total from heap 3 at once (`0x002433A5`): the first `count × 8` bytes are the node pointers and
-the nodes follow, packed in walk order. The second walk fills each pointer, writes the shared node fields
-(`0x002433E0`-`0x0024342F`), calls the constructor through the table `0x00243538` and advances by the size in the table
-`0x0024355C`. The decoder returns the record, also when it builds nothing (`0x002434FB`).
+When the total is 0 the list's block pointer is null and nothing is built¹. Otherwise `0x002497B0`
+allocates the whole total from heap 3 at once²: the first `count × 8` bytes are the node pointers and
+the nodes follow, packed in walk order. The second walk fills each pointer, writes the shared node fields³, calls the constructor through the table `0x00243538` and advances by the size in the table
+`0x0024355C`. The decoder returns the record, also when it builds nothing⁴.
 
-Nothing tests the block: `0x002497B0` returns what `0x0036A100` gives (`0x002497C7`), and a null block from a full heap
-makes the first pointer store fault (`0x002433E4`). Both walks step to the next item with a 32-bit add (`0x0024337F`,
-`0x002434E0`), which keeps only the low 32 bits of the item's address. Types 1 and 8 get the parent as a third
-argument (`0x0024347F`, `0x0024348F`).
+<details>
+<summary>Where in the code</summary>
 
-The nodes are placed the same way: the first node is the low 32 bits of the block plus `count × 8`
-(`0x002433B3`-`0x002433B7`) and each next node a 32-bit add of its size (`0x002434D7`), so the node pointers stored in the
+| | Code |
+|---|---|
+| ¹ | `0x0024338C` |
+| ² | `0x002433A5` |
+| ³ | `0x002433E0`-`0x0024342F` |
+| ⁴ | `0x002434FB` |
+
+</details>
+
+Nothing tests the block: `0x002497B0` returns what `0x0036A100` gives¹, and a null block from a full heap
+makes the first pointer store fault². Both walks step to the next item with a 32-bit add³, which keeps only the low 32 bits of the item's address. Types 1 and 8 get the parent as a third
+argument⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002497C7` |
+| ² | `0x002433E4` |
+| ³ | `0x0024337F`, `0x002434E0` |
+| ⁴ | `0x0024347F`, `0x0024348F` |
+
+</details>
+
+The nodes are placed the same way: the first node is the low 32 bits of the block plus `count × 8`¹ and each next node a 32-bit add of its size², so the node pointers stored in the
 block keep only the low 32 bits of the block's address.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002433B3`-`0x002433B7` |
+| ² | `0x002434D7` |
+
+</details>
 
 A zero-size item (type 3, 6 or out of range) still gets a pointer slot and its shared fields, written at the
 address the next node takes. In the middle of a list its slot therefore points at the following item's node,
@@ -342,40 +458,70 @@ its block.
 
 ### What each type builds
 
-- Type 1 (`0x0029ECB0`) creates a 192-byte widget with procedure `0x0029E7D0` through `0x00244F50` and attaches it to
+- Type 1¹ creates a 192-byte widget with procedure `0x0029E7D0` through `0x00244F50` and attaches it to
   the parent with `0x00244960`; the node keeps it at `+0x18`. On creation the procedure decodes the record named by
   item `+0x0C` from the same file into its own `+0x50`, with itself as parent, and takes that record's rectangle.
-- The creation record carries the file as its low 32 bits only (`0x0029ECC7`) and the index from item `+0x0C`
-  (`0x0029ECE9`). On message 1 `0x0029E7D0` decodes (`0x0029E7F7`), stores the rectangle at `+0x98`-`+0x9E`
-  (`0x0029E812`-`0x0029E828`), sets `+0x40` bit `0x40000`, which skips the per-tick update (`0x0029E82F`), and answers
-  0; every other message goes to `0x005C5230` (`0x0029E7E3`).
-- Types 2 and 9 (`0x0029F4C0`) resolve the atlas (node `+0x18`), find the sub-image record (`+0x20`), store the
+- The creation record carries the file as its low 32 bits only² and the index from item `+0x0C`
+ ³. On message 1 `0x0029E7D0` decodes⁴, stores the rectangle at `+0x98`-`+0x9E`
+ ⁵, sets `+0x40` bit `0x40000`, which skips the per-tick update⁶, and answers
+  0; every other message goes to `0x005C5230`⁷.
+- Types 2 and 9⁸ resolve the atlas (node `+0x18`), find the sub-image record (`+0x20`), store the
   frame at `+0x0A`, the palette selector at `+0x39`, the four vertex colours at `+0x28`-`+0x37`, and set `+0x3A`
   to the first colour's fourth byte and `+0x3B` to `0x80`.
-- The atlas is `0x002A0060(file, item +0x0C)` (`0x0029F4DA`), used with no test: an index of `0xFFFF` gives null, and
-  the read of slot `+0x20` faults (`0x0029F4E7`). `+0x20` is the record of the base code item `+0x0E`. A selector
-  `+0x12` of `0x00FF` takes byte 7 of the frame's record, `+0x20 + frame × 8` (`0x0029F528`-`0x0029F531`), any other
-  value its low byte; `+0x38` is set to 0 (`0x0029F53F`).
-- Type 4 (`0x0029ED40`) stores null at node `+0x18`. Its draw arm `0x0029ED30` jumps to `+0x18` only when it is set,
+- The atlas is `0x002A0060(file, item +0x0C)`⁹, used with no test: an index of `0xFFFF` gives null, and
+  the read of slot `+0x20` faults¹⁰. `+0x20` is the record of the base code item `+0x0E`. A selector
+  `+0x12` of `0x00FF` takes byte 7 of the frame's record, `+0x20 + frame × 8`¹¹, any other
+  value its low byte; `+0x38` is set to 0¹².
+- Type 4¹³ stores null at node `+0x18`. Its draw arm `0x0029ED30` jumps to `+0x18` only when it is set,
   so the node is a callback slot that draws nothing until code stores a function there.
-- Type 5 (`0x0029FEB0`) stores the colour (`+0x24`), the scale (`+0x28`, a float: byte / 100, or 1.0), the mode
+- Type 5¹⁴ stores the colour (`+0x24`), the scale (`+0x28`, a float: byte / 100, or 1.0), the mode
   (`+0x2C`; `0x10` becomes `0x20` and `0x11` becomes `0x21` when the low ten bits of item `+0x12` are not 0) and, unless the id is
   -1, the string from `0x002F9920` at `+0x18`. `0x002F9920` takes the group `id / 10000` (0 to 27) and searches it;
   a missing group or id gives the empty string `0x01CEB638`.
-- `0x0029FEB0` first sets `+0x18` to null (`0x0029FEC0`), which an id of -1 leaves, and `+0x20` to the encoded null
-  `0x0020E620(0)` (`0x0029FECA`-`0x0029FECF`). It puts the low ten bits of item `+0x12` in node bits `0xFFC0`
-  (`0x0029FF08`-`0x0029FF17`), which the mode test reads, and zeroes `+0x2D` and `+0x2F` (`0x0029FF3A`-`0x0029FF3E`).
-- Type 7 (`0x0029F130`) builds a bar: the atlas at `+0x28`, the six strip pieces unpacked into `+0x4C`-`+0x7F`,
+- `0x0029FEB0` first sets `+0x18` to null¹⁵, which an id of -1 leaves, and `+0x20` to the encoded null
+  `0x0020E620(0)`¹⁶. It puts the low ten bits of item `+0x12` in node bits `0xFFC0`
+ ¹⁷, which the mode test reads, and zeroes `+0x2D` and `+0x2F`¹⁸.
+- Type 7¹⁹ builds a bar: the atlas at `+0x28`, the six strip pieces unpacked into `+0x4C`-`+0x7F`,
   palette selectors `+0x44`/`+0x45`, lengths `+0x48`/`+0x4A`, colours `+0x64`/`+0x88`, a value of 0 at `+0x18`
   against a maximum of 100 at `+0x1C`, and, with an overlay atlas, its slot at `+0x90`, its palette selector at
   `+0x46` and `+0x0A` = `rand()` modulo the overlay sub-image's width.
-- Type 8 (`0x0029F930`) creates a grid widget through `0x002D14E0`: columns × rows cells, each the size of the
+- Type 8²⁰ creates a grid widget through `0x002D14E0`: columns × rows cells, each the size of the
   referenced record's width and height, with an inner widget sized to the whole grid. It decodes the referenced
   record into the inner widget with no parent, clears bit `0x1` of the inner list's header, copies the item
   rectangle onto the grid and attaches the grid to the parent.
-- The node keeps the grid at `+0x18` (`0x0029F9B6`). The record `0x0029F930` hands to `0x002D14E0` has flags `0x28`,
+- The node keeps the grid at `+0x18`²¹. The record `0x0029F930` hands to `0x002D14E0` has flags `0x28`,
   columns × rows items, the columns, the referenced record's width and height as the cell size, no painter and
-  the parent as owner (`0x0029F962`-`0x0029F9AC`).
+  the parent as owner²².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029ECB0` |
+| ² | `0x0029ECC7` |
+| ³ | `0x0029ECE9` |
+| ⁴ | `0x0029E7F7` |
+| ⁵ | `0x0029E812`-`0x0029E828` |
+| ⁶ | `0x0029E82F` |
+| ⁷ | `0x0029E7E3` |
+| ⁸ | `0x0029F4C0` |
+| ⁹ | `0x0029F4DA` |
+| ¹⁰ | `0x0029F4E7` |
+| ¹¹ | `0x0029F528`-`0x0029F531` |
+| ¹² | `0x0029F53F` |
+| ¹³ | `0x0029ED40` |
+| ¹⁴ | `0x0029FEB0` |
+| ¹⁵ | `0x0029FEC0` |
+| ¹⁶ | `0x0029FECA`-`0x0029FECF` |
+| ¹⁷ | `0x0029FF08`-`0x0029FF17` |
+| ¹⁸ | `0x0029FF3A`-`0x0029FF3E` |
+| ¹⁹ | `0x0029F130` |
+| ²⁰ | `0x0029F930` |
+| ²¹ | `0x0029F9B6` |
+| ²² | `0x0029F962`-`0x0029F9AC` |
+
+</details>
 
 ### Drawing
 
@@ -386,36 +532,36 @@ bits `0x3C`. Types 1, 3, 6 and 8 have no arm.
   colours, and the run continues while the next node is also type 2, reopening every 12 sprites; `0x002D9B00`
   closes it.
 - Type 9 is drawn alone by `0x0029F5D0` through the float emitter `0x002D8D10`, with the draw context's `+0x5A` set
-  to `0x80` for the call (`0x00243651`-`0x00243670`), offsets 0, 0 and a fifth argument of 0.0
-  (`0x00243655`-`0x00243662`).
+  to `0x80` for the call¹, offsets 0, 0 and a fifth argument of 0.0
+ ².
 - Type 4 goes to `0x0029ED30`; type 5 to `0x0029FBD0` (only in `0x002435C0`), which draws the string at `+0x18` with
-  `0x002D8910` at the node's y `+0x0E` (`0x0029FDFD`) and draws nothing when it is null (`0x0029FBEE`).
-- `0x0029FBD0` first sets the draw context from the node (`0x0029FBF4`-`0x0029FC39`): `+0x66` from `+0x2D`, the size
+  `0x002D8910` at the node's y `+0x0E`³ and draws nothing when it is null⁴.
+- `0x0029FBD0` first sets the draw context from the node⁵: `+0x66` from `+0x2D`, the size
   `+0x60` from the scale `+0x28`, `+0x64` from the low byte of the field under mask `0xFFC0` of `+0x08`, `+0x65` from
   `+0x2F`, the palette byte `+0x5C` from the mode `+0x2C`, and the colour `+0x90` from `+0x24` unless the
   context's `+0x5C` bit `0x40000` is set.
-- Node bit `0x2` sets the context's brightness (RGB scale) `+0x5A` to `0x80` for the call (`0x0029FC26`, `0x0029FE02`). The
-  text's x is the node's x `+0x0C`, or `+0x0A` when `+0x2D` has a bit of `0x38` (`0x0029FC3C`-`0x0029FC44`).
-- With `+0x2D` bit `0x4` it measures the text (`0x002D8B00`, `0x0029FC8C`) and clips the draw to the node's rectangle,
+- Node bit `0x2` sets the context's brightness (RGB scale) `+0x5A` to `0x80` for the call⁶. The
+  text's x is the node's x `+0x0C`, or `+0x0A` when `+0x2D` has a bit of `0x38`⁷.
+- With `+0x2D` bit `0x4` it measures the text⁸ and clips the draw to the node's rectangle,
   at least as tall as the scaled text, `h = max(+0x12, (int)(textH × +0x28))`, and cut to the context's clip box
-  `+0x48`-`+0x4E` (`0x00249FD0`, `0x0029FD78`); it restores the clip afterwards (`0x002D8530`, `0x0029FE10`).
+  `+0x48`-`+0x4E`⁹; it restores the clip afterwards¹⁰.
 - The clip rectangle in 16-bit sums, with `c` the draw context and bare offsets the node's:
   `x = max(c[+0x48] + +0x0C, c[+0x48])`, `y = max(c[+0x4A] + +0x0E, c[+0x4A])`, `w = +0x10` and that `h`;
   then `w = c[+0x48] + c[+0x4C] - x` when `x + w > c[+0x48] + c[+0x4C]`, and `h = c[+0x4A] + c[+0x4E] - y` when
-  `y + h > c[+0x4A] + c[+0x4E]`. `0x00249FD0` runs only when `w > 0` and `h > 0` (`0x0029FC91`-`0x0029FD78`).
+  `y + h > c[+0x4A] + c[+0x4E]`. `0x00249FD0` runs only when `w > 0` and `h > 0`¹¹.
 - With `+0x2D` bit `0x4` set, whether or not `0x00249FD0` ran, a text whose scaled width exceeds the node's width
   `+0x10` scrolls (`cmp ebp, ebx`, `0x0029FD81`): with `r = +0x0A - +0x10` (`+0x0A` less that width,
   `0x0029FD96`-`0x0029FD9A`), the field under mask `0xFFC0` becomes the absolute value of
-  `([0x0208F574] / 4) mod 2r - r`, and x is the node's x less it (`0x0029FD85`-`0x0029FDC8`).
+  `([0x0208F574] / 4) mod 2r - r`, and x is the node's x less it¹².
 - Nothing tests `r` before the division: a scrolling node whose `+0x0A` equals its width `+0x10` makes `2r` 0,
-  and the `idiv` faults (`0x0029FDA1`-`0x0029FDA5`).
-- A text that fits is centred in the node's width (`0x0029FDCC`-`0x0029FDDB`).
+  and the `idiv` faults¹³.
+- A text that fits is centred in the node's width¹⁴.
 - Type 7 goes to `0x0029ED50`. It clamps the value into 0 to maximum, draws the background strip at full length,
   then the fill strip at `fill length × value / maximum`, then the overlay over the fill.
 - `0x002A0180` draws a strip of length `len` as left cap `L`, middle `len − L − R` and right cap `R` (the pieces' `s16` widths at `+0x04`
   and `+0x14`), the middle only when it is positive; when `len − L − R < 0` it draws only the caps,
   `L × len / (L + R)` and `R × len / (L + R)` wide (`idiv`; `0x002A028D`-`0x002A029B`, `0x002A0351`-`0x002A038C`).
-- With a non-zero last argument (`0x002A01B4`) `0x002A0180` draws the left cap `L` at `x`, the middle `len − L` after
+- With a non-zero last argument¹⁵ `0x002A0180` draws the left cap `L` at `x`, the middle `len − L` after
   it when `L < len`, and the right cap `R` at `x + len`, past the strip's end, so no cap is shrunk. A strip with
   `len <= 0` draws nothing.
 - `0x002A0180` emits each piece with `0x002D8D40(writer, draw, picture, source, x, y, w, h, flags)` (`0x002A0209` to
@@ -426,82 +572,186 @@ bits `0x3C`. Types 1, 3, 6 and 8 have no arm.
   destination corners at depth `+0x70`; flag bit `0x2` is added when the two sizes differ. `0x002D8D40` then hands the
   same quad to the renderer (`0x00181890` with the source box, `0x001813F0`).
 - With `+0x20` bit `0x4000000` set and an overlay atlas at `+0x90`, `0x0029ED50` then draws the overlay along the fill
-  with `0x002A0440` (`0x0029F0BF`); the bar drawer `0x0029E840` calls it too (`0x0029EC7C`). `0x002A0440` emits each
+  with `0x002A0440`¹⁶; the bar drawer `0x0029E840` calls it too¹⁷. `0x002A0440` emits each
   vertex with `0x002A1900(vertex, u, v, x, y, alpha, dx, dy, du, dv, draw)`, at twenty sites passing an alpha of
   `0x10` or `0x80`.
 - `0x002A1900` takes the colour from the draw's `+0x94`-`+0x96` and the alpha `+0x97 x alpha / 128`. Its texture
   coordinates are `(u + du + 8) / 16` and `(v + dv + 8) / 16`, and the point `(x + dx, y + dy, [+0x70])` goes
-  through the draw's matrix (`0x00202B70`, `0x00202CA0`); `0x00181350(vertex, 1)` takes the vertex.
+  through the draw's matrix¹⁸; `0x00181350(vertex, 1)` takes the vertex.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00243651`-`0x00243670` |
+| ² | `0x00243655`-`0x00243662` |
+| ³ | `0x0029FDFD` |
+| ⁴ | `0x0029FBEE` |
+| ⁵ | `0x0029FBF4`-`0x0029FC39` |
+| ⁶ | `0x0029FC26`, `0x0029FE02` |
+| ⁷ | `0x0029FC3C`-`0x0029FC44` |
+| ⁸ | `0x002D8B00`, `0x0029FC8C` |
+| ⁹ | `0x00249FD0`, `0x0029FD78` |
+| ¹⁰ | `0x002D8530`, `0x0029FE10` |
+| ¹¹ | `0x0029FC91`-`0x0029FD78` |
+| ¹² | `0x0029FD85`-`0x0029FDC8` |
+| ¹³ | `0x0029FDA1`-`0x0029FDA5` |
+| ¹⁴ | `0x0029FDCC`-`0x0029FDDB` |
+| ¹⁵ | `0x002A01B4` |
+| ¹⁶ | `0x0029F0BF` |
+| ¹⁷ | `0x0029EC7C` |
+| ¹⁸ | `0x00202B70`, `0x00202CA0` |
+
+</details>
 
 The sprite size and source come from the sub-image record at `+0x20 + frame × 8`: `u16` x, `u16` y, then width
 and height as 12-bit fields of the dword at `+4`. The palette selector's high nibble indexes a per-atlas byte table
 and the low nibble is added to it; the sum goes to the draw context's `+0x5C` (`0x0029F5D0`, and `0x00243752` for a
 type-2 run), which the sprite emitters use as the palette: the palette buffer offset for 8-bit images, and the
-palette block and entry for 4-bit ones (`0x002D9380`, `0x002DB8A0`-`0x002DB8D3`).
+palette block and entry for 4-bit ones¹.
 
-`0x0029F5D0(node, draw, dx, dy, f)` takes the frame as signed (`0x0029F5DA`) and draws that source box into the node's
-own rectangle moved by dx and dy (`0x0029F63B`-`0x0029F675`) with `0x002D8D10(draw, atlas, source, destination, block,
-1.0)` (`0x0029F6CD`). The block holds 0, f and the address of the vertex colours `+0x28` (`0x0029F643`, `0x0029F625`,
-`0x0029F67E`). Besides the list drawers it is called from six sites from `0x00277481` to `0x002777B2` and from
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D9380`, `0x002DB8A0`-`0x002DB8D3` |
+
+</details>
+
+`0x0029F5D0(node, draw, dx, dy, f)` takes the frame as signed¹ and draws that source box into the node's
+own rectangle moved by dx and dy² with `0x002D8D10(draw, atlas, source, destination, block,
+1.0)`³. The block holds 0, f and the address of the vertex colours `+0x28`⁴. Besides the list drawers it is called from six sites from `0x00277481` to `0x002777B2` and from
 `0x003C5D02` and `0x003C5D3C`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029F5DA` |
+| ² | `0x0029F63B`-`0x0029F675` |
+| ³ | `0x0029F6CD` |
+| ⁴ | `0x0029F643`, `0x0029F625`, `0x0029F67E` |
+
+</details>
 
 ### Reaching and recolouring nodes
 
 - `0x003931E0(widget, i, j)` returns node i of the widget's list (`+0x60`). When that node is type 1 it
   returns node j of the child widget's list instead (node `+0x18`), or null when there is no child. Neither
-  index is tested against a count, and a null widget faults on the read at address 8 (`0x003931EB`-`0x003931FB`).
+  index is tested against a count, and a null widget faults on the read at address 8¹.
 - `0x00393240(node, colour)` recolours a node from the menu colour table `0x0215E6C8` (`0x002DD7E0`; grey
   `0x80808080` without the table or for an entry at or above the count `0x0215E6B8`, `0x002DD7E2`-`0x002DD7FE`): colours
   0 to 5 take table entries 0, 2, 3, 4, 5 and 6, and any other
   colour gives 0. A type 2 node gets the value in all four vertex colours (`+0x28`-`+0x34`); a type 5 node
-  gets it as its colour `+0x24` (`0x00392F30`).
+  gets it as its colour `+0x24`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003931EB`-`0x003931FB` |
+| ² | `0x00392F30` |
+
+</details>
 
 - `0x00394690(widget, i)` returns node i of the widget's list (`+0x50` count, `+0x60` block) or null past the
   count, and `0x00394660(widget, i)` returns a type 1 node's child widget `+0x18`, or 0. `0x00285F40(widget, i)`
   returns node i of `+0x60` with no count test, or 0 for a null widget; ten on-screen keyboard functions from `0x00286010` to `0x00288A60` and `0x00559E30` call it.
-- `0x00394800(widget, i, a, b)` and `0x00394850(widget, i, j, a, b)` write a number (`0x0029F6E0`) into node i, or,
+- `0x00394800(widget, i, a, b)` and `0x00394850(widget, i, j, a, b)` write a number¹ into node i, or,
   when node i is type 1, into node 0 or node j of its child widget. `0x00394800` is called from `0x0056FCB0`,
   `0x00573BE0`, `0x0057E6D0` and `0x0057EFE0`, and `0x00394850` from `0x0056F470` (twice), `0x00578860`, `0x005789D0` and
   `0x0057EFE0`.
 - `0x0029F480(node, colour, which)` writes a colour to `+0x88` and `+0x64` for which 0, `+0x88` alone for 1 and
-  `+0x64` alone for 2; the party list (`0x002986E0`), the battle menu (`0x0029A930`) and `0x00570530`, `0x00581490`,
+  `+0x64` alone for 2; the party list², the battle menu³ and `0x00570530`, `0x00581490`,
   `0x00581930` use it.
 - `0x0029F580(ref, picture)` binds a picture: the picture at `ref + 0x18` and, at `+0x20`, the cell record that
   the frame code at the item's `+0x0E` selects through the picture header's tables (`+0x40`, `+0x44`); the list
   item `0x00292390` calls it.
-- `0x0029FA40(node)` centres a text node: it measures the text `+0x18` (`0x002D8B00`) and sets x `+0x0A` to the
+- `0x0029FA40(node)` centres a text node: it measures the text `+0x18`⁴ and sets x `+0x0A` to the
   node's left `+0x0C` plus half its width less half the text width times the scale `+0x28`; `0x0029FAD0(node)`
   sets `+0x0A` to the scaled text width instead and sets `+0x2D` bit `0x4`.
-- The on-screen keyboard (`0x00286010`,
-  `0x002862A0`, `0x00286500`, `0x00287E60`, `0x002880B0`) and `0x0056C490` use the first, the Graphics Settings rows
-  (`0x0023B6F0`) and `0x0023CAF0` the second.
+- The on-screen keyboard⁵ and `0x0056C490` use the first, the Graphics Settings rows
+ ⁶ and `0x0023CAF0` the second.
 - `0x00393190(list, on)` sets or clears the drawn bit `0x1` of every node of a list; `0x00393220(node)` returns the
-  item's bit `0x10000000` for a drawn node, else 0 (`0x00407450`, `0x00407720`).
+  item's bit `0x10000000` for a drawn node, else 0⁷.
 - `0x00243260(list, i, out)` copies node i's x, y, width and height (`+0x0C`-`+0x12`) into `out` and returns
   1, or returns 0 when i reaches the header's count. The verb `fsmenu_getrectlist` (`0x701D`, through
   `0x005685B0`) and `0x0023BD40`, `0x0023CE10`, `0x0023D890`, `0x0023DD10`, `0x0023EA10`, `0x0023ED80`, `0x0023FBE0`, `0x0029A0A0`,
   `0x002D2DB0`, `0x002D4330`, `0x0056C490`, `0x0056D940`, `0x00579230` and `0x0057AC10` use it.
-- `0x00243580(list)` clears the drawn bit `0x1` of every node; the gambit screen (`0x00568BB0`), `0x003FCFE0`, `0x003FDDE0`
+- `0x00243580(list)` clears the drawn bit `0x1` of every node; the gambit screen⁸, `0x003FCFE0`, `0x003FDDE0`
   and five other callers use it. `0x00243E90(list)` gives every node its item's bit `0x10000000` back as the drawn bit
-  (`0x00283E40`, `0x00292390`, `0x002D28E0`).
+ ⁹.
 - `0x00243EE0(list)` puts every node back at its item's x and y (item `+4`, `+6`): types 2, 5 and 9 into node
   `+0x0C`/`+0x0E`, type 8 into its grid widget's position `+0x98`/`+0x9A`; `0x002C4720` calls it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029F6E0` |
+| ² | `0x002986E0` |
+| ³ | `0x0029A930` |
+| ⁴ | `0x002D8B00` |
+| ⁵ | `0x00286010`, `0x002862A0`, `0x00286500`, `0x00287E60`, `0x002880B0` |
+| ⁶ | `0x0023B6F0` |
+| ⁷ | `0x00407450`, `0x00407720` |
+| ⁸ | `0x00568BB0` |
+| ⁹ | `0x00283E40`, `0x00292390`, `0x002D28E0` |
+
+</details>
 
 ### Release
 
 `0x002482E0` releases a widget ([Widgets](../Menus-And-HUD/widgets.md)): it first releases the children and unlinks the
-widget (`0x002482EE`-`0x00248331`). When bit `0x2` of the list header at its `+0x50` is set, it clears the bit
-(`0x0024833B`-`0x00248343`) and, when the block at `+0x60` is set, frees the pointer at `+0x80` of each type-7 node
-(type bits `0x1C`, `0x0029F100`), then frees the block (`0x003697F0`) and zeroes `+0x60` (`0x0024838E`-`0x00248398`).
+widget¹. When bit `0x2` of the list header at its `+0x50` is set, it clears the bit² and, when the block at `+0x60` is set, frees the pointer at `+0x80` of each type-7 node
+(type bits `0x1C`, `0x0029F100`), then frees the block³ and zeroes `+0x60`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002482EE`-`0x00248331` |
+| ² | `0x0024833B`-`0x00248343` |
+| ³ | `0x003697F0` |
+| ⁴ | `0x0024838E`-`0x00248398` |
+
+</details>
 
 A list without bit `0x2` keeps its block. The release then sends message 24 through the procedure at `+0x00` when that
-is set (`0x002483A0`-`0x002483B2`), clears bit `0x400` of `+0x40` and the low four bits of `+0x7C` (`0x002483B4`,
-`0x002483BE`), and calls `0x00228450(widget)`, which zeroes `[0x01FD4948]+0xC8` when that holds the widget (`0x002483C2`;
-`0x00228450`-`0x00228465`).
+is set¹, clears bit `0x400` of `+0x40` and the low four bits of `+0x7C`², and calls `0x00228450(widget)`, which zeroes `[0x01FD4948]+0xC8` when that holds the widget³.
 
-It then clears the procedure (`0x002483CE`) and frees the storage (`0x003697F0`, `0x002483DE`) unless `+0x40` bit `0x4000`
-marks it borrowed; a borrowed widget instead has that bit and byte `+0xA2` cleared (`0x002483E5`-`0x002483F0`). Last it
-jumps to the `+0x08` it read before the free, when that is set (`0x002483CA`, `0x002483F8`-`0x00248405`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002483A0`-`0x002483B2` |
+| ² | `0x002483B4`, `0x002483BE` |
+| ³ | `0x002483C2`; `0x00228450`-`0x00228465` |
+
+</details>
+
+It then clears the procedure¹ and frees the storage² unless `+0x40` bit `0x4000`
+marks it borrowed; a borrowed widget instead has that bit and byte `+0xA2` cleared³. Last it
+jumps to the `+0x08` it read before the free, when that is set⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002483CE` |
+| ² | `0x003697F0`, `0x002483DE` |
+| ³ | `0x002483E5`-`0x002483F0` |
+| ⁴ | `0x002483CA`, `0x002483F8`-`0x00248405` |
+
+</details>
 
 ### Atlas lookup
 
@@ -530,9 +780,9 @@ its six pieces from the base record.
 ### Registering and filling an atlas
 
 - `0x0024A4E0(name, flags)` takes the first free slot (bit `0x20` clear), copies the name to its NUL with no length
-  check, or for a null name zeroes the slot's first 16 bytes (`0x0024A542`, `0x0024A562`-`0x0024A565`), zeroes `+0x28`
+  check, or for a null name zeroes the slot's first 16 bytes¹, zeroes `+0x28`
   and `+0x40`, sets the flags to `(old & 0x3FF10) | (flags & 0xF) | 0xA0`, counts `0x02090780` and returns the
-  slot; with all 64 busy it returns null (`0x0024A53C`).
+  slot; with all 64 busy it returns null².
 - `0x0024A660`, run from the menu system's start-up `0x00253970`, zeroes the 64 slots and the count.
 - When the image arrives, `0x00249670` calls `0x0024A1D0(slot, buffer)`. It stores the buffer at `+0x18` and the
   picture header (buffer `+0x10`) at `+0x20`, copies the pixel format (mask `0x3F00000` of the header's `GsTex0` at
@@ -542,11 +792,26 @@ its six pieces from the base record.
   image size, or `+0x28` when set) to `0x00181000`. Format `0x14` copies the palette into a new block from
   `0x0036A190` in reordered 16-colour groups, then calls `0x00181190` and `0x00180E70`. Every path sets bit `0x40`.
 - `0x0024A440(image, name, flags)` registers and binds an already loaded image: it takes a slot with
-  `0x0024A4E0(name, flags)`, binds it with `0x0024A1D0(slot, image)` and returns the slot (`0x0024A456`-`0x0024A469`).
-  With all 64 slots busy the slot is null, and the binder's first read of entry `+0x40` (`0x0024A206`) faults.
-- `0x0024A480` also sets `+0x28` and the colour count, only for a count below `0x4000` (`0x0024A4AA`), and
+  `0x0024A4E0(name, flags)`, binds it with `0x0024A1D0(slot, image)` and returns the slot³.
+  With all 64 slots busy the slot is null, and the binder's first read of entry `+0x40`⁴ faults.
+- `0x0024A480` also sets `+0x28` and the colour count, only for a count below `0x4000`⁵, and
   returns the slot. It does not test the slot either: with all 64 busy, the null slot faults at its flag
-  write (`0x0024A4B1`), or with a larger count in the binder (`0x0024A206`).
+  write⁶, or with a larger count in the binder⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024A542`, `0x0024A562`-`0x0024A565` |
+| ² | `0x0024A53C` |
+| ³ | `0x0024A456`-`0x0024A469` |
+| ⁴ | `0x0024A206` |
+| ⁵ | `0x0024A4AA` |
+| ⁶ | `0x0024A4B1` |
+| ⁷ | `0x0024A206` |
+
+</details>
 
 `0x0024A710(k)` lays out texture memory for slots 0 to 62 whose flags hold bits `0x20`, `0x40`, `0x80` and bit `k`, writing each
 slot's descriptor at `+0x30`; slot 63 is never visited, and clearing bit `0x80` leaves an atlas out of the layout.
@@ -602,14 +867,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](ps2data-bin-families.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0036A100` | is called by | `0x00330310`, `0x003306E0` |
+| [`0x0036A100`](resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
 
 **Steam and achievements** (explained on [shops](../Items-Equipment-Shops-And-Licenses/shops.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0056F470` | calls | `0x00315390`, `0x003166F0` |
+| [`0x0056F470`](ui-typed-lists.md) | calls | [`0x00315390`](../Items-Equipment-Shops-And-Licenses/shops.md) (on shops)<br>[`0x003166F0`](../Steam-And-Achievements/achievements.md) (on achievements) |
 
 </details>

@@ -41,9 +41,19 @@ rows named Reserve from 511 on (names from the action-name table of `battle_pack
 ### Asking for the scene
 
 The per-frame presentation step `0x0030CBE0` (run from `0x00234590` at `0x002346F4`) calls
-`0x0030CE10(unit, row)` for a pending entry (`0x0030CD99`). `0x0030CE10` returns -1 when the row lacks bit
+`0x0030CE10(unit, row)` for a pending entry¹. `0x0030CE10` returns -1 when the row lacks bit
 `0x40000000`, or when the id is in `0xD0`-`0xF1` while the state `0x022C2160` is 5 or 6. Otherwise it clears unit
-bit `0x20000000`, calls `0x00306BD0`, sets bit `0x20000000` on success and returns it (`0x0030CEF2`-`0x0030CF0D`).
+bit `0x20000000`, calls `0x00306BD0`, sets bit `0x20000000` on success and returns it².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030CD99` |
+| ² | `0x0030CEF2`-`0x0030CF0D` |
+
+</details>
 
 | `0x0030CE10` returns | The entry |
 |---:|---|
@@ -78,10 +88,20 @@ Mount 5, Dismount 6, `0xB6`-`0xCF` 3 (Esper attacks),
 ### Playing
 
 The standard-action state machine `0x00304850`, for a row with bit `0x40000000`, calls
-`0x00306760(unit, row)` in place of the usual presentation event, after the target previews
-(`0x00303830`) and the resource payment (`0x00305640`) - except for ids `0xD0`-`0xF1`, the Quickenings and
-Concurrences, which skip both (`0x00304F00`-`0x00304F4D`). `0x00306760` moves the unit's presentation slot `+0x694`
+`0x00306760(unit, row)` in place of the usual presentation event, after the target previews¹ and the resource payment² - except for ids `0xD0`-`0xF1`, the Quickenings and
+Concurrences, which skip both³. `0x00306760` moves the unit's presentation slot `+0x694`
 to `+0x695` when free, posts `0x003299B0(unit, 0x003098D0(), 0)` when row byte `+0x1C` is 8, then by kind:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00303830` |
+| ² | `0x00305640` |
+| ³ | `0x00304F00`-`0x00304F4D` |
+
+</details>
 
 - **1 (summon):** sets bit `0x1` of `[0x02EBF190]+0x5B04` (calling `0x0035C620` when it changes); stores the
   summoner's type id at `+0x5AD5` and row byte `+0x26` (the Esper's stats index) at `+0x5AD4`; calls
@@ -99,35 +119,81 @@ to `+0x695` when free, posts `0x003299B0(unit, 0x003098D0(), 0)` when row byte `
 - **6 (Dismount):** `0x00303D90(0)`.
 
 Then it clears bits `0x100` and `0x200` of every battle unit's flags, starts scene manager 3 (`0x00332130(3)`) and
-sets state 5 (`0x00306ADF`).
+sets state 5¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306ADF` |
+
+</details>
 
 `0x00306D90(list, unit id, b)`, called for kinds 2 to 4 above, gathers the targets for `0x003B6F70`, a jump to `0x003B6DE0`.
 For a non-null list it walks the signed count `+0x04` of 16-byte entries from `+0x08` and keeps, in a local array, the
-dword `+0x08` of each non-null `0x0031B760(entry qword +0x00)` (`0x00306DC5`-`0x00306E09`). It then calls
-`0x003B6F70(unit id, kept count, array, b as a byte)`, with a null array and a count of 0 for a null list
-(`0x00306E23`-`0x00306E39`).
+dword `+0x08` of each non-null `0x0031B760(entry qword +0x00)`¹. It then calls
+`0x003B6F70(unit id, kept count, array, b as a byte)`, with a null array and a count of 0 for a null list².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306DC5`-`0x00306E09` |
+| ² | `0x00306E23`-`0x00306E39` |
+
+</details>
 
 ### The chain's choices (`0x002F88B0`)
 
 During a Quickening chain, `0x00309C40` gives each member a set of choices and draws one of them for the member.
 
-`0x0030D600` picks the members in two passes. The first keeps the party slots 0 to 3 (`0x0031B810`) whose unit has a
+`0x0030D600` picks the members in two passes. The first keeps the party slots 0 to 3¹ whose unit has a
 combat stats record with `+0x05` 0 and a party-table row `+0x04` of at most 6 (Vaan to Reks, the main characters;
 guests from row 7 are left out). A record with any of the status bits `0x80000003` in `+0x64 | +0x3C` is kept
 only when `0x00377C20` passes it (`0x0030D634`-`0x0030D693`, the list at `0x022C1788`).
 
-The second pass keeps those whose `+0x64 | +0x3C` holds none of the bits `0x8800203B` and whose licence count
-`0x00324020` is above 0, in the list at `0x022C24C0` (`0x0030D6B0`-`0x0030D6EA`). That list and its count are what
-`0x00309C40` hands to `0x002F88B0` (`0x00309C6B`-`0x00309C8C`), so `L` below is at least 1 for every member.
+<details>
+<summary>Where in the code</summary>
 
-For each member, `0x002F88B0` reads the licence count `L` (`0x00324020`) and the member's three Quickening slots, the
+| | Code |
+|---|---|
+| ¹ | `0x0031B810` |
+
+</details>
+
+The second pass keeps those whose `+0x64 | +0x3C` holds none of the bits `0x8800203B` and whose licence count
+`0x00324020` is above 0, in the list at `0x022C24C0`¹. That list and its count are what
+`0x00309C40` hands to `0x002F88B0`², so `L` below is at least 1 for every member.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030D6B0`-`0x0030D6EA` |
+| ² | `0x00309C6B`-`0x00309C8C` |
+
+</details>
+
+For each member, `0x002F88B0` reads the licence count `L`¹ and the member's three Quickening slots, the
 `u8[3]` at `+0x04` of its party table row.
 
-1. When the member's MP bars `+0x37` are above its charges `+0x4E`, Mist Charge (action 244) is offered first,
-   then the `L` Quickenings (`0x002F895A`-`0x002F8A0F`). The draw is Mist Charge when `rand() % (n + 5)` is 0, `n`
-   being the number of members (`0x002F8A14`-`0x002F8A2A`).
-2. Otherwise only the `L` Quickenings are offered (`0x002F8A86`-`0x002F8B22`).
-3. Whenever Mist Charge is not drawn, the choice is slot `rand() % L` (`0x002F8B43`-`0x002F8B59`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00324020` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When the member's MP bars `+0x37` are above its charges `+0x4E`, Mist Charge (action 244) is offered first, then the `L` Quickenings. The draw is Mist Charge when `rand() % (n + 5)` is 0, `n` being the number of members. | `0x002F895A`-`0x002F8A0F`<br>`0x002F8A14`-`0x002F8A2A` |
+| 2 | Otherwise only the `L` Quickenings are offered. | `0x002F8A86`-`0x002F8B22` |
+| 3 | Whenever Mist Charge is not drawn, the choice is slot `rand() % L`. | `0x002F8B43`-`0x002F8B59` |
 
 With three members and Mist Charge offered, Mist Charge is drawn 1 time in 8, and each of the `L` Quickenings
 `7 / (8 × L)` of the time. Without Mist Charge each Quickening is drawn `1 / L` of the time.
@@ -136,24 +202,61 @@ These shares are nominal. `rand` is the C runtime's (import `0x008C3098`) and re
 `% 1` divide its range evenly, while `% 3` gives remainders 0 and 1 a share of 10,923 in 32,768 and remainder 2 a
 share of 10,922.
 
-`0x002F88B0` also finds the largest `L` among the members first, but the value is dropped before it is read
-(`0x002F88E0`-`0x002F891E`, `0x002F8977`, `0x002F8A94`).
+`0x002F88B0` also finds the largest `L` among the members first, but the value is dropped before it is read¹.
 
-`0x002F88B0(members, n, chain count, entries)` writes one 16-byte entry per member into `entries`, in member order
-(`0x002F8B5D`-`0x002F8B69`), and returns 1; for an `n` of 0 or below it returns 1 having written nothing
-(`0x002F88C0`-`0x002F88CD`, `0x002F8920`-`0x002F8923`, `0x002F8B79`). The word `+0x00` is the drawn action and the dword `+0x04`
-the number offered: `L + 1` with Mist Charge (`0x002F8975`-`0x002F8979`) and `L` without (`0x002F8A96`). With Mist Charge
-the word `+0x08` is `0xF4` and the `L` slot bytes follow as words from `+0x0A` (`0x002F897D`, `0x002F8A09`); without it
-they start at `+0x08` (`0x002F8B1D`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F88E0`-`0x002F891E`, `0x002F8977`, `0x002F8A94` |
+
+</details>
+
+`0x002F88B0(members, n, chain count, entries)` writes one 16-byte entry per member into `entries`, in member order¹, and returns 1; for an `n` of 0 or below it returns 1 having written nothing². The word `+0x00` is the drawn action and the dword `+0x04`
+the number offered: `L + 1` with Mist Charge³ and `L` without⁴. With Mist Charge
+the word `+0x08` is `0xF4` and the `L` slot bytes follow as words from `+0x0A`⁵; without it
+they start at `+0x08`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F8B5D`-`0x002F8B69` |
+| ² | `0x002F88C0`-`0x002F88CD`, `0x002F8920`-`0x002F8923`, `0x002F8B79` |
+| ³ | `0x002F8975`-`0x002F8979` |
+| ⁴ | `0x002F8A96` |
+| ⁵ | `0x002F897D`, `0x002F8A09` |
+| ⁶ | `0x002F8B1D` |
+
+</details>
 
 `L` is `0x00324020(stats)` of the member's stats record `[unit + 0x698]`, or 0 for a null record (`0x002F88E3`-`0x002F88F6`,
 read the same way each time, the last at `0x002F8B29`-`0x002F8B41`); in the second walk the Mist Charge test reads that
-record's bytes `+0x37` and `+0x4E` before that walk's null test (`0x002F895A`-`0x002F8967`). The slot bytes come from the
-row `0x0020E600([0x02EBF130] dword +0x0C)` plus the record's byte `+0x04` times the table's word `+0x08`, in 32 bits
-(`0x002F89AC`-`0x002F89F2`, `0x002F8A33`-`0x002F8A7F`, `0x002F8AC7`-`0x002F8B06`).
+record's bytes `+0x37` and `+0x4E` before that walk's null test¹. The slot bytes come from the
+row `0x0020E600([0x02EBF130] dword +0x0C)` plus the record's byte `+0x04` times the table's word `+0x08`, in 32 bits².
 
-When `0x02EBF130` is 0 or `0x0020E600` answers 0, the row pointer is 0, so the slot reads are of the addresses from `0x4`
-(`0x002F89F6`, `0x002F8B0A`, `0x002F8B27`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F895A`-`0x002F8967` |
+| ² | `0x002F89AC`-`0x002F89F2`, `0x002F8A33`-`0x002F8A7F`, `0x002F8AC7`-`0x002F8B06` |
+
+</details>
+
+When `0x02EBF130` is 0 or `0x0020E600` answers 0, the row pointer is 0, so the slot reads are of the addresses from `0x4`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F89F6`, `0x002F8B0A`, `0x002F8B27` |
+
+</details>
 
 `0x00309C40` keeps one 24-byte entry per member:
 
@@ -171,20 +274,47 @@ costs none.
 
 ### Esper attack damage
 
-`0x0030EC00(unit, id)` does nothing for an id above `0x21E` or a target count `+0x77C` of 0 or less
-(`0x0030EC1E`-`0x0030EC48`).
+`0x0030EC00(unit, id)` does nothing for an id above `0x21E` or a target count `+0x77C` of 0 or less¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030EC1E`-`0x0030EC48` |
+
+</details>
 
 Otherwise it resolves the action against every target in the list `+0x780` (`0x0030EC56`-`0x0030ED58`; a target without a
-battle unit `0x0031B760` is passed over, `0x0030EC6B`-`0x0030EC76`) (`0x00385F60` into a local result), applies its enmity
-(`0x003216E0`), runs `0x00312170` and `0x00317670`, and adds the result's `+0x24` to the slot of the target's index `+0xEA9`
+battle unit `0x0031B760` is passed over, `0x0030EC6B`-`0x0030EC76`) (`0x00385F60` into a local result), applies its enmity¹, runs `0x00312170` and `0x00317670`, and adds the result's `+0x24` to the slot of the target's index `+0xEA9`
 in the list at `0x022C1F50` (unit at `0x022C1F58 + i*16`, value at `0x022C1F60 + i*16`; header = the attacker's stats
-`+0x698`, stored when the header is still 0, `0x0030ED34`-`0x0030ED45`) (`0x0030EC61`-`0x0030ED45`). The HP is written only at
+`+0x698`, stored when the header is still 0, `0x0030ED34`-`0x0030ED45`)². The HP is written only at
 the end.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003216E0` |
+| ² | `0x0030EC61`-`0x0030ED45` |
+
+</details>
 
 ### Ending
 
-The frame orchestrator `0x00234590` calls `0x003065D0` every frame (`0x002346F9`). In state 5 or 6 with an
-owner it runs these steps (`0x003065D6`-`0x00306716`):
+The frame orchestrator `0x00234590` calls `0x003065D0` every frame¹. In state 5 or 6 with an
+owner it runs these steps²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002346F9` |
+| ² | `0x003065D6`-`0x00306716` |
+
+</details>
 
 1. While scene manager 3 is still running (`0x002671F0(3)` non-zero) it clears bit `0x1` of `0x022C2158` and
    returns.
@@ -198,8 +328,18 @@ owner it runs these steps (`0x003065D6`-`0x00306716`):
 
 `0x00306570(unit)` performs the same clear when manager 3 is idle (`0x002671F0(3)` returns 0) and the unit is null,
 the owner `0x022C2168` is null, or the unit is the owner: bits `0x3` of `0x022C2158`, the kind and the state (the qword
-at `0x022C215C`) and the owner are cleared, and `0x00238A60()` and `0x00332190(3)` run (`0x00306574`-`0x003065BD`). For any
-other unit, or while manager 3 runs, it returns doing nothing (`0x00306588`, `0x00306596`).
+at `0x022C215C`) and the owner are cleared, and `0x00238A60()` and `0x00332190(3)` run¹. For any
+other unit, or while manager 3 runs, it returns doing nothing².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306574`-`0x003065BD` |
+| ² | `0x00306588`, `0x00306596` |
+
+</details>
 
 It is called from `0x002341D0`, the area initialisation `0x00234397` and the slot release `0x0030CA14`; the first two give
 it a null unit (`xor ecx, ecx`), and the slot release the unit `0x0031B7E0` finds for the slot's unit id, null when
@@ -210,16 +350,32 @@ it does not resolve.
 `0x00306BB0` returns 1 in states 5 and 6, and `0x00306BA0` in state 5 only. While they do:
 
 - the actor timeline handler `0x00319F50` treats every event of a battle unit without bit `0x2` as handled
-  without processing it (`0x00319FAC`-`0x00319FB3`, `0x00306BB0`); for a unit with bit `0x2` it returns 0 before
-  that test, in every state (`0x00319FA3`-`0x00319FA6`);
-- the frame orchestrator skips its `0x002371B0`/`0x00237140` checks (`0x002345F8`, `0x00306BB0`);
+  without processing it¹; for a unit with bit `0x2` it returns 0 before
+  that test, in every state²;
+- the frame orchestrator skips its `0x002371B0`/`0x00237140` checks³;
 - the action timeline handler `0x00325260` treats every event as handled without processing it
-  (`0x00325290`, `0x00306BA0`);
+ ⁴;
 - `0x003229E0`, the validity test for the controlled member's current target, returns 1 instead of
-  asking `0x002FFA60` (`0x00322A3B`, `0x00306BB0`);
+  asking `0x002FFA60`⁵;
 - the combo gate, which requires state 0 or 7, refuses ([Combos](combos.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00319FAC`-`0x00319FB3`, `0x00306BB0` |
+| ² | `0x00319FA3`-`0x00319FA6` |
+| ³ | `0x002345F8`, `0x00306BB0` |
+| ⁴ | `0x00325290`, `0x00306BA0` |
+| ⁵ | `0x00322A3B`, `0x00306BB0` |
+
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Global | Width | Meaning |
 |---|---|---|
@@ -236,21 +392,32 @@ The Quickening chain also keeps one 4-byte entry per main character, party type 
 Mist pool (stats `+0x06`) when the Quickening starts, a `u16`, and at `+0x02` the Mist charges the character's
 Quickenings in the chain have cost, a `u8`:
 
-1. `0x0030D720` (from `0x003066EB` and `0x0030686D`) clears them and the three level
-   counters `0x022C2192`-`0x022C2194` (`0x0030D731`, `0x0030D738`; [Concurrence list](concurrence-list.md)).
-2. `0x0030D550` (from `0x00306872`) clears the
-   entries again and stores each fighting member's pool (`0x0030D5BC`-`0x0030D5EF`).
-3. The chain step `0x00313120` adds the
-   cost `0x00308FF0` gives to the user's byte while it is below 3 (`0x00313314`-`0x00313333`).
-4. When the chain ends,
-   `0x0030D810` (from `0x003066C9`) changes each member's Mist pool by `saved - charges x max MP (stats +0x28) - current pool`
-   through `0x00300BC0` (`0x0030D850`-`0x0030D889`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x0030D720` (from `0x003066EB` and `0x0030686D`) clears them and the three level counters `0x022C2192`-`0x022C2194` (`0x0030D731`, `0x0030D738`; [Concurrence list](concurrence-list.md)). |   |
+| 2 | `0x0030D550` (from `0x00306872`) clears the entries again and stores each fighting member's pool. | `0x0030D5BC`-`0x0030D5EF` |
+| 3 | The chain step `0x00313120` adds the cost `0x00308FF0` gives to the user's byte while it is below 3. | `0x00313314`-`0x00313333` |
+| 4 | When the chain ends, `0x0030D810` (from `0x003066C9`) changes each member's Mist pool by `saved - charges x max MP (stats +0x28) - current pool` through `0x00300BC0`. | `0x0030D850`-`0x0030D889` |
 
-`0x0030D720` makes these stores as well, every one unconditional: 4 to the dwords `0x022C2170` and `0x022C2174`
-(`0x0030D74B`, `0x0030D745`), -1 to the Quickening index `0x022C2178` (`0x0030D722`), 0 to its user's id `0x022C218C`
-and to the target count `0x022C21B4` (`0x0030D758`, `0x0030D75E`), 4.0 (`0x40800000`) to the floats `0x022C2184`
-and `0x022C2188` (`0x0030D76E`, `0x0030D764`), 0 to the qword at `0x022C217C` (`0x0030D751`), and 0 over the `0x100`
-bytes from `0x022C21B8` (`0x0030D780`-`0x0030D7A7`).
+`0x0030D720` makes these stores as well, every one unconditional: 4 to the dwords `0x022C2170` and `0x022C2174`¹, -1 to the Quickening index `0x022C2178`², 0 to its user's id `0x022C218C`
+and to the target count `0x022C21B4`³, 4.0⁴ to the floats `0x022C2184`
+and `0x022C2188`⁵, 0 to the qword at `0x022C217C`⁶, and 0 over the `0x100`
+bytes from `0x022C21B8`⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030D74B`, `0x0030D745` |
+| ² | `0x0030D722` |
+| ³ | `0x0030D758`, `0x0030D75E` |
+| ⁴ | `0x40800000` |
+| ⁵ | `0x0030D76E`, `0x0030D764` |
+| ⁶ | `0x0030D751` |
+| ⁷ | `0x0030D780`-`0x0030D7A7` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -269,16 +436,29 @@ No other instruction reaches these cells. The block's addresses are taken by `0x
 The chain's choices and the script's Quickening scene keep three more words:
 
 - `0x00309C40`, from `0x002D5EB0`, draws the chain's choices through `0x002F88B0` and then adds one to `0x022C217C`. It hands
-  `0x022C217C + 1` to `0x002F88B0` in `r8d` (`0x00309C70`-`0x00309C8C`), but no instruction of `0x002F88B0` reads the incoming
-  `r8d`: its only reads, `0x002F89EE` and `0x002F8B02`, follow loads of the record's byte `+0x04` into it (`0x002F89E5`,
-  `0x002F8AF9`), so the count does not change the draw.
+  `0x022C217C + 1` to `0x002F88B0` in `r8d`¹, but no instruction of `0x002F88B0` reads the incoming
+  `r8d`: its only reads, `0x002F89EE` and `0x002F8B02`, follow loads of the record's byte `+0x04` into it², so the count does not change the draw.
 - `getspattackskillinfo(&unit, &action)` (`0x029A`, `0x00348330`) asks `0x00309C00` for the Quickening the chain reported.
   `0x00309C00(&user, &index)` answers 0 while `0x022C2178` is -1; else it writes that index and the user `0x022C218C`, each
-  through a non-null pointer only, sets `0x022C2178` to -1 and answers 1 (`0x00309C00`-`0x00309C31`).
-  Then, reported or not, the bridge copies the two script variables into a two-deep history (`0x0034838F`-`0x003483B3`).
+  through a non-null pointer only, sets `0x022C2178` to -1 and answers 1³.
+  Then, reported or not, the bridge copies the two script variables into a two-deep history⁴.
 - `spattackplay(n)` (`0x029D`, `0x003495A0`) runs the chain step `0x00313120(n)`. It then looks for `n` among the two
-  users, newer first (`0x003495BC`-`0x003495DD`), and on a match stores that entry's index in `0x01EF9218`
-  (`0x003495E8`-`0x003495F2`).
+  users, newer first⁵, and on a match stores that entry's index in `0x01EF9218`
+ ⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00309C70`-`0x00309C8C` |
+| ² | `0x002F89E5`, `0x002F8AF9` |
+| ³ | `0x00309C00`-`0x00309C31` |
+| ⁴ | `0x0034838F`-`0x003483B3` |
+| ⁵ | `0x003495BC`-`0x003495DD` |
+| ⁶ | `0x003495E8`-`0x003495F2` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -286,6 +466,8 @@ The chain's choices and the script's Quickening scene keep three more words:
 | `0x022C2180` | `u32` | 0 | the Quickenings the chain has played | `0x00313120`, plus 1 at each chain step (`0x003133AC`); `0x0030D720`, 0 with the 8-byte store at `0x0030D751` | `0x00305F10` (`0x00305F26`), which shows the last action's name through `0x002902D0` and passes it as the second argument (`0x00305FF3`), or `0xC8` when that action is a Concurrence row, `0xE2` to `0xF1` (`0x00305F2F`, `0x00305F37`, `0x00305F42`) |
 | `0x01EF9208` | `i32` | -1 | the user of the previous `getspattackskillinfo` | `0x00348330` (`0x00348397`, the newer user `0x01EF920C`) | `0x003495A0` (`0x003495D0`, the second compare, through the address it forms at `0x003495C3`) |
 | `0x01EF9210` | `i32` | -1 | the Quickening index of the previous `getspattackskillinfo` | `0x00348330` (`0x003483A3`, the newer index `0x01EF9214`) | `0x003495A0` (`0x003495EF`, for a match on `0x01EF9208`, through the address it forms at `0x003495E8`) |
+
+</details>
 
 ## Modding notes
 
@@ -311,14 +493,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [sound effects](../Sound-And-Music/sound-effects.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002D5EB0` | calls | `0x00271500`, `0x002716F0` |
+| [`0x002D5EB0`](concurrence-list.md) (on concurrence list) | calls | [`0x00271500`](quickenings-and-summons.md)<br>[`0x002716F0`](../Menus-And-HUD/menu-screens.md) (on menu screens) |
 
 **Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [player movement](../Movement-And-Pathfinding/player-movement.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002D5EB0` | calls | `0x00182DA0`, `0x001E0C10` |
+| [`0x002D5EB0`](concurrence-list.md) (on concurrence list) | calls | [`0x00182DA0`](../Saving-Loading-And-Settings/game-settings.md) (on game settings)<br>[`0x001E0C10`](../Controls-And-Input/controls.md) (on controls) |
 
 </details>

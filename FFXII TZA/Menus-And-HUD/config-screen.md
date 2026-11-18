@@ -26,29 +26,76 @@ so they are kept only when the game is saved; Graphics Settings and the other Co
 | Graphics Settings (`0x503`) | `0x0023BD40` | Config's row command `0x20` (`0x002401FD`), `0x0023BCC0` |
 | Controls (`0x504`) | `0x0023CE10` | Config's row command `0x21` (`0x002401CC`), `0x0023CC90` |
 
-The main menu's list builder `0x00281AE0` always adds Config (`0x00281C86`) and never adds the other three, so the player
-reaches Graphics Settings and Controls only through Config. Leaving either reopens Config on its row (`0x0023C537`,
-`0x0023D430`-`0x0023D467`).
+The main menu's list builder `0x00281AE0` always adds Config¹ and never adds the other three, so the player
+reaches Graphics Settings and Controls only through Config. Leaving either reopens Config on its row².
 
-Config's rows come from the row-list table at `0x01E0BF60`, 45 pointers indexed by the screen's mode byte `+0xC0`
-(`0x0023FBE0`, `0x0023D4F0`). Each row list is a 4-byte header followed by
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00281C86` |
+| ² | `0x0023C537`, `0x0023D430`-`0x0023D467` |
+
+</details>
+
+Config's rows come from the row-list table at `0x01E0BF60`, 45 pointers indexed by the screen's mode byte `+0xC0`¹. Each row list is a 4-byte header followed by
 6-byte rows (below); a row with label `0xFFFF` is a separator.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023FBE0`, `0x0023D4F0` |
+
+</details>
 
 `0x002405B0(mode, row)` returns a row of list `mode`,
 or 0 for a mode of 45 or more, an empty entry or a row past the header's count `+2`; Config reads the row's help id
-`+4` through it and shows it on the help line (`0x0023FF5D`-`0x0023FF8A`). The opener
-(`0x002406D2`) picks mode 0 (`0x01E0B670`, 27 rows) when the story counter (`0x00265270`) is 26 or more, otherwise mode 2
-(`0x01E0B7D0`, the same rows without the last three). Mode 1 (`0x01E0B720`) is the title's New Game list.
+`+4` through it and shows it on the help line¹. The opener² picks mode 0 (`0x01E0B670`, 27 rows) when the story counter³ is 26 or more, otherwise mode 2
+(`0x01E0B7D0`, the same rows without the last three). Mode 1⁴ is the title's New Game list.
 
-`0x0023D610(screen, mode, origin)`, called from `0x0023BD40` (`0x0023BE66`), stores the mode byte `+0xC0`, the origin
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023FF5D`-`0x0023FF8A` |
+| ² | `0x002406D2` |
+| ³ | `0x00265270` |
+| ⁴ | `0x01E0B720` |
+
+</details>
+
+`0x0023D610(screen, mode, origin)`, called from `0x0023BD40`¹, stores the mode byte `+0xC0`, the origin
 `+0xC2`, the row list `0x01E0BF60[mode]` at `+0xC8` and its layout kind at `+0xC1`; it loads the layout named by
-byte `+1` of the kind's `0x01E0B638` entry (`0x00394700`) and sets the draw priority from its word `+2`.
+byte `+1` of the kind's `0x01E0B638` entry² and sets the draw priority from its word `+2`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023BE66` |
+| ² | `0x00394700` |
+
+</details>
 
 Leaving Config runs `0x0023ED10`: it closes the screen and, unless the row command waiting at `+0x4D0` is `0x20` or
 `0x21`, returns to the Party Menu on Config (`0x002814E0(0x4BE)`) for origin 0 or 2, or clears the help line
 (`0x00291D80(0, 0)`) for origin 1. `0x0023EF80(screen, command)` finds a row's `0x18`-byte slot among the 42 at
 `+0xE0` by its first byte; Config uses it to drop the slot's `+0x08` or `+0x10` when a row posts `0x12` or `0x1C`
-with its command (`0x0023FF11`-`0x0023FF4D`).
+with its command¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023FF11`-`0x0023FF4D` |
+
+</details>
 
 The row list header:
 
@@ -91,42 +138,73 @@ A row:
 | `0x17` | Restore Defaults | - | the whole record | below |
 | `0x24`, `0x25` | Max. LP, Max. Gil | Acquire | - | below; mode 0 only |
 
-Every row but `0x18`, `0x19` and `0x1A` reaches `0x00240750(command, index)` and the setter switch `0x002407F0`
-(`0x00240818`-`0x00240959`). `0x00240750` is called only by the row widgets `0x0023D6B0`, `0x0023DB40`, `0x0023E770` and
-`0x0023EBE0`. The three title rows get no widget: their lists `0x01E0BF60[0x18]`-`[0x1A]` (`0x01E0A880`, `0x01E0A930`,
-`0x01E0A9E0`) have layout kind 13, which the builder's switch skips (`0x0023EE6C`-`0x0023EE74`), and their confirm is
-`0x00240173` (`0x00240065`-`0x00240080`).
+Every row but `0x18`, `0x19` and `0x1A` reaches `0x00240750(command, index)` and the setter switch `0x002407F0`¹. `0x00240750` is called only by the row widgets `0x0023D6B0`, `0x0023DB40`, `0x0023E770` and
+`0x0023EBE0`. The three title rows get no widget: their lists `0x01E0BF60[0x18]`-`[0x1A]`² have layout kind 13, which the builder's switch skips³, and their confirm is
+`0x00240173`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00240818`-`0x00240959` |
+| ² | `0x01E0A880`, `0x01E0A930`, `0x01E0A9E0` |
+| ³ | `0x0023EE6C`-`0x0023EE74` |
+| ⁴ | `0x00240065`-`0x00240080` |
+
+</details>
 
 The options record is `*0x0215E6E0`, inside the save image. The labels are
 `menu_command.bin`, except the three title rows' labels, which are `menu_message.bin` 34, 191 and 190 (ids 2034,
 2191 and 2190 through `0x002F9860`); the help lines are `help_menu.bin` (117, 396 and 397 for the title rows).
 
-`0x0023EFC0(screen)`, run by `0x0023FBE0` (`0x0023FCB6`), sets up Config's list widget. The row count comes from list
-`0x01E0BF60[origin]` (`+0xC2` 0-2, any other as 0), the row painter `0x0023F8B0` goes to list `+0x120` (`0x0023F06E`),
-and the cursor starts on the row saved as cursor kind 6 (`0x002526F0`). When that row's command names a kind-`0x0B`
+`0x0023EFC0(screen)`, run by `0x0023FBE0`¹, sets up Config's list widget. The row count comes from list
+`0x01E0BF60[origin]` (`+0xC2` 0-2, any other as 0), the row painter `0x0023F8B0` goes to list `+0x120`²,
+and the cursor starts on the row saved as cursor kind 6³. When that row's command names a kind-`0x0B`
 list, the cursor goes to the first row whose command does not, or to row 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023FCB6` |
+| ² | `0x0023F06E` |
+| ³ | `0x002526F0` |
+
+</details>
 
 The painter `0x0023F8B0(screen, row widget, -, row)` reads the layout kind of the list the row's command names:
 
 - kind `0x0B`: the eight parts listed at `0x00914CA0` show, and of the seven at `0x00914CA8` only entry n, with n = 1-6
   for commands 7, `0x0F`, `0x16`, `0x1F`, `0x22` and `0x23` and 0 for any other; part 1 is then placed after that
-  entry's text width (`0x0029FE20`);
-- any other kind: the part at `0x00914C98` shows unless the kind is `0x0C`, and part 2 takes the label (`0x002F9860`)
+  entry's text width¹;
+- any other kind: the part at `0x00914C98` shows unless the kind is `0x0C`, and part 2 takes the label²
   unless it is `0xFFFF`. Part 2 is recoloured by `0x00393240(part, 1)` while the row's lock flag is set, and with 0
   otherwise: flag `0x1E` for command 4, `0x1F` for 5, `0x23` for 6, `0x22` for 8, `0x20` for 9, `0x21` for 10
   (`0x00254DD0`; the flags of Restore Defaults, Max. LP and Max. Gil below).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029FE20` |
+| ² | `0x002F9860` |
+
+</details>
+
 ### Restore Defaults, Max. LP and Max. Gil
 
-- Restore Defaults asks "Restore all settings to their default values?" (`0x0023E560`) and Yes rebuilds the options
+- Restore Defaults asks "Restore all settings to their default values?"¹ and Yes rebuilds the options
   record with `0x002DDE60`: soundtrack 1, the three volumes 100, camera axes and multiplier cleared, and the language bit
   from the game's language.
 - Max. LP and Max. Gil ask "If you change the Max. LP setting, you won't be able to change it back. Are you sure?"
-  (`0x0023DFC0`). Yes sets 99,999 LP in each party record (`0x00305A00`) or 99,999,999 gil (`0x003058B0`, `0x00254EE0`).
+ ². Yes sets 99,999 LP in each party record³ or 99,999,999 gil⁴.
 - On the Parameter Settings screen `0x00240AD0` each of the two rows is painted by `0x00240A60`: its label from the
   `{label, help}` pairs at `0x00914C60` (Max. LP `0x53B`, Max. Gil `0x53C`) and the option Acquire (`0x53D`).
 - Rows 4, 5, 6, 8, 9 and 10 can be locked by flags `0x1E`, `0x1F`, `0x23`, `0x22`, `0x20` and `0x21` of the byte array at `[0x020927C0] + 0x32C4` (`0x002405F0`, read by `0x00254DD0`; flag n is bit `1 << (n & 7)` of byte `n >> 3`): a locked row
-  is greyed and plays sound 5 (`0x002400AC`).
+  is greyed and plays sound 5⁵.
 - Only row 4's flag `0x1E` has a setter:
   - `0x00253A80` zeroes the array, and a save load copies it back with the rest of the block
     ([Save data](../Saving-Loading-And-Settings/save-data-fields.md)).
@@ -136,18 +214,49 @@ The painter `0x0023F8B0(screen, row widget, -, row)` reads the layout kind of th
   - Rows 5, 6, 8, 9 and 10 are never locked.
 - The only script that would lock row 4 is `パーティメニュー抑制.コンフィグ禁止` in `naf_a02` (`setpartymenustatus(9, 1)`, with `(8, 1)` for flag `0x1D`); its `コンフィグ開放` clears both (`(9, 0)`, `(8, 0)`). No other line of the 1,114 decoded `us` scripts names that actor (`evt_t0020`, the 1,115th, has no EBP2 header), so no script runs either function and row 4 stays unlocked.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023E560` |
+| ² | `0x0023DFC0` |
+| ³ | `0x00305A00` |
+| ⁴ | `0x003058B0`, `0x00254EE0` |
+| ⁵ | `0x002400AC` |
+
+</details>
+
 ### Graphics Settings rows
 
 The rows are the table at `0x00914710`, 24 records `{ordinal, kind, class, label, help}`; rows 0, 2, 3, 11, 14 and 17
 are headings. A press runs `0x0017DB90(row, value, direction)`, which calls the settings dispatcher `0x001D1660` through
 `0x001CD040` and reads the value back with `0x0017E070`. Rows 5 and 6 do not reach the dispatcher. Resolution runs
-`0x001DC940(display, direction == 0)` on the display object `0x001DDAB0()` and then `0x001DC730` when `[0x01F82D20] + 8` is 0
-(`0x0017DC1E`, `0x0017DC3C`), and neither while `0x001DDAB0()` returns 0 (`0x0017DC08`).
+`0x001DC940(display, direction == 0)` on the display object `0x001DDAB0()` and then `0x001DC730` when `[0x01F82D20] + 8` is 0¹, and neither while `0x001DDAB0()` returns 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017DC1E`, `0x0017DC3C` |
+| ² | `0x0017DC08` |
+
+</details>
 
 Screen Mode steps the passed value through 0, 1, 2, up by one for direction 0 and down by one otherwise, wrapping at
-both ends, and returns it without the read-back (`0x0017DC46`-`0x0017DC69`). A heading dispatches nothing and reads back
--1. While the console object `0x001D50D0()` is 0 no row dispatches or steps and every row reads back through `0x0017E070`
-(`0x0017DBB9`).
+both ends, and returns it without the read-back¹. A heading dispatches nothing and reads back
+-1. While the console object `0x001D50D0()` is 0 no row dispatches or steps and every row reads back through `0x0017E070`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017DC46`-`0x0017DC69` |
+| ² | `0x0017DBB9` |
+
+</details>
 
 | Row | Label | Values | Setting | Runs at once |
 |---:|---|---|---|---|
@@ -168,33 +277,81 @@ both ends, and returns it without the read-back (`0x0017DC46`-`0x0017DC69`). A h
 | `20` | Ambient Occlusion | Off, Half-Resolution, Full Resolution | HDAO | - |
 | `21`-`23` | Depth of Field, Glare, Soft Particles | Off, On | DepthofField, Glare, SoftParticle | Soft Particles: `[manager + 0xA80]` vtable `+0x60` |
 
-The row painter `0x0023BB20`, which `0x0023BD40` installs (`0x0023BEDD`), hides parts 0-17 of the row widget and
+The row painter `0x0023BB20`, which `0x0023BD40` installs¹, hides parts 0-17 of the row widget and
 shows the one whose number is the row's class. For a heading (kind 0) it places part 14 after the class part's text
-width (`0x0029FE20`). For any other row it puts the label (`0x002F9860`) in the class part and colours it with
+width². For any other row it puts the label³ in the class part and colours it with
 `0x002DD7E0(2)` when the row's bit in screen `+0x720` is set, `0x002DD7E0(0)` otherwise.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023BEDD` |
+| ² | `0x0029FE20` |
+| ³ | `0x002F9860` |
+
+</details>
 
 The settings are `GameSetting.ini` keys at `[0x01F82D20]` ([Game settings](../Saving-Loading-And-Settings/game-settings.md)).
 
 The samplers take the anisotropy from `0x001DE540(settings)`: entry `+0x18 % 5` of `0x00900ED0`, the floats 1, 2, 4, 8
-and 16 (`0x0018A840`, `0x0018AC50`, `0x001BC9D0`, `0x001BD940`).
+and 16¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018A840`, `0x0018AC50`, `0x001BC9D0`, `0x001BD940` |
+
+</details>
 
 - The preset `0x001D5120` copies column `q` of `0x00900CE0` into every preset setting, unless `q` is Custom, and pushes
-  anisotropic filtering, water, shadow size, MSAA, post-process anti-aliasing and soft particles again (`0x001DE4F0`).
-- Changing any row from 12 to 23 sets Quality to Custom (`0x001D4B65`).
+  anisotropic filtering, water, shadow size, MSAA, post-process anti-aliasing and soft particles again¹.
+- Changing any row from 12 to 23 sets Quality to Custom².
 - Rows 4, 5, 6 and 10 keep a pending value. Leaving the row with a change opens a dialog: "Change the resolution of
   Full-Screen Mode?", "Change screen mode?", or for the adapter and the frame rate limit a restart notice. Yes on the
   restart notice writes `GameSetting.ini` and closes the game (`0x0017E050`, `PostMessageW(WM_CLOSE)`); No restores the
   old value.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DE4F0` |
+| ² | `0x001D4B65` |
+
+</details>
+
 The row widget `0x0023B6F0` keeps the shown value at `+0xC4` and the applied one at `+0xC8`. On the notice `0x2CA5`
-it applies the shown value and keeps it; on `0x2CA4` it applies the kept value again (`0x0023B769`-`0x0023B7B2`). Both
+it applies the shown value and keeps it; on `0x2CA4` it applies the kept value again¹. Both
 go through `0x0017E540(row, value)`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023B769`-`0x0023B7B2` |
+
+</details>
 
 - Display Adapter: `0x001DC650` and `0x001DC7A0` on the display object `0x001DDAB0`.
 - Resolution: `0x001DC920`, which stores the index at display `+0x38` when `[0x01F82D20] + 8` is 0 and at `+0x24`
   otherwise; the apply then runs `0x0017DB40`, which calls `0x001DC730`.
-- Screen Mode: `0x001DC830`, after `0x0017E540` logs "Change Screen Mode By Config Menu!!!!" (`0x005CDAA0`).
+- Screen Mode: `0x001DC830`, after `0x0017E540` logs "Change Screen Mode By Config Menu!!!!"¹.
 - Every other row: `0x001DF340([0x01F82D20], index, value)` with the index below.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CDAA0` |
+
+</details>
 
 | Row | Index | Row | Index |
 |---:|---:|---:|---:|
@@ -209,16 +366,34 @@ go through `0x0017E540(row, value)`:
 
 The read-back `0x0017E070` takes Resolution's index through `0x001DD050`: display `+0x38` when display `+0x18` is 0,
 `+0x24` otherwise. `0x0017FF20` returns the resolution, the width in the high 16 bits and the height in the low 16, from
-a list of `0x1C`-byte entries (`0x001DD0B0`) chosen by `[0x01F82D20] + 8`: for 1 the list at `+0x28`, index `+0x24` below
+a list of `0x1C`-byte entries¹ chosen by `[0x01F82D20] + 8`: for 1 the list at `+0x28`, index `+0x24` below
 the count `+0x20`; for 0 the list at `+0x40`, index `+0x38` up to `+0x34`. It returns `[0x01F82D20] + 4` when the index
 is past that limit and for any other value.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DD0B0` |
+
+</details>
 
 ### Controls rows
 
 The 41 rows are the table at `0x0208E6E0`, built by `0x002414B0`. Rows 2-32 rebind keys ([Control remapping](../Controls-And-Input/control-remapping.md)).
 The row painter `0x0023CD20` puts the row's text `+8` in the row widget's first part for a row of type 0, with the
-third part placed after the text's width (`0x0029FE20`) and the fourth hidden, and in its fourth part for types 1-4,
+third part placed after the text's width¹ and the fourth hidden, and in its fourth part for types 1-4,
 with the first and third hidden; it paints nothing for any other type. The other settings rows are:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029FE20` |
+
+</details>
 
 | Row | Label | Options | Setting | Runs at once |
 |---:|---|---|---|---|
@@ -243,16 +418,26 @@ that same `+0x60`, so the row does what its label says. Type A makes Cross confi
 
 ### The cursor skips rows
 
-Config moves its list cursor with `0x0023F240` (`0x0023FE31`), and Graphics Settings and Controls with
-`0x00240DE0(list, skip, hold)` (`0x0023C27F`, `0x0023D2B2`), each with the wheel added the way
+Config moves its list cursor with `0x0023F240`¹, and Graphics Settings and Controls with
+`0x00240DE0(list, skip, hold)`², each with the wheel added the way
 [Controls](../Controls-And-Input/controls.md) describes:
 
-1. The list steps once (`0x002D3BA0`).
-2. When the new row may not take the cursor, it steps again, up to the row count times, through `0x0023F7D0` (Config)
-   or `0x002413E0` (the other two), each a single step with the list's `+0xE4` bit `0x4` set around it.
-3. When the step answered 4 to 6, or the list's `+0xE4` bit `0x2000` is set, it first puts the cursor back (`0x002D47C0`) and
-   tries steps with the list's bytes `+0x107`, `+0x108` and `+0xF6` set to 1, then 2 (`0x0023F660`-`0x0023F710`).
-4. When no row qualifies the cursor goes back where it was (`0x002D47C0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023FE31` |
+| ² | `0x0023C27F`, `0x0023D2B2` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The list steps once. | `0x002D3BA0` |
+| 2 | When the new row may not take the cursor, it steps again, up to the row count times, through `0x0023F7D0` (Config) or `0x002413E0` (the other two), each a single step with the list's `+0xE4` bit `0x4` set around it. |   |
+| 3 | When the step answered 4 to 6, or the list's `+0xE4` bit `0x2000` is set, it first puts the cursor back and tries steps with the list's bytes `+0x107`, `+0x108` and `+0xF6` set to 1, then 2. | `0x002D47C0`<br>`0x0023F660`-`0x0023F710` |
+| 4 | When no row qualifies the cursor goes back where it was. | `0x002D47C0` |
 
 For Config, `0x0023F190(screen)` decides: the row under the cursor may take it unless its command is `0x12`, or its
 command names a row list in `0x01E0BF60` whose layout kind is `0x0B` or `0x0C`. The other two screens pass their own
@@ -261,11 +446,24 @@ test, kept at `+0x728` on Graphics Settings and `+0x4B8` on Controls; a non-zero
 Graphics Settings' test `0x00241840` skips a row whose kind (`0x00914714` + 20 x row) is 0, a heading; Controls' test
 `0x00241890` skips a row whose type (`0x0208E6E4` + 20 x row) is not 2, 3 or 4.
 
-With `hold` set and a direction pressed, `0x00240DE0` does not move: through `0x002D1AC0` (`0x00240F2F`-`0x00240F37`) it
+With `hold` set and a direction pressed, `0x00240DE0` does not move: through `0x002D1AC0`¹ it
 sends `0x8003` to the list's owner, the widget at `[list+0xC8]`, calling the owner's handler directly with the
-message `{0xC, 0x8003, item}` (`0x00247510`, `0x00247523`-`0x00247547`); the item is the list's position, (`+0xF2` +
-`+0xF4`) x `+0xEC` + `+0xEE` + `+0xED` (`0x002D1ACC`-`0x002D1AFD`), and a list with no owner gets nothing (`0x002D1B0B`).
-Graphics Settings sets `hold` while a row's `+0xC8` differs from its `+0xC4` (`0x0023C25F`-`0x0023C26B`).
+message `{0xC, 0x8003, item}`²; the item is the list's position, (`+0xF2` +
+`+0xF4`) x `+0xEC` + `+0xEE` + `+0xED`³, and a list with no owner gets nothing⁴.
+Graphics Settings sets `hold` while a row's `+0xC8` differs from its `+0xC4`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00240F2F`-`0x00240F37` |
+| ² | `0x00247510`, `0x00247523`-`0x00247547` |
+| ³ | `0x002D1ACC`-`0x002D1AFD` |
+| ⁴ | `0x002D1B0B` |
+| ⁵ | `0x0023C25F`-`0x0023C26B` |
+
+</details>
 
 ### Where each setting is saved
 
@@ -292,6 +490,9 @@ Graphics Settings row number (`g1` to `g23`).
 | `inert_when` | when a change does nothing: a value equal to the one already set, a list mode that does not hold the row, No to a restart notice or dialog, a row locked by its flag in the byte array at `[0x020927C0] + 0x32C4`, or a condition of the effect itself (the speed mode off, a post-process switch clear, a display mode the adapter lacks, the mouse for an invert row) |
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### Graphics Settings row slots
 
@@ -402,7 +603,12 @@ Config is the `0x4D8`-byte widget kept at `0x0208E6D8` with procedure `0x0023FBE
 | `+0x4D0` | `u16` | nextScreen | the row command waiting when Config closes: `0x20` for Graphics Settings (`0x002401E0`), `0x21` for Controls (`0x002401AF`), 0 at construction (`0x0023FC5E`). `0x0023ED10` does not return to the Party Menu while it is `0x20` or `0x21` (`0x0023ED26`); on destruction Config opens the screen it names (`0x00240215`) |
 | `+0x4D2` | `u8[6]` | pad4D2 | read and written by no function; nothing fixes its width |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 Each of the three screens is opened by a function that creates its widget through `0x00244F50` only while its global
 is 0 and keeps the widget there; leaving clears it. All three are 0 in the file.
@@ -414,6 +620,8 @@ is 0 and keeps the widget there; leaving clears it. All three are 0 in the file.
 | `0x0208E6D8` | `void*` | 0 | the open Config screen: the `0x4D8`-byte widget with procedure `0x0023FBE0`, which stores itself on message 1 | `0x0023FBE0`: itself (`0x0023FC51`); 0 when it goes, after opening Graphics Settings or Controls for a waiting row command `0x20` or `0x21` (`0x00240284`, `0x0024026B`), or after `0x002E1CA0(1, 0x15)` for origin 1 (`0x00240252`) | the openers `0x00240680` (`0x002406B8`) and `0x002406F0` (`0x00240703`) and the two screens that reopen Config, `0x0023BD40` (`0x0023C510`) and `0x0023CE10` (`0x0023D438`), which create it only while it is 0; the row widgets `0x0023D6B0` (`0x0023D794`), `0x0023D890` (`0x0023D8BA`) and `0x0023DD10` (`0x0023DD3A`), which step only while Config's `+0xD0` bit `0x1` is clear |
 
 No other instruction reaches these three.
+
+</details>
 
 ## Modding notes
 
@@ -438,15 +646,19 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E1CA0` | is called by | `0x00313A00` |
+| [`0x002E1CA0`](../Controls-And-Input/action-availability.md) (on action availability) | is called by | [`0x00313A00`](../Battle-Actions/action-phases.md) (on action phases) |
 
 **Scripts and script commands** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E23E0` | is called by | `0x00342590` |
-| `0x00342590` | calls | `0x00267E10` |
+| [`0x002E23E0`](config-screen.md) | is called by | [`0x00342590`](config-screen.md) |
+| [`0x00342590`](config-screen.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
 
 </details>

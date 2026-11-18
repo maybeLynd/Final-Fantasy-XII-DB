@@ -8,9 +8,19 @@
 
 Every number a battle action produces comes from calculator slots. The table at `0x01EFA5C0` holds 202
 function pointers; a recipe names slots by their index ([Formula recipes](formula-recipes.md)). Both
-runners call a slot as `slot(source, target, &context)`: `0x00385680` for a recipe's first list (`0x003859FF`)
-and `0x00385F60` for its committed list (`0x003863D0`). No other code calls a slot body directly, and no other pointer to one exists outside
+runners call a slot as `slot(source, target, &context)`: `0x00385680` for a recipe's first list¹
+and `0x00385F60` for its committed list². No other code calls a slot body directly, and no other pointer to one exists outside
 the table.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003859FF` |
+| ² | `0x003863D0` |
+
+</details>
 
 The context is built by `0x003847C0` ([Damage formula](damage-formula.md)). The slots pass their answer to
 the resolver through scratch globals such as the scale `0x02AEE054` and the HP loss `0x02AEE004`

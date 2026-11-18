@@ -14,9 +14,18 @@ addresses.
 
 ### The import table
 
-The import directory (`0x01DEAB00`) describes 30 DLLs and 538 imported names. The loader writes their
+The import directory¹ describes 30 DLLs and 538 imported names. The loader writes their
 addresses into the import address table, `0x008C2000` to `0x008C31C0` (`.idata$5`), one qword per name
 and a zero qword after each DLL's run. Code reaches an import in one of three ways:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01DEAB00` |
+
+</details>
 
 - `call qword ptr [slot]`: 3,543 sites, naming 417 of the 538 slots. With the jumps below, 530 slots are called or
   jumped through.
@@ -26,10 +35,20 @@ and a zero qword after each DLL's run. Code reaches an import in one of three wa
   sites and 147 jump sites, through 120 stubs.
 
 Eight slots are never called or jumped through. Six are data exports of `MSVCP140.dll` read as
-data: four locale facet ids, `std::_BADOFF` and `std::cout`. The other two, `SymGetModuleBase64`
-(`0x008C3100`) and `SymFunctionTableAccess64` (`0x008C3108`), are loaded as values (`0x005CCE88`) and passed
+data: four locale facet ids, `std::_BADOFF` and `std::cout`. The other two, `SymGetModuleBase64`¹ and `SymFunctionTableAccess64`², are loaded as values³ and passed
 to the stack walker of the crash-dump writer. Which DLL supplies which service is on
 [runtime-services.md](runtime-services.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008C3100` |
+| ² | `0x008C3108` |
+| ³ | `0x005CCE88` |
+
+</details>
 
 ### Import stubs
 
@@ -46,8 +65,8 @@ The 120 stubs name 117 slots: three stubs share the `free` slot `0x008C2B48` and
 
 - 26 stubs have their address held in data. The 19 `MSVCP140` stubs of the second run are virtual
   functions of stream buffers and facets: `0x0080889A` (`basic_streambuf<char>::showmanyc`) is slot 5
-  of the vtables of `basic_filebuf<char>` (`0x008F3EC8`), `basic_stringbuf<char>` (`0x00900F20`) and a
-  JsonBox output filter (`0x00905070`).
+  of the vtables of `basic_filebuf<char>`¹, `basic_stringbuf<char>`² and a
+  JsonBox output filter³.
 - `0x00861EB4` (`__CxxFrameHandler3`) and `0x00861ED8` (`__C_specific_handler`) are named by RVA in
   unwind records, and `0x00861EAE` (`__std_terminate`) is the target of 86 exception-cleanup pads; see
   [exception-handling.md](exception-handling.md).
@@ -55,6 +74,17 @@ The 120 stubs name 117 slots: three stubs share the `free` slot `0x008C2B48` and
   16, `VCRUNTIME140` 13, `api-ms-win-crt-heap` 9, `api-ms-win-crt-string` 7, `KERNEL32` 5, `IMM32`
   3, two each from `d3d11`, `XINPUT9_1_0` and `api-ms-win-crt-stdio`, and one from each of seven
   more.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008F3EC8` |
+| ² | `0x00900F20` |
+| ³ | `0x00905070` |
+
+</details>
 
 The member list [`thunks-and-import-stubs-external-import-stubs.tsv`](thunks-and-import-stubs-external-import-stubs.tsv) holds 117 of the 120 and
 [`thunks-and-import-stubs-external-import-stubs-map.tsv`](thunks-and-import-stubs-external-import-stubs-map.tsv) gives the DLL and name of each; the three it
@@ -65,8 +95,16 @@ leaves out are `0x00861EAE` (`__std_terminate`), `0x00862028` (`_exit`) and `0x0
 `0x00809958` has the import-stub form, `48 FF 25`, but its slot is `0x008C31C0`, the first qword after
 the import table. That slot is the load configuration's guard-check function pointer, and on disk it
 holds `0x0016D6A0`, a `ret 0`. Eleven call sites in the runtime's support routines call it just before
-an indirect call, among them the vector constructor and destructor iterators (`0x0080901D`,
-`0x008090A2`). The slot is on [image-hardening.md](image-hardening.md).
+an indirect call, among them the vector constructor and destructor iterators¹. The slot is on [image-hardening.md](image-hardening.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0080901D`, `0x008090A2` |
+
+</details>
 
 ### Jump forwarders
 
@@ -174,10 +212,22 @@ different `rcx` from the one they passed, while the four call sites that name `0
 pass their own.
 
 `0x002BE020` works on the object in `rcx`: when the pointer at `+0x1048` is non-null it calls `0x00244F00` with
-that pointer and then zeroes `+0x1048` and `+0x10D0` (`0x002BE029`-`0x002BE043`); a null pointer returns at once
-(`0x002BE033`).
+that pointer and then zeroes `+0x1048` and `+0x10D0`¹; a null pointer returns at once².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002BE029`-`0x002BE043` |
+| ² | `0x002BE033` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 `ImportDescriptor` (`0x14` bytes, offsets from the start of the record):
 
@@ -205,7 +255,12 @@ The seven-byte form puts a `48` prefix before `FF 25`, and its displacement coun
 | `+0x00` | `u8` | opcode | E9 |
 | `+0x01` | `i32` | disp | target minus (forwarder + 5) |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -216,6 +271,8 @@ The seven-byte form puts a `48` prefix before `FF 25`, and its displacement coun
 | jump forwarders | 763, all to different targets; 751 reached by something |
 | terminate pads | 86 `jmp 0x00861EAE`, 85 packed from `0x008A26E4` to `0x008A508D` plus `0x008A5B1F` |
 | argument-adjusting tail calls | 102 `mov rcx,rdx`, 87 call-result, 16 `xor ecx`, 13 `xor edx`, 5 receiver binders |
+
+</details>
 
 ## Modding notes
 

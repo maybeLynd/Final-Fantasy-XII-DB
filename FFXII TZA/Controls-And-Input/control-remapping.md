@@ -22,9 +22,19 @@ them back to `keymap.ini`.
 ### Where a binding lives
 
 The bindings are the three profiles at `0x01F80F90`, `0x70` bytes apart: sixteen button codes in group 0, the eight
-stick codes in group 1 at `+0x40` (`0x01F80FD0`) and Speed1-3 and WalkMode in group 2 at `+0x60` (`0x01F80FF0`), the
+stick codes in group 1 at `+0x40`¹ and Speed1-3 and WalkMode in group 2 at `+0x60`², the
 layout of [keymap.ini](keymap-file.md). The game does not poll these; it polls the records the publisher builds from
 them ([Controls](controls.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01F80FD0` |
+| ² | `0x01F80FF0` |
+
+</details>
 
 ### The binding rows
 
@@ -50,17 +60,46 @@ shipped profiles 2 and 3 bind.
 
 ### What a binding row shows
 
-`0x0023C5C0` installs `0x0023CAF0` as the cell writer of its row (`0x0023CA37`). For each column it shows:
+`0x0023C5C0` installs `0x0023CAF0` as the cell writer of its row¹. For each column it shows:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023CA37` |
+
+</details>
 
 - on row 0, which `0x002414B0` builds with type 1 and three columns, the heading Main key, Alternate key 1 or
-  Alternate key 2, text `0x53F` plus the column (`0x0023CB0A`, `0x0023CC10`);
-- on a binding row, the name of the column's code (`0x0023CB24`-`0x0023CB36`), or Press a Key (`0x46DD`) on the
-  column being captured (`0x0023CB8C`-`0x0023CB99`);
+  Alternate key 2, text `0x53F` plus the column¹;
+- on a binding row, the name of the column's code², or Press a Key (`0x46DD`) on the
+  column being captured³;
 - a cursor mark on the selected column, and otherwise one mark when the code still equals the one the row held
   when the screen opened (`+0xDC`, `0x0023CBB6`-`0x0023CBBD`) and another when it was changed.
 
-`0x001E0B00(code)` turns a code into its text id, and `0x0023CAF0` is its only caller (`0x0023CB2F`). The names are
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023CB0A`, `0x0023CC10` |
+| ² | `0x0023CB24`-`0x0023CB36` |
+| ³ | `0x0023CB8C`-`0x0023CB99` |
+
+</details>
+
+`0x001E0B00(code)` turns a code into its text id, and `0x0023CAF0` is its only caller¹. The names are
 rows of `menu_command_template.bin`, one set of 104 key names per Windows keyboard layout:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023CB2F` |
+
+</details>
 
 | Code | Text id |
 |---|---|
@@ -70,47 +109,117 @@ rows of `menu_command_template.bin`, one set of 104 key names per Windows keyboa
 
 ### Binding a control
 
-Inside a row (`0x0023C5C0`):
+Inside a row¹:
 
-1. Left and right repeats move between the row's columns, wrapping (`0x0023C847`-`0x0023C897`); this is the only bound on
-   the profile.
-2. The confirm button starts capture and clears every key and mouse latch (`0x0023C80C`-`0x0023C823`, `0x001E0920`).
-3. Each frame of capture, `0x001E0C50` returns the first held mouse button 1-3 or key 28-152 and clears it
-   (`0x0023C729`). A pad button is never captured.
-4. The row calls `0x001E1050(row, profile, code, swap 0)` (`0x0023C74A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023C5C0` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Left and right repeats move between the row's columns, wrapping; this is the only bound on the profile. | `0x0023C847`-`0x0023C897` |
+| 2 | The confirm button starts capture and clears every key and mouse latch. | `0x0023C80C`-`0x0023C823`, `0x001E0920` |
+| 3 | Each frame of capture, `0x001E0C50` returns the first held mouse button 1-3 or key 28-152 and clears it. A pad button is never captured. | `0x0023C729` |
+| 4 | The row calls `0x001E1050(row, profile, code, swap 0)`. | `0x0023C74A` |
 
 `0x0023C5C0(row, message)` is the row's procedure and branches on the message dword
-`+0` (`0x0023C5D5`-`0x0023C5FE`): 1 builds the row, 2 re-reads its codes, 10 is the frame
+`+0`¹: 1 builds the row, 2 re-reads its codes, 10 is the frame
 step the list above describes, 12 and 13 are the two below, and every other message
-goes on to `0x005C5230` (`0x0023C612`). The row keeps its index at `+0xC8`, its column
+goes on to `0x005C5230`². The row keeps its index at `+0xC8`, its column
 count at `+0xCC`, the selected column at `+0xE8` and the capture flag at `+0xEC`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023C5D5`-`0x0023C5FE` |
+| ² | `0x0023C612` |
+
+</details>
+
 The code of a column is `0x001E0AA0(row index, column)`. The build stores it for every
-column at `+0xD0 + 4 × column` and at `+0xDC + 4 × column` (`0x0023CAB0`-`0x0023CACE`);
-message 2 stores it at `+0xD0` alone (`0x0023C930`-`0x0023C94B`), and each assignment
-stores the selected column's again (`0x0023C648`-`0x0023C654`, `0x0023C762`-`0x0023C76E`).
+column at `+0xD0 + 4 × column` and at `+0xDC + 4 × column`¹;
+message 2 stores it at `+0xD0` alone², and each assignment
+stores the selected column's again³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023CAB0`-`0x0023CACE` |
+| ² | `0x0023C930`-`0x0023C94B` |
+| ³ | `0x0023C648`-`0x0023C654`, `0x0023C762`-`0x0023C76E` |
+
+</details>
 
 The build also takes index and count from the message's `+8` and `+0x10`, sets the
 selected column to -1 and the capture flag to 0, and on the list the pointer `+0xC0`
 names sets the dword `+0x148` to 1, calls `0x002D48C0(list, count)` and `0x002D45C0(list, 0)`,
-clears bit `0x8000000` of the list's `+0xE0` and calls `0x002445C0`
-(`0x0023C9D7`-`0x0023CA2B`, `0x0023CA6C`-`0x0023CA76`).
+clears bit `0x8000000` of the list's `+0xE0` and calls `0x002445C0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023C9D7`-`0x0023CA2B`, `0x0023CA6C`-`0x0023CA76` |
+
+</details>
 
 Message 12 reads the qword `+8`: `0x1C` clears the row's dialog pointer `+0xF8`,
 `0x8002` sets the selected column to -1, and `0x8001` gives a row with no selected
 column the column in the message's `+0x10`, or the last column when that is not below
-the count (`0x0023C684`-`0x0023C6FD`).
+the count¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023C684`-`0x0023C6FD` |
+
+</details>
 
 Message 13 with `0x2CA1` at `+8` is the answer of the swap question: the row calls
-`0x001E1050(row, profile, code at message +0x10, 1)` (`0x0023C617`-`0x0023C637`) and
-`0x0016D6A0`, `0x00287C20` and `0x002B5C90`; every message 13 ends the capture
-(`0x0023C66C`).
+`0x001E1050(row, profile, code at message +0x10, 1)`¹ and
+`0x0016D6A0`, `0x00287C20` and `0x002B5C90`; every message 13 ends the capture².
 
-`0x001E1050` maps the row, calls the assigner `0x00198A00` (`0x001E10AA`) and publishes on success (`0x001E10D0`). The map
-`0x001E0650(row)` gives the group in bits `0xFF0000` and the slot in the low byte (`0x001E108B`, `0x001E109A`), and the
-swap argument is passed as 1 for any non-zero value (`0x001E1084`-`0x001E1088`). The assigner's 1 comes back as 1, its
-2 and 3 both as 2, and its 0 as 0 after `0x00195DF0(0x00198790())` (`0x001E10B4`-`0x001E10D5`). With no input manager,
-`0x00198790()` null, it assigns nothing and returns 0 (`0x001E107A`-`0x001E107D`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023C617`-`0x0023C637` |
+| ² | `0x0023C66C` |
+
+</details>
+
+`0x001E1050` maps the row, calls the assigner `0x00198A00`¹ and publishes on success². The map
+`0x001E0650(row)` gives the group in bits `0xFF0000` and the slot in the low byte³, and the
+swap argument is passed as 1 for any non-zero value⁴. The assigner's 1 comes back as 1, its
+2 and 3 both as 2, and its 0 as 0 after `0x00195DF0(0x00198790())`⁵. With no input manager,
+`0x00198790()` null, it assigns nothing and returns 0⁶:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E10AA` |
+| ² | `0x001E10D0` |
+| ³ | `0x001E108B`, `0x001E109A` |
+| ⁴ | `0x001E1084`-`0x001E1088` |
+| ⁵ | `0x001E10B4`-`0x001E10D5` |
+| ⁶ | `0x001E107A`-`0x001E107D` |
+
+</details>
 
 | Result | Meaning | What the row does |
 |---:|---|---|
@@ -128,28 +237,81 @@ table at `0x00D23DA0` (text id, format, flags, sound per 8-byte entry), each wit
 | 3 | "Key assignment not complete" (`0x893`) |
 | 4 | "Keyboard ... controls cannot be left unassigned" (`0x899`) |
 
-Leaving the screen with cancel shows notice `0x001E08F0()` when that is not 0 (`0x0023D25A`-`0x0023D297`); notice 2 follows
-the assigner's refusal (`0x0023C7B9`), and notice 4 a row whose `+0xE8` is 0 (`0x0023C8CF`).
+Leaving the screen with cancel shows notice `0x001E08F0()` when that is not 0¹; notice 2 follows
+the assigner's refusal², and notice 4 a row whose `+0xE8` is 0³.
 
-A yes to the question calls `0x001E1050` again with swap 1 (`0x0023C637`); a no changes nothing. Square clears the
-binding with `0x001E1050(row, profile, 0, 1)` (`0x0023C8F5`), and in the first profile it shows notice 4 instead
-(`0x0023C8BF`-`0x0023C8CF`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023D25A`-`0x0023D297` |
+| ² | `0x0023C7B9` |
+| ³ | `0x0023C8CF` |
+
+</details>
+
+A yes to the question calls `0x001E1050` again with swap 1¹; a no changes nothing. Square clears the
+binding with `0x001E1050(row, profile, 0, 1)`², and in the first profile it shows notice 4 instead³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023C637` |
+| ² | `0x0023C8F5` |
+| ³ | `0x0023C8BF`-`0x0023C8CF` |
+
+</details>
 
 ### The key-cap pictures
 
 `0x002B5C90`, run when a binding is stored (result 0), repoints the button-prompt pictures at the new keys. For each
-prompt it takes the first profile's key for the control (`0x001E0BD0`, `0x001E0DA0`), stores that key-cap index in the
-picture's word `+0x0A`, and points its sprite `+0x20` at an entry of the atlas's group 0 (`0x002B5CC8`-`0x002B60BA`):
+prompt it takes the first profile's key for the control¹, stores that key-cap index in the
+picture's word `+0x0A`, and points its sprite `+0x20` at an entry of the atlas's group 0²:
 
-- for the 21 key-cap indices at `0x01E0C3F0` (`0x002878B0`), the entry follows the game's language: French 6, German 5,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E0BD0`, `0x001E0DA0` |
+| ² | `0x002B5CC8`-`0x002B60BA` |
+
+</details>
+
+- for the 21 key-cap indices at `0x01E0C3F0`¹, the entry follows the game's language: French 6, German 5,
   Italian 4, Spanish 3, Korean 0, the two Chinese languages 2 and 1, any other 9 (`0x00285F60` of `0x0017E270`);
-- for any other key it follows the keyboard layout from `GetKeyboardLayout` (`0x001E0B90`): French `0x40C` gives 8,
-  German `0x407` gives 7, any other layout 9 (`0x00285FE0`).
+- for any other key it follows the keyboard layout from `GetKeyboardLayout`²: French `0x40C` gives 8,
+  German `0x407` gives 7, any other layout 9³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002878B0` |
+| ² | `0x001E0B90` |
+| ³ | `0x00285FE0` |
+
+</details>
 
 The index that test reads is the one the picture held before this call: the word `+0x0A` is read and passed to
-`0x002878B0` first (`0x002B5D51`, `0x002B5D55`) and the new index is stored after the choice (`0x002B5D9A`), and so at
+`0x002878B0` first¹ and the new index is stored after the choice², and so at
 each of the six sites. For the prompts whose picture is fixed (`0x002B5EB2` onward) the entry therefore follows the
-key shown until now; the pictures of the first two steps are chosen by the key itself (`0x002B5D3A`-`0x002B5D4D`).
+key shown until now; the pictures of the first two steps are chosen by the key itself³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B5D51`, `0x002B5D55` |
+| ² | `0x002B5D9A` |
+| ³ | `0x002B5D3A`-`0x002B5D4D` |
+
+</details>
 
 It also keeps WalkMode's key-cap index (group 2 slot 3) at `0x01E0CE28` and those of the sixteen group 0 controls at
 `0x01E0CE10`.
@@ -158,18 +320,27 @@ It also keeps WalkMode's key-cap index (group 2 slot 3) at `0x01E0CE28` and thos
 
 `0x00198A00(manager, profile, group, slot, code, swap)` is the only writer of one binding:
 
-1. Groups 0, 1 and 2 take 16, 8 and 4 slots (`0x00198A49`-`0x00198AA5`); another group answers 3 and a bad slot 2
-   (`0x00198A28`, `0x00198B4D`).
-2. A reserved code answers 2 (`0x00198AB4`-`0x00198AD2`).
-3. Code 0 is stored at once (`0x00198AD9`).
-4. It looks for the code in all 84 slots of all three profiles except the target (`0x00198AF0`-`0x00198B04`), and stores
-   it when it is nowhere else (`0x00198B06`).
-5. When it is in use, swap 0 answers 1 (`0x00198B22`). Swap 1 gives the other slot the target's old code and then stores
-   the new one (`0x00198B32`-`0x00198B3C`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Groups 0, 1 and 2 take 16, 8 and 4 slots; another group answers 3 and a bad slot 2. | `0x00198A49`-`0x00198AA5`<br>`0x00198A28`, `0x00198B4D` |
+| 2 | A reserved code answers 2. | `0x00198AB4`-`0x00198AD2` |
+| 3 | Code 0 is stored at once. | `0x00198AD9` |
+| 4 | It looks for the code in all 84 slots of all three profiles except the target, and stores it when it is nowhere else. | `0x00198AF0`-`0x00198B04`<br>`0x00198B06` |
+| 5 | When it is in use, swap 0 answers 1. Swap 1 gives the other slot the target's old code and then stores the new one. | `0x00198B22`<br>`0x00198B32`-`0x00198B3C` |
 
 ### Reserved keys
 
-The 35 codes at `0x01DF13E0` are refused at assignment (`0x00198AC0`) and at load (`0x001965B4`):
+The 35 codes at `0x01DF13E0` are refused at assignment¹ and at load²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00198AC0` |
+| ² | `0x001965B4` |
+
+</details>
 
 | Codes | Controls |
 |---|---|
@@ -185,34 +356,42 @@ The 35 codes at `0x01DF13E0` are refused at assignment (`0x00198AC0`) and at loa
 
 `0x00195DF0` runs after every binding, at start-up and after a restore. For each profile:
 
-1. Group 0 goes to the record's buttons, with L2 and R2 stored as 0.
-2. Group 1 becomes four stick entries of mode 2 at `+0x40`-`+0x7F`, each `2`, `4` and a pair of the codes
-   (`0x00195E97`-`0x00195EFA`).
-3. Circle and Cross are exchanged when `0x001DFA70` is false, that is when the Config setting `+0x64` is not 0;
-   `0x001DFA70` reads the settings object `[0x01F82D20]` (`0x00195E42`, `0x00195F03`-`0x00195F24`).
-4. The record is copied to its master copy, `0x01F80130`, `0x01F8028C` or `0x01F803E8`, `0x15C` bytes apart
-   (`0x00195F2C`-`0x00195FCF`).
-5. The manager's rebuild flag `+0x3B` is set (`0x00195FE0`), so the next poll copies the masters into the records
-   (`0x00196290`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Group 0 goes to the record's buttons, with L2 and R2 stored as 0. |   |
+| 2 | Group 1 becomes four stick entries of mode 2 at `+0x40`-`+0x7F`, each `2`, `4` and a pair of the codes. | `0x00195E97`-`0x00195EFA` |
+| 3 | Circle and Cross are exchanged when `0x001DFA70` is false, that is when the Config setting `+0x64` is not 0; `0x001DFA70` reads the settings object `[0x01F82D20]`. | `0x00195E42`, `0x00195F03`-`0x00195F24` |
+| 4 | The record is copied to its master copy, `0x01F80130`, `0x01F8028C` or `0x01F803E8`, `0x15C` bytes apart. | `0x00195F2C`-`0x00195FCF` |
+| 5 | The manager's rebuild flag `+0x3B` is set, so the next poll copies the masters into the records. | `0x00195FE0`<br>`0x00196290` |
 
 It does not rewrite the record's entries 4-15, the pressure entries from `+0x80`. Group 2 never reaches a record:
 those four controls are read from the profile itself.
 
 ### Circle and Cross
 
-Changing the Config setting runs `0x0017E6E0` (`0x00240959`), which stores it, calls `0x00198960` and resets the confirm and
-cancel masks (`0x0022A4F0`). `0x00198960` exchanges the Circle and Cross codes of records 2-4 and writes each
-exchanged pair to that record's master copy, `0x01F80130`, `0x01F8028C` and `0x01F803E8` (`0x00198960`-`0x001989C6`);
+Changing the Config setting runs `0x0017E6E0`¹, which stores it, calls `0x00198960` and resets the confirm and
+cancel masks². `0x00198960` exchanges the Circle and Cross codes of records 2-4 and writes each
+exchanged pair to that record's master copy, `0x01F80130`, `0x01F8028C` and `0x01F803E8`³;
 it does not read the new value, so it always exchanges.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00240959` |
+| ² | `0x0022A4F0` |
+| ³ | `0x00198960`-`0x001989C6` |
+
+</details>
 
 ### Saving and restoring
 
-1. Leaving the screen with the cancel button runs `0x001E08F0` (`0x0023D24F`-`0x0023D25A`), which checks the first profile
-   with `0x001965E0`. A slot out of range keeps the screen open with an error sound.
-2. Otherwise `0x001E0F40` writes keymap.ini through `0x001993B0` (`0x0023D263`). The file is also written at shutdown
-   (`0x0017D68B`).
-3. Row 40 asks dialog `0x29` (`0x0023D3AF`-`0x0023D3C0`). Yes runs `0x001E0F70` (`0x0023E185`), which installs the defaults with
-   `0x00198B60` (`0x001E0F86`) and publishes them (`0x001E0F97`), and the confirm and cancel masks are reset.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Leaving the screen with the cancel button runs `0x001E08F0`, which checks the first profile with `0x001965E0`. A slot out of range keeps the screen open with an error sound. | `0x0023D24F`-`0x0023D25A` |
+| 2 | Otherwise `0x001E0F40` writes keymap.ini through `0x001993B0`. The file is also written at shutdown. | `0x0023D263`<br>`0x0017D68B` |
+| 3 | Row 40 asks dialog `0x29`. Yes runs `0x001E0F70`, which installs the defaults with `0x00198B60` and publishes them, and the confirm and cancel masks are reset. | `0x0023D3AF`-`0x0023D3C0`<br>`0x0023E185`<br>`0x001E0F86`<br>`0x001E0F97` |
 
 ### The defaults
 
@@ -222,6 +401,9 @@ Shift); profile 2 binds the four directions, Circle, Cross, R3 and Select, and p
 every default.
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The Circle and Cross codes of the three keyboard records, the button codes of their master copies, and the Config
 screen's row table (the open Controls screen `0x0208E6D0` is on [Config screen](../Menus-And-HUD/config-screen.md)):
@@ -240,10 +422,19 @@ screen's row table (the open Controls screen `0x0208E6D0` is on [Config screen](
 | `0x0208E6E0`-`0x0208EA13` | `u32[205]` | 0 | the Config screen's 41 rows (see The binding rows), `0x14` bytes each: `+0x00` the row's own number, which no instruction reads; `+0x04` the type; `+0x08` the text id; `+0x0C` the help text id (`0xD43` on every binding row); `+0x10` the columns of a type 1 or 2 row, or the value a type 3 or 4 row passes to its handler (`0x0023DB40`, `0x0023E710`) | `0x002414B0`, which the screen `0x0023CE10` calls: see the list below | `0x0023CD20`, the type and text (`0x0023CD48`, `0x0023CD67`, `0x0023CD97`); `0x0023CE10`, the type (`0x0023CFA7`, `0x0023D020`, `0x0023D0CF`), `+0x10` (`0x0023D03D`, `0x0023D049`, `0x0023D062`) and the help of the selected row (`0x0023D350`); `0x00241890`, the type of the row under the cursor (`0x002418D0`) |
 
 The same initialiser `0x0015BD30` also stores buttons 0-3 of the three master records,
-from `0x01DF09C0`, `0x01DF0A00` and `0x01DF0A40` (`0x0015BD4C`, `0x0015BDEF`, `0x0015BE8F`), and
+from `0x01DF09C0`, `0x01DF0A00` and `0x01DF0A40`¹, and
 copies the `0x100` bytes that follow each record's sixteen buttons: `0x01DF0A80` to
-`0x01F80170`, `0x01DF0B80` to `0x01F802CC` and `0x01DF0C80` to `0x01F80428` (`0x0015BD80`-`0x0015BDD1`,
-`0x0015BE20`-`0x0015BE71`, `0x0015BEC0`-`0x0015BF11`).
+`0x01F80170`, `0x01DF0B80` to `0x01F802CC` and `0x01DF0C80` to `0x01F80428`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0015BD4C`, `0x0015BDEF`, `0x0015BE8F` |
+| ² | `0x0015BD80`-`0x0015BDD1`, `0x0015BE20`-`0x0015BE71`, `0x0015BEC0`-`0x0015BF11` |
+
+</details>
 
 `0x002414B0` stores the row table in one pass, from 16-byte constants at `0x00914D10`-`0x00915030`:
 
@@ -252,20 +443,42 @@ copies the `0x100` bytes that follow each record's sixteen buttons: `0x01DF0A80`
   `0x0208E810`, `0x0208E820`, `0x0208E830`, `0x0208E840`, `0x0208E850`, `0x0208E860`, `0x0208E870`, `0x0208E880`, `0x0208E890`;
 - and to `0x0208E8A0`, `0x0208E8B0`, `0x0208E8C0`, `0x0208E8D0`, `0x0208E8E0`, `0x0208E8F0`, `0x0208E900`, `0x0208E910`, `0x0208E920`,
   `0x0208E930`, `0x0208E940`, `0x0208E950`, `0x0208E960`, `0x0208E980`, `0x0208E990`, `0x0208E9A0`, `0x0208E9B0`, `0x0208E9C0`,
-  `0x0208E9D0`, `0x0208E9F0`, `0x0208EA00` (`0x002414C2`-`0x0024181A`);
+  `0x0208E9D0`, `0x0208E9F0`, `0x0208EA00`¹;
 - 4-byte stores: `0x0208E750` = `0xD43`, `0x0208E754` = 1, `0x0208E7B0` = `0x578`, `0x0208E7B4` = `0xD43`, `0x0208E7B8` = 1,
   `0x0208E7BC` = 11, `0x0208E970` = 1, `0x0208E97C` = `0x568`, `0x0208E9E0` = `0x565`, `0x0208E9E4` = `0xD3F`, `0x0208E9E8` =
-  `0x26`, `0x0208E9EC` = 39, `0x0208EA10` = 0 (`0x002416C2`-`0x0024182C`);
-- 8-byte stores: `0x0208E758` = 6 and `0x0208E974` = 33, the index of rows 6 and 33 with type 0 (`0x00241719`, `0x002416C8`).
+  `0x26`, `0x0208E9EC` = 39, `0x0208EA10` = 0²;
+- 8-byte stores: `0x0208E758` = 6 and `0x0208E974` = 33, the index of rows 6 and 33 with type 0³.
 
-No other instruction reaches these globals. `0x01DF176C` and `0x01DF1770` are also reached relative to the image base
-(`0x00195F0C`, `0x00198D0F`), and so are `0x0208E6E4` and `0x0208E6EC` (`0x0023CFA7`, `0x0023D350`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002414C2`-`0x0024181A` |
+| ² | `0x002416C2`-`0x0024182C` |
+| ³ | `0x00241719`, `0x002416C8` |
+
+</details>
+
+No other instruction reaches these globals. `0x01DF176C` and `0x01DF1770` are also reached relative to the image base¹, and so are `0x0208E6E4` and `0x0208E6EC`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00195F0C`, `0x00198D0F` |
+| ² | `0x0023CFA7`, `0x0023D350` |
+
+</details>
+
+</details>
 
 ## Modding notes
 
 - One code can be bound once across all three profiles.
 - The swap can leave a first-profile control unbound when the target slot was empty; the screen then will not close
-  until it is filled (`0x001E08F0`).
+  until it is filled¹.
 - The pressure entries 4-15 keep the shipped codes after any remap.
 - `0x00198A00` and `0x00197710` take the profile as a byte and do not check it; the screen keeps it in range, a direct call
   does not.
@@ -274,6 +487,15 @@ No other instruction reaches these globals. `0x01DF176C` and `0x01DF1770` are al
 - L2, R2, the speed keys and WalkMode accept the left and right mouse buttons, which never fire for them.
 - A pad code from 4 to 27 written into keymap.ini is shown under a key's name: `0x001E0B00` gives code n the text
   of code n + 24, so the pad's code 11 shows as H.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E08F0` |
+
+</details>
 
 ## Related
 
@@ -290,9 +512,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Graphics** (explained on [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002D45C0` | is called by | `0x00579420` |
-| `0x002D48C0` | is called by | `0x00578450`, `0x00579420` |
+| [`0x002D45C0`](control-remapping.md) | is called by | [`0x00579420`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
+| [`0x002D48C0`](control-remapping.md) | is called by | [`0x00578450`](../Game-Files-And-Data-Tables/quest-menu-files.md) (on quest menu files)<br>[`0x00579420`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
 
 </details>

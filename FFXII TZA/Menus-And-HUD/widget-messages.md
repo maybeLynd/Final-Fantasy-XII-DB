@@ -8,8 +8,16 @@
 
 [`widget-messages.tsv`](widget-messages.tsv) has one row per message id that a widget procedure answers or a sender raises, 56 in all:
 1-26, 29-53 and 285-289. The counts come from decoding the 274 widget procedures of the image: the 267 built by
-[Widgets](widgets.md)'s constructors, the six base procedures their defaults pass messages to (`0x003EE420`,
-`0x003F7F50`, `0x002B6DB0`, `0x002BC3E0`, `0x005519E0`, `0x00553F40`), and `0x005651E0`.
+[Widgets](widgets.md)'s constructors, the six base procedures their defaults pass messages to¹, and `0x005651E0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EE420`, `0x003F7F50`, `0x002B6DB0`, `0x002BC3E0`, `0x005519E0`, `0x00553F40` |
+
+</details>
 
 The four item list pane procedures `0x005636F0`, `0x00563930`, `0x00563B10` and `0x00563D20` jump to `0x005651E0` for ids 4,
 8-10, 12, 18, 26 and 286 (`0x0056370B`-`0x005637BE`, jumps `0x00563721`, `0x00563953`, `0x00563B41`, `0x00563D43`).
@@ -55,11 +63,22 @@ No procedure answers ids 27 or 28.
 
 ### Command sub-codes (message 12)
 
-`0x00247510(widget, a, b)` builds message 12 and returns the reply (`0x00247523`-`0x0024755B`). It builds the 24-byte
+`0x00247510(widget, a, b)` builds message 12 and returns the reply¹. It builds the 24-byte
 record on its stack (id 12 at `+0x00`, `a` at `+0x08`, `b` at `+0x10`) and calls the procedure pointer at the
-widget's `+0x00` with the widget and the record (`0x00247523`-`0x00247547`). For a null widget, or a widget whose
-procedure pointer is null, it sends nothing and returns 0 (`0x00247535`-`0x00247540`, `0x0024755B`). The sub-codes a list or
+widget's `+0x00` with the widget and the record². For a null widget, or a widget whose
+procedure pointer is null, it sends nothing and returns 0³. The sub-codes a list or
 dialog posts to its owner:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00247523`-`0x0024755B` |
+| ² | `0x00247523`-`0x00247547` |
+| ³ | `0x00247535`-`0x00247540`, `0x0024755B` |
+
+</details>
 
 | `a` | Means | Sent by |
 |---|---|---|
@@ -84,34 +103,94 @@ Ids 29-53 belong to two families only, which use them differently:
   [Map screens](map-screens.md)), where 31 is a cancelled page, 32 an open request, 33 a new page and 43 an opened page.
 
 The relay `0x00275F10` sends a chosen id to a chosen widget when it is destroyed: 35 for the map containers and 40 for the
-World Map (`0x00275F55`-`0x00275F82`, `0x002747B0`). Ids 285-289 each belong to one screen: 285 the yes-or-no and notice
+World Map¹. Ids 285-289 each belong to one screen: 285 the yes-or-no and notice
 boxes, 286 the item sort bar, 287 the main menu's lists, 288 the script menu host, 289 the gambit lists.
 
-The relay is made by `0x002747B0(object, id, key, target)` (137 bytes), under a stack cookie (`0x00808C40`). `0x002747B0`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00275F55`-`0x00275F82`, `0x002747B0` |
+
+</details>
+
+The relay is made by `0x002747B0(object, id, key, target)` (137 bytes), under a stack cookie¹. `0x002747B0`
 fills a stack record with `target` at `+0x00`, `id` at `+0x08` and `key` at `+0x0C`, and a creation record whose dword
-`+0x00` and qword `+0x10` are 0 and whose qword `+0x08` points at the first; message 1 below copies those three fields
-(`0x002747B7`-`0x002747E1`).
+`+0x00` and qword `+0x10` are 0 and whose qword `+0x08` points at the first; message 1 below copies those three fields².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808C40` |
+| ² | `0x002747B7`-`0x002747E1` |
+
+</details>
 
 With a non-null `object` it builds the `0xD8`-byte relay there through
 `0x00245000(object, 0xD8, 0x00275F10, creation record)`, else through the factory
-`0x00244F50(0xD8, 0x00275F10, creation record)`, and returns that call's answer (`0x002747E5`-`0x00274838`). Both builders are
+`0x00244F50(0xD8, 0x00275F10, creation record)`, and returns that call's answer¹. Both builders are
 told on [Widgets](widgets.md).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002747E5`-`0x00274838` |
+
+</details>
+
 Every call of `0x002747B0` passes a null `object`, the key `0x101` and the caller's own object as `target`: id 35 from
-the map containers `0x002B7590` (`0x002B76A3`) and `0x002BA700` (`0x002BA811`) and from the field-time container `0x003CB650`
-(`0x003CB746`), which draws nothing, and id 40 from the World Map's `0x00552250` (`0x005523A4`). `0x003CB650` is told on [Map
+the map containers `0x002B7590`¹ and `0x002BA700`² and from the field-time container `0x003CB650`³, which draws nothing, and id 40 from the World Map's `0x00552250`⁴. `0x003CB650` is told on [Map
 screens](map-screens.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B76A3` |
+| ² | `0x002BA811` |
+| ³ | `0x003CB746` |
+| ⁴ | `0x005523A4` |
+
+</details>
 
 The relay acts on three messages. Message 1 copies from the record its qword `+0x08` points at: the
 qword `+0x00` to the relay's `+0xC0` (the target), the dword `+0x08` to `+0xC8` (the id) and the dword
-`+0x0C` to `+0xCC` (`0x00275FC1`-`0x00275FDC`). Message 16 calls `0x00244F00` on the relay when its qword
-`+0x08` equals the sign-extended `+0xCC` (`0x00275F98`-`0x00275FA8`). Message 18 sends the id; a null
-target, or a target whose first qword is null, gets nothing (`0x00275F70`-`0x00275F7B`). Any other message
-goes to `0x005C5230`, which answers 0 (`0x00275F3E`). All four answer 0.
+`+0x0C` to `+0xCC`¹. Message 16 calls `0x00244F00` on the relay when its qword
+`+0x08` equals the sign-extended `+0xCC`². Message 18 sends the id; a null
+target, or a target whose first qword is null, gets nothing³. Any other message
+goes to `0x005C5230`, which answers 0⁴. All four answer 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00275FC1`-`0x00275FDC` |
+| ² | `0x00275F98`-`0x00275FA8` |
+| ³ | `0x00275F70`-`0x00275F7B` |
+| ⁴ | `0x00275F3E` |
+
+</details>
 
 The message 18 sends is a stack record with the id in its first dword and 16 zero bytes from `+0x08`;
 its dword `+0x04` is not written. The call is to the target's first qword with the target and the
-record (`0x00275F55`-`0x00275F82`). Message 1 uses the record pointer with no null test (`0x00275FC1`).
+record¹. Message 1 uses the record pointer with no null test².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00275F55`-`0x00275F82` |
+| ² | `0x00275FC1` |
+
+</details>
 
 ## Columns
 

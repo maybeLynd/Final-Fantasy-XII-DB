@@ -32,14 +32,23 @@ install arrays naming the `ch` copies, and every other language gets the `in` co
 
 `0x002EA530` runs once, from the binding-table set-up `0x002EA320`, which boot mode `0x0022A0B0` reaches through
 `0x00266D10`. For i = 0 to 9 it clears the pointer at `0x021641A0 + 8 × i` and asks the size of kind 9 file
-`0x0B + i` (`0x0032E400`). When the size is positive it:
+`0x0B + i`¹. When the size is positive it:
 
-1. allocates that many bytes top-down in arena 5 (`0x0036C1D0(5)`, `0x0036A190` at `0x002EA586`): `0x0036C1D0(5, 5)`
-   pushes the arena and `0x0036C140` pops it again right after the allocation (`0x002EA58E`);
-2. stores the pointer (`0x002EA596`), with no test for a null allocation;
-3. files the read `0x0032E620(9, 0x0B + i, buffer, size, 0)` (`0x002EA5A9`);
-4. labels the block `ChSEinf` (`0x0036C660` with the string at `0x00D0F8B0`, `0x002EA5BB`), with i as the tag
-   (`0x002EA5AE`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032E400` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | allocates that many bytes top-down in arena 5 (`0x0036C1D0(5)`, `0x0036A190` at `0x002EA586`): `0x0036C1D0(5, 5)` pushes the arena and `0x0036C140` pops it again right after the allocation; | `0x002EA58E` |
+| 2 | stores the pointer, with no test for a null allocation; | `0x002EA596` |
+| 3 | files the read `0x0032E620(9, 0x0B + i, buffer, size, 0)`; | `0x002EA5A9` |
+| 4 | labels the block `ChSEinf` (`0x0036C660` with the string at `0x00D0F8B0`, `0x002EA5BB`), with i as the tag. | `0x002EA5AE` |
 
 So `0x021641A8` to `0x021641E0` hold the tables for `b`, `c`, `g`, `m`,
 `n`, `s`, `t` and `w`; nothing frees or reloads them.
@@ -74,6 +83,9 @@ For example row 0 of `charseinfo_c` is `c1004`, the first file of kind 14.
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 Measured from the archive, the executable's path arrays and the twelve loose `FileSizeTable_*.fst` files:
 
 | Fact | Value |
@@ -98,48 +110,112 @@ model's `.cm` path (`model`), the four values (`block0`, `block1`, `block2`, `vo
 `.seb` each block names (`se_files`), the `shoutNN` bank (`shout`) and `populated`. [Model asset list](../Graphics/model-asset-list.md)
 gives the same blocks per model, beside the model's other files.
 
+</details>
+
 ## Loader behaviour
 
 ### The row lookup
 
-`0x002ED950(boundId)` is the only reader of the table pointers. It takes the bits under mask `0xFF0000` as the letter
-(`0x002ED953`-`0x002ED959`), picks the table through a jump table, and returns
+`0x002ED950(boundId)` is the only reader of the table pointers. It takes the bits under mask `0xFF0000` as the letter¹, picks the table through a jump table, and returns
 `table + 16 × (row + 1)` for the low 16 bits as the row when the table is loaded and the row is below
-the `+0x08` count, compared signed (`0x002ED9C2`); any other letter, a missing table or a row past the count
+the `+0x08` count, compared signed²; any other letter, a missing table or a row past the count
 gives null. It never checks the magic, the version, the letter field or the file size.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002ED953`-`0x002ED959` |
+| ² | `0x002ED9C2` |
+
+</details>
 
 ### Slots 0-2: the sound blocks
 
 When a model binding's file arrives, its completion `0x002E4D20` calls `0x002EA6E0`, which asks `0x002ED950`
-for the binding's row (`0x002EA701`).
+for the binding's row¹.
 With a row and no release pending it files a task whose step function is `0x002E60F0`; without one the
 binding is ready at once.
 
-With a row and no release pending, `0x002EA6E0` first writes the three zero values `0x002E4D20` passes into
-the slots `+0x30`, `+0x34` and `+0x38` (`0x002EA720`-`0x002EA72F`), and only then tests the task `0x002F16B0`
-gave: with all 32 tasks taken it files nothing (`0x002EA734`), the binding is ready at once and its slots
-stay 0. Without a row, or with a release pending (`0x002EA6FC`), the slots keep the `0xFFFFFFFF` the
-allocator `0x002E25E0` set (`0x002E2627`, `0x002E262B`).
+<details>
+<summary>Where in the code</summary>
 
-`0x002E60F0` makes three passes, one per slot. Each pass reads the slot as a signed word (`0x002E6157`):
+| | Code |
+|---|---|
+| ¹ | `0x002EA701` |
+
+</details>
+
+With a row and no release pending, `0x002EA6E0` first writes the three zero values `0x002E4D20` passes into
+the slots `+0x30`, `+0x34` and `+0x38`¹, and only then tests the task `0x002F16B0`
+gave: with all 32 tasks taken it files nothing², the binding is ready at once and its slots
+stay 0. Without a row, or with a release pending³, the slots keep the `0xFFFFFFFF` the
+allocator `0x002E25E0` set⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EA720`-`0x002EA72F` |
+| ² | `0x002EA734` |
+| ³ | `0x002EA6FC` |
+| ⁴ | `0x002E2627`, `0x002E262B` |
+
+</details>
+
+`0x002E60F0` makes three passes, one per slot. Each pass reads the slot as a signed word¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E6157` |
+
+</details>
 
 - A negative value stores -1 in the binding's slot `+0x30`, `+0x34` or `+0x38` and moves on.
 - Otherwise the id becomes a kind-32 file index (`0x002E6161`-`0x002E618E`, the rule on
   [Sound banks](../Sound-And-Music/sound-banks.md)). A file with no size is skipped and the slot keeps the
   value 0 that `0x002E4D20` seeded, not −1, so playback treats it as block handle 0.
 - The `.seb` is read into arena 6: a buffer from `0x0036B160` between `0x0036C1D0(6, 5)` and `0x0036C140`, and
-  the read `0x0032E620` (`0x002E6277`). The slot holds the buffer handle while the task waits, one step at a time,
-  until `0x0032E4D0` answers 0 (`0x002E6290`).
-- Then `0x0036D200` runs on the handle (`0x002E61D6`). A handle of 0 stores -1 and moves on (`0x002E622D`). Any other
+  the read `0x0032E620`¹. The slot holds the buffer handle while the task waits, one step at a time,
+  until `0x0032E4D0` answers 0².
+- Then `0x0036D200` runs on the handle³. A handle of 0 stores -1 and moves on⁴. Any other
   is registered with `0x003A1650`, and the block handle it returns is
   stored in the binding's slot dword; a failed registration (-1) moves on, and otherwise the task waits until
-  `0x003A1290` answers 2 (`0x002E61FE`).
+  `0x003A1290` answers 2⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E6277` |
+| ² | `0x002E6290` |
+| ³ | `0x002E61D6` |
+| ⁴ | `0x002E622D` |
+| ⁵ | `0x002E61FE` |
+
+</details>
 
 After the third slot it sets the binding's ready bit, and runs the release `0x002EAEB0` when one was
-requested in the meantime (`0x002E629E`-`0x002E62AB`); its step state is then 9, which later steps leave as it is
-(`0x002E62C9`). The row is read with no null test (`0x002E6157`), and `0x002EA6E0` files the task only for a model with
+requested in the meantime¹; its step state is then 9, which later steps leave as it is². The row is read with no null test³, and `0x002EA6E0` files the task only for a model with
 a row. Sound loading belongs to the binding, so every actor
 showing the same model shares one set of blocks.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E629E`-`0x002E62AB` |
+| ² | `0x002E62C9` |
+| ³ | `0x002E6157` |
+
+</details>
 
 ### Slot 3: the battle-voice bank
 
@@ -147,28 +223,67 @@ showing the same model shares one set of blocks.
 (`0x0037B85B`, [Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md)), with the model the actor's
 definition calls for. It returns the actor's own override first: `0x003212E0` gives the signed word `+0x26`
 of the battle unit's `+0xE60` record when the unit's `+0x698` record has byte `+5` = 1. Only when that is
-negative, or there is no actor, does it return `voiceBank` sign-extended (`0x002ED939`).
+negative, or there is no actor, does it return `voiceBank` sign-extended¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002ED939` |
+
+</details>
 
 `0x003212E0` returns -1 for a null actor, a null unit (`0x00263E30`, the actor's `+0x30`), a null `+0x698`
-record or a byte `+5` other than 1 (`0x003212E7`-`0x00321303`); it reads `+0xE60` with no null test
-(`0x00321305`). With no actor `0x002ED910` skips `0x003212E0` (`0x002ED91F`). When `0x002ED950` finds no row for the
-model, `0x002ED910` returns the override's negative answer, or -1 with no actor (`0x002ED943`).
+record or a byte `+5` other than 1¹; it reads `+0xE60` with no null test². With no actor `0x002ED910` skips `0x003212E0`³. When `0x002ED950` finds no row for the
+model, `0x002ED910` returns the override's negative answer, or -1 with no actor⁴.
 
-A bank of 0 or more goes to `0x0036F0F0(pool, bank)`, which itself returns −1 for a negative bank
-(`0x0036F104`):
+<details>
+<summary>Where in the code</summary>
 
-- an entry already holding the bank is reused and its count raised (`0x0036F240`): the match needs a non-zero
-  state byte `+0` and the id `+0x14`; the count `+0x16` is raised and byte `+3` cleared (`0x0036F118`,
-  `0x0036F11C`);
+| | Code |
+|---|---|
+| ¹ | `0x003212E7`-`0x00321303` |
+| ² | `0x00321305` |
+| ³ | `0x002ED91F` |
+| ⁴ | `0x002ED943` |
+
+</details>
+
+A bank of 0 or more goes to `0x0036F0F0(pool, bank)`, which itself returns −1 for a negative bank¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036F104` |
+
+</details>
+
+- an entry already holding the bank is reused and its count raised¹: the match needs a non-zero
+  state byte `+0` and the id `+0x14`; the count `+0x16` is raised and byte `+3` cleared²;
 - otherwise it takes a free entry, the first whose count is 0, from pool 0 (2 entries at `0x022D9AB0`) or,
   for any other pool number, pool 1 (4 entries at `0x022D9AE0`), unloads what the entry held, and loads the
   bank's `us` and `jp` files through `0x0036ED50` (kinds 33 and 39, index = the bank);
 - the unload runs only when the entry's handle `+0x0C` is set: `0x002DF440` (a jump to `0x001DC100`) with byte
   `+1`, plus 2 when byte `+2` is non-zero, then `0x00369800` on `+0x0C` and on `+0x10`, and `+0x04` to `+0x13`
-  are zeroed (`0x0036F1C8`-`0x0036F1FF`); the count is then set to 1 and the id to the bank (`0x0036F21C`,
-  `0x0036F220`);
-- it returns `(+2 << 4) | +1` of the entry (`0x0036F124`, `0x0036F217`);
+  are zeroed³; the count is then set to 1 and the id to the bank⁴;
+- it returns `(+2 << 4) | +1` of the entry⁵;
 - with the pool full it returns −1 and the bank is not loaded.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036F240` |
+| ² | `0x0036F118`, `0x0036F11C` |
+| ³ | `0x0036F1C8`-`0x0036F1FF` |
+| ⁴ | `0x0036F21C`, `0x0036F220` |
+| ⁵ | `0x0036F124`, `0x0036F217` |
+
+</details>
 
 A negative bank skips the pool load and the state that waits for it.
 
@@ -176,47 +291,105 @@ A negative bank skips the pool load and the state that waits for it.
 
 `0x002E9D90(actor, group, variant, footstep)` turns an animation sound into a sound id
 ([Animation sounds](../Sound-And-Music/animation-sounds.md) gives the groups each sound type uses). Its callers
-are the verbs `charseplay_move_51e` (`0x0034B7C0`), `charseplay_voice_520` (`0x0034C210`) and
-`charseplay_weapon_522` (`0x0034CA40`) ([verb table](../Scripts-And-Script-Commands/verb-table.md)), the emitter
+are the verbs `charseplay_move_51e`¹, `charseplay_voice_520`² and
+`charseplay_weapon_522`³ ([verb table](../Scripts-And-Script-Commands/verb-table.md)), the emitter
 sound helper `0x0046CC70` that presentation commands `0x19` and `0x29` use, and `0x0046CC20`
 ([authored presentation commands](../Graphics/authored-presentation-commands.md)).
 
-It reads the block handle from dword `+0x30 + 4 × group` of a binding (`0x002E9F62`). The binding hangs off
-`+0xC0` of the actor the sound resolves to: `0x00263F40` (`0x002E9DF9`) replaces an actor whose byte `+0x18` is 1
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034B7C0` |
+| ² | `0x0034C210` |
+| ³ | `0x0034CA40` |
+
+</details>
+
+It reads the block handle from dword `+0x30 + 4 × group` of a binding¹. The binding hangs off
+`+0xC0` of the actor the sound resolves to: `0x00263F40`² replaces an actor whose byte `+0x18` is 1
 with the record `0x003587C0` finds for its byte `+0x19` and word `+0x1A`, when it finds one.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E9F62` |
+| ² | `0x002E9DF9` |
+
+</details>
 
 - Groups 1 and 2 use the actor's own model binding, `[[actor + 0xC0] + 0x08]`, so `block1` and `block2`.
 - Group 0 uses the binding attached in the model's first attach slot, `[[actor + 0xC0] + 0x38]`
   (`0x002E9F50` adds `0x30`), so `block0` of the attached model. Only the `w` rows author `block0`.
-- A group above 2, a null `+0xC0` or a null binding gives -1 (`0x002E9E72`, `0x002E9F4E`, `0x002E9F60`).
+- A group above 2, a null `+0xC0` or a null binding gives -1¹.
 - For group 1 with a footstep flag of 0 or more the variant argument is replaced by the footstep sound
   worked out from the ground type ([Small bin tables](small-bin-tables.md)); a negative flag keeps the
-  variant and clears the flag (`0x002E9E99`).
+  variant and clears the flag².
 - For group 2 with a variant below 10, when the voice-pool entry (`+0x20`) of the actor the sound
   resolves to (`0x00263F40`, then `0x00263F10`) is 0 or more and has state 3, its bank loaded, the variant
-  plays from that bank instead (`0x002E9F79`-`0x002E9F9E`). The id is then `0x40000000 | slot << 8 | variant`,
-  the slot from `0x0036EC50`; an id that comes out negative goes on to the block lookup (`0x002E9FA0`).
+  plays from that bank instead³. The id is then `0x40000000 | slot << 8 | variant`,
+  the slot from `0x0036EC50`; an id that comes out negative goes on to the block lookup⁴.
 - `0x0036EC50(handle)`, for a handle other than -1, finds the voice-pool record
   `0x022D9AB0 + 0x18 × (handle & 0xF)` when `handle & 0xF0` is 0, and the one at the same
   index from `0x022D9AE0` otherwise, and
   answers the record's signed byte `+0x01`, plus 2 when its byte `+0x02` is not 0
-  (`0x0036EC65`-`0x0036EC9B`).
+ ⁵.
 - Otherwise a non-zero footstep flag first adds the weather variant flag `0x02099DBC` to the variant
-  (`0x002E9FA7`), and the id is the block's registry slot × 512 + variant, or -1 when the handle no longer
+ ⁶, and the id is the block's registry slot × 512 + variant, or -1 when the handle no longer
   matches its registry record (`0x003A1240`, called at `0x002E9FB2`).
 - When the voice id came out negative and `0x003A1240` answers -1, `0x002E9D90` answers
   that negative voice id, not -1: the result is replaced only by an answer other than
-  -1 (`0x002E9FA0`, `0x002E9FB7`-`0x002E9FBA`).
+  -1⁷.
 
-Before any of that, `0x002E9D90` returns -1, so no sound plays, while byte `0x022CB726` is set (`0x003603C0`,
-`0x002E9DB2`), while a skip of mask index 1 to 3 has executed (`0x00360670`, `0x002E9DBF`), while the bytes
-`0x0215FD54` and `0x0215FD55` are not both set (`0x002E9DC5`-`0x002E9DD5`), for a negative variant (`0x002E9DDD`) and
-for a null actor (`0x002E9DF0`). The script binder `0x0026C8C0` sets both bytes to 1 through `0x002EC590(1)` and
-`0x002EC5A0(1)` (`0x0026CA75`, `0x0026CA7F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E9E72`, `0x002E9F4E`, `0x002E9F60` |
+| ² | `0x002E9E99` |
+| ³ | `0x002E9F79`-`0x002E9F9E` |
+| ⁴ | `0x002E9FA0` |
+| ⁵ | `0x0036EC65`-`0x0036EC9B` |
+| ⁶ | `0x002E9FA7` |
+| ⁷ | `0x002E9FA0`, `0x002E9FB7`-`0x002E9FBA` |
+
+</details>
+
+Before any of that, `0x002E9D90` returns -1, so no sound plays, while byte `0x022CB726` is set¹, while a skip of mask index 1 to 3 has executed², while the bytes
+`0x0215FD54` and `0x0215FD55` are not both set³, for a negative variant⁴ and
+for a null actor⁵. The script binder `0x0026C8C0` sets both bytes to 1 through `0x002EC590(1)` and
+`0x002EC5A0(1)`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003603C0`, `0x002E9DB2` |
+| ² | `0x00360670`, `0x002E9DBF` |
+| ³ | `0x002E9DC5`-`0x002E9DD5` |
+| ⁴ | `0x002E9DDD` |
+| ⁵ | `0x002E9DF0` |
+| ⁶ | `0x0026CA75`, `0x0026CA7F` |
+
+</details>
 
 It also returns -1 unless the resolved actor's manager `0x00263FF0(byte +0x15)` has bit `0x20` of `+0x17` set
 and a byte `+0x10` below `0x80` with bit `0x1` set, manager 0's byte `+0x10` is below `0x80`, and the actor
-has bit `0x10` of `+0x08` set (`0x002E9E24`-`0x002E9E53`).
+has bit `0x10` of `+0x08` set¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E9E24`-`0x002E9E53` |
+
+</details>
 
 `0x0215FD55`'s setter `0x002EC5A0` has only that call. `0x0215FD54`'s setter `0x002EC590` is also
 reached by tail jumps from the script verbs setcharseplayall (`0x0033F227`, argument not 0), stopenvsoundall
@@ -267,50 +440,66 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x003206E0` |
+| [`0x00263E30`](character-se-tables-chse.md) Actor work: get battle unit raw | is called by | [`0x003206E0`](../Characters-And-Objects/battle-units.md) (on battle units) |
 
 **Enemy AI and gambits** (explained on [frame update order](../Engine-Core/frame-update-order.md), [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x003247F0`, `0x00324F20` |
+| [`0x00263E30`](character-se-tables-chse.md) Actor work: get battle unit raw | is called by | [`0x003247F0`](../Enemy-AI-And-Gambits/enemy-ai.md) Battle unit: rebuild perception candidate cache (on enemy ai)<br>[`0x00324F20`](../Enemy-AI-And-Gambits/enemy-ai.md) Battle perception: refresh candidate cache generation (on enemy ai) |
 
 **Damage and battle formulas** (explained on [battle log](../Battle-Actions/battle-log.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x00320A70` |
+| [`0x00263E30`](character-se-tables-chse.md) Actor work: get battle unit raw | is called by | [`0x00320A70`](../Battle-Actions/battle-log.md) Battle stats: resolve by actor handle (on battle log) |
 
 **Gameplay** (explained on [battle units](../Characters-And-Objects/battle-units.md), [bestiary](../Enemy-Spawning/bestiary.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x003176E0`, `0x0031ADB0`, `0x00321380` |
+| [`0x00263E30`](character-se-tables-chse.md) Actor work: get battle unit raw | is called by | [`0x003176E0`](../Battle-Actions/area-of-effect.md) Battle: emit reaction presentation for slot (on area of effect)<br>[`0x0031ADB0`](../Movement-And-Pathfinding/animation-driven-movement.md) (on animation driven movement)<br>[`0x00321380`](../Characters-And-Objects/actor-model-rebuild.md) Actor handle: get primary formula resource byte26 (on actor model rebuild) |
 
 **Saving, loading and settings** (explained on [resource arena and relocation](resource-arena-and-relocation.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E4D0` | is called by | `0x00280140` |
+| [`0x0032E4D0`](../Graphics/effect-file-loading.md) (on effect file loading) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
 
 **Status effects and KO** (explained on [status timers](../Status-Effects-And-KO/status-timers.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x00386860` |
+| [`0x00263E30`](character-se-tables-chse.md) Actor work: get battle unit raw | is called by | [`0x00386860`](../Status-Effects-And-KO/statuses.md) Battle formula: build runtime counter periodic hp credit (on statuses) |
 
 **Story, events and hunts** (explained on [actor managers](../Characters-And-Objects/actor-managers.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0026C8C0` | calls | `0x00377440` |
+| [`0x0026C8C0`](character-se-tables-chse.md) Actor manager: bind loaded definition payload | calls | [`0x00377440`](../Story-Events-And-Hunts/event-memory.md) (on event memory) |
 
 **Menus and HUD** (explained on [action definition row](../Battle-Actions/action-definition-row.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x0031EB20` |
+| [`0x00263E30`](character-se-tables-chse.md) Actor work: get battle unit raw | is called by | [`0x0031EB20`](../Battle-Actions/action-definition-row.md) Battle menu: build command entry list (on action definition row) |
 
 </details>

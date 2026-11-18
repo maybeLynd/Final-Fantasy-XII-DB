@@ -42,23 +42,60 @@ Binding entries, handles, the ready bit and the lane tests are those of
 `0x0031BEC0(actor, part, n)` returns, mapped through `0x002EB7A0`; a value of 0 or less means no part.
 
 `0x0031BEC0` first asks `0x0031C0F0(slot, part, n)` with the actor's roster slot, the index of the four `0x00263750`
-actors that equals it, or −1 for any other actor and a null one (`0x0031BEE3`-`0x0031BF00`). When that answer is
+actors that equals it, or −1 for any other actor and a null one¹. When that answer is
 negative it asks `0x0031C000(stats + 0x50, part, unit, n)` for the unit `0x00263E30(actor)` and its stats record
-`[unit + 0x698]`, and answers −1 without either (`0x0031BF09`-`0x0031BF3A`).
+`[unit + 0x698]`, and answers −1 without either².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031BEE3`-`0x0031BF00` |
+| ² | `0x0031BF09`-`0x0031BF3A` |
+
+</details>
 
 A part's current id is `0x002E96D0(actor, k, n)`: dword `+4` of the slot at context `+0x30` for k 0, `+0x60` for
 k 1, `+0x90` for k 2 and 4, and `+0xC0 + n × 0x30` for k 3; any other k, a null actor or a missing context
-gives 0 (`0x002E96D0`-`0x002E975F`).
+gives 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E96D0`-`0x002E975F` |
+
+</details>
 
 The link that states 7-15 hand to `0x002E3110` is `0x0031BE30(actor, part, n)`: `0x10A`, except for part 8 of a
 unit whose stats record `[unit + 0x698]` has byte `+5` = 1, where it is the dword of the table `0x00D107F8`
-indexed by byte `+0x40 + n` of the unit's definition `[unit + 0xE60]`, for n 0 and 1 (`0x0031BE44`-`0x0031BEA0`).
+indexed by byte `+0x40 + n` of the unit's definition `[unit + 0xE60]`, for n 0 and 1¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031BE44`-`0x0031BEA0` |
+
+</details>
 
 States 2, 8, 11 and 14 resolve their handle first, and a handle that no longer resolves is requested
 again from the current definition (`0x002EAE20(id, 0)`) without advancing. State 20 waits on its
 handle as it is, and state 17 waits on the lane with no recovery: `0x002E4C30` returns −1 once the lane
 record is gone (the entry's `+0x1E` is negative, `0x002E4C37`) or its stamp `+0x5C` differs from the entry's
-`+0x24` (`0x002E4C52`), so neither wait can end after its target is retired.
+`+0x24`¹, so neither wait can end after its target is retired.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E4C52` |
+
+</details>
 
 | State | What it does | Next |
 |---|---|---|
@@ -83,12 +120,29 @@ record is gone (the entry's `+0x1E` is negative, `0x002E4C37`) or its stamp `+0x
 | 23 | done | returns 1 |
 
 `0x002E96B0(actor)` answers the dword `+0x04` of the actor's context `+0xC0`, and -1 for a null actor or a null
-context (`0x002E96B0`-`0x002E96C5`).
+context¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E96B0`-`0x002E96C5` |
+
+</details>
 
 `0x0025AB30(actor)`, the per-`+0x04` teardown, reads the actor's byte `+0x04`: for 1 it calls `0x002E3AF0(actor)` and
 answers what that returns; for 2 it calls `0x003DE5F0(actor)` and for 3 `0x002E3D00(actor)`, both answering 0; for any
-other value it calls nothing and answers 0. In every case it then stores the word `0xFF00` at `+0x04`
-(`0x0025AB3A`-`0x0025AB8F`).
+other value it calls nothing and answers 0. In every case it then stores the word `0xFF00` at `+0x04`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025AB3A`-`0x0025AB8F` |
+
+</details>
 
 `0x0031C250` takes the definition's selector: for an actor in roster slots 0-3 the byte at
 `[0x02EBF190] + 0x5A90 + slot × 2` (`0xFFFF` when `0x00322C50(0x17, slot)` fails or the byte is `0xFF`),
@@ -97,61 +151,157 @@ model id: `0xFFFF` gives −1; a high byte of 0 gives the dword at `+0x70` of th
 the low byte (bounded by `0x00322C50(2, ·)`); a high byte of 1 goes through the `0x02EBF120` row's
 first byte to a `0x02EBF150` row's first dword; anything else gives −1.
 
-A null actor gives the selector `0xFFFF` (`0x0031C260`), and `0x0031C250` ends in a tail jump to `0x0031C2F0`
-with the selector (`0x0031C2A1`, `0x0031C2E9`), so its answer is the model id. A row is the table's data
+A null actor gives the selector `0xFFFF`¹, and `0x0031C250` ends in a tail jump to `0x0031C2F0`
+with the selector², so its answer is the model id. A row is the table's data
 `0x0020E600([table + 0xC])` plus the index times the stride word `+8`. The high-byte-1 path answers −1 when the
 low byte is above the `0x02EBF120` count `+4` less one, or that row's first byte above the `0x02EBF150` count `+4`
-less one, both compared unsigned (`0x0031C348`, `0x0031C3A0`).
+less one, both compared unsigned³.
 
-Only the high-byte-0 path refuses an unbound table: `0x00322C50(2, ·)` gives a null `0x02EBF130` a count of 0
-(`0x00322CA6`, `0x0032302A`) and refuses every index (`0x0032303B`), so the answer is -1 (`0x0031C40B`). With `0x02EBF130`
-bound but its data null (`0x0031C42F`) the path reads the dword at address `0x70` (`0x0031C45D`-`0x0031C45F`). The
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031C260` |
+| ² | `0x0031C2A1`, `0x0031C2E9` |
+| ³ | `0x0031C348`, `0x0031C3A0` |
+
+</details>
+
+Only the high-byte-0 path refuses an unbound table: `0x00322C50(2, ·)` gives a null `0x02EBF130` a count of 0¹ and refuses every index², so the answer is -1³. With `0x02EBF130`
+bound but its data null⁴ the path reads the dword at address `0x70`⁵. The
 high-byte-1 path tests nothing: a null `0x02EBF120` or `0x02EBF150` gives a count of 0 that every index passes, and a
-null table or null data then reads address 0 (`0x0031C380`-`0x0031C383`, `0x0031C3E5`).
+null table or null data then reads address 0⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00322CA6`, `0x0032302A` |
+| ² | `0x0032303B` |
+| ³ | `0x0031C40B` |
+| ⁴ | `0x0031C42F` |
+| ⁵ | `0x0031C45D`-`0x0031C45F` |
+| ⁶ | `0x0031C380`-`0x0031C383`, `0x0031C3E5` |
+
+</details>
 
 `0x0031C540(id, &colour, &variant)` zeroes both outputs and answers −1 unless battle flag `0x02089340` bit `0x10`
 is set and the id resolves through `0x003588B0` and `0x00263E30` to a unit with a stats record `[unit + 0x698]`,
-and −2 when that record's byte `+5` is not 1 (`0x0031C54A`-`0x0031C592`). Otherwise it reads bytes `+0x12` and
-`+0x11` of the definition `[unit + 0xE60]` and answers 0 (`0x0031C5A2`-`0x0031C5B5`); state 2 passes the variant
-`+0x11` and the colour `+0x12` to `0x0026D610` (`0x0037B788`-`0x0037B7A5`).
+and −2 when that record's byte `+5` is not 1¹. Otherwise it reads bytes `+0x12` and
+`+0x11` of the definition `[unit + 0xE60]` and answers 0²; state 2 passes the variant
+`+0x11` and the colour `+0x12` to `0x0026D610`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031C54A`-`0x0031C592` |
+| ² | `0x0031C5A2`-`0x0031C5B5` |
+| ³ | `0x0037B788`-`0x0037B7A5` |
+
+</details>
 
 `0x00321380(id, &class)` writes −1 to the output and answers −1 unless the flag is set and the id resolves to a
-unit, and −2 when the unit has no stats record (`0x0032138F`-`0x003213C1`). Otherwise it asks
-`0x00321400(word stats + 0x50, &class)` and answers 0 whatever that gives (`0x003213D8`-`0x003213E3`). `0x00321400`
+unit, and −2 when the unit has no stats record¹. Otherwise it asks
+`0x00321400(word stats + 0x50, &class)` and answers 0 whatever that gives². `0x00321400`
 stores byte `+0x26`, the motion class, of the main-hand equipment row in `0x02EBF0F8` for that id, or −1 for
-the id `0xFFFF` or a row whose slot bits `+0x07` are `0x20` or more (`0x00321458`-`0x0032147B`).
+the id `0xFFFF` or a row whose slot bits `+0x07` are `0x20` or more³.
 
-States 2 and 18 replace a negative answer of `0x00321380` with 0 but pass a −1 class on as it is (`0x0037B7B8`-`0x0037B7BD`,
-`0x0037BD3F`-`0x0037BD41`). `0x002E8450(actor, class)` stores the class's low byte at context `+0x150` when the actor
-has a context (`0x002E845C`), and copies it to render record `+0x40C` when the context's dword `+0` is not −1,
-its word `+0` is not `0xFFFF` and the render record `[0x022C6F28] + word × 0x740` has a non-zero `+0x284`
-(`0x002E846E`-`0x002E84A0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032138F`-`0x003213C1` |
+| ² | `0x003213D8`-`0x003213E3` |
+| ³ | `0x00321458`-`0x0032147B` |
+
+</details>
+
+States 2 and 18 replace a negative answer of `0x00321380` with 0 but pass a −1 class on as it is¹. `0x002E8450(actor, class)` stores the class's low byte at context `+0x150` when the actor
+has a context², and copies it to render record `+0x40C` when the context's dword `+0` is not −1,
+its word `+0` is not `0xFFFF` and the render record `[0x022C6F28] + word × 0x740` has a non-zero `+0x284`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037B7B8`-`0x0037B7BD`, `0x0037BD3F`-`0x0037BD41` |
+| ² | `0x002E845C` |
+| ³ | `0x002E846E`-`0x002E84A0` |
+
+</details>
 
 `0x00320170(id, &lane)` answers through `0x003202F0(0, &lane)`, which gives −1 and a lane of −1, when battle flag
-bit `0x10` is clear (`0x0032018F`). With it set, an actor `0x003588B0(id)` that is one of the four `0x00263750` actors
-goes to `0x00320230(slot, &lane)` (`0x003201B0`-`0x0032021C`), and any other to `0x003202F0` with its unit's stats
-record `[unit + 0x698]`, or with 0 when it has no actor or unit (`0x003201C3`-`0x003201F2`).
+bit `0x10` is clear¹. With it set, an actor `0x003588B0(id)` that is one of the four `0x00263750` actors
+goes to `0x00320230(slot, &lane)`², and any other to `0x003202F0` with its unit's stats
+record `[unit + 0x698]`, or with 0 when it has no actor or unit³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032018F` |
+| ² | `0x003201B0`-`0x0032021C` |
+| ³ | `0x003201C3`-`0x003201F2` |
+
+</details>
 
 `0x002EC6B0(actor, lane)` does nothing for a null actor or one without a context; it stores the lane byte at
-context `+0x12` first (`0x002EC6E3`). For a lane of 0 or more it stops there when the context's dword `+0` is
-−1 (`0x002EC6EF`). Otherwise both handles come from the lane record the main entry `[context + 8]` names, when
+context `+0x12` first¹. For a lane of 0 or more it stops there when the context's dword `+0` is
+−1². Otherwise both handles come from the lane record the main entry `[context + 8]` names, when
 its stamp matches: the lane's handle `+0x60 + lane × 4` when bit `1 << lane` of the loaded mask `+0x24` is
-set, else 0 (`0x002EC70D`-`0x002EC742`), and lane 0's handle `+0x60` when bit `0x1` is set, else 0
-(`0x002EC766`-`0x002EC789`).
+set, else 0³, and lane 0's handle `+0x60` when bit `0x1` is set, else 0⁴.
 
-`0x002EDD20` and `0x002EDE20` store them encoded with `0x0020E620` at render `+0x42C` and `+0x430`
-(`0x002EDD54`, `0x002EDE54`). A negative lane stores `0x0020E620(0)` at both directly (`0x002EC7A8`-`0x002EC808`), and bit
-`0x40000` of `+0x284` is cleared for a negative lane or one of 16 or more (`0x002EC79D`, `0x002EC835`). Every
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EC6E3` |
+| ² | `0x002EC6EF` |
+| ³ | `0x002EC70D`-`0x002EC742` |
+| ⁴ | `0x002EC766`-`0x002EC789` |
+
+</details>
+
+`0x002EDD20` and `0x002EDE20` store them encoded with `0x0020E620` at render `+0x42C` and `+0x430`¹. A negative lane stores `0x0020E620(0)` at both directly², and bit
+`0x40000` of `+0x284` is cleared for a negative lane or one of 16 or more³. Every
 render store needs the context's word `+0` to name a render record with a non-zero `+0x284`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EDD54`, `0x002EDE54` |
+| ² | `0x002EC7A8`-`0x002EC808` |
+| ³ | `0x002EC79D`, `0x002EC835` |
+
+</details>
 
 `0x0026D610(actor, b, c)`, the store of state 2's variant bytes, jumps to `0x002E6090` for a class-3
 actor, which writes `b` and `c` to `[actor + 0xC0] + 0x14C` and `+0x14D` when the context exists.
 
 `0x002EBB80(actor, on)` is the hide and show: for an actor of kind `0x60` with a context it writes
-context `+0x10` bit `0x8` and refreshes visibility (`0x002E8FD0`), which shows the model when
+context `+0x10` bit `0x8` and refreshes visibility¹, which shows the model when
 `+0x10 & 0xB` is `0xB`, or `+0x10 & 3` is 3 when context `+0x11` bit `0x20` is set, together with
 `+0x11 & 6` = 6 and `+0x164` = 0. An actor with `+0x11` bit `0x20` set is therefore not hidden by
 state 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E8FD0` |
+
+</details>
 
 In read-in mode (`0x02EBF3FC` = 1) the release paths of states 1, 7, 10 and 13 also call `0x002E42D0`,
 and placement also calls `0x002E8060` and `0x002EB030(actor, 0x1001)`.
@@ -161,38 +311,104 @@ chosen by `0x002647C0(0x00264EC0(actor))`. Each entry holds a state byte `+0`, t
 and `+2`, two load handles `+0xC` and `+0x10`, the id `+0x14` and a count `+0x16`.
 
 An index from `0x0036F0F0` names entry `index & 0xF` of `0x022D9AE0` when any of its bits `0xF0` is set and of
-`0x022D9AB0` otherwise (`0x0036EC14`-`0x0036EC36`, `0x0036ECA7`-`0x0036ECCB`). The release `0x0036EC10` lowers that
-entry's count `+0x16` by one and holds it at 0 (`0x0036EC3D`-`0x0036EC4A`); it frees no load, which waits until
-`0x0036F0F0` takes the entry again. `0x0036ECA0` answers the entry's state byte `+0`, and 0 for a negative index
-(`0x0036ECA4`); `0x0036EC10` does nothing for a negative index (`0x0036EC12`).
+`0x022D9AB0` otherwise¹. The release `0x0036EC10` lowers that
+entry's count `+0x16` by one and holds it at 0²; it frees no load, which waits until
+`0x0036F0F0` takes the entry again. `0x0036ECA0` answers the entry's state byte `+0`, and 0 for a negative index³; `0x0036EC10` does nothing for a negative index⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036EC14`-`0x0036EC36`, `0x0036ECA7`-`0x0036ECCB` |
+| ² | `0x0036EC3D`-`0x0036EC4A` |
+| ³ | `0x0036ECA4` |
+| ⁴ | `0x0036EC12` |
+
+</details>
 
 `0x0036F0F0`
 returns an entry already holding the id with its count raised, or takes the first entry whose count
-is 0, frees its old loads (`0x001DC100`, `0x00369800`) and starts the new one (`0x0036ED50`); it returns
+is 0, frees its old loads¹ and starts the new one²; it returns
 `(+2 << 4) | +1`, or −1 when every entry is in use.
 
-It returns −1 at once for a negative id (`0x0036F104`). A reused entry must have a non-zero state byte; its
-byte `+3` is cleared (`0x0036F11C`). The old loads of a taken entry are freed only when its handle `+0xC` is
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DC100`, `0x00369800` |
+| ² | `0x0036ED50` |
+
+</details>
+
+It returns −1 at once for a negative id¹. A reused entry must have a non-zero state byte; its
+byte `+3` is cleared². The old loads of a taken entry are freed only when its handle `+0xC` is
 set (`0x001DC100` through `0x002DF440`, then `0x00369800` on `+0xC` and `+0x10`), and `+0x4` to `+0x13` are
-zeroed (`0x0036F1C8`-`0x0036F1FF`); the count is set to 1 and the id stored (`0x0036F21C`, `0x0036F220`).
+zeroed³; the count is set to 1 and the id stored⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036F104` |
+| ² | `0x0036F11C` |
+| ³ | `0x0036F1C8`-`0x0036F1FF` |
+| ⁴ | `0x0036F21C`, `0x0036F220` |
+
+</details>
 
 `0x002ED910` takes the id from `0x003212E0` and
-otherwise from word `+6` of the model's `0x002ED950` row. With no actor it skips `0x003212E0` (`0x002ED91F`), and
-with no row it returns `0x003212E0`'s negative answer, or −1 with no actor (`0x002ED943`).
+otherwise from word `+6` of the model's `0x002ED950` row. With no actor it skips `0x003212E0`¹, and
+with no row it returns `0x003212E0`'s negative answer, or −1 with no actor².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002ED91F` |
+| ² | `0x002ED943` |
+
+</details>
 
 Placement (state 22) reads the base position and facing from `0x00377A90` and asks `0x0031BAC0` for the
 slot's position; when that fails it offsets x by ±1.0 (slot bit `0x1`) and z by ±1.0 (slot bit `0x2`). It
-then calls `0x002681D0`, sets the position (`0x0026AF80`), the facing and movement heading from
-`0x00377A90` even when `0x0031BAC0` supplied the position (`0x0026B620`, `0x0026A0D0`), the
-separation weight from `0x00265950` (`0x0026DAC0`), and calls `0x002EAC90`, `0x002ECA00(actor, 1)`,
+then calls `0x002681D0`, sets the position¹, the facing and movement heading from
+`0x00377A90` even when `0x0031BAC0` supplied the position², the
+separation weight from `0x00265950`³, and calls `0x002EAC90`, `0x002ECA00(actor, 1)`,
 `0x002E49B0(actor, 0)` and `0x002E4A40`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026AF80` |
+| ² | `0x0026B620`, `0x0026A0D0` |
+| ³ | `0x0026DAC0` |
+
+</details>
+
 `0x002E49B0(actor, point)` acts only on an actor whose byte `+0x03` has `0x60` under the mask `0xE0`, with a
-context at `+0xC0` and a body at the context's `+0x138` (`0x002E49B6`-`0x002E49E5`). A null point is replaced by
-the address of the body's `+0x30` (`0x002E49D9`-`0x002E49DE`). It calls `0x0026E530(point, body + 0x50)` and
-writes bit `0x1` of the answer's low byte to bit `0x80` of the actor's byte `+0x0B` (`0x002E49E7`-`0x002E49FA`).
-`0x0026E530` itself stores 16 bytes through its second argument on every call (`0x0026E5A1`), so each such
+context at `+0xC0` and a body at the context's `+0x138`¹. A null point is replaced by
+the address of the body's `+0x30`². It calls `0x0026E530(point, body + 0x50)` and
+writes bit `0x1` of the answer's low byte to bit `0x80` of the actor's byte `+0x0B`³.
+`0x0026E530` itself stores 16 bytes through its second argument on every call⁴, so each such
 call also rewrites the 16 bytes at the body's `+0x50`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E49B6`-`0x002E49E5` |
+| ² | `0x002E49D9`-`0x002E49DE` |
+| ³ | `0x002E49E7`-`0x002E49FA` |
+| ⁴ | `0x0026E5A1` |
+
+</details>
 
 ### What runs it
 
@@ -210,20 +426,65 @@ call also rewrites the 16 bytes at the body's `+0x50`.
 counter 0, `+0x0B` from `0x002DEBD0`, `0x002DEB90(1)`, actor `+0x23` = 0), runs the machine until it
 returns 1, adds the step to the slot, and repeats until `0x0037CB50` reports the walk finished: the task
 pointer `0x02EBF400` is 0, or the slot is 4 or more with a step above 0, or below 0 with a step of 0 or
-less (`0x0037CB50`-`0x0037CB7B`). It then calls `0x00233AA0` (`0x0030D8B0(1)`, `0x00326500`,
+less¹. It then calls `0x00233AA0` (`0x0030D8B0(1)`, `0x00326500`,
 `0x00311E10(0)`, `0x00311E20`) and clears the task pointer `0x02EBF400`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037CB50`-`0x0037CB7B` |
+
+</details>
+
 `0x00233AA0` makes its four calls in that order, `0x0030D8B0(1)`, `0x00326500()`, `0x00311E10(0)` and `0x00311E20()`, and
-answers 1 (`0x00233AA4`-`0x00233ABF`).
+answers 1¹.
 
-In the read-in record `0x0037C730` stores the state byte `0x02EBF3F8` as 0 (`0x0037C7DB`), the slot `0x02EBF3F9` (`0x0037C7E1`),
-the pass `0x02EBF3FA` as 0 (`0x0037C7D4`) and the saved byte `0x02EBF3FB` from `0x002DEBD0` (`0x0037C7F1`). The world tick's
-`0x0037C1A0` fills the tick record the same way: `0x02EBF3D8` (`0x0037C229`), `0x02EBF3D9` (`0x0037C22F`), `0x02EBF3DA`
-(`0x0037C222`) and `0x02EBF3DB` (`0x0037C23F`).
+<details>
+<summary>Where in the code</summary>
 
-`0x0037B4B0(actor)` writes 0 to the parts-requested byte `+0x23` of a non-null actor (`0x0037B4B5`). `0x0031A300`
-(`0x0031A3B8`) and `0x00324380` (`0x003243B0`) walk the battle units (`0x00236820(i)`) and call it on each unit's bound actor
-`+0x10`; `0x003261D0` (`0x00326490`) and `0x003273D0` (`0x003277A0`) also call it.
+| | Code |
+|---|---|
+| ¹ | `0x00233AA4`-`0x00233ABF` |
+
+</details>
+
+In the read-in record `0x0037C730` stores the state byte `0x02EBF3F8` as 0¹, the slot `0x02EBF3F9`²,
+the pass `0x02EBF3FA` as 0³ and the saved byte `0x02EBF3FB` from `0x002DEBD0`⁴. The world tick's
+`0x0037C1A0` fills the tick record the same way: `0x02EBF3D8`⁵, `0x02EBF3D9`⁶, `0x02EBF3DA`⁷ and `0x02EBF3DB`⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037C7DB` |
+| ² | `0x0037C7E1` |
+| ³ | `0x0037C7D4` |
+| ⁴ | `0x0037C7F1` |
+| ⁵ | `0x0037C229` |
+| ⁶ | `0x0037C22F` |
+| ⁷ | `0x0037C222` |
+| ⁸ | `0x0037C23F` |
+
+</details>
+
+`0x0037B4B0(actor)` writes 0 to the parts-requested byte `+0x23` of a non-null actor¹. `0x0031A300`² and `0x00324380`³ walk the battle units (`0x00236820(i)`) and call it on each unit's bound actor
+`+0x10`; `0x003261D0`⁴ and `0x003273D0`⁵ also call it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037B4B5` |
+| ² | `0x0031A3B8` |
+| ³ | `0x003243B0` |
+| ⁴ | `0x00326490` |
+| ⁵ | `0x003277A0` |
+
+</details>
 
 The read-in verbs' poll `0x0034E3E0`, shared with `summonreadsync` (`0x0204`) and
 `summontopartyreadsync` (`0x0208`), waits while `0x0037CB50` reports a walk in progress (its third
@@ -232,17 +493,47 @@ bit `0x80000`.
 
 Every launcher calls `0x00233CF0` (`0x0030D8B0(0)`, `0x003266C0`, `0x00311E10(1)`), the counterpart of `0x00233AA0`, once the
 allocator `0x002F16B0` has returned a task; with a null one it still stores the null pointer at `0x02EBF400` and its mode
-byte `0x02EBF3FC`, then returns without filling the task or calling `0x00233CF0` (`0x0037C99A`, `0x0037CA1A`, `0x0037CA9A`). No
+byte `0x02EBF3FC`, then returns without filling the task or calling `0x00233CF0`¹. No
 launcher tests `0x02EBF400` first: a read-in started while one runs replaces the task pointer, and both tasks share the
 record `0x02EBF3F0`.
 
-`0x0037C730` clears `0x02EBF400` in the same call that runs `0x00233AA0`: it sets the task state to 4 (`0x0037C83F`) and jumps
-back to its state switch (`0x0037C845`), whose state-4 arm stores the null pointer (`0x0037C772`) and returns.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037C99A`, `0x0037CA1A`, `0x0037CA9A` |
+
+</details>
+
+`0x0037C730` clears `0x02EBF400` in the same call that runs `0x00233AA0`: it sets the task state to 4¹ and jumps
+back to its state switch², whose state-4 arm stores the null pointer³ and returns.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037C83F` |
+| ² | `0x0037C845` |
+| ³ | `0x0037C772` |
+
+</details>
 
 The world tick's mask is set by `partystdmotionrecover` (`0x014C`): its begin `0x00342C90` raises busy
-bit `0x40000` (`0x003601B0(0x12)`) and sets `0x02EBF3E0` to `0xF` when it is 0 (`0x0037CFD0`); its poll `0x00342F50`
-waits while the mask is non-zero (`0x0037CB80`). `0x0037CB10` (from `0x00266D10`) clears the mask and
+bit `0x40000` (`0x003601B0(0x12)`) and sets `0x02EBF3E0` to `0xF` when it is 0¹; its poll `0x00342F50`
+waits while the mask is non-zero². `0x0037CB10` (from `0x00266D10`) clears the mask and
 `0x02EBF3DE`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037CFD0` |
+| ² | `0x0037CB80` |
+
+</details>
 
 Placement needs record bit `0x80` and a slot of 0 or more. The task, the world tick and `0x0037CF50` fill
 the record with bit `0x80` clear, so they rebuild without moving the actor. `0x0037CE80` sets bit `0x80` and
@@ -252,8 +543,18 @@ the scene step passes slot −1, which skips placement.
 `0x0037CE80(record, actor, slot)` and `0x0037CF50(record, actor, slot)` fill the record the way `0x0037C730` does:
 the encoded actor at `+0`, pass `+0x0A` 0, the slot at `+9` (−1 for any negative slot), state byte `+8` 0,
 `+0x0B` from `0x002DEBD0`, then `0x002DEB90(1)`, the empty stub `0x0016D6A0` and actor `+0x23` = 0 for a non-null
-actor (`0x0037CEAC`-`0x0037CEE3`, `0x0037CF5F`-`0x0037CFA2`). `0x0037CE80` clears the context bit before the fill
-(`0x0037CEA5`) and sets bit `0x80` after it (`0x0037CEE7`).
+actor¹. `0x0037CE80` clears the context bit before the fill² and sets bit `0x80` after it³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037CEAC`-`0x0037CEE3`, `0x0037CF5F`-`0x0037CFA2` |
+| ² | `0x0037CEA5` |
+| ³ | `0x0037CEE7` |
+
+</details>
 
 ### Dispose and recover
 
@@ -273,19 +574,13 @@ share the `i16` state word `0x022C8010`, which the world tick advances once per 
 
 `0x00359A30`, the disposal:
 
-1. sets battle flags `0x02089340` bit `0x20` (`0x00238B70(1)`, which also calls `0x002E7C10(actor, actor,
-   0x30B, 0)` for every unit in use with flag bit `0x10`) and bit `0x80` (`0x00238AE0(1)`);
-2. releases each record of manager 0's ordinal window (first `+0x1DE`, count `+0x1D6`, when bit `0x1` of `+0x10` is
-   set
-   before the walk) that holds a unit at `+0x30` (`0x0035A590`: `0x0026D6D0`, `0x00233F50(record, 1)`, `0x002ED020`);
-3. clears the keep bit `0x10` of `+0x19` in all 128 binding entries (`0x002E63D0`) and zeroes dword
-   `+0x40` of the 32 lane records (`0x002E6570`);
-4. for every record of slot 0 with `+0x14` bit `0x80` and a tag of 4 or more (`0x002647B0` = 0), takes its
-   readiness `0x002EA6A0` and releases its model with the per-`+0x04` teardown `0x0025AB30`; context
-   `+0x11` bit `0x1` records that readiness, and is cleared for every other record.
-5. The walk covers the `0x00263C30(0)` records of slot 0 (`0x00359A56`); a record with a unit at `+0x30` also
-   gets `0x003589B0(record)`, whose answer is not used (`0x00359A96`-`0x00359AA3`), and the state word `0x022C8010`
-   becomes 2 at the end (`0x00359B01`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | sets battle flags `0x02089340` bit `0x20` (`0x00238B70(1)`, which also calls `0x002E7C10(actor, actor, 0x30B, 0)` for every unit in use with flag bit `0x10`) and bit `0x80` (`0x00238AE0(1)`); |   |
+| 2 | releases each record of manager 0's ordinal window (first `+0x1DE`, count `+0x1D6`, when bit `0x1` of `+0x10` is set before the walk) that holds a unit at `+0x30` (`0x0035A590`: `0x0026D6D0`, `0x00233F50(record, 1)`, `0x002ED020`); |   |
+| 3 | clears the keep bit `0x10` of `+0x19` in all 128 binding entries and zeroes dword `+0x40` of the 32 lane records; | `0x002E63D0`<br>`0x002E6570` |
+| 4 | for every record of slot 0 with `+0x14` bit `0x80` and a tag of 4 or more (`0x002647B0` = 0), takes its readiness `0x002EA6A0` and releases its model with the per-`+0x04` teardown `0x0025AB30`; context `+0x11` bit `0x1` records that readiness, and is cleared for every other record. |   |
+| 5 | The walk covers the `0x00263C30(0)` records of slot 0; a record with a unit at `+0x30` also gets `0x003589B0(record)`, whose answer is not used, and the state word `0x022C8010` becomes 2 at the end. | `0x00359A56`<br>`0x00359A96`-`0x00359AA3`<br>`0x00359B01` |
 
 The scene step walks slot 0's records one per pass with the counter `0x022C8028`, rebuilding each
 record whose `+0x14` bit `0x80` is set, whose tag is 4 or more and whose context `+0x11` bit `0x1` was set
@@ -293,24 +588,66 @@ at disposal, one machine run at a time (`0x022C8024` = 1 while one runs, 2 when 
 
 Within one tick the step passes over every record that does not qualify (a record without a context counts
 as bit `0x1` clear), fills `0x022C8018` for the next one that does with `0x0037CE80(0x022C8018, record, −1)` and runs
-the machine at once (`0x0035992B`-`0x003598CB`). A run that reaches state 23 sets `0x022C8024` back to 0 and the
-walk goes on in the same tick (`0x003598E4`), and a run that waits ends the tick (`0x003598DE`).
+the machine at once¹. A run that reaches state 23 sets `0x022C8024` back to 0 and the
+walk goes on in the same tick², and a run that waits ends the tick³.
 
-Once `0x022C8028` reaches slot 0's record count `0x00263C30(0)` (`0x003598F4`), the step stores 2 in `0x022C8024`
-and, in the same call, sets the state word `0x022C8010` to 0 (`0x003598F8`, `0x00359972`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035992B`-`0x003598CB` |
+| ² | `0x003598E4` |
+| ³ | `0x003598DE` |
+
+</details>
+
+Once `0x022C8028` reaches slot 0's record count `0x00263C30(0)`¹, the step stores 2 in `0x022C8024`
+and, in the same call, sets the state word `0x022C8010` to 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003598F4` |
+| ² | `0x003598F8`, `0x00359972` |
+
+</details>
 
 The begins store 1 for an accepted call and 0 (dispose) or -1 (recover) otherwise. The
-`disposeentry` poll `0x003453D0` holds an accepted call until the state reads 2, 3 or 5
-(`0x0035A0A0`); the `recoverentry` poll `0x00346020` holds an accepted call while it does. Both write
-`0x022C253D` = 1 (`0x00314D40`) while they hold.
+`disposeentry` poll `0x003453D0` holds an accepted call until the state reads 2, 3 or 5¹; the `recoverentry` poll `0x00346020` holds an accepted call while it does. Both write
+`0x022C253D` = 1² while they hold.
 
-`0x0035A0A0` answers 0 for state 4 too (`0x0035A0B1`, `0x0035A0B4`), so the `recoverentry` poll also returns
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035A0A0` |
+| ² | `0x00314D40` |
+
+</details>
+
+`0x0035A0A0` answers 0 for state 4 too¹, so the `recoverentry` poll also returns
 while the tick waits in state 4 for the `entryread` task, before the scene step has run, as well as once
 the walk is back at 0.
 `0x0035A240` clears the state from the slot-0 bind's field reset `0x0026DB30`, from `0x002695A0` and
 from `0x00266D10`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035A0B1`, `0x0035A0B4` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ```python
 rebuild record  +0 u32 encoded actor, +4 u32 pending handle, +8 u8 state | 0x80 place, +9 s8 slot, +0xA u8 pass, +0xB u8 saved byte
@@ -321,7 +658,12 @@ actor           +0x20 s8 pool entry, +0x23 u8 parts requested (bit 0x1 main, 0x2
 pool entry      0x022D9AB0 (2) / 0x022D9AE0 (4), 0x18 each: +0 state (3 loaded), +1, +2 index bytes, +0xC, +0x10 loads, +0x14 id, +0x16 count
 ```
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Verb | Uses in the US scripts |
 |---|---|
@@ -332,6 +674,8 @@ pool entry      0x022D9AB0 (2) / 0x022D9AE0 (4), 0x18 each: +0 state (3 loaded),
 | `partystdmotionrecover` | 29 |
 | `partyallread2` | 0 |
 
+</details>
+
 ## Operations
 
 Per actor: one main load, up to one pool load, up to four part loads, one lane load and one body
@@ -340,8 +684,13 @@ turn.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The two static records `0x02EBF3D0` and `0x02EBF3F0`, the task pointer `0x02EBF400`, the tick slot mask,
 the actor's `+0x20` and `+0x23` bytes, and the pool entries.
+
+</details>
 
 ## Modding notes
 
@@ -370,8 +719,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Combat** (explained on [battle units](battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x003206E0` |
+| [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse) | is called by | [`0x003206E0`](battle-units.md) (on battle units) |
 
 </details>

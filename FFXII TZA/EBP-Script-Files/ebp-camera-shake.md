@@ -16,8 +16,18 @@ so the same shake never moves the view twice in exactly the same way.
 
 Sections 10 and 11 are slots 10 and 11 of the `.ebp` directory
 ([EBP script container](ebp-script-container.md)). The directory walker `0x003304A0` dispatches
-slot 11 first (`0x003305C4`) and slot 10 after it (`0x003305DF`); each handler takes the manager index
+slot 11 first¹ and slot 10 after it²; each handler takes the manager index
 from the low four bits of its argument.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003305C4` |
+| ² | `0x003305DF` |
+
+</details>
 
 | Section | Handler | Steps | Pending bit |
 |---|---|---|---|
@@ -25,8 +35,16 @@ from the low four bits of its argument.
 | 10, CML1 | `0x00331610` | stores the section at `0x022C6DF8[manager]` and in record `+0xF0` (`0x0026D3A0`), runs `0x003DD120` on the record | `0x800` (`0x00331662`) |
 
 The teardown `0x0032ED80` runs `0x0037DA70`, which nulls `0x02ADD980 + manager * 0x3D0` for a manager
-below 5, then clears both globals and both record fields (`0x0032F060`, `0x0032F06A`, `0x0032F0A8`,
-`0x0032F0B2`); the free beside each clear is gated on `0x005C5230(5)`, which returns 0.
+below 5, then clears both globals and both record fields¹; the free beside each clear is gated on `0x005C5230(5)`, which returns 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032F060`, `0x0032F06A`, `0x0032F0A8`, `0x0032F0B2` |
+
+</details>
 
 ## Layouts
 
@@ -85,6 +103,9 @@ reverse-lookup word `+0x1C + 2 × lookup`, `0x003DD28C`-`0x003DD2EC`).
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 Every count is per language tree; section 11 is byte-identical in all nine trees.
 
 | Fact | Value |
@@ -109,94 +130,162 @@ Section 11's curves are in [`ebp-camera-curves.tsv`](ebp-camera-curves.tsv) and
 [`ebp-camera-calls.tsv`](ebp-camera-calls.tsv) has the 328 `camerashakestart_1a3` calls. The columns are on
 [EBP camera tables](ebp-camera-tables.md).
 
+</details>
+
 ## Loader behaviour
 
 ### SHK1 at load
 
 `0x0037DA90(section, manager)`:
 
-1. Returns unless `+0x00` is `SHK1` (`0x0037DA96`).
-2. Stores the section at `0x02ADD980 + manager * 0x3D0` (`0x0037DAC0`).
-3. Returns when `records` is 0 (`0x0037DAC4`).
-4. Under arena 5 (`0x0036C1D0(5, 9)` at `0x0037DAD8`, `0x0036C140` at `0x0037DB27`), allocates `curves * 8` bytes
-   for the curve table at `0x02ADD988 + manager * 0x3D0` (`0x0037DAE8`, `0x0037DAED`) and walks
-   `curves` steps from `section + dataOffset`, storing each curve's address and adding its
-   signed length (`0x0037DB10`-`0x0037DB25`). Nothing is compared with the section's length.
-5. With `curves` at 0 the table is still allocated and the walk is skipped (`0x0037DB06`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Returns unless `+0x00` is `SHK1`. | `0x0037DA96` |
+| 2 | Stores the section at `0x02ADD980 + manager * 0x3D0`. | `0x0037DAC0` |
+| 3 | Returns when `records` is 0. | `0x0037DAC4` |
+| 4 | Under arena 5 (`0x0036C1D0(5, 9)` at `0x0037DAD8`, `0x0036C140` at `0x0037DB27`), allocates `curves * 8` bytes for the curve table at `0x02ADD988 + manager * 0x3D0` and walks `curves` steps from `section + dataOffset`, storing each curve's address and adding its signed length. Nothing is compared with the section's length. | `0x0037DAE8`, `0x0037DAED`<br>`0x0037DB10`-`0x0037DB25` |
+| 5 | With `curves` at 0 the table is still allocated and the walk is skipped. | `0x0037DB06` |
 
 ### CML1 at load
 
 `0x003DD120(record)` sets record `+0x1C` and `+0x1E` to -1 and the four shake entries to idle: word
-`+0x178 + 0x18 x k` to 0 and word `+0x17A + 0x18 x k` to -1 (`0x003DD134`-`0x003DD177`). It takes section 10 from
-record `+0xF0` (`0x003DD12A`) and stops when that is null (`0x003DD181`); for a `count` above 0 (`0x003DD192`) it then
-zeroes each row's `+0x08` and the low byte of `+0x0C` (`0x003DD1C2`, `0x003DD1C6`).
+`+0x178 + 0x18 x k` to 0 and word `+0x17A + 0x18 x k` to -1¹. It takes section 10 from
+record `+0xF0`² and stops when that is null³; for a `count` above 0⁴ it then
+zeroes each row's `+0x08` and the low byte of `+0x0C`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DD134`-`0x003DD177` |
+| ² | `0x003DD12A` |
+| ³ | `0x003DD181` |
+| ⁴ | `0x003DD192` |
+| ⁵ | `0x003DD1C2`, `0x003DD1C6` |
+
+</details>
 
 Its name lookup `0x0037DB80(manager, name)`, with the manager from record `+0x28`, and the store of its result in
-row `+0x04` (`0x003DD1B4`-`0x003DD1BF`) run only when `0x0032F3D0(1)` returns non-zero (`0x003DD1B2`), which it never
+row `+0x04`¹ run only when `0x0032F3D0(1)` returns non-zero², which it never
 does (kind 1 ends in `0x005C5230(5)`): the authored `shake` column is used as shipped. `0x0032F3D0` reads only its
-first argument, the kind (`0x0032F3D6`).
+first argument, the kind³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DD1B4`-`0x003DD1BF` |
+| ² | `0x003DD1B2` |
+| ³ | `0x0032F3D6` |
+
+</details>
 
 ### Starting a shake
 
-`camerashakestart_1a2` (`0x003492F0`) and `camerashakestart_1a3` (`0x00349730`) reach `0x003DD230`, which
-checks the row number against `count`, takes row `+0x04` (`0x003DD29F`) and binds it to one of the
+`camerashakestart_1a2`¹ and `camerashakestart_1a3`² reach `0x003DD230`, which
+checks the row number against `count`, takes row `+0x04`³ and binds it to one of the
 four shake entries with a rate ([actor managers](../Characters-And-Objects/actor-managers.md)).
 
-It does nothing for an entry above 3, a null table `[record + 0xF0]` or a negative row (`0x003DD26C`-`0x003DD282`). The
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003492F0` |
+| ² | `0x00349730` |
+| ³ | `0x003DD29F` |
+
+</details>
+
+It does nothing for an entry above 3, a null table `[record + 0xF0]` or a negative row¹. The
 bind stores the clock argument at `+0x17C`, the row number at `+0x17A`, the row's value at `+0x170`, the lookup at
-`+0x174` (0 in place of a negative one, `0x003DD261`-`0x003DD26A`), 1 at `+0x178` and the rate 1.0 at `+0x180`
-(`0x003DD293`-`0x003DD2C7`), then runs `0x0037DCF0([record + 0x28], value, entry)` (`0x003DD2D5`).
+`+0x174` (0 in place of a negative one, `0x003DD261`-`0x003DD26A`), 1 at `+0x178` and the rate 1.0 at `+0x180`², then runs `0x0037DCF0([record + 0x28], value, entry)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DD26C`-`0x003DD282` |
+| ² | `0x003DD293`-`0x003DD2C7` |
+| ³ | `0x003DD2D5` |
+
+</details>
 
 ### Each frame
 
 `0x003DCFB0(record)` runs every bound entry of the manager:
 
-1. When the record's byte `+0x201` is set (`0x00267300`, `0x003DD04A`), `0x0037DD50(manager, shake, entry)` writes
-   the shake's duration + 1 to the entry's `+0x08` (`0x0037DDAC`), or state 2 to its `+0xE8` for a shake of -1
-   (`0x0037DD76`). `0x0037D1F0` moves that value to `+0x10` and puts the record's clock at `+0x08` (`0x0037D2C9`,
-   `0x0037D2CE`) before its end test (`0x0037D480`): the clock itself is unchanged.
-2. `0x0037D1F0(manager, shake, clock, entry)` marks a shake of -1 finished at once. Otherwise
-   `0x0037D130` evaluates every curve slot at the clock with `0x003CC5F0` (a slot of 0 gives 0): it reads the
-   clock at entry `+0x08` and writes slot `k`'s value to entry `+0x14 + 4 * k` (`0x0037D1A6`, `0x0037D1B1`).
-3. Slot `k` is value `k mod 4` of oscillator `k div 4`: the speed, the speed's random range, the
-   size and the size's random range. Each oscillator's phase grows by `(random × range + speed)`
-   times the frame factor `0x01DFE0BC`, and its output is `sin(phase) × (random × range + size)`.
-   - Each random is a float from the gameplay Mersenne Twister (`0x00379CE0`), sixteen per step, the
-     generator that also rolls hits and chests
-     ([which roll uses which generator](../Random-Numbers/which-roll-uses-which-generator.md)).
-4. The shake runs while `clock − 0.5 ≤ duration` (the margin is 0 when `0x001EDDA0` returns non-zero);
-   then the entry is finished.
-5. Unless step 4 finished the entry, the clock at record `+0x17C + 0x18 x k` grows by the entry's rate (record
-   `+0x180 + 0x18 x k`) × `0x02B58190` × the frame factor (`0x003DD08B`-`0x003DD0A5`). When `0x0037DCC0` returns 2,
-   `0x003DCFB0` stores 2 in the record word `+0x178 + 0x18 x k` instead (`0x003DD07F`); a word of 2 keeps the clock
-   still on later frames (`0x003DD085`, mask `0xFFFD`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When the record's byte `+0x201` is set, `0x0037DD50(manager, shake, entry)` writes the shake's duration + 1 to the entry's `+0x08`, or state 2 to its `+0xE8` for a shake of -1. `0x0037D1F0` moves that value to `+0x10` and puts the record's clock at `+0x08` before its end test: the clock itself is unchanged. | `0x00267300`, `0x003DD04A`<br>`0x0037DDAC`<br>`0x0037DD76`<br>`0x0037D2C9`, `0x0037D2CE`<br>`0x0037D480` |
+| 2 | `0x0037D1F0(manager, shake, clock, entry)` marks a shake of -1 finished at once. Otherwise `0x0037D130` evaluates every curve slot at the clock with `0x003CC5F0` (a slot of 0 gives 0): it reads the clock at entry `+0x08` and writes slot `k`'s value to entry `+0x14 + 4 * k`. | `0x0037D1A6`, `0x0037D1B1` |
+| 3 | Slot `k` is value `k mod 4` of oscillator `k div 4`: the speed, the speed's random range, the size and the size's random range. Each oscillator's phase grows by `(random × range + speed)` times the frame factor `0x01DFE0BC`, and its output is `sin(phase) × (random × range + size)`.<br>• Each random is a float from the gameplay Mersenne Twister, sixteen per step, the generator that also rolls hits and chests ([which roll uses which generator](../Random-Numbers/which-roll-uses-which-generator.md)). | `0x00379CE0` |
+| 4 | The shake runs while `clock − 0.5 ≤ duration` (the margin is 0 when `0x001EDDA0` returns non-zero); then the entry is finished. |   |
+| 5 | Unless step 4 finished the entry, the clock at record `+0x17C + 0x18 x k` grows by the entry's rate (record `+0x180 + 0x18 x k`) × `0x02B58190` × the frame factor. When `0x0037DCC0` returns 2, `0x003DCFB0` stores 2 in the record word `+0x178 + 0x18 x k` instead; a word of 2 keeps the clock still on later frames (`0x003DD085`, mask `0xFFFD`). | `0x003DD08B`-`0x003DD0A5`<br>`0x003DD07F` |
 
-The entries are `0xF0` bytes, four to each `0x3D0`-byte manager from `0x02ADD990` (`0x0037D212`, `0x0037DD64`),
+The entries are `0xF0` bytes, four to each `0x3D0`-byte manager from `0x02ADD990`¹,
 after the manager's section and curve table at `0x02ADD980` and `0x02ADD988`; an entry's state is its dword `+0xE8`
 (`0x02ADDA78` for entry 0 of manager 0). `0x003DCFB0` returns at once when the record has no section 10 (record
 `+0xF0` null, `0x003DCFCE`), and it runs the steps only for an entry whose record word `+0x178 + 0x18 x k` is
-non-zero (`0x003DD048`).
+non-zero².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037D212`, `0x0037DD64` |
+| ² | `0x003DD048` |
+
+</details>
 
 Before the steps, `0x003DCFB0` takes the entries k that the record's two camera-shake reverse lookups `+0x1C` and
 `+0x1E` name (`0x003DCFD9`, `0x003DCFF0`; a negative one is skipped) and, for each whose record word
-`+0x178 + 0x18 x k` is non-zero (`0x003DCFFC`-`0x003DD010`), stores `0x003DA190` of the record's dword
-`+0x174 + 0x18 x k` (`0x003DD012`) in dword `+0xEC` of entry k through `0x0037DB40(manager, entry, value)`
-(`0x003DD026`, `0x0037DB5E`). After step 2 it reads the entry's state dword `+0xE8` through
-`0x0037DCC0(manager, entry)` (`0x003DD075`, `0x0037DCDE`).
+`+0x178 + 0x18 x k` is non-zero¹, stores `0x003DA190` of the record's dword
+`+0x174 + 0x18 x k`² in dword `+0xEC` of entry k through `0x0037DB40(manager, entry, value)`³. After step 2 it reads the entry's state dword `+0xE8` through
+`0x0037DCC0(manager, entry)`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DCFFC`-`0x003DD010` |
+| ² | `0x003DD012` |
+| ³ | `0x003DD026`, `0x0037DB5E` |
+| ⁴ | `0x003DD075`, `0x0037DCDE` |
+
+</details>
 
 The outputs are a three-part offset from oscillators 0-2, a second from oscillators 3-5 added to
 the first, and single values from oscillators 6 and 7. `0x0037D4C0` gathers the outputs of every
 shake bound to the current camera frame:
 
 - it walks the 20 entries of the five managers, manager 4's four from `0x02ADE8D0` first and manager 0's last,
-  ending at `0x02ADD990` (`0x0037D54B`, `0x0037D74D`-`0x0037D756`), and takes an entry whose `+0xEC` equals
-  `0x00358320()` when that is 0 or 1; another value takes none (`0x0037D548`-`0x0037D567`);
+  ending at `0x02ADD990`¹, and takes an entry whose `+0xEC` equals
+  `0x00358320()` when that is 0 or 1; another value takes none²;
 - it adds the third and fourth values (entry `+0xC0`, `+0xC4`) to the roll and field-of-view values from
-  `0x002563F0` (`0x0037D4EC`, `0x0037D569`-`0x0037D56E`);
-- it loads the two offsets (`+0xA0`-`+0xA8`, `+0xB0`-`+0xB8`) without adding (`0x0037D573`-`0x0037D58B`), so the
+  `0x002563F0`³;
+- it loads the two offsets (`+0xA0`-`+0xA8`, `+0xB0`-`+0xB8`) without adding⁴, so the
   last entry taken in that order sets them alone;
 - while `0x02EBF3C0` is set it adds row `0x00358320()` of `0x02EBF380` to both offsets and the roll
-  (`0x0037D75C`-`0x0037D7B7`).
+ ⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037D54B`, `0x0037D74D`-`0x0037D756` |
+| ² | `0x0037D548`-`0x0037D567` |
+| ³ | `0x0037D4EC`, `0x0037D569`-`0x0037D56E` |
+| ⁴ | `0x0037D573`-`0x0037D58B` |
+| ⁵ | `0x0037D75C`-`0x0037D7B7` |
+
+</details>
 
 It hands them through `0x00382B70` to `0x003820C0`, which:
 
@@ -204,7 +293,16 @@ It hands them through `0x00382B70` to `0x003820C0`, which:
   turned into the camera's frame by the matrix `0x02AED5C0`;
 - adds the third value to the view angle `+0xC4` that `0x003CBD60` turns the view about its
   forward axis by;
-- adds the fourth to the field-of-view angle (`0x02AED568`).
+- adds the fourth to the field-of-view angle¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02AED568` |
+
+</details>
 
 So slots 0-11 shake the camera's position, 12-23 add a further shake to its aim, 24-27 roll it and
 28-31 zoom it.
@@ -214,11 +312,20 @@ So slots 0-11 shake the camera's position, 12-23 add a further shake to its aim,
 - The `shake` column of section 10 decides which shake plays; renaming a shake changes nothing.
 - Keep `records` above 0; with 0 the section is stored but no curve table is built.
 - `dataOffset` is 16 bits, so the records may not push the curves past 64 KiB: at most 682 records.
-- Nothing compares a slot's curve number with `curves` (`0x0037D130`); keep slots within the file's curves.
+- Nothing compares a slot's curve number with `curves`¹; keep slots within the file's curves.
 - `duration` is read as 16 bits; values above 65,535 lose their high half.
 - Leave a random-range slot at 0 for a regular motion; the shipped shakes fill the speed and size
   slots about twice as often as the ranges.
 - Curve lengths are signed and unchecked; a wrong one misplaces every later curve.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037D130` |
+
+</details>
 
 ## Related
 

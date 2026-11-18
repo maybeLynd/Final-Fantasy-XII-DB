@@ -27,20 +27,48 @@ named package is described by its own row of [Reward package list](reward-packag
 | `+0x00` | `u16[3]` | first | the ids the class-15 handler `0x002FD640` grants, each tested for `0xFFFF` on its own; it acts only on a relative give on channel 1 (`0x002FD64F`-`0x002FD65C`), grants each id through `0x003008A0(id, give's count, 0, 1, flags)`, and returns 0. Nothing guards the row: when the slot `0x02EBF068` is null or its decoded row base is 0, the row address is 0 (`0x002FD66E`-`0x002FD6AA`) and the first id read, `0x002FD6C0` or `0x002FD704`, faults, because the first 64 KB of a Windows x64 process are never mapped |
 | `+0x06` | `u16[3]` | second | granted instead when the give's flag bit `0x2` is set: the sixth id whenever the fifth is not `0xFFFF` |
 
-`0x0031C5D0`'s class-15 arm copies the first triple to the query record and its class-31 arm the second
-(`0x0031D712`-`0x0031D73A`).
+`0x0031C5D0`'s class-15 arm copies the first triple to the query record and its class-31 arm the second¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031D712`-`0x0031D73A` |
+
+</details>
 
 Class 30 shares that arm and copies the first triple too. `0x0030AAC0(id, &a, &b, &c, flags)`, from the hunt pane
-`0x003F4C30` (`0x003F4CAD`), reads a selector that way: it fills its own record with class 30, or 31 when `flags` has
-bit `0x2` (`0x0030AADC`-`0x0030AAF1`), and the id, calls `0x0031C5D0`, and returns the three words at the record's `+0x38`,
+`0x003F4C30`¹, reads a selector that way: it fills its own record with class 30, or 31 when `flags` has
+bit `0x2`², and the id, calls `0x0031C5D0`, and returns the three words at the record's `+0x38`,
 `+0x3A` and `+0x3C`, or -1 when the fill fails.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F4CAD` |
+| ² | `0x0030AADC`-`0x0030AAF1` |
+
+</details>
+
 The record is on the stack, the class in its dword `+0x00` and the id in its word `+0x06`; no other
-byte of it is written before the call (`0x0030AADF`-`0x0030AAF8`). A negative answer of `0x0031C5D0` is the
+byte of it is written before the call¹. A negative answer of `0x0031C5D0` is the
 failure: `0x0030AAC0` then answers -1 and
-writes to no out pointer (`0x0030AAFD`-`0x0030AB04`). Otherwise it stores each of the three words,
-zero-extended, as a dword through `&a`, `&b` and `&c`, with no null test on them, and answers 0
-(`0x0030AB06`-`0x0030AB1B`).
+writes to no out pointer². Otherwise it stores each of the three words,
+zero-extended, as a dword through `&a`, `&b` and `&c`, with no null test on them, and answers 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030AADF`-`0x0030AAF8` |
+| ² | `0x0030AAFD`-`0x0030AB04` |
+| ³ | `0x0030AB06`-`0x0030AB1B` |
+
+</details>
 
 ## Columns
 

@@ -20,50 +20,15 @@ inside the zone's script.
 The columns come from the path arrays of [Asset paths](../Game-Files-And-Data-Tables/asset-paths.md) and the
 archive index:
 
-1. **The zone script.** The area loader `0x0032FCA0` loads manager 0 from kind 5 at index 3*n*: the zone script
-   `.ebp`, with its `.mot` at 3*n* + 1 and its `.fpk` at 3*n* + 2
-   ([File size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)).
-2. **The map row.** Row *n* of `map_ref.bin` (8 bytes from the header's `+0x04`, [Weather](weather.md)) names the rest:
-   - the zone's own map pack, kind 4 at the row's word `+0x00` (`0x00264F10`; [Map pack](mpk-map-pack.md));
-   - the block pack, kind 4 at the signed word `+0x00` of the 16-byte block record the row's `+0x02` selects
-     (`0x00264F40`). The block record's second word plus 500 is the sound map number (`0x00264FD0`);
-   - the area, the row's word `+0x04` (`0x00264ED0`). Its battle data is kind 21 at 2 × area, the `.ard` that
-     `0x003EA820` sizes and reads ([Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md));
-   - the row readers take *n* with no bound (`0x00264F26`, `0x00264F56`, `0x00264FE6`) and answer only while `0x02099D88`
-     and `0x02099D90` are both set: otherwise `0x00264F10` gives 0 and `0x00264F40` and `0x00264FD0` give -1 (`0x00264F3D`,
-     `0x00264F7E`, `0x0026500F`).
-3. **The remastered map art.** `0x00379A10` cuts `<area>\<map>` out of the zone pack's path and swaps five zones for
-   the art they reuse (the table `0x01EF9490`); `0x001A7A50` builds
-   `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_D3D11_srm.ah` and requests it when `0x0019EAA0` can open it,
-   else `<map>_D3D11.ah` (`0x001A7C02`-`0x001A7C53`; [Map art](map-art.md),
-   [Prefetch and asset-header manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)).
-   - Every shipped map folder has its `_srm` list, so the game requests that one. `art` names the plain
-     `<map>_d3d11.ah` list, and `art_meshes` and `art_textures` count that list's meshes and textures.
-   - `0x00379A10(kind, index)` acts only when `0x0032E400(kind, index)` gives a size above 0 (`0x00379A3E`). It copies
-     the path `0x002DF980(kind, index)` and keeps the text between the fourth and the second separator (`\` or `/`)
-     from the end (`0x00379A5A`-`0x00379B0A`); a cut at or past 260 characters ends in the range-check failure
-     `0x00809728` (`0x00379ADD`-`0x00379AE4`).
-   - The swap compares that text from its seventh character on with the five names of `0x01EF9490` and, on a
-     match, keeps the first six characters and appends the reused map (`0x00379B30`-`0x00379B8A`). The name then
-     goes to `0x001805D0` and `0x022BE7E0` is set to 0 (`0x00379B94`, `0x00379B99`; [Map art](map-art.md)).
-4. **The map sounds.** The binder `0x003635E0` keeps the `SPP1` list of the pack loaded in mode 0, the block pack
-   (`0x00331990`), and opens the six-digit bank each listed id names ([Map sounds](../Sound-And-Music/map-sounds.md)). The
-   block pack's slot 10 holds the list: a `0x20`-byte header with the id count at `+0x04`, then the `u32` ids.
-5. **The models,** the bound ids of the zone script's section 12, the actor manifest
-   ([Actor manifest](../EBP-Script-Files/ebp-actor-manifest.md)), named through
-   [Model asset list](../Graphics/model-asset-list.md).
-6. **The foes,** the definitions the zone script places ([Enemy placements](../Enemy-Spawning/enemy-placements.tsv)),
-   by their shipped names.
-7. **The names,** from the `us` name table `planmapname.bin` as its two indexers return them for field *n*; the
-   menu's location line `0x0029C530` calls both, the map name for the current field and the region name for the
-   current field, or for the loaded map `0x00314910` while flag `0x5E` is set (`0x0032A8A0`)
-   ([Area flags](area-flags-navimapdata.md)):
-   - the map name, `0x00377B60(n)`: entry *n* of the offset table at `+0x10`, while *n* is below the area count
-     `+0x04` (1,312);
-   - the region name, `0x003778B0(n)`: entry `[+0x04]` + group of the same table, while the group is below the region
-     count `+0x08` (59). The group is the word `+0x06` of `map_ref.bin` row *n* (`0x00264F90`), 0 while that table
-     is not bound (`0x00264FBE`). While the name table `[0x02ADD0F8]` is not loaded the region name is empty
-     (`0x003778C5`, `0x003778E8`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | **The zone script.** The area loader `0x0032FCA0` loads manager 0 from kind 5 at index 3*n*: the zone script `.ebp`, with its `.mot` at 3*n* + 1 and its `.fpk` at 3*n* + 2 ([File size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)). |   |
+| 2 | **The map row.** Row *n* of `map_ref.bin` (8 bytes from the header's `+0x04`, [Weather](weather.md)) names the rest:<br>• the zone's own map pack, kind 4 at the row's word `+0x00` (`0x00264F10`; [Map pack](mpk-map-pack.md));<br>• the block pack, kind 4 at the signed word `+0x00` of the 16-byte block record the row's `+0x02` selects. The block record's second word plus 500 is the sound map number;<br>• the area, the row's word `+0x04`. Its battle data is kind 21 at 2 × area, the `.ard` that `0x003EA820` sizes and reads ([Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md));<br>• the row readers take *n* with no bound and answer only while `0x02099D88` and `0x02099D90` are both set: otherwise `0x00264F10` gives 0 and `0x00264F40` and `0x00264FD0` give -1. | `0x00264F40`<br>`0x00264FD0`<br>`0x00264ED0`<br>`0x00264F26`, `0x00264F56`, `0x00264FE6`<br>`0x00264F3D`, `0x00264F7E`, `0x0026500F` |
+| 3 | **The remastered map art.** `0x00379A10` cuts `<area>\<map>` out of the zone pack's path and swaps five zones for the art they reuse (the table `0x01EF9490`); `0x001A7A50` builds `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_D3D11_srm.ah` and requests it when `0x0019EAA0` can open it, else `<map>_D3D11.ah` (`0x001A7C02`-`0x001A7C53`; [Map art](map-art.md), [Prefetch and asset-header manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)).<br>• Every shipped map folder has its `_srm` list, so the game requests that one. `art` names the plain `<map>_d3d11.ah` list, and `art_meshes` and `art_textures` count that list's meshes and textures.<br>• `0x00379A10(kind, index)` acts only when `0x0032E400(kind, index)` gives a size above 0. It copies the path `0x002DF980(kind, index)` and keeps the text between the fourth and the second separator (`\` or `/`) from the end; a cut at or past 260 characters ends in the range-check failure `0x00809728`.<br>• The swap compares that text from its seventh character on with the five names of `0x01EF9490` and, on a match, keeps the first six characters and appends the reused map. The name then goes to `0x001805D0` and `0x022BE7E0` is set to 0 (`0x00379B94`, `0x00379B99`; [Map art](map-art.md)). | `0x00379A3E`<br>`0x00379A5A`-`0x00379B0A`<br>`0x00379ADD`-`0x00379AE4`<br>`0x00379B30`-`0x00379B8A` |
+| 4 | **The map sounds.** The binder `0x003635E0` keeps the `SPP1` list of the pack loaded in mode 0, the block pack, and opens the six-digit bank each listed id names ([Map sounds](../Sound-And-Music/map-sounds.md)). The block pack's slot 10 holds the list: a `0x20`-byte header with the id count at `+0x04`, then the `u32` ids. | `0x00331990` |
+| 5 | **The models,** the bound ids of the zone script's section 12, the actor manifest ([Actor manifest](../EBP-Script-Files/ebp-actor-manifest.md)), named through [Model asset list](../Graphics/model-asset-list.md). |   |
+| 6 | **The foes,** the definitions the zone script places ([Enemy placements](../Enemy-Spawning/enemy-placements.tsv)), by their shipped names. |   |
+| 7 | **The names,** from the `us` name table `planmapname.bin` as its two indexers return them for field *n*; the menu's location line `0x0029C530` calls both, the map name for the current field and the region name for the current field, or for the loaded map `0x00314910` while flag `0x5E` is set ([Area flags](area-flags-navimapdata.md)):<br>• the map name, `0x00377B60(n)`: entry *n* of the offset table at `+0x10`, while *n* is below the area count `+0x04` (1,312);<br>• the region name, `0x003778B0(n)`: entry `[+0x04]` + group of the same table, while the group is below the region count `+0x08` (59). The group is the word `+0x06` of `map_ref.bin` row *n*, 0 while that table is not bound. While the name table `[0x02ADD0F8]` is not loaded the region name is empty. | `0x0032A8A0`<br>`0x00264F90`<br>`0x00264FBE`<br>`0x003778C5`, `0x003778E8` |
 
    An empty entry gives an empty name. For the 608 zones below 1,154 the map name is the one
    [area-flags-navimapdata.tsv](area-flags-navimapdata.tsv) lists for that id.
@@ -371,7 +336,7 @@ Calls between the functions this page cites and code in other parts of the progr
   documented on [archades scripts](../Story-Events-And-Hunts/archades-scripts.md).
 - `0x0050CDE0` pops two ints, a and then b, and hands `0x00264F10(a)`, `0x00264F40(a)` and
   `0x00264F90(a)`, each with b, to `0x0016D6A0`, which only returns; the verb
-  `debug_replacegmap` therefore changes nothing (`0x0050CDEA`-`0x0050CE36`).
+  `debug_replacegmap` therefore changes nothing¹.
 - Story event quest hunt: `0x00314910` is called by `0x001ED240`; those functions are documented on
   [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md).
 - Story event quest hunt: `0x0029C530` calls `0x0032A8A0`; `0x0032A8A0` calls `0x00377970`; those functions are documented on
@@ -380,5 +345,14 @@ Calls between the functions this page cites and code in other parts of the progr
 - UI: `0x00264F90` is called by `0x0029C530`; `0x00314910` is called by `0x0029C530`; `0x0032A8A0` is called by `0x00281AE0`,
   `0x0029C530`; `0x003778B0` is called by `0x0029C530`; `0x00377B60` is called by `0x0029C530`; those functions are documented
   on [menu screens](../Menus-And-HUD/menu-screens.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0050CDEA`-`0x0050CE36` |
+
+</details>
 
 </details>

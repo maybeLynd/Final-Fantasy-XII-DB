@@ -8,7 +8,16 @@
 
 [`magick-list.tsv`](magick-list.tsv) holds one line for each of the 81 rows of the magick table that registry slot `0x02EBF0F0` reaches
 (`battle_pack.bin` directory entry `+0x78`). Row *n* is magick id `0x3000` + *n*: the class-8 arm of `0x0031C5D0`
-subtracts `0x3000` from the id and multiplies by the row size (`0x0031CD0D`-`0x0031CD28`).
+subtracts `0x3000` from the id and multiplies by the row size¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031CD0D`-`0x0031CD28` |
+
+</details>
 
 Every row's `+0x02` is its action row, rows 0-80 of the action table, and each of those has kind 1 and `+0x22` equal
 to the magick id. By school there are 25 White, 25 Black, 20 Time, 6 Green and 5 Arcane magicks.
@@ -22,17 +31,24 @@ licence square that grants it.
 Each line is read from the shipped files in these steps, with the action fields as on
 [Action list](../Battle-Actions/action-list.md):
 
-1. the `st2e` table at entry `+0x78`: 81 rows of 8 bytes from the section's `+0x20`;
-2. the name word `+0x04` through the word banks at entry `+0xF8` (`0x0031CD2B`-`0x0031CD39`);
-3. the action row `+0x02` at entry `+0x3C`, with its help and description lines through the text groups;
-4. the school: the action row's `+0x2C & 7`, which the arm stores at query record `+0x3C` (`0x0031CDBE`-`0x0031CDC5`),
-   named by the row of the same number in the magick-school table (entry `+0x30`, registry slot `0x02EBF110`). That
-   table's five rows hold a help text id `+0x00` and a name word `+0x02`, which `0x0031C5D0`'s class-24 arm reads
-   (`0x0031DDCF`-`0x0031DE9C`). School *n* takes the name of row *n*;
-5. every one-byte text code through the glyph table of the shipped `us` font `font00.dat`
-   ([Fonts](../Menus-And-HUD/fonts.md)).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | the `st2e` table at entry `+0x78`: 81 rows of 8 bytes from the section's `+0x20`; |   |
+| 2 | the name word `+0x04` through the word banks at entry `+0xF8`; | `0x0031CD2B`-`0x0031CD39` |
+| 3 | the action row `+0x02` at entry `+0x3C`, with its help and description lines through the text groups; |   |
+| 4 | the school: the action row's `+0x2C & 7`, which the arm stores at query record `+0x3C`, named by the row of the same number in the magick-school table (entry `+0x30`, registry slot `0x02EBF110`). That table's five rows hold a help text id `+0x00` and a name word `+0x02`, which `0x0031C5D0`'s class-24 arm reads. School *n* takes the name of row *n*; | `0x0031CDBE`-`0x0031CDC5`<br>`0x0031DDCF`-`0x0031DE9C` |
+| 5 | every one-byte text code through the glyph table of the shipped `us` font `font00.dat` ([Fonts](../Menus-And-HUD/fonts.md)). |   |
 
-The row layout, as the class-8 arm copies it (`0x0031CD4C`-`0x0031CD69`):
+The row layout, as the class-8 arm copies it¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031CD4C`-`0x0031CD69` |
+
+</details>
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
@@ -66,7 +82,16 @@ The row layout, as the class-8 arm copies it (`0x0031CD4C`-`0x0031CD69`):
   - the 40 chests of `bts_z01`, `pre_a01` and `pre_b01` stand in zone scripts no field loads, and their entries say so.
 - `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).
 
-A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold (`0x002FADF3`-`0x002FAE0D`).
+A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FADF3`-`0x002FAE0D` |
+
+</details>
 
 No script writes story progress 500. The values the scripts write go from 490 (After the captive Penelo) to 520 (After the floating continent), so a list that waits on 500 goes on sale at 520.
 
@@ -114,9 +139,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003060E0` | calls | `0x0031B860` |
-| `0x003064F0` | calls | `0x00320A40` |
+| [`0x003060E0`](magick-list.md) Battle action: check definition category availability | calls | [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log) |
+| [`0x003064F0`](magick-list.md) | calls | [`0x00320A40`](../Menus-And-HUD/gambit-screen.md) (on gambit screen) |
 
 </details>

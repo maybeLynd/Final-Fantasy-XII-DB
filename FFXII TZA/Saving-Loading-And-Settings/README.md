@@ -25,6 +25,9 @@ How a save is written and restored, and what the save file holds.
 | [Loading a save](loading-a-save.md) | Walkthrough | The order of every step a load takes, from the screen to the restored area. |
 | [Save file format](save-file-format.md) | Format | What a save file is: its header, compression, encryption and the image inside. |
 | [Save data fields](save-data-fields.md) | Reference table | A map of what the save image stores and where. |
+| [Area-change autosave](saving-and-loading-autosave.md) | Explanation | The autosave on an area change, the list that skips it, and a load's last steps. |
+| [Save and load screen](saving-and-loading-screen.md) | Explanation | The save and load screen: its states, popups, slot list and status pane. |
+| [Save transaction](saving-and-loading-transaction.md) | Explanation | How a save is written to disk, and how the game finds and reads slot files. |
 
 ## Settings and languages
 

@@ -46,14 +46,11 @@ The categories:
 `0x00226BE0(id, actor, count, handles, fade, flag)` returns at once when the id's bit is set.
 Otherwise:
 
-1. the fade goes to B `+0x10`; `0x00227680(id, A, B, max(flag, 0))` builds the records, the flag
-   landing at B `+0x14`; the bit and the dirty byte are set;
-2. one actor manager is walked when A bit `0x80000000` is set, three when it is clear (`0x00263FF0(m)`, live
-   when its `+0x10` bit `0x1` holds): every record from `+0x1DE` for `+0x1D6` entries (`0x00358940`)
-   gets the id's bit OR-ed into its seven pending-set words and cleared from its seven
-   pending-clear words;
-3. the exemptions: for each category the id's bit is removed again from the pending-set word of every set whose
-   record bit is set; a manager whose `+0x28` is non-zero skips those of categories 0, 1, 5 and 6 (`0x00226D99`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | the fade goes to B `+0x10`; `0x00227680(id, A, B, max(flag, 0))` builds the records, the flag landing at B `+0x14`; the bit and the dirty byte are set; |   |
+| 2 | one actor manager is walked when A bit `0x80000000` is set, three when it is clear (`0x00263FF0(m)`, live when its `+0x10` bit `0x1` holds): every record from `+0x1DE` for `+0x1D6` entries gets the id's bit OR-ed into its seven pending-set words and cleared from its seven pending-clear words; | `0x00358940` |
+| 3 | the exemptions: for each category the id's bit is removed again from the pending-set word of every set whose record bit is set; a manager whose `+0x28` is non-zero skips those of categories 0, 1, 5 and 6. | `0x00226D99` |
 
 Nothing stops yet: the apply does that.
 
@@ -65,9 +62,19 @@ read the flag. Ids 0, 1, 2, 3, 15, 22 and 27 share one case, 4, 6 and 7 another,
 is set, id 12 and 17 run `0x00182CF0`, 13 and 15 run `0x00182CD0`.
 
 Those side calls set one bit of the input manager's movement-key mode byte `+0x3A` and mark
-`+0x3B`: `0x00182D10` bit `0x2` (`0x00198690`), `0x00182CF0` bit `0x1` (`0x001986B0`) and `0x00182CD0` bit `0x4`
-(`0x00198670`); the cancel side calls below, `0x00182DA0`, `0x00182D60` and `0x00182D40`, clear the same
+`+0x3B`: `0x00182D10` bit `0x2`¹, `0x00182CF0` bit `0x1`² and `0x00182CD0` bit `0x4`³; the cancel side calls below, `0x00182DA0`, `0x00182D60` and `0x00182D40`, clear the same
 bits ([controls](../Controls-And-Input/controls.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00198690` |
+| ² | `0x001986B0` |
+| ³ | `0x00198670` |
+
+</details>
 
 ### The twenty-eight requests
 
@@ -94,18 +101,47 @@ bits ([controls](../Controls-And-Input/controls.md)).
 
 The six mask verbs pop their argument with `0x00267E10` and drop it. `maskopenfast` runs `0x002E2440(1, 0)` and
 `mesvmaskopenfast` `0x002E2440(1, 1)`; each then calls `0x002E1C40(0, 3)`, which sets bit `0x8` of the HUD hide word
-`0x0215F1AC` and clears it in `0x0215F1B4`, and `0x002E1C70(1, 3)`, which sets bit `0x8` of `0x0215F1B4`
-(`0x003531B1`-`0x003531CE`, `0x00353603`-`0x00353620`). `maskclosefast` runs `0x002E2400(1)`, then `0x002E1C40(1, 3)`,
-which clears bit `0x8` in both words, and `0x002E1C70(1, 3)` (`0x00353A71`-`0x00353A8F`).
+`0x0215F1AC` and clears it in `0x0215F1B4`, and `0x002E1C70(1, 3)`, which sets bit `0x8` of `0x0215F1B4`¹. `maskclosefast` runs `0x002E2400(1)`, then `0x002E1C40(1, 3)`,
+which clears bit `0x8` in both words, and `0x002E1C70(1, 3)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003531B1`-`0x003531CE`, `0x00353603`-`0x00353620` |
+| ² | `0x00353A71`-`0x00353A8F` |
+
+</details>
 
 `maskopen`, `mesvmaskopen` and `maskclose` first read the skip byte `0x02099011 + manager × 0x288` of the calling
-actor's manager (byte `+0x15`) through `0x00267310` (`0x00353D9D`, `0x0035430D`, `0x0035480D`). While it is set they run
+actor's manager (byte `+0x15`) through `0x00267310`¹. While it is set they run
 their fast form's three calls with the same arguments. While it is clear they run `0x002E2440(0, 0)`,
 `0x002E2440(0, 1)` or `0x002E2400(0)` and end with `0x002E1C40(0, 3)` for the two opens and `0x002E1C40(1, 3)` for the
-close, without `0x002E1C70` (`0x00353DD6`-`0x00353DF0`, `0x00354348`-`0x00354365`, `0x00354847`-`0x00354860`).
+close, without `0x002E1C70`².
 
-Every path of the six reaches `0x002E2440`, which starts id 16 through `0x002274E0` (`0x002E245A`), or `0x002E2400`, which
-releases it through `0x00226160` (`0x002E2412`), whatever the arguments.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00353D9D`, `0x0035430D`, `0x0035480D` |
+| ² | `0x00353DD6`-`0x00353DF0`, `0x00354348`-`0x00354365`, `0x00354847`-`0x00354860` |
+
+</details>
+
+Every path of the six reaches `0x002E2440`, which starts id 16 through `0x002274E0`¹, or `0x002E2400`, which
+releases it through `0x00226160`², whatever the arguments.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E245A` |
+| ² | `0x002E2412` |
+
+</details>
 
 The start wrappers from `0x00227370` to `0x00227640` and the cancel wrappers from `0x002260A0` to
 `0x00226260` test the id's bit first, except the starts for 11, 12 and 16, which rely on
@@ -116,19 +152,55 @@ order](frame-update-order.md)).
 
 The UI requests take their id from `0x00255290(mode & 0x7FFF)`, which the
 [game settings](../Saving-Loading-And-Settings/game-settings.md) tabulate. `0x00254740(mode)` returns at once when that
-gives -1 (`0x0025475D`); otherwise it raises the id with no actor, no handles, fade -1 and flag -1 (`0x0025479D`) and
-runs the apply itself (`0x002547A2`). Before the raise it sets bit `0x1` of `0x02EBDBBC` through `0x003B3B40` for UI
-modes 3, 4, `0x14` and `0x18`, and for mode 1 only while `0x002DDC30()` is 0 (`0x0025475F`-`0x0025477E`).
+gives -1¹; otherwise it raises the id with no actor, no handles, fade -1 and flag -1² and
+runs the apply itself³. Before the raise it sets bit `0x1` of `0x02EBDBBC` through `0x003B3B40` for UI
+modes 3, 4, `0x14` and `0x18`, and for mode 1 only while `0x002DDC30()` is 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025475D` |
+| ² | `0x0025479D` |
+| ³ | `0x002547A2` |
+| ⁴ | `0x0025475F`-`0x0025477E` |
+
+</details>
 
 The UI close runs no apply. `0x002544C0(mode)` cancels the id `0x00255290(mode & 0x7FFF)` gives with fade -1 by a tail
-jump to `0x00225CD0` (`0x002544F0`), without testing the id's bit; when the map gives -1 and the mode is exactly `0x0B`
-it tail-jumps to `0x002260A0` (`0x002544E1`), which cancels 22 when its bit is set, and any other mode returns
-(`0x002544FA`). `0x00252D90()` does the same for the current UI mode `0x02092730` (`0x00252DBE`, `0x00252DB2`) and then
-zeroes `0x02092730` and `0x02092734` on every path (`0x00252DC5`, `0x00252DCB`).
+jump to `0x00225CD0`¹, without testing the id's bit; when the map gives -1 and the mode is exactly `0x0B`
+it tail-jumps to `0x002260A0`², which cancels 22 when its bit is set, and any other mode returns³. `0x00252D90()` does the same for the current UI mode `0x02092730`⁴ and then
+zeroes `0x02092730` and `0x02092734` on every path⁵.
 
-`0x00263480` runs `0x00263560` before its raise or cancel (`0x002634B0`). `0x0026A1D0(on, flag)` stores `on` in `0x02099DE6`
-and the flag in `0x02099DE7`, a negative flag with `on` set becoming `0x00377700() == 0` (`0x0026A1EB`-`0x0026A20B`), runs
-`0x00263560`, which so reads the new `0x02099DE6` (`0x0026A214`), and then raises 5 with the flag `0x02099DE7` = 0, fade -1 and the apply (`0x0026A23C`, `0x0026A250`) or cancels as the table says.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002544F0` |
+| ² | `0x002544E1` |
+| ³ | `0x002544FA` |
+| ⁴ | `0x00252DBE`, `0x00252DB2` |
+| ⁵ | `0x00252DC5`, `0x00252DCB` |
+
+</details>
+
+`0x00263480` runs `0x00263560` before its raise or cancel¹. `0x0026A1D0(on, flag)` stores `on` in `0x02099DE6`
+and the flag in `0x02099DE7`, a negative flag with `on` set becoming `0x00377700() == 0`², runs
+`0x00263560`, which so reads the new `0x02099DE6`³, and then raises 5 with the flag `0x02099DE7` = 0, fade -1 and the apply⁴ or cancels as the table says.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002634B0` |
+| ² | `0x0026A1EB`-`0x0026A20B` |
+| ³ | `0x0026A214` |
+| ⁴ | `0x0026A23C`, `0x0026A250` |
+
+</details>
 
 The mask verbs do more than the request. `0x002E2440(a, b)` passes `a ≠ 0`, with `0x10` ORed in when `b` is
 non-zero, to `0x0029D290`, starts 16 through `0x002274E0`, sets the bits `0x100203` of action-availability row 4
@@ -137,50 +209,111 @@ sets bit `0x2` of the bone-physics deny mask `0x02099DA6` ([frame update order](
 byte `0x0215F1B2` to 1.
 
 `0x002E2400(a)` and the unload `0x002E06B0` undo each step: `0x0029D210(a ≠ 0)` (1 for the unload), the cancel
-`0x00226160`, the row-4 bits cleared (`0x002E2417`, `0x002E06C3`), `0x00267D40(1, 0)` and `0x0215F1B2` = 0. All three leave
+`0x00226160`, the row-4 bits cleared¹, `0x00267D40(1, 0)` and `0x0215F1B2` = 0. All three leave
 the apply to the field frame.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E2417`, `0x002E06C3` |
+
+</details>
 
 Each id-17 body stores `0x00265680()` in `0x02099DE0` and starts or cancels 17, with the apply, only while manager 0
 is live (`0x02098E20` bit `0x1`) with `0x02098E21` bit `0x1` and `0x02098E20` bit `0x80` clear; otherwise the slot keeps its
 state. It then sets action-availability row 6 for a result of 0 and clears it otherwise (`0x002E1CD0(result ≠ 0, 6)`),
-runs `0x002E23D0(result ≠ 0)` and, for a non-zero result, `0x002EF350(1, -1)` (`0x00263692`-`0x002636E0`,
-`0x0026C53B`-`0x0026C586`, `0x0026C7E6`-`0x0026C837`).
+runs `0x002E23D0(result ≠ 0)` and, for a non-zero result, `0x002EF350(1, -1)`¹.
 
-`0x0026C3E0(record, reset)` sets the record's byte `+0x14` to 0 and `0x0026C5D0(record)` sets it to 1 (`0x0026C410`,
-`0x0026C606`). Both then walk the non-null roster slots: speed 0 (`0x0026D6F0(actor, 0.0, 2)`), and, unless the slot is
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263692`-`0x002636E0`, `0x0026C53B`-`0x0026C586`, `0x0026C7E6`-`0x0026C837` |
+
+</details>
+
+`0x0026C3E0(record, reset)` sets the record's byte `+0x14` to 0 and `0x0026C5D0(record)` sets it to 1¹. Both then walk the non-null roster slots: speed 0 (`0x0026D6F0(actor, 0.0, 2)`), and, unless the slot is
 not the party focus while `0x00377700()` is non-zero and `0x02099DB4` is above 0, `0x0035AE10(actor, 1)` for an actor with
 a battle unit and `0x002EB430` when `0x00233D70` accepts it (`0x0026C3E0` only with `reset` non-zero, adding `0x002ED020`);
 `0x0026C3E0` also runs `0x002ECEC0` on every slot.
 
-`0x0026C3E0` reads `0x00265680()` before the walk and again after it and `0x00254FC0` (`0x0026C4EC`); when the first
-answer was non-zero it runs `0x00237F40` and `0x00358BB0` while `0x00377C20()` is 0, then `0x002DEB90(1)`
-(`0x0026C58B`-`0x0026C5B1`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026C410`, `0x0026C606` |
+
+</details>
+
+`0x0026C3E0` reads `0x00265680()` before the walk and again after it and `0x00254FC0`¹; when the first
+answer was non-zero it runs `0x00237F40` and `0x00358BB0` while `0x00377C20()` is 0, then `0x002DEB90(1)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026C4EC` |
+| ² | `0x0026C58B`-`0x0026C5B1` |
+
+</details>
 
 With `0x02099DB4` above 0, `0x0026C5D0` also clears action-availability row 3 (`0x002E1CD0(1, 3)`, `0x0026C70C`) for
 each slot it walks and releases the focus slot's look (`0x002EBE50(focus, 0, 0)` and `0x002E8EE0`, when `0x002E7600` is
 non-zero). After the walk, with `0x00265680()` non-zero, it runs `0x00307140(0)`, `0x00363B00(0, 0, 0.0)`, `0x003EC6C0(1)`
 and `0x0035A8D0(1)`, then `0x002DEB90(1)`.
 
-Between those, it reads byte `+0x18` of all four roster slots with no null test (`0x0026C766`-`0x0026C76E`), so an
+Between those, it reads byte `+0x18` of all four roster slots with no null test¹, so an
 empty slot faults there; a slot whose byte is 1 gets `0x002693D0(other, 1)` for the actor `0x003587C0(+0x19, +0x1A)`
 names, when that actor exists and is not the slot itself.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026C766`-`0x0026C76E` |
+
+</details>
 
 `0x0025C170(m)` returns at once unless manager `m` is live (`+0x10` bit `0x1`). Over the records from `+0x1DA` for
 `+0x1D2` entries it clears byte `+0x0C` bit `0x2` and runs `0x0025C830(manager, record)` when the record's `+0x14` bit
 `0x20` and `+0x08` bit `0x1` are set; over the records from `+0x1DE` for `+0x1D6` entries it runs
 `0x0025C230(manager, record)` when `+0x14` bit `0x20` is set.
 
-`0x0025B500(actor)` returns at once unless the actor's byte `+0x0C` bit `0x40` is set (`0x0025B508`). It clears that
+`0x0025B500(actor)` returns at once unless the actor's byte `+0x0C` bit `0x40` is set¹. It clears that
 bit, lowers the count at `+0x1E4` of the actor's manager and stores the sum of the live managers' counts in
-`0x02099DB8` (`0x0025B558`); at 0 or below it cancels 18 and clears action-availability row 13 (`0x002E1CD0(1, 13)`,
+`0x02099DB8`²; at 0 or below it cancels 18 and clears action-availability row 13 (`0x002E1CD0(1, 13)`,
 `0x0025B573`).
 
-Around 19, `0x002678C0` runs `0x00238B00(1)`, then only while `0x02099DA7` is 0 `0x002509A0(0, 0)` and `0x02099DA7` = 1
-(`0x002678D5`-`0x002678E0`), sets
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025B508` |
+| ² | `0x0025B558` |
+
+</details>
+
+Around 19, `0x002678C0` runs `0x00238B00(1)`, then only while `0x02099DA7` is 0 `0x002509A0(0, 0)` and `0x02099DA7` = 1¹, sets
 action-availability row 0 (`0x002E1CD0(0, 0)`) and busy bit `0x1000` (`0x003601B0(0xC)`) before its start, and
-`0x0025D580` runs `0x00238B00(0)`, then only while `0x02099DA7` is set `0x00250960(0, 0)` and `0x02099DA7` = 0
-(`0x0025D58B`-`0x0025D59D`), clears row 0
+`0x0025D580` runs `0x00238B00(0)`, then only while `0x02099DA7` is set `0x00250960(0, 0)` and `0x02099DA7` = 0², clears row 0
 (`0x002E1CD0(1, 0)`) and the busy bit (`0x003601C0(0xC)`) before its cancel.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002678D5`-`0x002678E0` |
+| ² | `0x0025D58B`-`0x0025D59D` |
+
+</details>
 
 The records each id builds, read as the categories each set stops (F the party leader, P the
 other roster entries, T127 / T3 / T0 the three type classes, R the request's actor, H the handle
@@ -232,7 +365,7 @@ cancelled slot holds all-ones, the identity), takes the smallest non-negative B 
 fade and resets each such slot to -1, and ORs bit `0x20000000000` into every slot's B. Then:
 
 - `0x00226640(allExempt, fade, 0)`, the per-actor pass below, with `allExempt` set when the bits of the
-  combined B under mask `0x7F00` are all set (`0x0022642D`-`0x00226461`);
+  combined B under mask `0x7F00` are all set¹;
 - A bit `0x1000000` and B bit `0x1000000`: `0x002EA8E0(0, ~A24)` and `0x002EA8B0(0, ~B24)`, bit `0x1` of the two source
   bytes `0x0215FD44` / `0x0215FD45` ([party control modes](party-control-modes.md) writes their bit `0x4`);
   the status-error verbs name them: the `ctrldeny` verbs clear A24, the `dispdeny` verbs B24;
@@ -242,15 +375,15 @@ fade and resets each such slot to -1, and ORs bit `0x20000000000` into every slo
   `0x108` is ORed; when A's word is exactly `0x108` and B's lacks bit `0x10`, A's becomes `0x10C` and
   B's gains bit `0x4`;
 - A bit `0x20000000`: `0x0035B510(0xFF)` when set, else `0x0035B4B0(5)`, the controller vibration pause
-  ([vibration](../Controls-And-Input/vibration.md)): `0x0035B4B0(5)` ORs 5 into the pause mask `0x02EC0B40` (`0x0035B4BA`) and moves
+  ([vibration](../Controls-And-Input/vibration.md)): `0x0035B4B0(5)` ORs 5 into the pause mask `0x02EC0B40`² and moves
   every playing slot (state 2) of the 32 at `0x02EC0B80` whose mask byte `+0x1C` shares a bit to state 3
-  (`0x0035B4C7`-`0x0035B4FD`);
-- `0x0035B510(0xFF)` clears the pause mask's low byte (`0x0035B51C`) and moves every slot in state 3 back to 2, whatever
-  its mask (`0x0035B530`-`0x0035B53F`);
+ ³;
+- `0x0035B510(0xFF)` clears the pause mask's low byte⁴ and moves every slot in state 3 back to 2, whatever
+  its mask⁵;
 - A bit `0x40000000` clear: `0x0025A5D0(1)` sets `0x02098DEB`; set: clears it;
 - A bits `0x1000000000` and `0x2000000000`: `0x002547C0` gets `0xF` when bit `0x1000000000` is set, else `0xE`, with bits `0x4` and `0x8`
   cleared when bit `0x2000000000` is clear, the pump argument of [subsystem update
-  flags](subsystem-update-flags.md); B bit `0x1000000000` the same through `0x00254840` (`0x01E0C2AC`);
+  flags](subsystem-update-flags.md); B bit `0x1000000000` the same through `0x00254840`⁶;
 - A bit `0x8000000000`: `0x002E24C0(0)` sets bit `0x1` of `0x0215F1B3` when clear, `0x002E24E0(0)` clears it when set;
 - unless the skip byte `0x01FD46D1` is set (`0x00227D30` sets it; the apply clears it instead of
   running this block): the audio group mask from B bits under mask `0x1F0300000000` through `0x002DF370`
@@ -258,16 +391,43 @@ fade and resets each such slot to -1, and ORs bit `0x20000000000` into every slo
   kinds at `0x0215EFD8` and, unless `force` is set, hands `0x001DBA90` only the bits that change
   ([audio manager](../Sound-And-Music/audio-manager.md));
 - B bit `0x800000000`: `0x002EBBF0(1, B35)`, bit `0x2` of `0x0215FD56`: B35 set clears the bit and B35 clear sets it
-  (`0x002EBC00`-`0x002EBC0F`); the byte's zero state then sets bit `0x1` of the render table's `+0x48818` (character
-  distance culling, the table `[0x022C6F28]`), and a non-zero byte clears that bit (`0x002EBC20`, `0x002EBC28`);
+ ⁷; the byte's zero state then sets bit `0x1` of the render table's `+0x48818` (character
+  distance culling, the table `[0x022C6F28]`), and a non-zero byte clears that bit⁸;
 - the combined A and B are stored at `0x01FD46A0` and `0x01FD46B8` as two `0x18`-byte records: the qwords `0x01FD46A8`,
   `0x01FD46B0`, `0x01FD46C0` and `0x01FD46C8` receive stack slots the apply never writes, and nothing reads them.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022642D`-`0x00226461` |
+| ² | `0x0035B4BA` |
+| ³ | `0x0035B4C7`-`0x0035B4FD` |
+| ⁴ | `0x0035B51C` |
+| ⁵ | `0x0035B530`-`0x0035B53F` |
+| ⁶ | `0x01E0C2AC` |
+| ⁷ | `0x002EBC00`-`0x002EBC0F` |
+| ⁸ | `0x002EBC20`, `0x002EBC28` |
+
+</details>
 
 ### The per-actor pass and the seven stop sets
 
 `0x00226640(allExempt, fade, three)` walks three managers (one when `three` is set), skipping a manager whose
-`+0x10` bit `0x1` is clear (`0x0022669B`); for each live one it zeroes the list count `+0x1F8` (`0x002266B5`) and
-visits the records from `+0x1DE` for `+0x1D6` entries (`0x00358940`, `0x002266A5`-`0x002266D5`).
+`+0x10` bit `0x1` is clear¹; for each live one it zeroes the list count `+0x1F8`² and
+visits the records from `+0x1DE` for `+0x1D6` entries³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022669B` |
+| ² | `0x002266B5` |
+| ³ | `0x00358940`, `0x002266A5`-`0x002266D5` |
+
+</details>
 
 Each set is a live bitset of request ids plus a pending-set and a pending-clear word; the pass
 folds them (`live |= set; live &= ~clear;` both zeroed); the hook of set 1 runs when it becomes non-zero, that of
@@ -291,33 +451,78 @@ After each manager's records, when its list is non-empty:
   `0x0024FBF0(list, n, 0.0, fade + 1)` (the global ramp `0x020926E8` toward `0x020926EC` = 0.0
   over `0x020926E6` = fade + 1 frames, stepped by `0x0024BFD0`), then `0x002E8B10(actor, 0.0, fade +
   1)` for each listed actor;
-  - `0x0024FBF0` also raises bit `0x4` of `+0x368` on every kind-1 active effect (`0x002FD090`, `0x0024FC58`) and, by a
-    tail jump to `0x003B1050(list, n)` (`0x0024FC6C`), on the kind-5 effects owned by the listed actors;
-  - it writes the value 1 into bits `0x100` and `0x200` of `0x020926E4` (`0x0024FC23`-`0x0024FC45`) and the step
-    `0x020926F0` = (target - `0x020926E8`) / frames (`0x0024FC50`), a frame count of 0 or less becoming 1 (`0x0024FC15`);
+  - `0x0024FBF0` also raises bit `0x4` of `+0x368` on every kind-1 active effect¹ and, by a
+    tail jump to `0x003B1050(list, n)`², on the kind-5 effects owned by the listed actors;
+  - it writes the value 1 into bits `0x100` and `0x200` of `0x020926E4`³ and the step
+    `0x020926F0` = (target - `0x020926E8`) / frames⁴, a frame count of 0 or less becoming 1⁵;
 - with `allExempt` set: `0x0024FC80` (mask `0x3FF`), `0x0024FB90(1.0, fade + 1)` and `0x002E8B10(actor,
   1.0, fade + 1)`;
   - `0x0024FB90` writes the same ramp with the value 2 in those bits (`and` with `0xFEFF`, then `or` with `0x200`,
-    `0x0024FBAD`-`0x0024FBD2`), with the same frame clamp and step, `n = frames <= 0 ? 1 : frames` (`0x0024FBAA`) and
-    `0x020926F0` = (target - `0x020926E8`) / n (`0x0024FBD9`-`0x0024FBDD`);
+    `0x0024FBAD`-`0x0024FBD2`), with the same frame clamp and step, `n = frames <= 0 ? 1 : frames`⁶ and
+    `0x020926F0` = (target - `0x020926E8`) / n⁷;
   - when a value-2 ramp ends, `0x0024BFD0` clears bit `0x4` of `+0x368` again: on every kind-1 active effect
-    (`0x002FD060`) and on the instance `+0x08` of each of the 36 request entries at `0x02EBEC00`, up to the first
-    whose dword `+0` is 0 (`0x003B1000`), called at `0x0024C037` and `0x0024C03C`.
+   ⁸ and on the instance `+0x08` of each of the 36 request entries at `0x02EBEC00`, up to the first
+    whose dword `+0` is 0⁹, called at `0x0024C037` and `0x0024C03C`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD090`, `0x0024FC58` |
+| ² | `0x0024FC6C` |
+| ³ | `0x0024FC23`-`0x0024FC45` |
+| ⁴ | `0x0024FC50` |
+| ⁵ | `0x0024FC15` |
+| ⁶ | `0x0024FBAA` |
+| ⁷ | `0x0024FBD9`-`0x0024FBDD` |
+| ⁸ | `0x002FD060` |
+| ⁹ | `0x003B1000` |
+
+</details>
 
 `0x002E8B10` ramps channel 2 of the actor's character render record (`0x00428940(record, 2, value,
 frames)`), and does nothing for a null actor, a null controller `+0xC0`, a render handle of -1 or a render record
-whose `+0x284` is 0 (`0x002E8B13`-`0x002E8B4A`).
+whose `+0x284` is 0¹.
 `0x00226A50` and `0x00226AB0` fold sets 6 and 7 for one actor outside the pass, and
 `0x00263560` drives both hooks for the four roster actors from the hold bytes `0x02099DE3` to
 `0x02099DE6`, also zeroing their movement speed.
 
-`0x00226A50(record)` and `0x00226AB0(record)` return at once when `0x00359B80(record)` gives no battle unit (`0x00226A61`,
-`0x00226AC1`). Otherwise each folds its set and then always tail-jumps to the set's hook with the argument the table
-gives, whether or not the live set changed: `0x00238B40` (`0x00226A9E`) and `0x00312130` (`0x00226B00`).
+<details>
+<summary>Where in the code</summary>
 
-`0x02099DE4`, the second hold byte, gets 0 from the unload `0x002628B0` (`0x00262BD7`) and from the boot `0x00266D10`
-(`0x00266F45`), each time between two calls of `0x00263560`, which ORs it with `0x02099DE3`, `0x02099DE5` and `0x02099DE6`
-(`0x00263576`).
+| | Code |
+|---|---|
+| ¹ | `0x002E8B13`-`0x002E8B4A` |
+
+</details>
+
+`0x00226A50(record)` and `0x00226AB0(record)` return at once when `0x00359B80(record)` gives no battle unit¹. Otherwise each folds its set and then always tail-jumps to the set's hook with the argument the table
+gives, whether or not the live set changed: `0x00238B40`² and `0x00312130`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00226A61`, `0x00226AC1` |
+| ² | `0x00226A9E` |
+| ³ | `0x00226B00` |
+
+</details>
+
+`0x02099DE4`, the second hold byte, gets 0 from the unload `0x002628B0`¹ and from the boot `0x00266D10`², each time between two calls of `0x00263560`, which ORs it with `0x02099DE3`, `0x02099DE5` and `0x02099DE6`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00262BD7` |
+| ² | `0x00266F45` |
+| ³ | `0x00263576` |
+
+</details>
 
 At run time only `0x0026A290` writes `0x02099DE3`: it is the handler of the verb `setmutekiparty`
 (`0x0337`, through `0x003452B0`), stores the popped value there and runs `0x00263560`. With manager 0
@@ -327,33 +532,77 @@ record byte `+0x09` bit `0x80`, and 0 clears them again while the other hold byt
 
 ### Cancel, unload and reset
 
-`0x00225CD0(id, fade)` sets the dirty byte, clears the id's bit without testing it first (`0x00225CF3`, `0x00225D08`),
+`0x00225CD0(id, fade)` sets the dirty byte, clears the id's bit without testing it first¹,
 and over all three managers ORs the bit into every record's seven pending-clear words and removes it from the
-pending-set words; then both records' first qwords become all-ones, both `+0x14` bytes 0, and B `+0x10` = fade
-(`0x00225E1C`-`0x00225E3D`). It runs no apply.
+pending-set words; then both records' first qwords become all-ones, both `+0x14` bytes 0, and B `+0x10` = fade². It runs no apply.
 
-The walk takes a manager only while its `+0x10` bit `0x1` holds (`0x00225D2C`) and skips a null record (`0x00225D69`).
-A record without a battle unit (`0x00359B80` gives 0) keeps sets 1, 6 and 7 unmarked (`0x00225D72`, `0x00225DE6`), and
-one whose controller `+0xC0` is null keeps sets 3, 4 and 5 unmarked (`0x00225D90`, `0x00225DAF`, `0x00225DCE`); set 2
-sits in the record itself (`0x00225D7A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00225CF3`, `0x00225D08` |
+| ² | `0x00225E1C`-`0x00225E3D` |
+
+</details>
+
+The walk takes a manager only while its `+0x10` bit `0x1` holds¹ and skips a null record².
+A record without a battle unit (`0x00359B80` gives 0) keeps sets 1, 6 and 7 unmarked³, and
+one whose controller `+0xC0` is null keeps sets 3, 4 and 5 unmarked⁴; set 2
+sits in the record itself⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00225D2C` |
+| ² | `0x00225D69` |
+| ³ | `0x00225D72`, `0x00225DE6` |
+| ⁴ | `0x00225D90`, `0x00225DAF`, `0x00225DCE` |
+| ⁵ | `0x00225D7A` |
+
+</details>
 
 Side calls: id 0 runs `0x00182DA0` unless the options bit is set, 12 and 17 run `0x00182D60`, 13 clears
 bit `0x20000000000` of its B and runs `0x00182D40`, 15 runs `0x00182D40`.
 
 `0x00225EB0` cancels every active id with fade -1 the same way (the area unload, `0x00262B6C`): it tests the bits of
-ids 0 to 27 in turn (`0x00225EE1`), skips a clear one, and for a set one runs the same walk, record writes and side
-calls (`0x00225EEF`-`0x0022605B`).
+ids 0 to 27 in turn¹, skips a clear one, and for a set one runs the same walk, record writes and side
+calls².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00225EE1` |
+| ² | `0x00225EEF`-`0x0022605B` |
+
+</details>
 
 `0x00226B30` resets everything: bitset, dirty and skip bytes 0, every record's first qword all-ones and `+0x14` 0,
 the combined pair all-ones; it does not write the fades, which are 0 from the image until the
 first apply resets them to -1. It treats the combined pair's two slots like records as well: the dwords
-`0x01FD46B0` and `0x01FD46C8` become -1 and the bytes `0x01FD46B4` and `0x01FD46CC` 0 (`0x00226B60`-`0x00226B74`).
+`0x01FD46B0` and `0x01FD46C8` become -1 and the bytes `0x01FD46B4` and `0x01FD46CC` 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00226B60`-`0x00226B74` |
+
+</details>
 
 `0x00226B10(id)` returns the combined record address, `0x00226BA0()` is "the combined pair restricts
 anything" (`A & B` not all-ones), `0x00226BC0()` is "any request active" (read by the field frame's
 speed-mode block) and `0x00226BD0(id)` tests one bit (`0x0025C830` tests 10).
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
@@ -437,7 +686,12 @@ Manager:
 | `+0x1F0` | `...` |  | fade list |
 | `+0x1F8` | `...` |  | its count |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -447,6 +701,8 @@ Manager:
 | ids never raised | 1, 3, 8, 9, 14, 20, 21 |
 | fades passed | 4 (an event taking an actor, its removal), -1 (every other engine site), the verbs' arguments |
 | effect masks | `0x3FF` at init (`0x0024C970` stores it to the five words `0x0209215E` to `0x02092166`, `0x0024C98A`-`0x0024CA36`, after clearing the `0x1670` bytes from `0x020910A0` at `0x0024C983`, which zeroes the fade ramp `0x020926E4` to `0x020926F0` and so leaves it stopped at 0.0; [startup constants](startup-constants.md)), `0x3FE` / `0x3FF` during the fade, `0x76`, `0x108`, `0x10C`, `0x3EE` from the apply |
+
+</details>
 
 ## Operations
 
@@ -458,9 +714,14 @@ unload sweep and, at the next area's boot, the reset and the hold bytes' re-rais
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The active bitset, the dirty and skip bytes, the fifty-six records, the combined pair; per record
 the seven live sets and their pending words; per manager the fade list; the hold bytes; the effect
 masks and the fade ramp; the source bytes.
+
+</details>
 
 ## Modding notes
 
@@ -472,13 +733,24 @@ masks and the fade ramp; the source bytes.
 - The shortest fade among pending requests wins and is consumed; a second apply in the same state
   fades over nothing. A fade of 0 becomes one frame (`0x0024FBF0` and `0x0024FB90` clamp to 1).
 - The ramp `0x0024BFD0` advances only while bits `0x100` and `0x200` of `0x020926E4` hold 1 or 2 and frames remain,
-  and only when its argument is 0 (`0x0024BFD6`, `0x0024BFE9`). Each step adds `0x020926F0` to `0x020926E8` and counts
-  `0x020926E6` down (`0x0024BFF8`-`0x0024C007`); at zero it stores the target `0x020926EC` and clears both bits
-  (`0x0024C011`-`0x0024C046`).
+  and only when its argument is 0¹. Each step adds `0x020926F0` to `0x020926E8` and counts
+  `0x020926E6` down²; at zero it stores the target `0x020926EC` and clears both bits
+ ³.
 - Ids 1, 3, 8, 9, 14, 20 and 21 have records and no raiser: a mod that needs a new freeze can call
   `0x00226BE0` with one of them and get the record the case builds.
 - A request that stops movement for a category also keeps that category's gambits from moving the
   unit, because set 1 writes the movement speed to 0 on the transition.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024BFD6`, `0x0024BFE9` |
+| ² | `0x0024BFF8`-`0x0024C007` |
+| ³ | `0x0024C011`-`0x0024C046` |
+
+</details>
 
 ## Related
 
@@ -508,22 +780,28 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00300530` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00300530`](../Characters-And-Objects/battle-unit-fields.md) Battle stats: modify hp and process lethal state (on battle unit fields) |
 
 **Items, equipment, shops and licenses** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00309FB0`, `0x0030FD10` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00309FB0`](../Party/party-slots.md) Inventory: query owned count including reserved action items (on party slots)<br>[`0x0030FD10`](../Items-Equipment-Shops-And-Licenses/equipment.md) Equipment: unequip encoded item from active roster (on equipment) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [frame update order](frame-update-order.md), [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00234590` | calls | `0x00319600` |
-| `0x00377C20` | is called by | `0x00312280` |
+| [`0x00234590`](../Battle-Actions/quickenings-and-summons.md) Battle system: run field frame orchestrator (on quickenings and summons) | calls | [`0x00319600`](../Rewards-EXP-Gil-And-Loot/loot-pickups.md) (on loot pickups) |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00312280`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle unit: process defeat rewards and loot (on strong and weak mode) |
 
 </details>
 

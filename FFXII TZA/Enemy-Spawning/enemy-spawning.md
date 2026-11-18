@@ -39,22 +39,61 @@ lane naming a record in the live keep bank, `0xFF` for no record. `0x00236100(ma
 lane, a lane at or past the count and the `0xFF` slot. The record is [the spawn
 record](spawn-record-fields.md); its back-pointer is unit `+0x6A0`.
 
-Verb `0x3016` `btlAtelSetTotalEntryNumber` (`0x00510620`) resolves its scope-3 operand to a pointer
+Verb `0x3016` `btlAtelSetTotalEntryNumber`¹ resolves its scope-3 operand to a pointer
 into the script's data area and jumps to `0x0023A2E0(actor, map)`, which stores the map at unit
 `+0x40` and, for every mapped record with flags `& 5 == 0` (neither retired nor released), writes
 `+0x16` = `0xFF`, clears flag bits `0x1`, `0x4` and `0x80`, zeroes `+0x78`-`+0x7C` and restores the persistence
 key `+0x17` from `+0x18`.
 
-The store (`0x0023A2FD`) comes before the walk, and the walk reads the map back through `+0x40` for every lane and for
-the count (`0x0023A313`, `0x0023A369`-`0x0023A373`), so the records reset are the ones the new map names, and a record that
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00510620` |
+
+</details>
+
+The store¹ comes before the walk, and the walk reads the map back through `+0x40` for every lane and for
+the count², so the records reset are the ones the new map names, and a record that
 only the old map named is left as it is.
 
-`0x0023A2E0` does nothing when `0x0031B760` finds no battle unit for the actor (`0x0023A2F4`). It reads the map's
-count byte with no null test (`0x0023A304`), and the walk runs the lanes 0 to count - 1 (`0x0023A36D`-`0x0023A379`).
+<details>
+<summary>Where in the code</summary>
 
-Verb `0x3018` `btlAtelSetEntryStruct` (`0x005106D0`) resolves its operand the same way and jumps to
+| | Code |
+|---|---|
+| ¹ | `0x0023A2FD` |
+| ² | `0x0023A313`, `0x0023A369`-`0x0023A373` |
+
+</details>
+
+`0x0023A2E0` does nothing when `0x0031B760` finds no battle unit for the actor¹. It reads the map's
+count byte with no null test², and the walk runs the lanes 0 to count - 1³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023A2F4` |
+| ² | `0x0023A304` |
+| ³ | `0x0023A36D`-`0x0023A379` |
+
+</details>
+
+Verb `0x3018` `btlAtelSetEntryStruct`¹ resolves its operand the same way and jumps to
 `0x002395A0(table)`, which rolls each uncommitted record's death limit and cooldown from the table's
 rows and writes its persistence key ([enemy respawning](enemy-respawning.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005106D0` |
+
+</details>
 
 ### The tunables and their script defaults
 
@@ -70,11 +109,20 @@ Seven globals steer placement. All are BSS, zero at load, and installed at run t
 | `0x0208D458` | active cap (u8, read signed) | `0x002342F0`: 28 at every area entry while the battle system's up flag `0x02089300` is non-zero (`0x002342F4`, `0x0023433C`); verb `0x304E` (`0x00510320`) | `0x00235720`, `0x00510360` (verb `0x304F`) |
 | `0x0208936C` | return window, seconds (i32) | `0x002368D0`: 300; `0x00235340` (verb `0x306C`, negative restores 300) | `0x00233780`, `0x00235330` (verb handler `0x00510810`) |
 
-`0x0023A520` is nine instructions (`0x0023A520`-`0x0023A561`): the three floats from `0x009146EC`,
+`0x0023A520` is nine instructions¹: the three floats from `0x009146EC`,
 `0x009146F0` and `0x009146F4`, the arc and the attempt byte. Its only entry is the jump at `0x00510710`,
-the handler of verb `0x3053` `btlAtelSetupActorStart`. Verb `0x300B` `btlAtelSetSpawnDistance`
-(`0x0050F410`) pops three floats and tail-jumps `0x0023A1D0(retire, max, min)`, which stores them at
+the handler of verb `0x3053` `btlAtelSetupActorStart`. Verb `0x300B` `btlAtelSetSpawnDistance`² pops three floats and tail-jumps `0x0023A1D0(retire, max, min)`, which stores them at
 `0x02089368`, `0x02089364` and `0x02089360`, so in a script the arguments read `(min, max, retire)`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023A520`-`0x0023A561` |
+| ² | `0x0050F410` |
+
+</details>
 
 `0x00308D90` counts, over the `0x00236850()` battle-unit slots through `0x00236820`, the units whose flag
 word has bit `0x200000`, the bit the bind sets; verb `0x3050` returns
@@ -86,60 +134,81 @@ retire fires for every monster on its first frame. The
 shipped scripts never get there (Shipped data).
 
 Bit `0x4` of manager 0's flags byte `0x02098E20` is the field-initialised bit ([actor
-managers](../Characters-And-Objects/actor-managers.md)). The bind clears it (`0x0026CD3F`) and `0x002620E0` sets it (`0x002621A4`)
+managers](../Characters-And-Objects/actor-managers.md)). The bind clears it¹ and `0x002620E0` sets it²
 in the pass `0x0025D9E0`: when the payload names a designated record (i16 `+0x50` not negative), in the pass whose drive
-of that record leaves its `+0x14` bit `0x40` set (`0x0025DB4C`-`0x0025DB7D`); otherwise in the first pass that reaches the
-main work, before any record is driven (`0x0025DC27`).
+of that record leaves its `+0x14` bit `0x40` set³; otherwise in the first pass that reaches the
+main work, before any record is driven⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026CD3F` |
+| ² | `0x002621A4` |
+| ³ | `0x0025DB4C`-`0x0025DB7D` |
+| ⁴ | `0x0025DC27` |
+
+</details>
 
 From the area entry's cap reset until the setup's writes in that pass, the six placement globals hold the cap 28 with
 the previous zone's arc, attempts and three floats.
 
 ### Automatic placement
 
-Verb `0x301A` `btlAtelDecideEntryPointAuto` (`0x0050F520`) calls `0x00235720(actor)` and pushes its
+Verb `0x301A` `btlAtelDecideEntryPointAuto`¹ calls `0x00235720(actor)` and pushes its
 result: the winning lane, or -1. The selector:
 
-1. returns -1 when `0x00308D90()` is at or above the signed cap byte `0x0208D458` (`0x00235753`-`0x00235763`), or the unit
-   `0x0031B760(actor)`, its candidate table `[unit + 0x38]` or its lane map `[unit + 0x40]` is null
-   (`0x00235776`-`0x002357A5`);
-2. computes `seconds = counter / (int)(30.0 * [0x01DFE0B8])` from `0x0032A150` (`0x002357D9`-`0x002357F9`);
-3. walks lanes 1 to `table[0] - 1`, the candidate table's count word (`0x00235802`-`0x00235807`, `0x002359C4`-`0x002359D9`;
-   lane 0 is never offered; a lane past the map's count, with map byte `0xFF` or record address 0 is skipped,
-   `0x00235850`-`0x0023589B`). A lane is skipped when its record:
-   - has died out (`+0x0A` non-zero and `+0x08 >= +0x0A`, `0x002358A1`-`0x002358B0`), or
-   - is committed and not retired (flag bit `0x2` set, bit `0x1` clear) with a non-zero cooldown `+0x10` and
-     `seconds - +0x0C < +0x10` unsigned (`0x002358B6`-`0x002358D7`);
-4. sets the minimum distance to `0x02089360` when the unit's flag word has bit `0x200000000000` or bit `0x2000000000000`
-   (`test qword ptr [rsi], r10` with `0x0002200000000000`, `0x002358EB`-`0x002358F5`), else 0.0;
-5. for each candidate id of the lane (`0x002358DD`-`0x002358E8`, `0x002358FD`-`0x002359A5`; the table's words from
-   `table[1 + lane]` to `table[2 + lane] - 1`, a short; an id of `0x00FF` is skipped, `0x00235919`-`0x00235925`, and a -1
-   makes `0x003DFD00` read the slot before the first record, `0x003DFD33`, `0x003DFD69`), tries
-   `0x00234AF0(id, &pos, minR, 0x02089364, &observed, 0)` (`0x00235950`) for attempts `0` to `n - 1`, `n` = `0x0208D457` read
-   signed;
-6. an attempt is accepted when the call returns non-zero and `observed` is below `0x02F973B8` (the
-   shared maximum squared distance, `+INF` from `0x002368D0`) or unordered with it (`comiss`, `jb`,
-   `0x0023595F`-`0x00235962`). Area mode never writes `observed` (`0x00234C43`-`0x00234CF2`), so its attempts test
-   the stack slot `rsp + 0x34` (`0x00235959`), which only an earlier point-mode attempt of the same run writes
-   (`0x00234DA0`, `0x00234E7D`);
-7. a candidate records the lane, the lane's record and the position when its attempt counter
-   is not `n` at the end of its attempts (`0x0023597A`-`0x00235990`): with `n` of 1 or more that
-   is an accepted attempt. Both loops run on, so the last accepted candidate of the highest
-   accepting lane wins. A negative `n` runs no attempt and still records the lane, and `n` = 0
-   records no lane (`0x00235929`-`0x0023592B`);
-8. on a win (a lane and a record, `0x002359FF`-`0x00235A06`) it stores the position at the record's `+0x60` and `+0x50` as
-   whole 16-byte moves (`0x00235A08`, `0x00235A0F`), sets unit flag bit `0x4000000` (`0x00235A14`) and returns the lane;
-   otherwise it returns -1 (`0x00235A1D`). After a negative `n` that position is the stack slot the attempts fill, which
-   no attempt of this candidate wrote (`0x00235981`).
+<details>
+<summary>Where in the code</summary>
 
-Bit `0x2000000000000` is set once per unit by the activation `0x00233AD0` (`0x00233B8C`). The unit reset `0x00236A60`
+| | Code |
+|---|---|
+| ¹ | `0x0050F520` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | returns -1 when `0x00308D90()` is at or above the signed cap byte `0x0208D458`, or the unit `0x0031B760(actor)`, its candidate table `[unit + 0x38]` or its lane map `[unit + 0x40]` is null; | `0x00235753`-`0x00235763`<br>`0x00235776`-`0x002357A5` |
+| 2 | computes `seconds = counter / (int)(30.0 * [0x01DFE0B8])` from `0x0032A150`; | `0x002357D9`-`0x002357F9` |
+| 3 | walks lanes 1 to `table[0] - 1`, the candidate table's count word (`0x00235802`-`0x00235807`, `0x002359C4`-`0x002359D9`; lane 0 is never offered; a lane past the map's count, with map byte `0xFF` or record address 0 is skipped, `0x00235850`-`0x0023589B`). A lane is skipped when its record:<br>• has died out (`+0x0A` non-zero and `+0x08 >= +0x0A`, `0x002358A1`-`0x002358B0`), or<br>• is committed and not retired (flag bit `0x2` set, bit `0x1` clear) with a non-zero cooldown `+0x10` and `seconds - +0x0C < +0x10` unsigned; | `0x002358B6`-`0x002358D7` |
+| 4 | sets the minimum distance to `0x02089360` when the unit's flag word has bit `0x200000000000` or bit `0x2000000000000` (`test qword ptr [rsi], r10` with `0x0002200000000000`, `0x002358EB`-`0x002358F5`), else 0.0; |   |
+| 5 | for each candidate id of the lane (`0x002358DD`-`0x002358E8`, `0x002358FD`-`0x002359A5`; the table's words from `table[1 + lane]` to `table[2 + lane] - 1`, a short; an id of `0x00FF` is skipped, `0x00235919`-`0x00235925`, and a -1 makes `0x003DFD00` read the slot before the first record, `0x003DFD33`, `0x003DFD69`), tries `0x00234AF0(id, &pos, minR, 0x02089364, &observed, 0)` for attempts `0` to `n - 1`, `n` = `0x0208D457` read signed; | `0x00235950` |
+| 6 | an attempt is accepted when the call returns non-zero and `observed` is below `0x02F973B8` (the shared maximum squared distance, `+INF` from `0x002368D0`) or unordered with it (`comiss`, `jb`, `0x0023595F`-`0x00235962`). Area mode never writes `observed`, so its attempts test the stack slot `rsp + 0x34`, which only an earlier point-mode attempt of the same run writes; | `0x00234C43`-`0x00234CF2`<br>`0x00235959`<br>`0x00234DA0`, `0x00234E7D` |
+| 7 | a candidate records the lane, the lane's record and the position when its attempt counter is not `n` at the end of its attempts: with `n` of 1 or more that is an accepted attempt. Both loops run on, so the last accepted candidate of the highest accepting lane wins. A negative `n` runs no attempt and still records the lane, and `n` = 0 records no lane; | `0x0023597A`-`0x00235990`<br>`0x00235929`-`0x0023592B` |
+| 8 | on a win (a lane and a record, `0x002359FF`-`0x00235A06`) it stores the position at the record's `+0x60` and `+0x50` as whole 16-byte moves, sets unit flag bit `0x4000000` and returns the lane; otherwise it returns -1. After a negative `n` that position is the stack slot the attempts fill, which no attempt of this candidate wrote. | `0x00235A08`, `0x00235A0F`<br>`0x00235A14`<br>`0x00235A1D`<br>`0x00235981` |
+
+Bit `0x2000000000000` is set once per unit by the activation `0x00233AD0`¹. The unit reset `0x00236A60`
 keeps it (mask `0xFFFF7FFDFFE7FFFD`, [battle units](../Characters-And-Objects/battle-units.md)), but the slot release
-`0x00234200` zeroes the whole `0xF50`-byte unit (`0x002342C3`-`0x002342D3`), and the acquire `0x00234480` zeroes the unit
-it takes before it sets bit `0x1` (`0x002344C7`-`0x002344D7`). The actor teardown `0x0025B070` releases the unit at
-`+0x30` of each record whose byte `+0x14` is at least `0x80` (`0x0025B205`-`0x0025B225`).
+`0x00234200` zeroes the whole `0xF50`-byte unit², and the acquire `0x00234480` zeroes the unit
+it takes before it sets bit `0x1`³. The actor teardown `0x0025B070` releases the unit at
+`+0x30` of each record whose byte `+0x14` is at least `0x80`⁴.
 
-Bit `0x200000000000` is set by verb `0x304D` `btlAtelCanselInitialSpawnFlag` (`0x005102D0`), which the zone scripts
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233B8C` |
+| ² | `0x002342C3`-`0x002342D3` |
+| ³ | `0x002344C7`-`0x002344D7` |
+| ⁴ | `0x0025B205`-`0x0025B225` |
+
+</details>
+
+Bit `0x200000000000` is set by verb `0x304D` `btlAtelCanselInitialSpawnFlag`¹, which the zone scripts
 call on the fresh-placement branch. So the minimum applies to a unit that has been activated since it was taken,
 or that the script declared not an arrival placement.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005102D0` |
+
+</details>
 
 ### Generating a candidate
 
@@ -151,20 +220,40 @@ further test, so a 0 return can leave that point in the caller's buffer (the sel
 
 It needs the
 party leader (`0x003272A0`: the focus handle's unit, with `0x02089340` bit `0x10` set and the unit's flag
-bit `0x8`), takes the leader's position (`0x00265020`) and heading (`0x00265200`), and branches on the
+bit `0x8`), takes the leader's position¹ and heading², and branches on the
 record's first byte:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265020` |
+| ² | `0x00265200` |
+
+</details>
 
 - byte 0: point mode. The authored point stands. `0x0031AC90` gives the heading from the leader to
   the point (`atan2(dx, dz)`, or the leader's heading when the two coincide), `0x0031A930` the
   absolute wrapped difference, and the point passes the arc when that is at most
-  `(arcDeg / 2) * 2pi / 360` with an integer halving (`0x00234BF8`-`0x00234C2B`); then
+  `(arcDeg / 2) * 2pi / 360` with an integer halving¹; then
   `0x00234DA0(out, &minR^2, &maxR^2, outObserved, allSlots)` decides;
 - any other byte: area mode. Two draws of `0x00328370`: `r = (draw % (int)((maxR - minR) * 100)) / 100 +
   minR`, quantised to a hundredth, and `theta = wrap(heading + ((draw % arcDeg) - arcDeg / 2) *
-  2pi / 360)` (`0x00316DA0`);
+  2pi / 360)`²;
 - `0x00319390` then builds `leader + (r * sin(theta), ?, r * cos(theta))` through the 32,768-entry
   sine table at `0x01F004E0` (`cos = sin[(0x2000 - i) & 0x7FFF]`), writing x and z only. The point
   is accepted when `0x002374E0` places it inside the record's region; no distance test runs.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234BF8`-`0x00234C2B` |
+| ² | `0x00316DA0` |
+
+</details>
 
 `0x002374E0(point, rec)` transforms the point into the record's frame (`0x00325EA0`, centre `+0x10`,
 heading `+0x1C`) and accepts a type-1 record when `|x| <= w/2` and `|z| <= d/2` (`w` at `+4`, `d` at
@@ -174,35 +263,97 @@ draws nothing. Neither divisor is tested: a band under a hundredth wide, or an a
 by zero.
 
 The y written in area mode is whatever the stack slot at `rsp + 0x54` held: `0x00319390` never
-writes `[rdx + 4]` and `0x00234AF0` copies the slot into `out.y` (`0x00234CDD`, `0x00234CF2`). It rides
+writes `[rdx + 4]` and `0x00234AF0` copies the slot into `out.y`¹. It rides
 along to the record and is replaced at activation (the height section).
 
-`0x00234AF0` returns 0 without a leader (`0x00234B8E`). Point mode returns 0 when the arc test fails (`0x00234C1A`)
-and otherwise what `0x00234DA0` returns (`0x00234C3C`); area mode returns 1 only when `0x002374E0` accepts the point,
-after copying it into `out` (`0x00234CD2`-`0x00234CF2`), and 0 otherwise.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234CDD`, `0x00234CF2` |
+
+</details>
+
+`0x00234AF0` returns 0 without a leader¹. Point mode returns 0 when the arc test fails²
+and otherwise what `0x00234DA0` returns³; area mode returns 1 only when `0x002374E0` accepts the point,
+after copying it into `out`⁴, and 0 otherwise.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234B8E` |
+| ² | `0x00234C1A` |
+| ³ | `0x00234C3C` |
+| ⁴ | `0x00234CD2`-`0x00234CF2` |
+
+</details>
 
 `0x00319390(v, out, origin, angle)` takes `t = angle / 2pi`, `s = sin[(int)(t * 32768) & 0x7FFF]` and
-`c = sin[(0x2000 - (int)(t * -32768)) & 0x7FFF]` (`0x00319390`-`0x003193F4`), then writes
-`out.x = origin.x + v.x * c + v.z * s` and `out.z = origin.z + v.z * c - v.x * s` (`0x003193FA`-`0x00319415`).
-It reads only `v.x` and `v.z` and writes only `out.x` and `out.z`. Area mode passes `v = (0, 0, r)`
-(`0x00234CA4`-`0x00234CAE`), which gives the `leader + (r * s, ?, r * c)` above.
+`c = sin[(0x2000 - (int)(t * -32768)) & 0x7FFF]`¹, then writes
+`out.x = origin.x + v.x * c + v.z * s` and `out.z = origin.z + v.z * c - v.x * s`².
+It reads only `v.x` and `v.z` and writes only `out.x` and `out.z`. Area mode passes `v = (0, 0, r)`³, which gives the `leader + (r * s, ?, r * c)` above.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00319390`-`0x003193F4` |
+| ² | `0x003193FA`-`0x00319415` |
+| ³ | `0x00234CA4`-`0x00234CAE` |
+
+</details>
 
 ### The distance test
 
 `0x00234DA0(cand, minD2, maxD2, outObserved, allSlots)` walks party slots 0-3 through `0x0031B810`
 (the unit of the party-record byte at `[0x02EBF190] + 0x5A5A + 2 * i`, when `0x00322C50(0x17, i)` allows
 the slot). A slot counts when it has a stats record whose status words `+0x64 | +0x3C` have none of
-`0x80000003`, or the field waives that (`0x00377C20`), and, with `allSlots` = 0, when its handle
+`0x80000003`, or the field waives that¹, and, with `allSlots` = 0, when its handle
 `+0x08` is the party focus (`0x003273B0` against `0x003590D0()`).
 
-For each counted slot it measures the squared planar distance `(dx^2 + dz^2)` (`0x003A1960`) and returns 0 at once
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00377C20` |
+
+</details>
+
+For each counted slot it measures the squared planar distance `(dx^2 + dz^2)`¹ and returns 0 at once
 when a bound is given and violated (`d2 < min` or `d2 > max`); it publishes `d2` to `outObserved` for the
 focus slot and returns 1 only when at least one slot was counted. No counted slot is a rejection.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A1960` |
+
+</details>
+
 The two bounds and `outObserved` are pointers, the point mode of `0x00234AF0` passing the squares from stack
-slots (`0x00234BDB`-`0x00234C2F`): a null bound is skipped (`0x00234E52`, `0x00234E61`) and a null
-`outObserved` is not written (`0x00234E6C`). A NaN distance passes both bounds, since each `comiss` rejects only
-on `ja` (`0x00234E5F`, `0x00234E6A`). The focus test for `outObserved` runs whatever `allSlots` is (`0x00234E71`).
+slots¹: a null bound is skipped² and a null
+`outObserved` is not written³. A NaN distance passes both bounds, since each `comiss` rejects only
+on `ja`⁴. The focus test for `outObserved` runs whatever `allSlots` is⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234BDB`-`0x00234C2F` |
+| ² | `0x00234E52`, `0x00234E61` |
+| ³ | `0x00234E6C` |
+| ⁴ | `0x00234E5F`, `0x00234E6A` |
+| ⁵ | `0x00234E71` |
+
+</details>
 
 The spawn path passes `allSlots` = 0, so exactly one character is measured: the one the player is
 steering. `0x00308040` is the other caller, with `allSlots` = 1 and a minimum only.
@@ -210,23 +361,57 @@ steering. `0x00308040` is the other caller, with `allSlots` = 1 and a minimum on
 ### Bringing a banked monster back
 
 Two selectors look for a record the keep banks preserved. Each returns -1 when `0x0031B760` finds no unit or
-the unit's lane map is null (`0x002354FF`, `0x00235510`, `0x0023537E`, `0x0023538C`). Only `0x002354F0` sets unit flag
-bit `0x4000000` on success (`0x0023557E`); `0x00235360` writes nothing to the unit (`0x00235460`-`0x002354E1`), and
+the unit's lane map is null¹. Only `0x002354F0` sets unit flag
+bit `0x4000000` on success²; `0x00235360` writes nothing to the unit³, and
 takes the first mapped lane with a match and, within it, the first matching history record in bank order:
 
-- verb `0x304B` `btlAtelDecideEntryGroupByPreviousMap` (`0x00510230`) calls `0x002354F0`, which walks
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002354FF`, `0x00235510`, `0x0023537E`, `0x0023538C` |
+| ² | `0x0023557E` |
+| ³ | `0x00235460`-`0x002354E1` |
+
+</details>
+
+- verb `0x304B` `btlAtelDecideEntryGroupByPreviousMap`¹ calls `0x002354F0`, which walks
   the lane map from lane 0 and returns the first lane whose record has flag bit `0x4` (released), or -1;
-- verb `0x305F` `btlAtelDecideEntryGroupByContinuous` (`0x00510260`) calls `0x00235360`, which, for each
+- verb `0x305F` `btlAtelDecideEntryGroupByContinuous`² calls `0x00235360`, which, for each
   mapped record with a non-zero key `+0x17`, scans the 64 history-bank records for one with flag bit
   `0x2` set, bit `0x1` or `0x4` set and the same key, and copies that whole `0x250`-byte record over the live
-  one (`0x00235460`-`0x002354DD`), returning the lane; -1 when the history bank is null or nothing
+  one³, returning the lane; -1 when the history bank is null or nothing
   matches.
 
-Verb `0x303C` `btlAtelSetEntryPositionForce` (`0x0050FCB0`) pops two floats and jumps to
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00510230` |
+| ² | `0x00510260` |
+| ³ | `0x00235460`-`0x002354DD` |
+
+</details>
+
+Verb `0x303C` `btlAtelSetEntryPositionForce`¹ pops two floats and jumps to
 `0x00239410(actor, z, x)`, which writes `{x, 0, z, -}` to the unit's own record (lane `+0x57`) at
 `+0x50` and `+0x60` and sets bit `0x4000000`; it returns -1 on a bad lane. It also returns -1 when the actor
-has no battle unit (`0x0023942F`), and 0 after the writes (`0x0023947D`); the bit is set before the two 16-byte
-stores (`0x0023946D`-`0x00239494`).
+has no battle unit², and 0 after the writes³; the bit is set before the two 16-byte
+stores⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0050FCB0` |
+| ² | `0x0023942F` |
+| ³ | `0x0023947D` |
+| ⁴ | `0x0023946D`-`0x00239494` |
+
+</details>
 
 ### Binding and the unit's own candidate
 
@@ -234,19 +419,47 @@ Verb `0x305C` `btlAtelSetKeepWorkGroup(selection, lane)` (`0x005103F0`; the firs
 script argument) jumps to `0x00239840(actor, lane, selection)`. With a negative lane it uses the
 selection as the lane. It writes the lane to unit `+0x57`, the selection
 (or -1 for a negative lane) to the record's `+0x16`, clears flag bits `0x1` and `0x4` when the selection
-changed (`0x002398C2`), restores `+0x17` from `+0x18` on a fresh record and sets unit flag bit `0x200000`, the
+changed¹, restores `+0x17` from `+0x18` on a fresh record and sets unit flag bit `0x200000`, the
 bit the active cap counts.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002398C2` |
+
+</details>
+
 `0x00239840` writes nothing when the actor has no battle unit, the lane map is null, the lane used is negative
-or past the map's count, its slot byte is `0xFF` or the record address is 0 (`0x00239867`-`0x002398A3`). The
-fresh test reads the flags after the clear (`0x002398C5`), so a changed selection always restores `+0x17`.
+or past the map's count, its slot byte is `0xFF` or the record address is 0¹. The
+fresh test reads the flags after the clear², so a changed selection always restores `+0x17`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00239867`-`0x002398A3` |
+| ² | `0x002398C5` |
+
+</details>
 
 Verb `btlAtelSetUnit(id)` (`0x00510160`, one pop) applies a definition: `0x0023A3B0(actor, id)` first
 runs `0x002355A0`, then `0x0023A570(unit, id | 0x100)`, or `0xFFFF` for an id of `0xFF` ([battle unit
-construction](../Characters-And-Objects/battle-unit-construction.md)); for an actor without a battle unit
-(`0x0031B760`) it does neither and returns (`0x0023A3C4`-`0x0023A3CF`), and the result of `0x002355A0` is not used
-(`0x0023A3D4`-`0x0023A3D9`). When `0x00237650(actor)` is then
+construction](../Characters-And-Objects/battle-unit-construction.md)); for an actor without a battle unit¹ it does neither and returns², and the result of `0x002355A0` is not used³. When `0x00237650(actor)` is then
 non-zero the handler runs `0x0037CF50(context, actor, -1)`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B760` |
+| ² | `0x0023A3C4`-`0x0023A3CF` |
+| ³ | `0x0023A3D4`-`0x0023A3D9` |
+
+</details>
 
 `0x002355A0` returns 1 at once when bit `0x4000000`
 is already set, and 0 when the unit's lane `+0x57` is not below the candidate table's count word,
@@ -262,74 +475,211 @@ id of that lane with `0x00328370` and generates a position with `0x00236450(id, 
 the offset is rotated into the record's frame by `0x00319390` with the record's heading. On success
 the position is stored at `+0x50` and `+0x60` and bit `0x4000000` set.
 
-Each `%` of those formulas is a signed `idiv` (`0x0023653C`, `0x0023657C`, `0x0023659E`, `0x002365C0`), and no instruction of
+Each `%` of those formulas is a signed `idiv`¹, and no instruction of
 `0x00236450` tests its divisor first. For x, and for a type-1 z, the divisor is `(int)(h * 100)` with `h` the half
 extent: it is 0 exactly when the single-precision product `h * 100` lies strictly between -1 and 1. For a type-2 z it
-is `(int)(r * 100)` with `r` the square root above (`0x0023656E`-`0x00236572`), 0 under the same condition on `r * 100`,
+is `(int)(r * 100)` with `r` the square root above², 0 under the same condition on `r * 100`,
 whatever the two half extents are. An `idiv` by 0 faults.
 
-`0x002355A0` also returns 0 when the actor has no battle unit (`0x002355D1`), the candidate table pointer is
-null (`0x00235613`), the lane does not resolve through the lane map (`0x0023562F`-`0x00235676`), or `0x00236450`
-returns 0 (`0x002356C9`). The range is `table[2 + lane] - table[1 + lane]` and the id the signed word at
-`table[table[1 + lane] + draw % range]` (`0x0023568C`-`0x002356B5`). On success it returns 1 (`0x002356D0`).
+<details>
+<summary>Where in the code</summary>
 
-`0x00236450` zeroes `out.x`, `out.y` and `out.z` first (`0x00236475`-`0x00236479`) and returns 0 when the record fetch
-`0x003209C0(id, &record)` fails (`0x0023647F`-`0x00236486`) or the type byte, read signed, is not 0, 1 or 2
-(`0x002364BD`-`0x002364DB`). Types 1 and 2 draw four times (`0x00236513`-`0x0023660E`); `z` for type 2 is
-`(draw % (int)(sqrt(...) * 100)) / 100` (`0x00236569`-`0x0023657C`).
+| | Code |
+|---|---|
+| ¹ | `0x0023653C`, `0x0023657C`, `0x0023659E`, `0x002365C0` |
+| ² | `0x0023656E`-`0x00236572` |
+
+</details>
+
+`0x002355A0` also returns 0 when the actor has no battle unit¹, the candidate table pointer is
+null², the lane does not resolve through the lane map³, or `0x00236450`
+returns 0⁴. The range is `table[2 + lane] - table[1 + lane]` and the id the signed word at
+`table[table[1 + lane] + draw % range]`⁵. On success it returns 1⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002355D1` |
+| ² | `0x00235613` |
+| ³ | `0x0023562F`-`0x00235676` |
+| ⁴ | `0x002356C9` |
+| ⁵ | `0x0023568C`-`0x002356B5` |
+| ⁶ | `0x002356D0` |
+
+</details>
+
+`0x00236450` zeroes `out.x`, `out.y` and `out.z` first¹ and returns 0 when the record fetch
+`0x003209C0(id, &record)` fails² or the type byte, read signed, is not 0, 1 or 2³. Types 1 and 2 draw four times⁴; `z` for type 2 is
+`(draw % (int)(sqrt(...) * 100)) / 100`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236475`-`0x00236479` |
+| ² | `0x0023647F`-`0x00236486` |
+| ³ | `0x002364BD`-`0x002364DB` |
+| ⁴ | `0x00236513`-`0x0023660E` |
+| ⁵ | `0x00236569`-`0x0023657C` |
+
+</details>
 
 The offset `(x, ?, z)` goes to `0x00319390` with the record's point `+0x10` as the origin and its heading
-`+0x1C` (`0x002365C2`-`0x00236634`). That writes only `out.x` and `out.z`, so a type-1 or type-2 position
-has y 0; type 0 copies the point's x, y and z (`0x00236643`-`0x00236660`). The 16-byte stores of `0x002355A0`
-carry `pos` from a stack buffer whose first 12 bytes it zeroes (`0x002355B5`-`0x002355BE`); its fourth dword
-is whatever the stack slot `rsp + 0x2C` held (`0x002356CB`-`0x002356DE`).
+`+0x1C`¹. That writes only `out.x` and `out.z`, so a type-1 or type-2 position
+has y 0; type 0 copies the point's x, y and z². The 16-byte stores of `0x002355A0`
+carry `pos` from a stack buffer whose first 12 bytes it zeroes³; its fourth dword
+is whatever the stack slot `rsp + 0x2C` held⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002365C2`-`0x00236634` |
+| ² | `0x00236643`-`0x00236660` |
+| ³ | `0x002355B5`-`0x002355BE` |
+| ⁴ | `0x002356CB`-`0x002356DE` |
+
+</details>
 
 ### Activation and the height
 
 `0x00233AD0(actor)` runs the applied definition: for an active unit (flag bit `0x4`) it posts `0x2001`
-(`0x003299B0(unit, 0x2001, 0)`) in a town, when the town flag `0x00313F60()` is non-zero (`0x00233B0D`-`0x00233B21`),
-refreshes the actor (`0x00238BF0`), and returns early only when the definition is
+(`0x003299B0(unit, 0x2001, 0)`) in a town, when the town flag `0x00313F60()` is non-zero¹,
+refreshes the actor², and returns early only when the definition is
 already applied (bit `0x8`, `0x00233B3A`) and `0x0037C8C0(actor)` is 0. When `0x0031B760(actor)` gives no unit it
-returns at once (`0x00233AE8`).
+returns at once³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233B0D`-`0x00233B21` |
+| ² | `0x00238BF0` |
+| ³ | `0x00233AE8` |
+
+</details>
 
 Otherwise it runs `0x00324450(unit)`,
-sets bit `0x8`, runs `0x00239E10`, then `0x002FED60` or `0x002FEDC0(unit, 1)` by `0x00308010(unit, 1)`
-(`0x00233B56`-`0x00233B7F`), sets bit `0x2000000000000`, sets the record's flag bit `0x2` for a kind-1 unit
-(`0x00233BA8`), and publishes the position (`0x00311F70(0, unit, 1)`) when bit `0x4000000` is clear, the status
+sets bit `0x8`, runs `0x00239E10`, then `0x002FED60` or `0x002FEDC0(unit, 1)` by `0x00308010(unit, 1)`¹, sets bit `0x2000000000000`, sets the record's flag bit `0x2` for a kind-1 unit², and publishes the position (`0x00311F70(0, unit, 1)`) when bit `0x4000000` is clear, the status
 gate passes and `0x003278C0()` is 0. For an inactive unit it clears bit `0x4000000`.
 
-The record is `[unit + 0x6A0]`, and a kind-1 unit is one whose stats record `[unit + 0x698]` has byte `+5` = 1
-(`0x00233B8F`-`0x00233BA8`). The status gate needs a stats record and, when its words `+0x64` or `+0x3C` carry a
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233B56`-`0x00233B7F` |
+| ² | `0x00233BA8` |
+
+</details>
+
+The record is `[unit + 0x6A0]`, and a kind-1 unit is one whose stats record `[unit + 0x698]` has byte `+5` = 1¹. The status gate needs a stats record and, when its words `+0x64` or `+0x3C` carry a
 bit of `0x80000003`, a town (`0x00313F60()` non-zero, `0x00233BAB`-`0x00233BCB`). Every active path past the early
-return ends with `0x00312700(unit)` and `0x00386C10([unit + 0x698])` (`0x00233BED`-`0x00233BFC`); an inactive unit
-runs `0x00312700(unit)` before bit `0x4000000` is cleared (`0x00233AF6`-`0x00233AFB`) and returns.
+return ends with `0x00312700(unit)` and `0x00386C10([unit + 0x698])`²; an inactive unit
+runs `0x00312700(unit)` before bit `0x4000000` is cleared³ and returns.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233B8F`-`0x00233BA8` |
+| ² | `0x00233BED`-`0x00233BFC` |
+| ³ | `0x00233AF6`-`0x00233AFB` |
+
+</details>
 
 Three of the functions `0x00233AD0` uses are small. `0x0037C8C0(actor)` answers the actor's byte `+0x23`, or 0 for a null
-actor (`0x0037C8C0`-`0x0037C8CA`). `0x00324450(unit)` calls `0x003243F0(unit)` and then clears bit `0x40` of the unit's first
-dword, both only when that bit is set (`0x00324456`-`0x00324463`).
+actor¹. `0x00324450(unit)` calls `0x003243F0(unit)` and then clears bit `0x40` of the unit's first
+dword, both only when that bit is set².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037C8C0`-`0x0037C8CA` |
+| ² | `0x00324456`-`0x00324463` |
+
+</details>
 
 `0x002FED60(unit, flag)` sets bit `0x800000` of the unit's first dword, stores a dword 0 at `+0xDCC` and stores at the
 qword `+0x6E8` the address of the set `0x01EEC3C0` for stats kind 0 and of `0x01EEC410` for any other kind or no stats
-record (`0x002FED60`-`0x002FED9E`). With `flag` not 0 it ends in a jump to `0x002ECF10(actor, 1, 0)`, the actor being the
-unit's `+0x10`; with `flag` 0 it returns after that store (`0x002FEDA5`-`0x002FEDB9`).
+record¹. With `flag` not 0 it ends in a jump to `0x002ECF10(actor, 1, 0)`, the actor being the
+unit's `+0x10`; with `flag` 0 it returns after that store².
 
-`0x00239E10` loads twelve unit parameters through `0x003204D0` (`0x00239E78`-`0x00239F5B`), ten of them into fields
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FED60`-`0x002FED9E` |
+| ² | `0x002FEDA5`-`0x002FEDB9` |
+
+</details>
+
+`0x00239E10` loads twelve unit parameters through `0x003204D0`¹, ten of them into fields
 between `+0x164` and `+0x1B0` and numbers 24 and 26 into locals the later writes use, with alternate parameter
 numbers for a kind-1 unit whose definition byte `+0x13` is not `0xFF`:
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00239E78`-`0x00239F5B` |
+
+</details>
+
 - `+0x180` from parameter 1 (8 in the alternate set), `+0x178` from 0 (7), `+0x16C` from 3 (10) and `+0x184`
-  from 2 (9) (`0x00239E64`-`0x00239ECF`);
+  from 2 (9)¹;
 - `+0x164` from 4, `+0x168` from 5, `+0x170` from 25, `+0x198` from 27, `+0x1B0` from 31 and `+0x1AC` from
-  32 in either set (`0x00239ED4`-`0x00239F5B`).
+  32 in either set².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00239E64`-`0x00239ECF` |
+| ² | `0x00239ED4`-`0x00239F5B` |
+
+</details>
 
 It also writes
-`+0x1F0` bit `0x4`, `+0x1F5`, `+0x17C`, `+0x150`, `+0x19C` and `+0x1F4`, pushes `+0x184` into the render record
-(`0x002E86B0`), and ends with the battle-unit refresh `0x00236300`:
+`+0x1F0` bit `0x4`, `+0x1F5`, `+0x17C`, `+0x150`, `+0x19C` and `+0x1F4`, pushes `+0x184` into the render record¹, and ends with the battle-unit refresh `0x00236300`:
 
-- `+0x17C` = `+0x180` (`0x00239F6B`); `+0x1F0` bit `0x4` set when parameter 24 is non-zero and cleared when it is
-  0 (`0x00239F71`-`0x00239F7C`); `+0x1F5` = the low byte of parameter 26 (`0x00239F88`);
-- `+0x150` = `2 * +0x17C`, `+0x19C` = 0.08 (`0x3DA3D70A`) and `+0x1F4` = 1, or 2 for a kind-1 stats record,
-  or 3 for one whose height byte has bit `0x8` (`0x00239FDA`-`0x0023A03F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E86B0` |
+
+</details>
+
+- `+0x17C` = `+0x180`¹; `+0x1F0` bit `0x4` set when parameter 24 is non-zero and cleared when it is
+  0²; `+0x1F5` = the low byte of parameter 26³;
+- `+0x150` = `2 * +0x17C`, `+0x19C` = 0.08⁴ and `+0x1F4` = 1, or 2 for a kind-1 stats record,
+  or 3 for one whose height byte has bit `0x8`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00239F6B` |
+| ² | `0x00239F71`-`0x00239F7C` |
+| ³ | `0x00239F88` |
+| ⁴ | `0x3DA3D70A` |
+| ⁵ | `0x00239FDA`-`0x0023A03F` |
+
+</details>
 
 Among those writes is the placement-height
 byte `+0x1F6`: 1 for a kind-0 stats record; for any other
@@ -338,80 +688,184 @@ kind, or no stats record, from the class row's byte `+0x18` (`[unit + 0xE68]`): 
 the probe bit it also stores `0x00236210(unit)` at `+0x188`, the vertical lift; otherwise `+0x188` = 0.
 
 `0x00236210(unit)` answers 0.0 for a null unit, a null stats record `+0x698`, a stats kind other than 1, or a class row
-whose byte `+0x18` has neither bit `0x10` nor bit `0x20` (`0x00236219`-`0x00236277`). Otherwise the lift is the float
-`0x003204D0(unit, 6, &out)` writes (`0x00236279`-`0x00236286`). It is returned as it is only when the stats record is
-non-null and of kind 1 and bit `0x10` of the byte `+0x03` of the row at the unit's `+0xE60` is set
-(`0x0023628B`-`0x002362A8`); in every other case `(draw % 50) / 100` is added, with a signed `%` and the draw from
-`0x00328370()` (`0x002362B6`-`0x002362EC`).
+whose byte `+0x18` has neither bit `0x10` nor bit `0x20`¹. Otherwise the lift is the float
+`0x003204D0(unit, 6, &out)` writes². It is returned as it is only when the stats record is
+non-null and of kind 1 and bit `0x10` of the byte `+0x03` of the row at the unit's `+0xE60` is set³; in every other case `(draw % 50) / 100` is added, with a signed `%` and the draw from
+`0x00328370()`⁴.
 
-The refresh `0x00236300(unit)`, with which `0x00239E10` ends, copies the byte `+0xEA9` to `+0x1F7` (`0x0023630A`-`0x00236314`)
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236219`-`0x00236277` |
+| ² | `0x00236279`-`0x00236286` |
+| ³ | `0x0023628B`-`0x002362A8` |
+| ⁴ | `0x002362B6`-`0x002362EC` |
+
+</details>
+
+The refresh `0x00236300(unit)`, with which `0x00239E10` ends, copies the byte `+0xEA9` to `+0x1F7`¹
 and takes three floats from the actor at `+0x10`: `0x00263CC0(actor)` into `+0x15C`, `0x00263C80(actor)` into `+0x174` and
-`0x00265200(actor)` into `+0x160` (`0x0023631A`-`0x0023634A`). It clears bit `0x40000` of the flags and stores a dword 0 at
-`+0x158` (`0x00236352`-`0x00236359`).
+`0x00265200(actor)` into `+0x160`². It clears bit `0x40000` of the flags and stores a dword 0 at
+`+0x158`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023630A`-`0x00236314` |
+| ² | `0x0023631A`-`0x0023634A` |
+| ³ | `0x00236352`-`0x00236359` |
+
+</details>
 
 It then sets bit `0x40000` again in two cases. When `0x003273B0(unit dword +0x08)` answers non-zero, the bit is set if
-`0x00265830(actor)` is not 0.0 (a value that is not a number counts as not 0.0), and `0x00311E20()` is called either way
-(`0x00236363`-`0x00236389`). When bit `0x1000` of the dword `+0x1F0` is set, the bit is set on the same test of
-`0x00265830(actor)` (`0x0023638E`-`0x002363AA`).
+`0x00265830(actor)` is not 0.0 (a value that is not a number counts as not 0.0), and `0x00311E20()` is called either way¹. When bit `0x1000` of the dword `+0x1F0` is set, the bit is set on the same test of
+`0x00265830(actor)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236363`-`0x00236389` |
+| ² | `0x0023638E`-`0x002363AA` |
+
+</details>
 
 `0x00265020(actor, unit + 0xE0, unit + 0xE4, unit + 0xE8)` then fills the position,
 `0x00265090(actor, unit + 0x18C, unit + 0x190)` is given two floats to fill, `0x00264670(actor)` gives the float `+0x194`
-and `0x00233A20(unit)` the float `+0x17C` (`0x002363B1`-`0x002363FF`). When `0x00383C80()` is not 0 and
-`0x00384130(unit + 0xE0)` is not `0xFF`, the 16 bytes at `+0xE0` are copied to `+0xD0` (`0x00236407`-`0x0023642A`).
+and `0x00233A20(unit)` the float `+0x17C`¹. When `0x00383C80()` is not 0 and
+`0x00384130(unit + 0xE0)` is not `0xFF`, the 16 bytes at `+0xE0` are copied to `+0xD0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002363B1`-`0x002363FF` |
+| ² | `0x00236407`-`0x0023642A` |
+
+</details>
 
 Verb `0x304C` `btlAtelSetUnitFinish` (`0x00510250`, a jump) runs `0x0023A410(actor)` on the unit's own
-record; it does nothing when `0x0031B760` finds no battle unit (`0x0023A421`):
+record; it does nothing when `0x0031B760` finds no battle unit¹:
 
-1. for a fresh record (flags `& 5 == 0`) whose definition row's dword `+0x18` is non-zero,
-   `0x00300520(stats, row.dw_18, 0, 0x297)`: an authored starting HP;
-2. flag bits `0x4` and `0x1` cleared;
-3. `0x002FED60` or `0x002FEDC0(unit, 1)` by `0x00308010(unit, 1)`, then `0x00238BF0(unit)`;
-4. when `+0x1F6` has bit `0x8`, `0x003208C0(x, z, &y)` probes the ground under the record's `+0x60`/`+0x68`:
-   it asks `0x0026E3C0([0x02EC1370], {x, 1.0, z, 1.0})` and writes the surface height, or 0.0 when the
-   query returns -1; the return value is ignored, and `+0x188` is added (`0x0023A4D5`);
-5. `0x00300310(unit, record + 0x60, 0, 1)` places the unit at the record's candidate position, then
-   `0x0030FED0(stats, 0x297)` and `0x00386C10(stats)`.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023A421` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | for a fresh record (flags `& 5 == 0`) whose definition row's dword `+0x18` is non-zero, `0x00300520(stats, row.dw_18, 0, 0x297)`: an authored starting HP; |   |
+| 2 | flag bits `0x4` and `0x1` cleared; |   |
+| 3 | `0x002FED60` or `0x002FEDC0(unit, 1)` by `0x00308010(unit, 1)`, then `0x00238BF0(unit)`; |   |
+| 4 | when `+0x1F6` has bit `0x8`, `0x003208C0(x, z, &y)` probes the ground under the record's `+0x60`/`+0x68`: it asks `0x0026E3C0([0x02EC1370], {x, 1.0, z, 1.0})` and writes the surface height, or 0.0 when the query returns -1; the return value is ignored, and `+0x188` is added; | `0x0023A4D5` |
+| 5 | `0x00300310(unit, record + 0x60, 0, 1)` places the unit at the record's candidate position, then `0x0030FED0(stats, 0x297)` and `0x00386C10(stats)`. |   |
 
 A spot with no collision under it therefore gives a monster at world height 0 plus its lift, and
 no error.
 
-In step 4 the height is the y that `0x0026E3C0` leaves in the query vector (`0x0032090D`), and only the low 16 bits of
-its result are compared with -1 (`0x00320905`); `0x003208C0` returns 1 when they differ and 0 otherwise
-(`0x0032091E`-`0x00320921`). Step 5's last call is a tail jump (`0x0023A513`).
+In step 4 the height is the y that `0x0026E3C0` leaves in the query vector¹, and only the low 16 bits of
+its result are compared with -1²; `0x003208C0` returns 1 when they differ and 0 otherwise³. Step 5's last call is a tail jump⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032090D` |
+| ² | `0x00320905` |
+| ³ | `0x0032091E`-`0x00320921` |
+| ⁴ | `0x0023A513` |
+
+</details>
 
 `0x00300310(unit, pos, keep, force)` moves the actor to `pos` with `0x0026B0C0` when `force` is non-zero or the
-actor's position differs from `pos`, and the actor object `0x00263F40` returns is non-null (`0x00300340`-`0x0030038C`).
+actor's position differs from `pos`, and the actor object `0x00263F40` returns is non-null¹.
 It stores `pos` whole at unit `+0xD0` and `+0xE0`, runs `0x00392170(actor)`, copies `pos` to the record's `+0x50`
-only when `keep` is non-zero and the stats record is kind 1 (`0x003003AE`-`0x003003CE`), and sets unit flag bit
-`0x4000000` (`0x003003D2`). `0x0023A410` gives `keep` 0, so it leaves `+0x50` alone.
+only when `keep` is non-zero and the stats record is kind 1², and sets unit flag bit
+`0x4000000`³. `0x0023A410` gives `keep` 0, so it leaves `+0x50` alone.
 
-`0x00392170(actor)` does nothing without the grid `0x02AEE0A0` or with the count `0x02AEE0BC` at 128 or above
-(`0x00392176`-`0x0039218F`). Otherwise it stores the actor in the list `0x02AEE0C0` at the count, takes its position with
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00300340`-`0x0030038C` |
+| ² | `0x003003AE`-`0x003003CE` |
+| ³ | `0x003003D2` |
+
+</details>
+
+`0x00392170(actor)` does nothing without the grid `0x02AEE0A0` or with the count `0x02AEE0BC` at 128 or above¹. Otherwise it stores the actor in the list `0x02AEE0C0` at the count, takes its position with
 `0x002646C0(actor, &x, &y, &z)` and two extents with `0x00265090(actor, &e1, &e2)`, calls
-`0x00392200(count, x, z, the larger extent)` and raises the count by 1 (`0x00392191`-`0x003921E8`).
+`0x00392200(count, x, z, the larger extent)` and raises the count by 1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00392176`-`0x0039218F` |
+| ² | `0x00392191`-`0x003921E8` |
+
+</details>
 
 ### Facing, inhibit, category and the lifecycle float
 
-Each of the five handlers below writes nothing when `0x0031B760` finds no battle unit for the actor (`0x00239230`,
-`0x002391D3`, `0x002396C1`, `0x0023A217`, `0x0023686E`). `0x00239210`, `0x002391C0`, `0x002396B0` and `0x0023A200` read the
-record pointer `+0x6A0` with no null test (`0x0023928C`, `0x002391DC`, `0x002396E0`, `0x0023A24A`); `0x00236860` also
-writes nothing when the lane does not resolve (`0x00236871`-`0x002368A8`).
+Each of the five handlers below writes nothing when `0x0031B760` finds no battle unit for the actor¹. `0x00239210`, `0x002391C0`, `0x002396B0` and `0x0023A200` read the
+record pointer `+0x6A0` with no null test²; `0x00236860` also
+writes nothing when the lane does not resolve³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00239230`, `0x002391D3`, `0x002396C1`, `0x0023A217`, `0x0023686E` |
+| ² | `0x0023928C`, `0x002391DC`, `0x002396E0`, `0x0023A24A` |
+| ³ | `0x00236871`-`0x002368A8` |
+
+</details>
 
 - `0x00239210(actor, degrees)` (verb handler `0x00510760`, through its tail jump at `0x0051077C`): a negative argument
-  draws `0x00328370() % 360`; the angle in radians is wrapped (`0x00316DA0`) and stored at the record's `+0x70`, then
-  applied to the actor (`0x0026A0D0`, `0x0026B620`).
-- verb `0x3015` `btlAtelSetCallGroup(tag)` (`0x00510370`) → `0x002391C0`: on a record not released, clears
+  draws `0x00328370() % 360`; the angle in radians is wrapped¹ and stored at the record's `+0x70`, then
+  applied to the actor².
+- verb `0x3015` `btlAtelSetCallGroup(tag)`³ → `0x002391C0`: on a record not released, clears
   flag bit `0x10` and `+0x15`, then sets both to the tag when it is non-zero.
-- verb `0x3005` `btlAtelSetUnitType(n)` (`0x00510340`) → `0x002396B0`: unit `+0x58` from the table
+- verb `0x3005` `btlAtelSetUnitType(n)`⁴ → `0x002396B0`: unit `+0x58` from the table
   `{1, 5, 3, 4}` at `0x01E09EE8` for `n` below 4, else 0, the compare unsigned so a negative `n` gives 0
-  (`0x002396C3`-`0x002396D6`); on a fresh record clears flag bit `0x20` and sets
+ ⁵; on a fresh record clears flag bit `0x20` and sets
   it when the byte became 4.
-- verb `0x3017` `btlAtelSetSpecialSpawnRange(f)` (`0x005107C0`) → `0x0023A200`: unit flag bit `0x10000000000` set
+- verb `0x3017` `btlAtelSetSpecialSpawnRange(f)`⁶ → `0x0023A200`: unit flag bit `0x10000000000` set
   for a non-zero `f`, cleared for 0; on a fresh record `+0x04` and bits `0x8` and `0x40` cleared, then `+0x04`
   = `f` with bit `0x8` for `f > 0`, or `-f` with bit `0x40` for `f < -1.0`.
-- verb `0x305E` `btlAtelIgnoreKeepWork(lane, ignored)` (`0x005104D0`) → `0x00236860(actor, _, lane)`:
+- verb `0x305E` `btlAtelIgnoreKeepWork(lane, ignored)`⁷ → `0x00236860(actor, _, lane)`:
   clears bits `0x1`, `0x4` and `0x80`,
   sets the word `+0x16` to `0x00FF` and zeroes `+0x78`-`+0x7C` of the lane's record.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00316DA0` |
+| ² | `0x0026A0D0`, `0x0026B620` |
+| ³ | `0x00510370` |
+| ⁴ | `0x00510340` |
+| ⁵ | `0x002396C3`-`0x002396D6` |
+| ⁶ | `0x005107C0` |
+| ⁷ | `0x005104D0` |
+
+</details>
 
 ### The despawn mode
 
@@ -419,8 +873,17 @@ Verb `0x3019` `btlAtelSetDeSpawnType(mode, threshold, anchor)` (`0x0050F4A0`, th
 pop being the last script argument) calls `0x00238FC0(actor, anchor, threshold, mode)`, which stores
 the mode at unit `+0x50` always and, for mode 2, the threshold `+0x4C` = `threshold / 10.0` (6.0
 when 0) and the anchor `+0x51`. "Always" means whenever the actor has a battle unit: without one it writes
-nothing (`0x00238FDF`). The mode byte is the low byte of `mode`, and the mode-2 test compares the whole int
-(`0x00238FE1`-`0x00238FE7`).
+nothing¹. The mode byte is the low byte of `mode`, and the mode-2 test compares the whole int².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00238FDF` |
+| ² | `0x00238FE1`-`0x00238FE7` |
+
+</details>
 
 The scripts of each language tree call it with `(1, 0, 0)` 4,937 times and
 `(0, 0, 0)` 1,809 times, and no developer menu calls it; no shipped script authors mode 2.
@@ -446,21 +909,54 @@ Then:
   navigation position (unit `+0xE0`) is within `(+0x4C)^2` of it (`comiss`/`jbe`);
 - any other mode: 0.
 
-Retiring sets the record's flag bit `0x1` (`0x002352A6`), tears the unit down with `0x00300E40(unit, 1)`,
+Retiring sets the record's flag bit `0x1`¹, tears the unit down with `0x00300E40(unit, 1)`,
 the one call that keeps the record's transient state, and unregisters the member from its group
 with `0x00306E60(unit, 0)`. A NaN distance retires in both modes; a party with no counted focus slot
-never retires a mode-1 unit. A retirement returns 1 (`0x002352C0`); every other path returns 0.
+never retires a mode-1 unit. A retirement returns 1²; every other path returns 0.
 
-The flag write tests the record pointer `+0x6A0` for null (`0x002352A4`); the earlier read of its bit `0x10`
-(`0x00235152`-`0x00235159`) has no null test, but only a unit whose stats byte `+0x05` (the kind) is not 0 reaches
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002352A6` |
+| ² | `0x002352C0` |
+
+</details>
+
+The flag write tests the record pointer `+0x6A0` for null¹; the earlier read of its bit `0x10`² has no null test, but only a unit whose stats byte `+0x05` (the kind) is not 0 reaches
 it, and no installed unit reaches it with a null record.
 
-The installer `0x0023A570` writes `+0x698` and `+0x6A0` together (`0x0023ABFA`, `0x0023AC01`). Its enemy path stores
-the spawn record from `0x00236100`, which it has already tested for null (`0x0023A77B`-`0x0023A781`); its party path
-stores null (`0x0023AAB1`) beside a party-table stats record, whose kind is 0 ([Battle unit
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002352A4` |
+| ² | `0x00235152`-`0x00235159` |
+
+</details>
+
+The installer `0x0023A570` writes `+0x698` and `+0x6A0` together¹. Its enemy path stores
+the spawn record from `0x00236100`, which it has already tested for null²; its party path
+stores null³ beside a party-table stats record, whose kind is 0 ([Battle unit
 construction](../Characters-And-Objects/battle-unit-construction.md)). The reset `0x00236A60` nulls both.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023ABFA`, `0x0023AC01` |
+| ² | `0x0023A77B`-`0x0023A781` |
+| ³ | `0x0023AAB1` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Globals (BSS):
 
@@ -517,7 +1013,12 @@ Field format-class-0 record (`0x003DFD00`(0, id, rec)):
 | `+0x10` | `f32[3]` |  | position or centre |
 | `+0x1C` | `f32` | heading |  |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Over the 769 zone scripts, every one of the 502 that defines a unit and every one of the 258
 that runs the automatic selector calls `btlAtelSetupActorStart` first, exactly once (515 scripts in
@@ -576,11 +1077,11 @@ test:
 The Larva Eater placed by unique_monster_00 in `gil_e01`, `gil_e04`, `gil_e06`, `gil_f01`, `gil_f05`, `gil_g01` and
 `gil_g04` enters from the area start:
 
-1. `0x0026CE60` binds every record to group 0: `entry00` in slot 0 (`0x0026CFC7`) and `spawn00` in slot 7 (`0x0026D070`).
-2. `0x0025D9E0` files `spawn00` on channel 2 and `entry00` on channel 1 (`0x00269860` at `0x0025DD37`, `0x00269640` at
-   `0x002699B3`).
-3. The higher channel runs first (`0x003DB6E0`). This `spawn00` has no `requestreentry` step: it ends in a loop around
-   `wait 1` with no exit step, so `entry00` stays queued behind it on channel 1.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x0026CE60` binds every record to group 0: `entry00` in slot 0 and `spawn00` in slot 7. | `0x0026CFC7`<br>`0x0026D070` |
+| 2 | `0x0025D9E0` files `spawn00` on channel 2 and `entry00` on channel 1 (`0x00269860` at `0x0025DD37`, `0x00269640` at `0x002699B3`). |   |
+| 3 | The higher channel runs first. This `spawn00` has no `requestreentry` step: it ends in a loop around `wait 1` with no exit step, so `entry00` stays queued behind it on channel 1. | `0x003DB6E0` |
 
 The Larva Eater of `gil_i`, `gil_j` and `gil_k` (levels 61 to 62) is entered by its own `spawn00`.
 
@@ -596,19 +1097,46 @@ For `scratch2`, the writers include the zone scripts
 of the same field group. 48 count the respawns whose cause is 0 (column `death_counter`): a step adds 1 to them
 when `btlAtelGetRespawnCause()` returns 0.
 
-The cause is bit `0x1` of the placement's entry (`0x00236670`). It is read only when bit `0x2` is set and bit `0x4`
-clear; otherwise the answer is -1, as it is with no calling unit (`0x0023667C`), with a unit that has no lane entry
-(`0x0023668A`-`0x002366A8`) or with a null entry address (`0x002366B8`). A retirement by
-range sets bit `0x1` (`0x002352A6`). The stores that clear it are listed with the bit in
+The cause is bit `0x1` of the placement's entry¹. It is read only when bit `0x2` is set and bit `0x4`
+clear; otherwise the answer is -1, as it is with no calling unit², with a unit that has no lane entry³ or with a null entry address⁴. A retirement by
+range sets bit `0x1`⁵. The stores that clear it are listed with the bit in
 [spawn record fields](spawn-record-fields.md). Among them:
 
-- a kill, and a script removal of the living unit with `killallfast` or `entrystart` (`0x002348E0`), `killgroup`
-  (`0x00234990`), `zakokillall` or `btlAtelKillAllZako` (`0x00237690`), or `bosskillall` or `btlAtelKillAllBoss`
-  (`0x00234880`). Each calls `0x00300E40(unit, 0)`, which for these units clears entry bits `0x1`, `0x4` and `0x80`
-  (`0x00300F5D`-`0x00300F68`, `0x00237085`);
-- `btlAtelIgnoreKeepWork` (`0x00236860`, `0x002368AA`), with the same mask;
-- `btlAtelSetKeepWorkGroup` when it changes the entry's selection byte (`0x00239840`, `0x002398C2`), for bits `0x1`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236670` |
+| ² | `0x0023667C` |
+| ³ | `0x0023668A`-`0x002366A8` |
+| ⁴ | `0x002366B8` |
+| ⁵ | `0x002352A6` |
+
+</details>
+
+- a kill, and a script removal of the living unit with `killallfast` or `entrystart`¹, `killgroup`
+ ², `zakokillall` or `btlAtelKillAllZako`³, or `bosskillall` or `btlAtelKillAllBoss`
+ ⁴. Each calls `0x00300E40(unit, 0)`, which for these units clears entry bits `0x1`, `0x4` and `0x80`
+ ⁵;
+- `btlAtelIgnoreKeepWork`⁶, with the same mask;
+- `btlAtelSetKeepWorkGroup` when it changes the entry's selection byte⁷, for bits `0x1`
   and `0x4`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002348E0` |
+| ² | `0x00234990` |
+| ³ | `0x00237690` |
+| ⁴ | `0x00234880` |
+| ⁵ | `0x00300F5D`-`0x00300F68`, `0x00237085` |
+| ⁶ | `0x00236860`, `0x002368AA` |
+| ⁷ | `0x00239840`, `0x002398C2` |
+
+</details>
 
 So a cause of 0 says the entry is not marked retired by range, whichever store cleared the mark.
 
@@ -661,6 +1189,8 @@ name beside it), `how_set` (the steps that store it and what it changes) and `ev
 | `random_text` | the row's `random_test`: each roll by its range and threshold, play-clock tests by their unit; `-` with no such test |
 | `other_text` | the row's `other_test`: each global word by its meaning in script-variables-global-meanings.tsv, each script word by its writers in enemy-spawn-variables.tsv; `-` with no such test |
 
+</details>
+
 ## Operations
 
 A zone's battle setup runs `btlAtelSetupActorStart`, then any overrides, then per entry `btlAtelSetTotalEntryNumber`,
@@ -669,14 +1199,28 @@ A zone's battle setup runs `btlAtelSetupActorStart`, then any overrides, then pe
 `btlAtelSetEventFlagGroup`, `btlAtelSetDeSpawnType`, and `btlAtelSetUnitFinish`, which places the body.
 
 The area initialiser `0x002342F0` resets the cap to 28 and rotates the banks before any of this runs; it does both, and
-the rest of its work, only while the battle system's up flag `0x02089300` is non-zero (`0x002342F4`-`0x002342FB`).
+the rest of its work, only while the battle system's up flag `0x02089300` is non-zero¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002342F4`-`0x002342FB` |
+
+</details>
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The seven globals, the two keep banks, the unit's lane map, candidate table, lane byte, mode bytes
 and flag bits `0x200000`, `0x4000000`, `0x200000000000` and `0x2000000000000`, and the record's position, candidate and flag fields. The
 shared generator `0x00328370` advances six steps per area placement and three per random candidate
 draw.
+
+</details>
 
 ## Modding notes
 
@@ -717,9 +1261,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0025D9E0` | calls | `0x002EF2B0`, `0x00583920` |
+| [`0x0025D9E0`](../Story-Events-And-Hunts/opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields)<br>[`0x00583920`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 </details>
 

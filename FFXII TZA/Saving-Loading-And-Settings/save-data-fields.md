@@ -58,13 +58,33 @@ blocks at `+0xE040` and `+0x2E250`, and `0x005844A0` clears both pairs with one 
 when its fourth argument is 0 and its fifth is 0.
 
 `0x005844A0` first calls `0x00283270(1)` and the header finaliser `0x00583D60(0, 0, d)`, with `d` its fourth
-argument (`0x005844AA`-`0x005844BE`). With `d` not 0 it neither clears the pairs nor touches the record
-(`0x005844C3`-`0x005844CC`). With `d` 0 and the fifth argument not 0 it runs `0x002EF510` on the record at payload
-`+0x4E460` instead of the clear (`0x005844F0`-`0x005844F7`).
+argument¹. With `d` not 0 it neither clears the pairs nor touches the record². With `d` 0 and the fifth argument not 0 it runs `0x002EF510` on the record at payload
+`+0x4E460` instead of the clear³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005844AA`-`0x005844BE` |
+| ² | `0x005844C3`-`0x005844CC` |
+| ³ | `0x005844F0`-`0x005844F7` |
+
+</details>
 
 Then, when the first byte of the party block in the active buffer (payload `+0x4E48C`) is not 0, it runs
 `0x00234ED0` and copies the block's first `0x6000` bytes to payload `+0x2000` of the active buffer, `0xC0` passes of
-`0x80` bytes (`0x005844FC`-`0x00584572`); with that byte 0 it returns without the copy (`0x0058450E`).
+`0x80` bytes¹; with that byte 0 it returns without the copy².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005844FC`-`0x00584572` |
+| ² | `0x0058450E` |
+
+</details>
 
 ## Columns
 
@@ -117,14 +137,34 @@ Struct ZoneTransitionRecord base=payload+`0x1044` size=`0x20`:
 
 The reset `0x00314970` stores -1 at the dwords `0x01EED060` and `0x01EED064`, then, through `0x002EF2B0()` each time, -1 at
 the payload's `+0x1044` and `+0x1048` (destinationField and destinationEntrance) and 0 at `+0x104C`, `+0x1050` and
-`+0x1054` (previousField, previousEntrance and mode) (`0x00314974`-`0x003149C9`). It leaves `+0x14` to `+0x1F` as they
+`+0x1054` (previousField, previousEntrance and mode)¹. It leaves `+0x14` to `+0x1F` as they
 are.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00314974`-`0x003149C9` |
+
+</details>
+
 With load mode 3 and the header's flag bit `0x1` clear, `0x00584210` copies the five dwords `+0x1044` to
-`+0x1057` into the header's `+0x80` to `+0x93` (`0x0058427B`-`0x005842B1`), zeroes `destinationEntrance`
-(`0x005842B7`) and stores `0x483` as `destinationField` through `0x00314DC0` (`0x005842D7`-`0x005842DF`); in
-any other mode with the flag set it copies them back (`0x00584325`-`0x00584362`) (see the
+`+0x1057` into the header's `+0x80` to `+0x93`¹, zeroes `destinationEntrance`² and stores `0x483` as `destinationField` through `0x00314DC0`³; in
+any other mode with the flag set it copies them back⁴ (see the
 [save file format page](save-file-format.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0058427B`-`0x005842B1` |
+| ² | `0x005842B7` |
+| ³ | `0x005842D7`-`0x005842DF` |
+| ⁴ | `0x00584325`-`0x00584362` |
+
+</details>
 
 The record's writers are `0x003145E0`, `0x00314970`, `0x00314530`, `0x0026D910`, `0x0026A720`, `0x002628B0`, `0x00268320`,
 `0x0026D8F0`, `0x00280140`, `0x00584210` and the field setters `0x003149E0`, `0x00314A00`, `0x00314B80`, `0x00314BB0`, `0x00314BE0`,
@@ -136,25 +176,41 @@ Its readers are
 `0x00314A80`, `0x00314AA0`, `0x00314AC0`, `0x00314AE0`, `0x00314B00`, `0x00314B20`, `0x00314B40` and `0x00314B60`.
 
 Two of the getters answer one bit of `flags1`, the byte `+0x1062` of the payload `0x002EF2B0()` answers (the record's
-`+0x1E`), as 0 or 1: `0x00314B20` bit `0x10` (`0x00314B24`-`0x00314B33`) and `0x00314B40` bit `0x2` (`0x00314B44`-`0x00314B52`).
+`+0x1E`), as 0 or 1: `0x00314B20` bit `0x10`¹ and `0x00314B40` bit `0x2`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00314B24`-`0x00314B33` |
+| ² | `0x00314B44`-`0x00314B52` |
+
+</details>
 
 ### The image-backed state block
 
-`0x00253970` binds `0x02092758` to the image itself, the header (`0x0025397E`), and `0x020927C0` to image `+0x8200`, payload
-`+0x8000` (`0x00253990`), both from the active buffer `0x002EF640()`, which returns the address `0x02164280` (`0x002EF640`),
+`0x00253970` binds `0x02092758` to the image itself, the header¹, and `0x020927C0` to image `+0x8200`, payload
+`+0x8000`², both from the active buffer `0x002EF640()`, which returns the address `0x02164280`³,
 so `0x020927C0` holds `0x0216C480` and the block's `+8` is `0x0216C488`; and `0x00253A80` initialises the block in four steps:
 
-1. it zeroes the `0x58` header bytes at `[0x02092758]` (`0x00253A86`-`0x00253A93`) and all `0x4818` bytes of the
-   block at `[0x020927C0]` (`0x00253A98`-`0x00253AA7`);
-2. it writes six header dwords at `+0x58`-`+0x6C`: `0x20050223` from `0x002EF2A0`, `0x1538` from
-   `0x002EF290`, the party block's magic `0x05071901` from `0x00235E90` and its size `0x7410` from
-   `0x00235E80`, then the block magic `0x0131F3EA` and its size `0x4818`, into the header of the active buffer
-   `0x002EF640()` (`0x00253AAC`-`0x00253AFB`);
-3. it runs `0x00253240(i, 1)` for the twelve classes, `i` from 0 to 11 (`0x00253B02`-`0x00253B13`), keeps only bit
-   `0x1` of byte `+0x3244` and clears bit `0x1` of byte `+0x3245` (`0x00253B1C`, `0x00253B23`), and installs the
-   in-game options defaults with `0x002DDE60` (`0x00253B2A`, [Game settings](game-settings.md));
-4. it zeroes `+0x30` for 500 bytes, `+0x3244` for `0x80`, `+0x32C4` for 8 and `+0x224` for `0x3020`.
-   It calls the empty `0x0016D6A0` before the last, which is a tail jump to `memset` (`0x00253B36`-`0x00253B84`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025397E` |
+| ² | `0x00253990` |
+| ³ | `0x002EF640` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | it zeroes the `0x58` header bytes at `[0x02092758]` and all `0x4818` bytes of the block at `[0x020927C0]`; | `0x00253A86`-`0x00253A93`<br>`0x00253A98`-`0x00253AA7` |
+| 2 | it writes six header dwords at `+0x58`-`+0x6C`: `0x20050223` from `0x002EF2A0`, `0x1538` from `0x002EF290`, the party block's magic `0x05071901` from `0x00235E90` and its size `0x7410` from `0x00235E80`, then the block magic `0x0131F3EA` and its size `0x4818`, into the header of the active buffer `0x002EF640()`; | `0x00253AAC`-`0x00253AFB` |
+| 3 | it runs `0x00253240(i, 1)` for the twelve classes, `i` from 0 to 11, keeps only bit `0x1` of byte `+0x3244` and clears bit `0x1` of byte `+0x3245`, and installs the in-game options defaults with `0x002DDE60` (`0x00253B2A`, [Game settings](game-settings.md)); | `0x00253B02`-`0x00253B13`<br>`0x00253B1C`, `0x00253B23` |
+| 4 | it zeroes `+0x30` for 500 bytes, `+0x3244` for `0x80`, `+0x32C4` for 8 and `+0x224` for `0x3020`. It calls the empty `0x0016D6A0` before the last, which is a tail jump to `memset`. | `0x00253B36`-`0x00253B84` |
 
 Offsets in this table are block offsets; add `0x8000` for the payload offset.
 
@@ -182,7 +238,16 @@ Offsets in this table are block offsets; add `0x8000` for the payload offset.
 
 `0x00252F70(list)` answers the address of a list's count, the dword `+0x47B8` + 4 x list of the block `[0x020927C0]`. A
 list above 11, an unsigned compare, first passes `0x200` to the return stub `0x0016D6A0(0x200)` and then answers list
-0's address (`0x00252F74`-`0x00252F93`).
+0's address¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00252F74`-`0x00252F93` |
+
+</details>
 
 ### The rank table
 
@@ -223,36 +288,86 @@ Struct SpawnKeepImage base=payload+`0xE240` size=`0x20010`:
 
 `0x00233440` zeroes the image first and copies the banks in `0x128` passes of `0x80` bytes; `0x00233550`
 restores bank 2 and the two field ids only. `0x00233440` skips a bank whose pointer is null, so its part of the
-image stays zero (`0x00233466`, `0x002334CD`), and stores the two field ids either way (`0x00233529`-`0x0023353A`);
-`0x00233550` skips the copy when the bank 2 pointer is null and still restores the two field ids (`0x0023355A`,
-`0x002335B9`-`0x002335C7`).
+image stays zero¹, and stores the two field ids either way²;
+`0x00233550` skips the copy when the bank 2 pointer is null and still restores the two field ids³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233466`, `0x002334CD` |
+| ² | `0x00233529`-`0x0023353A` |
+| ³ | `0x0023355A`, `0x002335B9`-`0x002335C7` |
+
+</details>
 
 Before it reaches the pair, `0x00229B40` copies the header and the payload up to the first group bank
 (`0xE240` bytes: `0x1C4` passes of `0x80` and a `0x40`-byte tail) and the first `0x8000` bytes of the
 party block from the active buffer `0x002EF640()` to the staging buffer `0x002EF620()`.
 
-The party block part goes first (`0x00229BE4`-`0x00229C41`) and the `0xE240` bytes after it (`0x00229C43`-`0x00229CC2`).
-Before both, `0x00229B40` runs `0x00234ED0` (`0x00229B71`) and copies the block's first `0x6000` bytes to payload
-`+0x2000` of the active buffer, `0xC0` passes of `0x80` bytes (`0x00229B7B`-`0x00229BE2`), so the staging copy carries
+The party block part goes first¹ and the `0xE240` bytes after it².
+Before both, `0x00229B40` runs `0x00234ED0`³ and copies the block's first `0x6000` bytes to payload
+`+0x2000` of the active buffer, `0xC0` passes of `0x80` bytes⁴, so the staging copy carries
 that fresh copy. The `0x8000` bytes run `0xBF0` bytes past the `0x7410`-byte block, to image `+0x5668C`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00229BE4`-`0x00229C41` |
+| ² | `0x00229C43`-`0x00229CC2` |
+| ³ | `0x00229B71` |
+| ⁴ | `0x00229B7B`-`0x00229BE2` |
+
+</details>
+
 `0x002EF620` returns the fixed buffer `0x021BA940`, so the null test at `0x00229B57` never ends the capture early. The
-two `0x0016D6A0(0)` calls (`0x00229B6C`, `0x00229D05`) reach a `ret 0` stub.
+two `0x0016D6A0(0)` calls¹ reach a `ret 0` stub.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00229B6C`, `0x00229D05` |
+
+</details>
 
 Which pair is used depends on bit `0x1000` of the party block's flag dword (`0x00236760`, set and
-cleared by `0x0023A390`); `0x00229B40` takes the bit as its argument from its only caller `0x003145E0`
-(`0x003147BB`):
+cleared by `0x0023A390`); `0x00229B40` takes the bit as its argument from its only caller `0x003145E0`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003147BB` |
+
+</details>
 
 | Bit `0x1000` | Capture (`0x00229B40`, `0x00584580`) | Restore (`0x005843E0`) |
 |---|---|---|
 | clear | bank A at `+0xE040`, image A at `+0xE240`, then the metadata record | the record, bank A, image A |
 | set | bank B at `+0x2E250`, image B at `+0x2E450`, then `0x002EF510` on the record (`0x00584580`); `0x00229B40` runs `0x002EF540` on the record on this path too, as on the clear path (`0x00229CF7`-`0x00229CFE`) | bank B and image B when the load mode `0x00394450()` is not 3 or the header's `+0x57` bit `0x1` is set; then bit `0x2` of the block's `+0x5B04` is cleared |
 
-`0x00584580` captures into the staging buffer `0x002EF620()` (`0x00584586`) and on both paths stores `0x0208D455`,
-sign-extended, as the record's `+0x00` (`0x005845BB`-`0x005845C2`, `0x005845FC`-`0x00584603`). With bit `0x1000` set it
-also runs `0x002EF7C0` and `0x002EF740` (`0x005845F2`, `0x005845F7`), which copy the active buffer's bank A (`0x200`
+`0x00584580` captures into the staging buffer `0x002EF620()`¹ and on both paths stores `0x0208D455`,
+sign-extended, as the record's `+0x00`². With bit `0x1000` set it
+also runs `0x002EF7C0` and `0x002EF740`³, which copy the active buffer's bank A (`0x200`
 bytes, payload `+0xE040`) and the `0x20010` bytes of its image A (payload `+0xE240`) to `0x021C8B80` and
 `0x021C8D80`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00584586` |
+| ² | `0x005845BB`-`0x005845C2`, `0x005845FC`-`0x00584603` |
+| ³ | `0x005845F2`, `0x005845F7` |
+
+</details>
 
 `0x00584210` imports bank A again on the restore path, and `0x005843E0` ends by copying the record's first
 byte to `0x0208D455`.
@@ -277,10 +392,20 @@ also restores `+0x5AD0` and calls `0x003139D0(+0x20)`; when bit `0x1` of `+0x08`
 ### The party block
 
 `0x00238A80` and `0x00233C10` bind `0x02EBF190` to image `+0x4E68C`, payload `+0x4E48C`, `0x00233C10` only while the
-pointer is null (`0x00233C20`-`0x00233C33`), and with the pointer set `0x00233C10`
-checks the magic `0x05071901` at `+0x00` (`0x00233C4D`). The block's interior is the
+pointer is null¹, and with the pointer set `0x00233C10`
+checks the magic `0x05071901` at `+0x00`². The block's interior is the
 [party block field map](../Party/party-data.md); what
 the save layer itself does to it:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233C20`-`0x00233C33` |
+| ² | `0x00233C4D` |
+
+</details>
 
 - `0x002370C0` resets the block: all `0x7410` bytes zeroed, the magic written, the words
   `+0x5A48`-`+0x5A58` set to `0xFFFF` and the dwords `+0x5AC8` and `+0x5ACC` cleared.
@@ -346,9 +471,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Story, events and hunts** (explained on [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00314910` | is called by | `0x001ED240` |
+| [`0x00314910`](../World-Areas-And-Travel/zone-asset-list.md) World transition: get transition field id (on zone asset list) | is called by | [`0x001ED240`](../Graphics/model-effects-and-motion-commands.md) G0999; (on model effects and motion commands) |
 
 </details>
 

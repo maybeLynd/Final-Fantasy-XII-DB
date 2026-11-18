@@ -15,14 +15,26 @@ ship text that no Clan Primer page opens, listed in [Unrequested handbook text](
 ### Who loads and shows it
 
 - The handbook data manager (procedure `0x005771F0`, kept at `0x02CA9738`) loads the open entry's text bundle into
-  its slot 1: when an entry page opens (`0x00570280`), `0x005778F0(entry)` calls `0x00575D10` (`0x00577969`).
+  its slot 1: when an entry page opens¹, `0x005778F0(entry)` calls `0x00575D10`².
 - `0x00576300` builds the entry's lines from its text slots in order and stops at the first slot `0x00576E30` keeps
   closed, so Bestiary lore appears slot by slot as its thresholds are reached.
 - `0x00574900` runs when the entry page shows a line. For the Bestiary, while the line's read mark is clear
-  (`0x00576F30`), it sets the mark and runs the line's program; for the other families it runs the program every
-  time and marks the entry read on its last line (`0x00577A20`, `0x00577A40`). It draws nothing
+ ³, it sets the mark and runs the line's program; for the other families it runs the program every
+  time and marks the entry read on its last line⁴. It draws nothing
   ([Handbook files](../Game-Files-And-Data-Tables/handbook-files.md#entry-text),
   [Clan Primer](clan-primer.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00570280` |
+| ² | `0x00577969` |
+| ³ | `0x00576F30` |
+| ⁴ | `0x00577A20`, `0x00577A40` |
+
+</details>
 
 ### Glyphs of the Japanese, Korean and Chinese text
 
@@ -31,9 +43,19 @@ loads. A Traveler's Tips sheet becomes font 6 (`0x0017FBC0(6)`). A Bestiary shee
 `handbook_monster<NNN>.txt`, `NNN` the bundle number: `0x00575782`-`0x005757B3` print the name with the format string at
 `0x00D23770` and pass it to `0x0017FA90`.
 
-`0x0017FA90` passes its four arguments, here the bundle number plus 1, 1, the name and 7 (`0x0057579B`-`0x005757B3`), to
-`0x001B6350` on the font manager that `0x001B5FB0` returns (`0x0017FAAF`-`0x0017FAC4`), which files a font request keyed by
+`0x0017FA90` passes its four arguments, here the bundle number plus 1, 1, the name and 7¹, to
+`0x001B6350` on the font manager that `0x001B5FB0` returns², which files a font request keyed by
 the name's hash ([Font expansion lists](fonts-expansion-lists.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0057579B`-`0x005757B3` |
+| ² | `0x0017FAAF`-`0x0017FAC4` |
+
+</details>
 
 The font's expansion list is the list of `fontmonster.fex` whose key is the hash of that name
 ([Font expansion lists](fonts-expansion-lists.md)). This table decodes each such character through the
@@ -103,14 +125,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Steam and achievements** (explained on [jump thunks](../Engine-Core/jump-thunks.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00576E30` | calls | `0x00315420` |
+| [`0x00576E30`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) | calls | [`0x00315420`](clan-primer-entries.md) (on clan primer entries) |
 
 **World, areas and travel** (explained on [debug menu](../Engine-Core/debug-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00576E30` | calls | `0x00265270` |
+| [`0x00576E30`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) | calls | [`0x00265270`](clan-primer-entries.md) Field data: get variable0 (on clan primer entries) |
 
 </details>

@@ -78,69 +78,79 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 42 calls with 13 other topics</summary>
 
-**Characters and objects**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00263C20` | is called by | `0x00273750`, `0x00273A00`, `0x0046BAC0` |
-| `0x00301AD0` | calls | `0x002367A0`, `0x00236820`, `0x00236850`, `0x0031B760`, `0x0031B770`, `0x0031B810` |
-
 **Characters and objects** (explained on [battle units](../Characters-And-Objects/battle-units.md), [target selection](../Battle-Actions/target-selection.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [frame update order](frame-update-order.md), [force fight mode](force-fight-mode.md))
 
-**Enemy AI and gambits**
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00301AD0` | calls | `0x00308C20`, `0x0030BD00`, `0x0031E6F0`, `0x0031E760`, `0x00321190`, `0x003215C0`, `0x00321630` |
-| `0x00301AD0` | is called by | `0x003014C0` |
+| [`0x00263C20`](glossary.md) Actor runtime: get class nibble | is called by | [`0x00273750`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x00273A00`](../Characters-And-Objects/battle-units.md) (on battle units)<br>[`0x0046BAC0`](../Battle-Actions/target-selection.md) (on target selection) |
+| [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets) | calls | [`0x002367A0`](../Party/party-members.md) (on party members)<br>[`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item)<br>[`0x00236850`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets)<br>[`0x0031B760`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning)<br>[`0x0031B770`](../Enemy-AI-And-Gambits/gambit-conditions.md) Battle unit: find by combatant id (on gambit conditions)<br>[`0x0031B810`](../Enemy-AI-And-Gambits/enmity.md) Battle unit: find mapped definition selector by index (on enmity) |
 
 **Enemy AI and gambits** (explained on [gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md), [enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [frame update order](frame-update-order.md))
 
-**Battle actions**
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263C20` | is called by | `0x0030AB40` |
-| `0x00301AD0` | calls | `0x003093D0`, `0x0030AB40`, `0x0030B9B0`, `0x0031C500` |
+| [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets) | calls | [`0x00308C20`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: compute bounded selector scalar (on enemy order sets)<br>[`0x0030BD00`](../Enemy-AI-And-Gambits/gambit-conditions.md) Battle target: matches relation mode (on gambit conditions)<br>[`0x0031E6F0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Battle target: compute surface distance between units (on enemy order sets)<br>[`0x0031E760`](../Enemy-Spawning/spawn-record-fields.md) Battle target: compute surface distance to position (on spawn record fields)<br>[`0x00321190`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets)<br>[`0x003215C0`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: read for combatant id (on enmity)<br>[`0x00321630`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: get highest relevant (on enmity) |
+| [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets) | is called by | [`0x003014C0`](../Enemy-AI-And-Gambits/gambits.md) Ai order: evaluate and resolve action target (on gambits) |
 
 **Battle actions** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [action definition row](../Battle-Actions/action-definition-row.md), [action results](../Battle-Actions/action-results.md), [target selection](../Battle-Actions/target-selection.md))
 
-**Gameplay**
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00301AD0` | calls | `0x00309EC0`, `0x00316CF0`, `0x0031EA90`, `0x00321320`, `0x00322C50` |
+| [`0x00263C20`](glossary.md) Actor runtime: get class nibble | is called by | [`0x0030AB40`](../Battle-Actions/action-range.md) Battle target: classify relationship class (on action range) |
+| [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets) | calls | [`0x003093D0`](../Battle-Actions/action-list.md) Battle action: get subtype3 field22 or ffff (on action list)<br>[`0x0030AB40`](../Battle-Actions/action-range.md) Battle target: classify relationship class (on action range)<br>[`0x0030B9B0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets)<br>[`0x0031C500`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Battle action: compute active target status intersection (on enemy order sets) |
 
 **Gameplay** (explained on [item and ability ids](item-and-ability-ids.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md), [identifier spaces](identifier-spaces.md))
 
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets) | calls | [`0x00309EC0`](../Enemy-AI-And-Gambits/gambit-conditions.md) (on gambit conditions)<br>[`0x00316CF0`](../Enemy-AI-And-Gambits/gambits.md) Battle target buffer: reset preserving flag0 (on gambits)<br>[`0x0031EA90`](../Menus-And-HUD/status-and-equip-screen.md) Battle definition: get runtime category by selector (on status and equip screen)<br>[`0x00321320`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Battle unit: get primary formula resource byte26 (on enemy order sets)<br>[`0x00322C50`](item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) |
+
 **Movement and pathfinding** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [bestiary](../Enemy-Spawning/bestiary.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263C20` | is called by | `0x00335760`, `0x00338490` |
+| [`0x00263C20`](glossary.md) Actor runtime: get class nibble | is called by | [`0x00335760`](glossary.md)<br>[`0x00338490`](../Party/party-leader.md) Party follow: solve formation (on party leader) |
 
 **Party** (explained on [identifier spaces](identifier-spaces.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00301AD0` | calls | `0x0031B7E0`, `0x003272A0`, `0x003273B0` |
+| [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets) | calls | [`0x0031B7E0`](identifier-spaces.md) (on identifier spaces)<br>[`0x003272A0`](../World-Areas-And-Travel/treasure-chests.md) Battle unit: get party leader (on treasure chests)<br>[`0x003273B0`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning) |
 
 **Graphics** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00301AD0` | calls | `0x00322360` |
+| [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets) | calls | [`0x00322360`](../Movement-And-Pathfinding/battle-locomotion.md) Battle unit: test actor view frustum at current position (on battle locomotion) |
 
 **Menus and HUD** (explained on [widgets](../Menus-And-HUD/widgets.md), [hud](../Menus-And-HUD/hud.md), [battle units](../Characters-And-Objects/battle-units.md), [target selection](../Battle-Actions/target-selection.md), [action availability](../Controls-And-Input/action-availability.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263C20` | is called by | `0x002734F0`, `0x0027D330`, `0x002BF0E0`, `0x002C7660`, `0x00322A80`, `0x003C5130`, `0x003C8B70` |
+| [`0x00263C20`](glossary.md) Actor runtime: get class nibble | is called by | [`0x002734F0`](glossary.md)<br>[`0x0027D330`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002BF0E0`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x002C7660`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x00322A80`](../Battle-Actions/target-selection.md) (on target selection)<br>[`0x003C5130`](../Characters-And-Objects/battle-units.md) (on battle units)<br>[`0x003C8B70`](../Menus-And-HUD/menus.md) (on menus) |
 
 **World, areas and travel** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [force fight mode](force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00301AD0` | calls | `0x00320940`, `0x00377C20` |
+| [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets) | calls | [`0x00320940`](../EBP-Script-Files/ebp-position-entries.md) (on ebp position entries)<br>[`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
 
 </details>

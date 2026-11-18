@@ -47,8 +47,16 @@ descriptors whose `+0x20` type matches its own, and only fills a record whose ki
 
 Each slot-1 body is called with the record array (`rdx`), the descriptor array (`r8`) and their count
 (`r9d`). It returns 0; when the count is non-zero and either array is null it returns 1 at once and fills
-no record (`0x005C0858`-`0x005C0861`, `0x005C0B7A`-`0x005C0B83`, `0x005C0CAA`-`0x005C0CB3`, `0x005C0E59`-`0x005C0E62`,
-`0x005C1015`-`0x005C101E`, `0x005C117A`-`0x005C1183`).
+no record¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C0858`-`0x005C0861`, `0x005C0B7A`-`0x005C0B83`, `0x005C0CAA`-`0x005C0CB3`, `0x005C0E59`-`0x005C0E62`, `0x005C1015`-`0x005C101E`, `0x005C117A`-`0x005C1183` |
+
+</details>
 
 | Class | Slot 1 | Descriptor type | Record it writes |
 |---|---|---|---|
@@ -63,19 +71,50 @@ The data-member, method and function binders accept a descriptor only when its `
 instance class) is the class at the binder's `+0x08` or one reached from it through `+0x78`. The
 data-member and method binders take the target object from the binder's `+0x10`, else the descriptor's
 `+0x08`, and a non-null binder `+0x18` replaces it with the result of its vtable slot 2 when that result
-is non-zero (`0x005C08BC`-`0x005C08FF`, `0x005C0D7B`-`0x005C0D9D`). The function binder takes no target object:
-it writes only the kind 3 and the function at `+0x28` (`0x005C0C43`, `0x005C0C49`).
+is non-zero¹. The function binder takes no target object:
+it writes only the kind 3 and the function at `+0x28`².
 
-The method and function binders look the name up (`0x005A7B50`, `0x005A7AB0`) and log
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C08BC`-`0x005C08FF`, `0x005C0D7B`-`0x005C0D9D` |
+| ² | `0x005C0C43`, `0x005C0C49` |
+
+</details>
+
+The method and function binders look the name up¹ and log
 `Bound method %s does not take a single const Vectormath::Aos::Vector4 * parameter...` (or `function`)
 when the signature differs; they bind anyway.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A7B50`, `0x005A7AB0` |
+
+</details>
+
 `0x005A7B50` walks the method list at the class's `+0x90` and `0x005A7AB0` the function list at `+0xA0`,
 then those of the classes reached through `+0x78`, and returns the first entry whose name (`+0x18`)
-equals the target's name, or 0, which skips the descriptor (`0x005C0D39`, `0x005C0C02`). The signature is
-what slot 4 of the entry's `+0x28` object returns (`0x005C0D47`, `0x005C0C10`). The function binder wants its
-first word equal to `0x006B19A0() | 1` and its second word 0 (`0x005C0C1A`-`0x005C0C2D`); the method binder
-tests the words at `+0x08` and `+0x10` the same way (`0x005C0D51`-`0x005C0D65`).
+equals the target's name, or 0, which skips the descriptor¹. The signature is
+what slot 4 of the entry's `+0x28` object returns². The function binder wants its
+first word equal to `0x006B19A0() | 1` and its second word 0³; the method binder
+tests the words at `+0x08` and `+0x10` the same way⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C0D39`, `0x005C0C02` |
+| ² | `0x005C0D47`, `0x005C0C10` |
+| ³ | `0x005C0C1A`-`0x005C0C2D` |
+| ⁴ | `0x005C0D51`-`0x005C0D65` |
+
+</details>
 
 ### Resolving a data-member path
 
@@ -97,15 +136,34 @@ The record gets kind 1, the address at `+0x08` and the size at `+0x10`, clamped 
 
 `0x005C1160` takes the parameter buffer from the binder's `+0x08`, or from the descriptor when its
 `+0x00` is `0x02CB7480` (the descriptor's `+0x08` itself) or `0x02CB6B80` (that object's `+0x08`); any
-other class, or a null buffer, skips the descriptor (`0x005C11E3`-`0x005C120E`). A non-null binder `+0x10`
-then replaces the buffer with the result of its vtable slot 2 when that result is non-zero
-(`0x005C1210`-`0x005C1225`).
+other class, or a null buffer, skips the descriptor¹. A non-null binder `+0x10`
+then replaces the buffer with the result of its vtable slot 2 when that result is non-zero².
 
-It finds the parameter by name with `0x0018D240` in the buffer's `+0x08` (`0x005C1232`-`0x005C1239`), takes
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C11E3`-`0x005C120E` |
+| ² | `0x005C1210`-`0x005C1225` |
+
+</details>
+
+It finds the parameter by name with `0x0018D240` in the buffer's `+0x08`¹, takes
 the offset (`u16 +0x10`) and size (`u16 +0x12` & `0x1FFF`), and binds only when `offset >= 4` and
-`offset + size <= [buffer]`, the buffer's first dword (`0x005C1254`, `0x005C125C`). The record gets kind 1,
-the address `buffer + offset` at `+0x08` and the size at `+0x10`, or `0x10` when `size > 0x10`
-(`0x005C1266`-`0x005C1282`).
+`offset + size <= [buffer]`, the buffer's first dword². The record gets kind 1,
+the address `buffer + offset` at `+0x08` and the size at `+0x10`, or `0x10` when `size > 0x10`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C1232`-`0x005C1239` |
+| ² | `0x005C1254`, `0x005C125C` |
+| ³ | `0x005C1266`-`0x005C1282` |
+
+</details>
 
 ### The scene binders
 
@@ -118,17 +176,33 @@ only a record whose kind is still 0.
 - `0x005C0E00` collects the names and hands them to `0x005C35A0`, which hashes each name up to any `#`
   and finds the matching node under the binder's `+0x08`. A found node gives kind 1, the address
   node `+0x20` and size `0x40`.
-- A descriptor `0x005C0E00` does not accept, or a record already bound, gives a null name (`0x005C0EB7`,
-  `0x005C0EE5`), which `0x005C35A0` leaves out of its search (`0x005C3663`). The results go to an array of the
-  same count cleared with `memset` (`0x005C0F29`); the fill loop writes every record whose result is
-  non-null (`0x005C0F90`-`0x005C0FA8`), and `0x0067F580` clears the tree of the search object on the stack
-  before the binder returns (`0x005C0FC0`).
+- A descriptor `0x005C0E00` does not accept, or a record already bound, gives a null name¹, which `0x005C35A0` leaves out of its search². The results go to an array of the
+  same count cleared with `memset`³; the fill loop writes every record whose result is
+  non-null⁴, and `0x0067F580` clears the tree of the search object on the stack
+  before the binder returns⁵.
 - `0x005C1000` compares each name with the name table at `+0x48` (count `+0x30`, bit `0x80000000` masked
   off, `0x005C1044`) of the object at `[binder+0x08]+0x00`, skipping null entries and taking each entry
-  with bit `0x1` masked off (`0x005C10C0`-`0x005C10CD`). A match at index `i` gives kind 1, the address
-  `[[binder+0x08]+0x18] + i * 0x40` (`0x005C1039`, `0x005C10F7`-`0x005C10FE`) and size `0x40`.
+  with bit `0x1` masked off⁶. A match at index `i` gives kind 1, the address
+  `[[binder+0x08]+0x18] + i * 0x40`⁷ and size `0x40`.
 - The name-table scan of `0x005C1000` does not stop at a match, so when several entries match, the last
-  one sets the record (`0x005C1101`-`0x005C111C`). A null target name matches no entry (`0x005C10D4`).
+  one sets the record⁸. A null target name matches no entry⁹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C0EB7`, `0x005C0EE5` |
+| ² | `0x005C3663` |
+| ³ | `0x005C0F29` |
+| ⁴ | `0x005C0F90`-`0x005C0FA8` |
+| ⁵ | `0x005C0FC0` |
+| ⁶ | `0x005C10C0`-`0x005C10CD` |
+| ⁷ | `0x005C1039`, `0x005C10F7`-`0x005C10FE` |
+| ⁸ | `0x005C1101`-`0x005C111C` |
+| ⁹ | `0x005C10D4` |
+
+</details>
 
 ### Composition
 
@@ -144,10 +218,22 @@ record. Consecutive entries with the same target form a group; a kind-0 target s
    `0x005A7E90(record+0x28, 0, value)`.
 3. At the end of a group with any bit set and a kind-1 target, it writes the matrix at the address.
 
-`0x005A7E90(object, context, ...)` calls slot 2 of the object at `object+0x28` (`0x005A7EC5`) with the
-context, two zeros, and as fifth argument the address of a local `va_list` (`0x005A7EB7`-`0x005A7EBB`) that
-points at its variadic arguments, the first being the value pointer (`0x005A7EA7`-`0x005A7EAB`). When
-`object+0x28` holds 0 it makes no call (`0x005A7EAF`-`0x005A7EB2`).
+`0x005A7E90(object, context, ...)` calls slot 2 of the object at `object+0x28`¹ with the
+context, two zeros, and as fifth argument the address of a local `va_list`² that
+points at its variadic arguments, the first being the value pointer³. When
+`object+0x28` holds 0 it makes no call⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A7EC5` |
+| ² | `0x005A7EB7`-`0x005A7EBB` |
+| ³ | `0x005A7EA7`-`0x005A7EAB` |
+| ⁴ | `0x005A7EAF`-`0x005A7EB2` |
+
+</details>
 
 ### Matrix arithmetic
 
@@ -175,33 +261,63 @@ controller `+0x30`:
 
 ### Grouping channels by target
 
-`0x005C22B0`, whose address `0x005B1900` stores at `0x02CB30D8` without calling it (`0x005B1C86`-`0x005B1C8D`), collects
+`0x005C22B0`, whose address `0x005B1900` stores at `0x02CB30D8` without calling it¹, collects
 the channels of a set of clips in a local ordered map
 keyed by channel target. Two targets are the same key when their index (`+0x30`), type (`+0x20`),
-the four object fields and the name match. The map's nodes are `0xA8` bytes from a `PMapPair` pool
-(`0x0067FFB0`). Each node's value starts from a template at `0x01F2D010`; every channel ORs bit *n* (*n*
+the four object fields and the name match. The map's nodes are `0xA8` bytes from a `PMapPair` pool². Each node's value starts from a template at `0x01F2D010`; every channel ORs bit *n* (*n*
 being its semantic's index, `+0x14`) into the value's first word and stores its `+0x40` in word
 *n* + 1.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005B1C86`-`0x005B1C8D` |
+| ² | `0x0067FFB0` |
+
+</details>
+
 The function clears the map and a second local object (a buffer at `+0x08`, a tree at `+0x10`)
 before it returns. When an exception leaves it, its unwind actions do the same: `0x005A9DF0` erases the
-map's nodes (`0x0067FE20`) and frees the pool (`0x006803D0`, `0x00680030`), and `0x005AA080` resets the second
-tree (`0x0067F6F0`), frees the buffer and clears the tree (`0x0067F580`).
+map's nodes¹ and frees the pool², and `0x005AA080` resets the second
+tree³, frees the buffer and clears the tree⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067FE20` |
+| ² | `0x006803D0`, `0x00680030` |
+| ³ | `0x0067F6F0` |
+| ⁴ | `0x0067F580` |
+
+</details>
 
 ### Network buffer planning
 
 `0x005C62C0(network, freeFirst)` orders the `0x138`-byte nodes of an animation network and gives each
 node output a buffer slot, reusing a slot once every reader of its value has run:
 
-1. It marks every node unscheduled (`+0x130` = −1) and every output unassigned (state 0, slot −1).
-2. It takes the first unscheduled node whose inputs all come from scheduled nodes and gives it the
-   next order number. When no such node is left it returns 1.
-3. Each output of the node gets a slot from the allocator (`0x005C0180`) and state 1.
-4. Every output in state 1 that has a slot and whose readers have all been scheduled (`0x005C2F40`)
-   gives its slot back and moves to state 2. With `freeFirst` set this step runs before step 3.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It marks every node unscheduled (`+0x130` = −1) and every output unassigned (state 0, slot −1). |   |
+| 2 | It takes the first unscheduled node whose inputs all come from scheduled nodes and gives it the next order number. When no such node is left it returns 1. |   |
+| 3 | Each output of the node gets a slot from the allocator and state 1. | `0x005C0180` |
+| 4 | Every output in state 1 that has a slot and whose readers have all been scheduled gives its slot back and moves to state 2. With `freeFirst` set this step runs before step 3. | `0x005C2F40` |
 
-`0x005CA460` calls it with `freeFirst` 0 (`0x005CA5EE`), so a node's outputs are placed before the slots
+`0x005CA460` calls it with `freeFirst` 0¹, so a node's outputs are placed before the slots
 freed by its own scheduling come back.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CA5EE` |
+
+</details>
 
 `0x005C2F40(node, output)` returns true when every node in the node's reader list (`+0x120` count,
 `+0x128` data) that reads this output through one of its inputs has an order number. A reader that
@@ -214,14 +330,26 @@ acceptance)` returns the first of:
 - the smallest free slot of non-zero size at least `size` that `acceptance` accepts;
 - otherwise the largest accepted free slot of non-zero size;
 - otherwise the first free slot of size 0;
-- otherwise, after growing the array to twice its count or 16 more (`0x005C5A40`), a retry; −1 when
+- otherwise, after growing the array to twice its count or 16 more¹, a retry; −1 when
   that allocation fails.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C5A40` |
+
+</details>
 
 It marks the slot in use and raises its size to `size`. The acceptance object is a
 `PAvoidOutputOverwritingInput` (vtable `0x00D32B18`); its slot 0, `0x005C12D0`, rejects a slot that holds
 one of the node's own inputs when that input's size is larger than the output's.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### Reflected members
 
@@ -405,7 +533,12 @@ Instruction-level access tables per class, beside this page:
 | `+0x128` | `void*` | readers | nodes that read this node's outputs |
 | `+0x130` | `i32` | order | -1 until scheduled |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured over the packed namespaces and instance lists of every `.phyre` cluster in the archive.
 
@@ -418,19 +551,43 @@ Measured over the packed namespaces and instance lists of every `.phyre` cluster
 | targets with `m_type` 2, 4 or 5 | 0 |
 | the two clusters | two of the 456 map scenes; every object of every scene is a row of the scene tables on [Phyre asset files](phyre-asset-files.md) |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 ### Semantic indices
 
-Each channel semantic is built by its own static initialiser, which runs before `main` in initialiser-table order
-(`0x008C35C8`-`0x008C3658`). The initialiser reads the count `0x02CACF18`, stores it in the descriptor's `+0x14`, stores
+Each channel semantic is built by its own static initialiser, which runs before `main` in initialiser-table order¹. The initialiser reads the count `0x02CACF18`, stores it in the descriptor's `+0x14`, stores
 the count plus 1 back, puts the descriptor's address in the table `0x02CACF20` at the old count, and registers an
 exit teardown. After the nineteenth the count is 19 and each semantic's index is its row number in Channel semantics.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008C35C8`-`0x008C3658` |
+
+</details>
+
 A semantic's index is the bit it owns in a channel group's word. `0x005C22B0` reads `+0x14` through a channel's
-semantic pointer (`+0x38`) and ORs `1 << index` into the group (`0x005C26FA`-`0x005C26FC`); `0x005C2FE0` and `0x005C8130`
-read it the same way and combine `index << 2` with the channel's `+0x40` (`0x005C307A`, `0x005C8237`). `0x005CB8D0` walks
-the bits of a group word up to the count and takes each set bit's semantic from `0x02CACF20` (`0x005CBB95`).
+semantic pointer (`+0x38`) and ORs `1 << index` into the group¹; `0x005C2FE0` and `0x005C8130`
+read it the same way and combine `index << 2` with the channel's `+0x40`². `0x005CB8D0` walks
+the bits of a group word up to the count and takes each set bit's semantic from `0x02CACF20`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C26FA`-`0x005C26FC` |
+| ² | `0x005C307A`, `0x005C8237` |
+| ³ | `0x005CBB95` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -458,8 +615,16 @@ the bits of a group word up to the count and takes each set bit's semantic from 
 ### The semantic registry
 
 The `PAnimation` init `0x005C5C80` also puts the semantics on a registry keyed by name, `0x02CAFCD8`, linked through
-each descriptor's `+0x08`. It inserts `Rotation`, `Translation`, `Scale` and `ShaderParameterF4` itself
-(`0x005C5D6F`-`0x005C5EF9`) and the other fifteen through `0x005BEFE0` (15 calls).
+each descriptor's `+0x08`. It inserts `Rotation`, `Translation`, `Scale` and `ShaderParameterF4` itself¹ and the other fifteen through `0x005BEFE0` (15 calls).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C5D6F`-`0x005C5EF9` |
+
+</details>
 
 Each insert walks the list comparing
 names and returns `0x12` for a name already present (`0x11` for a null name in `0x005BEFE0`); otherwise it stores the
@@ -485,6 +650,8 @@ and `0x005C5250`, which returns the descriptor whose name matches, or 0.
 The walks that read a descriptor's `+0x08` are in `0x005BEFE0`, `0x005BF070`, `0x005BFED0`, `0x005C38B0`, `0x005C5250`,
 `0x005C5C80` and `0x005CB150`. The unlink stores through `[r9]` also write one of these four links when the descriptor
 removed is the one after it.
+
+</details>
 
 ## Modding notes
 

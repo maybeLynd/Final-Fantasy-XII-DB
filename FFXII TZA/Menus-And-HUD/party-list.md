@@ -18,42 +18,107 @@
 
 ### The list and its rows
 
-`0x0029BE50` is the list widget, `0xB68` bytes, built by `0x002964D0` when the party has a member (`0x0035BB60`) and kept at
-`[0x0209BE80] + 0x10F78` ([HUD](hud.md)). `0x0028FD70` builds it, and the widget `0x0029BC80` at `+0x10FC8` beside it
-(`0x00296AA0`).
+`0x0029BE50` is the list widget, `0xB68` bytes, built by `0x002964D0` when the party has a member¹ and kept at
+`[0x0209BE80] + 0x10F78` ([HUD](hud.md)). `0x0028FD70` builds it, and the widget `0x0029BC80` at `+0x10FC8` beside it².
 
-On a chocobo ride (`0x00303EC0`) it closes both, and while action availability bit `0x400` is set it closes the list
-and shows the widget `0x0029C530` at `[0x0209C300]` instead (`0x00297100`). `0x00290E10` closes the list and `0x00296A70` the widget beside it;
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035BB60` |
+| ² | `0x00296AA0` |
+
+</details>
+
+On a chocobo ride¹ it closes both, and while action availability bit `0x400` is set it closes the list
+and shows the widget `0x0029C530` at `[0x0209C300]` instead². `0x00290E10` closes the list and `0x00296A70` the widget beside it;
 `0x002970C0` closes `[0x0209C300]`. Each close first sets bit `0x10000` of the widget's `+0x40` when `0x002544B0` answers 1.
 
-`0x0028FD70` also calls `0x003CA1E0` (`0x0028FD99`), which, when the object at `[0x02B47758]` exists, clears bit `0x2` and sets
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00303EC0` |
+| ² | `0x00297100` |
+
+</details>
+
+`0x0028FD70` also calls `0x003CA1E0`¹, which, when the object at `[0x02B47758]` exists, clears bit `0x2` and sets
 bit `0x1` of its `+0xA90`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028FD99` |
+
+</details>
+
 On message 1 the list reads its layout, layout record `0x15`, takes the member count from `0x022C8064`, the leader's
-index from `0x022C8074` (`0x0035BAE0`), and builds the header `0x0029B700` at `+0xB38` (`0x0029BEAB`-`0x0029BF2A`).
+index from `0x022C8074`¹, and builds the header `0x0029B700` at `+0xB38`².
 `0x00296450` gives the y position of the first row from the header's layout.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035BAE0` |
+| ² | `0x0029BEAB`-`0x0029BF2A` |
+
+</details>
 
 ### Building the rows
 
 Each frame (message 2) the list checks the member count. When it changed it releases its rows and bars, clears the
-four member cells (`0x0028F830`), and sets bit `0x40` of `+0xB4A`; once they are gone it rebuilds through `0x0029BB40`
-(`0x0029C124`, `0x0029C134`):
+four member cells¹, and sets bit `0x40` of `+0xB4A`; once they are gone it rebuilds through `0x0029BB40`²:
 
-1. A member record with a type and a handle gets a row kind in `+0xB44 + i`: 2 for flag bit `0x2` (types 7-25), 3 for
-   flag bit `0x4` (types 27-39), 1 otherwise.
-2. A waiting kind builds the `0x160`-byte row `0x0029A0A0` at `+0x240 + i x 0x160`, with the list at its `+0x120`
-   (`0x0029BBD3`).
-3. Once the list has finished opening, it builds one `0xD8`-byte action bar `0x00299090` per member at
-   `+0x7C0 + i x 0xD8` and sets `+0xB4A` bit `0x10` (`0x0029C374`-`0x0029C38C`).
+<details>
+<summary>Where in the code</summary>
 
-The member records are the `0xC0`-byte records at `0x022C8080 + i x 0xC0` (`0x0035BB20`), described on
+| | Code |
+|---|---|
+| ¹ | `0x0028F830` |
+| ² | `0x0029C124`, `0x0029C134` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A member record with a type and a handle gets a row kind in `+0xB44 + i`: 2 for flag bit `0x2` (types 7-25), 3 for flag bit `0x4` (types 27-39), 1 otherwise. |   |
+| 2 | A waiting kind builds the `0x160`-byte row `0x0029A0A0` at `+0x240 + i x 0x160`, with the list at its `+0x120`. | `0x0029BBD3` |
+| 3 | Once the list has finished opening, it builds one `0xD8`-byte action bar `0x00299090` per member at `+0x7C0 + i x 0xD8` and sets `+0xB4A` bit `0x10`. | `0x0029C374`-`0x0029C38C` |
+
+The member records are the `0xC0`-byte records at `0x022C8080 + i x 0xC0`¹, described on
 [Party member status record](../Characters-And-Objects/party-member-status-record.md).
 `0x0035BB00(i)` returns record i's actor handle, the dword at `0x022C8084 + i x 0xC0`.
 
-`0x0035BB70`, run by the field set-up `0x00253A30` (`0x00253A3E`) and the teardown `0x003C5E50` (`0x003C5EA7`), clears the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035BB20` |
+
+</details>
+
+`0x0035BB70`, run by the field set-up `0x00253A30`¹ and the teardown `0x003C5E50`², clears the
 whole `0x348`-byte block from `0x022C8060`, keeps only the bits `0xFFFC02EC` of the mode word `0x022C83E8`, runs
-`0x002419B0()`, closes the leader-choice window in `0x022CA428` and the window `0x0035E070` keeps in `0x022CA430`
-(`0x00244F00`), and ends in `0x002A1E90`, which closes the widget in `[0x0209C4C8]`.
+`0x002419B0()`, closes the leader-choice window in `0x022CA428` and the window `0x0035E070` keeps in `0x022CA430`³, and ends in `0x002A1E90`, which closes the widget in `[0x0209C4C8]`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00253A3E` |
+| ² | `0x003C5EA7` |
+| ³ | `0x00244F00` |
+
+</details>
 
 `0x0035D570(unit)` returns 1 when the unit's handle is one of the `[0x022C83F0]` words at `0x022C83F8`; the overhead
 gauge `0x002C6F70` gives a unit an entry when `0x00273320(unit)` is not negative or `0x0035D570(unit)` is 1.
@@ -62,13 +127,28 @@ gauge `0x002C6F70` gives a unit an entry when `0x00273320(unit)` is not negative
 
 A row draws the parts in [Battle menu](battle-menu.md) (name, HP, HP gauge, maximum HP, MP and MP bars) and also:
 
-- the name from `0x00296600(type)` when the type has one, else the record's name (`0x00297F60`): types 0-6 are
-  "Vaan", "Ashe", "Fran", "Balthier", "Basch", "Penelo" and "Reks" (`0x009161F0`), 7-16 the guests from "Amalia" to
-  "Reddas" (`0x00916200`), 27-39 the Espers from "Belias" to "Zodiark" (`0x00916218`);
+- the name from `0x00296600(type)` when the type has one, else the record's name¹: types 0-6 are
+  "Vaan", "Ashe", "Fran", "Balthier", "Basch", "Penelo" and "Reks"², 7-16 the guests from "Amalia" to
+  "Reddas"³, 27-39 the Espers from "Belias" to "Zodiark"⁴;
 - one of three HP frames by digit count: `0x00297710` takes the larger of HP and the cap `+0x28`, below 100, below
   1000 or 1000 and above;
-- one of three MP frames by the bar count `+0x87`, 1 to 3, or no frame for 0 (`0x00297880`); rows of kind 3 draw no MP;
-- the status mark and name (`0x00297FE0`), and the summon gauge on the summoner's row (`0x0029B1C0`), below.
+- one of three MP frames by the bar count `+0x87`, 1 to 3, or no frame for 0⁵; rows of kind 3 draw no MP;
+- the status mark and name⁶, and the summon gauge on the summoner's row⁷, below.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00297F60` |
+| ² | `0x009161F0` |
+| ³ | `0x00916200` |
+| ⁴ | `0x00916218` |
+| ⁵ | `0x00297880` |
+| ⁶ | `0x00297FE0` |
+| ⁷ | `0x0029B1C0` |
+
+</details>
 
 ### Row effects
 
@@ -85,14 +165,33 @@ A row's flag word `+0xD8` (`+0x318 + i x 0x160` in the list) drives its effects:
 | `0x80` | nodes 0-2 fade out over 8 frames, and back in once it clears (`0x00298130`) |
 
 `0x00296FB0(amplitude, base, phase)` is `base + amplitude x sin((frame x rate - phase) x pi / 15)`, with the rate 1, or
-one over the speed steps while the game runs at speed (`0x00229DF0`, `0x00229E70`). A row whose shown status has flag
+one over the speed steps while the game runs at speed¹. A row whose shown status has flag
 bit `0x2` at `+0x25` is also drawn at half brightness (`+0x5A`, `0x0029A267`-`0x0029A282`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00229DF0`, `0x00229E70` |
+
+</details>
 
 ### Flashes
 
-`0x0028FBE0(popup)`, run for every battle number the popup queue `0x003BBD00` adds (`0x003BBE6C`), flashes the member's row
-when the popup is a number (kind byte `+0x0C` 0, `0x0028FBE6`) with a non-zero amount (`0x0028FBF3`), by the number's
+`0x0028FBE0(popup)`, run for every battle number the popup queue `0x003BBD00` adds¹, flashes the member's row
+when the popup is a number (kind byte `+0x0C` 0, `0x0028FBE6`) with a non-zero amount², by the number's
 colour slot, byte `+0x0D` (`0x0028FC2B`; [Battle numbers](battle-numbers.md)):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003BBE6C` |
+| ² | `0x0028FBF3` |
+
+</details>
 
 | Colour slot | Number | Flash |
 |---|---|---|
@@ -100,105 +199,253 @@ colour slot, byte `+0x0D` (`0x0028FC2B`; [Battle numbers](battle-numbers.md)):
 | `3`, `7` | MP recovery | MP: bit `0x40`, `0x00297040(list, handle, 1)`, not on a row of kind 3 |
 | `2`, `6` | HP damage | the row pulse: bit `0x10`, `0x00296E90` |
 
-`0x002994E0` draws the HP flash as a highlight sprite round the union of the HP digit nodes (`0x00271DB0`), as wide as
-the digit frame plus 24 for each node past the first (`0x002998D0`). For the draw it sets the widget's
+`0x002994E0` draws the HP flash as a highlight sprite round the union of the HP digit nodes¹, as wide as
+the digit frame plus 24 for each node past the first². For the draw it sets the widget's
 `+0x58 = (+0x58 x a) >> 7` and `+0x5A = (+0x5A x b) >> 7`, `a` and `b` the bytes `+6` and `+7` of the three-key track
-`0x009162D8` at time `+0x114`, and restores both afterwards (`0x0029957C`-`0x002995BF`).
+`0x009162D8` at time `+0x114`, and restores both afterwards³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00271DB0` |
+| ² | `0x002998D0` |
+| ³ | `0x0029957C`-`0x002995BF` |
+
+</details>
 
 `0x002996E0` does the same round the MP frame with the time `+0x116`. Each time steps `t += 8` a frame; above 255 it
-goes back to 0 and the flash bit clears (`0x0029A467`-`0x0029A4AD`).
+goes back to 0 and the flash bit clears¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029A467`-`0x0029A4AD` |
+
+</details>
 
 `0x00271AB0(out, keys, n, t)` evaluates a track of `n` 12-byte keys (`s16` `+0`, `s16` `+2`, `u16` time `+4`, bytes
 `+6`, `+7`, `s16` ease `+8`, `s16` `+10`). It takes the first pair with `time[k] <= t < time[k+1]`, else the last
 pair, and with `d = t - time[k]` and `span = time[k+1] - time[k]` sets `f = d x 256 / span`, or
 `int(256 sin(pi/2 x d / span))` for ease 1 in key `k+1`, or `256 - int(256 sin(pi/2 x (span - d) / span))` for ease 2.
-Each field is `v[k] + (v[k+1] - v[k]) x f / 256`, truncated (`0x00271AB0`-`0x00271CA9`).
+Each field is `v[k] + (v[k+1] - v[k]) x f / 256`, truncated¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00271AB0`-`0x00271CA9` |
+
+</details>
 
 ### Rolling numbers
 
 HP and MP roll through counters, `0x58`-byte records, two per member at `0x0209BF40 + i x 0xC0` and two for the target
 window at `0x0209C240`. `0x00297C10(record)` finds the pair holding the record's handle or takes a free one, sets it up
 with `0x003F89C0` and the callbacks `0x0029B7D0` (HP) and `0x0029B810` (MP), and registers both in the HUD's counter list
-`+0x80` (`0x003F8A50`). `0x002962D0` unregisters pairs whose handle no longer resolves (`0x002732E0`, `0x003F8A30`), and
+`+0x80`¹. `0x002962D0` unregisters pairs whose handle no longer resolves², and
 `0x00296360(record, handle)` does the same for the target window's pair (from `0x002C0870`).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F8A50` |
+| ² | `0x002732E0`, `0x003F8A30` |
+
+</details>
+
 `0x00297C10` scans the four member pairs from `0x0209BF40`, `0xC0` bytes apart, and not the target window's pair at
-`0x0209C240`; a pair is in use while either counter's flags `+0x26` have bit `0x2` (`0x00297C1A`-`0x00297C54`). An
+`0x0209C240`; a pair is in use while either counter's flags `+0x26` have bit `0x2`¹. An
 in-use pair whose `+0xB0` is the record's handle `+0x04` is kept as it is; otherwise the first pair with both
-bits clear is set up (`0x00297C56`-`0x00297CD8`).
+bits clear is set up².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00297C1A`-`0x00297C54` |
+| ² | `0x00297C56`-`0x00297CD8` |
+
+</details>
 
 Either way the record goes to both counters' `+0x48` (pair `+0x48` and `+0xA0`) and the handle to `+0xB0`, and the
-pair is returned (`0x00297CE2`-`0x00297CF8`); with all four in use it returns 0 and sets nothing (`0x00297C71`).
+pair is returned¹; with all four in use it returns 0 and sets nothing².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00297CE2`-`0x00297CF8` |
+| ² | `0x00297C71` |
+
+</details>
 
 `0x003F8A30(list, node)` first moves the list head on to the node's next (`+0x28`) when the node is the head, then
-runs `0x003F8BF0(node)` (`0x003F8A42`): it calls the node's callback `+0x38` with 5, links its previous `+0x30` and next
+runs `0x003F8BF0(node)`¹: it calls the node's callback `+0x38` with 5, links its previous `+0x30` and next
 `+0x28` neighbours to each other, clears both links and the word `+0x26`, and calls the callback again with 6.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F8A42` |
+
+</details>
 
 `0x0028F1F0(handle, old, new, mp)`, called by the HP write `0x00300530` (`0x003006E7`,
 [HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)) and the MP write `0x00300CE0` (`0x00300DD3`,
-[MP](../Status-Effects-And-KO/mp.md)), starts a roll: it finds the member's pair (`0x00296280`), or the target window's pair
-when its handle matches, and sends the HP or MP counter message 1 (`0x003F8980`). The HP callback passes the maximum
-`+0x24`, the MP callback the capacity `+0x30` times the bar count `+0x87` (`0x0029B7D0`, `0x0029B810`).
+[MP](../Status-Effects-And-KO/mp.md)), starts a roll: it finds the member's pair¹, or the target window's pair
+when its handle matches, and sends the HP or MP counter message 1². The HP callback passes the maximum
+`+0x24`, the MP callback the capacity `+0x30` times the bar count `+0x87`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00296280` |
+| ² | `0x003F8980` |
+| ³ | `0x0029B7D0`, `0x0029B810` |
+
+</details>
 
 ### How a roll moves
 
 `0x002973E0(counter, from, max, to)` starts it:
 
-1. A counter at rest starts from the old value (`0x002726C0`); a running one starts from the value it shows
-   (`0x00271960`, `0x00272730`).
-   - At rest is `+0x26` bit `0x1` (`0x0029740A`): `0x002726C0(counter, from, to, 0x94, 0xD4, 0xF3)`. A running counter
-     gets `0x00272730(counter, to, 0x94, 0xD4, 0xF3)`, which reads the shown value through `0x00271960` itself
-     (`0x00272754`); the answer of the call at `0x00297414` is not used.
-   - Equal from and to, or a maximum of 0, leave the counter as it is and answer 0: `from == to || max == 0`
-     (`0x002973F8`-`0x00297404`).
-2. The path keeps from and to in 1/16 units and three points between, at `0x94`, `0xD4` and `0xF3` of 256 of the way.
-3. Its length is the change times 100 over the maximum, between 10 and 50 frames (`0x002727C0`, step `0x400` / frames);
-   a change of 1 or less puts the counter at rest at once.
-   - The change is measured from the path's start `+0x00 >> 4` to `to` (`0x00297455`-`0x00297466`). At rest it sets
-     `+0x26` bit `0x1` and answers 0 (`0x002974C0`); otherwise it sets the step speed, the step `+0x14` to 0 and the
-     shown value `+0x50` to the start, and answers 1 (`0x00297493`-`0x002974AB`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A counter at rest starts from the old value; a running one starts from the value it shows.<br>• At rest is `+0x26` bit `0x1`: `0x002726C0(counter, from, to, 0x94, 0xD4, 0xF3)`. A running counter gets `0x00272730(counter, to, 0x94, 0xD4, 0xF3)`, which reads the shown value through `0x00271960` itself; the answer of the call at `0x00297414` is not used.<br>• Equal from and to, or a maximum of 0, leave the counter as it is and answer 0: `from == to \|\| max == 0`. | `0x002726C0`<br>`0x00271960`, `0x00272730`<br>`0x0029740A`<br>`0x00272754`<br>`0x002973F8`-`0x00297404` |
+| 2 | The path keeps from and to in 1/16 units and three points between, at `0x94`, `0xD4` and `0xF3` of 256 of the way. |   |
+| 3 | Its length is the change times 100 over the maximum, between 10 and 50 frames (`0x002727C0`, step `0x400` / frames); a change of 1 or less puts the counter at rest at once.<br>• The change is measured from the path's start `+0x00 >> 4` to `to`. At rest it sets `+0x26` bit `0x1` and answers 0; otherwise it sets the step speed, the step `+0x14` to 0 and the shown value `+0x50` to the start, and answers 1. | `0x00297455`-`0x00297466`<br>`0x002974C0`<br>`0x00297493`-`0x002974AB` |
 
-Each HUD frame group 2 steps every registered counter (`0x003F8B40`): `0x00272710` advances the step and `0x00271960` gives
+Each HUD frame group 2 steps every registered counter¹: `0x00272710` advances the step and `0x00271960` gives
 the shown value. The five points are from, the three between, and to, one quarter apart:
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F8B40` |
+
+</details>
+
 - with the step below `0x400`, `u = step / 256`, `i = int(u)`, `t = u - i` and the points `P0`-`P4` in that order,
-  over the first three quarters the value follows a spline through them (`0x00271960`, `0x00270260`). Segment 0 is
+  over the first three quarters the value follows a spline through them¹. Segment 0 is
   `0.5 x ((P0 - 2 P1 + P2) t^2 + (4 P1 - 3 P0 - P2) t + 2 P0)`, `P0` at `t = 0` and `P1` at `t = 1`;
   - the basis is at `0x009157B0`; its constant row, 0, 2, 0, 0, multiplies `P0`: the point matrix's rows are
-    a zero row, written at `0x0027033B`-`0x0027034F`, then `P0`, `P1` and `P2` (`0x00270355`-`0x00270371`);
+    a zero row, written at `0x0027033B`-`0x0027034F`, then `P0`, `P1` and `P2`²;
 - segments 1 and 2 are the Catmull-Rom `0.5 x ((3 P[i] - P[i-1] - 3 P[i+1] + P[i+2]) t^3 + (2 P[i-1] - 5 P[i] +
   4 P[i+1] - P[i+2]) t^2 + (P[i+1] - P[i-1]) t + 2 P[i])` (the basis at `0x009157F0`, points from `0x00276220`), the
   0.5 being the vector at `0x00915870`;
 - over the last quarter it moves in a straight line, `P3 + (P4 - P3) x (u - 3)`, from the third point between to the
-  target. The shown value is `int(x) >> 4` (`0x00271960`).
+  target. The shown value is `int(x) >> 4`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00271960`, `0x00270260` |
+| ² | `0x00270355`-`0x00270371` |
+| ³ | `0x00271960` |
+
+</details>
 
 `0x00271960(counter, step)` answers the from value `+0x00 >> 4` for a step of 0 or less and the target `+0x04 >> 4` for
-a step of `0x400` or more (`0x00271979`-`0x0027198F`, `0x00271A8D`). The five points are the record's `+0x00`, `+0x08`,
-`+0x0C`, `+0x10` and `+0x04`, each with a second coordinate of 0, 100, 200, 300 and 400 (`0x00271994`-`0x00271A51`);
-`u` is `step x 16 / 4096` (`0x0027199B`, `0x00271A1D`), and the spline `0x00270260` runs while `u` is below 3.0
-(`0x00271A3C`-`0x00271A6C`).
+a step of `0x400` or more¹. The five points are the record's `+0x00`, `+0x08`,
+`+0x0C`, `+0x10` and `+0x04`, each with a second coordinate of 0, 100, 200, 300 and 400²;
+`u` is `step x 16 / 4096`³, and the spline `0x00270260` runs while `u` is below 3.0⁴.
 
-The row shows the counter's value at `+0x50` while it runs, and the record's value at rest (`0x0029A4CE`, `0x0029A5FD`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00271979`-`0x0027198F`, `0x00271A8D` |
+| ² | `0x00271994`-`0x00271A51` |
+| ³ | `0x0027199B`, `0x00271A1D` |
+| ⁴ | `0x00271A3C`-`0x00271A6C` |
+
+</details>
+
+The row shows the counter's value at `+0x50` while it runs, and the record's value at rest¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029A4CE`, `0x0029A5FD` |
+
+</details>
 
 ### The status mark
 
 `0x00297FE0(row, record)` copies the status presence word `+0x44` into the row's status record at `+0xF0` and steps it
 with `0x00272F60(+0xF0, 30, 0)`, which passes a further 0 to `0x00272F80`. With n statuses to show, each shows for
-`max(36 - 6n, 12)` frames in display order, after a blank of `ceil(30 / that)` periods (`0x00272F80`). The mark
+`max(36 - 6n, 12)` frames in display order, after a blank of `ceil(30 / that)` periods¹. The mark
 shows the status's sprite and its name, text `0x46B7` plus the status, such as "KO" (`0x46B7`) or "Stone"
 (`0x46B8`), in colour 5 when the status has flag bit `0x1` at `+0x25` and 4 otherwise.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00272F80` |
+
+</details>
+
 The display orders are four tables of pointers to copies of the 32 status rows, class `0x1A`, that `0x00273BA0` builds
-at `0x022C8B08 + 0x1500`, `+0x1600`, `+0x1700` and `+0x1800` (`0x0035D490`):
+at `0x022C8B08 + 0x1500`, `+0x1600`, `+0x1700` and `+0x1800`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035D490` |
+
+</details>
 
 - `0x00273410(order)` returns a table and `0x00273380(mask, order)` the first status of the mask in it;
 - a status counts in order 0, 1, 2 or 3 only when its byte `+0x21`, `+0x23`, `+0x22` or `+0x24` is not -1
-  (`0x00275E40`), and in order 2 also when `0x003178C0` passes it for the unit;
+ ¹, and in order 2 also when `0x003178C0` passes it for the unit;
 - `0x00273160(out, flags, unit)` returns the first status of a unit in order 1 and its flag bits, for the overhead
   gauge `0x002C6F70`.
 
-`0x00273BA0` builds each order as a list of 4-byte entries (`0x00273C63`-`0x00273DB8`), and the Party Menu's member rows
-(`0x00284030`) and the Status pane (`0x002C573E`) make the same list for one unit's statuses:
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00275E40` |
+
+</details>
+
+`0x00273BA0` builds each order as a list of 4-byte entries¹, and the Party Menu's member rows² and the Status pane³ make the same list for one unit's statuses:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00273C63`-`0x00273DB8` |
+| ² | `0x00284030` |
+| ³ | `0x002C573E` |
+
+</details>
 
 1. The member rows and the Status pane first fill n entries with `0xFEFE` (`0x002D0280(list, n)`).
 2. `0x002D02C0(list, n, mask, order)` writes, for each status of the mask below n, its number, its byte for the order
@@ -207,7 +454,16 @@ at `0x022C8B08 + 0x1500`, `+0x1600`, `+0x1700` and `+0x1800` (`0x0035D490`):
 3. `0x002D03B0(list, n)` sorts them by that byte, highest first (`0x00249CE0` with the comparator `0x002D0270`).
 
 `0x002D02A0(entry, mask)` answers whether an entry is a real status with a byte and set in a mask. The member row shows
-at most 11 entries and skips status `0x1D` (`0x00284058`-`0x00284070`).
+at most 11 entries and skips status `0x1D`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00284058`-`0x00284070` |
+
+</details>
 
 The Status pane `0x002C59D0` keeps 32 such entries at `+0xC8` and its mask at `+0x148`:
 
@@ -217,46 +473,92 @@ The Status pane `0x002C59D0` keeps 32 such entries at `+0xC8` and its mask at `+
 - `0x002C5EC0(pane, dir)` answers whether such a move finds an entry. Dir 0 and 1 answer 0 at either end of the 32
   entries; dir 3 answers 0 when entry + columns is 35; dir 2 steps by 4 and answers 0 when entry - 4 is -columns; both
   otherwise wrap by 31.
-- `0x002C5900(pane, row, ..., i)` is the row painter the pane installs (`0x002C5A7F`). For an empty entry it hides
+- `0x002C5900(pane, row, ..., i)` is the row painter the pane installs¹. For an empty entry it hides
   both of the row's elements; otherwise it gives the first the status's sprite cell and the second the text at
-  `+0x18` of the status's class `0x1A` record (`0x002B58B0`), in colour 4 when the entry's third byte is set and
-  5 otherwise (`0x002DD7E0`).
-- `0x002C5660()` returns the widest text at `+0x10` of those records (`0x002B3050`) among the statuses that the
+  `+0x18` of the status's class `0x1A` record², in colour 4 when the entry's third byte is set and
+  5 otherwise³.
+- `0x002C5660()` returns the widest text at `+0x10` of those records⁴ among the statuses that the
   nine party records hold (`0x00282DF0`: `+0x60` not negative, the mask `+0x44`).
 
-The HP number's colour comes from the statuses present, in order 0 (`0x00271FB0`, `0x00297D62`): colour `0xB5` when one
-has bit `0x10` at `+0x25` and `0xB6` for bit `0x8`, pulsing by `128 + 32 x sin(frame x pi / 30)` (`0x00271EF0`); a status with
-bit `0x2` at `+0x25` halves each channel, `c x 0x40 >> 7` in place of `c x 0x80 >> 7` (`0x00297D67`-`0x00297DAE`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002C5A7F` |
+| ² | `0x002B58B0` |
+| ³ | `0x002DD7E0` |
+| ⁴ | `0x002B3050` |
+
+</details>
+
+The HP number's colour comes from the statuses present, in order 0¹: colour `0xB5` when one
+has bit `0x10` at `+0x25` and `0xB6` for bit `0x8`, pulsing by `128 + 32 x sin(frame x pi / 30)`²; a status with
+bit `0x2` at `+0x25` halves each channel, `c x 0x40 >> 7` in place of `c x 0x80 >> 7`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00271FB0`, `0x00297D62` |
+| ² | `0x00271EF0` |
+| ³ | `0x00297D67`-`0x00297DAE` |
+
+</details>
 
 ### The summon gauge
 
-While an Esper is out (`0x003135C0`), the row of the member whose type equals the summon block's `+0x2C` (`0x003200A0`,
+While an Esper is out¹, the row of the member whose type equals the summon block's `+0x2C` (`0x003200A0`,
 `[0x02EBF190] + 0x5AD4`) shows the summon node and `0x0029B1C0(row, left, total)` draws it as five segments from the
-summon timer `+0x5AD8` and its length `+0x5ADC` (`0x0029A39D`-`0x0029A407`). Lit segments pulse with
+summon timer `+0x5AD8` and its length `+0x5ADC`². Lit segments pulse with
 `sin(frame x pi / 60)`; the segment being used up fades by the time left in it, the first never below `0x20`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003135C0` |
+| ² | `0x0029A39D`-`0x0029A407` |
+
+</details>
+
 `0x0029B490(row, on)` steps a six-frame mark through the frames `4`, `0x16`, `0x17`, `0x18`, `0x19` and `5` while the
-record's flag bit `0x20000` is set and back while it is clear (`0x0029A5D9`). `0x0029AFE0` pulses node `0xB8`'s
+record's flag bit `0x20000` is set and back while it is clear¹. `0x0029AFE0` pulses node `0xB8`'s
 brightness between `0x80` and `0xFF` while flag bit `0x80` is set.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029A5D9` |
+
+</details>
 
 ### The action bar
 
-The bar `0x00299090` keeps its state in the member's `0x20`-byte cell (`0x0028F830`), cleared when the member's type
+The bar `0x00299090` keeps its state in the member's `0x20`-byte cell¹, cleared when the member's type
 changes. It shows while the record's flag bit `0x200` is set or its action id `+0x5C` or issued command `+0x5E` is below
 `0x4000`, and flag bit `0x40` is clear; otherwise it closes once its count `+0xCA` passes 3. Each frame
 `0x002986E0(bar, record)`:
 
-1. shows the action's name (class `0x14`, `0x0029FB50`) once flag bit `0x2000` is set and the id changed;
-2. fills to `pct = +0x3C x 100 / +0x40` percent, a maximum of 0 counting as 100 (`0x00298BD0`-`0x00298BD5`), or 100
-   with flag bit `0x1000`;
-3. on reaching 100 flashes for 8 frames with `sin(t x pi / 15)` (state 1), then fades out by 16 a frame (state 2);
-4. blends two colour pairs from `0x002DD7E0`, each channel `c0 + (c1 - c0) x f / 256` (`0x002752E0`), and cycles a
-   four-key colour track (`0x00274870`, `0x00271E50`) while `0x00226BA0` answers 0:
-   - filling (state 0): `f = pct x 256 / 100`, colour `0x7A` to `0x7B` and `0x7E` to `0x7F` (`0x00298F9B`, `0x00298FB0`);
-   - flashing (state 1): `f = 128 + int(128 sin((frame - start) x pi / 15))`, `start` the frame stored at cell `+0x0C`, `0x7B` to `0x7C` and `0x7F` to `0x80`
-     (`0x00298E0A`, `0x00298E23`);
-   - fading (state 2): `f` the fade count, which steps by 16 to 256, `0x7C` to `0x7D` and `0x80` to `0x7E`
-     (`0x00298C4C`-`0x00298CC1`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028F830` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | shows the action's name (class `0x14`, `0x0029FB50`) once flag bit `0x2000` is set and the id changed; |   |
+| 2 | fills to `pct = +0x3C x 100 / +0x40` percent, a maximum of 0 counting as 100, or 100 with flag bit `0x1000`; | `0x00298BD0`-`0x00298BD5` |
+| 3 | on reaching 100 flashes for 8 frames with `sin(t x pi / 15)` (state 1), then fades out by 16 a frame (state 2); |   |
+| 4 | blends two colour pairs from `0x002DD7E0`, each channel `c0 + (c1 - c0) x f / 256`, and cycles a four-key colour track while `0x00226BA0` answers 0:<br>• filling (state 0): `f = pct x 256 / 100`, colour `0x7A` to `0x7B` and `0x7E` to `0x7F`;<br>• flashing (state 1): `f = 128 + int(128 sin((frame - start) x pi / 15))`, `start` the frame stored at cell `+0x0C`, `0x7B` to `0x7C` and `0x7F` to `0x80`;<br>• fading (state 2): `f` the fade count, which steps by 16 to 256, `0x7C` to `0x7D` and `0x80` to `0x7E`. | `0x002752E0`<br>`0x00274870`, `0x00271E50`<br>`0x00298F9B`, `0x00298FB0`<br>`0x00298E0A`, `0x00298E23`<br>`0x00298C4C`-`0x00298CC1` |
 
 `0x00297290` fades the bar's frame in and out by 16 a step (tracks on the stack, `0x00271AB0`).
 
@@ -264,43 +566,46 @@ changes. It shows while the record's flag bit `0x200` is set or its action id `+
 
 Request 3 ([Menus](menus.md)) reaches `0x00290500(1)`, which runs `0x00296BE0(list, 1)`:
 
-1. A list already in pick mode 2 refuses; otherwise the mode `+0xB49` becomes 1 with the handler `0x00297640`.
-   - A null list or mode 2 answers 0; a list already in mode 1 answers 1 and changes nothing (`0x00296BE9`,
-     `0x00296CAE`-`0x00296CBF`). Otherwise it stores the leader index `0x0035BAE0()` at `+0xB48`, the list itself as the
-     context `+0xB30` and the handler at `+0xB20`, and clears `+0xB4A` bit `0x2` (`0x00296CC5`-`0x00296CF4`).
-2. `0x00299BD0` visits rows 0 to `n - 1`, `n` the row count byte `+0xB42`, and gives each one bit `0x1`. A row
-   whose member has a handle, is not KO (flag bit `0x1`), has flag bit `0x40` clear and passes `0x002739D0` is
-   offered (`0x00299C5F`); the others are refused: they lose bit `0x4` and get bits `0x1` and `0x2`
-   (`0x00299C76`-`0x00299C82`).
-3. The cursor goes to the leader's row (`0x00296D96`, `0x00296DA7`).
-   - Every row below `n` has bit `0x1`, offered or refused, so a leader index from 0 to `n - 1` always keeps the
-     cursor (`ax & 1`, `0x00296D32`), even when the leader's own row is refused.
-   - Only a leader index outside the rows can fail that test: -1, or `n` or more. The rebuild `0x0035BC50` leaves
-     such an index when no listed member is the leader: it keeps the old index, -1 at first, unless that is above
-     the new member count (`0x0035BD66`, `0x0035BE72`-`0x0035BE90`).
-   - When the word tested for such an index has bit `0x1` clear, the search `i = i + 1 < n ? i + 1 : 0`
-     (`0x00296D47`-`0x00296D91`) stops at row 0 on its first step; with `n` = 0 it does not run and the cursor
-     index stays the leader index.
-   - The row gets bit `0x4`; `0x0035BB00` is called for the leader's and the cursor's index and its answer is not
-     used (`0x00296D0C`-`0x00296DB7`).
-   - The header `+0xB38` closes with `0x00244DD0` (`0x00296D07`). It clears `+0xB4A` bit `0x1` and sets it again when
-     `0x0029C9D0` answers 0.
-   - It then runs `0x003678F0`, which writes `0x8000`, no position, to the hand cursor's words at
-     `0x022CBE38`, `0x022CBE3A` and `0x022CBE4C`-`0x022CBE52` and its trail words `0x022CBE76`, `0x022CBE7A`, `0x022CBE7E` and
-     `0x022CBE82`, and 0 to the word `0x022CBE3E` and the byte `0x022CBE70` (`0x003678F0`-`0x0036793E`). After the focus it
-     sets `+0xB4A` bit `0x80` and answers 1 (`0x00296DBC`-`0x00296DF5`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A list already in pick mode 2 refuses; otherwise the mode `+0xB49` becomes 1 with the handler `0x00297640`.<br>• A null list or mode 2 answers 0; a list already in mode 1 answers 1 and changes nothing. Otherwise it stores the leader index `0x0035BAE0()` at `+0xB48`, the list itself as the context `+0xB30` and the handler at `+0xB20`, and clears `+0xB4A` bit `0x2`. | `0x00296BE9`, `0x00296CAE`-`0x00296CBF`<br>`0x00296CC5`-`0x00296CF4` |
+| 2 | `0x00299BD0` visits rows 0 to `n - 1`, `n` the row count byte `+0xB42`, and gives each one bit `0x1`. A row whose member has a handle, is not KO (flag bit `0x1`), has flag bit `0x40` clear and passes `0x002739D0` is offered; the others are refused: they lose bit `0x4` and get bits `0x1` and `0x2`. | `0x00299C5F`<br>`0x00299C76`-`0x00299C82` |
+| 3 | The cursor goes to the leader's row.<br>• Every row below `n` has bit `0x1`, offered or refused, so a leader index from 0 to `n - 1` always keeps the cursor (`ax & 1`, `0x00296D32`), even when the leader's own row is refused.<br>• Only a leader index outside the rows can fail that test: -1, or `n` or more. The rebuild `0x0035BC50` leaves such an index when no listed member is the leader: it keeps the old index, -1 at first, unless that is above the new member count.<br>• When the word tested for such an index has bit `0x1` clear, the search `i = i + 1 < n ? i + 1 : 0` stops at row 0 on its first step; with `n` = 0 it does not run and the cursor index stays the leader index.<br>• The row gets bit `0x4`; `0x0035BB00` is called for the leader's and the cursor's index and its answer is not used.<br>• The header `+0xB38` closes with `0x00244DD0`. It clears `+0xB4A` bit `0x1` and sets it again when `0x0029C9D0` answers 0.<br>• It then runs `0x003678F0`, which writes `0x8000`, no position, to the hand cursor's words at `0x022CBE38`, `0x022CBE3A` and `0x022CBE4C`-`0x022CBE52` and its trail words `0x022CBE76`, `0x022CBE7A`, `0x022CBE7E` and `0x022CBE82`, and 0 to the word `0x022CBE3E` and the byte `0x022CBE70`. After the focus it sets `+0xB4A` bit `0x80` and answers 1. | `0x00296D96`, `0x00296DA7`<br>`0x0035BD66`, `0x0035BE72`-`0x0035BE90`<br>`0x00296D47`-`0x00296D91`<br>`0x00296D0C`-`0x00296DB7`<br>`0x00296D07`<br>`0x003678F0`-`0x0036793E`<br>`0x00296DBC`-`0x00296DF5` |
 `0x00296BE0(list, 0)` undoes it: the header reopens, the focus is given up, the overlay closes and every row loses
 bits `0x1`, `0x2`, `0x4` and `0x80`.
 
-It does so only in mode 1; in another mode it answers 1 and changes nothing (`0x00296BFE`-`0x00296C05`). In mode 1 it
+It does so only in mode 1; in another mode it answers 1 and changes nothing¹. In mode 1 it
 reopens the header through `0x00246AC0`, clears `+0xB4A` bit `0x80`, runs `0x00290630`, sets the mode to 0, gives up the
-focus (`0x002470C0`), closes the overlay at `+0xC0` only when one is there (`0x00273A20`, `0x00244F00`), clears
-`+0xB4A` bit `0x1` and the rows' bits, sets the handler `+0xB20` to 0 and answers 1 (`0x00296C0B`-`0x00296CA3`).
+focus², closes the overlay at `+0xC0` only when one is there³, clears
+`+0xB4A` bit `0x1` and the rows' bits, sets the handler `+0xB20` to 0 and answers 1⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00296BFE`-`0x00296C05` |
+| ² | `0x002470C0` |
+| ³ | `0x00273A20`, `0x00244F00` |
+| ⁴ | `0x00296C0B`-`0x00296CA3` |
+
+</details>
 
 ### The buttons
 
-In either mode the list's input turn runs `0x0029B870` and keeps the answer at `+0xB43` (`0x00296570`). The first turn
-only plays sound 4 (`0x0029BFB5`). Each press is offered to the handler `+0xB20`, which may refuse it (`0x0029B790`):
+In either mode the list's input turn runs `0x0029B870` and keeps the answer at `+0xB43`¹. The first turn
+only plays sound 4². Each press is offered to the handler `+0xB20`, which may refuse it³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00296570` |
+| ² | `0x0029BFB5` |
+| ³ | `0x0029B790` |
+
+</details>
 
 | Press | Answer |
 |---|---|
@@ -311,8 +616,17 @@ only plays sound 4 (`0x0029BFB5`). Each press is offered to the handler `+0xB20`
 | L1, R1 | `4`, `5` |
 | Up, Down, a wheel notch | moves to the next offered row, 1; at an end, 7 |
 
-Up and Down wrap on a new press and stop at the ends on a repeat (`0x002975B0`); the wheel counts as a repeat
-(`0x001E0A10`, `0x001E0E30`).
+Up and Down wrap on a new press and stop at the ends on a repeat¹; the wheel counts as a repeat².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002975B0` |
+| ² | `0x001E0A10`, `0x001E0E30` |
+
+</details>
 
 ### The leader handler
 
@@ -328,93 +642,222 @@ Up and Down wrap on a new press and stop at the ends on a repeat (`0x002975B0`);
 | `4`, `5`, `7`, `8` | refused |
 
 An allowed confirm makes the row's member the leader (`0x0035BAA0` with its type), then `0x0035C100(1)`, `0x0035DA80`,
-`0x003C93E0(0)`, `0x0035C080` and `0x0035C050(0)` (`0x0029C008`-`0x0029C033`); an allowed cancel closes the mode through
-`0x0035D8D0` (`0x0029C04C`-`0x0029C058`).
+`0x003C93E0(0)`, `0x0035C080` and `0x0035C050(0)`¹; an allowed cancel closes the mode through
+`0x0035D8D0`².
 
-Before it stores the type, `0x0035BAA0` (`0x0029C011`) runs `0x003C8950` (`0x0035BAB0`).
+<details>
+<summary>Where in the code</summary>
 
-Moving the cursor in this mode shows the member in a member window. `0x0029B440(member)` rings the member
-(`0x002BE080`), builds the window when it is not there (`0x002906D0`, `0x0029B46E`) and hands it the member's handle
-(`0x00290680`, `0x0029B47E`), which `0x00296960` shows while the window's `+0x710` is still 0 (`0x0029696A`-`0x00296976`).
+| | Code |
+|---|---|
+| ¹ | `0x0029C008`-`0x0029C033` |
+| ² | `0x0029C04C`-`0x0029C058` |
 
-`0x002906D0` builds the window in place at `[0x0209BE80]` + `0xAB30`, a `0x720`-byte widget with procedure `0x002985D0`
-(`0x00296940`), only while bit `0x2000` of `[0x0209BE80]` + `0x10F68` is clear, and then sets that bit
-(`0x00290707`-`0x00290726`).
+</details>
+
+Before it stores the type, `0x0035BAA0`¹ runs `0x003C8950`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029C011` |
+| ² | `0x0035BAB0` |
+
+</details>
+
+Moving the cursor in this mode shows the member in a member window. `0x0029B440(member)` rings the member¹, builds the window when it is not there² and hands it the member's handle³, which `0x00296960` shows while the window's `+0x710` is still 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002BE080` |
+| ² | `0x002906D0`, `0x0029B46E` |
+| ³ | `0x00290680`, `0x0029B47E` |
+| ⁴ | `0x0029696A`-`0x00296976` |
+
+</details>
+
+`0x002906D0` builds the window in place at `[0x0209BE80]` + `0xAB30`, a `0x720`-byte widget with procedure `0x002985D0`¹, only while bit `0x2000` of `[0x0209BE80]` + `0x10F68` is clear, and then sets that bit².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00296940` |
+| ² | `0x00290707`-`0x00290726` |
+
+</details>
 
 On message 1 the window builds its `0x650`-byte panel in place at `+0xC0` (procedure `0x00298250`,
-`0x0029867A`-`0x00298686`), stores the release hook `0x00290610` at `+0x08` (`0x00298690`-`0x00298697`), attaches the panel
-(`0x002986A5`) and first shows the controlled character (`0x0035BAD0`, `0x002986AA`).
+`0x0029867A`-`0x00298686`), stores the release hook `0x00290610` at `+0x08`¹, attaches the panel² and first shows the controlled character³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00298690`-`0x00298697` |
+| ² | `0x002986A5` |
+| ³ | `0x0035BAD0`, `0x002986AA` |
+
+</details>
 
 The panel's procedure `0x00298250` answers 0 to messages 2 and 15 and does nothing for them, hands any
-message other than 1, 2 and 15 to `0x005C5230`, and builds on message 1 (`0x00298259`-`0x0029827A`,
-`0x002985B8`). It first makes a `0xC0`-byte part in place at the panel's `+0x588` with procedure
-`0x0017CDE0` (`0x00245000`, `0x00298284`-`0x002982AE`), gives it the answer of `0x002735E0(3)` through `0x00247570`,
-and asks `0x002432B0(part + 0x50, [[0x0209AC30] + 8], 0xE, part)` for a record (`0x002982B3`-`0x002982E3`).
+message other than 1, 2 and 15 to `0x005C5230`, and builds on message 1¹. It first makes a `0xC0`-byte part in place at the panel's `+0x588` with procedure
+`0x0017CDE0`², gives it the answer of `0x002735E0(3)` through `0x00247570`,
+and asks `0x002432B0(part + 0x50, [[0x0209AC30] + 8], 0xE, part)` for a record³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00298259`-`0x0029827A`, `0x002985B8` |
+| ² | `0x00245000`, `0x00298284`-`0x002982AE` |
+| ³ | `0x002982B3`-`0x002982E3` |
+
+</details>
 
 The panel's dword `+0x98` becomes 0 and its words `+0x9C` and `+0x9E` the low words of `0x01E0C1D8` and
-`0x01E0C1DC`; the part's words `+0x98` to `+0x9E` take the record's words `+0x04` to `+0x0A`
-(`0x002982E8`-`0x00298353`). From the first node of the part's list `+0x60` the panel keeps the words
-`+0x0C` and `+0x0E` at its `+0x580` and `+0x582` (`0x0029835A`-`0x00298369`); from the second node it
-keeps the same two words, less those two, at `+0x584` and `+0x586` (`0x0029842D`-`0x00298464`).
+`0x01E0C1DC`; the part's words `+0x98` to `+0x9E` take the record's words `+0x04` to `+0x0A`¹. From the first node of the part's list `+0x60` the panel keeps the words
+`+0x0C` and `+0x0E` at its `+0x580` and `+0x582`²; from the second node it
+keeps the same two words, less those two, at `+0x584` and `+0x586`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002982E8`-`0x00298353` |
+| ² | `0x0029835A`-`0x00298369` |
+| ³ | `0x0029842D`-`0x00298464` |
+
+</details>
 
 The sixth node's pointer `+0x18` leads to an object with a list `+0x60` of its own; the words `+0x0C`
-to `+0x12` of that list's third node go to the panel's `+0x648` to `+0x64E` (`0x00298370`-`0x002983BD`).
-`0x0035C430` is called with the answer of `0x0035BB50` (`0x002983C4`-`0x002983CB`). The third node's pointer
+to `+0x12` of that list's third node go to the panel's `+0x648` to `+0x64E`¹.
+`0x0035C430` is called with the answer of `0x0035BB50`². The third node's pointer
 `+0x18` names an object whose word `+0x9A` gets 4 added; bit `0x1` of the dword `+0x08` of the second
 node of that object's list is cleared, and the list's first node gets the answer of
-`0x002F9860(0x4A49)` at `+0x18` and the answer of `0x0020E620(0)` at its dword `+0x20`
-(`0x002983D0`-`0x0029842A`).
+`0x002F9860(0x4A49)` at `+0x18` and the answer of `0x0020E620(0)` at its dword `+0x20`³.
 
-Then `0x00247930(part, 0x5A)`, `0x00244960(panel, part)` and `0x00247930(panel, 0x64)` run
-(`0x00298443`-`0x00298483`). A second part, `0x4C0` bytes with procedure `0x002985C0`, is made in place at
-the panel's `+0xC0` (`0x00298488`-`0x0029849E`). `0x003EE8C0(panel + 0xC0, 0x002F9860(0x4C6), 0, 0)` and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00298370`-`0x002983BD` |
+| ² | `0x002983C4`-`0x002983CB` |
+| ³ | `0x002983D0`-`0x0029842A` |
+
+</details>
+
+Then `0x00247930(part, 0x5A)`, `0x00244960(panel, part)` and `0x00247930(panel, 0x64)` run¹. A second part, `0x4C0` bytes with procedure `0x002985C0`, is made in place at
+the panel's `+0xC0`². `0x003EE8C0(panel + 0xC0, 0x002F9860(0x4C6), 0, 0)` and
 `0x0029CD00(0x002F9860(0x4C6), 0, 0.88, a, b)` follow, 0.88 being the float `0x01E0CF94` and a and b the
-addresses of two stack dwords (`0x002984A3`-`0x002984EB`). The dword `0x01E0C34C` is added to the first of
-them when `0x00254A10` answers non-zero, and `0x01E0C350` otherwise (`0x002984F0`-`0x0029850C`).
+addresses of two stack dwords³. The dword `0x01E0C34C` is added to the first of
+them when `0x00254A10` answers non-zero, and `0x01E0C350` otherwise⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00298443`-`0x00298483` |
+| ² | `0x00298488`-`0x0029849E` |
+| ³ | `0x002984A3`-`0x002984EB` |
+| ⁴ | `0x002984F0`-`0x0029850C` |
+
+</details>
 
 `0x0035BAD0` is called and its answer handed to `0x005C5230`, whose 0 goes to `0x002475D0` with the second
-part (`0x00298510`-`0x00298521`).
+part¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00298510`-`0x00298521` |
+
+</details>
 
 The second part's words are then set: `+0x98` to the record's word
 `+0x04` plus the panel's `+0x580`, `+0x9A` to the record's word `+0x06` plus the panel's `+0x582`,
 `+0x9C` to the larger, compared signed, of the first stack dword after that add and the word `+0x10` of
 the first part's first node, and
-`+0x9E` to the low word of `0x01E0C554` (`0x00298526`-`0x0029858E`). `0x00244960(panel, second part)` and
-`0x00247930(second part, 0x64)` end the build, which answers 0 (`0x00298596`-`0x002985BF`).
+`+0x9E` to the low word of `0x01E0C554`¹. `0x00244960(panel, second part)` and
+`0x00247930(second part, 0x64)` end the build, which answers 0².
 
-The fourth argument of both `0x00245000` calls is 0 (`0x0029829C`, `0x00298488`). A null first part is
-tested before each use of its list, and the node pointer is then taken as 0 with no further test
-(`0x00298312`-`0x0029831A`, `0x00298370`-`0x00298378`, `0x002983D0`-`0x002983D8`, `0x0029842D`-`0x00298435`,
-`0x0029852B`-`0x00298537`).
+<details>
+<summary>Where in the code</summary>
 
-A null `+0x18` in the sixth node leaves the node pointer 0, which is then read
-(`0x00298386`-`0x0029838E`). A null `+0x18` in the third node skips the 4 and the list read, and the node
-pointers that follow are 0 (`0x002983E6`-`0x0029840C`). The panel's three stores, the first part's four and
-the second part's four are skipped for a null pointer (`0x002982F9`-`0x002982FC`, `0x00298332`-`0x00298335`,
-`0x00298565`-`0x00298568`).
+| | Code |
+|---|---|
+| ¹ | `0x00298526`-`0x0029858E` |
+| ² | `0x00298596`-`0x002985BF` |
 
-Ending the leader choice runs `0x00290630` (`0x00296C28` in `0x00296BE0`, and `0x0029C455`), which closes the panel
-(`0x002964B5`) and sets `+0x710` to 1 (`0x002964BA`). On its next message 2 the window finds the panel gone and tears
-itself down (`0x00298620`-`0x00298637`). The release gives the storage back by clearing `+0xA2` and runs the hook
-(`0x002483E5`-`0x00248405`), which clears bit `0x2000` (`0x00290617`).
+</details>
+
+The fourth argument of both `0x00245000` calls is 0¹. A null first part is
+tested before each use of its list, and the node pointer is then taken as 0 with no further test².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029829C`, `0x00298488` |
+| ² | `0x00298312`-`0x0029831A`, `0x00298370`-`0x00298378`, `0x002983D0`-`0x002983D8`, `0x0029842D`-`0x00298435`, `0x0029852B`-`0x00298537` |
+
+</details>
+
+A null `+0x18` in the sixth node leaves the node pointer 0, which is then read¹. A null `+0x18` in the third node skips the 4 and the list read, and the node
+pointers that follow are 0². The panel's three stores, the first part's four and
+the second part's four are skipped for a null pointer³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00298386`-`0x0029838E` |
+| ² | `0x002983E6`-`0x0029840C` |
+| ³ | `0x002982F9`-`0x002982FC`, `0x00298332`-`0x00298335`, `0x00298565`-`0x00298568` |
+
+</details>
+
+Ending the leader choice runs `0x00290630` (`0x00296C28` in `0x00296BE0`, and `0x0029C455`), which closes the panel¹ and sets `+0x710` to 1². On its next message 2 the window finds the panel gone and tears
+itself down³. The release gives the storage back by clearing `+0xA2` and runs the hook⁴, which clears bit `0x2000`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002964B5` |
+| ² | `0x002964BA` |
+| ³ | `0x00298620`-`0x00298637` |
+| ⁴ | `0x002483E5`-`0x00248405` |
+| ⁵ | `0x00290617` |
+
+</details>
 
 ### Picking a party member as a target
 
 The battle menu turns the list into its cursor for a target list of party members through `0x002904D0(page, start)`,
 which runs `0x00297170`:
 
-1. In mode 1 it refuses. Otherwise `+0xB50` points at the target page, `0x0029AEF0` offers the rows whose member is on
-   the page and refuses the others and those whose entry has flag bit `0x2`, the greyed bit, and `0x0029AE50` puts the
-   cursor on entry `start`.
-   - A null list or mode 1 answers 0 (`0x00297180`, `0x00297233`-`0x0029723A`). It first sets `+0xB4A` bit `0x2`
-     (`0x00297240`).
-2. The list takes the focus with mode 2 (`0x002470D0`).
-   - A list already in mode 2 is only refreshed; otherwise it takes the focus, sets mode 2 and clears the answer
-     `+0xB43`, and either way answers 1 (`0x0029725E`-`0x0029727D`).
-3. `0x002904D0(0, 0)` ends it: the frame at `+0x180` closes, the focus is given up and the marks are cleared.
-   - The frame closes only when one is there, and then `+0xB4A` bit `0x100` is cleared (`0x0029719B`-`0x002971BC`). The
-     rest happens only in mode 2: the focus is given up (`0x002470C0`), the mode becomes 0, every row loses bits `0x1`,
-     `0x2`, `0x4` and `0x80`, and `+0xB50` is cleared (`0x002971C3`-`0x00297218`). It answers 1.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | In mode 1 it refuses. Otherwise `+0xB50` points at the target page, `0x0029AEF0` offers the rows whose member is on the page and refuses the others and those whose entry has flag bit `0x2`, the greyed bit, and `0x0029AE50` puts the cursor on entry `start`.<br>• A null list or mode 1 answers 0. It first sets `+0xB4A` bit `0x2`. | `0x00297180`, `0x00297233`-`0x0029723A`<br>`0x00297240` |
+| 2 | The list takes the focus with mode 2.<br>• A list already in mode 2 is only refreshed; otherwise it takes the focus, sets mode 2 and clears the answer `+0xB43`, and either way answers 1. | `0x002470D0`<br>`0x0029725E`-`0x0029727D` |
+| 3 | `0x002904D0(0, 0)` ends it: the frame at `+0x180` closes, the focus is given up and the marks are cleared.<br>• The frame closes only when one is there, and then `+0xB4A` bit `0x100` is cleared. The rest happens only in mode 2: the focus is given up, the mode becomes 0, every row loses bits `0x1`, `0x2`, `0x4` and `0x80`, and `+0xB50` is cleared. It answers 1. | `0x0029719B`-`0x002971BC`<br>`0x002470C0`<br>`0x002971C3`-`0x00297218` |
 
 The menu works the list through small calls:
 
@@ -435,6 +878,9 @@ over the height of all rows.
 moving pointer `0x0029C850`.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 The counter record, `0x58` bytes, two per member at `0x0209BF40`:
 
@@ -470,7 +916,16 @@ The row widget `0x0029A0A0`, `0x160` bytes, four at the list's `+0x240`:
 | `+0x128` | `i32` | markStep | the step of the six-frame mark of `0x0029B490` (The summon gauge): 1 more each call up to 11 while the record's flag bit `0x20000` is set, 1 less down to 0 while it is clear (`0x0029B4F1`-`0x0029B51D`); the frame shown is entry step / 2 of the six, written to node 0 of the child layout at node `+0xE0` (`0x0029B523`-`0x0029B535`) |
 | `+0x148` | `u32[3]` | mpBarLevel | one level per MP bar, 0 to `0x100`: each draw `0x0029A930` adds 16 to bar i's while i is below the charges `+0x86` and takes 16 off otherwise (`0x0029ACD0`-`0x0029ACEC`), and colours the bar from its three-key track at that level (`0x00271AB0` at `0x0029AD1C`, `0x0029AD21`-`0x0029ADF4`); the loop runs over the bar count `+0x87`, 1 to 3 (`0x0029AB51`-`0x0029AB8F`, `0x0029ADF9`-`0x0029AE09`) |
 
-The status cycle record at the row's `+0xF0`, stepped by `0x00272F80(record, 30, 0, 0, 0)` (`0x00272F60`):
+The status cycle record at the row's `+0xF0`, stepped by `0x00272F80(record, 30, 0, 0, 0)`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00272F60` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -483,8 +938,17 @@ The status cycle record at the row's `+0xF0`, stepped by `0x00272F80(record, 30,
 ### The gil window
 
 The gil window is the `0xF8`-byte widget kept at `0x0209C4C8` with procedure `0x002A1FB0`; the script verb
-`fs_foodwinopen` opens it through `0x002A1D40`, and `gillwinstart` and the shop's trade (`0x0056D4D9`) start its count
+`fs_foodwinopen` opens it through `0x002A1D40`, and `gillwinstart` and the shop's trade¹ start its count
 through `0x002A1DC0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0056D4D9` |
+
+</details>
 
 `GilWindow` (`0xF8` bytes, offsets from the start of the record):
 
@@ -515,12 +979,33 @@ through `0x002A1DC0`.
 The location panel is the `0xF0`-byte widget kept at `0x0209C300` with procedure `0x0029C530` that `0x00297100` shows
 instead
 of the list (The list and its rows above). On message 1 it decodes record `0x14` of the layout file at
-`[0x0209AC30] + 8` into its `+0x50` (`0x002432B0`, `0x0029C589`-`0x0029C5B5`) and fills three nodes:
+`[0x0209AC30] + 8` into its `+0x50`¹ and fills three nodes:
 
-- node 3, the name of the field's region (`0x003778B0`): of the transition field when gate `0x5E` answers non-zero,
-  of the current field otherwise (`0x0029C602`-`0x0029C64A`);
-- node 4, the area name of the current field (`0x00377B60`, `0x0029C65A`-`0x0029C679`);
-- node 5, the frame `0x002543D0` gives for the field's group (`0x0029C699`-`0x0029C6A6`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002432B0`, `0x0029C589`-`0x0029C5B5` |
+
+</details>
+
+- node 3, the name of the field's region¹: of the transition field when gate `0x5E` answers non-zero,
+  of the current field otherwise²;
+- node 4, the area name of the current field³;
+- node 5, the frame `0x002543D0` gives for the field's group⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003778B0` |
+| ² | `0x0029C602`-`0x0029C64A` |
+| ³ | `0x00377B60`, `0x0029C65A`-`0x0029C679` |
+| ⁴ | `0x0029C699`-`0x0029C6A6` |
+
+</details>
 
 It keeps a copy of the two text nodes' colour and rectangle, which nothing reads back.
 
@@ -546,16 +1031,32 @@ It keeps a copy of the two text nodes' colour and rectangle, which nothing reads
 | `+0xE6` | `u16` | runBits | bit `0x8` is set when the opening run starts (message 14, `0x0029C579`) and bit `0x4` when closing begins (message 15, `0x0029C569`); `0x00297100` clears mask `0x3` when it finds the panel already built (`0x00297132`-`0x00297137`). No instruction tests the word |
 | `+0xE8` | `u8[8]` | pad0E8 | accessed by no instruction of the procedure or of the cell's two readers; nothing fixes its width |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The target window's pair of counters is the two `0x58`-byte records `0x0209C240` (HP) and `0x0209C298` (MP). The
 handle that matches a unit to it sits where a member's pair keeps its handle, at `+0xB0` from the pair
 (`0x002962C0` returns `0x0209C240`).
 
 `0x00296360(record, handle)`, from `0x002C0870`, first unregisters both records when a
-handle is held (`0x0029636A`-`0x002963A0`); with a non-zero handle and a record whose `+0x04` is not 0 it stores the
-handle and sets both records up again (`0x002963AA`-`0x00296436`). `0x00296260`, from `0x0028F327` and `0x0028F8E3`, zeroes
-the `0xC0` bytes from `0x0209C240` (`0x0029626F`).
+handle is held¹; with a non-zero handle and a record whose `+0x04` is not 0 it stores the
+handle and sets both records up again². `0x00296260`, from `0x0028F327` and `0x0028F8E3`, zeroes
+the `0xC0` bytes from `0x0209C240`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029636A`-`0x002963A0` |
+| ² | `0x002963AA`-`0x00296436` |
+| ³ | `0x0029626F` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -568,25 +1069,67 @@ No other instruction reaches these three. The two records' addresses are taken b
 
 ### The rebuild's counts and lists
 
-`0x0035BC50(arg)` rebuilds the party block `0x022C8060` from the four party members (`0x00320040`, `0x0035BDB0`-`0x0035BE69`).
-It first clears the member count `0x022C8064` and the next six bytes with one 8-byte store (`0x0035BD6D`). A member is
+`0x0035BC50(arg)` rebuilds the party block `0x022C8060` from the four party members¹.
+It first clears the member count `0x022C8064` and the next six bytes with one 8-byte store². A member is
 listed when its type `+0x60` is not negative and its handle `+0x04` is not 0. The block is also cleared whole by
 `0x0035BB70` (`0x348` bytes, `0x0035BB85`) and `0x0035C560` (`0x23C8` bytes, `0x0035C573`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320040`, `0x0035BDB0`-`0x0035BE69` |
+| ² | `0x0035BD6D` |
+
+</details>
 
 The rebuild also builds two lists with the list builder `0x0031EB20`
 ([Target selection](../Battle-Actions/target-selection.md)): code `0x1A` into `0x022C83F0` (count) and `0x022C83F8`
 (entries), and code `0x14`, the living party-side units, into `0x022C8478` and `0x022C8480`, keeping only the units
-`0x00273800` passes (`0x0035BFC0`-`0x0035BFFE`). It copies each list header's default entry `+0x44` into the word after
-the count. `0x0031EB20` sets that entry to -1 on entry (`0x0031EB46`) and changes it only in its unit-slot walk for codes
-`0xC`-`0x10` (`0x0031F402`), so for these two codes it stays -1.
+`0x00273800` passes¹. It copies each list header's default entry `+0x44` into the word after
+the count. `0x0031EB20` sets that entry to -1 on entry² and changes it only in its unit-slot walk for codes
+`0xC`-`0x10`³, so for these two codes it stays -1.
 
-With `arg` not 0, the rebuild opens the leader choice (request 3) by itself when all of these hold
-(`0x0035BEC1`-`0x0035BF2F`): `0x022C8068`, the count of listed members without flag bit `0x40` (`0x0035BDEF`), is not 0;
-the leader's record has flag bit `0x40` (`0x0035BDE2`, `0x0035BE30`); some listed member has flag bits `0x40`, `0x2` and
-`0x4` clear (`0x0035BDF8`-`0x0035BDFD`); block bit `0x4` is clear; a listed member has flag bit `0x1`; and `0x02092730` is
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035BFC0`-`0x0035BFFE` |
+| ² | `0x0031EB46` |
+| ³ | `0x0031F402` |
+
+</details>
+
+With `arg` not 0, the rebuild opens the leader choice (request 3) by itself when all of these hold¹: `0x022C8068`, the count of listed members without flag bit `0x40`², is not 0;
+the leader's record has flag bit `0x40`³; some listed member has flag bits `0x40`, `0x2` and
+`0x4` clear⁴; block bit `0x4` is clear; a listed member has flag bit `0x1`; and `0x02092730` is
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035BEC1`-`0x0035BF2F` |
+| ² | `0x0035BDEF` |
+| ³ | `0x0035BDE2`, `0x0035BE30` |
+| ⁴ | `0x0035BDF8`-`0x0035BDFD` |
+
+</details>
 0. A refused request clears the
-two bits it set (`0x0035BF38`, `0x0035BF3F`). None of this runs when bit `0x8` of `0x022C83E8` is set and `0x00303EC0()`
-answers non-zero; the rebuild then calls `0x002547D0(1)` instead (`0x0035BE98`-`0x0035BEBC`).
+two bits it set¹. None of this runs when bit `0x8` of `0x022C83E8` is set and `0x00303EC0()`
+answers non-zero; the rebuild then calls `0x002547D0(1)` instead².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035BF38`, `0x0035BF3F` |
+| ² | `0x0035BE98`-`0x0035BEBC` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -600,6 +1143,8 @@ answers non-zero; the rebuild then calls `0x002547D0(1)` instead (`0x0035BE98`-`
 No other instruction names these six. The block's address is also returned by `0x0035D320` (21 call sites) and
 passed to `0x0035E5F0` by `0x0035D070`; the code at each call reads the block's `+0x0C`, `+0x14` and `+0x18` and the
 member records, and `0x0035E5F0` writes from `+0x4A0` on.
+
+</details>
 
 ## Modding notes
 
@@ -626,20 +1171,26 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Enemy AI and gambits** (explained on [gambit screen](gambit-screen.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031EB20` | calls | `0x00327A10` |
+| [`0x0031EB20`](../Battle-Actions/action-definition-row.md) Battle menu: build command entry list (on action definition row) | calls | [`0x00327A10`](widgets.md) Gambit config: classify action target pair compatibility (on widgets) |
 
 **Items, equipment, shops and licenses** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00253690` | is called by | `0x002FD530`, `0x002FD880`, `0x002FEEB0`, `0x00310870` |
+| [`0x00253690`](party-list.md) Game state: get gil | is called by | [`0x002FD530`](../Items-Equipment-Shops-And-Licenses/inventory.md) Inventory bundle class09: apply gil and nested items (on inventory)<br>[`0x002FD880`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids)<br>[`0x002FEEB0`](../Rewards-EXP-Gil-And-Loot/gil.md) (on gil)<br>[`0x00310870`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
 
 **Scripts and script commands**
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002A1D40` | is called by | `0x00511280` |
+| [`0x002A1D40`](party-list.md) | is called by | [`0x00511280`](party-list.md) |
 
 </details>

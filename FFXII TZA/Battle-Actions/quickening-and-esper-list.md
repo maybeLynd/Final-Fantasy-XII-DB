@@ -36,7 +36,16 @@ its word `+0x00` through the word banks, with the action rows whose `+0x22` is t
 | `+0x06` | `u16` | word06 | no instruction | 0 on every row |
 
 `0x0031C5D0`'s class-17 arm stores the name in the query record `+0x18`, the owned state `0x00309EC0(id, 0)` in
-`+0x20`, `0x0030AE30(id, 0)` in `+0x24` and -1 in `+0x2C` (`0x0031D814`-`0x0031D8E5`).
+`+0x20`, `0x0030AE30(id, 0)` in `+0x24` and -1 in `+0x2C`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031D814`-`0x0031D8E5` |
+
+</details>
 
 ### Who reads the table
 
@@ -45,52 +54,76 @@ The table is loaded by `0x0031C5D0`, `0x00306340`, the validator `0x00322C50` (t
 
 `0x00306340(member, id)` takes, by the id's top nibble, a magick's action row `+0x02` (nibble 3, table `0x02EBF0F0`),
 a technick's `+0x02` (nibble 4, `0x02EBF0E8`), or for a `0xC000` id the word
-`+0x02` of this table (`0x02EBF0C8`), and hands it to `0x003064F0` by a tail jump (`0x00306471`); any other nibble
-returns 0 without that test (`0x00306370`).
+`+0x02` of this table¹, and hands it to `0x003064F0` by a tail jump²; any other nibble
+returns 0 without that test³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02EBF0C8` |
+| ² | `0x00306471` |
+| ³ | `0x00306370` |
+
+</details>
 
 `0x003064F0(member, action)` takes the member's stats record from `0x00320A40`, null for a member above 39, and
-returns 1 only when there is one, `0x003060E0(action, stats, 0)` returns 0 and `0x00323EC0` passes, and 0 otherwise
-(`0x00306502`-`0x00306550`): that is whether the member may use that action. The two callers of `0x00306340` take
+returns 1 only when there is one, `0x003060E0(action, stats, 0)` returns 0 and `0x00323EC0` passes, and 0 otherwise¹: that is whether the member may use that action. The two callers of `0x00306340` take
 their ids from lists that `0x00325F40` never puts a `0xC000` id in:
 
-1. `0x002826F0` and `0x00282A40` hand it each word of the inventory lists 9 and 8 that is not `0xFFFF`
-   (`0x00282920`-`0x00282995`, `0x00282C62`-`0x00282CD9`). The range compares of the id before the call
-   (`0x00282931`-`0x00282962`, `0x00282C74`-`0x00282CA6`) only choose a byte of the bit table at `+0xB2E`; no
-   path skips the call ([Party marks](../Menus-And-HUD/party-marks.md)).
-2. An id is added to a category list by `0x00252E60`, which `0x00325F40` alone names (`0x00325F79`). `0x00325F40` chooses
-   the list from the id's top nibble through the table at `0x01EED1B0`: nibble 3 to list 9, nibble 4 to list 8
-   (`0x00D1066E`, `0x00D1066F`). After validating the id and testing for a change between 0 and non-zero, it
-   returns without a call for a nibble above 10 (`0x00325FE9`-`0x00325FEC`), so it never lists a `0xC000` id.
-   - Of the other functions that name the list record table `0x02092760`, `0x002530E0` moves an id the list
-     already holds (`0x00253170`-`0x00253214`), `0x002534C0` closes the gaps (`0x00253544`-`0x0025359F`), `0x002535D0`
-     and `0x00253240` write `0xFFFF` (`0x00253668`, `0x00253410`), and `0x00252F40`, `0x00252FF0` and the loop
-     `0x002503D2`-`0x00250438` store nothing in a list.
-   - An id already in the list is not added again (`0x00252EE5`). Nor is one added when the walk meets an
-     entry `0xFFFF` before it, or when the list's count has reached the capacity word `+0x02` of the
-     list's descriptor at `0x02092760 + 8 × list`; both leave through `0x0016D6A0(0x200)` with no further
-     call (`0x00252EE7`-`0x00252EFD`, `0x00252F32`-`0x00252F3C`).
-   - After appending, it calls `0x002CD650` (`0x00252F18`), which sets the save-wide category bit
-   (`[0x020927C0] + 0x3244`, `0x00252D40`) of each inventory category whose list is now non-empty (for Key
-   Items, whose list 10 holds an id outside `0x8000`-`0x805F`)
-   ([Inventory screen](../Menus-And-HUD/inventory-screen.md)).
-   - `0x002CD650` takes the categories in the order 1, 3, 2, 8, 5, 4, 7, 6. For each it asks
-     `0x00252D10(category)` and goes on to the next when the answer's low byte is not 0; otherwise it calls
-     `0x00252D40(category, 1)` when the count is above 0, compared signed (`0x002CD654`-`0x002CD79F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306502`-`0x00306550` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x002826F0` and `0x00282A40` hand it each word of the inventory lists 9 and 8 that is not `0xFFFF`. The range compares of the id before the call only choose a byte of the bit table at `+0xB2E`; no path skips the call ([Party marks](../Menus-And-HUD/party-marks.md)). | `0x00282920`-`0x00282995`, `0x00282C62`-`0x00282CD9`<br>`0x00282931`-`0x00282962`, `0x00282C74`-`0x00282CA6` |
+| 2 | An id is added to a category list by `0x00252E60`, which `0x00325F40` alone names. `0x00325F40` chooses the list from the id's top nibble through the table at `0x01EED1B0`: nibble 3 to list 9, nibble 4 to list 8. After validating the id and testing for a change between 0 and non-zero, it returns without a call for a nibble above 10, so it never lists a `0xC000` id.<br>• Of the other functions that name the list record table `0x02092760`, `0x002530E0` moves an id the list already holds, `0x002534C0` closes the gaps, `0x002535D0` and `0x00253240` write `0xFFFF`, and `0x00252F40`, `0x00252FF0` and the loop `0x002503D2`-`0x00250438` store nothing in a list.<br>• An id already in the list is not added again. Nor is one added when the walk meets an entry `0xFFFF` before it, or when the list's count has reached the capacity word `+0x02` of the list's descriptor at `0x02092760 + 8 × list`; both leave through `0x0016D6A0(0x200)` with no further call.<br>• After appending, it calls `0x002CD650`, which sets the save-wide category bit (`[0x020927C0] + 0x3244`, `0x00252D40`) of each inventory category whose list is now non-empty (for Key Items, whose list 10 holds an id outside `0x8000`-`0x805F`) ([Inventory screen](../Menus-And-HUD/inventory-screen.md)).<br>• `0x002CD650` takes the categories in the order 1, 3, 2, 8, 5, 4, 7, 6. For each it asks `0x00252D10(category)` and goes on to the next when the answer's low byte is not 0; otherwise it calls `0x00252D40(category, 1)` when the count is above 0, compared signed. | `0x00325F79`<br>`0x00D1066E`, `0x00D1066F`<br>`0x00325FE9`-`0x00325FEC`<br>`0x00253170`-`0x00253214`<br>`0x00253544`-`0x0025359F`<br>`0x00253668`, `0x00253410`<br>`0x00252EE5`<br>`0x00252EE7`-`0x00252EFD`, `0x00252F32`-`0x00252F3C`<br>`0x00252F18`<br>`0x002CD654`-`0x002CD79F` |
 
      The count is `0x00252FA0(list)` of list 1 for category 1, list 4 for 3, list 2 for 2, list 3 for 8,
      list 0 for 4 and list 11 for 6. Category 5 asks list 8 and, when that is 0 or less, list 9
-     (`0x002CD703`-`0x002CD71D`). Category 7, Key Items, takes `0x00252FF0(10)` instead (`0x002CD75E`-`0x002CD76A`):
-     the count of list 10 less its entries `0x8000`-`0x805F` (`0x0025306C`-`0x002530D7`), so Key Items is marked
+    ¹. Category 7, Key Items, takes `0x00252FF0(10)` instead²:
+     the count of list 10 less its entries `0x8000`-`0x805F`³, so Key Items is marked
      only for an id outside that range.
 
-     Every call of `0x00252D40` here has 1 as its second argument; the last one is a jump (`0x002CD79F`).
-   - `0x00252E60(list, id << 16)` takes the id from the argument's high 16 bits (`0x00252EC1`), and a list number
-     above 11 as list 0 after a call to the empty stub `0x0016D6A0` (`0x00252E7C`-`0x00252EA9`). It appends the id at
-     entry `count` and raises the count `[0x020927C0] + 0x47B8 + 4 × list` (`0x00252EFF`-`0x00252F12`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002CD703`-`0x002CD71D` |
+| ² | `0x002CD75E`-`0x002CD76A` |
+| ³ | `0x0025306C`-`0x002530D7` |
+
+</details>
+
+     Every call of `0x00252D40` here has 1 as its second argument; the last one is a jump¹.
+   - `0x00252E60(list, id << 16)` takes the id from the argument's high 16 bits², and a list number
+     above 11 as list 0 after a call to the empty stub `0x0016D6A0`³. It appends the id at
+     entry `count` and raises the count `[0x020927C0] + 0x47B8 + 4 × list`⁴.
    - It stores nothing and does not call `0x002CD650` when a `0xFFFF` entry comes before the count
-     (`0x00252EE7`-`0x00252EEB`, `0x00252F32`) or the count has reached the list's capacity, the signed word `+2` of
+    ⁵ or the count has reached the list's capacity, the signed word `+2` of
      its 8-byte record in `0x02092760` (`0x00252EF7`-`0x00252EFD`;
      [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002CD79F` |
+| ² | `0x00252EC1` |
+| ³ | `0x00252E7C`-`0x00252EA9` |
+| ⁴ | `0x00252EFF`-`0x00252F12` |
+| ⁵ | `0x00252EE7`-`0x00252EEB`, `0x00252F32` |
+
+</details>
 3. The other writers of the lists, `0x002530E0`, `0x002534C0`, `0x002535D0` and `0x00253240`, only move, remove or clear
    ids.
 

@@ -20,8 +20,17 @@ order. Moving an item writes its new place into that list.
 ### The category rows
 
 `0x00565E00` is the screen's procedure; `0x00565DD0` builds it once ([Widgets](widgets.md)). On message 1 it stores
-itself at `[0x0209AC30] + 0x168` and adds one row per category whose save-wide flag is set (`0x00252D10`), with its
+itself at `[0x0209AC30] + 0x168` and adds one row per category whose save-wide flag is set¹, with its
 help text:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00252D10` |
+
+</details>
 
 | Category (`menu_command.bin`) | Flag | Help |
 |---|---:|---|
@@ -35,22 +44,53 @@ help text:
 | Key Items `0x40F` | 7 | `0xBF3` |
 
 The rows form three groups, Key Items and Loot, then Abilities and Items, then Weapons, Ammunition, Armor and
-Accessories; each group is moved down by the gap `0x01E0C3B4` for every earlier group that has a row (`0x002CA0E0`). A
+Accessories; each group is moved down by the gap `0x01E0C3B4` for every earlier group that has a row¹. A
 row whose category `0x002CDAE0` reports is drawn in colour 2, and a category not yet visited carries the mark of
 `0x002CDE20` ([Menu screens](menu-screens.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002CA0E0` |
+
+</details>
+
 Message 12 takes three sub-commands:
 
-- `0x8000`, the cursor moved: it closes the previous category's pane (`0x00563FC0`), opens the new one (`0x00564B90`)
+- `0x8000`, the cursor moved: it closes the previous category's pane¹, opens the new one²
   and sizes the help line to the category's widest name (`0x00564430`, kept per category at `+0x1E8`; `0x002932F0`);
-- `0x8001`, confirm on a row in colour 0: it marks the category visited (`0x002CDE50`), gives its pane the focus
-  (`0x005659B0`) and stores the category (`0x002527B0(6, 1, id)`);
-- `0x8002`, cancel: it closes the screen's list and the open pane (`0x00563FC0`).
+- `0x8001`, confirm on a row in colour 0: it marks the category visited³, gives its pane the focus
+ ⁴ and stores the category (`0x002527B0(6, 1, id)`);
+- `0x8002`, cancel: it closes the screen's list and the open pane⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00563FC0` |
+| ² | `0x00564B90` |
+| ³ | `0x002CDE50` |
+| ⁴ | `0x005659B0` |
+| ⁵ | `0x00563FC0` |
+
+</details>
 
 `0x00563FC0(id)` closes a category's pane unless the pane is null or has `+0x7C` bit `0x20` set: it sets the pane's
 `+0x40` bit `0x40` and either hides it (`0x00244DD0`, when bits `0x1` and `0x20` are set) or sends it message `0x00915058`
-and releases it (`0x00245020`). Message 18 returns to the menu
+and releases it¹. Message 18 returns to the menu
 (`0x002814E0(0x4B8)`) and clears `[0x0209AC30] + 0x168`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00245020` |
+
+</details>
 
 ### The tab panes
 
@@ -61,11 +101,28 @@ to the shared procedure `0x005651E0`. The pane of a category lives at `[0x0209AC
 
 - `0x00564A60(id)` answers whether the pane has rows (`+0xE0`);
 - `0x00565190(id)` runs the pane's input step `0x00564E10(pane, 1)`;
-- `0x005659B0(id)` gives the pane focus (`0x00244640`, `0x00244830`), or hands it to `0x002286B0` when `0x00228480` returns non-zero and
+- `0x005659B0(id)` gives the pane focus¹, or hands it to `0x002286B0` when `0x00228480` returns non-zero and
   `[0x0209AC30] + 0x308` is empty.
 
-`0x005639D0` and `0x00563C00` are the row callbacks the create records of `0x00563B10` and `0x00563D20` carry (`0x00563B59`,
-`0x00563D5B`), called as `(pane, element, _, n)`; both return 1:
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00244640`, `0x00244830` |
+
+</details>
+
+`0x005639D0` and `0x00563C00` are the row callbacks the create records of `0x00563B10` and `0x00563D20` carry¹, called as `(pane, element, _, n)`; both return 1:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00563B59`, `0x00563D5B` |
+
+</details>
 
 - without a row table `+0xE0`, they hide every node of the element list (bit `0x1` of `+0x08`, `0x00243580`) and show
   the text node (`[[element + 0x10] + 8]`, bit `0x1` of `+0x08`) with the string `0x002F9860(0x7D8)`, the colour
@@ -96,61 +153,166 @@ to the shared procedure `0x005651E0`. The pane of a category lives at `[0x0209AC
 `0x00564780(pane, kind, ...)` fills a pane's tab slots:
 
 - it stores the kind at `+0x17E` and `+0x17F`, keeps the kind's tab list from `0x01F2CB90` at `+0xE8`, sets `+0x17C`
-  to -1 and clears the tab count, mask `0x1F0000` of `+0x180` (`0x005647AD`-`0x005647F4`);
+  to -1 and clears the tab count, mask `0x1F0000` of `+0x180`¹;
 - for each tab in the list that passes its check (`0x00252D10` for kinds 0 to 7, then `0x0057D610`), it fills the slot at
-  `+0xF0` + 8 x count and adds 1 to the count (`0x0056486D`-`0x00564898`, `0x0056493F`-`0x00564966`);
+  `+0xF0` + 8 x count and adds 1 to the count²;
 - a slot holds at `+0` the value `0x002526F0(8, ...)` keeps for the tab, or `0xFFFF` when that is 0, for kinds 0 to 7
-  (`0x005648D9`-`0x005648E9`), and `0xFFFF` for the others (`0x00564992`); `0xFFFF` at `+2` and `+4`; the tab's place in the
-  list at `+6`; and the tab's id at `+7` (`0x005648B8`-`0x005648D1`, `0x00564971`-`0x00564989`);
-- after the last tab it writes `0xFF` to the next slot's `+6` as the end mark (`0x005649D4`), clears the selected tab,
+ ³, and `0xFFFF` for the others⁴; `0xFFFF` at `+2` and `+4`; the tab's place in the
+  list at `+6`; and the tab's id at `+7`⁵;
+- after the last tab it writes `0xFF` to the next slot's `+6` as the end mark⁶, clears the selected tab,
   mask `0x3E00000` of `+0x180`, and for kinds 0 to 7 selects the tab whose id is the one `0x002526F0(8, kind + 0x40)` keeps
-  (`0x005649DC`-`0x00564A4C`).
+ ⁷.
 
-The count and the selection are read as signed 5-bit numbers (`0x00564875`-`0x00564882`, `0x005649CA`-`0x005649D0`), so a slot
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005647AD`-`0x005647F4` |
+| ² | `0x0056486D`-`0x00564898`, `0x0056493F`-`0x00564966` |
+| ³ | `0x005648D9`-`0x005648E9` |
+| ⁴ | `0x00564992` |
+| ⁵ | `0x005648B8`-`0x005648D1`, `0x00564971`-`0x00564989` |
+| ⁶ | `0x005649D4` |
+| ⁷ | `0x005649DC`-`0x00564A4C` |
+
+</details>
+
+The count and the selection are read as signed 5-bit numbers¹, so a slot
 index runs from 0 to 15 (`+0xF0`-`+0x16F`), and with the end mark the strip holds 15 tabs. The lists at `0x01F2CB90`
 for kinds 0 to 37 hold at most 9 tabs (kind 32, `0x00D23C70`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00564875`-`0x00564882`, `0x005649CA`-`0x005649D0` |
+
+</details>
 
 ### Rows
 
 `0x00565720(pane, id)` frees the old rows and builds the tab's rows with `0x0057CF20`, the builder of the shop lists
 ([Shop screens](shop-screens.md)). It gives `0x0057CF20` the pane's kind, byte `+0x17F`, as it is, and the category,
-word `+6` of the selected tab's entry in the tab list `+0xE8` (`0x0056574C`-`0x00565780`).
+word `+6` of the selected tab's entry in the tab list `+0xE8`¹.
 
-It stores the id as the kept id of every tab slot, with -1 in the slots' words `+2` and `+4`
-(`0x005657A7`-`0x005657D1`). It then puts the cursor back on the remembered item: the row whose id is the one
-kept for the tab, scrolled into view (`0x002D1820`, `0x002D47C0`). `0x00565A00` does the same inside `0x005655F0`, the row
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0056574C`-`0x00565780` |
+
+</details>
+
+It stores the id as the kept id of every tab slot, with -1 in the slots' words `+2` and `+4`¹. It then puts the cursor back on the remembered item: the row whose id is the one
+kept for the tab, scrolled into view². `0x00565A00` does the same inside `0x005655F0`, the row
 builder that the shop tabs and the Inventory's tab switch share.
 
-`0x00565720` runs only from the `0x11E` arm of `0x005651E0` (`0x005653A0`). The sort bar `0x00566680` alone sends `0x11E`
-(`0x005667E4`, `0x00566838`), after a sort, with the held row's address as a signed 32-bit value at `+8` (`0x005667C5`)
-and the answer of `0x00565CD0` at `+0x10` (`0x00566810`): 0 once it sorted, -1 for a list of fewer than two items
-(`0x00565D30`-`0x00565D33`, `0x00565D5F`). It sends it to the pane `0x005665B0` opened it on, its `+0xC0` (`0x005668C2`).
+<details>
+<summary>Where in the code</summary>
 
-`0x005665B0` is called only by `0x00564E10` (`0x00564EE2`), the input step of the panes `0x00564B90` makes for categories
-`0x405`-`0x40F` with the handlers `0x005636F0`, `0x00563930`, `0x00563B10` and `0x00563D20` (`0x00564BE9`-`0x00564C25`). Those
-hand `0x11E` to `0x005651E0` (`0x00563721`, `0x00563953`, `0x00563B41`, `0x00563D43`), and their kinds are 0 to 7, the slots
-`0x00D233A0` gives, which `0x0057CF20` takes as they are. `0x00564E10` runs from `0x00564C80`, the panes' tick
-(`0x00565218`, `0x00564CAC`), and from `0x00565190` (`0x005651D7`), which `0x00565E00` calls (`0x00566280`).
+| | Code |
+|---|---|
+| ¹ | `0x005657A7`-`0x005657D1` |
+| ² | `0x002D1820`, `0x002D47C0` |
 
-A shop pane, kind 32 or 19, never gets `0x11E`: `0x0056DD50` makes it with the handler `0x0056E140`
-(`0x0056DD66`-`0x0056DD79`), which hands every message id above 20 to `0x005C5230`, and that returns 0
-(`0x0056E14B`-`0x0056E150`, `0x0056E3AB`-`0x0056E3B3`). Its rows come only through `0x005655F0`, which maps the kind
+</details>
+
+`0x00565720` runs only from the `0x11E` arm of `0x005651E0`¹. The sort bar `0x00566680` alone sends `0x11E`², after a sort, with the held row's address as a signed 32-bit value at `+8`³
+and the answer of `0x00565CD0` at `+0x10`⁴: 0 once it sorted, -1 for a list of fewer than two items⁵. It sends it to the pane `0x005665B0` opened it on, its `+0xC0`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005653A0` |
+| ² | `0x005667E4`, `0x00566838` |
+| ³ | `0x005667C5` |
+| ⁴ | `0x00566810` |
+| ⁵ | `0x00565D30`-`0x00565D33`, `0x00565D5F` |
+| ⁶ | `0x005668C2` |
+
+</details>
+
+`0x005665B0` is called only by `0x00564E10`¹, the input step of the panes `0x00564B90` makes for categories
+`0x405`-`0x40F` with the handlers `0x005636F0`, `0x00563930`, `0x00563B10` and `0x00563D20`². Those
+hand `0x11E` to `0x005651E0`³, and their kinds are 0 to 7, the slots
+`0x00D233A0` gives, which `0x0057CF20` takes as they are. `0x00564E10` runs from `0x00564C80`, the panes' tick⁴, and from `0x00565190`⁵, which `0x00565E00` calls⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00564EE2` |
+| ² | `0x00564BE9`-`0x00564C25` |
+| ³ | `0x00563721`, `0x00563953`, `0x00563B41`, `0x00563D43` |
+| ⁴ | `0x00565218`, `0x00564CAC` |
+| ⁵ | `0x005651D7` |
+| ⁶ | `0x00566280` |
+
+</details>
+
+A shop pane, kind 32 or 19, never gets `0x11E`: `0x0056DD50` makes it with the handler `0x0056E140`¹, which hands every message id above 20 to `0x005C5230`, and that returns 0². Its rows come only through `0x005655F0`, which maps the kind
 through `0x0057D5E0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0056DD66`-`0x0056DD79` |
+| ² | `0x0056E14B`-`0x0056E150`, `0x0056E3AB`-`0x0056E3B3` |
+
+</details>
 
 The row painters `0x00563560` and `0x005637D0` draw a row: the icon frame `+0x0A` (no icon for `-1`), the name
 `+0x00`, and numbers through `0x0029FF60`. `0x005636F0`, the handler of the Weapons, Armor, Accessories and Ammunition
-panes (categories `0x405`-`0x408`, `0x00564C0A`), installs `0x00563560` (`0x0056373B`); `0x00563930`, the handler of Items
-and Loot (`0x409` and `0x40E`, `0x00564C13`), installs `0x005637D0` (`0x0056396B`).
+panes (categories `0x405`-`0x408`, `0x00564C0A`), installs `0x00563560`¹; `0x00563930`, the handler of Items
+and Loot (`0x409` and `0x40E`, `0x00564C13`), installs `0x005637D0`².
 
-`0x00563560` writes `+0x0E` less `+0x0C` and `+0x0E` (`0x00563670`-`0x005636B6`) and runs `0x003FCAD0(element, row, 5,
-10)` (`0x005636C9`). On these equipment rows `0x0057DED0` stores the record's channel 0, the copies owned less the
-copies worn, at `+0x0C` and channel 1, the copies owned, at `+0x0E` (`0x0057DF7F`-`0x0057DF85`,
-`0x0057DFA4`-`0x0057DFB0`), so the two numbers are the copies worn and the copies owned. `0x005637D0` writes only
-`+0x0E` (`0x005638D4`-`0x005638EB`), the count owned of the item and loot rows. The held row is drawn in colour 6. An
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0056373B` |
+| ² | `0x0056396B` |
+
+</details>
+
+`0x00563560` writes `+0x0E` less `+0x0C` and `+0x0E`¹ and runs `0x003FCAD0(element, row, 5,
+10)`². On these equipment rows `0x0057DED0` stores the record's channel 0, the copies owned less the
+copies worn, at `+0x0C` and channel 1, the copies owned, at `+0x0E`³, so the two numbers are the copies worn and the copies owned. `0x005637D0` writes only
+`+0x0E`⁴, the count owned of the item and loot rows. The held row is drawn in colour 6. An
 empty tab shows text `0x7D8`.
 
-`0x00564430(id)` returns the widest name of a category's items (`0x00292B70`, `0x002B3050`): one list for each category,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00563670`-`0x005636B6` |
+| ² | `0x005636C9` |
+| ³ | `0x0057DF7F`-`0x0057DF85`, `0x0057DFA4`-`0x0057DFB0` |
+| ⁴ | `0x005638D4`-`0x005638EB` |
+
+</details>
+
+`0x00564430(id)` returns the widest name of a category's items¹: one list for each category,
 two for Abilities.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00292B70`, `0x002B3050` |
+
+</details>
 
 | Category | Lists (`0x00252F40`) and kind |
 |---|---|
@@ -175,17 +337,14 @@ then clears that bit and shows the cursor. The tab of a pane is `0x00564380`.
 `0x00293170(kind, id, a, b)` fills the description box. It works through the window at `[0x0209AC30] + 0x2F8` and the box
 at that window's `+0xC0`:
 
-1. While the window is 0 it does nothing (`0x002931AE`).
-2. When the box exists, it closes the box (`0x00244DD0`). First it installs the animation descriptor `0x00916058` when
-   `a` is set and `0x00916030` when `b` is set (`0x00247570`).
-3. Kind 0 stops there.
-4. Otherwise `0x00292B70` composes the line ([Text codes](text-codes.md)). When there is no line, it stops with the box
-   closed.
-5. With no box yet, it creates one through `0x00244F50`: a `0x102D0`-byte list item with procedure `0x00292390`
-   ([AS7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md)), kept at the window's `+0xC0`. An
-   existing box is sent the line and the entry as message 12 (`0x00247510`, [Widget messages](widget-messages.md)). If
-   bit `0x20` of the box's `+0x7C` is clear, it stops instead.
-6. It installs `0x00916058` again when `a` is set, then opens the box under the window (`0x00246AD0`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | While the window is 0 it does nothing. | `0x002931AE` |
+| 2 | When the box exists, it closes the box. First it installs the animation descriptor `0x00916058` when `a` is set and `0x00916030` when `b` is set. | `0x00244DD0`<br>`0x00247570` |
+| 3 | Kind 0 stops there. |   |
+| 4 | Otherwise `0x00292B70` composes the line ([Text codes](text-codes.md)). When there is no line, it stops with the box closed. |   |
+| 5 | With no box yet, it creates one through `0x00244F50`: a `0x102D0`-byte list item with procedure `0x00292390` ([AS7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md)), kept at the window's `+0xC0`. An existing box is sent the line and the entry as message 12 (`0x00247510`, [Widget messages](widget-messages.md)). If bit `0x20` of the box's `+0x7C` is clear, it stops instead. |   |
+| 6 | It installs `0x00916058` again when `a` is set, then opens the box under the window. | `0x00246AD0` |
 
 `0x00293110(kind, id)` calls it with `b` = 0. `a` is bit `0x1` of the box's `+0x40`, or 0 when there is no box. The one
 exception is `0x00293110(0, 0)`, which passes `b` = 1, so it only closes the box. `0x00293100(kind, id, a)` passes `b` = 0.
@@ -211,50 +370,112 @@ goods the box closes and stays empty.
 It first zeroes `+0xFD` of the list `[pane + 0xD8]`; the item is held while bit `0x100` of `+0x180` (the byte
 `+0x181`) is set. An answer `0x8001` from either ends in `0x00564650`. An answer `0x8002` clears bit `0x200000` of
 the list's `+0xE0` and bit `0x80000` of its `+0xE4`, sets bit `0x100000` of `+0xE4` and ends in
-`0x002D4840(list, +0x178, +0x17A, 0)`. Any other answer is returned (`0x00564C86`-`0x00564D21`).
+`0x002D4840(list, +0x178, +0x17A, 0)`. Any other answer is returned¹.
 
-- `0x00564E10` switches tabs on the buttons of `0x02F97368 & 0xCA0` (`0x00563EC0` one way, `0x00564300` the other), keeps the new tab's cursor (`0x002527B0(8, ...)`), rebuilds its rows (`0x005655F0`, `0x005674B0`) and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00564C86`-`0x00564D21` |
+
+</details>
+
+- `0x00564E10` switches tabs on the buttons of `0x02F97368 & 0xCA0` (`0x00563EC0` one way, `0x00564300` the other), keeps the new tab's cursor (`0x002527B0(8, ...)`), rebuilds its rows¹ and
   plays sound 10. The extra button (bit `0x8000` of `0x02F9736A`) opens the sort bar (`0x005665B0`, sound 4), or plays sound 5
   on an empty tab ([Dialogs](dialogs.md)).
 - `0x005641F0(pane, row)` picks the row's item up and returns 0. With no row table it returns 1, and when `0x00368240()`
   is 2 it sets the list's byte `+0xFD` to 0xFF and returns 1. A pick-up stores the row at `+0x17C` and `+0x17A`, turns
-  the list into move mode (`+0xE4` bits `0x4`, `0x20000` and `0x40000`) and hides the tab arrows (`0x005670F0`).
+  the list into move mode (`+0xE4` bits `0x4`, `0x20000` and `0x40000`) and hides the tab arrows².
 - `0x005641F0` picks nothing up and answers 1 while the pane's rows `+0xE0` are null, or, after setting the list's
-  `+0xFD` to `0xFF`, while `0x00368240()` answers 2 (`0x005641FA`-`0x00564220`). Otherwise it sets the list's word `+0xE0`
+  `+0xFD` to `0xFF`, while `0x00368240()` answers 2³. Otherwise it sets the list's word `+0xE0`
   to the row, calls `0x005670F0([strip + 0xC0], 0)` only when the strip `+0xC8` is set, calls `0x00295D50(0)` and
-  answers 0 (`0x00564230`-`0x00564283`, `0x005642DF`).
+  answers 0⁴.
 - It keeps at `+0x178` the list's cursor, `+0xF2 x +0xEC + +0xEE + +0xED`, sets `0x022CBE36` to 4 (`0x00368A60(4)`),
-  clears the bounce flag (`0x00368830(0)`) and sets the held byte `+0x181` to 1 (`0x00564288`-`0x005642E1`).
+  clears the bounce flag (`0x00368830(0)`) and sets the held byte `+0x181` to 1⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005655F0`, `0x005674B0` |
+| ² | `0x005670F0` |
+| ³ | `0x005641FA`-`0x00564220` |
+| ⁴ | `0x00564230`-`0x00564283`, `0x005642DF` |
+| ⁵ | `0x00564288`-`0x005642E1` |
+
+</details>
 
 ### Moving an item
 
 `0x00564D30(pane)` handles the held item:
 
-1. with no held row it ends the move;
-2. cancel (`0x01E0C2A4`) plays sound 3, and `0x00564C80` puts the cursor back on the held row (`0x002D4840`);
-3. confirm (`0x01E0C2A0`) plays sound `0x37`, calls `0x00565BD0(pane, from, to)` when the cursor is on another row, and
-   ends the move;
-4. any other frame runs the list (`0x002D3900`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | with no held row it ends the move; |   |
+| 2 | cancel plays sound 3, and `0x00564C80` puts the cursor back on the held row; | `0x01E0C2A4`<br>`0x002D4840` |
+| 3 | confirm plays sound `0x37`, calls `0x00565BD0(pane, from, to)` when the cursor is on another row, and ends the move; | `0x01E0C2A0` |
+| 4 | any other frame runs the list. | `0x002D3900` |
 
 `0x00565BD0` stores the new place in the tab's list (`0x002530E0(list 0x00D23960[tab], item, item at the target)`), shifts
 the rows between the two places by one and puts the held row at the target, then sends the list's owner `+0xC8`
-message 12 `0x8000` with the list's cursor (`0x002D1AC0`, `0x00247510`), so the pane shows the help of the item under
+message 12 `0x8000` with the list's cursor¹, so the pane shows the help of the item under
 the cursor. While an item
 is held, message `0x1A` slides each row between the two places by 4 a frame.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D1AC0`, `0x00247510` |
+
+</details>
+
 The tab is `0x00564380()`, the list is the word at `0x00D23960 + tab x 4`, and the two items are the words `+8` of the
-32-byte rows at the two places (`0x00565C18`-`0x00565C34`).
+32-byte rows at the two places¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00565C18`-`0x00565C34` |
+
+</details>
 
 `0x00564650` ends the move: it clears the
-row offsets, leaves move mode, restores the tab strip (`0x00567690`), shows the key-guide entries again
-(`0x00295D50(1)`, `0x00564741`), resets `+0x17C` to `-1` and clears `+0x178`, `+0x17A` and `+0x181`, zeroes `0x022CBE36`
-(`0x00368A60`) and re-allows the list bounce (`0x00368830(1)`, `0x00564773`; [Menu lists](menu-lists.md)).
+row offsets, leaves move mode, restores the tab strip¹, shows the key-guide entries again
+(`0x00295D50(1)`, `0x00564741`), resets `+0x17C` to `-1` and clears `+0x178`, `+0x17A` and `+0x181`, zeroes `0x022CBE36`² and re-allows the list bounce (`0x00368830(1)`, `0x00564773`; [Menu lists](menu-lists.md)).
 
-Each of the list's `+0xE8` rows gets its dword `+0x10` and word `+0x14` zeroed (`0x00564680`-`0x005646A8`). The list's
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00567690` |
+| ² | `0x00368A60` |
+
+</details>
+
+Each of the list's `+0xE8` rows gets its dword `+0x10` and word `+0x14` zeroed¹. The list's
 dword `+0xE0` gets bit `0x200000` and then its low word -1, its `+0x114` is zeroed and its `+0xE4` loses bits
-`0x40000`, `0x20000`, `0x4`, `0x80000` and `0x100000` (`0x005646AA`-`0x00564710`). The tab is the signed field under
-mask `0x03E00000` of `+0x180`, and `0x00567690` gets the entry at `pane + 0xF0 + 8 x tab` (`0x0056471A`-`0x00564739`).
-The dword store at `+0x178` is what clears `+0x17A` (`0x00564756`).
+`0x40000`, `0x20000`, `0x4`, `0x80000` and `0x100000`². The tab is the signed field under
+mask `0x03E00000` of `+0x180`, and `0x00567690` gets the entry at `pane + 0xF0 + 8 x tab`³.
+The dword store at `+0x178` is what clears `+0x17A`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00564680`-`0x005646A8` |
+| ² | `0x005646AA`-`0x00564710` |
+| ³ | `0x0056471A`-`0x00564739` |
+| ⁴ | `0x00564756` |
+
+</details>
 
 ### The tab strip
 
@@ -262,46 +483,92 @@ The tab strip at `+0xC8` of a screen is shared with the shop, equipment and gamb
 `0x003FD7C8`, `0x0056AE5F`):
 
 - `0x005674B0(strip, current)` lays the tab buttons (`+0xC8`, count byte `+0x150`) out from `+0x148`, brightens the
-  current one to `0x80` and the others to `0x40` (`0x002D04F0`), and moves the marker to it (`0x00566B70`, 100 ms);
-- `0x005674B0` does nothing for a null strip (`0x005674B3`). The rectangle `+0x148` gives x, y, the button width w
+  current one to `0x80` and the others to `0x40`¹, and moves the marker to it (`0x00566B70`, 100 ms);
+- `0x005674B0` does nothing for a null strip². The rectangle `+0x148` gives x, y, the button width w
   (`+0x14C`) and the height (`+0x14E`). With bit `0x10000000` of `+0x150` clear the first button sits at
   x - w x (count - 1), moved right by n x (w - byte `+0x152`) when the nibble n under mask `0x0F000000` is not 0;
-  with that bit set it sits at x (`0x005674C3`-`0x00567532`);
+  with that bit set it sits at x³;
 - each button `[strip + 0xC8 + 8 x i]` is w wide, or byte `+0x152` wide when bit `0x1` of its `+0xD8` is set, gets
   `+0x98` = its x, `+0x9A` = y, `+0x9C` = its width and `+0x9E` = the height, and is shown (`0x00247870(button, 1)`);
-  the next button starts at x + width (`0x00567570`-`0x00567605`);
+  the next button starts at x + width⁴;
 - the current button is the one whose word `+0xD4` equals the signed byte `+7` of `current`; it gets
   `0x002D04F0(button, 0x80, 1, 1, 100)` and `0x00566B70([strip + 0xC0], i, x, 1, 100)`, the others `0x40`. With a null
-  `current` no button is coloured and the marker does not move (`0x00567588`-`0x00567630`);
-- the call ends in `0x00566FE0(strip, w)`, also with no buttons (`0x0056766C`-`0x00567677`);
+  `current` no button is coloured and the marker does not move⁵;
+- the call ends in `0x00566FE0(strip, w)`, also with no buttons⁶;
 - `0x00567690(strip, current)` only recolours them; `0x005670F0` and `0x00566FE0` show the two arrows when there are at least
   two tabs, the latter also offsetting the strip by its width;
 - `0x00566B70(marker, tab, x, curve, ms)` starts the marker's move to `x` over `ms x 60 / 1000` frames.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D04F0` |
+| ² | `0x005674B3` |
+| ³ | `0x005674C3`-`0x00567532` |
+| ⁴ | `0x00567570`-`0x00567605` |
+| ⁵ | `0x00567588`-`0x00567630` |
+| ⁶ | `0x0056766C`-`0x00567677` |
+
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The description box `0x00292390` shows an item picture by id: on message 12 it keeps the id at `+0x102C8`, and on its
 next message 2 it decodes picture `id & 63` of sheet `id >> 6` and copies its `ListItemIconW` × `ListItemIconH`
-pixels, 64 × 96 (`0x01E0C470`, `0x01E0C474`), into the `itemgra_c` atlas
+pixels, 64 × 96¹, into the `itemgra_c` atlas
 ([AS7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md)).
 
-After the copy it stores where that picture lies in an eight-column grid of such cells (`0x002928A9`-`0x002928FE`). The id
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01E0C470`, `0x01E0C474` |
+
+</details>
+
+After the copy it stores where that picture lies in an eight-column grid of such cells¹. The id
 is a signed `i16`; a negative id takes the branch that clears the cell instead (`0x0029269D`; [AS7 menu
 graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md)), so the remainders below are taken of a
 non-negative id.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002928A9`-`0x002928FE` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x01E0C478` | `i32` | -1 | the last decoded picture's x in the grid: (`id` mod 64) mod 8 × `ListItemIconW` | `0x00292390` (`0x002928D3`) | no instruction names it |
 | `0x01E0C47C` | `i32` | -1 | its y: (`id` mod 64) / 8 × `ListItemIconH` | `0x00292390` (`0x002928FE`) | no instruction names it |
 
+</details>
+
 ## Modding notes
 
 - A category appears only once its save-wide flag is set; clearing the flag hides the row.
-- Moving an item writes the stored order (`0x002530E0`), so the new order survives saving.
+- Moving an item writes the stored order¹, so the new order survives saving.
 - The shop keys `0x597`-`0x5AF` share the slot table `0x00D233A0` (slots 8 to 32).
 - A pane's tab strip holds 15 tabs: the count at the bits under mask `0x1F0000` of `+0x180` is a signed 5-bit number, and a sixteenth
   tab would put the end mark below `+0xF0` (A pane's tabs, above).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002530E0` |
+
+</details>
 
 ## Related
 
@@ -320,9 +587,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Items, equipment, shops and licenses** (explained on [license board screen](license-board-screen.md), [equipment](../Items-Equipment-Shops-And-Licenses/equipment.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003FCAD0` | calls | `0x00323630`, `0x00323670` |
-| `0x003FF360` | calls | `0x002F9F20`, `0x0031A300`, `0x0031A710`, `0x003231F0` |
+| [`0x003FCAD0`](inventory-screen.md) | calls | [`0x00323630`](../Controls-And-Input/on-screen-keyboard.md) Battle stats: get license board selector b (on on screen keyboard)<br>[`0x00323670`](../Controls-And-Input/on-screen-keyboard.md) Battle stats: get license board selector a (on on screen keyboard) |
+| [`0x003FF360`](status-and-equip-screen.md) (on status and equip screen) | calls | [`0x002F9F20`](../Items-Equipment-Shops-And-Licenses/equipment.md) Equipment: build recommended loadout for mapped stats (on equipment)<br>[`0x0031A300`](status-and-equip-screen.md) Battle stats: clear all equipment slots by mapped id (on status and equip screen)<br>[`0x0031A710`](status-and-equip-screen.md) Battle stats: set equipment slots by mapped id (on status and equip screen)<br>[`0x003231F0`](status-and-equip-screen.md) Equipment: check primary secondary pair reason by stats index (on status and equip screen) |
 
 </details>

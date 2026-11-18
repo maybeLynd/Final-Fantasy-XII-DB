@@ -28,12 +28,21 @@ orientation live only in the transform pair. The collision mesh's wall records a
 (0x90 bytes each, [doors and gates](../World-Areas-And-Travel/doors-gates-and-map-changes.md)).
 
 `0x00380FA0(out, shape, A, B)` solves a segment against a shape: `A` and then `B` are mapped into the
-shape's frame through the inverse at `+0x50` (`0x00202B70`), the type picks a primitive below, and a
+shape's frame through the inverse at `+0x50`¹, the type picks a primitive below, and a
 type other than 0, 1 or 2 (tested after both points are mapped), or a primitive that reports no
 hit, returns -1.0. A hit is mapped back
 through `+0x10` into `out`, and the return value is the three-dimensional distance from `A` to
 `out`. Each primitive takes `(out, A, B)` in the unit frame, writes `out` with `B`'s `w`, and
 returns 1 for a hit.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00202B70` |
+
+</details>
 
 ### The three unit primitives
 
@@ -67,16 +76,37 @@ distance along the segment to the plane through `p` with normal `n`. `0x00382020
 `+0x10`/`+0x18`, the inner shape's radii at `+0x70`/`+0x74` and height at `+0x78`), to find the
 highest record top above a point.
 
-`0x0046DB50(p)` starts from 0.0 and answers 0.0 when `0x003DAE20` returns an empty list (`0x0046DB88`). For each record,
-linked through `+0xA0` (`0x0046DCDF`), it takes `p` minus the record's centre `(+0x00, +0x04 + +0x78 / 2, +0x08)`,
-with w 1.0 (`0x0046DBF7`-`0x0046DC35`), and maps it through the product `0x00202D70` of a turn about y by
-`-atan2f(+0x18, +0x10)` (`0x0046DBEA`, `0x0046DC5B`) followed by a scale of `1 / +0x70`, `2 / +0x78` and `1 / +0x74`
-on x, y and z (`0x0046DC60`-`0x0046DC99`).
+`0x0046DB50(p)` starts from 0.0 and answers 0.0 when `0x003DAE20` returns an empty list¹. For each record,
+linked through `+0xA0`², it takes `p` minus the record's centre `(+0x00, +0x04 + +0x78 / 2, +0x08)`,
+with w 1.0³, and maps it through the product `0x00202D70` of a turn about y by
+`-atan2f(+0x18, +0x10)`⁴ followed by a scale of `1 / +0x70`, `2 / +0x78` and `1 / +0x74`
+on x, y and z⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046DB88` |
+| ² | `0x0046DCDF` |
+| ³ | `0x0046DBF7`-`0x0046DC35` |
+| ⁴ | `0x0046DBEA`, `0x0046DC5B` |
+| ⁵ | `0x0046DC60`-`0x0046DC99` |
+
+</details>
 
 When `0x00382020` says the mapped point is inside, so that `p` lies strictly within the record's radii and strictly
-between its base `+0x04` and its top `+0x04 + +0x78`, the record offers `+0x78 + +0x04 - p.y`
-(`0x0046DCC9`-`0x0046DCD3`), and the largest offer is kept (`maxss`, `0x0046DCD8`). The return value is the rise from
+between its base `+0x04` and its top `+0x04 + +0x78`, the record offers `+0x78 + +0x04 - p.y`¹, and the largest offer is kept (`maxss`, `0x0046DCD8`). The return value is the rise from
 `p` to the highest record top above it, 0.0 when no record holds `p`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046DCC9`-`0x0046DCD3` |
+
+</details>
 
 ### Point in shape
 
@@ -99,10 +129,20 @@ caller hands it.
 with `next = {1, 2, 0}` at `0x00908DE8`, `cross(v[next] - v[i], p - v[i]) . n < 0` answers 0; three
 edges that are zero or positive answer 1, so a point on an edge counts as inside.
 
-A NaN product is not below 0 either and also lets the edge pass (`0x0022D082`). The polygon is `[part + 0x10] + 0x20
-id` with `id` sign-extended (`0x0022CF7C`-`0x0022CF92`). The cross product is `0x00202E10(out, a, b)`: `(a.y b.z - a.z
-b.y, a.z b.x - a.x b.z, a.x b.y - a.y b.x)` with w 0, built on the stack and copied to `out` as one 16-byte store
-(`0x00202E65`-`0x00202E7B`).
+A NaN product is not below 0 either and also lets the edge pass¹. The polygon is `[part + 0x10] + 0x20
+id` with `id` sign-extended². The cross product is `0x00202E10(out, a, b)`: `(a.y b.z - a.z
+b.y, a.z b.x - a.x b.z, a.x b.y - a.y b.x)` with w 0, built on the stack and copied to `out` as one 16-byte store³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022D082` |
+| ² | `0x0022CF7C`-`0x0022CF92` |
+| ³ | `0x00202E65`-`0x00202E7B` |
+
+</details>
 
 ### The collision-mesh ray cast
 
@@ -145,22 +185,57 @@ Struct MeshQuery  (the walker's record, built on the caller's stack):
 `0x00233050`: column `(x + originX) / cellW`, row `(z + originZ) / cellH` after subtracting half a
 cell height on odd columns (the grid is staggered), `0xFFFF` outside. `0x002330D0(part, point, k)` returns that
 cell plus `k × (stride + 1)`, or the negative answer as it is. `0x002F67C0`, which fades the background NPCs
-listed in a point's cell in or out by their distance from the point, uses it with `k` = 1 (`0x002F67F0`).
+listed in a point's cell in or out by their distance from the point, uses it with `k` = 1¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F67F0` |
+
+</details>
 
 `0x00233050(part, p)` reads the grid header `[part]`. `originX` and `originZ` are the ints at `part + 0x38` and
-`part + 0x3C`, added to `p.x` and `p.z` as floats, and either sum below 0 answers `0xFFFF` at once (`0x00233073`,
-`0x0023307B`).
+`part + 0x3C`, added to `p.x` and `p.z` as floats, and either sum below 0 answers `0xFFFF` at once¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233073`, `0x0023307B` |
+
+</details>
 
 The sums `x` and `z` are truncated to ints (`cvttss2si eax, xmm1`, `0x0023307D`) and divided as integers,
 `col = (int)x / [[part] + 0x10]` (`idiv`, `0x00233086`): the column by the cell width `[[part] + 0x10]`,
 the row by the cell height `[[part] + 0x14]`, the half cell on an odd column being the height halved toward zero,
-`H / 2`, taken off first: `row = ((int)z - (col & 1 ? H / 2 : 0)) / H` with `H` = `[[part] + 0x14]`
-(`0x0023308D`-`0x0023309C`, `0x002330A1`).
+`H / 2`, taken off first: `row = ((int)z - (col & 1 ? H / 2 : 0)) / H` with `H` = `[[part] + 0x14]`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023308D`-`0x0023309C`, `0x002330A1` |
+
+</details>
 
 The row division also rounds toward zero (`idiv dword ptr [r8 + 0x14]`, `0x002330A1`), so a point in the first half
 cell of an odd column gets row 0, not `0xFFFF`. A column at or past the column count `[[part] + 0x08]`, or a row at
-or past the row count `[[part] + 0x0C]`, answers `0xFFFF` (`0x002330AB`-`0x002330B4`); otherwise the cell is
-`row × column count + column` (`0x002330B6`).
+or past the row count `[[part] + 0x0C]`, answers `0xFFFF`¹; otherwise the cell is
+`row × column count + column`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002330AB`-`0x002330B4` |
+| ² | `0x002330B6` |
+
+</details>
 
 From the start cell it loops:
 the delta, length and best are reset to the whole remaining segment, the callback runs over the
@@ -177,15 +252,45 @@ segment by writing the hit point into the caller's end vector through `+0x18`.
 
 `0x002315E0(part, &start, &end)` is the ray cast as a function: it builds the query with this
 callback, kind `0xFFFF` and the stop flag clear, runs the walker and returns the state (0 clear, 1
-marker only, 2 blocked), sign-extended from the word `+0x44` (`0x00231657`).
+marker only, 2 blocked), sign-extended from the word `+0x44`¹.
 
-It answers `0xFFFF` when the part or its grid header `[part]` is null (`0x00231600`-`0x00231609`). It copies both its
-start and its end argument to locals first (`0x0023160B`, `0x00231627`) and points `+0x20` at a third local, so only
-direct walker callers see the start vector advanced to each cell exit (`0x0022F742`) and the end vector overwritten.
+<details>
+<summary>Where in the code</summary>
 
-Its callers are `0x0032A4D0` and `0x00318CA0`. The walker's three other call sites, in `0x00230B60` (`0x00230BD8`) and
-`0x00230C10` (`0x00230E1D`, `0x00231123`), plant the sphere sweep and the other ray casts of the doors
+| | Code |
+|---|---|
+| ¹ | `0x00231657` |
+
+</details>
+
+It answers `0xFFFF` when the part or its grid header `[part]` is null¹. It copies both its
+start and its end argument to locals first² and points `+0x20` at a third local, so only
+direct walker callers see the start vector advanced to each cell exit³ and the end vector overwritten.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00231600`-`0x00231609` |
+| ² | `0x0023160B`, `0x00231627` |
+| ³ | `0x0022F742` |
+
+</details>
+
+Its callers are `0x0032A4D0` and `0x00318CA0`. The walker's three other call sites, in `0x00230B60`¹ and
+`0x00230C10`², plant the sphere sweep and the other ray casts of the doors
 page.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00230BD8` |
+| ² | `0x00230E1D`, `0x00231123` |
+
+</details>
 
 ### The volume clamps
 
@@ -195,8 +300,18 @@ dispatches on each record's kind byte `+0x09 & 0x7F`: 0 the ellipse clamp, 1 the
 2 the segment chain, anything else leaves the point unchanged. All three take `(point, out,
 record)` and write a four-float `out` with `w = 1.0` on every path that computes it.
 
-Two paths copy the point instead: the rectangle with no outcode bit set (`0x003626B2`-`0x003626B9`) and the segment
-chain without segments (`0x00362390`-`0x00362394`) copy all four floats, so `out` keeps the point's own `w` there.
+Two paths copy the point instead: the rectangle with no outcode bit set¹ and the segment
+chain without segments² copy all four floats, so `out` keeps the point's own `w` there.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003626B2`-`0x003626B9` |
+| ² | `0x00362390`-`0x00362394` |
+
+</details>
 
 Struct EmitterVolume  base=[`0x022CBAF0`] + offset:
 
@@ -229,26 +344,63 @@ set `out = point`; otherwise `lx` and `lz` are clamped to `[-1, 1]`, `X = lx a`,
 
 The segment chain, `0x00362230`, calls `0x00363FD0(point, start, dir)` for each segment: `t = -((start -
 point) . dir) / |dir|^2` clamped to `[0, 1]`, 0 when `|dir|^2` is not positive, with the squared
-distance `|start - point + t dir|^2` left at `0x022D92D4` (and `0x022D92E4`). It returns `t` in `xmm0`
-(`0x00364172`) and also leaves it at `0x022D92D0` (`0x00364135`). The segment with the
+distance `|start - point + t dir|^2` left at `0x022D92D4` (and `0x022D92E4`). It returns `t` in `xmm0`¹ and also leaves it at `0x022D92D0`². The segment with the
 smallest squared distance wins (the first always, a later one only when strictly nearer) and `out =
 start + t dir`; with no segments `out = point`. It returns the record's `+0x30`.
 
-The count `+0x14` is signed, so a count at or below 0 is the case without segments (`0x00362264`). The winner's `t`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00364172` |
+| ² | `0x00364135` |
+
+</details>
+
+The count `+0x14` is signed, so a count at or below 0 is the case without segments¹. The winner's `t`
 is also stored at `0x022D8F20` and copied with the 16 bytes there to `0x022D9390`; its start goes to `0x022D92A0`, its
 direction to `0x022D92B0` and the start's x, y and z to the ACC image `0x022D91A0`, and `out` is built at `0x022D92C0`
-with `w` 1.0 from `0x01EF93FC` (`0x003622C8`-`0x0036238A`).
+with `w` 1.0 from `0x01EF93FC`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00362264` |
+| ² | `0x003622C8`-`0x0036238A` |
+
+</details>
 
 The emitter walk is one reader. The other is the actor-record proximity test `0x0025C830` (run per
 record by `0x0025C170` from the field tick, [field runtime](../Characters-And-Objects/field-runtime.md)):
-it measures each of the four party-slot actors (`0x0209A1F0`) against two rectangles authored in the
+it measures each of the four party-slot actors¹ against two rectangles authored in the
 record's movement context (centres `+0x00` and `+0x10`, extents `+0x30`/`+0x34` and `+0x40`/
 `+0x44`, angles `+0x38` and `+0x48`).
 
-Unless record byte `+0x08` bit `0x80` is set or record context byte `+0x5C` is not 0 (`0x0025C86C`-`0x0025C88D`,
-`0x0025CCDC`), `0x0025C830` first tests the actor's height, its own context's `+0x04`: below the record
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0209A1F0` |
+
+</details>
+
+Unless record byte `+0x08` bit `0x80` is set or record context byte `+0x5C` is not 0¹, `0x0025C830` first tests the actor's height, its own context's `+0x04`: below the record
 context's `+0x04` less `+0x6C` less the actor context's `+0xC0` times `+0x24`, or above that `+0x04` plus
-`+0x68`, the actor counts as outside both rectangles (`0x0025C8A3`-`0x0025C8A9`, `0x0025CCE2`-`0x0025CD0C`).
+`+0x68`, the actor counts as outside both rectangles².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025C86C`-`0x0025C88D`, `0x0025CCDC` |
+| ² | `0x0025C8A3`-`0x0025C8A9`, `0x0025CCE2`-`0x0025CD0C` |
+
+</details>
 
 It calls `0x0025A8E0` twice per rectangle, once with the x
 extent and one with the z extent as the test radius, and recovers the x bits from the older CLIP
@@ -259,9 +411,18 @@ bodies](movement-bodies-and-separation.md)) instead of the rectangles.
 
 `0x0025A8E0(p, rec)`, called only by that test, is the outcode without the clamp: the CLIP word is
 shifted left 6 and takes bits `0x1`/`0x2` for `p.x` above `e` or below `-e`, bits `0x4`/`0x8` for `p.y`, bits
-`0x10`/`0x20` for `p.z`, with `e = |rec.+0x0C|`; its top byte `0x022D9133` is then zeroed, keeping 24 bits
-(`0x0025A970`), and the word is copied to `0x022D9478` (`0x0025A97D`). The history is what lets
+`0x10`/`0x20` for `p.z`, with `e = |rec.+0x0C|`; its top byte `0x022D9133` is then zeroed, keeping 24 bits¹, and the word is copied to `0x022D9478`². The history is what lets
 one function clamp a point and the next read the outcome of the clamp before it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025A970` |
+| ² | `0x0025A97D` |
+
+</details>
 
 ### The workbench
 
@@ -276,6 +437,9 @@ clamps load from `0x01EF93F0` and `0x01EF93FC` are a live register image. The bl
 every caller and is not reentrant.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Shape record (a collision wall record is one):
 
@@ -316,7 +480,12 @@ Globals:
 | `0x022D9470` | `u32` |  | the VU0 register image: status word, bits `0x40` and `0x80` (`0x0036DDA0`, `0x0036DD90`) |
 | `0x01EF93F0` | `f32[4]` |  | the vf00 image {0, 0, 0, 1} |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -325,6 +494,8 @@ Globals:
 | sphere and cylinder tolerance | `1e-6` on the direction length before the divide |
 | ray-cast cell margin | 0.1 on each side; exit margin 1.8 on the main part, 0.09 elsewhere |
 | `vf00` image `0x01EF93F0` | `{0, 0, 0, 1}` in the image and after every `0x0036DD80` |
+
+</details>
 
 ## Operations
 
@@ -335,8 +506,13 @@ evaluation: one clamp per volume record in the listener's list, each through the
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The override table at `0x0209A3E0`; the CLIP word and its four-generation history; the VU0 register
 image and the status word; the emitter record base `0x022CBAF0`.
+
+</details>
 
 ## Modding notes
 

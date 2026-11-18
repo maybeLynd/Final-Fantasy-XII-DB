@@ -59,29 +59,58 @@ Five bytes of a unit's stats record hold its affinities, each a mask over the ei
 | `+0x43` | immune | `+0x11` | `+0x2B` |
 | `+0x44` | potency | `+0x14` | `+0x2D` |
 
-The stats rebuild `0x002FEF30` clears them (`0x002FEFB9`-`0x002FEFC8`). For an enemy-side unit it then copies
+The stats rebuild `0x002FEF30` clears them¹. For an enemy-side unit it then copies
 the five bytes of the unit's area row: the row of table `0x02EBF150` named by word `+0` of the unit's
-`0x02EBF120` row (`0x002FF0E1`-`0x002FF322`). For every unit it then ORs in the attribute record of each of the
-five equipped items, the record that equipment row `+0x28` points to (`0x002FF3F0`-`0x002FF57B`). A party
+`0x02EBF120` row². For every unit it then ORs in the attribute record of each of the
+five equipped items, the record that equipment row `+0x28` points to³. A party
 member starts from zero.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FEFB9`-`0x002FEFC8` |
+| ² | `0x002FF0E1`-`0x002FF322` |
+| ³ | `0x002FF3F0`-`0x002FF57B` |
+
+</details>
 
 The applier can change an enemy's affinities during a fight. Those changes live in the unit's spawn
 record at `+0x78`-`+0x7C`, and the auto-status rebuild `0x0030FED0` copies them back over the stats bytes
-when the spawn record's byte `+0` has bit `0x80` (`0x00310433`-`0x003104BC`)
+when the spawn record's byte `+0` has bit `0x80`¹
 ([Action results](../Battle-Actions/action-results.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00310433`-`0x003104BC` |
+
+</details>
 
 ### The magick affinity stage
 
 Slot 95, `0x0038B6A0`, compares the action's element with the target's bytes and the user's potency, in
-this order (`0x0038B709`-`0x0038B932`):
+this order¹:
 
-1. **Immune** (`+0x43`): sets `0x02AEDFCC` = 1 and skips every later test (`0x0038B70D`-`0x0038B71D`).
-2. **Weak** (`+0x40`): multiplies the scale `0x02AEE054` by 2.0 and sets bit `0x2` of the result's `+0x140`
-   (`0x0038B769`-`0x0038B791`). When the target also has augment 52 (Elemental Shift) in either layer (byte `+0x6E` or `+0x7E`,
-   bit `0x10`), it calls `0x00384B10(element, context)` and sets bit `0x400` (`0x0038B78D`-`0x0038B7F2`).
-3. **Half** (`+0x42`): multiplies by 0.5 and sets bit `0x4` (`0x0038B84A`-`0x0038B871`).
-4. **Absorb** (`+0x41`): sets `0x02AEDFD0` = 1 and leaves the scale alone (`0x0038B8BC`-`0x0038B8D1`).
-5. **Potency** (the user's `+0x44`): multiplies by 1.5 and sets bit `0x8` (`0x0038B911`-`0x0038B932`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038B709`-`0x0038B932` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | **Immune** (`+0x43`): sets `0x02AEDFCC` = 1 and skips every later test. | `0x0038B70D`-`0x0038B71D` |
+| 2 | **Weak** (`+0x40`): multiplies the scale `0x02AEE054` by 2.0 and sets bit `0x2` of the result's `+0x140`. When the target also has augment 52 (Elemental Shift) in either layer (byte `+0x6E` or `+0x7E`, bit `0x10`), it calls `0x00384B10(element, context)` and sets bit `0x400`. | `0x0038B769`-`0x0038B791`<br>`0x0038B78D`-`0x0038B7F2` |
+| 3 | **Half** (`+0x42`): multiplies by 0.5 and sets bit `0x4`. | `0x0038B84A`-`0x0038B871` |
+| 4 | **Absorb** (`+0x41`): sets `0x02AEDFD0` = 1 and leaves the scale alone. | `0x0038B8BC`-`0x0038B8D1` |
+| 5 | **Potency** (the user's `+0x44`): multiplies by 1.5 and sets bit `0x8`. | `0x0038B911`-`0x0038B932` |
 
 Every test that matches applies, so the factors multiply:
 
@@ -96,30 +125,41 @@ weak, half, with potency  2.0 * 0.5 * 1.5 = 1.5
 Slot 99, `0x0038BE30`, runs the same five tests in the same order for weapon attacks, with the same
 factors (2.0 at `0x0038C1DE`, 0.5 at `0x0038C588`, 1.5 at `0x0038C8E1`). The element is byte `+0x1E` of the
 main-hand row (stats `+0x50`), or of the off-hand row (`+0x52`) when the main hand's byte `+0x11` is
-23-26, the ammunition weapons (`0x0038BEDE`-`0x0038C001`). As in slot 95, an immune match sets
-`0x02AEDFCC` and returns at once (`0x0038C011`-`0x0038C01C`); the other tests run only when the immune byte
+23-26, the ammunition weapons¹. As in slot 95, an immune match sets
+`0x02AEDFCC` and returns at once²; the other tests run only when the immune byte
 misses.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038BEDE`-`0x0038C001` |
+| ² | `0x0038C011`-`0x0038C01C` |
+
+</details>
 
 ### Immunity and absorb in the final number
 
-The finishing slot `0x0038D280` (slots 113 and 125) turns the scale and the two flags into the HP change
-(`0x0038D280`-`0x0038D333`):
+The finishing slot `0x0038D280` (slots 113 and 125) turns the scale and the two flags into the HP change¹:
 
-1. Attack minus defence below 0 gives a loss of 0.
-2. Immune: it sets `0x02AEDFC0` = 1, the HP loss `0x02AEE004` = -1 (no loss), and bit `0x1` of result `+0x140`. The
-   resolver turns `0x02AEDFC0` into result kind 10 (`0x003866CE`-`0x003866D7`).
-3. Otherwise the value is `(attack - defence) * scale`. Without absorb it is an HP loss (`0x02AEE004`).
-   With absorb it is an HP gain (`0x02AEE008`).
-4. A target with Reverse (status 12, context `+8` bit `0x1000`) swaps the two: a loss becomes a gain and an
-   absorbed hit becomes a loss (`0x0038D2E1`, `0x0038D302`).
-5. Except on the paths of steps 1 and 2 and the absorbed-and-Reverse path, which return at `0x0038D2A2`,
-   `0x0038D2CB` and `0x0038D301`, the slot ends by testing a dword against -1 (`0x0038D32A`): the value `t` on the absorb path and on the Reverse path, and the gain
-   `0x02AEE008` as it stood on the plain path (`0x0038D324`). Any other value tail-jumps to `0x00387B00` with the
-   slot's first two arguments `a` and `b` (`0x0038D32D`).
-6. `0x00387B00` ORs `1 << (bit & 31)` into the dword `+0x0C` of `a`'s 64-byte record:
-   - the record is `0x0208D480 + byte(a + 4) * 64` when byte `a + 5` is 0, else `0x0208DE80` indexed by byte
-     `+0xEA9` of the block `0x0031B860` returns;
-   - the bit is byte `b + 4`, or that block's `+0xEA9` for a `b` that `0x0031B860` maps.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038D280`-`0x0038D333` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Attack minus defence below 0 gives a loss of 0. |   |
+| 2 | Immune: it sets `0x02AEDFC0` = 1, the HP loss `0x02AEE004` = -1 (no loss), and bit `0x1` of result `+0x140`. The resolver turns `0x02AEDFC0` into result kind 10. | `0x003866CE`-`0x003866D7` |
+| 3 | Otherwise the value is `(attack - defence) * scale`. Without absorb it is an HP loss. With absorb it is an HP gain. | `0x02AEE004`<br>`0x02AEE008` |
+| 4 | A target with Reverse (status 12, context `+8` bit `0x1000`) swaps the two: a loss becomes a gain and an absorbed hit becomes a loss. | `0x0038D2E1`, `0x0038D302` |
+| 5 | Except on the paths of steps 1 and 2 and the absorbed-and-Reverse path, which return at `0x0038D2A2`, `0x0038D2CB` and `0x0038D301`, the slot ends by testing a dword against -1: the value `t` on the absorb path and on the Reverse path, and the gain `0x02AEE008` as it stood on the plain path. Any other value tail-jumps to `0x00387B00` with the slot's first two arguments `a` and `b`. | `0x0038D32A`<br>`0x0038D324`<br>`0x0038D32D` |
+| 6 | `0x00387B00` ORs `1 << (bit & 31)` into the dword `+0x0C` of `a`'s 64-byte record:<br>• the record is `0x0208D480 + byte(a + 4) * 64` when byte `a + 5` is 0, else `0x0208DE80` indexed by byte `+0xEA9` of the block `0x0031B860` returns;<br>• the bit is byte `b + 4`, or that block's `+0xEA9` for a `b` that `0x0031B860` maps. |   |
 
 ### Oil and Float
 
@@ -135,19 +175,46 @@ The same three slots also multiply the scale for other statuses, for example She
 0.75 at `0x0038B057`-`0x0038B065`.
 
 Slot 102 multiplies the scale by `(+0xC4 - 1) / 10` for a source, and then a target, with Stone or Petrify
-(statuses 1 and 2), the factor being 0 when `+0xC4` is 0 or below (`0x0038C95B`-`0x0038C984`, `0x0038C9EE`-`0x0038CA14`).
+(statuses 1 and 2), the factor being 0 when `+0xC4` is 0 or below¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038C95B`-`0x0038C984`, `0x0038C9EE`-`0x0038CA14` |
+
+</details>
 
 It multiplies by 1.5, `s = s * 1.5`, for a source with Bravery (21) or Berserk (27) and for a target with Sleep
 (4), and by 0.75, `s = s * 0.75`, for a target with Protect (18), each test on its own. The tests are
 `[context + 0x04] & 0x200000`, `[context + 0x04] & 0x8000000`, `[context + 0x08] & 0x10` and
-`[context + 0x08] & 0x40000`, with `s` the scale `0x02AEE054` (`0x0038C996`-`0x0038C9E6`).
+`[context + 0x08] & 0x40000`, with `s` the scale `0x02AEE054`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038C996`-`0x0038C9E6` |
+
+</details>
 
 ### Weather and terrain scaling
 
 Slot 94, `0x0038B220`, scales a magick's element by the area's conditions. It runs in recipes 7, 14, 37,
 63, 83, 105 and 106, before slot 95; the weapon recipes do not run it. It is skipped when augment 16 (Weatherproof) is in
 the target's layer `+0x68` or `+0x78` (bytes `+0x6A`, `+0x7A`, bit `0x1`) or in the user's merged context
-bits (context `+0x1C` bit `0x1`) (`0x0038B226`-`0x0038B242`).
+bits (context `+0x1C` bit `0x1`)¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038B226`-`0x0038B242` |
+
+</details>
 
 Augment 16 (Weatherproof) is the augment the Agate Ring carries: equipment row 345 has byte `+0x1A` = 16 and class 21,
 and the stats rebuild `0x0030FED0` adds the `+0x1A` augment of each equipped item of classes 19-22 to the
@@ -166,30 +233,56 @@ Otherwise it tests nine rules in order, each multiplying `0x02AEE054` once (0.5 
 | wind | - | wind class 2 | `0x0038B65E`-`0x0038B67F` |
 
 An "or" rule multiplies once even when both of its tests hold. A ×0.5 and a ×1.2 rule for the same
-element both apply, giving 0.6. A terrain test needs the target's battle unit (`0x0031B860`); without one
+element both apply, giving 0.6. A terrain test needs the target's battle unit¹; without one
 it fails.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B860` |
+
+</details>
 
 ### The three classes
 
 The environment and wind classes belong to the area, and the terrain class to the target:
 
 - **Environment class** `0x02099DA8` (read through `0x00321490`): `0x0026D910` looks up the active weather
-  lane's index byte in the count-prefixed table at `map_ref.bin` header `+0x10` (`0x0026DA10`-`0x0026DA26`), and
-  stores 0 when the index is not below the table's count dword (`0x0026DA1A`-`0x0026DA24`). The shipped file's
+  lane's index byte in the count-prefixed table at `map_ref.bin` header `+0x10`¹, and
+  stores 0 when the index is not below the table's count dword². The shipped file's
   table holds 16 entries ([weather](../World-Areas-And-Travel/weather.md)).
 - **Wind class** `0x02099DAC` (read through `0x003214A0`): `0x0026D910` takes the lane's wind preset, bits
   `0x7` of its MWeather entry, from `0x00377850`, giving 0 for preset 0, 1 for presets 1-3 and 2 for the
   strong-wind presets 4 and above ([Weather](../World-Areas-And-Travel/weather.md))
-  (`0x0026DA31`-`0x0026DA4E`).
+ ³.
 - **Terrain class** (`0x003210E0`, then `0x00263DD0`): the target actor's ground index, the `i16` at `+0x8A`
   of the record its `+0xC0` and `+0x138` pointers reach (index 0 when either is missing), looked up in the
   32-entry table at `map_ref.bin` header `+0x14` (`0x00263DD7`-`0x00263E00`; bound by `0x002678A0`). A null actor gives
-  class 0 without the lookup (`0x00263DD5`).
+  class 0 without the lookup⁴.
 - **How the terrain class is reached.** `0x003210E0` only loads the pointer at `+0x10` of its argument
-  and jumps to `0x00263DD0` with it (`0x003210E0`-`0x003210E4`). `0x00263DD0` uses the sign-extended index with
-  no bound test and reads the dword at `[0x02099D90]` + 4 + 4 x index (`0x00263DEF`-`0x00263E00`).
+  and jumps to `0x00263DD0` with it⁵. `0x00263DD0` uses the sign-extended index with
+  no bound test and reads the dword at `[0x02099D90]` + 4 + 4 x index⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026DA10`-`0x0026DA26` |
+| ² | `0x0026DA1A`-`0x0026DA24` |
+| ³ | `0x0026DA31`-`0x0026DA4E` |
+| ⁴ | `0x00263DD5` |
+| ⁵ | `0x003210E0`-`0x003210E4` |
+| ⁶ | `0x00263DEF`-`0x00263E00` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 The element and affinity fields of an equipment row and its attribute record:
 
@@ -206,7 +299,12 @@ The element and affinity fields of an equipment row and its attribute record:
 | `+0x13` | `u8` | weak | elements doubled (`0x002FF529`) |
 | `+0x14` | `u8` | potency | elements boosted x1.5 when the wearer attacks (`0x002FF56D`) |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Equipment with an element affinity, from `battle_pack.bin` section 13 (the 13 Reserve rows 179-191
 also carry affinities):
@@ -250,6 +348,8 @@ The environment class over the 279 weather lanes of `map_ref.bin` (93 blocks of 
 
 The terrain table at header `+0x14` holds `4, 3, 4, 4, 1, 2, 4, 4, 3, 3, 4, 0, 0, 4, 4, 0, 4, 2` for
 ground indices 0-17 and 0 for indices 18-31. Classes 3 and 4 match no rule.
+
+</details>
 
 ## Modding notes
 

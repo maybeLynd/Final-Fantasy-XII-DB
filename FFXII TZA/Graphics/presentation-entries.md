@@ -21,20 +21,40 @@ next id, `+0x10` source, `+0x18` cached pointer, `+0x20` 32-bit offset.
 - `0x0051F240(container, id)` takes the table by the container's mode (`+0x04` low two bits: 1 direct,
   0 through `0x003AB7F0`, anything else returns 0), indexes it by `id & 0xFFFF`, and when node bit `0x2` is
   set rebuilds `+0x18` as `(i64)(i32)(0x003AB7F0(source) + offset)`, the sign-extended 32-bit sum of the resolved
-  source and the offset (`0x0051F2A3`-`0x0051F2B7`).
-- `0x0051F240` returns the node's `+0x18` (`0x0051F2BB`) without testing the used bit or the id's high half, and
-  0 when the node address is 0 (`0x0051F291`).
+  source and the offset¹.
+- `0x0051F240` returns the node's `+0x18`² without testing the used bit or the id's high half, and
+  0 when the node address is 0³.
 - `0x0051F080` admits: `0x0051F410` takes the cursor slot, the id is `slot | 0x10000`, and the node joins
   the active list. The high half never changes, so a reused slot gets the same id.
 - `0x0051F080(container, source, offset, flags)` returns a negative result of `0x0051F410` as it is
-  (`0x0051F0A8`). Otherwise it sets node bit `0x1`, and bit `0x2` when `flags` has bit `0x2`
-  (`0x0051F0F3`-`0x0051F0FC`), stores the id at `+0x04`, `source` at `+0x10`, `offset` at `+0x20` and the
-  pointer `(i64)(i32)(0x003AB7F0(source) + offset)` at `+0x18` (`0x0051F0FF`-`0x0051F121`), appends the id
-  (`0x0051F380`) and returns it (`0x0051F12A`).
+ ⁴. Otherwise it sets node bit `0x1`, and bit `0x2` when `flags` has bit `0x2`
+ ⁵, stores the id at `+0x04`, `source` at `+0x10`, `offset` at `+0x20` and the
+  pointer `(i64)(i32)(0x003AB7F0(source) + offset)` at `+0x18`⁶, appends the id
+ ⁷ and returns it⁸.
 - `0x0051F410(container)` returns −10 when the used count `+0x14` has reached the capacity `+0x10`
-  (`0x0051F423`). Otherwise it counts the node in (`0x0051F438`) and returns the cursor `+0x18`, after moving the
-  cursor on to the next node whose state dword is 0, wrapping at the capacity (`0x0051F490`-`0x0051F4B1`), or to
-  0 when the container is now full (`0x0051F441`).
+ ⁹. Otherwise it counts the node in¹⁰ and returns the cursor `+0x18`, after moving the
+  cursor on to the next node whose state dword is 0, wrapping at the capacity¹¹, or to
+  0 when the container is now full¹².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051F2A3`-`0x0051F2B7` |
+| ² | `0x0051F2BB` |
+| ³ | `0x0051F291` |
+| ⁴ | `0x0051F0A8` |
+| ⁵ | `0x0051F0F3`-`0x0051F0FC` |
+| ⁶ | `0x0051F0FF`-`0x0051F121` |
+| ⁷ | `0x0051F380` |
+| ⁸ | `0x0051F12A` |
+| ⁹ | `0x0051F423` |
+| ¹⁰ | `0x0051F438` |
+| ¹¹ | `0x0051F490`-`0x0051F4B1` |
+| ¹² | `0x0051F441` |
+
+</details>
 
 - The container's own list helpers: `0x0051F2F0`, run by the initialiser `0x0051F170`, clears every node
   (state 0, id and links −1, source, pointer and offset 0); `0x0051F380`, run by `0x0051F080`, appends
@@ -42,24 +62,48 @@ next id, `+0x10` source, `+0x18` cached pointer, `+0x20` 32-bit offset.
   `0x0051F150`, used by `0x0051BA80`, returns the cursor `+0x18` while the used count `+0x14` is below
   the capacity `+0x10`, else −10.
 
-- `0x0051BA80(container, id, source, offset, …)` builds a payload on the stack (`0x0041CB90`, `0x0041D220`),
-  admits a node when `id` is -1, copies the payload in, rebuilds its pointers (`0x0041CA70`) and writes the
+- `0x0051BA80(container, id, source, offset, …)` builds a payload on the stack¹,
+  admits a node when `id` is -1, copies the payload in, rebuilds its pointers² and writes the
   id into its first dword; if the payload build fails it releases the existing entry and returns -1.
-- With `id` -1 `0x0051BA80` returns -1 before the build when `0x0051F150` is negative (`0x0051BAB3`-`0x0051BABF`) and
-  after it when `0x0051F080` is (`0x0051BAFC`). The release on a failed build is `0x0041CF00` and then `0x0051F190` of the
+- With `id` -1 `0x0051BA80` returns -1 before the build when `0x0051F150` is negative³ and
+  after it when `0x0051F080` is⁴. The release on a failed build is `0x0041CF00` and then `0x0051F190` of the
   id in the entry's first dword, read before the reset; with `id` -1 a failed build releases nothing
-  (`0x0051BB8F`-`0x0051BBB2`).
-- `0x0051BA40` releases: it resets the entry (`0x0041CF00`) and clears the node (`0x0051F190`) without
-  comparing ids. It finds the entry with `0x0051F240` and does nothing when that returns null (`0x0051BA51`);
-  the node it clears is the one the id in the entry's first dword names, read before the reset (`0x0051BA5B`).
-- `0x0051F190(container, id)` unlinks the node (`0x0051F4C0`), clears it as the initialiser does (state 0, id
+ ⁵.
+- `0x0051BA40` releases: it resets the entry⁶ and clears the node⁷ without
+  comparing ids. It finds the entry with `0x0051F240` and does nothing when that returns null⁸;
+  the node it clears is the one the id in the entry's first dword names, read before the reset⁹.
+- `0x0051F190(container, id)` unlinks the node¹⁰, clears it as the initialiser does (state 0, id
   and links −1, source, pointer and offset 0; `0x0051F1F8`-`0x0051F211`) and lowers the used count `+0x14` to
-  `count - 1`; when that reaches 0 it sets the cursor `+0x18` to 0 (`0x0051F215`-`0x0051F21B`).
-- `0x0051B9F0` rebuilds every active node's cached pointer (`0x0051F620`) and every payload (`0x0041CA70`).
-- `0x0051B970` updates the entries in three walks: entries with `+0x0C` bit `0x1000` set first (`0x0051BBE0`),
-  then twice the others (`0x0051BBF0`) with the phase word `0x02CA83F4` at 1 and then 2.
+  `count - 1`; when that reaches 0 it sets the cursor `+0x18` to 0¹¹.
+- `0x0051B9F0` rebuilds every active node's cached pointer¹² and every payload¹³.
+- `0x0051B970` updates the entries in three walks: entries with `+0x0C` bit `0x1000` set first¹⁴,
+  then twice the others¹⁵ with the phase word `0x02CA83F4` at 1 and then 2.
   Each walk is `0x0051F580(container, callback, container)`, both callbacks jump to the per-entry update
-  `0x0041C410`, and the phase word goes back to 0 at the end (`0x0051B979`-`0x0051B9C0`).
+  `0x0041C410`, and the phase word goes back to 0 at the end¹⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041CB90`, `0x0041D220` |
+| ² | `0x0041CA70` |
+| ³ | `0x0051BAB3`-`0x0051BABF` |
+| ⁴ | `0x0051BAFC` |
+| ⁵ | `0x0051BB8F`-`0x0051BBB2` |
+| ⁶ | `0x0041CF00` |
+| ⁷ | `0x0051F190` |
+| ⁸ | `0x0051BA51` |
+| ⁹ | `0x0051BA5B` |
+| ¹⁰ | `0x0051F4C0` |
+| ¹¹ | `0x0051F215`-`0x0051F21B` |
+| ¹² | `0x0051F620` |
+| ¹³ | `0x0041CA70` |
+| ¹⁴ | `0x0051BBE0` |
+| ¹⁵ | `0x0051BBF0` |
+| ¹⁶ | `0x0051B979`-`0x0051B9C0` |
+
+</details>
 
 ### How an entry picks its track
 
@@ -68,63 +112,107 @@ bytes from `+0x30`; the playing one is `+0x388`. The command handlers are on
 [authored presentation commands](authored-presentation-commands.md).
 
 - `0x0041CD30(entry, state, n)` sets up track `n`. It returns at once when the stream `+0x368` is null or `n` is not
-  below the stream's track count, dword `+0x0C` (`0x0041CD3E`-`0x0041CD4F`), and walks the headers from stream `+0x30`
+  below the stream's track count, dword `+0x0C`¹, and walks the headers from stream `+0x30`
   (each header's word `+4` is the distance to the next, added in 32 bits; `0x0041CD61`-`0x0041CD69`).
 - The state defaults it writes are `+0x00` and `+0x68` −1, word `+0x04` 0, `+0x08`-`+0x17` 0, dword `+0x18`
   `0x1E0000`, the float `+0x20` 30.0, `+0x48`, `+0x60`, `+0x70` and `+0x78` 0, the words `+0x50` and `+0x52` −1,
-  `+0x84`-`+0x93` 0, byte `+0x94` `0xFF` with `+0x95`-`+0x97` 0, and `+0x80` = `n` (`0x0041CD75`-`0x0041CDC8`); with
-  entry `+0x0C` bit `0x1000` set the word `+0x96` becomes `0x20` (`0x0041CDCF`-`0x0041CDDD`).
+  `+0x84`-`+0x93` 0, byte `+0x94` `0xFF` with `+0x95`-`+0x97` 0, and `+0x80` = `n`²; with
+  entry `+0x0C` bit `0x1000` set the word `+0x96` becomes `0x20`³.
 - It makes the track primary (entry `+0x18` / `+0x20`, state flag bit `0x1`, active byte `+0x95` 1) when its kind
-  byte, header `+0`, is 1 or the stream has one track (`0x0041CDE4`-`0x0041CE01`). `+0x84` is the header's offset in
-  the stream (`0x0041CE1C`).
+  byte, header `+0`, is 1 or the stream has one track⁴. `+0x84` is the header's offset in
+  the stream⁵.
 - Its start cursor `+0x88` is the first sub-record, header `+6`, or the sub-record after a `0xFFFF` marker when
   the track has one among its header byte `+3` sub-records; `+0x90` keeps the marker's offset, else −1, and
-  `+0x8C` starts at `+0x88` (`0x0041CE08`-`0x0041CE8A`). Each next sub-record is the word `+2` shifted right by 6 on
-  from it, added in 32 bits (`0x0041CE48`-`0x0041CE58`).
+  `+0x8C` starts at `+0x88`⁶. Each next sub-record is the word `+2` shifted right by 6 on
+  from it, added in 32 bits⁷.
 - `0x0041CFC0(entry)` resets: it keeps a snapshot of an interrupted transition (`+0x380`, `+0x384`, entry
   `+0x2E8` bit `0x4`), rewinds every state's cursor to its start, and leaves only the primary active.
 - `0x0041CFC0` takes the snapshot only when the playing state `+0x388` is set and active (byte `+0x95` = 1) with
   word `+0x96` bit `0x10`, entry `+0x0C` bit `0x1000` is clear and the state's float `+0x98` is at least 0 and
-  below 0.99 (`0x008F3110`). It then sets `+0x2E8` bit `0x4` and copies the state's `+0x98` and `+0x9C` to
-  `+0x380` and `+0x384` (`0x0041CFC7`-`0x0041D024`), and on every path it clears `+0x388` (`0x0041D030`).
+  below 0.99⁸. It then sets `+0x2E8` bit `0x4` and copies the state's `+0x98` and `+0x9C` to
+  `+0x380` and `+0x384`⁹, and on every path it clears `+0x388`¹⁰.
 - For each of the `+0x28` states `0x0041CFC0` clears bits `0x84` of word `+0x96`, sets byte `+0x94` to `0xFF`,
   copies bit `0x1` of `+0x96` (the primary flag) into the active byte `+0x95` and the start cursor `+0x88` to
-  `+0x8C` (`0x0041D060`-`0x0041D085`).
+  `+0x8C`¹¹.
 - It also writes `+0x00` and `+0x68` −1, word `+0x04` 0, `+0x08`, `+0x10`, `+0x48`, `+0x60`, `+0x70` and
   `+0x78` 0, `+0x18` `0x1E0000`, the float `+0x20` 30.0 and the words `+0x50` and `+0x52` −1 in each state
-  (`0x0041D08B`-`0x0041D0F6`).
+ ¹².
 - `0x0041C9A0(entry, n)` hands out a state other than state 0: one already holding track `n` (wiped), else
   the first inactive one. It looks at the states from 1 while below the count `+0x28`
-  (`0x0041C9A6`-`0x0041C9F5`); an inactive state, byte `+0x95` = 0, is returned as it is (`0x0041C9E0`), and with
-  neither it returns null (`0x0041C9F7`).
-- The wipe of `0x0041C9A0` zeroes the state's `0xA0` bytes (`0x00861EC0`, `0x0041CA0A`) and sets `+0x00` and
+ ¹³; an inactive state, byte `+0x95` = 0, is returned as it is¹⁴, and with
+  neither it returns null¹⁵.
+- The wipe of `0x0041C9A0` zeroes the state's `0xA0` bytes¹⁶ and sets `+0x00` and
   `+0x68` to −1, `+0x18` to `0x1E0000`, the float `+0x20` to 30.0, the words `+0x50` and `+0x52` to −1 and
-  byte `+0x94` to `0xFF` (`0x0041CA0F`-`0x0041CA5C`).
-- Command class `0x01` (`0x00417920`) switches to a track at once (mode 0), only when the current state's
+  byte `+0x94` to `0xFF`¹⁷.
+- Command class `0x01`¹⁸ switches to a track at once (mode 0), only when the current state's
   word is 2 (mode 1), or when entry `+0x0C` bit `0x40` allows (mode 2, otherwise it raises bit `0x80` and waits).
 - `0x00417920(command, state, entry)` takes the track from bits `0xFFF0` of the command's word `+2` and the
   mode from its bits `0xF`. It does nothing when the current state already plays the track (`+0x80`,
-  `0x00417943`), for modes 3 to 15 (`0x00417967`), or in mode 1 when the current state's word `+0x04` is not 2
-  (`0x00417A08`).
+  `0x00417943`), for modes 3 to 15¹⁹, or in mode 1 when the current state's word `+0x04` is not 2
+ ²⁰.
 - In modes 0 and 1 the state from `0x0041C9A0(entry, track)` gets word `+0x96` bit `0x2`, the track at `+0x80`
-  and its start cursor `+0x88` copied to `+0x8C` (`0x00417A0D`-`0x00417A2D`). A current state on track 0 is then
-  left as it is (`0x00417A33`); one whose dword `+0x00` is −1 becomes inactive, byte `+0x95` = 0 (`0x00417A66`);
-  any other loses word `+0x96` bit `0x4` and gets word `+0x04` = 2 (`0x00417A41`-`0x00417A52`).
-- In mode 2 with bit `0x40` the new state gets word `+0x96` bit `0x2` and the track (`0x00417978`-`0x0041798F`),
-  entry `+0x0C` loses bits `0x40` and `0x80` (`0x00417995`), and the current state is reset in place: `+0x00`
+  and its start cursor `+0x88` copied to `+0x8C`²¹. A current state on track 0 is then
+  left as it is²²; one whose dword `+0x00` is −1 becomes inactive, byte `+0x95` = 0²³;
+  any other loses word `+0x96` bit `0x4` and gets word `+0x04` = 2²⁴.
+- In mode 2 with bit `0x40` the new state gets word `+0x96` bit `0x2` and the track²⁵,
+  entry `+0x0C` loses bits `0x40` and `0x80`²⁶, and the current state is reset in place: `+0x00`
   and `+0x68` −1, `+0x18` `0x1E0000`, `+0x20` 30.0, the words `+0x50` and `+0x52` −1, word `+0x04`, the
   eight-byte fields `+0x08`, `+0x10`, `+0x48`, `+0x60`, `+0x70`, `+0x78` and byte `+0x95` 0
-  (`0x0041799C`-`0x004179D5`).
-- Command class `0x0B` (`0x00417110`) asks the selector `[0x02CA4668]` (entry kind `+0x2DC`) for a choice
+ ²⁷.
+- Command class `0x0B`²⁸ asks the selector `[0x02CA4668]` (entry kind `+0x2DC`) for a choice
   and plays `table[choice] + addend` through class `0x01`. A record with `+0x284` bit `0x8000000` and a parent
   reads the parent's cached choice (`+0x4B8`..`+0x4BB` for selector kinds 0, 2, `0x0A`, `0x10`) instead.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041CD3E`-`0x0041CD4F` |
+| ² | `0x0041CD75`-`0x0041CDC8` |
+| ³ | `0x0041CDCF`-`0x0041CDDD` |
+| ⁴ | `0x0041CDE4`-`0x0041CE01` |
+| ⁵ | `0x0041CE1C` |
+| ⁶ | `0x0041CE08`-`0x0041CE8A` |
+| ⁷ | `0x0041CE48`-`0x0041CE58` |
+| ⁸ | `0x008F3110` |
+| ⁹ | `0x0041CFC7`-`0x0041D024` |
+| ¹⁰ | `0x0041D030` |
+| ¹¹ | `0x0041D060`-`0x0041D085` |
+| ¹² | `0x0041D08B`-`0x0041D0F6` |
+| ¹³ | `0x0041C9A6`-`0x0041C9F5` |
+| ¹⁴ | `0x0041C9E0` |
+| ¹⁵ | `0x0041C9F7` |
+| ¹⁶ | `0x00861EC0`, `0x0041CA0A` |
+| ¹⁷ | `0x0041CA0F`-`0x0041CA5C` |
+| ¹⁸ | `0x00417920` |
+| ¹⁹ | `0x00417967` |
+| ²⁰ | `0x00417A08` |
+| ²¹ | `0x00417A0D`-`0x00417A2D` |
+| ²² | `0x00417A33` |
+| ²³ | `0x00417A66` |
+| ²⁴ | `0x00417A41`-`0x00417A52` |
+| ²⁵ | `0x00417978`-`0x0041798F` |
+| ²⁶ | `0x00417995` |
+| ²⁷ | `0x0041799C`-`0x004179D5` |
+| ²⁸ | `0x00417110` |
+
+</details>
 
 ### The choice selectors
 
 `0x004269A0` installs the selector table `0x01F000A0` with `0x0041D6E0`: 48 kinds of `0x10` bytes, a
 count and a pointer to a handler list, of which `0x00417110` calls the first handler with the stream.
-The authored command `0x00` also ends with kind `0x2F`'s handler. Every kind not listed returns 0
-(`0x005C5230`); the handlers read the stream's render record `+0x2E0`:
+The authored command `0x00` also ends with kind `0x2F`'s handler. Every kind not listed returns 0¹; the handlers read the stream's render record `+0x2E0`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C5230` |
+
+</details>
 
 | Kind | Handler | Choice |
 |---|---|---|
@@ -146,21 +234,41 @@ takes `atan2` of its y and z.
 
 ### The per-entry update
 
-`0x0041C410(entry)`, from `0x0041D820`, `0x00422EB0`, `0x002EE3E0` and the two walk callbacks `0x0051BBE0` and `0x0051BBF0`
-(`0x0051BBE7`, `0x0051BBF7`), runs an entry only when its record's `+0x6E0` is 1 in main-loop state 3 (`0x00229EA0`) or
+`0x0041C410(entry)`, from `0x0041D820`, `0x00422EB0`, `0x002EE3E0` and the two walk callbacks `0x0051BBE0` and `0x0051BBF0`¹, runs an entry only when its record's `+0x6E0` is 1 in main-loop state 3² or
 0 in any other state, the entry's `+0x0C` has
 bit `0x2` set and bits `0x40000` and `0x800000` clear, the speed `+0x340` is non-zero, and the status table entry
 `0x003E7D10(+0x6A4, 3)` is 0 or the record's `+0xC0` bit `0x40` is clear. In phase 1 of `0x02CA83F4` it runs
 only records with `+0x284` bit `0x8000000` and no parent, and in phase 2 it skips those.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051BBE7`, `0x0051BBF7` |
+| ² | `0x00229EA0` |
+
+</details>
+
 - In state word `+0x24` = 1 with `+0x0C` bit `0x8` and `+0x2C8` bit `0x1000` set, it resets the entry
-  (`0x0041CFC0`), clears `+0x2C8` bit `0x1000` and `+0x0C` bit `0x200` and, for a positive
-  `+0x348`, seeks there (`0x0041D820`) and sets `+0x24` to 0 when `+0x348` equals `+0x34C`, else 1.
+ ¹, clears `+0x2C8` bit `0x1000` and `+0x0C` bit `0x200` and, for a positive
+  `+0x348`, seeks there² and sets `+0x24` to 0 when `+0x348` equals `+0x34C`, else 1.
   With only `+0x2C8` bit `0x1000` set and `+0x348` not −1 it sets `+0x24` to 2.
-- With the record's `+0x4B7` bit `0x10` set it picks the locomotion mode (`0x004255B0`).
+- With the record's `+0x4B7` bit `0x10` set it picks the locomotion mode³.
 - It runs every track state through the walker `0x0041DA90`, then calls `0x0041DD40` on states 1 and up
   until a pass finds no state to act on, sets `+0x0C` bit `0x100`, and copies whether `0x003E7D10(+0x6A4, 3)` is
   non-zero into the record's `+0xC0` bit `0x40`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041CFC0` |
+| ² | `0x0041D820` |
+| ³ | `0x004255B0` |
+
+</details>
 
 `0x004255B0` gives controller 5 (`0x003E4890` → `0x0051A920`) a mode from the record's speed `+0x23C`
 (taken as 0 while `+0x62C` bit `0x1` is set or `0x003AEF20(+0x550)` reports): 0 below the walk threshold
@@ -183,7 +291,16 @@ cases as `0x004255B0`, and turns headings into degrees wrapped to ±180. The tur
 
 A model can lack a state. Through `0x004FE2F0` the selector reads one byte per direction from dword `0x30` of the
 model's `@FCP` section 9 (ids `0x63070F30`, `0x62070E30`, `0x61070D30`, `0x60070C30`; payload version 7 or later,
-else the default 0) and byte 3 of dword `0x2D` (`0x63070B2D`) for state 7, and falls back:
+else the default 0) and byte 3 of dword `0x2D`¹ for state 7, and falls back:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x63070B2D` |
+
+</details>
 
 | States | Property | 0 | 1 | 2 or more |
 |---|---|---|---|---|
@@ -212,7 +329,16 @@ fps, 2 at 60):
 `0x002ED530(actor)` is 0 without an actor. While the field is live (the cached copy `0x02099DE0` of `0x00265680`,
 which `0x00265760` reads) it is `0x0030BEB0`: for a party-side battle unit (stats `+0x05` = 0) with unit flag bit `0x8`
 set, the inverse of unit flag bit `0x800000`, else 0. Otherwise it is bit `0x2` of the presentation record's byte `+0x29`
-when its bit `0x1` is set, else 0 (`0x002637D0`).
+when its bit `0x1` is set, else 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002637D0` |
+
+</details>
 
 The state is stored at `+0x2A0`. Mode 0 returns 9 to 11 as 8 to 10 and 14 as 11; mode 1 returns 14 as 12; mode
 2 returns every state from 9 one lower, and 8 as 12 and 2 as 11 when `0x002ED530` answers, else 8 as 0. The
@@ -231,21 +357,41 @@ Smaller entry helpers:
   sets `+0x0C` bit `0x200`, as the walker does at a motion's end.
 - `0x0041C970(entry, n)` returns the state playing track `n` (state `+0x80`); `0x0041C720(entry)` returns
   whether the state playing the entry's track `+0x26` has byte `+0x95` equal to 1; `0x0041C6B0(entry)`
-  returns `+0x0C` bit `0x8000`. `0x0041C3A0(entry)`, which `0x00423280` reaches by a tail jump (`0x004232B9`),
-  returns the word `+0x1A` of the record at `+0x18` as a float (`0x0041C3A0`-`0x0041C3AF`).
+  returns `+0x0C` bit `0x8000`. `0x0041C3A0(entry)`, which `0x00423280` reaches by a tail jump¹,
+  returns the word `+0x1A` of the record at `+0x18` as a float².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004232B9` |
+| ² | `0x0041C3A0`-`0x0041C3AF` |
+
+</details>
 
 - `0x0041C770(entry)`, for `0x00423380`, returns the float `+0x0C` of the first state after state 0 whose byte `+0x95` is
   1, or 0.0.
 
 ## Layouts
 
+<details>
+<summary>Show the memory layouts</summary>
+
 The access tables beside this page list every instruction found touching each structure:
 
 - [the reference container](character-render-records-presentation-entry-reference-container-accesses.tsv).
 
+</details>
+
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 - A presentation-entry id carries no generation: a stale id names whatever now occupies its slot.
+
+</details>
 
 ## Related
 
@@ -262,97 +408,114 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [script requests](../Scripts-And-Script-Commands/script-requests.md), [frame update order](../Engine-Core/frame-update-order.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265680` | is called by | `0x0025B600`, `0x00263660`, `0x0026C5D0`, `0x0026DFB0` |
-| `0x0030BEB0` | calls | `0x0031B760` |
+| [`0x00265680`](../Story-Events-And-Hunts/script-censuses.md) (on script censuses) | is called by | [`0x0025B600`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x00263660`](../Characters-And-Objects/actor-managers.md) (on actor managers)<br>[`0x0026C5D0`](../Controls-And-Input/action-availability.md) (on action availability)<br>[`0x0026DFB0`](../Scripts-And-Script-Commands/script-requests.md) (on script requests) |
+| [`0x0030BEB0`](presentation-entries.md) | calls | [`0x0031B760`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning) |
 
 **Sound and music** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00229EA0` | is called by | `0x003638B0` |
+| [`0x00229EA0`](effect-drawing.md) (on effect drawing) | is called by | [`0x003638B0`](../Sound-And-Music/map-sounds.md) (on map sounds) |
 
 **Damage and battle formulas** (explained on [damage formula](../Damage-And-Battle-Formulas/damage-formula.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x004FE2F0` | is called by | `0x00384E50` |
+| [`0x004FE2F0`](model-files-cm-ca.md) (on model files cm ca) | is called by | [`0x00384E50`](../Damage-And-Battle-Formulas/damage-formula.md) (on damage formula) |
 
 **Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265760` | is called by | `0x0022A770` |
-| `0x0041C410` | calls | `0x00229EA0` |
+| [`0x00265760`](presentation-entries.md) | is called by | [`0x0022A770`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x0041C410`](animation-playback.md) (on animation playback) | calls | [`0x00229EA0`](effect-drawing.md) (on effect drawing) |
 
 **Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265680` | is called by | `0x00253C70`, `0x002E09A0` |
+| [`0x00265680`](../Story-Events-And-Hunts/script-censuses.md) (on script censuses) | is called by | [`0x00253C70`](../Controls-And-Input/controls.md) (on controls)<br>[`0x002E09A0`](../Menus-And-HUD/menus.md) (on menus) |
 
 **Movement and pathfinding** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265680` | is called by | `0x0026C3E0` |
-| `0x0030BEB0` | is called by | `0x00345430` |
-| `0x00423280` | is called by | `0x002E28E0` |
+| [`0x00265680`](../Story-Events-And-Hunts/script-censuses.md) (on script censuses) | is called by | [`0x0026C3E0`](../Engine-Core/time-stop-and-freeze.md) (on time stop and freeze) |
+| [`0x0030BEB0`](presentation-entries.md) | is called by | [`0x00345430`](../Scripts-And-Script-Commands/verb-table.md) (on verb table) |
+| [`0x00423280`](../Game-Files-And-Data-Tables/pkfl-packages.md) (on pkfl packages) | is called by | [`0x002E28E0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
 
 **Party** (explained on [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md), [player movement](../Movement-And-Pathfinding/player-movement.md), [actor record](../Characters-And-Objects/actor-record.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265680` | is called by | `0x00358CB0`, `0x00358F90` |
-| `0x002ED530` | calls | `0x0030BEB0` |
-
-**Game files and data tables**
-
-| Function | | Functions |
-|---|---|---|
-| `0x003AB7F0` | is called by | `0x002ED570`, `0x00409600`, `0x00409780`, `0x00409A60`, `0x00409FE0`, `0x0040A210`, `0x0051FBB0`, `0x0051FCF0`, `0x0051FE30`, `0x0051FF30` |
-| `0x0041CA70` | calls | `0x00408F80`, `0x004090D0`, `0x004096C0`, `0x00409F50` |
-| `0x0041CF00` | calls | `0x002ED570` |
-| `0x0041D220` | calls | `0x002ED570`, `0x00409210`, `0x00409660`, `0x00409A30`, `0x00409F50` |
-| `0x0041DD40` | calls | `0x002ED570` |
-| `0x00422940` | calls | `0x002ED570` |
-
-**Game files and data tables**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00422D90` | calls | `0x00408F80`, `0x00408F90` |
-| `0x004256E0` | calls | `0x00409600`, `0x00409F50` |
+| [`0x00265680`](../Story-Events-And-Hunts/script-censuses.md) (on script censuses) | is called by | [`0x00358CB0`](../Movement-And-Pathfinding/player-movement.md) (on player movement)<br>[`0x00358F90`](../Movement-And-Pathfinding/player-movement.md) Party focus: process actor control presentation state (on player movement) |
+| [`0x002ED530`](presentation-entries.md) | calls | [`0x0030BEB0`](presentation-entries.md) |
 
 **Game files and data tables** (explained on [resource sections](../Game-Files-And-Data-Tables/resource-sections.md), [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md), [animation playback](animation-playback.md), [native limits](../Engine-Core/native-limits.md))
 
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x003AB7F0`](presentation-entries.md) | is called by | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones)<br>[`0x00409600`](animation-playback.md) Resource entry: get resolved base pointer (on animation playback)<br>[`0x00409780`](../Game-Files-And-Data-Tables/resource-sections.md) Resource entry: find section index and offset (on resource sections)<br>[`0x00409A60`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal)<br>[`0x00409FE0`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal)<br>[`0x0040A210`](../Game-Files-And-Data-Tables/resource-sections.md) (on resource sections)<br>[`0x0051FBB0`](character-render-records.md) (on character render records)<br>[`0x0051FCF0`](skeleton-entries-and-bones.md) (on skeleton entries and bones)<br>[`0x0051FE30`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal)<br>[`0x0051FF30`](../Game-Files-And-Data-Tables/resource-sections.md) (on resource sections) |
+| [`0x0041CA70`](animation-playback.md) (on animation playback) | calls | [`0x00408F80`](animation-playback.md) (on animation playback)<br>[`0x004090D0`](animation-playback.md) (on animation playback)<br>[`0x004096C0`](animation-playback.md) (on animation playback)<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca) |
+| [`0x0041CF00`](animation-playback.md) (on animation playback) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x0041D220`](animation-playback.md) (on animation playback) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones)<br>[`0x00409210`](animation-playback.md) (on animation playback)<br>[`0x00409660`](../Game-Files-And-Data-Tables/resource-sections.md) (on resource sections)<br>[`0x00409A30`](animation-playback.md) (on animation playback)<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca) |
+| [`0x0041DD40`](model-oscillators-and-pose-sequencer.md) Presentation embedded record: activate pending state (on model oscillators and pose sequencer) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x00422940`](presentation-entries.md) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x00422D90`](animation-playback.md) (on animation playback) | calls | [`0x00408F80`](animation-playback.md) (on animation playback)<br>[`0x00408F90`](../Game-Files-And-Data-Tables/resource-sections.md) (on resource sections) |
+| [`0x004256E0`](animation-playback.md) (on animation playback) | calls | [`0x00409600`](animation-playback.md) Resource entry: get resolved base pointer (on animation playback)<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca) |
+
 **Scripts and script commands** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [script censuses](../Story-Events-And-Hunts/script-censuses.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00229EA0` | is called by | `0x00354D00` |
-| `0x00265680` | is called by | `0x00343690` |
-| `0x0030BEB0` | is called by | `0x00345CD0` |
-| `0x00660570` | is called by | `0x00510740` |
+| [`0x00229EA0`](effect-drawing.md) (on effect drawing) | is called by | [`0x00354D00`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump) |
+| [`0x00265680`](../Story-Events-And-Hunts/script-censuses.md) (on script censuses) | is called by | [`0x00343690`](presentation-entries.md) |
+| [`0x0030BEB0`](presentation-entries.md) | is called by | [`0x00345CD0`](presentation-entries.md) |
+| [`0x00660570`](presentation-entries.md) | is called by | [`0x00510740`](presentation-entries.md) |
 
 **Status effects and KO** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265680` | is called by | `0x00310DB0` |
+| [`0x00265680`](../Story-Events-And-Hunts/script-censuses.md) (on script censuses) | is called by | [`0x00310DB0`](../Battle-Actions/action-results.md) Battle unit: run periodic combat maintenance (on action results) |
 
 **Menus and HUD** (explained on [clan primer](../Menus-And-HUD/clan-primer.md), [widget messages](../Menus-And-HUD/widget-messages.md), [tutorial battle commands](../Battle-Actions/tutorial-battle-commands.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00229EA0` | is called by | `0x002468A0`, `0x00246C20` |
-| `0x00265680` | is called by | `0x00279E20` |
+| [`0x00229EA0`](effect-drawing.md) (on effect drawing) | is called by | [`0x002468A0`](../Menus-And-HUD/menu-lists.md) (on menu lists)<br>[`0x00246C20`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x00265680`](../Story-Events-And-Hunts/script-censuses.md) (on script censuses) | is called by | [`0x00279E20`](../Menus-And-HUD/widgets.md) (on widgets) |
 
 **World, areas and travel** (explained on [debug logging](../Engine-Core/debug-logging.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265760` | is called by | `0x00314020` |
+| [`0x00265760`](presentation-entries.md) | is called by | [`0x00314020`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
 
 </details>

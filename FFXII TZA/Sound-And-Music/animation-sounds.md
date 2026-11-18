@@ -58,16 +58,34 @@ is playable when its slot exists and its byte `+0x04` is set. A `footstep_set` r
 model's block is a fixed fact: which variant plays is drawn as above.
 
 Mode 4 (552 occurrences, numbers 101 to 104) resolves to registry slot 0, the first block to register. `0x003A13F0`
-requests blocks 0, 1 and 2 in that order (`0x003A14AD`, `0x003A152C`, `0x003A15AB`), and those numbers exist only in
+requests blocks 0, 1 and 2 in that order¹, and those numbers exist only in
 `se000`. Group 0 takes its block from the model in the actor's first attach slot, and type 1 picks the sound by the
 ground under the actor, so those rows give the bank or the variants and not the one sound. Authored does not mean
 played: `0x0046CC70` has the gates listed above.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A14AD`, `0x003A152C`, `0x003A15AB` |
+
+</details>
 
 ### The sound types
 
 The animation containers (`.ca` under `obj_finish`) hold 23,783 `0x05` and 47,472 `0x29` commands; no `.ca` under `ps2data` authors `0x19`. Only modes 0 and 4
 are authored in the `.ca` files. One `.cm`, `obj_finish/in/treasure/t0006.cm`, adds mode 1 in FMC slot 8
-`treasure_open`: type 68, which is `0x003A1180(68)`, `se000` sound 68 (`0x0046CFE6`-`0x0046CFE8`). Mode-0 types are 1-12:
+`treasure_open`: type 68, which is `0x003A1180(68)`, `se000` sound 68¹. Mode-0 types are 1-12:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046CFE6`-`0x0046CFE8` |
+
+</details>
 
 | Type | Commands | Authored in blocks | Heard from |
 |---:|---:|---|---|
@@ -105,7 +123,16 @@ so a repeat is stepped down by one, wrapping:
 | 8, 9, 10 | `2` | `0x15`, `0x17`, `0x19` |
 | 11, 12 | `0` | `0x0E`, `0x0F` |
 
-Types 4 and 5 are also silent when `0x003326C0` finds nothing for emitter word `+8` (`0x0046C433`, `0x0046C50F`).
+Types 4 and 5 are also silent when `0x003326C0` finds nothing for emitter word `+8`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046C433`, `0x0046C50F` |
+
+</details>
 
 ### Where it is heard from
 
@@ -115,46 +142,115 @@ its volume byte by `volume / 128`, keeps the low 8 bits of the result, plays not
 `0x7F` and calls the play routine
 ([Spatial sound](spatial-sound.md)).
 
-The radius is `0.5 * param`, or 0 when `0x002EDBD0` returns null for the emitter's word `+8`
-(`0x0046C7E4`-`0x0046C808`, `0x0046CA06`-`0x0046CA2A`). Each reads its own copy of the twelve-entry jump table
-(`0x0046C898`, `0x0046CB64`): types 1 and 8 ask `0x00421E20` for `0x101`, types 2 and 3 ask `0x00426770` for `0x200`,
-types 4-7 ask for bone `0x0C`, and types 9-12 for `0x100`, which is also the fallback of `0x200` and `0x0C`
-(`0x0046C76A`-`0x0046C7D3`, `0x0046C98C`-`0x0046C9F5`).
+The radius is `0.5 * param`, or 0 when `0x002EDBD0` returns null for the emitter's word `+8`¹. Each reads its own copy of the twelve-entry jump table²: types 1 and 8 ask `0x00421E20` for `0x101`, types 2 and 3 ask `0x00426770` for `0x200`,
+types 4-7 ask for bone `0x0C`, and types 9-12 for `0x100`, which is also the fallback of `0x200` and `0x0C`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046C7E4`-`0x0046C808`, `0x0046CA06`-`0x0046CA2A` |
+| ² | `0x0046C898`, `0x0046CB64` |
+| ³ | `0x0046C76A`-`0x0046C7D3`, `0x0046C98C`-`0x0046C9F5` |
+
+</details>
 
 `0x0046C6E0` returns 0 when the emitter's word `+8` is -1 or names a record
-whose `+0x284` is 0 (`0x0046C70C`-`0x0046C73A`), for a type outside 1-12 (`0x0046C74E`), and for a footstep (type 1)
-whose volume from `0x00361CF0` is 0 (`0x0046C85F`-`0x0046C864`); otherwise it returns 1. The footstep's pan and volume
-come from `0x00361CF0`, the other types' from `0x00361BF0` (`0x0046C84F`, `0x0046C81E`).
+whose `+0x284` is 0¹, for a type outside 1-12², and for a footstep (type 1)
+whose volume from `0x00361CF0` is 0³; otherwise it returns 1. The footstep's pan and volume
+come from `0x00361CF0`, the other types' from `0x00361BF0`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046C70C`-`0x0046C73A` |
+| ² | `0x0046C74E` |
+| ³ | `0x0046C85F`-`0x0046C864` |
+| ⁴ | `0x0046C84F`, `0x0046C81E` |
+
+</details>
 
 `0x0046C6E0(emitter, type, a, b)` hands its third and fourth arguments on unchanged as the first and
 second of `0x00361BF0` or `0x00361CF0`, and the dword that the footstep test reads is the one its fourth
-argument points at (`0x0046C6FF`-`0x0046C706`, `0x0046C813`-`0x0046C81E`, `0x0046C838`-`0x0046C861`). The point
+argument points at¹. The point
 routines are given the record, the code, 0 and a `0x40`-byte stack buffer; the address passed on as the
-third argument of `0x00361BF0` and `0x00361CF0` is that buffer + `0x30` (`0x0046C795`, `0x0046C7AE`,
-`0x0046C7C8`, `0x0046C813`, `0x0046C82D`).
+third argument of `0x00361BF0` and `0x00361CF0` is that buffer + `0x30`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046C6FF`-`0x0046C706`, `0x0046C813`-`0x0046C81E`, `0x0046C838`-`0x0046C861` |
+| ² | `0x0046C795`, `0x0046C7AE`, `0x0046C7C8`, `0x0046C813`, `0x0046C82D` |
+
+</details>
 
 For types 2 and 3 `0x00426770` gets the record again from the emitter's word `+8`, and a null record, a
-record whose `+0x284` is 0 or a null answer falls back to `0x00421E20` with `0x100`
-(`0x0046C771`-`0x0046C7A5`). For types 4 to 7 a null answer of `0x00421E20` for `0x0C` does the same
-(`0x0046C7A9`-`0x0046C7C1`). The answers for `0x101` and `0x100` are not tested (`0x0046C7D3`-`0x0046C7D8`).
+record whose `+0x284` is 0 or a null answer falls back to `0x00421E20` with `0x100`¹. For types 4 to 7 a null answer of `0x00421E20` for `0x0C` does the same². The answers for `0x101` and `0x100` are not tested³.
 `0x00361BF0` gets the radius as its fourth argument; `0x00361CF0` gets the footstep float as its fourth
-and the radius as its fifth (`0x0046C810`, `0x0046C832`-`0x0046C842`).
+and the radius as its fifth⁴.
 
-The answer of `0x003E56C0` is used with no null test (`0x0046C828`-`0x0046C83B`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046C771`-`0x0046C7A5` |
+| ² | `0x0046C7A9`-`0x0046C7C1` |
+| ³ | `0x0046C7D3`-`0x0046C7D8` |
+| ⁴ | `0x0046C810`, `0x0046C832`-`0x0046C842` |
+
+</details>
+
+The answer of `0x003E56C0` is used with no null test¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046C828`-`0x0046C83B` |
+
+</details>
 
 The footstep also passes the float at `0x01F004D0 + 4 * b`, with `b` the byte `+0xB5` of the character object
 `0x003E56C0` returns (shipped values 25.0, 35.0, 45.0 and 55.0 for `b` 0 to 3; `0x0046C825`-`0x0046C842`,
 `0x0046CAE5`-`0x0046CB0A`).
 
-`0x0046C8F0` refuses as `0x0046C6E0` does except for the footstep volume test
-(`0x0046C92B`-`0x0046C970`), and builds the source with `0x003617B0` and the `0x01F004D0` float for a footstep, with
-`0x00361750` for the other types (`0x0046CB1D`, `0x0046CA4F`).
+`0x0046C8F0` refuses as `0x0046C6E0` does except for the footstep volume test¹, and builds the source with `0x003617B0` and the `0x01F004D0` float for a footstep, with
+`0x00361750` for the other types².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046C92B`-`0x0046C970` |
+| ² | `0x0046CB1D`, `0x0046CA4F` |
+
+</details>
 
 The volume byte is the source's `+0x19`: `byte * volume / 128`, truncated toward zero and kept to its low
-8 bits (`0x0046CA5F`-`0x0046CA77`); a volume of 0 leaves the byte as it is (`0x0046CA72`). A zero result returns 0
-(`0x0046CB4D`). Then `byte = min(byte, 0x7F)` (`0x0046CA7F`-`0x0046CA89`): a byte of 127 with a volume of 255
+8 bits¹; a volume of 0 leaves the byte as it is². A zero result returns 0³. Then `byte = min(byte, 0x7F)`⁴: a byte of 127 with a volume of 255
 gives 253 and then 127, while 200 with 200 gives 312, kept as 56, which the cap leaves as it is. It then
-calls `0x003A0E50` with the sound id and returns its result (`0x0046CAAE`).
+calls `0x003A0E50` with the sound id and returns its result⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046CA5F`-`0x0046CA77` |
+| ² | `0x0046CA72` |
+| ³ | `0x0046CB4D` |
+| ⁴ | `0x0046CA7F`-`0x0046CA89` |
+| ⁵ | `0x0046CAAE` |
+
+</details>
 
 ### Which sample
 
@@ -162,17 +258,31 @@ calls `0x003A0E50` with the sound id and returns its result (`0x0046CAAE`).
 
 - Group 0 reads its block from the binding in the presentation record's first attach slot (`[actor + 0xC0] + 0x30`,
   `0x002E9F50`); only the weapon (`w`) rows of `charseinfo` author that block. Groups 1 and 2 read the set itself.
-- For group 1, the footstep, the index is the movement body's ground type `+0x8A` (`0x002E9F29`) looked up in
+- For group 1, the footstep, the index is the movement body's ground type `+0x8A`¹ looked up in
   `soundfoottable.bin`, with the table's 32 added when the flag and the field's environment variant are both set.
-  With a negative flag group 1 plays the variant as given (`0x002E9E99`).
+  With a negative flag group 1 plays the variant as given².
 - For group 2 with a variant below 10, when the actor's voice-pool entry (`+0x20` of the actor it resolves to through
-  `0x00263F40` and `0x00263F10`) has state 3, its bank loaded (`0x0036ECA0`, `0x002E9F81`), the sound comes straight
-  from that bank (`0x0036EC50`, `0x002E9F90`): the character's own voice.
+  `0x00263F40` and `0x00263F10`) has state 3, its bank loaded³, the sound comes straight
+  from that bank⁴: the character's own voice.
 - Outside that voice case a non-zero flag adds the field's environment variant `0x02099DBC` to the variant before the
-  block lookup, for every group (`0x002E9FA7`).
+  block lookup, for every group⁵.
 - The footstep flag is set for types 1, 8, 9 and 10.
-- A group above 2 gives -1 (`0x002E9E72`), as do the gates listed on
+- A group above 2 gives -1⁶, as do the gates listed on
   [Character SE tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E9F29` |
+| ² | `0x002E9E99` |
+| ³ | `0x0036ECA0`, `0x002E9F81` |
+| ⁴ | `0x0036EC50`, `0x002E9F90` |
+| ⁵ | `0x002E9FA7` |
+| ⁶ | `0x002E9E72` |
+
+</details>
 
 ### The play routine
 
@@ -186,18 +296,39 @@ calls `0x003A0E50` with the sound id and returns its result (`0x0046CAAE`).
 | `5` | with type 1, stores `0xC00` in emitter word `+5` |
 
 `0x003A0E50(id, position, record)` makes the sound. An id with bit `0x40000000` set is a battle-voice line, bank `id >> 8 & 0xFF`
-and line `id & 0xFF`, played at the point in the Config voice language (`0x002DF460`); any other id plays from a block
-bank at the point (`0x002DF280`), and -1 plays nothing. The same call serves `0x0046C8F0`, `0x00332C40` and `0x003B99D0`.
-`0x003A0E80(kind, handle)` stops the previous voice of types 4-7 while it still plays (`0x0046CE04`-`0x0046CE1F`), with the
-kind from emitter byte `+0x07`: kind 0 through the battle-voice stop (`0x001DC330`), kind 1 through `0x002DF0F0`.
+and line `id & 0xFF`, played at the point in the Config voice language¹; any other id plays from a block
+bank at the point², and -1 plays nothing. The same call serves `0x0046C8F0`, `0x00332C40` and `0x003B99D0`.
+`0x003A0E80(kind, handle)` stops the previous voice of types 4-7 while it still plays³, with the
+kind from emitter byte `+0x07`: kind 0 through the battle-voice stop⁴, kind 1 through `0x002DF0F0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DF460` |
+| ² | `0x002DF280` |
+| ³ | `0x0046CE04`-`0x0046CE1F` |
+| ⁴ | `0x001DC330` |
+
+</details>
 
 That kind is written when a voice of types 4-7 starts: `0x003A10F0(id)` returns 1 when bit `0x40000000` of the id is clear
 (a block-bank sound) and 0 when it is set (a battle-voice line), and `0x0046D055`-`0x0046D05E` stores it at `+0x07`
 beside the handle `+0x18` and the type `+0x1C`.
 
-The battle routine `0x00307300` plays mode 4 at a battle record's actor through `0x00329F70` (`0x00307727`), which passes
+The battle routine `0x00307300` plays mode 4 at a battle record's actor through `0x00329F70`¹, which passes
 the record's `+0x08` to `0x0046CBB0`. That finds the actor's render record (`0x740` bytes each from `[0x022C6F28]`) and
 calls `0x0046CC70` on its emitter at `+0x5F0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00307727` |
+
+</details>
 
 ## Modding notes
 
@@ -222,21 +353,27 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Game files and data tables** (explained on [resource sections](../Game-Files-And-Data-Tables/resource-sections.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002EDBD0` | calls | `0x00409660`, `0x00409F50` |
-| `0x00421E20` | calls | `0x002ED570` |
+| [`0x002EDBD0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) Character render record: refresh fcp payload by record id (on movement bodies and separation) | calls | [`0x00409660`](../Game-Files-And-Data-Tables/resource-sections.md) (on resource sections)<br>[`0x00409F50`](../Graphics/model-files-cm-ca.md) (on model files cm ca) |
+| [`0x00421E20`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) | calls | [`0x002ED570`](../Graphics/skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003A1180` | is called by | `0x0030C650` |
+| [`0x003A1180`](../Engine-Core/identifier-spaces.md) (on identifier spaces) | is called by | [`0x0030C650`](../Menus-And-HUD/hud.md) Battle stats: advance level to target and recompute growth (on hud) |
 
 **World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003A13F0` | is called by | `0x00266D10` |
+| [`0x003A13F0`](sound-banks.md) (on sound banks) | is called by | [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 </details>

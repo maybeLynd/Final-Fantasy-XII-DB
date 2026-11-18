@@ -25,16 +25,44 @@ Lights live in a pool of 128 entries of `0x70` bytes at `[0x02B3F528]`. `0x003AB
 first free entry (handle `+0x00` is 0), makes its handle `counter << 8 | index` (the counter `0x02B3F504` wraps after
 `0xFFFFFF` to 1, `0x003AB99C`), copies the `0x50`-byte request to entry `+0x20`, and appends the entry to the list whose
 head is `0x02B3F508` and tail `0x02B3F510` (previous at `+0x08`, next at `+0x10`). It returns the handle; with all
-128 entries in use it returns 0 and changes nothing (`0x003AB985`).
+128 entries in use it returns 0 and changes nothing¹.
 
-`0x003ABD00(handle)` returns the request block when the handle still matches, and 0 otherwise
-(`0x003ABD0E`-`0x003ABD19`).
+<details>
+<summary>Where in the code</summary>
 
-The byte `0x02B3F500` counts the entries in use: `0x003AB960` adds 1 (`0x003AB988`) and `0x003ABCA0` takes 1 off when it
-releases one (`0x003ABCBE`). The pool clear `0x003ABB60` frees all 128 entries and empties the list, sets the count to 0
-(`0x003ABB91`), then files one entry at once and sets it to 1 (`0x003ABBFC`). The set-up `0x003AC890` allocates the
+| | Code |
+|---|---|
+| ¹ | `0x003AB985` |
+
+</details>
+
+`0x003ABD00(handle)` returns the request block when the handle still matches, and 0 otherwise¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003ABD0E`-`0x003ABD19` |
+
+</details>
+
+The byte `0x02B3F500` counts the entries in use: `0x003AB960` adds 1¹ and `0x003ABCA0` takes 1 off when it
+releases one². The pool clear `0x003ABB60` frees all 128 entries and empties the list, sets the count to 0³, then files one entry at once and sets it to 1⁴. The set-up `0x003AC890` allocates the
 pool (`0x3800` bytes) when it has no pool, and one 8-byte store at `0x003AC8D0` zeroes `0x02B3F500`, `0x02B3F501`,
 `0x02B3F503` and the counter `0x02B3F504` and sets `0x02B3F502` to 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AB988` |
+| ² | `0x003ABCBE` |
+| ³ | `0x003ABB91` |
+| ⁴ | `0x003ABBFC` |
+
+</details>
 
 For the falloff kinds the create routine stores `1 / range²` from the range at request `+0x0C`: at
 request `+0x30` for kinds 2 and 5, `+0x40` for kind 3, `+0x48` for kind 4. Kind 4 also gets
@@ -50,8 +78,17 @@ resets them to 1.0.
 ### Choosing a character's lights
 
 `0x003ACC10(list, out, colour scale, out ambient, record, id, placement)` walks the list. It skips a light
-when `(request +7 >> 2) & (0x02B3F501 | 0x02B3F520)` is non-zero or bit `0x2` of `+7` is set (`0x003ACD20`-`0x003ACD36`).
+when `(request +7 >> 2) & (0x02B3F501 | 0x02B3F520)` is non-zero or bit `0x2` of `+7` is set¹.
 Then the scope:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003ACD20`-`0x003ACD36` |
+
+</details>
 
 | Scope `+3` | Sub `+4` | The light is taken when |
 |---:|---:|---|
@@ -76,10 +113,19 @@ By type (request `+0`):
   it, scaled by `0x02B3F51C` while `0x02B3F503` is set, then the character's ambient mode applies, an
   additive light (bit `0x1` of `+7` clear) joins the running sum, and a higher priority (`+1`), or equal
   priority and greater strength, makes it the winner.
-- 7: the character's own list, fetched from record `+0x108` (`0x0037AD40`). Its entries use scope 1 sub 2
+- 7: the character's own list, fetched from record `+0x108`¹. Its entries use scope 1 sub 2
   (id match) and scope 3 with the character's group bits (`0x003AED20`: record `+0x28C`; sub 7 needs a
   shared bit, sub 6 needs no bit). Ambients are handled as above with the light scale off; the rest are taken.
 - anything else is a directional kind and goes to the output list.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037AD40` |
+
+</details>
 
 At the end the base ambient is the winner's colour, or the additive sum when the winner was additive;
 it is multiplied by the multiplier and its alpha set to 1.0.
@@ -91,22 +137,42 @@ it is multiplied by the multiplier and its alpha set to 1.0.
   request `+5` bit `0x10` is exempt.
 - Light scale: the gather copies record `+0x5EC` to `0x02B3F518`; while `0x02B3F502` is set it multiplies the
   red, green, blue and strength of every light whose `+5` is below `0x80` by the scale and sets the light's alpha
-  to the scale itself: in `0x003ACAA0` (`0x003ACB7A`-`0x003ACC00`) and in each light body (`0x003AD7DB`-`0x003AD823`,
-  `0x003ADBE8`-`0x003ADC2C`, `0x003AE074`-`0x003AE0B4`, `0x003AE46D`-`0x003AE4B1`, `0x003AE93F`-`0x003AE981`).
+  to the scale itself: in `0x003ACAA0`¹ and in each light body².
 - Group bits: `0x002E8610(actor, group, on)` sets (`on` non-zero) or clears bit value `1 << (group & 31)` of the
-  record's `+0x28C` (`0x002E866D`-`0x002E86A4`).
+  record's `+0x28C`³.
   The verbs `setlightgroup` (`0x224`, `0x003404F0`) and `clearlightgroup` (`0x225`) reach it
   ([verb table](../Scripts-And-Script-Commands/verb-table.md)).
 - `0x002E8610` does nothing without an actor or its `+0xC0` context, with record index -1, or when the record's
-  `+0x284` is 0 (`0x002E8616`-`0x002E8632`, `0x002E8684`-`0x002E86A2`).
+  `+0x284` is 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003ACB7A`-`0x003ACC00` |
+| ² | `0x003AD7DB`-`0x003AD823`, `0x003ADBE8`-`0x003ADC2C`, `0x003AE074`-`0x003AE0B4`, `0x003AE46D`-`0x003AE4B1`, `0x003AE93F`-`0x003AE981` |
+| ³ | `0x002E866D`-`0x002E86A4` |
+| ⁴ | `0x002E8616`-`0x002E8632`, `0x002E8684`-`0x002E86A2` |
+
+</details>
 
 ### Evaluating a light
 
 `0x003ACAA0` forms an ambient colour by subtype, with `c` the light's colour and `s` the caller's scale:
 0 or above 4 gives `c`; 1 gives `s`; 2 gives `c × s.w`; 3 gives `s × s.w`; 4 gives `c × s` per channel.
-Subtypes 2 to 4 form red, green and blue only and keep the alpha of `c` (`0x003ACAFE`, `0x003ACB38`).
-The strength is `0.299|r| + 0.587|g| + 0.114|b|` of `c`, summed in double precision and returned
-(`0x003ACB72`-`0x003ACBCC`); the light scale then applies to the colour and the strength as described above.
+Subtypes 2 to 4 form red, green and blue only and keep the alpha of `c`¹.
+The strength is `0.299|r| + 0.587|g| + 0.114|b|` of `c`, summed in double precision and returned²; the light scale then applies to the colour and the strength as described above.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003ACAFE`, `0x003ACB38` |
+| ² | `0x003ACB72`-`0x003ACBCC` |
+
+</details>
 
 | Kind | Body | Shape |
 |---:|---|---|
@@ -120,9 +186,20 @@ The strength is `0.299|r| + 0.587|g| + 0.114|b|` of `c`, summed in double precis
 
 `0x003ABD50(record, block, matrix 1, matrix 2, colour scale, use scale)` clears a `0xE0`-byte block,
 sets `+0xD0` to -1, copies the record's light scale and calls the selector with the ambient written to
-`+0xC0`. It sorts the chosen lights (`0x003AEBC0`), evaluates each with the first matrix when the bits under
-mask `0xE` of its `+5` are clear and the second otherwise (`0x003ABE80`), and at the end of each run of equal
-priority, highest first, sorts the run's lit lights by strength (`0x003AE9C0`).
+`+0xC0`. It sorts the chosen lights¹, evaluates each with the first matrix when the bits under
+mask `0xE` of its `+5` are clear and the second otherwise², and at the end of each run of equal
+priority, highest first, sorts the run's lit lights by strength³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AEBC0` |
+| ² | `0x003ABE80` |
+| ³ | `0x003AE9C0` |
+
+</details>
 
 It writes up to six: directions negated and normalised, stored by component (x of lights 0-2 at `+0x00`, y at
 `+0x10`, z at `+0x20`; lights 3-5 at `+0x30`..`+0x50`), colours at `+0x60 + 16i`, and the index of a
@@ -133,25 +210,62 @@ The model instance's draw setup `0x004FD4B0` calls it with the instance's record
 by instance `+0xA0`..`+0xA8`, alpha by `+0xAC × (+0xB0 / 4096)` and, with `+0x244` bit `0x1`, by `+0x248`.
 That is how a character's fade and script colour reach its lighting ([character fades](character-fades.md)).
 
-The ambient is the block's `+0xC0`-`+0xCC`: `0x004FD4B0` reads red, green and blue (`0x02CA81D0`,
-`0x02CA81D4`, `0x02CA81D8`) and stores each back multiplied, `[0x02CA81D0] = [0x02CA81D0] × [instance + 0xA0]`, green by
-`+0xA4` and blue by `+0xA8` (`0x004FD5CC`-`0x004FD618`), and writes the alpha `0x02CA81DC`.
+The ambient is the block's `+0xC0`-`+0xCC`: `0x004FD4B0` reads red, green and blue¹ and stores each back multiplied, `[0x02CA81D0] = [0x02CA81D0] × [instance + 0xA0]`, green by
+`+0xA4` and blue by `+0xA8`², and writes the alpha `0x02CA81DC`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02CA81D0`, `0x02CA81D4`, `0x02CA81D8` |
+| ² | `0x004FD5CC`-`0x004FD618` |
+
+</details>
 
 Before the light call `0x004FD4B0` copies the record's matrix `+0x180`-`+0x1BF` into
-`0x02CA8000`-`0x02CA803F` (`0x004FD505`-`0x004FD52F`). Later it keeps the translation of its second argument
+`0x02CA8000`-`0x02CA803F`¹. Later it keeps the translation of its second argument
 (`+0x30`-`+0x38`, copied to `+0x160` of the block it sends, `0x004FDA73`-`0x004FDA87`) at `0x02EBA4A0` (x and y, one store,
-`0x004FDA95`) and `0x02EBA4A8` (z, `0x004FDAA3`), which the render update `0x0053AB50` reads (`0x0053C8C3`,
-`0x0053C8E1`, `0x0053C8F0`).
+`0x004FDA95`) and `0x02EBA4A8` (z, `0x004FDAA3`), which the render update `0x0053AB50` reads².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004FD505`-`0x004FD52F` |
+| ² | `0x0053C8C3`, `0x0053C8E1`, `0x0053C8F0` |
+
+</details>
 
 The four rows of the copied matrix are `0x02CA8000`, `0x02CA8010`, `0x02CA8020` and `0x02CA8030`, one 16-byte store each from
-the record's `+0x180`, `+0x190`, `+0x1A0` and `+0x1B0` (`0x004FD505`, `0x004FD513`, `0x004FD521`, `0x004FD52F`).
+the record's `+0x180`, `+0x190`, `+0x1A0` and `+0x1B0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004FD505`, `0x004FD513`, `0x004FD521`, `0x004FD52F` |
+
+</details>
 
 ### The installed light matrix
 
 Before it evaluates each light, `0x003ABD50` copies its first matrix (light `+5` & `0xE` zero) or its second into the
-64 bytes `0x02B3F4B0`-`0x02B3F4EF` (`0x003ABE86`-`0x003ABEDD`); `0x003AC110` copies its matrix the same way (`0x003AC470`-`0x003AC49C`).
+64 bytes `0x02B3F4B0`-`0x02B3F4EF`¹; `0x003AC110` copies its matrix the same way².
 The light bodies read it element by element: the directional body `0x003AD540` turns the direction by rows 0 to 2,
 and the point, plane, segment and spot bodies also take row 3.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003ABE86`-`0x003ABEDD` |
+| ² | `0x003AC470`-`0x003AC49C` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -162,8 +276,18 @@ and the point, plane, segment and spot bodies also take row 3.
 
 Each light body forms the light's colour by subtype, as `0x003ACAA0` does, in the 16 bytes from `0x02B3F4F0` and
 reads it back into its result, scaled by the shape's falloff where it has one. The directional body `0x003AD540`
-copies all 16 bytes (`0x003AD68D`), then keeps `0.299|r|`, `0.587|g|` and `0.114|b|` in the first three and adds
-them for the strength at result `+0x1C` (`0x003AD6A3`-`0x003AD7D6`).
+copies all 16 bytes¹, then keeps `0.299|r|`, `0.587|g|` and `0.114|b|` in the first three and adds
+them for the strength at result `+0x1C`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AD68D` |
+| ² | `0x003AD6A3`-`0x003AD7D6` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -179,11 +303,21 @@ Render-object slot 8, `0x001F9B20(object, block, f)`, writes the block to every 
 direction from the block's dwords n, n + 4 and n + 8, with n = k + 9 × (k / 3) in whole numbers, the first two negated
 and w = 1, and its colour from `+0x60 + 16k`. Unless the settings flag at `0x001EBA40()` `+0x118` is set:
 
-- the ambient becomes `rgb × mMapChrAmbientIntensity + mMapChrAmbientOffset` (`0x01F82ED8`, `0x01F82EE8`);
-- each light's colour is multiplied by `mMapChrDirLightColorIntensity` (`0x01F82EF8`);
+- the ambient becomes `rgb × mMapChrAmbientIntensity + mMapChrAmbientOffset`¹;
+- each light's colour is multiplied by `mMapChrDirLightColorIntensity`²;
 - when `0x001EC560()` is 0, a light within the upward threshold of straight up (`0x01DFE198` degrees; the
   test is skipped above 89) is also multiplied by `0x01DFE19C`; both are the `mMapChrUpwardDirLight*`
   settings.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01F82ED8`, `0x01F82EE8` |
+| ² | `0x01F82EF8` |
+
+</details>
 
 The settings are listed on [graphics settings](../Engine-Core/graphics-settings.md).
 
@@ -207,8 +341,8 @@ entry index first.
 The defaults of the copy are type 2, priority `0xC0`, scope 1 sub-kind 1, bit `0x1` of `+0x05` set,
 range 10.0, colour (1, 1, 1, 0), position w 1.0 and direction (1, 1, 1, 1).
 
-- `bindl(n, kind)` (`0x0136`, `0x003DE4C0`) unbinds whatever the calling actor held (`0x0025AB30`),
-  releases the entry's old light (`0x003ABCA0`), and files a new one (`0x003AB960`) from the entry's
+- `bindl(n, kind)` (`0x0136`, `0x003DE4C0`) unbinds whatever the calling actor held¹,
+  releases the entry's old light², and files a new one³ from the entry's
   request with type 2 for `kind` 1, 4 for `kind` 2 and 1 otherwise. It keeps the handle, the issuer's
   manager byte and the actor, marks the actor bound (its `+0x04` = 2, `+0x05` = `n`) and then resets
   the entry's copy to the defaults.
@@ -216,43 +350,105 @@ range 10.0, colour (1, 1, 1, 0), position w 1.0 and direction (1, 1, 1, 1).
   byte; type 4 also gets the cone cosines `cos(π/8)` and `cos(π/4)` at request `+0x40` and `+0x44`.
 - `seteventlightall(n)` (`0x0139`, `0x003DE970`) sets scope sub-kind 1 and drops the followed actor;
   `seteventlightactor(n, id)` (`0x0137`, `0x003DEA20`) sets sub-kind 2 and follows the actor `id`
-  names (`0x003587C0`), or the party focus for a negative `id`.
+  names⁴, or the party focus for a negative `id`.
 - `seteventlightcolor(n, r, g, b)` (`0x013A`, `0x003DE9B0`) stores the colour with alpha 0;
   `seteventlightdir(n, a, b)` (`0x013C`, `0x003DEA70`) turns the unit z vector by the two angles,
-  normalises it (`0x003A1890`) and stores it at request `+0x30`.
+  normalises it⁵ and stores it at request `+0x30`.
 - `seteventlightrange(n, r)` (`0x013B`, `0x003DEAC0`), only for an entry with a type, stores `r` at
   request `+0x0C` and clears bit `0x1` of `+0x05`; a negative `r` sets the bit and stores 1.0 instead.
 - `seteventlightcorn(n, inner, outer)` (`0x0144`, `0x003DE8A0`) stores `cos(inner)` and `cos(outer)` at
   request `+0x40` and `+0x44`, with `inner` at least 0 and `outer` at least `inner`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025AB30` |
+| ² | `0x003ABCA0` |
+| ³ | `0x003AB960` |
+| ⁴ | `0x003587C0` |
+| ⁵ | `0x003A1890` |
+
+</details>
+
 The colour, direction, range and cone setters also write the live request when the entry has a
 light and a bound actor, the last two through `0x003AC920`. Each frame `0x003DE640` (from `0x00314020`)
-sets every live light's target `+0x08` to the record index of the followed actor (`0x002E97B0`) and,
-when the binding actor's class bits (`+0x03 & 0xE0`) are `0x60`, its position `+0x20` from that actor
-(`0x00265020`), with w = 1.0.
+sets every live light's target `+0x08` to the record index of the followed actor¹ and,
+when the binding actor's class bits (`+0x03 & 0xE0`) are `0x60`, its position `+0x20` from that actor², with w = 1.0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E97B0` |
+| ² | `0x00265020` |
+
+</details>
 
 `0x0025AB30` undoes a binding by the actor's kind byte `+0x04`: kind 2 runs `0x003DE5F0`, which, for the entry named by
-the actor's `+0x05` when that byte is not negative (`0x003DE5F4`-`0x003DE5FA`), releases the light when the handle is not
-0 (`0x003DE613`-`0x003DE619`) and clears the entry's handle `+0x00`, its actors `+0x08` and `+0x10` and its focus byte
-`+0x05` (`0x003DE61E`-`0x003DE62A`).
+the actor's `+0x05` when that byte is not negative¹, releases the light when the handle is not
+0² and clears the entry's handle `+0x00`, its actors `+0x08` and `+0x10` and its focus byte
+`+0x05`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DE5F4`-`0x003DE5FA` |
+| ² | `0x003DE613`-`0x003DE619` |
+| ³ | `0x003DE61E`-`0x003DE62A` |
+
+</details>
 
 Kinds 1 and 3 run `0x002E3AF0` and `0x002E3D00`, and any other kind runs nothing. Every path then stores the word `0xFF00`
-at the actor's `+0x04`, so `+0x04` = 0 and `+0x05` = `0xFF` (`0x0025AB59`, `0x0025AB71`, `0x0025AB89`). The start-up
+at the actor's `+0x04`, so `+0x04` = 0 and `+0x05` = `0xFF`¹. The start-up
 initialiser `0x00266D10` resets all 16 entries through `0x003DE710`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025AB59`, `0x0025AB71`, `0x0025AB89` |
+
+</details>
 
 ### Script ambient colours
 
-The map draw `0x002F4520` takes its ambient from `0x0209A3B0` (`0x002F4688`), which `0x0026E1A0` rebuilds once
+The map draw `0x002F4520` takes its ambient from `0x0209A3B0`¹, which `0x0026E1A0` rebuilds once
 a frame (from `0x0036F410`) as the product, component by component, of four colours: the map's
 ambient `0x0209A370`, the scene colour `0x0209A380` (copied from `0x020926C0` by `0x003769E0`), the script
 colour `0x0209A390` and the summon-colour multiplier `0x0209A3C0`. `0x0026E1D0` resets the scene colour,
 the script colour and the product to 1.0.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F4688` |
+
+</details>
+
 The script colour's four floats are `0x0209A390`, `0x0209A394`, `0x0209A398` and `0x0209A39C`, the setters' first to fourth
 arguments: `0x00379080` stores them at `0x003790AA`, `0x003790A2`, `0x003790B3` and `0x003790BB`, and `0x00379110` at `0x0037911B`,
-`0x00379123`, `0x0037912B` and `0x00379133`. `0x0026E1D0` (`0x0026E238`) and the teardown `0x00378230` (`0x00378354`) set all four
-with one 16-byte store, and `0x0026E1A0` multiplies by all four at once (`0x0026E1AE`): `0x0209A3B0` = `0x0209A380` ×
+`0x00379123`, `0x0037912B` and `0x00379133`. `0x0026E1D0`¹ and the teardown `0x00378230`² set all four
+with one 16-byte store, and `0x0026E1A0` multiplies by all four at once³: `0x0209A3B0` = `0x0209A380` ×
 `0x0209A370` × `0x0209A390` × `0x0209A3C0`, component by component (`mulps`, `0x0026E1A0`-`0x0026E1BC`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026E238` |
+| ² | `0x00378354` |
+| ³ | `0x0026E1AE` |
+
+</details>
 
 - `setmapambient(r, g, b, a)` (`0x0104`, `0x00379080`) stores the script colour and also writes
   `r, g, b` into the ambient of all five light groups (`0x02EBF460 + 0x50 × g`, `0x002ECE40`);
@@ -266,23 +462,54 @@ with one 16-byte store, and `0x0026E1A0` multiplies by all four at once (`0x0026
 
 `PShadowCaster` is a reflected Phyre class (`0x006C15D0` registers `m_light` at `+0x00`,
 `m_shadowCasterType` at `+0x08`, `m_splits` at `+0x10`, `m_zbias` at `+0x50`). Its constructor
-`0x006C0EB0` sets `m_light` to null (`0x006C0ECD`), `m_shadowCasterType` to the first value record of
+`0x006C0EB0` sets `m_light` to null¹, `m_shadowCasterType` to the first value record of
 `PShadowCasterType` at `0x01F2EDC8`,
 named `NoShadow` (the next are `PCFShadowMap` and `CascadedShadowMap`), `m_splits` empty (`+0x10` and `+0x18` zero),
 `m_zbias` 1.0e-5, and initialises the state block at `+0x58` (`0x005DC400`, then bytes 1, 1, 2, 2 and `+0x74` bit
 `0x40`).
 
-The block set-up is `0x00615CD0` (`0x006C0EF5`): `0x005DC400` stores bytes 5, 1, 1, 1 at `+0x58`, 1 at `+0x5C`, 1.0 at
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006C0ECD` |
+
+</details>
+
+The block set-up is `0x00615CD0`¹: `0x005DC400` stores bytes 5, 1, 1, 1 at `+0x58`, 1 at `+0x5C`, 1.0 at
 `+0x64`, `0x400` at `+0x70` and zero at `+0x60`, `+0x68`, `+0x6C` and `+0x74`, and `0x00615CD0` zeroes `+0x78`. The
 constructor then writes the bytes 1, 1, 2, 2 to `+0x58`-`+0x5B` and sets `+0x74` bit `0x40`, each only while `+0x74`
-bit `0x80` is clear, which holds because `+0x74` was just zeroed (`0x006C0EFA`-`0x006C0F40`); it returns the object.
+bit `0x80` is clear, which holds because `+0x74` was just zeroed²; it returns the object.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006C0EF5` |
+| ² | `0x006C0EFA`-`0x006C0F40` |
+
+</details>
 
 `0x006C15D0` registers each member once, under its own guard: `m_splits` first, through the array form `0x00632A10`
-(which calls `0x00632960`), whose record `0x02E59F90` then gets `0x00D83C00` as its first word (`0x006C1673`-`0x006C167F`);
-then `m_shadowCasterType`, `m_zbias` and `m_light` through `0x00632960` (`0x006C16FB`, `0x006C176E`, `0x006C17DC`), each
-given `0x02E59DC0` as its second argument. It starts with `0x006388C0(0x02E59DC0)` and `0x006C1920([0x01F2EE48])`
-(`0x006C15EB`, `0x006C15F7`), sets bit `0x10` of `0x02E59FB8` on every call (`0x006C169F`) and ends with a tail jump to
-`0x00639450(0x02E59DC0)` (`0x006C180B`).
+(which calls `0x00632960`), whose record `0x02E59F90` then gets `0x00D83C00` as its first word¹;
+then `m_shadowCasterType`, `m_zbias` and `m_light` through `0x00632960`², each
+given `0x02E59DC0` as its second argument. It starts with `0x006388C0(0x02E59DC0)` and `0x006C1920([0x01F2EE48])`³, sets bit `0x10` of `0x02E59FB8` on every call⁴ and ends with a tail jump to
+`0x00639450(0x02E59DC0)`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006C1673`-`0x006C167F` |
+| ² | `0x006C16FB`, `0x006C176E`, `0x006C17DC` |
+| ³ | `0x006C15EB`, `0x006C15F7` |
+| ⁴ | `0x006C169F` |
+| ⁵ | `0x006C180B` |
+
+</details>
 
 ### The two shadow pools
 
@@ -291,11 +518,21 @@ A render record holds up to two shadow entries, chosen by its shadow kind (recor
 kind 1 takes a second-pool entry and kind 0 frees it, and the handle is copied to the presentation
 entry's `+0x360`.
 
-`0x003E73B0(record, kind)` returns at once when the kind equals the one in `+0xC0` (`0x003E73BA`-`0x003E73CE`). Kind 0
+`0x003E73B0(record, kind)` returns at once when the kind equals the one in `+0xC0`¹. Kind 0
 frees the entry `+0x118` with `0x003AFBE0` and zeroes `+0x118` when it is non-zero; kind 1 calls `0x003AF340` with the
-record's word `+0x00` only while `+0x118` is 0, so a 0 answer stays in `+0x118`; kinds 2 and 3 touch neither
-(`0x003E73DD`-`0x003E740E`). The copy to `+0x360` happens only when `0x00422D50` finds the presentation entry
-(`0x003E7414`-`0x003E741F`); then the kind's low two bits go into `+0xC0` bits `0x18` (`0x003E7425`-`0x003E7439`).
+record's word `+0x00` only while `+0x118` is 0, so a 0 answer stays in `+0x118`; kinds 2 and 3 touch neither². The copy to `+0x360` happens only when `0x00422D50` finds the presentation entry³; then the kind's low two bits go into `+0xC0` bits `0x18`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E73BA`-`0x003E73CE` |
+| ² | `0x003E73DD`-`0x003E740E` |
+| ³ | `0x003E7414`-`0x003E741F` |
+| ⁴ | `0x003E7425`-`0x003E7439` |
+
+</details>
 
 | | First pool | Second pool |
 |---|---|---|
@@ -307,23 +544,62 @@ record's word `+0x00` only while `+0x118` is 0, so a 0 answer stays in `+0x118`;
 | Stored value | - | 16 bytes at `0x02B3F560`, copied in by `0x003AFD40` (called from `0x00378120` and `0x00379610`; the map pack's tag-11 colour); no code reads it back |
 
 A first-pool entry keeps the owner's index at `+0x04`, its strength at `+0x14` (1.0) and two bones,
-`+0x3C` and `+0x3E`, from the model's special bones `0x104` and `0x106` (`0x003E5AD0`). For those two numbers
+`+0x3C` and `+0x3E`, from the model's special bones `0x104` and `0x106`¹. For those two numbers
 `0x003E5AD0` returns the words `+0x3A` and `+0x3E` of the model header `[record +0x400]`, and `0xFFFF` when the
-record has no header (`0x003E5AF8`-`0x003E5B27`).
+record has no header².
 
-`0x003B56D0` takes the first entry whose `+0x40` bit `0x1` is clear (`0x003B56F0`) and returns its handle. It sets that
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E5AD0` |
+| ² | `0x003E5AF8`-`0x003E5B27` |
+
+</details>
+
+`0x003B56D0` takes the first entry whose `+0x40` bit `0x1` is clear¹ and returns its handle. It sets that
 bit, keeping bits `0x81` of the old byte, stores the handle at `+0x10` (the counter `0x02B40520` wraps after
-`0xFFFFFF` to 1) and sets the anchor `+0x38` to the bone `+0x3C` (`0x003B5841`).
+`0xFFFFFF` to 1) and sets the anchor `+0x38` to the bone `+0x3C`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B56F0` |
+| ² | `0x003B5841` |
+
+</details>
 
 It writes 1.0 at `+0x08`, `+0x0C`,
 `+0x14`, `+0x2C`, `+0x44`, `+0x58`, `+0x5C`, `+0x78`, `+0x88`, `+0x8C`, `+0x94`, `+0xC8`, `+0xCC` and `+0xD4`, and
 zeroes `+0x00`, `+0x18`-`+0x2B`, `+0x30`-`+0x37`, the bytes `+0x41`-`+0x43`, `+0x48`-`+0x57`, `+0x60`-`+0x77`,
-`+0x7C`-`+0x87`, `+0x90`, `+0x98`-`+0x9F`, `+0xBC`-`+0xC7` and `+0xD0` (`0x003B5719`-`0x003B5877`).
+`+0x7C`-`+0x87`, `+0x90`, `+0x98`-`+0x9F`, `+0xBC`-`+0xC7` and `+0xD0`¹.
 
-`0x003AF340` takes the first second-pool entry whose handle `+0x04` is 0 (`0x003AF362`). It stores the id at `+0x00`,
-the handle at `+0x04` (the counter `0x02B3F550` wraps after `0xFFFFFF` to 1), mode 1 in the low nibble of `+0x20`
-(`0x003AF3E9`-`0x003AF3ED`), 1.0 at `+0x08`, `+0x10`, `+0x14`, `+0x24`, `+0x28`, `+0x34` and `+0x38`, and `0x11` in the
-byte `+0x1F` with the counters `+0x1C`-`+0x1E` 0 (`0x003AF3FB`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B5719`-`0x003B5877` |
+
+</details>
+
+`0x003AF340` takes the first second-pool entry whose handle `+0x04` is 0¹. It stores the id at `+0x00`,
+the handle at `+0x04` (the counter `0x02B3F550` wraps after `0xFFFFFF` to 1), mode 1 in the low nibble of `+0x20`², 1.0 at `+0x08`, `+0x10`, `+0x14`, `+0x24`, `+0x28`, `+0x34` and `+0x38`, and `0x11` in the
+byte `+0x1F` with the counters `+0x1C`-`+0x1E` 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AF362` |
+| ² | `0x003AF3E9`-`0x003AF3ED` |
+| ³ | `0x003AF3FB` |
+
+</details>
 
 It zeroes `+0x2C`-`+0x33`, `+0x3C`-`+0x4F` and the
 counters `+0x54`, `+0x55`, clears bits `0x3` of `+0x58`, and sets `[+0x18] = [block + 0x08] / [block + 0x10]`,
@@ -339,11 +615,20 @@ offset multiplier `+0x44` and `0x003B6BB0(handle, v)` the float `+0x2C`; `0x0042
 scales 1, rotation 0, strength 1) and clears their steps and counters, the cross-fade and the values
 last built.
 
-When the authored motion command `0x09` (`0x00417F40`) starts a motion whose header carries a character block of kind 1,
+When the authored motion command `0x09`¹ starts a motion whose header carries a character block of kind 1,
 it passes the block to `0x003B5E20(handle, block)` and its anchor choice and base offset (`+0xA8`, `+0xA0`, `+0xA4` of
 the header) to `0x003B5CE0`. `0x003B5E20` keeps a motion's shadow overrides in its slot, `[0x02B40528]` + `0xE0` × the
-handle's low byte, flagged in byte `+0x40`; it returns at once when the slot's dword `+0x10` is not the handle
-(`0x003B5E20`-`0x003B5E39`):
+handle's low byte, flagged in byte `+0x40`; it returns at once when the slot's dword `+0x10` is not the handle²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00417F40` |
+| ² | `0x003B5E20`-`0x003B5E39` |
+
+</details>
 
 - first, for each override flagged by the previous motion, it writes the kept value into the channel
   and its cross-fade copy and clears a counter: bit `0x2` the offset (`+0xA0`, `+0xA4`; counter `+0x00`),
@@ -352,39 +637,87 @@ handle's low byte, flagged in byte `+0x40`; it returns at once when the slot's d
 - then, when the block's word `+0x32` is non-zero, it keeps the new values (block `+0x4C`, `+0x50`; `+0x10`, `+0x54`;
   `+0x58`, `+0x5C`; the rotation as `(word >> 6)` degrees, stored times π/180; `0x003B5EF4`-`0x003B5F51`);
 - whatever the word holds, it copies the word's bits `0x1`, `0x2`, `0x8`, `0x4`, `0x10` and `0x20` into the flag bits
-  `0x2`, `0x4`, `0x8`, `0x10`, `0x20` and `0x40` (`0x003B5F58`-`0x003B5FF4`), so a zero word clears those six flags; it
+  `0x2`, `0x4`, `0x8`, `0x10`, `0x20` and `0x40`¹, so a zero word clears those six flags; it
   ends by clearing the four counters.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B5F58`-`0x003B5FF4` |
+
+</details>
 
 ### Each frame
 
 `0x00426420` runs `0x00426340` on every active record while tail `+0x42` is 1 and `+0x43` is 0:
 
-1. it puts both entries in their off state (`0x003B6900(h, 6)`, `0x003AFD00(h, 0)`), each only when its handle
-   (`+0x114`, `+0x118`) is non-zero (`0x0042634F`, `0x00426363`);
-2. it stops unless `+0x284` bits `0x4`, `0x40`, `0x80` and `0x1000` are set, the record has no parent and `+0x2AE` bit `0x2`
-   is clear;
-3. kind 0 with a first-pool entry: `0x003B6900(h, 4)`, then the strength (`0x003B6B80`) is record `+0x27C`
-   when `+0xC0` bit `0x2` is set, otherwise `0x003B5980(h)`;
-4. kind 1 with a second-pool entry: `0x003AFD00(h, 1)`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | it puts both entries in their off state (`0x003B6900(h, 6)`, `0x003AFD00(h, 0)`), each only when its handle (`+0x114`, `+0x118`) is non-zero; | `0x0042634F`, `0x00426363` |
+| 2 | it stops unless `+0x284` bits `0x4`, `0x40`, `0x80` and `0x1000` are set, the record has no parent and `+0x2AE` bit `0x2` is clear; |   |
+| 3 | kind 0 with a first-pool entry: `0x003B6900(h, 4)`, then the strength is record `+0x27C` when `+0xC0` bit `0x2` is set, otherwise `0x003B5980(h)`; | `0x003B6B80` |
+| 4 | kind 1 with a second-pool entry: `0x003AFD00(h, 1)`. |   |
 
-`0x003B5980` measures the distance `d` from the entry's bone (`0x00421FF0`) to the camera position
+`0x003B5980` measures the distance `d` from the entry's bone¹ to the camera position
 `0x02AEDF20` and returns `clamp(1 − (clamp(d, near, far) − near) × k, 0, 1)`, with `near`, `far` and `k`
-at `+0x20`, `+0x24` and `+0x2C` of the part of the model's `@FCP` block that the block's word `+0x02` points to
-(`0x003E6F70`, `0x003E56A0`). The 1 and the zero bias inside the inner clamp are the cells `0x01EF93FC` (1.0) and
+at `+0x20`, `+0x24` and `+0x2C` of the part of the model's `@FCP` block that the block's word `+0x02` points to². The 1 and the zero bias inside the inner clamp are the cells `0x01EF93FC` (1.0) and
 `0x01EF93F0` (0.0), which `0x0036D990` sets at boot.
 
-`0x003B5980` itself stores (0, 0, 0, 1.0) into `0x01EF93F0`-`0x01EF93FF` through `0x0036DD80` just before it reads them
-(`0x003B5AD9`), and `0x01EF93FC` also weights each squared component of the distance (`0x003B5ADE`-`0x003B5B33`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00421FF0` |
+| ² | `0x003E6F70`, `0x003E56A0` |
+
+</details>
+
+`0x003B5980` itself stores (0, 0, 0, 1.0) into `0x01EF93F0`-`0x01EF93FF` through `0x0036DD80` just before it reads them¹, and `0x01EF93FC` also weights each squared component of the distance².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B5AD9` |
+| ² | `0x003B5ADE`-`0x003B5B33` |
+
+</details>
 
 It returns 1.0 without measuring when the handle no longer matches entry `+0x10`, the owner `+0x04` is -1, the
-owner's record has `+0x284` 0, `0x00421FF0` finds no bone or `0x003E6F70` finds no block (`0x003B5999`-`0x003B5A2E`,
-`0x003B5BE2`). The bone is `+0x3C`, not the anchor in use `+0x38` (`0x003B59D9`), and its point is the 16 bytes at
-`+0x30` of what `0x00421FF0` returns (`0x003B5A68`); `d` is `sqrtf` of the absolute sum (`0x003B5B47`-`0x003B5B55`).
+owner's record has `+0x284` 0, `0x00421FF0` finds no bone or `0x003E6F70` finds no block¹. The bone is `+0x3C`, not the anchor in use `+0x38`², and its point is the 16 bytes at
+`+0x30` of what `0x00421FF0` returns³; `d` is `sqrtf` of the absolute sum⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B5999`-`0x003B5A2E`, `0x003B5BE2` |
+| ² | `0x003B59D9` |
+| ³ | `0x003B5A68` |
+| ⁴ | `0x003B5B47`-`0x003B5B55` |
+
+</details>
 
 The body works in `0x022D91B0`-`0x022D91DF`, stores `d` at `0x022D9198`, the weighted sum of the x and y squares at
-`0x022D91AC` (`0x003B5B37`) and the sum of `0x01EF93FC` and `0x01EF93F0` at `0x022D91F0` (`0x003B5B85`), and copies the 16 bytes
+`0x022D91AC`¹ and the sum of `0x01EF93FC` and `0x01EF93F0` at `0x022D91F0`², and copies the 16 bytes
 from `0x022D91C0`, which start
-with the result, to `0x022D8FB0` (`0x003B5B7D`, `0x003B5BBA`-`0x003B5BC9`).
+with the result, to `0x022D8FB0`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B5B37` |
+| ² | `0x003B5B85` |
+| ³ | `0x003B5B7D`, `0x003B5BBA`-`0x003B5BC9` |
+
+</details>
 
 `0x003AF460`, from the character pass `0x00426090`, advances the second pool's ramps: for each of the 32
 entries with a handle it counts down five counters (`+0x1C`, `+0x1D`, `+0x1E`, `+0x54`, `+0x55`) and,
@@ -399,17 +732,30 @@ while one is non-zero, adds its step to its value (`+0x24` by `+0x2C`, `+0x28` b
   the value at `+0x274`. `clearshadowalpha` (`0x285`) clears the bit.
 
 The four setters `0x002E88A0`, `0x002E8900`, `0x002E8950` and `0x002E89B0` take the record `[0x022C6F28] + 0x740 × index`.
-Each does nothing without an actor or its `+0xC0` context, with index -1, or when the record's `+0x284` is 0
-(`0x002E88A3`-`0x002E88E3`, `0x002E8903`-`0x002E893A`, `0x002E8953`-`0x002E8993`, `0x002E89B3`-`0x002E89FE`). `0x002E88A0` and
-`0x002E8950` store bit `0x4` and bit `0x2` as `on != 0` (`0x002E88E5`-`0x002E88F4`, `0x002E8995`-`0x002E89A3`). `0x002E8900`
-stores the value as given (`0x002E893C`); `0x002E89B0` stores 0 for a value below 0 and `min(1.0, v)` otherwise
-(`0x002E89C6`-`0x002E89D6`, `0x002E8A00`).
+Each does nothing without an actor or its `+0xC0` context, with index -1, or when the record's `+0x284` is 0¹. `0x002E88A0` and
+`0x002E8950` store bit `0x4` and bit `0x2` as `on != 0`². `0x002E8900`
+stores the value as given³; `0x002E89B0` stores 0 for a value below 0 and `min(1.0, v)` otherwise⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E88A3`-`0x002E88E3`, `0x002E8903`-`0x002E893A`, `0x002E8953`-`0x002E8993`, `0x002E89B3`-`0x002E89FE` |
+| ² | `0x002E88E5`-`0x002E88F4`, `0x002E8995`-`0x002E89A3` |
+| ³ | `0x002E893C` |
+| ⁴ | `0x002E89C6`-`0x002E89D6`, `0x002E8A00` |
+
+</details>
 
 Each finds the record through the actor's `+0xC0` context, whose first word is the record index. Every
 access to the two structures found is in [the shadow caster](character-lighting-and-shadows-pshadow-caster-accesses.tsv)
 and [second pool](character-lighting-and-shadows-shadow-pool-v2-slot-accesses.tsv) tables.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### Reflected members
 
@@ -440,6 +786,8 @@ A light request (entry `+0x20`):
 | `+0x0C` | `f32` | range |  |
 | `+0x10` | `f32[4]` | colour |  |
 | `+0x20` | `...` |  | kind data (position, axis, cone, segment end) |
+
+</details>
 
 ## Modding notes
 

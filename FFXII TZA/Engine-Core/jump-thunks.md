@@ -49,9 +49,17 @@ slot 5 of the `GameApplication` vtable `0x008C5760` ([game application](game-app
 
 For 384 forwarders a stored pointer names the thunk rather than the body: a hook on the body misses
 every dispatch through such a pointer. Among the table's rows, for 132 bodies the thunk is the only
-named entry any `call` uses. The reverse holds for the 8 targets a table names directly (`0x005C5230`, `0x007A0B40`,
-`0x0016D6A0`, `0x0019C590`, `0x00784DF0`, `0x001243B0`, `0x00844090` and `0x0083AE00`): a hook on the thunk misses the
+named entry any `call` uses. The reverse holds for the 8 targets a table names directly¹: a hook on the thunk misses the
 dispatch through the table.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C5230`, `0x007A0B40`, `0x0016D6A0`, `0x0019C590`, `0x00784DF0`, `0x001243B0`, `0x00844090` and `0x0083AE00` |
+
+</details>
 
 Ten rows of the table jump to another row: `0x00235DC0` to `0x003844F0` to `0x003697F0`, `0x002E08B0` to
 `0x00268620` to `0x00317E60`, `0x002E23B0` to `0x00253720` to `0x00315420`, `0x002E23C0` to `0x00253730` to
@@ -97,28 +105,16 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 56 calls with 5 other topics</summary>
 
-**Sound and music**
+**Sound and music** (explained on [sound engine](../Sound-And-Music/sound-engine.md), [sound effects](../Sound-And-Music/sound-effects.md), [audio manager](../Sound-And-Music/audio-manager.md), [sound driver objects](../Sound-And-Music/sound-driver-objects.md), [debug logging](debug-logging.md), [spatial sound](../Sound-And-Music/spatial-sound.md), [audio effects](../Sound-And-Music/audio-effects.md), [sound engine config](../Sound-And-Music/sound-engine-config.md), [maths library](../Compiler-And-C-Runtime/maths-library.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001243B0` | is called by | `0x00121030`, `0x00121E20`, `0x00210ED0`, `0x00210F60`, `0x002112D0`, `0x00211340`, `0x002254D0`, `0x00225610`, `0x007A48C0`, `0x007A4A10`, `0x007A4AC0`, `0x007A4B30` |
-| `0x001243B0` | is also called by | `0x007A4BB0`, `0x007A4C70`, `0x007A4CA0`, `0x007A4D50`, `0x007A5A00`, `0x007A5B20`, `0x007A87C0`, `0x007AC4F0`, `0x007ACD30`, `0x007AD240`, `0x007B0F90`, `0x007B31A0` |
-
-**Sound and music**
-
-| Function | | Functions |
-|---|---|---|
-| `0x001243B0` | is also called by | `0x007BBAB0`, `0x007BDFA0`, `0x007BE0B0`, `0x007BEAF0`, `0x007BED30`, `0x007BEF30`, `0x007C8890`, `0x007CA650`, `0x007CA9F0`, `0x007EEA00`, `0x007EFA30`, `0x007EFA70` |
-| `0x001243B0` | is also called by | `0x007EFB60`, `0x007EFC40`, `0x007EFCB0`, `0x007EFD20`, `0x007EFD90`, `0x007EFE00`, `0x007EFE70`, `0x007EFFE0`, `0x007F0060`, `0x007F0120`, `0x007F0190`, `0x007F0210` |
-
-**Sound and music**
-
-| Function | | Functions |
-|---|---|---|
-| `0x001243B0` | is also called by | `0x007F0320`, `0x007F0580`, `0x007F0660`, `0x007F0700`, `0x007F0790`, `0x007F0820`, `0x007F1340`, `0x007F1A50` |
-
-**Sound and music** (explained on [sound engine](../Sound-And-Music/sound-engine.md), [sound effects](../Sound-And-Music/sound-effects.md), [audio manager](../Sound-And-Music/audio-manager.md), [sound driver objects](../Sound-And-Music/sound-driver-objects.md), [debug logging](debug-logging.md), [spatial sound](../Sound-And-Music/spatial-sound.md))
-
-**Sound and music** (explained on [audio effects](../Sound-And-Music/audio-effects.md), [sound engine config](../Sound-And-Music/sound-engine-config.md), [maths library](../Compiler-And-C-Runtime/maths-library.md))
+| [`0x001243B0`](jump-thunks.md) | is called by | [`0x00121030`](jump-thunks.md)<br>[`0x00121E20`](jump-thunks.md)<br>[`0x00210ED0`](jump-thunks.md)<br>[`0x00210F60`](../Sound-And-Music/spatial-sound.md) (on spatial sound)<br>[`0x002112D0`](jump-thunks.md)<br>[`0x00211340`](../Sound-And-Music/spatial-sound.md) (on spatial sound)<br>[`0x002254D0`](jump-thunks.md)<br>[`0x00225610`](jump-thunks.md)<br>[`0x007A48C0`](jump-thunks.md)<br>[`0x007A4A10`](../Sound-And-Music/sound-driver-objects.md) (on sound driver objects)<br>[`0x007A4AC0`](../Sound-And-Music/sound-streaming.md) (on sound streaming)<br>[`0x007A4B30`](../Sound-And-Music/sound-streaming.md) (on sound streaming) |
+| [`0x001243B0`](jump-thunks.md) | is also called by | [`0x007A4BB0`](jump-thunks.md)<br>[`0x007A4C70`](jump-thunks.md)<br>[`0x007A4CA0`](jump-thunks.md)<br>[`0x007A4D50`](../Sound-And-Music/sound-engine-config.md) (on sound engine config)<br>[`0x007A5A00`](jump-thunks.md)<br>[`0x007A5B20`](jump-thunks.md)<br>[`0x007A87C0`](../Sound-And-Music/sound-driver-objects.md) (on sound driver objects)<br>[`0x007AC4F0`](../Sound-And-Music/sound-engine-config.md) (on sound engine config)<br>[`0x007ACD30`](../Sound-And-Music/sound-engine-config.md) (on sound engine config)<br>[`0x007AD240`](../Sound-And-Music/sound-engine-config.md) (on sound engine config)<br>[`0x007B0F90`](../Sound-And-Music/sound-engine-config.md) (on sound engine config)<br>[`0x007B31A0`](../Sound-And-Music/sound-engine-config.md) (on sound engine config) |
+| [`0x001243B0`](jump-thunks.md) | is also called by | [`0x007BBAB0`](../Sound-And-Music/spatial-sound.md) (on spatial sound)<br>[`0x007BDFA0`](jump-thunks.md)<br>[`0x007BE0B0`](../Sound-And-Music/sound-effects.md) (on sound effects)<br>[`0x007BEAF0`](../Sound-And-Music/sound-effects.md) (on sound effects)<br>[`0x007BED30`](jump-thunks.md)<br>[`0x007BEF30`](jump-thunks.md)<br>[`0x007C8890`](jump-thunks.md)<br>[`0x007CA650`](jump-thunks.md)<br>[`0x007CA9F0`](jump-thunks.md)<br>[`0x007EEA00`](../Sound-And-Music/sound-engine-config.md) (on sound engine config)<br>[`0x007EFA30`](jump-thunks.md)<br>[`0x007EFA70`](jump-thunks.md) |
+| [`0x001243B0`](jump-thunks.md) | is also called by | [`0x007EFB60`](jump-thunks.md)<br>[`0x007EFC40`](jump-thunks.md)<br>[`0x007EFCB0`](jump-thunks.md)<br>[`0x007EFD20`](jump-thunks.md)<br>[`0x007EFD90`](jump-thunks.md)<br>[`0x007EFE00`](jump-thunks.md)<br>[`0x007EFE70`](jump-thunks.md)<br>[`0x007EFFE0`](jump-thunks.md)<br>[`0x007F0060`](jump-thunks.md)<br>[`0x007F0120`](jump-thunks.md)<br>[`0x007F0190`](jump-thunks.md)<br>[`0x007F0210`](../Compiler-And-C-Runtime/maths-library.md) (on maths library) |
+| [`0x001243B0`](jump-thunks.md) | is also called by | [`0x007F0320`](../Sound-And-Music/spatial-sound.md) (on spatial sound)<br>[`0x007F0580`](jump-thunks.md)<br>[`0x007F0660`](jump-thunks.md)<br>[`0x007F0700`](jump-thunks.md)<br>[`0x007F0790`](jump-thunks.md)<br>[`0x007F0820`](../Sound-And-Music/spatial-sound.md) (on spatial sound)<br>[`0x007F1340`](../Sound-And-Music/spatial-sound.md) (on spatial sound)<br>[`0x007F1A50`](jump-thunks.md) |
 
 </details>

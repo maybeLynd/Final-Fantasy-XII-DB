@@ -9,7 +9,16 @@
 [`loot-list.tsv`](loot-list.tsv) holds one line for each of the 512 rows of the loot table that registry slot `0x02EBF098` reaches
 (`battle_pack.bin` directory entry `+0x84`). Row *n* is loot id `0x2000` + *n*, inventory class 7
 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)): the class-7 arm of `0x0031C5D0`
-subtracts `0x2000` from the id and multiplies by the row size (`0x0031CBA3`-`0x0031CBBE`).
+subtracts `0x2000` from the id and multiplies by the row size¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031CBA3`-`0x0031CBBE` |
+
+</details>
 
 - 235 rows are named loot: rows 0, 32-245, 256-269 and 274-279.
 - The other 277 rows are named Reserve, with icon frame 0.
@@ -67,10 +76,28 @@ The row layout, as the class-7 arm copies it:
   - of the scene-rewards gifts in a zone script that no field loads, every one is a teleport destination in `mic_b07` ([Key item list](key-item-list.md), "Where each key item comes from"); the developer scripts `evt_t*` are not scene-rewards rows ([Scene rewards](../Story-Events-And-Hunts/scene-rewards.md), "Scope") and are not joined.
 - `hunt reward:` the hunt whose report gives it, with the package and the map (region) and script that report it ([Hunts](../Story-Events-And-Hunts/hunts.md), [Reward selector list](../Rewards-EXP-Gil-And-Loot/reward-selector-list.md)):
   - the script verb `questresultwindow(n)` opens the reward window for quest n and grants at once the package its selector names ([Reward verbs](../Scripts-And-Script-Commands/reward-verbs.md));
-  - the selector is `0xA000` + the text index of entry n of `questbase.bin` (`0x00344C60`, `0x00473C90`), which is n for the 45 hunts, quest ids 128-172 ([Small .bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md));
+  - the selector is `0xA000` + the text index of entry n of `questbase.bin`¹, which is n for the 45 hunts, quest ids 128-172 ([Small .bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md));
   - a package that a selector names, that no hunt report opens and that no script gives would be listed as `reward package:` with its selector; no package is.
 
-A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold (`0x002FADF3`-`0x002FAE0D`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00344C60`, `0x00473C90` |
+
+</details>
+
+A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FADF3`-`0x002FAE0D` |
+
+</details>
 
 No script writes story progress 500. The values the scripts write go from 490 (After the captive Penelo) to 520 (After the floating continent), so a list that waits on 500 goes on sale at 520.
 
@@ -113,87 +140,94 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 48 calls with 13 other topics</summary>
 
-**Characters and objects**
+**Characters and objects** (explained on [party control modes](../Engine-Core/party-control-modes.md), [frame update order](../Engine-Core/frame-update-order.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [force fight mode](../Engine-Core/force-fight-mode.md), [native commands](../Scripts-And-Script-Commands/native-commands.md), [ko and game over](../Status-Effects-And-KO/ko-and-game-over.md), [battle units](../Characters-And-Objects/battle-units.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0023A3B0` | calls | `0x0023A570`, `0x0031B760` |
-| `0x0023A570` | calls | `0x00236A60`, `0x00322050` |
-| `0x0023A570` | is called by | `0x00300E40`, `0x003266C0` |
-| `0x00300E40` | calls | `0x0023A570`, `0x0025AB30`, `0x002697E0`, `0x00300FC0`, `0x00322050` |
-| `0x00300E40` | is called by | `0x00233EA0`, `0x00233F70`, `0x002348E0`, `0x003266C0` |
-| `0x003266C0` | calls | `0x0023A570`, `0x00263E30`, `0x00300E40` |
-| `0x003266C0` | is called by | `0x00233CF0` |
-
-**Characters and objects** (explained on [party control modes](../Engine-Core/party-control-modes.md), [frame update order](../Engine-Core/frame-update-order.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
-
-| Function | | Functions |
-|---|---|---|
-| `0x00510160` | calls | `0x00237650` |
-
-**Characters and objects** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [native commands](../Scripts-And-Script-Commands/native-commands.md), [ko and game over](../Status-Effects-And-KO/ko-and-game-over.md), [battle units](../Characters-And-Objects/battle-units.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md))
+| [`0x0023A3B0`](item-list.md) (on item list) | calls | [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction)<br>[`0x0031B760`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning) |
+| [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) | calls | [`0x00236A60`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: reset state for reuse (on battle unit construction)<br>[`0x00322050`](../Characters-And-Objects/battle-unit-construction.md) (on battle unit construction) |
+| [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) | is called by | [`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item)<br>[`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots) |
+| [`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) | calls | [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction)<br>[`0x0025AB30`](../Characters-And-Objects/actor-model-rebuild.md) (on actor model rebuild)<br>[`0x002697E0`](../Graphics/effect-file-loading.md) (on effect file loading)<br>[`0x00300FC0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x00322050`](../Characters-And-Objects/battle-unit-construction.md) (on battle unit construction) |
+| [`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) | is called by | [`0x00233EA0`](../Characters-And-Objects/battle-units.md) (on battle units)<br>[`0x00233F70`](../Enemy-Spawning/enemy-respawning.md) Battle unit: update lifecycle and combat frame (on enemy respawning)<br>[`0x002348E0`](../Enemy-AI-And-Gambits/enmity.md) (on enmity)<br>[`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots) |
+| [`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots) | calls | [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction)<br>[`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse)<br>[`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) |
+| [`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots) | is called by | [`0x00233CF0`](../Engine-Core/party-control-modes.md) (on party control modes) |
+| [`0x00510160`](item-list.md) (on item list) | calls | [`0x00237650`](../Characters-And-Objects/actor-model-rebuild.md) Actor work: has applied unit definition (on actor model rebuild) |
 
 **Battle actions** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00300E40` | calls | `0x003105D0` |
-| `0x003266C0` | calls | `0x003105D0` |
+| [`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) | calls | [`0x003105D0`](equipping-an-item.md) Battle unit: cancel and reset current action (on equipping an item) |
+| [`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots) | calls | [`0x003105D0`](equipping-an-item.md) Battle unit: cancel and reset current action (on equipping an item) |
 
 **Damage and battle formulas** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0023A570` | calls | `0x0023AC80` |
+| [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) | calls | [`0x0023AC80`](equipment.md) Battle stats: initialize definition record (on equipment) |
 
 **Movement and pathfinding** (explained on [party control modes](../Engine-Core/party-control-modes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003266C0` | calls | `0x00311E20` |
+| [`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots) | calls | [`0x00311E20`](../Engine-Core/party-control-modes.md) (on party control modes) |
 
 **Party** (explained on [debug menu](../Engine-Core/debug-menu.md), [party control modes](../Engine-Core/party-control-modes.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003266C0` | calls | `0x00263750`, `0x00326500`, `0x003272F0` |
-| `0x003266C0` | is called by | `0x003261D0`, `0x003273D0` |
+| [`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots) | calls | [`0x00263750`](../Graphics/model-asset-list.md) (on model asset list)<br>[`0x00326500`](../Party/party-leader.md) Party focus: select and request default actor (on party leader)<br>[`0x003272F0`](../Party/party-leader.md) (on party leader) |
+| [`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots) | is called by | [`0x003261D0`](../Party/party-members.md) Party configuration: reconcile roster from current selectors (on party members)<br>[`0x003273D0`](../Party/party-members.md) Party configuration: set selectors and reconcile roster (on party members) |
 
 **Graphics** (explained on [battle units](../Characters-And-Objects/battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00300E40` | calls | `0x003125E0` |
+| [`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) | calls | [`0x003125E0`](../Status-Effects-And-KO/ko-and-game-over.md) Battle unit: compute presentation suppression mask (on ko and game over) |
 
 **Scripts and script commands** (explained on [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [force fight mode](../Engine-Core/force-fight-mode.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0023A3B0` | is called by | `0x00510160` |
-| `0x00344C60` | calls | `0x00267E10` |
-| `0x00473C90` | is called by | `0x00344C60` |
-| `0x00510160` | calls | `0x00267E10`, `0x0037CF50` |
+| [`0x0023A3B0`](item-list.md) (on item list) | is called by | [`0x00510160`](item-list.md) (on item list) |
+| [`0x00344C60`](equipment-list.md) (on equipment list) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00473C90`](equipment-list.md) (on equipment list) | is called by | [`0x00344C60`](equipment-list.md) (on equipment list) |
+| [`0x00510160`](item-list.md) (on item list) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x0037CF50`](../Characters-And-Objects/actor-model-rebuild.md) (on actor model rebuild) |
 
-**Enemy spawning**
+**Enemy spawning** (explained on [battle units](../Characters-And-Objects/battle-units.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [enemy respawning](../Enemy-Spawning/enemy-respawning.md), [frame update order](../Engine-Core/frame-update-order.md), [boss fights](../Battle-Actions/boss-fights.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0023A3B0` | calls | `0x002355A0` |
-| `0x0023A570` | calls | `0x00236100` |
-| `0x0023A570` | is called by | `0x0023A3B0` |
-| `0x00300E40` | calls | `0x00237080` |
-| `0x00300E40` | is called by | `0x00234880`, `0x00234990`, `0x002350C0`, `0x00237690` |
-| `0x00510160` | calls | `0x0023A3B0` |
-
-**Enemy spawning** (explained on [battle units](../Characters-And-Objects/battle-units.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
-
-**Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md), [boss fights](../Battle-Actions/boss-fights.md))
+| [`0x0023A3B0`](item-list.md) (on item list) | calls | [`0x002355A0`](../Enemy-Spawning/enemy-spawning.md) Spawn: prepare random candidate for current entry (on enemy spawning) |
+| [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) | calls | [`0x00236100`](../Enemy-Spawning/spawn-record-fields.md) (on spawn record fields) |
+| [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) | is called by | [`0x0023A3B0`](item-list.md) (on item list) |
+| [`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) | calls | [`0x00237080`](../Enemy-Spawning/spawn-record-fields.md) Spawn entry: clear selection transient state for teardown (on spawn record fields) |
+| [`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) | is called by | [`0x00234880`](../Battle-Actions/boss-fights.md) Spawn group: teardown all grouped spawn units (on boss fights)<br>[`0x00234990`](../Enemy-Spawning/enemy-respawning.md) Spawn group: teardown units by group mask (on enemy respawning)<br>[`0x002350C0`](../Enemy-Spawning/enemy-spawning.md) Spawn lifecycle: check and retire by native range (on enemy spawning)<br>[`0x00237690`](../Battle-Actions/boss-fights.md) Spawn group: teardown all ungrouped spawn units (on boss fights) |
+| [`0x00510160`](item-list.md) (on item list) | calls | [`0x0023A3B0`](item-list.md) (on item list) |
 
 **World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md), [force fight mode](../Engine-Core/force-fight-mode.md), [party control modes](../Engine-Core/party-control-modes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0023A570` | calls | `0x00313F60` |
-| `0x003266C0` | calls | `0x00313F60`, `0x00377C20`, `0x00377C70` |
+| [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) | calls | [`0x00313F60`](equipping-an-item.md) (on equipping an item) |
+| [`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots) | calls | [`0x00313F60`](equipping-an-item.md) (on equipping an item)<br>[`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x00377C70`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
 
 </details>

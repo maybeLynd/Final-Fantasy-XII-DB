@@ -16,32 +16,46 @@ The file is `ps2data/sound/sead.win.config`, 1,264 bytes, the only `.config` fil
 
 ### Loading
 
-`0x00210760` builds the path from `PS2Data/sound/sead` (`0x009068E0`) and `.win.config` (`0x00906A38`) at `0x002107A0`. It runs
+`0x00210760` builds the path from `PS2Data/sound/sead`¹ and `.win.config`² at `0x002107A0`. It runs
 once at start-up, reached from `0x0017CEB0` through `0x0017D6B0` and `0x001DBA40`.
 
-1. It opens the file (`0x002107C0`); when that fails it returns without starting the sound engine, with the value 1
-   (`0x002107CD`).
-2. It takes the size from the file layer (`0x002107E8`), not from the header, allocates that plus one byte
-   (`0x002107F2`), ends the buffer with a 0 byte (`0x00210803`), reads the file (`0x00210807`) and closes it
-   (`0x0021080F`).
-3. It fills an initialisation block with the buffer at `+0x38` and calls the engine start `0x007A4D50` (`0x00210889`),
-   whose result it does not test.
-4. It builds the object manager with `0x002216B0(0x400, 0x400)` (`0x00210895`; [Audio manager](audio-manager.md)),
-   starts the spatial layer `0x007A5B50` from a second block (`0x002108AD`-`0x002108DE`;
-   [Spatial sound](spatial-sound.md)) and sets the `Lay` handle at its argument's `+0x34` to 0 (`0x007A5B20`,
-   `0x002108E9`).
-5. It frees its buffer (`0x002108F1`) and returns 0 (`0x002108FE`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x009068E0` |
+| ² | `0x00906A38` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It opens the file; when that fails it returns without starting the sound engine, with the value 1. | `0x002107C0`<br>`0x002107CD` |
+| 2 | It takes the size from the file layer, not from the header, allocates that plus one byte, ends the buffer with a 0 byte, reads the file and closes it. | `0x002107E8`<br>`0x002107F2`<br>`0x00210803`<br>`0x00210807`<br>`0x0021080F` |
+| 3 | It fills an initialisation block with the buffer at `+0x38` and calls the engine start `0x007A4D50`, whose result it does not test. | `0x00210889` |
+| 4 | It builds the object manager with `0x002216B0(0x400, 0x400)` (`0x00210895`; [Audio manager](audio-manager.md)), starts the spatial layer `0x007A5B50` from a second block (`0x002108AD`-`0x002108DE`; [Spatial sound](spatial-sound.md)) and sets the `Lay` handle at its argument's `+0x34` to 0. | `0x007A5B20`, `0x002108E9` |
+| 5 | It frees its buffer and returns 0. | `0x002108F1`<br>`0x002108FE` |
 
 ### The engine's copy
 
-`0x007A4D50` calls `0x007B0F90` (`0x007A4E79`):
+`0x007A4D50` calls `0x007B0F90`¹:
 
-1. `0x007AE410` checks the magic `scnf` (`0x007B0FA8`); a mismatch makes the engine start return -1.
-2. It allocates the header's `+0x0C` bytes and copies that many bytes of the file to the block it keeps at `0x02EAD3E0`
-   (`0x007B0FE8`-`0x007B1005`).
-3. It sums the positive category sizes into `0x02EAD3E8` (`0x007B103C`-`0x007B108A`) and builds the external-parameter
-   rows (`0x007B10B4`-`0x007B1145`); without an `expr` chunk it builds no rows (`0x007B10C0`).
-4. It returns 0 (`0x007B11E5`), and -1 only for the magic mismatch (`0x007B0FB8`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A4E79` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x007AE410` checks the magic `scnf`; a mismatch makes the engine start return -1. | `0x007B0FA8` |
+| 2 | It allocates the header's `+0x0C` bytes and copies that many bytes of the file to the block it keeps at `0x02EAD3E0`. | `0x007B0FE8`-`0x007B1005` |
+| 3 | It sums the positive category sizes into `0x02EAD3E8` and builds the external-parameter rows; without an `expr` chunk it builds no rows. | `0x007B103C`-`0x007B108A`<br>`0x007B10B4`-`0x007B1145`<br>`0x007B10C0` |
+| 4 | It returns 0, and -1 only for the magic mismatch. | `0x007B11E5`<br>`0x007B0FB8` |
 
 All 16 later reads of `0x02EAD3E0`, in 15 functions, pass it to a chunk finder, so every chunk is read from the copy.
 
@@ -67,10 +81,29 @@ than copying them:
 
 Each table, ramp array and node array is a block of the engine's allocators: the tables from `0x007AD550`, which puts
 a 16-byte header before the block, and the arrays from `0x007AD460`, with an 8-byte element count before the first
-element (`0x007AA1A5`, `0x007AA0AB`).
+element¹.
 
-`mcr `, `epsp`, `eps ` and `curv` build nothing. `mcr ` is read where it lies each time a macro runs (`0x007B31A0`),
-`epsp` and `eps ` each time a preset is applied (`0x007ACD30`, `0x007AD240`), and `curv` by the curve binders.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AA1A5`, `0x007AA0AB` |
+
+</details>
+
+`mcr `, `epsp`, `eps ` and `curv` build nothing. `mcr ` is read where it lies each time a macro runs¹,
+`epsp` and `eps ` each time a preset is applied², and `curv` by the curve binders.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B31A0` |
+| ² | `0x007ACD30`, `0x007AD240` |
+
+</details>
 
 The game reads `sead.win.config` once at start-up and the sound engine keeps a whole copy of it. From the copy it
 builds one object per sound category, with room for as many sounds as the category's size allows, and the buses with
@@ -98,7 +131,16 @@ All multi-byte fields are little-endian.
 | `+0x0C` | `u32` | e0C | 0 |
 
 Each finder walks `chunkCount` entries from `dirOffset` and compares the tag with its entry in the tag table at
-`0x01CB4928` (`0x007ADB5A`); a tag not there gives a null chunk.
+`0x01CB4928`¹; a tag not there gives a null chunk.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007ADB5A` |
+
+</details>
 
 | File field | Becomes |
 |---|---|
@@ -138,10 +180,24 @@ The class names are the run-time type names of each chunk's wrapper.
 | `+0x06` | `u16` | c06 | the name length |
 | `+0x10` | `char` | name | the category name, inline, `+0x06` characters long |
 
-`0x007AAA40` refuses a chunk with no elements (`0x007AAA66`). A size of 0 builds no category: its slot in the table is
-null (`0x007AAB11`, `0x007AAB6C`-`0x007AAB73`). A positive size allocates that many slots (`0x007AA2E3`), and a negative one
-binds it to another category (`0x007AABD1`, `0x007AA342`). The name goes to the category object's `+0x70` (`0x007AA137`-`0x007AA156`). `ctgl` gives only
-its element count: each category gets that many plus one volume ramps (`0x007AAAB2`, `0x007AA15A`).
+`0x007AAA40` refuses a chunk with no elements¹. A size of 0 builds no category: its slot in the table is
+null². A positive size allocates that many slots³, and a negative one
+binds it to another category⁴. The name goes to the category object's `+0x70`⁵. `ctgl` gives only
+its element count: each category gets that many plus one volume ramps⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AAA66` |
+| ² | `0x007AAB11`, `0x007AAB6C`-`0x007AAB73` |
+| ³ | `0x007AA2E3` |
+| ⁴ | `0x007AABD1`, `0x007AA342` |
+| ⁵ | `0x007AA137`-`0x007AA156` |
+| ⁶ | `0x007AAAB2`, `0x007AA15A` |
+
+</details>
 
 `0x007ADAB0(chunk, out, i)` gives category element `i`. With `C` the chunk and `B = C + u16[C + 0x02]`:
 
@@ -170,10 +226,21 @@ builds one `0x88`-byte `Driver::Category` per element (`0x007A96F0`; `0x007A9760
 
 #### The category object
 
-`0x007AAA40` allocates `0x88` bytes (`0x007AAB18`-`0x007AAB23`), clears them (`0x007AAB3B`), runs the constructor `0x007A96F0`
-and stores the pointer in the table (`0x007AAB61`); `0x007AA110(category, index, element, ctgl count)` then fills it from
-the element. When the allocation `0x007AD460` gives null, the slot gets 0 and `0x007AA110` is still called with it
-(`0x007AAB4D`, `0x007AAB65`).
+`0x007AAA40` allocates `0x88` bytes¹, clears them², runs the constructor `0x007A96F0`
+and stores the pointer in the table³; `0x007AA110(category, index, element, ctgl count)` then fills it from
+the element. When the allocation `0x007AD460` gives null, the slot gets 0 and `0x007AA110` is still called with it⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AAB18`-`0x007AAB23` |
+| ² | `0x007AAB3B` |
+| ³ | `0x007AAB61` |
+| ⁴ | `0x007AAB4D`, `0x007AAB65` |
+
+</details>
 
 | Offset | Type | Name | Meaning | Set by |
 |---|---|---|---|---|
@@ -203,16 +270,51 @@ the element. When the allocation `0x007AD460` gives null, the slot gets 0 and `0
 | `+0x80` | `u8[4]` | commandBytes | two byte pairs that the driver's commands `0x07` and `0x08` store: `0x007AA4E0` stores `+0x80` and `+0x81`, `0x007AA4D0` stores `+0x82` and `+0x83`, both called from `0x007AB5C0` (`0x007AB78C`, `0x007AB7B3`); no read in the category code | `0x007A973A` (0); `0x007AA4E0`; `0x007AA4D0` |
 | `+0x84` | `u8[4]` | | zeroed by the clear; no access in the category code | `0x007AAB3B` (0) |
 
-The constructor zeroes `+0x10`-`+0x47`, `+0x50`-`+0x51`, `+0x58`-`+0x6B` and `+0x70`-`+0x83` (`0x007A9705`-`0x007A973A`).
+The constructor zeroes `+0x10`-`+0x47`, `+0x50`-`+0x51`, `+0x58`-`+0x6B` and `+0x70`-`+0x83`¹.
 
-A category's bytes `+0x52`-`+0x57` and `+0x6C`-`+0x6F` are written only by the `0x88`-byte clear in `0x007AAA40`
-(`0x007AAB3B`) before `0x007A96F0` runs, and read by no instruction; nothing fixes their width.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A9705`-`0x007A973A` |
+
+</details>
+
+A category's bytes `+0x52`-`+0x57` and `+0x6C`-`+0x6F` are written only by the `0x88`-byte clear in `0x007AAA40`¹ before `0x007A96F0` runs, and read by no instruction; nothing fixes their width.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AAB3B` |
+
+</details>
 
 A handle-list node holds its vtable `0x01CB4530` at `+0x00`, the previous node at `+0x08`, the next at `+0x10`, its slot
 number at `+0x18` (-1 when built, `0x007AA0CC`; renumbered by `0x007B6AC4`), a word whose bit `0x1` marks it in use at `+0x1C`
-and the sound's handle at `+0x20` (`0x007BBA76`, `0x007BBA7B`). `0x007B6AA0` links the array into the free chain.
+and the sound's handle at `+0x20`¹. `0x007B6AA0` links the array into the free chain.
 
-Each ramp is an `AudioParameterRamp` of `0x30` bytes; `0x007AA110` builds the two arrays (`0x007AA16B`-`0x007AA2DD`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007BBA76`, `0x007BBA7B` |
+
+</details>
+
+Each ramp is an `AudioParameterRamp` of `0x30` bytes; `0x007AA110` builds the two arrays¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AA16B`-`0x007AA2DD` |
+
+</details>
 
 | Offset | Type | Name | As built |
 |---|---|---|---|
@@ -230,35 +332,67 @@ Each ramp is an `AudioParameterRamp` of `0x30` bytes; `0x007AA110` builds the tw
 | `+0x2C` | `f32` | fallRate | not written by the builder; read under the same `+0x24` test |
 
 The volume ramps number `+0x78`, the pitch ramps 2. Each array comes from `0x007AD460`, or from `0x00210EC0` with 8
-bytes for a count of 0 (`0x007AA173`, `0x007AA23D`). A null block leaves the array pointer 0 (`0x007AA1E1`, `0x007AA2A1`),
-and the fill loops that follow still run (`0x007AA1EB`, `0x007AA2AA`). `0x007AA110` then gives a category whose `size` is
-above 0 its handle list, `0x007AA010` with the category's `+0x08` and the size (`0x007AA2E3`-`0x007AA2F3`), and returns
-0 (`0x007AA2FD`).
+bytes for a count of 0¹. A null block leaves the array pointer 0²,
+and the fill loops that follow still run³. `0x007AA110` then gives a category whose `size` is
+above 0 its handle list, `0x007AA010` with the category's `+0x08` and the size⁴, and returns
+0⁵.
 
-The binding is `0x007AA320(category, element)`, called by `0x007AAA40` (`0x007AABED`) after every category is built. That
-second walk over the elements calls it only for an element whose size, negated as a 16-bit number, is above 0
-(`0x007AABD1`-`0x007AABDB`). For an element whose `i16` size (`+4` of the element data the argument's `+8` points to)
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AA173`, `0x007AA23D` |
+| ² | `0x007AA1E1`, `0x007AA2A1` |
+| ³ | `0x007AA1EB`, `0x007AA2AA` |
+| ⁴ | `0x007AA2E3`-`0x007AA2F3` |
+| ⁵ | `0x007AA2FD` |
+
+</details>
+
+The binding is `0x007AA320(category, element)`, called by `0x007AAA40`¹ after every category is built. That
+second walk over the elements calls it only for an element whose size, negated as a 16-bit number, is above 0². For an element whose `i16` size (`+4` of the element data the argument's `+8` points to)
 is negative it looks up category `-size` (`0x007AAA20`: an index below the count `0x02EAD000`, else 0) and keeps it at
 the category's `+0x58`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AABED` |
+| ² | `0x007AABD1`-`0x007AABDB` |
+
+</details>
+
 When the capacity `+0x10` of that category is 0, as it is for a category whose own size is below 0, it prints
 "[sead][!!error!!]Category::InitializeRefCategory referenced category is not initialized( or reference is looping )!"
-and returns -1. That ends `0x007AAA40` at once with -1 (`0x007AABF4`), before the master ramps are set, and the start
-takes it as a failure (`0x007A50F0`). Otherwise, and for a size of 0 or more, it returns 0. When both walks finish,
-`0x007AAA40` sets the master ramps and returns 0 (`0x007AAC09`-`0x007AAC43`, `0x007AAC10`).
+and returns -1. That ends `0x007AAA40` at once with -1¹, before the master ramps are set, and the start
+takes it as a failure². Otherwise, and for a size of 0 or more, it returns 0. When both walks finish,
+`0x007AAA40` sets the master ramps and returns 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AABF4` |
+| ² | `0x007A50F0` |
+| ³ | `0x007AAC09`-`0x007AAC43`, `0x007AAC10` |
+
+</details>
 
 ### How a category limits its sounds
 
 `0x007A9A10(category, handle)` adds a starting sound, music or instrument to its category, or to the one a negative size
 shares (`+0x58`):
 
-1. While the list is full, it walks it from its oldest entry and finds the one with the lowest priority, slot 25 of the
-   object, which for a sound is byte `+0x07` of its sound record (`0x007BD980`).
-2. When the new object's priority is lower than that one's, it refuses the new one (returns 1).
-3. Otherwise it stops the lowest one at once (slot 2, no fade) and takes it out of the list; an entry with no object
-   prints "list remove invalid iterator".
-4. It gives the new object the category's volume (`0x007A9F40`, slot 5) and pitch (`0x007A9D30`, slot 6), pauses it when
-   the category's pause count `+0x64` is above 0, and appends its handle at the newest end (`0x007BB9A0`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | While the list is full, it walks it from its oldest entry and finds the one with the lowest priority, slot 25 of the object, which for a sound is byte `+0x07` of its sound record. | `0x007BD980` |
+| 2 | When the new object's priority is lower than that one's, it refuses the new one (returns 1). |   |
+| 3 | Otherwise it stops the lowest one at once (slot 2, no fade) and takes it out of the list; an entry with no object prints "list remove invalid iterator". |   |
+| 4 | It gives the new object the category's volume (`0x007A9F40`, slot 5) and pitch (`0x007A9D30`, slot 6), pauses it when the category's pause count `+0x64` is above 0, and appends its handle at the newest end. | `0x007BB9A0` |
 
 `0x007A9F40` multiplies the category's volume ramps `+0x38` and its master volume `+0x48`; `0x007A9D30` multiplies its
 pitch ramps `+0x40` and its master pitch `+0x4C`. Each driver pass `0x007AAEA0` advances the master volume ramp
@@ -282,10 +416,23 @@ a macro, the first volume ramp.
 | `+0x10` | `f32[4]` | sendLevels | one per send target |
 | `+0x20` | `char` | name | the bus name, inline, `+0x0B` characters long |
 
-`0x007AC4F0` builds the buses: `+0x01` picks the slot (`0x007AC770`), the root bus takes `+0x0C` as its level
-(`0x007ACAAE`, `0x007ACAE0`), and other buses read their sends (`0x007AC7AD`-`0x007AC822`) and effects (`0x007AC83A`). The
-effect table is at `nameAt + ((nameLength + 0x10) & 0xF0)` (`0x007ADA3F`), and an effect's type byte `+0x01` picks its
-class through the jump table at `0x007ACCF0` (`0x007AC883`).
+`0x007AC4F0` builds the buses: `+0x01` picks the slot¹, the root bus takes `+0x0C` as its level², and other buses read their sends³ and effects⁴. The
+effect table is at `nameAt + ((nameLength + 0x10) & 0xF0)`⁵, and an effect's type byte `+0x01` picks its
+class through the jump table at `0x007ACCF0`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AC770` |
+| ² | `0x007ACAAE`, `0x007ACAE0` |
+| ³ | `0x007AC7AD`-`0x007AC822` |
+| ⁴ | `0x007AC83A` |
+| ⁵ | `0x007ADA3F` |
+| ⁶ | `0x007AC883` |
+
+</details>
 
 `0x007AD950(chunk, out, i)` gives bus element `i` by the same rule, with `B = C + u16[C + 0x02]`:
 
@@ -313,23 +460,43 @@ The shipped `bus ` has version 2, `B = C + 0x10` and one offset, `0x20`.
 | `name` | read in place through bus `+0x30` |
 | effect record `+0x01` type | the class built, through the jump table `0x007ACCF0` (`0x007AC883`-`0x007AC89B`); the bus build reads no other byte of the record |
 
-The root bus reads no sends (`0x007AC7A4`). A send takes the voice the target bus has at that moment (`0x007AC7CC`,
-`0x007AC81A`), and a bus's voice is 0 until its own element has been built (`0x007AC636`). The voice of a bus with sends
+The root bus reads no sends¹. A send takes the voice the target bus has at that moment², and a bus's voice is 0 until its own element has been built³. The voice of a bus with sends
 is made by `0x007AEC10`:
 
-1. It receives the send list the builder gathered on its stack (`0x007ACB16`), the send count (`0x007ACB13`), the list
-   of the built effects' interfaces (`0x007ACB0F`, filled at `0x007ACA60`-`0x007ACA64`) and their count (`0x007ACB0B`).
-2. It takes a voice from the pool `0x02EAD250` (`0x007AEC43`-`0x007AEC5C`; 0 when the pool is empty, `0x007AEC61`).
-3. `0x007E0130` fills the voice: the interface list goes to `+0x90`, eight bytes each (`0x007E0153`-`0x007E0173`), and the
-   send list to `+0x38`, sixteen bytes per send (`0x007E0184`-`0x007E01A2`; the store at `0x007E0198` runs after the
-   source pointer has moved on `0x10`), with no test of any entry.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AC7A4` |
+| ² | `0x007AC7CC`, `0x007AC81A` |
+| ³ | `0x007AC636` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It receives the send list the builder gathered on its stack, the send count, the list of the built effects' interfaces (`0x007ACB0F`, filled at `0x007ACA60`-`0x007ACA64`) and their count. | `0x007ACB16`<br>`0x007ACB13`<br>`0x007ACB0B` |
+| 2 | It takes a voice from the pool `0x02EAD250` (`0x007AEC43`-`0x007AEC5C`; 0 when the pool is empty, `0x007AEC61`). |   |
+| 3 | `0x007E0130` fills the voice: the interface list goes to `+0x90`, eight bytes each, and the send list to `+0x38`, sixteen bytes per send (`0x007E0184`-`0x007E01A2`; the store at `0x007E0198` runs after the source pointer has moved on `0x10`), with no test of any entry. | `0x007E0153`-`0x007E0173` |
 
 A send to a bus whose element comes later is therefore copied in as a null voice.
 
 #### The bus object
 
-`0x007AC4F0` allocates `0x128` bytes for every slot of the bus table before it reads any element (`0x007AC5C0`-`0x007AC5CC`),
-clears them (`0x007AC5E4`) and stores the pointers (`0x007AC62A`):
+`0x007AC4F0` allocates `0x128` bytes for every slot of the bus table before it reads any element¹,
+clears them² and stores the pointers³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AC5C0`-`0x007AC5CC` |
+| ² | `0x007AC5E4` |
+| ³ | `0x007AC62A` |
+
+</details>
 
 | Offset | Type | Name | Meaning | Set by |
 |---|---|---|---|---|
@@ -339,10 +506,21 @@ clears them (`0x007AC5E4`) and stores the pointers (`0x007AC62A`):
 | `+0x30` | `void*` | name | the bus name in the copy | `0x007AC79B` |
 | `+0x38` | `AudioParameterRamp[5]` | levels | ramp k is the level of output k: the root bus's own level, or `send0` (when present) and then each send target in order; each ramp has vtable `0x01CB44A0` and is cleared (`0x007AC600`-`0x007AC61C`), and a level ramp gets start 0, target the level, duration 0, curve 0, not active, not limited | `0x007ACAEC`-`0x007ACAFE`; `0x007ACB50`-`0x007ACC1F` |
 
-An effect takes only its type from the file. `0x007AC4F0` sets its byte `+0x10` to 1 (`0x007ACA70`) and hands its interface
+An effect takes only its type from the file. `0x007AC4F0` sets its byte `+0x10` to 1¹ and hands its interface
 `+0x08` to the bus voice; its settings come from `eps ` when a preset is applied: `0x007AD240` finds the effect's block in
-the copy (`0x007ADDC0`) and hands its address to the effect's slot `+0x30` (`0x007AD2E9`). Effect classes:
+the copy² and hands its address to the effect's slot `+0x30`³. Effect classes:
 [Audio effects](audio-effects.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007ACA70` |
+| ² | `0x007ADDC0` |
+| ³ | `0x007AD2E9` |
+
+</details>
 
 The mixer, `Driver::Audio`, `0x20` bytes at `0x02EAD0A8`, built by `0x007AC360`:
 
@@ -356,11 +534,32 @@ The mixer, `Driver::Audio`, `0x20` bytes at `0x02EAD0A8`, built by `0x007AC360`:
 
 `0x007AC410(mixer, bus)` gives a bus's voice; a bus number below 0 or past the count prints "bus access overrun! use
 master bus" and gives bus 0's. `0x007AC4D0(mixer, port)` gives a master port: 1 is bus 0's voice and 2 the voice at
-mixer `+0x18`. The mixer object, `Driver::Audio`, is built once at `0x02EAD0A8` (`0x007AC360`).
+mixer `+0x18`. The mixer object, `Driver::Audio`, is built once at `0x02EAD0A8`¹.
 
-`0x007AC360` returns 0 at once when `0x02EAD0A8` is already set (`0x007AC364`). Otherwise it takes `0x20` bytes from
-`0x007AD460` (`0x007AC378`), writes the fields above, stores the object and returns 0 (`0x007AC3A6`, `0x007AC3AD`); when
-the allocation gives null it stores 0 at `0x02EAD0A8` and returns -1 (`0x007AC3B4`-`0x007AC3BB`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AC360` |
+
+</details>
+
+`0x007AC360` returns 0 at once when `0x02EAD0A8` is already set¹. Otherwise it takes `0x20` bytes from
+`0x007AD460`², writes the fields above, stores the object and returns 0³; when
+the allocation gives null it stores 0 at `0x02EAD0A8` and returns -1⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AC364` |
+| ² | `0x007AC378` |
+| ³ | `0x007AC3A6`, `0x007AC3AD` |
+| ⁴ | `0x007AC3B4`-`0x007AC3BB` |
+
+</details>
 
 | Type | Effect class | Builder | Size |
 |---:|---|---|---:|
@@ -375,17 +574,34 @@ the allocation gives null it stores 0 at `0x02EAD0A8` and returns -1 (`0x007AC3B
 | 8 | `HilbertFilter` | `0x007DAAB0` | `0x178` |
 | 10 | `BuildReverb` | `0x007DAFF0` | `0x610` |
 
-Each builder installs its class's vtable and zeroes its ramps; `0x007AC4F0` allocates the size and calls it for its type
-(`0x007AC89D`-`0x007ACA48`). Type 9 and types above 10 build nothing and take no effect slot (`0x007AC88A`, the table's
+Each builder installs its class's vtable and zeroes its ramps; `0x007AC4F0` allocates the size and calls it for its type¹. Type 9 and types above 10 build nothing and take no effect slot (`0x007AC88A`, the table's
 entry 9 `0x007ACA78`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AC89D`-`0x007ACA48` |
+
+</details>
 
 ### Macros
 
-`0x007B31A0` runs macro number N, from the sound's own record (`0x007B3201`-`0x007B3226`), when N is below the chunk's count
-(`0x007B3269`). N is byte `+0x0A`, `+0x0B` or `+0x4F` of the record for the call's second argument 0, 1 or 3, `+0x4F`
-only from record version `0x0E`. A macro record's `u16` at `+0x02` is the offset of its instruction stream
-(`0x007B32D0`). Each instruction has a header length at `+0x01`, an opcode at `+0x02` and a payload length at `+0x03`
-(`0x007B42CF`, `0x007B33B6`, `0x007B42E4`).
+`0x007B31A0` runs macro number N, from the sound's own record¹, when N is below the chunk's count². N is byte `+0x0A`, `+0x0B` or `+0x4F` of the record for the call's second argument 0, 1 or 3, `+0x4F`
+only from record version `0x0E`. A macro record's `u16` at `+0x02` is the offset of its instruction stream³. Each instruction has a header length at `+0x01`, an opcode at `+0x02` and a payload length at `+0x03`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B3201`-`0x007B3226` |
+| ² | `0x007B3269` |
+| ³ | `0x007B32D0` |
+| ⁴ | `0x007B42CF`, `0x007B33B6`, `0x007B42E4` |
+
+</details>
 
 The macro runs as this loop, from the stream's first instruction:
 
@@ -399,35 +615,83 @@ while running  # 0x007B42EF-0x007B42FD
 return result  # 0x007B42CB, 0x007B430C
 ```
 
-- Opcode `0x01` alone clears `running` (`0x007B33DF`), and its own lengths are still added before the loop ends. The
+- Opcode `0x01` alone clears `running`¹, and its own lengths are still added before the loop ends. The
   loop has no other exit and never compares `offset` with the stream's end, so a stream without `0x01` runs on into
   the bytes after it.
 - `0xA1`, and `0xA0` when it refuses the new sound, set `result` to 4 and go on to the next instruction
-  (`0x007B3F4B`-`0x007B3F54`, `0x007B3E3B`-`0x007B3E44`, `0x007B3EDB`-`0x007B3EE4`); nothing sets it back, so a macro that
+ ²; nothing sets it back, so a macro that
   refuses once returns 4.
 - An instruction whose two lengths add up to 0 runs again at the same offset on every pass: unless it is `0x01`, the
   macro never ends, as nothing counts the passes.
 - Before the loop, the macro returns 0 for a sound waiting for its bank (slot 38, `0x007B31C9`-`0x007B31D5`) and for
-  N = 0 (`0x007B322C`), and -1 for N at or above the count (`0x007B326F`).
+  N = 0³, and -1 for N at or above the count⁴.
 
-The jump table `0x007B4374`, indexed through the bytes at `0x007B43D0` by opcode - 1 (`0x007B33B6`-`0x007B33DD`),
-gives 22 opcodes a handler; every other opcode, 0 and those above `0xAB` included, is skipped (`0x007B42CB`). An action
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B33DF` |
+| ² | `0x007B3F4B`-`0x007B3F54`, `0x007B3E3B`-`0x007B3E44`, `0x007B3EDB`-`0x007B3EE4` |
+| ³ | `0x007B322C` |
+| ⁴ | `0x007B326F` |
+
+</details>
+
+The jump table `0x007B4374`, indexed through the bytes at `0x007B43D0` by opcode - 1¹,
+gives 22 opcodes a handler; every other opcode, 0 and those above `0xAB` included, is skipped². An action
 reads a test code `+0x04`, a count `+0x05`, a selector `+0x06` and two `f32` values `+0x08` and `+0x0C`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B33B6`-`0x007B33DD` |
+| ² | `0x007B42CB` |
+
+</details>
+
 A filter reads a test code `+0x04`, a mode `+0x05` and a value `+0x08`, a `u32` for `0x11`-`0x15` and an `f32` for
-`0x16`-`0x18`. It walks the selection from its first sound (`0x02EAD590`): a sound that fails the test is taken out of
-the selection (`0x007B2880`) and one that passes stays, so an empty selection stays empty.
+`0x16`-`0x18`. It walks the selection from its first sound¹: a sound that fails the test is taken out of
+the selection² and one that passes stays, so an empty selection stays empty.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02EAD590` |
+| ² | `0x007B2880` |
+
+</details>
 
 In `0x11`-`0x17`, mode 0 tests each selected sound's own value and mode 1 this sound's value minus the selected
-sound's; any other mode leaves the selection as it is (`0x007B34E2`, `0x007B35FF`, `0x007B3732`, `0x007B383C`, `0x007B398D`,
-`0x007B3AB3`, `0x007B3B97`).
+sound's; any other mode leaves the selection as it is¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B34E2`, `0x007B35FF`, `0x007B3732`, `0x007B383C`, `0x007B398D`, `0x007B3AB3`, `0x007B3B97` |
+
+</details>
 
 `0x11`, `0x13`, `0x14` and `0x15` test with `0x007B2BD0`, which compares signed 32-bit numbers (`cmp edx, r8d` with
-`setg`/`setl`, `0x007B2BEC`-`0x007B2C12`); their mode-1 differences subtract zero-extended byte or `u16` fields at 32 bits
-(`0x007B3517`, `0x007B3767`, `0x007B38C0`, `0x007B39EE`), so they are exact. `0x16` and `0x17` test with `0x007B2C40`, which
-compares `f32` values (`ucomiss`/`comiss`, `0x007B2C5B`-`0x007B2C8B`); their mode-1 differences are `f32` subtractions
-(`0x007B3AE0`, `0x007B3BD9`). With either comparator, a code above 5 fails every sound and empties the selection
-(`0x007B2C16`, `0x007B2C92`):
+`setg`/`setl`, `0x007B2BEC`-`0x007B2C12`); their mode-1 differences subtract zero-extended byte or `u16` fields at 32 bits¹, so they are exact. `0x16` and `0x17` test with `0x007B2C40`, which
+compares `f32` values (`ucomiss`/`comiss`, `0x007B2C5B`-`0x007B2C8B`); their mode-1 differences are `f32` subtractions². With either comparator, a code above 5 fails every sound and empties the selection³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B3517`, `0x007B3767`, `0x007B38C0`, `0x007B39EE` |
+| ² | `0x007B3AE0`, `0x007B3BD9` |
+| ³ | `0x007B2C16`, `0x007B2C92` |
+
+</details>
 
 | Opcode | Handler | Does |
 |---|---|---|
@@ -454,9 +718,20 @@ compares `f32` values (`ucomiss`/`comiss`, `0x007B2C5B`-`0x007B2C8B`); their mod
 | `0xAA` | `0x007B41C7` | with `+0x06` = 0, pauses every selected sound with fade `+0x08` (command `0x0C`, `0x007A8590`); any other `+0x06` does nothing (`0x007B41E3`) |
 | `0xAB` | `0x007B424D` | with `+0x06` = 0, resumes every selected sound with fade `+0x08` (command `0x0D`, `0x007A7A20`); any other `+0x06` does nothing (`0x007B4265`) |
 
-Every action from `0xA0` to `0xAB` first compares the number of selected sounds (`0x02EAD57C`) with `+0x05` by the code
-`+0x04` (`0x007B2BD0`) and does nothing when the test fails. `0xA5` and `0xA6` then take `n`, the count past that
-threshold (`0x007B404E`-`0x007B406C`, `0x007B40BD`-`0x007B40DB`):
+Every action from `0xA0` to `0xAB` first compares the number of selected sounds¹ with `+0x05` by the code
+`+0x04`² and does nothing when the test fails. `0xA5` and `0xA6` then take `n`, the count past that
+threshold³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02EAD57C` |
+| ² | `0x007B2BD0` |
+| ³ | `0x007B404E`-`0x007B406C`, `0x007B40BD`-`0x007B40DB` |
+
+</details>
 
 ```python
 code 0 (==):          n = 1
@@ -467,19 +742,41 @@ codes 1, 4 and 5:     n = count
 
 The targets are these:
 
-- A category's volume is the product of its volume ramps (`0x007A9F40`) and its pitch the product of its two pitch
+- A category's volume is the product of its volume ramps¹ and its pitch the product of its two pitch
   ramps (`0x007A9D30`, count 2 from `0x007AA15E`); command `0x04` drives the first pitch ramp and command `0x03` the
   volume ramps after the first.
 - A sound's volume is its record's `+0x0C` times its four ramps `+0x88`, `+0xC8`, `+0x108` and `+0x148`
-  (`0x007BDBFC`-`0x007BDCD2`). `0xA3` and `0xA4` are the only calls of `0x007BE4D0`, the setter of the fourth, which
-  also clears the ramp's curve pointer `+0x180` and passes curve 0, so the ramp is linear (`0x007BE4D4`-`0x007BE4EB`).
-- The trigger `0x007BD240` hands the start delay `+0x51C` to each sequence it arms (`0x007BD317`, `0x007E7300`).
-- The `default` value `+0x514` is what a switched sound reads for the name `default` (`0x007BDA63`).
+ ². `0xA3` and `0xA4` are the only calls of `0x007BE4D0`, the setter of the fourth, which
+  also clears the ramp's curve pointer `+0x180` and passes curve 0, so the ramp is linear³.
+- The trigger `0x007BD240` hands the start delay `+0x51C` to each sequence it arms⁴.
+- The `default` value `+0x514` is what a switched sound reads for the name `default`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A9F40` |
+| ² | `0x007BDBFC`-`0x007BDCD2` |
+| ³ | `0x007BE4D4`-`0x007BE4EB` |
+| ⁴ | `0x007BD317`, `0x007E7300` |
+| ⁵ | `0x007BDA63` |
+
+</details>
 
 `0x007AE1A0(chunk, out, i)` gives macro element `i` through the offset table whatever the version byte:
-`element i = C + u32[C + u16[C + 0x02] + 4 * i]` (`0x007AE1A7`-`0x007AE1BA`). The shipped `mcr ` has version 0 and the
+`element i = C + u32[C + u16[C + 0x02] + 4 * i]`¹. The shipped `mcr ` has version 0 and the
 offsets `0x20`, `0x40` and `0x70`; the only filter its three streams use is `0x12`, in the second and third macros,
 with code 0, mode 1 and value 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AE1A7`-`0x007AE1BA` |
+
+</details>
 
 The filters compare a sound's whole number, signed, with `0x007B2BD0` and its float with `0x007B2C40`, as
 `sound's value <code> value` by a code 0 to 5 for `==`, `!=`, `>`, `>=`, `<` and `<=`. With mode byte `+5` set to 1,
@@ -488,11 +785,23 @@ The filters compare a sound's whole number, signed, with `0x007B2BD0` and its fl
 
 ### Effect presets
 
-`0x007ACD30(mixer, index, fade)` applies preset `index` of `epsp`, from the sound command `0x300` (`0x007EEF59`). An index
-at or above the count logs `[sead][!!error!!]set effect preset number invalid [%d]` (`0x007ACDB3`). A negative index
-passes that test and resets every bus to its `bus ` chunk values and re-enables every effect (`0x007ACE32`-`0x007ACFA8`).
-A preset's records set a bus ramp (`0x007AD09E`-`0x007AD0A9`) or switch an effect on or off, and an effect's settings
+`0x007ACD30(mixer, index, fade)` applies preset `index` of `epsp`, from the sound command `0x300`¹. An index
+at or above the count logs `[sead][!!error!!]set effect preset number invalid [%d]`². A negative index
+passes that test and resets every bus to its `bus ` chunk values and re-enables every effect³.
+A preset's records set a bus ramp⁴ or switch an effect on or off, and an effect's settings
 come from `eps ` through `0x007ADDC0`, one section per effect type, with block sizes from `0x01CB49A0` and `0x01CB4990`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007EEF59` |
+| ² | `0x007ACDB3` |
+| ³ | `0x007ACE32`-`0x007ACFA8` |
+| ⁴ | `0x007AD09E`-`0x007AD0A9` |
+
+</details>
 
 `0x007ADE50` gives one preset, `0x007ADF10` one of its effect records and `0x007ADA80` one of its bus records.
 
@@ -501,15 +810,37 @@ come from `eps ` through `0x007ADDC0`, one section per effect type, with block s
 An `evt ` element is a timed list of commands. `0x007ADF60` gives one element; `0x007B67E0` wraps each in an
 `EventData` and builds a pool of 64 running events.
 
-An `EventData` is `0x38` bytes (`0x007B68C0`-`0x007B68CA`) whose only field from the file is the element's address at
-`+0x18` (`0x007B6917`-`0x007B691B`). The rest are its vtables `0x01CB4ED8`, `0x01CB4EE8` and `0x01CB4920` at `+0x00`, `+0x08`
-and `+0x10`, -1 at `+0x20` and 0 at `+0x28` and `+0x30` (`0x007B6905`-`0x007B6935`). Their pointers go to the table at
-`0x02EAD760`, one per element, with the chunk's count at `0x02EAD754` (`0x007B6861`-`0x007B6876`, `0x007B695A`); with no `evt `
-chunk no `EventData` is built (`0x007B680F`).
+An `EventData` is `0x38` bytes¹ whose only field from the file is the element's address at
+`+0x18`². The rest are its vtables `0x01CB4ED8`, `0x01CB4EE8` and `0x01CB4920` at `+0x00`, `+0x08`
+and `+0x10`, -1 at `+0x20` and 0 at `+0x28` and `+0x30`³. Their pointers go to the table at
+`0x02EAD760`, one per element, with the chunk's count at `0x02EAD754`⁴; with no `evt `
+chunk no `EventData` is built⁵.
 
-Command `0x33` starts an event (`0x007B6350`): `0x007EE910` builds the `Event` and `0x007EE990` sets it running (state 1) and runs its first step. `0x007EEA00(event, seconds)` counts its wait
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B68C0`-`0x007B68CA` |
+| ² | `0x007B6917`-`0x007B691B` |
+| ³ | `0x007B6905`-`0x007B6935` |
+| ⁴ | `0x007B6861`-`0x007B6876`, `0x007B695A` |
+| ⁵ | `0x007B680F` |
+
+</details>
+
+Command `0x33` starts an event¹: `0x007EE910` builds the `Event` and `0x007EE990` sets it running (state 1) and runs its first step. `0x007EEA00(event, seconds)` counts its wait
 down and then runs commands until one waits. A command has a header length at `+0x01`, an opcode at `+0x02` and a
 payload length at `+0x04`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B6350` |
+
+</details>
 
 | Opcode | Does |
 |---|---|
@@ -531,8 +862,17 @@ gives the ramped value of the row whose name matches, or -1; a switched sound re
 ([Sound variations](sound-variations.md)). `0x007B1380` advances every row's ramp on each driver pass.
 
 `0x007AE020(chunk, out, i)` gives element `i` as `C + u32[C + u16[C + 0x02] + 4 * i]` whatever the version, and a null
-element for `i` below 0 or at or above the count (`0x007AE02C`-`0x007AE046`). An element, as the code reads it (the shipped
+element for `i` below 0 or at or above the count¹. An element, as the code reads it (the shipped
 chunk has no elements):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AE02C`-`0x007AE046` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -570,20 +910,60 @@ The row:
 | `+0x38` | `f32` | riseRate | from the element when `+0x34` is 1 | `0x007B118C` |
 | `+0x3C` | `f32` | fallRate | from the element when `+0x34` is 1 | `0x007B1192` |
 
-When `+0x34` is 0, `+0x38` and `+0x3C` take whatever the builder's stack held (`0x007B117F`-`0x007B1192`); they are read
-only when `+0x34` is 1 (`0x007B12D8`).
+When `+0x34` is 0, `+0x38` and `+0x3C` take whatever the builder's stack held¹; they are read
+only when `+0x34` is 1².
 
-The value is the ramp: `start` when `duration` is 0 gives `target` (`0x007B0F23`-`0x007B0F2E`), else
-`start + curve(elapsed / duration) * (target - start)` (`0x007B0F4A`-`0x007B0F6F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B117F`-`0x007B1192` |
+| ² | `0x007B12D8` |
+
+</details>
+
+The value is the ramp: `start` when `duration` is 0 gives `target`¹, else
+`start + curve(elapsed / duration) * (target - start)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B0F23`-`0x007B0F2E` |
+| ² | `0x007B0F4A`-`0x007B0F6F` |
+
+</details>
 
 `0x007B1210(name, value)`, the driver's command `0x32`, sets one: the present value becomes `start`, `value` the
-target, `elapsed` and `duration` 0, `curve` 0 and `active` 1 (`0x007B12D8`-`0x007B12FA`); with `+0x34` 1 the duration
-becomes the change over `riseRate` when rising, or over `fallRate` when falling, each taken as its absolute value
-(`0x007B1301`-`0x007B135A`). A name that matches no row returns -1 (`0x007B1274`).
+target, `elapsed` and `duration` 0, `curve` 0 and `active` 1¹; with `+0x34` 1 the duration
+becomes the change over `riseRate` when rising, or over `fallRate` when falling, each taken as its absolute value². A name that matches no row returns -1³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B12D8`-`0x007B12FA` |
+| ² | `0x007B1301`-`0x007B135A` |
+| ³ | `0x007B1274` |
+
+</details>
 
 A value above the present one is rising, `(value - present) / |riseRate|`, and any other is falling,
-`(present - value) / |fallRate|`; the duration takes that result only when it is above 0 (`0x007B131B`, `0x007B1354`),
-so an equal value keeps the duration 0. A matched row returns 0 (`0x007B1327`, `0x007B1366`).
+`(present - value) / |fallRate|`; the duration takes that result only when it is above 0¹,
+so an equal value keeps the duration 0. A matched row returns 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B131B`, `0x007B1354` |
+| ² | `0x007B1327`, `0x007B1366` |
+
+</details>
 
 ### The HCA mixer switch
 
@@ -595,9 +975,19 @@ so an equal value keeps the duration 0. A matched row returns 0 (`0x007B1327`, `
 | `+0x04` | `u32` | rate | 44,100 |
 | `+0x08` | `u8` | enable | 0 |
 
-`0x007A4D50` copies `+0x08`, `+0x01` and `+0x04` into its parameters `+0x1C`, `+0x18` and `+0x14` (`0x007A4F5F`-`0x007A4F6E`).
-That parameter block is `0x20` bytes on the start's stack, handed to `0x007AC4F0` (`0x007A4F81`-`0x007A4F85`); its other
+`0x007A4D50` copies `+0x08`, `+0x01` and `+0x04` into its parameters `+0x1C`, `+0x18` and `+0x14`¹.
+That parameter block is `0x20` bytes on the start's stack, handed to `0x007AC4F0`²; its other
 fields come from the start block, not from the file.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A4F5F`-`0x007A4F6E` |
+| ² | `0x007A4F81`-`0x007A4F85` |
+
+</details>
 
 | File field | Becomes |
 |---|---|
@@ -606,8 +996,18 @@ fields come from the start block, not from the file.
 | `rate` | copied to parameter `+0x14` (`0x007A4F6E`-`0x007A4F71`), then the HCA mixer's rate (`0x007ACC72`-`0x007ACC77`) |
 | `enable` | converted: any value but 0 gives 1 in the byte `+0x1C` (`0x007A4F5F`-`0x007A4F63`); with no `hcam` chunk it is 0 and `+0x14`, `+0x18` are not set (`0x007A4F76`) |
 
-Only with `enable` set does `0x007AC4F0` build the HCA mixer voice (`0x007ACC6B`-`0x007ACC9B`). The engine renders at the
-constant 48,000 (`0x007AC691`).
+Only with `enable` set does `0x007AC4F0` build the HCA mixer voice¹. The engine renders at the
+constant 48,000².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007ACC6B`-`0x007ACC9B` |
+| ² | `0x007AC691` |
+
+</details>
 
 ### The master ramps
 
@@ -647,6 +1047,9 @@ No other instruction reaches these fields. The nearby addresses that `0x007A5B50
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 | Chunk | Size | Holds |
 |---|---:|---|
 | `ctgr` | `0xA0` | four categories: `dummy0` size 0, `music` 4, `se` 48, `voice` 8 |
@@ -672,7 +1075,16 @@ chunk's layout does not have is written `-`.
 
 ### The voice pools
 
-The sum of the positive category sizes, 60, sizes the engine's pools (`0x007A4ED7`-`0x007A4EFD`, `0x007A5115`-`0x007A5160`):
+The sum of the positive category sizes, 60, sizes the engine's pools¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A4ED7`-`0x007A4EFD`, `0x007A5115`-`0x007A5160` |
+
+</details>
 
 | Pool | Size | Kept at |
 |---|---:|---|
@@ -680,38 +1092,42 @@ The sum of the positive category sizes, 60, sizes the engine's pools (`0x007A4ED
 | twice that | 184 | `0x02EAD5A0` |
 | `min(184, 0x60) + min(0x20, 0x80) + min(0, 0x20)`, from the start block's `+0x20`, `+0x24` and `+0x28` | 128 | the render block |
 
+</details>
+
 ## Loader behaviour
 
-1. In the header only the magic is checked. `copySize` is never compared with the file's length.
-2. Header `+0x04`, `+0x09`-`+0x0B` and entry `+0x04`, `+0x06`, `+0x0C` are read by none of `0x007AE410`, `0x007B0F90`,
-   the ten finders or the 16 reads of `0x02EAD3E0`.
-3. No directory offset, element offset, or bus index or send count of a bus element is range-checked; the preset
-   records are (item 10).
-4. Only the curve and external-parameter element readers check the index (`0x007ADC51`, `0x007AE031`).
-5. A missing chunk gives a null pointer. The `ctgr` and `bus ` users read it at once and fault (`0x007B104F`,
-   `0x007AC69F`); `mcr ` and `epsp` fault when used (`0x007B3269`, `0x007ACDB3`); the others are skipped. A missing `ctgl`
-   counts as one element (`0x007AAAB9`), and a missing `hcam` leaves the HCA mixer off (`0x007A4F76`).
-6. A `ctgr` with no elements fails the start (`0x007AAA66`).
-7. A negative category size must name a category with a positive size. One with a size below 0, itself included,
-   prints the `InitializeRefCategory` error and fails the start (`0x007AA35A`-`0x007AA3B5`, `0x007AABF4`); one with size 0,
-   or an index at or above the count, is a null pointer that faults (`0x007AAA20`, `0x007AA35A`).
-8. A bus holds at most four effects (`+0x10`-`+0x28`): a fifth built effect is stored over the name pointer `+0x30`
-   (`0x007ACA67`). It has five level ramps (`0x007AC5E9`), so `send0` and the send targets together are at most five, and
-   `sendLevels` holds four levels. A send target whose element comes after the sending bus is copied in as a null voice (The bus).
-9. An effect record of type 9 or above 10 builds nothing (`0x007AC88A`).
-10. A preset's bus record is skipped when its bus is at or above the bus count or its ramp is not 0 to 4
-    (`0x007AD09E`, `0x007AD0A9`); an effect record when its bus is at or above the count, its slot is 4 or more or the slot
-    is empty (`0x007AD13D`-`0x007AD15A`).
-11. An `expr` element limits its changes only with `version` 1 or more and `limited` exactly 1 (`0x007B1140`-`0x007B114C`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | In the header only the magic is checked. `copySize` is never compared with the file's length. |   |
+| 2 | Header `+0x04`, `+0x09`-`+0x0B` and entry `+0x04`, `+0x06`, `+0x0C` are read by none of `0x007AE410`, `0x007B0F90`, the ten finders or the 16 reads of `0x02EAD3E0`. |   |
+| 3 | No directory offset, element offset, or bus index or send count of a bus element is range-checked; the preset records are (item 10). |   |
+| 4 | Only the curve and external-parameter element readers check the index. | `0x007ADC51`, `0x007AE031` |
+| 5 | A missing chunk gives a null pointer. The `ctgr` and `bus ` users read it at once and fault; `mcr ` and `epsp` fault when used; the others are skipped. A missing `ctgl` counts as one element, and a missing `hcam` leaves the HCA mixer off. | `0x007B104F`, `0x007AC69F`<br>`0x007B3269`, `0x007ACDB3`<br>`0x007AAAB9`<br>`0x007A4F76` |
+| 6 | A `ctgr` with no elements fails the start. | `0x007AAA66` |
+| 7 | A negative category size must name a category with a positive size. One with a size below 0, itself included, prints the `InitializeRefCategory` error and fails the start; one with size 0, or an index at or above the count, is a null pointer that faults. | `0x007AA35A`-`0x007AA3B5`, `0x007AABF4`<br>`0x007AAA20`, `0x007AA35A` |
+| 8 | A bus holds at most four effects (`+0x10`-`+0x28`): a fifth built effect is stored over the name pointer `+0x30`. It has five level ramps, so `send0` and the send targets together are at most five, and `sendLevels` holds four levels. A send target whose element comes after the sending bus is copied in as a null voice (The bus). | `0x007ACA67`<br>`0x007AC5E9` |
+| 9 | An effect record of type 9 or above 10 builds nothing. | `0x007AC88A` |
+| 10 | A preset's bus record is skipped when its bus is at or above the bus count or its ramp is not 0 to 4; an effect record when its bus is at or above the count, its slot is 4 or more or the slot is empty. | `0x007AD09E`, `0x007AD0A9`<br>`0x007AD13D`-`0x007AD15A` |
+| 11 | An `expr` element limits its changes only with `version` 1 or more and `limited` exactly 1. | `0x007B1140`-`0x007B114C` |
 
 ## Modding notes
 
 - A category's size is the number of its sounds that can play at once; raising one also grows the shared pools.
-- A `ctgr` with no elements stops the engine from starting (`0x007AAA66`), and a category that shares a missing one
-  reads a null pointer (`0x007AA35A`).
+- A `ctgr` with no elements stops the engine from starting¹, and a category that shares a missing one
+  reads a null pointer².
 - A `copySize` larger than the file reads past the buffer; a smaller one leaves later chunks outside the copy.
 - Setting the `hcam` switch builds the HCA mixer voice with the file's 16 and 44,100.
 - The shipped game has no preset to apply, but command `0x300` with a negative index still resets the master bus.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AAA66` |
+| ² | `0x007AA35A` |
+
+</details>
 
 ## Related
 
@@ -727,8 +1143,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sead** (explained on [sound driver objects](sound-driver-objects.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x007AD550` | is called by | `0x007A52E0` |
+| [`0x007AD550`](sound-engine-config.md) | is called by | [`0x007A52E0`](sound-driver-objects.md) (on sound driver objects) |
 
 </details>

@@ -17,10 +17,18 @@ families' titles, `0x1B58` to `0x1B5B`, are empty strings ([Clan Primer](clan-pr
 
 ### Reading the text
 
-Each bundle carries its own glyph sheet in every language. `0x00575710` registers such a sheet as a glyph sheet only
-(`0x0039BEC0`), without the font id and name that Traveler's Tips and Bestiary sheets get. A two-byte code at or above
+Each bundle carries its own glyph sheet in every language. `0x00575710` registers such a sheet as a glyph sheet only¹, without the font id and name that Traveler's Tips and Bestiary sheets get. A two-byte code at or above
 the expansion lead byte is written `{exp:0xN}`, 1,842 in all. `{line}` ends a line and `{blank}` is a blank, as in
 the Bestiary text ([Clan Primer text](text-handbook.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039BEC0` |
+
+</details>
 
 | Row | `in` |
 |---|---|

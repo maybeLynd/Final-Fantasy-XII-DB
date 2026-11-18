@@ -37,13 +37,31 @@ Each handler is named by an RVA after the unwind codes:
 | `__C_specific_handler` | stub `0x00861ED8`, slot `0x008C29F0` (`VCRUNTIME140.dll`) | 9 | `__try` / `__except` scopes |
 
 `0x00808F64` calls `__GSHandlerCheckCommon` and then `__CxxFrameHandler3` with the same four arguments,
-so its records carry a `FuncInfo` RVA exactly like the 4,377. `__GSHandlerCheckCommon` (`0x00808BC8`,
-`0x00808F97`) gets the frame, the dispatcher context and `handlerData + 4`, where the GS data follows the
+so its records carry a `FuncInfo` RVA exactly like the 4,377. `__GSHandlerCheckCommon`¹ gets the frame, the dispatcher context and `handlerData + 4`, where the GS data follows the
 `FuncInfo` RVA.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808BC8`, `0x00808F97` |
+
+</details>
 
 The `__CxxFrameHandler3` call (stub `0x00861EB4`, `0x00808FC3`) then happens only when the dword at
 `handlerData + 4` has bit `0x2` during an unwind (`exceptionFlags & 0x66` non-zero) or bit `0x1` while
-dispatching (`0x00808F9C`-`0x00808FB5`); otherwise the handler returns 1, `ExceptionContinueSearch` (`0x00808FA3`).
+dispatching¹; otherwise the handler returns 1, `ExceptionContinueSearch`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808F9C`-`0x00808FB5` |
+| ² | `0x00808FA3` |
+
+</details>
 
 The stack cookie itself is on
 [image-hardening.md](image-hardening.md).
@@ -61,8 +79,17 @@ magic `0x19930522`; no record has an exception-specification list.
 - The IP-to-state map gives, per code address, the state in force from there on. All 4,446 maps
   begin with state -1 at the function entry, and the parent's map also covers its catch funclets.
 - `dispUnwindHelp` is the frame offset of an 8-byte slot the prologue sets to -2. It is `0x20` in
-  3,436 records; `0x00194B00`, for example, stores -2 at `[rsp+0x20]` (`0x00194B11`).
+  3,436 records; `0x00194B00`, for example, stores -2 at `[rsp+0x20]`¹.
 - The try-block map lists `try` ranges as state intervals. The image has 72 try blocks.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00194B11` |
+
+</details>
 
 ### Cleanup funclets
 
@@ -98,16 +125,37 @@ bytes. The common tail-jump targets:
   static whose constructor threw. The guards are on
   [lazy-statics-and-one-time-init.md](lazy-statics-and-one-time-init.md).
 - `0x00715C70`, from 352: frees the buffer at `+8` of a post-effect library string unless it is the
-  shared empty value `0x02EA1720` or null (`0x00715C8D`, `0x00715C92`). The block it frees starts at
-  `buffer - 8` (`0x00715C97`) and goes back through `0x006DA8A0` with the library's allocator `[0x01F3BA68]`
-  (`0x00715CA2`); then `+8` is set to null (`0x00715CA8`).
+  shared empty value `0x02EA1720` or null¹. The block it frees starts at
+  `buffer - 8`² and goes back through `0x006DA8A0` with the library's allocator `[0x01F3BA68]`
+ ³; then `+8` is set to null⁴.
 - `0x00861EAE`, from the 86 single-`jmp` pads `0x008A26E4` to `0x008A5B1F`: the `__std_terminate` stub
   (`jmp [0x008C2A78]`). An exception that reaches one of these ends the process.
 - `0x001A2830`, from 74: frees an EASTL buffer (begin `+0`, capacity end `+0x10`) through slot 3 of
   the allocator at `+0x18`.
 
-`0x0019A4F0` is the clean-up target of three funclets (`0x00896D00`, `0x008A5930`, `0x008A593C`): it frees the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00715C8D`, `0x00715C92` |
+| ² | `0x00715C97` |
+| ³ | `0x00715CA2` |
+| ⁴ | `0x00715CA8` |
+
+</details>
+
+`0x0019A4F0` is the clean-up target of three funclets¹: it frees the
 `BSTR` its argument points to (`SysFreeString`, `jmp [0x008C27C8]`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00896D00`, `0x008A5930`, `0x008A593C` |
+
+</details>
 
 ### Funclets that do nothing
 
@@ -130,13 +178,12 @@ and returns the address the parent resumes at.
 - 63 rethrow: they end in `call 0x00861ECC` (`_CxxThrowException`) with two null arguments.
 - 8 return a resume address. `0x008968C8` calls `basic_ios::setstate` (slot `0x008C26A0`) on the
   stream and returns `0x00194C5E`, inside its parent `0x00194B00`. The stream is the one held at frame `+0x70`
-  (`0x008968D5`), and the arguments are the state `0x4` (`badbit`) and the reraise flag `true` (`0x008968E3`,
-  `0x008968E6`), so the stream rethrows when its exception mask covers `badbit`.
+ ¹, and the arguments are the state `0x4` (`badbit`) and the reraise flag `true`², so the stream rethrows when its exception mask covers `badbit`.
 - `0x00896BE0`, another of the 8, is the catch-all handler of the key-binding writer `0x001993B0`, which
   writes a `[Keyboard` section through a wide file stream: it prints
-  `Catch exception when writing keymap.ini` (`0x008F39A0`) to standard output and resumes the writer at
-  `0x00199763` (`0x00896C11`). The text goes to `std::cout` through the inserter `0x00194B00` (`0x00896BFB`),
-  and `std::endl` (`0x00194EB0`, `0x00896C0A`) ends the line.
+  `Catch exception when writing keymap.ini`³ to standard output and resumes the writer at
+  `0x00199763`⁴. The text goes to `std::cout` through the inserter `0x00194B00`⁵,
+  and `std::endl`⁶ ends the line.
 - `0x00896993` frees a `std::string` buffer before rethrowing; see
   [msvc-containers.md](msvc-containers.md).
 - Of the 63 in the first group, 22 first free a half-built block through `0x00210EB0`, and 16 release
@@ -149,16 +196,39 @@ and returns the address the parent resumes at.
 - `0x00896960`, a handler of the string grow `0x00195670`, allocates again through `0x001DF990` for the
   size held at frame `+0x68` plus one byte and resumes at `0x0019573B`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008968D5` |
+| ² | `0x008968E3`, `0x008968E6` |
+| ³ | `0x008F39A0` |
+| ⁴ | `0x00896C11` |
+| ⁵ | `0x00896BFB` |
+| ⁶ | `0x00194EB0`, `0x00896C0A` |
+
+</details>
+
 [The catch funclet table](exception-handling-catch-funclets.tsv) lists all 72 with their parents, `FuncInfo` records, sizes,
 the calls they make and where they end.
 
 ### What the image throws
 
 `_CxxThrowException` is reached through stub `0x00861ECC` from 69 call sites: 64 in catch funclets
-and 5 in ordinary code. Four of the five (`0x0019501D`, `0x0019B3BD`, `0x001AA78D`, `0x00203F29`) pass the
+and 5 in ordinary code. Four of the five¹ pass the
 only `ThrowInfo` record in the image, `0x01DEAAA0`, whose catchable types are `std::bad_cast` and
 `std::exception`. The fifth, `0x005CCBD2`, passes nulls and rethrows. Every other exception is raised
 inside a library the game imports, such as the `MSVCP140` length and allocation checks.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019501D`, `0x0019B3BD`, `0x001AA78D`, `0x00203F29` |
+
+</details>
 
 ### Structured exception handling
 
@@ -182,10 +252,19 @@ Nine functions register `__C_specific_handler`, one `__try` scope each:
   `0x005CCD00`. `0x005CCBA0` calls the routine pointer at `+8` of its argument the same way.
 - `0x005CD1E0` and `0x00863430` create a thread and raise `0x406D1388` with `RaiseException` inside the
   scope; the filters swallow it (`0x0089BEF0` returns -1, `0x00863430` uses the constant 1).
-- `0x008A5C0A`, the filter of `__ArrayUnwind` (`0x008090C0`), calls `terminate` when the exception code is
+- `0x008A5C0A`, the filter of `__ArrayUnwind`¹, calls `terminate` when the exception code is
   `0xE06D7363` and otherwise returns 0. `0x008A5B7C` accepts only `0xC0000005`.
 - The two `__finally` handlers run `__ArrayUnwind` when the array constructor or destructor iterator
   did not finish.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008090C0` |
+
+</details>
 
 ### Stream sentry destructor clones
 
@@ -200,20 +279,57 @@ Unwind-map entries reach them through 12-byte funclets of the form `lea rcx,[rdx
 and `uncaught_exception` from `MSVCP140`, and `0x001DDC40` calls `_Ipfx`, `sgetc` and `snextc`.
 
 `0x00194B00(stream, text)` is the `const char *` inserter, and it also calls `flush` and `setstate`. It
-measures `text` (`0x00194B2E`-`0x00194B47`) and pads with `width - length` fill characters when the width at
-the stream's virtual base `+0x28` is larger (`0x00194B55`-`0x00194B5F`). Its sentry locks the stream buffer
-`+0x48` through slot `+0x08` (`0x00194B7B`) and, while the state `+0x10` is 0, calls `flush` on a tied stream
-`+0x50` that is not the stream itself (`0x00194B9C`).
+measures `text`¹ and pads with `width - length` fill characters when the width at
+the stream's virtual base `+0x28` is larger². Its sentry locks the stream buffer
+`+0x48` through slot `+0x08`³ and, while the state `+0x10` is 0, calls `flush` on a tied stream
+`+0x50` that is not the stream itself⁴.
 
-With a non-zero state it goes straight to `setstate(0x4)` (`0x00194BB9`). Otherwise, unless the adjust field
-`flags & 0x1C0` is `0x40` (left), it writes the fill `+0x58` first with `sputc` (`0x00194BE7`), then the text
-with `sputn` (`0x00194C0D`), then any fill still due (`0x00194C2E`). A `sputc` that returns -1 or a short `sputn`
-gives the state `0x4` (`0x00194C43`, `0x00194C39`). This good-sentry path ends by setting the width to 0
-(`0x00194C53`); the catch resume at `0x00194C5E` comes after that store.
+<details>
+<summary>Where in the code</summary>
 
-It passes the state to `setstate` (`0x00194C7B`); the catch funclet `0x008968C8` resumes there at `0x00194C5E`.
-On the way out it calls `_Osfx` unless `uncaught_exception` is true (`0x00194C82`-`0x00194C8F`), unlocks the
-buffer through slot `+0x10` (`0x00194CAB`) and returns the stream (`0x00194CAF`).
+| | Code |
+|---|---|
+| ¹ | `0x00194B2E`-`0x00194B47` |
+| ² | `0x00194B55`-`0x00194B5F` |
+| ³ | `0x00194B7B` |
+| ⁴ | `0x00194B9C` |
+
+</details>
+
+With a non-zero state it goes straight to `setstate(0x4)`¹. Otherwise, unless the adjust field
+`flags & 0x1C0` is `0x40` (left), it writes the fill `+0x58` first with `sputc`², then the text
+with `sputn`³, then any fill still due⁴. A `sputc` that returns -1 or a short `sputn`
+gives the state `0x4`⁵. This good-sentry path ends by setting the width to 0⁶; the catch resume at `0x00194C5E` comes after that store.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00194BB9` |
+| ² | `0x00194BE7` |
+| ³ | `0x00194C0D` |
+| ⁴ | `0x00194C2E` |
+| ⁵ | `0x00194C43`, `0x00194C39` |
+| ⁶ | `0x00194C53` |
+
+</details>
+
+It passes the state to `setstate`¹; the catch funclet `0x008968C8` resumes there at `0x00194C5E`.
+On the way out it calls `_Osfx` unless `uncaught_exception` is true², unlocks the
+buffer through slot `+0x10`³ and returns the stream⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00194C7B` |
+| ² | `0x00194C82`-`0x00194C8F` |
+| ³ | `0x00194CAB` |
+| ⁴ | `0x00194CAF` |
+
+</details>
 
 So the bodies are the destructor of the stream sentry these routines construct at frame `+0x28`.
 They are listed in [the sentry destructor clones table](exception-handling-bk6-sentry-base-destructor-clones.tsv).
@@ -229,6 +345,9 @@ returns true it calls `basic_ostream<wchar_t>::_Osfx`, then makes the same slot-
 | `entry` | the entry address of one of the four byte-identical 45-byte bodies: `0x001952E0`, `0x00195310`, `0x001AAF20` and `0x001AAF50` |
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 `RuntimeFunction` (`0xC` bytes, offsets from the start of the record):
 
@@ -309,10 +428,20 @@ A `__C_specific_handler` record's data is a `u32` scope count followed by that m
 
 `0x008F34F0`, the `FuncInfo` of the stream inserter `0x00194B00`, shows the pieces together:
 
-- `maxState` 6, the unwind map at `0x01D55F44`, one try block (`0x01D55F74`) and an IP-to-state map of 11 entries
-  (`0x01D55FA0`).
+- `maxState` 6, the unwind map at `0x01D55F44`, one try block¹ and an IP-to-state map of 11 entries
+ ².
 - The try block covers states 2 to 2, its catch high state is 3, and its one `catch (...)` handler is `0x008968C8`,
   which resumes at `0x00194C5E`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01D55F74` |
+| ² | `0x01D55FA0` |
+
+</details>
 
 The unwind map:
 
@@ -341,7 +470,12 @@ The IP-to-state map:
 | `0x008968D5` | 3 |
 | `0x008968F2` | 0 |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -355,6 +489,8 @@ The IP-to-state map:
 | catch funclets | 72, all in `.text$x`; 63 rethrow, 8 resume, 1 frees a string and rethrows |
 | `.text$x` | `0x00896280` to `0x008A6970`, `0x106F0` bytes |
 | `ThrowInfo` records | 1, `0x01DEAAA0`, `std::bad_cast` |
+
+</details>
 
 ## Modding notes
 

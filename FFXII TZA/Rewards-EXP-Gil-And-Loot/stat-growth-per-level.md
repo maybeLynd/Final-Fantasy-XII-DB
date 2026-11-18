@@ -35,16 +35,9 @@ and its Strength, Magick Power, Vitality and Speed gain per level.
 `+0x1C2` to `min(target, 99)` one level at a time (`0x0030C67A`-`0x0030C682`, back-edge `0x0030C865`). It
 never lowers a level: when the target is not above the current level it returns at once. Each step:
 
-1. When the record is a party record (stats byte `+0x05` = 0) and the level is below 99, the stats grow
-   (`0x0030C6CC`, `0x0030C6D9`). `L` is the level before the step, and `row` is row `+0x04` (the
-   character's type id) of `chr_data`, the table in registry slot `0x02EBF130` (`battle_pack.bin`
-   directory `+0x44`, 40 rows of `0x80` bytes):
-   - raw HP `+0x08` (dword) `= 0x002F9A60(L, HP)`, which `0x002FEF30` turns into max HP (above);
-   - raw MP `+0x0C` (i16) `= 0x002F9B20(L, MP)`, likewise for max MP;
-   - Strength `+0x10` (float) `= 0x002F9BD0(Strength, row.b[+0x1F])`;
-   - Magick Power `+0x14` `= 0x002F9BD0(Magick Power, row.b[+0x22])`;
-   - Vitality `+0x18` `= 0x002F9BD0(Vitality, row.b[+0x25])`;
-   - Speed `+0x1C` `= 0x002F9BD0(Speed, row.b[+0x28])`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When the record is a party record (stats byte `+0x05` = 0) and the level is below 99, the stats grow. `L` is the level before the step, and `row` is row `+0x04` (the character's type id) of `chr_data`, the table in registry slot `0x02EBF130` (`battle_pack.bin` directory `+0x44`, 40 rows of `0x80` bytes):<br>• raw HP `+0x08` (dword) `= 0x002F9A60(L, HP)`, which `0x002FEF30` turns into max HP (above);<br>• raw MP `+0x0C` (i16) `= 0x002F9B20(L, MP)`, likewise for max MP;<br>• Strength `+0x10` (float) `= 0x002F9BD0(Strength, row.b[+0x1F])`;<br>• Magick Power `+0x14` `= 0x002F9BD0(Magick Power, row.b[+0x22])`;<br>• Vitality `+0x18` `= 0x002F9BD0(Vitality, row.b[+0x25])`;<br>• Speed `+0x1C` `= 0x002F9BD0(Speed, row.b[+0x28])`. | `0x0030C6CC`, `0x0030C6D9` |
 
    Every `chr_data` row is built as a party record (`0x0023AC80`, kind 0 sets `+0x05` = 0), the Espers
    (rows 27-39) and the Chocobo (row 26) included, so this applies to them too.
@@ -53,10 +46,21 @@ never lowers a level: when the target is not above the current level it returns 
    below are posted unless flags bit `0x2` is set.
 
 The `chr_data` row is the table's word `+8` times the type id plus the value `0x0020E600` gives for the table's
-`+0xC`, added in 32 bits (`0x0030C70B`-`0x0030C71D`), so the upper half of that pointer is dropped. Nothing guards
-it: when `[0x02EBF130]` is null or `0x0020E600` gives 0 the row is 0 (`0x0030C721`), HP and MP still grow, and the
+`+0xC`, added in 32 bits¹, so the upper half of that pointer is dropped. Nothing guards
+it: when `[0x02EBF130]` is null or `0x0020E600` gives 0 the row is 0², HP and MP still grow, and the
 Strength read at `0x0030C757` faults. A step that starts at level 99 or above changes nothing, the last-step work
-included (`0x0030C6D3`).
+included³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030C70B`-`0x0030C71D` |
+| ² | `0x0030C721` |
+| ³ | `0x0030C6D3` |
+
+</details>
 
 The notices, for a party record:
 
@@ -65,10 +69,22 @@ The notices, for a party record:
   (`[unit+0x698]` byte `+0x05` = 0): the HUD popup `0x002905D0(unit id, from level, new level)`
   (`[0x0209BE80] + 0x7FB0`), a call to `0x002EACD0(unit id)`, and sound 7 (`0x003A1180` / `0x002DF220`, then
   `0x00329210(1)`).
-- the popup is reached through the jump `0x0035D8C0` (`0x0030C815`) with the level the walk started from and the new
-  level byte; `0x002EACD0` takes `(unit id, 1, unit + 8, 0x71)` (`0x0030C81A`-`0x0030C82C`); the sound step asks
-  `0x003A1180(7)` for a handle, stops when it is -1 (`0x0030C83E`), and otherwise plays `0x002DF220(handle, 0x40, 0x7F)`
-  and hands its result to `0x00329210(1, result)` (`0x0030C840`-`0x0030C857`).
+- the popup is reached through the jump `0x0035D8C0`¹ with the level the walk started from and the new
+  level byte; `0x002EACD0` takes `(unit id, 1, unit + 8, 0x71)`²; the sound step asks
+  `0x003A1180(7)` for a handle, stops when it is -1³, and otherwise plays `0x002DF220(handle, 0x40, 0x7F)`
+  and hands its result to `0x00329210(1, result)`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030C815` |
+| ² | `0x0030C81A`-`0x0030C82C` |
+| ³ | `0x0030C83E` |
+| ⁴ | `0x0030C840`-`0x0030C857` |
+
+</details>
 
 ### HP and MP growth
 
@@ -108,34 +124,94 @@ The gains are to the raw values `+0x08` and `+0x0C`. A raw-HP gain `g` moves max
 ### Strength, Magick Power, Vitality and Speed
 
 The four stats grow by `0x002F9BD0`: `value + byte / 128`, and a result above 100.0 becomes
-99.99999 (`0x002F9BD7`-`0x002F9BEC`). There is no random part.
+99.99999¹. There is no random part.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F9BD7`-`0x002F9BEC` |
+
+</details>
 
 ### Starting values
 
-`0x0030C470(record, level, ...)` sets the level byte to 0 (`0x0030C496`). For a party
+`0x0030C470(record, level, ...)` sets the level byte to 0¹. For a party
 record it then copies the row's starting values:
-- raw HP from `row.u16[+0x16]` and raw MP from `row.u16[+0x1A]` (`0x0030C4F9`-`0x0030C507`);
-- the four stats from the base bytes `+0x1E`, `+0x21`, `+0x24`, `+0x27` (`0x0030C50B`-`0x0030C546`);
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030C496` |
+
+</details>
+- raw HP from `row.u16[+0x16]` and raw MP from `row.u16[+0x1A]`¹;
+- the four stats from the base bytes `+0x1E`, `+0x21`, `+0x24`, `+0x27`²;
 - byte `+0x20` from `row.b[+0x46]`, or from `0x00324100(record)`, the largest licence-granted value, when
   that is larger.
 
-Then it calls `0x0030C650(record, level, 2)` (`0x0030C562`-`0x0030C56E`), so a new character grows silently
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030C4F9`-`0x0030C507` |
+| ² | `0x0030C50B`-`0x0030C546` |
+
+</details>
+
+Then it calls `0x0030C650(record, level, 2)`¹, so a new character grows silently
 from level 0 to its starting level, and sets the EXP total `+0x18C` to `0x002F8F20(level - 1)`, the EXP
-needed for that level, capped at 99,999,999 (`0x0030C573`-`0x0030C586`). The summon start calls it as
+needed for that level, capped at 99,999,999². The summon start calls it as
 `0x0030C470(Esper record, summoner's level, 0)` (`0x003069EE` in `0x00306760`), so an Esper is rebuilt from
 level 0 to the summoner's level every time it is summoned.
 
-An enemy record (kind byte `+5` = 1) skips the row copy and stores the third argument at `+0x88` (`0x0030C4B1`); a
-record of any other kind keeps only the level byte 0 and returns (`0x0030C4AB`). For a party record the row read is
-unguarded: when `[0x02EBF130]` is null (`0x0030C4C7`) or `0x0020E600` returns 0 (`0x0030C4D4`), the row base is 0 and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030C562`-`0x0030C56E` |
+| ² | `0x0030C573`-`0x0030C586` |
+
+</details>
+
+An enemy record (kind byte `+5` = 1) skips the row copy and stores the third argument at `+0x88`¹; a
+record of any other kind keeps only the level byte 0 and returns². For a party record the row read is
+unguarded: when `[0x02EBF130]` is null³ or `0x0020E600` returns 0⁴, the row base is 0 and
 `0x0030C4F9` reads the word at address `0x16`, which faults, because the first 64 KB of a Windows x64 process are
 never mapped.
 
-After the EXP total it removes the statuses in `0x0208D320 | 0x0208D324` when that is non-zero (`0x0030F690`,
-`0x0030C58C`-`0x0030C59D`) and reconciles HP and MP (`0x0030F340`, `0x0030F5A0`). It then sets the starting MP `+0x4C`:
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030C4B1` |
+| ² | `0x0030C4AB` |
+| ³ | `0x0030C4C7` |
+| ⁴ | `0x0030C4D4` |
+
+</details>
+
+After the EXP total it removes the statuses in `0x0208D320 | 0x0208D324` when that is non-zero¹ and reconciles HP and MP². It then sets the starting MP `+0x4C`:
 `+0x28` times row byte `+0x47` / 100 for a party record, `+0x28` for an enemy, 0 for either when layer byte `+0x6C`
-or `+0x7C` is negative (`0x0030C5B2`-`0x0030C5F9`). Last it rebuilds the derived state with `0x0030FED0(record, 0)`
+or `+0x7C` is negative³. Last it rebuilds the derived state with `0x0030FED0(record, 0)`
 (`0x0030C602`; [battle unit construction](../Characters-And-Objects/battle-unit-construction.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030F690`, `0x0030C58C`-`0x0030C59D` |
+| ² | `0x0030F340`, `0x0030F5A0` |
+| ³ | `0x0030C5B2`-`0x0030C5F9` |
+
+</details>
 
 The EXP formula pays the Esper type ids `0x1B`-`0x27` nothing: `0x002F8BB0` returns 0 when `(u8)(type - 0x1B) <= 0x0C`
 for the record's type id `+0x04` (`0x002F8BF2`-`0x002F8BFA`; [EXP, LP and level-ups](exp-lp-and-level-ups.md)), so kills
@@ -153,6 +229,9 @@ first activation (see [Gil](gil.md)).
 | `0x00305960` | `0x003059CB` | 99, for every record of party map 3 | 0 |
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 `ChrDataRow` (`0x80` bytes, offsets from the start of the record):
 
@@ -178,7 +257,12 @@ first activation (see [Gil](gil.md)).
 The whole row, with the readers of the fields the growth code skips, is on
 [party-table](../Party/party-table.md).
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Growth bytes (`+0x1F` Strength, `+0x22` Magick Power, `+0x25` Vitality, `+0x28` Speed) and starting gil
 (`+0x3E`) of the `chr_data` rows, names from the row's name reference (`+0x30`), in the
@@ -224,6 +308,8 @@ time an Esper is summoned (above).
 ```
 
 The fixed parts sum to 3,210 HP and 333 MP from level 0 to 99, before the random bonuses.
+
+</details>
 
 ## Modding notes
 

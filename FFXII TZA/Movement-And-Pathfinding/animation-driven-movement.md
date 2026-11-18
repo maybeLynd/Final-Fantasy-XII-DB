@@ -20,74 +20,227 @@ gap is, and a swing closes the angle and stops when it is closed.
 
 Authored command `0x1A` ([authored
 commands](../Graphics/authored-presentation-commands.md))
-is handled by `0x00520C10`: when the record's presentation entry (`0x00422D50`) has a motion section
+is handled by `0x00520C10`: when the record's presentation entry¹ has a motion section
 (`+0x370`) it calls `0x003E6340(record, mode)` on its own record argument with the command's word
-`+2`, and it returns 0 either way (`0x00520C40`). The builder returns at
+`+2`, and it returns 0 either way². The builder returns at
 once without a list owner (`0x003E6E60` = 0, `0x003E636A`-`0x003E6372`).
 
-`0x00422D50` is called with the same record argument (`0x00520C20`): it answers null when the record's
-`+0xC4` is -1 (`0x00422D56`) and otherwise tail-jumps to `0x0051B9E0` with the pointer at `+0xDA8` of
-`0x0020E600` of the record's `+0x10` and the record's `+0xC4` (`0x00422D6A`-`0x00422D84`), so the gate and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00422D50` |
+| ² | `0x00520C40` |
+
+</details>
+
+`0x00422D50` is called with the same record argument¹: it answers null when the record's
+`+0xC4` is -1² and otherwise tail-jumps to `0x0051B9E0` with the pointer at `+0xDA8` of
+`0x0020E600` of the record's `+0x10` and the record's `+0xC4`³, so the gate and
 the request both start from the argument.
 
-Otherwise it asks the unit for a view: `0x0041F2F0(record, 0x0C, view)` (`0x003E6390`) zeroes 64 bytes, stamps `+0x00`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00520C20` |
+| ² | `0x00422D56` |
+| ³ | `0x00422D6A`-`0x00422D84` |
+
+</details>
+
+Otherwise it asks the unit for a view: `0x0041F2F0(record, 0x0C, view)`¹ zeroes 64 bytes, stamps `+0x00`
 with the record's word `+0xCC` and `+0x30` with its
 `+0x110` (the builder reads both before it zeroes the view again, `0x0031ADD1`-`0x0031AE32`),
 and hands the view to the battle
 unit's view builder (`0x002ED500` → `0x0031ADB0`) with selector bits `0x4` and `0x8`.
 
-The `+0x00` stamp is the word sign-extended to a dword (`0x0041F31B`). The view builder is reached by
-a tail jump with the record's `+0x108` actor as its first argument (`0x0041F325`-`0x0041F32C`): a null
-actor gets the 64 bytes zeroed again and nothing more (`0x002ED503`-`0x002ED52A`); any other goes through
-`0x0031B4B0`, which hands the unit `0x00263E30(actor)`, the selector and the view on to `0x0031ADB0`
-(`0x0031B4C8`-`0x0031B4DF`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E6390` |
+
+</details>
+
+The `+0x00` stamp is the word sign-extended to a dword¹. The view builder is reached by
+a tail jump with the record's `+0x108` actor as its first argument²: a null
+actor gets the 64 bytes zeroed again and nothing more³; any other goes through
+`0x0031B4B0`, which hands the unit `0x00263E30(actor)`, the selector and the view on to `0x0031ADB0`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041F31B` |
+| ² | `0x0041F325`-`0x0041F32C` |
+| ³ | `0x002ED503`-`0x002ED52A` |
+| ⁴ | `0x0031B4C8`-`0x0031B4DF` |
+
+</details>
 
 `0x0031B4B0(actor, selector, view)` with a null actor skips `0x00263E30` and passes unit 0; either way it ends in a jump
-to `0x0031ADB0(unit, selector, view)` (`0x0031B4BA`-`0x0031B4DF`).
+to `0x0031ADB0(unit, selector, view)`¹.
 
-Bit `0x4` writes the world position (`0x00265020`) of the actor behind the handle the view carried in at `+0x30`, here
-the render record's `+0x110` (`0x0041F311`-`0x0041F317`, `0x0031ADD1`), into the view's `+0x10`-`+0x18` with `+0x1C` = 1.0,
-while the battle-state word `0x02089340` has bit `0x10` and when `0x003588B0` finds an actor for that handle
-(`0x0031AE7C`-`0x0031AE87`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B4BA`-`0x0031B4DF` |
+
+</details>
+
+Bit `0x4` writes the world position¹ of the actor behind the handle the view carried in at `+0x30`, here
+the render record's `+0x110`², into the view's `+0x10`-`+0x18` with `+0x1C` = 1.0,
+while the battle-state word `0x02089340` has bit `0x10` and when `0x003588B0` finds an actor for that handle³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265020` |
+| ² | `0x0041F311`-`0x0041F317`, `0x0031ADD1` |
+| ³ | `0x0031AE7C`-`0x0031AE87` |
+
+</details>
 
 Bit `0x8` writes the
 reach point, the point in x and z where `0x00320E10`'s gap would be 0 (the near value plus both bodies' sizes from the
 target), into `+0x20`-`+0x28` when `0x00322280` of the view's `+0x00` holds, the target actor exists, either `0x02089340`
-has neither bit `0x200` nor bit `0x400` or the unit's `+0x698` record has byte `+5` = 1 (`0x0031AF34`-`0x0031AF71`), and
+has neither bit `0x200` nor bit `0x400` or the unit's `+0x698` record has byte `+5` = 1¹, and
 `0x00320E10(unit, 0)`'s answer (the gap to the near value, 0 on its other paths; [action
-range](../Battle-Actions/action-range.md)) is non-zero (`0x0031AF77`-`0x0031AF91`).
+range](../Battle-Actions/action-range.md)) is non-zero².
 
-The point is then the unit's position moved by that gap along the bearing to the target's position (`0x00265020`,
-`0x0031AFA9`), and the view's `+0x3C` takes bit `0x1` (`0x0031B060`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031AF34`-`0x0031AF71` |
+| ² | `0x0031AF77`-`0x0031AF91` |
+
+</details>
+
+The point is then the unit's position moved by that gap along the bearing to the target's position¹, and the view's `+0x3C` takes bit `0x1`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265020`, `0x0031AFA9` |
+| ² | `0x0031B060` |
+
+</details>
 
 The bearing is `0x00861F02` of the x and z differences, or the unit's own heading `+0x160` when both are 0, and the move
-uses the sine table at `0x01F004E0` (`0x0031AFAE`-`0x0031B058`).
+uses the sine table at `0x01F004E0`¹.
 
-When the `0x200`/`0x400` test fails or the gap is 0, `+0x20` and `+0x28` are written as 0 and the bit stays clear
-(`0x0031B06A`, `0x0031B0AB`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031AFAE`-`0x0031B058` |
+
+</details>
+
+When the `0x200`/`0x400` test fails or the gap is 0, `+0x20` and `+0x28` are written as 0 and the bit stays clear¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B06A`, `0x0031B0AB` |
+
+</details>
 
 When `0x00322280` gives 0 or there is no target actor, bit `0x8` writes nothing: the view keeps the zeros it
-was cleared to, and the routine leaves bit `0x8` out of its answer (`0x0031AF0A`-`0x0031AF27`, `0x0031B0B0`).
+was cleared to, and the routine leaves bit `0x8` out of its answer¹.
 
-Whenever bit `0x8` writes, `+0x2C` takes 1.0 (`0x0031B0BD`), and the point's y is the unit's `+0xE4`, or the target's y
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031AF0A`-`0x0031AF27`, `0x0031B0B0` |
+
+</details>
+
+Whenever bit `0x8` writes, `+0x2C` takes 1.0¹, and the point's y is the unit's `+0xE4`, or the target's y
 plus 1.0 when the unit's `+0x698` record has byte `+5` = 1 and the unit's class row `+0xE68` has bit `0x1` in byte
-`+0x28` (`0x0031B06F`-`0x0031B099`); with a gap of 0 the routine skips the target position and that y is 1.0 (`0x0031AF56`,
-`0x0031AF91`, `0x0031B06F`-`0x0031B0B8`).
+`+0x28`²; with a gap of 0 the routine skips the target position and that y is 1.0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B0BD` |
+| ² | `0x0031B06F`-`0x0031B099` |
+| ³ | `0x0031AF56`, `0x0031AF91`, `0x0031B06F`-`0x0031B0B8` |
+
+</details>
 
 Nothing is queued when the target position, the view's `+0x10`/`+0x18`, equals the record's position `+0x140`/`+0x148`
-in x and z (`0x003E6395`-`0x003E63BB`).
+in x and z¹.
 
-Otherwise the request is built. For mode `0x10` and modes 3 and 4 (`0x003E63DB`-`0x003E63DE`, `0x003E642E`-`0x003E643D`) the
-direction is the unit vector from the target position to the record's position in x and z, its y 0 (`0x003E63FE`,
-`0x003E64E2`), a step away from the target, with distance 1.0 (`0x003E63E0`-`0x003E6419`, `0x003E64C3`-`0x003E64F3`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E6395`-`0x003E63BB` |
+
+</details>
+
+Otherwise the request is built. For mode `0x10` and modes 3 and 4¹ the
+direction is the unit vector from the target position to the record's position in x and z, its y 0², a step away from the target, with distance 1.0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E63DB`-`0x003E63DE`, `0x003E642E`-`0x003E643D` |
+| ² | `0x003E63FE`, `0x003E64E2` |
+| ³ | `0x003E63E0`-`0x003E6419`, `0x003E64C3`-`0x003E64F3` |
+
+</details>
 
 For every other mode it is the vector from the record's `+0x140`-`+0x148` to the reach point, the view's
-`+0x20`-`+0x28`, in all three axes, with the distance `|vector|` (`0x00861F14`) kept only when the view's `+0x3C` has
-bit `0x1` and zeroed otherwise (`0x003E6443`-`0x003E64C1`); with the reach point unset (its x and z 0,
+`+0x20`-`+0x28`, in all three axes, with the distance `|vector|`¹ kept only when the view's `+0x3C` has
+bit `0x1` and zeroed otherwise²; with the reach point unset (its x and z 0,
 `0x0031B06A`-`0x0031B0AB`) the vector points at the world's vertical axis, at the origin itself when bit `0x8` wrote
 nothing, and with the distance 0 only the turn acts.
 
-Every direction is the vector times `1 / |vector|` (`0x00861F14`, `0x003E6522`-`0x003E6583`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00861F14` |
+| ² | `0x003E6443`-`0x003E64C1` |
+
+</details>
+
+Every direction is the vector times `1 / |vector|`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00861F14`, `0x003E6522`-`0x003E6583` |
+
+</details>
 
 The relative heading is the angle from the record's facing frame `+0x180` to the target position,
 `0x00424370(record + 0x180, view + 0x10)` (`0x003E6406`, `0x003E64AA`, `0x003E64EE`; an `atan2` taken only when both
@@ -96,8 +249,19 @@ transformed x and z are non-zero, `atan2f(x, z)` at `0x00424436`; a target on a 
 
 Mode `0x0A` (`0x003E64F8`-`0x003E6514`, adding the `-2pi` at `0x00915624`) with record byte `+0x2AF` = 3 and a non-negative
 heading takes the long way round (`heading - 2pi`). The request goes to the record's list at `+0x550`,
-`0x003AED70(record + 0x550, request)` (`0x003E6589`), after the mode word `+0x02` (`0x003E6389`), `+0x08` = 0 on each path
-(`0x003E63F3`, `0x003E649F`, `0x003E64D6`), and word `+0x00` = 0 and `+0x1C` = 1.0 last (`0x003E654B`-`0x003E655B`).
+`0x003AED70(record + 0x550, request)`¹, after the mode word `+0x02`², `+0x08` = 0 on each path³, and word `+0x00` = 0 and `+0x1C` = 1.0 last⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E6589` |
+| ² | `0x003E6389` |
+| ³ | `0x003E63F3`, `0x003E649F`, `0x003E64D6` |
+| ⁴ | `0x003E654B`-`0x003E655B` |
+
+</details>
 
 Struct MoveTurnRequest  (`0x20` bytes, on the builder's stack):
 
@@ -113,53 +277,106 @@ Struct MoveTurnRequest  (`0x20` bytes, on the builder's stack):
 
 ### The view builder's other selector bits
 
-`0x0031ADB0(unit, selector, view)` answers 0 and writes nothing for a null unit (`0x0031ADE5`-`0x0031ADEC`). Otherwise it
-takes the target actor `0x003588B0(unit dword +0x710)` while `0x02089340` has bit `0x10` (`0x0031ADF1`-`0x0031AE12`), zeroes
-the view (`0x0031AE15`-`0x0031AE32`), handles the selector's bits in the order below and answers the bits it handled,
-leaving out a bit whose write did not happen (`0x0031B48D`). Bits `0x4` and `0x8` are described above.
+`0x0031ADB0(unit, selector, view)` answers 0 and writes nothing for a null unit¹. Otherwise it
+takes the target actor `0x003588B0(unit dword +0x710)` while `0x02089340` has bit `0x10`², zeroes
+the view³, handles the selector's bits in the order below and answers the bits it handled,
+leaving out a bit whose write did not happen⁴. Bits `0x4` and `0x8` are described above.
 
-- `0x100`: with a target actor, the view's `+0x30` = its handle `0x003589B0(target)` (`0x0031AE3D`-`0x0031AE54`).
-- `0x80`: when the unit's dword `+0x2C` is not 0, `+0x30` = that dword, over what bit `0x100` wrote (`0x0031AE36`,
-  `0x0031AE5D`-`0x0031AE69`).
-- `0x1`: with a target actor, its world position (`0x00265020`) into `+0x10`-`+0x18` and `+0x1C` = 1.0, over what bit
-  `0x4` wrote (`0x0031AEA7`-`0x0031AEC9`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031ADE5`-`0x0031ADEC` |
+| ² | `0x0031ADF1`-`0x0031AE12` |
+| ³ | `0x0031AE15`-`0x0031AE32` |
+| ⁴ | `0x0031B48D` |
+
+</details>
+
+- `0x100`: with a target actor, the view's `+0x30` = its handle `0x003589B0(target)`¹.
+- `0x80`: when the unit's dword `+0x2C` is not 0, `+0x30` = that dword, over what bit `0x100` wrote².
+- `0x1`: with a target actor, its world position³ into `+0x10`-`+0x18` and `+0x1C` = 1.0, over what bit
+  `0x4` wrote⁴.
 - `0x2`: the same as bit `0x4`, again for the handle the view carried in at `+0x30`, over what bit `0x1` wrote
-  (`0x0031AED0`-`0x0031AF03`).
+ ⁵.
 - `0x10`: `+0x3C` bit `0x2` = bit `0x1` of the combo gate `0x0030C010(unit)`'s answer
   ([combos](../Battle-Actions/combos.md); `0x0031B0C4`-`0x0031B0DE`).
 - `0x20`: `+0x3C` bit `0x4` is set when the unit's first target entry ([area of
   effect](../Battle-Actions/area-of-effect.md), its `+0x08` at unit `+0x788`) lacks flag bit `0x100` and has code 2
-  to 5 or 7, and cleared otherwise (`0x0031B0E1`-`0x0031B117`).
-- `0x40`: `+0x3C` bit `0x8` = the unit's dword `+0x28` is not 0 (`0x0031B11A`-`0x0031B135`).
+  to 5 or 7, and cleared otherwise⁶.
+- `0x40`: `+0x3C` bit `0x8` = the unit's dword `+0x28` is not 0⁷.
 - `0x200`: `+0x34` = 0, then, for the unit's action id, its word `+0x714`, up to `0x21E` (unsigned), whose row of the
   action table `[0x02EBF138]` has a negative word `+0x24` and no bit `0x40000000` in its dword `+0xC`
-  (`0x0031B138`-`0x0031B2FA`), a kind from the first entry's code and the target unit `0x0031B7E0(unit dword +0x710)`
-  (`0x0031B300`-`0x0031B3A9`):
+ ⁸, a kind from the first entry's code and the target unit `0x0031B7E0(unit dword +0x710)`
+ ⁹:
   - code 0: 4 with entry flag bit `0x800`; otherwise 1 without a target unit, 3 when the target unit's `+0x30` is the
     unit's `+0x08`, else 2 when the target unit's `+0x698` record exists with byte `+5` = 0, and otherwise 1 when its
     class row `+0xE68` ([bestiary](../Enemy-Spawning/bestiary.md)) has bit `0x20` in byte `+0x12` and 2
-    when not (`0x0031B34E`-`0x0031B3A6`);
-  - code 3 or 5: 6 (`0x0031B319`-`0x0031B334`);
+    when not¹⁰;
+  - code 3 or 5: 6¹¹;
   - code 2 or 4: `0x0046CBB0(target unit dword +0x08, 5, 1)` when there is a target unit ([animation
-    sounds](../Sound-And-Music/animation-sounds.md)), and `+0x34` stays 0 (`0x0031B336`-`0x0031B347`);
+    sounds](../Sound-And-Music/animation-sounds.md)), and `+0x34` stays 0¹²;
   - any other code: 0.
-- `0x400`: `+0x38` = 2 when the first entry has flag bit `0x800`, else 1 (`0x0031B3B5`-`0x0031B3D0`).
+- `0x400`: `+0x38` = 2 when the first entry has flag bit `0x800`, else 1¹³.
 - `0x800`: while `0x02089340` has bit `0x10`, it takes the unit behind the handle at the unit's `+0x2C` and, in that
   unit's target list (`+0x780`, count `+0x77C`), the first entry whose actor is the unit's `+0x10`; `+0x3C` bit `0x10`
   is set for that entry's code 10 and cleared otherwise. When any of these is missing, nothing is written and the bit
-  stays out of the answer (`0x0031B3D4`-`0x0031B466`).
-- `0x1000`: `+0x3C` bit `0x20` = the unit's `+0x08` is the party-focus handle `0x003590D0()` (`0x0031B46A`-`0x0031B489`).
+  stays out of the answer¹⁴.
+- `0x1000`: `+0x3C` bit `0x20` = the unit's `+0x08` is the party-focus handle `0x003590D0()`¹⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031AE3D`-`0x0031AE54` |
+| ² | `0x0031AE36`, `0x0031AE5D`-`0x0031AE69` |
+| ³ | `0x00265020` |
+| ⁴ | `0x0031AEA7`-`0x0031AEC9` |
+| ⁵ | `0x0031AED0`-`0x0031AF03` |
+| ⁶ | `0x0031B0E1`-`0x0031B117` |
+| ⁷ | `0x0031B11A`-`0x0031B135` |
+| ⁸ | `0x0031B138`-`0x0031B2FA` |
+| ⁹ | `0x0031B300`-`0x0031B3A9` |
+| ¹⁰ | `0x0031B34E`-`0x0031B3A6` |
+| ¹¹ | `0x0031B319`-`0x0031B334` |
+| ¹² | `0x0031B336`-`0x0031B347` |
+| ¹³ | `0x0031B3B5`-`0x0031B3D0` |
+| ¹⁴ | `0x0031B3D4`-`0x0031B466` |
+| ¹⁵ | `0x0031B46A`-`0x0031B489` |
+
+</details>
 
 ### The pool
 
-`0x003AF2B0`, from the character render system's initialiser (`0x00426C34`), allocates 128 entries of
+`0x003AF2B0`, from the character render system's initialiser¹, allocates 128 entries of
 `0x60` bytes at `[0x02B3F530]` once ([arena 6](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md#the-arenas), `0x3000` bytes), clears every entry's active
 byte, and zeroes the serial `0x02B3F538` and the two switches `0x02B3F53C` and `0x02B3F540`. The pool is
 global; each render record owns a list at `+0x550` whose entries are linked through the pool.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00426C34` |
+
+</details>
+
 The allocation (`0x0036C1D0(6, 6)`, `0x0036A100(0x3000)`, `0x0036C140()`) and the clear of the active
-bytes run only while `[0x02B3F530]` is null (`0x003AF2B4`); the serial and the two switches are zeroed
-on every call (`0x003AF2FD`-`0x003AF30B`).
+bytes run only while `[0x02B3F530]` is null¹; the serial and the two switches are zeroed
+on every call².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AF2B4` |
+| ² | `0x003AF2FD`-`0x003AF30B` |
+
+</details>
 
 `0x003AED70(list, request)` refuses, returning 0, while the first switch `0x02B3F53C` is set, the
 list's `+0x28` is non-zero (`0x003AF320` sets it), or the list's `+0x00` is zero; it then takes the
@@ -176,58 +393,146 @@ so only the newest request turns.
 ### The knockback request
 
 `0x003AED70` has a second producer. The knockback impulse `0x00323350(attacker, victim, distance, flag)`, called from
-`0x00307300` (`0x00307B04`), does nothing when the attacker is the victim (`0x00323350`-`0x00323353`), nor when either of
+`0x00307300`¹, does nothing when the attacker is the victim², nor when either of
 `0x02089340` bits `0x200` and `0x400` is set together with a victim `+0x698` record with byte `+5` = 0, victim byte `+0`
-bit `0x10`, and the record's dwords `+0x3C | +0x64` clear of `0x80000003` (or `0x00377C20()` set, through `0x00313F60`)
-(`0x00323378`-`0x003233C7`), nor at a zero distance between the two in x and z (`0x003233CD`-`0x00323419`).
+bit `0x10`, and the record's dwords `+0x3C | +0x64` clear of `0x80000003` (or `0x00377C20()` set, through `0x00313F60`)³, nor at a zero distance between the two in x and z⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00307B04` |
+| ² | `0x00323350`-`0x00323353` |
+| ³ | `0x00323378`-`0x003233C7` |
+| ⁴ | `0x003233CD`-`0x00323419` |
+
+</details>
 
 Otherwise it builds a request on its stack: word `+0x00` = 0; mode `0xE`, or `0xF` with the flag; the distance; `+8` =
 0; the relative heading as the bearing `0x00861F02` (`atan2f`) from the victim to the attacker minus the victim's
 heading `+0x160`, wrapped into -pi to pi; the direction `(victim - attacker) / hypot` in x and z with y 0, away from
-the attacker; `+0x1C` = 1.0 (`0x0032341F`-`0x003234FD`).
+the attacker; `+0x1C` = 1.0¹.
 
-The request goes through `0x002E70E0(victim handle, request)` (`0x00323503`), which needs the victim actor's byte
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032341F`-`0x003234FD` |
+
+</details>
+
+The request goes through `0x002E70E0(victim handle, request)`¹, which needs the victim actor's byte
 `+0x0D` bit `0x2` and a valid render record, to `0x003E65E0(record, request)`: for modes `0xE` and `0xF`,
 with `0x003E56C0()` null or its byte `+0x111` zero the heading is zeroed, otherwise a heading beyond
 90 degrees either way is flipped by `pi` and wrapped; then `0x003AED70` as usual. Modes 14 and 15 are
 the two profile rows no authored command names.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00323503` |
+
+</details>
+
 `0x002E70E0(handle, request)` resolves the handle with `0x003588B0(handle)`. It does nothing for a null actor, a null
 controller `+0xC0`, a controller dword `+0x00` of -1, an actor byte `+0x0D` with bit `0x2` clear, a controller word
 `+0x00` of -1, a record address `[0x022C6F28] + 0x740 * n` of 0, with `n` that word, signed, or a record dword `+0x284`
-of 0, tested in that order (`0x002E70E9`-`0x002E712E`). Otherwise it ends in a jump to `0x003E65E0(record, request)` with
-that record (`0x002E7130`-`0x002E7138`).
+of 0, tested in that order¹. Otherwise it ends in a jump to `0x003E65E0(record, request)` with
+that record².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E70E9`-`0x002E712E` |
+| ² | `0x002E7130`-`0x002E7138` |
+
+</details>
 
 ### The profiles
 
 Every animation container carries one `@FRM` child ([container](../Graphics/model-files-cm-ca.md)).
-When a presentation entry is set up (`0x0041D220`) it looks the child up by tag (`0x00409660`,
-`0x00409A30`) and, when the child's size `+8` exceeds `0x30`, keeps the body `child + 0x30` at the
+When a presentation entry is set up¹ it looks the child up by tag² and, when the child's size `+8` exceeds `0x30`, keeps the body `child + 0x30` at the
 entry's `+0x378` and the profile table `body + [body + 8]` at `+0x37C` (-1 for no table).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041D220` |
+| ² | `0x00409660`, `0x00409A30` |
+
+</details>
 
 When a
 motion starts on the record (`0x00423B10`, after a successful `0x00424D80`), the entry's `+0x37C` and
 the resource handle `+0x68` go to the record's `+0xE8`/`+0xD8` with `+0xF0`/`+0x100` zeroed, or,
 when `0x004233D0(record, motion)` finds no slot (-1), to `+0x100`/`+0xF0` with the first pair left
 alone. `0x00423B10` also resolves the bases into `+0xE0`/`+0xF8` (`0x003AB7F0` of the handles) and fills the
-list's `+0x08`/`+0x10` directly; `0x003E6E60`, with a presentation entry (`0x00422D50`), re-derives them
+list's `+0x08`/`+0x10` directly; `0x003E6E60`, with a presentation entry¹, re-derives them
 from `+0xE0 + +0xE8` and `+0xF8 + +0x100` each time it is asked.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00422D50` |
+
+</details>
+
 Each re-derived pointer is the low 32 bits of `0x0020E600` of the dword (the base `[0x01F83530]` plus
-the dword) added to the offset in 32 bits and sign-extended (`0x003E6E79`-`0x003E6EAA`); a pointer
+the dword) added to the offset in 32 bits and sign-extended¹; a pointer
 whose `0x0020E600` gives 0 is left as it was. `0x003E6E60` returns the table address formed the same
-way (`0x003E6ECA`-`0x003E6EDB`), or 0 without a presentation entry, when `0x0020E600` of `+0xE0` gives 0
-or when `+0xE8` is -1 (`0x003E6E71`, `0x003E6EBF`-`0x003E6EC8`). That result is the list owner that
+way², or 0 without a presentation entry, when `0x0020E600` of `+0xE0` gives 0
+or when `+0xE8` is -1³. That result is the list owner that
 `0x003E6340`, `0x003E68B0`, `0x003E6A70` and `0x003E6EF0` test.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E6E79`-`0x003E6EAA` |
+| ² | `0x003E6ECA`-`0x003E6EDB` |
+| ³ | `0x003E6E71`, `0x003E6EBF`-`0x003E6EC8` |
+
+</details>
 
 `0x004233D0(record, motion)` first resolves the resource, `0x003AB7F0(0x0020E600(record dword +0x42C))`, and in it the
 `@FRM` child: `0x00408F90(resource, 0x4D524640, 0)` gives an index and `0x00408F80(resource, index)` an answer `c`, taken
-as a signed dword (`0x004233DF`-`0x00423428`). It keeps the low 12 bits of the motion id, and an id below `0x100` is its
-own answer, with or without a resource (`0x0042342C`-`0x0042343A`).
+as a signed dword¹. It keeps the low 12 bits of the motion id, and an id below `0x100` is its
+own answer, with or without a resource².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004233DF`-`0x00423428` |
+| ² | `0x0042342C`-`0x0042343A` |
+
+</details>
 
 For a higher id it searches nine words at the 32-bit sum `c + 0x30 + [c + 0x34]`, zero-extended, skipping `0xFFFF`; a
-match at index `i` answers `0x3E + i` (`0x00423451`-`0x00423493`). The answer is -1 with no resource, an index of -1, a
-dword `[c + 0x34]` of 0 or no match (`0x0042344C`-`0x0042347B`).
+match at index `i` answers `0x3E + i`¹. The answer is -1 with no resource, an index of -1, a
+dword `[c + 0x34]` of 0 or no match².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00423451`-`0x00423493` |
+| ² | `0x0042344C`-`0x0042347B` |
+
+</details>
 
 ```
 table[mode]   u32   offset of the profile from the table (a 0 is not tested: the consumer reads the table head as the profile)
@@ -251,11 +556,21 @@ speed curve   u16[moveFrames]
 ### The step, once a frame
 
 The actor update (`0x0025DF00`, below) calls `0x003E6EF0(record, &move, &turn, maxStep)`, which, with a
-list owner, runs `0x003AF220` on the list `+0x550`: `0x003AEF90` over the list, then the clamp: the move is normalised
-(`0x00380800`) and scaled, `w` included, by `min(maxStep, |move|)`. Without a list owner `0x003E6EF0`
-writes neither output (`0x003E6F18`). `|move|` is the length over x, y and z (`0x003AF24A`-`0x003AF271`),
+list owner, runs `0x003AF220` on the list `+0x550`: `0x003AEF90` over the list, then the clamp: the move is normalised¹ and scaled, `w` included, by `min(maxStep, |move|)`. Without a list owner `0x003E6EF0`
+writes neither output². `|move|` is the length over x, y and z³,
 and the clamp is skipped when the list's head `+0x18` is null after the walk, `[list + 0x18] == 0`
 (`cmp qword ptr [rbx + 0x18], 0`, `0x003AF23E`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00380800` |
+| ² | `0x003E6F18` |
+| ³ | `0x003AF24A`-`0x003AF271` |
+
+</details>
 
 `0x003AEF90` zeroes both outputs, returns at once
 while the second switch `0x02B3F540` is set or the list's `+0x00` is zero, and for each entry:
@@ -278,10 +593,22 @@ second curve. The speed curve is a share of the distance at the moment of the co
 covers the same fraction of the gap whatever the gap is; the two accumulators stop each axis once
 the request's angle is closed. The last entry written wins `turn` outright; `move` is a sum.
 
-`0x003E68B0` reports whether the list is enabled and non-empty (`0x003AEF20`); `0x003E6A70` returns bit `0x1`
-when any entry has its turn byte set and bit `0x2` when any has its move byte set (`0x003AEF50`).
-Both answer 0 without a list owner (`0x003E68C1`, `0x003E6A81`), and `0x003AEF50` answers 0 for a list
-whose `+0x00` is zero or whose head `+0x18` is null (`0x003AEF52`-`0x003AEF5D`).
+`0x003E68B0` reports whether the list is enabled and non-empty¹; `0x003E6A70` returns bit `0x1`
+when any entry has its turn byte set and bit `0x2` when any has its move byte set².
+Both answer 0 without a list owner³, and `0x003AEF50` answers 0 for a list
+whose `+0x00` is zero or whose head `+0x18` is null⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AEF20` |
+| ² | `0x003AEF50` |
+| ³ | `0x003E68C1`, `0x003E6A81` |
+| ⁴ | `0x003AEF52`-`0x003AEF5D` |
+
+</details>
 
 ### The actor update
 
@@ -292,7 +619,18 @@ from the movement context's `+0x50` for a class-3 actor (two uninitialised local
 when actor byte `+0x13` has bit `0x80`) and calls `0x003E6EF0`.
 
 It reads `0x003E68B0` and, when that holds and actor byte `+0x0D` has bit `0x2`, `0x003E6A70`. The render entry's
-byte `+0x10` bit `0x4` takes the move bit: it is cleared (`0x0025E277`, `0x0025E373`) and then rewritten from the move flag on every pass (`0x0025E37B`-`0x0025E37E`). Actor byte `+0x0C` bit `0x10` also takes it, set here and never cleared here (`0x0025E385`).
+byte `+0x10` bit `0x4` takes the move bit: it is cleared¹ and then rewritten from the move flag on every pass². Actor byte `+0x0C` bit `0x10` also takes it, set here and never cleared here³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E277`, `0x0025E373` |
+| ² | `0x0025E37B`-`0x0025E37E` |
+| ³ | `0x0025E385` |
+
+</details>
 
 Then `0x002E5030(actor, moveBit, &move)` runs the movement step with the summed move as the
 pass-through vector when the bit is set ([movement step](heading-speed-to-position-delta.md)), and
@@ -303,13 +641,32 @@ steering](facing-and-steering.md)).
 
 `0x0026B6A0` and `0x0026B520` fold the sum with the one-pass facing wrap and write by the actor's class
 (byte `+0x03` shifted right by 5). For class 1 they write the movement context `[+0xB8]` at `+0x38`
-and `+0x48` (`0x0026B706`-`0x0026B712`) or at `+0x54` and `+0x58` (`0x0026B586`-`0x0026B592`); for class 3
-they jump to `0x002E5FB0` or `0x002E5F90` with the third argument the integrator gave them, 0
-(`0x0026B701`, `0x0026B581`; `0x002E579A`, `0x002E57BE`); any other class gets no write (`0x0026B6F9`,
-`0x0026B579`).
+and `+0x48`¹ or at `+0x54` and `+0x58`²; for class 3
+they jump to `0x002E5FB0` or `0x002E5F90` with the third argument the integrator gave them, 0³; any other class gets no write⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026B706`-`0x0026B712` |
+| ² | `0x0026B586`-`0x0026B592` |
+| ³ | `0x0026B701`, `0x0026B581`; `0x002E579A`, `0x002E57BE` |
+| ⁴ | `0x0026B6F9`, `0x0026B579` |
+
+</details>
 
 `0x002651C0` reads the pitch from the same context: `+0x54` for class 1, `+0xAC` for
-class 3, and 0.0 for any other class (`0x002651C0`-`0x002651F1`).
+class 3, and 0.0 for any other class¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002651C0`-`0x002651F1` |
+
+</details>
 
 The second output float is the heading and the first the
 pitch, which is why the dead first axis costs nothing. The integrator returns at once for a
@@ -317,6 +674,9 @@ captured party member (actor `+0x18` = 1) or a controller with `+0x14F` bit `0x1
 neither arm.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Pool entry (`0x60` bytes, 128 at [`0x02B3F530`]):
 
@@ -361,7 +721,12 @@ presentation entry: +0x370 motion section; +0x378 @FRM body; +0x37C profile tabl
 globals: 0x02B3F530 pool; 0x02B3F538 serial; 0x02B3F53C refuses new requests; 0x02B3F540 stops the step
 ```
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Every `.ca` container under `ps2data` (3,164 of 3,164 are `@FRP`), walking the `@FMC` command
 streams and each container's own `@FRM` table:
@@ -394,8 +759,17 @@ streams and each container's own `@FRM` table:
 | one profile, with no table | 1,652, each with one `0x1A` command, of mode `0x16` | mode `0x16` |
 | 0 | 317, with no `0x1A` command | none of the shipped commands |
 
-A table's word `0x16` is 0 in all 1,195, since mode `0x16` does not read the table (`0x003AEFF8`-`0x003AF005`). Its word
+A table's word `0x16` is 0 in all 1,195, since mode `0x16` does not read the table¹. Its word
 `0x17` is `0x125` in all 1,195, and no command names mode `0x17`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AEFF8`-`0x003AF005` |
+
+</details>
 
 The step scales with the target distance, and the frame's total is limited by the body's collision radius:
 
@@ -409,10 +783,28 @@ share_full = sum of speed[i] * scale                         the curve's share o
 `[0x01DFE0B4]` is 1 and `[0x01DFE0BC]` 1.0 at 30 frames a second, and 2 and 0.5 at 60
 ([startup constants](../Engine-Core/startup-constants.md)): each sample runs twice at half size, so
 `share_full` does not change with the rate. A mode's direction comes from the builder: modes 3, 4 and `0x10` step
-away from the target (`0x003E63DB`, `0x003E643A`), and every other authored mode goes to the reach point.
+away from the target¹, and every other authored mode goes to the reach point.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E63DB`, `0x003E643A` |
+
+</details>
 
 A command on an empty slot reads the table's head as its profile. All 24 such commands are in containers whose
-first table word is 0, so the duration is 0 and the entry is freed on its first step (`0x003AF06F`-`0x003AF072`).
+first table word is 0, so the duration is 0 and the entry is freed on its first step¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AF06F`-`0x003AF072` |
+
+</details>
 
 | `selected_by` | Profiles | Meaning |
 |---|---|---|
@@ -423,8 +815,17 @@ first table word is 0, so the duration is 0 and the entry is freed on its first 
 | `reserve` | 2,323 | slots 8, 13, 17 and 18: filled, but no `0x1A` command names those modes |
 
 The Reserve row rests on the commands table, which lists all 12,876 authored commands. Nothing limits the mode at
-the table read (`0x003AF043`), so an authored command could select those slots. Slots 19 and 20 hold no profile in any
+the table read¹, so an authored command could select those slots. Slots 19 and 20 hold no profile in any
 table.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AF043` |
+
+</details>
 
 | Fact | Value |
 |---|---|
@@ -462,6 +863,8 @@ table.
 | commands: `table_head_word` | an empty slot only: the first table word, read as the duration |
 | commands: `command_bytes` | the command as stored |
 
+</details>
+
 ## Operations
 
 Per authored command: one view request, one request built and one pool entry taken; per knockback
@@ -472,8 +875,13 @@ integrator consume the pair.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The pool, its serial and two switches; each render record's list and its two profile pointers;
 each entry's counter, armed bytes and two accumulators.
+
+</details>
 
 ## Modding notes
 
@@ -481,10 +889,10 @@ each entry's counter, armed bytes and two accumulators.
   frame by the actor's smaller collision radius; it is not root motion, and the bone data does not
   contain it.
 - The target is whatever the handle in the render record's `+0x110` names when the command fires
-  (`0x0041F311`-`0x0041F317`, `0x0031AE7C`).
+ ¹.
 - With no target, or while battle-state bit `0x10` is clear, the view's target position stays 0
-  (`0x0031AE6D`-`0x0031AEA7`), and the builder tests only that it differs from the record's position
-  (`0x003E6395`-`0x003E63BB`): the character turns toward the world origin (x 0, z 0), and for modes 3, 4
+ ², and the builder tests only that it differs from the record's position
+ ³: the character turns toward the world origin (x 0, z 0), and for modes 3, 4
   and `0x10` also steps away from it. Only a character standing at x 0, z 0 queues nothing.
 - 128 requests exist for the whole scene; a 129th is dropped silently, and the first switch or a
   disabled list refuses requests while the second switch only freezes the step.
@@ -494,6 +902,17 @@ each entry's counter, armed bytes and two accumulators.
 - Knockback is the second producer; a port that replays only authored commands loses the slide
   and the turn toward the attacker.
 - Position changes here are part of combat spacing.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041F311`-`0x0041F317`, `0x0031AE7C` |
+| ² | `0x0031AE6D`-`0x0031AEA7` |
+| ³ | `0x003E6395`-`0x003E63BB` |
+
+</details>
 
 ## Related
 
@@ -513,14 +932,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x003206E0` |
+| [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse) | is called by | [`0x003206E0`](../Characters-And-Objects/battle-units.md) (on battle units) |
 
 **World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003590D0` | is called by | `0x0025E400`, `0x002623A0` |
+| [`0x003590D0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) | is called by | [`0x0025E400`](../Characters-And-Objects/actor-record-fields.md) (on actor record fields)<br>[`0x002623A0`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 </details>

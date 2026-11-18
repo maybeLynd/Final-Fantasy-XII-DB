@@ -55,33 +55,88 @@ listing's bitwise OR is written `bitor`.
 `setshapepos_183` (`0x183`, `0x00343610`) places one part of a picture window. It pops five values and calls
 `0x003E9570(window, part, x, y, centre)`, which writes x and y as words to `+0x10` and `+0x12` of the part's record,
 `part × 0x60` into the part array that the window object's `+0x3F8` points to, and bit `0x2` of `+0x08` from bit
-`0x1` of `centre` (`0x003E959D`-`0x003E95C0`).
+`0x1` of `centre`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E959D`-`0x003E95C0` |
+
+</details>
 
 `0x003E9570` changes nothing when the message slot (`0x002E1040`, 0 to 7) holds no window object or the part is not
-below the slot's word `+0x54` (`0x003E9588`-`0x003E959B`). Every row of this kind passes `centre` 0, so x and y are
+below the slot's word `+0x54`¹. Every row of this kind passes `centre` 0, so x and y are
 the top-left corner of the part, in the 1920 × 1080 window that `shapewin(3, 0, 0, 0x0780, 0x0438, 0)` opens.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E9588`-`0x003E959B` |
+
+</details>
 
 `setshape` (`0x17E`, `0x003405C0` → `0x003E9320`) chooses the frame a part shows. The frames are cut from the picture
 block in the script's own reference area, so each tree draws its own wording: the block's frame table gives each
 frame's corner and size in a TIM2 image that follows it.
 `0x003405C0` calls `0x002640C0` before it pops anything and passes the answer as the first
-argument of `0x003E9320`; the four ints follow in the reverse of the order popped
-(`0x003405DD`-`0x0034061A`).
+argument of `0x003E9320`; the four ints follow in the reverse of the order popped¹.
 
-`0x002A7950`, which `registshape` runs while the context's `+0xB8` is empty (`0x003E92F6`-`0x003E930D`), takes the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003405DD`-`0x0034061A` |
+
+</details>
+
+`0x002A7950`, which `registshape` runs while the context's `+0xB8` is empty¹, takes the
 block's address, not the image's: it keeps `block + 0x10` and `block + 0x10 + [block + 4]` in the first free of
 the eight picture slots at `0x0209C510` (-1 when all eight are taken) and loads from `block + 0x10 + [block + 4] +
-[block + 8]` through `0x0024A440`, the last two sums made in 32 bits (`0x002A7970`-`0x002A79CE`).
+[block + 8]` through `0x0024A440`, the last two sums made in 32 bits².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E92F6`-`0x003E930D` |
+| ² | `0x002A7970`-`0x002A79CE` |
+
+</details>
 
 The image is registered with `0x0024A440(address, [0x01E0C270], 2)` and the answer is
-kept at the slot's `+0x08` (`0x002A7996`-`0x002A79B7`).
+kept at the slot's `+0x08`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A7996`-`0x002A79B7` |
+
+</details>
 
 `0x003E9320` changes nothing but the slot's `+0x4C` when the slot holds no window, no picture is registered (the
-context's `+0xB8`) or the part is not below the slot's word `+0x54` (`0x003E934F`-`0x003E9371`, `0x003E941D`). After it
+context's `+0xB8`) or the part is not below the slot's word `+0x54`¹. After it
 sets the frame it puts the part at x 0, y 0 with bit `0x2` of `+0x08` set, through `0x003E9570(window, part, 0, 0,
-1)`, and sets bit `0x1` of `+0x08` (`0x003E93D5`-`0x003E9412`), so a part's position is the one a later
+1)`, and sets bit `0x1` of `+0x08`², so a part's position is the one a later
 `setshapepos_183` gives it. The script moves a part because the tree's frame has a different width or reads in
 another order:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E934F`-`0x003E9371`, `0x003E941D` |
+| ² | `0x003E93D5`-`0x003E9412` |
+
+</details>
 
 | Picture | Trees | Rows | Scripts | What moves | Why |
 |---|---|---:|---:|---|---|
@@ -121,10 +176,19 @@ control back to the player, straight after `ucon(); sethpmenu(1);` and before `c
 
 `setcharclipall` reaches `0x002EBBB0`: a non-zero value clears bit `0x1` of the byte `0x0215FD56`, and 0 sets it. It
 then writes bit `0x1` of the render system tail `+0x18` (`[0x022C6F28] + 0x48818`) from the whole byte: set when the
-byte is 0, clear otherwise (`0x002EBBC7`-`0x002EBBDA`). While that bit is on, characters past the distance fade (start
+byte is 0, clear otherwise¹. While that bit is on, characters past the distance fade (start
 34.0, range 4.0 by default) fade out and are culled
 ([character fades](../Graphics/character-fades.md),
 [character render records](../Graphics/character-render-records.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EBBC7`-`0x002EBBDA` |
+
+</details>
 
 | Scripts | Rows |
 |---|---:|
@@ -151,12 +215,29 @@ on [story counter values](story-counter-values.md); `evt_t0086` (`Map_Debug_menu
 ### Message windows (`message-window`)
 
 `amest` (`0x082`, `0x0034A090`) pushes 0 and runs `0x00349800`, which places two zeros beneath the last two values and
-runs `mes` (`0x00348DF0`). The result is `amest(slot, text, x, y, style)`: `0x002E1EA0` sets the window style, `0x002E1F80`
+runs `mes`¹. The result is `amest(slot, text, x, y, style)`: `0x002E1EA0` sets the window style, `0x002E1F80`
 the window corner with an automatic size, and `0x002E1F40` the window kind
 ([message windows](../Menus-And-HUD/message-windows.md)). `mesclose` (`0x012`, `0x0034D920`) closes the window of a slot.
 
-`mes` opens the window through `0x002E16B0` only when the text's section 2 flag, which `0x002673A0` reads, is clear
-(`0x00348E85`, `0x00348EE0`-`0x00348EFF`) ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00348DF0` |
+
+</details>
+
+`mes` opens the window through `0x002E16B0` only when the text's section 2 flag, which `0x002673A0` reads, is clear¹ ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00348E85`, `0x00348EE0`-`0x00348EFF` |
+
+</details>
 
 Each row of this kind opens a small window whose text is the escape `0F ;` and one inline icon, letter `H`
 ([text codes](../Menus-And-HUD/text-codes.md)): icon 8, the Square button in the button order of
@@ -190,8 +271,18 @@ false; `0x5B1` runs the same body ([standard file formats](../Game-Files-And-Dat
 | `gol_c01` | 32 | the same variables under new numbers | no change |
 | `rui_a04` (Doubt Abandoned) | 5 | the save offer wrapped in `if (!verb_0x5B4())` | runs as in `us` |
 
-`setmapidmj` (`0x100`, `0x003458D0`) pushes -1 and pops it straight back (`0x003458DF`-`0x003458F0`), then pops the
-value, the kind and the group and jumps to `0x00379430(group, kind, value)` (`0x003458F5`-`0x00345927`).
+`setmapidmj` (`0x100`, `0x003458D0`) pushes -1 and pops it straight back¹, then pops the
+value, the kind and the group and jumps to `0x00379430(group, kind, value)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003458DF`-`0x003458F0` |
+| ² | `0x003458F5`-`0x00345927` |
+
+</details>
 
 `setmapidmj` (`0x100`, `0x003458D0` → `0x00379430`) with kinds 0 and 7 and value 0 would turn the floor of the map-jump
 group into a wall for movement kinds 0 and 5 ([doors, gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md)),
@@ -199,8 +290,17 @@ closing those exits of Golmore Jungle and the Tchita Uplands. Verb `0x5C7` is `0
 
 The thank-you return adds the actors `RETURNTOTITLE` and `thankyoupage_IN_PLAYING`. It stops the music and sounds,
 shows `thankyou.tga` through the title-image verbs (`0x5A2`, `0x0034E340` → `0x00473E80`, index 3) and ends with verb
-`0x5B8` (`0x00354EF0`), whose last call `0x003603E0` sets the return-to-title byte `0x022CB72B` to 1
+`0x5B8`¹, whose last call `0x003603E0` sets the return-to-title byte `0x022CB72B` to 1
 ([game over](../World-Areas-And-Travel/game-over.md)). `thankyou.tga` ships in no tree.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00354EF0` |
+
+</details>
 
 The title-image verbs it uses work on the screen picture object at `[0x01F82CE0]`
 ([screen fades](../Graphics/screen-fades.md) has `0x5A3` and `0x5A6`):
@@ -212,11 +312,23 @@ The title-image verbs it uses work on the screen picture object at `[0x01F82CE0]
 - `0x5A3` (`0x0034EA10` → `0x00473E60`): shows the loaded image for `n` steps plus both fades;
 - `0x5A5` (`0x0034F140` → `0x00473E10` → `0x0017FF50` → `0x001D8C70`): returns the picture's `+0x04` while it plays (`+0x00`
   non-zero), else -1. `+0x04` counts the passes since the image started: the start `0x001D8F50` sets it to 0
-  (`0x001D8F76`), and the picture's update `0x001D9080`, which the frame pump `0x0017D6E0` runs once a pass (`0x0017D819`),
-  adds 1 (`0x001D90AB`). The scripts let the confirm button end the image once it passes a value they set;
+ ¹, and the picture's update `0x001D9080`, which the frame pump `0x0017D6E0` runs once a pass²,
+  adds 1³. The scripts let the confirm button end the image once it passes a value they set;
 - `0x5A4` (`0x0034ED70` → `0x00474020` → `0x00182F30` → `0x001D8FF0`): starts the fade-out, or ends the image at once when the fade-out
   length is 0;
-- `0x5A6` (`0x0034F570`): holds the script while the image still plays.
+- `0x5A6`⁴: holds the script while the image still plays.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D8F76` |
+| ² | `0x0017D819` |
+| ³ | `0x001D90AB` |
+| ⁴ | `0x0034F570` |
+
+</details>
 
 The two added actors shift the numbering of `gol_c01`'s variables in the listing: each of the 32 rows differs from
 `us` only in the `file_var_s<N>` or `local_var_s<N>` number, with the same offsets.
@@ -228,8 +340,17 @@ In `rui_a04` the save offer ("You will now have the option of saving your game."
 
 `captureactor_367` (`0x367`, `0x00355570`) takes a reference of class three: the reference decoder `0x002650B0` resolves
 class 3 through its jump table at `0x00265180` to the image plus the image's `+0x40` (the reference area) plus the
-offset (`0x00265155`) ([party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md)). The area
+offset¹ ([party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md)). The area
 holds the actor names and the scripts' pictures. In every row the same name sits at the new offset:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265155` |
+
+</details>
 
 | Scripts | Trees | Actors captured | Why the offset moves |
 |---|---|---|---|
@@ -238,8 +359,17 @@ holds the actor names and the scripts' pictures. In every row the same name sits
 | `rui_e0101` | `it` | `BOSS_魔神竜` | the first picture is 256 × 256 instead of 256 × 128: 0x8000 bytes more |
 
 With the resolved name, `0x00355570` takes manager 0's actor of that name (`0x00358800(0, name)`, `0x003555AB`) and,
-when one is found and it is not the issuer, binds them with `0x00262F50(issuer, found)` (`0x003555C5`-`0x003555D7`), as
+when one is found and it is not the issuer, binds them with `0x00262F50(issuer, found)`¹, as
 `captureactor` does; the gate `0x0053DD10(name)` it calls twice always returns 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003555C5`-`0x003555D7` |
+
+</details>
 
 ### Sign record (`sign-record`)
 
@@ -257,7 +387,16 @@ two files are byte-identical and their image names `ttl_a01.src` as its source. 
 - adds the actor `SERIES_PAGES`, whose `Play` and `Sync` function pairs show each title image with 30-step fades
   (`0x5B9(30, 30)`), and `WARNINGPAGE_IN_PLAYING`;
 - requests `Warning_page` when verb `0x5C6` and `isFirstStartDone()` both return 0, in place of the rating request.
-  `0x5C6` (`0x0033FED0`) returns the locale id from `0x00229E40` with 10 read as 0, so the page would show for Japanese.
+  `0x5C6`¹ returns the locale id from `0x00229E40` with 10 read as 0, so the page would show for Japanese.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0033FED0` |
+
+</details>
 
 No build loads it. Every language arm of the executable's zone script path table names `ttl_a01.ebp` for zone 12
 ([asset paths](../Game-Files-And-Data-Tables/asset-paths.md)), and neither the executable nor any shipped data
@@ -284,115 +423,116 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 64 calls with 22 other topics</summary>
 
-**Characters and objects**
+**Characters and objects** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [script requests](../Scripts-And-Script-Commands/script-requests.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md), [debug menu](../Engine-Core/debug-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00355A00` | calls | `0x0025D5E0`, `0x00269F20`, `0x0026B4A0` |
-| `0x00358800` | calls | `0x00263A30`, `0x00263FF0` |
-
-**Characters and objects** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [script requests](../Scripts-And-Script-Commands/script-requests.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md))
-
-**Characters and objects** (explained on [debug menu](../Engine-Core/debug-menu.md))
+| [`0x00355A00`](../Menus-And-HUD/aerodrome-airship-dialogue.md) (on aerodrome airship dialogue) | calls | [`0x0025D5E0`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x00269F20`](../Menus-And-HUD/enemy-names-on-screen.md) (on enemy names on screen)<br>[`0x0026B4A0`](../Scripts-And-Script-Commands/script-requests.md) (on script requests) |
+| [`0x00358800`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | calls | [`0x00263A30`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x00263FF0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) |
 
 **Sound and music** (explained on [menu lists](../Menus-And-HUD/menu-lists.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [game over](../World-Areas-And-Travel/game-over.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x00354EF0` | calls | `0x00249CA0`, `0x002DEE70`, `0x00360D70`, `0x00363560` |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Engine core**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0017D6E0` | calls | `0x001A1460`, `0x001DB600`, `0x001E0550`, `0x001E0590`, `0x001E05E0`, `0x001E05F0`, `0x0022A490` |
-| `0x0017D6E0` | is called by | `0x0017CCD0` |
-| `0x001D9080` | is called by | `0x0017D6E0` |
-| `0x0033FED0` | calls | `0x00229E40` |
-| `0x00473E80` | calls | `0x00229E40` |
-| `0x0053DD10` | is called by | `0x0022B6E0` |
+| [`0x00354EF0`](script-language-differences.md) | calls | [`0x00249CA0`](../Menus-And-HUD/menu-lists.md) (on menu lists)<br>[`0x002DEE70`](../Battle-Actions/action-phases.md) (on action phases)<br>[`0x00360D70`](../Sound-And-Music/music-table.md) (on music table)<br>[`0x00363560`](../Sound-And-Music/map-sounds.md) (on map sounds) |
 
 **Engine core** (explained on [game application](../Engine-Core/game-application.md), [frame update order](../Engine-Core/frame-update-order.md), [debug menu](../Engine-Core/debug-menu.md), [startup constants](../Engine-Core/startup-constants.md))
 
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0017D6E0`](../Engine-Core/game-application.md) (on game application) | calls | [`0x001A1460`](../Graphics/gi-render-commands.md) (on gi render commands)<br>[`0x001DB600`](../Engine-Core/game-application.md) (on game application)<br>[`0x001E0550`](../Engine-Core/game-application.md) (on game application)<br>[`0x001E0590`](../Engine-Core/game-application.md) (on game application)<br>[`0x001E05E0`](../Engine-Core/game-application.md) (on game application)<br>[`0x001E05F0`](../Engine-Core/game-application.md) (on game application)<br>[`0x0022A490`](../Engine-Core/game-application.md) (on game application) |
+| [`0x0017D6E0`](../Engine-Core/game-application.md) (on game application) | is called by | [`0x0017CCD0`](../Graphics/render-command-list.md) (on render command list) |
+| [`0x001D9080`](../Engine-Core/game-application.md) (on game application) | is called by | [`0x0017D6E0`](../Engine-Core/game-application.md) (on game application) |
+| [`0x0033FED0`](script-language-differences.md) | calls | [`0x00229E40`](script-language-differences.md) |
+| [`0x00473E80`](script-language-differences.md) | calls | [`0x00229E40`](script-language-differences.md) |
+| [`0x0053DD10`](../Scripts-And-Script-Commands/event-scenes.md) Input device: query availability state always1 (on event scenes) | is called by | [`0x0022B6E0`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
+
 **Developer** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0017D6E0` | calls | `0x001C2F50` |
+| [`0x0017D6E0`](../Engine-Core/game-application.md) (on game application) | calls | [`0x001C2F50`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) |
 
-**Controls and input**
+**Controls and input** (explained on [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [control remapping](../Controls-And-Input/control-remapping.md), [controls](../Controls-And-Input/controls.md), [frame update order](../Engine-Core/frame-update-order.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0024A440` | is called by | `0x00291D90` |
-| `0x002B5B60` | calls | `0x001E0B90`, `0x001E0BD0`, `0x001E0DA0`, `0x001E0DC0` |
-| `0x0053DD10` | is called by | `0x002E09A0`, `0x0035FCA0`, `0x0035FDD0`, `0x0046DD50` |
-
-**Controls and input** (explained on [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [control remapping](../Controls-And-Input/control-remapping.md), [controls](../Controls-And-Input/controls.md), [frame update order](../Engine-Core/frame-update-order.md))
-
-**Controls and input** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
-
-**Movement and pathfinding**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00355A00` | calls | `0x0026AB60`, `0x0026B0C0`, `0x0026B620`, `0x0026BB00`, `0x0026BC70`, `0x0026BD50`, `0x0026BDD0`, `0x0026BFF0` |
-| `0x00379430` | calls | `0x0026E850`, `0x0026E880` |
+| [`0x0024A440`](script-language-differences.md) | is called by | [`0x00291D90`](../Game-Files-And-Data-Tables/as7-menu-graphics.md) (on as7 menu graphics) |
+| [`0x002B5B60`](script-language-differences.md) | calls | [`0x001E0B90`](../Controls-And-Input/on-screen-keyboard.md) (on on screen keyboard)<br>[`0x001E0BD0`](../Controls-And-Input/control-remapping.md) (on control remapping)<br>[`0x001E0DA0`](../Controls-And-Input/control-remapping.md) (on control remapping)<br>[`0x001E0DC0`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x0053DD10`](../Scripts-And-Script-Commands/event-scenes.md) Input device: query availability state always1 (on event scenes) | is called by | [`0x002E09A0`](../Menus-And-HUD/menus.md) (on menus)<br>[`0x0035FCA0`](../Controls-And-Input/vibration.md) (on vibration)<br>[`0x0035FDD0`](../Controls-And-Input/controls.md) (on controls)<br>[`0x0046DD50`](../Game-Files-And-Data-Tables/file-size-tables-fst.md) (on file size tables fst) |
 
 **Movement and pathfinding** (explained on [party control modes](../Engine-Core/party-control-modes.md), [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md), [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md))
 
-**Graphics**
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0017D6E0` | calls | `0x00189CE0`, `0x001BC190`, `0x001BDAC0`, `0x001CC600`, `0x0022FFE0` |
-| `0x00229E40` | is called by | `0x002B0280`, `0x00434CD0`, `0x00435050` |
-| `0x0053DD10` | is called by | `0x004355D0`, `0x00462540` |
+| [`0x00355A00`](../Menus-And-HUD/aerodrome-airship-dialogue.md) (on aerodrome airship dialogue) | calls | [`0x0026AB60`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x0026B0C0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x0026B620`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x0026BB00`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x0026BC70`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x0026BD50`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x0026BDD0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x0026BFF0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
+| [`0x00379430`](../World-Areas-And-Travel/doors-gates-and-map-changes.md) (on doors gates and map changes) | calls | [`0x0026E850`](../World-Areas-And-Travel/doors-gates-and-map-changes.md) (on doors gates and map changes)<br>[`0x0026E880`](../World-Areas-And-Travel/doors-gates-and-map-changes.md) (on doors gates and map changes) |
 
-**Graphics** (explained on [debug menu](../Engine-Core/debug-menu.md), [game application](../Engine-Core/game-application.md), [frame update order](../Engine-Core/frame-update-order.md), [handbook files](../Game-Files-And-Data-Tables/handbook-files.md))
+**Graphics** (explained on [debug menu](../Engine-Core/debug-menu.md), [game application](../Engine-Core/game-application.md), [frame update order](../Engine-Core/frame-update-order.md), [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [effect element types](../Graphics/effect-element-types.md))
 
-**Graphics** (explained on [effect element types](../Graphics/effect-element-types.md))
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Game files and data tables**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0017D6E0` | calls | `0x001A1220` |
-| `0x0024A440` | calls | `0x0024A1D0`, `0x0024A4E0` |
-| `0x002A7950` | calls | `0x0024A440` |
-| `0x00473E80` | calls | `0x002DF8E0` |
+| [`0x0017D6E0`](../Engine-Core/game-application.md) (on game application) | calls | [`0x00189CE0`](../Graphics/post-processing.md) (on post processing)<br>[`0x001BC190`](../Engine-Core/game-application.md) (on game application)<br>[`0x001BDAC0`](../Graphics/character-render-object.md) (on character render object)<br>[`0x001CC600`](../Engine-Core/game-application.md) (on game application)<br>[`0x0022FFE0`](../Engine-Core/debug-menu.md) (on debug menu) |
+| [`0x00229E40`](script-language-differences.md) | is called by | [`0x002B0280`](../Menus-And-HUD/text-drawing.md) (on text drawing)<br>[`0x00434CD0`](../Graphics/effect-element-types.md) (on effect element types)<br>[`0x00435050`](../Graphics/effect-element-types.md) (on effect element types) |
+| [`0x0053DD10`](../Scripts-And-Script-Commands/event-scenes.md) Input device: query availability state always1 (on event scenes) | is called by | [`0x004355D0`](../Graphics/effect-element-types.md) (on effect element types)<br>[`0x00462540`](../Graphics/script-screen-effects.md) (on script screen effects) |
 
 **Game files and data tables** (explained on [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [debug menu](../Engine-Core/debug-menu.md))
 
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0017D6E0`](../Engine-Core/game-application.md) (on game application) | calls | [`0x001A1220`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager) |
+| [`0x0024A440`](script-language-differences.md) | calls | [`0x0024A1D0`](../Game-Files-And-Data-Tables/cl2-menu-colour-tables.md) (on cl2 menu colour tables)<br>[`0x0024A4E0`](../Game-Files-And-Data-Tables/cl2-menu-colour-tables.md) (on cl2 menu colour tables) |
+| [`0x002A7950`](script-language-differences.md) | calls | [`0x0024A440`](script-language-differences.md) |
+| [`0x00473E80`](script-language-differences.md) | calls | [`0x002DF8E0`](../Engine-Core/debug-menu.md) (on debug menu) |
+
 **Rewards: EXP, LP, gil and loot** (explained on [bestiary](../Enemy-Spawning/bestiary.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00229E40` | is called by | `0x00317ED0` |
+| [`0x00229E40`](script-language-differences.md) | is called by | [`0x00317ED0`](../Rewards-EXP-Gil-And-Loot/kill-chain.md) Enemy chain: update on defeat (on kill chain) |
 
-**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
+**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md), [frame update order](../Engine-Core/frame-update-order.md), [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003603E0` | is called by | `0x00280140` |
-
-**Saving, loading and settings** (explained on [frame update order](../Engine-Core/frame-update-order.md), [game application](../Engine-Core/game-application.md))
-
-| Function | | Functions |
-|---|---|---|
-| `0x0017D6E0` | calls | `0x001C18E0`, `0x001C1910` |
+| [`0x003603E0`](script-language-differences.md) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
+| [`0x0017D6E0`](../Engine-Core/game-application.md) (on game application) | calls | [`0x001C18E0`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x001C1910`](../Engine-Core/game-application.md) (on game application) |
 
 **Menus and HUD** (explained on [hud](../Menus-And-HUD/hud.md), [augments](../Damage-And-Battle-Formulas/augments.md), [map screens](../Menus-And-HUD/map-screens.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00229E40` | is called by | `0x0028AAA0`, `0x002AC5F0` |
-| `0x0053DD10` | is called by | `0x003C80C0` |
+| [`0x00229E40`](script-language-differences.md) | is called by | [`0x0028AAA0`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x002AC5F0`](../Menus-And-HUD/text-drawing.md) (on text drawing) |
+| [`0x0053DD10`](../Scripts-And-Script-Commands/event-scenes.md) Input device: query availability state always1 (on event scenes) | is called by | [`0x003C80C0`](../Menus-And-HUD/map-screens.md) (on map screens) |
 
 **World, areas and travel** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0053DD10` | is called by | `0x003789A0` |
+| [`0x0053DD10`](../Scripts-And-Script-Commands/event-scenes.md) Input device: query availability state always1 (on event scenes) | is called by | [`0x003789A0`](../Graphics/effect-files-efx-efb.md) (on effect files efx efb) |
 
 </details>

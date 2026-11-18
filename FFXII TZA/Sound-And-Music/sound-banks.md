@@ -30,8 +30,17 @@ each controller's bank class names the family in its run-time type name.
 | block indexes | 248 | `se/block/se<n>.seb` | `0x002E60F0`, kind 32 | - |
 
 The manager's fifth controller, at `+0x18`, is `StreamAudioController`. The two SE folders' root is
-`PS2Data/sound/se/sead_data_win` (`0x00908950`), and `.win.sab` comes from `0x00908998`. Music ids run 7, 15-92,
+`PS2Data/sound/se/sead_data_win`¹, and `.win.sab` comes from `0x00908998`. Music ids run 7, 15-92,
 94-116 and 200-213.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00908950` |
+
+</details>
 
 Every shipped bank and index is listed, with its header, contents, loader and what names it, in
 [`sound-music-bank-files.tsv`](sound-music-bank-files.tsv), [`sound-se-bank-files.tsv`](sound-se-bank-files.tsv),
@@ -45,8 +54,17 @@ a block by its place in that list and a sound by its slot in the block.
 ### Block banks and the block index
 
 An actor's sound-effect record names up to three SE blocks as `u16` ids, bit `0x8000` meaning no block. `0x002E60F0`
-turns each id into an index into the kind-32 path array of 608 `.seb` paths at `0x01E7FCF0` (`0x002E6157`-`0x002E618E`). The
+turns each id into an index into the kind-32 path array of 608 `.seb` paths at `0x01E7FCF0`¹. The
 array holds `se000`, `se007`, `se001`-`se006`, then `se200`-`se499` from index 8 and `se700`-`se999` from index 308:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E6157`-`0x002E618E` |
+
+</details>
 
 | Block id | Index |
 |---|---|
@@ -56,59 +74,127 @@ array holds `se000`, `se007`, `se001`-`se006`, then `se200`-`se499` from index 8
 
 So ids 200-499 and 700 and up name the file with the same number, and ids 192-199 name the first eight entries,
 `se000`, `se007` and `se001`-`se006`. 247 of the 248 shipped `.seb` files are reached by
-their own number, and `se007` by id 1. The index file is read into a block (`0x002E6277`) and registered by
+their own number, and `se007` by id 1. The index file is read into a block¹ and registered by
 `0x003A1650`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E6277` |
+
+</details>
 
 ### The block registry
 
 `0x003A0C90(block)` keeps 64 records of `0x18` bytes at `0x02AEEDC0`, sorted by block number at `+0x04`:
 
-1. A block already registered adds one to the use count at `+0x0E`, and the new copy of the file is freed.
-2. A new block takes a free record, marks it in the bitmap at `0x02AEF3F0`, and is passed to `0x002DEF00(slot & 0x3F,
-   file)`, which builds a `SebAudioBank` through `0x001DBD20`, `0x00210B60` and `0x0021B430` (`0x003A1650`).
-3. `0x00223AD0` reads the index, stores the block registry slot at bank `+0x3C` and the block number at `+0x38`, and opens the
-   block's `.win.sab` (`0x00223CB1`-`0x00223D05`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A block already registered adds one to the use count at `+0x0E`, and the new copy of the file is freed. |   |
+| 2 | A new block takes a free record, marks it in the bitmap at `0x02AEF3F0`, and is passed to `0x002DEF00(slot & 0x3F, file)`, which builds a `SebAudioBank` through `0x001DBD20`, `0x00210B60` and `0x0021B430`. | `0x003A1650` |
+| 3 | `0x00223AD0` reads the index, stores the block registry slot at bank `+0x3C` and the block number at `+0x38`, and opens the block's `.win.sab`. | `0x00223CB1`-`0x00223D05` |
 
-`0x003A1650(file)` answers -1 when the file handle gives no data (`0x0036B130`, `0x003A1667`). When `0x003A0C90` answers -1
-or a handle with bit `0x80000000` clear, a block already registered, it frees the file (`0x00369800`) and answers
-that value (`0x003A1683`-`0x003A168E`, `0x003A1729`-`0x003A1730`).
+`0x003A1650(file)` answers -1 when the file handle gives no data¹. When `0x003A0C90` answers -1
+or a handle with bit `0x80000000` clear, a block already registered, it frees the file² and answers
+that value³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036B130`, `0x003A1667` |
+| ² | `0x00369800` |
+| ³ | `0x003A1683`-`0x003A168E`, `0x003A1729`-`0x003A1730` |
+
+</details>
 
 Any other answer is a new block. `0x003A1650` clears bit `0x80000000` and passes `0x002DEF00` the record's index, or -1
-when the record's generation and index no longer equal the handle (`0x003A169F`-`0x003A16D4`). It stores the result at
+when the record's generation and index no longer equal the handle¹. It stores the result at
 record `+0x10`, the file handle at `+0x14` and state 1 at `+0x0C`, sets the record's bit in `0x02AEF3F0`, calls
-`0x0036A0B0(file)` and answers the handle (`0x003A16D9`-`0x003A1712`).
+`0x0036A0B0(file)` and answers the handle².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A169F`-`0x003A16D4` |
+| ² | `0x003A16D9`-`0x003A1712` |
+
+</details>
 
 `0x002DEC10` reads an index's block number, the `i16` at `+0x08`, for `0x003A1650`. A record's handle is its generation
 `+0x0A` over its index `+0x08`, and every user compares the whole handle before it trusts a record:
 
 - `0x003A0F80(handle)` counts a use down. At 0, unless the record is permanent (`+0x0D`), it frees the slot's bank
-  (`0x002DEEF0`, which hands `0x0021B430` no file), adds one to the generation, unlinks the record (`0x003A1750`) and puts
+  (`0x002DEEF0`, which hands `0x0021B430` no file), adds one to the generation, unlinks the record¹ and puts
   it at the head of the free list `0x02AEF3D8`.
 - `0x003A1750` takes a record out of its list through the links `+0x00` (next) and `+0x02` (previous) and sets both to
   `0xFFFF`.
 - `0x003A0EA0`, run by `0x0036D890`, walks the records marked in the bitmap `0x02AEF3F0`. A record whose `+0x10` is set
   and for which `0x002DEE90` answers 0 gets state 2 at `+0x0C`, `+0x10` = 0 and its bitmap bit (by `+0x08`)
-  cleared, and its file handle `+0x14` is released (`0x0036D200`) and freed (`0x00369800`).
+  cleared, and its file handle `+0x14` is released² and freed³.
 - `0x003A1290(handle)` answers the record's byte `+0x0C` for `0x002E60F0`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A1750` |
+| ² | `0x0036D200` |
+| ³ | `0x00369800` |
+
+</details>
+
 `0x003A13F0` loads three blocks once at start-up: blocks 0, 1 and 2, which `0x002ED8C0` maps to `se000`, `se007` and
-`se002`. Their callbacks `0x003A1390`, `0x003A1330` and `0x003A12D0` register each one (`0x003A1650`), keep its handle at
+`se002`. Their callbacks `0x003A1390`, `0x003A1330` and `0x003A12D0` register each one¹, keep its handle at
 `0x02AEF3FC`, `0x02AEF400` or `0x02AEF404`, and mark the record permanent.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A1650` |
+
+</details>
 
 The table holds 66 entries of the record layout, `0x02AEEDC0`-`0x02AEF3EF`: the 64 records, then two list heads.
 
-- The start-up loop sets entry *r* to next *r* + 1 (`0x003A1447`), previous *r* - 1 (`0x003A144E`), block -1
-  (`0x003A1454`), index *r* (`0x003A1443`) and generation and use count 0 (`0x003A145B`, `0x003A1457`), while *r* is below
-  `0x42`, a signed 32-bit compare (`0x003A1463`).
+- The start-up loop sets entry *r* to next *r* + 1¹, previous *r* - 1², block -1
+ ³, index *r*⁴ and generation and use count 0⁵, while *r* is below
+  `0x42`, a signed 32-bit compare⁶.
 - Entry 64 heads the list of registered records, sorted by block. `0x003A0C90` starts its walk at its `+0x00`
-  (`0x003A0CA0`) and, for a block lower than every registered one, links the new record after it, taking its index
-  `+0x08`, 64, as the new record's previous link (`0x003A0CB1`, `0x003A0CFF`, `0x003A0D66`).
+ ⁷ and, for a block lower than every registered one, links the new record after it, taking its index
+  `+0x08`, 64, as the new record's previous link⁸.
 - Entry 65 heads the free list. Its `+0x00` is `0x02AEF3D8`, and `0x003A0F80` gives a freed record its index `+0x08`,
-  65, as the previous link (`0x003A101B`, `0x003A1039`).
+  65, as the previous link⁹.
 - The start-up stores below close both lists, so records 0-63 form the free list and the block list is empty.
 - A new block takes the free list's first record. With the free list empty `0x003A0C90` answers -1
-  (`0x003A0D2C`-`0x003A0D35`), so at most 64 blocks are registered at once.
+ ¹⁰, so at most 64 blocks are registered at once.
 - Every link is an `i16` read sign-extended, and a negative link ends a walk.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A1447` |
+| ² | `0x003A144E` |
+| ³ | `0x003A1454` |
+| ⁴ | `0x003A1443` |
+| ⁵ | `0x003A145B`, `0x003A1457` |
+| ⁶ | `0x003A1463` |
+| ⁷ | `0x003A0CA0` |
+| ⁸ | `0x003A0CB1`, `0x003A0CFF`, `0x003A0D66` |
+| ⁹ | `0x003A101B`, `0x003A1039` |
+| ¹⁰ | `0x003A0D2C`-`0x003A0D35` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -118,30 +204,89 @@ The table holds 66 entries of the record layout, `0x02AEEDC0`-`0x02AEF3EF`: the 
 | `0x02AEF3C2` | `i16` | 0 | entry 64's previous link: -1 at start-up | `0x003A13F0`: 63 (`0x003A144E`), then -1 (`0x003A1474`) | no instruction names it; `0x003A1750` reads the previous link only of the record it unlinks, the free list's first record (`0x003A0D5E`) or a record named by a handle (`0x003A100E`) |
 | `0x02AEF3DA` | `i16` | 0 | entry 65's previous link: -1 at start-up | `0x003A13F0`: 64 (`0x003A144E`), then -1 (`0x003A148B`) | no instruction names it; as for `0x02AEF3C2` |
 
-`0x003A13F0` is called once, by the boot `0x00266D10` (`0x00266DF0`).
+`0x003A13F0` is called once, by the boot `0x00266D10`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00266DF0` |
+
+</details>
 
 ### Sound ids
 
 A sound id is `block registry slot << 9 + sound slot`. `0x003A1180(slot)` builds it from the current block handle at
-`0x02AEF3FC`. It answers -1 when `0x00267330(0)` is non-zero (`0x003A1180`-`0x003A118F`), or when that handle is -1 or its
-record does not match (`0x003A11AB`-`0x003A11D1`).
+`0x02AEF3FC`. It answers -1 when `0x00267330(0)` is non-zero¹, or when that handle is -1 or its
+record does not match².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A1180`-`0x003A118F` |
+| ² | `0x003A11AB`-`0x003A11D1` |
+
+</details>
 
 The record is entry `handle & 0xFFFF` of `0x02AEEDC0` (24 bytes each), and it matches when its word `+0x0A` shifted
-left by 16 and ORed with its word `+0x08` equals the handle with bit `0x80000000` cleared (`0x003A11AF`). The id is
-that word `+0x08` shifted left by 9 plus the slot, with no bound on the slot (`0x003A11D7`-`0x003A11DA`).
+left by 16 and ORed with its word `+0x08` equals the handle with bit `0x80000000` cleared¹. The id is
+that word `+0x08` shifted left by 9 plus the slot, with no bound on the slot².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A11AF` |
+| ² | `0x003A11D7`-`0x003A11DA` |
+
+</details>
 
 `0x003A11F0(slot)` builds the same id without the `0x00267330` test, for `0x00249CA0`. `0x003A1100` and `0x003A1070` build ids
-from the blocks at `0x02AEF400` and `0x02AEF404`. Both answer -1 while `0x02AEF400` is -1 (`0x003A1106`, `0x003A1076`), which
-happens when block 1's callback `0x003A1330` stores a failed registration there (`0x003A1344`, `0x003A134A`).
+from the blocks at `0x02AEF400` and `0x02AEF404`. Both answer -1 while `0x02AEF400` is -1¹, which
+happens when block 1's callback `0x003A1330` stores a failed registration there².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A1106`, `0x003A1076` |
+| ² | `0x003A1344`, `0x003A134A` |
+
+</details>
 
 Until that callback runs the word is 0: it is in the zero-filled tail of `.data`, and `0x003A13F0` stores -1 only to
-`0x02AEF3FC` and `0x02AEF404` (`0x003A14BE`, `0x003A153D`, `0x003A15BC`). 0 is the handle of record 0 while its generation is 0, as the
-start-up loop leaves it (`0x003A1443`, `0x003A145B`), so in that window `0x003A1100` answers the slot itself, an id in
-block registry slot 0 (`0x003A115E`), unless `0x00267330(0)` is non-zero, and `0x003A1070` passes its test and builds from
+`0x02AEF3FC` and `0x02AEF404`¹. 0 is the handle of record 0 while its generation is 0, as the
+start-up loop leaves it², so in that window `0x003A1100` answers the slot itself, an id in
+block registry slot 0³, unless `0x00267330(0)` is non-zero, and `0x003A1070` passes its test and builds from
 `0x02AEF404` once block 2 is loaded.
 
-`0x0021B5B0(id)` finds the bank whose `+0x3C` equals `id / 512` (`0x0021B5DF`-`0x0021B5FA`). An index file has 128 slots,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A14BE`, `0x003A153D`, `0x003A15BC` |
+| ² | `0x003A1443`, `0x003A145B` |
+| ³ | `0x003A115E` |
+
+</details>
+
+`0x0021B5B0(id)` finds the bank whose `+0x3C` equals `id / 512`¹. An index file has 128 slots,
 so slots 128-511 of each id range name nothing.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0021B5DF`-`0x0021B5FA` |
+
+</details>
 
 ### Six-digit banks
 
@@ -151,59 +296,157 @@ calls `0x001DBE60(id, record + 0x10)` for each. `0x0021A040` skips an id already
 `id / 1000` and copies the record's `u32` and `u8` twice into the bank (`+0x40`/`+0x44`, `+0x45`/`+0x49`).
 
 The sound records of effect files open their banks through the table of 32 entries of `0x84` bytes at `0x02EBBA00`.
-The effect loader `0x00504060` adds an entry for a kind-1 record and opens its banks, or adds a reference to it
-(`0x003D7CE0`); an entry holds the kind, a reference count `+0x02`, the bank id `+0x04` and up to 30 play handles:
+The effect loader `0x00504060` adds an entry for a kind-1 record and opens its banks, or adds a reference to it¹; an entry holds the kind, a reference count `+0x02`, the bank id `+0x04` and up to 30 play handles:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003D7CE0` |
+
+</details>
 
 - `0x003D7C50(kind, id, handle)` keeps a handle in the entry's first empty cell.
-- `0x003D7E90(entry)` counts the handles that still play (`0x002DEE80`) and clears the rest.
+- `0x003D7E90(entry)` counts the handles that still play¹ and clears the rest.
 - `0x003D7DC0`, run from `0x00258D70` and `0x00258E40`, empties every kind-1 entry with no reference and no playing
-  handle and releases its bank (`0x002DF050`); it leaves kind-3 entries alone.
+  handle and releases its bank²; it leaves kind-3 entries alone.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DEE80` |
+| ² | `0x002DF050` |
+
+</details>
 
 ### Battle voices
 
 `0x0036ED50` loads both languages of one voice bank. The index is the record's `i16` at `+0x14`. For each language
 it asks the size table for file `index` of kind 33 (`us`, `0x0036ED7C`) or kind 39 (`jp`, `0x0036EE0D`). A size of 0
-or less requests nothing and sets the record's `+0x04` (`us`) or `+0x08` (`jp`) to `0xFFFF` (`0x0036EDFE`,
-`0x0036EE85`).
+or less requests nothing and sets the record's `+0x04` (`us`) or `+0x08` (`jp`) to `0xFFFF`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036EDFE`, `0x0036EE85` |
+
+</details>
 
 Otherwise it allocates the size in arena 6 (`0x0036C1D0(6, 5)`, `0x0036B160`, `0x0036C140`), keeps the buffer handle at
 `+0x0C` (`us`) or `+0x10` (`jp`), sets the state byte `+0x00` to 1 and byte `+0x03` to 0, and requests the file
-through `0x0032E620` (`0x0036EDA0`-`0x0036EDF7`, `0x0036EE28`-`0x0036EE7E`). Both requests carry the handle
-`(s8 +0x02 << 4) | s8 +0x01` (`0x0036ED81`-`0x0036ED92`), by which the finished load finds the record.
+through `0x0032E620`¹. Both requests carry the handle
+`(s8 +0x02 << 4) | s8 +0x01`², by which the finished load finds the record.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036EDA0`-`0x0036EDF7`, `0x0036EE28`-`0x0036EE7E` |
+| ² | `0x0036ED81`-`0x0036ED92` |
+
+</details>
 
 - The kind-33 array at `0x01E127D0` holds the 64 `us` paths and ends there: the cell at `0x01E129D0` is 0.
 - The kind-39 array at `0x01ECB7E0` starts with the 64 `jp` paths and goes on to other files: the cell at `0x01ECBBE0` is
   a live pointer.
 - Each finished load finds its record by the handle, in `0x022D9AB0` when `handle & 0xF0` is 0 and otherwise in
-  `0x022D9AE0`, at `handle & 0xF` times `0x18`. It registers the bank through `0x001DC130` with 1 for `us` (`0x0036EAB0`)
-  and 0 for `jp` (`0x0036E9F0`).
+  `0x022D9AE0`, at `handle & 0xF` times `0x18`. It registers the bank through `0x001DC130` with 1 for `us`¹
+  and 0 for `jp`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036EAB0` |
+| ² | `0x0036E9F0` |
+
+</details>
 
 `0x0036F000` answers 1 only when no record of either table is in state 1 or 2, so every voice load has finished.
 
 ### What names each bank
 
 A music track number reaches the bank loader `0x00222740` only through the four track slots. `0x00361630` is called by
-`musicread` (`0x0034174B`), the start of `musicplay` (`0x003427D6`), `0x0035CC57` and `0x0035CC82` with the area's track
-from `0x0026DE00`, the two change tasks (`0x00360F3C`, `0x003613DF`) and the game-over task, which asks for track 7
-(`0x003EF3D0`, `0x003EF42C`). The change tasks are scheduled by `0x003614E0`, which `0x003614C0` calls for the area's
-track (`0x002620A8`) and for `musiccrossplay_22f` (`0x00347367`).
+`musicread`¹, the start of `musicplay`², `0x0035CC57` and `0x0035CC82` with the area's track
+from `0x0026DE00`, the two change tasks³ and the game-over task, which asks for track 7⁴. The change tasks are scheduled by `0x003614E0`, which `0x003614C0` calls for the area's
+track⁵ and for `musiccrossplay_22f`⁶.
 
-The area's track is the music table's (`0x003EAA70`), the saved override set by `setnowmapmusicno`, or `0x5A` in
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034174B` |
+| ² | `0x003427D6` |
+| ³ | `0x00360F3C`, `0x003613DF` |
+| ⁴ | `0x003EF3D0`, `0x003EF42C` |
+| ⁵ | `0x002620A8` |
+| ⁶ | `0x00347367` |
+
+</details>
+
+The area's track is the music table's¹, the saved override set by `setnowmapmusicno`, or `0x5A` in
 chocobo mode and `0x5B` in summon mode ([Music](music.md)).
 
-A block is registered through `0x003A0C90` from two places: `0x003A1650`, for the start-up blocks 0, 1 and 2
-(`0x003A13F0`) and for the block ids of a model's `charseinfo` row (`0x002E60F0`), and the developer verb
-`debug_registcharsep` `0x206F` (`0x0050CAB2`), which no shipped script calls.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EAA70` |
+
+</details>
+
+A block is registered through `0x003A0C90` from two places: `0x003A1650`, for the start-up blocks 0, 1 and 2¹ and for the block ids of a model's `charseinfo` row², and the developer verb
+`debug_registcharsep` `0x206F`³, which no shipped script calls.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A13F0` |
+| ² | `0x002E60F0` |
+| ³ | `0x0050CAB2` |
+
+</details>
 
 A six-digit bank is opened only by `0x00222DC0`, reached from `0x002DF070` alone (`0x0021A0CB` <- `0x00210C40` <-
 `0x001DBE60` <- `0x002DF0B8`). `0x002DF070` walks `SeSep` records for the map binder `0x003635E0` (`0x0036362D`, slot 0 of
-the block pack), the event sound slots (`0x003DEC14`, `0x003DF3B7`) and the effect loader `0x00504060` (`0x00504149`).
+the block pack), the event sound slots¹ and the effect loader `0x00504060`².
 
-A voice bank is loaded by `0x0036ED50` from the voice pool `0x0036F0F0` (`0x0036F224`), which the model rebuild calls
-(`0x0037B896`) with the bank `0x002ED910` gives: an enemy's battle record word `+0x26` (`0x003212E0`, kind byte 1 at
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DEC14`, `0x003DF3B7` |
+| ² | `0x00504149` |
+
+</details>
+
+A voice bank is loaded by `0x0036ED50` from the voice pool `0x0036F0F0`¹, which the model rebuild calls² with the bank `0x002ED910` gives: an enemy's battle record word `+0x26` (`0x003212E0`, kind byte 1 at
 `0x003212FF`), or else the model's `charseinfo` row
 ([Character sound tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md)). The verb
-`actoriopvoiceread` `0x0341` (`0x003466CB`) also feeds the pool, and no shipped script calls it.
+`actoriopvoiceread` `0x0341`³ also feeds the pool, and no shipped script calls it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036F224` |
+| ² | `0x0037B896` |
+| ³ | `0x003466CB` |
+
+</details>
 
 ## Layouts
 
@@ -279,6 +522,9 @@ header, the codec header and the data end exactly at the next material or at the
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 Every value below holds in all 4,609 `.sab`, 116 `.mab` and 248 `.seb` files:
 
 | Field | `.sab` | `.mab` |
@@ -313,9 +559,20 @@ The other 113 are in [`sound-music-bank-files.tsv`](sound-music-bank-files.tsv).
 same three section names as 61, 95 and 72.
 
 Each section has one layer, and the layer names the material it plays: `0x007C3570` takes layer *k* from the
-section's offset table (`0x007D03B0`) for every *k* below the section's byte `+0x05` (`0x007C3682`) and requests the
-material `u16 +0x04` of that layer (`0x007C3616`, `0x007C364F`). The `inst` chunk is empty in every bank. Section *n*
+section's offset table¹ for every *k* below the section's byte `+0x05`² and requests the
+material `u16 +0x04` of that layer³. The `inst` chunk is empty in every bank. Section *n*
 plays material *n* in 320 of the 348 sections.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D03B0` |
+| ² | `0x007C3682` |
+| ³ | `0x007C3616`, `0x007C364F` |
+
+</details>
 
 In 94 banks the three versions play three materials with different sample data. In 15 banks Original and OST both
 play material 2 (tracks 17, 26, 44, 61, 84, 85, 87, 99, 102, 110, 111, 112, 116, 204 and 207), in six all three
@@ -380,10 +637,19 @@ In five of them, `shout18` (Famfrit), `shout22` (Zodiark), `shout24` (Hashmal), 
 (Mateus), that line is sound 0 and the ten battle lines are sounds 1-10; in the other four and in every `jp` bank
 the battle lines are sounds 0-9.
 
-A voice id carries the animation variant, 0-9, as its sound number (`0x002E9F9E`, `0x003A0E30`-`0x003A0E3F`,
-`0x00224F5B`). So in English those five summons say the `vefah_01` line where the Japanese voice says the first
+A voice id carries the animation variant, 0-9, as its sound number¹. So in English those five summons say the `vefah_01` line where the Japanese voice says the first
 attack line, each later variant plays the line before its Japanese counterpart, and no animation sound reaches
-`ve<code>_10dead`: the route stops at variant 9 (`0x002E9F79`).
+`ve<code>_10dead`: the route stops at variant 9².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E9F9E`, `0x003A0E30`-`0x003A0E3F`, `0x00224F5B` |
+| ² | `0x002E9F79` |
+
+</details>
 
 ### Files nothing loads
 
@@ -446,8 +712,17 @@ tables:
 | `six_digit` | 4,097 | 4,097 | 4,097 | 0 |
 | `voice` | 264 | 2,658 | 2,658 | 0 |
 
-An empty sound has a `snd ` record of 112 bytes with no name and `playable` 0, and `0x007A8CF0` refuses it (`0x007A8DE3`).
+An empty sound has a `snd ` record of 112 bytes with no name and `playable` 0, and `0x007A8CF0` refuses it¹.
 It has no sequence, track or material, so those columns hold `-`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A8DE3` |
+
+</details>
 
 Three questions stay in separate columns. The row says the sound is in the bank. `index_state` says whether the
 block's index reaches it. The selection columns say what names it: `charseinfo_rows`, `footstep_surfaces`,
@@ -475,20 +750,41 @@ What names a sound:
   the battle-voice field of a voice bank. The block ids go to banks by the table under "Block banks and the block
   index". All 252 group 0 rows are in the weapon table `w`.
 - `footstep_surfaces` lists, for a bank named in group 1, each ground type whose entry in `soundfoottable.bin` is
-  this sound: `3:a` is surface 3 in set A, and `3:b` in set B, read when the weather flag `0x02099DBC` is 1 (`0x002E9F29`,
-  `0x002E9F0A`).
+  this sound: `3:a` is surface 3 in set A, and `3:b` in set B, read when the weather flag `0x02099DBC` is 1¹.
 - `animation_types` lists the types of [Animation sounds](animation-sounds.md) whose variants are this sound, for
-  a bank named in that type's group. The variant is the sound's number (`0x002E9FB2`, `0x003A1240`). Types 8, 9 and
-  10 list two sounds each, and the second is played when the weather flag is 1 (`0x002E9FA7`).
+  a bank named in that type's group. The variant is the sound's number². Types 8, 9 and
+  10 list two sounds each, and the second is played when the weather flag is 1³.
 - In a `.win.sab` voice bank `animation_types` lists the group 2 types whose variant is below 10, which take the
-  sound straight from the actor's loaded voice bank (`0x002E9F73`-`0x002E9F9E`).
+  sound straight from the actor's loaded voice bank⁴.
 - `script_calls` counts the `sebsoundplay` calls with this block and sound, and `native_literals` the native call
   sites with a constant number. Neither counts a number the code computes.
 
-`sebsoundplay` takes the block's selector and the sound (`0x0035708C`, `0x00357080`). A selector of 1 is `se007`, 2 is
-`se002`, and any other is `se000` (`0x00357093`-`0x003570AB`). In the `us` scripts all 6,821 calls give constants, 6,729
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E9F29`, `0x002E9F0A` |
+| ² | `0x002E9FB2`, `0x003A1240` |
+| ³ | `0x002E9FA7` |
+| ⁴ | `0x002E9F73`-`0x002E9F9E` |
+
+</details>
+
+`sebsoundplay` takes the block's selector and the sound¹. A selector of 1 is `se007`, 2 is
+`se002`, and any other is `se000`². In the `us` scripts all 6,821 calls give constants, 6,729
 for `se000` and 92 for `se007`, and each names a playable sound that has a slot. No `us` script calls
 `sebsoundplay_2c1`. The script rows come from the instruction stream, with the listing's argument text and blocks.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035708C`, `0x00357080` |
+| ² | `0x00357093`-`0x003570AB` |
+
+</details>
 
 The 228 native rows are the call and jump sites of `0x003A1180`, `0x003A11F0`, `0x003A1100`, `0x003A1070`, `0x00249C60` and
 `0x00249CA0`. Of those, 152 load a constant into `ecx` on the one path to the call; all are `se000` and each names a
@@ -520,26 +816,19 @@ or more, and `bank_used` the state from the bank tables.
 | selections: `bank`, `sound` | the block named and the sound number, `-` when the code computes it |
 | selections: `conditions` | the enclosing blocks, outermost first. A function runs when a request is filed for it ([script requests](../Scripts-And-Script-Commands/script-requests.md)): by a REQ-family verb in another function, by the engine through `0x003DBB60`, or from the start list (`0x00266C50`). |
 
+</details>
+
 ## Loader behaviour
 
-1. `0x007CFF90` accepts a bank only when its first four bytes equal `sabf`, the constant at `0x00D115B4`, and refuses a
-   null pointer (`0x007CFF93`-`0x007CFFA0`). `0x007D07A0` is the same test for `mabf` (`0x01CB6FB8`).
-2. `0x007CF6B0` finds a chunk by tag: with version 2 or more it starts the directory after the name, rounded down to 16,
-   plus `dirDelta` (`0x007CF6B7`-`0x007CF6D4`), and walks `chunkCount` records of 16 bytes (`0x007CF6DC`-`0x007CF704`). A tag
-   that is not there gives a null chunk (`0x007CF710`).
-3. A chunk's offset is added to the file's base (`0x007D05A9`). Nothing compares an offset or `chunkCount` with
-   `fileSize`.
-4. The voice path `0x007EDE90` reads `+0x0A` (`0x007EE01D`) and, when it is 1, passes zero as the front-back pan
-   (`0x007EE02B`-`0x007EE031`).
-5. `0x00223AD0` checks the index's block number against the one asked for only through `_guard_check_icall`
-   (`0x00223B53`-`0x00223B5F`), which does not branch.
-6. It walks `slotCount` slots (`0x00223B72`), skips an offset of -1,
-   and copies each slot's `u32` and `u8` into a 10-byte node at `+0x00`/`+0x04` and again at `+0x05`/`+0x09`. It reads
-   nothing past the slot's fifth byte. The `SeBlock` string does not occur in the executable, so no code compares
-   the magic.
-7. The driver reads every record through small wrapper classes, named by their run-time types. A chunk wrapper skips
-   the chunk's name padding (`(byte +0x09 + 0x10) & 0xF0` from version 2) and indexes its offset table at `u16`
-   `+0x02`; the record accessors that check the index refuse one at or past the count `u16` `+0x04`:
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x007CFF90` accepts a bank only when its first four bytes equal `sabf`, the constant at `0x00D115B4`, and refuses a null pointer. `0x007D07A0` is the same test for `mabf`. | `0x007CFF93`-`0x007CFFA0`<br>`0x01CB6FB8` |
+| 2 | `0x007CF6B0` finds a chunk by tag: with version 2 or more it starts the directory after the name, rounded down to 16, plus `dirDelta`, and walks `chunkCount` records of 16 bytes. A tag that is not there gives a null chunk. | `0x007CF6B7`-`0x007CF6D4`<br>`0x007CF6DC`-`0x007CF704`<br>`0x007CF710` |
+| 3 | A chunk's offset is added to the file's base. Nothing compares an offset or `chunkCount` with `fileSize`. | `0x007D05A9` |
+| 4 | The voice path `0x007EDE90` reads `+0x0A` and, when it is 1, passes zero as the front-back pan. | `0x007EE01D`<br>`0x007EE02B`-`0x007EE031` |
+| 5 | `0x00223AD0` checks the index's block number against the one asked for only through `_guard_check_icall`, which does not branch. | `0x00223B53`-`0x00223B5F` |
+| 6 | It walks `slotCount` slots, skips an offset of -1, and copies each slot's `u32` and `u8` into a 10-byte node at `+0x00`/`+0x04` and again at `+0x05`/`+0x09`. It reads nothing past the slot's fifth byte. The `SeBlock` string does not occur in the executable, so no code compares the magic. | `0x00223B72` |
+| 7 | The driver reads every record through small wrapper classes, named by their run-time types. A chunk wrapper skips the chunk's name padding (`(byte +0x09 + 0x10) & 0xF0` from version 2) and indexes its offset table at `u16` `+0x02`; the record accessors that check the index refuse one at or past the count `u16` `+0x04`: |   |
 
 | Class | Accessor |
 |---|---|
@@ -560,25 +849,25 @@ In `0x007CFD00`, with the curve header's count `u16 +0x04` (0 gives 0), range `+
 `u16 +0x02` past the header, moved on by `(byte +0x01 + 0x10) & 0xF0` when byte `+0x00` is above 3 (`x +0x00`, `y +0x04`, ease byte `+0x08`): `x = clamp((input - min) / (max - min), 0, 1)` when the
 header's first byte is non-zero (`max <= min` returns 0.0, `0x007CFD36`), the search finds the last point `k` with
 `x[k] <= x`, and the
-value is `y[k] + 0x007A9E50((x - x[k]) / (x[k + 1] - x[k]), ease[k]) x (y[k + 1] - y[k])`, or `y[k]` at the last point
-(`0x007CFD00`-`0x007CFE5B`).
+value is `y[k] + 0x007A9E50((x - x[k]) / (x[k + 1] - x[k]), ease[k]) x (y[k + 1] - y[k])`, or `y[k]` at the last point¹.
 
-8. A six-digit or block bank whose file cannot be read stops the game. The load thread leaves the bank's data
-   pointer at 0 when the file gives no length (`0x00212293`-`0x0021229E`), and the completion stores to address 0:
-   `0x00222F9E` for a six-digit bank, `0x00223E1E` for a block bank.
-9. The six-digit pool holds 256 banks. When every bank is taken and the sweep (`0x00212860`) frees no bank, the take
-   answers 0 (`0x00219A4F`) and `0x0021A0BF` stores through it at address `0x60`.
-10. A block sound plays only when its slot is in the index, `id & 0x1FF` (`0x002245D3`, `0x0022462A`), the slot is below
-    the bank's sound count (`0x007A8DB8`-`0x007A8DC6`) and the sound's byte `+0x04` is set (`0x007A8DE3`); otherwise
-    nothing plays (`0x00224651`).
-11. `0x00223AD0` reads the slot count as a signed word (`0x00223B72`, `0x00223BBA`), so a negative count registers no
-    slots.
-12. Each track number keeps a resume point in two 256-entry tables of the object manager, `+0x3D8` (`f32`) and
-    `+0x7D8` (`u8`). Their bound checks only call the empty `0x0016D6A0` (`0x00221737`, `0x00221112`, `0x00220DB2`), so a
-    track of 256 or more writes its position over the flag bytes and its flag past the `0x8D8`-byte object
-    (`0x00221748`, `0x00221756`).
-13. The animation-sound route sends a variant to the voice bank only below 10 (`0x002E9F79`); a higher variant
-    plays from the block instead.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007CFD00`-`0x007CFE5B` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 8 | A six-digit or block bank whose file cannot be read stops the game. The load thread leaves the bank's data pointer at 0 when the file gives no length, and the completion stores to address 0: `0x00222F9E` for a six-digit bank, `0x00223E1E` for a block bank. | `0x00212293`-`0x0021229E` |
+| 9 | The six-digit pool holds 256 banks. When every bank is taken and the sweep frees no bank, the take answers 0 and `0x0021A0BF` stores through it at address `0x60`. | `0x00212860`<br>`0x00219A4F` |
+| 10 | A block sound plays only when its slot is in the index, `id & 0x1FF`, the slot is below the bank's sound count and the sound's byte `+0x04` is set; otherwise nothing plays. | `0x002245D3`, `0x0022462A`<br>`0x007A8DB8`-`0x007A8DC6`<br>`0x007A8DE3`<br>`0x00224651` |
+| 11 | `0x00223AD0` reads the slot count as a signed word, so a negative count registers no slots. | `0x00223B72`, `0x00223BBA` |
+| 12 | Each track number keeps a resume point in two 256-entry tables of the object manager, `+0x3D8` (`f32`) and `+0x7D8` (`u8`). Their bound checks only call the empty `0x0016D6A0`, so a track of 256 or more writes its position over the flag bytes and its flag past the `0x8D8`-byte object. | `0x00221737`, `0x00221112`, `0x00220DB2`<br>`0x00221748`, `0x00221756` |
+| 13 | The animation-sound route sends a variant to the voice bank only below 10; a higher variant plays from the block instead. | `0x002E9F79` |
 
 ## Modding notes
 
@@ -595,10 +884,19 @@ value is `y[k] + 0x007A9E50((x - x[k]) / (x[k + 1] - x[k]), ease[k]) x (y[k + 1]
 - In a block bank, slot *n* of the `.seb` plays sound *n*, which must have byte `+0x04` set. Keep the index's
   block number equal to the file's number: the registry and the `.win.sab` path both use it.
 - A six-digit bank plays its sound 0. Every id a loaded map, cutscene or effect record names must have its file,
-  or the load stops the game (`0x00222F9E`).
+  or the load stops the game¹.
 - A voice bank's sound *n* is variant *n*: three attack lines, three damage lines, two critical lines, two
   knock-out lines, in that order.
 - A replacement `.mab` needs the magic `mabf` and three sections; a track number must stay below 256.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00222F9E` |
+
+</details>
 
 ## Related
 
@@ -612,30 +910,34 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 12 calls with 4 other topics</summary>
 
-**Characters and objects**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00266D10` | calls | `0x003B6ED0` |
-| `0x002ED910` | is called by | `0x0037B4D0` |
-| `0x003212E0` | calls | `0x00263E30` |
-| `0x0032E620` | is called by | `0x0032FCA0`, `0x00330310` |
-| `0x0036F0F0` | is called by | `0x0037B4D0` |
-| `0x003EAA70` | is called by | `0x0025D9E0` |
-
 **Characters and objects** (explained on [actor record](../Characters-And-Objects/actor-record.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [frame update order](../Engine-Core/frame-update-order.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) | calls | [`0x003B6ED0`](../Movement-And-Pathfinding/heading-speed-to-position-delta.md) (on heading speed to position delta) |
+| [`0x002ED910`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) (on character se tables chse) | is called by | [`0x0037B4D0`](../Characters-And-Objects/actor-record-fields.md) (on actor record fields) |
+| [`0x003212E0`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) (on character se tables chse) | calls | [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0032FCA0`](voices.md) Actor resource: begin manager resource set load (on voices)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container) |
+| [`0x0036F0F0`](../Characters-And-Objects/actor-model-rebuild.md) (on actor model rebuild) | is called by | [`0x0037B4D0`](../Characters-And-Objects/actor-record-fields.md) (on actor record fields) |
+| [`0x003EAA70`](sound-banks.md) | is called by | [`0x0025D9E0`](../Story-Events-And-Hunts/opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) |
 
 **Movement and pathfinding** (explained on [frame update order](../Engine-Core/frame-update-order.md), [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00266D10` | calls | `0x00263560`, `0x002EBE40`, `0x003DAE30` |
+| [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) | calls | [`0x00263560`](../Scripts-And-Script-Commands/world-lock.md) (on world lock)<br>[`0x002EBE40`](../Movement-And-Pathfinding/facing-and-steering.md) (on facing and steering)<br>[`0x003DAE30`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
 
 **Saving, loading and settings** (explained on [frame update order](../Engine-Core/frame-update-order.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00266D10` | calls | `0x002EF2D0` |
-| `0x0032E620` | is called by | `0x002EF300` |
+| [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) | calls | [`0x002EF2D0`](../Story-Events-And-Hunts/story-flags.md) (on story flags) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x002EF300`](../Saving-Loading-And-Settings/save-file-format.md) (on save file format) |
 
 </details>

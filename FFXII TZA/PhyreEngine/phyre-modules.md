@@ -35,8 +35,17 @@ shutdown. Each module class overrides init (`+0x08`) and shutdown (`+0x10`) wher
 Each module's static initialiser runs from the C run-time initialiser table and has the same shape,
 shown by `0x00166210` (`PScripting`): it walks the list while the node's key is below `0xFF`, splices
 its object in at that point, writes the module's vtable into the object, and passes the object's
-destructor to `atexit` (`0x00808B90`). Every key is `0xFF`, so the walk stops at the head and each module
+destructor to `atexit`¹. Every key is `0xFF`, so the walk stops at the head and each module
 goes in at the front: the list ends up in the reverse of the initialiser order.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808B90` |
+
+</details>
 
 The text module is the exception in form only. Its object `0x02E5BE88` lies in zero-initialised storage,
 so its initialiser `0x00167B90` calls a constructor, `0x006CCC10`, that also writes the base vtable, the
@@ -48,28 +57,27 @@ with the addresses of seven `0x20`-byte slots from `0x02E5BEA8`.
 The framework start-up calls it once (`0x00798603`, [application framework](phyre-application.md)). Guarded
 by the byte `0x02CACCA0`, it:
 
-1. allocates a `0xE0`-byte object (`0x0062EA20`) into `0x01F7F5B8` and creates the synchronisation object
-   at `0x02D3E880` (`0x00677450`); `0x00210EC0` allocates (`0x005A0901`), and a null result is stored without running
-   the constructor `0x0062EA20` (`0x005A090E`). The stub `0x005C5230` is called between the two (`0x005A0920`), and
-   its 0 lets the set-up go on;
-2. registers the core reflected types: a run of calls, ten of whose results go to the name intern
-   `0x006388C0`;
-3. walks the list from `0x02CACC90`, calling each module's init with the module object; a non-zero result
-   is returned at once, so the modules after it never start;
-4. registers more core types (`0x00686C40`), calibrates the timers (`0x005CC980`) and stores the start time
-   in `0x02CB60E8`; a non-zero result from `0x00686C40` or `0x005CC980` is returned at once (`0x005A0A54`,
-   `0x005A0A61`), and the start time is the clock `0x005CC930`'s reading (`0x005A0A63`, `0x005A0A68`);
-5. stores `0x40000`, `0x8000` and `0x800` in `0x01F2EB34`, `0x01F2EB38` and `0x01F2EB3C` (`0x006AA380`,
-   `0x006AA360`, `0x006AA350`), starts the object from `0x006AA280` (its slot 2), builds the type lists
-   and the per-kind index (`0x00637F20`, `0x00637A70`, `0x00638AE0`, whose entries `0x00634350` allocates);
-6. returns a non-zero result of that slot 2 (`0x005A0A9C`) or of `0x00638AE0` (`0x005A0ABC`) at once; between
-   `0x00637F20` and `0x00637A70` it passes the result of `0x006372A0` to the name intern `0x006388C0` (`0x005A0AA5`,
-   `0x005A0AAD`);
-7. registers the shutdown walk `0x005A0840` with `atexit` and sets `0x02CACCA0` (`0x005A0AC7`, `0x005A0ACC`), then
-   returns 0.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | allocates a `0xE0`-byte object into `0x01F7F5B8` and creates the synchronisation object at `0x02D3E880`; `0x00210EC0` allocates, and a null result is stored without running the constructor `0x0062EA20`. The stub `0x005C5230` is called between the two, and its 0 lets the set-up go on; | `0x0062EA20`<br>`0x00677450`<br>`0x005A0901`<br>`0x005A090E`<br>`0x005A0920` |
+| 2 | registers the core reflected types: a run of calls, ten of whose results go to the name intern `0x006388C0`; |   |
+| 3 | walks the list from `0x02CACC90`, calling each module's init with the module object; a non-zero result is returned at once, so the modules after it never start; |   |
+| 4 | registers more core types, calibrates the timers and stores the start time in `0x02CB60E8`; a non-zero result from `0x00686C40` or `0x005CC980` is returned at once, and the start time is the clock `0x005CC930`'s reading; | `0x00686C40`<br>`0x005CC980`<br>`0x005A0A54`, `0x005A0A61`<br>`0x005A0A63`, `0x005A0A68` |
+| 5 | stores `0x40000`, `0x8000` and `0x800` in `0x01F2EB34`, `0x01F2EB38` and `0x01F2EB3C`, starts the object from `0x006AA280` (its slot 2), builds the type lists and the per-kind index (`0x00637F20`, `0x00637A70`, `0x00638AE0`, whose entries `0x00634350` allocates); | `0x006AA380`, `0x006AA360`, `0x006AA350` |
+| 6 | returns a non-zero result of that slot 2 or of `0x00638AE0` at once; between `0x00637F20` and `0x00637A70` it passes the result of `0x006372A0` to the name intern `0x006388C0`; | `0x005A0A9C`<br>`0x005A0ABC`<br>`0x005A0AA5`, `0x005A0AAD` |
+| 7 | registers the shutdown walk `0x005A0840` with `atexit` and sets `0x02CACCA0`, then returns 0. | `0x005A0AC7`, `0x005A0ACC` |
 
-When `0x02CACCA0` is already set it returns 0 at once (`0x005A08F6`). A set-up that returns early leaves the byte
+When `0x02CACCA0` is already set it returns 0 at once¹. A set-up that returns early leaves the byte
 clear and registers no shutdown.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A08F6` |
+
+</details>
 
 In list order the inits run: DeveloperExtensions, Hierarchy, Game, Inputs, Text, LOD, DynamicGeometry,
 Physics, Scripting, Geometry, PostProcessing, Rendering, Animation, Scene, Serialization.
@@ -86,30 +94,49 @@ is started by the walk alone.
 
 `0x005A0840` runs only while `0x02CACCA0` is set:
 
-1. It walks the list calling each module's shutdown and ignores the results.
-2. It ends the 5 ms timer period (`0x005CCB90`, `timeEndPeriod(5)`, the counterpart of the `timeBeginPeriod(5)` in
-   `0x005CC980`) and stops the `0x006AA280` object (its slot 3).
-3. It runs the deferred-destruction reaper `0x00638C90`, calls the bare `ret 0` stub `0x0016D6A0` (`0x005A088A`), and
-   closes the synchronisation object (`0x00677520`).
-4. When `0x01F7F5B8` holds the `0xE0`-byte object, it destroys the object's four `0x38`-byte entries (`0x0062EAF0`,
-   through the vector destructor iterator `0x00809054` with `0x0062EA60`) and frees the object (`0x00809950`,
-   `0x005A08B0`); with `0x01F7F5B8` null it skips both (`0x005A089E`). It then stores 0 in `0x01F7F5B8` and clears
-   `0x02CACCA0` (`0x005A08BA`, `0x005A08C5`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It walks the list calling each module's shutdown and ignores the results. |   |
+| 2 | It ends the 5 ms timer period (`0x005CCB90`, `timeEndPeriod(5)`, the counterpart of the `timeBeginPeriod(5)` in `0x005CC980`) and stops the `0x006AA280` object (its slot 3). |   |
+| 3 | It runs the deferred-destruction reaper `0x00638C90`, calls the bare `ret 0` stub `0x0016D6A0`, and closes the synchronisation object. | `0x005A088A`<br>`0x00677520` |
+| 4 | When `0x01F7F5B8` holds the `0xE0`-byte object, it destroys the object's four `0x38`-byte entries (`0x0062EAF0`, through the vector destructor iterator `0x00809054` with `0x0062EA60`) and frees the object; with `0x01F7F5B8` null it skips both. It then stores 0 in `0x01F7F5B8` and clears `0x02CACCA0`. | `0x00809950`, `0x005A08B0`<br>`0x005A089E`<br>`0x005A08BA`, `0x005A08C5` |
 
-The start-up calls it directly when the message loop ends (`0x007986D5`), and the normal quit then ends in
+The start-up calls it directly when the message loop ends¹, and the normal quit then ends in
 `ExitProcess(0)` without running the `atexit` table. A start-up step that returns non-zero calls it at `0x00798886`
-instead and returns (`0x007985FD`-`0x00798621`); the run-time `exit` then runs the table. It holds an entry for
-`0x005A0840` only when `0x005A08E0` reached its registration (`0x005A0AC7`), and that entry finds the byte clear and does
+instead and returns²; the run-time `exit` then runs the table. It holds an entry for
+`0x005A0840` only when `0x005A08E0` reached its registration³, and that entry finds the byte clear and does
 nothing. A failure inside `0x005A08E0` before that point returns with no entry registered (six `jne`,
 `0x005A0927`-`0x005A0ABE`).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007986D5` |
+| ² | `0x007985FD`-`0x00798621` |
+| ³ | `0x005A0AC7` |
+
+</details>
+
 When the run-time `exit` runs the teardowns, each module's `atexit` destructor writes the base vtable back and
 unlinks the object.
-Slot 0, `0x005A0CB0`, does the same: it writes `0x00D26BC0` into the object (`0x005A0CC0`), walks from `0x02CACC90` to the
+Slot 0, `0x005A0CB0`, does the same: it writes `0x00D26BC0` into the object¹, walks from `0x02CACC90` to the
 link that holds the object, and only when it finds it there stores the object's `+0x08` in that link and clears the
-object's own `+0x08` (`0x005A0CCA`-`0x005A0CF4`); an object not on the list stays as it is. It frees the object's
-`0x20` bytes (`0x00809950`, `0x005A0D06`) when bit `0x1` of its flag argument is set, and returns the object
-(`0x005A0D0B`).
+object's own `+0x08`²; an object not on the list stays as it is. It frees the object's
+`0x20` bytes³ when bit `0x1` of its flag argument is set, and returns the object⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A0CC0` |
+| ² | `0x005A0CCA`-`0x005A0CF4` |
+| ³ | `0x00809950`, `0x005A0D06` |
+| ⁴ | `0x005A0D0B` |
+
+</details>
 
 ### What each module holds
 
@@ -135,14 +162,34 @@ the init registers.
 | `PHierarchy` | `POctree`, `POctreeWorld` | calls four registrars, `0x008786F0`, `0x008780F0`, `0x00878980` and `0x00878630` (`0x0087AE0D`-`0x0087AE1C`), each registering one type with `0x006388C0` (`0x0087870B`, `0x0087810B`, `0x0087899B`, `0x00878644`); sets up `0x02EBA2A8`, creates the `POctreeChildren` allocator at `0x02EBA2A0` and returns 0 (`0x0087AE71`) |
 | `PDeveloperExtensions` | the module class only | nothing: init and shutdown are both `0x005C5230` |
 
-The `PHierarchy` init `0x0087AE00` also sets up the static at `0x02EBA2A8` (`0x0087A8C0`), an object of three
+The `PHierarchy` init `0x0087AE00` also sets up the static at `0x02EBA2A8`¹, an object of three
 arrays at `+0x00`, `+0x10` and `+0x20`. The module shutdown `0x0087AE80` frees the first and last and
 the `POctreeChildren` pool; the static's `atexit` destructor `0x0087A830`, registered by `0x0016D5A0`
 through `0x008C1570`, frees each of the three that the object owns (bit `0x80000000` of its count clear).
 
-`0x0087AE00` allocates the `0x28`-byte `POctreeChildren` allocator with `0x00584740` (`0x0087AE37`) and builds it with
-`0x0067FFB0(allocator, 0x288, 10, 8, "POctreeChildren")` (`0x0087AE46`-`0x0087AE64`); a null allocation is stored at
-`0x02EBA2A0` without the build (`0x0087AE44`, `0x0087AE6A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0087A8C0` |
+
+</details>
+
+`0x0087AE00` allocates the `0x28`-byte `POctreeChildren` allocator with `0x00584740`¹ and builds it with
+`0x0067FFB0(allocator, 0x288, 10, 8, "POctreeChildren")`²; a null allocation is stored at
+`0x02EBA2A0` without the build³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0087AE37` |
+| ² | `0x0087AE46`-`0x0087AE64` |
+| ³ | `0x0087AE44`, `0x0087AE6A` |
+
+</details>
 
 The pool shutdowns `0x00879270` and `0x008792A0`, and the renderer's `0x00610630`, empty a pool with
 `0x006803D0` and then trim it with `0x00680210`, which returns every element on the free list to its
@@ -158,6 +205,9 @@ timeline). The seven `Phyre::VTS` classes (`ScreenStateWindow`, `ScreenStateFull
 `007Axxxx` beside the framework.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 The module objects, their entry points and how many functions belong to each (the attribution below).
 
@@ -254,7 +304,12 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x00` | `f32[4]` | m_center | m_center (f32[4]), registered by `0x00878980` (`0x00632960` at `0x00878A0A`); no shipped .phyre file declares POctreeWorld |
 | `+0x10` | `f32[4]` | m_halfSize | m_halfSize (f32[4]), registered by `0x00878980` (`0x00632960` at `0x00878A79`); no shipped .phyre file declares POctreeWorld |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -269,6 +324,8 @@ The members below are the ones the code of this page's classes uses or the refle
 | placed by the vtable they install | 1,846 |
 | with no vtable evidence | 2,254 |
 
+</details>
+
 ## Operations
 
 - Start: `0x005A08E0`, once, from the framework start-up, before the window exists.
@@ -279,25 +336,35 @@ The members below are the ones the code of this page's classes uses or the refle
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 ### Module list links
 
 Each module object's `+0x08` is its link to the next module. Its registrar stores the list head there before it
 makes the object the head, and its exit destructor reads it to unlink the object, then stores 0. The list code
 also reaches every link through the node:
 
-- the init walk `0x005A08E0` (`0x005A0A44`) and the shutdown walk `0x005A0840` (`0x005A0869`) follow each link;
+- the init walk `0x005A08E0`¹ and the shutdown walk `0x005A0840`² follow each link;
 - each registrar's search reads a link only past a node whose key is below `0xFF`, `(u32)[node + 0x18] < 0xFF`
-  (`cmp dword ptr [rcx + 0x18], 0xff` then `jae`), which no module has (`0x0016033D`, `0x0016039D`, `0x001610FD`,
-  `0x00162B8D`, `0x0016543D`, `0x00165EBD`, `0x0016622D`, `0x00166C4D`, `0x0016782D`, `0x0016788D`, `0x006CCC4C`, `0x0016AB5D`,
-  `0x0016AEDD`, `0x0016D5CD`, `0x0016D62D`);
-- each exit destructor's search reads the links of the nodes before its own (`0x008A8D0E`, `0x008A8DEE`, `0x008AAD6E`,
-  `0x008AE6FE`, `0x008B0B6E`, `0x008B1A8E`, `0x008B269E`, `0x008B3E5E`, `0x008B6A6E`, `0x008B6ACE`, `0x008B6F2E`, `0x008B98BE`,
-  `0x008BA28E`, `0x008C15AE`, `0x008C160E`);
-- the registrars store through the link where their search stopped (`0x00160359`, `0x001603B9`, `0x00161119`,
-  `0x00162BA9`, `0x00165459`, `0x00165ED9`, `0x00166249`, `0x00166C69`, `0x00167849`, `0x001678A9`, `0x006CCC5E`, `0x0016AB79`,
-  `0x0016AEF9`, `0x0016D5E9`, `0x0016D649`);
-- the exit destructors store through the link that pointed at their object (`0x008A8D26`, `0x008A8E06`, `0x008AAD86`, `0x008AE716`, `0x008B0B86`, `0x008B1AA6`, `0x008B26B6`, `0x008B3E76`, `0x008B6A86`,
-  `0x008B6AE6`, `0x008B6F46`, `0x008B98D6`, `0x008BA2A6`, `0x008C15C6`, `0x008C1626`).
+  (`cmp dword ptr [rcx + 0x18], 0xff` then `jae`), which no module has³;
+- each exit destructor's search reads the links of the nodes before its own⁴;
+- the registrars store through the link where their search stopped⁵;
+- the exit destructors store through the link that pointed at their object⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A0A44` |
+| ² | `0x005A0869` |
+| ³ | `0x0016033D`, `0x0016039D`, `0x001610FD`, `0x00162B8D`, `0x0016543D`, `0x00165EBD`, `0x0016622D`, `0x00166C4D`, `0x0016782D`, `0x0016788D`, `0x006CCC4C`, `0x0016AB5D`, `0x0016AEDD`, `0x0016D5CD`, `0x0016D62D` |
+| ⁴ | `0x008A8D0E`, `0x008A8DEE`, `0x008AAD6E`, `0x008AE6FE`, `0x008B0B6E`, `0x008B1A8E`, `0x008B269E`, `0x008B3E5E`, `0x008B6A6E`, `0x008B6ACE`, `0x008B6F2E`, `0x008B98BE`, `0x008BA28E`, `0x008C15AE`, `0x008C160E` |
+| ⁵ | `0x00160359`, `0x001603B9`, `0x00161119`, `0x00162BA9`, `0x00165459`, `0x00165ED9`, `0x00166249`, `0x00166C69`, `0x00167849`, `0x001678A9`, `0x006CCC5E`, `0x0016AB79`, `0x0016AEF9`, `0x0016D5E9`, `0x0016D649` |
+| ⁶ | `0x008A8D26`, `0x008A8E06`, `0x008AAD86`, `0x008AE716`, `0x008B0B86`, `0x008B1AA6`, `0x008B26B6`, `0x008B3E76`, `0x008B6A86`, `0x008B6AE6`, `0x008B6F46`, `0x008B98D6`, `0x008BA2A6`, `0x008C15C6`, `0x008C1626` |
+
+</details>
 
 The registrars run in initialiser-table order, `0x008C3520` (`PSerialization`) to `0x008C5670` (`PDeveloperExtensions`),
 so after the last one each link holds the module registered just before its own.
@@ -324,9 +391,18 @@ so after the last one each link holds the module registered just before its own.
 
 The table at `0x02E5BE50` holds one record per text rendering technique, in the order of the names at `0x00D89BE0`.
 `0x006CCC10` stores the addresses of the seven `0x20`-byte records, which the initialisers named below build through
-`0x005DC6F0` with the technique's name. `0x006CCCE0(mode)` returns entry `mode`, reading it image-base-relative
-(`0x006CCCF1`). Only for an entry of 0 would it search the render-pass registry `0x02CBF998` by name and store the
-result (`0x006CCD53`); `0x006CCC10` leaves no entry 0.
+`0x005DC6F0` with the technique's name. `0x006CCCE0(mode)` returns entry `mode`, reading it image-base-relative¹. Only for an entry of 0 would it search the render-pass registry `0x02CBF998` by name and store the
+result²; `0x006CCC10` leaves no entry 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006CCCF1` |
+| ² | `0x006CCD53` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -340,9 +416,18 @@ result (`0x006CCD53`); `0x006CCC10` leaves no entry 0.
 
 ### Animation job pool
 
-The `PAnimation` init `0x005C5C80` ends by jumping to `0x005BEF70` (`0x005C6009`). That function creates the pool only
+The `PAnimation` init `0x005C5C80` ends by jumping to `0x005BEF70`¹. That function creates the pool only
 while `0x02CAD030` is 0. A failed allocation leaves the pointer 0 and makes the init return `0xD`, which stops the
 init walk.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005C6009` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -364,14 +449,36 @@ class's loaded list, is `0x006C4CD0`, which jumps to `0x006C68B0`. That function
 ### The default class layout interface
 
 `0x01F2E0D0` is the one shared `Phyre::PClassLayoutInterface` (vtable `0x00D26BE0`, RTTI
-`.?AVPClassLayoutInterface@Phyre@@`), initialised data that already holds its vtable. `0x006372B0` returns its address
-(`0x006372D7`) behind a thread-safe guard on `0x02CF9404` (`0x008092FC`, `0x0080929C`) that registers the exit routine `0x008AF500`
-(`0x006372FF`), which stores the vtable again (`0x008AF507`).
+`.?AVPClassLayoutInterface@Phyre@@`), initialised data that already holds its vtable. `0x006372B0` returns its address¹ behind a thread-safe guard on `0x02CF9404`² that registers the exit routine `0x008AF500`³, which stores the vtable again⁴.
 
-The child-class visitors take it as their layout interface: `PFindNestedClassVisitor` (`0x00D276F8`) in `0x0059BED0`
-(`0x0059C0F1`), and `PDeleteChildrenVisitor` (`0x00D2D310`) in `0x005A3E50`, `0x005D18C0`, `0x006CEE50` and `0x006D9E30` (`0x005A3E6A`,
-`0x005D18DA`, `0x006CEE6A`, `0x006D9E4A`). `0x005FD2A0` passes it to `0x005FD700` (`0x005FD3AD`), and `0x00639C80` compares a layout
-pointer with it (`0x00639D30`, `0x00639D35`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006372D7` |
+| ² | `0x008092FC`, `0x0080929C` |
+| ³ | `0x006372FF` |
+| ⁴ | `0x008AF507` |
+
+</details>
+
+The child-class visitors take it as their layout interface: `PFindNestedClassVisitor`¹ in `0x0059BED0`², and `PDeleteChildrenVisitor`³ in `0x005A3E50`, `0x005D18C0`, `0x006CEE50` and `0x006D9E30`⁴. `0x005FD2A0` passes it to `0x005FD700`⁵, and `0x00639C80` compares a layout
+pointer with it⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00D276F8` |
+| ² | `0x0059C0F1` |
+| ³ | `0x00D2D310` |
+| ⁴ | `0x005A3E6A`, `0x005D18DA`, `0x006CEE6A`, `0x006D9E4A` |
+| ⁵ | `0x005FD3AD` |
+| ⁶ | `0x00639D30`, `0x00639D35` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -379,11 +486,21 @@ pointer with it (`0x00639D30`, `0x00639D35`).
 
 ### Hierarchy triangle tables
 
-The `PHierarchy` init `0x0087AE00` passes the static `0x02EBA2A8` and level 2 to `0x0087A8C0` (`0x0087AE21`, `0x0087AE26`).
+The `PHierarchy` init `0x0087AE00` passes the static `0x02EBA2A8` and level 2 to `0x0087A8C0`¹.
 That function sizes two of the static's three `{u32 count, ptr buffer}` arrays from the level. Bit `0x80000000` of a count
-marks a buffer the array does not own, which no code frees. It starts them as an octahedron: six corners
-(`0x0087A99B`-`0x0087AA35`) and eight triangles (`0x0087AA42`-`0x0087AADD`). It then subdivides the triangles once per
+marks a buffer the array does not own, which no code frees. It starts them as an octahedron: six corners² and eight triangles³. It then subdivides the triangles once per
 level, starting at `0x0087AB50`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0087AE21`, `0x0087AE26` |
+| ² | `0x0087A99B`-`0x0087AA35` |
+| ³ | `0x0087AA42`-`0x0087AADD` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -398,13 +515,32 @@ or as a disp32.
 
 ### The engine clock
 
-The engine set-up `0x005A08E0` calls `0x005CC980` (`0x005A0A5A`) before it starts the modules. `0x005CC980` raises the timer
+The engine set-up `0x005A08E0` calls `0x005CC980`¹ before it starts the modules. `0x005CC980` raises the timer
 resolution with `timeBeginPeriod(5)`, takes `timeGetTime`, reads the performance-counter frequency into `0x02CB6120`
 and its reciprocal into `0x02CB6128`, and takes the counter's first reading. It returns `0x17`, which stops the
-set-up, only when both `timeBeginPeriod` and `QueryPerformanceFrequency` failed (`0x005CCA06`, `0x005CCA8D`).
+set-up, only when both `timeBeginPeriod` and `QueryPerformanceFrequency` failed².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A0A5A` |
+| ² | `0x005CCA06`, `0x005CCA8D` |
+
+</details>
 
 `0x005CC930`, the engine's clock, divides each counter reading by `0x02CB6120`, `t = (f64)counter / (f64)[0x02CB6120]`,
-both read as unsigned 64-bit values (`0x005CC939`-`0x005CC975`).
+both read as unsigned 64-bit values¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CC939`-`0x005CC975` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -421,10 +557,20 @@ both read as unsigned 64-bit values (`0x005CC939`-`0x005CC975`).
 
 ### Render-pass numbering
 
-The `PRendering` init `0x00608A40` ends by jumping to `0x005FD560` (`0x00608DC0`). It sets `+0x18` of every record on the
+The `PRendering` init `0x00608A40` ends by jumping to `0x005FD560`¹. It sets `+0x18` of every record on the
 render-pass list `0x02CBF998` to -1, then numbers the records from 0 in list order, stores the count and sizes the
-array `0x02CB6780` to eight bytes per record (`0x0063DE00`). While `0x02CB6358` is set it returns `0x12` and changes
+array `0x02CB6780` to eight bytes per record². While `0x02CB6358` is set it returns `0x12` and changes
 nothing.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00608DC0` |
+| ² | `0x0063DE00` |
+
+</details>
 
 `0x005F0720`, called from `0x005CF6E0`, sets that byte and uses the count: it clears that many pointer slots
 (`0x005F07A0`-`0x005F07B1`, compared unsigned) and files each record under its number. The `PRendering` shutdown
@@ -437,7 +583,16 @@ nothing.
 
 ### Scene-wide parameter buffers
 
-The `PRendering` init calls `0x005FD2A0(0x40)` (`0x00608DA2`) after `0x0062D0D0`.
+The `PRendering` init calls `0x005FD2A0(0x40)`¹ after `0x0062D0D0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00608DA2` |
+
+</details>
 
 It points an array at the 23
 parameter records of `0x18` bytes at `0x02CB7DA0` that `0x00162B30` builds, names them from the table `0x00D3EB30`, measures one block of them with `0x005FD700`, and allocates that many blocks and
@@ -447,9 +602,18 @@ The 23 names, in order: `EyeDirWS`, `EyePosWS`, `Proj`, `View`, `ViewInv`, `View
 
 Its count word `0x02CB8448`, the object array `0x02CB8478` and the lock `0x02CB8480`
 are listed with `0x005FD2A0` and `0x005FE200` in [phyre-engine-helpers.tsv](phyre-engine-helpers.tsv). The `PRendering`
-shutdown `0x00610630` runs `0x005FE200` (`0x00610658`), which first closes the lock (`0x005CD6D0` at `0x005FE225`: when
+shutdown `0x00610630` runs `0x005FE200`¹, which first closes the lock (`0x005CD6D0` at `0x005FE225`: when
 its byte `+0x00` is set, that byte cleared, `CloseHandle` on the qword `+0x08`, the byte `+0x10` cleared), then
 releases everything and stores 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00610658` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -460,7 +624,16 @@ releases everything and stores 0.
 | `0x02CB8470` | `u32` | 0 (zero-filled tail of `.data`) | the number of `0x50`-byte constant-buffer objects at `0x02CB8478`, also 64; bit `0x80000000` set marks objects the array does not own. Each is built by `0x00615550`, resized by `0x00628050(object, 8)` when its `+0x18` count is not 8, and given `0x5E4` at `+0x00` | `0x005FD2A0` (`0x005FD4CD`); `0x005FE200` (`0x005FE32A`, 0) | `0x005FD2A0` (`0x005FD427`, `0x005FD4AC`); `0x005FE200` (`0x005FE265`, `0x005FE298`, `0x005FE2C6`) |
 | `0x02CB84A8` | `u32` | 0 (zero-filled tail of `.data`) | 0 when the blocks are allocated | `0x005FD2A0` (`0x005FD413`) | no instruction names it |
 
-`0x005FD2A0` also zeroes the `0xB30` bytes from `0x02CB84B0` (`0x005FD534`).
+`0x005FD2A0` also zeroes the `0xB30` bytes from `0x02CB84B0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005FD534` |
+
+</details>
 
 ### Statics the `PAnimation` shutdown clears
 
@@ -468,8 +641,17 @@ The `PAnimation` shutdown `0x005CB150` empties two more statics after the job po
 `{u32 count, ptr buffer}` whose buffer it frees when bit `0x80000000` of the count is clear; the exit destructor `0x008A9240`,
 registered by `0x00160BE0`, does the same. The second group follows the channel-semantic count `0x02CACF18` and the
 `0x100` bytes of semantic slots from `0x02CACF20` (see [animation binding](phyre-animation-binding.md)); it clears them
-only when the array's buffer equals `0x02CAD020` (`0x005CB192`). Every instruction that names any of these globals
+only when the array's buffer equals `0x02CAD020`¹. Every instruction that names any of these globals
 stores 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CB192` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -479,6 +661,8 @@ stores 0.
 | `0x02CAD020` | `void*` | 0 (zero-filled tail of `.data`) | the qword after the semantic slots | `0x005CB150` (`0x005CB1A1`, 0) | `0x005CB150` (`0x005CB192`, compared for equality) |
 | `0x02CAD028` | `u32` | 0 (zero-filled tail of `.data`) | the next dword | `0x005CB150` (`0x005CB1A8`, 0) | no instruction names it |
 | `0x02CAD02C` | `u32` | 0 (zero-filled tail of `.data`) | the next dword | `0x005CB150` (`0x005CB1AE`, 0) | no instruction names it |
+
+</details>
 
 ## Modding notes
 
@@ -506,28 +690,36 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md), [sound engine](../Sound-And-Music/sound-engine.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00584740` | is called by | `0x002125A0`, `0x00225C40`, `0x006794D0` |
-| `0x005CC930` | is called by | `0x00223190`, `0x00224570` |
+| [`0x00584740`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation) | is called by | [`0x002125A0`](../Controls-And-Input/controllers.md) (on controllers)<br>[`0x00225C40`](../Controls-And-Input/controllers.md) (on controllers)<br>[`0x006794D0`](../Sound-And-Music/sound-engine.md) (on sound engine) |
+| [`0x005CC930`](phyre-modules.md) | is called by | [`0x00223190`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x00224570`](../Sound-And-Music/audio-manager.md) (on audio manager) |
 
 **Engine core** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x005CC930` | is called by | `0x001E03F0` |
+| [`0x005CC930`](phyre-modules.md) | is called by | [`0x001E03F0`](../Engine-Core/game-application.md) (on game application) |
 
 **Controls and input** (explained on [controllers](../Controls-And-Input/controllers.md), [phyre application](phyre-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00584740` | is called by | `0x007973D0`, `0x00797460`, `0x00797690` |
-| `0x005CC930` | is called by | `0x00196480`, `0x0079D920` |
+| [`0x00584740`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation) | is called by | [`0x007973D0`](../Controls-And-Input/controllers.md) (on controllers)<br>[`0x00797460`](../Controls-And-Input/controllers.md) (on controllers)<br>[`0x00797690`](../Controls-And-Input/controllers.md) (on controllers) |
+| [`0x005CC930`](phyre-modules.md) | is called by | [`0x00196480`](../Engine-Core/identifier-spaces.md) (on identifier spaces)<br>[`0x0079D920`](phyre-application.md) (on phyre application) |
 
 **Saving, loading and settings** (explained on [screen mode and aspect](../Graphics/screen-mode-and-aspect.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001DDBA0` | calls | `0x001DFD40` |
+| [`0x001DDBA0`](phyre-modules.md) | calls | [`0x001DFD40`](../Saving-Loading-And-Settings/game-settings.md) (on game settings) |
 
 </details>

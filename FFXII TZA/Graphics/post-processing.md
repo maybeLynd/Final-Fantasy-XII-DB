@@ -38,56 +38,148 @@ array at `0x01F2D6A0` ([array](post-processing-named-render-pass-array.tsv)):
 The samplers `LinearSampler`, `PointSampler` and `samNearest` are named too. The shaders are the
 `.fx.phyre` assets on [Render parameters and shader assets](render-parameters-and-shader-assets.md).
 
-`0x0018F6B0(block, ctx, texture)` returns 0 at once while the block's byte `+0x1F4` is clear (`0x0018F6DD`).
+`0x0018F6B0(block, ctx, texture)` returns 0 at once while the block's byte `+0x1F4` is clear¹.
 Otherwise it reads the Brightness option, the dword `+0x10` of the game settings `[0x01F82D20]`, keeps it as
-a float `v` at `+0x1F8` (`0x0018F6F1`-`0x0018F6F9`) and writes `g_brightPara = (v - 50.0) / 100.0` (`0x008F3130`,
-`0x008F3134`, `0x0018F76A`-`0x0018F772`) under the size test below, returning 3 when it does not fit
-(`0x0018F7BF`).
+a float `v` at `+0x1F8`² and writes `g_brightPara = (v - 50.0) / 100.0`³ under the size test below, returning 3 when it does not fit⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018F6DD` |
+| ² | `0x0018F6F1`-`0x0018F6F9` |
+| ³ | `0x008F3130`, `0x008F3134`, `0x0018F76A`-`0x0018F772` |
+| ⁴ | `0x0018F7BF` |
+
+</details>
 
 `g_BrightTex` gets the texture `[texture]`, null when the byte at `texture + 8` is set, through
-`0x001945B0` (`0x0018F7DD`-`0x0018F80D`): the record's first dword `0xFF` is replaced by the descriptor's type, `0x43`
-or `0x44`, else `0x42` (`0x00194643`-`0x00194661`), and a non-zero status from `0x001945B0` (5 for another type, 3 when
-it does not fit) ends the pass with that value (`0x0018F812`-`0x0018F814`).
+`0x001945B0`¹: the record's first dword `0xFF` is replaced by the descriptor's type, `0x43`
+or `0x44`, else `0x42`², and a non-zero status from `0x001945B0` (5 for another type, 3 when
+it does not fit) ends the pass with that value³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018F7DD`-`0x0018F80D` |
+| ² | `0x00194643`-`0x00194661` |
+| ³ | `0x0018F812`-`0x0018F814` |
+
+</details>
 
 The pass then calls `0x0060D4F0(ctx, 0, 0)`, `0x0060DB50(ctx, 0)`, `0x0060D190(ctx, 0.0, 0.0, 0.0, 0.0)` and
-`0x005FEFD0(ctx, 0)`, stores the `BrightBlend` record `0x01F2DD40` at `ctx + 0x80` (`0x0018F86A`), submits with
-`0x0060B980` (`0x0018F8AE`) and ends with `0x00600A60(ctx, 0)` (`0x0018F8BD`). The first of these calls to return
-non-zero ends the pass with its value (`0x0018F812`-`0x0018F8C4`); otherwise the pass returns 0.
+`0x005FEFD0(ctx, 0)`, stores the `BrightBlend` record `0x01F2DD40` at `ctx + 0x80`¹, submits with
+`0x0060B980`² and ends with `0x00600A60(ctx, 0)`³. The first of these calls to return
+non-zero ends the pass with its value⁴; otherwise the pass returns 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018F86A` |
+| ² | `0x0018F8AE` |
+| ³ | `0x0018F8BD` |
+| ⁴ | `0x0018F812`-`0x0018F8C4` |
+
+</details>
 
 The copy pass draws a mesh that `0x001EEC80` builds once, from the render-manager installer
-`0x00186CD0`. It loads `./GameData/D3D11/ArtData/shaders/CopyBuffer.fx.phyre` (`0x0019CB20`,
-`0x0063DA50`, `0x0063B010`), creates a `0xA0`-byte cluster at `0x01F82E60` (`0x00633040`), and builds in it
+`0x00186CD0`. It loads `./GameData/D3D11/ArtData/shaders/CopyBuffer.fx.phyre`¹, creates a `0xA0`-byte cluster at `0x01F82E60`², and builds in it
 with `0x00649C20` the same one-triangle full-screen mesh the movie player builds with `0x001B72B0`,
 keeping the mesh instance at `0x01F82E58`. The instance's material set (`+0x20`) gets one material
-made from the asset's first `PEffectVariant` (`0x02CB6780`, `0x00600120`). `0x001EE8E0` draws that
-instance (`0x0060B980`).
+made from the asset's first `PEffectVariant`³. `0x001EE8E0` draws that
+instance⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019CB20`, `0x0063DA50`, `0x0063B010` |
+| ² | `0x00633040` |
+| ³ | `0x02CB6780`, `0x00600120` |
+| ⁴ | `0x0060B980` |
+
+</details>
 
 `0x001EEC80` looks for the variant in the asset's list at `+0x38`: it takes the first entry whose class
-`+0x50`, or a class reached from it through `+0x78`, is `0x02CB6780` and whose dword `+0x74` is above 0
-(`0x001EECEE`-`0x001EED35`). With no such entry it builds nothing: no cluster, no mesh, and `0x01F82E60`
-and `0x01F82E58` are left as they were (`0x001EED08`, `0x001EED3A`, `0x001EED5A`). The variant is the first
-object of that entry (`0x001EED40`-`0x001EED70`).
+`+0x50`, or a class reached from it through `+0x78`, is `0x02CB6780` and whose dword `+0x74` is above 0¹. With no such entry it builds nothing: no cluster, no mesh, and `0x01F82E60`
+and `0x01F82E58` are left as they were². The variant is the first
+object of that entry³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EECEE`-`0x001EED35` |
+| ² | `0x001EED08`, `0x001EED3A`, `0x001EED5A` |
+| ³ | `0x001EED40`-`0x001EED70` |
+
+</details>
 
 The cluster comes from `0x00584740(0xA0)` and is `0x00633040` of that block, or 0 when the block is null;
-the mesh call `0x00649C20` follows with no test of it (`0x001EED74`-`0x001EEDA4`).
+the mesh call `0x00649C20` follows with no test of it¹.
 
-The material is the answer of `0x00600120(variant, cluster)` (`0x001EEDAB`-`0x001EEDBA`), and the material
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EED74`-`0x001EEDA4` |
+
+</details>
+
+The material is the answer of `0x00600120(variant, cluster)`¹, and the material
 set is the array `0x0063A990(cluster, 1, 0x02D3A440, 0)` answers. When its count is not 1 the body empties it,
 freeing its block with `0x00584730` when bit `0x80000000` of the count dword is clear, and stores a
-count of 1 (`0x001EEDD2`-`0x001EEE1E`). The material goes to the array's `+0x08` and the array's address
-to the instance's `+0x20` (`0x001EEE24`-`0x001EEE4A`).
+count of 1². The material goes to the array's `+0x08` and the array's address
+to the instance's `+0x20`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EEDAB`-`0x001EEDBA` |
+| ² | `0x001EEDD2`-`0x001EEE1E` |
+| ³ | `0x001EEE24`-`0x001EEE4A` |
+
+</details>
 
 ### Writing a constant
 
 `0x0018D240(shader, name)` returns the parameter's descriptor or null. It returns null for a null name, and
 otherwise searches the shader's two tables of `0x18`-byte entries in turn: `[+0x40]` entries at `[+0x48]`, then
 `[+0x50]` entries at `[+0x58]` (each count masked with `0x7FFFFFFF`). It compares the name byte by byte with
-the entry's name pointer `+0x08` less its bit `0x1`, and the first match is the descriptor (`0x0018D24B`-`0x0018D310`).
+the entry's name pointer `+0x08` less its bit `0x1`, and the first match is the descriptor¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018D24B`-`0x0018D310` |
+
+</details>
 
 A pass then copies its value
-into the constant block with `memcpy` (`0x00861EBA`) only when the descriptor's offset (`u16 +0x10`)
+into the constant block with `memcpy`¹ only when the descriptor's offset (`u16 +0x10`)
 plus its size (`u16 +0x12` masked to 13 bits) fits the block's first dword and the offset is at
 least 4 (`0x001929A7` to `0x001929E1`). A constant the shader does not declare is skipped silently.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00861EBA` |
+
+</details>
 
 `0x00194540(block, descriptor, sampler)` writes a sampler constant under the same test: the
 descriptor's size of the record {`0x47`, sampler, 0} goes to its offset, and a constant that does
@@ -96,20 +188,53 @@ not fit returns 3. `0x001EE8E0` uses it for `ColorBufferSampler`, and the passes
 
 ### Ambient occlusion
 
-`0x0018F510(block, …)` copies the colour buffer first (`0x001EE8E0`) unless the block's `+0x1E9` is set.
+`0x0018F510(block, …)` copies the colour buffer first¹ unless the block's `+0x1E9` is set.
 The copy takes `[r]` of the target `r = 0x00186660(0x00189120())`, null when the byte at `r + 8` is set, into
-`[+0x2B0]` (`0x0018F54F`-`0x0018F578`). On every call the AO targets `+0x2D0` and `+0x2D8` are then reset to
-`+0x280` and `+0x288` (`0x0018F57D`-`0x0018F595`), and the function returns 0 on every path (`0x0018F694`).
+`[+0x2B0]`². On every call the AO targets `+0x2D0` and `+0x2D8` are then reset to
+`+0x280` and `+0x288`³, and the function returns 0 on every path⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EE8E0` |
+| ² | `0x0018F54F`-`0x0018F578` |
+| ³ | `0x0018F57D`-`0x0018F595` |
+| ⁴ | `0x0018F694` |
+
+</details>
 
 It runs AO only when the HDAO option (`+0x28` of the game settings, 1 half resolution, 2 full) is
 on and the block's `+0x198` (`EnableAO`) is set. The option is read from `[0x01F82D20]`, and any value other
-than 1 and 2 leaves AO off (`0x0018F5A3`-`0x0018F5C4`):
+than 1 and 2 leaves AO off¹:
 
-- with `+0x344` = 1 it runs HBAO (`0x00190760`), after swapping in the targets `+0x2A0` / `+0x2A8` when
-  HDAO is at half resolution and `+0x1E8` is clear; they go into `+0x2D0` / `+0x2D8` (`0x0018F5F7`-`0x0018F60C`);
-- otherwise it runs SAO (`0x00191E90`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018F5A3`-`0x0018F5C4` |
+
+</details>
+
+- with `+0x344` = 1 it runs HBAO¹, after swapping in the targets `+0x2A0` / `+0x2A8` when
+  HDAO is at half resolution and `+0x1E8` is clear; they go into `+0x2D0` / `+0x2D8`²;
+- otherwise it runs SAO³;
 - either way it then runs the blur and composite `0x0018E4A0`, with the same first five arguments and 0 in
-  place of the sixth (`0x0018F66B`-`0x0018F685`).
+  place of the sixth⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00190760` |
+| ² | `0x0018F5F7`-`0x0018F60C` |
+| ³ | `0x00191E90` |
+| ⁴ | `0x0018F66B`-`0x0018F685` |
+
+</details>
 
 Both methods keep a character copy and a scene copy of each value in the render-parameter block:
 
@@ -120,23 +245,52 @@ Both methods keep a character copy and a scene copy of each value in the render-
 | `+0x1C4` / `+0x1C8` / `+0x1CC` | angle bias, radius, contrast | `g_AngleBiasChr` (degrees x π / 180), `g_RChr`, `g_ContrastChr` | `0x00194330` |
 | `+0x1D0` / `+0x1D4` / `+0x1D8` | the same for the scene | `g_AngleBiasSce`, `g_RSce`, `g_ContrastSce` | `0x00194350` |
 
-SAO's `projScale` is the constant 500.0 (`0x008F3140`), the bias divisor 600.0 (`0x008F3144`, divided
+SAO's `projScale` is the constant 500.0¹, the bias divisor 600.0 (`0x008F3144`, divided
 at `0x0019204D` and `0x0019210B`), and HBAO's angle conversion uses `0x008F3120` (π) and `0x008F3138`
 (180.0) at `0x00190B64` and `0x00190C85`. Both scene loaders call the four setters with the `mSAO*` and
 `mHBAO*` keys ([Graphics settings](../Engine-Core/graphics-settings.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008F3140` |
+
+</details>
 
 ### Anti-aliasing
 
 `0x00191DA0` runs when the block's `+0x3E8` and `+0x3E9` are set. With `+0x4A3` set (the PostAA option
 on `SMAA_1x`) it runs SMAA `0x001925D0`; otherwise PhyreEngine's FXAA (`0x0065A630`, see
 [Phyre post-effect classes](../PhyreEngine/phyre-post-effect-classes.md)) and the copy
-`0x001EE8E0`. With either of the two bytes clear it returns without drawing (`0x00191DBF`, `0x00191DCC`).
+`0x001EE8E0`. With either of the two bytes clear it returns without drawing¹.
 
-SMAA is a tail jump (`0x00191E0B`): `0x001925D0` gets the render-parameter block `0x00193D50` returns in place of
-the first argument, the second and third arguments as they came, and the target `0x001867C0(0x00189120())`
-(`0x00191DDB`-`0x00191DF3`). FXAA gets the block's `+0x378`, the second argument, `[+0x290]`, `[arg3]` (null
-when the byte at `arg3 + 8` is set) and 1 (`0x00191E17`-`0x00191E38`). The copy then gets `[[+0x290]]` (null when
-the byte at `[+0x290] + 8` is set), the third argument, a zeroed record and 0 (`0x00191E3D`-`0x00191E70`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00191DBF`, `0x00191DCC` |
+
+</details>
+
+SMAA is a tail jump¹: `0x001925D0` gets the render-parameter block `0x00193D50` returns in place of
+the first argument, the second and third arguments as they came, and the target `0x001867C0(0x00189120())`². FXAA gets the block's `+0x378`, the second argument, `[+0x290]`, `[arg3]` (null
+when the byte at `arg3 + 8` is set) and 1³. The copy then gets `[[+0x290]]` (null when
+the byte at `[+0x290] + 8` is set), the third argument, a zeroed record and 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00191E0B` |
+| ² | `0x00191DDB`-`0x00191DF3` |
+| ³ | `0x00191E17`-`0x00191E38` |
+| ⁴ | `0x00191E3D`-`0x00191E70` |
+
+</details>
 
 SMAA takes four constants from the quality integer at `+0x184`:
 
@@ -153,10 +307,19 @@ are immediates (`0x001929FA` to `0x00192A2F`).
 
 ### The post-process command
 
-`0x0018EEE0` builds the post-process command each frame: it allocates a `0xF0`-byte block
-(`0x001A1470`), fills it from the `0x4A8`-byte render-parameter block (`0x00193D50`, kept at `0x01F7F5F0`)
-and enqueues it on the render command list (`0x005FEA50`). [YEBIS post effects](../Third-Party-Libraries/yebis-ppfx-post-effects.md)
+`0x0018EEE0` builds the post-process command each frame: it allocates a `0xF0`-byte block¹, fills it from the `0x4A8`-byte render-parameter block (`0x00193D50`, kept at `0x01F7F5F0`)
+and enqueues it on the render command list². [YEBIS post effects](../Third-Party-Libraries/yebis-ppfx-post-effects.md)
 gives the per-frame library calls its work function `0x00193DA0` makes with it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A1470` |
+| ² | `0x005FEA50` |
+
+</details>
 
 | Command | From the block | Meaning |
 |---|---|---|
@@ -176,11 +339,21 @@ is positive, both the distance and an f-number computed from it (scaled by block
 eased over ten frames (`0x0018EF94` to `0x0018F2BD`).
 
 The ease starts when the slot's byte `+0x152` is 0, its byte `+0x150` is set and
-the float the slot saved at `+0x138` is below 0 (`0x0018F0FF`-`0x0018F11B`), not on a change of the distance.
+the float the slot saved at `+0x138` is below 0¹, not on a change of the distance.
 Outside mode 1 with a positive distance `0x0018EEE0` also saves `+0x128` at the slot's `+0x138` and the block's `+0x114`
-and `+0x118` at `+0x140` and `+0x148`, sets `+0x150` and clears `+0x152`, which ends an ease in progress
-(`0x0018F263`-`0x0018F2B5`). On every path it then copies the command's `+0x20`, `+0x24` and `+0x28` to the slot's
-`+0xFC`, `+0x100` and `+0x108` (`0x0018F2BD`-`0x0018F2EA`).
+and `+0x118` at `+0x140` and `+0x148`, sets `+0x150` and clears `+0x152`, which ends an ease in progress². On every path it then copies the command's `+0x20`, `+0x24` and `+0x28` to the slot's
+`+0xFC`, `+0x100` and `+0x108`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018F0FF`-`0x0018F11B` |
+| ² | `0x0018F263`-`0x0018F2B5` |
+| ³ | `0x0018F2BD`-`0x0018F2EA` |
+
+</details>
 
 With `d` the distance and
 `c(x, lo, hi)` a clamp, the f-number is `(1 + 0.33 c(4 - d, -2, 3) + 0.7 c(2.9 - d, 0, 2.7) +
@@ -189,28 +362,66 @@ With `d` the distance and
 
 The script verb `unkCall_5bd` (`0x05BD`, helper `0x002E30D0`; [verb
 table](../Scripts-And-Script-Commands/verb-table.md)) holds the focus on one bone of a model.
-`0x00382B50(render index, bone, distance)` stores the three at `0x02AEDFA0`, `0x02AEDFA4` and `0x02AEDFA8`
-(`0x00382B58`, `0x00382B5E`, `0x00382B50`); `0x00382910` sets `0x02AEDFA0` to -1 at boot (`0x003829A4`), and the
+`0x00382B50(render index, bone, distance)` stores the three at `0x02AEDFA0`, `0x02AEDFA4` and `0x02AEDFA8`¹; `0x00382910` sets `0x02AEDFA0` to -1 at boot², and the
 verb's off form and the game-over reset pass -1. Each model's render update `0x0053AB50` calls
-`0x00382BF0` with its record index (`0x0053CF85`), which does nothing unless the index is
-`0x02AEDFA0`'s (`0x00382C09`).
+`0x00382BF0` with its record index³, which does nothing unless the index is
+`0x02AEDFA0`'s⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00382B58`, `0x00382B5E`, `0x00382B50` |
+| ² | `0x003829A4` |
+| ³ | `0x0053CF85` |
+| ⁴ | `0x00382C09` |
+
+</details>
 
 For the held model, when its render record exists and its `+0x284` is non-zero, `0x00382BF0` takes
 the origin of bone `[0x02AEDFA4]` (`0x00421E20(record, bone, 0, matrix)`, `0x00382C4B`), transforms it, with
-w = 1.0, by the camera matrix copy `0x02CA7F80` (`0x00202B70`) and requests mode 2 with `[0x02AEDFA8]` minus the
+w = 1.0, by the camera matrix copy `0x02CA7F80`¹ and requests mode 2 with `[0x02AEDFA8]` minus the
 point's camera-space z (`0x00182870(2, distance, 0)`, `0x00382CA7`-`0x00382CBC`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00202B70` |
+
+</details>
 
 `0x00182870` hands the
 request to the render parameters (`0x00194490`: `+0x124` the mode, `+0x128` the distance), so the
 focus follows the bone. When the record is gone or its `+0x284` is 0, it requests mode 0 with
--1.0 and sets `0x02AEDFA0` to -1 (`0x00382CD9`-`0x00382CEB`).
+-1.0 and sets `0x02AEDFA0` to -1¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00382CD9`-`0x00382CEB` |
+
+</details>
 
 While the block's byte `+0x164` is set, the render pass list `0x00187950` marks the point at `+0x168`
-and `+0x16C` (`0x0018D320`) on screen. It maps the point from 0 to 1 into clip space with y flipped
+and `+0x16C`¹ on screen. It maps the point from 0 to 1 into clip space with y flipped
 and calls `0x001862B0(manager, x, y)`, which reserves 0x50 bytes of a render-thread callback
 (`0x005FEB30` on the manager's device) for `0x001890A0`: four vertices (x ± 0.1, y) and (x, y ± 0.1)
 with w = 1.0 and the colour (0, 1, 0, 1), drawn with `0x006215A0` in mode 1 between `0x00628570(ctx,
 0, 1)` and `0x00628570(ctx, 1)`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018D320` |
+
+</details>
 
 The depth-of-field pass `0x00191560` works only while the block's byte `+0x349` is set and `+0x110`
 is clear. `0x001828C0(on, mode, a, b, c, d, e, f, g)` sets the byte and the pass's values through
@@ -219,22 +430,51 @@ other values at `+0x34C`, `+0x350`, `+0x354`, `+0x358`, `+0x35C`, `+0x364` and `
 passes 1 each time it runs.
 
 It passes its record's `+0x1C` as the mode, its `+0x04`, `+0x08`, `+0x0C`, `+0x14` and `+0x18` as `a`-`e`, and the
-working camera's near `[0x02AED560]` and far `[0x02AED564]` as `f` and `g` (`0x00474850`-`0x0047488A`, `0x00474771`, `0x0047477D`,
-`0x0047487F`, `0x00474878`, `0x0047489C`). `0x001828C0` calls `0x001944D0`, which puts `f` and `g` at `+0x364` and `+0x368`
-(`0x00194506`, `0x0019450E`), only when `0x00193D50` returns the render-parameter block; it returns 0 only when the block's
-first allocation fails (`0x001828E6`, `0x00193D69`-`0x00193D7B`).
+working camera's near `[0x02AED560]` and far `[0x02AED564]` as `f` and `g`¹. `0x001828C0` calls `0x001944D0`, which puts `f` and `g` at `+0x364` and `+0x368`², only when `0x00193D50` returns the render-parameter block; it returns 0 only when the block's
+first allocation fails³.
 
-The cutscene loader `0x001C3D50` reads `mGlareThreshold` and `mGlareLuminance` into `0x00194310`
-(`0x001C42E4`) and `EnableDof`, `mDofFocusDistance` and `mDofApertureFnumber` into `0x00194250` with
-35.0 (`0x001C42A1`); the area loader `0x001C7940` calls both setters with the enable fixed at 1.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00474850`-`0x0047488A`, `0x00474771`, `0x0047477D`, `0x0047487F`, `0x00474878`, `0x0047489C` |
+| ² | `0x00194506`, `0x0019450E` |
+| ³ | `0x001828E6`, `0x00193D69`-`0x00193D7B` |
+
+</details>
+
+The cutscene loader `0x001C3D50` reads `mGlareThreshold` and `mGlareLuminance` into `0x00194310`¹ and `EnableDof`, `mDofFocusDistance` and `mDofApertureFnumber` into `0x00194250` with
+35.0²; the area loader `0x001C7940` calls both setters with the enable fixed at 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C42E4` |
+| ² | `0x001C42A1` |
+
+</details>
 
 ### The PPFX features the game leaves off
 
-`0x006CBD20` initialises the library with the flag word `0x20001` (`0x006CBE02`) on every call, each of which
-creates a context; only the allocator and licence set-up behind the flag `0x01F31F70` runs once
-(`0x006CBD3F`-`0x006CBD68`).
-`CPostEffect::Initialize` (`0x006FF900`) stores it at `+0x20C` (`0x006FFB8C`) and derives one byte per
+`0x006CBD20` initialises the library with the flag word `0x20001`¹ on every call, each of which
+creates a context; only the allocator and licence set-up behind the flag `0x01F31F70` runs once².
+`CPostEffect::Initialize`³ stores it at `+0x20C`⁴ and derives one byte per
 optional feature from it (`0x006FFE56` to `0x00700071`, with `r12` = 1):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006CBE02` |
+| ² | `0x006CBD3F`-`0x006CBD68` |
+| ³ | `0x006FF900` |
+| ⁴ | `0x006FFB8C` |
+
+</details>
 
 | Flag bit | Byte | Feature (from its setter's message) | Setter |
 |---|---|---|---|
@@ -255,24 +495,67 @@ anti-aliasing passes above are separate code. Depth of field and glare are not b
 ### The PPFX effect catalogue
 
 The library's texture utility `CTextureUtil` is a reference-counted singleton (`0x02EA1590`, count
-`0x02EA1598`): `0x007142F0` allocates `0x22360` bytes on first use. `Initialize` acquires it
-(`0x00700972`) and calls its slot 0, `0x007307A0`, which calls `0x0072D820`, which calls
-`TEXSHADERSET::CreateEffect` `0x0072A320` (`0x0072D872`) and abandons the sequence on a negative result.
+`0x02EA1598`): `0x007142F0` allocates `0x22360` bytes on first use. `Initialize` acquires it¹ and calls its slot 0, `0x007307A0`, which calls `0x0072D820`, which calls
+`TEXSHADERSET::CreateEffect` `0x0072A320`² and abandons the sequence on a negative result.
 
-`0x007142F0` returns the instance `[0x02EA1590]` and sets the count to `count + 1` when the count is above 0
-(`0x00714307`, `0x00714356`). Otherwise it allocates through `0x006DA880` with the allocator `[0x01F3BA68]`, tagged
-`GPUClassUtil.h` line `0x49` (`0x00714314`-`0x00714327`), builds the object with `0x0072F870(object, 0)`
-(`0x0071433B`), stores it at `0x02EA1590` and sets the count to 1 (`0x00714345`-`0x0071434E`); a failed allocation
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00700972` |
+| ² | `0x0072D872` |
+
+</details>
+
+`0x007142F0` returns the instance `[0x02EA1590]` and sets the count to `count + 1` when the count is above 0¹. Otherwise it allocates through `0x006DA880` with the allocator `[0x01F3BA68]`, tagged
+`GPUClassUtil.h` line `0x49`², builds the object with `0x0072F870(object, 0)`³, stores it at `0x02EA1590` and sets the count to 1⁴; a failed allocation
 stores null and still sets the count to 1.
 
-`0x0072D820`, `TEXSHADERSET::InitializeDevice()` by its log lines (`0x00DA51D0`), skips `CreateEffect` when the
-low byte of its third argument is set (`0x0072D868`). A negative `CreateEffect` result is logged as
-"CreateEffect() failed" and returned (`0x0072D87B`-`0x0072D8B8`); a zero or positive one goes on.
+<details>
+<summary>Where in the code</summary>
 
-`0x0072D820` then calls `m_pEffect->OnResetDevice()`, slot `0x38` of the object at `this + 0` (`0x0072D8D9`),
-and returns a negative result from it the same way (`0x0072D8E0`); otherwise it calls slot `0x88` of that
-object with `[this + 0xA0]` and the record {1.0, −1.0, 0} (`0x0072D937`-`0x0072D965`). With no object at
-`this + 0` it skips both calls (`0x0072D8D0`). It returns 0 on success (`0x0072D99F`).
+| | Code |
+|---|---|
+| ¹ | `0x00714307`, `0x00714356` |
+| ² | `0x00714314`-`0x00714327` |
+| ³ | `0x0071433B` |
+| ⁴ | `0x00714345`-`0x0071434E` |
+
+</details>
+
+`0x0072D820`, `TEXSHADERSET::InitializeDevice()` by its log lines¹, skips `CreateEffect` when the
+low byte of its third argument is set². A negative `CreateEffect` result is logged as
+"CreateEffect() failed" and returned³; a zero or positive one goes on.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00DA51D0` |
+| ² | `0x0072D868` |
+| ³ | `0x0072D87B`-`0x0072D8B8` |
+
+</details>
+
+`0x0072D820` then calls `m_pEffect->OnResetDevice()`, slot `0x38` of the object at `this + 0`¹,
+and returns a negative result from it the same way²; otherwise it calls slot `0x88` of that
+object with `[this + 0xA0]` and the record {1.0, −1.0, 0}³. With no object at
+`this + 0` it skips both calls⁴. It returns 0 on success⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0072D8D9` |
+| ² | `0x0072D8E0` |
+| ³ | `0x0072D937`-`0x0072D965` |
+| ⁴ | `0x0072D8D0` |
+| ⁵ | `0x0072D99F` |
+
+</details>
 
 `0x0072A320` (13,547 bytes) loads the compiled effect once through `0x0078A120`, returns the loader's
 error unchanged when that fails, and then fetches a handle for each technique and uniform it names. Its body
@@ -286,11 +569,21 @@ The largest technique family is `tech_DepthOfField` (53 names), then
 name's last character, appends `1` to `n`, and fetches each of those under 22 suffixes: the empty suffix, and 21
 HDR conversions such as `_REINHARDRGB_RGB` and `_LOGRGBLUM_RGBFAST` (table `0x02EA2250`).
 
-Handles are 32-bit values stored from `this + 8` (`0x0072A496`). One run is addressed from `this + 0x1AA10`
-(`0x0072BA97`): a five-pass loop (`0x0072BAB0`-`0x0072C5C3`) fills 25 slots from `+0x1A9C0` to `+0x1AA20`, and
+Handles are 32-bit values stored from `this + 8`¹. One run is addressed from `this + 0x1AA10`²: a five-pass loop³ fills 25 slots from `+0x1A9C0` to `+0x1AA20`, and
 other loops fill arrays of 8 and 4. The last slot is at `+0x221D8`. The placed slots are in
 [the handle layout](post-processing-ppfx-handle-layout.tsv): 352 handle stores, fewer than the names, because a
 family row fetches several names under one count and suffix table.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0072A496` |
+| ² | `0x0072BA97` |
+| ³ | `0x0072BAB0`-`0x0072C5C3` |
+
+</details>
 
 ### Columns of post-processing-ppfx-handle-layout.tsv
 
@@ -319,8 +612,17 @@ Two sets of named pass records exist side by side:
   registry lacks it logs "Performance warning - allocating freelist on demand" and creates one: a record from the
   pool `0x02CC0388`, a name buffer from `0x02CC03B0`, the record set to `{name, next 0, flag 1, +0x18 = -1}` and
   registered with `0x005FDCB0`.
-- It copies the name with its terminator (`0x005F06E3`) and takes the name's whole length, so a name of 64 bytes or
+- It copies the name with its terminator¹ and takes the name's whole length, so a name of 64 bytes or
   more runs past its 64-byte buffer.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005F06E3` |
+
+</details>
 
 ### Columns of the two registry tables
 
@@ -341,21 +643,52 @@ Two sets of named pass records exist side by side:
 ### The frame-marker table
 
 `0x001D62D0` allocates the `0xF778`-byte object at `0x01F82C80` at start-up. It is a GPU timing table:
-`0x001D5970` creates one timestamp-disjoint query and five rings of 128 timestamp queries
-(`0x01F81838`, `0x01F81880`). `0x00187950` queues `0x001D5FD0` on the render command list, and each call
-ends the next timestamp query of the current ring (`0x001D6250`). `0x001D6000`, also from `0x00187950`,
-stamps an `END` marker (`0x001D6040`).
+`0x001D5970` creates one timestamp-disjoint query and five rings of 128 timestamp queries¹. `0x00187950` queues `0x001D5FD0` on the render command list, and each call
+ends the next timestamp query of the current ring². `0x001D6000`, also from `0x00187950`,
+stamps an `END` marker³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01F81838`, `0x01F81880` |
+| ² | `0x001D6250` |
+| ³ | `0x001D6040` |
+
+</details>
 
 `0x001D5650` reads back ring `(r + 1) mod 5` while ring `r` takes this frame's timestamps, then advances `r`
 (`0x01F81834`, `0x01F81848` under State). Called once a frame, the ring it reads was written four frames earlier,
 once all five have been written. `0x001D6000` then stores the measured time as a double at `+0xD70` of the object `0x001D50D0` returns, and
-clears the marker list (`0x001D6170`).
+clears the marker list¹.
 
-`0x001D62D0` allocates only while `0x01F82C80` is null (`0x001D62F0`), through `0x00210EC0`, and leaves null there
-when the allocation fails (`0x001D6357`). It sets the layout floats `+0x00` = 0.2, `+0x04` = −0.8, `+0x08` =
-0.04, `+0x0C` = 0.8 and `+0x10` = 0.7 (`0x001D6306`-`0x001D6321`): quad 0 starts at `(−0.8, 0.8)` in row 1 and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D6170` |
+
+</details>
+
+`0x001D62D0` allocates only while `0x01F82C80` is null¹, through `0x00210EC0`, and leaves null there
+when the allocation fails². It sets the layout floats `+0x00` = 0.2, `+0x04` = −0.8, `+0x08` =
+0.04, `+0x0C` = 0.8 and `+0x10` = 0.7³: quad 0 starts at `(−0.8, 0.8)` in row 1 and
 `(−0.8, 0.7)` in row 2, with width `1 - 0.2` = 0.8 and height 0.04. It clears the word `+0x14`, the byte
-`+0x16` and `+0x1C` to `+0x2B`, and sets `+0x2C30` to −1 and `+0x2C34` to 0 (`0x001D6328`-`0x001D6341`).
+`+0x16` and `+0x1C` to `+0x2B`, and sets `+0x2C30` to −1 and `+0x2C34` to 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D62F0` |
+| ² | `0x001D6357` |
+| ³ | `0x001D6306`-`0x001D6321` |
+| ⁴ | `0x001D6328`-`0x001D6341` |
+
+</details>
 
 `0x001D6170` runs `0x001D5970` again while the object's byte `+0x15` is clear. Besides the queries,
 `0x001D5970` lays out two rows of bar quads in the object, six vertices of 16 bytes each, after
@@ -373,6 +706,9 @@ resetting all `0x324` vertices of each row to `(0, 0, 0, 1)`:
   widths from the start.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 The post-process command, `0xF0` bytes, that `0x0018EEE0` fills each frame and `0x00193DA0` runs:
 
@@ -429,7 +765,12 @@ The render-parameter block fields this page uses (`0x4A8` bytes, kept at `0x01F7
 | `+0x3E9` | `u8` |  | anti-aliasing configured |
 | `+0x4A3` | `u8` | PostAA | is SMAA |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -439,7 +780,12 @@ The render-parameter block fields this page uses (`0x4A8` bytes, kept at `0x01F7
 | runtime pass registry | 60 registration sites, 60 names, 60 records |
 | access tables | [CPostEffect](post-processing-cposteffect-accesses.tsv), [its initialise descriptor](post-processing-ppfx-init-descriptor-accesses.tsv), [the frame-marker object](post-processing-frame-marker-singleton-accesses.tsv) |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | Holds |
 |---|---|
@@ -462,6 +808,8 @@ device context).
 | `0x01F81834` | `i32` | 0 | the ring that takes this frame's timestamps, 0 to 4: `0x001D5650` advances it to `(ring + 1) mod 5`, a signed division by 5 (`0x001D58A7`-`0x001D58D4`) | `0x001D5970`, 0 (`0x001D5A77`); `0x001D5650` (`0x001D58D4`) | `0x001D5650` (`0x001D565B`, `0x001D58A7`); `0x001D6250` (`0x001D6264`, `0x001D629B`), which ends the next query of this ring and marks the ring written in the dword at `0x01F81850` + 4 × ring |
 | `0x01F81840` | `void*` | 0 | the device context the queries run on: the pointer at `+0x110` of the object `0x00624670` returns (`0x001D5A13`-`0x001D5A1F`) | `0x001D5970` (`0x001D5A1F`) | `0x001D5650` (`0x001D572D`, `0x001D57C7`, `0x001D5822`); `0x001D6040` (`0x001D60E3`, `0x001D6100`); `0x001D6170` (`0x001D6231`); `0x001D6250` (`0x001D628B`) |
 | `0x01F81848` | `i32` | 0 | the ring read back this frame, `(0x01F81834 + 1) mod 5`: `0x001D5650` reads that ring only when its written dword at `0x01F81850` is 1 (`0x001D5698`) and gets each query with GetData (`0x001D5720`-`0x001D5751`) | `0x001D5650` (`0x001D5691`) | `0x001D5650` (`0x001D5720`, `0x001D577D`, `0x001D5815`) |
+
+</details>
 
 ## Modding notes
 
@@ -493,21 +841,27 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Developer** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00796E20` | is called by | `0x001C2F50` |
+| [`0x00796E20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x001C2F50`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) |
 
 **Steam and achievements** (explained on [steam integration](../Steam-And-Achievements/steam-integration.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00796E20` | is called by | `0x008655A0` |
+| [`0x00796E20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x008655A0`](../Steam-And-Achievements/steam-integration.md) (on steam integration) |
 
 **Scripts and script commands** (explained on [debug menu](../Engine-Core/debug-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E30D0` | is called by | `0x0034DEE0` |
-| `0x00382B50` | is called by | `0x00356D40` |
+| [`0x002E30D0`](post-processing.md) | is called by | [`0x0034DEE0`](post-processing.md) |
+| [`0x00382B50`](post-processing.md) | is called by | [`0x00356D40`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
 
 </details>

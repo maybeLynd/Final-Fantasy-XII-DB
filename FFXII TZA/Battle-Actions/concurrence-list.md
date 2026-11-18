@@ -32,73 +32,188 @@ Eight Concurrences appear in the table; the other eight action rows in 226-241 (
 `0x00313120`, a step of the Quickening chain (`0x022C2170` = 2, `0x022C2174` = 4), looks for the action in the
 user's party row `+0x04`-`+0x06` (`0x0031335E`, [Party table](../Party/party-table.md)) and adds one to the
 byte `0x022C2192` + the slot that holds it, or to the byte `0x022C2195` when no slot holds it, unless that byte
-is `0xFF` (`0x0031339D`-`0x003133A9`). It counts only for a main character: the user has a stats record whose
-byte `+0x05` is 0 and whose type `+0x04` is at most 6 (`0x0031334B`-`0x0031335C`).
+is `0xFF`¹. It counts only for a main character: the user has a stats record whose
+byte `+0x05` is 0 and whose type `+0x04` is at most 6².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031339D`-`0x003133A9` |
+| ² | `0x0031334B`-`0x0031335C` |
+
+</details>
 
 The three bytes `0x022C2192`-`0x022C2194` count the Quickenings used
 from each slot, that is of each level, since a member learns the slots in order with the Quickening
-licences. The choice below is given `0x022C2192` and reads three bytes from it (`0x002F8E00`-`0x002F8E17`), and
-the clear of the counters stores a word at `0x022C2192` and a byte at `0x022C2194` (`0x0030D731`, `0x0030D738`),
+licences. The choice below is given `0x022C2192` and reads three bytes from it¹, and
+the clear of the counters stores a word at `0x022C2192` and a byte at `0x022C2194`²,
 so the byte `0x022C2195` takes no part in the choice and is left as it is by that clear.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F8E00`-`0x002F8E17` |
+| ² | `0x0030D731`, `0x0030D738` |
+
+</details>
+
 Before the counters `0x00313120` does the rest of the step. It answers -1 when `0x0031B7E0` gives no unit,
-or when `0x022C2170` is not 2 or `0x022C2174` is not 4 (`0x00313126`-`0x0031314C`). It then copies the `0x208`
-bytes at the unit's `+0x778` to `0x022C22B8` and takes the action id from the unit's word `+0x758`
-(`0x00313153`-`0x003131C7`). With `[0x02EBF138]` null, or a null answer of `0x0020E600` for its dword `+0x0C`,
-it answers -1, the copy already made (`0x003131CA`-`0x003131EA`).
+or when `0x022C2170` is not 2 or `0x022C2174` is not 4¹. It then copies the `0x208`
+bytes at the unit's `+0x778` to `0x022C22B8` and takes the action id from the unit's word `+0x758`². With `[0x02EBF138]` null, or a null answer of `0x0020E600` for its dword `+0x0C`,
+it answers -1, the copy already made³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00313126`-`0x0031314C` |
+| ² | `0x00313153`-`0x003131C7` |
+| ³ | `0x003131CA`-`0x003131EA` |
+
+</details>
 
 The action row is the low 32 bits of that answer plus the word `+0x08` of `[0x02EBF138]` times the id; a
-sum of 0 answers -1 (`0x003131F0`-`0x00313215`). The unit's word `+0x758` becomes `0xFFFF` (`0x00313257`),
+sum of 0 answers -1¹. The unit's word `+0x758` becomes `0xFFFF`²,
 `0x00316CF0` is called with the address unit + `0x778`, and `0x00316CD0` is called with it and each of the first
-n pointers at `0x022C21B8`, where n is `[0x022C21B4]` for an id of `0xE2` to `0xF1` and 1 for any other
-(`0x00313220`-`0x00313297`).
+n pointers at `0x022C21B8`, where n is `[0x022C21B4]` for an id of `0xE2` to `0xF1` and 1 for any other³.
 
-Then come `0x00303830(unit, row, unit + 0x778)` and `0x00305640(unit, row, 1)` (`0x003132A6`, `0x003132B7`),
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003131F0`-`0x00313215` |
+| ² | `0x00313257` |
+| ³ | `0x00313220`-`0x00313297` |
+
+</details>
+
+Then come `0x00303830(unit, row, unit + 0x778)` and `0x00305640(unit, row, 1)`¹,
 and the unit's dword `+0x690` is set to 0. When its byte `+0x694` is not `0xFF` and its byte `+0x695`
-is `0xFF`, `+0x695` takes the value of `+0x694` and `+0x694` becomes `0xFF` (`0x003132C3`-`0x003132E3`).
+is `0xFF`, `+0x695` takes the value of `+0x694` and `+0x694` becomes `0xFF`².
 The answer of `0x003098D0(unit, row)` is handed to `0x003299B0(unit, answer, 0)`, and `0x0030EC00(unit, id)`
-follows (`0x003132F0`-`0x00313308`).
+follows³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003132A6`, `0x003132B7` |
+| ² | `0x003132C3`-`0x003132E3` |
+| ³ | `0x003132F0`-`0x00313308` |
+
+</details>
 
 The charge byte is `0x022C2198` + 4 x the byte `+0x04` of the unit's record `+0x698`, read with no null
-test (`0x0031330D`-`0x00313318`). While it is below 3, compared unsigned, the low byte of the answer of
-`0x00308FF0(unit, id)` is added to it (`0x00313320`-`0x00313333`). The id is stored in the word `0x022C2190`
-(`0x0031333D`). After the counters `0x022C2180` goes up by one, `0x022C2170` becomes 4, `0x022C2174` 3 and
-`0x022C217C` 0, and the answer is 0 (`0x003133AC`-`0x003133D8`).
+test¹. While it is below 3, compared unsigned, the low byte of the answer of
+`0x00308FF0(unit, id)` is added to it². The id is stored in the word `0x022C2190`³. After the counters `0x022C2180` goes up by one, `0x022C2170` becomes 4, `0x022C2174` 3 and
+`0x022C217C` 0, and the answer is 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031330D`-`0x00313318` |
+| ² | `0x00313320`-`0x00313333` |
+| ³ | `0x0031333D` |
+| ⁴ | `0x003133AC`-`0x003133D8` |
+
+</details>
 
 The slot search compares the id, as a word, with each of the three row bytes `+0x04` to `+0x06`,
 zero-extended; with a null row pointer at the unit's `+0xE60` it compares with `0xFFFF` instead. When
-no byte matches, the index left is 3 and the byte raised is `0x022C2195` (`0x0031335E`-`0x003133A9`). The
+no byte matches, the index left is 3 and the byte raised is `0x022C2195`¹. The
 search runs only when the unit's record `+0x698` is not null, its byte `+0x05` is 0 and its byte
-`+0x04` is 6 or less (`0x00313344`-`0x0031335C`).
+`+0x04` is 6 or less².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031335E`-`0x003133A9` |
+| ² | `0x00313344`-`0x0031335C` |
+
+</details>
 
 ### The choice
 
 `0x0030DB70(entry, f)` is called from the special-attack window `0x002D5EB0` ([Menu
-screens](../Menus-And-HUD/menu-screens.md#the-special-attack-window)) twice (`0x002D630D`, `0x002D6543`). At `0x002D6543` the entry
+screens](../Menus-And-HUD/menu-screens.md#the-special-attack-window)) twice¹. At `0x002D6543` the entry
 is null (`xor ecx, ecx`), and the call reads the last action `0x022C2190`. Unless it is already a Concurrence,
-`0xE2`-`0xF1`, it asks `0x002F8D60(0x022C2192)` (`0x0030DC55`):
+`0xE2`-`0xF1`, it asks `0x002F8D60(0x022C2192)`²:
 
-1. `0x002F8D60` walks the rows from the last to the first (`0x002F8D60`-`0x002F8E49`).
-2. A row matches when each of the three counts is at least the row's byte `+0x01`, `+0x02` and `+0x03`.
-3. The first match returns its byte `+0x00`, the Concurrence's action row; no match returns -1.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D630D`, `0x002D6543` |
+| ² | `0x0030DC55` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x002F8D60` walks the rows from the last to the first. | `0x002F8D60`-`0x002F8E49` |
+| 2 | A row matches when each of the three counts is at least the row's byte `+0x01`, `+0x02` and `+0x03`. |   |
+| 3 | The first match returns its byte `+0x00`, the Concurrence's action row; no match returns -1. |   |
 
 An action row that `0x00322C50(0x14, row, 0)` accepts and that is not `0xFFFF` is stored as row − `0xD0` at
-`0x022C2178`; any other answer, and a last action that is already a Concurrence, stores -1 there
-(`0x0030DC5A`-`0x0030DC83`, `0x0030DC98`). The call also stores `f` at `0x022C2184` (`0x0030DC8B`) and returns 0. While
+`0x022C2178`; any other answer, and a last action that is already a Concurrence, stores -1 there¹. The call also stores `f` at `0x022C2184`² and returns 0. While
 `0x01EEBAF0` is not negative, `0x002F8D60` returns the word it selects from `0x022BE930` instead
 ([Debug menu](../Engine-Core/debug-menu.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030DC5A`-`0x0030DC83`, `0x0030DC98` |
+| ² | `0x0030DC8B` |
+
+</details>
+
 At `0x002D630D` the entry is the pointer at `+0x2D0 + i * 0x158` of the object `0x002D5EB0` works on, which
-`0x002D62FB` reads before the call, and `f` is that object's `+0x740` (`0x002D62EC`-`0x002D6305`). The entry's
+`0x002D62FB` reads before the call, and `f` is that object's `+0x740`¹. The entry's
 dword `+0` is a unit id and its word `+4` an action id:
 
-- a unit id that `0x0031B7E0` does not resolve returns 1 (`0x0030DB97`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D62EC`-`0x002D6305` |
+
+</details>
+
+- a unit id that `0x0031B7E0` does not resolve returns 1¹;
 - action ids `0xF2`, `0xF3` and `0xF4` hand 1, 2 or 3 times the unit's max MP (stats `+0x28`) to
-  `0x00300BC0(stats, amount, 0x10)`, which adds it to the stats `+0x06` pool (`0x00300C10`-`0x00300C6A`), and return 1
-  (`0x0030DBA5`-`0x0030DC24`);
-- any other action that `0x002FFCF0(id, unit)` refuses returns 1 (`0x0030DBBE`-`0x0030DBC5`);
+  `0x00300BC0(stats, amount, 0x10)`, which adds it to the stats `+0x06` pool², and return 1
+ ³;
+- any other action that `0x002FFCF0(id, unit)` refuses returns 1⁴;
 - an available one stores the unit id at `0x022C218C`, id − `0xD0` (-1 for `0xFFFF`) at `0x022C2178` and `f` at
-  `0x022C2184`, and returns 0 (`0x0030DBC7`-`0x0030DBF3`, `0x0030DC8B`-`0x0030DC98`).
+  `0x022C2184`, and returns 0⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030DB97` |
+| ² | `0x00300C10`-`0x00300C6A` |
+| ³ | `0x0030DBA5`-`0x0030DC24` |
+| ⁴ | `0x0030DBBE`-`0x0030DBC5` |
+| ⁵ | `0x0030DBC7`-`0x0030DBF3`, `0x0030DC8B`-`0x0030DC98` |
+
+</details>
 
 ### Where the values come from
 
@@ -145,51 +260,55 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 32 calls with 10 other topics</summary>
 
-**Characters and objects**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0031B7E0` | calls | `0x00263E30`, `0x003588B0` |
-| `0x00322C50` | is called by | `0x002367A0`, `0x0023A570`, `0x0031B810`, `0x003266C0`, `0x00329CC0` |
-
 **Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party control modes](../Engine-Core/party-control-modes.md), [force fight mode](../Engine-Core/force-fight-mode.md), [party data](../Party/party-data.md))
 
-**Items, equipment, shops and licenses**
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00322C50` | is called by | `0x003096F0`, `0x0030B180`, `0x0030B4B0`, `0x0030B510`, `0x0030B570`, `0x0030B630`, `0x00317930`, `0x0031A510`, `0x00323910`, `0x00323C60`, `0x00323D10`, `0x00323EC0` |
-| `0x00322C50` | is also called by | `0x00325F40` |
+| [`0x0031B7E0`](../Engine-Core/identifier-spaces.md) (on identifier spaces) | calls | [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse)<br>[`0x003588B0`](../Menus-And-HUD/map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
+| [`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x002367A0`](../Party/party-members.md) (on party members)<br>[`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction)<br>[`0x0031B810`](../Enemy-AI-And-Gambits/enmity.md) Battle unit: find mapped definition selector by index (on enmity)<br>[`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots)<br>[`0x00329CC0`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle slot map: initialize mapping classes (on strong and weak mode) |
 
-**Items, equipment, shops and licenses** (explained on [stats](../Damage-And-Battle-Formulas/stats.md), [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md), [party data](../Party/party-data.md), [party table](../Party/party-table.md))
+**Items, equipment, shops and licenses** (explained on [stats](../Damage-And-Battle-Formulas/stats.md), [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md), [party data](../Party/party-data.md), [party table](../Party/party-table.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [quickening and esper list](quickening-and-esper-list.md), [command availability](command-availability.md))
 
-**Items, equipment, shops and licenses** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [quickening and esper list](quickening-and-esper-list.md), [command availability](command-availability.md))
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Movement and pathfinding**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031B7E0` | is called by | `0x00312730`, `0x00336710`, `0x00337A50`, `0x00338140` |
-| `0x00322C50` | is called by | `0x0031BAC0`, `0x00326BB0` |
+| [`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x003096F0`](../Damage-And-Battle-Formulas/stats.md) Equipment: check matching secondary partner selected or owned (on stats)<br>[`0x0030B180`](../Items-Equipment-Shops-And-Licenses/bazaar.md) Battle id class d: reset purchased entry and nested prerequisite state (on bazaar)<br>[`0x0030B4B0`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids)<br>[`0x0030B510`](action-list.md) (on action list)<br>[`0x0030B570`](../Items-Equipment-Shops-And-Licenses/bazaar.md) Battle id class d: set runtime flag bit1 if supported (on bazaar)<br>[`0x0030B630`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar)<br>[`0x00317930`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Equipment: check item eligible for slot (on equipping an item)<br>[`0x0031A510`](../Items-Equipment-Shops-And-Licenses/equipment.md) Battle stats: set equipment slot by mapped id (on equipment)<br>[`0x00323910`](../Items-Equipment-Shops-And-Licenses/buying-a-license.md) Battle stats: set license node state and apply side effects (on buying a license)<br>[`0x00323C60`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Battle stats: has required license for equipment (on equipping an item)<br>[`0x00323D10`](../Items-Equipment-Shops-And-Licenses/licenses.md) Battle stats: check license node acquire reason (on licenses)<br>[`0x00323EC0`](command-availability.md) Battle stats: has required license for action (on command availability) |
+| [`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is also called by | [`0x00325F40`](../Items-Equipment-Shops-And-Licenses/inventory.md) Inventory derived index: update on presence transition (on inventory) |
 
 **Movement and pathfinding** (explained on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [force fight mode](../Engine-Core/force-fight-mode.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md))
 
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0031B7E0`](../Engine-Core/identifier-spaces.md) (on identifier spaces) | is called by | [`0x00312730`](../EBP-Script-Files/ebp-position-entries.md) Battle locomotion: decode order goal (on ebp position entries)<br>[`0x00336710`](../Movement-And-Pathfinding/battle-locomotion.md) Battle locomotion: build solver context (on battle locomotion)<br>[`0x00337A50`](action-range.md) (on action range)<br>[`0x00338140`](action-range.md) Battle locomotion: resolve target spacing and avoidance (on action range) |
+| [`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x0031BAC0`](../Party/party-slots.md) (on party slots)<br>[`0x00326BB0`](../Party/party-data.md) (on party data) |
+
 **Status effects and KO** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00322C50` | is called by | `0x0030E130`, `0x0030FED0`, `0x00310DB0` |
+| [`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x0030E130`](../Status-Effects-And-KO/battle-buffs.md) Battle stats: modify status layer state and process side effects (on battle buffs)<br>[`0x0030FED0`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Battle stats: recompute derived state and auto statuses (on equipping an item)<br>[`0x00310DB0`](action-results.md) Battle unit: run periodic combat maintenance (on action results) |
 
 **Steam and achievements** (explained on [item use](../Items-Equipment-Shops-And-Licenses/item-use.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00305640` | calls | `0x00316440` |
+| [`0x00305640`](area-of-effect.md) Battle action: consume execution resources (on area of effect) | calls | [`0x00316440`](../Steam-And-Achievements/achievements.md) (on achievements) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [debug menu](../Engine-Core/debug-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00305640` | calls | `0x00253690`, `0x00254EE0` |
+| [`0x00305640`](area-of-effect.md) Battle action: consume execution resources (on area of effect) | calls | [`0x00253690`](../Menus-And-HUD/party-list.md) Game state: get gil (on party list)<br>[`0x00254EE0`](../Engine-Core/debug-menu.md) Game state: set gil (on debug menu) |
 
 </details>

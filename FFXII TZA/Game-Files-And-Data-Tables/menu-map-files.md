@@ -354,6 +354,9 @@ destination: {u16 value, u8 area, u8 0}
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 | Fact | Value |
 |---|---|
 | folders | `ch`, `cn`, `de`, `es`, `fr`, `in`, `it`, `kr`, `us` |
@@ -426,34 +429,60 @@ icon kinds and the 26 icon numbers of the NAVIICN2 table show, with the atlas ce
 631 `us` rows, the 609 of the path-array files and the 22 of `menumap_sub26_e3.bin`. Both are resolved as the map
 draws them:
 
-- A marker whose label `+0x0C` is not -1 shows `0x002F9920(label)` (`0x003C25BD`, `0x003C2629`): group 6, `menu_mapname`.
+- A marker whose label `+0x0C` is not -1 shows `0x002F9920(label)`¹: group 6, `menu_mapname`.
   The 42 ids are 60201 to 60244 without 60224 and 60225, rows 112 to 155, `To Lowtown` to `To the Subterra` in `us`,
   with the same row ids in all nine languages.
 - The map draws every icon from `loca_8_c.tm2`, the atlas at `+0x08` of the page's resource record: `0x00400420` takes
-  cell 9 plus the low byte of the icon number from its `eXt` table (`0x0040047D`-`0x0040049C`). `0x004048E0` draws kinds 3
+  cell 9 plus the low byte of the icon number from its `eXt` table². `0x004048E0` draws kinds 3
   to 8 and `0x00403BC0` kind 9, which pulses every icon and passes over icon 14.
-- The legend pairs 14 icon numbers with the text ids `0x187F` to `0x188C` (`0x00916A10`, `0x002BA650`), rows 271 to 284
+- The legend pairs 14 icon numbers with the text ids `0x187F` to `0x188C`³, rows 271 to 284
   of `menu_mapname`. Those rows are empty in `us` and `it`, `DUMMY` in `es`, and named in `de` and `fr`. The legend's
   icons, and the point list's icons below `0x13`, are cell 135 plus the icon number of `battle_4_c`: the same
   pictures at 32 by 32.
 - Icon -1, on two kind 9 entries of `rbn01_s01`, selects cell 264, past the 56 cells of `loca_8_c`; the 8 bytes there
   read as a cell 0 by 0.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C25BD`, `0x003C2629` |
+| ² | `0x0040047D`-`0x0040049C` |
+| ³ | `0x00916A10`, `0x002BA650` |
+
+</details>
+
 [`menu-map-files-gates.tsv`](menu-map-files-gates.tsv) gives what opens each of the 742 gate words of the `us` files:
 lmap zones, markers and links, NAVIICN2 icons, the cmap directory and guide schedule, gmap lines, and the World Map's
 area gates, extra gates and map key items. Each row names the reader that tests the word, with its instruction
 address. The readers decode the words this way:
 
-- A key item word passes when the item is owned (`0x00309EC0`): an lmap zone whose flags have a bit of
-  `0xFC0` (`0x003C18F7`), and a World Map area's map key item (`0x003BD64C`, `0x003C0C31`). A zone whose key item is not
-  owned still passes while its draw state has a bit of `0x401` (`0x003C190D`).
+- A key item word passes when the item is owned¹: an lmap zone whose flags have a bit of
+  `0xFC0`², and a World Map area's map key item³. A zone whose key item is not
+  owned still passes while its draw state has a bit of `0x401`⁴.
 - Every other word goes to the story gate `0x0032A8A0` ([Story flags](../Story-Events-And-Hunts/story-flags.md)). With
   bit `0x4000` it reads a story schedule record, given as story counter bands. Index 0 opens, index 1 shuts, and any
   other index is a Primary flag, explained by its row in [Story flag ids](../Story-Events-And-Hunts/story-flag-ids.md).
-- An icon's gate goes to `0x0032A8A0` with no `0xFFFF` test (`0x003DFB8D`), so 0 shows the icon and 1 hides it. The other
+- An icon's gate goes to `0x0032A8A0` with no `0xFFFF` test⁵, so 0 shows the icon and 1 hides it. The other
   readers let `0xFFFF` pass before the gate.
-- A marker's unlock gate `+0x12` is passed over when the area map of its sub-location is owned (`0x003C1027`). Its
-  second gate `+0x16` is tested first and refuses on a fail (`0x003C0F8E`).
+- A marker's unlock gate `+0x12` is passed over when the area map of its sub-location is owned⁶. Its
+  second gate `+0x16` is tested first and refuses on a fail⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00309EC0` |
+| ² | `0x003C18F7` |
+| ³ | `0x003BD64C`, `0x003C0C31` |
+| ⁴ | `0x003C190D` |
+| ⁵ | `0x003DFB8D` |
+| ⁶ | `0x003C1027` |
+| ⁷ | `0x003C0F8E` |
+
+</details>
 
 The 742 words are 177 lmap words (26 key items, 121 flags, 30 schedule bands), 323 icon words (175 flags, 41
 schedule bands and 107 of index 1), 3 cmap directory flags, 77 guide schedule bands, 100 gmap lines that carry a
@@ -461,9 +490,18 @@ copy of a schedule gate, and on the World Map 29 key items and 33 schedule bands
 
 Five icon flags, `0x5D`, `0x9B`, `0x9C`, `0xC4` and `0xC5`, are set by no `us` script, by no battle order record and by no entry of the new-game list
 ([Story flags](../Story-Events-And-Hunts/story-flags.md), Primary writers).
-Battle orders write a story flag through `0x0032ABE0` (`0x00329EEC`-`0x00329EF7`) when `0x002FE660` runs a register order
+Battle orders write a story flag through `0x0032ABE0`¹ when `0x002FE660` runs a register order
 whose word `+0x06` is kind 8. The 4,467 register orders of the 166 area files' order sets write kinds 10, 9 and 1, and
 no weighted run of `battle_pack.bin` entry `+0x2C` holds a register order in any language.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00329EEC`-`0x00329EF7` |
+
+</details>
 
 ### The location maps in player names
 
@@ -499,156 +537,208 @@ name pair is the word at `+0x00` of its row in `battle_pack.bin` section 39.
 | `shown_when` | the entry's gate in words, from menu-map-files-gates.tsv |
 | `at` | the entry's position on the sheet |
 
+</details>
+
 ## Loader behaviour
 
 ### The map-data widget
 
 `0x003BC450(world, location, owner)` creates the widget `0x02B457E0` (0x278 bytes, procedure `0x003BC4E0`) when no such
-widget exists and answers 1; when a widget already exists it creates no second one and answers 0 (`0x003BC463`,
-`0x003BC4C5`). On creation `0x003BC4E0` clears the sub-location slots and calls `0x003BC2D0`, which requests
+widget exists and answers 1; when a widget already exists it creates no second one and answers 0¹. On creation `0x003BC4E0` clears the sub-location slots and calls `0x003BC2D0`, which requests
 `menumap_world.bin` into `+0xD8` when `world` is set, `menumap_location.bin` into `+0xE0` when `location` is
 set, and `menumap_common.bin` into `+0xE8` always, all through `0x00249210`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003BC463`, `0x003BC4C5` |
+
+</details>
+
 `0x003BC2D0` files the three in heap 2 in one request set, opened with `0x00249580` and closed by a tail jump to
-`0x00249410` (`0x003BC3D1`). In the same set it asks for text groups 6 and `0x17` when `0x002F8040` finds them
-missing (`0x002491B0`), setting bits `0x1` and `0x2` of `+0xD0` (`0x003BC37A`-`0x003BC3B3`). It tests no return:
+`0x00249410`¹. In the same set it asks for text groups 6 and `0x17` when `0x002F8040` finds them
+missing², setting bits `0x1` and `0x2` of `+0xD0`³. It tests no return:
 with all twelve sets in use `0x00249580` returns 0 and a request for a file with a size then adds to the
-count at address `0x18` (`0x002492F8`); with all 48 request entries in use `0x00249210` stores through a null
-entry (`0x0024928D`).
+count at address `0x18`⁴; with all 48 request entries in use `0x00249210` stores through a null
+entry⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003BC3D1` |
+| ² | `0x002491B0` |
+| ³ | `0x003BC37A`-`0x003BC3B3` |
+| ⁴ | `0x002492F8` |
+| ⁵ | `0x0024928D` |
+
+</details>
 
 The widget frees the three tables and the guide file at `+0xF8` in its message `0x10` handler, and the
-palette at `+0x118` and both slots when it is released (`0x003C2210`). `menumap_area.bin` is loaded separately
-by `0x00253780`, the field HUD root, into `0x020927D0`: on its message 1 it frees the buffer held there
-(`0x003697F0`, `0x00253901`-`0x00253906`) and requests kind 7 `0xA5` (`0x00249180`, `0x00253928`-`0x00253930`).
+palette at `+0x118` and both slots when it is released¹. `menumap_area.bin` is loaded separately
+by `0x00253780`, the field HUD root, into `0x020927D0`: on its message 1 it frees the buffer held there² and requests kind 7 `0xA5`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C2210` |
+| ² | `0x003697F0`, `0x00253901`-`0x00253906` |
+| ³ | `0x00249180`, `0x00253928`-`0x00253930` |
+
+</details>
 
 Small queries on the widget:
 
 - `0x003BC2C0()` answers whether no map-data widget exists; the location map's procedure `0x002BA700` and the
   field-time container `0x003CB650` ask it.
 - `0x003BD860()` returns the guide picture at `+0x108` once the widget's bit `0x40` is set and the guide file
-  `+0xF8` is held, otherwise 0 (`0x002BA700`).
+  `+0xF8` is held, otherwise 0¹.
 - `0x003C0CC0()` returns bit `0x40` of `+0xD0` while its bit `0x4` is set, and 1 when that bit is clear or
-  no widget exists (`0x002B7590`, `0x002BA700`).
+  no widget exists².
 - `0x003C20D0()` clears the `clutpack_ys.bin` table pointer `+0x110` and returns 1, or 0 with no widget
-  (`0x002BA700`, `0x003CB650`).
+ ³.
 - `0x003BC3E0(owner, value)` sends `{0x10, value}` to an owner through its handler; `0x003BC4E0` and
   `0x003BC9F0` use it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002BA700` |
+| ² | `0x002B7590`, `0x002BA700` |
+| ³ | `0x002BA700`, `0x003CB650` |
+
+</details>
 
 ### Sub-location slots and pictures
 
 The widget holds up to two sloc files, in two 0xA8-byte slots at `+0x120`: data pointer `+0`, key array
 `+8`, sub-location index `+0x10`, picture count `+0x13` and 18 picture handles from `+0x18`.
 
-1. `0x003C1F00(widget, owner, request, n)`, through `0x003C2190`, takes a free slot and requests
-   `menumap_sub<n>` (`0x00249180`). It refuses when both slots are in use, or when one is in use and no other
-   cmap entry shares entry n's group.
-2. It counts the group among the first 50 entries only, an index at or past the count reading as group 0,
-   and refuses when exactly one matches (`0x003C1F8A`-`0x003C1FD3`). Refusing returns 0 with no request
-   (`0x003C1F52`); otherwise it returns 1 (`0x003C20A4`).
-3. When cmap entry n's palette byte is non-zero it requests kind 7 `0xE1` + that byte into `+0x118`
-   (`0x003C207A`): `Loca_gil.cl2` for 1, `Loca_bhm.cl2` for 2. Whatever the byte, it first frees the palette
-   already at `+0x118` and clears the pointer (`0x003C2024`-`0x003C203C`).
-4. The overlay page `0x002B7B80`, the location page `0x002BAF80` and the preload child `0x003CB4F0` call it; when it
-   refuses they free the other slot (`0x003C21C0`) or both (`0x003C21B0`) and try again.
-5. When the file has arrived, `0x003C2200` → `0x003C26C0` stores the key array and registers every picture whose
-   offset is not -1 as the named image `loca_<fieldId>_<variant>` (`0x0024A480`), with the palette at `+0x118`
-   when the entry names a `.cl2`, otherwise the third table of `clutpack_ys.bin` at `+0x110`
-   ([Cl2 menu colour tables](cl2-menu-colour-tables.md)). `0x003C0CF0` reports 0 (absent), 1 (loading) or 2
-   (ready).
-6. `0x003C26C0` tests `+0x118` itself, so the palette is whichever the last request left (`0x003C2794`). It
-   registers only into handles that are still 0, gives the slot's byte `+0x12` as the flags (`0x003C2815`),
-   returns 0 when no slot holds sub-location n (`0x003C2704`) and 1 otherwise (`0x003C2864`).
-7. `0x003C22B0(slot)`, run by `0x003C21C0`, empties a slot: it releases each registered picture
-   (`0x0024A680`), sets the count `+0x13` to 0 and frees the file (`0x003697F0`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x003C1F00(widget, owner, request, n)`, through `0x003C2190`, takes a free slot and requests `menumap_sub<n>`. It refuses when both slots are in use, or when one is in use and no other cmap entry shares entry n's group. | `0x00249180` |
+| 2 | It counts the group among the first 50 entries only, an index at or past the count reading as group 0, and refuses when exactly one matches. Refusing returns 0 with no request; otherwise it returns 1. | `0x003C1F8A`-`0x003C1FD3`<br>`0x003C1F52`<br>`0x003C20A4` |
+| 3 | When cmap entry n's palette byte is non-zero it requests kind 7 `0xE1` + that byte into `+0x118`: `Loca_gil.cl2` for 1, `Loca_bhm.cl2` for 2. Whatever the byte, it first frees the palette already at `+0x118` and clears the pointer. | `0x003C207A`<br>`0x003C2024`-`0x003C203C` |
+| 4 | The overlay page `0x002B7B80`, the location page `0x002BAF80` and the preload child `0x003CB4F0` call it; when it refuses they free the other slot or both and try again. | `0x003C21C0`<br>`0x003C21B0` |
+| 5 | When the file has arrived, `0x003C2200` → `0x003C26C0` stores the key array and registers every picture whose offset is not -1 as the named image `loca_<fieldId>_<variant>`, with the palette at `+0x118` when the entry names a `.cl2`, otherwise the third table of `clutpack_ys.bin` at `+0x110` ([Cl2 menu colour tables](cl2-menu-colour-tables.md)). `0x003C0CF0` reports 0 (absent), 1 (loading) or 2 (ready). | `0x0024A480` |
+| 6 | `0x003C26C0` tests `+0x118` itself, so the palette is whichever the last request left. It registers only into handles that are still 0, gives the slot's byte `+0x12` as the flags, returns 0 when no slot holds sub-location n and 1 otherwise. | `0x003C2794`<br>`0x003C2815`<br>`0x003C2704`<br>`0x003C2864` |
+| 7 | `0x003C22B0(slot)`, run by `0x003C21C0`, empties a slot: it releases each registered picture, sets the count `+0x13` to 0 and frees the file. | `0x0024A680`<br>`0x003697F0` |
 
 ### Readers of sloc
 
 - `0x003BF520(field, variant)` returns the picture handle whose key matches, from the slot of the field's
-  sub-location (`0x003C0380`), and 0 when no slot holds that sub-location or no key matches (`0x003BF5BE`);
+  sub-location¹, and 0 when no slot holds that sub-location or no key matches²;
   `0x003C1180` uses the picture's TIM2 size for explored-cell tests and `0x00402C30` binds it to the zone's draw
   element.
 - `0x003BF5E0(widget, n, field, variant, out)` finds the same key in the slot of sub-location n and returns its
   picture handle; it stores the key's NPS2 record through `out`, which it sets to 0 first, so a missing key
-  leaves 0 there (`0x003BF608`, `0x003BF69C`-`0x003BF6AD`). `0x003BEC50(field, variant)` returns that NPS2 record for
+  leaves 0 there³. `0x003BEC50(field, variant)` returns that NPS2 record for
   a field, finding the field's sub-location with `0x003C0380` first.
 - `0x003C2320` copies the NPS2 record's width and height into the zone's draw row (`+0x24`, `+0x26`), and
   `0x003BED70` uses them to size the page around the drawn zones.
 - `0x00404730` draws a zone picture through the zone's explored-cell mask from `0x002551B0`, which `0x003C4AE0` asks for
   with `0x00264790()` when that is positive, and otherwise, or on a null result, takes the pointer kept at `0x02B45A50`
-  (`0x003C4AED`, `0x003C4B05`); with no mask, or with bit `0x8000` of the element's flags, every cell is shown.
+ ⁴; with no mask, or with bit `0x8000` of the element's flags, every cell is shown.
 - `0x00404730` places the picture with `0x003C46B0(…, element, …)`: from the element record it sets up a matrix from
-  `+0x20`, turns it by -π/2 (`0xBFC90FDB`, `0x003985B0`) and by the negated `+0x1C` (`0x00398C50`), sets it at half of
-  `+0x04` and `+0x08`, and combines it (`0x003977B0`) with the record's `+0x14`/`+0x18` and with a second matrix moved
+  `+0x20`, turns it by -π/2⁵ and by the negated `+0x1C`⁶, sets it at half of
+  `+0x04` and `+0x08`, and combines it⁷ with the record's `+0x14`/`+0x18` and with a second matrix moved
   by -`+0x0C` and -`+0x10`; `0x003C6420` then draws with the result.
 - `0x003BE2D0(field)` returns the field's NAVIICN2 block, and 0 when no slot holds the field's sub-location
-  (`0x003C0380`), no record has the field id, or the record's `naviOff` is `0xFFFF` (`0x003BE365`, `0x003BE38E`).
+ ⁸, no record has the field id, or the record's `naviOff` is `0xFFFF`⁹.
 - `0x003DFBB0` gives a kind's count (kinds 1 to 9 below the block's `kinds`); `0x003DFB50(block, kind, i)` gives
   entry i and drops it when its gate fails. It also gives 0 for a null block, a byte `+7` below `'2'`, or an i
-  at or past the kind's count (`0x003DFB5E`-`0x003DFB74`).
+  at or past the kind's count¹⁰.
 - `0x004048E0` draws icon kinds 3 to 8 (through `0x00403640`, called by `0x00403970`), and `0x00403BC0` kind 9. An
   icon whose `from` differs from `at` can get an 8-segment pointer line; with a mask, icons other than 14,
-  20, 23 and 24 are shown only when the cell at `from` is explored (`0x00255150`).
+  20, 23 and 24 are shown only when the cell at `from` is explored¹¹.
 - `0x00400190(page, record)` appends each drawn icon's record to the page's draw list: head `+0x00`, tail `+0x08`,
   count `+0x1412`; records link forward through `+0x28` and back through `+0x30`. `0x00403BC0` and `0x004048E0` call
   it for every icon they draw.
 - `0x003BECA0(field)` returns the field's LCMPOS1 block, and 0 in the same three cases as `0x003BE2D0`, here for
-  an `lcmOff` of `0xFFFF` (`0x003BED35`, `0x003BED5E`); the draw paths `0x002B8EE0` and `0x002BCB00` pass it to
+  an `lcmOff` of `0xFFFF`¹²; the draw paths `0x002B8EE0` and `0x002BCB00` pass it to
   `0x00403640` and `0x00403BC0`, which leave it unused.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C0380` |
+| ² | `0x003BF5BE` |
+| ³ | `0x003BF608`, `0x003BF69C`-`0x003BF6AD` |
+| ⁴ | `0x003C4AED`, `0x003C4B05` |
+| ⁵ | `0xBFC90FDB`, `0x003985B0` |
+| ⁶ | `0x00398C50` |
+| ⁷ | `0x003977B0` |
+| ⁸ | `0x003C0380` |
+| ⁹ | `0x003BE365`, `0x003BE38E` |
+| ¹⁰ | `0x003DFB5E`-`0x003DFB74` |
+| ¹¹ | `0x00255150` |
+| ¹² | `0x003BED35`, `0x003BED5E` |
+
+</details>
 
 The minimap draws the zone pack's own picture and placement, not these ([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
 
 ### Readers of lmap
 
 - `0x003C0340(n)` returns `zones + markers` of record n, and 0 with no lmap held or n past the count
-  (`0x003C0370`); `0x003BF430(n, i)` returns point i (zone for `i < zones`, else marker) and its kind (0 zone,
+ ¹; `0x003BF430(n, i)` returns point i (zone for `i < zones`, else marker) and its kind (0 zone,
   1 marker, 3 no point). `0x003BF920(n, i)` returns point i's field id when it is a zone that passes
   `0x003C18A0`, and `FFFF` otherwise (callers `0x003BDB30`, `0x003BDCD0`).
 - `0x003C0380(field)` finds the field's sub-location: for each cmap entry whose group is the field's
-  persistence group (`0x00264F90`), it maps the field through the record's members (`0x003BFF20`) and looks for a
+  persistence group², it maps the field through the record's members³ and looks for a
   zone with that field id. `0x003BFF20(n, field)` gives the node of the member that names the field, or -1, and
-  then the field stands for itself (`0x003C03F0`). It returns the first matching entry of the first 50, or -1
-  (`0x003C042B`).
+  then the field stands for itself⁴. It returns the first matching entry of the first 50, or -1
+ ⁵.
 - `0x003C1070(n, field)` tells whether the player stands in a zone or one of its members. It answers 1 when
   `field` is the current field (`0x00264790()` when that is positive, otherwise `0x003148F0()`), or when a member
-  of record n has `field` as its node and `0x003148F0()` as its member (`0x003C1118`-`0x003C1152`); otherwise 0.
+  of record n has `field` as its node and `0x003148F0()` as its member⁶; otherwise 0.
 - `0x003C2320` builds a point's draw row. For a zone: position, neighbours, field id, picture variant, the
-  zone name (`0x00377B60`) and the picture size. For a marker: the destination, resolved by `0x003BDDE0`; the
+  zone name⁷ and the picture size. For a marker: the destination, resolved by `0x003BDDE0`; the
   label text, or "???" (`0x3EC`) while locked; destination 13 (`sav01_s01`) becomes 47 (`sav01_s02`) when
-  the story gate `0x107` passes (`0x0032A8A0`).
+  the story gate `0x107` passes⁸.
 - While the widget's `+0xD0` has bit `0x2000`, which the location page `0x003BE3A0` sets on its first pass at
   location 13 or 47, `0x003C2320` swaps destination 13 for 47 when bit `0x4000` is set, instead of testing the
-  gate (`0x003C24AA`-`0x003C24C4`).
+  gate⁹.
 - When `0x003C2320` swaps the destination, `destPoint` becomes `0x003BE700(47, location)`, the first marker of
-  record 47 whose `dest` is the location the page shows (`0x003C24C6`-`0x003C24DA`); with no such marker the
-  destination stays 13 and `destPoint` is `0xFF` (`0x003C24E1`).
+  record 47 whose `dest` is the location the page shows¹⁰; with no such marker the
+  destination stays 13 and `destPoint` is `0xFF`¹¹.
 - `0x003BCDE0(n, i, link, out)` keeps a link when its gate passes and, outside screen mode 6, when `0x003C1180`
   accepts its point at `+4` or `+0xC`: the zone's gate key item is owned, for a zone gated by a key item
-  (`0x003C06E0` bit `0x8`), otherwise the zone's area map is owned (`0x002543F0`) (`0x003C1193`-`0x003C11B6`);
-  `0x00377A40` accepts the field; the zone has no explored-cell mask (`0x003C120C`); or the point's cell is
+  (`0x003C06E0` bit `0x8`), otherwise the zone's area map is owned¹²¹³;
+  `0x00377A40` accepts the field; the zone has no explored-cell mask¹⁴; or the point's cell is
   explored.
 - Point i must also pass its gate (`0x003C18A0` for a zone, `0x003C0F70` for a marker), be a zone, lack draw bit
-  `0x800` (`0x003BCBA0`) and have its field id at one end of the link (`0x003BCE1D`-`0x003BCEA7`). The record's
-  zone with the field id at the other end is the far zone (`0x003BCF20`-`0x003BCF4A`).
+  `0x800`¹⁵ and have its field id at one end of the link¹⁶. The record's
+  zone with the field id at the other end is the far zone¹⁷.
 - A far zone in a zone group gives way to the zone `0x003BDFF0` picks for the group, and stays when it picks
-  no zone; a far zone in no group must pass its gate (`0x003C1980`, `0x003BCFBE`). A kept link answers 1 and,
+  no zone; a far zone in no group must pass its gate¹⁸. A kept link answers 1 and,
   with `out` set, fills a 16-byte row: i, the far point's index, then the link's three `x`, `y` pairs
-  (`0x003BCFCC`-`0x003BD018`). Any failed test answers 0.
+ ¹⁹. Any failed test answers 0.
 - `0x003BDFF0(n, group)` picks the one zone of a zone group that stands for the group; `0x003BED70` and
   `0x003BCDE0` use it. It returns the index of the first zone of record n whose group bits (flags mask `0x3C`)
-  equal `group` and whose gate passes (`0x003C0D30`), or, while the widget's `+0xD0` has bit `0x800`, whose
-  `0x003C06E0` answer has bit `0x1` (`0x003BE061`-`0x003BE107`); -1 when no zone does.
+  equal `group` and whose gate passes²⁰, or, while the widget's `+0xD0` has bit `0x800`, whose
+  `0x003C06E0` answer has bit `0x1`²¹; -1 when no zone does.
 - `0x003BE680(n, second, third)` returns the three zoom levels: the first as its answer and the second and
-  third through its pointer arguments when they are set (`0x003BE6D9`-`0x003BE6F3`), and 0 with no lmap held or
-  n past the count (`0x003BE6F7`). The pages keep the remembered level (`0x0209E5B8`) when it is one of them,
-  otherwise the first, and scale by 3200 / level (`0x002B7FFA`-`0x002B8067`).
-- `0x003BE1E0(n, group, out)` returns the point that stands for zone group `group` of record n (`0x003BDFF0`),
+  third through its pointer arguments when they are set²², and 0 with no lmap held or
+  n past the count²³. The pages keep the remembered level²⁴ when it is one of them,
+  otherwise the first, and scale by 3200 / level²⁵.
+- `0x003BE1E0(n, group, out)` returns the point that stands for zone group `group` of record n²⁶,
   with its index in `out`, -1 when no point stands for it; `0x003BDDE0`, `0x003BED70`, `0x003C12B0` and `0x003C1A20` use it.
 - `0x003BE700(n, dest)` returns the first marker of record n whose destination byte `+0x11` is `dest`, or -1
-  (`0x003C2320`).
+ ²⁷.
 - `0x003C0D30(n, i)` runs point i's gate test, `0x003C18A0` for a zone and `0x003C0F70` for a marker
-  (`0x003BDDE0`, `0x003BDFF0`).
+ ²⁸.
 - `0x003C0740(out, n, i)` lists, as 16-byte rows, the links of record n that `0x003BCDE0` keeps for zone point
-  i, when the point passes its gate and its draw state (`0x003BCBA0`) lacks bit `0x800`; it returns the count.
+  i, when the point passes its gate and its draw state²⁹ lacks bit `0x800`; it returns the count.
   `0x003C0890`, called by `0x00402A40`, first stores its fourth argument at the widget's `+0xCA`.
 - `0x003C1A20(out, n, kind, x, y)` lists record n's points for the location page `0x003BE3A0`: zones for kind
   0 (at most 20), markers for 1 (at most 16), both for 2 (at most 24). A zone group appears once, through
@@ -657,120 +747,212 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
   smallest zone position.
 - `0x003BE950(row, dir, rows, n)` picks the next cursor point in direction dir (0 up, 1 down, 2 left, 3
   right) for `0x003C2320`. It measures from the centres of the points, a zone's from its picture size
-  (`0x003BF5E0`), a marker's from its label size (`0x0029CD00`), and takes the point on that side that
+ ³⁰, a marker's from its label size³¹, and takes the point on that side that
   `0x003BD6F0` scores lowest with the direction vector `0x01EFE330`, skipping zones with draw bit `0x800`; 0xFF
   when no point lies on that side.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C0370` |
+| ² | `0x00264F90` |
+| ³ | `0x003BFF20` |
+| ⁴ | `0x003C03F0` |
+| ⁵ | `0x003C042B` |
+| ⁶ | `0x003C1118`-`0x003C1152` |
+| ⁷ | `0x00377B60` |
+| ⁸ | `0x0032A8A0` |
+| ⁹ | `0x003C24AA`-`0x003C24C4` |
+| ¹⁰ | `0x003C24C6`-`0x003C24DA` |
+| ¹¹ | `0x003C24E1` |
+| ¹² | `0x002543F0` |
+| ¹³ | `0x003C1193`-`0x003C11B6` |
+| ¹⁴ | `0x003C120C` |
+| ¹⁵ | `0x003BCBA0` |
+| ¹⁶ | `0x003BCE1D`-`0x003BCEA7` |
+| ¹⁷ | `0x003BCF20`-`0x003BCF4A` |
+| ¹⁸ | `0x003C1980`, `0x003BCFBE` |
+| ¹⁹ | `0x003BCFCC`-`0x003BD018` |
+| ²⁰ | `0x003C0D30` |
+| ²¹ | `0x003BE061`-`0x003BE107` |
+| ²² | `0x003BE6D9`-`0x003BE6F3` |
+| ²³ | `0x003BE6F7` |
+| ²⁴ | `0x0209E5B8` |
+| ²⁵ | `0x002B7FFA`-`0x002B8067` |
+| ²⁶ | `0x003BDFF0` |
+| ²⁷ | `0x003C2320` |
+| ²⁸ | `0x003BDDE0`, `0x003BDFF0` |
+| ²⁹ | `0x003BCBA0` |
+| ³⁰ | `0x003BF5E0` |
+| ³¹ | `0x0029CD00` |
+
+</details>
 
 ### Readers of cmap
 
 - `0x003C0450(out, group, check)` lists the sub-locations that share a persistence group for the World
-  Map (`0x00551800`, `0x00551930`, `0x00551B30`). It first stores `check` at the widget's `+0xCA` (`0x003C0483`).
+  Map¹. It first stores `check` at the widget's `+0xCA`².
 - It returns 0 for a group of `0x3B` or more and for a group with fewer than two of the first 50 directory
-  entries, where an index at or past the directory's count reads as group 0 (`0x003C0532`); with `check` set
-  and a group other than the current field's (`0x003148F0`, `0x00264F90`), also when no entry of the group is
+  entries, where an index at or past the directory's count reads as group 0³; with `check` set
+  and a group other than the current field's⁴, also when no entry of the group is
   accepted.
 - Otherwise it writes a `0x18`-byte row per entry of the group that `0x003C12B0` accepts (index, group,
   the name text through `0x002F9920` or null for -1, and `0x003C05F0(index)`) and returns the count; with `out`
-  null it counts the rows without writing them (`0x003C057A`).
-  `0x003C12B0(n)` refuses an entry whose gate is set and does not pass (`0x0032A8A0`) and accepts it at
-  once when the area map is owned (`0x002543F0`).
-- `0x003BF8E0(n)` returns directory entry n's group byte, 0 past the count (`0x002BA700`, `0x002BAF80`), and
-  `0x003C0F00(group)` answers 1 when every entry of the group is explored (`0x003C1680`), for `0x003BF6C0`.
-- `0x003BF7C0(out, area, mode)` lists persistence groups for the World Map (`0x00551800`, `0x00551930`,
-  `0x00551B30`, `0x005528C0`): a `0x18`-byte row (`0x003BF6C0`) for each group 0 to 58 whose area (`0x00254380`) is
+  null it counts the rows without writing them⁵.
+  `0x003C12B0(n)` refuses an entry whose gate is set and does not pass⁶ and accepts it at
+  once when the area map is owned⁷.
+- `0x003BF8E0(n)` returns directory entry n's group byte, 0 past the count⁸, and
+  `0x003C0F00(group)` answers 1 when every entry of the group is explored⁹, for `0x003BF6C0`.
+- `0x003BF7C0(out, area, mode)` lists persistence groups for the World Map¹⁰: a `0x18`-byte row¹¹ for each group 0 to 58 whose area¹² is
   `area`. It stores `mode` at the widget's `+0xCA`.
-- With a non-zero mode a group other than the current field's (`0x003148F0`, `0x00264F90`) needs an entry that
+- With a non-zero mode a group other than the current field's¹³ needs an entry that
   `0x003C12B0` accepts. In mode 6 a row gets bit `0x20` when the selected quest marks the group
-  (`0x003C0E30`). It returns the count.
+ ¹⁴. It returns the count.
 
-- The directory's group byte joins a sub-location to its persistence group (`0x003C0380`, `0x003BD480`), and its
-  name id gives the marker label fallback (`0x003C2320`) and the location entry (`0x003C02B0`).
-- `0x003C17E0(field)` reads the maps array at the field's map index (`0x003779F0`); a zone counts as explored
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00551800`, `0x00551930`, `0x00551B30` |
+| ² | `0x003C0483` |
+| ³ | `0x003C0532` |
+| ⁴ | `0x003148F0`, `0x00264F90` |
+| ⁵ | `0x003C057A` |
+| ⁶ | `0x0032A8A0` |
+| ⁷ | `0x002543F0` |
+| ⁸ | `0x002BA700`, `0x002BAF80` |
+| ⁹ | `0x003C1680` |
+| ¹⁰ | `0x00551800`, `0x00551930`, `0x00551B30`, `0x005528C0` |
+| ¹¹ | `0x003BF6C0` |
+| ¹² | `0x00254380` |
+| ¹³ | `0x003148F0`, `0x00264F90` |
+| ¹⁴ | `0x003C0E30` |
+
+</details>
+
+- The directory's group byte joins a sub-location to its persistence group¹, and its
+  name id gives the marker label fallback² and the location entry³.
+- `0x003C17E0(field)` reads the maps array at the field's map index⁴; a zone counts as explored
   when its explored-cell count (`0x00255060` on the current zone's mask, `0x002550E0` on the saved 32 bytes at
   `[0x020927C0] + 0x224 + 32 × index`) reaches the low byte.
-- It takes the current zone's mask (`0x003C4AD0`) when `0x003C1070` finds the player in the field's zone or one
-  of its members (`0x003C182F`-`0x003C1850`). A map index of 0 or less counts as explored, and an index at or
-  past the maps count as not explored (`0x003C17F4`, `0x003C188A`).
+- It takes the current zone's mask⁵ when `0x003C1070` finds the player in the field's zone or one
+  of its members⁶. A map index of 0 or less counts as explored, and an index at or
+  past the maps count as not explored⁷.
 - `0x003C1680` reports a sub-location explored when all its zones are, and also answers 1 with no lmap held,
-  n past the count or a record without points (`0x003C16A7`-`0x003C16DE`).
+  n past the count or a record without points⁸.
 - `0x003C1DF0` passes the guide schedule to `0x003BD950`, which walks it from the last entry down and returns the
-  first whose counter is at most the story counter (`0x00265270`) and whose gate is `0xFFFF` or passes, and 0
-  for a null schedule or when no entry does (`0x003BD959`, `0x003BD9B9`). The entry goes to `+0xF0` and the
+  first whose counter is at most the story counter⁹ and whose gate is `0xFFFF` or passes, and 0
+  for a null schedule or when no entry does¹⁰. The entry goes to `+0xF0` and the
   request for `menumap_guide<file>` to `+0xF8`.
 - `0x003C1DF0` answers 0 without a widget, without `menumap_common.bin` (bit `0x20`), while a guide file is
   held whose picture is not registered (bit `0x4` without `0x40`), or with no schedule
-  (`0x003C1DFE`-`0x003C1E46`).
-- It frees the guide file and picture it holds before the request (`0x003BC970`, `0x003C1E71`); with no entry it
-  frees them and answers 0 (`0x003C1E65`). After the request it clears bit `0x40`, sets bit `0x4` and answers 1
-  (`0x003C1ED3`-`0x003C1EF2`).
+ ¹¹.
+- It frees the guide file and picture it holds before the request¹²; with no entry it
+  frees them and answers 0¹³. After the request it clears bit `0x40`, sets bit `0x4` and answers 1
+ ¹⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C0380`, `0x003BD480` |
+| ² | `0x003C2320` |
+| ³ | `0x003C02B0` |
+| ⁴ | `0x003779F0` |
+| ⁵ | `0x003C4AD0` |
+| ⁶ | `0x003C182F`-`0x003C1850` |
+| ⁷ | `0x003C17F4`, `0x003C188A` |
+| ⁸ | `0x003C16A7`-`0x003C16DE` |
+| ⁹ | `0x00265270` |
+| ¹⁰ | `0x003BD959`, `0x003BD9B9` |
+| ¹¹ | `0x003C1DFE`-`0x003C1E46` |
+| ¹² | `0x003BC970`, `0x003C1E71` |
+| ¹³ | `0x003C1E65` |
+| ¹⁴ | `0x003C1ED3`-`0x003C1EF2` |
+
+</details>
 
 ### Readers of gmap
 
 - `0x003BD890` returns the text of line `+6` of the chosen schedule entry, once the widget's bit `0x40` is set;
   `0x003BD8F0` returns the same text and the picture at `tim2Off`, which `0x003BC4E0` registers at `+0x108`.
 - `0x003BD890` answers 0 without a widget, guide file `+0xF8` or entry `+0xF0`, for a line at or past the
-  file's `count`, and for a text of `0xFFFF` (`0x003BD89A`-`0x003BD8DC`).
+  file's `count`, and for a text of `0xFFFF`¹.
 - `0x003BD8F0(file, line, picture)` answers 0 for a null file or a line at or past `count`. When `picture` is
   set it stores the picture there, 0 for a `tim2Off` of `0xFFFF`, before it answers 0 for a text of `0xFFFF`
-  (`0x003BD910`-`0x003BD938`).
+ ².
 - The location map's container procedure `0x002BA700` hands the text and picture to `0x0028FD00`; the overlay
-  (`0x002B7590`) and the field-time container (`0x003CB650`) also read the text.
+ ³ and the field-time container⁴ also read the text.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003BD89A`-`0x003BD8DC` |
+| ² | `0x003BD910`-`0x003BD938` |
+| ³ | `0x002B7590` |
+| ⁴ | `0x003CB650` |
+
+</details>
 
 ### Readers of wmap
 
 - `0x003BD040(area)` builds a World Map entry: position, neighbours, region, the amap type and name, and the
-  state bits of `0x003BD480`. It writes area `+1`, region `+2`, the amap type `+3` (`0x002543D0`), position `+4`,
-  neighbours `+8`, the name `+0x10` (`0x002543A0`), the area's pair `+0x0C` at `+0x18`, the state bits `+0x1C`
-  and 0 at `+0x20` (`0x003BD0A7`-`0x003BD13A`).
-- While the widget's `+0xC9` is `0x0F` the name is text `0x17DE` (`0x002F9860`, `0x003BD108`). With state bit
+  state bits of `0x003BD480`. It writes area `+1`, region `+2`, the amap type `+3`¹, position `+4`,
+  neighbours `+8`, the name `+0x10`², the area's pair `+0x0C` at `+0x18`, the state bits `+0x1C`
+  and 0 at `+0x20`³.
+- While the widget's `+0xC9` is `0x0F` the name is text `0x17DE`⁴. With state bit
   `0x800` a non-zero extra type byte replaces the amap type and adds state bit `0x20000`
-  (`0x003BD171`-`0x003BD181`). It answers 1, and 0 for area 0 with nothing written (`0x003BD19F`).
-- An area at or past the table's count, or a table address of 0, leaves the entry pointer 0 (`0x003BD088`,
-  `0x003BD094`): the area byte `+1` is written (`0x003BD0A7`) and the next read is of address `0xA` (`0x003BD0AB`).
+ ⁵. It answers 1, and 0 for area 0 with nothing written⁶.
+- An area at or past the table's count, or a table address of 0, leaves the entry pointer 0⁷: the area byte `+1` is written⁸ and the next read is of address `0xA`⁹.
 - `0x003BD480` sets: 1 current area; 2 an area map of one of its groups is owned; `0x4000` every sub-location of
-  its groups explored. The current area is that of the current field (`0x003148F0`, `0x00264F90`, `0x00254380`);
-  its groups are the groups 0 to 58 whose area (`0x00254380`) it is, and `0x4000` stays set when the area has
-  no group or a group has no directory entry (`0x003BD4D1`-`0x003BD578`).
+  its groups explored. The current area is that of the current field¹⁰;
+  its groups are the groups 0 to 58 whose area¹¹ it is, and `0x4000` stays set when the area has
+  no group or a group has no directory entry¹².
 - It also sets 4 area gate passes; 8 marked in the widget's bit set at `+0x270`; `0x10` key item `+0x16`
   owned; `0x20` from `0x003C0A00`. Bits 4 and `0x10` need region non-zero and a word other than `0xFFFF`
-  (`0x003BD5B2`-`0x003BD5BF`, `0x003BD63B`-`0x003BD648`).
-- Last, `0x10000` extra gate passes, for an extra gate other than `0xFFFF` (`0x003BD6AA`-`0x003BD6BC`), plus
+ ¹³.
+- Last, `0x10000` extra gate passes, for an extra gate other than `0xFFFF`¹⁴, plus
   `0x800` when the area is hidden (`0x003C08B0` answers 0, `0x003BD6C6`), which makes `0x003BD040` use the extra
   type byte.
 - `0x003C08B0(area)` decides whether an area is shown: region non-zero and story counter below `until`; then the
   current area is always shown; otherwise the screen mode's own test (`0x02B457E0 + 0xCA`) decides, and when
   it fails the area is still shown if one of its persistence groups passes `0x003C0D70(g, 1)`.
 - It answers 0 for area 0 or an area at or past the count, and an `until` of `0xFFFF` never hides
-  (`0x003C08DD`-`0x003C0930`). The mode tests (`0x003C0955`-`0x003C09AD`): mode 0 shows every area, mode 2 needs the
-  area gate `+0x14` to pass (`0x003C0B70`), mode 3 the area's bit at `+0x270`, mode 4 its map key item owned
-  (`0x003C0BE0`) and mode 6 `0x003C0A00`.
-- Every other mode goes straight to the group test, over the groups 0 to 58 whose area (`0x00254380`) is this
-  one (`0x003C09C2`-`0x003C09E4`).
-- `0x003BFFF0` and `0x003C00C0` list the type 0 routes of an area for the World Map host (`0x00550820`,
-  `0x00550690`), `0x003C0180` the routes of one special type for its child widget `0x005528C0`.
+ ¹⁵. The mode tests¹⁶: mode 0 shows every area, mode 2 needs the
+  area gate `+0x14` to pass¹⁷, mode 3 the area's bit at `+0x270`, mode 4 its map key item owned
+ ¹⁸ and mode 6 `0x003C0A00`.
+- Every other mode goes straight to the group test, over the groups 0 to 58 whose area¹⁹ is this
+  one²⁰.
+- `0x003BFFF0` and `0x003C00C0` list the type 0 routes of an area for the World Map host²¹, `0x003C0180` the routes of one special type for its child widget `0x005528C0`.
 - `0x003BCCA0(area, route, out)` keeps a route when its far area is shown and returns both areas' positions and
-  the route's `x`, `y`. It answers 1, and 0 for a route with `area` at neither end (`0x003BCDCD`) or a far area
-  `0x003C08B0` does not show (`0x003BCD2F`); with `out` set it writes a 16-byte row: area, far area, the area's
-  `x`, `y`, the route's `x`, `y` and the far area's `x`, `y` (`0x003BCD84`-`0x003BCDBE`).
+  the route's `x`, `y`. It answers 1, and 0 for a route with `area` at neither end²² or a far area
+  `0x003C08B0` does not show²³; with `out` set it writes a 16-byte row: area, far area, the area's
+  `x`, `y`, the route's `x`, `y` and the far area's `x`, `y`²⁴.
 - `0x003BFE10(region, out)` returns a region's name for `0x005528C0`: it writes the region at `+0`, the name text
   (`0x002F9920`, null for -1) at `+8` and `0x003BFEA0(region)` at `+0x10`, and answers 1; region 0 or a region at
-  or past the count answers 0 with nothing written (`0x003BFE34`, `0x003BFE49`).
-- `0x003C1D70(widget, area, request)` requests the area picture, kind 7 `0xE8` + `picture` (`0x003C1DC2`), named
-  `map_gra_c`, for the World Map host (`0x005632C0`). It hands `0x002493D0` the widget, the request record's
+  or past the count answers 0 with nothing written²⁵.
+- `0x003C1D70(widget, area, request)` requests the area picture, kind 7 `0xE8` + `picture`²⁶, named
+  `map_gra_c`, for the World Map host²⁷. It hands `0x002493D0` the widget, the request record's
   dword `+0`, the image name at `+8` and dword `+0x10`, and returns its answer; for area 0 or an area at or
-  past the count it answers 0 with no request (`0x003C1DE4`).
+  past the count it answers 0 with no request²⁸.
 - `0x003C0250(area)` returns the destination value of an area: the value of the first destination whose area
-  byte is `area`, or -1 when no destination names it (`0x003C0294`); `0x002901D0` stores it at
+  byte is `area`, or -1 when no destination names it²⁹; `0x002901D0` stores it at
   `[0x0209BE80] + 0x10FAC`, which a script reads back after opening the World Map as a destination picker (menu
   states `0x11` and `0x12`, `0x00254710`).
 - `0x003BD1B0(out, region, mode)` builds the World Map's area list for its host `0x00550A00`: a `0x28`-byte entry
-  (`0x003BD040`) for every area from 1 up (area 0 is skipped, `0x003BD232`) of the region, or of all regions for -1, that
-  is shown (`0x003C08B0`) or passes `0x003C0C50`, and returns the count (only the count when `out` is 0, `0x003BD2A4`).
-- In mode 6 an entry with bit `0x20` takes its labels from the selected quest's `QHT0` entry (`0x00473CC0`) only while
+ ³⁰ for every area from 1 up (area 0 is skipped, `0x003BD232`) of the region, or of all regions for -1, that
+  is shown³¹ or passes `0x003C0C50`, and returns the count (only the count when `out` is 0, `0x003BD2A4`).
+- In mode 6 an entry with bit `0x20` takes its labels from the selected quest's `QHT0` entry³² only while
   `+0xD0` has bits `0x100` and `0x200`, the quest's `QHD0` entry is of type 0, the first of its `+0xCB` steps whose
   `a` is the area has its `shown` bit set for the progress `0x003BC260` gives, `+0xD0` has bit `0x400` and `0x00473CC0`
-  returns 0 (`0x003BD2C3`-`0x003BD44F`).
-- A null label leaves the entry's `+0x10` or `+0x20` as it was (`0x003BD45A`-`0x003BD475`).
+  returns 0³³.
+- A null label leaves the entry's `+0x10` or `+0x20` as it was³⁴.
 - It then fills each entry's four neighbours: `0x003BFB60(entry, dir, list, n, empty)` follows the authored
   neighbour chain until it meets a listed area, giving -1 for no neighbour (`empty` = 1), a loop or the
   chain's end. When the chain leads nowhere, `0x003BFC70(entry, dir, list, n)` takes the listed area on that
@@ -778,10 +960,54 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
 - `0x003BCAF0(type)`, for the World Map host `0x00552250`: with a non-zero type it clears the bit set `+0x270`,
   and when byte `+0xC8` is 1 it stores the type at `+0xC9` and sets the bits of both areas of every route
   of that type (state bit `0x8` of `0x003BD480`).
-- `0x003BFEA0(region)` answers whether the current field's area (`0x003148F0`, `0x00264F90`, `0x00254380`) is in
+- `0x003BFEA0(region)` answers whether the current field's area³⁵ is in
   the region, or, for an area outside the table, whether the region is 0; `0x003BFE10` uses it.
-- `0x003C0BE0(area)` answers whether a shown area's map key item `+0x16` is owned (`0x00309EC0`), for
+- `0x003C0BE0(area)` answers whether a shown area's map key item `+0x16` is owned³⁶, for
   `0x003C08B0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002543D0` |
+| ² | `0x002543A0` |
+| ³ | `0x003BD0A7`-`0x003BD13A` |
+| ⁴ | `0x002F9860`, `0x003BD108` |
+| ⁵ | `0x003BD171`-`0x003BD181` |
+| ⁶ | `0x003BD19F` |
+| ⁷ | `0x003BD088`, `0x003BD094` |
+| ⁸ | `0x003BD0A7` |
+| ⁹ | `0x003BD0AB` |
+| ¹⁰ | `0x003148F0`, `0x00264F90`, `0x00254380` |
+| ¹¹ | `0x00254380` |
+| ¹² | `0x003BD4D1`-`0x003BD578` |
+| ¹³ | `0x003BD5B2`-`0x003BD5BF`, `0x003BD63B`-`0x003BD648` |
+| ¹⁴ | `0x003BD6AA`-`0x003BD6BC` |
+| ¹⁵ | `0x003C08DD`-`0x003C0930` |
+| ¹⁶ | `0x003C0955`-`0x003C09AD` |
+| ¹⁷ | `0x003C0B70` |
+| ¹⁸ | `0x003C0BE0` |
+| ¹⁹ | `0x00254380` |
+| ²⁰ | `0x003C09C2`-`0x003C09E4` |
+| ²¹ | `0x00550820`, `0x00550690` |
+| ²² | `0x003BCDCD` |
+| ²³ | `0x003BCD2F` |
+| ²⁴ | `0x003BCD84`-`0x003BCDBE` |
+| ²⁵ | `0x003BFE34`, `0x003BFE49` |
+| ²⁶ | `0x003C1DC2` |
+| ²⁷ | `0x005632C0` |
+| ²⁸ | `0x003C1DE4` |
+| ²⁹ | `0x003C0294` |
+| ³⁰ | `0x003BD040` |
+| ³¹ | `0x003C08B0` |
+| ³² | `0x00473CC0` |
+| ³³ | `0x003BD2C3`-`0x003BD44F` |
+| ³⁴ | `0x003BD45A`-`0x003BD475` |
+| ³⁵ | `0x003148F0`, `0x00264F90`, `0x00254380` |
+| ³⁶ | `0x00309EC0` |
+
+</details>
 
 ### Quest steps on the maps
 
@@ -789,10 +1015,20 @@ While the widget's `+0xD0` has bits `0x100` and `0x200`, the maps read the selec
 `0x00473BB0`, `+0xCB` steps ([Quest menu files](quest-menu-files.md)):
 
 - `0x003C0E30(group)` answers whether a type-1 step's location lies in persistence group `group`
-  (`0x00264F90`), and `0x003C15B0(n)` whether it lies in sub-location n (`0x003C0380`); `0x003C05F0` uses the second.
+ ¹, and `0x003C15B0(n)` whether it lies in sub-location n²; `0x003C05F0` uses the second.
 - `0x003BD9F0(location, kind, out)`, for the location page `0x003BE3A0`, counts the shown steps at a location:
   the unlabelled ones for kind 0, the labelled ones for 1, all for any other. It copies into `out` the
   step whose ordinal is `out[0]`, and returns 0 at the first step that is not of type 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264F90` |
+| ² | `0x003C0380` |
+
+</details>
 
 ### Readers of amap
 
@@ -841,8 +1077,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Party** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002FE660` | calls | `0x0031B7E0` |
+| [`0x002FE660`](../Story-Events-And-Hunts/story-progress.md) (on story progress) | calls | [`0x0031B7E0`](../Engine-Core/identifier-spaces.md) (on identifier spaces) |
 
 </details>

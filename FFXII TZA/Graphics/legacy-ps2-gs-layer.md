@@ -24,24 +24,52 @@ the rest of the GS model.
 `0x022D8EB4` = `0x1C0`, frame index `0x022D8EA8` = 0, the clear colour `0x022D8ED8` = 0 with its switch
 `0x022D8EDC` = 1, and `0x022D8EE0` = 1. Those stores at `0x0036D286`, `0x0036D2A3`, `0x0036D2AD` and
 `0x0036D290` are the only stores that name the three dimension words and the frame index. One 8-byte
-store also zeroes `0x022D8EBC` and `0x022D8EC0` (`0x0036D296`). It then calls `0x0016D6A0`, a bare `ret`, twice
-and tail-jumps to `0x0036D2F0` (`0x0036D2E6`).
+store also zeroes `0x022D8EBC` and `0x022D8EC0`¹. It then calls `0x0016D6A0`, a bare `ret`, twice
+and tail-jumps to `0x0036D2F0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036D296` |
+| ² | `0x0036D2E6` |
+
+</details>
 
 `0x0036D2F0` then computes the pages per surface, `(width × height) >> 11` = 112 GS pages of 2,048
-words, into `0x022D8EB8` (`0x0036D393`), fills the two 0x28-byte display records at `0x022D8E50` and
+words, into `0x022D8EB8`¹, fills the two 0x28-byte display records at `0x022D8E50` and
 `0x022D8E78`, and points `0x022D8EA0` at the first. The GS register batch `0x0036D400` places the colour
 surface at page `index × 112` with PSM 0 and the Z surface at page 224 with bit `0x1000000` set
 ([graphics thread handshake](graphics-thread-handshake.md)). With the index at 0 the frame uses
 surfaces 0 and 2 of the three the budget reserves.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036D393` |
+
+</details>
+
 ### GS page geometry
 
 `0x003A1E50(width, height, psm)` returns a texture's footprint in 32-bit words, rounded up to whole
 GS pages: `((height + ha - 1) & ~(ha - 1)) x ((width + wa - 1) & ~(wa - 1)) / d`, with the width align `wa`,
-height align `ha` and divisor `d` of the table below (`0x003A1EBA`-`0x003A1ED8`).
+height align `ha` and divisor `d` of the table below¹.
 It indexes the 43-byte table `0x003A1EF0` with `psm − 2`; an index above `0x2A`, which
 includes PSM 0 and 1 through the unsigned compare at `0x003A1E68`, takes the default class. The
 class picks an arm from `0x003A1EE0`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A1EBA`-`0x003A1ED8` |
+
+</details>
 
 | Class | PSMs | Width align | Height align | Divisor | Smallest footprint |
 |---|---|---:|---:|---:|---:|
@@ -52,8 +80,17 @@ class picks an arm from `0x003A1EE0`:
 
 These are the GS page sizes of the 32-, 16-, 8- and 4-bit pixel formats. `0x00466190(bank, index)`
 sums `0x003A1E50` over a texture record's mip levels, halving width and height each level, with the
-level count at `+0x05` capped at 7 (`0x004661C5`–`0x004661CC`). `0x00466220(record)` returns 1 exactly for
+level count at `+0x05` capped at 7¹. `0x00466220(record)` returns 1 exactly for
 PSMs `0x14`, `0x24` and `0x2C`: `(psm − 0x14) & 0xE7` must be 0 and `psm` must not be `0x1C`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004661C5`-`0x004661CC` |
+
+</details>
 
 ### The budget
 
@@ -69,9 +106,18 @@ less the two totals the rebuild publishes, rounded up to a whole page. With both
 360,448 words: 1.375 MiB, 176 pages. The surface size is fixed, so the budget does not depend on
 the display resolution.
 
-Each pass of the slot handler `0x002F4520` starts with `0x00467A70` (`0x002F45D9`), which sets the
+Each pass of the slot handler `0x002F4520` starts with `0x00467A70`¹, which sets the
 cursor `0x02CA5FF8` back to the reservation `0x02CA5FF4` and zeroes `0x02CA5FFC` and `0x02CA6000`;
 `0x00467A90` returns the cursor.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F45D9` |
+
+</details>
 
 `0x002D7FC0`, run by the frame set-up `0x0024D540`, clears the two `0x1800`-byte blocks at `0x02F8DA00` and
 `0x02F8C200`, keeps the width `0x022D8EAC` at `0x02F8F214` and places five block addresses after the surfaces,
@@ -87,8 +133,17 @@ moving them up by `(width - 0x200) x 0x540 / 64` for a width above `0x200` (0 at
 
 ### The surfaces as textures
 
-`0x0039D200`, run by the same frame set-up (`0x0024D560`), rewrites six 16-byte entries at `0x02AEECF0`, each
+`0x0039D200`, run by the same frame set-up¹, rewrites six 16-byte entries at `0x02AEECF0`, each
 a pair of values in the layout of the GS registers TEX0 and CLAMP, for draws that sample the surfaces:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024D560` |
+
+</details>
 
 | Entries | TEX0 value | CLAMP value | Base page (TEX0 bits `0x3FFF`) |
 |---|---|---|---|
@@ -111,47 +166,122 @@ integers at `+0x44` and `+0x48` of the same block and the two depths are at `+0x
 widget draw: an identity matrix at `0x0209AB90` scaled by `scale`, the offset `2048 - screen / 2 + x` and
 `+ y` from the screen size `0x01E0C1D8`, `0x01E0C1DC`, the widget's position `/ 4096`, its colour bytes `/ 128`
 and the four-word rectangle; it first writes the widget's colour scaled by its brightness `+0x5A` and alpha
-`+0x58` into `+0x94`: `rgb = (byte +0x90..+0x92 x s16 +0x5A) >> 7` and `a = (byte +0x93 x s16 +0x58) >> 7`
-(`0x0027643F`-`0x0027649F`).
+`+0x58` into `+0x94`: `rgb = (byte +0x90..+0x92 x s16 +0x5A) >> 7` and `a = (byte +0x93 x s16 +0x58) >> 7`¹.
 
-The draw-list build `0x002F5550` calls it (`0x002F5AB0`) on a stack copy of the view block at
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027643F`-`0x0027649F` |
+
+</details>
+
+The draw-list build `0x002F5550` calls it¹ on a stack copy of the view block at
 `0x02AED500` whose depths it has replaced by `0x003B40B0` results, and copies the matrix to `+0x80` of
 each `0xE0`-byte record of the map's tag-24 array (`[+0x1D0]`, count `+0x220`).
 
-The slot handler `0x002F4520` first calls `0x00467B60` (`0x002F4670`), which stores
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F5AB0` |
+
+</details>
+
+The slot handler `0x002F4520` first calls `0x00467B60`¹, which stores
 `int(−16 × log2|20 − c|)` in the high dword of `0x02EBB6C8`, with `c` the float at `0x02AED570`, the
 working camera's `+0x10`. `0x00467BB0` zeroes the same qword at start-up; these two stores are the only
 instructions that name it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F4670` |
+
+</details>
 
 ### When the rebuild runs
 
 The bound map is the object at `0x0209A670` ([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
 `0x0026E8D0(slot)`, the weather rebind ([weather](../World-Areas-And-Travel/weather.md)), stores the slot
-at `0x0209A6E8` and sets the dirty word `0x0209A708` (`0x0026E8E7`); `0x0026E960` sets it too when a map
-is bound (`0x0026E9B0`). These are its only two non-zero stores; the reset `0x0026E1D0` clears it. The stores of 1 at
+at `0x0209A6E8` and sets the dirty word `0x0209A708`¹; `0x0026E960` sets it too when a map
+is bound². These are its only two non-zero stores; the reset `0x0026E1D0` clears it. The stores of 1 at
 `0x0026E221` and `0x0026E9A6` go to the neighbouring word `0x0209A6FC`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026E8E7` |
+| ² | `0x0026E9B0` |
+
+</details>
 
 The draw's pass bit `0x1` block calls `0x0036F430` and `0x0036F450`, which call `0x0026E290` with 0 and 1.
 While a map is bound and its `+0x120` is non-zero, `0x0026E290` runs `0x002F7380(map, [0x0209A668])` when
-the dirty word is set and then clears it (`0x0026E2C4`, `0x0026E2C9`), and then calls the map's
-`+0x130` handler with the pass when the handler is set (`0x0026E2D3`-`0x0026E2E4`); with no map or a `+0x120`
-of 0 it returns at once (`0x0026E2A6`, `0x0026E2AF`).
+the dirty word is set and then clears it¹, and then calls the map's
+`+0x130` handler with the pass when the handler is set²; with no map or a `+0x120`
+of 0 it returns at once³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026E2C4`, `0x0026E2C9` |
+| ² | `0x0026E2D3`-`0x0026E2E4` |
+| ³ | `0x0026E2A6`, `0x0026E2AF` |
+
+</details>
 
 That handler is `0x002F4520`, installed by the map set-up
-`0x002F6AB0` (`0x002F6B43`); it starts by setting `+0x00` of every slot record to 0 and `+0x20` to
-`0xFF` (`0x002F45F0`–`0x002F4617`).
+`0x002F6AB0`¹; it starts by setting `+0x00` of every slot record to 0 and `+0x20` to
+`0xFF`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F6B43` |
+| ² | `0x002F45F0`-`0x002F4617` |
+
+</details>
 
 The map's file reaches the set-up through an eight-slot table at `0x02EBB820` (`0x38` bytes a slot:
 `+0x00` the data, `+0x08` a count, `+0x10` a word set to 2, `+0x14` a name). The binders `0x0026E760`
 and `0x0026E7D0`, both from `0x00378120`, register the data with `0x003EC9A0`, which takes the next free
 slot from a round-robin cursor: `slot = [0x02EBB9E0]`, then `[0x02EBB9E0] = ([0x02EBB9E0] + 1) % 8`, repeated while
-`slot` holds data, at most eight times; a free slot adds 1 to `0x02EBB9E4` (`0x003EC9A0`-`0x003ECA66`). It writes a
+`slot` holds data, at most eight times; a free slot adds 1 to `0x02EBB9E4`¹. It writes a
 fixed placeholder name and returns the slot number.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC9A0`-`0x003ECA66` |
+
+</details>
 
 The set-up `0x002F6AB0` stores the number at map `+0x168` and reads the
 slot back with `0x003EC970(n)` (null past 7 or for an empty slot), keeping the data at `+0x158` and the
 name at `+0x160`. The map teardown `0x002F5450` releases it with `0x003ECA70(n)`, which frees the data
-when the count is positive (`0x003EC8A0`) and clears the slot.
+when the count is positive¹ and clears the slot.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC8A0` |
+
+</details>
 
 `0x00862910` truncates a float vector to four integers, and `0x00862930` does the same after scaling by
 16, the GS coordinate form. The model instance's draw setup `0x004FD4B0` converts the instance's
@@ -163,28 +293,27 @@ when the count is positive (`0x003EC8A0`) and clears the slot.
 `0x002F7380(map)` works on the map's texture records (a bank at `[+0x150]`: count at `+0x00`,
 0x60-byte records from `[+0x08]`) and its instance records (`[+0x178]`, 0x30 bytes, count `+0x174`):
 
-1. free the old slot table at `+0x218` (`0x003EC8A0`) and copy the bank's count to `+0x224`;
-2. for every texture record: track the largest mip-chain footprint (`0x00466190`, `0x002F7436`–`0x002F743B`),
-   add 1 for a 4-bit record or 4 for any other to a second total (`0x002F744A`–`0x002F7455`), and set
-   the word `+0x0E` to 0 (`0x002F7445`);
-3. publish the largest footprint to `0x02CA6004` (`0x00467B10`) and the total to `0x02CA6008`
-   (`0x00467B00`), then take the budget from `0x00467AA0`;
-4. for every instance record whose flag word `+0x0C` has bit `23 + slot` set (`0x002F738E`–`0x002F7397`,
-   `0x002F74C9`) and whose texture index `+0x04` is at most `0x3FFF`, unless it repeats the texture index and
-   byte `+0x1D` of the last record counted (`0x002F74D4`–`0x002F74E3`): increment `+0x0E` of that texture record
-   (`0x002F7500`) and of each record after it up to the first whose `+0x0C` word is 0 or the bank count `+0x224`
-   (`0x002F7504`–`0x002F753D`);
-5. walk the texture records in bank order: a record counted more than once is admitted when the
-   running total plus its footprint stays below the budget (`0x002F75A2`), and gets the next slot
-   number in `+0x0E`; every other record gets `0xFFFF` (`0x002F75B0`). A record that does not fit is
-   skipped and the walk goes on, so a smaller record later in the bank can still be admitted;
-6. with any admitted, store the count at `+0x228`, allocate `count × 40` bytes (`0x003EC8D0(6, …)`)
-   at `+0x218`, and zero `+0x00`, `+0x08`, `+0x10`, `+0x18` and the byte `+0x20` of each record
-   (`0x002F760B`–`0x002F761F`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | free the old slot table at `+0x218` and copy the bank's count to `+0x224`; | `0x003EC8A0` |
+| 2 | for every texture record: track the largest mip-chain footprint, add 1 for a 4-bit record or 4 for any other to a second total, and set the word `+0x0E` to 0; | `0x00466190`, `0x002F7436`-`0x002F743B`<br>`0x002F744A`-`0x002F7455`<br>`0x002F7445` |
+| 3 | publish the largest footprint to `0x02CA6004` and the total to `0x02CA6008`, then take the budget from `0x00467AA0`; | `0x00467B10`<br>`0x00467B00` |
+| 4 | for every instance record whose flag word `+0x0C` has bit `23 + slot` set and whose texture index `+0x04` is at most `0x3FFF`, unless it repeats the texture index and byte `+0x1D` of the last record counted: increment `+0x0E` of that texture record and of each record after it up to the first whose `+0x0C` word is 0 or the bank count `+0x224`; | `0x002F738E`-`0x002F7397`, `0x002F74C9`<br>`0x002F74D4`-`0x002F74E3`<br>`0x002F7500`<br>`0x002F7504`-`0x002F753D` |
+| 5 | walk the texture records in bank order: a record counted more than once is admitted when the running total plus its footprint stays below the budget, and gets the next slot number in `+0x0E`; every other record gets `0xFFFF`. A record that does not fit is skipped and the walk goes on, so a smaller record later in the bank can still be admitted; | `0x002F75A2`<br>`0x002F75B0` |
+| 6 | with any admitted, store the count at `+0x228`, allocate `count × 40` bytes (`0x003EC8D0(6, …)`) at `+0x218`, and zero `+0x00`, `+0x08`, `+0x10`, `+0x18` and the byte `+0x20` of each record. | `0x002F760B`-`0x002F761F` |
 
-The texture index and byte `+0x1D` that step 4 compares with start at -1 (`0x002F73DE`–`0x002F740A`,
-`0x002F7465`–`0x002F7474`) and change only when a record is counted (`0x002F753F`–`0x002F7542`). A texture record past
+The texture index and byte `+0x1D` that step 4 compares with start at -1¹ and change only when a record is counted². A texture record past
 one whose `+0x0C` word is 0 is not counted by that run.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F73DE`-`0x002F740A`, `0x002F7465`-`0x002F7474` |
+| ² | `0x002F753F`-`0x002F7542` |
+
+</details>
 
 `0x003EC8D0` reports a failed allocation by passing `"out of memory!\n"` to `0x00862690`, which hands
 it to `0x008620B0`, a body that returns at once; nothing is printed.
@@ -192,37 +321,97 @@ it to `0x008620B0`, a body that returns at once; nothing is printed.
 ### GS image transfers
 
 `0x00244200`, called from `0x002D2DB0`, writes GS register records for image transfers: BITBLTBUF
-`0x50`, TRXPOS `0x51`, TRXREG `0x52` and TRXDIR `0x53` (`0x002442D2`–`0x00244332`), then TRXPOS, TRXREG
-and TRXDIR again (`0x00244355`–`0x0024439C`). It reads the frame index and the height to place the
+`0x50`, TRXPOS `0x51`, TRXREG `0x52` and TRXDIR `0x53`¹, then TRXPOS, TRXREG
+and TRXDIR again². It reads the frame index and the height to place the
 transfer. The GS replay honours none of these four registers.
 
-`0x00244200(widget)` first copies the frame into id `0x333C` with `0x0039D0C0(0, 0x333C, 0x200, 0x1C0, 0, 1, 0)`
-(`0x0024427B`), then opens one A+D GIF tag of seven registers with the end-of-packet bit (`0x00248EB0`,
-`0x002442A2`-`0x002442B9`) and closes it with `0x00248E10` (`0x002443AA`). The values:
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002442D2`-`0x00244332` |
+| ² | `0x00244355`-`0x0024439C` |
+
+</details>
+
+`0x00244200(widget)` first copies the frame into id `0x333C` with `0x0039D0C0(0, 0x333C, 0x200, 0x1C0, 0, 1, 0)`¹, then opens one A+D GIF tag of seven registers with the end-of-packet bit² and closes it with `0x00248E10`³. The values:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024427B` |
+| ² | `0x00248EB0`, `0x002442A2`-`0x002442B9` |
+| ³ | `0x002443AA` |
+
+</details>
 
 - BITBLTBUF: source base `([0x022D8EA8] x [0x022D8EB4] x [0x022D8EAC]) >> 6`, source and destination width
-  `[0x022D8EAC] >> 6` and destination base `0x333C` (`0x0024422E`-`0x00244278`);
-- both TRXREG: 16 rows of `[0x022D8EAC]` pixels, and both TRXDIR 2 (`0x0024430F`, `0x0024432B`, `0x00244375`,
-  `0x00244393`);
-- the first TRXPOS: source row `max(y, 0)` to row 0, with `y` the widget's `s16` `+0x52` (`0x0024428B`-`0x002442EF`);
+  `[0x022D8EAC] >> 6` and destination base `0x333C`¹;
+- both TRXREG: 16 rows of `[0x022D8EAC]` pixels, and both TRXDIR 2²;
+- the first TRXPOS: source row `max(y, 0)` to row 0, with `y` the widget's `s16` `+0x52`³;
 - the second TRXPOS: source row `min(y + h - 16, [0x022D8EB4] - 16)`, with `h` the `s16` `+0x56`, to row 16
-  (`0x0024421E`-`0x00244244`, `0x00244280`-`0x00244295`, `0x00244343`-`0x00244352`).
+ ⁴.
 
-`0x002443D0(widget, node)`, also called from `0x002D2DB0` (`0x002D2F30`), sets node `+0x38` bit `0x100`, clears bits `0x3E00`,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024422E`-`0x00244278` |
+| ² | `0x0024430F`, `0x0024432B`, `0x00244375`, `0x00244393` |
+| ³ | `0x0024428B`-`0x002442EF` |
+| ⁴ | `0x0024421E`-`0x00244244`, `0x00244280`-`0x00244295`, `0x00244343`-`0x00244352` |
+
+</details>
+
+`0x002443D0(widget, node)`, also called from `0x002D2DB0`¹, sets node `+0x38` bit `0x100`, clears bits `0x3E00`,
 and stores at node `+0x30` a TEX0 word: the constant `0x40010333C` (base `0x333C`, format 1, TCC set) with the
 buffer width `0x022D8EAC` / 64, TW the highest set bit of 2 x width - 1 (9 for the shipped `0x200`) and TH 5, from
-`0x3F`. It then writes TEXA (`0x3B`) = `0x80` under one A+D GIF tag (`0x00248EB0`, `0x00248E10`).
+`0x3F`. It then writes TEXA (`0x3B`) = `0x80` under one A+D GIF tag².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D2F30` |
+| ² | `0x00248EB0`, `0x00248E10` |
+
+</details>
 
 `0x003A22A0(packet, base, format, width, height, data)` builds a whole upload into a packet. It opens an
-A+D GIF tag (`0x003A2090`) and writes BITBLTBUF with the destination base in the bits under mask `0x3FFF00000000`, the buffer
+A+D GIF tag¹ and writes BITBLTBUF with the destination base in the bits under mask `0x3FFF00000000`, the buffer
 width from `0x003A1FE0` in the bits under mask `0x3F000000000000` and the format in the bits under mask `0x3F00000000000000`, then TRXPOS 0, TRXREG
-`width, height` and TRXDIR 0, and closes the tag (`0x0024B150`). The image follows through
+`width, height` and TRXDIR 0, and closes the tag². The image follows through
 `0x003A21A0`, and a second A+D tag writes TEXFLUSH (`0x3F`).
 
-The data size is `0x003A1F20(width, height, format) / 4` (`0x003A22E0`-`0x003A22EF`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A2090` |
+| ² | `0x0024B150` |
+
+</details>
+
+The data size is `0x003A1F20(width, height, format) / 4`¹.
 `0x003A1F20` takes `n = width x height` and returns `n x 3 / 2` for
 formats `1` and `0x31`, `n / 2` for `2`, `0x0A`, `0x32` and `0x3A`, `n / 4` for `0x13` and `0x1B`, `n / 8` for
-`0x14`, `0x24` and `0x2C`, and `n` otherwise (`0x003A1F20`-`0x003A1F8C`).
+`0x14`, `0x24` and `0x2C`, and `n` otherwise².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A22E0`-`0x003A22EF` |
+| ² | `0x003A1F20`-`0x003A1F8C` |
+
+</details>
 
 - `0x003A1FE0(width, format)` is the buffer width in 64-pixel units: the width rounded up to a
   multiple of 64, or to a multiple of 128 for the formats `0x13`, `0x14`, `0x1B`, `0x24` and `0x2C`
@@ -233,35 +422,79 @@ formats `1` and `0x31`, `n / 2` for `2`, `0x0A`, `0x32` and `0x3A`, `n / 4` for 
   data. `0x0024AF50` and `0x003EFDF0` call it directly.
 
 `0x0039D0C0(mode, id, width, height, target, a, b)` copies the rendered frame into the target of a GS
-texture id. With no target given it takes the id's own (`0x002D7FA0`), or a new one from `0x00182B40`
+texture id. With no target given it takes the id's own¹, or a new one from `0x00182B40`
 when the id lacks one. It closes an open scene around the copy (`0x001FBE30`, `0x001FBE50`, then
-`0x001FBD80`), copies through `0x00182A60`, whose source the first argument picks (`0x00186910`), with a
-mode of 0 to 3 chosen from `a` and `b` (`0x00376320`), and records a changed target for the id
-(`0x002D7D90`). `0x00244200` calls it for id `0x333C` at
+`0x001FBD80`), copies through `0x00182A60`, whose source the first argument picks², with a
+mode of 0 to 3 chosen from `a` and `b`³, and records a changed target for the id⁴. `0x00244200` calls it for id `0x333C` at
 512 × 448; `0x003749F0`, `0x00376220` and `0x003A2BD0` are the others.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D7FA0` |
+| ² | `0x00186910` |
+| ³ | `0x00376320` |
+| ⁴ | `0x002D7D90` |
+
+</details>
 
 A texture word in the GS TEX0 layout comes from `0x002D8050(word, width, height, format)`. It keeps the
 base in bits `0x3FFF`, which the caller sets, and writes the other fields, with e(n) the exponent below:
 
 - the buffer width in 64-pixel units, in bits `0xFC000`: the field takes `(width / 64) & 0x3F`
-  (`0x002D805F`-`0x002D8088`), a non-zero `width % 64` adds 1 that wraps in 6 bits (`0x002D808E`-`0x002D80AC`), and a
-  field of 1 becomes 2 (`0x002D80AF`-`0x002D80DC`); with `w = width / 64 + (width % 64 != 0)` that is
+ ¹, a non-zero `width % 64` adds 1 that wraps in 6 bits², and a
+  field of 1 becomes 2³; with `w = width / 64 + (width % 64 != 0)` that is
   `f = w & 0x3F`, then `f == 1 ? 2 : f`, so a width of 4,097 to 4,160 pixels stores 2;
-- the format in bits `0x3F00000`, `(format & 0x3F) << 20` (`0x002D80DF`-`0x002D80F2`);
+- the format in bits `0x3F00000`, `(format & 0x3F) << 20`⁴;
 - the power-of-two exponents of the width and height in the bits under mask `0x3FC000000`, and bit `0x400000000`:
-  `(e(width) & 0xF) << 26` and `((e(height) & 0xF) | 0x10) << 30` (`0x002D80F5`-`0x002D8134`);
-- bits `0x800000000` and `0x1000000000` are cleared, by the mask `0xFFFFFFE43FFFFFFF` (`0x002D8120`, `0x002D812E`).
+  `(e(width) & 0xF) << 26` and `((e(height) & 0xF) | 0x10) << 30`⁵;
+- bits `0x800000000` and `0x1000000000` are cleared, by the mask `0xFFFFFFE43FFFFFFF`⁶.
 
-The exponent is `0x002D8150(n)`, the smallest e with 2^e ≥ n for n up to 1024, and 11 for a larger n
-(`0x002D81A0`-`0x002D81AE`). The effect-texture placer `0x002D83B0` builds
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D805F`-`0x002D8088` |
+| ² | `0x002D808E`-`0x002D80AC` |
+| ³ | `0x002D80AF`-`0x002D80DC` |
+| ⁴ | `0x002D80DF`-`0x002D80F2` |
+| ⁵ | `0x002D80F5`-`0x002D8134` |
+| ⁶ | `0x002D8120`, `0x002D812E` |
+
+</details>
+
+The exponent is `0x002D8150(n)`, the smallest e with 2^e ≥ n for n up to 1024, and 11 for a larger n¹. The effect-texture placer `0x002D83B0` builds
 its words this way. The way back is `0x002D7F20(e)`: 2^e for e up to 10, 0 above. The screen-effect
 upload `0x00375B90` (kind 4) reads the width and height out of its word `+0x30` with it and passes
 them, with the base and the format, to `0x003A22A0`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D81A0`-`0x002D81AE` |
+
+</details>
+
 A second exponent helper, `0x003666E0(n)`, returns log2 n for a power of two `n`; its two callers are `0x003649A0` and
 `0x00474710`. `0x00474710` builds a GS sprite packet of register and value pairs, registers `0x3F`, `0x4C`, `0x06`
-(TEX0) and `0x42` (ALPHA, value `0x44`) (`0x00474F95`-`0x00474FF5`), with the colour `0x80808080` (`0x0047502A`), and
-divides its two texture coordinates by `1 << 0x003666E0` of each texture dimension (`0x00475044`, `0x00475066`).
+(TEX0) and `0x42` (ALPHA, value `0x44`)¹, with the colour `0x80808080`², and
+divides its two texture coordinates by `1 << 0x003666E0` of each texture dimension³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00474F95`-`0x00474FF5` |
+| ² | `0x0047502A` |
+| ³ | `0x00475044`, `0x00475066` |
+
+</details>
 
 ### The VIF packet writer
 
@@ -287,19 +520,19 @@ DMA tag in the first qword of every chunk header is never written.
 
 The content helpers write fixed packets:
 
-- `0x00271760(w, block, matrix, extra)` builds a 15-record chunk: an UNPACK header for 13 records (`0x6C0D8000`), the 13
-  records of the block's constant area, and FLUSHA, MSCAL (`0x13000000`, `0x14000000`).
+- `0x00271760(w, block, matrix, extra)` builds a 15-record chunk: an UNPACK header for 13 records¹, the 13
+  records of the block's constant area, and FLUSHA, MSCAL².
 - `0x00276190` fills ten of the chunk's 13 constant records: records 0 to 3 with the matrix, 4 to 7 with the matrix
   `0x02AEDDB0` ([scripted camera](scripted-camera.md)), record 8 with four times 2047.5 and record 12 with four times
   1.0, that last record replaced by `extra` when given. Records 9 to 11 keep what the block holds.
-- `0x00271720(w)` writes VIF BASE 0 and OFFSET `0x200` (`0x03000000`, `0x02000200`) into the record at
+- `0x00271720(w)` writes VIF BASE 0 and OFFSET `0x200`³ into the record at
   the cursor. `0x002715A0(w, picture, row, half)` writes a picture bind there: A+D with CLAMP_1 = 5 and
   TEX0_1 from the picture's `+0x30`, the palette offset `(half + row × 2) × 2` in the bits from `0x2000000000` up.
 - Both, and `0x00271870(w, data, bytes)`, store back the cursor value they read and nothing between
   moves it, so the next write lands on the same records. `0x00271870` passes `bytes / 16` and `data`
   to `0x0016D6A0`, so it copies nothing.
 - Three helpers write records at a plain pointer and return the pointer past them; the HUD's target rings
-  and `+0x10F30` marks use them (`0x0028C620`, `0x003F7CC0`).
+  and `+0x10F30` marks use them⁴.
 - `0x00271530(p, eop, flat)` writes a four-register A+D packet: TEST_1 `0x53001`, ALPHA_1 `0x44`,
   PRMODECONT 1 and PRIM `0x5C` (a textured, blended, shaded triangle strip), or `0x54` without shading
   when `flat` is non-zero.
@@ -308,15 +541,39 @@ The content helpers write fixed packets:
 - `0x002716C0(p, end)` writes FLUSHA, NOP and a DIRECT header counting the records from `p + 0x10` to `end`.
 - `0x002724A0(w)` ends a VU1 draw: the record at `[w + 0x38]` gets a GIF tag with end-of-packet, NLOOP
   `[w + 0x40]` and the registers ST, RGBAQ, XYZF2 (`0x412`); it completes the UNPACK header at
-  `[w + 0x20]`, appends FLUSHA and MSCNT (`0x17000000`), closes the chunk and ends the packet.
+  `[w + 0x20]`, appends FLUSHA and MSCNT⁵, closes the chunk and ends the packet.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x6C0D8000` |
+| ² | `0x13000000`, `0x14000000` |
+| ³ | `0x03000000`, `0x02000200` |
+| ⁴ | `0x0028C620`, `0x003F7CC0` |
+| ⁵ | `0x17000000` |
+
+</details>
 
 - `0x00428980`, the last step of the character-record pass `0x004264A0` (from `0x00332440` and
-  `0x00332510`), writes one DIRECT chunk into the current GS command buffer (`0x005044B0`): an A+D GIF tag
-  with end-of-packet (`0x003A2090`), ZBUF_1 `0x4E` and ZBUF_2 `0x4F` from `0x022D8ED0`, FBA_1 `0x4A` = 0,
+  `0x00332510`), writes one DIRECT chunk into the current GS command buffer¹: an A+D GIF tag
+  with end-of-packet², ZBUF_1 `0x4E` and ZBUF_2 `0x4F` from `0x022D8ED0`, FBA_1 `0x4A` = 0,
   TEST_1 `0x47` = `0x50000` (depth test, greater or equal) and ALPHA_1 `0x42` = `0x44`.
 - `0x44` is the blend `(Cs − Cd) × As + Cd`. `0x003A2020` fills the tag's loop count, `0x00428980` gives
   the chunk header FLUSH and DIRECT with the record count, and `0x00504490` flips the buffer
-  (`0x003A1DB0`).
+ ³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005044B0` |
+| ² | `0x003A2090` |
+| ³ | `0x003A1DB0` |
+
+</details>
 
 ### VU register words outside VU memory
 
@@ -324,15 +581,24 @@ Recompiled VU1 microprograms keep VU registers in fixed globals next to the emul
 `0x02064E30`:
 
 - `0x02064B00` is a scratch cell shared by many recompiled programs from `0047xxxx` to `0054xxxx`, and
-  by a few effect routines (`0x002F05F8`).
+  by a few effect routines¹.
 - One of its writers is the division helper `0x004B9870`, which stores `a / b`, or
   `0x7F7FFFFF` (`0x00900360`, the largest float) when `b` is 0. The programs `0x004B1190` and `0x004C8320`
-  load its address six times each and pass it to `0x004B9870` four times (`0x004B7C31`, `0x004B7CE4`,
-  `0x004B895F`, `0x004B8A12`): for those two programs it plays the VU's Q register.
+  load its address six times each and pass it to `0x004B9870` four times²: for those two programs it plays the VU's Q register.
 - `0x01E02830` holds `(0, 0, 0, 1.0)`, the fixed contents of the VU's register vf00. `0x004B1190` loads
   its address 17 times as the second operand of its lane helpers, which include `0x004B9D80`,
   `0x004B9E60` and `0x004B9A10`. `0x0022CC20` writes those four words again; 63 functions call it.
 - `0x004ADD10`, another installed program, reads VU memory cells directly through `0x02064E30`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F05F8` |
+| ² | `0x004B7C31`, `0x004B7CE4`, `0x004B895F`, `0x004B8A12` |
+
+</details>
 
 - Two shared subroutines of the recompiled programs work on the register cell `0x02064CB0`.
   `0x005375F0` (12 callers, `0x004758E0` among them) reduces its x lane by whole turns of 2π, using
@@ -344,6 +610,9 @@ Recompiled VU1 microprograms keep VU registers in fixed globals next to the emul
   to `0x10` for the lanes x to w below the value, bits `0x8` to `0x1` for the lanes equal to it.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Texture record (map `+0x150` bank, from [`+0x08`]), `0x60` bytes:
 
@@ -396,7 +665,12 @@ Access tables beside this page:
 | `0x01E02830` | [`legacy-ps2-gs-layer-vu-1c-onstant-vector-01e02830-accesses.tsv`](legacy-ps2-gs-layer-vu-1c-onstant-vector-01e02830-accesses.tsv) |
 | `0x02064E30` | [`legacy-ps2-gs-layer-vu-1da-ta-memory-02064e30-accesses.tsv`](legacy-ps2-gs-layer-vu-1da-ta-memory-02064e30-accesses.tsv) |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | What |
 |---|---|
@@ -406,11 +680,19 @@ Access tables beside this page:
 | `0x02CA6004`, `0x02CA6008` | the rebuild's largest footprint and weighted count |
 | `0x0209A670`, `0x0209A6E8`, `0x0209A708` | bound map, weather slot, dirty word |
 
-`0x0209A6F8` switches the map's draw. Each world step `0x0026EB30` copies it into the bound map's `+0x120`
-(`0x0026ED4E`-`0x0026ED54`), the word `0x0026E290` tests before it draws the map ([when the rebuild
+`0x0209A6F8` switches the map's draw. Each world step `0x0026EB30` copies it into the bound map's `+0x120`¹, the word `0x0026E290` tests before it draws the map ([when the rebuild
 runs](#when-the-rebuild-runs)). Opcode `0x0B` of the battle effect program `0x003B8670` sets it and the screen-clear
 switch `0x022D8EDC` to 0 before it files its light. Opcode `0x0A` and `0x0024D9C0` set both back to 1
 ([effect file loading](effect-file-loading.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026ED4E`-`0x0026ED54` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -421,8 +703,17 @@ switch `0x022D8EDC` to 0 before it files its light. Opcode `0x0A` and `0x0024D9C
 `0x00276430` fills the block at `0x0209AB90` for one widget draw: it first makes the matrix `0x0209AB90`-`0x0209ABCF` an
 identity with `0x00203170` (`0x00276494`-`0x002764A5`, four 16-byte stores), then writes the fields below. The widget draw
 `0x00274CB0` (from `0x00274CA0` and `0x004048E0`) reads them; it reads the matrix through `0x00202B70`, whose vector transform
-`0x00217060` loads all sixteen elements (`0x00274F2E`-`0x00274F39`, `0x00274F65`-`0x00274F93`). The two words `0x0209A760` and
+`0x00217060` loads all sixteen elements¹. The two words `0x0209A760` and
 `0x0209A764` belong to the same call. Every field is 0 at load (the zero-filled tail of `.data`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00274F2E`-`0x00274F39`, `0x00274F65`-`0x00274F93` |
+
+</details>
 
 | Global | Field | Type | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -445,10 +736,21 @@ identity with `0x00203170` (`0x00276494`-`0x002764A5`, four 16-byte stores), the
 
 ### The display records, the surface entries and the other words
 
-`0x0036D2F0` fills the two `0x28`-byte display records from a stack area that its call `0x0016D6A0` (`0x0036D34E`), a bare
-`ret`, leaves as it was; it sets only bits `0x1FF` of the second record's word `+0x10` to the pages per surface
-(`0x0036D399`-`0x0036D3A9`). `0x022D8EA0` points at the first record (`0x0036D3B2`) or at record `[0x022D8EA8]` (`0x0036D800`);
+`0x0036D2F0` fills the two `0x28`-byte display records from a stack area that its call `0x0016D6A0`¹, a bare
+`ret`, leaves as it was; it sets only bits `0x1FF` of the second record's word `+0x10` to the pages per surface². `0x022D8EA0` points at the first record³ or at record `[0x022D8EA8]`⁴;
 no instruction loads that pointer.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036D34E` |
+| ² | `0x0036D399`-`0x0036D3A9` |
+| ³ | `0x0036D3B2` |
+| ⁴ | `0x0036D800` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -462,18 +764,39 @@ no instruction loads that pointer.
 | `0x01EEBAE8` | `u32` | 10000 (`0x2710`) | the last entry of the pass's draw list: the `u16` at `[map + 0x1E0 + 0x18 × pass]` + 2 × (count − 1), the count being the dword `+0x10` of that list (`0x002F4774`-`0x002F4785`), stored before `0x001808A0` each pass | `0x002F4520` (`0x002F4789`) | no instruction names it apart from that store |
 
 `0x01EEBAE4` and `0x022BE7DC`, set together by `0x002F4510` (from `0x001D1660`), bound the record indices of a pass: an entry
-is drawn only when it is not below `0x022BE7DC` and not above `0x01EEBAE4`, both signed compares (`0x002F4906`-`0x002F491E`).
+is drawn only when it is not below `0x022BE7DC` and not above `0x01EEBAE4`, both signed compares¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F4906`-`0x002F491E` |
+
+</details>
 
 The effect-texture placer `0x002D83B0` (called at `0x00501285` and `0x00501405`) keeps its textures in the `0x10`-byte
 entries of the block at `0x02F8DA00`. It walks the entries from the first while each starts no more than one unit past
-the end of the one before, counting them (`0x002D8410`-`0x002D843A`). At the first empty entry it returns -1 when that
-end equals `[0x02F8F200]` (`0x002D847B`-`0x002D8486`, `0x002D850F`); otherwise it raises `0x0215E6B0` to the count
-(`0x002D848C`-`0x002D8494`) and places the texture there.
+the end of the one before, counting them¹. At the first empty entry it returns -1 when that
+end equals `[0x02F8F200]`²; otherwise it raises `0x0215E6B0` to the count³ and places the texture there.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D8410`-`0x002D843A` |
+| ² | `0x002D847B`-`0x002D8486`, `0x002D850F` |
+| ³ | `0x002D848C`-`0x002D8494` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x0215E6B0` | `i32` | 0 (zero-filled tail of `.data`) | the largest number of entries `0x002D83B0` has walked before placing a texture at the end of the run | `0x002D83B0` (`0x002D8494`, only when the count is greater, a signed compare) | `0x002D83B0` (`0x002D848C`), the compare before that store; no other RIP-relative instruction names it |
 | `0x0215E6B4` | `i32` | 0 (zero-filled tail of `.data`) | the same for palettes: the largest number of entries the palette placer `0x002D81D0` has walked in the `0x10`-byte entries from `0x02F8C200` before placing a palette at the end of the run | `0x002D81D0` (`0x002D82C7`, only when the count is greater, a signed compare) | `0x002D81D0` (`0x002D82B6`), the compare before that store; no other RIP-relative instruction names it |
+
+</details>
 
 ## Modding notes
 
@@ -503,20 +826,26 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Gameplay** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00203170` | is called by | `0x00339630` |
+| [`0x00203170`](legacy-ps2-gs-layer.md) | is called by | [`0x00339630`](../Battle-Actions/action-phases.md) (on action phases) |
 
 **Game files and data tables** (explained on [debug menu](../Engine-Core/debug-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001D1660` | calls | `0x002EEEE0` |
+| [`0x001D1660`](../Engine-Core/debug-menu.md) (on debug menu) | calls | [`0x002EEEE0`](../Engine-Core/debug-menu.md) (on debug menu) |
 
 **Scripts and script commands**
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00203170` | is called by | `0x00356160` |
+| [`0x00203170`](legacy-ps2-gs-layer.md) | is called by | [`0x00356160`](effect-anchors-and-targets.md) (on effect anchors and targets) |
 
 </details>

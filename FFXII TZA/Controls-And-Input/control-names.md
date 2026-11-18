@@ -13,20 +13,48 @@ that [keymap.ini](keymap-file.md) stores for that key or button.
 ### How the registries are built
 
 At start-up one small static initialiser per node passes the node to a registry insert, `0x00876C80` for the key names
-and `0x00879570` for the channel names, then registers its destructor with `atexit`. The insert
-(`0x00879570`-`0x008795F3`):
+and `0x00879570` for the channel names, then registers its destructor with `atexit`. The insert¹:
 
-1. returns `0x11` when the node has no name (`0x00879574`-`0x00879588`);
-2. returns `0x12` when a node with the same name is already in the list (`0x0087958D`-`0x008795CE`, `0x008795E6`);
-3. otherwise puts the node at the front of the list whose head is `0x02EB9D80` for channels, `0x02EB83B8` for keys
-   (`0x008795D0`-`0x008795DA`), and returns 0 (`0x008795D4`).
+<details>
+<summary>Where in the code</summary>
 
-Names are compared byte by byte, the node's `+0x08` string against each listed node's (`0x008795A0`-`0x008795C5`).
+| | Code |
+|---|---|
+| ¹ | `0x00879570`-`0x008795F3` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | returns `0x11` when the node has no name; | `0x00879574`-`0x00879588` |
+| 2 | returns `0x12` when a node with the same name is already in the list; | `0x0087958D`-`0x008795CE`, `0x008795E6` |
+| 3 | otherwise puts the node at the front of the list whose head is `0x02EB9D80` for channels, `0x02EB83B8` for keys, and returns 0. | `0x008795D0`-`0x008795DA`<br>`0x008795D4` |
+
+Names are compared byte by byte, the node's `+0x08` string against each listed node's¹.
 `0x00876C80` is the same code over the key list `0x02EB83B8`: `0x11` at `0x00876C90`, `0x12` at `0x00876CF6`, and the
 insert and 0 at `0x00876CE0`-`0x00876CEA`.
 
-For example, `0x0016BDE0` inserts the key node of `Key_Numpad_8` (`0x01F458C8`) and registers `0x008BCF20`, which at exit
-sets the node's type pointer to `0x01CD89D8` and unlinks it from the key list `0x02EB83B8` (`0x008BCF20`-`0x008BCF7A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008795A0`-`0x008795C5` |
+
+</details>
+
+For example, `0x0016BDE0` inserts the key node of `Key_Numpad_8`¹ and registers `0x008BCF20`, which at exit
+sets the node's type pointer to `0x01CD89D8` and unlinks it from the key list `0x02EB83B8`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01F458C8` |
+| ² | `0x008BCF20`-`0x008BCF7A` |
+
+</details>
 
 | Node offset | Field |
 |---|---|

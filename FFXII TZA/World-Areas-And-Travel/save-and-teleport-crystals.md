@@ -30,19 +30,12 @@ crystal it is with `getcrystalid(3, 0)`.
 calls `0x00264CA0(kind, index)`; the result is the `u16` at the entry's `+0x14`, or -1 when there is
 no entry. The lookup:
 
-1. kinds 6 and 9 go to the global table reader `0x003DFAC0`; every other kind is mapped by
-   `0x00264E40` to a list number: kinds 0, 1 and 2 to list 0, kind 3 to list 2, kind 4 to list 1,
-   kind 5 to list 3, kind 8 to list 4, any other kind to no list;
-2. `0x002649B0(list, index)` reads the list from the primary manager's payload: `0x00264AE0(list)`
-   returns section `list` of the table at payload `+[0x70]` when slot 0's flag bit `0x1` is set
-   (`0x00264AE6`);
-3. a null payload (`0x00264AFE`), a zero table pointer from `0x0020E600` (`0x00264B0E`) or a list number
-   at or above the table's count (`0x00264B1E`) gives no section; otherwise the section is the payload
-   plus the list's signed offset at table `+4 + 4 × list` (`0x00264B22`-`0x00264B27`);
-4. the section holds a count at `+0x00` and entries of `0x20` bytes from `+0x10`; an index at or
-   above the count gives no entry (`0x002649D1`), and for lists 0 and 1 (`0x002649D5`) the entry's byte
-   `+0x1C` must have the bit of value `1 << [0x02ADD0E8]` set (`0x00377860` reads that signed byte,
-   `0x002649E1`-`0x002649FB`); `0x002649B0` returns the entry's address (`0x00264A02`-`0x00264A0D`), else 0.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | kinds 6 and 9 go to the global table reader `0x003DFAC0`; every other kind is mapped by `0x00264E40` to a list number: kinds 0, 1 and 2 to list 0, kind 3 to list 2, kind 4 to list 1, kind 5 to list 3, kind 8 to list 4, any other kind to no list; |   |
+| 2 | `0x002649B0(list, index)` reads the list from the primary manager's payload: `0x00264AE0(list)` returns section `list` of the table at payload `+[0x70]` when slot 0's flag bit `0x1` is set; | `0x00264AE6` |
+| 3 | a null payload, a zero table pointer from `0x0020E600` or a list number at or above the table's count gives no section; otherwise the section is the payload plus the list's signed offset at table `+4 + 4 × list`; | `0x00264AFE`<br>`0x00264B0E`<br>`0x00264B1E`<br>`0x00264B22`-`0x00264B27` |
+| 4 | the section holds a count at `+0x00` and entries of `0x20` bytes from `+0x10`; an index at or above the count gives no entry, and for lists 0 and 1 the entry's byte `+0x1C` must have the bit of value `1 << [0x02ADD0E8]` set (`0x00377860` reads that signed byte, `0x002649E1`-`0x002649FB`); `0x002649B0` returns the entry's address, else 0. | `0x002649D1`<br>`0x002649D5`<br>`0x00264A02`-`0x00264A0D` |
 
 The script keeps the number as the crystal's kind: 0 is a save crystal, 255 is the save crystal
 with its own bind message, and every other value is a gate crystal. Number 4 counts as a gate
@@ -93,31 +86,57 @@ clears and copies named in the last row:
 | `+0x1063` bit `0x40` | `0x0026A720`: a negative argument clears it and stores 0 at `+0x1534` (`0x0026A731`, `0x0026A73D`), any other sets it (`0x0026A74F`); the manager unload `0x002628B0` also clears it and stores 0 at `+0x1534` (`0x00262A6A`, `0x00262A76`, `ebp` zeroed at `0x0026292A`) | `0x0026DE20`, `0x0025D9E0`, `0x00261F90` | the music override at `+0x1534` is in force |
 | `+0x1063` bits under mask `0xC` | no instruction sets them; the only write that names them is the clear `and 0xF3` in `0x00314A00` (`0x00314A51`) | no instruction tests them: `0x00314AC0` and `0x00314AE0` read only the bits under masks `0x30` and `0x3` (`0x00314AC9`, `0x00314AE9`) | carried only by the whole-byte writes: the payload clears (`0x002EF2E8`, `0x002EF603`, `0x002EF663`), the save read `0x002EF300` (`0x002EF317`) and the copy `0x00583C00`; `0x00583CB0` and `0x002EF570` copy the byte out |
 
-`0x00314A00`, reached from `0x002695A0` in the manager unload `0x002628B0` (`0x00262CEF`), clears bits `0x1`,
-`0x2`, `0x40` and `0x80` of `+0x1062` (`0x00314A09`-`0x00314A2D`) and the bits under mask `0x3F` of
+`0x00314A00`, reached from `0x002695A0` in the manager unload `0x002628B0`¹, clears bits `0x1`,
+`0x2`, `0x40` and `0x80` of `+0x1062`² and the bits under mask `0x3F` of
 `+0x1063` (`0x30`, `0x3` and `0xC`, `0x00314A39`-`0x00314A51`) when a zone is left. Bits `0x4`, `0x8`,
 `0x10` and `0x20` are not touched there, so the save and teleport switches survive a zone change, as
 the save image does.
 
-Before it, `0x002695A0` calls `0x003590E0`, zeroes the four party entries at `0x0209A1F0` (`0x002695AF`,
-`0x002695B7`), calls `0x0035A240` and clears the `0x200` bytes at `0x02099DF0` (`0x002695D3`). After it, it
-calls `0x002341C0`, `0x00314010`, `0x00314DF0(-1)` and `0x00229F10(2 / [0x01DFE0B4])` (`0x002695DD`-`0x002695FE`),
-then zeroes the 16 pointers at `0x0209A210` (`0x00269603`-`0x0026962F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00262CEF` |
+| ² | `0x00314A09`-`0x00314A2D` |
+
+</details>
+
+Before it, `0x002695A0` calls `0x003590E0`, zeroes the four party entries at `0x0209A1F0`¹, calls `0x0035A240` and clears the `0x200` bytes at `0x02099DF0`². After it, it
+calls `0x002341C0`, `0x00314010`, `0x00314DF0(-1)` and `0x00229F10(2 / [0x01DFE0B4])`³,
+then zeroes the 16 pointers at `0x0209A210`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002695AF`, `0x002695B7` |
+| ² | `0x002695D3` |
+| ³ | `0x002695DD`-`0x002695FE` |
+| ⁴ | `0x00269603`-`0x0026962F` |
+
+</details>
 
 ### When teleporting is switched back on
 
-`0x0026DB30` is called from the manager bind `0x0026C8C0` (`0x0026CD60`) and from `0x00266D10`
-(`0x00267131`). Its teleport step:
+`0x0026DB30` is called from the manager bind `0x0026C8C0`¹ and from `0x00266D10`². Its teleport step:
 
-1. it reads the persistence group of the field being entered (`0x003148F0`, payload `+0x1044`) and
-   of the field being left (`0x00314870`, payload `+0x104C`); the group is word `+0x06` of the field's
-   row in the field table at `[0x02099D88]`, and both read as 0 while `[0x02099D88]` or `[0x02099D90]` is null
-   (`0x0026DB91`-`0x0026DB9D`, `0x0026DBC6`-`0x0026DBD2`), so no group change is seen then;
-2. when the two differ and bit `0x20` is clear (`0x0026DBF4` tests `0x20`), it calls `0x003149E0`
-   (`0x0026DBFD`), which clears bit `0x4`;
-3. it clears the group persistent bank `0x02099FF0` (`0x200` bytes) on a group change, and again
-   whenever the transition mode `+0x1054` (`0x003148D0`) has bit `0x8` set, the bit a teleport arrival
-   carries.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026CD60` |
+| ² | `0x00267131` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | it reads the persistence group of the field being entered (`0x003148F0`, payload `+0x1044`) and of the field being left (`0x00314870`, payload `+0x104C`); the group is word `+0x06` of the field's row in the field table at `[0x02099D88]`, and both read as 0 while `[0x02099D88]` or `[0x02099D90]` is null, so no group change is seen then; | `0x0026DB91`-`0x0026DB9D`, `0x0026DBC6`-`0x0026DBD2` |
+| 2 | when the two differ and bit `0x20` is clear (`0x0026DBF4` tests `0x20`), it calls `0x003149E0`, which clears bit `0x4`; | `0x0026DBFD` |
+| 3 | it clears the group persistent bank `0x02099FF0` (`0x200` bytes) on a group change, and again whenever the transition mode `+0x1054` has bit `0x8` set, the bit a teleport arrival carries. | `0x003148D0` |
 
 The story also drives the bit directly. In the `us` corpus `setsaveramtelepostatus` is called only
 by the opening event script `pre_z0000`, in one `switch` on the story counter that writes 0 or 1 by
@@ -130,13 +149,33 @@ The crystal's `talk` function suspends battle, waits seven frames, calls `healal
 
 `healall(n)` is verb `0x3AF`, handler `0x00356500`: it maps `n` through `0x00359C60` and calls
 `0x0030F4B0(-1, mask)`, which is `0x0030F3F0(mask)` for the nine party records (slot table 3 through
-`0x00320AB0`) and `0x0030F4D0(mask)` for the thirteen Esper records `0x1B` to `0x27` (`0x00320A40`) whose
+`0x00320AB0`) and `0x0030F4D0(mask)` for the thirteen Esper records `0x1B` to `0x27`¹ whose
 id `0xC012 + i` passes `0x0030B0E0`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320A40` |
+
+</details>
+
 Both loops treat each record in a fixed order: first the statuses, through `0x0030F690` only when the
-chosen sets together are not empty (`0x0030F464`, `0x0030F549`), then HP (`0x0030F340`), then MP
-(`0x0030F5A0`) (`0x0030F468`-`0x0030F483`, `0x0030F54D`-`0x0030F56C`). Each of the three returns at once for a
+chosen sets together are not empty¹, then HP², then MP³⁴. Each of the three returns at once for a
 null record. The mask bits:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030F464`, `0x0030F549` |
+| ² | `0x0030F340` |
+| ³ | `0x0030F5A0` |
+| ⁴ | `0x0030F468`-`0x0030F483`, `0x0030F54D`-`0x0030F56C` |
+
+</details>
 
 | Mask bit | What is restored | Function |
 |---|---|---|
@@ -151,26 +190,66 @@ null record. The mask bits:
 set A. The two sets are built by `0x00237CA0` from the status table at `[0x02EBF118]`: a status whose
 row word `+0x06` has bit `0x2000` goes to set A, the others to set B.
 
-`0x00237CA0` zeroes both sets first (`0x00237CCA`) and walks statuses 0 to 31 (`0x00237D3A`); the row of status `i` is
-the decoded `+0x0C` of the table plus `i` times its word `+0x08`, added in 32 bits (`0x00237D09`-`0x00237D22`).
+`0x00237CA0` zeroes both sets first¹ and walks statuses 0 to 31²; the row of status `i` is
+the decoded `+0x0C` of the table plus `i` times its word `+0x08`, added in 32 bits³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00237CCA` |
+| ² | `0x00237D3A` |
+| ³ | `0x00237D09`-`0x00237D22` |
+
+</details>
 
 When status 0 (KO) is cleared, `0x0030F690` first finds the record's battle unit, the unit whose
-`+0x698` is the record (`0x0031B860`, `0x0030F6CC`). It clears bit `0x4000000` of that unit's flag word
-`+0x00` (`0x0030F6FC`) only when the record's status words `+0x3C | +0x64` hold one of the statuses
+`+0x698` is the record¹. It clears bit `0x4000000` of that unit's flag word
+`+0x00`² only when the record's status words `+0x3C | +0x64` hold one of the statuses
 `0x80000003` (KO, Stone, X-Zone) and the area is not a town (`0x00377C20()` is 0,
 `0x0030F6E5`-`0x0030F6FA`). A record clear of those statuses, a town, or a record with no battle unit
-keeps the bit. The null test of `+0x698` (`0x0030F6E3`) never leads to the clear, since the unit's
+keeps the bit. The null test of `+0x698`³ never leads to the clear, since the unit's
 `+0x698` is the record itself.
 
-`btladjustsystem(n)` (`0x517`, `0x0034AAB0`) calls `0x002FEAC0(n)`: for an odd `n` it clears bit `0x1` of `0x022C3178`,
-zeroes `0x022C3158`-`0x022C3167` and `0x022C3170`-`0x022C3177` and sets `0x022C3168` and `0x022C316C` to -1, with qword stores
-(`0x003183A0`-`0x003183BE`).
+<details>
+<summary>Where in the code</summary>
 
-That reset, `0x003183A0`, is reached directly from `0x002FEAC0`'s jump for an odd argument (`0x002FEAC3`), from the area
-initialisation `0x002342F0`, with the battle system's up flag `0x02089300` non-zero, when `0x00377C20` answers non-zero
-(`0x002342F4`, `0x00234446`-`0x0023444F`), from the scenario presets' function `0x00239960` for a valid pending preset
-(`0x00239A85`) and from the battle-state reset `0x00237DF0` (`0x00237E3C`) ([kill
+| | Code |
+|---|---|
+| ¹ | `0x0031B860`, `0x0030F6CC` |
+| ² | `0x0030F6FC` |
+| ³ | `0x0030F6E3` |
+
+</details>
+
+`btladjustsystem(n)` (`0x517`, `0x0034AAB0`) calls `0x002FEAC0(n)`: for an odd `n` it clears bit `0x1` of `0x022C3178`,
+zeroes `0x022C3158`-`0x022C3167` and `0x022C3170`-`0x022C3177` and sets `0x022C3168` and `0x022C316C` to -1, with qword stores¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003183A0`-`0x003183BE` |
+
+</details>
+
+That reset, `0x003183A0`, is reached directly from `0x002FEAC0`'s jump for an odd argument¹, from the area
+initialisation `0x002342F0`, with the battle system's up flag `0x02089300` non-zero, when `0x00377C20` answers non-zero², from the scenario presets' function `0x00239960` for a valid pending preset³ and from the battle-state reset `0x00237DF0`⁴ ([kill
 chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FEAC3` |
+| ² | `0x002342F4`, `0x00234446`-`0x0023444F` |
+| ³ | `0x00239A85` |
+| ⁴ | `0x00237E3C` |
+
+</details>
 
 ### The save menu
 
@@ -195,49 +274,53 @@ the result is never negative.
 The exception is field 403, Valley of the Dead: while the story counter is below 1,345 (`0x541`), the script heals
 the party again (`healall(0)`) instead of setting -2, so the record keeps the entrance it had.
 
-The resolver runs these tests one after another on the current value (`0x00264CED`-`0x00264D0C`), so a
-negative header word is resolved again by the later tests, and a negative result becomes 0
-(`0x00264D10`-`0x00264D14`). With no header (the pointer or the header pointer it holds null,
+The resolver runs these tests one after another on the current value¹, so a
+negative header word is resolved again by the later tests, and a negative result becomes 0². With no header (the pointer or the header pointer it holds null,
 `0x00264CE0`-`0x00264CEB`) it returns the entrance as it came, or 0 when that is negative.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264CED`-`0x00264D0C` |
+| ² | `0x00264D10`-`0x00264D14` |
+
+</details>
 
 `gettelepoindex` (`0x32D`, `0x00342490`) and `getsaveindex` (`0x32E`, `0x00343010`) return those two
 header words, sign-extended, of the primary manager's payload (`0x00263FF0(0)`, `0x003424A1`,
 `0x00343021`), written through `0x0026B4E0` as the verb result; with no image loaded (the record's
-`+0x00` null) they return 0 (`0x003424A9`, `0x00343029`).
+`+0x00` null) they return 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003424A9`, `0x00343029` |
+
+</details>
 
 `openfullscreenmenu_48d` (`0x48D`) is durative:
 
-1. Start `0x003462D0` stores the byte `0x02064AD0` (`0x00229EB0`) at `ctx + 4` and 0 at `ctx + 8`, pops
-   the parameter and then the id, and calls `0x002E1A60(id, param)`, `0x002E1690` (latch `0x0215F1A1` = 1)
-   and `0x002E0650` (done byte `0x0215F1AE` = 0).
-2. `0x002E1A60` maps the id through `0x002E0DA0`: with bit `0x8000` preserved (`0x002E0DA6`), the id with
-   bit `0x8000` cleared (`0x002E0DA2`) 0 gives `0x11`, 1 gives `0x12`, 2 gives `0xA`, 3 gives `0xF`,
-   4 gives `0x13`, 5 gives 6, 6 gives `0x16`, anything else 2, an id with a bit above `0x8000`
-   included (`0x002E0DAC`);
-   - for that cleared id 6 the parameter is remapped (0, 1, 2 to `0x40`, `0x41`, `0x42`, else 0;
-     `0x002E1A74`-`0x002E1AA1`).
-   The crystal's `0x8005` becomes category `0x8006`.
-3. Unless the latch is already set, or the category is 2 while `0x002E0FA0()` has bit `0x1`, it writes
-   `0x0215F1A0` = 1, `0x0215F1A4` = category and `0x0215F1A8` = parameter.
-4. Poll `0x00352E00` returns 1 (keep waiting) while `0x0215F1AE` is 0 (`0x002E0F80`).
-5. End `0x00346DA0` pushes `0x00254710()`: the word at `[0x0209BE80] + 0x10FAC` when the menu state
-   `0x020927D8` is `0x11` or `0x12`, else 0. The crystal script ignores it.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Start `0x003462D0` stores the byte `0x02064AD0` at `ctx + 4` and 0 at `ctx + 8`, pops the parameter and then the id, and calls `0x002E1A60(id, param)`, `0x002E1690` (latch `0x0215F1A1` = 1) and `0x002E0650` (done byte `0x0215F1AE` = 0). | `0x00229EB0` |
+| 2 | `0x002E1A60` maps the id through `0x002E0DA0`: with bit `0x8000` preserved, the id with bit `0x8000` cleared 0 gives `0x11`, 1 gives `0x12`, 2 gives `0xA`, 3 gives `0xF`, 4 gives `0x13`, 5 gives 6, 6 gives `0x16`, anything else 2, an id with a bit above `0x8000` included;<br>• for that cleared id 6 the parameter is remapped (0, 1, 2 to `0x40`, `0x41`, `0x42`, else 0; `0x002E1A74`-`0x002E1AA1`). The crystal's `0x8005` becomes category `0x8006`. | `0x002E0DA6`<br>`0x002E0DA2`<br>`0x002E0DAC` |
+| 3 | Unless the latch is already set, or the category is 2 while `0x002E0FA0()` has bit `0x1`, it writes `0x0215F1A0` = 1, `0x0215F1A4` = category and `0x0215F1A8` = parameter. |   |
+| 4 | Poll `0x00352E00` returns 1 (keep waiting) while `0x0215F1AE` is 0. | `0x002E0F80` |
+| 5 | End `0x00346DA0` pushes `0x00254710()`: the word at `[0x0209BE80] + 0x10FAC` when the menu state `0x020927D8` is `0x11` or `0x12`, else 0. The crystal script ignores it. |   |
 
 The request is consumed by the per-frame menu router `0x002E09A0`, run from the world tick
 `0x00314020` ([UI request router](../Menus-And-HUD/menus.md)):
 
-1. the request is admitted when `0x0215F1A0` is set and either the category is below `0x14` with its
-   bit in `0xE9000`, or `0x00226BA0()` returns 0, or `0x0053DD10()` returns non-zero;
-2. the router calls `0x003591F0(0)` and `0x00254B50(category, param, 0)`, then clears `0x0215F1A0`;
-3. `0x00254B50` refuses while `0x02092734` is 1 or the category's bit is in the block mask it builds
-   from `0x01E0C2C0` under `0x002E0FA0()`, and then returns 0 (`0x00254B71`-`0x00254BC5`, `0x00254C40`); for
-   `category & 0x7FFF` = 6 it takes the default arm,
-   `0x0028F970()` then `0x00280A00(category, param, 0)`, the full-screen menu opener;
-   - no word of `0x01E0C2C0` holds bit `0x40`, so category 6 is refused only by the latch;
-   - before the default arm it calls `0x0017E7D0`, `0x0035DA80` and `0x003C8990` (`0x00254BC7`-`0x00254BD1`);
-4. the done byte is written by `0x002E1BA0` (`0x0215F1AE` = `0x0215F1AF` = 1), whose only caller is the
-   menu driver `0x0022B8C0` in its close-full-menu arm (`0x0022BB8D`, when `0x002E05C0()` is 0),
-   so the Poll releases the crystal when the save screen has closed.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | the request is admitted when `0x0215F1A0` is set and either the category is below `0x14` with its bit in `0xE9000`, or `0x00226BA0()` returns 0, or `0x0053DD10()` returns non-zero; |   |
+| 2 | the router calls `0x003591F0(0)` and `0x00254B50(category, param, 0)`, then clears `0x0215F1A0`; |   |
+| 3 | `0x00254B50` refuses while `0x02092734` is 1 or the category's bit is in the block mask it builds from `0x01E0C2C0` under `0x002E0FA0()`, and then returns 0; for `category & 0x7FFF` = 6 it takes the default arm, `0x0028F970()` then `0x00280A00(category, param, 0)`, the full-screen menu opener;<br>• no word of `0x01E0C2C0` holds bit `0x40`, so category 6 is refused only by the latch;<br>• before the default arm it calls `0x0017E7D0`, `0x0035DA80` and `0x003C8990`; | `0x00254B71`-`0x00254BC5`, `0x00254C40`<br>`0x00254BC7`-`0x00254BD1` |
+| 4 | the done byte is written by `0x002E1BA0` (`0x0215F1AE` = `0x0215F1AF` = 1), whose only caller is the menu driver `0x0022B8C0` in its close-full-menu arm (`0x0022BB8D`, when `0x002E05C0()` is 0), so the Poll releases the crystal when the save screen has closed. |   |
 
 ### The teleport
 
@@ -263,24 +346,11 @@ destination field and entrance are authored per key item (the table under Shippe
 `ctx + 0`; Poll `0x003529B0` keeps waiting while the handle is non-zero and `0x0036E6B0(handle)` is
 true. The test:
 
-1. `0x0024DE70(handle)` switches on the handle's top nibble: 1 to `0x002FCA00`, 5, 6 and 9 to
-   `0x003B0AD0`, 7 to `0x003B2510`, 8 to `0x00375AE0`, anything else gives 0;
-2. a result of 2 or 3 means the effect is still playing, provided `0x0024E210(handle, 3)`, bit `0x80` of
-   the effect record's `+0x36A`, is still 0 (`0x0036E6C3`-`0x0036E6D7`); any other result ends the wait;
-   - `0x0024E210(handle, s)` looks the record up in the list `[0x020910F0 + 8 × top nibble]`, following
-     `+0x348`, as the one whose words `+0x04` and `+0x06` equal the handle's low and high 16 bits
-     (`0x0024E225`-`0x0024E24F`). Selector `s` 0 to 5 gives bit `0x20`, `0x40`, `0x100`, `0x80`,
-     `0x200` or `0x400` of `+0x36A` as 0 or 1 (`0x0024E269`-`0x0024E2BC`);
-   - it gives 0 when no record matches or `s` is above 5 (`0x0024E251`), so an effect whose record has
-     left the list still counts as playing while `0x0024DE70` answers 2 or 3;
-3. for the effect pool, `0x003B0AD0` returns 2 for an effect whose byte `+0x370` is 0 and 3 for 1
-   or 2, once its word `+0x378` has bit `0x100`:
-   - it finds the handle among the 36 entries of 24 bytes at `0x02EBEC00` by their first dword, and
-     returns 0 when no entry holds it or the entry's pointer `+0x08` is null
-     (`0x003B0AD0`-`0x003B0B04`);
-   - with bit `0x100` clear, or a byte `+0x370` above 6, it returns 1 (`0x003B0B12`, `0x003B0B1E`);
-     byte 3 gives 5 and bytes 4 to 6 give 4 (`0x003B0B3F`, `0x003B0B45`), so only 0, 1 and 2 keep the
-     wait going.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x0024DE70(handle)` switches on the handle's top nibble: 1 to `0x002FCA00`, 5, 6 and 9 to `0x003B0AD0`, 7 to `0x003B2510`, 8 to `0x00375AE0`, anything else gives 0; |   |
+| 2 | a result of 2 or 3 means the effect is still playing, provided `0x0024E210(handle, 3)`, bit `0x80` of the effect record's `+0x36A`, is still 0; any other result ends the wait;<br>• `0x0024E210(handle, s)` looks the record up in the list `[0x020910F0 + 8 × top nibble]`, following `+0x348`, as the one whose words `+0x04` and `+0x06` equal the handle's low and high 16 bits. Selector `s` 0 to 5 gives bit `0x20`, `0x40`, `0x100`, `0x80`, `0x200` or `0x400` of `+0x36A` as 0 or 1;<br>• it gives 0 when no record matches or `s` is above 5, so an effect whose record has left the list still counts as playing while `0x0024DE70` answers 2 or 3; | `0x0036E6C3`-`0x0036E6D7`<br>`0x0024E225`-`0x0024E24F`<br>`0x0024E269`-`0x0024E2BC`<br>`0x0024E251` |
+| 3 | for the effect pool, `0x003B0AD0` returns 2 for an effect whose byte `+0x370` is 0 and 3 for 1 or 2, once its word `+0x378` has bit `0x100`:<br>• it finds the handle among the 36 entries of 24 bytes at `0x02EBEC00` by their first dword, and returns 0 when no entry holds it or the entry's pointer `+0x08` is null;<br>• with bit `0x100` clear, or a byte `+0x370` above 6, it returns 1; byte 3 gives 5 and bytes 4 to 6 give 4, so only 0, 1 and 2 keep the wait going. | `0x003B0AD0`-`0x003B0B04`<br>`0x003B0B12`, `0x003B0B1E`<br>`0x003B0B3F`, `0x003B0B45` |
 
 ### The arrival
 
@@ -290,20 +360,36 @@ fade and holds the screen white, and `main` plays sound 96, calls `calltelepoeff
 fades in. `calltelepoeffect` (`0x333`, `0x00344170`) is `0x00269060()` then `0x00183070()`:
 
 - `0x00269060` runs `0x00268690(9)`: for each of the four party entries `0x0209A1F0[0..3]` that is set and
-  passes `0x002EA6A0`, the encoded handle (`0x003589B0`) is collected (`0x002686D0`-`0x00268703`).
+  passes `0x002EA6A0`, the encoded handle¹ is collected².
 - With at least one handle, `0x0036E700(0, n, handles, 9)` plays `0x003B02A0(0, handles, n, [0x01EF9400 + 9 * 4], 5)`,
   the dword being `0x8C`, then `0x0024F920(handle, 1)` for a non-zero result only
-  (`0x0036E72C`-`0x0036E737`); with no handle nothing plays and `0x00268690` returns 0 (`0x0026871C`).
+ ³; with no handle nothing plays and `0x00268690` returns 0⁴.
 - `0x00269060` then calls `0x00314DA0(0x003148D0() & ~0x18)`, which clears mode bits `0x8` and `0x10` in
-  payload `+0x1054` (`0x0026906E`-`0x0026907C`).
+  payload `+0x1054`⁵.
 - `0x00183070` runs `0x001D8770` on the loading page `[0x01F82CD8]` (`0x001D8A60`; built by `0x001D89D0` with
   the `LoadingPage` vtable): `+0x08` = 0; when the fading-out byte `+0x24` is 0 it becomes 1 and the
   fade timer `+0x20` is zeroed; the armed byte `+0x1D` = 0. The loading page starts fading out.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003589B0` |
+| ² | `0x002686D0`-`0x00268703` |
+| ³ | `0x0036E72C`-`0x0036E737` |
+| ⁴ | `0x0026871C` |
+| ⁵ | `0x0026906E`-`0x0026907C` |
+
+</details>
 
 The field pass runs the same two calls once the field has settled after any arrival whose mode has
 bit `0x8` ([field runtime](../Characters-And-Objects/field-runtime.md)).
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Struct ZoneTransitionFlags base=payload+`0x1062` size=2:
 
@@ -335,7 +421,12 @@ teleport_allowed = (payload[0x1062] & 0x04) == 0
 save_allowed     = (payload[0x1062] & 0x08) == 0
 ```
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 ### Verb use in the field and event scripts
 
@@ -412,8 +503,17 @@ for a gate crystal its key item and where teleporting to it arrives.
 
 The same entry gives the spot where the crystal stands. `init` places the actor with `setposbynaviicon(3, 0)`
 (`0x030D`, `0x00352430`). That verb reads the entry through `0x003DFBE0`, `0x003DFDD0` and `0x00264CA0`, then passes the floats
-at `+0x00`, `+0x04`, `+0x08` and `+0x0C` to `setpos2_20d` (`0x00350C30`). The table's `x`, `y` and `z` columns give the
+at `+0x00`, `+0x04`, `+0x08` and `+0x0C` to `setpos2_20d`¹. The table's `x`, `y` and `z` columns give the
 position, and `facing` gives the heading in radians. All 81 entries carry a spot.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00350C30` |
+
+</details>
 
 - 56 are save crystals (number 0) and 25 are gate crystals, numbered 1, 3-6, 8-13, 15, 17-25, 28, 29, 32 and 33: each
   number once, the same 25 the `talk` switch names. Number 4, in Barheim Passage's North-South Junction, is a gate
@@ -422,6 +522,8 @@ position, and `facing` gives the heading in radians. All 81 entries carry a spot
   gate crystal.
 - `mic_b07.ebp` holds a save crystal but no resource-kind 5 path names the script, so no zone loads it and the
   player never meets that crystal.
+
+</details>
 
 ## Operations
 
@@ -438,6 +540,9 @@ position, and `facing` gives the heading in radians. All 81 entries carry a spot
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 | Address | Kind | Role |
 |---|---|---|
 | payload `+0x1062`, `+0x1063` | u8, u8 | the flag bytes above (`0x002EF2B0` base) |
@@ -451,6 +556,8 @@ position, and `facing` gives the heading in radians. All 81 entries carry a spot
 | `0x0209A1F0` | ptr[4] | the party entries the arrival flash plays on |
 | `0x01F82CD8` | ptr | the loading page `0x00183070` fades out |
 | `g_menu_telepo_dest` | u16[31] at script global `0x0BF2` | the registered destinations |
+
+</details>
 
 ## Modding notes
 
@@ -476,7 +583,17 @@ position, and `facing` gives the heading in radians. All 81 entries carry a spot
 - [Chocobos and airships](chocobos-and-airships.md): the dismount the teleport performs.
 - [Game over](game-over.md): what a party wipe does instead.
 - [`group-persistent-bank-accesses.tsv`](group-persistent-bank-accesses.tsv): every access to the group
-  persistent bank `0x02099FF0` (`0x200` bytes): its copy out to the save (`0x0025D8E0`) and back (`0x00269A20`) (70 rows).
+  persistent bank `0x02099FF0` (`0x200` bytes): its copy out to the save¹ and back² (70 rows).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025D8E0` |
+| ² | `0x00269A20` |
+
+</details>
 
 ### Calls to and from other topics
 
@@ -487,8 +604,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Random numbers** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002342F0` | calls | `0x00328D80` |
+| [`0x002342F0`](../Enemy-Spawning/enemy-respawning.md) (on enemy respawning) | calls | [`0x00328D80`](../Random-Numbers/random-number-generators.md) (on random number generators) |
 
 </details>

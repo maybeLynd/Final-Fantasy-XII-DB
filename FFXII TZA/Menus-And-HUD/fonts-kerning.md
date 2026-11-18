@@ -77,14 +77,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Graphics** (explained on [message windows](message-windows.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002AC2F0` | is called by | `0x002AAE40` |
+| [`0x002AC2F0`](text-drawing.md) (on text drawing) | is called by | [`0x002AAE40`](text-drawing.md) (on text drawing) |
 
 **Game files and data tables** (explained on [fonts](fonts.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001B5230` | is called by | `0x001B6080` |
+| [`0x001B5230`](fonts-kerning.md) | is called by | [`0x001B6080`](fonts.md) (on fonts) |
 
 </details>

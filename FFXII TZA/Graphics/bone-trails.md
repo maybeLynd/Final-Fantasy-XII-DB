@@ -33,32 +33,52 @@ from section `+0x10`. The descriptor is copied whole into the trail entry at `+0
 
 ### Switching trails on and off
 
-- Authored presentation command `0x11` of the bank `0x0041D6C0` registers (`0x00520160`) stores the command's byte `+2` in
+- Authored presentation command `0x11` of the bank `0x0041D6C0` registers¹ stores the command's byte `+2` in
   render record `+0x3D0` and sets bit `0x1000000` of `+0x294` ([Authored presentation commands](authored-presentation-commands.md)).
-- The record pass `0x00427DE0` sees bit `0x1000000` (`0x0042858C`) and calls `0x00425E70(record, byte +0x3D0)`, which runs `0x003E6770`
+- The record pass `0x00427DE0` sees bit `0x1000000`² and calls `0x00425E70(record, byte +0x3D0)`, which runs `0x003E6770`
   on the record and its first child `+8`, then through `0x0042EF90` on the rest of the tree
-  (`0x00425EB7`-`0x00425F15`). A command addressed to a character reaches the weapon in
+ ³. A command addressed to a character reaches the weapon in
   its hand this way.
 - `0x0042EF90` calls `0x0042BDD0`, which runs `0x003E6770` with the same value, on that child's children and on its
   following siblings `+0xA`, each with every record below it. `0x00425E70` does nothing for a record index of -1
-  (`0x00425E90`-`0x00425E94`).
+ ⁴.
 - On: when the record's first trail handle `+0x438` is `0xFFFF`, `0x003E6770` creates one entry per descriptor
-  (`0x0051CC30`) and stores the handles at `+0x438`-`+0x444`. Otherwise it creates nothing.
+ ⁵ and stores the handles at `+0x438`-`+0x444`. Otherwise it creates nothing.
 - Before each create it writes the record's index word, sign-extended, into the descriptor's `+4` in the model block
-  (`0x003E6810`-`0x003E6813`). It stores what `0x0051CC30` returns, 0 when the pool is full (`0x003E682A`); handle slots
+ ⁶. It stores what `0x0051CC30` returns, 0 when the pool is full⁷; handle slots
   past the count keep their values.
 - Both paths need the trail section: with no model block or an offset word `+8` of 0, `0x003E6770` creates and
-  switches off nothing (`0x003E6783`-`0x003E679B`, `0x003E67D3`).
+  switches off nothing⁸.
 - With a value of 0 it first clears bit `0x1000000` of `+0x294` when that bit is set and byte `+0x3D0` is non-zero
-  (`0x003E679E`-`0x003E67BB`), so an on-command still waiting for the record pass is dropped.
+ ⁹, so an on-command still waiting for the record pass is dropped.
 - Off: it calls `0x0051CC10` for each handle that is not `0xFFFF` and stores nothing, so the handles stay in place. A
   stale handle other than 0 is harmless: every pool routine compares it with the entry's own `+0`.
 - A handle of 0 from a full pool matches entry 0 while that entry is free (its `+0` is 0). `0x003E74C0` passes it to
   `0x0051BC10`, which then lowers the live count and unlinks entry 0 again through the `+0x18` and `+0x20` it kept
-  from its last time in the list (`0x003E74D6`-`0x003E74E0`, `0x0051BC21`-`0x0051BC65`).
+  from its last time in the list¹⁰.
 - `0x0042F250(record index)` is a second off path: it clears bits `0x40000` and `0x80000` of `+0x290`, sets bit `0x100000` and calls
-  `0x003E6770(record, 0)` as a tail jump (`0x0042F279`-`0x0042F290`). It does nothing for an index of -1 or a record
-  whose `+0x284` is 0 (`0x0042F250`-`0x0042F277`).
+  `0x003E6770(record, 0)` as a tail jump¹¹. It does nothing for an index of -1 or a record
+  whose `+0x284` is 0¹².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00520160` |
+| ² | `0x0042858C` |
+| ³ | `0x00425EB7`-`0x00425F15` |
+| ⁴ | `0x00425E90`-`0x00425E94` |
+| ⁵ | `0x0051CC30` |
+| ⁶ | `0x003E6810`-`0x003E6813` |
+| ⁷ | `0x003E682A` |
+| ⁸ | `0x003E6783`-`0x003E679B`, `0x003E67D3` |
+| ⁹ | `0x003E679E`-`0x003E67BB` |
+| ¹⁰ | `0x003E74D6`-`0x003E74E0`, `0x0051BC21`-`0x0051BC65` |
+| ¹¹ | `0x0042F279`-`0x0042F290` |
+| ¹² | `0x0042F250`-`0x0042F277` |
+
+</details>
 
 `0x0051CC10` only clears the entry's on byte `+4`; the entry keeps updating and drawing while it fades and frees itself at
 zero. `0x0051BC10` frees an entry at once. `0x0051CDC0` stores the character's opacity in `+8`, and `0x0051C380`, called from
@@ -66,47 +86,125 @@ zero. `0x0051BC10` frees an entry at once. `0x0051CDC0` stores the character's o
 
 `0x0051BC10(handle)` changes nothing when the entry's `+0` is not the handle. Otherwise it zeroes `+0`, lowers the live
 count `0x02CA8400` by one and unlinks the entry, moving the list head `0x02CA8408` or tail `0x02CA8410` when the entry was
-first or last; the entry's own `+0x18` and `+0x20` keep their values (`0x0051BC21`-`0x0051BC65`).
+first or last; the entry's own `+0x18` and `+0x20` keep their values¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051BC21`-`0x0051BC65` |
+
+</details>
 
 `0x0051C380(handle, v)` stores `(+5 & (v >> 2)) | (v & 3)` and returns 1, or returns 0 without writing for a stale
-handle (`0x0051C392`-`0x0051C3B1`). `0x00421280` gives it 4 or 6, which clear or set bit `0x2` (do not draw), and
+handle¹. `0x00421280` gives it 4 or 6, which clear or set bit `0x2` (do not draw), and
 `0x004213E0` 8 or 9, which clear or set bit `0x1` (do not update), for each of the record's four handles that is not
-`0xFFFF` (`0x0042135F`, `0x0042138F`, `0x004214F5`, `0x0042152F`).
+`0xFFFF`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051C392`-`0x0051C3B1` |
+| ² | `0x0042135F`, `0x0042138F`, `0x004214F5`, `0x0042152F` |
+
+</details>
 
 When `0x0051C380` returns 0, `0x004213E0` calls `0x0051BC10` with the same handle, which makes the same test (`0x0051BC21`, as
-`0x0051C392`) and so frees nothing, and sets the slot to `0xFFFF` (`0x004214FA`-`0x00421505`, `0x00421534`-`0x0042153F`): only
+`0x0051C392`) and so frees nothing, and sets the slot to `0xFFFF`¹: only
 that reset takes effect.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004214FA`-`0x00421505`, `0x00421534`-`0x0042153F` |
+
+</details>
+
 `0x003E70F0(record, v)`, from `0x0042CBF0` and `0x0042D050`, passes the opacity to each of the record's
-four handles that is not `0xFFFF` (`0x0051CDC0`). `0x003E74C0(record)` frees each such entry at once
-(`0x0051BC10`) and sets its handle to `0xFFFF`; `0x003E6890` broadcasts it over the record tree
+four handles that is not `0xFFFF`¹. `0x003E74C0(record)` frees each such entry at once² and sets its handle to `0xFFFF`; `0x003E6890` broadcasts it over the record tree
 (`0x00425F40` with 0).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051CDC0` |
+| ² | `0x0051BC10` |
+
+</details>
 
 ### The pool
 
 `0x0051C270` allocates `0x3C00` bytes, sixteen entries of `0x3C0`, at `[0x02CA8420]`, clears every handle and zeroes the
 header: live count `0x02CA8400`, flag byte `0x02CA8402`, serial `0x02CA8404`, list head `0x02CA8408` and tail `0x02CA8410`. It
-builds the parameter template at `0x02CA8A90` (`0x005409C0`) and binds the engine's trail image from `0x01F2A220`.
-The only instruction that stores to `0x02CA8402` writes 0 (`0x0051C341`), so both tests of `entry +5 | 0x02CA8402` below
-(`0x0051BE44`, `0x0051C454`) depend on the entry's `+5` alone.
+builds the parameter template at `0x02CA8A90`¹ and binds the engine's trail image from `0x01F2A220`.
+The only instruction that stores to `0x02CA8402` writes 0², so both tests of `entry +5 | 0x02CA8402` below³ depend on the entry's `+5` alone.
 
-The order is the image, the template, then the pool (`0x0051C276`-`0x0051C2F3`). It allocates only while `[0x02CA8420]` is
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005409C0` |
+| ² | `0x0051C341` |
+| ³ | `0x0051BE44`, `0x0051C454` |
+
+</details>
+
+The order is the image, the template, then the pool¹. It allocates only while `[0x02CA8420]` is
 null, under arena 6 (`0x0036C1D0(6, 6)` and `0x0036C140` around `0x0036A100(0x3C00)`, `0x0051C2FF`-`0x0051C321`); every call
-clears the handles and the header again (`0x0051C32D`-`0x0051C36C`). The flag byte is cleared with a 16-bit store,
-which also zeroes `0x02CA8403` (`0x0051C341`).
+clears the handles and the header again². The flag byte is cleared with a 16-bit store,
+which also zeroes `0x02CA8403`³.
 
-The image is 64 × 64 with 256 colours. `0x0051C270` keeps the texture's handle from `0x00184140` in `0x02EBA478`
-(`0x0051C2C6`) and the palette's from `0x001837A0` in `0x02EBA470` (`0x0051C2EC`); `0x0051BC70` binds them to GS
-addresses `0x2A00` (`0x0051BFD6`) and `0x2E00` (`0x0051BFEA`) through `0x002D7E00`.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051C276`-`0x0051C2F3` |
+| ² | `0x0051C32D`-`0x0051C36C` |
+| ³ | `0x0051C341` |
+
+</details>
+
+The image is 64 × 64 with 256 colours. `0x0051C270` keeps the texture's handle from `0x00184140` in `0x02EBA478`¹ and the palette's from `0x001837A0` in `0x02EBA470`²; `0x0051BC70` binds them to GS
+addresses `0x2A00`³ and `0x2E00`⁴ through `0x002D7E00`.
 `0x00184140` gets the pixels at `0x01F2A220` + word `+2` and the width `1 << byte +0xB` and height `1 << byte +0xC`,
-each twice; `0x001837A0` gets the palette at `0x01F2A220` + word `+2` + word `+4`, `0x100` and 1
-(`0x0051C276`-`0x0051C2E0`).
+each twice; `0x001837A0` gets the palette at `0x01F2A220` + word `+2` + word `+4`, `0x100` and 1⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051C2C6` |
+| ² | `0x0051C2EC` |
+| ³ | `0x0051BFD6` |
+| ⁴ | `0x0051BFEA` |
+| ⁵ | `0x0051C276`-`0x0051C2E0` |
+
+</details>
 
 `0x0051CC30` takes the first entry whose handle is 0; with no entry free it returns 0 and the trail is not made. It sets
 the handle to `serial << 8 | slot` (the serial wraps to 1 above `0xFFFFFF`), on = 1, opacity 1.0, `+0xC` = 20.0, fade
 0, copies the descriptor, clears the histories, takes the first sample and appends the entry to the list.
 
-In detail (`0x0051CC64`-`0x0051CDA2`):
+In detail¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051CC64`-`0x0051CDA2` |
+
+</details>
 
 - It raises the live count `0x02CA8400`. The `u16` store of 1 at `+0x04` also clears the flags `+0x05`, and the `u64`
   store of 0 at `+0x10` also zeroes param14 `+0x14`.
@@ -114,9 +212,20 @@ In detail (`0x0051CC64`-`0x0051CDA2`):
   the `0x100` at `+0x130` and the `0x140` at `+0x230`.
 - The first sample is `0x00422170(record, bone +0x372, +0x130, +0x30)`, taken only when the record index `+0x374` is
   not -1, the render record `[0x022C6F28] + index × 0x740` is not null and its `+0x284` is not 0
-  (`0x0051CD23`-`0x0051CD5E`).
+ ¹.
 - The samples byte `+0x06` and the alternator `+0x07` are set to 1 whether or not the sample is taken
-  (`0x0051CD63`, `0x0051CD77`). It returns the handle (`0x0051CD99`).
+ ². It returns the handle³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051CD23`-`0x0051CD5E` |
+| ² | `0x0051CD63`, `0x0051CD77` |
+| ³ | `0x0051CD99` |
+
+</details>
 
 ### Sampling a bone
 
@@ -126,33 +235,50 @@ world position (`+0xB0` of its `0x290`-byte runtime record) as the base, and bui
 through the bone's matrix at `+0x80`.
 
 `0x00422170` returns 0 without sampling when the record's `+0x18` is -1 or the instance
-`0x002ED570([unit + 0xD98], +0x18)`, the unit being `0x0020E600(record +0x10)`, is null (`0x0042218F`-`0x004221B2`), and
+`0x002ED570([unit + 0xD98], +0x18)`, the unit being `0x0020E600(record +0x10)`, is null¹, and
 otherwise returns what the callee returns. `0x003711D0` returns 0 when the block its handle `+0xA0` resolves to is
-null (`0x003711FF`) or the bone is not below the instance's signed word `+0x88`, the count (`0x00371215`-`0x00371223`),
-and 1 after the tip (`0x00371298`).
+null² or the bone is not below the instance's signed word `+0x88`, the count³,
+and 1 after the tip⁴.
 
-The runtime records are the block the instance handle `+0x84` resolves to
-(`0x00371227`-`0x00371239`); `length` is the float at `+0x74 + 0x4C × n` of the other block, the one handle `+0xA0` resolves to
-(`0x003711EB`-`0x00371215`), with `n` the word `+0x27E` of the bone's runtime record (`0x0037123C`-`0x00371276`). A trail runs
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0042218F`-`0x004221B2` |
+| ² | `0x003711FF` |
+| ³ | `0x00371215`-`0x00371223` |
+| ⁴ | `0x00371298` |
+
+</details>
+
+The runtime records are the block the instance handle `+0x84` resolves to¹; `length` is the float at `+0x74 + 0x4C × n` of the other block, the one handle `+0xA0` resolves to², with `n` the word `+0x27E` of the bone's runtime record³. A trail runs
 along the bone's x axis for that length.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00371227`-`0x00371239` |
+| ² | `0x003711EB`-`0x00371215` |
+| ³ | `0x0037123C`-`0x00371276` |
+
+</details>
 
 ### The update
 
 `0x0051C3C0` walks the list once a frame. For each entry:
 
-1. It skips the entry when bit `0x1` of `entry +5 | 0x02CA8402` is set.
-2. When the alternator `+7` is set or `0x001EDDA0` returns 1, the sample count rises to at most 16 and the three
-   histories shift down one slot. `0x001EDDA0` returns 0 only while the 60 fps flag `0x01F82E38` is set and `0x01DFE0C0` is 0,
-   so at 30 fps the histories shift every frame and at 60 fps every second frame. The alternator flips every update.
-3. It samples slot 0 again when the owner record is live.
-4. It measures how far the tip and the base moved since the last sample, and the angle between the blade directions
-   now and one sample ago (`0x0046F460`, an arccosine table), stored at `+0x330`.
-5. It stores a unit direction in direction slot 0: from the tip toward half-way back along its last step, displaced by
-   that step turned a quarter turn about the swing axis (`0x00202E10`) and scaled to `0.2 × tip distance × angle`.
-6. Tip `w` = `max(tip distance, 0.8 × angle × tip distance)`, and the same for the base. When the count is exactly 2
-   these are copied into slot 1.
-7. While on, the fade `+0x10` rises by `0.5 × [0x01DFE0BC]` to 1.0. While off it falls by `0.2 × [0x01DFE0BC]`, and at zero
-   the entry frees itself.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It skips the entry when bit `0x1` of `entry +5 \| 0x02CA8402` is set. |   |
+| 2 | When the alternator `+7` is set or `0x001EDDA0` returns 1, the sample count rises to at most 16 and the three histories shift down one slot. `0x001EDDA0` returns 0 only while the 60 fps flag `0x01F82E38` is set and `0x01DFE0C0` is 0, so at 30 fps the histories shift every frame and at 60 fps every second frame. The alternator flips every update. |   |
+| 3 | It samples slot 0 again when the owner record is live. |   |
+| 4 | It measures how far the tip and the base moved since the last sample, and the angle between the blade directions now and one sample ago (`0x0046F460`, an arccosine table), stored at `+0x330`. |   |
+| 5 | It stores a unit direction in direction slot 0: from the tip toward half-way back along its last step, displaced by that step turned a quarter turn about the swing axis and scaled to `0.2 × tip distance × angle`. | `0x00202E10` |
+| 6 | Tip `w` = `max(tip distance, 0.8 × angle × tip distance)`, and the same for the base. When the count is exactly 2 these are copied into slot 1. |   |
+| 7 | While on, the fade `+0x10` rises by `0.5 × [0x01DFE0BC]` to 1.0. While off it falls by `0.2 × [0x01DFE0BC]`, and at zero the entry frees itself. |   |
 
 ### The draw
 
@@ -174,11 +300,31 @@ trail image and palette, and copies the `0x4A0`-byte template. For each listed e
 of `0x45` quadwords to VU address 0 at `+0x1C`, MSCALF at `+0x470` that calls the program, and a DIRECT at `+0x47C`. The
 first quadword it uploads, at template `+0x20`, is a GIF tag: `0x00008000`, `0x602E4000`, `0x00412412`, `0x00008000`.
 
-It first zeroes all `0x4A0` bytes (`0x005409C6`-`0x005409D1`). BASE and OFFSET carry 0 and STCYCL a cycle and a write
-length of 4 (`0x01000404`). FLUSH and a NOP follow the MSCALF at `+0x474`, the DIRECT moves one quadword, the
-GIF tag at `+0x480` with EOP set and NLOOP 0, and FLUSHA at `+0x490` ends the packet (`0x005409D6`-`0x00540C10`).
+It first zeroes all `0x4A0` bytes¹. BASE and OFFSET carry 0 and STCYCL a cycle and a write
+length of 4². FLUSH and a NOP follow the MSCALF at `+0x474`, the DIRECT moves one quadword, the
+GIF tag at `+0x480` with EOP set and NLOOP 0, and FLUSHA at `+0x490` ends the packet³.
 
-The uploaded area also holds fixed values (`0x00540A10`-`0x00540BCA`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005409C6`-`0x005409D1` |
+| ² | `0x01000404` |
+| ³ | `0x005409D6`-`0x00540C10` |
+
+</details>
+
+The uploaded area also holds fixed values¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00540A10`-`0x00540BCA` |
+
+</details>
 
 - the floats 4090.0, 4090.0, 16777000.0 and 0.98 at `+0x30`-`+0x3C`; the dwords 8 and 15 at `+0x348` and
   `+0x34C`; 0.2, 1.0 and 1.0 at `+0x350`-`+0x358`;
@@ -197,11 +343,24 @@ The uploaded area also holds fixed values (`0x00540A10`-`0x00540BCA`):
 | REGS | ST, RGBAQ, XYZF2, ST, RGBAQ, XYZF2 |
 
 The program reads VU cell 0 through the bank cell `0x02064B0C`, which the image only reads, and after its main loop
-writes the tag back with NLOOP set to the number of samples it emitted (`0x00540905`-`0x00540955`). Each sample is two
+writes the tag back with NLOOP set to the number of samples it emitted¹. Each sample is two
 vertices, the base and the tip, each as ST, RGBAQ and XYZF2. The loop's trip count is the sample count in the
-uploaded parameter block (`0x0053F995`).
+uploaded parameter block².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00540905`-`0x00540955` |
+| ² | `0x0053F995` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Trail entry, [`0x02CA8420`] + slot × `0x3C0`:
 
@@ -234,7 +393,12 @@ Trail image, `0x01F2A220`:
 | `+0x0B` | `u8` | logW | 6 |
 | `+0x0C` | `u8` | logH | 6 |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured over the 1,066 `.cm` models in the archive; the model block is the `@FCP` chunk's payload.
 
@@ -257,16 +421,43 @@ produced by `Database/Tools/catalogues/bone_trails.py`.
 
 A descriptor's image reference is byte `+0`. When it is not 0, the draw reads an image header at section
 `+0x10` + count × `0x50`, right after the descriptors, with the pixel and palette offsets of words `+2` and `+4` and
-the sizes of bytes `+0xA` to `+0xF` (`0x0051BE6A`-`0x0051BF4A`). The byte is 0 in all 238, and every section ends at its
+the sizes of bytes `+0xA` to `+0xF`¹. The byte is 0 in all 238, and every section ends at its
 last descriptor (`section_span` = `0x10` + count × `0x50`), so every shipped trail draws the engine's image.
 
-`bone` indexes the skeleton's `0x290`-byte node records (`0x003711D0`), one for each `@FTR` node, so it is a `node` of
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051BE6A`-`0x0051BF4A` |
+
+</details>
+
+`bone` indexes the skeleton's `0x290`-byte node records¹, one for each `@FTR` node, so it is a `node` of
 [`model-files-cm-ca-ftr-nodes.tsv`](model-files-cm-ca-ftr-nodes.tsv), and each bone is below that model's node
 count.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003711D0` |
+
+</details>
+
 The commands sit only in `.ca` files: 4,516 under `monster`, 4,064 under `npc`, 1,737 under `chara` and 300 under
 `summon`, 4,254 with value 1 and 6,363 with value 0. The `weapon` and `gadget` folders hold no `.ca`, so their
-`commands_in_folder` is 0: a weapon's trails are reached through the character holding it (`0x00425E70`, `0x0042EF90`).
+`commands_in_folder` is 0: a weapon's trails are reached through the character holding it¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00425E70`, `0x0042EF90` |
+
+</details>
 
 | Column | Meaning |
 |---|---|
@@ -284,16 +475,32 @@ The commands sit only in `.ca` files: 4,516 under `monster`, 4,064 under `npc`, 
 | `record`, `sub_record`, `key` | the place in the `@FMC`, and the sub-record's key |
 | `file_offset`, `value`, `command_bytes` | the command's offset, byte `+2` (1 on, 0 off), the whole command in hex |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 - `[0x02CA8420]`: the sixteen entries; `0x02CA8400`-`0x02CA8410` the header.
 - `0x02CA8A90`: the parameter template.
 - Render record `+0x438`-`+0x444`: the owner's four handles; `+0x3D0` the commanded state.
 
+</details>
+
 ## Modding notes
 
 - `0x003E6770` finds the trail section with a 32-bit sum of the model block and its offset, sign-extended back to
-  64 bits (`0x003E6794`-`0x003E6796`), so a model block must sit below 2 GB.
+  64 bits¹, so a model block must sit below 2 GB.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E6794`-`0x003E6796` |
+
+</details>
 
 - A trail's length and direction come from the bone's length entry and x axis; the descriptor only picks the bone.
 - At most sixteen trails exist at once; a request beyond that makes nothing.
@@ -318,20 +525,26 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0036A100` | is called by | `0x00330310`, `0x003306E0` |
+| [`0x0036A100`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
 
 **Scripts and script commands**
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0036A100` | is called by | `0x0050D8F0` |
+| [`0x0036A100`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x0050D8F0`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) |
 
 **World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0036A100` | is called by | `0x00267930`, `0x003319D0`, `0x003EA820` |
+| [`0x0036A100`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00267930`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation)<br>[`0x003319D0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x003EA820`](../Game-Files-And-Data-Tables/ard-area-battle-data.md) Area ard: load or unload field resource (on ard area battle data) |
 
 </details>

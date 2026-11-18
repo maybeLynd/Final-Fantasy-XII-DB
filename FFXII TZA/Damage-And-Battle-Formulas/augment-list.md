@@ -46,16 +46,14 @@ fighting empty-handed.").
 
 Each line is read from the shipped files in these steps:
 
-1. the `st2e` table at entry `+0xEC`: 129 rows of 8 bytes from the section's `+0x20`;
-2. the name word `+0x02` through the word banks at entry `+0xF8`, and the text id `+0x00` through the text groups,
-   both as `0x0031C5D0`'s class-29 arm reads them (`0x0031E494`-`0x0031E559`);
-3. the reader of `+0x04` for each row, from the functions that load `0x02EBF040` (below);
-4. every one-byte text code through the glyph table of the shipped `us` font `font00.dat`
-   ([Fonts](../Menus-And-HUD/fonts.md));
-5. the license that grants each augment, from the license table ([License list](../Items-Equipment-Shops-And-Licenses/license-list.md));
-6. the Japanese name: the same name word in the `in` `battle_pack.bin`, decoded with the `jp` `font00.dat` as
-   `0x002AC2F0` reads a code: a byte from `0x20` is glyph byte − `0x20`, and a lead byte `0x10`-`0x1F` with the next
-   byte is glyph `[0x00916570 + 4 × (lead & 0xF)]` + next − `0x20` ([Fonts](../Menus-And-HUD/fonts.md)).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | the `st2e` table at entry `+0xEC`: 129 rows of 8 bytes from the section's `+0x20`; |   |
+| 2 | the name word `+0x02` through the word banks at entry `+0xF8`, and the text id `+0x00` through the text groups, both as `0x0031C5D0`'s class-29 arm reads them; | `0x0031E494`-`0x0031E559` |
+| 3 | the reader of `+0x04` for each row, from the functions that load `0x02EBF040` (below); |   |
+| 4 | every one-byte text code through the glyph table of the shipped `us` font `font00.dat` ([Fonts](../Menus-And-HUD/fonts.md)); |   |
+| 5 | the license that grants each augment, from the license table ([License list](../Items-Equipment-Shops-And-Licenses/license-list.md)); |   |
+| 6 | the Japanese name: the same name word in the `in` `battle_pack.bin`, decoded with the `jp` `font00.dat` as `0x002AC2F0` reads a code: a byte from `0x20` is glyph byte − `0x20`, and a lead byte `0x10`-`0x1F` with the next byte is glyph `[0x00916570 + 4 × (lead & 0xF)]` + next − `0x20` ([Fonts](../Menus-And-HUD/fonts.md)). |   |
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
@@ -88,25 +86,55 @@ Fifteen functions load `0x02EBF040`, at 111 instructions: `0x002FEF30`, `0x002F9
 
 - The first eight pick their rows by number and name only the rows in the table above.
 - `0x0030EA40`, `0x00385570` and `0x0038FF20` take any id. `0x0030EA40` reads `+0x04` through `0x00387020` and `0x0038FF20`
-  computes the same product inline (`0x0039005D`-`0x00390088`), both only for a slot `+0x06` below 8; `0x00385570` reads
+  computes the same product inline¹, both only for a slot `+0x06` below 8; `0x00385570` reads
   `+0x06` only. `0x0030EA40` calls `0x00387020` only when the timer it is given is negative
-  (`0x0030EAA3`-`0x0030EAB3`).
-- `0x00387020` does not read its first argument. For an id of `0xFF` it answers 0 (`0x00387028`-`0x00387030`).
+ ².
+- `0x00387020` does not read its first argument. For an id of `0xFF` it answers 0³.
   For any other id the row address is `(u32)(base + stride × id)`, where base is the answer of
   `0x0020E600` for the dword `+0x0C` of `[0x02EBF040]` and stride is the word `+0x08` of `[0x02EBF040]`
-  (`0x00387051`-`0x0038706E`). The answer is `word +0x04 × [0x01DFE0B4] × 30` as 32-bit integers
-  (`0x00387074`-`0x0038707F`).
+ ⁴. The answer is `word +0x04 × [0x01DFE0B4] × 30` as 32-bit integers
+ ⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039005D`-`0x00390088` |
+| ² | `0x0030EAA3`-`0x0030EAB3` |
+| ³ | `0x00387028`-`0x00387030` |
+| ⁴ | `0x00387051`-`0x0038706E` |
+| ⁵ | `0x00387074`-`0x0038707F` |
+
+</details>
 
   With `[0x02EBF040]` null, or a null answer of the first `0x0020E600` call, the row address is 0 and the
-  word at address 4 is read (`0x00387038`-`0x0038704F`, `0x00387072`-`0x00387074`).
+  word at address 4 is read¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00387038`-`0x0038704F`, `0x00387072`-`0x00387074` |
+
+</details>
 - `0x0031C5D0` reads `+0x00` and `+0x02`.
 
 No other instruction reaches the table, and no instruction writes it after `battle_pack.bin` is loaded. Every read of
 `+0x04` is one of the 28 in these functions: 23 take a fixed row, three in `0x002FEF30` take the 44 ids of its
 lists (the rows in the table above), and the two that take any id (`0x00387074` from `0x0030EA40`, `0x00390071` in
-`0x0038FF20`) read only a row whose slot `+0x06` is at most 7
-(`0x0030EA9D`, `0x0039001D`-`0x00390024`), which is true only of rows 55-57. So the values of rows 104-113 (1 each) and
+`0x0038FF20`) read only a row whose slot `+0x06` is at most 7¹, which is true only of rows 55-57. So the values of rows 104-113 (1 each) and
 128 (20) are read by no instruction.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030EA9D`, `0x0039001D`-`0x00390024` |
+
+</details>
 
 ### Augment 114, Essentials
 
@@ -121,14 +149,36 @@ augment to allow them:
 - No instruction tests augment 114 directly: bit `0x4` of the layer bytes `+0x76` or `+0x86`, or of the merged copy at
   context `+0x28`.
 - The four functions that test an augment by a computed id do not ask for 114: the stats rebuild takes its ids from
-  its three lists (`0x002FF5CA`-`0x002FF70F`), the enemy-order selector from the order (`0x00302494`), and the context
-  merge (`0x00384827`) and the timer pass `0x00385570` (`0x003855CD`) walk every id.
+  its three lists¹, the enemy-order selector from the order², and the context
+  merge³ and the timer pass `0x00385570`⁴ walk every id.
 - No instruction reads the Essentials license bit, owned-square byte `+0x197`, by itself.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF5CA`-`0x002FF70F` |
+| ² | `0x00302494` |
+| ³ | `0x00384827` |
+| ⁴ | `0x003855CD` |
+
+</details>
+
 So the commands are innate to every character. The row's help text, "Slightly raises max HP." (text id 13062),
-names an effect the code never applies: the max-HP list of the stats rebuild is rows 74-85 (`0x00D102B0`), its other
-two lists (`0x00D10290`, `0x00D102A0`) hold no 114 either, and no instruction tests augment 114 (above, and Project
+names an effect the code never applies: the max-HP list of the stats rebuild is rows 74-85¹, its other
+two lists² hold no 114 either, and no instruction tests augment 114 (above, and Project
 notes).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00D102B0` |
+| ² | `0x00D10290`, `0x00D102A0` |
+
+</details>
 
 ### Properties of the shipped rows
 
@@ -167,8 +217,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Graphics** (explained on [message windows](../Menus-And-HUD/message-windows.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002AC2F0` | is called by | `0x002AAE40` |
+| [`0x002AC2F0`](../Menus-And-HUD/text-drawing.md) (on text drawing) | is called by | [`0x002AAE40`](../Menus-And-HUD/text-drawing.md) (on text drawing) |
 
 </details>

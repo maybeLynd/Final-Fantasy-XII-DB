@@ -14,27 +14,62 @@ reshipped.
 ## Where it comes from
 
 The files are resource kind 7: `ps2data/image/ff12/myoshiok/<locale>/bin_menu/loca_<name>.cl2`. In the US kind-7
-path array (`0x01EC73A0`) id `0xE2` is `Loca_gil.cl2`, `0xE3` `Loca_bhm.cl2` and `0xE4` `Loca_rbl.cl2`.
+path array¹ id `0xE2` is `Loca_gil.cl2`, `0xE3` `Loca_bhm.cl2` and `0xE4` `Loca_rbl.cl2`.
 
-The map-data widget `0x02B457E0` loads `menumap_common.bin` (kind 7 `0xA4`) into its `+0xE8` (`0x003BC2D0`). The pane
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01EC73A0` |
+
+</details>
+
+The map-data widget `0x02B457E0` loads `menumap_common.bin` (kind 7 `0xA4`) into its `+0xE8`¹. The pane
 loader `0x003C1F00(widget, owner, descriptor, n)`, reached through `0x003C2190` from `0x002B7B80`, `0x002BAF80` and
 `0x003CB4F0`, takes a free pane (two, `0xA8` bytes apart from `+0x120`), requests `menumap_sub<n>.bin` (kind 7
 `0x142 + n`) through `0x00249180`, and then picks the colour table:
 
-1. It releases the table already at widget `+0x118` (`0x003697F0`) and clears the pointer.
-2. It finds the entry table in `menumap_common.bin` (the u16 at file `+8` is its offset: a u32 count, then 8-byte
-   entries) and, when `n` is below the count and byte `+1` of entry `n` is not 0, requests kind 7 id
-   `0xE1 + byte` through `0x00249210` into heap 3 (`0x003C2068`-`0x003C208D`), keeping the buffer at `+0x118`.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003BC2D0` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It releases the table already at widget `+0x118` and clears the pointer. | `0x003697F0` |
+| 2 | It finds the entry table in `menumap_common.bin` (the u16 at file `+8` is its offset: a u32 count, then 8-byte entries) and, when `n` is below the count and byte `+1` of entry `n` is not 0, requests kind 7 id `0xE1 + byte` through `0x00249210` into heap 3, keeping the buffer at `+0x118`. | `0x003C2068`-`0x003C208D` |
 
 The pane loader returns 0 and requests nothing when both panes are in use, or when one is in use and
 exactly one of the first 50 entries of `menumap_common.bin` has entry `n`'s group byte (an index at or past
 the count reads as group 0; `0x003C1F4D`, `0x003C1FC6`-`0x003C1FD3`). Otherwise it stores `n` at pane `+0x10` and
-the descriptor's byte `+0x10` at pane `+0x12`, passes the descriptor's dword `+0` to `0x00249180`
-(`0x003C1FFD`), and returns 1 (`0x003C20A4`).
+the descriptor's byte `+0x10` at pane `+0x12`, passes the descriptor's dword `+0` to `0x00249180`¹, and returns 1².
 
-All three callers build a descriptor with 2 in its dword `+0` and 2 at `+0x10` (`0x002B7CEF` and `0x002B7D00`,
-`0x002BB0F7` and `0x002BB108`, `0x003CB5CB` and `0x003CB5DF`), so every pane passes 2 to `0x00249180` and stores 2 at pane
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C1FFD` |
+| ² | `0x003C20A4` |
+
+</details>
+
+All three callers build a descriptor with 2 in its dword `+0` and 2 at `+0x10`¹, so every pane passes 2 to `0x00249180` and stores 2 at pane
 `+0x12`. The entry table and `+0x118` are read through `0x02B457E0`, the widget `0x003C2190` passes.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B7CEF` and `0x002B7D00`, `0x002BB0F7` and `0x002BB108`, `0x003CB5CB` and `0x003CB5DF` |
+
+</details>
 
 ## Layouts
 
@@ -70,10 +105,22 @@ The palette starts at `+0x10 + headerSize + imageSize`. The alpha byte is on the
 opaque.
 
 The file stays as loaded in its buffer at widget `+0x118`, and nothing writes to it. The atlas slot keeps a
-pointer to its palette (`+0x28`), and the upload copies the colours into the texture (`0x0017F503`) and rescales
+pointer to its palette (`+0x28`), and the upload copies the colours into the texture¹ and rescales
 the alpha there ([the upload](#the-upload)). The next pane load frees the buffer (step 1 of the pane loader).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017F503` |
+
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured over every `.cl2` in the archive and every `menumap_common.bin`.
 
@@ -98,24 +145,41 @@ entry's pictures carry that value.
   `bhm_b01`. Those pictures have the same pixel counts in all nine languages.
 - Locale ids 0, 6, 9 and 10 read the `in` copies; ids 1 to 5, 7, 8 and 11 read their own folder's (`us`,
   `fr`, `de`, `it`, `es`, `kr`, `ch`, `cn`). Every size table gives `0xE2` and `0xE3` their 2,112 bytes.
-- For an 8-bit picture `0x00181000` makes one 256-colour palette per 256 colours (`0x00181039`), so the 512
+- For an 8-bit picture `0x00181000` makes one 256-colour palette per 256 colours¹, so the 512
   colours are palettes 0 and 1. Within a palette, pixel value `v` takes colour `v` with its bits `0x8` and
-  `0x10` exchanged (`0x00181064`-`0x00181108`): colour 8 serves pixel value 16. Every pixel value from 0 to 255
+  `0x10` exchanged²: colour 8 serves pixel value 16. Every pixel value from 0 to 255
   occurs in the pictures.
 - The exchange runs only for a picture whose `clutType << 8 | imageType` is `0x105`, `0x205`, `0x305`,
-  `0x4104`, `0x4204` or `0x4304` (`0x00181064`-`0x00181095`); any other pair keeps the file's order (`0x00181111`).
+  `0x4104`, `0x4204` or `0x4304`³; any other pair keeps the file's order⁴.
   Every sloc picture in every folder (385 distinct pictures, 3,502 copies) has clut type 3 and image type 5, `0x305`.
-- Each palette becomes a 256 x 1 texture (`0x0017F3B0`, `0x00181122`), registered under the picture's name with
-  its palette number (`0x001B20B0`, `0x00181140`).
+- Each palette becomes a 256 x 1 texture⁵, registered under the picture's name with
+  its palette number⁶.
 - 239 colours of each 512-colour table have alpha `0xFF`, above the PS2 opaque `0x80`; the TSV marks them
   out of range, and the upload draws them at 255 like `0x80`. Every other alpha is at most `0x6F`.
 - `Loca_rbl.cl2` (`0xE4`, 32 colours, `ch` and `in`) is selected by no map entry: byte `+1` is 0 in the 46
   other entries of all nine `menumap_common.bin` copies, so the pane loader never asks for `0xE1 + 3`. The
   US, FR, DE, IT, ES, KR and CN size tables hold -1 for it.
 - A replacement keeps its palette at `0x10 + headerSize + imageSize`, `colours x 4` bytes long, and a count
-  below `0x4000`, or `0x0024A480` keeps no palette for the picture (`0x0024A4AA`). Colours past the last
+  below `0x4000`, or `0x0024A480` keeps no palette for the picture⁷. Colours past the last
   multiple of 256 serve no 8-bit picture. The read is sized by the size table, so a file of another size
   needs its entries changed.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00181039` |
+| ² | `0x00181064`-`0x00181108` |
+| ³ | `0x00181064`-`0x00181095` |
+| ⁴ | `0x00181111` |
+| ⁵ | `0x0017F3B0`, `0x00181122` |
+| ⁶ | `0x001B20B0`, `0x00181140` |
+| ⁷ | `0x0024A4AA` |
+
+</details>
+
+</details>
 
 ## Loader behaviour
 
@@ -133,17 +197,41 @@ picture whose atlas slot is still empty and whose offset is not -1, it:
 3. names the picture `loca_<a>_<b>` (`sprintf "loca_%d_%d"`) from the sub file's tables and registers it through
    `0x0024A480(picture, name, flags, palette, colours)`.
 
-`0x003C26C0` returns 0 when neither pane holds a file for `n` (`0x003C2704`). Otherwise it stores the picture count, the
-low byte of the table's first word, at pane `+0x13` and the key array at pane `+0x08` (`0x003C2730`-`0x003C273F`),
-walks that many entries and returns 1 (`0x003C2864`). The flags it registers with are the pane's byte `+0x12`
-(`0x003C2815`), and the handle goes into the atlas slot (`0x003C2829`). It also asks `0x0024A9E0` for the picture's
-own header and drops the answer (`0x003C27C7`).
+`0x003C26C0` returns 0 when neither pane holds a file for `n`¹. Otherwise it stores the picture count, the
+low byte of the table's first word, at pane `+0x13` and the key array at pane `+0x08`²,
+walks that many entries and returns 1³. The flags it registers with are the pane's byte `+0x12`⁴, and the handle goes into the atlas slot⁵. It also asks `0x0024A9E0` for the picture's
+own header and drops the answer⁶.
 
-`0x0024A480` registers the atlas (`0x0024A4E0`) and, for a colour count below `0x4000`, stores the count in bits
-`0x40000` and up of the slot's flags and the palette at slot `+0x28`, then builds the texture (`0x0024A1D0`) and
-returns the slot. The count compare is signed (`0x0024A4AA`); a larger count leaves `+0x28` at the 0 that
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C2704` |
+| ² | `0x003C2730`-`0x003C273F` |
+| ³ | `0x003C2864` |
+| ⁴ | `0x003C2815` |
+| ⁵ | `0x003C2829` |
+| ⁶ | `0x003C27C7` |
+
+</details>
+
+`0x0024A480` registers the atlas¹ and, for a colour count below `0x4000`, stores the count in bits
+`0x40000` and up of the slot's flags and the palette at slot `+0x28`, then builds the texture² and
+returns the slot. The count compare is signed³; a larger count leaves `+0x28` at the 0 that
 `0x0024A4E0` stored. The slot is not tested: with all 64 slots busy `0x0024A4E0` returns null, and the flag write
 at `0x0024A4B1` faults, or with a larger count `0x0024A1D0` is handed the null slot.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024A4E0` |
+| ² | `0x0024A1D0` |
+| ³ | `0x0024A4AA` |
+
+</details>
 
 ### The upload
 
@@ -152,32 +240,85 @@ type bytes (picture header `+0x12`, `+0x13`) to `0x00181000` for an 8-bit pictur
 the file's `clutType` and `imageType` never matter.
 
 Both reach `0x0017F3B0(colours, n, 1, 1)`, n 256 or 16, which creates an n x 1 texture of the format object
-`0x02CF7480` (`0x0060DD70`, `0x0017F433`), named `RGBA8` by `0x00163D00`. That initialiser builds the object through
+`0x02CF7480`¹, named `RGBA8` by `0x00163D00`. That initialiser builds the object through
 `0x00616210` with the name, `0xB`, `0x1F8`, 0 and four `0x1C`, and registers its teardown `0x008AF060` with
-`atexit` (`0x00808B90`). `0x0017F3B0` maps the texture (`0x0017EBD0`), copies the colours (`0x00679570`,
-`0x0017F503`), and rescales byte 3 of each to `min(255, trunc(a × 255 / 128))` (`0x0017F517`-`0x0017F54A`,
-factor 1/128 at `0x008C5B34`), then commits it (`0x0062C360`, `0x0017F572`).
+`atexit`². `0x0017F3B0` maps the texture³, copies the colours⁴, and rescales byte 3 of each to `min(255, trunc(a × 255 / 128))` (`0x0017F517`-`0x0017F54A`,
+factor 1/128 at `0x008C5B34`), then commits it⁵.
 
-A failed map skips the copy, the rescale and the commit (`0x0017F4D8`). A null mapped pointer skips only the
-copy, and the rescale then reads address 3 and faults (`0x0017F4E6`, `0x0017F520`). A null colour pointer
-returns the texture unfilled (`0x0017F4B9`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0060DD70`, `0x0017F433` |
+| ² | `0x00808B90` |
+| ³ | `0x0017EBD0` |
+| ⁴ | `0x00679570`, `0x0017F503` |
+| ⁵ | `0x0062C360`, `0x0017F572` |
+
+</details>
+
+A failed map skips the copy, the rescale and the commit¹. A null mapped pointer skips only the
+copy, and the rescale then reads address 3 and faults². A null colour pointer
+returns the texture unfilled³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017F4D8` |
+| ² | `0x0017F4E6`, `0x0017F520` |
+| ³ | `0x0017F4B9` |
+
+</details>
 
 The texture object is `0x188` bytes from `0x0085E730(0x188, 0, -1)`, cleared and built by
-`0x006160B0` (`0x0017F3E4`-`0x0017F40C`). After `0x0060DD70` the buffer count asked for, the
+`0x006160B0`¹. After `0x0060DD70` the buffer count asked for, the
 fourth argument and at least 1, is compared with the texture's buffer count
 `+0x30 & 0x7FFFFFFF`, taken as 1 when 0; when they differ
 `0x00628100(texture, count asked for)` runs, after the log line "Altering buffer count of
 PTexture2D whilst bound" when `0x00625F00` answers non-zero, and a 0 answer from `0x00628100`
-clears `+0x0C` (`0x0017F438`-`0x0017F480`).
+clears `+0x0C`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017F3E4`-`0x0017F40C` |
+| ² | `0x0017F438`-`0x0017F480` |
+
+</details>
 
 Bit `0x2` of the flag dword `+0x18` is cleared before `0x00610990` and bit `0x200` set
-after it (`0x0017F483`-`0x0017F48F`). `0x0061E200` runs when the object's first qword is not
-`0x02CF7A30` and `0x00625F00` answers 0 (`0x0017F496`-`0x0017F4B1`). When the commit `0x0062C360`
+after it¹. `0x0061E200` runs when the object's first qword is not
+`0x02CF7A30` and `0x00625F00` answers 0². When the commit `0x0062C360`
 answers 0 the dword `+0x0C` takes `[0x01F7F5A0] % count`, the buffer count, and the byte
-`+0x08` becomes 0 (`0x0017F553`-`0x0017F57E`).
+`+0x08` becomes 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017F483`-`0x0017F48F` |
+| ² | `0x0017F496`-`0x0017F4B1` |
+| ³ | `0x0017F553`-`0x0017F57E` |
+
+</details>
 
 The teardown `0x008AF060` frees nothing: it loads the address `0x02CF7480` and jumps to `0x0016D6A0`,
-which only returns (`0x008AF060`-`0x008AF067`).
+which only returns¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008AF060`-`0x008AF067` |
+
+</details>
 
 An alpha of `0x80` or more draws fully opaque; `0x6F` draws as
 221 of 255.
@@ -188,13 +329,22 @@ An alpha of `0x80` or more draws fully opaque; `0x6F` draws as
   same layout.
 - The game never checks `CLT2`, the version, the picture count, the sizes or the clut and image types. It reads
   `+0x18`, `+0x1C` and `+0x1E` and the palette they locate, and the picture count only as the bound of the
-  picture index (`0x0024A9E4`), which the reader passes as 0, so the header is at `+0x10` for any count.
+  picture index¹, which the reader passes as 0, so the header is at `+0x10` for any count.
 - Keep the image size 0 and the header size `0x30`, or move the palette to match `0x10 + headerSize + imageSize`.
 - Write alpha on the PS2 scale: `0x80` is opaque, and values above it saturate.
 - To recolour another map, set byte `+1` of its `menumap_common.bin` entry to `k`; the game then requests kind 7
   id `0xE1 + k`, which must be a shipped path with a size in the file-size tables.
 - `Loca_rbl.cl2` (`0xE4`) ships only in `ch` and `in`, so a byte of 3 would request a file missing in the other
   locales.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024A9E4` |
+
+</details>
 
 ## Related
 
@@ -212,8 +362,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Platform** (explained on [gi render commands](../Graphics/gi-render-commands.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0060DD70` | is called by | `0x00625830` |
+| [`0x0060DD70`](cl2-menu-colour-tables.md) | is called by | [`0x00625830`](../Graphics/gi-render-commands.md) (on gi render commands) |
 
 </details>

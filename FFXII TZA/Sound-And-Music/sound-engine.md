@@ -30,9 +30,23 @@ from a `SeadObject<a, b>` template:
 | `AudioBinaryFile` | 6 | the shared file container |
 | `Magi` | 1 | `Music` |
 
-A playing sound is a `Driver::Sound` (vtable `0x01CB5A30`) or a `Magi::Music` (`0x01CB5E38`); both implement
-`Driver::ISound` (`0x01CB58C8`), whose methods the driver's commands call. Each bank is an `OnMemoryBank` (`0x01CB83F8`)
-or a `StreamingBank` (`0x01CB84E8`), told apart by vtable slot 1: 1 (`0x007BD590`) or 2 (`0x007E3260`).
+A playing sound is a `Driver::Sound` (vtable `0x01CB5A30`) or a `Magi::Music`¹; both implement
+`Driver::ISound`², whose methods the driver's commands call. Each bank is an `OnMemoryBank`³
+or a `StreamingBank`⁴, told apart by vtable slot 1: 1⁵ or 2⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01CB5E38` |
+| ² | `0x01CB58C8` |
+| ³ | `0x01CB83F8` |
+| ⁴ | `0x01CB84E8` |
+| ⁵ | `0x007BD590` |
+| ⁶ | `0x007E3260` |
+
+</details>
 
 ### The three voice kinds
 
@@ -52,21 +66,16 @@ eight channels or format 0 and sets state 1.
 
 The voice pass calls `0x007E0B60` once per 256-frame block for every live source voice:
 
-1. It renders silence unless the voice is playing (state 3, `0x007E0B8C`) and holds a queued buffer (`+0xB0`,
-   `0x007E0B9C`).
-2. The step is the source rate over the device rate (`0x007AED00`), times the pitch `+0x108` (`0x007E0C0D`); a step of 0 or
-   less renders silence.
-3. When a marker sample `+0xA8` falls inside this block, it calls the producer's marker callback once and clears the
-   marker (`0x007E0C81`-`0x007E0CC5`).
-4. It builds the gain rows: for each source channel, eight output gains from the matrix at `+0x10C`, times the sample
-   scale, which is 1/32767 (`0x01CB83E8`) for 16-bit input and 1.0 for float (`0x007E0CE1`-`0x007E0DA4`).
-5. A negative start offset `+0xA0` is a start delay: the voice renders zeros and counts it up (`0x007E0DA9`-`0x007E0E6F`).
-6. It ramps the gain from the current `+0x104` to the target `+0x100` across the block (`0x007E0E71`-`0x007E0EBE`). A step
-   of exactly 1.0 copies samples; any other step resamples linearly (`0x007E0EDC`).
-7. When a buffer runs out, it retires it (`0x007E0F21`-`0x007E0F6A`) and calls the producer's buffer callback, slot 1
-   (`0x007E0F70`-`0x007E0F99`). That callback decodes and queues the next buffer, so decoding runs on the device thread.
-8. It runs each effect on the block (`0x007E2418`-`0x007E2457`). It then mixes into each send: a kind 1 destination
-   through `0x007DFE30`, a kind 2 through `0x007E0550` (`0x007E2462`-`0x007E2525`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It renders silence unless the voice is playing (state 3, `0x007E0B8C`) and holds a queued buffer (`+0xB0`, `0x007E0B9C`). |   |
+| 2 | The step is the source rate over the device rate, times the pitch `+0x108`; a step of 0 or less renders silence. | `0x007AED00`<br>`0x007E0C0D` |
+| 3 | When a marker sample `+0xA8` falls inside this block, it calls the producer's marker callback once and clears the marker. | `0x007E0C81`-`0x007E0CC5` |
+| 4 | It builds the gain rows: for each source channel, eight output gains from the matrix at `+0x10C`, times the sample scale, which is 1/32767 for 16-bit input and 1.0 for float. | `0x01CB83E8`<br>`0x007E0CE1`-`0x007E0DA4` |
+| 5 | A negative start offset `+0xA0` is a start delay: the voice renders zeros and counts it up. | `0x007E0DA9`-`0x007E0E6F` |
+| 6 | It ramps the gain from the current `+0x104` to the target `+0x100` across the block. A step of exactly 1.0 copies samples; any other step resamples linearly. | `0x007E0E71`-`0x007E0EBE`<br>`0x007E0EDC` |
+| 7 | When a buffer runs out, it retires it and calls the producer's buffer callback, slot 1. That callback decodes and queues the next buffer, so decoding runs on the device thread. | `0x007E0F21`-`0x007E0F6A`<br>`0x007E0F70`-`0x007E0F99` |
+| 8 | It runs each effect on the block. It then mixes into each send: a kind 1 destination through `0x007DFE30`, a kind 2 through `0x007E0550`. | `0x007E2418`-`0x007E2457`<br>`0x007E2462`-`0x007E2525` |
 
 A source voice queues at most two buffers. `0x007E0A40` refuses a third, and refuses a byte count that is not a whole
 number of frames (`(format 1 ? 2 : 4) x channels` bytes).
@@ -75,7 +84,17 @@ number of frames (`(format 1 ? 2 : 4) x channels` bytes).
 
 A `Driver::Voice` (vtable `0x01CB92A8`) feeds a source voice from one bank material. `Voice::Initialize` `0x007EBAD0`
 reads the material's channels (byte `+4`), codec (byte `+5`) and rate (dword `+8`), and opens a decoder by codec:
-the HCA decoder (`0x00123870`, `0x00123A50`) or the Vorbis stream (`0x007F5970`). The feed below runs the block decoders:
+the HCA decoder¹ or the Vorbis stream². The feed below runs the block decoders:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00123870`, `0x00123A50` |
+| ² | `0x007F5970` |
+
+</details>
 
 | Codec | Format | Block decoder, run by the feed |
 |---:|---|---|
@@ -84,11 +103,23 @@ the HCA decoder (`0x00123870`, `0x00123A50`) or the Vorbis stream (`0x007F5970`)
 | 3 | Ogg Vorbis | `0x007F6750` |
 | 7 | CRI HCA, to float | `0x001242F0` |
 
-Any other codec prints "Voice::Initialize failed no support format!!! %d" (`0x007EC6BA`) and the voice does not play.
-Every voice gets a `SimpleFilter` as effect 0 (`0x007EA003`); a sound effect of type 6 adds a `Flanger` (`0x007D99E0`),
-and a music whose header is version 1 or later with bit `0x1` of `+0x0A` set adds a `GranularPitchShift`
-(`0x007DA0A0`, `0x007ED186`-`0x007ED19A`), built bypassed; no shipped music sets that bit. The sends go to the bus the sound header names, or to a master
-port, falling back to port 1 (`0x007EA460`).
+Any other codec prints "Voice::Initialize failed no support format!!! %d"¹ and the voice does not play.
+Every voice gets a `SimpleFilter` as effect 0²; a sound effect of type 6 adds a `Flanger`³,
+and a music whose header is version 1 or later with bit `0x1` of `+0x0A` set adds a `GranularPitchShift`⁴, built bypassed; no shipped music sets that bit. The sends go to the bus the sound header names, or to a master
+port, falling back to port 1⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007EC6BA` |
+| ² | `0x007EA003` |
+| ³ | `0x007D99E0` |
+| ⁴ | `0x007DA0A0`, `0x007ED186`-`0x007ED19A` |
+| ⁵ | `0x007EA460` |
+
+</details>
 
 The feed `0x007EAA60` runs from the voice's buffer callback `0x007ED4C0`:
 
@@ -123,39 +154,105 @@ A `Voice` keeps its source voice at `+0x68` and a state at `+0x70`: 1 once open,
 
 A value that is not a finite number prints "set invalid volume!!", "set invalid pitch!!", "set invalid lowpass value!!"
 or "set invalid granular pitch value!!". `0x007EBA40` gives a time read from the source voice, and `0x007EE430` and
-`0x007EE450` pass two values on to it (`0x007E2660`, `0x007E2680`).
+`0x007EE450` pass two values on to it¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007E2660`, `0x007E2680` |
+
+</details>
 
 The decoders read an in-memory material through three callbacks `Voice::Initialize` hands them: `0x007EE730` copies
 whole frames from the read position `+0x138`, `0x007EE7C0` sets that position and `0x007EE900` returns it. A streamed
-material is read through `0x007EE800`, which takes the bank's stream for this voice (`0x007E2EB0`, `0x007E31B0`).
+material is read through `0x007EE800`, which takes the bank's stream for this voice¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007E2EB0`, `0x007E31B0` |
+
+</details>
 
 ### The HCA mixer
 
 `HCAMixerVoice` (slot 1 `0x007DD040`) mixes several HCA inputs through the CRI mixer `0x00121D40` into one source voice.
 It is built only by `0x007DCD70`, the only writer of `[0x02EAE088]`, when the configuration's `hcam` flag is set. A voice
-joins it instead of opening its own source voice only when its HCA header byte `+0xC` is set (`0x007DCAA0`).
+joins it instead of opening its own source voice only when its HCA header byte `+0xC` is set¹.
 
-`0x007DC6B0` builds the mixer voice, and `0x007DC730` frees its CRI mixer (`0x00121030`), buffers and inputs. `0x007DCAC0`
-joins an input: it registers the voice with the CRI mixer (`0x00121770`) and appends it to the input list (`0x007DCB50`),
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007DCAA0` |
+
+</details>
+
+`0x007DC6B0` builds the mixer voice, and `0x007DC730` frees its CRI mixer¹, buffers and inputs. `0x007DCAC0`
+joins an input: it registers the voice with the CRI mixer² and appends it to the input list³,
 whose nodes `0x007DCC60` builds.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00121030` |
+| ² | `0x00121770` |
+| ³ | `0x007DCB50` |
+
+</details>
 
 ### The external source
 
 `ExternalSourceVoice` (slot 1 `0x007B93A0`) is a voice its caller feeds with 16-bit buffers through `0x007B93E0`.
-`0x006794D0` is its only creator; it opens it at 48000 Hz with three buffers of 48000 frames each
-(`0x006794FC`-`0x00679533`).
+`0x006794D0` is its only creator; it opens it at 48000 Hz with three buffers of 48000 frames each¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006794FC`-`0x00679533` |
+
+</details>
 
 `0x007A4930` is the driver call behind it: it allocates `0x520` bytes, builds the object (`0x007B8D40`; `0x007B8E50` puts
-back its base vtables) and opens it (`0x007B9050`), returning its `IExternalSourceVoice` interface at `+0x08` or freeing
+back its base vtables) and opens it¹, returning its `IExternalSourceVoice` interface at `+0x08` or freeing
 it on failure. `0x007B9590` moves queued caller blocks, from a 32-entry queue at `+0x78`, into the source voice's buffers
 while it holds fewer than two, and `0x007B9AF0`, run for each external source by the update pass, advances its volume
 and pitch ramps.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B9050` |
+
+</details>
+
 The movie player's `ExternalVoice` wraps it. `0x00679130` builds the wrapper with two events at `+0x30` and `+0x48`,
-and `0x006792C0` closes them (`0x005CD700`) and puts back the driver's `ExternalVoiceCallback` vtable.
-`0x0067A240(voice, samples, bytes)`, from the movie audio feed `0x00679600`, waits on `+0x48` (`0x005CD840`) and copies
+and `0x006792C0` closes them¹ and puts back the driver's `ExternalVoiceCallback` vtable.
+`0x0067A240(voice, samples, bytes)`, from the movie audio feed `0x00679600`, waits on `+0x48`² and copies
 the block into buffer `count % 3` of `+0x10`, `+0x18` and `+0x20`. The first time, with `+0x40` clear, it queues the
-buffer at `+0x10` on the source (slot 1), signals `+0x30` (`0x005CD5E0`) and sets `+0x40`.
+buffer at `+0x10` on the source (slot 1), signals `+0x30`³ and sets `+0x40`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CD700` |
+| ² | `0x005CD840` |
+| ³ | `0x005CD5E0` |
+
+</details>
 
 ### Output format and the device
 
@@ -172,19 +269,29 @@ The driver's start-up `0x007AEF30` fixes the mix format:
 
 The device asks for each block through `0x007DF690`, which runs `0x007AF740` under the lock `0x02EAE0B0`:
 
-1. With `[0x02EAD390]` = 1 every master buffer is zeroed and sent.
-2. Otherwise it runs the voice pass `0x007B0000`.
-3. For each master it copies the mix clamped to -1 to 1 when the device has eight channels, or folds it down through
-   `0x007B0B80` otherwise; it resamples with `0x007B0390` when the device rate is not 48000.
-4. It hands the block to the device (`0x007DF3F0`), and updates a per-channel peak meter at `[0x02EAD378]`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | With `[0x02EAD390]` = 1 every master buffer is zeroed and sent. |   |
+| 2 | Otherwise it runs the voice pass `0x007B0000`. |   |
+| 3 | For each master it copies the mix clamped to -1 to 1 when the device has eight channels, or folds it down through `0x007B0B80` otherwise; it resamples with `0x007B0390` when the device rate is not 48000. |   |
+| 4 | It hands the block to the device, and updates a per-channel peak meter at `[0x02EAD378]`. | `0x007DF3F0` |
 
 The two output ports are `WASAPI::AudioRenderer` objects at `0x02EAE0B8` and `0x02EAE0C0`, built by `0x007DDED0` (`0x007DD2B0`;
 `0x007DD360` stops and frees one) with two callbacks, `0x007DF690` and `0x007DF660`; the second runs the function the start-up
 block gives at `0x02EAE0A8` under the lock `0x02EAE0B0`.
 
 `0x007DDD60` and `0x007DDE20` give a port's channel count and rate. `0x007DD980` reads a device
-format: 16-bit PCM gives sample kind 2 and float gives 1. A renderer takes requests through a four-entry ring
-(`0x007DDC20`) and output blocks through another (`0x007DF340`); `0x007DD410` releases a `WASAPIDevice`'s interfaces.
+format: 16-bit PCM gives sample kind 2 and float gives 1. A renderer takes requests through a four-entry ring¹ and output blocks through another²; `0x007DD410` releases a `WASAPIDevice`'s interfaces.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007DDC20` |
+| ² | `0x007DF340` |
+
+</details>
 
 When a device changes, `0x007AF570` prints "Device Changed! [%d][Channel:%d][SamplingRate:%d]" and reallocates the
 port's four output buffers for 1.1 blocks at the new rate and channel count, cut to a whole frame.
@@ -192,22 +299,66 @@ port's four output buffers for 1.1 blocks at the new rate and channel count, cut
 ### The voice factory, pass and lifecycle
 
 `0x007AEA20(out, rate, channels, format, callback, ..., heap)` builds a source voice. With `heap` 0 it takes one from
-the pool `0x02EAD250` and links it into the list `0x02EAD2A0`; with `heap` 1 it allocates 0x2B8 bytes (`0x007AD460`) and
-links it into `0x02EAD300` (`0x007AF490`).
+the pool `0x02EAD250` and links it into the list `0x02EAD2A0`; with `heap` 1 it allocates 0x2B8 bytes¹ and
+links it into `0x02EAD300`².
 
-The `heap` byte is tested against 0 only (`0x007AEA3A`), and an allocated block is zeroed first (`0x007AEB3B`). Either
-way the constructor `0x007E0650` runs on the block (`0x007AEA6C`, `0x007AEB43`), a buffer comes from `0x02EAD200`
-(`0x007AEA84`, `0x007AEB5B`), and the open call `0x007E0980` gets the other arguments and that buffer; its result is not
-tested (`0x007AEAD7`, `0x007AEBAE`).
+<details>
+<summary>Where in the code</summary>
 
-A pooled voice is linked by `0x007AF380` while the lock `0x02EAD138` is held (`0x007AEADC`-`0x007AEB01`), an allocated one
-while `0x02EAD160` is held (`0x007AEBB3`-`0x007AEBD6`), each through `EnterCriticalSection` and `LeaveCriticalSection`.
-`0x007AEA20` then stores the voice at `out` and returns 0 (`0x007AEB07`, `0x007AEBDC`). An empty pool, a failed
-allocation or a null from the constructor stores 0 at `out` and returns -1 (`0x007AEBE3`-`0x007AEBE6`).
+| | Code |
+|---|---|
+| ¹ | `0x007AD460` |
+| ² | `0x007AF490` |
 
-`Voice::Initialize` (`0x007ED303`) and the HCA mixer (`0x007DCE64`) give 0; the external source
-(`0x007B91BC`) gives 1. `0x007E0650` builds a source voice and `0x007E0720` tears one down; `0x007AED10` and `0x007AEE20` build
+</details>
+
+The `heap` byte is tested against 0 only¹, and an allocated block is zeroed first². Either
+way the constructor `0x007E0650` runs on the block³, a buffer comes from `0x02EAD200`⁴, and the open call `0x007E0980` gets the other arguments and that buffer; its result is not
+tested⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AEA3A` |
+| ² | `0x007AEB3B` |
+| ³ | `0x007AEA6C`, `0x007AEB43` |
+| ⁴ | `0x007AEA84`, `0x007AEB5B` |
+| ⁵ | `0x007AEAD7`, `0x007AEBAE` |
+
+</details>
+
+A pooled voice is linked by `0x007AF380` while the lock `0x02EAD138` is held¹, an allocated one
+while `0x02EAD160` is held², each through `EnterCriticalSection` and `LeaveCriticalSection`.
+`0x007AEA20` then stores the voice at `out` and returns 0³. An empty pool, a failed
+allocation or a null from the constructor stores 0 at `out` and returns -1⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AEADC`-`0x007AEB01` |
+| ² | `0x007AEBB3`-`0x007AEBD6` |
+| ³ | `0x007AEB07`, `0x007AEBDC` |
+| ⁴ | `0x007AEBE3`-`0x007AEBE6` |
+
+</details>
+
+`Voice::Initialize`¹ and the HCA mixer² give 0; the external source³ gives 1. `0x007E0650` builds a source voice and `0x007E0720` tears one down; `0x007AED10` and `0x007AEE20` build
 the two fixed source lists.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007ED303` |
+| ² | `0x007DCE64` |
+| ³ | `0x007B91BC` |
+
+</details>
 
 The masters and buses take their blocks from the same pool `0x02EAD250`. `0x007AE930(out, ..., port)` builds the master
 of an output port (`0x007DF930`, then `0x007DFB20` with a buffer from `0x02EAD200`), and `0x007AEC10` builds a submix
@@ -215,10 +366,11 @@ of an output port (`0x007DF930`, then `0x007DFB20` with a buffer from `0x02EAD20
 
 The voice pass `0x007B0000` runs once per block:
 
-1. It clears the masters (`0x007DFA50`) and each submix (`0x007E0040`).
-2. It walks the pooled sources, then the allocated ones. A source in state 4 is unlinked, its buffer and object are
-   returned, and its destructor runs; every other source renders (`0x007E0B60`).
-3. It finishes the submixes (`0x007E01F0`) and then the masters (`0x007DFBB0`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It clears the masters and each submix. | `0x007DFA50`<br>`0x007E0040` |
+| 2 | It walks the pooled sources, then the allocated ones. A source in state 4 is unlinked, its buffer and object are returned, and its destructor runs; every other source renders. | `0x007E0B60` |
+| 3 | It finishes the submixes and then the masters. | `0x007E01F0`<br>`0x007DFBB0` |
 
 A source voice moves from open (1) to playing (3, slot 3 `0x007E2710`) or paused (2, slot 4 `0x007E2760`), and stop (slot 5
 `0x007E07F0`) sets 4, which the next pass retires.
@@ -231,8 +383,17 @@ drains the queue in order in `0x007AB5C0`, by the action's type through the 54-e
 
 Types `0x00`-`0x04`, `0x07` and `0x08` first find a category with `0x007AAA20(id)`: entry `id` of the table at
 `[0x02EAD008]` while `id` is below `[0x02EAD000]`, and the arm does nothing when that is null. A category's sound list is at `+0x28` of its `+0x58` object, or of
-the category itself when `+0x58` is null. A ramp (`0x007CA560`) moves a value from where it is now to a target over
+the category itself when `+0x58` is null. A ramp¹ moves a value from where it is now to a target over
 a time.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007CA560` |
+
+</details>
 
 | Types | Arms | Does |
 |---|---|---|
@@ -255,8 +416,17 @@ a time.
 | `0x34`, `0x35` | `0x007B4A00(0)` then `0x007AF560`, a jump to `0x007DF620`; `0x007B48F0(0)` then `0x007AF540`, a jump to `0x007DF560` | two arms that reach the output renderer |
 
 `0x007AB1E0` turns the action's handle into a sound by its low byte: 2 through `0x007B44C0`, 8 through `0x007B77E0` and 9
-through `0x007B7FD0`. The arm then calls one slot of that object's vtable, `Driver::Sound` (`0x01CB5A30`) or `Magi::Music`
-(`0x01CB5E38`); `0x007AC3D0` only returns -1.
+through `0x007B7FD0`. The arm then calls one slot of that object's vtable, `Driver::Sound`¹ or `Magi::Music`²; `0x007AC3D0` only returns -1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01CB5A30` |
+| ² | `0x01CB5E38` |
+
+</details>
 
 | Type | Slot | `Driver::Sound` | `Magi::Music` |
 |---|---|---|---|
@@ -292,19 +462,47 @@ sound and `0x1C` for music), pause `0x007A8590` (5) and set volume `0x007A81F0` 
 | job worker | `0x007B6D40`, started at `0x007B6FE4` | runs the jobs of a 48-entry ring (`0x02EAD8B0`) |
 
 The update thread takes its priority from start-up block `+0x44` (`SetThreadPriority`, `0x007A524E`) and its affinity
-mask from `+0x4C` (`SetThreadAffinityMask`, `0x007A5263`); the spatial thread's mask is `0x7C` (`0x002108D6`). The sample
-thread's priority comes from the device's start-up block (`0x007DEA45`).
+mask from `+0x4C` (`SetThreadAffinityMask`, `0x007A5263`); the spatial thread's mask is `0x7C`¹. The sample
+thread's priority comes from the device's start-up block².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002108D6` |
+| ² | `0x007DEA45` |
+
+</details>
 
 ### Identity and diagnostics
 
-The driver start-up `0x007A4D50` prints "master version 16.7.14.A" from the format "%s version %X.%X.%X.%X"
-(`0x01CB42E0`, `0x007A4D86`-`0x007A4DBD`). The CRI libraries carry "HCA Mixer Ver.2.00.00 Build:Jul 31 2015 16:45:20"
-(`0x01CB7AC0`) and "HCA Decoder (Float) Ver.2.05.00 Build:Jul 31 2015 16:45:20" (`0x01CBA5D0`).
+The driver start-up `0x007A4D50` prints "master version 16.7.14.A" from the format "%s version %X.%X.%X.%X"¹. The CRI libraries carry "HCA Mixer Ver.2.00.00 Build:Jul 31 2015 16:45:20"² and "HCA Decoder (Float) Ver.2.05.00 Build:Jul 31 2015 16:45:20"³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01CB42E0`, `0x007A4D86`-`0x007A4DBD` |
+| ² | `0x01CB7AC0` |
+| ³ | `0x01CBA5D0` |
+
+</details>
 
 The exe holds 159 strings starting "[sead]": 116 errors, 25 warnings and 18 info lines. They are referenced from 208
-places in 90 functions; `Voice::Initialize` alone has 27. Each is formatted (`0x0019C5D0`) and written with
+places in 90 functions; `Voice::Initialize` alone has 27. Each is formatted¹ and written with
 `OutputDebugStringA`, then passed to the sink `0x007A5570`. The sink forwards it to the game's audio callback object
 (vtable `0x00906A18`), whose slot 3 `0x0016D6A0` is a bare `ret`, so the messages reach only the debug output.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019C5D0` |
+
+</details>
 
 | Group | Strings | Checks |
 |---|---:|---|
@@ -319,10 +517,19 @@ places in 90 functions; `Voice::Initialize` alone has 27. Each is formatted (`0x
 ### The time-unit converter
 
 `0x007F31F0(meter, value, from, to)` converts a music time between units through a sample count. A value of 0, or a
-meter rate `+0x30` of 0 or less, gives 0. The value test is an unordered compare, so a NaN value gives 0 as well
-(`0x007F3217`). A rate of 0 or less first prints "[sead][!!error!!]Can't convert time in current meter.
-currentMeter_.sampleRate = %d" through `OutputDebugStringA` and the sink `0x007A5570` (`0x007F3227`-`0x007F3280`). The
+meter rate `+0x30` of 0 or less, gives 0. The value test is an unordered compare, so a NaN value gives 0 as well¹. A rate of 0 or less first prints "[sead][!!error!!]Can't convert time in current meter.
+currentMeter_.sampleRate = %d" through `OutputDebugStringA` and the sink `0x007A5570`². The
 units are:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007F3217` |
+| ² | `0x007F3227`-`0x007F3280` |
+
+</details>
 
 | Unit | To samples | Without the meter's counts (byte `+0x18`) |
 |---:|---|---|
@@ -332,16 +539,42 @@ units are:
 | 3 | x `[+0x28]` | 0.5 s |
 | 4 | x `[+0x2C]` | 2 s |
 
-The sample count is truncated to a whole number (`0x007F3321`); on the way out units 2 and 3 divide by the whole
-numbers `rate / 8` and `rate / 2` (`0x007F33CB`, `0x007F339B`). A unit above 4 gives 0. The music commands `0x007C92F0` and
+The sample count is truncated to a whole number¹; on the way out units 2 and 3 divide by the whole
+numbers `rate / 8` and `rate / 2`². A unit above 4 gives 0. The music commands `0x007C92F0` and
 `0x007CC4A0` call it.
 
-On the way out, unit 0 is `samples / rate` (`0x007F33FC`) and unit 1 the sample count itself (`0x007F33E4`). With the
-meter's counts, units 2, 3 and 4 are `samples / [+0x24]`, `samples / [+0x28]` and `samples / [+0x2C]` (`0x007F33C5`,
-`0x007F3395`, `0x007F3363`); without them unit 4 is `samples / (rate * 2)` (`0x007F336C`-`0x007F3377`). A `from` unit above
-4 gives a sample count of 0 (`0x007F328A`, `0x007F32AB`), and a `to` unit above 4 returns 0 (`0x007F3348`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007F3321` |
+| ² | `0x007F33CB`, `0x007F339B` |
+
+</details>
+
+On the way out, unit 0 is `samples / rate`¹ and unit 1 the sample count itself². With the
+meter's counts, units 2, 3 and 4 are `samples / [+0x24]`, `samples / [+0x28]` and `samples / [+0x2C]`³; without them unit 4 is `samples / (rate * 2)`⁴. A `from` unit above
+4 gives a sample count of 0⁵, and a `to` unit above 4 returns 0⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007F33FC` |
+| ² | `0x007F33E4` |
+| ³ | `0x007F33C5`, `0x007F3395`, `0x007F3363` |
+| ⁴ | `0x007F336C`-`0x007F3377` |
+| ⁵ | `0x007F328A`, `0x007F32AB` |
+| ⁶ | `0x007F3348` |
+
+</details>
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Over the `mtrl` chunks of all 4,609 `.sab` and 116 `.mab` banks:
 
@@ -352,17 +585,40 @@ Over the `mtrl` chunks of all 4,609 `.sab` and 116 `.mab` banks:
 | `.orb.sab` (`shout`) | 4 | 1,329 |
 | `.mab` | 7 (HCA) | 348 |
 
-The game names its banks with the `.win.sab` suffix (`0x00908998`), so every material it loads is HCA; the `.orb`
+The game names its banks with the `.win.sab` suffix¹, so every material it loads is HCA; the `.orb`
 copies use codec 4, which `Voice::Initialize` does not accept. HCA header byte `+0xC` is 0 in all 10,184 HCA materials, so the HCA mixer is
 never used; byte `+0xD` is 1 in the 348 music materials and 0 in the rest. 11,374 materials are 48000 Hz and 139 are
 44100 Hz; 7,759 are mono and 3,754 stereo. The two codec-0 materials, both in `se000`, have rate 0 and 0 channels.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00908998` |
+
+</details>
+
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 ### Threads and the device
 
 `0x007A5550`, the start routine of every driver thread, calls the function at `+0x08` of the block it is given with the
-argument at `+0x10` (`0x007A5557`-`0x007A555B`). All of these are 0 in the file unless shown.
+argument at `+0x10`¹. All of these are 0 in the file unless shown.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A5557`-`0x007A555B` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -392,14 +648,32 @@ argument at `+0x10` (`0x007A5557`-`0x007A555B`). All of these are 0 in the file 
 | `0x02EAE098` | `void*` | 0 | that buffer, allocated with tag 5 (`0x007AD550`) and zeroed | `0x007DCD70` (`0x007DCDB1`) | `0x007DCE20` (`0x007DCFF9`); `0x007DD040` (`0x007DD1E6`) |
 | `0x02EAE0A0` | `void*` | 0 | the block callback from the device block `+0x08`, `0x007AF740` (`0x007AEFEC`) | `0x007DDED0` (`0x007DDEFA`) | called by `0x007DF690` under the lock `0x02EAE0B0` when the device asks for a block (`0x007DF6AA`) |
 
-The one address taken near the update thread's block, `0x02EACF68` (`0x007A4190`, `0x008A5AF0`), is a one-time
+The one address taken near the update thread's block, `0x02EACF68`¹, is a one-time
 initialisation guard and reaches none of it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A4190`, `0x008A5AF0` |
+
+</details>
 
 ### The external sources
 
 The update pass keeps every open external source in a list linked through each source's `+0x4F0` (previous) and
 `+0x4F8` (next); `0x007B9050` puts a newly opened source at the front, and `0x007B99B0` takes out a source whose byte
-`+0x488` is set and whose `+0x68` object's slot 2 answers 0 or less (`0x007B99F2`-`0x007B9A86`).
+`+0x488` is set and whose `+0x68` object's slot 2 answers 0 or less¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B99F2`-`0x007B9A86` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -437,6 +711,8 @@ address" names the helpers a function hands the list to.
 
 No other instruction reaches these globals.
 
+</details>
+
 ## Modding notes
 
 - A replacement sound can be 16-bit PCM (codec 1), Microsoft ADPCM (2), Ogg Vorbis (3) or HCA (7); the driver plays
@@ -463,8 +739,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sead** (explained on [sound driver objects](sound-driver-objects.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x007AD550` | is called by | `0x007A52E0` |
+| [`0x007AD550`](sound-engine-config.md) (on sound engine config) | is called by | [`0x007A52E0`](sound-driver-objects.md) (on sound driver objects) |
 
 </details>

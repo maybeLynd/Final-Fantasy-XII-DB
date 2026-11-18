@@ -25,19 +25,12 @@ Every trap belongs to the field's zone script. The script header's word `+0x6C` 
 `{u32 count = 1; u32 packedRef}`, and `0x002641B0(slot, index)` resolves entry `index` of that list
 for manager `slot` ([section 000](../EBP-Script-Files/ebp-script-image.md)):
 
-1. the manager record (`0x02098E10` + `0x288` × `slot`) must have `+0x10` bit `0x1` set and an image
-   loaded, the header offset `+0x6C` must decode to a non-zero address (`0x0020E600`) and `index` must
-   be below the list's count (`0x002641D1`-`0x00264201`), else the result is 0;
-2. the reference's tag (bits `0x7000000`) must not be 2, and a zero reference means the script has no
-   table (`0x00264207`-`0x0026421A`);
-3. the table is `0x00265770(record, tag) + (reference & 0xFFFFFF)` (`0x00264221`-`0x00264233`); for tag 3,
-   every shipped reference, the base is the script image plus its header word `+0x40`
-   ([the storage classes](../Scripts-And-Script-Commands/script-variables.md));
-   - `0x00265770` gives for tag 0 the record's `+0x48`, for 1 its `+0x40`, for 2 the result of the call
-     through its `+0x98`, for 4 its `+0x58` and for 5 its `+0x60` (`0x00265794`-`0x002657B1`);
-   - for tags 6 and 7 it gives 0 (`0x002657B9`), so the reference's low 24 bits are returned as they are;
-4. the table is `{u32 count; u32 offset[count]}`, each offset relative to the table's own start,
-   and each record is twelve bytes (Layouts).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | the manager record (`0x02098E10` + `0x288` × `slot`) must have `+0x10` bit `0x1` set and an image loaded, the header offset `+0x6C` must decode to a non-zero address and `index` must be below the list's count, else the result is 0; | `0x0020E600`<br>`0x002641D1`-`0x00264201` |
+| 2 | the reference's tag (bits `0x7000000`) must not be 2, and a zero reference means the script has no table; | `0x00264207`-`0x0026421A` |
+| 3 | the table is `0x00265770(record, tag) + (reference & 0xFFFFFF)`; for tag 3, every shipped reference, the base is the script image plus its header word `+0x40` ([the storage classes](../Scripts-And-Script-Commands/script-variables.md));<br>• `0x00265770` gives for tag 0 the record's `+0x48`, for 1 its `+0x40`, for 2 the result of the call through its `+0x98`, for 4 its `+0x58` and for 5 its `+0x60`;<br>• for tags 6 and 7 it gives 0, so the reference's low 24 bits are returned as they are; | `0x00264221`-`0x00264233`<br>`0x00265794`-`0x002657B1`<br>`0x002657B9` |
+| 4 | the table is `{u32 count; u32 offset[count]}`, each offset relative to the table's own start, and each record is twelve bytes (Layouts). |   |
 
 ### Arming the traps
 
@@ -46,58 +39,110 @@ operand, resolves it through `0x002E9A60` (a packed reference `0x1000000` or abo
 manager's `+0x100` table by `0x00263F80`; a small number is mapped by `0x002EB7A0`: 0 and 1 to
 `0x630000`, 8 and 9 to `0x6E0001`, 12 and 13 to `0x770002`) and calls `0x003EC630(resource)`:
 
-1. the previous marker resource `0x02B5EC94`, if any, is released (`0x002EBD60(prev, 0)`,
-   `0x002E3DC0(prev)`) and `0x02B5EC94` becomes 0 (`0x003EC654`);
-2. when the new resource is non-zero, it is stored, its load flag set (`0x002EBD60(resource, 1)`: bit
-   `0x1` of byte `+0x19` of the matching entry in the resource lists at `0x0215FD58` and `0x0215FD78`),
-   and the arming walk `0x002FA740` runs (its only caller, `0x003EC679`);
-3. a resource of 0 stops after the release, with `0x02B5EC94` left at 0 and no arming walk
-   (`0x003EC65E`, `0x003EC67E`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | the previous marker resource `0x02B5EC94`, if any, is released (`0x002EBD60(prev, 0)`, `0x002E3DC0(prev)`) and `0x02B5EC94` becomes 0; | `0x003EC654` |
+| 2 | when the new resource is non-zero, it is stored, its load flag set (`0x002EBD60(resource, 1)`: bit `0x1` of byte `+0x19` of the matching entry in the resource lists at `0x0215FD58` and `0x0215FD78`), and the arming walk `0x002FA740` runs (its only caller, `0x003EC679`); |   |
+| 3 | a resource of 0 stops after the release, with `0x02B5EC94` left at 0 and no arming walk. | `0x003EC65E`, `0x003EC67E` |
 
 `0x002FA740`:
 
-1. clears the Libra state dword `0x022BE944`, takes the current field id (`0x003148F0`) and binds the
-   table `0x002641B0(0, 0)` to `0x022BE948`; with no table it returns;
-2. for each record `i` below `min(count, 32)`: the record is skipped when its flag id (`+0x04`)
-   is not `0xFF` and that flag is set (`0x0032AA60`); otherwise it rolls `0x00379CD0() % 100`, and
-   when the roll is below the arm chance (`+0x05`) it sets bit `i` of the mask and places marker
-   `i` at `(x / 10, z / 10)` (`0x002FB560`);
-3. it stores the mask for the field in the ring at `0x02EC3EA0` (below): over the field's existing
-   entry when there is one, else at the write index `0x02EC3EC4`, which then advances modulo 3, with
-   the count `0x02EC3EC8` capped at 3.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | clears the Libra state dword `0x022BE944`, takes the current field id and binds the table `0x002641B0(0, 0)` to `0x022BE948`; with no table it returns; | `0x003148F0` |
+| 2 | for each record `i` below `min(count, 32)`: the record is skipped when its flag id (`+0x04`) is not `0xFF` and that flag is set; otherwise it rolls `0x00379CD0() % 100`, and when the roll is below the arm chance (`+0x05`) it sets bit `i` of the mask and places marker `i` at `(x / 10, z / 10)`; | `0x0032AA60`<br>`0x002FB560` |
+| 3 | it stores the mask for the field in the ring at `0x02EC3EA0` (below): over the field's existing entry when there is one, else at the write index `0x02EC3EC4`, which then advances modulo 3, with the count `0x02EC3EC8` capped at 3. |   |
 
 `0x002FB560(i, x, z)` places the marker: `0x003EC5B0(i)` (`0x003EB200(i, 0x02B5EC94, 0, 1, 0)` for `i`
 below 16 outside a town while a marker resource is loaded, `0x003EC5B8`-`0x003EC5DD`), `0x003EC720(i, x, h, z)`
 with the ground height `h` that `0x0026E350` resolves (through `0x0032A790`, `0x002FB5BE`), or the 1.0 that
-`0x002FB5B7` seeds when the point lies on no cell, or only over planes with `ny` at most 0.001 (`0x002319E3`,
-`0x0026E388`), and
+`0x002FB5B7` seeds when the point lies on no cell, or only over planes with `ny` at most 0.001¹, and
 `0x003EC770(i, angle, hit, 0)` with the slope angle from the collision-mesh query (`0x003355A0`, `0x0033CBF0`,
 `atanf`).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002319E3`, `0x0026E388` |
+
+</details>
+
 `0x003EC770` turns marker `i`. It takes the slot's record pointer from `0x003EB700(i)`, the qword at
-`0x02B5EA20 + 8i` or 0 for `i` above `0x1F`, keeps its low 32 bits sign-extended (`0x003EC793`) and jumps to
-`0x003EB910` with the three floats (`0x003EC7B4`). `0x003EB910` does nothing for a null record or a negative dword
-at record `+0x10` (`0x003EB914`-`0x003EB91D`); otherwise it calls `0x003EC260` with the word `+0x10` as a render
-record index, the three floats and 1 (`0x003EB91F`-`0x003EB92B`). `0x003EC720` narrows the pointer the same way
-(`0x003EC743`).
+`0x02B5EA20 + 8i` or 0 for `i` above `0x1F`, keeps its low 32 bits sign-extended¹ and jumps to
+`0x003EB910` with the three floats². `0x003EB910` does nothing for a null record or a negative dword
+at record `+0x10`³; otherwise it calls `0x003EC260` with the word `+0x10` as a render
+record index, the three floats and 1⁴. `0x003EC720` narrows the pointer the same way⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC793` |
+| ² | `0x003EC7B4` |
+| ³ | `0x003EB914`-`0x003EB91D` |
+| ⁴ | `0x003EB91F`-`0x003EB92B` |
+| ⁵ | `0x003EC743` |
+
+</details>
 
 `0x003EC260` works on the render record `[0x022C6F28] + index x 0x740`. When the record's `+0x290` has bit
-`0x100000` or its word `+0x06` is -1, it stores the three floats at `+0x120`, `+0x124` and `+0x128`
-(`0x003EC332`-`0x003EC350`) and copies them to `+0x250`-`+0x258` (`0x003EC372`-`0x003EC390`). Otherwise, with bit
-`0x8000000` of `+0x284` clear, it zeroes the three, sets `+0x12C` to 1.0 and returns (`0x003EC2C8`-`0x003EC2D5`).
+`0x100000` or its word `+0x06` is -1, it stores the three floats at `+0x120`, `+0x124` and `+0x128`¹ and copies them to `+0x250`-`+0x258`². Otherwise, with bit
+`0x8000000` of `+0x284` clear, it zeroes the three, sets `+0x12C` to 1.0 and returns³.
 
-The same 1.0 stays when no collision part is loaded (`0x0026E361`, `0x0026E372`). The query below then faults on the null
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC332`-`0x003EC350` |
+| ² | `0x003EC372`-`0x003EC390` |
+| ³ | `0x003EC2C8`-`0x003EC2D5` |
+
+</details>
+
+The same 1.0 stays when no collision part is loaded¹. The query below then faults on the null
 part at `0x00231926`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026E361`, `0x0026E372` |
+
+</details>
+
 The query takes the collision part `0x0026E500(0)`, the polygon `0x00231900(part, &(x, h, z), 1)` and
-`0x00231F20(part, out, polygon)` (`0x002FB5E0`-`0x002FB605`). The polygon index is not sign-tested before `0x00231F20`
-(`0x002FB5FA`-`0x002FB605`), so a point on no cell passes index -1 and copies the 16 bytes
-that start `0x20` before the plane table (`0x00231F28`).
+`0x00231F20(part, out, polygon)`¹. The polygon index is not sign-tested before `0x00231F20`², so a point on no cell passes index -1 and copies the 16 bytes
+that start `0x20` before the plane table³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FB5E0`-`0x002FB605` |
+| ² | `0x002FB5FA`-`0x002FB605` |
+| ³ | `0x00231F28` |
+
+</details>
 
 `hit` is what `0x003355A0` gives for the axis
-`(0, 0, 1)` at `0x01F004C0` and `(out.x, 0, out.z)` (`0x002FB641`). `0x0033CBF0` turns `out` by minus `hit`
-(`0x002FB65B`), and `angle` is `atanf` of the turned `z` over the turned `y`, or 0 when that `y` is 0
-(`0x002FB660`-`0x002FB67A`).
+`(0, 0, 1)` at `0x01F004C0` and `(out.x, 0, out.z)`¹. `0x0033CBF0` turns `out` by minus `hit`², and `angle` is `atanf` of the turned `z` over the turned `y`, or 0 when that `y` is 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FB641` |
+| ² | `0x002FB65B` |
+| ³ | `0x002FB660`-`0x002FB67A` |
+
+</details>
 
 The table pointer `0x022BE948` is cleared by `0x002FAEC0`, which `0x002341C0` runs from the manager
 unload `0x002695A0`.
@@ -107,36 +152,94 @@ unload `0x002695A0`.
 The live mask of a field is one `u32`, and the engine keeps three of them: a ring of `{field,
 mask}` records at `0x02EC3EA0`. `0x002FB3B0(ring, field, mask)` stores a mask: when the field is already
 present the mask is replaced and 1 is returned; otherwise the record is written at the write index
-`+0x24` (`0x02EC3EC4`), the count `+0x28` (`0x02EC3EC8`) is incremented and capped at 3, `min(count + 1, 3)`
+`+0x24`¹, the count `+0x28`² is incremented and capped at 3, `min(count + 1, 3)`
 (`cmovge`, `0x002FB3ED`-`0x002FB417`), the index advances modulo 3, `index = (index + 1) % 3` (signed, `imul`
-by `0x55555556`, `0x002FB3F1`-`0x002FB409`), and 0 is returned (`0x002FB41B`).
+by `0x55555556`, `0x002FB3F1`-`0x002FB409`), and 0 is returned³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02EC3EC4` |
+| ² | `0x02EC3EC8` |
+| ³ | `0x002FB41B` |
+
+</details>
 
 `0x002FA230` zeroes the whole ring; it runs from the
-battle runtime reset `0x00237DF0` and from the party block bind `0x00233C10` (`0x00233CC0`).
+battle runtime reset `0x00237DF0` and from the party block bind `0x00233C10`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233CC0` |
+
+</details>
 
 The clear writes 8-byte stores at `0x02EC3EA0`, `0x02EC3EA8`, `0x02EC3EB0`, `0x02EC3EB8` and `0x02EC3EC0` and a 4-byte
-store at `0x02EC3EC8` (`0x002FA232`-`0x002FA255`).
+store at `0x02EC3EC8`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FA232`-`0x002FA255` |
+
+</details>
 
 A cleared bit therefore stays cleared only until the next `settrapresource` for the field, which
-rolls every trap again and replaces the field's ring entry without reading the old mask
-(`0x002FA740`); the ring keeps the three most recent fields' masks, and its only readers are the firing
+rolls every trap again and replaces the field's ring entry without reading the old mask¹; the ring keeps the three most recent fields' masks, and its only readers are the firing
 `0x002F8060` and the marker pass `0x002F82F0`, each on the current field's entry, so the arming walk never takes a mask
 back from it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FA740` |
+
+</details>
 
 ### Who can spring a trap
 
 The trigger walk is `0x002F8060(unit, out, count)`. Its one caller is the per-unit periodic tick
 `0x00310DB0` (`0x00310FC9`; [what the periodic tick does](../Status-Effects-And-KO/status-timers.md)).
-The tick filters out no kind on this path: its one kind test (`0x00310E41`-`0x00310E55`) sends an Esper
+The tick filters out no kind on this path: its one kind test¹ sends an Esper
 (kind 0, type 27-39) through the dismiss check first and every other unit straight to `0x00310F02`. It reaches
 the call when:
 
-- the area is not a town (`0x00377C20`) and the battle state `0x022C2160` is neither 5 nor 6
-  (`0x00310E02`-`0x00310E1B`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00310E41`-`0x00310E55` |
+
+</details>
+
+- the area is not a town¹ and the battle state `0x022C2160` is neither 5 nor 6
+ ²;
 - `0x00265680()` is non-zero, `0x0030B770()` and `0x0030B7F0(unit, 0)` are 0 and unit flag bit `0x1000000000` is
-  clear (`0x00310F12`-`0x00310F4F`);
+  clear³;
 - for an Esper, the dismiss check between these two gates did not end the tick through `0x003138D0(0)`
-  (`0x00310E5B`-`0x00310EFD`).
+ ⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00377C20` |
+| ² | `0x00310E02`-`0x00310E1B` |
+| ³ | `0x00310F12`-`0x00310F4F` |
+| ⁴ | `0x00310E5B`-`0x00310EFD` |
+
+</details>
 
 `0x002F8060` itself refuses, returning the no-action id `0xFFFF` (`0x002F8095` sets -1, `0x002F82C6` returns its
 low 16 bits), when the unit's stats:
@@ -145,45 +248,52 @@ low 16 bits), when the unit's stats:
 - carry bit `0x20` in either layer byte `+0x6C` or `+0x7C`: augment 37 (Tread Lightly, "Move safely past traps"),
   the Float status's effect ([the two layers](../Status-Effects-And-KO/statuses.md),
   [battle text banks](../Game-Files-And-Data-Tables/battle-text-tables.md));
-- have kind 1, an enemy (`0x002F80F3`-`0x002F80FA`), or kind 0 with the type byte `+0x04` in 27-39, an
-  Esper (`0x002F810D`-`0x002F8115`). A kind-0 unit of any other type passes this test, the main
+- have kind 1, an enemy¹, or kind 0 with the type byte `+0x04` in 27-39, an
+  Esper². A kind-0 unit of any other type passes this test, the main
   characters 0-6, the guests 7-25 and the Chocobo 26 among them
   ([the type partition](../Characters-And-Objects/battle-unit-construction.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F80F3`-`0x002F80FA` |
+| ² | `0x002F810D`-`0x002F8115` |
+
+</details>
 
 ### The proximity test
 
 For each live bit `i` of the field's mask, in index order, the walk reads record `i`, forms the
 point `(x / 10, 0, z / 10)` (the divisor `10.0` at `0x008F8180`), takes the unit's position through
-`0x00265020` with its height overwritten by 0 (`0x002F8150`), and calls `0x003A1920`, the plain
+`0x00265020` with its height overwritten by 0¹, and calls `0x003A1920`, the plain
 three-dimensional distance (`sqrtf` of the squared differences). The trap fires when that distance
 is at most `1.2999999523162842`, the `f32` at `0x00901B34` (`0x002F81F4 comiss xmm7, xmm0`). Both
 heights are zero, so the radius is horizontal and a unit above or below the point is as close as
 one beside it.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F8150` |
+
+</details>
+
 ### The roll and what fires
 
 On a hit, in order:
 
-1. `0x00379CD0()`, the Mersenne Twister draw, is reduced modulo 100; below 75 (`0x002F8231 cmp r8d,
-   0x4B`) the action is the record's `+0x06`, otherwise its `+0x08`;
-2. when the flag id `+0x04` is not `0xFF`, `0x0032AD70(id, 1)` sets that story flag, in the first half of Bank512
-   ([Story flags](../Story-Events-And-Hunts/story-flags.md));
-3. `0x002FB8C0(record, unit, out)` gathers the units the trap reaches: with radius `+0x0A` = 0 only
-   the triggering unit; otherwise each of the four party members (`0x0031B810(0..3)`) whose stats
-   pass the same three refusals plus the out-of-play mask `0x80000003`, and whose position
-   (height zeroed) is within the radius of the point;
-   - a seat with no unit is skipped (`0x002FB91A`), and "within" is a distance at most the radius
-     (`0x002FB9EE`);
-   - it returns how many units it stored: 1 for radius 0 (`0x002FB8E9`), else the count (`0x002FBA0C`);
-4. `0x0046A9D0(stats, action)` posts the battle message: row 3 for action `0x103`, row 1 for
-   `0x104`, row 2 for `0x105`, row 0 for anything else ([battle log](../Battle-Actions/battle-log.md));
-5. `0x003EC700(i, 3)` retires marker `i` (`0x002E7410`: render record `+0x294` bit `0x8000000` set, `+0x304`
-   top five bits = 3, both through `0x003E6AA0`);
-   - `0x002E7410(0x003EB720(i), mode)` does nothing when the slot's handle is negative or its low word is
-     `0xFFFF`, when the record address `[0x022C6F28]` + `0x740` × that word is 0, or when the record's
-     `+0x284` is 0 (`0x002E7410`-`0x002E743E`);
-6. the bit is cleared in the ring (`0x002FB3B0`) and the walk returns the action id. At most one
-   trap fires per call, and the first in index order wins when two overlap.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00379CD0()`, the Mersenne Twister draw, is reduced modulo 100; below 75 (`0x002F8231 cmp r8d, 0x4B`) the action is the record's `+0x06`, otherwise its `+0x08`; |   |
+| 2 | when the flag id `+0x04` is not `0xFF`, `0x0032AD70(id, 1)` sets that story flag, in the first half of Bank512 ([Story flags](../Story-Events-And-Hunts/story-flags.md)); |   |
+| 3 | `0x002FB8C0(record, unit, out)` gathers the units the trap reaches: with radius `+0x0A` = 0 only the triggering unit; otherwise each of the four party members (`0x0031B810(0..3)`) whose stats pass the same three refusals plus the out-of-play mask `0x80000003`, and whose position (height zeroed) is within the radius of the point;<br>• a seat with no unit is skipped, and "within" is a distance at most the radius;<br>• it returns how many units it stored: 1 for radius 0, else the count; | `0x002FB91A`<br>`0x002FB9EE`<br>`0x002FB8E9`<br>`0x002FBA0C` |
+| 4 | `0x0046A9D0(stats, action)` posts the battle message: row 3 for action `0x103`, row 1 for `0x104`, row 2 for `0x105`, row 0 for anything else ([battle log](../Battle-Actions/battle-log.md)); |   |
+| 5 | `0x003EC700(i, 3)` retires marker `i` (`0x002E7410`: render record `+0x294` bit `0x8000000` set, `+0x304` top five bits = 3, both through `0x003E6AA0`);<br>• `0x002E7410(0x003EB720(i), mode)` does nothing when the slot's handle is negative or its low word is `0xFFFF`, when the record address `[0x022C6F28]` + `0x740` × that word is 0, or when the record's `+0x284` is 0; | `0x002E7410`-`0x002E743E` |
+| 6 | the bit is cleared in the ring and the walk returns the action id. At most one trap fires per call, and the first in index order wins when two overlap. | `0x002FB3B0` |
 
 ### What a trap does
 
@@ -208,9 +318,19 @@ The sixteen rows the shipped traps name are 246 to 261; their recipes are single
 
 ### Marking the trap's effect
 
-Between steps 1 and 2 above, the tick hands the effect handle `0x002EACD0` returned to `0x0024ED50`
-(`0x00311070`-`0x00311072`). `0x0024ED50` routes it by the handle's top four bits (`0x0024ED52`-`0x0024ED6C`), and the
-body it reaches sets bit `0x800` of the effect record's `u16` at `+0x36A` (`0x002FCFE1`, `0x003B0F76`):
+Between steps 1 and 2 above, the tick hands the effect handle `0x002EACD0` returned to `0x0024ED50`¹. `0x0024ED50` routes it by the handle's top four bits², and the
+body it reaches sets bit `0x800` of the effect record's `u16` at `+0x36A`³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00311070`-`0x00311072` |
+| ² | `0x0024ED52`-`0x0024ED6C` |
+| ³ | `0x002FCFE1`, `0x003B0F76` |
+
+</details>
 
 | Top four bits | Body | Record lookup |
 |---:|---|---|
@@ -220,38 +340,102 @@ body it reaches sets bit `0x800` of the effect record's `u16` at `+0x36A` (`0x00
 
 The only other caller, `0x00319E40`, does the same for the handle `0x0030CA50()` returns, after passing it
 with the ids of the units in the list at `+0x780` (count `+0x77C`) to `0x002EAD00`, when `0x00237420()` is
-non-zero (`0x00319F10`).
+non-zero¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00319F10` |
+
+</details>
 
 ### Showing the markers
 
 `settrapshowstatus(v)` (`0x547`, handler `0x00355E00` → `0x003EC6C0`) shows or hides all sixteen
 marker slots at once outside a town: `0x002ED3A0(0x003EB720(i), v)` sets bit `0x2` of the marker's render
-record `+0x304` to `v != 0` and bit `0x10` of `+0x290` (`0x002ED3D0`-`0x002ED3E4`). `0x003EB720(i)` returns
+record `+0x304` to `v != 0` and bit `0x10` of `+0x290`¹. `0x003EB720(i)` returns
 slot `i` of the puppet table `0x02B5EA20` plus `0x10` when `i` is below 32 (unsigned), the entry is non-null and its
-byte `+0x40` is set, and 0 otherwise (`0x003EB720`-`0x003EB743`).
+byte `+0x40` is set, and 0 otherwise².
 
-The markers are its slots 0 to 15: `0x003EC5B0` binds the marker resource only for `i` below 16 (`0x003EC5CB`), and
-`0x003EC5F0` releases slots 0 to 15 (`0x003EC601`-`0x003EC612`).
+<details>
+<summary>Where in the code</summary>
 
-`0x002ED3A0` does nothing for a null slot pointer (`0x002ED3A3`), for a slot whose handle is -1 or whose low word is `0xFFFF`, for a record
-address of 0, or for a record whose `+0x284` is 0 (`0x002ED3A0`-`0x002ED3CE`).
+| | Code |
+|---|---|
+| ¹ | `0x002ED3D0`-`0x002ED3E4` |
+| ² | `0x003EB720`-`0x003EB743` |
 
-Libra reveals the live traps. `0x002F82F0`, run from the world tick's per-slot pre-pass `0x00234590` (`0x00234861`), tests
+</details>
+
+The markers are its slots 0 to 15: `0x003EC5B0` binds the marker resource only for `i` below 16¹, and
+`0x003EC5F0` releases slots 0 to 15².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC5CB` |
+| ² | `0x003EC601`-`0x003EC612` |
+
+</details>
+
+`0x002ED3A0` does nothing for a null slot pointer¹, for a slot whose handle is -1 or whose low word is `0xFFFF`, for a record
+address of 0, or for a record whose `+0x284` is 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002ED3A3` |
+| ² | `0x002ED3A0`-`0x002ED3CE` |
+
+</details>
+
+Libra reveals the live traps. `0x002F82F0`, run from the world tick's per-slot pre-pass `0x00234590`¹, tests
 `0x0030C300()`: any of the nine party slots (`0x00320AB0(i, 1)`) alive or in a town whose status words carry bit
 `0x40000000`, Libra. `0x0030C300` first stores those members (alive: status words `+0x64` or `+0x3C` carry no bit of
-`0x80000003`; in a town: `0x00377C20()` non-zero) into the roster array `0x022C1740` in slot order
-(`0x0030C34A`-`0x0030C360`), then returns 1 at the first that carries the bit (`0x0030C38A`, `0x0030C3B3`) and 0 when no
-stored member does (`0x0030C398`).
+`0x80000003`; in a town: `0x00377C20()` non-zero) into the roster array `0x022C1740` in slot order², then returns 1 at the first that carries the bit³ and 0 when no
+stored member does⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234861` |
+| ² | `0x0030C34A`-`0x0030C360` |
+| ³ | `0x0030C38A`, `0x0030C3B3` |
+| ⁴ | `0x0030C398` |
+
+</details>
 
 On the change from no Libra to Libra the dword `0x022BE944` becomes 1 and every live trap's marker gets mode 1
 (`0x003EC700(i, 1)`); on the change back it becomes 0 and the markers get mode 2.
 
 The pass does nothing while no trap table is bound (`0x022BE948` null, `0x002F82FE`), so the dword then keeps
-its value. It treats the records below `min(count, 32)` (`0x002F8310`-`0x002F831C`) and takes the live mask
-from the ring entry of the current field (`0x003148F0`, `0x002F835D`-`0x002F83DD`); a field missing from the
-ring gives mask 0, so the dword changes and no marker does (`0x002F838F`).
+its value. It treats the records below `min(count, 32)`¹ and takes the live mask
+from the ring entry of the current field²; a field missing from the
+ring gives mask 0, so the dword changes and no marker does³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F8310`-`0x002F831C` |
+| ² | `0x003148F0`, `0x002F835D`-`0x002F83DD` |
+| ³ | `0x002F838F` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Struct TrapRecord base=trapTable+offset[i] size=`0x0C`:
 
@@ -285,7 +469,12 @@ action = (mt19937() % 100 < 75) ? trap.action75 : trap.action25
 armed at load = (trap.flagId == 0xFF || !flag(trap.flagId)) && (mt19937() % 100 < trap.armChance)
 ```
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 ### The trap list
 
@@ -388,12 +577,14 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 | `settrapresource` | 390 | 390 | a tag-3 reference in every call: index 1 (364), index 5 (19), index 0 (5), index 6 (2) |
 | `settrapshowstatus` | 989 | 17,280 | 1 (8,907), 0 (8,373) |
 
+</details>
+
 ## Operations
 
 - Arming is a field-load action of the zone script: `settrapresource` runs once per script, and
   the mask it produces is per field, kept for the three most recently armed fields.
 - The trigger walk runs inside each unit's periodic tick and refuses enemies (kind 1) and Espers
-  (kind 0, type 27-39) (`0x002F80F3`-`0x002F8115`); the status refusals and the tick's gates apply to
+  (kind 0, type 27-39)¹; the status refusals and the tick's gates apply to
   every other unit alike, guests (type 7-25) included. A trap fires at most once per tick call.
 - The two outcomes of a trap are authored; the 75/25 split and the 1.3 radius are constants in
   the code, and the arm chance and gather radius are per record.
@@ -401,22 +592,43 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
   story-flag setter (the other is the treasure chest resolver `0x002FAFD0`,
   [Story flags](../Story-Events-And-Hunts/story-flags.md)).
 - Every shipped record that can arm has flag id `0xFF`. Each of the 246 tables that hold one all-zero record has
-  flag id 0 there, with arm chance 0, so the arming walk never sets its bit (`0x002FA815`-`0x002FA81C`).
-- The walk takes the mask of the current field id (`0x002F8099`) but the records of the bound table (`0x002F809E`,
-  `0x002F81B2`). A jump writes the new field id when it is staged (`0x00314685`), and the old zone's table stays bound
-  until the next tick unloads that zone before any record runs (`0x0025BFB0`, `0x002628B0`, `0x002FAEC0`).
-- So the setter runs in one case only: a jump staged during the zone's own pass over its records (`0x0025D9E0`),
+  flag id 0 there, with arm chance 0, so the arming walk never sets its bit².
+- The walk takes the mask of the current field id³ but the records of the bound table⁴. A jump writes the new field id when it is staged⁵, and the old zone's table stays bound
+  until the next tick unloads that zone before any record runs⁶.
+- So the setter runs in one case only: a jump staged during the zone's own pass over its records⁷,
   out of a field with an all-zero table and into a field whose ring entry still has bit `0x1` (record 0), while
   the gate `0x00265680` holds (`sysucoff` makes it fail, `0x00310F12`).
 - In that case a unit whose frame runs later in the pass and stands within 1.3 of the field's origin fires
-  record 0, and `0x0032AD70(0, 1)` sets story flag 0 (`0x002F8247`-`0x002F8253`).
-- The field ids `0x112` (`0x00394303`) and `0x483` (`0x005842DF`) are written on the title, which binds no trap table
-  (`0x002F80AC`).
+  record 0, and `0x0032AD70(0, 1)` sets story flag 0⁸.
+- The field ids `0x112`⁹ and `0x483`¹⁰ are written on the title, which binds no trap table
+ ¹¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F80F3`-`0x002F8115` |
+| ² | `0x002FA815`-`0x002FA81C` |
+| ³ | `0x002F8099` |
+| ⁴ | `0x002F809E`, `0x002F81B2` |
+| ⁵ | `0x00314685` |
+| ⁶ | `0x0025BFB0`, `0x002628B0`, `0x002FAEC0` |
+| ⁷ | `0x0025D9E0` |
+| ⁸ | `0x002F8247`-`0x002F8253` |
+| ⁹ | `0x00394303` |
+| ¹⁰ | `0x005842DF` |
+| ¹¹ | `0x002F80AC` |
+
+</details>
 
 - The two access tables beside this page, [`traps-live-entry-accesses.tsv`](traps-live-entry-accesses.tsv) and
   [`traps-live-set-accesses.tsv`](traps-live-set-accesses.tsv), list every reach into the ring's entries and into the live set.
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | Kind | Role |
 |---|---|---|
@@ -426,6 +638,8 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 | `0x02B5EC94` | i32 | the marker resource `settrapresource` loaded |
 | `0x02B5EA20` | ptr[32] | the puppet table `0x003EB720` indexes; the markers use slots 0 to 15 |
 | `0x0208D320`, `0x0208D324` | u32 | not used here; the status sets the heal reads |
+
+</details>
 
 ## Modding notes
 
@@ -460,8 +674,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Game files and data tables** (explained on [debug menu](../Engine-Core/debug-menu.md), [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032FCA0` | calls | `0x002DF980`, `0x0032E400`, `0x0032E620` |
+| [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) | calls | [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) |
 
 </details>

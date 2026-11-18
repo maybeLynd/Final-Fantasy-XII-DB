@@ -61,11 +61,21 @@ with a `PUSHI` argument read through the script section's int pool (`+0x20`,
 record for the id and returns its `+0x28`, and `0x0032A880` turns a failed fill (-1) into 0. The table is read only
 by that arm, the validator `0x00322C50` and the loader `0x00236C30`.
 
-The query record lives on `0x0030A0F0`'s stack: it writes the class 1 at `+0x00` and the id word at `+0x06`
-(`0x0030A0F7`-`0x0030A101`), and the class-1 arm of `0x0031C5D0` replaces the class with the id's own class from
-`0x00309440` and dispatches again (`0x0031C61F`-`0x0031C639`). `0x0030A0F0` returns -1 whenever `0x0031C5D0` returns a
-negative value (`0x0030A115`-`0x0030A117`), for example the -2 it returns when `0x00309440` finds no class for the id
-(`0x0031C62A`, `0x0031C650`).
+The query record lives on `0x0030A0F0`'s stack: it writes the class 1 at `+0x00` and the id word at `+0x06`¹, and the class-1 arm of `0x0031C5D0` replaces the class with the id's own class from
+`0x00309440` and dispatches again². `0x0030A0F0` returns -1 whenever `0x0031C5D0` returns a
+negative value³, for example the -2 it returns when `0x00309440` finds no class for the id⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030A0F7`-`0x0030A101` |
+| ² | `0x0031C61F`-`0x0031C639` |
+| ³ | `0x0030A115`-`0x0030A117` |
+| ⁴ | `0x0031C62A`, `0x0031C650` |
+
+</details>
 
 ## Columns
 

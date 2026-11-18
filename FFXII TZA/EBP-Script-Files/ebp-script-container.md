@@ -82,6 +82,9 @@ other selector.
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 Measured over every `.ebp` in `FFXII_TZA.vbf`.
 
 | Fact | Value |
@@ -144,7 +147,16 @@ The code changes are:
 - the screen positions of picture parts and message windows;
 - the message slot of the Royal Palace icon window;
 - in `ch`, `cn` and `kr`, 392 calls `setcharclipall(1)`, and code for an early-ending build that does not run: it
-  sits under verb `0x5B4`, which always answers 0 (`0x00355930`), or in `ttl_a01_e3`, which no path array names.
+  sits under verb `0x5B4`, which always answers 0¹, or in `ttl_a01_e3`, which no path array names.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00355930` |
+
+</details>
 
 [Language-tree script differences](../Story-Events-And-Hunts/script-language-differences.md) says what each
 one does in the game.
@@ -188,26 +200,35 @@ no script of any tree calls `setbehindcameratype` (`0x1CB`).
 | `ch_differs`, `cn_differs`, `de_differs`, `es_differs`, `fr_differs`, `in_differs`, `it_differs`, `kr_differs` | how many of the picture's scripts have a different picture block in that tree: on every row either all of them or 0 (picture `g07` in `de`, `es`, `fr` and `it`) |
 | `ch_words`, `cn_words`, `de_words`, `es_words`, `fr_words`, `in_words`, `it_words`, `kr_words` | the words the tree's picture draws where they differ from `us`, `same words` for the rest when they are the `us` words, and `as us` when the tree's picture block is the `us` one |
 
+</details>
+
 ## Loader behaviour
 
 ### Requesting a script
 
 `0x0032FC30(manager, id)` calls `0x0032FCA0` and then `0x0025D4D0(manager)`, which clears bit `0x2` of the manager slot's
 `+0x10`, and, for manager 0, sets bit `0x1` of the manager's pending
-word (`0x0032FC77`-`0x0032FC8B`). For manager 0 it first reads the area data (`0x003EA6E0(id, [0x022C6D1D])`, `0x0032FC4B`);
-the call `0x003319D0(id)` behind `0x005C5230(5)`, which returns 0, does not run (`0x0032FC67`-`0x0032FC72`). `0x0032FCA0`:
+word¹. For manager 0 it first reads the area data (`0x003EA6E0(id, [0x022C6D1D])`, `0x0032FC4B`);
+the call `0x003319D0(id)` behind `0x005C5230(5)`, which returns 0, does not run². `0x0032FCA0`:
 
-1. tears down the manager's previous script (`0x0032ED80`, below) and records the id at `0x022C6D28`
-   and `0x022C6D40`;
-2. picks the kind and index from the table above;
-3. for managers 0 to 3, requests the companion files: index + 1 into the `0x88`-byte buffer
-   `0x022C6E70` (pending bit `0x2000`), and, for managers 1 to 3, index + 2 into `0x022C6E98` (bit `0x1000`);
-4. for managers 1 to 3, requests index + 3 of kind 8 into the `0x208`-byte buffer `0x022C6EE8`
-   (bit `0x8000`) and the same index of kind 37 into `0x022C6EC0` (bit `0x4000`); each request is made only
-   when `0x0032E400` reports a size;
-5. pushes the arena the image will live in: 5 for manager 0, `0xD` for managers 1 and 2 and `0xE`
-   for manager 3 when that arena is enabled (`0x0036B200`), otherwise 5;
-6. calls `0x00330310` to read the script itself.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032FC77`-`0x0032FC8B` |
+| ² | `0x0032FC67`-`0x0032FC72` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | tears down the manager's previous script (`0x0032ED80`, below) and records the id at `0x022C6D28` and `0x022C6D40`; |   |
+| 2 | picks the kind and index from the table above; |   |
+| 3 | for managers 0 to 3, requests the companion files: index + 1 into the `0x88`-byte buffer `0x022C6E70` (pending bit `0x2000`), and, for managers 1 to 3, index + 2 into `0x022C6E98` (bit `0x1000`); |   |
+| 4 | for managers 1 to 3, requests index + 3 of kind 8 into the `0x208`-byte buffer `0x022C6EE8` (bit `0x8000`) and the same index of kind 37 into `0x022C6EC0` (bit `0x4000`); each request is made only when `0x0032E400` reports a size; |   |
+| 5 | pushes the arena the image will live in: 5 for manager 0, `0xD` for managers 1 and 2 and `0xE` for manager 3 when that arena is enabled, otherwise 5; | `0x0036B200` |
+| 6 | calls `0x00330310` to read the script itself. |   |
 
 Kind 37's table is the `in` tree's (`0x01ECBCF0`; the `ch` tree's `0x01EA4D00` for language codes
 7, 8 and 11), so its index + 3 names a `.vpcjp` file such as
@@ -218,35 +239,61 @@ for all five managers, by `0x0032F430`.
 
 `0x00330310(manager, id, kind, index)`:
 
-1. takes the size from `0x0032E400`, which rounds the size table's figure up to a multiple of 64 when it is
-   positive and returns a figure of 0 or less as it is (`0x0032E43B`-`0x0032E448`);
-2. sets pending bit `0x20000` (`0x0033036A`), before it tests the size: a size of 0 or less skips steps 3 to 6
-   (`0x00330378`), so nothing is allocated or read and the bit stays set with no walk to clear it;
-3. allocates that many bytes with `0x0036A100` in the current arena and labels the block with
-   `0x0036C660` (source name `atelload.c`, tag `0x95C`);
-4. stores the buffer at `0x022C6C00[manager]`, sets the manager record's `+0x11` bit `0x8`, and forms the
-   packed value `buffer | manager`;
-5. calls `0x00332250`, which for kinds 5, 8 and 37 cuts a folder name out of the path (such as
-   `event\nal_a\nal_a0100`) and hands it to the text layer under the packed value (`0x0017FA90`);
-6. files an asynchronous whole-file read (`0x0032E620`) whose completion is `0x003304A0(packed)`;
-7. for manager 0, files a `0x800`-byte pre-read of the zone's index + 2, its `.fpk` (`0x0032EB40`), which no
-   zone ships, so it reads nothing. This step runs whatever the size, also after a size of 0 or less; it sits
-   behind `0x005C5230(5)`, which returns 0 (`0x0033045B`-`0x0033048B`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | takes the size from `0x0032E400`, which rounds the size table's figure up to a multiple of 64 when it is positive and returns a figure of 0 or less as it is; | `0x0032E43B`-`0x0032E448` |
+| 2 | sets pending bit `0x20000`, before it tests the size: a size of 0 or less skips steps 3 to 6, so nothing is allocated or read and the bit stays set with no walk to clear it; | `0x0033036A`<br>`0x00330378` |
+| 3 | allocates that many bytes with `0x0036A100` in the current arena and labels the block with `0x0036C660` (source name `atelload.c`, tag `0x95C`); |   |
+| 4 | stores the buffer at `0x022C6C00[manager]`, sets the manager record's `+0x11` bit `0x8`, and forms the packed value `buffer \| manager`; |   |
+| 5 | calls `0x00332250`, which for kinds 5, 8 and 37 cuts a folder name out of the path (such as `event\nal_a\nal_a0100`) and hands it to the text layer under the packed value; | `0x0017FA90` |
+| 6 | files an asynchronous whole-file read whose completion is `0x003304A0(packed)`; | `0x0032E620` |
+| 7 | for manager 0, files a `0x800`-byte pre-read of the zone's index + 2, its `.fpk`, which no zone ships, so it reads nothing. This step runs whatever the size, also after a size of 0 or less; it sits behind `0x005C5230(5)`, which returns 0. | `0x0032EB40`<br>`0x0033045B`-`0x0033048B` |
 
-`0x00332250(kind, index, packed, 1)` takes the size again from `0x0032E400` and does nothing when it is 0 or less
-(`0x00332280`, `0x003322A9`). It copies the path from `0x002DF980` (`0x003322C8`) and counts `\` and `/` back from its end
-(`0x0033231C`-`0x00332322`): for kinds 8 and 37 the name runs from the fourth separator to the first (`0x0033229F`), and
-for kind 5 from the fifth to the second (`0x00332298`), so a zone script gives `plan_map\<area>\<zone>`.
+`0x00332250(kind, index, packed, 1)` takes the size again from `0x0032E400` and does nothing when it is 0 or less¹. It copies the path from `0x002DF980`² and counts `\` and `/` back from its end³: for kinds 8 and 37 the name runs from the fourth separator to the first⁴, and
+for kind 5 from the fifth to the second⁵, so a zone script gives `plan_map\<area>\<zone>`.
 
-A name end at offset `0x104` or more goes to `__report_rangecheckfailure` (`0x00332343`, `0x003323A4`). The name is
-formatted with `"%s"` (`0x00332369`) and handed over as `0x0017FA90(packed, 1, name, 0)` (`0x0033236E`-`0x0033237F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00332280`, `0x003322A9` |
+| ² | `0x003322C8` |
+| ³ | `0x0033231C`-`0x00332322` |
+| ⁴ | `0x0033229F` |
+| ⁵ | `0x00332298` |
+
+</details>
+
+A name end at offset `0x104` or more goes to `__report_rangecheckfailure`¹. The name is
+formatted with `"%s"`² and handed over as `0x0017FA90(packed, 1, name, 0)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00332343`, `0x003323A4` |
+| ² | `0x00332369` |
+| ³ | `0x0033236E`-`0x0033237F` |
+
+</details>
 
 Script id `0xD4` (kind 8 index `0x350`, `event/pre_z/pre_z0000` in the `us` tables) is
 preloaded once by `0x0032F430` into `0x022C6F10`; a request for it copies that image into the new
 buffer and walks it at once instead of reading the file.
 
-`0x0032F430` sizes the preload with `0x0032E400(8, 0x350)` (`0x0032F617`), allocates it and files its read with `0x0032E620`
-(`0x0032F670`); the size it keeps is the length `0x00330310` copies:
+`0x0032F430` sizes the preload with `0x0032E400(8, 0x350)`¹, allocates it and files its read with `0x0032E620`²; the size it keeps is the length `0x00330310` copies:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032F617` |
+| ² | `0x0032F670` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -254,20 +301,49 @@ buffer and walks it at once instead of reading the file.
 
 ### The directory walk
 
-`0x003304A0` (570 bytes) recovers the file base with `and rdi, 0xFFFFFFF0` (`0x003304D9`) and the
-manager from the low nibble. It sets pending bit `0x2`, and bit `0x200` when slot 12 is present
-(`0x003304DE`–`0x003304F5`). It then tests each slot in a fixed order with the same five steps:
+`0x003304A0` (570 bytes) recovers the file base with `and rdi, 0xFFFFFFF0`¹ and the
+manager from the low nibble. It sets pending bit `0x2`, and bit `0x200` when slot 12 is present². It then tests each slot in a fixed order with the same five steps:
 `slotCount > n` (unsigned), offset non-zero, `base + offset`, `or` the manager into the low nibble,
 call the handler. There is no loop and no table: fifteen `cmp dword ptr [rdi + 4], n` sites cover
 fourteen slots, slot 12 being tested twice.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003304D9` |
+| ² | `0x003304DE`-`0x003304F5` |
+
+</details>
+
 The order is 0, 2, 3, 6, then 9, 8, 11, 10, 12, 16, 17, 4, 19, and last 14, which is skipped for
-manager 0 (`0x0033066B`). The first four calls are bracketed by the text-layer calls `0x0017FB70` and
+manager 0¹. The first four calls are bracketed by the text-layer calls `0x0017FB70` and
 `0x0017FBE0`. The walk reads nothing else: not the magic, not the reserved words and not the padding.
 
-A packed value whose base is 0 calls no handler (`0x003304DC`, `0x003304FC`, `0x00330572`, `0x0033066F`). The walk
-still sets bit `0x2` (`0x003304D1`) and clears bit `0x20000` at its end (`0x00330696`), so bit `0x2` stays set and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0033066B` |
+
+</details>
+
+A packed value whose base is 0 calls no handler¹. The walk
+still sets bit `0x2`² and clears bit `0x20000` at its end³, so bit `0x2` stays set and
 the walk does not run `0x0032F1B0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003304DC`, `0x003304FC`, `0x00330572`, `0x0033066F` |
+| ² | `0x003304D1` |
+| ³ | `0x00330696` |
+
+</details>
 
 The packed value is carried in 32 bits (`0x00330510 or eax, ebx`, `0x00330512 mov ecx, eax`), and each
 handler masks it back with `0xFFFFFFF0`, so the buffer must lie below 4 GiB and every section offset
@@ -296,33 +372,83 @@ The other handlers clear the bits under mask `0x10DF0`, which nothing on this ro
 clearer applies the same rule: when the word without bit `0x1` becomes zero it clears the record's
 `+0x11` bit `0x8`; when the whole word goes from non-zero to zero it runs `0x0032F1B0(manager)`.
 
-`0x0032F1B0` binds section 14 through `0x0037AA90` for managers above 0 (`0x0032F1BB`), with its light bookkeeping
-(`0x0037B230`, `0x003DE920`, `0x0037B290`): every manager above 0 gets its light group reset and its ready byte cleared,
-and only one whose section pointer `0x022C6E20[manager]` is set (`0x0032F1F2`) gets the bind, the ready byte again and
+`0x0032F1B0` binds section 14 through `0x0037AA90` for managers above 0¹, with its light bookkeeping²: every manager above 0 gets its light group reset and its ready byte cleared,
+and only one whose section pointer `0x022C6E20[manager]` is set³ gets the bind, the ready byte again and
 its `+0x1FC` store ([lighting](ebp-lighting-lgt2.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032F1BB` |
+| ² | `0x0037B230`, `0x003DE920`, `0x0037B290` |
+| ³ | `0x0032F1F2` |
+
+</details>
 
 Then, for every manager, it runs `0x0026CE60`, which builds
 the manager's actors from the image ([actor managers](../Characters-And-Objects/actor-managers.md)), and returns
-`0x00263C30(manager)` through its tail jump (`0x0032F233`): the manager's record count `+0x20` while bit `0x1` of
+`0x00263C30(manager)` through its tail jump¹: the manager's record count `+0x20` while bit `0x1` of
 `+0x10` is set, else 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032F233` |
+
+</details>
 
 Bit `0x1` therefore holds `0x0032F1B0` back after every part has arrived, until `0x00332130` clears it
 (its callers include `0x00354B20`, `0x00354E80` and `0x00378120`).
 For manager 0, `0x0032F850` and `0x0032FB70` also run `0x0025AFC0(0)` once bits `0x2` and `0x200` are both clear.
-They then call `0x002EACC0(0x00331990, [0x022C6D28])` (`0x0032F9DF`-`0x0032F9EE`, `0x0032FC00`-`0x0032FC0F`), which stores
-`0x00331990` at `0x0215FD98` and the zone id at `0x021641F0` (`0x002EACC0`-`0x002EACC7`).
+They then call `0x002EACC0(0x00331990, [0x022C6D28])`¹, which stores
+`0x00331990` at `0x0215FD98` and the zone id at `0x021641F0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032F9DF`-`0x0032F9EE`, `0x0032FC00`-`0x0032FC0F` |
+| ² | `0x002EACC0`-`0x002EACC7` |
+
+</details>
 
 ### Teardown
 
-`0x0032ED80(manager)` runs before every new request. It unbinds what the handlers bound: section 6
-(`0x002E0780`, `0x0017FA50`, `0x0029CB10`), section 14 on managers above 0 (`0x0037AA50`), section 9
-(`0x002561A0`, `0x002566E0`, `0x0026CE20(manager, 0)`), section 8 (`0x0026CE00`), section 11 (`0x0037DA70`,
-`0x0026D3C0`), section 10 (`0x0026D3A0`) and section 12 (`0x0026CE40`), and resets the four shake slots
+`0x0032ED80(manager)` runs before every new request. It unbinds what the handlers bound: section 6¹, section 14 on managers above 0², section 9
+(`0x002561A0`, `0x002566E0`, `0x0026CE20(manager, 0)`), section 8³, section 11⁴, section 10⁵ and section 12⁶, and resets the four shake slots
 (`0x0037DC30(manager, 0..3)`).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E0780`, `0x0017FA50`, `0x0029CB10` |
+| ² | `0x0037AA50` |
+| ³ | `0x0026CE00` |
+| ⁴ | `0x0037DA70`, `0x0026D3C0` |
+| ⁵ | `0x0026D3A0` |
+| ⁶ | `0x0026CE40` |
+
+</details>
+
 It zeroes every manager array
-entry and the pending word, and frees the file buffer `0x022C6C00[manager]` (`0x003697F0`). The
+entry and the pending word, and frees the file buffer `0x022C6C00[manager]`¹. The
 per-section frees beside each unbind sit behind `0x005C5230`, which returns 0, so they never run.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003697F0` |
+
+</details>
 
 ## Modding notes
 

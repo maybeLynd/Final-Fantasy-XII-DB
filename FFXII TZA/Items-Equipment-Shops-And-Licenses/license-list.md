@@ -22,19 +22,15 @@ square grants.
 
 Each line is read from the shipped files in these steps:
 
-1. the `st2e` table at entry `+0x34`: 361 rows of 24 bytes from the section's `+0x20`;
-2. the name word `+0x00` through the word banks (`0x0031DF90`), and the kind text `+0x02` through the text groups
-   (`0x0031DFAB`-`0x0031DFB4`), "Weapon" to "Gambit";
-3. the requirement kind from the category `+0x05`, by the table `0x00323890` gives on [Licenses](licenses.md);
-4. the granted ids `+0x08`-`+0x17` (`0x002F8FA0` matches them against the asked id) named by their kind: an equipment
-   id `0x1000` + row by the equipment row's name, an action id by the action row's name, an augment id by the augment
-   row's name; Second Board's `0x0080` is kept as the id alone;
-5. the members who start with the square from the bits of `+0x07` (`0x0023AE68`), party rows 0-6 by the names on
-   [Party members](../Party/party-members.md);
-6. the boards from the twelve shipped files `board_1.bin`-`board_12.bin`, each named by its job, text id `0x3ED` +
-   board (`0x00556FE7`);
-7. every one-byte text code through the glyph table of the shipped `us` font `font00.dat`
-   ([Fonts](../Menus-And-HUD/fonts.md)).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | the `st2e` table at entry `+0x34`: 361 rows of 24 bytes from the section's `+0x20`; |   |
+| 2 | the name word `+0x00` through the word banks, and the kind text `+0x02` through the text groups, "Weapon" to "Gambit"; | `0x0031DF90`<br>`0x0031DFAB`-`0x0031DFB4` |
+| 3 | the requirement kind from the category `+0x05`, by the table `0x00323890` gives on [Licenses](licenses.md); |   |
+| 4 | the granted ids `+0x08`-`+0x17` (`0x002F8FA0` matches them against the asked id) named by their kind: an equipment id `0x1000` + row by the equipment row's name, an action id by the action row's name, an augment id by the augment row's name; Second Board's `0x0080` is kept as the id alone; |   |
+| 5 | the members who start with the square from the bits of `+0x07`, party rows 0-6 by the names on [Party members](../Party/party-members.md); | `0x0023AE68` |
+| 6 | the boards from the twelve shipped files `board_1.bin`-`board_12.bin`, each named by its job, text id `0x3ED` + board; | `0x00556FE7` |
+| 7 | every one-byte text code through the glyph table of the shipped `us` font `font00.dat` ([Fonts](../Menus-And-HUD/fonts.md)). |   |
 
 ### Properties of the shipped rows
 

@@ -24,8 +24,17 @@ validator").
 
 ### Where the values come from
 
-Each line is read from one of the three `st2e` tables, and each row is decoded as the arm does. The m_daiji arm is quoted below; the g_daiji arm (`0x0031D2C5`-`0x0031D460`) and
+Each line is read from one of the three `st2e` tables, and each row is decoded as the arm does. The m_daiji arm is quoted below; the g_daiji arm¹ and
 the q_daiji arm (`0x0031D488`-`0x0031D61B`, base `0x8060` at `0x0031D622`) read the same offsets.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031D2C5`-`0x0031D460` |
+
+</details>
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
@@ -36,10 +45,19 @@ the q_daiji arm (`0x0031D488`-`0x0031D61B`, base `0x8060` at `0x0031D622`) read 
 | `+0x06` | `u16` | textId | the description, through `0x002F9860` into query record `+0x10` (`0x0031D218`-`0x0031D221`) |
 | `+0x08` | `u16` | nameWord | the name (`0x0031D1B6`) |
 
-The arm sets the record's price `+0x28` to -1 for every key item (`0x0031D63E`). Every one-byte text code goes through
+The arm sets the record's price `+0x28` to -1 for every key item¹. Every one-byte text code goes through
 the glyph table of the shipped `us` font `font00.dat` ([Fonts](../Menus-And-HUD/fonts.md)). The 47 named m_daiji rows, the
 27 named g_daiji rows and q_daiji rows 13-15 ("Available", "Accepted" and "Complete!") have empty description texts:
 rows 0-95 of the shipped `listhelp_daijinamono.bin` are empty.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031D63E` |
+
+</details>
 
 ### Properties of the shipped rows
 
@@ -147,43 +165,49 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Steam and achievements** (explained on [gil](../Rewards-EXP-Gil-And-Loot/gil.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00309EC0` | is called by | `0x00315E90` |
+| [`0x00309EC0`](../Enemy-AI-And-Gambits/gambit-conditions.md) (on gambit conditions) | is called by | [`0x00315E90`](../Steam-And-Achievements/achievements.md) (on achievements) |
 
 **Graphics** (explained on [battle units](../Characters-And-Objects/battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00300E40` | calls | `0x003125E0` |
+| [`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) | calls | [`0x003125E0`](../Status-Effects-And-KO/ko-and-game-over.md) Battle unit: compute presentation suppression mask (on ko and game over) |
 
 **Scripts and script commands** (explained on [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0023A3B0` | is called by | `0x00510160` |
-| `0x00510160` | calls | `0x00267E10`, `0x0037CF50` |
+| [`0x0023A3B0`](item-list.md) (on item list) | is called by | [`0x00510160`](item-list.md) (on item list) |
+| [`0x00510160`](item-list.md) (on item list) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x0037CF50`](../Characters-And-Objects/actor-model-rebuild.md) (on actor model rebuild) |
 
-**Enemy spawning**
+**Enemy spawning** (explained on [battle units](../Characters-And-Objects/battle-units.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [enemy respawning](../Enemy-Spawning/enemy-respawning.md), [frame update order](../Engine-Core/frame-update-order.md), [boss fights](../Battle-Actions/boss-fights.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0023A3B0` | calls | `0x002355A0` |
-| `0x0023A570` | calls | `0x00236100` |
-| `0x0023A570` | is called by | `0x0023A3B0` |
-| `0x00300E40` | calls | `0x00237080` |
-| `0x00300E40` | is called by | `0x00234880`, `0x00234990`, `0x002350C0`, `0x00237690` |
-| `0x00510160` | calls | `0x0023A3B0` |
-
-**Enemy spawning** (explained on [battle units](../Characters-And-Objects/battle-units.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
-
-**Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md), [boss fights](../Battle-Actions/boss-fights.md))
+| [`0x0023A3B0`](item-list.md) (on item list) | calls | [`0x002355A0`](../Enemy-Spawning/enemy-spawning.md) Spawn: prepare random candidate for current entry (on enemy spawning) |
+| [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) | calls | [`0x00236100`](../Enemy-Spawning/spawn-record-fields.md) (on spawn record fields) |
+| [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) | is called by | [`0x0023A3B0`](item-list.md) (on item list) |
+| [`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) | calls | [`0x00237080`](../Enemy-Spawning/spawn-record-fields.md) Spawn entry: clear selection transient state for teardown (on spawn record fields) |
+| [`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) | is called by | [`0x00234880`](../Battle-Actions/boss-fights.md) Spawn group: teardown all grouped spawn units (on boss fights)<br>[`0x00234990`](../Enemy-Spawning/enemy-respawning.md) Spawn group: teardown units by group mask (on enemy respawning)<br>[`0x002350C0`](../Enemy-Spawning/enemy-spawning.md) Spawn lifecycle: check and retire by native range (on enemy spawning)<br>[`0x00237690`](../Battle-Actions/boss-fights.md) Spawn group: teardown all ungrouped spawn units (on boss fights) |
+| [`0x00510160`](item-list.md) (on item list) | calls | [`0x0023A3B0`](item-list.md) (on item list) |
 
 **Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003BD480` | calls | `0x0032A8A0` |
-| `0x003C18A0` | calls | `0x0032A8A0` |
+| [`0x003BD480`](../Game-Files-And-Data-Tables/menu-map-files.md) (on menu map files) | calls | [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) |
+| [`0x003C18A0`](../Menus-And-HUD/map-screens.md) (on map screens) | calls | [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) |
 
 </details>

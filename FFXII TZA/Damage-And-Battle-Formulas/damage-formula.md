@@ -27,35 +27,47 @@ is read from two values in its model's `@FCP` block.
 
 ### The resolver
 
-`0x00385F60(action, source, target, result)` resolves one target (`0x00385F60`-`0x0038685D`). It first finds the
+`0x00385F60(action, source, target, result)` resolves one target¹. It first finds the
 user's memo record (below) and stores the action id in `0x02AEDFD4`; for Shades of Black (`0x9F`) the id
-is replaced by the record's word `+0x10` (`0x00385FE4`-`0x00385FF7`). Then:
+is replaced by the record's word `+0x10`². Then:
 
-1. It resets the scratch block with `0x003849B0` (`0x00386001`) and the result record with `0x003848E0`
-   (`0x0038600F`).
-2. An action outside `0xF5`-`0x105` needs both a source and a target record (`0x00386014`-`0x00386027`). When
-   the caller left bit `0x20` in result byte `+0`, an action without flag bit `0x800` resolves nothing
-   (`0x00386029`-`0x00386087`).
-3. An enemy-table target with KO, Stone or X-Zone gets result kind 6 at once (`0x00386091`-`0x003860A7`).
-4. It builds the context with `0x003847C0` (`0x003860D5`).
-5. It copies bits `0xE` of the memo record's byte `+0x12` into result `+0x18` (`0x003860DF`-`0x00386108`), and
-   goes on only when the result kind is 0 or 9, setting it to 0 (`0x0038610B`-`0x0038612D`).
-6. It takes the recipe from the action row, or from the weapon for recipe 0 (`0x0038617E`-`0x00386210`).
-7. Against a target with KO, Stone or X-Zone, no slot runs (`0x02AEDFB8` = 1) unless the recipe is 1, 2, 3,
-   6, 34, 36 or 54, the mask `0x4000140000004E` (`0x00386249`-`0x00386278`). An Esper target at 0 HP is a miss
-   (`0x0038627E`-`0x003862A9`).
-8. A bit for the target in the memo record's `+0x08` makes result kind 10, a bit in `+0x04` kind 6, before
-   any slot (`0x003862B6`-`0x0038634B`).
-9. It calls each slot of the recipe's committed list (`0x00386350`-`0x003863E6`), stopping when `0x02AEDFB8` is 1,
-   and then `0x00390F20(source, target, &context)` (`0x003863F8`).
-10. It clears bit `0x1` of the memo record's `+0x12` (`0x00386402`) and turns the scratch block into the result
-   (below).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00385F60`-`0x0038685D` |
+| ² | `0x00385FE4`-`0x00385FF7` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It resets the scratch block with `0x003849B0` and the result record with `0x003848E0`. | `0x00386001`<br>`0x0038600F` |
+| 2 | An action outside `0xF5`-`0x105` needs both a source and a target record. When the caller left bit `0x20` in result byte `+0`, an action without flag bit `0x800` resolves nothing. | `0x00386014`-`0x00386027`<br>`0x00386029`-`0x00386087` |
+| 3 | An enemy-table target with KO, Stone or X-Zone gets result kind 6 at once. | `0x00386091`-`0x003860A7` |
+| 4 | It builds the context with `0x003847C0`. | `0x003860D5` |
+| 5 | It copies bits `0xE` of the memo record's byte `+0x12` into result `+0x18`, and goes on only when the result kind is 0 or 9, setting it to 0. | `0x003860DF`-`0x00386108`<br>`0x0038610B`-`0x0038612D` |
+| 6 | It takes the recipe from the action row, or from the weapon for recipe 0. | `0x0038617E`-`0x00386210` |
+| 7 | Against a target with KO, Stone or X-Zone, no slot runs (`0x02AEDFB8` = 1) unless the recipe is 1, 2, 3, 6, 34, 36 or 54, the mask `0x4000140000004E`. An Esper target at 0 HP is a miss. | `0x00386249`-`0x00386278`<br>`0x0038627E`-`0x003862A9` |
+| 8 | A bit for the target in the memo record's `+0x08` makes result kind 10, a bit in `+0x04` kind 6, before any slot. | `0x003862B6`-`0x0038634B` |
+| 9 | It calls each slot of the recipe's committed list, stopping when `0x02AEDFB8` is 1, and then `0x00390F20(source, target, &context)`. | `0x00386350`-`0x003863E6`<br>`0x003863F8` |
+| 10 | It clears bit `0x1` of the memo record's `+0x12` and turns the scratch block into the result (below). | `0x00386402` |
 
 ### The scratch block
 
 The slots pass their numbers to the resolver through one static block of `0xA8` bytes at `0x02AEDFB8`, laid out
-under Layouts. `0x003849B0` resets it before each resolve and each first-list run (`0x00386001`, `0x0038585E`)
-(`0x003849B2`-`0x00384B03`):
+under Layouts. `0x003849B0` resets it before each resolve and each first-list run¹²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00386001`, `0x0038585E` |
+| ² | `0x003849B2`-`0x00384B03` |
+
+</details>
 
 - -1 (no value) goes into the Mist-charge words `0x02AEDFF8` and `0x02AEDFFC` and the HP, MP, stat, level and poach
   words `0x02AEE004`-`0x02AEE050`, except the steal bytes `0x02AEE04C`-`0x02AEE04E`;
@@ -68,35 +80,60 @@ under Layouts. `0x003849B0` resets it before each resolve and each first-list ru
 After the slots, the resolver fills the result record from the block (`0x00386406`-`0x00386819`;
 [Action results](../Battle-Actions/action-results.md)):
 
-1. A user with KO, Stone or X-Zone keeps none of its own changes: its HP, MP and level words count as -1
-   (`0x0038640B`-`0x0038643D`).
-2. The presence bits of result `+0x2C` are set from the words that are not -1 (`0x00386474`-`0x00386595`).
-3. Each loss and gain word that is -1 is then written back as 0 (`0x0038659C`-`0x0038662A`), so after this step an
-   absent value and a 0 look the same.
-4. Each change is the gain minus the loss: target HP into `+0x24`, user HP into `+0x20`, target MP into `+0x2A`
-   and user MP into `+0x28` (16 bits), Mist charges into `+0x1D` (8 bits) (`0x00386635`-`0x00386664`).
-5. A set-outright word that is not -1 replaces its change and sets its bit of `+0x2C`: target HP bit `0x8`, user HP
-   bit `0x2`, target MP bit `0x10`, user MP bit `0x4` (`0x00386669`-`0x003866BE`).
-6. `0x02AEDFBC` gives result kind 6 and `0x02AEDFC0` kind 10 (`0x003866C1`-`0x003866D7`); the stat, level, steal and
-   poach words are copied (`0x0038679F`-`0x00386819`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A user with KO, Stone or X-Zone keeps none of its own changes: its HP, MP and level words count as -1. | `0x0038640B`-`0x0038643D` |
+| 2 | The presence bits of result `+0x2C` are set from the words that are not -1. | `0x00386474`-`0x00386595` |
+| 3 | Each loss and gain word that is -1 is then written back as 0, so after this step an absent value and a 0 look the same. | `0x0038659C`-`0x0038662A` |
+| 4 | Each change is the gain minus the loss: target HP into `+0x24`, user HP into `+0x20`, target MP into `+0x2A` and user MP into `+0x28` (16 bits), Mist charges into `+0x1D` (8 bits). | `0x00386635`-`0x00386664` |
+| 5 | A set-outright word that is not -1 replaces its change and sets its bit of `+0x2C`: target HP bit `0x8`, user HP bit `0x2`, target MP bit `0x10`, user MP bit `0x4`. | `0x00386669`-`0x003866BE` |
+| 6 | `0x02AEDFBC` gives result kind 6 and `0x02AEDFC0` kind 10; the stat, level, steal and poach words are copied. | `0x003866C1`-`0x003866D7`<br>`0x0038679F`-`0x00386819` |
 
 ### The memo record
 
 Each user has a 64-byte record that carries the first list's outcome to the committed resolve: for a party
-record `0x0208D480 + type * 0x40`, otherwise `0x0208DE80 + unit[+0xEA9] * 0x40` (`0x00385FA0`-`0x00385FDE`). The
+record `0x0208D480 + type * 0x40`, otherwise `0x0208DE80 + unit[+0xEA9] * 0x40`¹. The
 target's index is its unit's `+0xEA9`, or its type byte without a unit. A first-list run that ends failed
-or immune sets the target's bit in the record's `+0x04` or `+0x08` (`0x00385A7F`, `0x00385AC0`), so the committed resolve gives that
+or immune sets the target's bit in the record's `+0x04` or `+0x08`², so the committed resolve gives that
 target kind 6 or 10 without running a slot; the combo count lives in the high nibble of `+0x12` (slot 10).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00385FA0`-`0x00385FDE` |
+| ² | `0x00385A7F`, `0x00385AC0` |
+
+</details>
 
 Bit `0x1` of `+0x12` is the stored-preview flag. When the first list resolves the user's current target (its
 `+0x710` target, or the `+0x6B9` slot when `+0x6B6` is set), it clears the record's first `0x14` bytes, keeping
-the word `+0x10` and, with unit `+0x6B7` set, the high nibble of `+0x12`, and sets bit `0x1`
-(`0x00385733`-`0x003857E1`). The committed resolve clears it (`0x00386402`); Numerology, Traveler, Dark Matter and
+the word `+0x10` and, with unit `+0x6B7` set, the high nibble of `+0x12`, and sets bit `0x1`¹. The committed resolve clears it²; Numerology, Traveler, Dark Matter and
 Gil Toss read it ([Weapon formulas](weapon-formulas.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00385733`-`0x003857E1` |
+| ² | `0x00386402` |
+
+</details>
 
 ### The context
 
-`0x003847C0` fills the context the slots read (`0x003847D4`-`0x003848BC`):
+`0x003847C0` fills the context the slots read¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003847D4`-`0x003848BC` |
+
+</details>
 
 | Context offset | Holds |
 |---|---|
@@ -110,12 +147,31 @@ Gil Toss read it ([Weapon formulas](weapon-formulas.md)).
 | `+0x1A-0x29` | the source's 128 augment bits, from both layers `+0x68` and `+0x78` |
 
 A null source record leaves `+0x04` and the augment bits 0, and a null target record leaves `+0x08` and `+0x18` 0,
-not -1: both come from the builder's clears (`0x003847D8`-`0x003847F3`, `0x00384806`, `0x0038485D`). For a target record
-the builder keeps the unit `0x0031B860` finds in `0x02EBF188` (`0x00384870`).
+not -1: both come from the builder's clears¹. For a target record
+the builder keeps the unit `0x0031B860` finds in `0x02EBF188`².
 
-Without a target unit, Reverse (status 12) is removed from `+0x08` and augment 15 (Medicine Reverse) from the merged bits
-(`0x00384896`-`0x0038489D`). When the result's bit `0x20` is set it also removes Reverse, Disease (16) and Reflect
-(23) from `+0x08`, sets a `+0x18` of `0x0D` to 0, and removes augment 15 (Medicine Reverse) (`0x003848A1`-`0x003848B8`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003847D8`-`0x003847F3`, `0x00384806`, `0x0038485D` |
+| ² | `0x00384870` |
+
+</details>
+
+Without a target unit, Reverse (status 12) is removed from `+0x08` and augment 15 (Medicine Reverse) from the merged bits¹. When the result's bit `0x20` is set it also removes Reverse, Disease (16) and Reflect
+(23) from `+0x08`, sets a `+0x18` of `0x0D` to 0, and removes augment 15 (Medicine Reverse)².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00384896`-`0x0038489D` |
+| ² | `0x003848A1`-`0x003848B8` |
+
+</details>
 
 ### The first list: landing the hit
 
@@ -135,25 +191,67 @@ A recipe's first list runs when the action executes, through `0x00385680` (slot 
 | `41` | `0x003896B0` | the outcome roll below |
 
 The bands slot 34 keeps come from `0x00384E50(target)`, which reads the integers `0x2902032B` and
-`0x6003082D` of the target's model `@FCP` block through `0x004FE2F0` (`0x00384EBC`-`0x00384F12`). It gets
+`0x6003082D` of the target's model `@FCP` block through `0x004FE2F0`¹. It gets
 the block from `0x002E7FD0(actor)`: 0 for a null actor, a null `[actor+0xC0]` or an id of -1 there,
-otherwise `0x002EDBD0(id)` for the character record that id names (`0x002E7FD0`-`0x002E7FF0`).
+otherwise `0x002EDBD0(id)` for the character record that id names².
 
-A magick recipe such as 7 has only slot 2 (`0x00387FD0`): an action with flag bit `0x20000` can be blocked by a
-shield, against the target's magick evade `+0x34` plus the Shield Block augments 88-90 (`0x00387FD0`-`0x0038823B`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00384EBC`-`0x00384F12` |
+| ² | `0x002E7FD0`-`0x002E7FF0` |
+
+</details>
+
+A magick recipe such as 7 has only slot 2¹: an action with flag bit `0x20000` can be blocked by a
+shield, against the target's magick evade `+0x34` plus the Shield Block augments 88-90².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00387FD0` |
+| ² | `0x00387FD0`-`0x0038823B` |
+
+</details>
 
 - Slot 2 returns at once when the target record has no unit (`0x0031B860`, kept in `0x02EBF188`), the unit lacks bit
   `0x800000` of its first dword, `+0x34` is 0, or the action row of `0x02AEDFD4` lacks flag bit `0x20000` of `+0x0C`
-  (`0x00387FE3`-`0x0038805F`).
-- It sets the hit chance `0x02AEDFE0` to 100 (`0x0038806C`). The block chance `0x02AEDFF0` is `+0x34` plus the values of
-  augments 88, 89, 90 and 3 the target holds in either layer, at most 100 (`0x0038807C`-`0x003881FC`); a target under
-  Stop, Sleep or Disable (context `+0x08` bits `0x2018`) gets 0 (`0x00388065`, `0x00388210`).
+ ¹.
+- It sets the hit chance `0x02AEDFE0` to 100². The block chance `0x02AEDFF0` is `+0x34` plus the values of
+  augments 88, 89, 90 and 3 the target holds in either layer, at most 100³; a target under
+  Stop, Sleep or Disable (context `+0x08` bits `0x2018`) gets 0⁴.
 - `MT19937 % 100` below the block chance blocks the magick: result kind 11 (result `+0x04` = `0x0B`) and the stop
-  flag `0x02AEDFB8` = 1 (`0x00388216`-`0x0038823B`).
+  flag `0x02AEDFB8` = 1⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00387FE3`-`0x0038805F` |
+| ² | `0x0038806C` |
+| ³ | `0x0038807C`-`0x003881FC` |
+| ⁴ | `0x00388065`, `0x00388210` |
+| ⁵ | `0x00388216`-`0x0038823B` |
+
+</details>
 
 ### The outcome roll
 
-Slot 41 rolls the outcome (`0x003896B0`-`0x00389805`). When the target unit has bit `0x800000` of its first dword:
+Slot 41 rolls the outcome¹. When the target unit has bit `0x800000` of its first dword:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003896B0`-`0x00389805` |
+
+</details>
 
 ```
 r = MT19937 % hit
@@ -162,21 +260,51 @@ fresh r < weapon band -> parried with the weapon, kind 1 (or 2 with 0x02AEDFC4)
 fresh r < innate band -> evaded, kind 5
 ```
 
-Each failed band draws again, and when all three fail `MT19937 % 100` at or above the hit chance is a miss
-(`0x02AEDFBC`). Without that bit only the hit chance is rolled. With knockback (`0x02AEDFC8`), a landed hit, a
-shield block of kind 3 and a parry of kind 1 set result `+0x18` bit `0x8`; kinds 2, 4 and 5 do not
-(`0x00389734`-`0x00389741`, `0x003897F8`-`0x00389805`).
+Each failed band draws again, and when all three fail `MT19937 % 100` at or above the hit chance is a miss¹. Without that bit only the hit chance is rolled. With knockback², a landed hit, a
+shield block of kind 3 and a parry of kind 1 set result `+0x18` bit `0x8`; kinds 2, 4 and 5 do not³.
 
-Every outcome but a landed hit sets the stop flag `0x02AEDFB8` (`0x0038971B`, `0x00389745`, `0x003897E3`), so no later
-slot runs; a miss also sets `0x02AEDFBC` (`0x003897D9`). The slot keeps the target's unit in `0x02EBF188` (`0x003896C5`).
-With a hit chance of 0 the band rolls draw nothing and use r = 0 (`0x003896EF`, `0x0038975E`, `0x003897A5`), so a
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02AEDFBC` |
+| ² | `0x02AEDFC8` |
+| ³ | `0x00389734`-`0x00389741`, `0x003897F8`-`0x00389805` |
+
+</details>
+
+Every outcome but a landed hit sets the stop flag `0x02AEDFB8`¹, so no later
+slot runs; a miss also sets `0x02AEDFBC`². The slot keeps the target's unit in `0x02EBF188`³.
+With a hit chance of 0 the band rolls draw nothing and use r = 0⁴, so a
 non-zero band then always takes the hit.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038971B`, `0x00389745`, `0x003897E3` |
+| ² | `0x003897D9` |
+| ³ | `0x003896C5` |
+| ⁴ | `0x003896EF`, `0x0038975E`, `0x003897A5` |
+
+</details>
 
 ### The knockback value
 
 When the committed resolve ends with result `+0x18` bit `0x8` set, the resolver stores
-`0x00385E50(source, target, &context)` as an `f32` in result `+0x134` (`0x0038680F`-`0x0038682E`). The
+`0x00385E50(source, target, &context)` as an `f32` in result `+0x134`¹. The
 value starts from a property of the target's model:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038680F`-`0x0038682E` |
+
+</details>
 
 ```python
 k = 2.0                                  the target has no battle unit (0x01CEBC08, 0x00385E79)
@@ -188,11 +316,24 @@ k = k * 1.5   when the HP loss 0x02AEE004 > ref * 0.6                 (0x00385EC
 ```
 
 `p / s` is number 33 of `0x003204E0`, reached through `0x003204D0`, which passes the unit's actor
-`[unit+0x10]` (`0x00385E7F`-`0x00385E8C`): `0x002ECE50` reads property `0x09001E1F` through `0x003E6150`
+`[unit+0x10]`¹: `0x002ECE50` reads property `0x09001E1F` through `0x003E6150`
 ([Model files](../Graphics/model-files-cm-ca.md)), and number 33 then divides by the
-float `0x00265240` returns from `[actor+0xB8]+0x28` (`0x0032055C`-`0x0032056A`). Outcome 1 is a weapon parry
-and 3 a shield block (above). The constants are 100.0 (`0x008F3134`), 0.5 (`0x01CEBB70`), 0.6
-(`0x008F3100`) and 1.5 (`0x00901B3C`).
+float `0x00265240` returns from `[actor+0xB8]+0x28`². Outcome 1 is a weapon parry
+and 3 a shield block (above). The constants are 100.0³, 0.5⁴, 0.6⁵ and 1.5⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00385E7F`-`0x00385E8C` |
+| ² | `0x0032055C`-`0x0032056A` |
+| ³ | `0x008F3134` |
+| ⁴ | `0x01CEBB70` |
+| ⁵ | `0x008F3100` |
+| ⁶ | `0x00901B3C` |
+
+</details>
 
 ### The committed list: the number
 
@@ -217,7 +358,16 @@ recipe 7's is `62 92 93 94 95 113 170 175 182`:
 
 ### Multipliers from statuses
 
-The two status slots multiply the scale `0x02AEE054` (`0x0038B965`-`0x0038BBE6`, `0x0038B01A`-`0x0038B131`):
+The two status slots multiply the scale `0x02AEE054`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038B965`-`0x0038BBE6`, `0x0038B01A`-`0x0038B131` |
+
+</details>
 
 | Status | Weapon (slot 96) | Magick (slot 92) |
 |---|---:|---:|
@@ -231,9 +381,17 @@ The two status slots multiply the scale `0x02AEE054` (`0x0038B965`-`0x0038BBE6`,
 
 ### Augment multipliers
 
-Slots 97 and 93 test the user's merged augment bits and the target's layers (`0x0038BC0F`-`0x0038BDDE`,
-`0x0038B15A`-`0x0038B1FC`). "Party" here means a party or Esper record or an allied unit, those for which
+Slots 97 and 93 test the user's merged augment bits and the target's layers¹. "Party" here means a party or Esper record or an allied unit, those for which
 `0x002F8E90() & 7` is non-zero:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038BC0F`-`0x0038BDDE`, `0x0038B15A`-`0x0038B1FC` |
+
+</details>
 
 | Effect | License | Condition | Factor |
 |---:|---|---|---|
@@ -245,6 +403,9 @@ Slots 97 and 93 test the user's merged augment bits and the target's layers (`0x
 | 40 (target) | no license (the augment is Resist Piercing) | the user's main hand is a gun or a measure (class 9 or 16) | ×0.125 |
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 The scratch block, `0xA8` bytes at `0x02AEDFB8` in the zero-filled tail of `.data`. "Slot n" is calculator slot n
 ([Formula slots](formula-slots.md)); "result" is the action result record. The words where -1 means no value are set
@@ -303,7 +464,12 @@ to -1 by the reset (above).
 No instruction reads or writes `+0x97`. No instruction takes the address of any part of the block, so every access
 is one of these direct ones.
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The two words of the block that no slot writes:
 
@@ -311,6 +477,8 @@ The two words of the block that no slot writes:
 |---|---|---|---|---|---|
 | `0x02AEE01C` | `i32` | 0 (zero-filled tail); -1 after each reset | the user's MP loss, `+0x64` | `0x003849B0`, -1 (`0x00384A81`); `0x00385F60`, 0 in place of -1 (`0x00386617`) | `0x00385F60` (`0x00386453`) |
 | `0x02AEE024` | `i32` | 0 (zero-filled tail); -1 after each reset | the user's HP set outright, `+0x6C` | `0x003849B0`, -1 (`0x00384A95`); `0x00385F60`, -1 for a user with KO, Stone or X-Zone (`0x00386424`) | `0x00385F60` (`0x0038645A`) |
+
+</details>
 
 ## Modding notes
 
@@ -338,39 +506,51 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00202C70` | is called by | `0x00362850` |
+| [`0x00202C70`](../Menus-And-HUD/license-board-screen.md) (on license board screen) | is called by | [`0x00362850`](../Sound-And-Music/spatial-sound.md) (on spatial sound) |
 
 **Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md), [screen mode and aspect](../Graphics/screen-mode-and-aspect.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003820C0` | calls | `0x00229D20`, `0x00229D60` |
+| [`0x003820C0`](../Graphics/scripted-camera.md) (on scripted camera) | calls | [`0x00229D20`](../Graphics/screen-mode-and-aspect.md) (on screen mode and aspect)<br>[`0x00229D60`](../Graphics/screen-mode-and-aspect.md) (on screen mode and aspect) |
 
 **Items, equipment, shops and licenses** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031B860` | is called by | `0x0031A410`, `0x0031A510`, `0x0031A630`, `0x00323910` |
+| [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log) | is called by | [`0x0031A410`](../Items-Equipment-Shops-And-Licenses/equipment.md) Battle stats: set equipment slot by stats index (on equipment)<br>[`0x0031A510`](../Items-Equipment-Shops-And-Licenses/equipment.md) Battle stats: set equipment slot by mapped id (on equipment)<br>[`0x0031A630`](../Items-Equipment-Shops-And-Licenses/equipment.md) Battle stats: set equipment slot direct (on equipment)<br>[`0x00323910`](../Items-Equipment-Shops-And-Licenses/buying-a-license.md) Battle stats: set license node state and apply side effects (on buying a license) |
 
 **Party** (explained on [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x004742A0` | is called by | `0x00358CB0` |
+| [`0x004742A0`](damage-formula.md) | is called by | [`0x00358CB0`](../Movement-And-Pathfinding/player-movement.md) (on player movement) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031B860` | is called by | `0x002F8BB0`, `0x0030C650` |
+| [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log) | is called by | [`0x002F8BB0`](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md) Reward: compute experience for recipient (on stat growth per level)<br>[`0x0030C650`](../Menus-And-HUD/hud.md) Battle stats: advance level to target and recompute growth (on hud) |
 
 **Menus and HUD** (explained on [text drawing](../Menus-And-HUD/text-drawing.md), [menu lists](../Menus-And-HUD/menu-lists.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [hud](../Menus-And-HUD/hud.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00202C70` | is called by | `0x002AF960`, `0x002D2600`, `0x002D28E0`, `0x003F26F0`, `0x003F2A70` |
+| [`0x00202C70`](../Menus-And-HUD/license-board-screen.md) (on license board screen) | is called by | [`0x002AF960`](../Menus-And-HUD/text-drawing.md) (on text drawing)<br>[`0x002D2600`](../Menus-And-HUD/menu-lists.md) (on menu lists)<br>[`0x002D28E0`](../Menus-And-HUD/text-drawing.md) (on text drawing)<br>[`0x003F26F0`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x003F2A70`](../Menus-And-HUD/hud.md) (on hud) |
 
 </details>
 

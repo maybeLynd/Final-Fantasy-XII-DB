@@ -29,27 +29,57 @@ every caller. Its builder `0x002105E0` creates one controller per bank family:
 The pool counts are immediate operands of the five builders. The bank families and their files are on
 [Sound banks](sound-banks.md).
 
-`0x002105E0` first sets `+0x28` to the `AudioCallback` vtable `0x00906A18` (`0x002105FD`) and `+0x34`, a four-byte `Lay`
-handle, to -1 (`0x007A59F0`, `0x00210605`). It allocates each controller through `0x00210EC0`, `0xB8` bytes for music,
-line and battle voice and `0xE0` for block and six-digit, and stores 0 for an allocation that fails (`0x0021061D`,
-`0x0021063D`, `0x0021065E`, `0x0021067F`, `0x002106A0`). It builds them in the order music, block, six-digit, battle voice,
-line, then sets `+0x30` to -1 and zeroes `+0x38` and `+0x3C` with one 8-byte store (`0x002106AF`, `0x002106B6`).
+`0x002105E0` first sets `+0x28` to the `AudioCallback` vtable `0x00906A18`¹ and `+0x34`, a four-byte `Lay`
+handle, to -1². It allocates each controller through `0x00210EC0`, `0xB8` bytes for music,
+line and battle voice and `0xE0` for block and six-digit, and stores 0 for an allocation that fails³. It builds them in the order music, block, six-digit, battle voice,
+line, then sets `+0x30` to -1 and zeroes `+0x38` and `+0x3C` with one 8-byte store⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002105FD` |
+| ² | `0x007A59F0`, `0x00210605` |
+| ³ | `0x0021061D`, `0x0021063D`, `0x0021065E`, `0x0021067F`, `0x002106A0` |
+| ⁴ | `0x002106AF`, `0x002106B6` |
+
+</details>
 
 ### Controllers and the live list
 
 Every controller starts from the base `0x00212710`, which installs the `AudioController` vtable `0x00906CD0` and an empty
 EASTL list at `+0x08`. That list holds the controller's loaded banks, and every per-bank request walks it:
 
-- `0x00212910` asks each bank to drop its finished sounds (`0x00222050`);
-- `0x00212B80` stops the sound with one handle in each bank over 0.1 s (`0x00222390`);
+- `0x00212910` asks each bank to drop its finished sounds¹;
+- `0x00212B80` stops the sound with one handle in each bank over 0.1 s²;
 - `0x00212BD0`, `0x00212AE0`, `0x00212A90` and `0x00212B30` call bank vtable slot 0, 3, 4 or 5, the four pause groups below.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00222050` |
+| ² | `0x00222390` |
+
+</details>
 
 ### Bank pools
 
 Each controller owns a pool at `+0x20`: an EASTL vector of its bank objects and two EASTL sets of bank pointers. The
-reserve step puts every bank in the first set, the free set (`0x00218990`). Taking a bank moves the set's first node to
+reserve step puts every bank in the first set, the free set¹. Taking a bank moves the set's first node to
 the second set and rebuilds the bank in place: `0x0021C280` does this for battle voices and calls the
 `ShoutAudioBank` builder `0x00224BF0` on it. Each pool is its own template instance:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00218990` |
+
+</details>
 
 | Bank class | Pool build, reserve, resize, insert, erase | Element copies, fill and destroy |
 |---|---|---|
@@ -68,8 +98,17 @@ list to another through `0x002181A0`. The class builders are `0x002226A0` (music
 ### The object manager
 
 `0x002216B0` builds the object manager, `0x8D8` bytes at `0x01FD4138`, from the sound start-up `0x00210760` with 1,024 bank
-objects and 1,024 sound objects (`0x0021088E`); `0x00221710` returns it. Its constructor `0x0021E570` lays out five pools of
+objects and 1,024 sound objects¹; `0x00221710` returns it. Its constructor `0x0021E570` lays out five pools of
 the same vector-and-sets shape:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0021088E` |
+
+</details>
 
 | Offset | Holds | Element | Count | Taken by |
 |---|---|---|---:|---|
@@ -79,14 +118,37 @@ the same vector-and-sets shape:
 | `+0x1D0` | `MemoryStreamingReader` | `0x28` | 32 | `0x00220D40`, under the lock at `+0x350` |
 | `+0x268` | `MusicStreamingReader` | `0x218` | 5 | `0x00220C70`, under the lock at `+0x378` |
 
-`0x0021E570(obj, banks, sounds)` also sets the vtable `0x00908830` (`0x0021E5A4`), builds four lock records at `+0x300`,
-`+0x328`, `+0x350` and `+0x378` (`0x005CC8A0`) and creates each one (`0x005CD0A0`, `0x0021E6A7`-`0x0021E6BF`). It leaves an
+`0x0021E570(obj, banks, sounds)` also sets the vtable `0x00908830`¹, builds four lock records at `+0x300`,
+`+0x328`, `+0x350` and `+0x378`² and creates each one³. It leaves an
 empty tree at `+0x3A0`, its anchor at `+0x3A8` pointing at itself, the count `+0x3C8` at 0 and its allocator at
-`+0x3D0` holding the vtable `0x00902720` (`0x0021E650`-`0x0021E686`), which `0x00220760` empties again (`0x0021E6E5`).
+`+0x3D0` holding the vtable `0x00902720`⁴, which `0x00220760` empties again⁵.
 
-It reserves the bank-object pool for `banks` and the sound-object pool for `sounds` (`0x00220E80`, `0x00220F20`), each
-raised to 1 when it is 0 or below (`0x0021E691`-`0x0021E6A1`), and zeroes the 256 entries of both resume arrays
-(`0x0021E700`-`0x0021E716`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0021E5A4` |
+| ² | `0x005CC8A0` |
+| ³ | `0x005CD0A0`, `0x0021E6A7`-`0x0021E6BF` |
+| ⁴ | `0x0021E650`-`0x0021E686` |
+| ⁵ | `0x0021E6E5` |
+
+</details>
+
+It reserves the bank-object pool for `banks` and the sound-object pool for `sounds`¹, each
+raised to 1 when it is 0 or below², and zeroes the 256 entries of both resume arrays³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00220E80`, `0x00220F20` |
+| ² | `0x0021E691`-`0x0021E6A1` |
+| ³ | `0x0021E700`-`0x0021E716` |
+
+</details>
 
 The resume table of [Music](music.md) follows at `+0x3D8` and `+0x7D8`. Each pool's template code:
 
@@ -101,18 +163,24 @@ The resume table of [Music](music.md) follows at `+0x3D8` and `+0x7D8`. Each poo
 ### Bank objects and sound objects
 
 A bank keeps its driver bank object at `+0x20`. `0x00221D10` returns it, taking one from the pool on first use, and
-`0x00221C70` does the same and passes it to the driver with a sound object and its slot (`0x007A87C0`). A sound object
+`0x00221C70` does the same and passes it to the driver with a sound object and its slot¹. A sound object
 is the game's handle on one driver `Sound`, kept in the bank's sound list:
 
-1. `0x00221D60` takes a sound object (`0x00220D30`) and appends it to the bank's list. When the pool is empty it first
-   sweeps finished sounds from every bank of the block, six-digit and battle-voice controllers (`0x00210A60`) and tries
-   once more. A second miss still appends a `0x18`-byte node holding 0 and returns 0 (`0x00221DAC`-`0x00221DE4`).
-2. `0x00221E60`, `0x00221ED0` and `0x00221F40` find a bank's sound by slot `+0x14`, handle `+0x18` or id `+0x24`.
-   `0x00221E00` sweeps, then returns the sound for a slot or takes a new one.
-3. `0x00222050` sweeps the bank's list and the pending list at `0x01FD4140`; `0x00222280` returns each sound in state 0 or 2
-   to the pool (`0x00221210`).
-4. `0x00222080` and `0x002225B0` stop every sound of a bank, over 0.1 s or `frames / 60` s, and park them on the pending
-   list until they finish; `0x00222410` stops only the sounds with one id over 0.1 s.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A87C0` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00221D60` takes a sound object and appends it to the bank's list. When the pool is empty it first sweeps finished sounds from every bank of the block, six-digit and battle-voice controllers and tries once more. A second miss still appends a `0x18`-byte node holding 0 and returns 0. | `0x00220D30`<br>`0x00210A60`<br>`0x00221DAC`-`0x00221DE4` |
+| 2 | `0x00221E60`, `0x00221ED0` and `0x00221F40` find a bank's sound by slot `+0x14`, handle `+0x18` or id `+0x24`. `0x00221E00` sweeps, then returns the sound for a slot or takes a new one. |   |
+| 3 | `0x00222050` sweeps the bank's list and the pending list at `0x01FD4140`; `0x00222280` returns each sound in state 0 or 2 to the pool. | `0x00221210` |
+| 4 | `0x00222080` and `0x002225B0` stop every sound of a bank, over 0.1 s or `frames / 60` s, and park them on the pending list until they finish; `0x00222410` stops only the sounds with one id over 0.1 s. |   |
 
 `0x002256B0` resets a sound object to slot -1, volume `0x7F`, pan `0x40` and state 2. `0x002255B0` and `0x00225CC0` store a
 bank object's two data pointers and a memory reader's data and size.
@@ -131,13 +199,31 @@ Every bank class answers the same requests through its own methods:
 
 `0x00224540` is a forwarder: it leaves its first four arguments in their registers, copies its fifth, a
 dword, into the fifth place, and adds a zero byte as the sixth argument and a null qword as the seventh
-before it calls `0x00224570` (`0x00224544`-`0x0022455A`). It returns what `0x00224570` returns.
+before it calls `0x00224570`¹. It returns what `0x00224570` returns.
 
-The kind is stored at sound `+0x2C` (`0x002256E0`). For a six-digit or block bank, `0x00222170` answers whether a handle,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00224544`-`0x0022455A` |
+
+</details>
+
+The kind is stored at sound `+0x2C`¹. For a six-digit or block bank, `0x00222170` answers whether a handle,
 or with 0 any sound, still plays; `0x0021B2F0` asks it of every bank of one controller. A battle-voice bank holds both
 language copies, at `+0x50` (language 0) and `+0x48`, and `0x00224C40` loads the chosen one into its driver bank.
 `0x00225030(bank, language)` releases the driver bank and keeps fresh copies of the other language, or of both for
 -1. A music bank's reader opens its file and keeps its name through `0x00225C40`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002256E0` |
+
+</details>
 
 ### How a request reaches a bank
 
@@ -166,57 +252,96 @@ fetches the manager with `0x00210B30` and calls one method:
 | `0x001DBE90` | `0x00210C50` | with a handle, every block and six-digit bank (`0x00212B80`); by id, block `0x0021B640` or six-digit `0x0021A100` | stops | `0x002DF0F0`, `0x002DEE70` |
 
 A request that two families can own asks the block controller first and the six-digit one only when no block bank
-takes it (`0x00210CD0`, `0x00210E10`). The six-digit stop `0x0021A100` stops every sound of
-the bank with that id, of every bank for -1 and -3, and runs bank slot 1 on every bank for -4 (`0x00223300`). `0x00210710`, called by both starts, runs bank slot 6 over every six-digit bank and,
+takes it¹. The six-digit stop `0x0021A100` stops every sound of
+the bank with that id, of every bank for -1 and -3, and runs bank slot 1 on every bank for -4². `0x00210710`, called by both starts, runs bank slot 6 over every six-digit bank and,
 when no bank answered, over every block bank (`0x0021B0D0`, slot 2 of both controllers' vtables `0x00907BA8` and
 `0x00907DE0`); the block bank's slot 6 is `0x002238F0`, the one-at-a-time fade of flag bit `0x40`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00210CD0`, `0x00210E10` |
+| ² | `0x00223300` |
+
+</details>
+
 The constructor `0x00219400` of the controller with vtable `0x00907BA8` runs the base `0x00212710`, stores
 the vtable, calls `0x00219300(object + 0x20, 0x100)`, and then calls `0x005CC8A0` and `0x005CD0A0`, each with
-the address of the object's `+0xB8`; it returns the object (`0x0021941B`-`0x00219453`).
+the address of the object's `+0xB8`; it returns the object¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0021941B`-`0x00219453` |
+
+</details>
 
 ### Load ids
 
 A load is tracked by an id in the 128-entry table `0x01FD36C0`, eight bytes per entry: the id and a count:
 
-1. `0x002129F0(out, count)` asks `0x00212970` for an entry. It takes the next id from `0x01FD36B0`, 1 to `0x7FFFFFFF`
-   and then 1 again, writes it to out and stores it in the first free entry from the rotating cursor `0x01E027D0`.
-   With no free entry out is 0.
-2. `0x00212A70(index)` frees the entry, for example once a battle-voice bank's data is in (`0x00224DC0`); an index of
-   128 or more is ignored.
-3. `0x00212A10(id)` answers the entry's index plus one while id is pending and 0 once it is done. Id 0 answers the
-   highest pending entry plus one. A negative id answers 0 even while loads are pending (`0x00212A56`-`0x00212A5F`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x002129F0(out, count)` asks `0x00212970` for an entry. It takes the next id from `0x01FD36B0`, 1 to `0x7FFFFFFF` and then 1 again, writes it to out and stores it in the first free entry from the rotating cursor `0x01E027D0`. With no free entry out is 0. |   |
+| 2 | `0x00212A70(index)` frees the entry, for example once a battle-voice bank's data is in; an index of 128 or more is ignored. | `0x00224DC0` |
+| 3 | `0x00212A10(id)` answers the entry's index plus one while id is pending and 0 once it is done. Id 0 answers the highest pending entry plus one. A negative id answers 0 even while loads are pending. | `0x00212A56`-`0x00212A5F` |
 
 `0x002DEE90(id)` is that query through `0x00210AE0`. With -1 it calls `0x00212A10(-1)` once, gets 0 and returns without
 waiting.
 
-`0x00212970` writes the entry's id and count (`0x002129CD`, `0x002129D3`), moves the cursor to the next entry, back to
-`0x01FD36C0` after the last one (`0x002129E7`), and returns the entry's index. With every entry taken it returns -1
-once the walk is back at the cursor (`0x002129C6`); the id counter has already moved on, and `0x002129F0` writes 0 to
-out (`0x00212A02`).
+`0x00212970` writes the entry's id and count¹, moves the cursor to the next entry, back to
+`0x01FD36C0` after the last one², and returns the entry's index. With every entry taken it returns -1
+once the walk is back at the cursor³; the id counter has already moved on, and `0x002129F0` writes 0 to
+out⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002129CD`, `0x002129D3` |
+| ² | `0x002129E7` |
+| ³ | `0x002129C6` |
+| ⁴ | `0x00212A02` |
+
+</details>
 
 ### The file load thread
 
 The `AudioFileLoadManager` object, `0x158` bytes at `0x01FD36A8`, reads bank files on its own thread:
 
-1. `0x00211840` builds it with 1,024 request records of `0x128` bytes (`0x002116B0`), and `0x00212130` starts the thread
-   named `AudioFileLoadManager`.
-2. `0x002120E0` takes a free record and `0x002121C0` queues it, or runs it at once.
-3. The thread `0x00212600` takes the request at the tail of the queue, the one queued last, or sleeps 1 ms when there
-   is no request.
-4. `0x00212050` runs it: kind 1 reads the whole file named at `+0x20` into a new buffer (`0x00212260`), then the record's
-   callback runs and the record goes back to the free set.
-5. A bank's callback `0x00222200` calls bank slot 8 when the bank is still loading (`+0x30` = 1). Otherwise it cancels
-   the bank's other queued requests (`0x00212300`) and releases the bank.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00211840` builds it with 1,024 request records of `0x128` bytes, and `0x00212130` starts the thread named `AudioFileLoadManager`. | `0x002116B0` |
+| 2 | `0x002120E0` takes a free record and `0x002121C0` queues it, or runs it at once. |   |
+| 3 | The thread `0x00212600` takes the request at the tail of the queue, the one queued last, or sleeps 1 ms when there is no request. |   |
+| 4 | `0x00212050` runs it: kind 1 reads the whole file named at `+0x20` into a new buffer, then the record's callback runs and the record goes back to the free set. | `0x00212260` |
+| 5 | A bank's callback `0x00222200` calls bank slot 8 when the bank is still loading (`+0x30` = 1). Otherwise it cancels the bank's other queued requests and releases the bank. | `0x00212300` |
 
 The request vector's own code is `0x002123E0`, `0x00211BC0`, `0x00211530`, `0x00211600`, `0x00211480` and `0x002113D0`, and
 `0x002118E0`, `0x00211A60` and `0x00211AC0` tear it down.
 
-`0x00211840` lays the object out in this order (`0x0021185B`-`0x002118C5`): the thread record at `+0x08` zeroed
-(`0x005CC900`), the byte `+0x20` = 0, the vtable `0x00906C80`, a lock record at `+0x30` (`0x005CC8A0`), an empty two-way
+`0x00211840` lays the object out in this order¹: the thread record at `+0x08` zeroed², the byte `+0x20` = 0, the vtable `0x00906C80`, a lock record at `+0x30`³, an empty two-way
 list at `+0x58` (both links point at `+0x58`; its allocator at `+0x68` holds the vtable `0x00902720`, `0x001EDF00`), the
-1,024 records at `+0x70` (`0x002116B0(obj + 0x70, 0x400, 0)`), a second lock record at `+0x130` (`0x005CC8A0`), and
-then `0x00212130(obj)`. It returns the object (`0x002118CB`).
+1,024 records at `+0x70` (`0x002116B0(obj + 0x70, 0x400, 0)`), a second lock record at `+0x130`⁴, and
+then `0x00212130(obj)`. It returns the object⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0021185B`-`0x002118C5` |
+| ² | `0x005CC900` |
+| ³ | `0x005CC8A0` |
+| ⁴ | `0x005CC8A0` |
+| ⁵ | `0x002118CB` |
+
+</details>
 
 ### Pausing by kind
 
@@ -230,12 +355,31 @@ then `0x00212130(obj)`. It returns the object (`0x002118CB`).
 | `0x04` | every spoken line and battle-voice bank, slot 0 |
 | `0x08`, `0x10`, `0x20` | without `0x02`: block and six-digit banks' slots 3, 4 and 5 |
 
-Slot 0 of the other classes, `0x00222550`, runs slot 9 on each sound, `0x00222340`: pause (`0x007A8590`) or resume with a
-0.1 s fade (`0x007A7A20`). The music bank's slot 0, `0x00222C00`, does the same with 0.1 s both ways. The block bank's
+Slot 0 of the other classes, `0x00222550`, runs slot 9 on each sound, `0x00222340`: pause¹ or resume with a
+0.1 s fade². The music bank's slot 0, `0x00222C00`, does the same with 0.1 s both ways. The block bank's
 slot 9, `0x00223F40`, never pauses slots 2 and `0x59` of block 0. `0x00229AB0(on)` pauses or resumes all six bits.
 
-`0x00224B30` pauses a new block sound at once when the switch is on, the game mode `0x00229EA0` is 5 or 6 (`0x002287A0`)
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A8590` |
+| ² | `0x007A7A20` |
+
+</details>
+
+`0x00224B30` pauses a new block sound at once when the switch is on, the game mode `0x00229EA0` is 5 or 6¹
 and the bank is not block 0. `0x02` pauses it; `0x08`, `0x10` and `0x20` pause it by its slot's flag byte (copy `+9`):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002287A0` |
+
+</details>
 
 | Bit | Function | Pauses when |
 |---|---|---|
@@ -243,11 +387,24 @@ and the bank is not block 0. `0x02` pauses it; `0x08`, `0x10` and `0x20` pause i
 | `0x10` | `0x002240B0` | flags `0x69` all clear |
 | `0x20` | `0x00224470` | flag bit `0x1` clear and the sound id over 1,000 is 150 |
 
-The id test reads sound `+0x24`, which a block sound holds with bit `0x80000000` set (`0x002245ED`, `0x00224789`). Divided by 1,000
-as a signed number (`0x00224493`-`0x002244A5`) it is never 150, so bit `0x20` pauses no new block sound, and the id test
+The id test reads sound `+0x24`, which a block sound holds with bit `0x80000000` set¹. Divided by 1,000
+as a signed number² it is never 150, so bit `0x20` pauses no new block sound, and the id test
 of bits `0x08` and `0x10` never excludes one.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002245ED`, `0x00224789` |
+| ² | `0x00224493`-`0x002244A5` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 The sound object, `AudioSeadObjectSound`, `0x30` bytes, in the object manager's pool at `+0x0A0`:
 
@@ -278,16 +435,40 @@ The manager, `0x40` bytes, kept at `0x01FD36A0`:
 | `+0x38` | `u32` | pauseOn | the last pause switch; 0 when built (`0x002106B6`) |
 | `+0x3C` | `u32` | pauseMask | the paused kinds; 0 when built (`0x002106B6`) |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The pending list at `0x01FD4140` is a two-way list with its own head node: `+0x00` the first node, `+0x08` the last,
 then its allocator at `0x01FD4150`, which holds the vtable `0x00902720`: `0x001601C0` hands the text "EASTL list" to
-`0x001EDF00` (`0x001601E2`), which stores only the vtable and never reads that text (`0x001EDF00`-`0x001EDF0D`).
+`0x001EDF00`¹, which stores only the vtable and never reads that text².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001601E2` |
+| ² | `0x001EDF00`-`0x001EDF0D` |
+
+</details>
 
 Each node holds the next node, the previous node
-and the sound object (`+0x10`), `0x18` bytes. `0x00222080` and `0x002225B0` put each stopped sound at the end
-(`0x002220D4`-`0x00222110`, `0x00222604`-`0x00222640`); `0x00222280`, the sweep, unlinks a node through the list address it
-is given (`0x002222EF`-`0x00222318`).
+and the sound object (`+0x10`), `0x18` bytes. `0x00222080` and `0x002225B0` put each stopped sound at the end¹; `0x00222280`, the sweep, unlinks a node through the list address it
+is given².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002220D4`-`0x00222110`, `0x00222604`-`0x00222640` |
+| ² | `0x002222EF`-`0x00222318` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -296,6 +477,8 @@ is given (`0x002222EF`-`0x00222318`).
 
 No other instruction reaches these two. The list's address is taken by `0x001601C0`, `0x00221E00`, `0x00222050`, `0x00222080`,
 `0x002225B0` and `0x008A80F0`, which frees its nodes at exit.
+
+</details>
 
 ## Modding notes
 

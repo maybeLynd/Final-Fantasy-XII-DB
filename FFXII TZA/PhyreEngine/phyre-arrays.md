@@ -26,18 +26,44 @@ PhyreEngine has two array templates, both registered as reflected classes with `
   Its size is `8 + max(8, element size)` bytes, 8 plus the larger of 8 and the element size, which the class
   registrations pass
   to `0x00632D80`:
-  - `0x10` for `PSharray<PUInt32>` (`0x005EFBA9`) and the six pointer instantiations (`0x005B7B59`,
-    `0x005EFEF9`, `0x0066A4F9`, `0x006989C9`, `0x006A8559`, `0x006C65F9`);
-  - `0x50` for `PSharray<PDataBlockBufferD3D11>` (`0x0066A849`) and
-    `PSharray<PIndexDataBlockBufferD3D11>` (`0x0066AB99`), whose `0x48`-byte elements (`0x00661CC0`,
-    `0x00662170`) fill `+0x08` to `+0x4F` at a count of 1;
-  - in `PDataBlockD3D11` the member `m_buffers` at `+0x20` (`0x006658F3`) is followed by
-    `m_offsetInVertexBuffer` at `+0x70` (`0x006659E6`), and in `PIndexDataBlockD3D11` `m_buffers` at
-    `+0x18` (`0x00666403`) is followed by `m_offsetInIndexBuffer` at `+0x68` (`0x006664F6`).
+  - `0x10` for `PSharray<PUInt32>`¹ and the six pointer instantiations²;
+  - `0x50` for `PSharray<PDataBlockBufferD3D11>`³ and
+    `PSharray<PIndexDataBlockBufferD3D11>`⁴, whose `0x48`-byte elements⁵ fill `+0x08` to `+0x4F` at a count of 1;
+  - in `PDataBlockD3D11` the member `m_buffers` at `+0x20`⁶ is followed by
+    `m_offsetInVertexBuffer` at `+0x70`⁷, and in `PIndexDataBlockD3D11` `m_buffers` at
+    `+0x18`⁸ is followed by `m_offsetInIndexBuffer` at `+0x68`⁹.
 
-The registrations of `PSharray<PUInt32>` (`0x005EFD0A`), `PSharray<PDataBlockBufferD3D11>` (`0x0066A9A9`) and
-`PSharray<PIndexDataBlockBufferD3D11>` (`0x0066ACF9`) give `m_u` attribute bit `0x40`, the bit the reflection
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005EFBA9` |
+| ² | `0x005B7B59`, `0x005EFEF9`, `0x0066A4F9`, `0x006989C9`, `0x006A8559`, `0x006C65F9` |
+| ³ | `0x0066A849` |
+| ⁴ | `0x0066AB99` |
+| ⁵ | `0x00661CC0`, `0x00662170` |
+| ⁶ | `0x006658F3` |
+| ⁷ | `0x006659E6` |
+| ⁸ | `0x00666403` |
+| ⁹ | `0x006664F6` |
+
+</details>
+
+The registrations of `PSharray<PUInt32>`¹, `PSharray<PDataBlockBufferD3D11>`² and
+`PSharray<PIndexDataBlockBufferD3D11>`³ give `m_u` attribute bit `0x40`, the bit the reflection
 layer reads as "measured and defaulted inline".
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005EFD0A` |
+| ² | `0x0066A9A9` |
+| ³ | `0x0066ACF9` |
+
+</details>
 
 Element access follows from this. `0x006045B0` returns the pointer at `+0x08` of a `PArray`; `0x0063B9B0` returns the
 address of `+0x08` itself for a `PSharray` holding one element, null for no element, and the stored pointer
@@ -47,8 +73,17 @@ otherwise.
 
 Bit `0x80000000` of the count word marks storage the array does not own. The count is always read as
 `m_count & 0x7FFFFFFF` (`0x006065E0`, and the record hook `0x005C4CC0`). Every body that replaces the
-storage frees the old block with `_aligned_free` (`0x00584730`) only when bit `0x80000000` is clear and the block
+storage frees the old block with `_aligned_free`¹ only when bit `0x80000000` is clear and the block
 differs from the new one; a `PSharray` also never frees its inline slot.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00584730` |
+
+</details>
 
 Class destructors free
 their array members the same way, owned storage only: `0x005AA160` two arrays at `+0x00` and
@@ -58,43 +93,117 @@ records are made with `new[]`: `0x005C9CF0` replaces one with a new array of `n`
 
 The set-external operation is the one that sets the bit. `0x0062A870` and `0x0060F400` refuse a count with
 bit `0x80000000` already set (5), free owned old storage, store the new pointer and write `count | 0x80000000`.
-They return 5 for the refused count (`0x0062A89D`, `0x0060F42D`) and 0 otherwise (`0x0062A8DD`, `0x0060F46D`).
+They return 5 for the refused count¹ and 0 otherwise².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0062A89D`, `0x0060F42D` |
+| ² | `0x0062A8DD`, `0x0060F46D` |
+
+</details>
 
 `0x00673130` and `0x006AF760` do the same on the array directly, taking the array, the pointer and the count,
-except that a count with bit `0x80000000` set returns 0, not 5, and leaves the array unchanged (`0x0067314B`,
-`0x006AF77B`). Every other count returns 0 as well (`0x0067317A`, `0x006AF7AA`).
+except that a count with bit `0x80000000` set returns 0, not 5, and leaves the array unchanged¹. Every other count returns 0 as well².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067314B`, `0x006AF77B` |
+| ² | `0x0067317A`, `0x006AF7AA` |
+
+</details>
 
 The `PSharray` forms copy a single element into the inline slot instead and leave the count at a plain 1, so a
 one-element `PSharray` always owns its element:
 
-- `0x006C7D00` copies one dword for `PSharray<PUInt32>` (`0x006C7D62`-`0x006C7D64`); it refuses a count with bit
-  `0x80000000` set with 5 (`0x006C7D15`), and any count other than 1 gets the pointer and `count | 0x80000000`
-  (`0x006C7D4F`, `0x006C7D96`, `0x006C7DA0`);
-- `0x006A5950` copies one qword for the six pointer instantiations (`0x006A59B2`-`0x006A59B5`);
+- `0x006C7D00` copies one dword for `PSharray<PUInt32>`¹; it refuses a count with bit
+  `0x80000000` set with 5², and any count other than 1 gets the pointer and `count | 0x80000000`
+ ³;
+- `0x006A5950` copies one qword for the six pointer instantiations⁴;
 - `0x00672F30` and `0x00673030` copy the `0x48`-byte buffer records and store the record's own
-  `TAsyncUpdate` vtable at `+0x28` (`0x00672F92`-`0x00672FD3`, `0x00673092`-`0x006730D3`);
-- `0x0063DE10` stores the copy of the string made by `0x001C26B0` (`0x0063DE98`-`0x0063DEAA`).
+  `TAsyncUpdate` vtable at `+0x28`⁵;
+- `0x0063DE10` stores the copy of the string made by `0x001C26B0`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006C7D62`-`0x006C7D64` |
+| ² | `0x006C7D15` |
+| ³ | `0x006C7D4F`, `0x006C7D96`, `0x006C7DA0` |
+| ⁴ | `0x006A59B2`-`0x006A59B5` |
+| ⁵ | `0x00672F92`-`0x00672FD3`, `0x00673092`-`0x006730D3` |
+| ⁶ | `0x0063DE98`-`0x0063DEAA` |
+
+</details>
 
 ### Strings in arrays
 
-A `PString` is one tagged pointer: bit `0x1` set marks text the string does not own. Copying a string array
-(`0x001C19A0`) clears the tag, measures the text and duplicates it with alignment 2, so every copy owns its text: a
-block of the length plus one from `0x0017D260(length + 1, 2)`, filled with `memcpy` (`0x00861EBA`, `0x001C1A2C`) from the
-text and its terminator. A null text, or a failed allocation, gives a null copy (`0x001C19F4`, `0x001C1A21`). `0x001C2720`
+A `PString` is one tagged pointer: bit `0x1` set marks text the string does not own. Copying a string array¹ clears the tag, measures the text and duplicates it with alignment 2, so every copy owns its text: a
+block of the length plus one from `0x0017D260(length + 1, 2)`, filled with `memcpy`² from the
+text and its terminator. A null text, or a failed allocation, gives a null copy³. `0x001C2720`
 frees each untagged string and then the block.
 
-`0x001C2720(block, count)` returns at once for a null block (`0x001C2723`), skips null strings (`0x001C2756`) and
-frees the block last through `0x00584730` (`0x001C2773`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C19A0` |
+| ² | `0x00861EBA`, `0x001C1A2C` |
+| ³ | `0x001C19F4`, `0x001C1A21` |
+
+</details>
+
+`0x001C2720(block, count)` returns at once for a null block¹, skips null strings² and
+frees the block last through `0x00584730`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C2723` |
+| ² | `0x001C2756` |
+| ³ | `0x001C2773` |
+
+</details>
 
 `0x0063DCA0` releases a `PSharray<PString>`'s old storage: a single inline string, or the whole owned block through
 `0x001C2720`. Its arguments are the array, the new elements, the new count, the old elements and the old count.
-Nothing is freed when the old elements are the new ones (`0x0063DCCE`). An inline old string has its text freed
-when it is non-null with bit `0x1` clear, whatever the array's bit `0x80000000` (`0x0063DCD5`-`0x0063DCE5`); an old
-block goes to `0x001C2720(old elements, old count)` only when bit `0x80000000` of the array's count is clear
-(`0x0063DCED`-`0x0063DCFF`).
+Nothing is freed when the old elements are the new ones¹. An inline old string has its text freed
+when it is non-null with bit `0x1` clear, whatever the array's bit `0x80000000`²; an old
+block goes to `0x001C2720(old elements, old count)` only when bit `0x80000000` of the array's count is clear³.
 
-It then stores the new count as given (`0x0063DD04`) and writes the new pointer to `+0x08` unless the new
-elements are the inline slot (`0x0063DD06`-`0x0063DD0B`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063DCCE` |
+| ² | `0x0063DCD5`-`0x0063DCE5` |
+| ³ | `0x0063DCED`-`0x0063DCFF` |
+
+</details>
+
+It then stores the new count as given¹ and writes the new pointer to `+0x08` unless the new
+elements are the inline slot².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063DD04` |
+| ² | `0x0063DD06`-`0x0063DD0B` |
+
+</details>
 
 `0x006A7800`, published by the `PString` registration `0x006A72B0`, points a string at foreign text: it
 refuses an odd pointer with 5, frees the old text when it was owned and stores the pointer with bit `0x1`
@@ -127,33 +236,55 @@ storage (`0x00673130` for `PArray<unsigned int,4>`, `0x0060F2D0` for `PSharray<P
 
 The resize bodies that keep their elements have the same shape, shown by `0x005C8BF0` (`PArray<float>`).
 One helper keeps none: `0x001EF1A0`, for a `PSharray` of 8-byte elements (called from `0x001EE1D0`), zeroes
-the new storage (`0x001EF212`-`0x001EF21A`) instead of copying, returns `0xD` when the allocation fails
-(`0x001EF225`), and frees the old storage when owned. The common shape:
+the new storage¹ instead of copying, returns `0xD` when the allocation fails², and frees the old storage when owned. The common shape:
 
-1. When the new count equals the whole count word it returns 0 at once (`0x005C8C15`-`0x005C8C17`). An array with
-   bit `0x80000000` set never matches, so resizing it always makes an owned copy.
-2. It allocates the new count of elements through `0x0017D260` with the element type's alignment and
-   copies the first `min(old, new)` elements; for element types with a default the helper fills the
-   rest (for `PShadowSplit`, `0x006C2320` sets two fields to 10.0). `0x005C8BF0` asks for `count * 4` bytes
-   with alignment 4 (`0x005C8C23`-`0x005C8C2C`) and copies with `0x005A5B40` (`0x005C8C47`).
-3. A failed allocation for a non-zero count returns `0xD` with the array unchanged (`0x005C8C8D`-`0x005C8C96`). A
-   new count of 0 allocates nothing (`0x005C8C21`) and goes on to step 4 with a null pointer, so the array ends
-   empty with its owned storage freed.
-4. It frees the old storage when owned, through an element destructor for types that own memory
-   (`0x005B7E10` frees the string of each `PAnimationChannelTarget`), and stores the pointer and the
-   new count with bit `0x80000000` clear (`0x005C8C4C`-`0x005C8C6E`), then returns 0 (`0x005C8C70`). Old storage
-   equal to the new block, or null, is never freed (`0x005C8C53`, `0x005C8C63`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EF212`-`0x001EF21A` |
+| ² | `0x001EF225` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When the new count equals the whole count word it returns 0 at once. An array with bit `0x80000000` set never matches, so resizing it always makes an owned copy. | `0x005C8C15`-`0x005C8C17` |
+| 2 | It allocates the new count of elements through `0x0017D260` with the element type's alignment and copies the first `min(old, new)` elements; for element types with a default the helper fills the rest (for `PShadowSplit`, `0x006C2320` sets two fields to 10.0). `0x005C8BF0` asks for `count * 4` bytes with alignment 4 and copies with `0x005A5B40`. | `0x005C8C23`-`0x005C8C2C`<br>`0x005C8C47` |
+| 3 | A failed allocation for a non-zero count returns `0xD` with the array unchanged. A new count of 0 allocates nothing and goes on to step 4 with a null pointer, so the array ends empty with its owned storage freed. | `0x005C8C8D`-`0x005C8C96`<br>`0x005C8C21` |
+| 4 | It frees the old storage when owned, through an element destructor for types that own memory (`0x005B7E10` frees the string of each `PAnimationChannelTarget`), and stores the pointer and the new count with bit `0x80000000` clear, then returns 0. Old storage equal to the new block, or null, is never freed. | `0x005C8C4C`-`0x005C8C6E`<br>`0x005C8C70`<br>`0x005C8C53`, `0x005C8C63` |
 
 The `PAnimationChannelTarget` resize `0x005C8CA0` gets its new block from `0x005AD2B0`, which asks for
 `count * 0x38` bytes with alignment 8, copies the kept elements with `0x005A5BD0` and defaults the rest with
-`0x005BED40` (`0x005AD2CB`-`0x005AD2FF`). For owned old storage it calls `0x005B7E10` with the old count
-(`0x005C8D07`-`0x005C8D0B`), which frees the text at `+0x28` of each element when that pointer is non-null with bit
-`0x1` clear, then the block (`0x005B7E40`-`0x005B7E63`); a null block returns at once (`0x005B7E13`).
+`0x005BED40`¹. For owned old storage it calls `0x005B7E10` with the old count², which frees the text at `+0x28` of each element when that pointer is non-null with bit
+`0x1` clear, then the block³; a null block returns at once⁴.
 
-`PSharray` resizes (`0x0060CC60`) use the inline slot for a count of 1 and otherwise behave the same.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005AD2CB`-`0x005AD2FF` |
+| ² | `0x005C8D07`-`0x005C8D0B` |
+| ³ | `0x005B7E40`-`0x005B7E63` |
+| ⁴ | `0x005B7E13` |
+
+</details>
+
+`PSharray` resizes¹ use the inline slot for a count of 1 and otherwise behave the same.
 `0x0060C6C0` resizes a `PArray` of `0x18`-byte elements outside the member records: `0x005E3380`
 allocates the new block (alignment 8) and copies the kept elements, and a failed allocation returns
 `0xD`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0060CC60` |
+
+</details>
 
 ### Copying and appending
 
@@ -161,34 +292,62 @@ allocates the new block (alignment 8) and copies the kept elements, and a failed
   storage when owned: `0x005AA3C0` (`PArray` of 4-byte elements), `0x005DE950` (`PSharray`). The count it
   stores has bit `0x80000000` clear, so the copy owns its elements even when the source did not.
 - `0x005AA3C0` asks `0x0017D260` for `count * 4` bytes with alignment 4 and copies with `0x005A5B40`
-  (`0x005AA3EA`-`0x005AA409`). A source count of 0, or a failed allocation, leaves the new pointer null, and the
-  source's count is stored all the same (`0x005AA434`-`0x005AA43B`), so a failed allocation gives an array with that
+ ¹. A source count of 0, or a failed allocation, leaves the new pointer null, and the
+  source's count is stored all the same², so a failed allocation gives an array with that
   count and a null `m_els`.
 - `0x005DE950` reads the source's elements from the inline slot for a count of 1, through the pointer for 2 or
-  more, and as null for 0 (`0x005DE976`-`0x005DE987`). `0x005FEE80` gives the new storage: the destination's own
-  `+0x08` for a count of 1, `count * 4` bytes at alignment 4 for 2 or more (`0x005FEEA4`-`0x005FEEB5`), with each
-  element copied as a dword (`0x005FEED0`-`0x005FEEE2`).
-- As in `0x005AA3C0`, a failed allocation in `0x005DE950` stores the source's count with a null pointer (`0x005FEEBD`,
-  `0x005DE9D2`-`0x005DE9DC`). It frees old storage only when it is neither the new storage nor the inline slot
-  (`0x005DE9B4`-`0x005DE9CD`), and writes the pointer only when the new storage is not the inline slot
-  (`0x005DE9D7`). Both copy-assigns return the destination (`0x005AA431`, `0x005DE9D4`).
+  more, and as null for 0³. `0x005FEE80` gives the new storage: the destination's own
+  `+0x08` for a count of 1, `count * 4` bytes at alignment 4 for 2 or more⁴, with each
+  element copied as a dword⁵.
+- As in `0x005AA3C0`, a failed allocation in `0x005DE950` stores the source's count with a null pointer⁶. It frees old storage only when it is neither the new storage nor the inline slot
+ ⁷, and writes the pointer only when the new storage is not the inline slot
+ ⁸. Both copy-assigns return the destination⁹.
 - `0x005DE950` reads the destination's old count and old pointer after the copy (`0x005DE992`, `0x005DE9A6`, after
   the call at `0x005DE98D`). For a source count of 1, `0x005FEE80` has by then stored the element in the
-  destination's `+0x08` (`0x005FEE8F`, `0x005FEEDC`-`0x005FEEE2`). A destination that held 2 or more owned elements
-  therefore hands `0x00584730` its old pointer with the low 32 bits replaced by that element (`0x005DE9CD`), not
+  destination's `+0x08`¹⁰. A destination that held 2 or more owned elements
+  therefore hands `0x00584730` its old pointer with the low 32 bits replaced by that element¹¹, not
   the old block.
 - `0x006C5020` is the `PSharray` copy constructor: it zeroes the count before the copy-assign.
 - `0x005C0090` appends one `{qword, dword}` element to the `PArray` at `+0x100` of its object by
   reallocating with one more element; it returns 0 when the allocation fails, 1 otherwise. It asks
-  `0x0017D260` for `((count & 0x7FFFFFFF) + 1) * 0x10` bytes with alignment 8 (`0x005C00A2`-`0x005C00BC`); a failed
-  allocation returns 0 with the array unchanged (`0x005C00C9`-`0x005C00DD`).
-- On success `0x005C0090` copies the old 16-byte elements (`0x005C0100`-`0x005C0113`) and writes the qword argument
-  at `+0x0` and the dword argument at `+0x8` of the new last element (`0x005C0127`-`0x005C012C`). It frees owned
-  old storage that is not null (`0x005C013C`-`0x005C014F`), stores the block at `+0x108` and
-  `(count & 0x7FFFFFFF) + 1` at `+0x100` (`0x005C0154`-`0x005C0163`), so the bit `0x80000000` is clear, and
-  returns 1 (`0x005C0169`-`0x005C0172`).
+  `0x0017D260` for `((count & 0x7FFFFFFF) + 1) * 0x10` bytes with alignment 8¹²; a failed
+  allocation returns 0 with the array unchanged¹³.
+- On success `0x005C0090` copies the old 16-byte elements¹⁴ and writes the qword argument
+  at `+0x0` and the dword argument at `+0x8` of the new last element¹⁵. It frees owned
+  old storage that is not null¹⁶, stores the block at `+0x108` and
+  `(count & 0x7FFFFFFF) + 1` at `+0x100`¹⁷, so the bit `0x80000000` is clear, and
+  returns 1¹⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005AA3EA`-`0x005AA409` |
+| ² | `0x005AA434`-`0x005AA43B` |
+| ³ | `0x005DE976`-`0x005DE987` |
+| ⁴ | `0x005FEEA4`-`0x005FEEB5` |
+| ⁵ | `0x005FEED0`-`0x005FEEE2` |
+| ⁶ | `0x005FEEBD`, `0x005DE9D2`-`0x005DE9DC` |
+| ⁷ | `0x005DE9B4`-`0x005DE9CD` |
+| ⁸ | `0x005DE9D7` |
+| ⁹ | `0x005AA431`, `0x005DE9D4` |
+| ¹⁰ | `0x005FEE8F`, `0x005FEEDC`-`0x005FEEE2` |
+| ¹¹ | `0x005DE9CD` |
+| ¹² | `0x005C00A2`-`0x005C00BC` |
+| ¹³ | `0x005C00C9`-`0x005C00DD` |
+| ¹⁴ | `0x005C0100`-`0x005C0113` |
+| ¹⁵ | `0x005C0127`-`0x005C012C` |
+| ¹⁶ | `0x005C013C`-`0x005C014F` |
+| ¹⁷ | `0x005C0154`-`0x005C0163` |
+| ¹⁸ | `0x005C0169`-`0x005C0172` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### Reflected members
 
@@ -240,7 +399,12 @@ PClassDataMemberArrayDynamic&lt;T&gt;, beyond the PClassDataMemberArray fields:
 | `+0x68` | `void*` |  | element-pointer hook: `0x00671250` for PSharray&lt;PUInt32&gt;, 0 for PArray&lt;unsigned int,4&gt; |
 | `+0x70` | `void*` |  | set-external hook |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -256,6 +420,8 @@ PClassDataMemberArrayDynamic&lt;T&gt;, beyond the PClassDataMemberArray fields:
 | [phyre-arrays-member-vtables.tsv](phyre-arrays-member-vtables.tsv) | 69 | each array member-record vtable: element type, slot `+0x28` thunk and resize body, slots `+0x20`, `+0x30`, `+0x40` |
 | [phyre-arrays-template-bodies.tsv](phyre-arrays-template-bodies.tsv) | 85 | template bodies: resizes, allocate-and-copy helpers, element copiers and defaulters, copy-assigns, set-external, clear and destroy bodies, with their element types |
 
+</details>
+
 ## Operations
 
 - Count: `m_count & 0x7FFFFFFF`, or member slot `+0x20`.
@@ -268,11 +434,20 @@ PClassDataMemberArrayDynamic&lt;T&gt;, beyond the PClassDataMemberArray fields:
 
 - To make an array use memory you manage, store the pointer and `count | 0x80000000`; the engine then
   never frees it. A `PSharray` takes foreign memory only for two or more elements: for a count of 1
-  `0x0063B9B0` returns the address of `+0x08` (`0x0063B9D3`), and every set-external body copies the single
+  `0x0063B9B0` returns the address of `+0x08`¹, and every set-external body copies the single
   element there. Resizing or copy-assigning such an array gives an owned copy.
 - A `PSharray` with one element keeps it inside the array, so code that walks the elements must take
   the address of `+0x08` rather than read it as a pointer.
 - Strings copied into arrays always become owned copies; a tagged (bit `0x1`) string is never freed.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063B9D3` |
+
+</details>
 
 ## Related
 
@@ -290,8 +465,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Game files and data tables** (explained on [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001C26B0` | is called by | `0x00597970`, `0x00597A70`, `0x0059ED70`, `0x0059EE10` |
+| [`0x001C26B0`](phyre-asset-files.md) (on phyre asset files) | is called by | [`0x00597970`](../Game-Files-And-Data-Tables/file-path-resolution.md) (on file path resolution)<br>[`0x00597A70`](../Game-Files-And-Data-Tables/file-path-resolution.md) (on file path resolution)<br>[`0x0059ED70`](../Game-Files-And-Data-Tables/file-path-resolution.md) (on file path resolution)<br>[`0x0059EE10`](phyre-arrays.md) |
 
 </details>

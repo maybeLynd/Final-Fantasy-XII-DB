@@ -19,7 +19,16 @@ copies from the real list for that mode, while the real list stays as it was.
 ### The nine seats
 
 The party lives in the party block `[0x02EBF190]` as five slot maps of nine two-byte seats each, `0x12`
-bytes apart (`0x0031BA3D`-`0x0031BAAA`):
+bytes apart¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031BA3D`-`0x0031BAAA` |
+
+</details>
 
 | Map | Offset | Read by |
 |---:|---|---|
@@ -35,53 +44,108 @@ kept at `+0x5AA4`; [Party leader](party-leader.md) turns it into the leader, the
 
 ### Reading a seat
 
-`0x0031B9F0(seat, map)` returns the low byte of a seat (`0x0031B9F0`-`0x0031BAB7`):
+`0x0031B9F0(seat, map)` returns the low byte of a seat¹:
 
-1. The seat must pass the class-23 id check, 0 to 8 (`0x0031BA04`-`0x0031BA0F`;
-   [Item and ability ids](../Engine-Core/item-and-ability-ids.md)); a seat that fails it returns `0xFF`
-   (`0x0031BA11`).
-2. The map picks the offset; any map above 4 returns `0xFF` (`0x0031BA1E`-`0x0031BA34`), and so does a negative map.
-3. Otherwise it returns the byte at `[0x02EBF190]` + the map's offset + 2 × seat (`0x0031BA36`-`0x0031BAAA`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B9F0`-`0x0031BAB7` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The seat must pass the class-23 id check, 0 to 8 (`0x0031BA04`-`0x0031BA0F`; [Item and ability ids](../Engine-Core/item-and-ability-ids.md)); a seat that fails it returns `0xFF`. | `0x0031BA11` |
+| 2 | The map picks the offset; any map above 4 returns `0xFF`, and so does a negative map. | `0x0031BA1E`-`0x0031BA34` |
+| 3 | Otherwise it returns the byte at `[0x02EBF190]` + the map's offset + 2 × seat. | `0x0031BA36`-`0x0031BAAA` |
 
 These turn the selector into a record or a unit:
 
 - `0x00320AB0(seat, map)` returns the member's stats record, `[0x02EBF190] + 8 + selector * 0x1C8`, or 0 for a
   selector above 39 ([Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md); `0x00320AB4`-`0x00320AD9`);
-- `0x0031B810(seat)` reads map 1 directly and returns the battle unit with that selector (`0x0031B81C`-`0x0031B851`,
-  `0x002367A0`); a seat that `0x00322C50(0x17, seat, 0)` refuses is looked up as selector `0xFF` instead
-  (`0x0031B822`-`0x0031B835`);
+- `0x0031B810(seat)` reads map 1 directly and returns the battle unit with that selector¹; a seat that `0x00322C50(0x17, seat, 0)` refuses is looked up as selector `0xFF` instead
+ ²;
 - `0x0031FE70` and `0x00320040` take the map first and pass the stats record on to `0x00329220`
-  (`0x0031FE7A`-`0x0031FEBA`, `0x0032004A`-`0x0032008D`);
+ ³;
 - `0x0030A6E0` reads map 1 for a mask of the fighting members by kind, main character, guest, Esper or chocobo,
   leaving out members who are down.
 
-Besides the new-game fill below, map 0's seats are written by `0x00329080` (`0x00329122`, `0x00329176`) when a member
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B81C`-`0x0031B851`, `0x002367A0` |
+| ² | `0x0031B822`-`0x0031B835` |
+| ³ | `0x0031FE7A`-`0x0031FEBA`, `0x0032004A`-`0x0032008D` |
+
+</details>
+
+Besides the new-game fill below, map 0's seats are written by `0x00329080`¹ when a member
 joins or leaves ([Party members](party-members.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00329122`, `0x00329176` |
+
+</details>
 
 ### A new game's party
 
-`0x00329CC0` fills map 0 from the nine bytes at `0x01EED260`, `00` then eight `FF` (`0x00329CF0`-`0x00329DAE`):
+`0x00329CC0` fills map 0 from the nine bytes at `0x01EED260`, `00` then eight `FF`¹:
 
-1. A selector is seated and its record activated with `0x00316DF0` (`0x00329D53`-`0x00329D9E`), when
-   `0x00322C50(2, selector)` accepts it as a row of the party definitions and it is at most `0x27`; otherwise the
-   seat is left as it was (`0x00329D53`-`0x00329D8B`).
-2. An empty byte empties the seat, deactivating the record that was there with `0x00323540`
-   (`0x00329D0D`-`0x00329D51`). A seat whose selector is above `0x27` holds no record and is left as it was
-   (`0x00329D2C`-`0x00329D32`).
-3. The first byte becomes the leader selector `+0x5AA4`, and `0x00326500` asks for the default controlled member
-   (`0x00329DBB`-`0x00329DC8`).
-4. Maps 1-4 become copies of map 0 (`0x00329DE3`-`0x00329E27`).
+<details>
+<summary>Where in the code</summary>
 
-Each seat index first passes `0x00322C50(0x17, seat)`, which accepts 0 to 8, so no seat is skipped
-(`0x00329CF4`-`0x00329D07`, `0x00329D13`-`0x00329D23`). The fill starts with a call of `0x003148F0`, the current area index,
-whose result it does not use (`0x00329CD5`), and the leader selector is stored as a dword (`0x00329DC2`).
+| | Code |
+|---|---|
+| ¹ | `0x00329CF0`-`0x00329DAE` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A selector is seated and its record activated with `0x00316DF0`, when `0x00322C50(2, selector)` accepts it as a row of the party definitions and it is at most `0x27`; otherwise the seat is left as it was. | `0x00329D53`-`0x00329D9E`<br>`0x00329D53`-`0x00329D8B` |
+| 2 | An empty byte empties the seat, deactivating the record that was there with `0x00323540`. A seat whose selector is above `0x27` holds no record and is left as it was. | `0x00329D0D`-`0x00329D51`<br>`0x00329D2C`-`0x00329D32` |
+| 3 | The first byte becomes the leader selector `+0x5AA4`, and `0x00326500` asks for the default controlled member. | `0x00329DBB`-`0x00329DC8` |
+| 4 | Maps 1-4 become copies of map 0. | `0x00329DE3`-`0x00329E27` |
+
+Each seat index first passes `0x00322C50(0x17, seat)`, which accepts 0 to 8, so no seat is skipped¹. The fill starts with a call of `0x003148F0`, the current area index,
+whose result it does not use², and the leader selector is stored as a dword³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00329CF4`-`0x00329D07`, `0x00329D13`-`0x00329D23` |
+| ² | `0x00329CD5` |
+| ³ | `0x00329DC2` |
+
+</details>
 
 ### Rebuilding the copies
 
-`0x003266C0` rebuilds maps 1-4 from map 0 (`0x003266C0`-`0x00326B97`). It first calls `0x00311E20` (`0x003266EF`), then
+`0x003266C0` rebuilds maps 1-4 from map 0¹. It first calls `0x00311E20`², then
 makes maps 1 and 3 copies of map 0, empties the reserve of map 1, and makes maps 2 and 4 copies of map 1, after
-saving map 4 (`0x003266F4`-`0x0032674B`). Then it adjusts the four active seats by the party control mode `0x0030D9A0`
+saving map 4³. Then it adjusts the four active seats by the party control mode `0x0030D9A0`
 ([Party control modes](../Engine-Core/party-control-modes.md)):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003266C0`-`0x00326B97` |
+| ² | `0x003266EF` |
+| ³ | `0x003266F4`-`0x0032674B` |
+
+</details>
 
 | Mode | Seats 0-3 of maps 1, 2 and 4 | Sites |
 |---|---|---|
@@ -93,24 +157,61 @@ saving map 4 (`0x003266F4`-`0x0032674B`). Then it adjusts the four active seats 
 | 5, second event party | map 4 is restored; only the leader's seat is kept, in maps 1 and 2 | `0x00326783`-`0x0032683A` |
 
 In modes 4 and 5 the leader's seat is that of the leader selector `+0x5AA4`, or with the area's town bit the area's leader at the controlled
-member's seat (`0x003267B7`-`0x003267E8`, `0x0032686E`-`0x0032689F`).
+member's seat¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003267B7`-`0x003267E8`, `0x0032686E`-`0x0032689F` |
+
+</details>
 
 Then, for each seat `s` from 0 to 3, the loop takes the roster actor `0x00263750(s)` and its unit `0x00263E30(actor)`;
 a seat without either is passed over (`0x00326A40`-`0x00326A5E`, back branch `0x00326B18`). The unit's present id is
 its stats record's word `+0x04` when unit flag bit `0x4` is set, else `0xFFFF`; the new id is the whole word of
-map 1's seat `s`; equal ids leave the unit as it is (`0x00326A64`-`0x00326A82`).
+map 1's seat `s`; equal ids leave the unit as it is¹.
 
-A unit that holds no member goes straight to `0x0023A570(unit, new id)` (`0x00326A88`-`0x00326A8C`,
-`0x00326B04`-`0x00326B0A`). A unit whose seat is now empty first loses flag bit `0x4000000` (`0x00326A8E`-`0x00326A92`,
-`0x00326AFD`). A unit that changes from one member to another gets, before that same clear and the install:
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00326A64`-`0x00326A82` |
+
+</details>
+
+A unit that holds no member goes straight to `0x0023A570(unit, new id)`¹. A unit whose seat is now empty first loses flag bit `0x4000000`². A unit that changes from one member to another gets, before that same clear and the install:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00326A88`-`0x00326A8C`, `0x00326B04`-`0x00326B0A` |
+| ² | `0x00326A8E`-`0x00326A92`, `0x00326AFD` |
+
+</details>
 
 - `0x002ECF10(a, b, 0)`, with `a` the unit's actor pointer `+0x10` and `b` the bit `0x800000` of the unit's
   flags, and `0x003105D0(unit)`
-  (`0x00326A94`-`0x00326AA9`);
+ ¹;
 - `0x00300E40(unit, 0)` when its first byte has bit `0x2` clear and either it has no stats record `+0x698` or that
   record's dwords `+0x64` and `+0x3C` together have a bit of `0x80000003` set while `0x00313F60()` answers 0
-  (`0x00326AAE`-`0x00326ADA`);
-- `0x002E42D0(a)`, `0x002699D0(a)` and `0x002ECEC0(a)`, and flag bit `0x40` set (`0x00326ADF`-`0x00326AFA`).
+ ²;
+- `0x002E42D0(a)`, `0x002699D0(a)` and `0x002ECEC0(a)`, and flag bit `0x40` set³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00326A94`-`0x00326AA9` |
+| ² | `0x00326AAE`-`0x00326ADA` |
+| ³ | `0x00326ADF`-`0x00326AFA` |
+
+</details>
 
 The call at `0x00326B0A` is the one call found that can pass a party id to the installer
 ([Battle unit construction](../Characters-And-Objects/battle-unit-construction.md)); it passes the seat's word for
@@ -118,7 +219,16 @@ the unit of the roster actor with the seat's index.
 
 At the end `0x00326500` picks the controlled member, and `0x022C2670` counts the seats 0 to 3 that
 `0x00322C50(0x17, seat, 0)` accepts, whose member byte is `0x27` or less and whose party record has none of the bits
-`0x80000003` set, or has them while `0x00313F60()` answers non-zero (`0x00326B1E`-`0x00326B97`).
+`0x80000003` set, or has them while `0x00313F60()` answers non-zero¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00326B1E`-`0x00326B97` |
+
+</details>
 
 ### Who asks for a seat's unit
 
@@ -171,23 +281,40 @@ well; the other twenty-five ask for seats 0 to 3 only.
 
 ### The snapshot a menu takes
 
-`0x00326BB0`, run when the menu tasks `0x00281AE0` (`0x00281B52`) and `0x002D70F0` (`0x002D73BC`) open, records the active seats
+`0x00326BB0`, run when the menu tasks `0x00281AE0`¹ and `0x002D70F0`² open, records the active seats
 once; bit `0x1` of `0x022C25A0` marks the snapshot as taken (`0x003278C0` reads it):
 
-1. For each seat 0 to 3 that map 1 holds (`0x00322C50(0x17, i)`, the byte at `[0x02EBF190] + 0x5A5A + 2i`) whose unit
-   (`0x002367A0`) has first-byte bit `0x8`, the 48-byte record at `0x022C25B0 + 0x30 x i` gets the member's type at `+0` and
-   `+1`, the unit id at `+4`, the position at `+0x10` (`0x00265020`) and the angle at `+0x20` (`0x00265200`).
-2. `0x022C25A4` takes the leader selector `[0x02EBF190] + 0x5AA4` (`0x00326CC6`-`0x00326CD4`).
-   `0x022C25A5` takes the controlled member's type, byte `+4` of the stats record
-   `+0x698` of the unit that `0x003588B0` and `0x00263E30` give for the handle from
-   `0x003590D0`, only while bit `0x10` of `0x02089340` is set
-   (`0x00326CDA`-`0x00326D26`); it takes the leader selector when that bit is clear, when
-   a step gives null and when the type is `0xFF` (`0x00326D2C`-`0x00326D48`).
+<details>
+<summary>Where in the code</summary>
 
-`0x00326D60`, from the menu close `0x00281E00` (`0x00281EA8`), reads the snapshot (`0x00326D67`) and clears the mark when
-it is done (`0x00327125`). `0x00327360`, run by the area
-initialisation `0x002342F0` (`0x00234459`), clears the mark, sets `0x022C25A4` to `0xFF` and each record's type word to
+| | Code |
+|---|---|
+| ¹ | `0x00281B52` |
+| ² | `0x002D73BC` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | For each seat 0 to 3 that map 1 holds (`0x00322C50(0x17, i)`, the byte at `[0x02EBF190] + 0x5A5A + 2i`) whose unit has first-byte bit `0x8`, the 48-byte record at `0x022C25B0 + 0x30 x i` gets the member's type at `+0` and `+1`, the unit id at `+4`, the position at `+0x10` and the angle at `+0x20`. | `0x002367A0`<br>`0x00265020`<br>`0x00265200` |
+| 2 | `0x022C25A4` takes the leader selector `[0x02EBF190] + 0x5AA4`. `0x022C25A5` takes the controlled member's type, byte `+4` of the stats record `+0x698` of the unit that `0x003588B0` and `0x00263E30` give for the handle from `0x003590D0`, only while bit `0x10` of `0x02089340` is set; it takes the leader selector when that bit is clear, when a step gives null and when the type is `0xFF`. | `0x00326CC6`-`0x00326CD4`<br>`0x00326CDA`-`0x00326D26`<br>`0x00326D2C`-`0x00326D48` |
+
+`0x00326D60`, from the menu close `0x00281E00`¹, reads the snapshot² and clears the mark when
+it is done³. `0x00327360`, run by the area
+initialisation `0x002342F0`⁴, clears the mark, sets `0x022C25A4` to `0xFF` and each record's type word to
 `0xFFFF` and id to 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00281EA8` |
+| ² | `0x00326D67` |
+| ³ | `0x00327125` |
+| ⁴ | `0x00234459` |
+
+</details>
 
 The records' member words and unit ids, seat 0's member word being the base `0x022C25B0`:
 
@@ -203,6 +330,9 @@ The records' member words and unit ids, seat 0's member word being the base `0x0
 
 ## Layouts
 
+<details>
+<summary>Show the memory layouts</summary>
+
 The slot maps in the party block:
 
 | Offset | Type | Name | Meaning |
@@ -217,25 +347,59 @@ The slot maps in the party block:
 The maps start at `[0x02EBF190] + 0x5A48`; the leader selector is the dword at `+0x5AA4`
 ([Party data](party-data.md)).
 
+</details>
+
 ## State
 
-`0x0031BAC0(point, angle, seat, out)` places the member in a seat of map 1 around a point: the controlled member
-(`0x003272F0`) stands on the point itself (`0x0031BBF6`-`0x0031BBFD`, `0x0031BD18`). The others take positions from a table
-of 4 rows of 3 that `0x0031BAC0` builds on its stack (`0x0031BAEF`-`0x0031BB9B`), the row being `0x022C2670` less 2, or 3
-when `0x003135C0` answers non-zero (`0x0031BBDA`-`0x0031BBF2`); with fewer than two standing members it places nobody
-(`0x0031BC51`).
+<details>
+<summary>Show the state it keeps</summary>
 
-Two more cases stand on the point (`0x0031BC03`-`0x0031BC20`, `0x0031BD18`): a seat with no
+`0x0031BAC0(point, angle, seat, out)` places the member in a seat of map 1 around a point: the controlled member¹ stands on the point itself². The others take positions from a table
+of 4 rows of 3 that `0x0031BAC0` builds on its stack³, the row being `0x022C2670` less 2, or 3
+when `0x003135C0` answers non-zero⁴; with fewer than two standing members it places nobody⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003272F0` |
+| ² | `0x0031BBF6`-`0x0031BBFD`, `0x0031BD18` |
+| ³ | `0x0031BAEF`-`0x0031BB9B` |
+| ⁴ | `0x0031BBDA`-`0x0031BBF2` |
+| ⁵ | `0x0031BC51` |
+
+</details>
+
+Two more cases stand on the point¹: a seat with no
 member record (`0x00322C50(0x17, seat)` fails or the seat byte is above `0x27`), and a
 member whose record dwords `+0x64` and `+0x3C` together have a bit of `0x80000003` set
-while `0x00313F60()` answers 0. The record is `[0x02EBF190] + 8 + 0x1C8 × type`
-(`0x0031BBA0`-`0x0031BBCB`).
+while `0x00313F60()` answers 0. The record is `[0x02EBF190] + 8 + 0x1C8 × type`².
 
-`0x0031BAC0` answers 1 when it wrote a position and 0 when it placed nobody (`0x0031BD14`,
-`0x0031BD20`): with fewer than two standing members (`0x0031BC51`-`0x0031BC58`). It also
-repeats the `0x00322C50(0x17, seat)` call and tests the seat byte for `0xFF`
-(`0x0031BC2F`-`0x0031BC4B`), but both are reached only after the first call passed and the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031BC03`-`0x0031BC20`, `0x0031BD18` |
+| ² | `0x0031BBA0`-`0x0031BBCB` |
+
+</details>
+
+`0x0031BAC0` answers 1 when it wrote a position and 0 when it placed nobody¹: with fewer than two standing members². It also
+repeats the `0x00322C50(0x17, seat)` call and tests the seat byte for `0xFF`³, but both are reached only after the first call passed and the
 byte was `0x27` or less.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031BD14`, `0x0031BD20` |
+| ² | `0x0031BC51`-`0x0031BC58` |
+| ³ | `0x0031BC2F`-`0x0031BC4B` |
+
+</details>
 
 The member takes entry `row * 3 + position` of the table, the position being `0x022C2674`. Each entry is an x and z
 offset from the point (`0x00D10830`-`0x00D10890` and zeros, `0x0031BAEF`-`0x0031BB9B`; x and z read at `0x0031BC94` and
@@ -250,17 +414,39 @@ offset from the point (`0x00D10830`-`0x00D10890` and zeros, `0x0031BAEF`-`0x0031
 
 The offset is turned by the angle `a`, which `0x00325E60` brings into -π to π. With `t = a / 2π × 32768`, the sine
 is sample `t & 0x7FFF` of the sine table `0x01F004E0` and the cosine sample `(t + 0x2000) & 0x7FFF`; the member
-stands at `x = point.x + dx × cos + dz × sin` and `z = point.z + dz × cos - dx × sin` (`0x0031BC75`-`0x0031BD0D`).
+stands at `x = point.x + dx × cos + dz × sin` and `z = point.z + dz × cos - dx × sin`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031BC75`-`0x0031BD0D` |
+
+</details>
 
 Its height `out + 4` is copied from the float at `rsp + 0x24` of the function's frame, which `0x0031BAC0` does not
-write (`0x0031BCF0`). `0x0037D000` calls it for seats 0 to 3 after
-`0x0031BD60` (`0x0037D029`-`0x0037D09D`), and so does `0x0037B4D0` (`0x0037BFA6`), which places the party at a field start.
+write¹. `0x0037D000` calls it for seats 0 to 3 after
+`0x0031BD60`², and so does `0x0037B4D0`³, which places the party at a field start.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031BCF0` |
+| ² | `0x0037D029`-`0x0037D09D` |
+| ³ | `0x0037BFA6` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x022C2674` | `i32` | 0 | which position in the row the next placed member takes; each member placed takes the next | `0x0031BAC0`, 1 more (`0x0031BCD9`); `0x0031BD60`, 0 (`0x0031BD64`), from `0x0037D000` (`0x0037D029`), the area teardown reset `0x002341C0` (`0x002341DF`) and the area initialisation `0x002342F0` (`0x00234454`); `0x003266C0`, 0 (`0x00326B39`) | `0x0031BAC0` (`0x0031BC5E`) |
 
 No other instruction reaches `0x022C2674`.
+
+</details>
 
 ## Modding notes
 
@@ -285,34 +471,44 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031BD60` | is called by | `0x002341C0` |
+| [`0x0031BD60`](party-slots.md) | is called by | [`0x002341C0`](../World-Areas-And-Travel/traps.md) (on traps) |
 
 **Steam and achievements** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003148F0` | is called by | `0x003160C0` |
+| [`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) | is called by | [`0x003160C0`](../Steam-And-Achievements/achievements.md) (on achievements) |
 
 **Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003148F0` | calls | `0x002EF2B0` |
-| `0x003148F0` | is called by | `0x00583D60` |
+| [`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) |
+| [`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) | is called by | [`0x00583D60`](../Saving-Loading-And-Settings/save-file-format.md) Save image: finalize header and checksum (on save file format) |
 
 **Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x003206E0` |
+| [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse) | is called by | [`0x003206E0`](../Characters-And-Objects/battle-units.md) (on battle units) |
 
 **Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00313A00` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00313A00`](../Battle-Actions/action-phases.md) (on action phases) |
 
 </details>
 

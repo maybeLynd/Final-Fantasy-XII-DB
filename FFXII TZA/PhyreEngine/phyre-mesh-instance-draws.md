@@ -50,20 +50,51 @@ For each segment:
 A segment with no technique or no variant is skipped.
 
 The `0x48`-byte record is a `PMeshInstanceSegmentContext`. `PMeshInstance` (descriptor `0x02CB6E80`) registers the
-array of them as its member `m_segmentContext` at `+0x48` (`0x005E5865`), with the type name
-`PArray<PMeshInstanceSegmentContext>` (`0x005E5806`): the count at `+0x48` and the records at `+0x50`, one per
-segment. The draw takes segment i's record at `+0x50` plus i × `0x48` (`0x0060BC0A`, `0x0060BC0E`, `0x0060BC13`).
+array of them as its member `m_segmentContext` at `+0x48`¹, with the type name
+`PArray<PMeshInstanceSegmentContext>`²: the count at `+0x48` and the records at `+0x50`, one per
+segment. The draw takes segment i's record at `+0x50` plus i × `0x48`³.
 
-In the record, `+0x28` is the variant entry's index and `+0x30` the effect variant it belongs to (`0x0060BD44`,
-`0x0060BDCF`), and the reflected member `m_streamBindings` at `+0x38` is a
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005E5865` |
+| ² | `0x005E5806` |
+| ³ | `0x0060BC0A`, `0x0060BC0E`, `0x0060BC13` |
+
+</details>
+
+In the record, `+0x28` is the variant entry's index and `+0x30` the effect variant it belongs to¹, and the reflected member `m_streamBindings` at `+0x38` is a
 `PSharray<PMeshInstanceSegmentStreamBinding *>` (count `+0x38`, array `+0x40`; `0x005E6860`). The descriptor's
-construct slot `0x005CF520` clears `+0x00` to `+0x23`, sets `+0x28` to -1 (`0x005CF53B`) and clears `+0x30` and the
-bindings (`0x005CF542`, `0x005CF546`, `0x005CF549`).
+construct slot `0x005CF520` clears `+0x00` to `+0x23`, sets `+0x28` to -1² and clears `+0x30` and the
+bindings³.
 
-Its copy slot `0x005CF610` copies the record field by field (`0x005CF628`, `0x005CF62F`, `0x005CF638`, `0x005CF640`,
-`0x005CF647`) and the bindings through
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0060BD44`, `0x0060BDCF` |
+| ² | `0x005CF53B` |
+| ³ | `0x005CF542`, `0x005CF546`, `0x005CF549` |
+
+</details>
+
+Its copy slot `0x005CF610` copies the record field by field¹ and the bindings through
 `0x00646C00`. Its destroy slot `0x005CEBA0` frees the bindings' array when bit `0x80000000` of the count is clear
-and the count is above 1 (`0x005CEBC7`, `0x005CEBD2`) and zeroes the pair (`0x005CEBD9`, `0x005CEBDD`).
+and the count is above 1² and zeroes the pair³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CF628`, `0x005CF62F`, `0x005CF638`, `0x005CF640`, `0x005CF647` |
+| ² | `0x005CEBC7`, `0x005CEBD2` |
+| ³ | `0x005CEBD9`, `0x005CEBDD` |
+
+</details>
 
 ### Segment overrides
 
@@ -86,7 +117,16 @@ A null override leaves the renderer's pass record in use.
 
 The palette holds one 64-byte matrix per mesh matrix (mesh `+0x30`, bit `0x80000000` masked) after one
 leading slot. Up to `0x80` entries it lies on the stack; above that it is a block of the preprocess
-ring buffer (`0x006B6410`, `0x006B64F0`), whose data starts `0x10` bytes in.
+ring buffer¹, whose data starts `0x10` bytes in.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B6410`, `0x006B64F0` |
+
+</details>
 
 - `0x005FF090(instance, palette)` writes the instance's world matrix into the leading slot (the 64
   bytes before `palette`): `m_localToWorldMatrix` (`+0x08`) expanded from 4×3 to 4×4 as `0x006045E0`
@@ -94,8 +134,17 @@ ring buffer (`0x006B6410`, `0x006B64F0`), whose data starts `0x10` bytes in.
   `0x005FF200`.
 - `0x005FF200(instance, palette)` fills entry *i* from the instance's matrix array at `+0x18`. With bit
   `0x2` of `m_flags` set it copies the matrices as they are. Otherwise entry *i* is the product
-  (`0x00185100`) of the palette entry named by the mesh's index *i* (an `i32` array at mesh `+0x58`;
+ ¹ of the palette entry named by the mesh's index *i* (an `i32` array at mesh `+0x58`;
   −1 names the world matrix) and the instance's matrix *i*.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00185100` |
+
+</details>
 
 A segment's matrix is palette entry `m_matrixIndex` (segment `+0x04`).
 
@@ -112,13 +161,33 @@ dynamicInstance)` adds up what one segment's draw needs. `flags` is the variant 
   non-zero `+0x0C`.
 
 `table` is `(n + 1) × 8 + 0x10` bytes rounded up to 16, where `n` is the variant entry's count at
-`+0x28`, plus the resource parameters (`0x005FD5F0`) among the parameter buffer's definitions
+`+0x28`, plus the resource parameters¹ among the parameter buffer's definitions
 (`+0x10` count, `+0x18` data) and among the variant entry's (`+0x18`, `+0x20`), plus 2 with a
-dynamic object. `total` includes `table`. All three counts have bit `0x80000000` masked (`0x005EB431`,
-`0x005EB436`, `0x005EB46A`).
+dynamic object. `total` includes `table`. All three counts have bit `0x80000000` masked².
 
-`0x005EB370` zeroes `total` and `dynamic` first (`0x005EB3B2`, `0x005EB3B4`), so `dynamic` stays 0 without a
-dynamic object. It stores `table` last (`0x005EB4CD`) and adds it to `total` (`0x005EB4D1`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005FD5F0` |
+| ² | `0x005EB431`, `0x005EB436`, `0x005EB46A` |
+
+</details>
+
+`0x005EB370` zeroes `total` and `dynamic` first¹, so `dynamic` stays 0 without a
+dynamic object. It stores `table` last² and adds it to `total`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005EB3B2`, `0x005EB3B4` |
+| ² | `0x005EB4CD` |
+| ³ | `0x005EB4D1` |
+
+</details>
 
 `0x00600B30(renderer, total, blocks)` tests the renderer's parameter ring (`+0x28` start, `+0x30` end,
 `+0x38` cursor, `+0x40` limit) for `total` bytes and its render-block ring (`+0x50`, `+0x58`, `+0x60`,
@@ -126,14 +195,32 @@ limit `+0x68`) for `blocks` × `0x80` bytes, and stores nothing. `blocks` is the
 count. It returns false when either ring fails, and true otherwise:
 
 - A request that fits before the ring's end fails when the cursor is at or before the limit and
-  cursor + size passes it (`0x00600BB7`-`0x00600BBF`, `0x00600BC9`-`0x00600BD1`).
+  cursor + size passes it¹.
 - A request that has to wrap to the start, or is larger than the whole ring, fails whenever the cursor
-  is at or before the limit (`0x00600B72`, `0x00600BA8`). With the limit behind the cursor it passes,
+  is at or before the limit². With the limit behind the cursor it passes,
   whatever start + size is, so the wrapped block can run past the limit.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00600BB7`-`0x00600BBF`, `0x00600BC9`-`0x00600BD1` |
+| ² | `0x00600B72`, `0x00600BA8` |
+
+</details>
+
 On false, `0x0060B980` first calls the renderer's slot 2, `0x00600D20` for
-`PRenderer`, which posts the pending blocks to the render thread and moves both limits on
-(`0x0060FA10`).
+`PRenderer`, which posts the pending blocks to the render thread and moves both limits on¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0060FA10` |
+
+</details>
 
 ### The parameter blocks
 
@@ -149,17 +236,50 @@ On false, `0x0060B980` first calls the renderer's slot 2, `0x00600D20` for
 
 A slot whose flag is clear is left as it is. For a dynamic mesh instance, `0x00609D80` also receives
 `out` + `0x28` and `out` + `0x30` and writes them: the first when `0x00670E00` returns non-zero and the
-segment's 16-byte record has a non-zero `+0x08` (`0x00609E34`), the second when that record's `+0x0C` is
-non-zero (`0x00609F93`). Its result is `0x0060A010`'s fifth argument (`0x005FEE08`), 0 without a dynamic
+segment's 16-byte record has a non-zero `+0x08`¹, the second when that record's `+0x0C` is
+non-zero². Its result is `0x0060A010`'s fifth argument³, 0 without a dynamic
 mesh instance.
 
-For each parameter it walks, `0x00602EA0` reads the type byte `+0x03` (`0x00603356`) and handles types `0x30` and
-`0x31`. Any other type prints the type-id message at `0x00D4B3C8` (`0x005CDAA0`) once,
-setting the byte `0x02CE9D9C` (`0x00603382`-`0x00603396`), and the walk goes on to the next parameter (`0x00603717`).
+<details>
+<summary>Where in the code</summary>
 
-A non-zero result from `0x0060A010` is returned before `out[3]` and `out[4]` are written (`0x005FEE16`);
-every other path returns 0 (`0x005FEE59`). `0x0060B980` then reserves `table` bytes from the
+| | Code |
+|---|---|
+| ¹ | `0x00609E34` |
+| ² | `0x00609F93` |
+| ³ | `0x005FEE08` |
+
+</details>
+
+For each parameter it walks, `0x00602EA0` reads the type byte `+0x03`¹ and handles types `0x30` and
+`0x31`. Any other type prints the type-id message at `0x00D4B3C8`² once,
+setting the byte `0x02CE9D9C`³, and the walk goes on to the next parameter⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00603356` |
+| ² | `0x005CDAA0` |
+| ³ | `0x00603382`-`0x00603396` |
+| ⁴ | `0x00603717` |
+
+</details>
+
+A non-zero result from `0x0060A010` is returned before `out[3]` and `out[4]` are written¹;
+every other path returns 0². `0x0060B980` then reserves `table` bytes from the
 parameter ring and passes everything to `0x0060C020`, which writes the segment's render blocks.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005FEE16` |
+| ² | `0x005FEE59` |
+
+</details>
 
 ### The per-instance shader parameters
 
@@ -211,7 +331,16 @@ These do not depend on the record's light slot:
 - `0xE2`: the segment's `m_indexData` (`+0x40`); on the same empty-slot path, a missing one logs `Could not
   find index data block on mesh instance for shader parameter '%s'.`.
 - `0xE3`: the LOD blend weight, the first float of the element of the instance's `m_lodLevel`
-  (`+0x40`) that draw `+0x18` names (`0x006073D0`), in all four floats; 1.0 without a LOD level.
+  (`+0x40`) that draw `+0x18` names¹, in all four floats; 1.0 without a LOD level.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006073D0` |
+
+</details>
 
 The shadow types read the light's `m_shadowCaster` and its `PShadowSplit` records (`+0x10` count,
 `+0x18` data, `0xE8` bytes each):
@@ -234,18 +363,47 @@ and `0xD9`–`0xDC` a record with a null texture.
 `0x00670920(segment, &block, type)` walks the segment's vertex data blocks (`0x88` bytes; count `+0x30`,
 array `+0x38`) and, in each, its `0x18`-byte stream records (count `+0x08`, array `+0x10`), and
 returns the first stream whose `m_renderDataType` (`+0x08`) is `type`, with its block in `block`; null
-when no stream matches. It sets `block` to null on entry (`0x00670934`), so `block` is null too when no
-stream matches, and both counts have bit `0x80000000` masked (`0x0067094A`, `0x00670976`).
+when no stream matches. It sets `block` to null on entry¹, so `block` is null too when no
+stream matches, and both counts have bit `0x80000000` masked².
 
-The data types are static objects named before `main`: `Vertex` `0x02D3AB18`
-(`0x00165E10`), `Normal` `0x02D3AB30` (`0x00165B70`), `ST` `0x02D3AB48` (`0x00165BA0`) and `Color` `0x02D3AB78`
-(`0x001659C0`), each built by `0x00662C00(object, name, 0)`. `0x00671670` returns whether a segment has a
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00670934` |
+| ² | `0x0067094A`, `0x00670976` |
+
+</details>
+
+The data types are static objects named before `main`: `Vertex` `0x02D3AB18`¹, `Normal` `0x02D3AB30`², `ST` `0x02D3AB48`³ and `Color` `0x02D3AB78`⁴, each built by `0x00662C00(object, name, 0)`. `0x00671670` returns whether a segment has a
 stream of a type, the test `SKINNING_ENABLED` uses.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00165E10` |
+| ² | `0x00165B70` |
+| ³ | `0x00165BA0` |
+| ⁴ | `0x001659C0` |
+
+</details>
 
 `0x00600BE0(list, type)` returns the first `0x18`-byte record of a list (count `+0x28`, array `+0x30`)
 whose `+0x00` is `type`, or null for a null type; `0x006718B0` uses it to decide which of a segment's
-stream groups get a data block of their own. It also returns null when no record matches
-(`0x00600C0E`), and masks bit `0x80000000` of the count (`0x00600BEC`).
+stream groups get a data block of their own. It also returns null when no record matches¹, and masks bit `0x80000000` of the count².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00600C0E` |
+| ² | `0x00600BEC` |
+
+</details>
 
 ### The variant usage counter
 
@@ -255,40 +413,61 @@ After choosing a variant entry, `0x0060B980` and `0x006007B0` increment a counte
 the node's array at `+0x28`. `0x02CB6360` is zero in the image and no instruction writes it, so the
 counter never runs.
 
-The walk in `0x00606C60` starts at the tree's `+0x18` and ends on reaching the tree object itself
-(`0x00606C67`, `0x00606C8F`); a node whose key is above the technique leads to its `+0x00`, one below to
-its `+0x08`. With no node for the technique it returns null (`0x00606C94`, `0x00606C9E`).
+The walk in `0x00606C60` starts at the tree's `+0x18` and ends on reaching the tree object itself¹; a node whose key is above the technique leads to its `+0x00`, one below to
+its `+0x08`. With no node for the technique it returns null².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00606C67`, `0x00606C8F` |
+| ² | `0x00606C94`, `0x00606C9E` |
+
+</details>
 
 ### The preprocess ring buffer
 
 `0x006B6410` returns the one `PPreprocessRingBuffer`, the static `0x02E52270`, built on first use. The run
 setup `0x0079F150` gives it the 2 MiB block it allocates (`+0xDF0` of the application): start, end,
-capacity `0x200000`, and write and oldest positions at the start; then it creates the lock
-(`0x005CD0A0`).
+capacity `0x200000`, and write and oldest positions at the start; then it creates the lock¹.
 
-The first use, behind the guard `0x02E522C8` (`0x008092FC`, `0x0080929C`), builds the lock (`0x005CC8A0`) and zeroes the
-rest (`0x006B6468`-`0x006B6487`): the start `0x02E52298`, the end `0x02E522A0`, the capacity `0x02E522A8`, the write and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CD0A0` |
+
+</details>
+
+The first use, behind the guard `0x02E522C8`¹, builds the lock² and zeroes the
+rest³: the start `0x02E52298`, the end `0x02E522A0`, the capacity `0x02E522A8`, the write and
 oldest positions `0x02E522B0` and `0x02E522B8` (one 16-byte store) and the last block `0x02E522C0`. It registers its
-teardown with `atexit` (`0x006B648E`).
+teardown with `atexit`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008092FC`, `0x0080929C` |
+| ² | `0x005CC8A0` |
+| ³ | `0x006B6468`-`0x006B6487` |
+| ⁴ | `0x006B648E` |
+
+</details>
 
 `0x006B6510(ring, size)` takes a block of `size` rounded up to 16, plus a 16-byte header:
 
-1. It returns null when that is not below the capacity (`+0x38`) or the ring has no write position.
-2. Under the lock (`0x005CD4F0`, `0x005CD820`), while the new block would overlap the oldest live block
-   (`0x006B6690`), it moves the oldest position past every block whose busy word is 0, sleeps 1 ms and
-   tries again, logging `Trying to make space in PPreprocessRingBuffer, waiting on
-   PPreprocessRingBufferBlock %p (size %d) to be not busy` every 1024 waits.
-3. Each move stops at the first block whose busy word is not 0, or at the write position
-   (`0x006B6582`-`0x006B659B`, `0x006B65F0`-`0x006B6609`).
-4. A block that would run past the end is turned into a filler up to the end and the write position
-   wraps to the start; otherwise the header gets the next block's address, busy 0 and the requested
-   size, and the write position moves on.
-5. The filler's size word holds the bytes to the end and its next address is the start
-   (`0x006B6632`-`0x006B663A`); the body then repeats the overlap test from the start (`0x006B6661`). A
-   block that ends exactly at the end makes the start both its next address and the write position
-   (`0x006B6646`-`0x006B664F`).
-6. The block is recorded as the last one (`+0x50`, `0x006B6667`), the lock is released and the
-   block's header is returned (`0x006B6674`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It returns null when that is not below the capacity (`+0x38`) or the ring has no write position. |   |
+| 2 | Under the lock, while the new block would overlap the oldest live block, it moves the oldest position past every block whose busy word is 0, sleeps 1 ms and tries again, logging `Trying to make space in PPreprocessRingBuffer, waiting on PPreprocessRingBufferBlock %p (size %d) to be not busy` every 1024 waits. | `0x005CD4F0`, `0x005CD820`<br>`0x006B6690` |
+| 3 | Each move stops at the first block whose busy word is not 0, or at the write position. | `0x006B6582`-`0x006B659B`, `0x006B65F0`-`0x006B6609` |
+| 4 | A block that would run past the end is turned into a filler up to the end and the write position wraps to the start; otherwise the header gets the next block's address, busy 0 and the requested size, and the write position moves on. |   |
+| 5 | The filler's size word holds the bytes to the end and its next address is the start; the body then repeats the overlap test from the start. A block that ends exactly at the end makes the start both its next address and the write position. | `0x006B6632`-`0x006B663A`<br>`0x006B6661`<br>`0x006B6646`-`0x006B664F` |
+| 6 | The block is recorded as the last one (`+0x50`, `0x006B6667`), the lock is released and the block's header is returned. | `0x006B6674` |
 
 `0x006B64F0` calls it and sets the block's busy word to 1; the user clears it when done. `0x006B6690`
 reports an overlap when the oldest block lies ahead of the write position within `size` bytes, or
@@ -296,15 +475,37 @@ the block would reach the end while the oldest block is at the start. `PAsyncPro
 allocator `0x00684860` uses the same test.
 
 At shutdown, `0x0079EDD0` calls `0x007A12B0`, which closes the lock and, until the oldest position
-reaches the write position, advances it past free blocks (`0x006B64C0`), sleeping 1 ms between tries;
+reaches the write position, advances it past free blocks¹, sleeping 1 ms between tries;
 then it clears the ring's positions and capacity, so later requests return null.
 
-The lock is closed by `0x005CD6D0`, which acts only when the lock's first byte is set (`0x005CD6D6`).
-`0x006B64C0` returns 0 on every path (`0x006B64EA`), so only reaching the write position ends the wait,
-and a block left busy keeps it waiting. The clearing also zeroes the start and end
-(`0x007A12FA`-`0x007A130A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B64C0` |
+
+</details>
+
+The lock is closed by `0x005CD6D0`, which acts only when the lock's first byte is set¹.
+`0x006B64C0` returns 0 on every path², so only reaching the write position ends the wait,
+and a block left busy keeps it waiting. The clearing also zeroes the start and end³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CD6D6` |
+| ² | `0x006B64EA` |
+| ³ | `0x007A12FA`-`0x007A130A` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### Reflected members
 
@@ -386,6 +587,8 @@ The structures below are the ones the mechanisms above use.
 | `+0x08` | `u32` | busy | 1 from `0x006B64F0` until the user clears it |
 | `+0x0C` | `u32` | size | requested size; a filler holds the bytes to the end |
 
+</details>
+
 ## Operations
 
 - `0x0060EC30(instance, value)` writes `value` to `+0x28` of every segment of the mesh at the object's
@@ -393,12 +596,17 @@ The structures below are the ones the mechanisms above use.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 | Address | What |
 |---|---|
 | `0x02E52270` | the `PPreprocessRingBuffer` (guard `0x02E522C8`) |
 | `0x02CB6360` | variant usage tree; zero, never written |
 | `0x02CE9D9D` | set once the missing-shadow-map error is logged |
 | `0x02D3AB18`, `0x02D3AB30`, `0x02D3AB48`, `0x02D3AB78` | the `Vertex`, `Normal`, `ST` and `Color` data types |
+
+</details>
 
 ## Modding notes
 
@@ -427,9 +635,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Movement and pathfinding** (explained on [actor record fields](../Characters-And-Objects/actor-record-fields.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x006C0520` | is called by | `0x00268380` |
+| [`0x006C0520`](phyre-mesh-instance-draws.md) | is called by | [`0x00268380`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
 
 </details>
 

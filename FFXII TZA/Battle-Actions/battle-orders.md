@@ -18,22 +18,59 @@ The table lists all 359 order ids with what the game does for each.
 presentation event `0x2001` - or `0x2010` for a party-side unit of type id `0x1A` while bit `0x2` of
 `[0x02EBF190]+0x5AE0` is set - then returns -1 when `id - 0x4000` is above `0x166` or the slot of the
 table at `0x01EEC460` (359 eight-byte pointers, `0x01EEC460`-`0x01EECF97`) is empty, and otherwise jumps to
-the handler with the unit as argument (`0x003050A0`-`0x0030510E`). Handlers keep their progress in the
+the handler with the unit as argument¹. Handlers keep their progress in the
 phase byte `+0x6B4`; one-shot handlers set it to 2 and return 1 at once.
 
-`0x00307BE0(unit)` answers -1 when the action context `+0x708` is null (`0x00307BE6`-`0x00307BF3`). Otherwise it clears bit
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003050A0`-`0x0030510E` |
+
+</details>
+
+`0x00307BE0(unit)` answers -1 when the action context `+0x708` is null¹. Otherwise it clears bit
 `0x100` of the unit's `+0x1F0`, runs `0x00304850(unit)` for an action id `+0x714` up to `0x21E` and `0x00305080(unit)`
 above it, and adds 1 to the counter `+0x75C` when the dword `+0x768` is not below `+0x76C`, a signed compare; it
-answers that call's answer (`0x00307BFC`-`0x00307C35`, `0x00307C5C`). An answer of 1 first calls
-`0x004697C0(stats record +0x698, action id, 0xFFFF, 0)` (`0x00307C3B`-`0x00307C57`).
+answers that call's answer². An answer of 1 first calls
+`0x004697C0(stats record +0x698, action id, 0xFFFF, 0)`³.
 
-`0x002FDDA0` tests that phase byte first: when it is not 0 on entry it returns 1 and does nothing else
-(`0x002FDDB7`-`0x002FDDCE`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00307BE6`-`0x00307BF3` |
+| ² | `0x00307BFC`-`0x00307C35`, `0x00307C5C` |
+| ³ | `0x00307C3B`-`0x00307C57` |
+
+</details>
+
+`0x002FDDA0` tests that phase byte first: when it is not 0 on entry it returns 1 and does nothing else¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FDDB7`-`0x002FDDCE` |
+
+</details>
 
 ### Availability
 
 `0x00301830(unit, record)` refuses an id outside the table or an empty slot, then applies these
-id-specific rules (`0x003018DD`-`0x00301AA4`); every other id passes:
+id-specific rules¹; every other id passes:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003018DD`-`0x00301AA4` |
+
+</details>
 
 | Ids | Rule |
 |---|---|
@@ -44,37 +81,93 @@ id-specific rules (`0x003018DD`-`0x00301AA4`); every other id passes:
 
 `0x00301830` reads the id as the record's word `+0x00`, zero-extended, and the parameter as its word `+0x02`, read
 signed, and works on a copy: it copies `0x610` bytes of the unit's movement block from `+0x80` to its stack, and no
-rule writes the unit's own block (`0x00301857`-`0x003018DA`). It answers 0 for an id whose `id - 0x4000` is above `0x166`
-or whose slot of the order table `0x01EEC460` is null, then picks the rule by id, and answers 1 for an id with no rule
-(`0x003018DD`-`0x00301935`, `0x00301A1B`-`0x00301A36`).
+rule writes the unit's own block¹. It answers 0 for an id whose `id - 0x4000` is above `0x166`
+or whose slot of the order table `0x01EEC460` is null, then picks the rule by id, and answers 1 for an id with no rule².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00301857`-`0x003018DA` |
+| ² | `0x003018DD`-`0x00301935`, `0x00301A1B`-`0x00301A36` |
+
+</details>
 
 An id of `0x4051`-`0x4121` except `0x4091`, or `0x414B` (the first row of the table above), with a parameter of 0
 answers 1. Otherwise it takes `0x00328370() % 100`, signed, and answers 0 when that value is not below the parameter, a
-signed compare, and 1 when it is (`0x0030193B`-`0x0030196B`).
+signed compare, and 1 when it is¹.
 
-For `0x4022` and `0x4124` it answers 0 when the copy's float `+0xD4` is below 0 (`0x00301970`-`0x00301980`) or when
-`0x00312730(unit, record, copy + 0x80, copy + 0x90, copy + 0xD0)` answers 0 (`0x00301986`-`0x003019B0`). It then adds 0.4
-(`0x009153EC`) to the copy's stop distance `+0xD0`, zeroes the copy's dwords `+0x40` and `+0x160`, and answers 0 when
-`0x0033A120(copy, id)` answers non-zero (`0x003019B6`-`0x003019EB`). Otherwise `0x4124` answers 1, and `0x4022` stores
-`0x00309A90()` at the unit's float `+0x6D0` and the copy's 16 bytes `+0x80` at the unit's `+0x6C0` and answers 1
-(`0x003019F1`-`0x00301A16`).
+<details>
+<summary>Where in the code</summary>
 
-`0x4165` answers `0x00312730(unit, record, copy + 0x80, copy + 0x90, copy + 0xD0)` (`0x00301A38`-`0x00301A60`). `0x414D`
+| | Code |
+|---|---|
+| ¹ | `0x0030193B`-`0x0030196B` |
+
+</details>
+
+For `0x4022` and `0x4124` it answers 0 when the copy's float `+0xD4` is below 0¹ or when
+`0x00312730(unit, record, copy + 0x80, copy + 0x90, copy + 0xD0)` answers 0². It then adds 0.4³ to the copy's stop distance `+0xD0`, zeroes the copy's dwords `+0x40` and `+0x160`, and answers 0 when
+`0x0033A120(copy, id)` answers non-zero⁴. Otherwise `0x4124` answers 1, and `0x4022` stores
+`0x00309A90()` at the unit's float `+0x6D0` and the copy's 16 bytes `+0x80` at the unit's `+0x6C0` and answers 1⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00301970`-`0x00301980` |
+| ² | `0x00301986`-`0x003019B0` |
+| ³ | `0x009153EC` |
+| ⁴ | `0x003019B6`-`0x003019EB` |
+| ⁵ | `0x003019F1`-`0x00301A16` |
+
+</details>
+
+`0x4165` answers `0x00312730(unit, record, copy + 0x80, copy + 0x90, copy + 0xD0)`¹. `0x414D`
 calls `0x00308130(unit)` when the stats record `+0x698` is not null and its byte `+0x05` is 0, and `0x00308040(unit, 0)`
-otherwise, and answers, as 0 or 1, that call's answer exclusive-or unit bit `0x800000`, the unit's dword `+0x00`
-(`0x00301A62`-`0x00301AA2`). Every way out of `0x00301830` passes the stack-cookie check `0x00808C40(cookie)`
-(`0x00301AA4`-`0x00301AB1`).
+otherwise, and answers, as 0 or 1, that call's answer exclusive-or unit bit `0x800000`, the unit's dword `+0x00`². Every way out of `0x00301830` passes the stack-cookie check `0x00808C40(cookie)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00301A38`-`0x00301A60` |
+| ² | `0x00301A62`-`0x00301AA2` |
+| ³ | `0x00301AA4`-`0x00301AB1` |
+
+</details>
 
 Besides those two stores of `0x4022`, `0x414D` writes the unit through `0x00308130`, the engagement test of [force fight
 mode](../Engine-Core/force-fight-mode.md#what-fleeing-changes), which tells its paths. Its first call, the
 engagement update `0x00307D10(unit)`, sets or clears bit `0x10000` of the unit's dword `+0x04` on every path, and each
 path that clears it first clears bits `0x200` and `0x400`; the fleeing path also clears bits `0x2` and `0x4` of
-`0x022C1F48` and zeroes the qword `0x022C1F40` and the unit's dword `+0xDCC` (`0x00307D1D`-`0x00307DE2`).
+`0x022C1F48` and zeroes the qword `0x022C1F40` and the unit's dword `+0xDCC`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00307D1D`-`0x00307DE2` |
+
+</details>
 
 `0x00308130` then calls `0x003081E0(unit)` only when the stats record's dword `+0x64` or `+0x3C` has a bit of `0x8000020`
-or `0x00253B90()` answers 0, bit `0x10000` of the unit's dword `+0x04` is clear, and bit `0x1` of `0x022C1F48` is set
-(`0x0030814C`-`0x00308192`). That call stores a new `+0xDCC` when unit bit `0x800000` is clear and `+0xDCC` is 0, and its
-draw `0x00328370()` writes the generator state `0x022C256C` (`0x003081E6`-`0x0030825C`).
+or `0x00253B90()` answers 0, bit `0x10000` of the unit's dword `+0x04` is clear, and bit `0x1` of `0x022C1F48` is set¹. That call stores a new `+0xDCC` when unit bit `0x800000` is clear and `+0xDCC` is 0, and its
+draw `0x00328370()` writes the generator state `0x022C256C`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030814C`-`0x00308192` |
+| ² | `0x003081E6`-`0x0030825C` |
+
+</details>
 
 ## Columns
 
@@ -118,42 +211,110 @@ The ids fall into these groups (full rows in the `.tsv`):
 
 341 slots hold a handler and 18 are empty; 249 ids go to `0x002FDDA0`.
 
-`0x0033A120(block, id)` builds a movement context with `0x00336710(context, block, 1)` (`0x0033A13B`-`0x0033A14C`). It answers
-1 when the block's dword `+0x40` has any bit other than `0x2` set (`0x0033A151`-`0x0033A160`). It answers 0 when
+`0x0033A120(block, id)` builds a movement context with `0x00336710(context, block, 1)`¹. It answers
+1 when the block's dword `+0x40` has any bit other than `0x2` set². It answers 0 when
 `0x004686D0(context, context + 0x30)` is above the context's float `+0xAC`, and, for the id `0x4124`, when
-`0x0033D3E0(context, context + 0x20, block byte +0x174)` answers 1 (`0x0033A162`-`0x0033A1A7`). Otherwise it answers 1 when
-`0x00335640(context, id)` is not 0, and 0 when it is (`0x0033A1A9`-`0x0033A1BE`).
+`0x0033D3E0(context, context + 0x20, block byte +0x174)` answers 1³. Otherwise it answers 1 when
+`0x00335640(context, id)` is not 0, and 0 when it is⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0033A13B`-`0x0033A14C` |
+| ² | `0x0033A151`-`0x0033A160` |
+| ³ | `0x0033A162`-`0x0033A1A7` |
+| ⁴ | `0x0033A1A9`-`0x0033A1BE` |
+
+</details>
 
 `0x003291B0(block, first, second)` calls `0x003839F0(block + 0x180)`, then copies 16 bytes from `first` to the block's
-`+0x80` and from `second` to its `+0x90`, a null pointer being replaced by the block's own `+0x50`
-(`0x003291C5`-`0x003291F8`).
+`+0x80` and from `second` to its `+0x90`, a null pointer being replaced by the block's own `+0x50`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003291C5`-`0x003291F8` |
+
+</details>
 
 `0x00312B40(unit, record, &facing, &kind)` derives the facing of a turn order from the record's id `+0x00` and its
-parameter `+0x02`, read signed, and answers 1, or 0 when it can give none (`0x00312B57`-`0x00312B5D`, `0x00312D6F`). It
+parameter `+0x02`, read signed, and answers 1, or 0 when it can give none¹. It
 stores kind 2 first; an id below `0x4126` or above `0x4154`, and the ids `0x4128`, `0x4139`-`0x414A` and
 `0x414D`-`0x414F`, keep that kind and answer 0 (`0x00312B67`-`0x00312B9C`, the jump table `0x00312D88` and its index bytes
-`0x00312DB4`). `0x4126` gives `0x00316DA0(parameter * 2pi / 360.0, 0)`, the parameter in degrees, wrapped
-(`0x00312B9E`-`0x00312BC7`).
+`0x00312DB4`). `0x4126` gives `0x00316DA0(parameter * 2pi / 360.0, 0)`, the parameter in degrees, wrapped².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312B57`-`0x00312B5D`, `0x00312D6F` |
+| ² | `0x00312B9E`-`0x00312BC7` |
+
+</details>
 
 `0x4127`, `0x4129`-`0x4138` and `0x414B` give, with kind 3, the bearing `0x0031AC90(unit + 0xE0, other + 0xE0, facing)`
 to another unit: the party leader `0x003272A0()`, the unit `0x002367A0(id - 0x4129)` or the unit
-`0x0031B7E0(unit dword +0x710)`. They answer 0 when that unit is null, and the last two also when it is the unit itself
-(`0x00312BCC`-`0x00312C58`).
+`0x0031B7E0(unit dword +0x710)`. They answer 0 when that unit is null, and the last two also when it is the unit itself¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312BCC`-`0x00312C58` |
+
+</details>
 
 `0x414C` copies the dword `+0x70` of the record at the unit's `+0x6A0` as the facing, and answers 0 unless the unit is
-not null, its stats record `+0x698` is not null and that record's byte `+0x05` is 1 (`0x00312C5A`-`0x00312C8E`). `0x4150`
+not null, its stats record `+0x698` is not null and that record's byte `+0x05` is 1¹. `0x4150`
 turns the facing by `(draw % 340 + 10) * 2pi / 360.0` with `0x00316DA0(facing, turn)`, the draw `0x00328370()` from the
-gameplay generator `0x022C256C` and `draw % 340` a signed one (`0x00312C93`-`0x00312CDF`). `0x4151`, `0x4152` and `0x4153`
-turn it by -pi/2, pi/2 and pi with `0x00316DA0(facing, angle)` (`0x00312CE4`-`0x00312D36`).
+gameplay generator `0x022C256C` and `draw % 340` a signed one². `0x4151`, `0x4152` and `0x4153`
+turn it by -pi/2, pi/2 and pi with `0x00316DA0(facing, angle)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312C5A`-`0x00312C8E` |
+| ² | `0x00312C93`-`0x00312CDF` |
+| ³ | `0x00312CE4`-`0x00312D36` |
+
+</details>
 
 `0x4154` gives, with kind 1, the bearing `0x0031AC90(unit + 0xE0, &point, facing)` to the point that
-`0x00320940(parameter, &point)` fills, and answers 0 when that call answers below 0 (`0x00312D38`-`0x00312D6D`). Every way
-out passes the stack-cookie check `0x00808C40(cookie)` (`0x00312D71`-`0x00312D79`).
+`0x00320940(parameter, &point)` fills, and answers 0 when that call answers below 0¹. Every way
+out passes the stack-cookie check `0x00808C40(cookie)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312D38`-`0x00312D6D` |
+| ² | `0x00312D71`-`0x00312D79` |
+
+</details>
 
 `0x00313400(unit)` calls `0x002ECF10(unit qword +0x10, 1, 1)`, sets unit bit `0x800000`, stores 0 at the unit's `+0xDCC`
 and stores at its `+0x6E8` the address `0x01EEC3C0` when the stats record `+0x698` has a byte `+0x05` of 0, and
-`0x01EEC410` for any other byte or no record (`0x00313406`-`0x00313458`). It then sets unit bits `0x1000000` and
-`0x4000000000000` and ends with a jump to `0x00312EE0(unit)` (`0x0031345F`-`0x00313471`).
+`0x01EEC410` for any other byte or no record¹. It then sets unit bits `0x1000000` and
+`0x4000000000000` and ends with a jump to `0x00312EE0(unit)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00313406`-`0x00313458` |
+| ² | `0x0031345F`-`0x00313471` |
+
+</details>
 
 ## Related
 
@@ -175,15 +336,19 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00253B90` | is called by | `0x00313A00` |
+| [`0x00253B90`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion) | is called by | [`0x00313A00`](action-phases.md) (on action phases) |
 
 **Menus and HUD** (explained on [action definition row](action-definition-row.md), [battle menu](../Menus-And-HUD/battle-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031B7E0` | is called by | `0x0031EB20` |
-| `0x003272A0` | is called by | `0x00318CD0` |
+| [`0x0031B7E0`](../Engine-Core/identifier-spaces.md) (on identifier spaces) | is called by | [`0x0031EB20`](action-definition-row.md) Battle menu: build command entry list (on action definition row) |
+| [`0x003272A0`](../World-Areas-And-Travel/treasure-chests.md) Battle unit: get party leader (on treasure chests) | is called by | [`0x00318CD0`](../Menus-And-HUD/battle-menu.md) (on battle menu) |
 
 </details>

@@ -19,31 +19,40 @@ text is flushed.
 
 ### From a glyph to a batch
 
-1. The glyph loop `0x002A9F00` ([Fonts](fonts.md)) fills a 0xA0-byte draw record with the glyph's atlas box, its four
-   corners, their colours and alpha, and a palette index, and calls `0x0017F7C0` (`0x002AA678`).
-2. `0x0017F7C0` hands it to the emitter `0x001E8070([0x01F811F8], record)` (`0x0017F838`).
-3. The emitter picks palette entry `index mod 28` (`0x001E94E0`), or the default entry at `+0x1358` for a negative index,
-   and writes six 0x3C-byte vertices, corners 0, 1, 2 and 1, 2, 3 (`0x001E8140`-`0x001E8477`).
-4. Each vertex's texture coordinate is a fraction of the current font's `atlasW` and `atlasH` (font `+0x24`,
-   `+0x28`, the `.dat` header's `+0x08` and `+0x0C`): u = x / `atlasW` and v = (`atlasH` - y) / `atlasH`, with x and y
-   the record's pixel box (`0x001E8150`-`0x001E81DD`, through `0x00225690` and `0x0079E3C0`). The flip matches the atlas rows,
-   which are stored bottom row first ([Fonts](fonts.md)).
-5. Each vertex carries two colours: the glyph colour from the palette's `+0x14`-`+0x20` and the border colour from
-   `+0x04`-`+0x10`. Each red, green and blue is `palette channel x (c / 128) / 255`, with `c` the record's integer at
-   `+0x5C`, `+0x6C` or `+0x7C` plus 4 x corner.
-   - The border alpha is `+0x10 / 128`; the glyph alpha is `+0x20 / 128`, times `[record +0x8C + 4 x corner] / 128`
-     and the corner factor below unless the line's byte `+0x2348` is set (`0x001E81AA`-`0x001E834D`, 1/128 at
-     `0x008C5B34`, 255.0 at `0x008C5B40`).
-6. The vertices go into the open batch of the current font (`0x001E8361`-`0x001E838C`). `0x001E9D20` picks that batch from
-   the font id, one batch per font in each of two groups of 32 (`0x001E9E26`-`0x001E9E46`). The line's box and origin are
-   widened to cover the glyph.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The glyph loop `0x002A9F00` ([Fonts](fonts.md)) fills a 0xA0-byte draw record with the glyph's atlas box, its four corners, their colours and alpha, and a palette index, and calls `0x0017F7C0`. | `0x002AA678` |
+| 2 | `0x0017F7C0` hands it to the emitter `0x001E8070([0x01F811F8], record)`. | `0x0017F838` |
+| 3 | The emitter picks palette entry `index mod 28`, or the default entry at `+0x1358` for a negative index, and writes six 0x3C-byte vertices, corners 0, 1, 2 and 1, 2, 3. | `0x001E94E0`<br>`0x001E8140`-`0x001E8477` |
+| 4 | Each vertex's texture coordinate is a fraction of the current font's `atlasW` and `atlasH` (font `+0x24`, `+0x28`, the `.dat` header's `+0x08` and `+0x0C`): u = x / `atlasW` and v = (`atlasH` - y) / `atlasH`, with x and y the record's pixel box (`0x001E8150`-`0x001E81DD`, through `0x00225690` and `0x0079E3C0`). The flip matches the atlas rows, which are stored bottom row first ([Fonts](fonts.md)). |   |
+| 5 | Each vertex carries two colours: the glyph colour from the palette's `+0x14`-`+0x20` and the border colour from `+0x04`-`+0x10`. Each red, green and blue is `palette channel x (c / 128) / 255`, with `c` the record's integer at `+0x5C`, `+0x6C` or `+0x7C` plus 4 x corner.<br>• The border alpha is `+0x10 / 128`; the glyph alpha is `+0x20 / 128`, times `[record +0x8C + 4 x corner] / 128` and the corner factor below unless the line's byte `+0x2348` is set (`0x001E81AA`-`0x001E834D`, 1/128 at `0x008C5B34`, 255.0 at `0x008C5B40`). |   |
+| 6 | The vertices go into the open batch of the current font. `0x001E9D20` picks that batch from the font id, one batch per font in each of two groups of 32. The line's box and origin are widened to cover the glyph. | `0x001E8361`-`0x001E838C`<br>`0x001E9E26`-`0x001E9E46` |
 
-The palette entries are named `fontclut_%d` (`0x001E9533`). When a language's font folder is chosen (`0x001B44A0`),
+The palette entries are named `fontclut_%d`¹. When a language's font folder is chosen²,
 `0x001E98A0` loads every entry from 0 to 27 that is not loaded yet through the reader `0x001C5F20`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E9533` |
+| ² | `0x001B44A0` |
+
+</details>
 
 The font display's constructor `0x001E71B0` builds the 64 batches, `0x38` bytes each, with `0x001E7480`, which reserves
 room for `0x400` vertices of `0x3C` bytes through `0x001E9AE0`; `0x001E7710` frees a batch's vertices. `0x001E74F0` and
-`0x001E76B0` release partly built members when the constructor unwinds (`0x008985CC`, `0x0089866B`).
+`0x001E76B0` release partly built members when the constructor unwinds¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008985CC`, `0x0089866B` |
+
+</details>
 
 ### The text flush
 
@@ -58,31 +67,48 @@ from the arena `[0x01F7F4C0]` at five sites:
 | `0x001E8F84` | `DynGeoFontTextSpecialFinalInstance` | text drawn straight to the screen |
 | `0x001E91F3` | `DynGeoFontTextInstance` | text with the pre-drawn shadow atlas |
 
-The flush chooses a path per line record (`0x001E85ED`-`0x001E8659`):
+The flush chooses a path per line record¹:
 
-1. Byte `+0x2378` of the font display chooses between the Special classes and `DynGeoFontTextInstance`. It is
-   `[0x01E02818] > 0` (`0x001E9F30`, `0x0029CE4A`-`0x0029CE55`); the shipped value is 1, and no instruction writes that
-   cell: its only reference is the read in `0x00229E30`.
-2. The record's offscreen byte `+0x28` chooses between the offscreen path and `Final`. Every text painter call passes 1
-   to the begin call `0x001E9920` through `0x0017FA10` (`0x002AA52A`, `0x002AC801` and seven more), so menu text takes the
-   offscreen path.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E85ED`-`0x001E8659` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Byte `+0x2378` of the font display chooses between the Special classes and `DynGeoFontTextInstance`. It is `[0x01E02818] > 0`; the shipped value is 1, and no instruction writes that cell: its only reference is the read in `0x00229E30`. | `0x001E9F30`, `0x0029CE4A`-`0x0029CE55` |
+| 2 | The record's offscreen byte `+0x28` chooses between the offscreen path and `Final`. Every text painter call passes 1 to the begin call `0x001E9920` through `0x0017FA10` (`0x002AA52A`, `0x002AC801` and seven more), so menu text takes the offscreen path. |   |
 
 Each of the flush's four batch loops walks the 31 batches of a group, font ids 1 to 31, and skips a batch whose
-atlas copy `+0x08` is 0 or that holds no vertex (`0x001E86F2`, `0x001E8900`, `0x001E8FB0`, `0x001E9190`). The loops of the
-`Final` path and of the `DynGeoFontTextInstance` path also empty a skipped batch (`0x001E90DE`, `0x001E92F6`). A font
+atlas copy `+0x08` is 0 or that holds no vertex¹. The loops of the
+`Final` path and of the `DynGeoFontTextInstance` path also empty a skipped batch². A font
 without an atlas therefore puts vertices in its batch but never reaches a drawing object.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E86F2`, `0x001E8900`, `0x001E8FB0`, `0x001E9190` |
+| ² | `0x001E90DE`, `0x001E92F6` |
+
+</details>
 
 ### The drawing objects
 
 The constructors the flush calls set the objects up before any vertex is added:
 
-- `0x00213A00(obj)` (`0x001E86BB`, `0x001E88C4`) and `0x00213960(obj)` (`0x001E8A7D`) build a `DynGeoFontTextSpecialShadowInstance`
-  (vtable `0x00906E50`) and a `DynGeoFontTextSpecialShadowFinalInstance` (`0x00906F20`): each zeroes `+0x08` to `+0xF7`
-  (`0x00861EC0`), clears `+0xF8`, `+0x100`, `+0x124`-`+0x12C`, `+0x138`-`+0x140`, `+0x14C`-`+0x154` and `+0x160`, and writes
+- `0x00213A00(obj)`¹ and `0x00213960(obj)`² build a `DynGeoFontTextSpecialShadowInstance`
+  (vtable `0x00906E50`) and a `DynGeoFontTextSpecialShadowFinalInstance`³: each zeroes `+0x08` to `+0xF7`
+ ⁴, clears `+0xF8`, `+0x100`, `+0x124`-`+0x12C`, `+0x138`-`+0x140`, `+0x14C`-`+0x154` and `+0x160`, and writes
   the identity matrix at `+0x11C` (1.0 at `+0x11C`, `+0x130`, `+0x144` and `+0x158`).
-- `0x002130E0(obj)` (`0x001E91F3`) builds a `DynGeoFontTextInstance` (vtable `0x00906DC8`) and zeroes `+0x08` to `+0x3F`.
-- `0x00213870(obj, n)` (`0x001E920A`) stores the vertex count at `+0x28` and takes two arrays of `n x 0x30` bytes from the
-  arena `[0x01F7F4C0]` (`0x001A1470`) into `+0x18` and `+0x20`.
+- `0x002130E0(obj)`⁵ builds a `DynGeoFontTextInstance` (vtable `0x00906DC8`) and zeroes `+0x08` to `+0x3F`.
+- `0x00213870(obj, n)`⁶ stores the vertex count at `+0x28` and takes two arrays of `n x 0x30` bytes from the
+  arena `[0x01F7F4C0]`⁷ into `+0x18` and `+0x20`.
 - `0x00213570(obj, v)` (`0x001E92CE`, once per `0x3C`-byte vertex) projects the vertex and appends it to both arrays
   while the count `+0x2C` is below `+0x28`. With the 4 x 4 matrix at `+0x54` it computes `w = x m60 + y m70 + m90`,
   `x' = (x m54 + y m64 + m84) / w` and `y' = (x m58 + y m68 + m88) / w`.
@@ -93,9 +119,34 @@ The constructors the flush calls set the objects up before any vertex is added:
   `+0x00`-`+0x0C`, and its `+0x1C`-`+0x28` (first array) or `+0x2C`-`+0x38` (second array) at `+0x10`-`+0x1C`; the
   count then moves on.
 
-Text coordinates are centred on 2048 with y growing downward. The factor -2 (`0x008F3148`, `0x00213680`) turns them into
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E86BB`, `0x001E88C4` |
+| ² | `0x001E8A7D` |
+| ³ | `0x00906F20` |
+| ⁴ | `0x00861EC0` |
+| ⁵ | `0x001E91F3` |
+| ⁶ | `0x001E920A` |
+| ⁷ | `0x001A1470` |
+
+</details>
+
+Text coordinates are centred on 2048 with y growing downward. The factor -2¹ turns them into
 clip space, where y grows upward and both axes run from -1 to 1 across the W x H area. The vertex appender `0x00213D10`
-maps its vertices the same way (`0x00213D31`-`0x00213D9A`).
+maps its vertices the same way².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008F3148`, `0x00213680` |
+| ² | `0x00213D31`-`0x00213D9A` |
+
+</details>
 
 ### The drawing classes
 
@@ -108,8 +159,17 @@ The image's run-time type data names eight classes, each with its own vtable:
 | text with a shadow atlas | `DynGeoFontTextInstance` (`0x00906DC8`) | 3 |
 
 `DynGeoTextureInstance` and `DynGeo3DInstance` derive from `DynGeoUIInstance`; the three text variants derive from
-`DynGeoFontTextSpecialInstance` directly. The general classes are built elsewhere (`0x001B0456`, `0x001B0218`) and draw no
+`DynGeoFontTextSpecialInstance` directly. The general classes are built elsewhere¹ and draw no
 text. The plain `DynGeoFontTextSpecialInstance` is never constructed; only its three variants are.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B0456`, `0x001B0218` |
+
+</details>
 
 The 12-slot classes share every slot except 2 (the destructor), 6 (append a vertex), 10 (draw) and 11 (the renderer's
 mode):
@@ -124,133 +184,302 @@ mode):
 | `10` | draws the layers |
 | `11` | renderer mode 0, 1 for `Shadow`, 2 for `Final` and `ShadowFinal` (`0x00214890`, `0x002148B0`, `0x00214860`); that is the mode for an argument of 1: each passes the argument and its mode to the renderer's slot 35 (`+0x118`), and mode 0 for an argument of 0 (`0x002148A1`, `0x002148C3`-`0x002148CA`, `0x00214874`-`0x0021487D`) |
 
-Slots 4, 5 and 6 refuse a layer index of 10 or more (`0x00213B33`, `0x00213F93`, `0x00213D2B`).
+Slots 4, 5 and 6 refuse a layer index of 10 or more¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00213B33`, `0x00213F93`, `0x00213D2B` |
+
+</details>
 
 ### Layers and the shared draw body
 
 Each Special instance holds ten layers; a layer's texture is one font's atlas and its vertices are that font's glyphs.
-The flush sets the layer number to 0 once for a line (`0x001E8651`), counts it up after each font of the mask loop
-(`0x001E8801`) and goes on from that value in the coloured loop (`0x001E8937`-`0x001E89E4`). A line that uses n fonts
+The flush sets the layer number to 0 once for a line¹, counts it up after each font of the mask loop² and goes on from that value in the coloured loop³. A line that uses n fonts
 therefore has its mask in layers 0 to n - 1 of the first object and its coloured glyphs in layers n to 2n - 1 of
 the second.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E8651` |
+| ² | `0x001E8801` |
+| ³ | `0x001E8937`-`0x001E89E4` |
+
+</details>
 
 The number has no limit and a layer of 10 or more is refused, so a line keeps the coloured glyphs of all its fonts
 only up to five fonts, and the mask of an 11th font is dropped.
 
 The shared body `0x002142A0` walks the ten layers: layer `i`'s texture is at `+0x08 + 8i`, its vertex count at
-`+0xA8 + 4i` and its vertices at `+0x58 + 8i` (`0x002142BA`-`0x00214332`). It skips a layer without a texture
-(`0x002142D6`) and binds every other layer's texture (renderer slot 8, `0x0021432A`), also when the layer has no vertices.
+`+0xA8 + 4i` and its vertices at `+0x58 + 8i`¹. It skips a layer without a texture² and binds every other layer's texture (renderer slot 8, `0x0021432A`), also when the layer has no vertices.
 
-It draws the vertices as a triangle list in chunks of at most 480 (`0x0021433A`-`0x0021438E`): renderer slot 0 with the
-chunk's count gives a buffer, the chunk's 48-byte vertices are copied into it (`0x0021436F`), and slot 4 draws it with
-type 2, the result of slot 1 and the count (`0x00214374`-`0x0021438E`).
+<details>
+<summary>Where in the code</summary>
 
-`Final` (`0x00214210`) and `Shadow` (`0x00214540`) run a short prefix and jump into it (`0x00214296`, `0x0021458D`):
+| | Code |
+|---|---|
+| ¹ | `0x002142BA`-`0x00214332` |
+| ² | `0x002142D6` |
 
-- `Shadow` sets blend `(6, 7, 6, 7)` with last argument 9 (`0x00214550`-`0x0021457A`).
-- `Final` would replace row 0 of the matrix with `(height x 16/9 / width, 0, 0, 0)` (`0x0021425C`-`0x0021427B`, `0x00183280`),
+</details>
+
+It draws the vertices as a triangle list in chunks of at most 480¹: renderer slot 0 with the
+chunk's count gives a buffer, the chunk's 48-byte vertices are copied into it², and slot 4 draws it with
+type 2, the result of slot 1 and the count³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0021433A`-`0x0021438E` |
+| ² | `0x0021436F` |
+| ³ | `0x00214374`-`0x0021438E` |
+
+</details>
+
+`Final`¹ and `Shadow`² run a short prefix and jump into it³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00214210` |
+| ² | `0x00214540` |
+| ³ | `0x00214296`, `0x0021458D` |
+
+</details>
+
+- `Shadow` sets blend `(6, 7, 6, 7)` with last argument 9¹.
+- `Final` would replace row 0 of the matrix with `(height x 16/9 / width, 0, 0, 0)`²,
   1.0 at 1920 x 1080. Its gate `0x00182F50` needs the first word of the display object `[0x01F82D18]` to be 1
-  (`0x001DD8C4`).
-  - The constructor writes 0 there (`0x001DC5D6`) and nothing else stores it: the 72 calls of the getter
+ ³.
+  - The constructor writes 0 there⁴ and nothing else stores it: the 72 calls of the getter
     `0x001DDAB0` and the 25 functions they hand the object to never write its `+0x00`, and only the creator stores
-    the pointer (`0x001DDAA4`). The row is therefore left at the identity.
-- `ShadowFinal` (`0x002143E0`) does not use the shared body: it draws layer 0 alone as a triangle strip, blend last argument 10
-  (`0x0021446D`, `0x0021453C`).
+    the pointer⁵. The row is therefore left at the identity.
+- `ShadowFinal`⁶ does not use the shared body: it draws layer 0 alone as a triangle strip, blend last argument 10
+ ⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00214550`-`0x0021457A` |
+| ² | `0x0021425C`-`0x0021427B`, `0x00183280` |
+| ³ | `0x001DD8C4` |
+| ⁴ | `0x001DC5D6` |
+| ⁵ | `0x001DDAA4` |
+| ⁶ | `0x002143E0` |
+| ⁷ | `0x0021446D`, `0x0021453C` |
+
+</details>
 
 Draw types are those of `0x006DA5A0`: 2 a triangle list, 3 a strip, 4 a fan. A strip and a fan of `n` vertices become
 `3 x (n - 2)` triangle-list indices from the batch's base vertex word `+0x8010`, through `0x006DA790` (strip, the winding
 alternating) and `0x006DA6F0` (fan, every triangle sharing the first vertex), written into the batch's index buffer of
-0x4000 words (count `+0x08`); both refuse a draw that would overflow it (`0x006DA61A`, `0x006DA62B`).
+0x4000 words (count `+0x08`); both refuse a draw that would overflow it¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006DA61A`, `0x006DA62B` |
+
+</details>
 
 ### How menu text is drawn
 
-On the offscreen path, each line is drawn in five ordered steps (`0x001E8664`-`0x001E8F49`):
+On the offscreen path, each line is drawn in five ordered steps¹:
 
-1. A render target from the size ladder is bound: the smallest of ten sizes from 50 x 60 to 1920 x 1080 that holds the
-   line (`0x001E97B0`, table `0x009018F0`).
-2. A `Shadow` instance draws every glyph in white (`0x00213E30` with flag 1, `0x001E87B6`), a mask of the line.
-   `0x002147B0` sets each `Shadow` instance's viewport to the target's width and height, target `+0x28` and `+0x2C`
-   (`0x001E86D3`, `0x001E88DC`).
-3. A `FontBorderOrderedGaussObject` filters the mask in two passes (`0x00212E70`, `0x00190260`): first across, with
-   `SingleStepOffset` one texel wide, from the ladder target into its partner (`0x00186800`, `0x001867E0`), then down, one
-   texel high, back again.
-4. A second `Shadow` instance draws the glyphs in their own colour over it (flag 0, `0x001E89C6`).
-5. A `FontBorderOrderedResetObject` restores the screen target (`0x00213040`), and a `ShadowFinal` instance draws the
-   target onto the screen as one quad (`0x00214930`), with the line's first alpha on its left corners and its latest
-   alpha on its right ones (`0x00214A67`-`0x00214AA8`). `0x002148F0` makes the target its layer-0 texture (`0x001E8AAF`), and
-   `0x002145A0` maps each corner through the matrix `+0x11C` into clip space (`0x00214A62`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E8664`-`0x001E8F49` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A render target from the size ladder is bound: the smallest of ten sizes from 50 x 60 to 1920 x 1080 that holds the line (`0x001E97B0`, table `0x009018F0`). |   |
+| 2 | A `Shadow` instance draws every glyph in white (`0x00213E30` with flag 1, `0x001E87B6`), a mask of the line. `0x002147B0` sets each `Shadow` instance's viewport to the target's width and height, target `+0x28` and `+0x2C`. | `0x001E86D3`, `0x001E88DC` |
+| 3 | A `FontBorderOrderedGaussObject` filters the mask in two passes: first across, with `SingleStepOffset` one texel wide, from the ladder target into its partner, then down, one texel high, back again. | `0x00212E70`, `0x00190260`<br>`0x00186800`, `0x001867E0` |
+| 4 | A second `Shadow` instance draws the glyphs in their own colour over it (flag 0, `0x001E89C6`). |   |
+| 5 | A `FontBorderOrderedResetObject` restores the screen target, and a `ShadowFinal` instance draws the target onto the screen as one quad, with the line's first alpha on its left corners and its latest alpha on its right ones. `0x002148F0` makes the target its layer-0 texture, and `0x002145A0` maps each corner through the matrix `+0x11C` into clip space. | `0x00213040`<br>`0x00214930`<br>`0x00214A67`-`0x00214AA8`<br>`0x001E8AAF`<br>`0x00214A62` |
 
 Steps 1 and 5 are the executes (vtable slot 1) of a `FontBorderOrderedObject` (`0x00212F70`, slot
 `0x00906D58`) and the `FontBorderOrderedResetObject` (`0x00213040`, slot `0x00906DA8`). `0x00212F70` keeps in
 the byte `0x01FD3AC0` whether the context's bit `0x1` bracket was open (`0x00609710`: bit `0x1` of the
 context's `+0x08`, stored at `0x00212F92`), closes it when it was (`0x00600A60(ctx, 2)`), binds the ladder
-target `[object + 0x18]` (`0x00186800`, `0x0060D4F0`) and opens it (`0x005FEFD0(ctx, 1)`).
+target `[object + 0x18]`¹ and opens it (`0x005FEFD0(ctx, 1)`).
 
-`0x00213040` closes it, restores the screen target (`0x001893C0`) and opens it again (`0x005FEFD0(ctx, 0)`) only when
-`0x01FD3AC0` is set (`0x00213063`), so the pair leaves the bracket as step 1 found it.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00186800`, `0x0060D4F0` |
+
+</details>
+
+`0x00213040` closes it, restores the screen target¹ and opens it again (`0x005FEFD0(ctx, 0)`) only when
+`0x01FD3AC0` is set², so the pair leaves the bracket as step 1 found it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001893C0` |
+| ² | `0x00213063` |
+
+</details>
 
 The font display's constructor `0x001E71B0` builds the reset object through `0x00212D60`, which writes its vtable and
 clears `+0x18`.
 
 Step 3 is the execute (vtable slot 1, `0x00906D80`) of the `FontBorderOrderedGaussObject`, `0x00212E70(object, ctx)`.
-It closes the bracket with `0x00600A60(ctx, 2)` (`0x00212E98`) and sets byte `+0x19A` of the render-parameter block
-`0x00193D50` to 1 for the call, since `0x00190260` draws nothing while that byte is 0 or the block's `+0x310` is null
-(`0x0019029E`-`0x001902AE`); it puts the byte's old value back after the call (`0x00212EA2`, `0x00212EAE`, `0x00212F47`) and
-ends with a tail jump to `0x005FEFD0(ctx, 0)` (`0x00212F68`).
+It closes the bracket with `0x00600A60(ctx, 2)`¹ and sets byte `+0x19A` of the render-parameter block
+`0x00193D50` to 1 for the call, since `0x00190260` draws nothing while that byte is 0 or the block's `+0x310` is null²; it puts the byte's old value back after the call³ and
+ends with a tail jump to `0x005FEFD0(ctx, 0)`⁴.
 
-`0x00212E70` hands `0x00190260` the ladder target `0x00186800` and its partner `0x001867E0` for the object's size `+0x18`
-(`0x00212EBA`-`0x00212ED3`), four zeros that `0x00190260` does not read, 1.0, and the object's four floats `+0x24`-`+0x30`
-(`0x00212EE0`-`0x00212F38`). `0x00190260` divides the 1.0 by the ladder target's width, `1.0 / w`, then by its
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00212E98` |
+| ² | `0x0019029E`-`0x001902AE` |
+| ³ | `0x00212EA2`, `0x00212EAE`, `0x00212F47` |
+| ⁴ | `0x00212F68` |
+
+</details>
+
+`0x00212E70` hands `0x00190260` the ladder target `0x00186800` and its partner `0x001867E0` for the object's size `+0x18`¹, four zeros that `0x00190260` does not read, 1.0, and the object's four floats `+0x24`-`+0x30`². `0x00190260` divides the 1.0 by the ladder target's width, `1.0 / w`, then by its
 height, `1.0 / h`, for `SingleStepOffset`: `(1.0 / w, 0)`, then `(0, 1.0 / h)`, with `w` and `h` the target's
-dwords `+0x28` and `+0x2C` (`0x001903D7`-`0x001903F1`, `0x001905C8`-`0x001905D7`).
+dwords `+0x28` and `+0x2C`³.
 
-The border shader's parameters are `ColorBuffer`, `SingleStepOffset`, `FontBorderSetting` and `FontBorderColor`
-(`0x001902FF`-`0x00190352`). The colour is the first three of the four floats, the palette's border colour
-(`0x0019047F`-`0x001904D4`), and `FontBorderSetting` is the border width from the font display, 4.0 when no width is
-set (`0x0017F9A0`, `0x001B5210`), times the fourth float `+0x30` (`0x00190434`-`0x00190441`). 64 of these objects are kept,
-one per border colour and target size (`0x001E96A0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00212EBA`-`0x00212ED3` |
+| ² | `0x00212EE0`-`0x00212F38` |
+| ³ | `0x001903D7`-`0x001903F1`, `0x001905C8`-`0x001905D7` |
+
+</details>
+
+The border shader's parameters are `ColorBuffer`, `SingleStepOffset`, `FontBorderSetting` and `FontBorderColor`¹. The colour is the first three of the four floats, the palette's border colour², and `FontBorderSetting` is the border width from the font display, 4.0 when no width is
+set³, times the fourth float `+0x30`⁴. 64 of these objects are kept,
+one per border colour and target size⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001902FF`-`0x00190352` |
+| ² | `0x0019047F`-`0x001904D4` |
+| ³ | `0x0017F9A0`, `0x001B5210` |
+| ⁴ | `0x00190434`-`0x00190441` |
+| ⁵ | `0x001E96A0` |
+
+</details>
 
 The 64 border objects are `0x38` bytes each at font display `+0x1500`. `0x001E96A0` takes the first whose byte `+0x20`
-is set, or whose four colour floats `+0x24`-`+0x30` and size `+0x18` already match (`0x00212E30`, `0x001E970E`), and fills
-a new one with `0x002130C0` (`0x001E9744`), which stores the four floats and clears `+0x20`. The reset `0x001E9380` runs
-`0x00213090` on all 64 (`0x001E9399`), setting `+0x20` and the four floats to 1.0.
+is set, or whose four colour floats `+0x24`-`+0x30` and size `+0x18` already match¹, and fills
+a new one with `0x002130C0`², which stores the four floats and clears `+0x20`. The reset `0x001E9380` runs
+`0x00213090` on all 64³, setting `+0x20` and the four floats to 1.0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00212E30`, `0x001E970E` |
+| ² | `0x001E9744` |
+| ³ | `0x001E9399` |
+
+</details>
 
 So the border is a shader pass over a white mask, and the glyphs are drawn once on top of it.
 
 ### The shadow atlas path
 
-Each font also loads `<name>_shadow.dds.phyre` beside its atlas (`0x001B6212`). Only `DynGeoFontTextInstance` uses it:
+Each font also loads `<name>_shadow.dds.phyre` beside its atlas¹. Only `DynGeoFontTextInstance` uses it:
 its draw `0x00213140` draws the line twice through `0x002133D0`, first with the shadow atlas in the border colour, then
-with the glyph atlas in the glyph colour. The flush copies the 16 bytes at font display `+0x13A0` into its `+0x40`
-(`0x00213520`, `0x001E924E`) and the matrix `+0xE30` into its `+0x54` (`0x002134B0`, `0x001E928A`). With the shipped
+with the glyph atlas in the glyph colour. The flush copies the 16 bytes at font display `+0x13A0` into its `+0x40`² and the matrix `+0xE30` into its `+0x54`³. With the shipped
 `[0x01E02818]` of 1, the flush does not take this path.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B6212` |
+| ² | `0x00213520`, `0x001E924E` |
+| ³ | `0x002134B0`, `0x001E928A` |
+
+</details>
 
 ### How a draw reaches the renderer
 
-1. The flush submits each instance (`0x001FB810`), which wraps it in a `GeometryInstanceOrderedObject` (`0x001F48B0`,
-   `0x001F4950`) on the ordered render list.
-2. When the list runs, the wrapper's callback `0x001F4A10` calls the instance's slot 1 with the renderer (`0x001F4A35`).
-3. Slot 1 sets the state and calls slot 10, which draws.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The flush submits each instance, which wraps it in a `GeometryInstanceOrderedObject` on the ordered render list. | `0x001FB810`<br>`0x001F48B0`, `0x001F4950` |
+| 2 | When the list runs, the wrapper's callback `0x001F4A10` calls the instance's slot 1 with the renderer. | `0x001F4A35` |
+| 3 | Slot 1 sets the state and calls slot 10, which draws. |   |
 
 ### Measuring text
 
 Menu code measures a string without drawing it:
 
-- `0x002B3050(font, text, &w, &h)` sets up a text context on the stack (`0x002AC1E0`) with the font `0x0039BAD0(font)`, and
+- `0x002B3050(font, text, &w, &h)` sets up a text context on the stack¹ with the font `0x0039BAD0(font)`, and
   the alternate font record when that font is 7 and `0x00254A10` answers 0, and measures it with `0x002B3120`.
 - `0x002B3120(context, &w, &h)` lays a copy of the context out with `0x002B24B0` and the terminator `0x009166EC`, and gives 0
-  for both when the context has no text (`0x002B313F`).
+  for both when the context has no text².
 - `0x0029CD00(text, font, scale, &w, &h)` and `0x0029CD90(text, font, scale, n, &w, &h)` scale the result by `scale` when it
-  is above 0; `0x0029CD90` first adds `n` for every character (`0x002B4540`).
+  is above 0; `0x0029CD90` first adds `n` for every character³.
 - `0x002B3E30(line)`, called from the line layout `0x002AF340`, closes a measured line: it adds the line's height to the
   total, keeps the widest line, and resets the line's values.
 - `0x002B3E90(context, text)` measures `text` with `0x002AF340` under the terminator `0x00916544` and moves the context's
   shown count `+0x8C` on by that many, at most what `0x002B43C0` counts ([Message windows](message-windows.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AC1E0` |
+| ² | `0x002B313F` |
+| ³ | `0x002B4540` |
+
+</details>
+
 ### Drawing text into a widget
 
 A widget draws a string at a point through its draw record ([Menu sprites](menu-sprites.md)). A string that starts
-with `ex` is UTF-16 (`0x00364980`), as the credits strings are ([Text codes](text-codes.md)), and takes its own path:
+with `ex` is UTF-16¹, as the credits strings are ([Text codes](text-codes.md)), and takes its own path:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00364980` |
+
+</details>
 
 | Call | Ordinary string | UTF-16 string |
 |---|---|---|
@@ -260,41 +489,87 @@ with `ex` is UTF-16 (`0x00364980`), as the credits strings are ([Text codes](tex
 | `0x0029CCD0(x, font)`, a blank's width | the width of token 7 (`0x002ABAA0(0)`) | the advance of `0` in UTF-16 font `font - 1` (`0x003655F0`) |
 
 `0x002DD680` hands the record's palette byte `+0x5C`, size `+0x60` and letter spacing `+0x65` to the context, sets
-bit `0x2000000` of the context's `+0xB0` when bit `0x40` of the record's `+0x66` is set (`0x002DD6CC`-`0x002DD6D2`),
+bit `0x2000000` of the context's `+0xB0` when bit `0x40` of the record's `+0x66` is set¹,
 and hands its colour to `+0x30` (also kept at record `+0x94`): `rgb = (byte +0x90..+0x92 x s16 +0x5A) >> 7` and
-`a = (byte +0x93 x s16 +0x58) >> 7` (`0x002DD6DD`-`0x002DD738`).
+`a = (byte +0x93 x s16 +0x58) >> 7`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DD6CC`-`0x002DD6D2` |
+| ² | `0x002DD6DD`-`0x002DD738` |
+
+</details>
 
 It places the text at (x, y) through `0x00397910` and draws it with `0x002B0280`. `0x002D8550` does the same colour and
 placement, without the palette, size, spacing or flag, and draws through `0x002AF960`, for the confirm windows and
-the pause task (`0x0057C92A`, `0x00242373`, `0x00227F39`).
+the pause task¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0057C92A`, `0x00242373`, `0x00227F39` |
+
+</details>
 
 `0x00243860(list, record, dx, dy)` draws the type-5 text nodes of a typed list ([UI typed
 lists](../Game-Files-And-Data-Tables/ui-typed-lists.md)) with a draw record; the per-element query `0x002D28E0` runs
-it (`0x002D2C3F`, `0x002D2C64`). For each of the header's nodes that has the drawn bit `0x1`, type 5 and a string `+0x18`:
+it¹. For each of the header's nodes that has the drawn bit `0x1`, type 5 and a string `+0x18`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D2C3F`, `0x002D2C64` |
+
+</details>
 
 - the record takes the node's scale `+0x28` as the size `+0x60`, `+0x2C` as the palette byte `+0x5C`, `+0x2D`, `+0x2F`
   and the low byte of the field under mask `0xFFC0` of `+0x08` (its bits under `0x3FC0`, `0x00243912`-`0x0024391F`) as
   `+0x66`, `+0x65` and `+0x64`, and `+0x24` as the colour `+0x90` unless bit `0x40000` of the
   dword at `+0x5C` is set; node flag `0x2` makes the brightness (RGB scale) `+0x5A` `0x80` for that node;
-- with `+0x2D` bit `0x4` the node is clipped to its rectangle (`0x0029FE20`, `0x00249FD0`) and recentred from
+- with `+0x2D` bit `0x4` the node is clipped to its rectangle¹ and recentred from
   `[0x0208F574] / 4` and its `+0x0A`;
 - a string `0x00364980` reports as UTF-16 is skipped; any other gets a context from `0x002B3400`, the colour bytes scaled
   as `0x002DD680` scales them, and `0x002B0280` draws at (dx + x, dy + node `+0x0E`); `0x002D8530(record)` follows a
   clipped node.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029FE20`, `0x00249FD0` |
+
+</details>
+
 ### The drawer's VIF packet
 
 `0x002B0280` also fills a VIF1 packet for VU1 in the GS command buffers, as the map screens do
 ([Legacy PS2 GS layer](../Graphics/legacy-ps2-gs-layer.md)). It counts its glyphs in the painter's
-`+0x10D4` (`[0x0209CC40]`) and closes the packet with `0x002B1C90` at 20 (`0x002B0CFA`) and when it ends (`0x002B1B60`):
+`+0x10D4` (`[0x0209CC40]`) and closes the packet with `0x002B1C90` at 20¹ and when it ends²:
 
-1. `0x002B1C90` moves the data end `0x0209CC50` back 16 bytes and stores 1 in the last dword before the old end.
-2. It writes the header at the cursor `0x0209E5A0`: `n | 0x10000000`, 0, `0x10000000` and the UNPACK code
-   `0x6C008150 | n << 16`, with `n` the 16-byte records from the cursor to the data end.
-3. After those records it appends `0x10000000`, 0, MSCALF `0x15000000` and FLUSHA `0x13000000`, and moves the
-   cursor past them.
-4. It moves the cursor `+0x08` of the buffer record `[0x0209CC48]` up to the new cursor, in whole 16 bytes, and flips
-   the buffer (`0x003A1DB0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B0CFA` |
+| ² | `0x002B1B60` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x002B1C90` moves the data end `0x0209CC50` back 16 bytes and stores 1 in the last dword before the old end. |   |
+| 2 | It writes the header at the cursor `0x0209E5A0`: `n \| 0x10000000`, 0, `0x10000000` and the UNPACK code `0x6C008150 \| n << 16`, with `n` the 16-byte records from the cursor to the data end. |   |
+| 3 | After those records it appends `0x10000000`, 0, MSCALF `0x15000000` and FLUSHA `0x13000000`, and moves the cursor past them. |   |
+| 4 | It moves the cursor `+0x08` of the buffer record `[0x0209CC48]` up to the new cursor, in whole 16 bytes, and flips the buffer. | `0x003A1DB0` |
 
 ### Picking the batch
 
@@ -303,14 +578,32 @@ the alternate font (bit `0x800` of `+0x44`), otherwise `0x0017F8A0` and `0x0017F
 opens a font's batch with `0x002AB820(font, group)`, which calls `0x001E9D20` through `0x0017FD30` with the painter
 `[0x0209D480]` and keeps the pair at `0x0209CC30` and `0x0209CC34`.
 
-`0x001E9D20(display, font, group, line)` keeps the open font while the pair is the one at `+0x18`, `+0x1C`
-(`0x001E9D2A`-`0x001E9D4A`). Otherwise it looks the pair up in the display's map at `+0xF38` (`0x001E9D50`-`0x001E9DA4`),
-whose record holds the font id at `+0x04`, finds the font with `0x001B51C0` on the font manager `[0x01F81200]`
-(`0x001E9DAE`-`0x001E9DBE`) and stores it as the current font `+0x00`.
+`0x001E9D20(display, font, group, line)` keeps the open font while the pair is the one at `+0x18`, `+0x1C`¹. Otherwise it looks the pair up in the display's map at `+0xF38`²,
+whose record holds the font id at `+0x04`, finds the font with `0x001B51C0` on the font manager `[0x01F81200]`³ and stores it as the current font `+0x00`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E9D2A`-`0x001E9D4A` |
+| ² | `0x001E9D50`-`0x001E9DA4` |
+| ³ | `0x001E9DAE`-`0x001E9DBE` |
+
+</details>
 
 A pair the map does not hold, a font id the manager does not hold, or an id outside 1 to 31 clears the display's
-`+0x00` to `+0x20` (`0x001E9DA4`, `0x001E9DC4`, `0x001E9DE3`, `0x001E9ED4`-`0x001E9EEA`). The emitter then adds nothing
-(`0x001E80C9`).
+`+0x00` to `+0x20`¹. The emitter then adds nothing².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E9DA4`, `0x001E9DC4`, `0x001E9DE3`, `0x001E9ED4`-`0x001E9EEA` |
+| ² | `0x001E80C9` |
+
+</details>
 
 When the batch's font id changes, `0x001E9D20` copies the font's atlas and shadow atlas into the batch's `+0x08` and
 `+0x10` (`0x001E9E8D`-`0x001E9EA9`, through `0x006B5C70` and `0x005C5310`). These copies are what the flush hands to the
@@ -318,7 +611,16 @@ drawing objects.
 
 ### The font display's setters and base sizes
 
-The text drawers reach the font display `[0x01F811F8]` (`0x001B5FA0`) through small entry points:
+The text drawers reach the font display `[0x01F811F8]`¹ through small entry points:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B5FA0` |
+
+</details>
 
 | Entry | Body | What the body does |
 |---|---|---|
@@ -330,22 +632,49 @@ The text drawers reach the font display `[0x01F811F8]` (`0x001B5FA0`) through sm
 | `0x0017F980` | `0x001E9610` | font 3's `+0x2C`, 20.0 when not registered |
 
 The glyph emitter `0x001E8070` multiplies each of the six vertices' alpha by one of the four corner factors
-(`+0x137C` + 4·i, unless the line's byte `+0x2348` is set), then sets all four back to 1.0
-(`0x001E8563`), so a gradient set with `0x0017FC90` covers one glyph.
+(`+0x137C` + 4·i, unless the line's byte `+0x2348` is set), then sets all four back to 1.0¹, so a gradient set with `0x0017FC90` covers one glyph.
 
-The four size bodies find the font in the registry `[0x01F81200]` (`0x001B5FB0`) with `0x001B51C0(registry,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E8563` |
+
+</details>
+
+The four size bodies find the font in the registry `[0x01F81200]`¹ with `0x001B51C0(registry,
 slot)`, an ordered-tree lookup: from the root `+0x40` it walks nodes keyed by the `u32` at `+0x20` and
 returns the node's `+0x28` for an exact match, or 0 (the header `+0x30`). The value is returned as it is
 while the byte `0x01F811E0` is set (`0x001B1620`, written by `0x001B24B0`), and otherwise divided by the font's
-scale `+0x34` (`0x001FDDB0`) and rounded up with `ceilf`. The batch opener `0x001E9D20` uses the same lookup
-(`0x001E9DB9`).
+scale `+0x34`² and rounded up with `ceilf`. The batch opener `0x001E9D20` uses the same lookup³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B5FB0` |
+| ² | `0x001FDDB0` |
+| ³ | `0x001E9DB9` |
+
+</details>
 
 ### The colour table
 
 Menu colours come from one table of 8-byte entries: a `u32` count, then per entry an RGBA `u32` and a byte. The field
-HUD root's load callback `0x0029CED0` requests the file (`0x00249210`, `0x0029CEF6`), and `0x002DD810` keeps it at
+HUD root's load callback `0x0029CED0` requests the file¹, and `0x002DD810` keeps it at
 `0x0215E6C0`. `0x002DD840`, run from `0x0029CF10` once the root's resources are in, publishes the count at `0x0215E6B8` and the
 entries at `0x0215E6C8`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00249210`, `0x0029CEF6` |
+
+</details>
 
 `0x002DD7E0(n)` returns entry n's colour, or `0x80808080` for an index out of range or before the table is published,
 and `0x002DD7B0(n)` its byte.
@@ -367,6 +696,9 @@ entries.
 
 ## Layouts
 
+<details>
+<summary>Show the memory layouts</summary>
+
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `u32[2]` | vftable | the family's table |
@@ -385,14 +717,26 @@ entries.
 
 The three subclasses add fields after `+0x15C`:
 
-- `Shadow` adds the line origin at `+0x160`/`+0x164`: cleared by its constructor `0x00213A00` (`0x00213A8D`), set by
-  `0x00214B10` from the flush (`0x001E8770`, `0x001E897E`) and subtracted from each vertex by `0x00213E30` (`0x00213E5E`,
-  `0x00213E9A`).
+- `Shadow` adds the line origin at `+0x160`/`+0x164`: cleared by its constructor `0x00213A00`¹, set by
+  `0x00214B10` from the flush² and subtracted from each vertex by `0x00213E30`³.
 - `ShadowFinal` keeps its render target index at `+0x160` (`0x002147A0`, read by `0x002148F0` and `0x00214930`).
-- `Final` has a byte at `+0x168` that its constructor sets to 1 (`0x0021394D`) and `0x00214700` overwrites from the
-  flush (`0x001E9074`); no instruction reads that byte.
+- `Final` has a byte at `+0x168` that its constructor sets to 1⁴ and `0x00214700` overwrites from the
+  flush⁵; no instruction reads that byte.
 - The plain class's last four bytes `+0x15C`-`+0x15F`, the same bytes of `Shadow` and `Final`, and `Final`'s
   `+0x169`-`+0x16F` are read and written by no function; nothing fixes their width.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00213A8D` |
+| ² | `0x001E8770`, `0x001E897E` |
+| ³ | `0x00213E5E`, `0x00213E9A` |
+| ⁴ | `0x0021394D` |
+| ⁵ | `0x001E9074` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -407,8 +751,18 @@ The three subclasses add fields after `+0x15C`:
 | `+0x20` | `f32` | u |  |
 | `+0x24` | `f32` | v |  |
 
-The byte `[0x01F811E0]` is set from `[0x01E0280C]`, shipped 1 (`0x0022A113`-`0x0022A120`, `0x001B24B0`); with it clear the
-mapping divides by 512 and 448 instead (`0x001B1620`, `0x00213D38`).
+The byte `[0x01F811E0]` is set from `[0x01E0280C]`, shipped 1¹; with it clear the
+mapping divides by 512 and 448 instead².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A113`-`0x0022A120`, `0x001B24B0` |
+| ² | `0x001B1620`, `0x00213D38` |
+
+</details>
 
 The text painter `0x0209D490` keeps the line state of the text being drawn or measured:
 
@@ -429,7 +783,17 @@ The text painter `0x0209D490` keeps the line state of the text being drawn or me
 
 `0x002B24B0`, the choice-list measure, saves `+0x10C8`, `+0x10D8`, `+0x10E8`, `+0x10FC` and `+0x10FF`, stores its own
 terminator at `+0x10C8` and clears `+0x10D8`, `+0x10FC`-`+0x10FF`, the column marks `+0x10EC`-`+0x10FB` and
-`+0x1100`-`+0x1101` (`0x002B2570`-`0x002B25BC`), and restores the saved ones when it returns (`0x002B278C`-`0x002B27B7`).
+`+0x1100`-`+0x1101`¹, and restores the saved ones when it returns².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B2570`-`0x002B25BC` |
+| ² | `0x002B278C`-`0x002B27B7` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -458,7 +822,12 @@ terminator at `+0x10C8` and clears `+0x10D8`, `+0x10FC`-`+0x10FF`, the column ma
 | `+0x28` | `u8` | offscreen | set by begin `0x001E99AA` |
 | `+0x29` | `u8` | firstPending | 1 from the begin call (`0x001E99AE`); the line's first glyph clears it and sets `firstAlpha` from its alpha (`0x001E84C6`-`0x001E84F9`) |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 ### The glyph metrics
 
@@ -467,9 +836,19 @@ terminator at `+0x10C8` and clears `+0x10D8`, `+0x10FC`-`+0x10FF`, the column ma
 the four floats from `0x0209CC70` times the text size `size` = `+0x34`, into `0x0209CC60`-`0x0209CC6C` (`mulps`,
 `0x002AC54B`-`0x002AC56A`).
 
-When the x scale `sx` = `+0x38` or the y scale `sy` = `+0x3C` is not 1.0 (`0x002AC571`-`0x002AC587`),
+When the x scale `sx` = `+0x38` or the y scale `sy` = `+0x3C` is not 1.0¹,
 `sx != 1.0 || sy != 1.0`, it multiplies all four by the x scale and the height by the y scale instead:
-`[0x0209CC60 + 4i] = [0x0209CC70 + 4i] × size × sx`, then `[0x0209CC64] = [0x0209CC74] × size × sy` (`0x002AC589`-`0x002AC5A6`).
+`[0x0209CC60 + 4i] = [0x0209CC70 + 4i] × size × sx`, then `[0x0209CC64] = [0x0209CC74] × size × sy`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AC571`-`0x002AC587` |
+| ² | `0x002AC589`-`0x002AC5A6` |
+
+</details>
 
 The drawers read the scaled values to place the glyph's quad and move the pen. These are 0 in the file; the
 eight-byte stores in the lists put 0 in two of them at once.
@@ -491,9 +870,11 @@ none of them.
 The drawers `0x002A9F00`, `0x002AA800`, `0x002AAE40` and `0x002B0280` split a line's batch every 1920 units of pen travel.
 When a glyph's right edge over 1920 passes `0x01E0CDF4` and the context's `+0x20` is set, the drawer:
 
-1. flushes the batch (`0x0017F850`) and begins again with `0x0017FA10(context +0xB8, 0x44, 1)`;
-2. reselects the font `0x0209CC30`, `0x0209CC34` (`0x0017FD30`) and the transform `+0x20` (`0x0017FB00`);
-3. adds 1.0 to `0x01E0CDF4` (`0x002B0B35`-`0x002B0BA9` in `0x002B0280`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | flushes the batch and begins again with `0x0017FA10(context +0xB8, 0x44, 1)`; | `0x0017F850` |
+| 2 | reselects the font `0x0209CC30`, `0x0209CC34` and the transform `+0x20`; | `0x0017FD30`<br>`0x0017FB00` |
+| 3 | adds 1.0 to `0x01E0CDF4` (`0x002B0B35`-`0x002B0BA9` in `0x002B0280`). |   |
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -504,8 +885,18 @@ When a glyph's right edge over 1920 passes `0x01E0CDF4` and the context's `+0x20
 
 A number argument of `0F .` ([Text codes](text-codes.md)) is drawn by `0x002AE610` from a copy of the escape. The
 interpreter and the drawer each copy the escape's four bytes from the selector into their own scratch and set byte 1 to
-`0xFF`. `0x002AE610` reads bytes 1 and 2 through `0x003FFC60` (`0x002AE760`) and draws the number only when byte 1 & `0x7F`
-is `0x7F` (`0x002AE823`). Both scratches hold `2D 80 80 00` in the file, which the copy replaces.
+`0xFF`. `0x002AE610` reads bytes 1 and 2 through `0x003FFC60`¹ and draws the number only when byte 1 & `0x7F`
+is `0x7F`². Both scratches hold `2D 80 80 00` in the file, which the copy replaces.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AE760` |
+| ² | `0x002AE823` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -516,16 +907,27 @@ is `0x7F` (`0x002AE823`). Both scratches hold `2D 80 80 00` in the file, which t
 No other instruction reaches these globals. The `UISize.json` cells `0x001AF470` registers near them are separate
 globals.
 
+</details>
+
 ## Modding notes
 
 - A text palette entry's second colour is the border colour.
 - The border's look is the `FontBorder` shader's parameters, not the glyph draw; its width is the font display's
-  border setting (`0x001B5210`).
+  border setting¹.
 - Text using more than ten fonts in one line loses the glyphs of the extra fonts.
 - Setting `[0x01E02818]` to 0 switches menu text to the pre-drawn shadow atlas path.
 - Text coordinates come from the font's `.dat` header, not from the atlas texture: an atlas redrawn at another size
   needs the header's `atlasW` and `atlasH` and the glyph boxes changed with it, unless it is scaled by one factor in
   both directions ([Font files](fonts-files.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B5210` |
+
+</details>
 
 ## Related
 
@@ -542,15 +944,19 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Platform** (explained on [phyre d3d11 device and resources](../PhyreEngine/phyre-d3d11-device-and-resources.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00225690` | is called by | `0x0061F200`, `0x0061F710`, `0x006209C0`, `0x006239C0` |
+| [`0x00225690`](fonts-files.md) (on fonts files) | is called by | [`0x0061F200`](../PhyreEngine/phyre-d3d11-device-and-resources.md) (on phyre d3d11 device and resources)<br>[`0x0061F710`](../PhyreEngine/phyre-d3d11-device-and-resources.md) (on phyre d3d11 device and resources)<br>[`0x006209C0`](../PhyreEngine/phyre-d3d11-device-and-resources.md) (on phyre d3d11 device and resources)<br>[`0x006239C0`](../PhyreEngine/phyre-d3d11-device-and-resources.md) (on phyre d3d11 device and resources) |
 
 **World, areas and travel** (explained on [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md), [party control modes](../Engine-Core/party-control-modes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0029FE20` | is called by | `0x0057FB00` |
-| `0x003F92B0` | calls | `0x003148F0` |
+| [`0x0029FE20`](text-drawing.md) | is called by | [`0x0057FB00`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) |
+| [`0x003F92B0`](text-drawing.md) | calls | [`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) |
 
 </details>

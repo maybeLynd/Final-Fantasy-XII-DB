@@ -36,34 +36,77 @@ The renderer's start-up `0x006253D0` creates a DXGI factory (`CreateDXGIFactory`
    kept. The choice goes to context `+0x1880` and its index to `+0x18AC`.
 
 `0x0079E520` fills those three fields of the window description `0x01F403A8` from settings 19 DeviceID,
-20 LUIDLow and 21 LUIDHigh (`0x0079E5AF`-`0x0079E5D2`), stores its address at `[0x02EA5368] + 0xD10` and calls
-`0x0079F150`, which passes it on (`0x0079E4FE`). With an adapter chosen, `0x00625830` creates the device and swap chain on it.
+20 LUIDLow and 21 LUIDHigh¹, stores its address at `[0x02EA5368] + 0xD10` and calls
+`0x0079F150`, which passes it on². With an adapter chosen, `0x00625830` creates the device and swap chain on it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079E5AF`-`0x0079E5D2` |
+| ² | `0x0079E4FE` |
+
+</details>
 
 ### The adapter list
 
 The display object's constructor runs `0x001DD170`, which copies what the renderer found:
 
-1. `0x00623C10` returns the adapter count, the chosen index (`+0x18AC`) and the usable mask (`+0x18B0`),
-   stored at display `+0x50`, `+0x4C` and `+0x58`; `+0x48` starts equal to `+0x4C`.
-2. For each adapter it allocates a `0x140`-byte `AdapterRecord`: `0x00623CB0` writes the adapter's
-   description and its output count; `0x00624490` fills one `0x60`-byte output description per output.
-3. A usable adapter adds its output count to `+0x54`.
-4. It writes the selected record's device id and LUID back to settings 19, 20 and 21 (`0x001DF340`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00623C10` returns the adapter count, the chosen index (`+0x18AC`) and the usable mask (`+0x18B0`), stored at display `+0x50`, `+0x4C` and `+0x58`; `+0x48` starts equal to `+0x4C`. |   |
+| 2 | For each adapter it allocates a `0x140`-byte `AdapterRecord`: `0x00623CB0` writes the adapter's description and its output count; `0x00624490` fills one `0x60`-byte output description per output. |   |
+| 3 | A usable adapter adds its output count to `+0x54`. |   |
+| 4 | It writes the selected record's device id and LUID back to settings 19, 20 and 21. | `0x001DF340` |
 
-`0x00623C10` writes the chosen index and the mask first (`0x00623C23`, `0x00623C2F`), then calls the factory's
+`0x00623C10` writes the chosen index and the mask first¹, then calls the factory's
 `EnumAdapters` (vtable `+0x38`) for adapter 0, 1, 2 and on, storing the count after each adapter it gets
-and releasing that adapter (`0x00623C68`, `0x00623C6D`). Without a factory at `+0x1878`, or when adapter 0 is
-missing, it leaves the count unwritten (`0x00623C45`, `0x00623C66`). It returns 0 on every path.
+and releasing that adapter². Without a factory at `+0x1878`, or when adapter 0 is
+missing, it leaves the count unwritten³. It returns 0 on every path.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00623C23`, `0x00623C2F` |
+| ² | `0x00623C68`, `0x00623C6D` |
+| ³ | `0x00623C45`, `0x00623C66` |
+
+</details>
 
 `0x00623CB0` gets adapter `i` the same way, writes its description with `GetDesc` (vtable `+0x40`,
 `0x00623CF0`) and calls `EnumOutputs` (vtable `+0x38`) until it gives a null output, storing the number of
-outputs it got (`0x00623D44`). It releases the adapter (`0x00623D49`) but not the outputs it counted.
+outputs it got¹. It releases the adapter² but not the outputs it counted.
 
-`0x00624490` gets adapter `i`, reads its description into its own stack buffer (`0x006244EF`), and for each
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00623D44` |
+| ² | `0x00623D49` |
+
+</details>
+
+`0x00624490` gets adapter `i`, reads its description into its own stack buffer¹, and for each
 output `k` below `n` that `EnumOutputs` returns, calls the output's `GetDesc` (vtable `+0x38`) on
-`out + k * 0x60` (`0x0062452F`). It then releases the last output pointer it got, without testing it, and the
-adapter (`0x0062453E`, `0x00624547`). With no factory or no adapter `i`, `0x00623CB0` and `0x00624490` write
-nothing (`0x00623CD3`, `0x00623CE8`, `0x006244C4`, `0x006244DD`); both return 0 on every path.
+`out + k * 0x60`². It then releases the last output pointer it got, without testing it, and the
+adapter³. With no factory or no adapter `i`, `0x00623CB0` and `0x00624490` write
+nothing⁴; both return 0 on every path.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006244EF` |
+| ² | `0x0062452F` |
+| ³ | `0x0062453E`, `0x00624547` |
+| ⁴ | `0x00623CD3`, `0x00623CE8`, `0x006244C4`, `0x006244DD` |
+
+</details>
 
 ### The Display Adapter row
 
@@ -74,28 +117,69 @@ whose bit in `+0x58` is clear, stores the index at `+0x48` and writes the record
 settings 19-21.
 
 `0x001DC650(display, i, back)` starts at `i % count`, with `count` at `+0x50`, or at `count - 1` when `i`
-is negative (`0x001DC661`-`0x001DC671`). While the current adapter's bit in `+0x58` is clear it steps: down
-with `back` set, `i - 1`, wrapping from 0 to `count - 1` (`0x001DC685`-`0x001DC68A`); up otherwise,
-`(i + 1) % count` (`0x001DC690`-`0x001DC698`). The loop has no other exit, so a mask in which no adapter's
-bit is set keeps it looping. It returns the index it stored at `+0x48` (`0x001DC719`).
+is negative¹. While the current adapter's bit in `+0x58` is clear it steps: down
+with `back` set, `i - 1`, wrapping from 0 to `count - 1`²; up otherwise,
+`(i + 1) % count`³. The loop has no other exit, so a mask in which no adapter's
+bit is set keeps it looping. It returns the index it stored at `+0x48`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DC661`-`0x001DC671` |
+| ² | `0x001DC685`-`0x001DC68A` |
+| ³ | `0x001DC690`-`0x001DC698` |
+| ⁴ | `0x001DC719` |
+
+</details>
 
 `0x001DC7A0` stores the monitor, folding a number above the output count back to 1. When the adapter is
 the one in use (`+0x48` equals `+0x4C`) and the monitor differs from `+0x64`, it rebuilds the
-display-mode list (`0x001DD420`), calls `0x007A03D0`, stores setting 26 Monitor and writes the settings file
-(`0x001DFD40`).
+display-mode list¹, calls `0x007A03D0`, stores setting 26 Monitor and writes the settings file².
 
-`0x001DC7A0` first stores the monitor unchanged at `+0x60` (`0x001DC7A6`). With its third argument zero it
-returns there (`0x001DC7AF`); the fold, the comparison and the settings write run only when it is
-non-zero. The output count is that of the record at `+0x48`, or display `+0x5C` when `+0x78` is 0
-(`0x001DC7B5`, `0x001DC7CF`). The fold compares unsigned (`cmova`, `0x001DC7DF`), and the settings file is
-written by a tail jump (`0x001DC81E`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DD420` |
+| ² | `0x001DFD40` |
+
+</details>
+
+`0x001DC7A0` first stores the monitor unchanged at `+0x60`¹. With its third argument zero it
+returns there²; the fold, the comparison and the settings write run only when it is
+non-zero. The output count is that of the record at `+0x48`, or display `+0x5C` when `+0x78` is 0³. The fold compares unsigned (`cmova`, `0x001DC7DF`), and the settings file is
+written by a tail jump⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DC7A6` |
+| ² | `0x001DC7AF` |
+| ³ | `0x001DC7B5`, `0x001DC7CF` |
+| ⁴ | `0x001DC81E` |
+
+</details>
 
 ### Anti-aliasing levels from the device
 
-After the device exists, `0x00625830` calls `0x00628690` (`0x00625E7C`). It asks the device for
+After the device exists, `0x00625830` calls `0x00628690`¹. It asks the device for
 `CheckMultisampleQualityLevels` (vtable `+0xF0`) on format 28 for every sample count 2-32, and for
 each count that reports levels it sets one bit of the settings' MSAA mask at `[0x01F82D20] + 0x44C`
 through `0x0017D9C0` → `0x001DF2B0`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00625E7C` |
+
+</details>
 
 | Sample count | Bit | MSAA value |
 |---:|---:|---|
@@ -118,38 +202,76 @@ result is logged as `NvAPI_Initialize() failed = 0x%x` and stored as 0 in `0x02C
 nothing reads `0x02CED884`.
 
 On its first call `0x00159340` stores the vtable `0x01CC6B60` at `0x02EAEA68`, initialises the critical section
-and registers `0x008B9040`, which deletes it, with `atexit` (`0x00159377`, `0x00159384`); bit `0x1` of
-`0x02EAEA98` marks this done. Around the call it raises and lowers the in-call counter `0x02EAE128`
-(`0x00159396`, `0x001593BA`). The new reference count is `old + 1`, with `old` read before the call
-(`0x0015939E`, `0x001593B4`), so the first load, which sets it to 1 in `0x00158EC0`, still leaves 1. It leaves
-the critical section and returns the result of `0x00158F60` (`0x001593FD`, `0x00159408`).
+and registers `0x008B9040`, which deletes it, with `atexit`¹; bit `0x1` of
+`0x02EAEA98` marks this done. Around the call it raises and lowers the in-call counter `0x02EAE128`². The new reference count is `old + 1`, with `old` read before the call³, so the first load, which sets it to 1 in `0x00158EC0`, still leaves 1. It leaves
+the critical section and returns the result of `0x00158F60`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00159377`, `0x00159384` |
+| ² | `0x00159396`, `0x001593BA` |
+| ³ | `0x0015939E`, `0x001593B4` |
+| ⁴ | `0x001593FD`, `0x00159408` |
+
+</details>
 
 - `0x00158F60(i)` waits while byte `0x02EAE120 + i` is set, sleeping 100 ms up to ten times, and then gives
   up with -1. With the byte clear it loads library `i` if its handle at `0x02EAE100 + 8i` is 0. Nothing
-  writes `0x02EAE120`, so it never waits. It returns 0 when the handle is already set (`0x00158FC5`) and
-  otherwise the result of `0x00158EC0(i)` (`0x00158FB9`).
+  writes `0x02EAE120`, so it never waits. It returns 0 when the handle is already set¹ and
+  otherwise the result of `0x00158EC0(i)`².
 - `0x00158EC0(i)` loads `nvapi64.dll` for `i` = 0 and `nvpowerapi.dll` for 1 through the driver-DLL
   search `0x0015BB30` ([Driver DLL search](driver-dll-search.md)), returns -2 when that fails, and frees
   the library when `0x00158DE0` fails; on success it stores the handle at `0x02EAE100 + 8i` and sets the count
-  `0x02EAE138 + 4i` to 1 (`0x00158F31`, `0x00158F39`). Every caller passes 0.
-- With the handle at `0x02EAE100 + 8i` already set, `0x00158EC0` returns 0 without loading (`0x00158EEA`). It
-  hands `i` on to `0x00158DE0` (`0x00158F19`); when that returns non-zero it frees the library with
-  `FreeLibrary` (`0x00158F27`) and returns that value, and on success it returns 0 (`0x00158F44`).
+  `0x02EAE138 + 4i` to 1³. Every caller passes 0.
+- With the handle at `0x02EAE100 + 8i` already set, `0x00158EC0` returns 0 without loading⁴. It
+  hands `i` on to `0x00158DE0`⁵; when that returns non-zero it frees the library with
+  `FreeLibrary`⁶ and returns that value, and on success it returns 0⁷.
 - `0x00158DE0` resolves `nvapi_QueryInterface`, asks it for interface `0x0150E828` and calls it; a
   non-zero result clears the query function and is returned. It then asks for `0x33C7358C` and
   `0x593E8644` as a pre-call and post-call hook pair, keeping them only when the first exists and
   the second does not, and clears the `0x918`-byte function cache at `0x02EAE150`.
-- `0x00158DE0` returns -1 when `GetProcAddress` finds no `nvapi_QueryInterface` (`0x00158E03`, `0x00158E18`),
+- `0x00158DE0` returns -1 when `GetProcAddress` finds no `nvapi_QueryInterface`⁸,
   and also when the query gives no interface `0x0150E828`, after clearing the query function
-  (`0x00158E0F`, `0x00158E11`). After clearing the cache it returns 0 (`0x00158EB5`).
+ ⁹. After clearing the cache it returns 0¹⁰.
 - For library 1, `0x00158DE0` instead resolves `nvapi_pepQueryInterface` into `0x02EAE0E8`, a path no
-  caller takes. It returns -1 when that is missing (`0x00158E9B`) and otherwise clears the cache and returns
+  caller takes. It returns -1 when that is missing¹¹ and otherwise clears the cache and returns
   0. A library index other than 0 and 1 resolves no function and goes straight to clearing the cache
-  and returning 0 (`0x00158E82`).
+  and returning 0¹².
 
-The hook pair is kept only when the pre-call hook exists and the post-call hook does not
-(`0x00158E57`-`0x00158E76`). So the post-call slot is 0 whenever the pair is kept, and the wrappers' post-call step
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00158FC5` |
+| ² | `0x00158FB9` |
+| ³ | `0x00158F31`, `0x00158F39` |
+| ⁴ | `0x00158EEA` |
+| ⁵ | `0x00158F19` |
+| ⁶ | `0x00158F27` |
+| ⁷ | `0x00158F44` |
+| ⁸ | `0x00158E03`, `0x00158E18` |
+| ⁹ | `0x00158E0F`, `0x00158E11` |
+| ¹⁰ | `0x00158EB5` |
+| ¹¹ | `0x00158E9B` |
+| ¹² | `0x00158E82` |
+
+</details>
+
+The hook pair is kept only when the pre-call hook exists and the post-call hook does not¹. So the post-call slot is 0 whenever the pair is kept, and the wrappers' post-call step
 never runs. Each wrapper tests each slot before it calls through it:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00158E57`-`0x00158E76` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -164,9 +286,19 @@ pre-call hook, the function and the post-call hook, and lower the counter. A fun
 resolved returns -3.
 
 A non-zero result of `0x00158F60(0)` is returned at once, after lowering the counter, without resolving or
-calling anything (`0x00159001`, `0x001590D1`, `0x001591B2`, `0x00159298`). Otherwise each wrapper returns the
+calling anything¹. Otherwise each wrapper returns the
 function's result. A hook whose slot is 0 is skipped, and the pre-call hook gets a cookie slot that is set
-to 0 first (`0x00159048`, `0x00159118`, `0x001591F9`, `0x001592DF`).
+to 0 first².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00159001`, `0x001590D1`, `0x001591B2`, `0x00159298` |
+| ² | `0x00159048`, `0x00159118`, `0x001591F9`, `0x001592DF` |
+
+</details>
 
 | Wrapper | Interface id | Cache slot | What the game reads |
 |---|---|---|---|
@@ -193,23 +325,63 @@ The static initialiser `0x0015DC80` builds `AmdAdapterInfo` at `0x01F83460` with
 (`"0x"` prefix, `sscanf` with `%x`). The keys `PCI_VEN`, `DEV` and `SUBSYS` fill vendor, device and
 subsystem; other keys are ignored.
 
-`0x0020D720`, slot 2's body (`0x0020D010`), and the exit routine `0x008A7360` call
+`0x0020D720`, slot 2's body¹, and the exit routine `0x008A7360` call
 `ADL2_Main_Control_Destroy` when a context exists, free the library and release the vector.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020D010` |
+
+</details>
+
 `0x0020D010(object, flags)` calls `0x0020D720(object)` first. When bit `0x1` of the flags is set it then
-calls `0x00809950(object, 0xD0)`. It answers the object in both cases (`0x0020D01F`-`0x0020D036`).
+calls `0x00809950(object, 0xD0)`. It answers the object in both cases¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020D01F`-`0x0020D036` |
+
+</details>
 
 ### The adapter-info chain
 
 `0x0020D2B0` builds an `AdapterInfos` head on the caller's stack: its own vtable, whose two slots return
-false (`0x00657140`), then `+0x08` → `NvidiaAdapterInfo` at `0x01E02580`, whose `+0x08` it points at
-`AmdAdapterInfo` (`0x01E02588`). `0x0020DA50` (slot 0, temperature) and `0x0020D9F0` (slot 1, name) call
+false¹, then `+0x08` → `NvidiaAdapterInfo` at `0x01E02580`, whose `+0x08` it points at
+`AmdAdapterInfo`². `0x0020DA50` (slot 0, temperature) and `0x0020D9F0` (slot 1, name) call
 the slot on each link in turn and stop at the first that returns true.
 
-`0x0020D2B0` also zeroes the head's vector words `+0x10`, `+0x18` and `+0x20`, its `+0x28` and its `+0x2C`
-(`0x0020D2B2`-`0x0020D2C1`), sets its vtable to `0x00906880` (`0x0020D2CB`) and returns the head (`0x0020D2E7`).
-`0x0020D9F0` returns true from the first link that answers true (`0x0020DA2C`), and false when the last link
-has answered false (`0x0020DA18`, `0x0020DA43`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00657140` |
+| ² | `0x01E02588` |
+
+</details>
+
+`0x0020D2B0` also zeroes the head's vector words `+0x10`, `+0x18` and `+0x20`, its `+0x28` and its `+0x2C`¹, sets its vtable to `0x00906880`² and returns the head³.
+`0x0020D9F0` returns true from the first link that answers true⁴, and false when the last link
+has answered false⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020D2B2`-`0x0020D2C1` |
+| ² | `0x0020D2CB` |
+| ³ | `0x0020D2E7` |
+| ⁴ | `0x0020DA2C` |
+| ⁵ | `0x0020DA18`, `0x0020DA43` |
+
+</details>
 
 Both vendor objects find a GPU by matching the DXGI device id with `+0x04` of their `AdapterIds`
 records:
@@ -221,8 +393,18 @@ records:
 
 Each slot returns false and writes no output when the ids are not ready (for NVIDIA when `0x0020DAB0`
 returns 0, `0x0020D080`, `0x0020D14D`; for AMD when `+0x28` is 0, `0x0020CF03`, `0x0020CF9A`), when no record
-among the first `+0x2C` holds the device id (`0x0020D0B0`, `0x0020D176`, `0x0020CF31`, `0x0020CFC4`), or when
-the vendor call returns non-zero (`0x0020D109`, `0x0020D1B2`, `0x0020CF70`).
+among the first `+0x2C` holds the device id¹, or when
+the vendor call returns non-zero².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020D0B0`, `0x0020D176`, `0x0020CF31`, `0x0020CFC4` |
+| ² | `0x0020D109`, `0x0020D1B2`, `0x0020CF70` |
+
+</details>
 
 The NVIDIA object fills itself on first use: `0x0020D050` and `0x0020D120` call `0x0020DAB0`, which runs once
 (the flag `0x01E02570` starts at 1 and is cleared on entry). It enumerates the GPU handles into `+0x30`,
@@ -237,14 +419,35 @@ reallocate, grow and append the 12-byte `AdapterIds` vector.
 - The Config screen row text `0x0023B530` kind 4 calls `0x0017FDC0` → `0x001DC9D0`. It takes the selected
   output's device name (`(%ws)`, with `\` and `.` removed), asks the chain for the GPU name by the
   selected adapter's device id, falls back to the DXGI description (`%ws`), and joins them (`%s%s`).
-- The developer menu's row renderer `0x001CD0E0` calls `0x001DCB90` (`0x001CD593`), which formats
+- The developer menu's row renderer `0x001CD0E0` calls `0x001DCB90`¹, which formats
   ` Count %d ,Now: %s ,Video Memory: %lld MB, Temperature: %d(C)` from display `+0x54`, the same name,
   the dedicated video memory divided by 1000 twice, and the chain's temperature (0 when no library
   answers).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001CD593` |
+
+</details>
+
 ## Layouts
 
-`AdapterRecord`, `0x140` bytes, at display `+0x78` (`0x001DD170`):
+<details>
+<summary>Show the memory layouts</summary>
+
+`AdapterRecord`, `0x140` bytes, at display `+0x78`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DD170` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -283,12 +486,24 @@ at `0x01F83460` (vtable `0x009064B8`) share the first `0x30` bytes:
 In `AmdAdapterInfo` the vector words are `0x01F83470` (`idsBegin`), `0x01F83478` (`idsEnd`) and `0x01F83480`
 (`idsCapacity`).
 
-Its exit routine `0x008A7360` skips the vector when `idsBegin` is 0 (`0x008A739F`). Otherwise it calls `0x0016D6A0`
-with begin and end (`0x008A73CA`), which returns at once (`0x0016D6A0`: `ret`), since a 12-byte `AdapterIds` needs no
+Its exit routine `0x008A7360` skips the vector when `idsBegin` is 0¹. Otherwise it calls `0x0016D6A0`
+with begin and end², which returns at once (`0x0016D6A0`: `ret`), since a 12-byte `AdapterIds` needs no
 destructor. It then frees the storage with `0x001CD050(begin, n)`, where `n = (idsCapacity - idsBegin) ÷ 12`
 (`0x008A73CF`-`0x008A73F4`: the byte span at `0x008A73D6`, `rdx = (span × 0x2AAAAAAAAAAAAAAB) >> 64` at
-`0x008A73DD`, then `sar 1`), and `0x001CD050` frees `n × 12` bytes (`0x001CD06A`-`0x001CD06E`). Last, it zeroes the
-three words (`0x008A740D`, `0x008A7415`).
+`0x008A73DD`, then `sar 1`), and `0x001CD050` frees `n × 12` bytes³. Last, it zeroes the
+three words⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008A739F` |
+| ² | `0x008A73CA` |
+| ³ | `0x001CD06A`-`0x001CD06E` |
+| ⁴ | `0x008A740D`, `0x008A7415` |
+
+</details>
 
 `AmdAdapterInfo` continues, `0xD0` bytes in all:
 
@@ -315,6 +530,8 @@ three words (`0x008A740D`, `0x008A7415`).
 | `+0xC0` | `void*` | context | from `ADL2_Main_Control_Create` |
 | `+0xC8` | `void*` | adapterInfos | `count` ADL records of `0x624` bytes: index at `+0x04`, identifier string at `+0x08`, name at `+0x118` |
 
+</details>
+
 ## Operations
 
 | Function | Role |
@@ -332,6 +549,9 @@ three words (`0x008A740D`, `0x008A7415`).
 | `0x0020DA50` / `0x0020D9F0(chain, deviceId, out)` | temperature / name through the chain |
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | What |
 |---|---|
@@ -357,6 +577,8 @@ the object (`rdi` in `0x0020D050`, `rsi` in `0x0020D120`, `rbp` in `0x0020DAB0`)
 
 `0x0015DCA0` registers `0x008A7430` with `atexit`. `0x0020DAB0` also writes `idsEnd` through the object (`0x0020DC27`, plus
 12 per record).
+
+</details>
 
 ## Modding notes
 

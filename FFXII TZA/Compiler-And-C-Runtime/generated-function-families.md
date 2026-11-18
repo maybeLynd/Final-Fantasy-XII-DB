@@ -100,22 +100,50 @@ non-null only when the comparison `0x00810810` succeeds, and it names
 `PObjectAccessor<class Phyre::PAnimation::PTimeScaleOffsetController *>::Get`. So slot 5 of a
 class descriptor converts a script value into a pointer to an object of that class, and the
 adapter gives every class the same `(descriptor, value, T **out)` call. The shared targets of
-`0x006B2950` and `0x006B2970` (`0x00683B10`, `0x00683BF0`) load no accessor name.
+`0x006B2950` and `0x006B2970`¹ load no accessor name.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00683B10`, `0x00683BF0` |
+
+</details>
 
 `0x005BEC00(L)` works on the value at the top of the stack. When `0x00682980` finds an object record it pops
-the value (`0x00811130`, `0x005BEC29`). For a non-null object `+0x08` it returns `object - 8` when the record's
-class `+0x00` is null or reaches the descriptor `0x02CAF0E0` through the `+0x78` links (`0x005BEC2E`-`0x005BEC5C`,
-`0x005BECAB`). A class off that chain raises this error with the two class names `+0x30` (`0x005BEC5E`-`0x005BEC99`):
+the value¹. For a non-null object `+0x08` it returns `object - 8` when the record's
+class `+0x00` is null or reaches the descriptor `0x02CAF0E0` through the `+0x78` links². A class off that chain raises this error with the two class names `+0x30`³:
 `Object pointer obtained from script was of type "%s" when an object of type "%s" was required.`
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00811130`, `0x005BEC29` |
+| ² | `0x005BEC2E`-`0x005BEC5C`, `0x005BECAB` |
+| ³ | `0x005BEC5E`-`0x005BEC99` |
+
+</details>
 
 With no record it reads the type of the value at the top; with a null object it reads the type of the value now at the
 top, the one below the value it popped at `0x005BEC29` (`0x00811130(L, -2)`, `0x005BEC38`).
 
-Either way a nil is popped and 0 returned (`0x008119F0`, `0x005BECBA`-`0x005BECD4`). Any other type raises this error
-(`0x005BECE1`-`0x005BED1C`):
+Either way a nil is popped and 0 returned¹. Any other type raises this error²:
 `Unable to obtain object pointer from script - found another type of data instead (Lua type %d)`.
 Before either error it stores the source location at `0x02E41000`-`0x02E41010`: the file name `0x00D23FF0`, the
 line (`0x6A` or `0x76`) and the function name `0x00D2BBB0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008119F0`, `0x005BECBA`-`0x005BECD4` |
+| ² | `0x005BECE1`-`0x005BED1C` |
+
+</details>
 
 The owned-buffer reset adapters (`0x005A4830`, 59 bytes) are slot 11 of the same descriptors: their
 46 bodies appear 138 times, all at slot 11, once each in the `ForType`, `Abstract` and `Concrete`
@@ -440,8 +468,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Platform** (explained on [game application](../Engine-Core/game-application.md), [graphics adapters and vendor libraries](../Steam-And-Achievements/graphics-adapters-and-vendor-libraries.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0079F150` | calls | `0x005CC930`, `0x005CD0A0`, `0x006253D0` |
+| [`0x0079F150`](../PhyreEngine/phyre-application.md) (on phyre application) | calls | [`0x005CC930`](../PhyreEngine/phyre-modules.md) (on phyre modules)<br>[`0x005CD0A0`](runtime-services.md) (on runtime services)<br>[`0x006253D0`](../PhyreEngine/phyre-application.md) (on phyre application) |
 
 </details>

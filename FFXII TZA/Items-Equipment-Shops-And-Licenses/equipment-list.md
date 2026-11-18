@@ -29,17 +29,13 @@ reaches (`battle_pack.bin` directory entry `+0x38`). The meaning of every field,
 
 Each line is read from the shipped `us` `battle_pack.bin` in these steps:
 
-1. the `st2e` table at entry `+0x38`: 557 rows of 52 bytes from the section's `+0x20`, and each row's 24-byte bonus
-   record at section `+0x7144` plus the row's `+0x28`;
-2. the name word `+0x02` through the word banks at entry `+0xF8`, as `0x0031C5D0` does (`0x0031C911`);
-3. the class name: the name word (second `u16`) of row *class* of the category table at entry `+0x18`, which
-   `0x0031C5D0` reads through id kind 28 (`0x0031E3DB`-`0x0031E435`). Its rows 0-26 carry the names of the classes 0-26
-   ("Unarmed", "Sword (1H)", "Shield", "Arrows" and the others), and class *n* takes the name of row *n*. The shipped name
-   of row 22 is "NOT USED crown";
-4. the element bits by the names on [Elements](../Damage-And-Battle-Formulas/elements.md), and the status bits by the names in
-   [Statuses](../Status-Effects-And-KO/statuses.md)' table;
-5. every one-byte text code through the glyph table of the shipped `us` font `font00.dat` (records of `0x24` bytes
-   from `+0x28`, key = byte - `0x20`, the glyph's UTF-8 at `+0x04`, as [Fonts](../Menus-And-HUD/fonts.md) describes).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | the `st2e` table at entry `+0x38`: 557 rows of 52 bytes from the section's `+0x20`, and each row's 24-byte bonus record at section `+0x7144` plus the row's `+0x28`; |   |
+| 2 | the name word `+0x02` through the word banks at entry `+0xF8`, as `0x0031C5D0` does; | `0x0031C911` |
+| 3 | the class name: the name word (second `u16`) of row *class* of the category table at entry `+0x18`, which `0x0031C5D0` reads through id kind 28. Its rows 0-26 carry the names of the classes 0-26 ("Unarmed", "Sword (1H)", "Shield", "Arrows" and the others), and class *n* takes the name of row *n*. The shipped name of row 22 is "NOT USED crown"; | `0x0031E3DB`-`0x0031E435` |
+| 4 | the element bits by the names on [Elements](../Damage-And-Battle-Formulas/elements.md), and the status bits by the names in [Statuses](../Status-Effects-And-KO/statuses.md)' table; |   |
+| 5 | every one-byte text code through the glyph table of the shipped `us` font `font00.dat` (records of `0x24` bytes from `+0x28`, key = byte - `0x20`, the glyph's UTF-8 at `+0x04`, as [Fonts](../Menus-And-HUD/fonts.md) describes). |   |
 
 Every name word of this table starts with the two zero bytes that `0x002B58B0` skips, so its other branch, for a word
 without them, is never taken for this table.
@@ -86,11 +82,29 @@ as the stats rebuild `0x002FEF30` reads them ([Equipment row](equipment-row.md),
   - the seller opens his menu only once quest 71 has reached progress 70, which the three hunters set (`fon_b01`).
 - `hunt reward:` the hunt whose report gives it, with the package and the map (region) and script that report it ([Hunts](../Story-Events-And-Hunts/hunts.md), [Reward selector list](../Rewards-EXP-Gil-And-Loot/reward-selector-list.md)):
   - the script verb `questresultwindow(n)` opens the reward window for quest n and grants at once the package its selector names ([Reward verbs](../Scripts-And-Script-Commands/reward-verbs.md));
-  - the selector is `0xA000` + the text index of entry n of `questbase.bin` (`0x00344C60`, `0x00473C90`), which is n for the 45 hunts, quest ids 128-172 ([Small .bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md));
+  - the selector is `0xA000` + the text index of entry n of `questbase.bin`¹, which is n for the 45 hunts, quest ids 128-172 ([Small .bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md));
   - a package that a selector names, that no hunt report opens and that no script gives would be listed as `reward package:` with its selector; no package is.
 - `starting equipment:` the main characters who wear it when the game begins ([Party table](../Party/party-table.md)).
 
-A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold (`0x002FADF3`-`0x002FAE0D`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00344C60`, `0x00473C90` |
+
+</details>
+
+A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FADF3`-`0x002FAE0D` |
+
+</details>
 
 No script writes story progress 500. The values the scripts write go from 490 (After the captive Penelo) to 520 (After the floating continent), so a list that waits on 500 goes on sale at 520.
 
@@ -109,19 +123,48 @@ None of the six is in a shop, bazaar good, treasure chest, enemy slot, reward pa
 
 `licence` names the licence squares whose node lists the equipment id among its grants ([`license-list.tsv`](license-list.tsv), `grant_ids`), by name and node. Owning any one of them answers the licence question.
 
-`0x00317930` also refuses an item whose slot is not the one asked (`0x00317A21`), an off-hand item whose `+9` is not
+`0x00317930` also refuses an item whose slot is not the one asked¹, an off-hand item whose `+9` is not
 `0x12` and does not match `+0x11` of the item in the loadout's first word, unless that word is `0xFFFF`, an empty main
-hand (`0x00317A32`-`0x00317A82`), and an item whose `+9` bit is set in the character's row of the table at `[0x02EBF130]`
-(`0x00317AD6`), and it passes a null record or one whose byte `+5` is not 0 before any of that table or licence test
-(`0x00317A87`, `0x00317A8F`).
+hand², and an item whose `+9` bit is set in the character's row of the table at `[0x02EBF130]`³, and it passes a null record or one whose byte `+5` is not 0 before any of that table or licence test⁴.
 
-The equip test `0x00317B70` calls `0x00317930`, which asks `0x00323C60` (`0x00317ADE`); that builds the node mask with
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00317A21` |
+| ² | `0x00317A32`-`0x00317A82` |
+| ³ | `0x00317AD6` |
+| ⁴ | `0x00317A87`, `0x00317A8F` |
+
+</details>
+
+The equip test `0x00317B70` calls `0x00317930`, which asks `0x00323C60`¹; that builds the node mask with
 `0x002F8FA0` ([Licenses](licenses.md), "The test"). `no licence needed` marks a row whose `+0x07` bit `0x10` is set,
-which `0x00323C60` passes without the board (`0x00323CDF`).
+which `0x00323C60` passes without the board².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00317ADE` |
+| ² | `0x00323CDF` |
+
+</details>
 
 `0x00317B70(row, id, slot, flags)` runs `0x00317930` on the party record of row `row`, `[0x02EBF190] + 8 + row × 0x1C8`,
-with its slot words `+0x50` as the loadout and with the free-copy test when `flags` bit `0x1` is clear
-(`0x00317B7D`-`0x00317BAB`). A row above `0x27` is refused, 0 (`0x00317B78`, `0x00317BB5`).
+with its slot words `+0x50` as the loadout and with the free-copy test when `flags` bit `0x1` is clear¹. A row above `0x27` is refused, 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00317B7D`-`0x00317BAB` |
+| ² | `0x00317B78`, `0x00317BB5` |
+
+</details>
 
 ## Columns
 
@@ -174,33 +217,35 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Scripts and script commands** (explained on [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [force fight mode](../Engine-Core/force-fight-mode.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0023A3B0` | is called by | `0x00510160` |
-| `0x00344C60` | calls | `0x00267E10` |
-| `0x00473C90` | is called by | `0x00344C60` |
-| `0x00510160` | calls | `0x00267E10`, `0x0037CF50` |
+| [`0x0023A3B0`](item-list.md) (on item list) | is called by | [`0x00510160`](item-list.md) (on item list) |
+| [`0x00344C60`](equipment-list.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00473C90`](equipment-list.md) | is called by | [`0x00344C60`](equipment-list.md) |
+| [`0x00510160`](item-list.md) (on item list) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x0037CF50`](../Characters-And-Objects/actor-model-rebuild.md) (on actor model rebuild) |
 
-**Enemy spawning**
+**Enemy spawning** (explained on [battle units](../Characters-And-Objects/battle-units.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [enemy respawning](../Enemy-Spawning/enemy-respawning.md), [frame update order](../Engine-Core/frame-update-order.md), [boss fights](../Battle-Actions/boss-fights.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0023A3B0` | calls | `0x002355A0` |
-| `0x0023A570` | calls | `0x00236100` |
-| `0x0023A570` | is called by | `0x0023A3B0` |
-| `0x00300E40` | calls | `0x00237080` |
-| `0x00300E40` | is called by | `0x00234880`, `0x00234990`, `0x002350C0`, `0x00237690` |
-| `0x00510160` | calls | `0x0023A3B0` |
-
-**Enemy spawning** (explained on [battle units](../Characters-And-Objects/battle-units.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
-
-**Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md), [boss fights](../Battle-Actions/boss-fights.md))
+| [`0x0023A3B0`](item-list.md) (on item list) | calls | [`0x002355A0`](../Enemy-Spawning/enemy-spawning.md) Spawn: prepare random candidate for current entry (on enemy spawning) |
+| [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) | calls | [`0x00236100`](../Enemy-Spawning/spawn-record-fields.md) (on spawn record fields) |
+| [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) | is called by | [`0x0023A3B0`](item-list.md) (on item list) |
+| [`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) | calls | [`0x00237080`](../Enemy-Spawning/spawn-record-fields.md) Spawn entry: clear selection transient state for teardown (on spawn record fields) |
+| [`0x00300E40`](equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) | is called by | [`0x00234880`](../Battle-Actions/boss-fights.md) Spawn group: teardown all grouped spawn units (on boss fights)<br>[`0x00234990`](../Enemy-Spawning/enemy-respawning.md) Spawn group: teardown units by group mask (on enemy respawning)<br>[`0x002350C0`](../Enemy-Spawning/enemy-spawning.md) Spawn lifecycle: check and retire by native range (on enemy spawning)<br>[`0x00237690`](../Battle-Actions/boss-fights.md) Spawn group: teardown all ungrouped spawn units (on boss fights) |
+| [`0x00510160`](item-list.md) (on item list) | calls | [`0x0023A3B0`](item-list.md) (on item list) |
 
 **World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md), [force fight mode](../Engine-Core/force-fight-mode.md), [party control modes](../Engine-Core/party-control-modes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0023A570` | calls | `0x00313F60` |
-| `0x003266C0` | calls | `0x00313F60`, `0x00377C20`, `0x00377C70` |
+| [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) | calls | [`0x00313F60`](equipping-an-item.md) (on equipping an item) |
+| [`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots) | calls | [`0x00313F60`](equipping-an-item.md) (on equipping an item)<br>[`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x00377C70`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
 
 </details>

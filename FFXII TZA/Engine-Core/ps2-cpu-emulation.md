@@ -61,12 +61,31 @@ The 49 qword loads at `0x022D8F1C` in `0x003D2B60` (the first at `0x003D2C70`) c
 the first dword of `at`, but only `eax`, word 3 of `$zero`, is read before `rax` is loaded again.
 
 `HI` at `0x022D9110` and `LO` at `0x022D9120` are written by ten functions at 57 sites each: the
-multiply in `0x0026EE00` (`0x0026F0E6`, `0x0026F0EC`) and the family `0x00506A40`, `0x00506B40`, `0x00507120`,
+multiply in `0x0026EE00`¹ and the family `0x00506A40`, `0x00506B40`, `0x00507120`,
 `0x00507490`, `0x005080A0`, `0x00508C90`, `0x00509BB0`, `0x0050A100` and `0x00545650`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026F0E6`, `0x0026F0EC` |
+
+</details>
 
 A halfword multiply forms the eight signed products `p[i] = a[i] * b[i]`, i = 0..7, of the matching 16-bit
 halfwords of its two 16-byte operands `a` and `b` and keeps them in `LO` and `HI`, one 32-bit word each. `0x00506A40`
-shows the order (`0x00506A70`-`0x00506B2E`), and `0x0026EE00` uses the same one (`0x0026F0E0`-`0x0026F1D2`):
+shows the order¹, and `0x0026EE00` uses the same one²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00506A70`-`0x00506B2E` |
+| ² | `0x0026F0E0`-`0x0026F1D2` |
+
+</details>
 
 | Word | `LO` (`0x022D9120`) | `HI` (`0x022D9110`) |
 |---|---|---|
@@ -76,15 +95,42 @@ shows the order (`0x00506A70`-`0x00506B2E`), and `0x0026EE00` uses the same one 
 | 3 | halfword 5 | halfword 7 |
 
 `0x0026EE00` then copies the low halfwords of words 1 and 3 of `LO` and `HI` into halfwords 1, 3, 5 and 7 of
-`v0` (`0x0026F24F`-`0x0026F280`). No instruction reads word 2 of either register (see Project notes).
+`v0`¹. No instruction reads word 2 of either register (see Project notes).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026F24F`-`0x0026F280` |
+
+</details>
 
 The vector unit's registers follow. `0x022D9130` is the 24-bit `CLIP` flag: `0x0025A8E0` shifts it left by six and sets
 one bit per comparison of x, y and z against `+|w|` and `-|w|` (`0x0025A8EE` to `0x0025A96A`), then zeroes its top byte
-`0x022D9133` (`0x0025A970`), keeping four 6-bit generations, which is the `VCLIP` instruction, and two more translated
+`0x022D9133`¹, keeping four 6-bit generations, which is the `VCLIP` instruction, and two more translated
 bodies do the same inline (`0x003623C0` at `0x00362611` to `0x00362662`, `0x00521450` at `0x00521966` to `0x00521A86`).
 
-All three mirror the new word to `0x022D9478`, and the only readers are those three and `0x0025C830` (`0x0025CEFA`), which
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025A970` |
+
+</details>
+
+All three mirror the new word to `0x022D9478`, and the only readers are those three and `0x0025C830`¹, which
 tests the bits after calling `0x0025A8E0` four times.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025CEFA` |
+
+</details>
 
 `0x0025C830` is the box test of class-1 trigger records that files the `touch` and `touchon`
 script requests ([script requests](../Scripts-And-Script-Commands/script-requests.md)).
@@ -155,8 +201,17 @@ each pairs one save with one restore:
 | `0x002F1CE0` | `0x002F1CF5` | `t0` (`0x002F1CE9`) | `0x002F1D7D` |
 | `0x002F1D90` | `0x002F1DAC` | `t0` | `0x002F1E9B` |
 
-Four of the restores (`0x0026F413`, `0x003AFFAB`, `0x00431F0A`, `0x0046242E`) are tail jumps. The depth
+Four of the restores¹ are tail jumps. The depth
 word is read only by the pair, and the stack holds at most the two cells of `0x0042FDB0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026F413`, `0x003AFFAB`, `0x00431F0A`, `0x0046242E` |
+
+</details>
 
 ### The three shared routines
 
@@ -164,11 +219,22 @@ Most C code that needs the vector unit's matrix reaches it through three small r
 
 `0x00398F90(in, out)`, 74 functions at 102 sites, transforms one point through the matrix in `vf01`
 to `vf04`. It
-copies `in` to `vf22` (`0x022D9300`), forms `ACC = x·vf01 + y·vf02 + z·vf03`, then
-`vf23 = vf04·vf00.w + ACC` (`0x022D9310`), and stores `vf23` into `t0` (`0x022D8F90`) and into `out`.
+copies `in` to `vf22`¹, forms `ACC = x·vf01 + y·vf02 + z·vf03`, then
+`vf23 = vf04·vf00.w + ACC`², and stores `vf23` into `t0`³ and into `out`.
 The point's own fourth component is copied and never used: `w` is `vf00.w = 1`, so the routine
 transforms positions, not directions, and there is no divide. The matrix is row-major with the
 translation in row `vf04`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x022D9300` |
+| ² | `0x022D9310` |
+| ³ | `0x022D8F90` |
+
+</details>
 
 `0x00397910(a, b, out)`, 82 functions at 129 sites, multiplies two 4×4 matrices. It copies both
 inputs to its stack
@@ -182,10 +248,19 @@ one column of all four rows per pass. The result is `b × a`, not `a × b`, and 
 ### Two translated bodies read as examples
 
 `0x0024AD00(out, matrix, verts, count)` (callers `0x00249080`, `0x00249110`, `0x003C6420`) is a vertex projection. It loads
-the matrix into `vf20` to `vf23`, the count into `t0`, the vertex pointer into `t1` and `out` into `t2`
-(`0x0024AD45`-`0x0024AD5A`), advances `t1` and `t2` by 16 bytes per vertex (`0x0024AD98`, `0x0024AF11`), and for each vertex:
+the matrix into `vf20` to `vf23`, the count into `t0`, the vertex pointer into `t1` and `out` into `t2`¹, advances `t1` and `t2` by 16 bytes per vertex², and for each vertex:
 `vf24 = vert`; `ACC = x·vf20 + y·vf21 + z·vf22`; `w' = vf23.w·w + ACC.w`; `Q = vf00.w / w'`; `vf25 = (vf23·w + ACC) ·
 Q`; `vf26 = int(vf25 · 16)`, stored to `out`. The 16 is the Graphics Synthesizer's 12.4 fixed-point vertex format.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024AD45`-`0x0024AD5A` |
+| ² | `0x0024AD98`, `0x0024AF11` |
+
+</details>
 
 The loop decrements `t0` and ends when it equals `$zero`.
 
@@ -198,13 +273,23 @@ outside the `0x00506A40` family.
 
 `0x022D9138`, inside the block, is the enable word of a random-number stream and belongs to
 [random number generators](../Random-Numbers/random-number-generators.md). The dwords
-`0x022D9144` to `0x022D916C` are scalar scratch for eleven translated bodies (`0x003AC110`, `0x003B4310`,
-`0x003B5D40`, `0x005131C0`, `0x00515DA0`, `0x00515FE0`, `0x0051D310`, `0x0053DB50`, `0x0042CBF0`, `0x00395050`,
-`0x003954E0`) and stand for no named register; `0x022D9134` is written by four of them and never
+`0x022D9144` to `0x022D916C` are scalar scratch for eleven translated bodies¹ and stand for no named register; `0x022D9134` is written by four of them and never
 read; `0x022D9450` to `0x022D945F` is written by `0x002487A0` and `0x00248A90` (all four lanes, three times each) and
 read by nothing.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AC110`, `0x003B4310`, `0x003B5D40`, `0x005131C0`, `0x00515DA0`, `0x00515FE0`, `0x0051D310`, `0x0053DB50`, `0x0042CBF0`, `0x00395050`, `0x003954E0` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
@@ -225,7 +310,12 @@ read by nothing.
 | `0x02EC0800` | `...` |  | saved register values, 16 B each |
 | `0x02EC0A00` | `...` |  | the saved addresses |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -242,6 +332,8 @@ The table lists every function with the register groups it touches (`depth`, `GP
 `CLIP`, `Q`, `ACC`, `rows`, `rows_tail`, `misc`, `tail`, `vf00`) and its write, read and address-only
 reference counts. `rows_tail` is `0x022D93A0` to `0x022D942F`, past `vf31`, which only `0x0036D9E0` clears.
 
+</details>
+
 ## Operations
 
 At boot: `0x0036D990`, then `0x0022CB90`. Before each model update that uses the translated per-model
@@ -251,6 +343,9 @@ exit when a register must survive. From C code: `0x00398F90`, `0x00397910` and `
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The block `0x022D8F08` to `0x022D947B`, `vf00` at `0x01EF93F0`, and the save stack at `0x02EC0800` /
 `0x02EC0A00`. Every value is whatever the last body left there; no routine owns a register between
 calls, and a value that survives is one nobody overwrote.
@@ -258,10 +353,20 @@ calls, and a value that survives is one nobody overwrote.
 ### The shift-amount register
 
 `0x022D8F0C`, between the save depth and `$zero`, is the Emotion Engine's shift-amount register `SA`. Before each
-call of `0x00501820`, `0x00502280` stores `((signed byte) sil ^ 2) << 4` there (`0x00502670`, `0x005027C1`).
+call of `0x00501820`, `0x00502280` stores `((signed byte) sil ^ 2) << 4` there¹.
 `0x00501820` is `QFSRV`: it shifts the 256-bit pair of its two source registers right by `SA` bits into its
-result (`0x00501822`-`0x00501939`). A shift of 0 copies the low source, and 64 joins the high half of the low
+result². A shift of 0 copies the low source, and 64 joins the high half of the low
 source to the low half of the high source.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00502670`, `0x005027C1` |
+| ² | `0x00501822`-`0x00501939` |
+
+</details>
 
 ### The loop counter
 
@@ -290,12 +395,24 @@ The table also has a row for each of these addresses:
 
 - the byte, halfword and word lanes of `t0` and `t1` (`0x022D8F91` to `0x022D8FAF`), the word lanes of `v0`
   (`0x022D8F34` to `0x022D8F3C`), the word lanes of `t2` (`0x022D8FB4` to `0x022D8FBC`) and the halfword lanes of `t3`
-  (`0x022D8FC2` to `0x022D8FCE`). The save `0x0036D930` reads every lane of `v0` and `t0` (`0x0036D974`) and the
-  restore `0x0036D8E0` writes them back (`0x0036D90F`), through the cell addresses of the table of saves above;
+  (`0x022D8FC2` to `0x022D8FCE`). The save `0x0036D930` reads every lane of `v0` and `t0`¹ and the
+  restore `0x0036D8E0` writes them back², through the cell addresses of the table of saves above;
 - words 1 to 3 of `HI` (`0x022D9114` to `0x022D911C`) and of `LO` (`0x022D9124` to `0x022D912C`);
-- lanes y and z of `vf00` (`0x01EF93F4`, `0x01EF93F8`), which every store keeps at 0;
+- lanes y and z of `vf00`³, which every store keeps at 0;
 - the scratch dword `0x022D9158`, which `0x0051D310` and `0x0053DB50` store;
-- lane z of `ACC` (`0x022D91A8`) and 44 further lanes of `vf01` to `vf31`.
+- lane z of `ACC`⁴ and 44 further lanes of `vf01` to `vf31`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036D974` |
+| ² | `0x0036D90F` |
+| ³ | `0x01EF93F4`, `0x01EF93F8` |
+| ⁴ | `0x022D91A8` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -329,6 +446,8 @@ rows count an access the way the table above does:
 | `0x022D8F4C` | `u16` | 0 (zero-filled tail of `.data`) | the halfword lane at byte 12 of `v1` (`0x022D8F40`), a 16-byte general-purpose register; wider loads and stores of the register include it | `0x002A0440` (`0x002A061A`); `0x002D9C40` (`0x002D9C8F`); `0x002DAF30` (`0x002DAF7F`); `0x002DB080` (`0x002DB27D`, `0x002DB471`); `0x002DC290` (`0x002DC33A`); `0x002DD1E0` (`0x002DD22F`); `0x0036D8E0` (`0x0036D90F`, through the cell address `0x0042FDB0` passes); `0x003C2E60` (`0x003C2F9A`, `0x003C3013`); `0x003C37B0` (`0x003C38E3`, `0x003C3967`, `0x003C3C62`, `0x003C3CE6`); `0x003C4980` (`0x003C49D3`, `0x003C4A3F`); `0x0042FDB0` (`0x0043017C`, `0x004301A8`) | `0x002A0440` (`0x002A0641`); `0x002D9C40` (`0x002D9CB7`); `0x002DAF30` (`0x002DAFA7`); `0x002DB080` (`0x002DB2AE`, `0x002DB495`); `0x002DC290` (`0x002DC35D`); `0x002DD1E0` (`0x002DD257`); `0x0036D930` (`0x0036D974`, through the cell address `0x0042FDB0` passes); `0x003C2E60` (`0x003C2FBF`, `0x003C303D`); `0x003C37B0` (`0x003C3913`, `0x003C398E`, `0x003C3C92`, `0x003C3D0D`); `0x003C4980` (`0x003C49F8`, `0x003C4A64`); `0x0042FDB0` (`0x00430122`, `0x00430183`, `0x004301B4`) |
 | `0x022D8F4E` | `u16` | 0 (zero-filled tail of `.data`) | the halfword lane at byte 14 of `v1` (`0x022D8F40`), a 16-byte general-purpose register; wider loads and stores of the register include it | `0x002A0440` (`0x002A061A`); `0x002D9C40` (`0x002D9C8F`); `0x002DAF30` (`0x002DAF7F`); `0x002DB080` (`0x002DB27D`, `0x002DB471`); `0x002DC290` (`0x002DC33A`); `0x002DD1E0` (`0x002DD22F`); `0x0036D8E0` (`0x0036D90F`, through the cell address `0x0042FDB0` passes); `0x003C2E60` (`0x003C2F9A`, `0x003C3013`); `0x003C37B0` (`0x003C38E3`, `0x003C3967`, `0x003C3C62`, `0x003C3CE6`); `0x003C4980` (`0x003C49D3`, `0x003C4A3F`); `0x0042FDB0` (`0x0043014D`, `0x004301A8`) | `0x002A0440` (`0x002A0641`); `0x002D9C40` (`0x002D9CB7`); `0x002DAF30` (`0x002DAFA7`); `0x002DB080` (`0x002DB2AE`, `0x002DB495`); `0x002DC290` (`0x002DC35D`); `0x002DD1E0` (`0x002DD257`); `0x0036D930` (`0x0036D974`, through the cell address `0x0042FDB0` passes); `0x003C2E60` (`0x003C2FBF`, `0x003C303D`); `0x003C37B0` (`0x003C3913`, `0x003C398E`, `0x003C3C92`, `0x003C3D0D`); `0x003C4980` (`0x003C49F8`, `0x003C4A64`); `0x0042FDB0` (`0x00430122`, `0x00430183`, `0x004301B4`) |
 
+</details>
+
 ## Modding notes
 
 - `0x00398F90` writes its result to `vf23` and `t0` as well as `out`; a replacement that only fills
@@ -352,11 +471,22 @@ rows count an access the way the table above does:
   `0x0036D930` and `0x0036D8E0`, each with the addresses it receives (60 rows).
 - [`ps2-cpu-emulation-saved-pointer-accesses.tsv`](ps2-cpu-emulation-saved-pointer-accesses.tsv): the two
   accesses to the saved addresses `0x02EC0A00`, the write by the save `0x0036D930` and the read by the restore
-  `0x0036D8E0`, relative to the image base (`0x0036D8FE`) (2 rows).
+  `0x0036D8E0`, relative to the image base¹ (2 rows).
 - [`ps2-cpu-emulation-saved-value-accesses.tsv`](ps2-cpu-emulation-saved-value-accesses.tsv): the two
   accesses to the saved register values `0x02EC0800`, 16 bytes each, the write by `0x0036D930` and the read by
-  `0x0036D8E0` (`0x0036D906`) (2 rows).
+  `0x0036D8E0`² (2 rows).
   - The other addresses into the stack's range, in `0x00374930`, `0x00375470`, `0x00375900` and `0x00375F80`, are loop
-    end bounds (`0x02EC0848`, `0x02EC08B8`) for the 32 records of 0x70 bytes at `0x02EBF9E0` before it, which those
+    end bounds³ for the 32 records of 0x70 bytes at `0x02EBF9E0` before it, which those
     loops read at `+0x68`. Their other access, the three dwords `0x02EC07F0` to `0x02EC07FB` that `0x00375F80`
     clears, ends before `0x02EC0800`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036D8FE` |
+| ² | `0x0036D906` |
+| ³ | `0x02EC0848`, `0x02EC08B8` |
+
+</details>

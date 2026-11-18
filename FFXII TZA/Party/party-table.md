@@ -33,15 +33,14 @@ script's join or leave call and no scenario preset seats rows 15-25, the Chocobo
 
 Each line is read from the shipped files in these steps:
 
-1. the `st2e` table at entry `+0x44`: 40 rows of 128 bytes from the section's `+0x20`;
-2. the name word `+0x30` through the word banks, as `0x0031C5D0`'s class-2 arm reads it (`0x0031C6B1`-`0x0031C6FA`);
-3. the equipment words and the list at `+0x58` named by their ids
-   ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)), the Quickenings and the Esper attacks
-   by their action row's name word `+0x34`;
-4. the status bits named by text bank 5, entry *s* for bit *s*, the names [Statuses](../Status-Effects-And-KO/statuses.md) uses;
-5. the augment bits named by their term on [Augment list](../Damage-And-Battle-Formulas/augment-list.md): the license that
-   grants the augment, or the English rendering of its Japanese name where no license grants it;
-6. the gambit preset's lines from [`gambit-preset-list.tsv`](../Enemy-AI-And-Gambits/gambit-preset-list.tsv) ([Gambits](../Enemy-AI-And-Gambits/gambits.md)).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | the `st2e` table at entry `+0x44`: 40 rows of 128 bytes from the section's `+0x20`; |   |
+| 2 | the name word `+0x30` through the word banks, as `0x0031C5D0`'s class-2 arm reads it; | `0x0031C6B1`-`0x0031C6FA` |
+| 3 | the equipment words and the list at `+0x58` named by their ids ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)), the Quickenings and the Esper attacks by their action row's name word `+0x34`; |   |
+| 4 | the status bits named by text bank 5, entry *s* for bit *s*, the names [Statuses](../Status-Effects-And-KO/statuses.md) uses; |   |
+| 5 | the augment bits named by their term on [Augment list](../Damage-And-Battle-Formulas/augment-list.md): the license that grants the augment, or the English rendering of its Japanese name where no license grants it; |   |
+| 6 | the gambit preset's lines from [`gambit-preset-list.tsv`](../Enemy-AI-And-Gambits/gambit-preset-list.tsv) ([Gambits](../Enemy-AI-And-Gambits/gambits.md)). |   |
 
 ### The row layout
 
@@ -86,7 +85,17 @@ The bytes `+0x02`-`+0x03`, `+0x1C`, `+0x20`, `+0x23`, `+0x26`, `+0x29`, `+0x2F`,
 No instruction writes a row after `battle_pack.bin` is loaded, and no instruction reads the bytes `+0x08`-`+0x09`,
 `+0x2D`, `+0x74`-`+0x79` or `+0x7C`-`+0x7D`. With no reader and no writer nothing fixes their width, so the layout
 gives them as byte arrays and the TSV as their bytes. Bit `0x1` of `+0x2C` is set on four rows (Ashe, Fran, Penelo and Amalia) and tested by no
-instruction: `0x0023AC80` tests bit `0x40` (`0x0023AF22`) and `0x00317480` takes bits `0x18` (`0x003174D9`-`0x003174E7`).
+instruction: `0x0023AC80` tests bit `0x40`¹ and `0x00317480` takes bits `0x18`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023AF22` |
+| ² | `0x003174D9`-`0x003174E7` |
+
+</details>
 
 ### The push weight
 
@@ -105,11 +114,21 @@ The three bytes `+0x04`-`+0x06` are read as one list. `0x0030A310(row, k)` retur
 below 3, and `0x0030A330(row, action)` the slot that holds an action.
 
 - `0x00323910`, granting one of the eighteen Quickening licences (id below `0x12`), adds the action of slot
-  (licence count − 1) to the inventory (`0x00323AAF`, `0x00300B80`).
+  (licence count − 1) to the inventory¹.
 - `0x00323EC0` allows Quickening action `0xD0`-`0xE1` to a main character only when its slot is below the
   licence count `0x00324020`.
 - `0x002F88B0` fills the Quickening chain's choices from the slots, up to the licence count, and `0x00313120`
-  finds the slot of the action just used (`0x0031335E`).
+  finds the slot of the action just used².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00323AAF`, `0x00300B80` |
+| ² | `0x0031335E` |
+
+</details>
 
 On the Esper rows the bytes are not action rows: they are `0xA0`-`0xB9` in pairs, while the Esper attacks are
 `0xB6`-`0xCF` (the list at `+0x58`). Only `0x00329220` reads them there, copying slots 0-2 into the words
@@ -121,11 +140,22 @@ those words. The TSV gives them in `esper_bytes_04`.
 The ten words mean different things by kind:
 
 - **Main characters and guests (rows 0-25):** on the first join `0x00316DF0` adds each id whose count `+0x34` is not
-  0 to the inventory (`0x00316FE1`-`0x00317019`): items, magicks, technicks, gambit conditions and key items.
+  0 to the inventory¹: items, magicks, technicks, gambit conditions and key items.
 - **Guests and Espers (rows 7-25, 27-39):** `0x003060E0` lets such a member use an action of kind 1, 2, 5 or 6
-  (action row `+0x1E`) only when the action's `+0x22` is in the list (`0x003062B8`-`0x003062D2`); otherwise it returns
+  (action row `+0x1E`) only when the action's `+0x22` is in the list²; otherwise it returns
   refusal code `0x0F` ([Command availability](../Battle-Actions/command-availability.md)). Any other member is
-  tested by `0x0030B0E0(+0x22)` instead (`0x003062DC`).
+  tested by `0x0030B0E0(+0x22)` instead³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00316FE1`-`0x00317019` |
+| ² | `0x003062B8`-`0x003062D2` |
+| ³ | `0x003062DC` |
+
+</details>
 
 The Esper rows hold their two attacks first, the action rows `0xB6`-`0xCF`, then magick ids. The attacks are kind
 9, which `0x003060E0` allows an Esper before it reaches the list, and no action row has a `+0x22` in
@@ -134,13 +164,23 @@ The Esper rows hold their two attacks first, the action rows `0xB6`-`0xCF`, then
 ### Flags and the camera type
 
 - `+0x2C` bits under mask `0x18` are the catch-up rule of [Party members](party-members.md): 1 on the first join, 2 on every
-  join, anything else never (`0x003174D9`-`0x0031750D`).
+  join, anything else never¹.
 - `+0x2C` bit `0x40` makes `0x0023AC80` set stats `+0x00` bit `0x4`. `0x00305AB0` then sends the unit to the order set at unit
-  `+0x6E0` instead of the queued `+0x6F8` (`0x00305BFB`-`0x00305C58`).
+  `+0x6E0` instead of the queued `+0x6F8`².
 - `+0x07` is returned by `0x0031B8E0(row)`. Its callers are the two jumps of `0x0031B950(seat)`, which reads the
   selector in seat *seat* of slot map 4; the chocobo handlers `0x00304060` and `0x00304140` hand the value to
   `0x0025A160`, the field camera type ([Field camera](../Graphics/field-camera.md)). The Chocobo's row
   holds 14.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003174D9`-`0x0031750D` |
+| ² | `0x00305BFB`-`0x00305C58` |
+
+</details>
 
 ### Properties of the shipped rows
 
@@ -200,24 +240,28 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x00253C70` | calls | `0x001EDE70` |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Controls and input**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00253C70` | calls | `0x0017DE10`, `0x001E0D80`, `0x001E0F20`, `0x00250130`, `0x002501A0`, `0x00250200`, `0x00862CF0` |
-| `0x00320040` | is called by | `0x00253C70` |
+| [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) | calls | [`0x001EDE70`](../Menus-And-HUD/map-screens.md) (on map screens) |
 
 **Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [on screen keyboard](../Controls-And-Input/on-screen-keyboard.md), [menu lists](../Menus-And-HUD/menu-lists.md), [frame update order](../Engine-Core/frame-update-order.md))
 
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) | calls | [`0x0017DE10`](../Controls-And-Input/escape.md) (on escape)<br>[`0x001E0D80`](../Controls-And-Input/on-screen-keyboard.md) (on on screen keyboard)<br>[`0x001E0F20`](../Menus-And-HUD/menu-lists.md) (on menu lists)<br>[`0x00250130`](../World-Areas-And-Travel/game-over.md) (on game over)<br>[`0x002501A0`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x00250200`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x00862CF0`](../Controls-And-Input/controllers.md) (on controllers) |
+| [`0x00320040`](../Characters-And-Objects/party-member-status-record.md) (on party member status record) | is called by | [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) |
+
 **Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00253C70` | calls | `0x0032A8A0` |
-| `0x00254560` | calls | `0x0032A8A0` |
+| [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) | calls | [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) |
+| [`0x00254560`](../Menus-And-HUD/widgets.md) (on widgets) | calls | [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) |
 
 </details>

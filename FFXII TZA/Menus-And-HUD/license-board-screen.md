@@ -29,48 +29,119 @@ The member-pick widget `0x00560910` opens one of two screens (`0x00560910` messa
 | no board | the chooser window `0x00558FB0` with the chooser `0x00557DB0` | `0x00558F20` (`0x00560C89`) |
 
 The board screen loads `lic_bk`, `cm2_win_c`, `lic_8_c`, `lic_8_c2` and `lic_8_c3`, and the per-node art table into
-`[0x02CA9670]` (`0x005615C4`-`0x00561765`).
+`[0x02CA9670]`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005615C4`-`0x00561765` |
+
+</details>
 
 ### The board chooser
 
-The chooser steps through the twelve boards with left and right (`0x00557B90`), showing each board's name
+The chooser steps through the twelve boards with left and right¹, showing each board's name
 (`menu_command.bin` `0x3ED` + board) and description (`menu_message.bin` `0x838` + board) in the description box
-([Dialogs](dialogs.md)). Its stage byte `+0x37D` runs the opening (`0x00557DF0`):
+([Dialogs](dialogs.md)). Its stage byte `+0x37D` runs the opening²:
 
-1. The first visit to the chooser shows "You must choose a license board in order to obtain licenses. ..." (`0x836`)
-   once per save: `0x00252D10` tests the save-wide flag `0xBB` (`0x00557F43`) and `0x00252D40` sets it (`0x00557F16`).
-2. Confirm asks "Choose this license board?" (`0x835`, `0x00558607`).
-3. Yes plays three cues and stores the board: `0x00323740(row, board)` for a first board, or `0x003236F0(row, board)` for
-   the second (`0x00558630`-`0x00558668`). [License Board](../Items-Equipment-Shops-And-Licenses/license-board.md) has the
-   two board slots.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00557B90` |
+| ² | `0x00557DF0` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The first visit to the chooser shows "You must choose a license board in order to obtain licenses. ..." (`0x836`) once per save: `0x00252D10` tests the save-wide flag `0xBB` and `0x00252D40` sets it. | `0x00557F43`<br>`0x00557F16` |
+| 2 | Confirm asks "Choose this license board?" (`0x835`, `0x00558607`). |   |
+| 3 | Yes plays three cues and stores the board: `0x00323740(row, board)` for a first board, or `0x003236F0(row, board)` for the second. [License Board](../Items-Equipment-Shops-And-Licenses/license-board.md) has the two board slots. | `0x00558630`-`0x00558668` |
 
 ### Building the grid
 
-`0x0055B3F0` picks the board shown, the member's stats byte `+0x1C5` (`0x003236B0`, `0x0055B446`), and sizes the view from
-the board file: width + 1 by height + 1 (`0x0055B484`-`0x0055B4A2`). The extra column and row are always empty. It fills a
-tile byte per square with `table[(rand() & 3) + 4 x ((col + row) & 1)]` (`0x0055B4E0`-`0x0055B517`), the table being
+`0x0055B3F0` picks the board shown, the member's stats byte `+0x1C5`¹, and sizes the view from
+the board file: width + 1 by height + 1². The extra column and row are always empty. It fills a
+tile byte per square with `table[(rand() & 3) + 4 x ((col + row) & 1)]`³, the table being
 `00 02 04 06 01 03 05 07`, so even and odd squares draw from different sets of variants.
 
-`0x0055B3F0` builds only while the cells pointer `+0x128` is 0 (`0x0055B429`-`0x0055B430`). In the preview view
-(`+0x570` bit `0x400`) it keeps the board `+0x558` as it is instead of calling `0x003236B0` (`0x0055B436`-`0x0055B440`).
-A board of `0xFF` gets a 16-bit zero over the width and height `+0x559`/`+0x55A` and no tile bytes (`0x0055B45C`).
+<details>
+<summary>Where in the code</summary>
 
-Any other board is read from its slot `0x02EBF1A0 + 8 × board` with no null test (`0x0055B481`-`0x0055B484`), so an
+| | Code |
+|---|---|
+| ¹ | `0x003236B0`, `0x0055B446` |
+| ² | `0x0055B484`-`0x0055B4A2` |
+| ³ | `0x0055B4E0`-`0x0055B517` |
+
+</details>
+
+`0x0055B3F0` builds only while the cells pointer `+0x128` is 0¹. In the preview view
+(`+0x570` bit `0x400`) it keeps the board `+0x558` as it is instead of calling `0x003236B0`².
+A board of `0xFF` gets a 16-bit zero over the width and height `+0x559`/`+0x55A` and no tile bytes³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055B429`-`0x0055B430` |
+| ² | `0x0055B436`-`0x0055B440` |
+| ³ | `0x0055B45C` |
+
+</details>
+
+Any other board is read from its slot `0x02EBF1A0 + 8 × board` with no null test¹, so an
 empty slot reads address 4 and faults. The tile bytes are allocated in arena 3 by `0x002497B0` (`0x0055B4AA`;
-`0x0036C1D0(3, 0xC)`, `0x0036A100`), stored at `+0x128` and zeroed (`0x0055B4BE`) with no null test, so a full arena 3
+`0x0036C1D0(3, 0xC)`, `0x0036A100`), stored at `+0x128` and zeroed² with no null test, so a full arena 3
 makes the zeroing write at address 0 and fault.
 
-`0x0055B560` allocates the squares, 0x38 bytes each (`0x0055B63C`), and runs the fill `0x0055BFF0`. For each square inside
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055B481`-`0x0055B484` |
+| ² | `0x0055B4BE` |
+
+</details>
+
+`0x0055B560` allocates the squares, 0x38 bytes each¹, and runs the fill `0x0055BFF0`. For each square inside
 the board it reads the board cell, then the license node's record (`0x0035D330(0x19, node)`, `0x0055C0FA`-`0x0055C15C`) and
 the member's answer for the node (`0x00323600`, which calls `0x00323D10`; [Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)). The script verb
-`fsmenu_getneedlp` (`0x005112E0`) returns a node's LP cost through `0x00282E60`, the record byte the square's `lpCost`
-is copied from (`0x0055C117`).
+`fsmenu_getneedlp`² returns a node's LP cost through `0x00282E60`, the record byte the square's `lpCost`
+is copied from³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055B63C` |
+| ² | `0x005112E0` |
+| ³ | `0x0055C117` |
+
+</details>
 
 - A Quickening square shows the member's own Quickening in the order bought, from `0x00D230B0` and bank-8 words
-  `row x 3 + 0x53` (`0x0055C16F`-`0x0055C247`).
-- An Esper square shows the Esper's name once obtained (`0x0055C260`-`0x0055C284`).
+  `row x 3 + 0x53`¹.
+- An Esper square shows the Esper's name once obtained².
 - The ten Gambit Slot squares (nodes 266-275) are left out unless the Gambits command is available
   (`0x00283730(0x4B9)`, `0x0032A8A0(0x4009)`, `0x0055C34E`-`0x0055C38B`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055C16F`-`0x0055C247` |
+| ² | `0x0055C260`-`0x0055C284` |
+
+</details>
 
 The square record, `LicenseSquare`, is under [Layouts](#layouts).
 
@@ -96,68 +167,159 @@ obtainable now, bit `0x4000` affordable and bit `0x8000` obtainable later. The s
 | `4` | next to an owned square | `0x0055E3F0(view, 4, owned)` |
 | `5` | owned | answer 1, or the purchase (`0x0055F641`) |
 
-Squares in states 4 and 5, and Esper and Second Board squares in state 1, are drawn with their art (`0x0055BAC0`). A
+Squares in states 4 and 5, and Esper and Second Board squares in state 1, are drawn with their art¹. A
 state-4 square shows its LP cost when zoomed in.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055BAC0` |
+
+</details>
 
 ### Corner shapes
 
-`0x0055DEA0` gives each square a corner piece in bits `0xF` from the squares to its left, above and above-left
-(`0x0055DF32`-`0x0055DF94`). It looks the three tests up in the 2 x 7 table at `0x00D230F8`, using the second row when the
+`0x0055DEA0` gives each square a corner piece in bits `0xF` from the squares to its left, above and above-left¹. It looks the three tests up in the 2 x 7 table at `0x00D230F8`, using the second row when the
 square itself is empty, and stores the entry plus 1. `0x0055AE80` draws the piece half a cell offset, so the grid of
 squares also forms the grid of joins between them.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055DF32`-`0x0055DF94` |
+
+</details>
+
 ### The change sweep
 
-The sweep `0x0055B310` walks the squares and finds those whose state differs from the state shown
-(`0x0055B361`-`0x0055B36C`):
+The sweep `0x0055B310` walks the squares and finds those whose state differs from the state shown¹:
 
-1. With the view's collect bit set, it lists up to 32 changed squares at `+0x308` (`0x0055B380`-`0x0055B390`).
-2. Without it, it copies each state into the state shown at once (`0x0055B398`-`0x0055B3A6`).
+<details>
+<summary>Where in the code</summary>
 
-After a purchase, `0x0055DD70` sets the collect bit, runs the fill and gives each listed square a transition
-(`0x0055DDC6`-`0x0055DE80`): a newly reachable square shows state 4 after 0x2E frames with an effect, and an emptied
+| | Code |
+|---|---|
+| ¹ | `0x0055B361`-`0x0055B36C` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | With the view's collect bit set, it lists up to 32 changed squares at `+0x308`. | `0x0055B380`-`0x0055B390` |
+| 2 | Without it, it copies each state into the state shown at once. | `0x0055B398`-`0x0055B3A6` |
+
+After a purchase, `0x0055DD70` sets the collect bit, runs the fill and gives each listed square a transition¹: a newly reachable square shows state 4 after 0x2E frames with an effect, and an emptied
 square fades out. A square past the 32nd keeps its old look until a later fill lists it or, without the collect bit, copies
-its state (`0x0055B380`-`0x0055B3A6`). `0x0055F010` runs the transitions
+its state². `0x0055F010` runs the transitions
 every frame.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055DDC6`-`0x0055DE80` |
+| ² | `0x0055B380`-`0x0055B3A6` |
+
+</details>
+
 Before the transitions, `0x0055DD70` gives the bought square, the cursor's `+0xC8`, state 4 with its new state as
-the pending one, phase 2 and a countdown of 0 (`0x0055DD8E`-`0x0055DDBF`). For each listed square it then copies the
-state into the state shown (`0x0055DE2C`-`0x0055DE3E`), and a square in state 1 or 5 stops there (`0x0055DE09`).
+the pending one, phase 2 and a countdown of 0¹. For each listed square it then copies the
+state into the state shown², and a square in state 1 or 5 stops there³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055DD8E`-`0x0055DDBF` |
+| ² | `0x0055DE2C`-`0x0055DE3E` |
+| ³ | `0x0055DE09` |
+
+</details>
 
 A square in state 4 has its state set back to the state shown before that copy, with state 4 pending, phase 2 and
-a countdown of `0x2E` (`0x0055DE0D`, `0x0055DE46`-`0x0055DE6C`). A square in state 0 is set back the same way, with
-phase 2, state 0 pending and a countdown of 0, and its fade starts: `+0x26` 0, `+0x27` 0, `+0x28` 1 and `+0x29` 1
-(`0x0055DE15`-`0x0055DE1F`). Any other state value gets state 0, that value pending, phase 2 and a countdown of 0
-(`0x0055DE05`-`0x0055DE07`). The sweep returns the fill's result (`0x0055DD97`, `0x0055DE8B`).
+a countdown of `0x2E`¹. A square in state 0 is set back the same way, with
+phase 2, state 0 pending and a countdown of 0, and its fade starts: `+0x26` 0, `+0x27` 0, `+0x28` 1 and `+0x29` 1². Any other state value gets state 0, that value pending, phase 2 and a countdown of 0³. The sweep returns the fill's result⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055DE0D`, `0x0055DE46`-`0x0055DE6C` |
+| ² | `0x0055DE15`-`0x0055DE1F` |
+| ³ | `0x0055DE05`-`0x0055DE07` |
+| ⁴ | `0x0055DD97`, `0x0055DE8B` |
+
+</details>
 
 ### Preview
 
 The chooser's preview control closes it with the board in hand, and the window opens the board screen with the
-preview flag (`0x005590E3`, `0x00557B90`). In the view (`+0x570` bit `0x400`, `0x0055CEB2`):
+preview flag¹. In the view (`+0x570` bit `0x400`, `0x0055CEB2`):
 
-- the board shown is the previewed one (`0x0055B436`);
-- the cursor starts on Essentials, node `0x1F` (`0x0055E600`);
-- obtaining squares and changing members are refused with sound 5, and the board switch is ignored (`0x0055C740`).
+<details>
+<summary>Where in the code</summary>
 
-Leaving the preview reopens the chooser on the same board (`0x005614A1`).
+| | Code |
+|---|---|
+| ¹ | `0x005590E3`, `0x00557B90` |
+
+</details>
+
+- the board shown is the previewed one¹;
+- the cursor starts on Essentials, node `0x1F`²;
+- obtaining squares and changing members are refused with sound 5, and the board switch is ignored³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055B436` |
+| ² | `0x0055E600` |
+| ³ | `0x0055C740` |
+
+</details>
+
+Leaving the preview reopens the chooser on the same board¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005614A1` |
+
+</details>
 
 ### Scripted cursor moves
 
 Two script verbs move the view's cursor for lessons: `0x00560070` (from `0x00511F50`) walks it to a node, one injected
-direction step at a time (`0x002D66A0`), and `0x0055F740` (from `0x00511FE0`) marks the move done after a purchase. The
+direction step at a time¹, and `0x0055F740` (from `0x00511FE0`) marks the move done after a purchase. The
 mover is `0x0055AA00`, on `+0x563`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D66A0` |
+
+</details>
 
 ### Obtaining a license
 
-1. The confirm button (`0x01E0C2A0`) on a square opens its detail panel (`0x0055A1F0`); the cancel button (`0x01E0C2A4`)
-   closes it.
-2. Confirm again sends take-square (`0x8001`) to the view (`0x0055D617`):
-   - the owned Second Board square, when the member has no second board yet (`0x00323630`), closes the board and
-     opens the chooser for the second board (`0x0055D633`-`0x0055D6E5`);
-   - any other owned square, or one that cannot be obtained yet, plays sound 5;
-   - an obtainable square the member cannot afford shows "Insufficient license points." (`0xCD9`, `0x0055D709`);
-   - an obtainable, affordable square asks for confirmation.
-3. The question depends on the square (`0x0055D73A`-`0x0055D774`):
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The confirm button on a square opens its detail panel; the cancel button closes it. | `0x01E0C2A0`<br>`0x0055A1F0`<br>`0x01E0C2A4` |
+| 2 | Confirm again sends take-square (`0x8001`) to the view:<br>• the owned Second Board square, when the member has no second board yet, closes the board and opens the chooser for the second board;<br>• any other owned square, or one that cannot be obtained yet, plays sound 5;<br>• an obtainable square the member cannot afford shows "Insufficient license points." (`0xCD9`, `0x0055D709`);<br>• an obtainable, affordable square asks for confirmation. | `0x0055D617`<br>`0x00323630`<br>`0x0055D633`-`0x0055D6E5` |
+| 3 | The question depends on the square: | `0x0055D73A`-`0x0055D774` |
 
    | Square | Question (`menu_message.bin`) |
    |---|---|
@@ -167,10 +329,10 @@ mover is `0x0055AA00`, on `+0x563`.
    | Second Board | "You will be unable to return to the License menu until you confirm your new board. Proceed anyway?" (`0x88D`) |
    | any other | "Obtain {name}?" (`0x860`) |
 
-4. Yes reaches `0x0055D978`. It records the node taken in bank 8, then obtains it with `0x003235C0(row, node, 1)`
-   (`0x0055DA6E`), which calls `0x00323910` and charges the LP. This is the only call of `0x003235C0`.
-5. `0x0055F3E0` then runs the purchase stages on `+0x55E`: it pans to the square, lights it (`0x0055F641`), runs the
-   sweep (`0x0055DD70`), waits for the transitions, and shows the notices.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 4 | Yes reaches `0x0055D978`. It records the node taken in bank 8, then obtains it with `0x003235C0(row, node, 1)`, which calls `0x00323910` and charges the LP. This is the only call of `0x003235C0`. | `0x0055DA6E` |
+| 5 | `0x0055F3E0` then runs the purchase stages on `+0x55E`: it pans to the square, lights it, runs the sweep, waits for the transitions, and shows the notices. | `0x0055F641`<br>`0x0055DD70` |
 
 | Notice (`listhelp_license.bin`) | When |
 |---|---|
@@ -185,15 +347,15 @@ Obtaining the Second Board ends with the chooser opening for the member's second
 ### Grid helpers
 
 - `0x0055E3F0(view, state, test)` gives state 4 to squares next to one passing `0x00556580` (bit `0x2000`, owned) and state 1
-  to those passing `0x00556570` (a node other than `0xFFFF`) (`0x0055C3E5`, `0x0055C3F6`).
+  to those passing `0x00556570` (a node other than `0xFFFF`)¹.
 - `0x00556590(square)` returns the art row's word `+0x22` of `[0x02CA9670]` for a state-4 square, or the default at
   `+0x5A62` when it has no art row; 0 for other states.
-- `0x0055EF10(view)` runs every square's transition (`0x0055F010`) and fade (alpha `+0x25` from `+0x26`/`+0x27`, rising or
+- `0x0055EF10(view)` runs every square's transition² and fade (alpha `+0x25` from `+0x26`/`+0x27`, rising or
   falling by `+0x29`), and plays sound `0x4A` once when a transition returns `0x10`. `0x0055B2B0(view)` returns 1 while
   any square still fades or counts down.
 - `0x0055B8C0(view)` starts a 6-frame pan toward the cursor square (`+0x550` times the cell width `+0x554` and `+0x551`
   times the cell height `+0x555`, each plus half of `0x01F2CACC`) when the view is not there.
-- `0x0055F1C0` runs the pan (`0x00248F40`) and, while `+0x570` bit `0x40` is set, the cursor's pulse `+0x191` in the four
+- `0x0055F1C0` runs the pan³ and, while `+0x570` bit `0x40` is set, the cursor's pulse `+0x191` in the four
   timed steps of `+0x190`: 30 frames at 0, 6 rising to 8, 4 falling to 0 and 30 at 0, starting again with `+0x570`
   bit `0x80` set.
 - `0x0055B960(view, dx, dy, now)` gives the scroll `d` that keeps the cursor inside the view. Unless `now`,
@@ -201,32 +363,44 @@ Obtaining the Second Board ends with the chooser opening for the member's second
   (`0x0055BA33`-`0x0055BA5F` for x, `0x0055BA6E`-`0x0055BA91` for y).
 - `0x00561F20` clamps a scroll to its limits: `+0x10 = min(max(+0x10, +0x08), +0x0C)` and
   `+0x12 = min(max(+0x12, +0x0A), +0x0E)`, all `s16`.
-- `0x0055AB20` tiles the background picture `+0x180` over the screen in batches of 12 (`0x002D9380`); `0x0055B6D0` draws
+- `0x0055AB20` tiles the background picture `+0x180` over the screen in batches of 12⁴; `0x0055B6D0` draws
   the cursor frame `+0x188`, inset by the pulse.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055C3E5`, `0x0055C3F6` |
+| ² | `0x0055F010` |
+| ³ | `0x00248F40` |
+| ⁴ | `0x002D9380` |
+
+</details>
 
 ### Detail panel and member switch
 
 - `0x0055A180(view, square)` fills the four detail panes (`+0x140`) through `0x00559E30`, or, when the panel is open
   (`+0x570` bit `0x2`), refills only the current pane for the cursor square through `0x0055A1F0(view, 0)`
-  (`0x0055A186`-`0x0055A199`). `0x005597C0` closes the panes (`0x00244F00`) and `0x00559800(view, v)` hides or shows them.
+ ¹. `0x005597C0` closes the panes² and `0x00559800(view, v)` hides or shows them.
 - `0x0055A1F0(view, v)` fills pane `+0x55D` for the cursor square, `[+0x120] + 0x38 x (col + row x width)` from
   `+0x550`, `+0x551` and `+0x559`, with the member `+0x160` at the pane's `+0xD8`, through `0x00559E30`, and opens
-  it under `0x0208EA28` (`0x00246AD0`); it closes the other three panes (`0x00244DD0`) and skips an absent one
-  (`0x0055A230`-`0x0055A30D`). It calls `0x00282DF0(member)` and does not use the result (`0x0055A28A`).
+  it under `0x0208EA28`³; it closes the other three panes⁴ and skips an absent one
+ ⁵. It calls `0x00282DF0(member)` and does not use the result⁶.
 - On that pane `0x0055A1F0` sets `+0x40` bit `0x400000`; for a square with a node, bit `0x800000` when the square's
   `+0x18` bit `0x1000` is clear; and bit `0x8000` as `v & 1`. It gives `0x00247680` the style byte `+0xA3` = 12 + c,
   c being the category word `+0x30` less 1 when above 0 for a square whose `+0x0E` is not `0xFFFF`, else 0
-  (`0x0055A297`-`0x0055A2F9`).
-- `0x00559E30(pane)` shows the square's name and LP cost (`0x0029FF60`), its kind icon (`0x12` for category `0x1E`) and up
+ ⁷.
+- `0x00559E30(pane)` shows the square's name and LP cost⁸, its kind icon (`0x12` for category `0x1E`) and up
   to eight contents from the node record `0x0035D330(0x19, node)` `+0x26`, by its list type `+0x23`: class 1 records
   for type 0, class `0x14` records for type 1 (with the icon of the class 1 record each names), and class `0x1D`
   names for types 2 and 3.
-- `0x005599D0` is the callback of the four detail panes at view `+0x140`: `0x00559860` installs it (`0x005598A8`) for each
-  of the four slots (`0x005598E4`) as a `0x208`-byte task (`0x005598B9`) through `0x00244F50`, and passes no menu id.
+- `0x005599D0` is the callback of the four detail panes at view `+0x140`: `0x00559860` installs it⁹ for each
+  of the four slots¹⁰ as a `0x208`-byte task¹¹ through `0x00244F50`, and passes no menu id.
 - The Licenses command id `0x4B5` of `menu_command.bin` is an immediate at eight sites in `.text`. The chooser
-  window (`0x00558FF0`) and the board screen (`0x00561446`) pass it to `0x00280CA0`, which looks the id up in the entry
+  window¹² and the board screen¹³ pass it to `0x00280CA0`, which looks the id up in the entry
   list of `[0x0209AC30] + 0xD8`; the member-pick widget passes it to the return to the Party Menu, `0x002814E0`
-  (`0x005609AC`); the others are `0x00281BE5`, `0x0028237F`, `0x002C1236`, `0x002C1278` and `0x002D739D`.
+ ¹⁴; the others are `0x00281BE5`, `0x0028237F`, `0x002C1236`, `0x002C1278` and `0x002D739D`.
 - Each detail pane's row callback `0x00559910`
   (`0x00559ABF`, kept at the list's `+0x120`) fills row `n` from the pane's `0x20`-byte rows at `+0xE8`:
   - the text element (`[[pane + 0x10] + 8]`) gets the row's string `+0x00`, the colour `0x0020E620(0)` at `+0x20` and,
@@ -235,35 +409,98 @@ Obtaining the Second Board ends with the chooser opening for the member's second
     and its byte `+0x0A` is not `0xFF`, with that byte as the cell `+0x0A` and `+0x39` from the picture's palette
     table (`[+0x20] + 8 x cell + 7`).
 - `0x0055AE00` and `0x0055B840` step to another member that has a board (`0x0027EDA0` or `0x0027F430` with the test
-  `0x005617E0`), play sound `0x51` and rebuild the view (`0x0055DBD0`); `0x00557A40` and `0x00557A90` do the same in the chooser
-  (`0x00558760`).
+  `0x005617E0`), play sound `0x51` and rebuild the view¹⁵; `0x00557A40` and `0x00557A90` do the same in the chooser
+ ¹⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055A186`-`0x0055A199` |
+| ² | `0x00244F00` |
+| ³ | `0x00246AD0` |
+| ⁴ | `0x00244DD0` |
+| ⁵ | `0x0055A230`-`0x0055A30D` |
+| ⁶ | `0x0055A28A` |
+| ⁷ | `0x0055A297`-`0x0055A2F9` |
+| ⁸ | `0x0029FF60` |
+| ⁹ | `0x005598A8` |
+| ¹⁰ | `0x005598E4` |
+| ¹¹ | `0x005598B9` |
+| ¹² | `0x00558FF0` |
+| ¹³ | `0x00561446` |
+| ¹⁴ | `0x005609AC` |
+| ¹⁵ | `0x0055DBD0` |
+| ¹⁶ | `0x00558760` |
+
+</details>
 
 ### Chooser helpers
 
 - `0x00556380(slot, board1, board2, current)` builds the line of one or two board names (`menu_command.bin` `0x3ED` +
-  board, joined by `0x3F9`) into `0x02CA8FF0` + slot x 256, colouring one name with colour 3 (`0x002AB870`);
+  board, joined by `0x3F9`) into `0x02CA8FF0` + slot x 256, colouring one name with colour 3¹;
   `0x00558E70` shows it for the member, and `0x00556F50` hands the text of a row to its label.
-- `0x005587E0(chooser)` lists, for up to six members (`0x00282DF0`, `0x00282FA0`), which board each holds as first
-  (`0x00323670`) and second board (`0x00323630`).
+- `0x005587E0(chooser)` lists, for up to six members², which board each holds as first
+ ³ and second board⁴.
 - `0x00558A10(chooser, board, curve, frames)` turns the board wheel to `board` (30 degrees a board, crossing 360 between
-  boards 0 and 11), and `0x00558AF0` steps it (`0x00248F40`) into the angle `+0x34C`.
-- `0x005574C0` draws a chooser picture as four mirrored quarters at 0.8 scale (`0x002DB080`).
+  boards 0 and 11), and `0x00558AF0` steps it⁵ into the angle `+0x34C`.
+- `0x005574C0` draws a chooser picture as four mirrored quarters at 0.8 scale⁶.
 - `0x00561020` releases the chooser's five widgets and two buffers.
 - `0x002CE280(window)` puts a window, its child `+0xC0` and that child's `+0xD8` into the second draw pass
-  (`0x00247730(widget, 1)`); the chooser (`0x005584CE`), the board view (`0x0055D71E`, `0x0055D784`), `0x0055E9E0` and
+  (`0x00247730(widget, 1)`); the chooser⁷, the board view⁸, `0x0055E9E0` and
   `0x0055F3E0` call it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AB870` |
+| ² | `0x00282DF0`, `0x00282FA0` |
+| ³ | `0x00323670` |
+| ⁴ | `0x00323630` |
+| ⁵ | `0x00248F40` |
+| ⁶ | `0x002DB080` |
+| ⁷ | `0x005584CE` |
+| ⁸ | `0x0055D71E`, `0x0055D784` |
+
+</details>
 
 ### The member picker
 
 `0x00560910` lists the members with `0x00561100`: the roster slot of each one `0x00282FA0` accepts and its portrait
 (`0x002526F0(8, id + 0x4D, 1)`). `0x00560610` draws a member's board in miniature, one cell per square of the board table
-`[0x02EBF1A0 + 8 x board]` (`0x00560769`-`0x00560782`) coloured `0x002DD7E0(0xDB + value)`, and
+`[0x02EBF1A0 + 8 x board]`¹ coloured `0x002DD7E0(0xDB + value)`, and
 `0x0055FA50` frees the six cell arrays at `+0x150`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00560769`-`0x00560782` |
+
+</details>
 
 ## Layouts
 
-The squares are one array at view `+0x120`, row by row, the row width the view's `+0x559` (`0x0055C140`-`0x0055C14E`).
-`0x0055B560` allocates `0x38` bytes a square (`0x0055B586`) and zeroes the whole array with `0x00861EC0` (`0x0055B643`).
+<details>
+<summary>Show the memory layouts</summary>
+
+The squares are one array at view `+0x120`, row by row, the row width the view's `+0x559`¹.
+`0x0055B560` allocates `0x38` bytes a square² and zeroes the whole array with `0x00861EC0`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055C140`-`0x0055C14E` |
+| ² | `0x0055B586` |
+| ³ | `0x0055B643` |
+
+</details>
 
 `LicenseSquare` (`0x38` bytes, offsets from the start of the [view+0x120]+i*0x38):
 
@@ -482,18 +719,37 @@ The board chooser is the `0x390`-byte widget with procedure `0x00557DB0` that th
 | `+0x388` | `u32` | flags | bit `0x1`: input is held: set on construction (`0x00558235`), by a step (`0x00557CDD`) and when the confirm question opens (`0x00558475`, `0x005584E1`), cleared at stages 2 and 4 (`0x00557E4C`, `0x00557EEA`) and by the answer No (`0x005586EE`); the input turn does nothing while it is set (`0x00558261`). Bit `0x2`: start at the window's board: the window's `+0xE0` bit `0x2` (`0x00558036`-`0x0055804C`), tested at `0x005580E0`. Bit `0x4`: the member has no first board, so the confirm stores a first board through `0x00323740` rather than a second through `0x003236F0` (`0x00558475`, `0x005584DE`, `0x00558630`-`0x00558652`) |
 | `+0x38C` | `u8[4]` | tail38C | read and written by no function; nothing fixes its width |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | | |
 |---|---|
 | boards | 12, each 24 x 24 squares in the file, 25 x 25 on screen (625 squares, 49 of them the empty border) |
 | Gambit Slot squares | 10 on each board, 120 in all |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 These start with the file's values and are replaced when the board view `0x0055CD40` is built: it builds its widgets
 from layout 5 of the menu layout block (`[0x0209AC30] + 0x58`, `0x002432B0`, `0x0055CDE6`-`0x0055CE02`) and takes them
-from the layout's nodes (`0x0055CE07`-`0x0055CE61`).
+from the layout's nodes¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055CE07`-`0x0055CE61` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -504,13 +760,35 @@ from the layout's nodes (`0x0055CE07`-`0x0055CE61`).
 No other instruction reaches these three.
 
 The member picker draws its miniature boards with the menu picture `lic_4_c` (`Tm2_Menu\lic_4_c.tm2`, kind 7, id
-`0x79`), which the game requests once at start-up: the start-up step `0x0022A4B0` calls `0x00556500` (`0x0022A4DC`), which
-takes one of the twelve request batches (`0x002486B0`) with the callback `0x00556560`, which sets `0x02CA8F94` to 1, and
-files the picture in it through `0x002493D0` (`0x00556541`).
+`0x79`), which the game requests once at start-up: the start-up step `0x0022A4B0` calls `0x00556500`¹, which
+takes one of the twelve request batches² with the callback `0x00556560`, which sets `0x02CA8F94` to 1, and
+files the picture in it through `0x002493D0`³.
 
-On opening, `0x00560910` waits until `0x02CA8F94` is non-zero (`0x00560A55`-`0x00560A62`), then copies the picture to its own
-`+0xE0` (`0x00560A78`), where `0x00560610` reads it for each miniature (`0x0056065D`); closing clears that copy
-(`0x0056099E`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A4DC` |
+| ² | `0x002486B0` |
+| ³ | `0x00556541` |
+
+</details>
+
+On opening, `0x00560910` waits until `0x02CA8F94` is non-zero¹, then copies the picture to its own
+`+0xE0`², where `0x00560610` reads it for each miniature³; closing clears that copy⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00560A55`-`0x00560A62` |
+| ² | `0x00560A78` |
+| ³ | `0x0056065D` |
+| ⁴ | `0x0056099E` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -518,13 +796,25 @@ On opening, `0x00560910` waits until `0x02CA8F94` is non-zero (`0x00560A55`-`0x0
 
 No other instruction reaches `0x02CA8FD8`.
 
+</details>
+
 ## Modding notes
 
 - The view is the board file plus one row and column; a larger board needs `+0x559`/`+0x55A` to fit a byte.
-- The screen tests LP against the menu record's `+0xB0` (`0x0055C496`), and the purchase charges the member's stats
+- The screen tests LP against the menu record's `+0xB0`¹, and the purchase charges the member's stats
   record.
 - One purchase animates at most 32 changed squares; a square past the 32nd is neither listed nor updated and keeps
-  its old look until a later fill lists it or, without the collect bit, copies its state (`0x0055B380`-`0x0055B3A6`).
+  its old look until a later fill lists it or, without the collect bit, copies its state².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055C496` |
+| ² | `0x0055B380`-`0x0055B3A6` |
+
+</details>
 
 ## Related
 
@@ -540,40 +830,48 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 15 calls with 6 other topics</summary>
 
-**Characters and objects**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00202C70` | is called by | `0x003F1E90` |
-| `0x002B58B0` | is called by | `0x0023A570` |
-| `0x0036A100` | is called by | `0x00330310`, `0x003306E0` |
-
 **Characters and objects** (explained on [hud](hud.md), [party control modes](../Engine-Core/party-control-modes.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00202C70`](license-board-screen.md) | is called by | [`0x003F1E90`](hud.md) (on hud) |
+| [`0x002B58B0`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables) | is called by | [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) |
+| [`0x0036A100`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
 
 **Engine core** (explained on [game application](../Engine-Core/game-application.md), [frame update order](../Engine-Core/frame-update-order.md), [global state accessors](../Engine-Core/global-state-accessors.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022A4B0` | is called by | `0x0017D4C0` |
-| `0x00244DD0` | calls | `0x00229DF0`, `0x00229E70`, `0x00229EA0` |
-| `0x002465F0` | calls | `0x001EDDA0` |
+| [`0x0022A4B0`](../Game-Files-And-Data-Tables/tim2-images.md) (on tim2 images) | is called by | [`0x0017D4C0`](../Engine-Core/startup-constants.md) (on startup constants) |
+| [`0x00244DD0`](status-and-equip-screen.md) (on status and equip screen) | calls | [`0x00229DF0`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x00229E70`](../Engine-Core/global-state-accessors.md) (on global state accessors)<br>[`0x00229EA0`](../Graphics/effect-drawing.md) (on effect drawing) |
+| [`0x002465F0`](widgets.md) (on widgets) | calls | [`0x001EDDA0`](../Graphics/effect-lifecycle.md) (on effect lifecycle) |
 
 **Movement and pathfinding** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [bestiary](../Enemy-Spawning/bestiary.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00202C70` | is called by | `0x00230790`, `0x00338490` |
+| [`0x00202C70`](license-board-screen.md) | is called by | [`0x00230790`](../Movement-And-Pathfinding/collision-mesh-movement.md) (on collision mesh movement)<br>[`0x00338490`](../Party/party-leader.md) Party follow: solve formation (on party leader) |
 
 **Saving, loading and settings** (explained on [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00249210` | is called by | `0x00582790` |
+| [`0x00249210`](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md) (on mrp menu resource packages) | is called by | [`0x00582790`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
 
 **World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0036A100` | is called by | `0x00267930`, `0x003319D0`, `0x003EA820` |
+| [`0x0036A100`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00267930`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation)<br>[`0x003319D0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x003EA820`](../Game-Files-And-Data-Tables/ard-area-battle-data.md) Area ard: load or unload field resource (on ard area battle data) |
 
 </details>

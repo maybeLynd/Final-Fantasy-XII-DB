@@ -146,13 +146,13 @@ store of each label with that store's own condition, so each store is written on
   (`menumap_common.bin`), the guide lines (`menumap_guide*.bin`) and the icons of each zone script's section 4
   ([navigation icons](../EBP-Script-Files/ebp-navigation-icons.md)).
 - **Gate readers.** They are on [map menu files](../Game-Files-And-Data-Tables/menu-map-files.md).
-- **Map lines.** The 16-byte records of the zone script image's `+0x8C` table (`0x00264870`). `0x00264920` passes
+- **Map lines.** The 16-byte records of the zone script image's `+0x8C` table¹. `0x00264920` passes
   words 0 and 1, a mode word (4 while riding a chocobo, 3 during a summon, else 2) and word 6 to the gate
   ([map screens](../Menus-And-HUD/map-screens.md)). The 4,141 records of the 769 `us` zone images explain 69 flags that the
-  sources above leave with only their places, on records a line names by its byte `+0x1D` (`0x0026490E`).
-- **What the map-line words do.** The minimap draws a line while word 0 passes (`0x003C35DA`) and the field its
-  markers while word 1 passes (`0x003F9BC5`); the mode word picks the line's colours (`0x003C35E1`), and word 6 lets
-  the label name the area of word 5 (`0x003F99DE`).
+  sources above leave with only their places, on records a line names by its byte `+0x1D`².
+- **What the map-line words do.** The minimap draws a line while word 0 passes³ and the field its
+  markers while word 1 passes⁴; the mode word picks the line's colours⁵, and word 6 lets
+  the label name the area of word 5⁶.
 - **Two script flags.** Id `0x73` is the chocobo riding flag, and the aerodrome counter scripts set `0x5E` before
   the airship-deck and attack jumps ([chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md)).
 - **Schedule ids.** `0x4022` and `0x402A` read records `0x22` and `0x2A` of `mapjumpgroupflagrom.bin`, each a
@@ -160,7 +160,22 @@ store of each label with that store's own condition, so each store is written on
 - **Bank2048.** The name pair the id selects in `us` `npcdic.bin`, entries `2 × id` and `2 × id + 1`
   ([NPC names](../Characters-And-Objects/npc-names.md)).
 - **Places.** Each script in `set_in` and `tested_in` is the field whose entry in the `us` zone path table
-  (`0x01EE23A0`) names it, with the area name from `planmapname.bin` and the region from `map_ref.bin`.
+ ⁷ names it, with the area name from `planmapname.bin` and the region from `map_ref.bin`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264870` |
+| ² | `0x0026490E` |
+| ³ | `0x003C35DA` |
+| ⁴ | `0x003F9BC5` |
+| ⁵ | `0x003C35E1` |
+| ⁶ | `0x003F99DE` |
+| ⁷ | `0x01EE23A0` |
+
+</details>
 
 ## Related
 

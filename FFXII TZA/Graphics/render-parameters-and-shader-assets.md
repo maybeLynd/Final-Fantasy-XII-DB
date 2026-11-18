@@ -26,17 +26,36 @@ copy, the anisotropic lighting texture and the map textures:
 | `/GameData/%s/ArtData/shaders/CopyBuffer.fx.phyre`, `/GameData/%s/ArtData/shaders/anisolighting.dds.phyre` | `%s` is the graphics API folder |
 | `/GameData/D3D11/ArtData/map/%s/tex/%s.dds.phyre` | `0x001A6FF0` (`0x001A712D`), the map textures |
 
-`0x0018D850` walks the twelve entries of `0x01DF0910`, requests each path (`0x0019CB20`, `0x0018D8BE`) and
-keeps the result at `+0x218 + 8 x i` of the render-parameter block, then configures each
-(`0x0018D160`). The twelve entries are ten shaders and the two SMAA lookup textures. The twelve pass
+`0x0018D850` walks the twelve entries of `0x01DF0910`, requests each path¹ and
+keeps the result at `+0x218 + 8 x i` of the render-parameter block, then configures each². The twelve entries are ten shaders and the two SMAA lookup textures. The twelve pass
 functions on [Post-processing](post-processing.md) draw with them.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019CB20`, `0x0018D8BE` |
+| ² | `0x0018D160` |
+
+</details>
 
 `CopyBuffer.fx.phyre` and `anisolighting.dds.phyre` are requested by their users. The
 render-manager installer `0x00186CD0` loads the first, with `D3D11` as the folder, through
 `0x001EEC80` for the colour-buffer copy pass. The model asset cache's constructor `0x001B9370` loads
-the second through `0x001BB190`, which makes the asset ready (`0x0063DA50`, `0x0063B010`), finds its
-first object list whose class is `PTexture2D` (`0x02CBB900`) or derives from it, and stores at the
+the second through `0x001BB190`, which makes the asset ready¹, finds its
+first object list whose class is `PTexture2D`² or derives from it, and stores at the
 cache's `+0x00` the object address it computes from the list's `+0x60` and the class's `+0xF8`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063DA50`, `0x0063B010` |
+| ² | `0x02CBB900` |
+
+</details>
 
 ### The scene-parameter documents
 
@@ -48,15 +67,33 @@ omits a key, and the cutscene loader `0x001C3D50` goes through `0x001C51D0`.
 
 The light directions are the
 exception: `lightOrientation` and `lightHeight` must both be in the map's own file, or the loader clears
-the map-art context's direction flag `+0x398` and applies none of the three pairs (`0x001C7F41`-`0x001C7F6F`,
-`0x001C8112`).
+the map-art context's direction flag `+0x398` and applies none of the three pairs¹.
 [Graphics settings](../Engine-Core/graphics-settings.md) lists where each key lands.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C7F41`-`0x001C7F6F`, `0x001C8112` |
+
+</details>
 
 `0x001FF6B0(value, key)` first turns a value whose tag `+0x00` is not 3 into an empty map: it calls
 `0x002001F0` on it, stores 3, and keeps a new 0x38-byte map from `0x00210EC0` (constructor `0x001FE510`) at
-`+0x08`, or 0 when that allocation fails (`0x001FF6CF`-`0x001FF713`). It then tail-jumps to the find
-`0x001FF4F0` with the map and the key (`0x001FF72D`). A key the map lacks gets a new entry of tag 6
-(`0x001FF5E1`, `0x001FF647`), so the lookup always returns a value and a missing key becomes an absent entry.
+`+0x08`, or 0 when that allocation fails¹. It then tail-jumps to the find
+`0x001FF4F0` with the map and the key². A key the map lacks gets a new entry of tag 6³, so the lookup always returns a value and a missing key becomes an absent entry.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001FF6CF`-`0x001FF713` |
+| ² | `0x001FF72D` |
+| ³ | `0x001FF5E1`, `0x001FF647` |
+
+</details>
 
 446 distinct key strings are passed as literals at 754 of the 779 call and tail-jump sites of six lookups:
 `0x001FF740`, `0x001FF6B0`, `0x001C51D0`, `0x001C52C0`, `0x001C5530` and `0x001C5570`. 439 of the keys reach `0x001FF740`
@@ -76,11 +113,20 @@ readers and sites.
 ### The cascade keys are composed
 
 `0x001C7940` never spells `mCascadePartition0_1` and its kin. At `0x001C9190` it formats
-`"mCascadePartition%d_%d"` (`0x008FB2D8`) for columns 0 to 2 and rows 1 to 3, reads each value (with
+`"mCascadePartition%d_%d"`¹ for columns 0 to 2 and rows 1 to 3, reads each value (with
 the defaults as fallback) and stores it through `0x001A9B00(map-art context, row - 1, column, v)`.
 `0x001A9B00` refuses an index of 3 or more and writes `+0x350 + ((row - 1) x 3 + column) x 4`
 of the object `0x001A9930` returns: a 3 x 3 float matrix. No code looks up `mCascadeNumber`, which the files also carry;
 the loop is fixed at three.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008FB2D8` |
+
+</details>
 
 ### Authored keys that nothing reads
 
@@ -96,6 +142,9 @@ directly or through the cascade template. The other 43 are:
   `mDebugWaterExtraFactor` and `DofImageSensorHeight`.
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -121,6 +170,8 @@ directly or through the cascade template. The other 43 are:
 | `site_addresses` | the call or jmp instruction of each site, separated by `, ` |
 | `in_shipped_document` | `yes` when at least one of the 830 `jsondata` documents holds the name as a key, `no` otherwise |
 | `shipped_documents` | how many of the 830 documents hold the name |
+
+</details>
 
 ## Modding notes
 
@@ -152,8 +203,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Developer** (explained on [json configs](../Game-Files-And-Data-Tables/json-configs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00200BE0` | is called by | `0x001C6320` |
+| [`0x00200BE0`](../Engine-Core/graphics-settings.md) (on graphics settings) | is called by | [`0x001C6320`](../Game-Files-And-Data-Tables/json-configs.md) (on json configs) |
 
 </details>

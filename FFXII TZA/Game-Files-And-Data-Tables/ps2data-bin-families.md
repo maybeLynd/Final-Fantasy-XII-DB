@@ -25,9 +25,18 @@ SHA-256.
   address from `0x01F2C750` to `0x01F2C75F`.
 - The data on either side belongs to other readers. Before it, an image ends at `0x01F2C74F`: a 0x10-byte header,
   0x1000 bytes of pixels and a 256-entry palette at `0x01F2C350`, read by `0x0051D220`, which loads the image's base
-  at `0x0051D270`, and by `0x0051CDE0`, which reads header bytes `+0x09` to `+0x0D` (`0x0051CF08`-`0x0051CF66`). After
+  at `0x0051D270`, and by `0x0051CDE0`, which reads header bytes `+0x09` to `+0x0D`¹. After
   it, six 16-byte records start at `0x01F2C760`, which `0x00521450` walks forward from `0x0052177E`.
 - None of the four addresses occurs as text in any `.exe` or `.dll` in `x64`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051CF08`-`0x0051CF66` |
+
+</details>
 
 The archive's only other file without an extension is `ps2data/square_ff12/ff12config`, 2,048 bytes: the settings defaults that `0x00408C30` copies into the settings globals. Its reader and layout are on [Game settings](../Saving-Loading-And-Settings/game-settings.md).
 
@@ -187,12 +196,20 @@ The kind-2 entry `0x00384420` has three callers: the battle-pack load (`0x003843
 `0x00236C30`, id `0x13`), the board load and the text-group load. No call site passes another kind-2 id,
 so the loose battle tables have no loader.
 
-Kind 7 is requested at 70 call sites: five direct calls of `0x0032E620` (`0x00291D04`, `0x002C900B`, `0x003658C7`,
-`0x00365967`, `0x0039C45D`) and 65 calls of the menu-set wrappers and of the table loops `0x003933F0`, `0x00393460` and
+Kind 7 is requested at 70 call sites: five direct calls of `0x0032E620`¹ and 65 calls of the menu-set wrappers and of the table loops `0x003933F0`, `0x00393460` and
 `0x003934F0`, every one with kind 7 in `edx` or fixed in the loop. The other request sites take the kind from a caller,
 a record or a script ([File requests](file-requests-and-the-read-queue.md)). The by-path request `0x0032E7C0` is
 reached only from the area loaders `0x003306E0` and `0x003319D0` and from `0x00377DC0`, which copies a kind's path
 (`0x002DF880` at `0x00377E09`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00291D04`, `0x002C900B`, `0x003658C7`, `0x00365967`, `0x0039C45D` |
+
+</details>
 
 | table | rows | one row per |
 |---|---:|---|
@@ -206,14 +223,29 @@ The ids per folder, with the site that asks for them:
 - `handbook`: `menuhandbook.bin` `0xC8` (`0x003158B0` at `0x003158F8`) and `menuhandbook_order.bin` `0xC9` (`0x00572D80`
   at `0x00572DEB`); each family's files from the base `[0x00D23740 + 2 x family]`: the catalog + 0 and file `NNN` + 2 +
   `NNN` (`0x00575C30` at `0x00575CAD`), the unlock table + 1 (`0x00576F50` at `0x00577027`, all six families).
-- `packfiles`: fixed ids, `fontpack_fs.bin` `0xD2` (`0x003658F0`), `mrppack_ys.bin` `0xD3` and `clutpack_ys.bin`
-  `0xD4` (`0x002808D0`), `fontpack_it.bin` `0xD5` (`0x0039C3F0`), `texpack_ys.bin` `0xD6` (`0x002467A0`) and
-  `tex2pack_ys.bin` `0xD7` (`0x00280750`).
+- `packfiles`: fixed ids, `fontpack_fs.bin` `0xD2`¹, `mrppack_ys.bin` `0xD3` and `clutpack_ys.bin`
+  `0xD4`², `fontpack_it.bin` `0xD5`³, `texpack_ys.bin` `0xD6`⁴ and
+  `tex2pack_ys.bin` `0xD7`⁵.
 - `quest`: `menuquest.dat` `0x128` (`0x0037F4D0` at `0x0037F740`, `0x00576F50` at `0x00577057`); `menuquest00` to `02.bin`
   `0x12A` + the quest's group (`0x003800D0` at `0x00380145`).
-- `worldmap`: `menumap_world`, `_location` and `_common.bin` `0xA2` to `0xA4` (`0x003BC2D0`), `menumap_area.bin`
-  `0xA5` (`0x00253780`), `menumap_guideNN.bin` `0x496` + the schedule entry's file byte (`0x003C1DF0` at `0x003C1EBC`),
+- `worldmap`: `menumap_world`, `_location` and `_common.bin` `0xA2` to `0xA4`⁶, `menumap_area.bin`
+  `0xA5`⁷, `menumap_guideNN.bin` `0x496` + the schedule entry's file byte (`0x003C1DF0` at `0x003C1EBC`),
   `menumap_subNN.bin` `0x142` + the sub-location (`0x003C1F00` at `0x003C200D`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003658F0` |
+| ² | `0x002808D0` |
+| ³ | `0x0039C3F0` |
+| ⁴ | `0x002467A0` |
+| ⁵ | `0x00280750` |
+| ⁶ | `0x003BC2D0` |
+| ⁷ | `0x00253780` |
+
+</details>
 
 A kind 7 site, formula or table gives the id of 760 of the `.bin` files and 1,856 of the `.dat` files with the
 shipped data, and no id of these:
@@ -228,26 +260,54 @@ shipped data, and no id of these:
 - 75 picture bundles no page-map slot names: seven `tutorial` files in each language and the 2, 3 and 7 extra
   `monster` files of `kr`, `ch` and `cn`.
 
-Outside these sites, the script verb `debug_fileread` (`0x0050DFE0`) requests whatever kind and id its script
+Outside these sites, the script verb `debug_fileread`¹ requests whatever kind and id its script
 pushes.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0050DFE0` |
+
+</details>
 
 The loaders of the kind 9 families, of `fontcolor.bin` and of the two `add_motion` files:
 
 - `0x00259DF0` sizes `behindcamera.bin` (kind 9, id 3) with `0x0032E400`. At 0 or less it zeroes `0x02098DF0` and
-  requests nothing (`0x00259E07`, `0x00259E81`); otherwise it allocates that many bytes under arena 6
-  (`0x0036C1D0(6, 5)`, `0x0036C1A0(3)`, `0x0036A190`) and files the read with the completion `0x00259370` (`0x00259E6E`).
-- `0x00268750` zeroes `0x02099D88`, `0x02099D90` and `0x02099D98` (`0x0026876B`-`0x00268779`) and sizes `map_ref.bin` (kind
-  9, id 4); a negative size stops it (`0x00268782`). It allocates the block the same way into `0x02099D88`, tags it
-  `MapRef` (`0x0036C660`) and files the read with the completion `0x002678A0` (`0x00268809`).
-- It then sizes `test_area_ref.bin` (kind 9, id 2); unless that is negative (`0x0026881D`) it allocates the block
-  with `0x00267930`, stores it at `0x02099D98` (`0x00268829`) and files the read with no descriptor (`0x0026883E`).
+  requests nothing¹; otherwise it allocates that many bytes under arena 6
+  (`0x0036C1D0(6, 5)`, `0x0036C1A0(3)`, `0x0036A190`) and files the read with the completion `0x00259370`².
+- `0x00268750` zeroes `0x02099D88`, `0x02099D90` and `0x02099D98`³ and sizes `map_ref.bin` (kind
+  9, id 4); a negative size stops it⁴. It allocates the block the same way into `0x02099D88`, tags it
+  `MapRef`⁵ and files the read with the completion `0x002678A0`⁶.
+- It then sizes `test_area_ref.bin` (kind 9, id 2); unless that is negative⁷ it allocates the block
+  with `0x00267930`, stores it at `0x02099D98`⁸ and files the read with no descriptor⁹.
   [Weather](../World-Areas-And-Travel/weather.md) has both files.
 - `0x0029CED0` runs `0x0029DC90`, which requests `key_signal_data.bin` (kind 7, id `0x24`) only while `0x0209C4A0` is
   null. On every call it then requests `fontcolor.bin` (kind 7, id 5) through `0x00249210` with 3 and 1 and no
-  completion (`0x0029CEF6`), and tail-jumps to `0x002DD810` (`0x0029CF03`).
+  completion¹⁰, and tail-jumps to `0x002DD810`¹¹.
 - `0x002DD810` zeroes `0x0215E6B8` and `0x0215E6C8` and stores the request record's buffer, its `+0x08`, at `0x0215E6C0`.
 - The two `literal path` loaders, `0x0036FFF0` and `0x0037CCC0`, read `./PS2Data/add_motion/SkeletonMapping.bin` and
   `HighModelReplace.bin` whole ([Add-motion tables](../Graphics/add-motion-tables.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00259E07`, `0x00259E81` |
+| ² | `0x00259E6E` |
+| ³ | `0x0026876B`-`0x00268779` |
+| ⁴ | `0x00268782` |
+| ⁵ | `0x0036C660` |
+| ⁶ | `0x00268809` |
+| ⁷ | `0x0026881D` |
+| ⁸ | `0x00268829` |
+| ⁹ | `0x0026883E` |
+| ¹⁰ | `0x0029CEF6` |
+| ¹¹ | `0x0029CF03` |
+
+</details>
 
 ### Pack directories
 
@@ -273,9 +333,20 @@ against `0xFFFFFFFF` except `0x0039C150`'s entry 6, so a directory must keep eve
 
 `0x002808D0` requests `mrppack_ys.bin` and `clutpack_ys.bin` without a callback; `0x00253780` calls
 `0x00280980`, which ends by calling `0x00280AD0`. Each request goes through `0x00249180` with kind 7, 3 and 1, and only
-while its buffer slot is null: `mrppack_ys.bin` into `[0x0209AC30] + 0x3D0` (`0x002808E8`-`0x00280916`) and
-`clutpack_ys.bin` into `+0x3C8` (`0x00280924`-`0x0028095D`). It then tail-jumps to `0x00280750`, the `tex2pack_ys.bin`
-request (`0x0028096C`).
+while its buffer slot is null: `mrppack_ys.bin` into `[0x0209AC30] + 0x3D0`¹ and
+`clutpack_ys.bin` into `+0x3C8`². It then tail-jumps to `0x00280750`, the `tex2pack_ys.bin`
+request³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002808E8`-`0x00280916` |
+| ² | `0x00280924`-`0x0028095D` |
+| ³ | `0x0028096C` |
+
+</details>
 
 ### Families no path names
 
@@ -417,10 +488,21 @@ The other 228 are never read:
 
 - 98 copies the arrays name but no call site requests: the `ch` and `in` copies of the 40 loose battle tables,
   and `battle_message.bin` and `word.bin` in all nine folders. `0x00384420`, the one kind-2 request, has three
-  callers, the pack (`0x0038440A`), the boards (`0x0023837D`) and the text groups (`0x0023861E`). No limit stops these ids,
+  callers, the pack¹, the boards² and the text groups³. No limit stops these ids,
   because `debug_fileread` passes a script's kind and id unchecked, so the table calls them `reserve`.
 - 104 copies no array names: the `cn` and `kr` copies of the same 40 tables and of the twelve boards.
 - 26 files no path names: the 13 families that ship only in `cn` and `kr` (Families no path names).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038440A` |
+| ² | `0x0023837D` |
+| ³ | `0x0023861E` |
+
+</details>
 
 ### The battle pack's own copies
 
@@ -486,8 +568,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Steam and achievements** (explained on [save file format](../Saving-Loading-And-Settings/save-file-format.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00408C30` | calls | `0x00862A20` |
+| [`0x00408C30`](../Saving-Loading-And-Settings/game-settings.md) (on game settings) | calls | [`0x00862A20`](../Saving-Loading-And-Settings/save-file-format.md) (on save file format) |
 
 </details>

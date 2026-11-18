@@ -17,14 +17,33 @@ condition with the story counter or the clan rank.
 ### The table
 
 The shop table is section 39 of `battle_pack.bin`, the section its directory entry at file offset `+0xA0` points
-to. The battle data binder hands it to `0x00238660` (`0x00236F28`-`0x00236F2E`), which stores the section address in
+to. The battle data binder hands it to `0x00238660`¹, which stores the section address in
 the registry slot `0x02EBF158` and adds it to every offset in the table: the header's data offset, each shop's
-ladder, each ladder's data, each list and each list's data (`0x00238678`-`0x0023881D`).
+ladder, each ladder's data, each list and each list's data².
 
-The slot store is the slot's low 32 bits plus the section, zero-extended (`0x00238678`-`0x00238686`): the section
-address while the slot is empty. The three data offsets `+0x08` are rebased only when not 0 (`0x00238698`,
-`0x00238739`, `0x002387F8`); each shop's ladder and each ladder row's list are rebased even when 0 (`0x00238726`,
-`0x002387E5`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236F28`-`0x00236F2E` |
+| ² | `0x00238678`-`0x0023881D` |
+
+</details>
+
+The slot store is the slot's low 32 bits plus the section, zero-extended¹: the section
+address while the slot is empty. The three data offsets `+0x08` are rebased only when not 0²; each shop's ladder and each ladder row's list are rebased even when 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00238678`-`0x00238686` |
+| ² | `0x00238698`, `0x00238739`, `0x002387F8` |
+| ³ | `0x00238726`, `0x002387E5` |
+
+</details>
 
 It has three levels, each
 with the same 12-byte header, `ShopLevelHeader`:
@@ -58,11 +77,22 @@ technick, `0x6xxx` gambit.
 
 ### Choosing a list
 
-`0x002FAD40(shop)` walks the shop's ladder in order and returns the first entry whose condition passes
-(`0x002FAD56`-`0x002FAE23`). The ladder is `0x0020E600(shop +0x04)`: its word `+0x06` counts the entries, its word
-`+0x04` is the row size and its dword `+0x08` the offset of the rows (`0x002FAD56`-`0x002FADBF`). A kind above 3 never
-passes, and a ladder with no entries gives 0 (`0x002FAD73`-`0x002FAD75`, `0x002FAE0F`-`0x002FAE21`). The thresholds are
-compared as signed values (`0x002FADEC`, `0x002FAE0D`, `0x002FAE1F`):
+`0x002FAD40(shop)` walks the shop's ladder in order and returns the first entry whose condition passes¹. The ladder is `0x0020E600(shop +0x04)`: its word `+0x06` counts the entries, its word
+`+0x04` is the row size and its dword `+0x08` the offset of the rows². A kind above 3 never
+passes, and a ladder with no entries gives 0³. The thresholds are
+compared as signed values⁴:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FAD56`-`0x002FAE23` |
+| ² | `0x002FAD56`-`0x002FADBF` |
+| ³ | `0x002FAD73`-`0x002FAD75`, `0x002FAE0F`-`0x002FAE21` |
+| ⁴ | `0x002FADEC`, `0x002FAE0D`, `0x002FAE1F` |
+
+</details>
 
 | Kind | Condition | Test |
 |---|---|---|
@@ -73,7 +103,16 @@ compared as signed values (`0x002FADEC`, `0x002FAE0D`, `0x002FAE1F`):
 
 Kinds 1 and 2 read the story operand bank through `0x00321190(3, 0, operand)`, a signed 16-bit value; element 0 is
 the main story counter, the word at the start of the save payload ([Story progress](../Story-Events-And-Hunts/story-progress.md), [Save data](../Saving-Loading-And-Settings/save-data-fields.md)). When no
-entry passes, the last entry of the ladder is returned, so its list is sold anyway (`0x002FAE21`-`0x002FAE2D`).
+entry passes, the last entry of the ladder is returned, so its list is sold anyway¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FAE21`-`0x002FAE2D` |
+
+</details>
 
 Of the shipped ladders, 43 end in an entry with no condition, two in a story threshold of 0 (Dyce, shops 17 and
 18) and the Clan Provisioner's in clan rank 1, which is always met. Eleven end in a story threshold above 0, so a
@@ -86,12 +125,32 @@ Of the 23 lists at 500 or 960, 17 go on sale at 520. The other six are sold from
 
 ### What the menu shows
 
-`0x002FA920(shop, mode, category, out)` builds the menu's list (`0x002FA920`-`0x002FABC3`). In mode 1 it skips the
+`0x002FA920(shop, mode, category, out)` builds the menu's list¹. In mode 1 it skips the
 ladder's entries until it reaches the one `0x002FAD40` chose, then copies the ids of that list and of every list
-after it whose menu category is the one asked for (`0x002FAA1E`-`0x002FAB9A`). `0x002FAD30` is the same call with no
-output buffer, used to count. Mode 2 lists the bazaar goods on offer instead (`0x002FA9C9`-`0x002FAA1C`).
+after it whose menu category is the one asked for². `0x002FAD30` is the same call with no
+output buffer, used to count. Mode 2 lists the bazaar goods on offer instead³.
 
-`0x002FABD0(id)` gives an id its menu category (`0x002FABD0`-`0x002FAD24`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FA920`-`0x002FABC3` |
+| ² | `0x002FAA1E`-`0x002FAB9A` |
+| ³ | `0x002FA9C9`-`0x002FAA1C` |
+
+</details>
+
+`0x002FABD0(id)` gives an id its menu category¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FABD0`-`0x002FAD24` |
+
+</details>
 
 | Ids | Category |
 |---|---|
@@ -108,56 +167,151 @@ output buffer, used to count. Mode 2 lists the bazaar goods on offer instead (`0
 | gambits, the gambit conditions `0x6000`-`0x6FFF` | 9 |
 | class 12 ids, `0x7000`-`0x7FFF`, which no table holds | 10 |
 
-The answers come from two eight-entry tables the function builds on its stack (`0x002FABE3`-`0x002FAC14`). An id that
-is not equipment takes entry `id >> 12` of the second, 4, -1, 7, 6, 5, 8, 9, 10 (`0x002FAD20`). Equipment takes entry
-`slot` of the first, 0, 1, 1, 1, 2 for slots 0-4 (`0x002FAD1A`), the slot being bits `0xE0` of row byte `+7`
-(`0x002FAC9D`-`0x002FACA1`); an off-hand row of class 23-26, byte `+9`, answers 3 instead (`0x002FACE1`-`0x002FAD13`).
+The answers come from two eight-entry tables the function builds on its stack¹. An id that
+is not equipment takes entry `id >> 12` of the second, 4, -1, 7, 6, 5, 8, 9, 10². Equipment takes entry
+`slot` of the first, 0, 1, 1, 1, 2 for slots 0-4³, the slot being bits `0xE0` of row byte `+7`⁴; an off-hand row of class 23-26, byte `+9`, answers 3 instead⁵.
 
-`0xFFFF` gives -1 (`0x002FAC1A`-`0x002FAC1F`). The categories come from two tables built on the stack. By slot,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FABE3`-`0x002FAC14` |
+| ² | `0x002FAD20` |
+| ³ | `0x002FAD1A` |
+| ⁴ | `0x002FAC9D`-`0x002FACA1` |
+| ⁵ | `0x002FACE1`-`0x002FAD13` |
+
+</details>
+
+`0xFFFF` gives -1¹. The categories come from two tables built on the stack. By slot,
 `+0x07 >> 5`: 0 for slot 0, 1 for slots 2 and 3, 2 for slot 4, 4 for slot 6 and -1 for slot 7, while slot 1 gives
-3 for classes 23-26 and 1 otherwise (`0x002FAC9D`-`0x002FAD1A`). By class nibble: 4, -1, 7, 6, 5, 8, 9 and 10 for
-nibbles 0-7 (`0x002FAD20`).
+3 for classes 23-26 and 1 otherwise². By class nibble: 4, -1, 7, 6, 5, 8, 9 and 10 for
+nibbles 0-7³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FAC1A`-`0x002FAC1F` |
+| ² | `0x002FAC9D`-`0x002FAD1A` |
+| ³ | `0x002FAD20` |
+
+</details>
 
 Slot 5 reads the stack dword after the slot table, which the function does not write, and a nibble of 8 or more
 reads past the class table into the frame's later slots: the stack cookie copy, the saved `rdi` and the return
-address, and for nibbles `0xE` and `0xF` the caller's home space (`0x002FABF8`-`0x002FAC14`, `0x002FAC34`).
+address, and for nibbles `0xE` and `0xF` the caller's home space¹.
 
-`0x002FABD0` is called by the list builder `0x002FA920` (`0x002FAB59`), by `0x003933D0` (`0x003933D4`) and at `0x003F4206`.
-The shop screens `0x0057B500`, `0x0057B6F0`, `0x0057CF20` and `0x0057D620` call `0x002FA920` or its counting form `0x002FAD30`
-(`0x0057B5F4`, `0x0057B617`, `0x0057B715`, `0x0057B736`, `0x0057CFC4`-`0x0057D07B`, `0x0057D6B4`, `0x0057D6D7`); the first two
-pass the shop number held at byte `+0xC0` of the shop menu (`0x0057B5F4`, `0x0057B715`). `0x003933D0(id)` answers 1 for
-categories 0-3, the equipment; the shop's transaction function `0x0056D370` asks it (`0x0056D630`).
+<details>
+<summary>Where in the code</summary>
 
-The id `0x0056D630` gives it is word `+8` of the chosen row (`0x0056D5E8`). The list keeps that row at `+0xD0`: the
-row the message's `+0x10` numbers among the tab's rows at `+0xC8` (`0x0056D55D`-`0x0056D56F`), the rows
-`0x0057CF20` builds, which `0x0056E410` hands over (`0x0056E535`-`0x0056E55A`). On the Bazaar tab, help kind `0xB`
-(`+0xE4` under mask `0x3FC0` equal to `0x2C0`), the id goes to `0x0057A480` instead (`0x0056D604`-`0x0056D61E`);
-`0x0056DC30` gives `0xB` only to tab id 0 (`0x0056DC91`), which of the three shop tab lists only the Bazaar's holds
-(`0x00D23C60`).
+| | Code |
+|---|---|
+| ¹ | `0x002FABF8`-`0x002FAC14`, `0x002FAC34` |
+
+</details>
+
+`0x002FABD0` is called by the list builder `0x002FA920`¹, by `0x003933D0`² and at `0x003F4206`.
+The shop screens `0x0057B500`, `0x0057B6F0`, `0x0057CF20` and `0x0057D620` call `0x002FA920` or its counting form `0x002FAD30`³; the first two
+pass the shop number held at byte `+0xC0` of the shop menu⁴. `0x003933D0(id)` answers 1 for
+categories 0-3, the equipment; the shop's transaction function `0x0056D370` asks it⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FAB59` |
+| ² | `0x003933D4` |
+| ³ | `0x0057B5F4`, `0x0057B617`, `0x0057B715`, `0x0057B736`, `0x0057CFC4`-`0x0057D07B`, `0x0057D6B4`, `0x0057D6D7` |
+| ⁴ | `0x0057B5F4`, `0x0057B715` |
+| ⁵ | `0x0056D630` |
+
+</details>
+
+The id `0x0056D630` gives it is word `+8` of the chosen row¹. The list keeps that row at `+0xD0`: the
+row the message's `+0x10` numbers among the tab's rows at `+0xC8`², the rows
+`0x0057CF20` builds, which `0x0056E410` hands over³. On the Bazaar tab, help kind `0xB`
+(`+0xE4` under mask `0x3FC0` equal to `0x2C0`), the id goes to `0x0057A480` instead⁴;
+`0x0056DC30` gives `0xB` only to tab id 0⁵, which of the three shop tab lists only the Bazaar's holds⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0056D5E8` |
+| ² | `0x0056D55D`-`0x0056D56F` |
+| ³ | `0x0056E535`-`0x0056E55A` |
+| ⁴ | `0x0056D604`-`0x0056D61E` |
+| ⁵ | `0x0056DC91` |
+| ⁶ | `0x00D23C60` |
+
+</details>
 
 So `0x002FABD0` gets, through `0x003933D0`, the id of a Buy row, one of the stock ids above, or of a Sell row, from the
 party's lists 0 to 4 and 11 (items, equipment and loot). The 267 lists hold 2,512 ids, all of nibbles 0, 1, 2, 3, 4
 and 6, and the 557 rows of the equipment table carry slots 0 to 4 only, so neither the unwritten slot 5 dword nor
 the reads past the class table are reached from here. Key items, `0x8000`-`0x81FF`, have list 10 of their own,
-which `0x0057CF20` reads only for the Inventory's Key Items, kind 7 (`0x0057D0E9`-`0x0057D103`), never for a shop tab.
+which `0x0057CF20` reads only for the Inventory's Key Items, kind 7¹, never for a shop tab.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0057D0E9`-`0x0057D103` |
+
+</details>
 
 ### The shop's name
 
-The name id of shop *n* is the first word of its row, returned by `0x002FAE40(n)` (`0x002FAE85`-`0x002FAEA4`). The
-script verb `0x4A9` `setshopname(n)` gives an actor that name (`0x0034C183`-`0x0034C18A`), and it is shown through the
-NPC-name dictionary `npcdic.bin` ([NPC names](../Characters-And-Objects/npc-names.md)); the shop screens read it too
-(`0x0057B98F`, `0x0057C022`). A name id's pair has a second name, shown once its story flag in Bank2048 is set ([Story flags](../Story-Events-And-Hunts/story-flags.md)): shops 10,
+The name id of shop *n* is the first word of its row, returned by `0x002FAE40(n)`¹. The
+script verb `0x4A9` `setshopname(n)` gives an actor that name², and it is shown through the
+NPC-name dictionary `npcdic.bin` ([NPC names](../Characters-And-Objects/npc-names.md)); the shop screens read it too³. A name id's pair has a second name, shown once its story flag in Bank2048 is set ([Story flags](../Story-Events-And-Hunts/story-flags.md)): shops 10,
 11 and 23 carry one.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FAE85`-`0x002FAEA4` |
+| ² | `0x0034C183`-`0x0034C18A` |
+| ³ | `0x0057B98F`, `0x0057C022` |
+
+</details>
+
 For a shop number not below the row count `+0x06` of `[0x02EBF158]`, or with no shop table bound, `0x002FAE40` returns
-0 (`0x002FAE4A`-`0x002FAE66`).
+0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FAE4A`-`0x002FAE66` |
+
+</details>
 
 ### Clan rank
 
-`0x00315390` returns the highest rank, 12 down to 1, whose three requirements the player meets
-(`0x003153B5`-`0x003153E1`): the clan points, achievement counter 17 at `+0x3868` of the block `0x002536A0` returns
-(`0x0031539A`-`0x003153A4`); the count `0x00316480` returns; and the number of the thirty awards at `+0x3844` of that
-block that are earned, `0x00316670`. The twelve rows are at `0x00D105D0`, eight bytes each; the word at `+0x06` is the rank's name, which `0x003153F0(rank)` resolves through `0x002F9860` (`0x003153FF`-`0x0031540A`); `0x0056F470` passes it the rank `0x00315390` returns (`0x0056F482`, `0x0056F4AE`):
+`0x00315390` returns the highest rank, 12 down to 1, whose three requirements the player meets¹: the clan points, achievement counter 17 at `+0x3868` of the block `0x002536A0` returns²; the count `0x00316480` returns; and the number of the thirty awards at `+0x3844` of that
+block that are earned, `0x00316670`. The twelve rows are at `0x00D105D0`, eight bytes each; the word at `+0x06` is the rank's name, which `0x003153F0(rank)` resolves through `0x002F9860`³; `0x0056F470` passes it the rank `0x00315390` returns⁴:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003153B5`-`0x003153E1` |
+| ² | `0x0031539A`-`0x003153A4` |
+| ³ | `0x003153FF`-`0x0031540A` |
+| ⁴ | `0x0056F482`, `0x0056F4AE` |
+
+</details>
 
 | Rank | Name | Clan points | Count | Awards |
 |---:|---|---:|---:|---:|
@@ -175,7 +329,16 @@ block that are earned, `0x00316670`. The twelve rows are at `0x00D105D0`, eight 
 | 12 | Order of Ambrosia | 1,000,000 | 44 | 30 |
 
 `0x00316480` counts the entries of the quest list at `0x022C2550` whose quest is ordered or cleared and whose
-scenario value reaches the entry's minimum (`0x00316520`-`0x0031654D`).
+scenario value reaches the entry's minimum¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00316520`-`0x0031654D` |
+
+</details>
 
 What each rank brings is in [`clan-ranks.tsv`](clan-ranks.tsv). Montblanc's talk in The Clan Hall (Rabanastre) (`rbn_a14`) gives reward package `0x902E` plus the rank for each rank reached since the last one he rewarded ([Reward package list](../Rewards-EXP-Gil-And-Loot/reward-package-list.md)). The Clan Provisioner, shop 2, sells list 12 minus the rank and every list after it. The clan boards and Montblanc post the hunts whose rank test the rank meets ([Hunts](../Story-Events-And-Hunts/hunts.md)).
 
@@ -245,8 +408,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Engine core** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003462D0` | calls | `0x00229EB0` |
+| [`0x003462D0`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors) | calls | [`0x00229EB0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
 
 </details>

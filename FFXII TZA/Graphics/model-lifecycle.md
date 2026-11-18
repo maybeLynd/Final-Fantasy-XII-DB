@@ -12,35 +12,18 @@ it.
 
 ## Stages
 
-1. **Binding.** A script names the model by its bound id, and the binding entry loads the model's file
-   ([script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md),
-   [model asset list](model-asset-list.md)).
-2. **Bind.** `0x002E28E0` binds the entry to an actor that has a presentation context: it takes a reference on the
-   entry and creates the actor's render record through `0x0042FB80`
-   ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md#the-bind-what-binding-a-model-to-an-actor-does)).
-3. **Allocation.** `0x004279B0` clears a free record, puts it on the pending list and initialises it; with all 160
-   records in use, or a record with the same key already there, the request is refused
-   ([character render records](character-render-records.md#allocation)).
-4. **Promotion.** At the end of the field frame (`0x0042ED60`) the promoter `0x00428710` binds the model's resources,
-   takes a shadow entry when the shadow code allows one, and moves the record to the active list
-   ([character render records](character-render-records.md#promotion-retirement-and-clearing)).
-5. **Skeleton.** The record's skeleton entry is acquired from the skeleton bank, and its bones are built from the
-   model's `@FTR` node table
-   ([skeleton entries and bones](skeleton-entries-and-bones.md), [model files](model-files-cm-ca.md)).
-6. **Attachment.** A child record, such as a weapon or a ride, asks for a tie to a parent slot; the next request
-   service resolves the slot against the parent's skeleton and ties the child to that bone
-   ([character render records](character-render-records.md#attaching-a-record-the-pending-tie-and-the-slot-table)).
-7. **Per frame.** The dirty-word walk and the transform commit run each frame, and the record's presentation
-   entries run its track states ([character render records](character-render-records.md#the-dirty-words),
-   [presentation entries](presentation-entries.md#the-per-entry-update),
-   [character render object](character-render-object.md)).
-8. **Removal.** `0x00429140` marks a record for removal, or unlinks and clears one still pending at once; the next
-   active sweep detaches its children, frees its shadow entries and tears it down (`0x004200A0`)
-   ([character render records](character-render-records.md#promotion-retirement-and-clearing)).
-9. **Clear.** `0x0041F730` zeroes the record and writes its defaults, ready for the next allocation
-   ([character render records](character-render-records.md#promotion-retirement-and-clearing)).
-10. **Unload.** When the binding entry has no reference or holder left and is not pinned, it is retired, and the
-    per-frame binding update frees it with the model's buffer ([script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md)).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | **Binding.** A script names the model by its bound id, and the binding entry loads the model's file ([script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md), [model asset list](model-asset-list.md)). |   |
+| 2 | **Bind.** `0x002E28E0` binds the entry to an actor that has a presentation context: it takes a reference on the entry and creates the actor's render record through `0x0042FB80` ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md#the-bind-what-binding-a-model-to-an-actor-does)). |   |
+| 3 | **Allocation.** `0x004279B0` clears a free record, puts it on the pending list and initialises it; with all 160 records in use, or a record with the same key already there, the request is refused ([character render records](character-render-records.md#allocation)). |   |
+| 4 | **Promotion.** At the end of the field frame the promoter `0x00428710` binds the model's resources, takes a shadow entry when the shadow code allows one, and moves the record to the active list ([character render records](character-render-records.md#promotion-retirement-and-clearing)). | `0x0042ED60` |
+| 5 | **Skeleton.** The record's skeleton entry is acquired from the skeleton bank, and its bones are built from the model's `@FTR` node table ([skeleton entries and bones](skeleton-entries-and-bones.md), [model files](model-files-cm-ca.md)). |   |
+| 6 | **Attachment.** A child record, such as a weapon or a ride, asks for a tie to a parent slot; the next request service resolves the slot against the parent's skeleton and ties the child to that bone ([character render records](character-render-records.md#attaching-a-record-the-pending-tie-and-the-slot-table)). |   |
+| 7 | **Per frame.** The dirty-word walk and the transform commit run each frame, and the record's presentation entries run its track states ([character render records](character-render-records.md#the-dirty-words), [presentation entries](presentation-entries.md#the-per-entry-update), [character render object](character-render-object.md)). |   |
+| 8 | **Removal.** `0x00429140` marks a record for removal, or unlinks and clears one still pending at once; the next active sweep detaches its children, frees its shadow entries and tears it down ([character render records](character-render-records.md#promotion-retirement-and-clearing)). | `0x004200A0` |
+| 9 | **Clear.** `0x0041F730` zeroes the record and writes its defaults, ready for the next allocation ([character render records](character-render-records.md#promotion-retirement-and-clearing)). |   |
+| 10 | **Unload.** When the binding entry has no reference or holder left and is not pinned, it is retired, and the per-frame binding update frees it with the model's buffer ([script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md)). |   |
 
 ## Across transitions
 
@@ -65,38 +48,46 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [native commands](../Scripts-And-Script-Commands/native-commands.md), [debug menu](../Engine-Core/debug-menu.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x002E28E0` | calls | `0x0025AB30`, `0x00263FF0` |
-| `0x002E28E0` | is called by | `0x0037B4D0` |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Movement and pathfinding**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E28E0` | calls | `0x00269E60`, `0x00269F90`, `0x0026A370`, `0x0026AF40`, `0x0026B2E0`, `0x002E3500`, `0x002E5C90`, `0x002E5E10`, `0x002E8E20`, `0x002EC3F0` |
-| `0x0042FB80` | is called by | `0x002E28E0`, `0x002E3110` |
+| [`0x002E28E0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) | calls | [`0x0025AB30`](../Characters-And-Objects/actor-model-rebuild.md) (on actor model rebuild)<br>[`0x00263FF0`](effect-anchors-and-targets.md) (on effect anchors and targets) |
+| [`0x002E28E0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) | is called by | [`0x0037B4D0`](../Characters-And-Objects/actor-record-fields.md) (on actor record fields) |
 
 **Movement and pathfinding** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md), [script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md))
 
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x002E28E0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) | calls | [`0x00269E60`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x00269F90`](../Movement-And-Pathfinding/facing-and-steering.md) (on facing and steering)<br>[`0x0026A370`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x0026AF40`](model-lifecycle.md)<br>[`0x0026B2E0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x002E3500`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x002E5C90`](../Movement-And-Pathfinding/facing-and-steering.md) (on facing and steering)<br>[`0x002E5E10`](../Movement-And-Pathfinding/facing-and-steering.md) (on facing and steering)<br>[`0x002E8E20`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x002EC3F0`](../Movement-And-Pathfinding/facing-and-steering.md) (on facing and steering) |
+| [`0x0042FB80`](character-render-records.md) (on character render records) | is called by | [`0x002E28E0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x002E3110`](../Characters-And-Objects/actor-model-rebuild.md) (on actor model rebuild) |
+
 **Game files and data tables** (explained on [resource sections](../Game-Files-And-Data-Tables/resource-sections.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00429140` | calls | `0x002ED570` |
-| `0x0042FB80` | calls | `0x00409090` |
+| [`0x00429140`](character-render-records.md) (on character render records) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x0042FB80`](character-render-records.md) (on character render records) | calls | [`0x00409090`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings) |
 
 **Scripts and script commands** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [native commands](../Scripts-And-Script-Commands/native-commands.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E28E0` | is called by | `0x003409F0`, `0x00342640`, `0x00355210`, `0x0050D810` |
+| [`0x002E28E0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) | is called by | [`0x003409F0`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00342640`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings)<br>[`0x00355210`](../World-Areas-And-Travel/treasure-chests.md) (on treasure chests)<br>[`0x0050D810`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings) |
 
 **World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E28E0` | calls | `0x00377C20` |
+| [`0x002E28E0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) | calls | [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
 
 </details>
 

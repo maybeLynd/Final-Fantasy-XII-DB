@@ -41,23 +41,49 @@ execute(command, device), and no destructor; the two reset commands are three-sl
 | `GiResetDefaultRenderTargetObj` | `0x009033F0` | `0x001F1AC0` | heap 0x20 | destructor | `0x001F3210` |
 
 `0x0016D6A0` is a bare `ret`, so prepare does nothing for eleven classes and `GiEndEff` does nothing
-at all. Most factories also store the new command in a per-class global (`0x02EAF900`, `0x02EAF910`,
-`0x02EAF920`, `0x02EB37F8`, `0x02EB3828`, `0x02EB3838`, `0x02EB3848`, `0x02EB3858`, `0x01F82EB8`, `0x01F83078`,
-`0x01F83088`). `GiVmax`, the command that runs VIF1 packets at emit time, is on
+at all. Most factories also store the new command in a per-class global¹. `GiVmax`, the command that runs VIF1 packets at emit time, is on
 [PS2 VIF1 and VU1 emulation](../Engine-Core/ps2-vif1-vu1-emulation.md), and `GiBeginEff`'s
 camera snapshot on [Phyre frame](../PhyreEngine/the-frame.md).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02EAF900`, `0x02EAF910`, `0x02EAF920`, `0x02EB37F8`, `0x02EB3828`, `0x02EB3838`, `0x02EB3848`, `0x02EB3858`, `0x01F82EB8`, `0x01F83078`, `0x01F83088` |
+
+</details>
+
 ### The command arena
 
-The installer `0x0017D4C0` creates the arena object at `0x01F7F4C0` (`0x0017D501`): `0x001A14E0` gives it
+The installer `0x0017D4C0` creates the arena object at `0x01F7F4C0`¹: `0x001A14E0` gives it
 a 32 MB block (`0x2000000`, through `0x001A1420`), with base `+0x00`, cursor `+0x08`, end `+0x10` and
 a mark `+0x18`.
 
-`0x001A1470(arena, size)` rounds the request to `r = (size & ~0xF) + 0x10` (`0x001A147E`-`0x001A1489`); it returns
-the cursor and advances it while the request fits below the end, `[arena + 0x08] + r < [arena + 0x10]`
-(`0x001A149F`), and otherwise restarts at the base and returns the base, leaving the cursor at the base plus the
-rounded size, `[arena + 0x08] = [arena] + r` (`0x001A14A5`–`0x001A14BD`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017D501` |
+
+</details>
+
+`0x001A1470(arena, size)` rounds the request to `r = (size & ~0xF) + 0x10`¹; it returns
+the cursor and advances it while the request fits below the end, `[arena + 0x08] + r < [arena + 0x10]`², and otherwise restarts at the base and returns the base, leaving the cursor at the base plus the
+rounded size, `[arena + 0x08] = [arena] + r`³.
 It never answers 0. Commands are never freed one by one.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A147E`-`0x001A1489` |
+| ² | `0x001A149F` |
+| ³ | `0x001A14A5`-`0x001A14BD` |
+
+</details>
 
 `0x0019C5A0(size)` and `0x0020E680()`, which asks for 16 bytes, are bare `0x001A1470` calls on
 `[0x01F7F4C0]` for the command factories.
@@ -78,24 +104,61 @@ the whole path for a command filed at once:
 4. for a mode other than 3, enqueue a `GiResetRenderTargetObj` (`0x0018BF00` at `0x001FBE02`).
 
 Before step 1 it opens a render-list scene when no scene is open (`0x00182560` returns `0x01F7F538`, 0) and the
-mode is not 3: it files `BegineScene0Obj` (`0x00182250`) and sets `0x01F83064` to 1, recording that it opened the
-scene (`0x001FBD9B`). At the end it keeps the mode at `0x01F83068` and sets `0x01F83060` to 1 (`0x001FBE07`,
-`0x001FBE0D`); `0x001FBE20` and `0x001FBE30` return them.
+mode is not 3: it files `BegineScene0Obj`¹ and sets `0x01F83064` to 1, recording that it opened the
+scene². At the end it keeps the mode at `0x01F83068` and sets `0x01F83060` to 1³; `0x001FBE20` and `0x001FBE30` return them.
 
-`GiEndScene`'s factory `0x001FBE50` clears `0x01F83060` (`0x001FBEC6`). When `0x01F83064` is set and the mode is not
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00182250` |
+| ² | `0x001FBD9B` |
+| ³ | `0x001FBE07`, `0x001FBE0D` |
+
+</details>
+
+`GiEndScene`'s factory `0x001FBE50` clears `0x01F83060`¹. When `0x01F83064` is set and the mode is not
 3, it clears that too and closes the scene with `EndSceneObj` (`0x001FBED7`, tail jump to `0x001823B0`;
 [render command list](render-command-list.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001FBEC6` |
+
+</details>
+
 `0x0020E630(node, mode)` turns the mode into a class key, 0 → 8, 1 → `0x20`, 2 → `0x40`, 3 → `0x20`
 and anything else → 0, and hands `node[0]` and the key through `0x001FB810` to `0x001A17F0` on the
-handler object `[0x01F7F4D0]`. That object is created by the installer (`0x0017D547`) with
+handler object `[0x01F7F4D0]`. That object is created by the installer¹ with
 `0x001A17D0`, which stores the vtable `0x008F5F28` and points its handler field `+0x08` at itself, so
 the call reaches slot 0 of `0x008F5F28`: `0x001F48B0`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017D547` |
+
+</details>
+
 `0x001F48B0(handler, command, key)` takes 0x28 bytes from the command arena, builds a
 `GeometryInstanceOrderedObject` (`0x001F4950`: vtable `0x00903920`, command at `+0x18`, key at
-`+0x20`) and appends it to the ordered command list (`0x001F4940`). The render body's walk later
+`+0x20`) and appends it to the ordered command list¹. The render body's walk later
 calls its slot 1, `0x001F49F0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001F4940` |
+
+</details>
 
 `0x001FB830(node)` is the path for a command that must run at once: `0x001A1850([0x01F7F4D0],
 node[0])` takes 0x28 bytes from the arena, wraps the command in a `GeometryInstanceOrderedObject`
@@ -110,33 +173,80 @@ and by `0x00188DA0`, builds a `GiSetRtForRtSampling` command of 0x18 bytes (`a` 
 
 Per-draw producers file records instead, in the [draw list](effect-drawing.md#the-draw-list). The list is created by `0x003A3670`: `0x190000` bytes
 (40,960 records of 0x28) at `0x02F8F2F8`, a `0xC8028`-byte sort area at `0x02F8F300`, and a packet
-arena whose base is `0x02F8F308` (`0x003A36BD`); the count is the `u16` at `0x02F8F2C6`.
+arena whose base is `0x02F8F308`¹; the count is the `u16` at `0x02F8F2C6`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A36BD` |
+
+</details>
 
 `0x0024D540`, called by the draw `0x0022B0B0` at `0x0022B191`, runs the drain `0x003A3740` and then the
 rewind `0x003A3A00`; the VFX layer passes `0x00259030` and `0x002590F0` call the drain alone. The drain sorts the records
-with the merge sort `0x003A3A50` on the `u32` at `+0x08` (`0x003A3B53`, `0x003A3C83`) and walks them:
+with the merge sort `0x003A3A50` on the `u32` at `+0x08`¹ and walks them:
 
-1. when `0x00180040()` is 1, the record's flag bit `0x2` is set, `0x0022BE90()` is 1 and `0x0022BEA0()` is 0,
-   it inserts the post-processing block once (`0x003A3823`–`0x003A38AA`);
-2. flag bit `0x1` calls `0x003A2BD0` first;
-3. a non-null function at `+0x10` is called with `+0x00` (`0x003A38C6`);
-4. otherwise, when `+0x00` is null: flag bit `0x4` clear files the node `+0x18` with `0x0020E630(node, 2)`
-   (`0x003A38DE`); flag bit `0x4` set appends the node to the array `0x02AEF420` (count `0x02AEF414`).
+<details>
+<summary>Where in the code</summary>
 
-An empty list skips all of this (`0x003A374E`). Before the walk the drain copies bit `0x1` of `0x02F8F310` into bit
-`0x4` and opens with `0x00862FD0` and `0x00863010(2)` while bit `0x1` is set, else `0x00862E50` and `0x00862E90(2)`
-(`0x003A3765`-`0x003A37A4`). After it, it stores 0 as the count, the drained count at `0x02F8F2CC` and its peak at
-`0x02F8F2CE`, the packet bytes used at `0x02F8F2E8` and their peak at `0x02F8F2F0` (`0x003A3929`-`0x003A3973`). Every exit
-clears bit `0x1` of `0x02F8F310` (`0x003A397F`).
+| | Code |
+|---|---|
+| ¹ | `0x003A3B53`, `0x003A3C83` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | when `0x00180040()` is 1, the record's flag bit `0x2` is set, `0x0022BE90()` is 1 and `0x0022BEA0()` is 0, it inserts the post-processing block once; | `0x003A3823`-`0x003A38AA` |
+| 2 | flag bit `0x1` calls `0x003A2BD0` first; |   |
+| 3 | a non-null function at `+0x10` is called with `+0x00`; | `0x003A38C6` |
+| 4 | otherwise, when `+0x00` is null: flag bit `0x4` clear files the node `+0x18` with `0x0020E630(node, 2)`; flag bit `0x4` set appends the node to the array `0x02AEF420` (count `0x02AEF414`). | `0x003A38DE` |
+
+An empty list skips all of this¹. Before the walk the drain copies bit `0x1` of `0x02F8F310` into bit
+`0x4` and opens with `0x00862FD0` and `0x00863010(2)` while bit `0x1` is set, else `0x00862E50` and `0x00862E90(2)`². After it, it stores 0 as the count, the drained count at `0x02F8F2CC` and its peak at
+`0x02F8F2CE`, the packet bytes used at `0x02F8F2E8` and their peak at `0x02F8F2F0`³. Every exit
+clears bit `0x1` of `0x02F8F310`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A374E` |
+| ² | `0x003A3765`-`0x003A37A4` |
+| ³ | `0x003A3929`-`0x003A3973` |
+| ⁴ | `0x003A397F` |
+
+</details>
 
 The post-processing insert files `0x00865320` and `0x00865360(2)`, closes the bracket, runs `0x00182970([0x01FD4A6C])`
 inside the marker `post-processing render`, and reopens the bracket with the saved pass id and the layer with bit
 `0x10` set. It then opens with the same pair again, files `0x00865130` and `0x00865170(2)` and sets `0x02064AE0` through
-`0x0022BFA0(1)`; `0x0022BEA0` returns that word, so later entries skip the insert (`0x003A3823`-`0x003A38AA`).
+`0x0022BFA0(1)`; `0x0022BEA0` returns that word, so later entries skip the insert¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A3823`-`0x003A38AA` |
+
+</details>
 
 `0x003A3A00` sets the count to 0, rewinds the packet arena `0x02F8F2D0` to `0x02F8F308` and clears bit `0x1`
 of `0x02F8F310`. It also sets the arena end `0x02F8F2D8` to the base plus `[0x02F8F2C0]` / 16 × 16 (the division
-signed, toward zero) and zeroes the byte `0x02F8F2C5` (`0x003A3A07`-`0x003A3A42`).
+signed, toward zero) and zeroes the byte `0x02F8F2C5`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A3A07`-`0x003A3A42` |
+
+</details>
 
 ### From the ordered list to the render thread
 
@@ -145,18 +255,47 @@ signed, toward zero) and zeroes the byte `0x02F8F2C5` (`0x003A3A07`-`0x003A3A42`
 (`+0x50` base, `+0x58` end, `+0x60` cursor, restarting at the base when full), records the pending
 range at `+0x88`/`+0x90` (the block at `+0x88` only while `+0x88` is 0, the block's end at `+0x90`),
 and writes opcode `0x2F` at `+0x00`, the function at `+0x08` and the
-command at `+0x10` (`0x005FEAEE`–`0x005FEAF8`), and returns 0.
+command at `+0x10`¹, and returns 0.
 
-A null function returns 1 at once (`0x005FEA6D`). Before reserving, `0x005FEA50` asks `0x00600B30(device, 0, 1)`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005FEAEE`-`0x005FEAF8` |
+
+</details>
+
+A null function returns 1 at once¹. Before reserving, `0x005FEA50` asks `0x00600B30(device, 0, 1)`
 whether one more block fits in the ring without running past its limit `+0x68`; when it does not, it first
 calls the device's slot 2 (`+0x10`, `0x005FEA95`), which is `0x00600D20`, the posting routine below, in the
 tables `0x00D498F0` and `0x00D49930`. When even a block at the base would pass the end, it leaves the cursor at
-the base, writes nothing and returns `0xD` (`0x005FEB11`).
+the base, writes nothing and returns `0xD`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005FEA6D` |
+| ² | `0x005FEB11` |
+
+</details>
 
 Three of the callbacks below are posted the same way, through `0x005FEA50`. Each is called with the three-qword
 frame the decoder `0x0060A410` builds (below), not the block; the frame's `+0x10` holds a copy of the value
-posted, loaded from the block's `+0x10` (`0x0060A8CA`). `0x00185A90` instead adds `0x0017ECC0` and its pointer to
-one of four vectors at `+0xC38`, and `0x00186230` calls it with the pointer itself (`0x00186277`):
+posted, loaded from the block's `+0x10`¹. `0x00185A90` instead adds `0x0017ECC0` and its pointer to
+one of four vectors at `+0xC38`, and `0x00186230` calls it with the pointer itself²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0060A8CA` |
+| ² | `0x00186277` |
+
+</details>
 
 | Callback | Posted by | Does |
 |---|---|---|
@@ -168,51 +307,132 @@ one of four vectors at `+0xC38`, and `0x00186230` calls it with the pointer itse
 `0x00607D20` builds a 256-slot block queue with semaphores and per-slot events and starts the thread
 `0x005FE1F0` (`CreateThread` through `0x005CD1E0`, 64 KB stack); its name string is
 `PhyreEngineRenderThread`. `0x005FE1F0` jumps to `0x006106A0`, which waits on each slot's event in
-turn (`0x00610724`), runs `0x0060A410(queue, start, end)` on the slot's range (`0x00610753`) and releases
-the completion semaphore (`0x00610774`).
+turn¹, runs `0x0060A410(queue, start, end)` on the slot's range² and releases
+the completion semaphore³.
 
-`0x00607D20(queue)` returns 0 at once when the state `+0x28` is already 1 (`0x00607D36`). Otherwise it zeroes
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00610724` |
+| ² | `0x00610753` |
+| ³ | `0x00610774` |
+
+</details>
+
+`0x00607D20(queue)` returns 0 at once when the state `+0x28` is already 1¹. Otherwise it zeroes
 `+0x298C`, creates the semaphore `+0x2840` with 256 of 256 counts and `+0x2850` with 1 of 1
 (`CreateSemaphoreA` through `0x005CD160`), and the 256 slot events as manual-reset events that start
 unsignalled (`CreateEventA` through `0x005CD0E0`, `0x00607D90`-`0x00607DA6`).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00607D36` |
+
+</details>
+
 It sets the byte after each handle
 to 1 (`+0x2848`, `+0x2858`, each event's `+0x08`, the thread's `+0x18`). A non-zero answer from any of these
-calls is returned as it is; when the thread starts, the state becomes 1 and the call returns 0 (`0x00607DFC`).
+calls is returned as it is; when the thread starts, the state becomes 1 and the call returns 0¹.
 
-The thread `0x006106A0(queue)` first stores `GetCurrentThreadId()` at `+0x298C` (`0x005CC920`, `0x006106CC`)
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00607DFC` |
+
+</details>
+
+The thread `0x006106A0(queue)` first stores `GetCurrentThreadId()` at `+0x298C`¹
 and calls `0x005C5230(queue + 0x20, "RenderThread", 0x2000)` and `0x005C5230(0x01F2ED08, queue + 0x20)`;
 `0x005C5230` is `xor eax, eax; ret`, so the two calls change nothing. Each
-pass takes the slot that the index `+0x2830` names, `queue + 0x30 + 0x28 × i` for `i = [queue + 0x2830]`
-(`0x00610700`-`0x00610716`), and moves the index on modulo 256, `i + 1 == 0x100 ? 0 : i + 1` (`0x0061070A`-`0x0061071E`),
+pass takes the slot that the index `+0x2830` names, `queue + 0x30 + 0x28 × i` for `i = [queue + 0x2830]`², and moves the index on modulo 256, `i + 1 == 0x100 ? 0 : i + 1`³,
 waits on the slot's event (`WaitForSingleObject` through `0x005CD840`) and reads the state `+0x28`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CC920`, `0x006106CC` |
+| ² | `0x00610700`-`0x00610716` |
+| ³ | `0x0061070A`-`0x0061071E` |
+
+</details>
 
 - state 1: resets the event (`ResetEvent` through `0x005CD500`), runs `0x0060A410`, clears the slot's start,
   end and `+0x20`, and releases the semaphore that `+0x20` pointed at when it was set
-  (`0x0061073F`-`0x00610774`);
+ ¹;
 - state 0: resets the event and logs `Render thread running without initialize() being called.`
-  (`0x005CDAA0`, `0x00610790`);
-- state 2: ends the loop after this pass (`0x0061073A`); any other state does neither.
+ ²;
+- state 2: ends the loop after this pass³; any other state does neither.
 
-Every pass then releases one count of `+0x2840` (`0x006107A3`), the handle `0x00600D20` waits on. After
-the loop it makes the second call again and returns 0 (`0x006107BC`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0061073F`-`0x00610774` |
+| ² | `0x005CDAA0`, `0x00610790` |
+| ³ | `0x0061073A` |
+
+</details>
+
+Every pass then releases one count of `+0x2840`¹, the handle `0x00600D20` waits on. After
+the loop it makes the second call again and returns 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006107A3` |
+| ² | `0x006107BC` |
+
+</details>
 
 The queue is the static `0x02CE4720`, which `0x005FD0E0` returns, building it on first use (a guarded
 static) with `0x005DC200`: a `PProcessorProfileTimelineCpu` at `+0x20`, the state `+0x28`, 256 slots
 of 0x28 bytes from `+0x30`, two handles at `+0x2840` and `+0x2850`, and four 0x10-byte records from
 `+0x2860`. It registers `0x008ADDE0` with `atexit`.
 
-`PRenderer`'s slot 2, `0x00600D20`, posts a range to the queue. It waits on the handle at `+0x2840` (`0x005CD840`),
+`PRenderer`'s slot 2, `0x00600D20`, posts a range to the queue. It waits on the handle at `+0x2840`¹,
 fills the slot that the index `0x02CE6F54` (`+0x2834`) names with the start and end of the pending blocks (renderer
-`+0x88`, `+0x90`) at slot `+0x00` and `+0x08` and the renderer's `+0x78` at `+0x20` (`0x00600DC5`-`0x00600DD9`),
-moves the index on modulo 256, `[0x02CE6F54] = i + 1 == 0x100 ? 0 : i + 1` (`0x00600DDE`-`0x00600DEB`), and signals the
-slot's event at `+0x10` (`0x005CD5E0`).
+`+0x88`, `+0x90`) at slot `+0x00` and `+0x08` and the renderer's `+0x78` at `+0x20`²,
+moves the index on modulo 256, `[0x02CE6F54] = i + 1 == 0x100 ? 0 : i + 1`³, and signals the
+slot's event at `+0x10`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CD840` |
+| ² | `0x00600DC5`-`0x00600DD9` |
+| ³ | `0x00600DDE`-`0x00600DEB` |
+| ⁴ | `0x005CD5E0` |
+
+</details>
 
 At exit `0x008ADDE0` stops the thread through
 `0x00610420`, which, while the state is 1, sets it to 2, calls `0x00609720(queue, 0, 0, 0)`, waits for
-the thread (`0x005CD330`) and closes the 256 slot events and the two handles (`0x005CD700`,
+the thread¹ and closes the 256 slot events and the two handles (`0x005CD700`,
 `CloseHandle`). It then closes the handles of the four records, clears `0x02CE6FC0` and runs the
 members' destructors.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CD330` |
+
+</details>
 
 `0x0060A410` fetches the render context once (`0x0060A46A`: `0x00624670` → `0x005FD050`, which returns the
 static `0x02CC0410`, constructing it with `0x00615840` on first use, a guarded static, and registering
@@ -220,30 +440,69 @@ static `0x02CC0410`, constructing it with `0x00615840` on first use, a guarded s
 a time.
 
 For opcode `0x2F` `0x0060A410` builds a three-qword frame on its stack: the context, the address of a local and
-the qword at the block's `+0x10`, the posted value itself (`0x0060A8CA`), and calls `block+0x08` with it
-(`0x0060A8BD`–`0x0060A8D6`). `0x001F4A10` takes the device as
-`context + 0x18C0` (`0x00624660`) and tail-jumps the command's slot 1 with it (`0x001F4A35`).
+the qword at the block's `+0x10`, the posted value itself¹, and calls `block+0x08` with it². `0x001F4A10` takes the device as
+`context + 0x18C0`³ and tail-jumps the command's slot 1 with it⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0060A8CA` |
+| ² | `0x0060A8BD`-`0x0060A8D6` |
+| ³ | `0x00624660` |
+| ⁴ | `0x001F4A35` |
+
+</details>
 
 Before the walk `0x0060A410` also lays a 0x50-byte record on its stack with `0x00615D50(record,
 context)`: the context at `+0x00`, the rest zero.
 
 ### The device
 
-`0x00615840` builds the device inside the context: `0x006C8750(context + 0x18C0)` (`0x00615B57`) stores
+`0x00615840` builds the device inside the context: `0x006C8750(context + 0x18C0)`¹ stores
 the `PrimitiveRendererD3D11` vtable `0x00D86960` at `+0x00` and its second vtable `0x00D86AD0` at
 `+0x08`. The first table has 45 slots (`0x006CA760` to `0x006CB540`, followed by the locator
 `0x01D38180` at `0x00D86AC8`); the second has one slot, `0x006C88A0`.
 
-`0x006C8750` also zeroes 23 fields from `+0x90` to `+0x200` (`0x006C8775`-`0x006C8803`, `0x006C8852`, `0x006C8859`),
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00615B57` |
+
+</details>
+
+`0x006C8750` also zeroes 23 fields from `+0x90` to `+0x200`¹,
 sets the four state descriptions at `+0x208`, `+0x398`, `+0x528` and `+0x6B8` to their start values with
 `0x00615ED0` (changed mask `+0x00` 0, fill mode `+0x04` 3), and builds the record at `+0x880` with
 `0x006DA450(record, device + 0x08)`, which stores that pointer at `+0x880` and zeroes the dword `+0x888` and
-the word `+0x8890`. It returns the device (`0x006C884F`).
+the word `+0x8890`. It returns the device².
 
-Slots `+0xB8` and `+0xE8` (`0x006CAC90`, `0x006CAFB0`) step to the state description at `+0x208` and edit
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006C8775`-`0x006C8803`, `0x006C8852`, `0x006C8859` |
+| ² | `0x006C884F` |
+
+</details>
+
+Slots `+0xB8` and `+0xE8`¹ step to the state description at `+0x208` and edit
 it. Its dword `+0x00` marks what changed, with the bit meanings of the `0x0061DE20` mask below (`0x1`
 rasterizer, `0x4` depth-stencil); a `D3D11_RASTERIZER_DESC` follows at `+0x04` and a
 `D3D11_DEPTH_STENCIL_DESC` at `+0x2C`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006CAC90`, `0x006CAFB0` |
+
+</details>
 
 - slot `+0xB8`, `0x00629560(desc, wire)`, sets the fill mode: 2 (wireframe) when `wire` is 1, else 3
   (solid), and sets bit `0x1`;
@@ -283,10 +542,19 @@ At the end of the build `0x006C9CD0` calls `0x006C9C40`, which resets the pendin
 
 ### Batching draws
 
-Slot `+0x020` (`0x006C8C50`) and slot `+0x028` (`0x006C8BF0`, with an index list) first run `0x006CB2A0`.
+Slot `+0x020`¹ and slot `+0x028` (`0x006C8BF0`, with an index list) first run `0x006CB2A0`.
 While the committed block `+0x398` is in use (its first dword non-zero) it flushes through
 `0x006C88B0` and commits. Otherwise it flushes through slot `+0x128` and commits only when a pending
 field differs from its committed copy, among them:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006C8C50` |
+
+</details>
 
 - the `0x80` bytes at `+0x10` against `+0x20868`, and `+0x1A0` to `+0x1B8` against `+0x1C0` to
   `+0x1D8`;
@@ -305,15 +573,35 @@ pair `+0x190`/`+0x198` from `+0x110` to `+0x148` by the flag `+0x851` and the wo
 3. it appends the indices at `+0x10`, each raised by the batch's vertex count, and the `0x30`-byte
    vertices at `+0x8020`, and adds `n` to the count `+0x8010`.
 
-The scene end `0x006C9B20` reads that count (`0x006DA6D0`); when it is non-zero it maps a vertex buffer
+The scene end `0x006C9B20` reads that count¹; when it is non-zero it maps a vertex buffer
 (slots `+0x148`, `+0x150`) and, with indices, an index buffer (`+0x158`, `+0x160`), copies the batch
-into them, draws (`0x006C8CA0`) and empties the batcher (`0x006DA850`).
+into them, draws² and empties the batcher³.
 
-Slot `+0x060` (`0x006CADB0`) stores its byte at `+0x855`, or the byte `0x01F2EEB8` instead while
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006DA6D0` |
+| ² | `0x006C8CA0` |
+| ³ | `0x006DA850` |
+
+</details>
+
+Slot `+0x060`¹ stores its byte at `+0x855`, or the byte `0x01F2EEB8` instead while
 `0x02E5BDDC` is set. The render-thread callback `0x001F3A50` calls it for the
 `MonsterGallerySoftParticleEnable` command, whose execute `0x001F32E0` passes
 `0x001F3A50` and the command to `0x005FEA50`, and `0x001F3A50` calls the slot with the command's byte
 `+0x18`, set by the builder `0x0018CCF0` through the constructor `0x001F1B50`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006CADB0` |
+
+</details>
 
 The `Gi*` execute bodies call twenty of the slots:
 
@@ -345,10 +633,21 @@ Every drawing command (`GiColorRect`, `GiNormal`, `GiPolyGT4T`, `GiPrim`, `GiScr
   write below the table. The GS replay looks textures up in this table.
 - `GiPolyGT4T`'s prepare `0x00864CA0` reads its `+0xF8`; when the id `& 0x3FFF` is `0xE00` it uses
   `0xDFF` while `0x02EC3ECC` is 0. It stores the first qword of the record `0x002D7FA0(id)` returns
-  (from the 0x30-byte table `0x0209E6B0`) at `+0xD0` (`0x00864CD3`-`0x00864CD6`), and the first qword of the
-  record `0x002D7EE0(+0xF8)` returns at `+0xD8` (`0x00864CE9`-`0x00864CEC`) and that record's dword `+8` at `+0xE0`.
-- `GiZNormalOnOff` (`0x00864D70`) calls `0x00210560` with 0 or `0x70000` by its `+0x08` and sets device
+  (from the 0x30-byte table `0x0209E6B0`) at `+0xD0`¹, and the first qword of the
+  record `0x002D7EE0(+0xF8)` returns at `+0xD8`² and that record's dword `+8` at `+0xE0`.
+- `GiZNormalOnOff`³ calls `0x00210560` with 0 or `0x70000` by its `+0x08` and sets device
   state through `+0xA0`, `+0x88` and `+0xA8`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00864CD3`-`0x00864CD6` |
+| ² | `0x00864CE9`-`0x00864CEC` |
+| ³ | `0x00864D70` |
+
+</details>
 
 - `0x0039D410(value)` takes the `GiZNormalOnOff` command from its factory `0x00864E00`, stores the
   value at its `+0x08`, and files it with `0x00864E60(2)`, which runs `0x001FB840` and
@@ -358,30 +657,69 @@ Every drawing command (`GiColorRect`, `GiNormal`, `GiPolyGT4T`, `GiPrim`, `GiScr
   colours at `+0x18`, with `n` at `+0x60`. It returns the command plus 8, the address of the
   first array pointer.
 
-- The reset commands' executes (`0x001F3210`, `0x001F3260`) never read the command: they call
+- The reset commands' executes¹ never read the command: they call
   `0x00188730` (default target) or `0x001893C0` on the render manager, closing and reopening the
   context's bit `0x1` bracket (`0x00609710`, `0x00600A60(ctx, 3)`, `0x005FEFD0(ctx, 0)`) around it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001F3210`, `0x001F3260` |
+
+</details>
 
 ### Render blocks
 
 The device's ring holds 0x80-byte blocks, `u32` opcode at `+0x00` and payload from `+0x08`.
 `0x0060A410` handles opcodes `0x01`–`0x06` and `0x2F` itself (byte table `0x0060AAD8`, arm table
-`0x0060AAB8`) and passes `0x07`–`0x2E` to `0x00607410` (`0x0060A9D4`), whose table `0x006078E4` gives 39
+`0x0060AAB8`) and passes `0x07`–`0x2E` to `0x00607410`¹, whose table `0x006078E4` gives 39
 of them their own arm; `0x12` takes the table's exit.
 
-Opcodes `0x05` and `0x06` (`0x0060A8DE`, `0x0060A958`) copy 32 bytes of their payload and call
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0060A9D4` |
+
+</details>
+
+Opcodes `0x05` and `0x06`¹ copy 32 bytes of their payload and call
 `0x00608F20(state, ...)`. It fills the next of two `0x70`-byte records at `0x02CBC590`, picked by the index
-`0x02CB7FC8`, which it then sets to `(index - 1) & 1`, so the two records alternate (`0x00608F38`-`0x00608F57`).
+`0x02CB7FC8`, which it then sets to `(index - 1) & 1`, so the two records alternate².
 Against the record bound before it sets bits `0x1`-`0x8` for each of `+0x38`, `+0x40`, `+0x48` and `+0x50`
-that differs, or all four when `+0x28` differs (`0x00608FBF`-`0x00609010`), and passes that mask on
-(`0x0060B860`, `0x0060EC80`).
+that differs, or all four when `+0x28` differs³, and passes that mask on⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0060A8DE`, `0x0060A958` |
+| ² | `0x00608F38`-`0x00608F57` |
+| ³ | `0x00608FBF`-`0x00609010` |
+| ⁴ | `0x0060B860`, `0x0060EC80` |
+
+</details>
 
 Nine level-2 arms decode their payload and then call a body that does nothing: `0x1D`, `0x1E`,
 `0x1F`, `0x25`, `0x27`, `0x28`, `0x29` and `0x2B` call `0x0060D760` (`mov eax, 0x17; ret`), and
-`0x2E` calls `0x005C5230`. Opcode `0x25` is produced: `0x0060E810` writes it (`0x0060E8A8`) with a flag
-byte at `+0x08` and floats at `+0x0C` and `+0x10`, called from the map draw `0x001E2AF0` (`0x001E3091`,
-`0x001E3CD1`) and the character draw `0x001F5D70` (`0x001F5E9B`, `0x001F62CC`), and the arm `0x006076E9`
+`0x2E` calls `0x005C5230`. Opcode `0x25` is produced: `0x0060E810` writes it¹ with a flag
+byte at `+0x08` and floats at `+0x0C` and `+0x10`, called from the map draw `0x001E2AF0`² and the character draw `0x001F5D70`³, and the arm `0x006076E9`
 discards them.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0060E8A8` |
+| ² | `0x001E3091`, `0x001E3CD1` |
+| ³ | `0x001F5E9B`, `0x001F62CC` |
+
+</details>
 
 Producers read for this page: `0x2F` `0x005FEA50`, `0x16` `0x005FEFD0`, `0x18` `0x00600A60`, `0x01` and
 `0x02` `0x0060C020`, `0x03` `0x006007B0`, `0x25` `0x0060E810`. The full opcode table is
@@ -410,7 +748,16 @@ A target view is 24 bytes: `0x005DC190(view, target, flag)` stores the target at
 `+0x18`–`+0x24` with `0x0060D190` (block `0x09`, kept at `+0x7C0`–`+0x7CC` by `0x00628220`) when its
 byte `+0x29` is set, and the depth value 1.0 with `0x0060D270` (block `0x0C`, kept at `+0x7D0` by
 `0x00628300`) when its byte `+0x28` is set. It then opens the bracket with `0x005FEFD0`, passing bit `0x1`
-for colour and bit `0x2` for depth, and restores the default target (`0x00188730`).
+for colour and bit `0x2` for depth, and restores the default target¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00188730` |
+
+</details>
 
 `0x00609A30(ctx)` posts block `0x2E`, which has no payload and whose arm does nothing. Its only
 producer is `0x001D5620(marker, ctx)`, which posts it when byte `+0x08` of the marker object is set;
@@ -418,11 +765,24 @@ producer is `0x001D5620(marker, ctx)`, which posts it when byte `+0x08` of the m
 
 `0x001889C0(manager)` binds what `0x00188730` binds in its ordinary arm, without the second colour
 target: the manager's target `+0xB08 + 8 × [+0xC30]` to slot 0, nothing to slots 1 and 7, the
-depth target `+0xB58`, and a viewport (`0x0060F6B0`) of the manager's size, or 3,840 × 2,160 while
+depth target `+0xB58`, and a viewport¹ of the manager's size, or 3,840 × 2,160 while
 `+0xDB8` is set or `+0xC30` is 3. The post-process build `0x0018EEE0` calls it at `0x0018F3C3`, and before that at
-`0x0018F338` when byte `+0x98` of the command it builds is set (`0x0018F323`-`0x0018F32A`).
+`0x0018F338` when byte `+0x98` of the command it builds is set².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0060F6B0` |
+| ² | `0x0018F323`-`0x0018F32A` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Command arena ([`0x01F7F4C0`]), `0x20` bytes:
 
@@ -488,7 +848,12 @@ that `0x0060A410` handles, 2 for the 40 it passes to `0x00607410`.
 | `payload_read` | the block offsets the level-2 arm reads, in the order it reads them, with the payload from `+0x8`; empty on the 7 level-1 rows and on `0x12`, `0x19`, `0x1A` and `0x2E` |
 | `render_emitters` | the functions that write the opcode into a block they take straight from the device ring (ring at context `+0x50` to `+0x58`, cursor `+0x60`), separated by commas; empty on 30 rows |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | What |
 |---|---|
@@ -497,6 +862,8 @@ that `0x0060A410` handles, 2 for the 40 it passes to `0x00607410`.
 | `0x02F8F2F8`, `0x02F8F2C6` | the draw list and its count |
 | `0x02CC0410` | the render context; the device at `0x02CC1CD0` |
 | `0x01F83580` | the texture table `GiSetTexture` fills |
+
+</details>
 
 ## Modding notes
 

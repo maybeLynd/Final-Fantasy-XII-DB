@@ -20,8 +20,17 @@ the next sync point.
 
 A playing music is a `Magi::Music` (vtable `0x01CB5E38`), one of eight `0x8D8`-byte objects
 ([Sound driver objects](sound-driver-objects.md)). It keeps its bank's music header at `+0x18` and a state at `+0xC8`:
-1 once built, 2 while it waits for its data, and 7 when it has ended and the update pass frees it (`0x007B7D60`). Its
+1 once built, 2 while it waits for its data, and 7 when it has ended and the update pass frees it¹. Its
 sample rate is at `+0x64C` and its current section at `+0x638`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B7D60` |
+
+</details>
 
 ### The music header
 
@@ -42,8 +51,18 @@ run-time type and built by one accessor:
 
 A header's offset table starts at its `u16` `+0x02`, moved on by `(nameLength + 0x10) & 0xF0`: the name length is
 byte `+0x48` of a music header from version 9 and byte `+0x04` of a section header from version 8. `0x007CFFB0` and `0x007CFFE0` build and drop the `MabFile` wrapper. `0x007C30C0` refuses a music whose
-section or mode headers are older than the driver reads, a section header version below 7 (`0x007C30FF`) or a
-mode header version below 2 (`0x007C3193`) ("Music::CheckVersion failed"); every higher version is accepted.
+section or mode headers are older than the driver reads, a section header version below 7¹ or a
+mode header version below 2² ("Music::CheckVersion failed"); every higher version is accepted.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007C30FF` |
+| ² | `0x007C3193` |
+
+</details>
 
 ### Commands
 
@@ -74,12 +93,11 @@ the play position in seconds, or prints "Music::GetPlaySec Failed to get current
 
 `0x007CAB80(music, section, seconds)` is how a music changes version:
 
-1. It takes the current section's sync type, byte `+0x20` (from version 5; earlier ones add 3 when it is 2 or more),
-   and finds the next sync point at least `seconds + 0.2` ahead (`0x007C1830`, "Music::SyncTo failed to CalcSampleDelay"
-   when there is no sync point).
-2. It finds the same bar, beat and tick in the target section (`0x007C65C0`), moving it back so the change starts
-   `seconds` before that point.
-3. It starts the transition into the target section over `seconds` (`0x007C4790`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It takes the current section's sync type, byte `+0x20` (from version 5; earlier ones add 3 when it is 2 or more), and finds the next sync point at least `seconds + 0.2` ahead (`0x007C1830`, "Music::SyncTo failed to CalcSampleDelay" when there is no sync point). |   |
+| 2 | It finds the same bar, beat and tick in the target section, moving it back so the change starts `seconds` before that point. | `0x007C65C0` |
+| 3 | It starts the transition into the target section over `seconds`. | `0x007C4790` |
 
 `0x00222AD0` calls it with the new music version as the section and 4.0 seconds ([Music](music.md)); `0x002228A0` passes
 the version as the section to `0x1C` and `0x23`.
@@ -88,34 +106,53 @@ the version as the section to `0x1C` and `0x23`.
 
 `0x007B7460` creates a music in two steps:
 
-1. `0x007C05C0` builds the object: one voice slot in each of the two layer sets (`+0x674`, `+0x6F8`), every volume,
-   pitch and layer ramp at 1.0, a cleared meter cursor at `+0x604` (`0x007F31C0`, `0x007F3930`), and an eight-node
-   timing-callback list at `+0x8A8` (`0x007C6EA0`, whose `0x30`-byte nodes `0x007C8830` links into a free chain).
-2. `0x007C6FB0` stores the creation values: the bank handles `+0x20` and `+0x28`, the header `+0x18`, the music number
-   `+0xB0` and the callback object `+0xB8` with its argument `+0xC0`. It reads the sample rate into `+0x64C`, refuses
-   a header older than the driver reads (`0x007C30C0`) and sets state 1.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x007C05C0` builds the object: one voice slot in each of the two layer sets (`+0x674`, `+0x6F8`), every volume, pitch and layer ramp at 1.0, a cleared meter cursor at `+0x604`, and an eight-node timing-callback list at `+0x8A8` (`0x007C6EA0`, whose `0x30`-byte nodes `0x007C8830` links into a free chain). | `0x007F31C0`, `0x007F3930` |
+| 2 | `0x007C6FB0` stores the creation values: the bank handles `+0x20` and `+0x28`, the header `+0x18`, the music number `+0xB0` and the callback object `+0xB8` with its argument `+0xC0`. It reads the sample rate into `+0x64C`, refuses a header older than the driver reads and sets state 1. | `0x007C30C0` |
 
 `0x007C6770` gives the rate: header `+0x44` from version 6, otherwise section 0's `+0x18`. `0x007C6340` gives the music's
-bank from its handle `+0x28` (`0x007B2470`). When the update pass frees an ended music, `0x007C5980` gives back its stream
-claims (`0x007E4720`, `0x007E4F70`), releases the bank (`0x007D0A00`), calls slot 2 of the callback object and frees the
+bank from its handle `+0x28`¹. When the update pass frees an ended music, `0x007C5980` gives back its stream
+claims², releases the bank³, calls slot 2 of the callback object and frees the
 callback nodes; `0x007C1100` then puts back the base vtables (slot 0, `0x007C15D0`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B2470` |
+| ² | `0x007E4720`, `0x007E4F70` |
+| ³ | `0x007D0A00` |
+
+</details>
 
 ### Loading
 
 While the music waits for its data (states 2 to 4), `0x007CAF70` ("Music::TryLoad") runs on each pass:
 
-1. It waits until the bank is a streaming bank that is ready (slots 1 and 4).
-2. Without a header yet, it checks the `.mab` (`0x007D07A0`, "Music::TryLoad failed, mab file is not valid!") and the
-   music number against the bank's count ("music number is out of range"), takes the header (`0x007D0550`) and the
-   rate, and checks the version.
-3. Unless a start method is pending at `+0x8A0`, it finds the start point: seconds `+0xD8` for seek type 0, or a
-   timing for seek type 1 (`0x007C67B0`).
-4. It claims a stream for every layer of the current section (`0x007C3570`), or prints "Music::TryLoad failed, can't
-   find unused audio stream!" and fails, which ends the music.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It waits until the bank is a streaming bank that is ready (slots 1 and 4). |   |
+| 2 | Without a header yet, it checks the `.mab` (`0x007D07A0`, "Music::TryLoad failed, mab file is not valid!") and the music number against the bank's count ("music number is out of range"), takes the header and the rate, and checks the version. | `0x007D0550` |
+| 3 | Unless a start method is pending at `+0x8A0`, it finds the start point: seconds `+0xD8` for seek type 0, or a timing for seek type 1. | `0x007C67B0` |
+| 4 | It claims a stream for every layer of the current section, or prints "Music::TryLoad failed, can't find unused audio stream!" and fails, which ends the music. | `0x007C3570` |
 
-`0x007C3570(music, section, seconds)` finds the stream already holding each layer's material (`0x007E3040`) or claims a
-free one (`0x007E3270`) and requests the material from `seconds` minus the layer's start (`0x007E4310`). `0x007C67B0` gives
-the seek timing in seconds (`0x007C65C0`), or prints "GetSeekTimingSec seekType_ is not SEEK_TYPE_TIMING.".
+`0x007C3570(music, section, seconds)` finds the stream already holding each layer's material¹ or claims a
+free one² and requests the material from `seconds` minus the layer's start³. `0x007C67B0` gives
+the seek timing in seconds⁴, or prints "GetSeekTimingSec seekType_ is not SEEK_TYPE_TIMING.".
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007E3040` |
+| ² | `0x007E3270` |
+| ³ | `0x007E4310` |
+| ⁴ | `0x007C65C0` |
+
+</details>
 
 ### Layer voices
 
@@ -139,24 +176,30 @@ A voice reports 2 while it plays or is paused. Two more functions keep a looping
 - `0x007CC880` ("Music::UpdateNonLoopVoiceReplay"): when the section loops on itself, it rebuilds every non-looping layer
   (layer `+0x06` 0) whose voice has ended and starts it at the loop position matching the current sample.
 - `0x007CCDD0` ("Music::UpdateRemainingLoopCount"): while a change point is set (`+0x67C`), it turns off looping
-  (`0x007EA920`) on each looping layer voice whose material ends within that distance plus 128 frames.
+ ¹ on each looping layer voice whose material ends within that distance plus 128 frames.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007EA920` |
+
+</details>
 
 ### The update pass
 
 The music pass `0x007B7D60` runs `0x007CB330(music, seconds)` on every music once per driver pass:
 
-1. Below state 2, and in state 7, it does nothing.
-2. In states 2 to 4 it tries to load (`0x007CAF70`; a failure sets state 7) and runs a pending start method
-   (`0x007CA7C0`), until the current section's streams are full (`0x007C2280`); it then starts playing (`0x007C36C0`).
-3. In state 5 it runs `0x007CC880`, `0x007CDC20`, `0x007CD350` and `0x007CD920` in that order, then `0x007CC4A0`, `0x007CBC40` and,
-   during a reverb end, `0x007CD000`. With no next section (`+0x63C`) and no meter end (`+0x608`), it instead ends the
-   music once no layer voice reports 2 (`0x007C7090`).
-4. In state 6 it waits for the music's volume (slot 26) to reach 0, then stops every voice and sets state 7.
-5. With pausing on (`+0xCC` 1), it pauses every voice once the pause ramp `+0x1D0` reaches 0 and sets `+0xCC` to 2;
-   while paused it stops here, except in state 6.
-6. During a mode change it moves the mode ramp `+0x710` on by the seconds times the music's pitch, at least 0.1, and
-   blends the two modes (`0x007CC110`).
-7. It reads the music's zero-one curves and moves its ramps on, handing each changed value to the voices (below).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Below state 2, and in state 7, it does nothing. |   |
+| 2 | In states 2 to 4 it tries to load (`0x007CAF70`; a failure sets state 7) and runs a pending start method, until the current section's streams are full; it then starts playing. | `0x007CA7C0`<br>`0x007C2280`<br>`0x007C36C0` |
+| 3 | In state 5 it runs `0x007CC880`, `0x007CDC20`, `0x007CD350` and `0x007CD920` in that order, then `0x007CC4A0`, `0x007CBC40` and, during a reverb end, `0x007CD000`. With no next section (`+0x63C`) and no meter end (`+0x608`), it instead ends the music once no layer voice reports 2. | `0x007C7090` |
+| 4 | In state 6 it waits for the music's volume (slot 26) to reach 0, then stops every voice and sets state 7. |   |
+| 5 | With pausing on (`+0xCC` 1), it pauses every voice once the pause ramp `+0x1D0` reaches 0 and sets `+0xCC` to 2; while paused it stops here, except in state 6. |   |
+| 6 | During a mode change it moves the mode ramp `+0x710` on by the seconds times the music's pitch, at least 0.1, and blends the two modes. | `0x007CC110` |
+| 7 | It reads the music's zero-one curves and moves its ramps on, handing each changed value to the voices (below). |   |
 
 `0x007C5650(music, seconds, curve)`, slot 2 through `0x007CA9E0`, stops a music: it ramps the volume `+0x190` to 0 and sets
 state 6, or with no time, or while paused, stops every voice and sets state 7.
@@ -176,27 +219,54 @@ The pass recomputes a value only when its ramp moved, and hands it to every voic
 | panning | slot 28 | `0x007CCC30` | `0x007EDE90` |
 | sends | the end methods of type 3, or the send ramp `+0x840` during a reverb end | `0x007CD110` | `0x007EE470` |
 
-Granular pitch and the pitch shifter switch apply only when header byte `+0x0A` has bit `0x1` set (`0x007CBF70`,
-`0x007CBDD0`), and the ramp `+0x340` joins the pitch only then (`0x007C6370`); no shipped music sets it
+Granular pitch and the pitch shifter switch apply only when header byte `+0x0A` has bit `0x1` set¹, and the ramp `+0x340` joins the pitch only then²; no shipped music sets it
 ([Audio effects](audio-effects.md)). `0x007CE730` gives each layer voice the volume times its own factor: `0x007C5E60` for the current set (layer
 ramp `+0x3A0 + 0x30 x i`, factor `+0x5BC + 4 x i`, and the blend of the two modes' layer values) and `0x007C6A80` for
 the other set.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007CBF70`, `0x007CBDD0` |
+| ² | `0x007C6370` |
+
+</details>
 
 Each set also has a volume-automation ramp, `+0x290` and `+0x2D0`. During a transition `0x007CE730` multiplies the
 entering set by the fade-in `+0x210` and the leaving set by the fade-out `+0x250`, each times its section's volume
 (section `+0x30` from version 8, `+0x40` from version 6, otherwise 1.0).
 
 `0x007C5C90` gives a zero-one curve its input by name: "zeroone_slot0" and "zeroone_slot1" read the ramps at `+0xF0` and
-`+0x120`, and any other name an external parameter (`0x007B0E90`). The curve's kind byte `+0x06` decides where the mapped
-value goes (`0x007CFD00`): 1 the volume factor `+0x5B8`, 2 the pitch factor `+0x5E8`, 4 a layer's factor
+`+0x120`, and any other name an external parameter¹. The curve's kind byte `+0x06` decides where the mapped
+value goes²: 1 the volume factor `+0x5B8`, 2 the pitch factor `+0x5E8`, 4 a layer's factor
 `+0x5BC + 4 x layer`, and 5 the low-pass factor `+0x5F0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B0E90` |
+| ² | `0x007CFD00` |
+
+</details>
 
 ### Modes
 
 A mode gives eight layer volumes and four more values. `0x007C8A00` fills a `0x34`-byte block from a mode record: `+0x10`,
 `+0x14` (a pitch, as `2^(x/12)` when bit `0x2` of byte `+0x01` is set), `+0x18`, `+0x1C` (1.0 for a version-0 record),
-two flags from bits `0x1` and `0x4` of byte `+0x01`, and the eight layer values from the record's `ModeParam` for the section
-(`0x007D04C0`). `0x007C6E10` resets a block: layer 0 at 1.0, the other layers 0, the four values 1.0 and both flags clear.
+two flags from bits `0x1` and `0x4` of byte `+0x01`, and the eight layer values from the record's `ModeParam` for the section¹. `0x007C6E10` resets a block: layer 0 at 1.0, the other layers 0, the four values 1.0 and both flags clear.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D04C0` |
+
+</details>
 
 `0x007C8E60` fills a block between two modes at a blend `t`, and `0x007C8CE0` blends two blocks the same way. Values mix
 linearly; a flag the target sets is on once `t` is above 0, a flag the target clears is off once `t` reaches 1, and
@@ -231,8 +301,17 @@ volume automation (`0x007C6D00`, ramp `+0x2D0`).
 
 `0x007C7CD0` finishes a section change: the current section becomes the previous (`+0x640`), the next becomes current,
 and the next is the request's target or the new section's own next (byte `+0x22`). It then reloads the meter and the
-bar, beat and tick (`0x007C5FE0`, `0x007C6090`, `0x007F3800`), moves a running mode change's end point (`0x007CA440`,
-`0x007C7BE0`), and tells the callback object (slot 3).
+bar, beat and tick¹, moves a running mode change's end point², and tells the callback object (slot 3).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007C5FE0`, `0x007C6090`, `0x007F3800` |
+| ² | `0x007CA440`, `0x007C7BE0` |
+
+</details>
 
 ### Requests
 
@@ -245,15 +324,34 @@ timing `+0x6AA`):
 - Sync types 12 to 19 are the section's custom points 0 to 7: "Invalid custom point index = %d, numCustomPoints = %d"
   or "There is no custom points! index = %d" refuse a missing one.
 - A request for the current section with no timing cancels a pending change; during state 5 it stops the entering
-  set, turns looping back on for the current layers (`0x007EA920`) and returns to state 3.
+  set, turns looping back on for the current layers¹ and returns to state 3.
 - Transition state 0 prints "Transition state is invalid!", and states 8 and 9 print "SetNextSection canceled!
   Transitioning to next music...".
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007EA920` |
+
+</details>
+
 `0x007C2A60` ("Music::CheckTransitionTime") works out how long until a request lands: the time to the next sync point of
-its type (`0x007C1830`), or to its own bar, beat and tick in the current section (`0x007C65C0`); when that has passed it
+its type¹, or to its own bar, beat and tick in the current section²; when that has passed it
 warns "Failed to sync to (%d,%d,%d)" and takes the sync point. It is at least the length of the target's transition instrument (section `+0x1C`,
 `0x007C6960`) when the request asks for one. With no time left it warns "Transition failed because there remains no time
 for transition. keep playing" and drops the request.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007C1830` |
+| ² | `0x007C65C0` |
+
+</details>
 
 `0x007C43F0(music, next)` hands over to a next music. In states 1, 3, 6 and 7 it does nothing; when the next music's streams
 are not ready it sets state 8;
@@ -262,7 +360,16 @@ failure), takes the fade values from the current section and sets state 9.
 
 ### Reverb end
 
-`0x007C4030(music, send, seconds, fade)`, from the end command (`0x007C5760`), ends a music by raising one of its sends:
+`0x007C4030(music, send, seconds, fade)`, from the end command¹, ends a music by raising one of its sends:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007C5760` |
+
+</details>
 
 1. It needs the header ("musicData_ is not streamed yet."), a send from 1 to the header's count `+0x40` ("Invalid
    sendIndex = %d") and no reverb end already running ("Already executing reverb end!").
@@ -305,21 +412,26 @@ tick = the rest
 
 `0x007CD350` ("Music::UpdateTiming") keeps the music's position on each pass:
 
-1. It keeps last pass's timings (`+0x65C`, `+0x660`) and reads the current sample `+0x664` from the current set
-   (`0x007C5AC0`). With no voice playing and no change to another section under way (transition state 5 or above), it
-   stops every voice and sets state 7.
-2. A sample below the last one means the section looped, and `0x007C7950` runs.
-3. While the sample is past the meter's end `+0x608`, it moves to the next meter (`0x007C6090`), or prints "Next meter
-   not found. currentSample = %d" when no meter is left.
-4. At the section's exit point (section `+0x0C`) with no next section, or in state 9, it sets the timing to the
-   section's end timing `+0x2C` rounded up to a bar (`0x007F2F10`). During a change to another section it waits, and
-   otherwise it logs "Music::UpdateTiming exceeded exitPoint".
-5. When the meter carries counts (`+0x61C`), it turns the sample into a bar, beat and tick at `+0x654` (`0x007F3800`),
-   with a copy at `+0x658` moved one tick on when the sample is past half a tick (`0x007F2F30`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It keeps last pass's timings (`+0x65C`, `+0x660`) and reads the current sample `+0x664` from the current set. With no voice playing and no change to another section under way (transition state 5 or above), it stops every voice and sets state 7. | `0x007C5AC0` |
+| 2 | A sample below the last one means the section looped, and `0x007C7950` runs. |   |
+| 3 | While the sample is past the meter's end `+0x608`, it moves to the next meter, or prints "Next meter not found. currentSample = %d" when no meter is left. | `0x007C6090` |
+| 4 | At the section's exit point (section `+0x0C`) with no next section, or in state 9, it sets the timing to the section's end timing `+0x2C` rounded up to a bar. During a change to another section it waits, and otherwise it logs "Music::UpdateTiming exceeded exitPoint". | `0x007F2F10` |
+| 5 | When the meter carries counts (`+0x61C`), it turns the sample into a bar, beat and tick at `+0x654`, with a copy at `+0x658` moved one tick on when the sample is past half a tick. | `0x007F3800`<br>`0x007F2F30` |
 
 `0x007C7950` handles a loop: it wraps the pending change points (`+0x67C`, the mode change's `+0x740`, the reverb end's
 `+0x87C`) into the section's loop region, finishes or re-marks a mode change, restarts the volume automation at the
-current point (`0x007C6D00`, ramp `+0x290`), counts the loop at `+0x670` and reloads the meter (`0x007C6090`).
+current point (`0x007C6D00`, ramp `+0x290`), counts the loop at `+0x670` and reloads the meter¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007C6090` |
+
+</details>
 
 | Function | Gives |
 |---|---|
@@ -338,7 +450,16 @@ callback object exists:
 - A request of kind 0 looks at the bar, beat and tick `+0x654`, kind 1 at the rounded copy `+0x658`, and only when it
   changed since the last pass.
 - A sync type of 1 to 11 fires when the timing sits on that grid (`0x007F2FA0` leaves it unchanged).
-- A sync type of 12 to 19 fires when the timing equals one of that custom point list's points (`0x007D0120`, `0x007D05D0`).
+- A sync type of 12 to 19 fires when the timing equals one of that custom point list's points¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D0120`, `0x007D05D0` |
+
+</details>
 
 A request that fires calls slot 4 of the callback object with the timing and the request's two values.
 
@@ -346,10 +467,19 @@ A request that fires calls slot 4 of the callback object with the timing and the
 
 A `Magi::Instrument` plays one instrument of a music's `inst` chunk in time with that music; the run-time type data
 names it in its list type, `FixedList<4, Magi::Instrument*>`. The shipped game never creates one: the start-up
-value that enables the instrument builder is 0 (`0x00210831`, `0x007A519B`-`0x007A51A0`), so the pool, which that
+value that enables the instrument builder is 0¹, so the pool, which that
 builder would size for 32, and its list stay empty ([Sound driver objects](sound-driver-objects.md)). The
 structure and commands below are those of this unused system. Each instrument keeps its voice at `+0x40` and a
 state at `+0x58`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00210831`, `0x007A519B`-`0x007A51A0` |
+
+</details>
 
 | Function | Does |
 |---|---|
@@ -367,8 +497,22 @@ The handovers are `0x007CF4F0` (volume, slot 26, `0x007EE500`), `0x007CF4A0` (pi
 
 ## Layouts
 
-A section's offset table follows its name. It holds the layers, then the meters (`0x007D03B0`, `0x007D0400`), then the
-custom point lists (`0x007D0120`) and, after `+0x06` more entries, the volume automation (`0x007D06B0`).
+<details>
+<summary>Show the memory layouts</summary>
+
+A section's offset table follows its name. It holds the layers, then the meters¹, then the
+custom point lists² and, after `+0x06` more entries, the volume automation³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D03B0`, `0x007D0400` |
+| ² | `0x007D0120` |
+| ³ | `0x007D06B0` |
+
+</details>
 
 | Offset | Type | Section field | Read at |
 |---|---|---|---|
@@ -411,9 +555,18 @@ A timing is `i16` bar, `i8` beat and `i8` tick (read signed, `0x007F2EAD`-`0x007
 | `+0x08` | `f32` | tempo | `0x007F3B0A` |
 | `+0x0C` | `u32` | start sample | `0x007F39E4` |
 
-A meter without flag `0x2` takes its signature from the nearest earlier meter with it (`0x007F3B4F`-`0x007F3C80`).
-A meter's end is the next meter's start, and the last one's end is section `+0x0C` and `+0x2C`
-(`0x007F3ACD`-`0x007F3AE9`).
+A meter without flag `0x2` takes its signature from the nearest earlier meter with it¹.
+A meter's end is the next meter's start, and the last one's end is section `+0x0C` and `+0x2C`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007F3B4F`-`0x007F3C80` |
+| ² | `0x007F3ACD`-`0x007F3AE9` |
+
+</details>
 
 ### Samples and time
 
@@ -429,11 +582,25 @@ samples per bar = ticksPerBar * (60 / tempo) * (1 / ticksPerBeat) * rate    0x00
 - A material loop belongs to the voice. A layer with `+0x06` 1 plays its material with the loop flag, and the feed
   wraps over the material's `+0x0C` to `+0x10` ([Sound engine](sound-engine.md)).
 - A section loop belongs to the music. When `+0x22` is the section's own index, `0x007C5AC0` brings the position
-  back into `+0x10` to `+0x14` for a layer with flag 0 (`0x007C5B86`-`0x007C5C1D`), and `0x007CC880` restarts it.
+  back into `+0x10` to `+0x14` for a layer with flag 0¹, and `0x007CC880` restarts it.
 - A request moves between sections. It comes through `0x007C23C0` and lands at a sync point, not at a loop bound
   (Requests above).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007C5B86`-`0x007C5C1D` |
+
+</details>
+
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Over the 116 `.mab` banks, each with one music:
 
@@ -493,6 +660,8 @@ start's sample in 290 of them, and one tick earlier in the other 4.
 | meters: `start_bar`, `start_beat`, `start_tick`, `end_bar`, `end_beat`, `end_tick` | the timings as above |
 | meters: `tempo`, `ticks_per_beat`, `ticks_per_bar`, `meter_source` | `+0x08`, the signature, and the meter it comes from |
 | meters: `samples_per_tick`, `samples_per_beat`, `samples_per_bar` | the formulas above, in whole samples |
+
+</details>
 
 ## Modding notes
 

@@ -26,15 +26,24 @@ header, its version 0 and version 1 offset tables and the section search).
 A character render record is bound to its model by `0x0041FCF0`, which passes the model's bank index
 (record `+0x408`) to `0x0041F340`. That routine:
 
-1. finds the `@FTR` entry by tag and the record's name (`0x00409660`), sizes the skeleton
-   (`0x003712E0`) and builds it in a new [skeleton entry](skeleton-entries-and-bones.md) at root `+0xD98` (`0x0046E4D0` → `0x00372820`);
-2. makes a render model instance in the table at root `+0xDA0` with `0x004780C0`, which calls `0x00504F00`, and keeps
-   the row's index in the record's word `+0x90`;
-3. when the model's bank entry has an effect ticket, makes the record's effect context from it
-   (`0x003B3550`, kept at record `+0x288` and row `+0x240`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | finds the `@FTR` entry by tag and the record's name, sizes the skeleton and builds it in a new [skeleton entry](skeleton-entries-and-bones.md) at root `+0xD98` (`0x0046E4D0` → `0x00372820`); | `0x00409660`<br>`0x003712E0` |
+| 2 | makes a render model instance in the table at root `+0xDA0` with `0x004780C0`, which calls `0x00504F00`, and keeps the row's index in the record's word `+0x90`; |   |
+| 3 | when the model's bank entry has an effect ticket, makes the record's effect context from it (`0x003B3550`, kept at record `+0x288` and row `+0x240`). |   |
 
-`0x00420480` then points record `+0x400` at the `@FCP` payload (`0x004205E6`) and stores the `@FOR` scale
-at record `+0x26C` (`0x0042061B`).
+`0x00420480` then points record `+0x400` at the `@FCP` payload¹ and stores the `@FOR` scale
+at record `+0x26C`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004205E6` |
+| ² | `0x0042061B` |
+
+</details>
 
 Binding a character to its model takes three things from the `.cm`: the `@FTR` entry becomes the character's skeleton,
 a draw instance is made for the model, and when the model carries an effect, an effect context is made for it. The
@@ -68,14 +77,36 @@ Every entry starts with the same `0x30`-byte header the section search compares.
 ### The model row
 
 `0x00504F00` fills a `0x260`-byte render model instance of the root's `+0xDA0` table. It stores the container at
-`+0x30`, the skeleton entry `0x0041F340` passes (root `+0xD98`) at `+0x38`, the render record's `+0x18` at `+0x40`
-(`0x00504F2D`-`0x00504F41`) and the low byte of its tenth argument at `+0xBB` (`0x00505052`). It finds the model's bank
-entry with `0x00409F50(container, id)` (`0x00504F47`), runs `0x00504940` after the offsets (`0x00505026`) and sets bits
-`0x3` of the flags `+0x08` (`0x0050512D`).
+`+0x30`, the skeleton entry `0x0041F340` passes (root `+0xD98`) at `+0x38`, the render record's `+0x18` at `+0x40`¹ and the low byte of its tenth argument at `+0xBB`². It finds the model's bank
+entry with `0x00409F50(container, id)`³, runs `0x00504940` after the offsets⁴ and sets bits
+`0x3` of the flags `+0x08`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00504F2D`-`0x00504F41` |
+| ² | `0x00505052` |
+| ³ | `0x00504F47` |
+| ⁴ | `0x00505026` |
+| ⁵ | `0x0050512D` |
+
+</details>
 
 It copies the 32-byte model name to
-`+0x0C`, binds the container section at `+0x1F0` and the `@FEF` section at `+0x228` (`0x00504E70`), and
-stores each entry's offset from the container, or −1 when the entry is absent (`0x00409A30`):
+`+0x0C`, binds the container section at `+0x1F0` and the `@FEF` section at `+0x228`¹, and
+stores each entry's offset from the container, or −1 when the entry is absent²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00504E70` |
+| ² | `0x00409A30` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -131,21 +162,39 @@ payload version that may answer, `DD` the slot in the default table and `FF` the
 - `0x004FE2F0(payload, id)` reads an integer. Mode 1 (`0x2…`) reads dword `FF` with the same fallbacks,
   defaults from `0x01F266B0`. Mode 3 (`0x6…`) reads byte `SS & 3` of dword `FF` of section 9. The id
   `0x40000000` returns payload byte `+0x01`. Any other mode returns −1.
-- Mode 3 also returns default dword `DD` of `0x01F266B0` for no payload (`0x004FE37E`), for `VV` above the
-  version byte (`0x004FE38D`) and for an absent section 9 (`0x004FE397`). The id `0x40000000` is tested
-  before the mode (`0x004FE2F6`), and its byte is read with no test for a null payload (`0x004FE2FE`).
+- Mode 3 also returns default dword `DD` of `0x01F266B0` for no payload¹, for `VV` above the
+  version byte² and for an absent section 9³. The id `0x40000000` is tested
+  before the mode⁴, and its byte is read with no test for a null payload⁵.
 - `0x003E6150(id, property)` takes a render id and a property id. It returns 0 for a model without `@FCP`
   (`0x002EDBD0` of the id gives no payload, `0x003E616A`).
-- Otherwise it calls the float getter (`0x003E61AA`) and multiplies the result, `v * [record + 0x26C]` (`0x003E62E1`),
+- Otherwise it calls the float getter⁶ and multiplies the result, `v * [record + 0x26C]`⁷,
   by the scale `+0x26C` of the id's render record for a fixed list of section 1 and section 9 ids, or
-  divides by it for `0x9001E1F`, `v / [record + 0x26C]` (`0x003E62F4`), with `v = 0x004FE270(payload, property)`.
-  The render record is `[0x022C6F28] + 0x740 * id` (`0x003E618A`-`0x003E6191`).
-- The ids it multiplies (`0x003E61AF`-`0x003E62E1`): `0x1002143` and `0x1002244` of section 1; of section 9
+  divides by it for `0x9001E1F`, `v / [record + 0x26C]`⁸, with `v = 0x004FE270(payload, property)`.
+  The render record is `[0x022C6F28] + 0x740 * id`⁹.
+- The ids it multiplies¹⁰: `0x1002143` and `0x1002244` of section 1; of section 9
   `0x9000000`, `0x9000101`, `0x9000202`, `0x9000505`, `0x9000606`, `0x9000707`, `0x9000808`, `0x9000B0C`,
   `0x9000C0D`, `0x9000D0E`, `0x9000E0F`, `0x9000F10` and `0x9042A2E`.
 - Also of section 9: `0x9001011`, `0x9001112`, `0x9001213`, `0x9001314`, `0x9001415`, `0x9001516`, `0x9001617`,
   `0x9001718`, `0x9001819`, `0x900191A`, `0x9001A1B`, `0x9001B1C`, `0x9001C1D` and `0x9001D1E`. Every other id
   is returned as the getter gives it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004FE37E` |
+| ² | `0x004FE38D` |
+| ³ | `0x004FE397` |
+| ⁴ | `0x004FE2F6` |
+| ⁵ | `0x004FE2FE` |
+| ⁶ | `0x003E61AA` |
+| ⁷ | `0x003E62E1` |
+| ⁸ | `0x003E62F4` |
+| ⁹ | `0x003E618A`-`0x003E6191` |
+| ¹⁰ | `0x003E61AF`-`0x003E62E1` |
+
+</details>
 
 Small readers take values straight from the record's `@FCP` payload `+0x400`, scaling sizes by the
 record's per-axis scale (`+0x260`–`+0x268` × `+0x160`–`+0x168` × `+0x26C`):
@@ -158,9 +207,19 @@ record's per-axis scale (`+0x260`–`+0x268` × `+0x160`–`+0x168` × `+0x26C`)
   queries `0x003A4290` and `0x003A56F0` call `0x003E5130` and `0x003E4F50`.
 - `0x003E5C90` returns section 9's float `+0xA8` (0.10472 without), `0x003E5EA0` its `+0xA4` (0 without),
   and `0x003E4F50` places section 9's point `+0xD0`–`+0xD8` by the record's matrix `+0x180` and adds the
-  focus point `+0x670`. `0x003E56E0` reads property `0x62060A2D` (`0x004FE2F0`).
+  focus point `+0x670`. `0x003E56E0` reads property `0x62060A2D`¹.
 - `0x003E6D40(record)` returns the arena address of the block at `+0x2FC` plus the offset `+0x300`, or 0
-  when the offset is 0 (`0x003AB7F0`).
+  when the offset is 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004FE2F0` |
+| ² | `0x003AB7F0` |
+
+</details>
 
 ### @FCP values per model
 
@@ -175,8 +234,17 @@ site does to it. The same property read through `0x004FE270` is not scaled: `0x0
 `0x003204E0(unit, index, out)` reads a property chosen by index, 0 to `0x21`. The id comes from the table at
 `0x01EED320` and the handling from the byte table at `0x003205F0`: a float through `0x002ECE50`, the same float
 multiplied or divided by the third output of `0x00265240`, or an integer through `0x002ECE80`. Index `0x1C` holds
-`0x40000000`, the one id `0x004FE2F0` answers with payload byte `+0x01` (`0x004FE2F6`-`0x004FE2FE`). `0x003045CA` calls
+`0x40000000`, the one id `0x004FE2F0` answers with payload byte `+0x01`¹. `0x003045CA` calls
 it with index 1, and `0x00320DC8` with an index from the table at `0x01EED288`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004FE2F6`-`0x004FE2FE` |
+
+</details>
 
 Town selections are made in code. Where `0x00377C20` is non-zero, `0x002E2E9D`-`0x002E2EA7` read `0x01002D4F` and
 `0x01002E50`; elsewhere `0x002E2EAE`-`0x002E2EB8` read `0x01002143` and `0x01002244`. `0x002E9681`-`0x002E968D` makes
@@ -184,13 +252,31 @@ the same choice between `0x01002D4F` and `0x01002143`. The town pair's default i
 store a value of 0 or more for both, so the default is not used by a shipped model.
 
 Section 5 is in 7 models. `0x003E7210(record, palette, sub)` takes list `palette` and passes each named entry to
-`0x00504D30`, or only entry `sub` when `sub` is not `0xFFFF` (`0x003E7235`). Presentation command `0x16` sets the
+`0x00504D30`, or only entry `sub` when `sub` is not `0xFFFF`¹. Presentation command `0x16` sets the
 palette, the choice between this call and `0x003E69E0`, and `sub`, then calls `0x0042B550`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E7235` |
+
+</details>
+
 Section 6 holds 16 points in every model; 5,837 of the 17,056 name a bone and the rest hold `0xFFFF`. `0x003E5B30`
-takes id `0x30B` from the active presentation entry or the rig and not from this section (`0x003E5B43`), as
+takes id `0x30B` from the active presentation entry or the rig and not from this section¹, as
 [skeleton entries and bones](skeleton-entries-and-bones.md) describes. The stored point `0x0B` names a bone in 719
 models.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E5B43` |
+
+</details>
 
 Section 10 is 48 bytes in all 613 models that have it. `0x003E6E40` is the path to it, called at `0x003AF3B0`:
 `0x003AF340` stores float `+0x08` divided by byte `+0x10` in the second-pool entry's `+0x18`
@@ -215,39 +301,112 @@ record +0x04  u32  flags; the u16 pool indices follow at +0x08 (+0x0A when bit 0
 ```
 
 With flag bits `0x200100` both set, `0x00409300(entry, record, out)` sets `out` `+0x30`-`+0x38` to 0 and `+0x3C` to
-1.0 (`0x0040936A`-`0x0040938F`), steps past one index for bit `0x80000000`, the sixteen matrix indices and one index
+1.0¹, steps past one index for bit `0x80000000`, the sixteen matrix indices and one index
 for bit `0x400000`, then takes one pool dword for each of bits `0x800000`, `0x1000000` and `0x2000000` as the
-node's translation x, y and z (`0x00409392`-`0x004093D4`).
+node's translation x, y and z².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0040936A`-`0x0040938F` |
+| ² | `0x00409392`-`0x004093D4` |
+
+</details>
 
 It takes one pool float for each of bits `0x4000000`, `0x8000000` and `0x10000000` as three angles in radians, 0.0
-for a clear bit, that `0x0046D560` turns into the rotation (`0x004093D7`-`0x0040941B`); otherwise the node starts at the
-identity (`0x00409428`).
+for a clear bit, that `0x0046D560` turns into the rotation¹; otherwise the node starts at the
+identity².
 
-The pool is the entry plus its `+0x34`, added in 32 bits (`0x00409347`), and the indices start at record `+0x08`, or
-`+0x0A` with bit `0x40000000` (`0x00409340`-`0x00409352`). All of this is for a kind-2 entry. For kind 0 `0x00409300`
-builds the rotation from the record floats `+0x34`, `+0x38` and `+0x3C` (`0x0046D380`) and the translation from
-`+0x28`-`+0x30` (`0x0046D920`), for kind 1 from `+0x94`-`+0x9C` and `+0x88`-`+0x90` (`0x0046D380`, `0x0046D8E0`), and
-for any other kind it writes nothing (`0x0040931F`-`0x00409336`, `0x0040942F`-`0x004094A6`).
+<details>
+<summary>Where in the code</summary>
 
-For kind 1 the three translation floats are copied to the stack first (`0x00409452`-`0x0040946E`), and `0x0046D8E0`
-also stores `out` `+0x3C`: the product of the 1.0 that `0x0046D380` left there (`0x0046D550`) and the stack dword
-after those three floats (`0x0046D90B`-`0x0046D910`), which `0x00409300` never writes. `0x0046D920`, the kind-0 call,
+| | Code |
+|---|---|
+| ¹ | `0x004093D7`-`0x0040941B` |
+| ² | `0x00409428` |
+
+</details>
+
+The pool is the entry plus its `+0x34`, added in 32 bits¹, and the indices start at record `+0x08`, or
+`+0x0A` with bit `0x40000000`². All of this is for a kind-2 entry. For kind 0 `0x00409300`
+builds the rotation from the record floats `+0x34`, `+0x38` and `+0x3C`³ and the translation from
+`+0x28`-`+0x30`⁴, for kind 1 from `+0x94`-`+0x9C` and `+0x88`-`+0x90`⁵, and
+for any other kind it writes nothing⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00409347` |
+| ² | `0x00409340`-`0x00409352` |
+| ³ | `0x0046D380` |
+| ⁴ | `0x0046D920` |
+| ⁵ | `0x0046D380`, `0x0046D8E0` |
+| ⁶ | `0x0040931F`-`0x00409336`, `0x0040942F`-`0x004094A6` |
+
+</details>
+
+For kind 1 the three translation floats are copied to the stack first¹, and `0x0046D8E0`
+also stores `out` `+0x3C`: the product of the 1.0 that `0x0046D380` left there² and the stack dword
+after those three floats³, which `0x00409300` never writes. `0x0046D920`, the kind-0 call,
 leaves `+0x3C` at 1.0.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00409452`-`0x0040946E` |
+| ² | `0x0046D550` |
+| ³ | `0x0046D90B`-`0x0046D910` |
+
+</details>
+
 Bit `0x200000` makes `0x004094D0` copy sixteen pool dwords as a 4×4 matrix to node `+0x150`, starting after the
-index for bit `0x80000000` (`0x004094F5`-`0x0040958D`), and the identity goes there without it (`0x0046D110`,
-`0x00409593`). Bits `0x80000000` and `0x400000` each skip one index. `0x00409250` returns the key from bits `0xFFF`,
+index for bit `0x80000000`¹, and the identity goes there without it². Bits `0x80000000` and `0x400000` each skip one index. `0x00409250` returns the key from bits `0xFFF`,
 or the u16 at `+0x08` when bit `0x40000000` is set.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004094F5`-`0x0040958D` |
+| ² | `0x0046D110`, `0x00409593` |
+
+</details>
 
 `0x0046D560(m, x, y, z)` takes each sine from the 32,768-entry table `0x01F004E0` at
 `trunc(a / 2π × 32768) & 0x7FFF` (2π the float `0x01CEBC78`, 32768 the float `0x00D10820`) and each cosine at
-`(0x2000 − trunc(a / 2π × −32768)) & 0x7FFF` (`0x00D10828`), a quarter turn on (`0x0046D57E`-`0x0046D665`). It writes
-the rows `+0x00`, `+0x10` and `+0x20`, each with a fourth float of 0 (`0x0046D699`, `0x0046D6D1`, `0x0046D728`), and
+`(0x2000 − trunc(a / 2π × −32768)) & 0x7FFF`¹, a quarter turn on². It writes
+the rows `+0x00`, `+0x10` and `+0x20`, each with a fourth float of 0³, and
 leaves `+0x30` to `+0x3F` as they are.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00D10828` |
+| ² | `0x0046D57E`-`0x0046D665` |
+| ³ | `0x0046D699`, `0x0046D6D1`, `0x0046D728` |
+
+</details>
+
 With s and c the sine and cosine of x, y and z, row 0 is `(cy·cz, cy·sz, −sy)`, row 1
-`(sx·sy·cz − cx·sz, sx·sy·sz + cx·cz, sx·cy)` and row 2 `(cx·sy·cz + sx·sz, cx·sy·sz − sx·cz, cx·cy)`
-(`0x0046D67F`-`0x0046D71C`).
+`(sx·sy·cz − cx·sz, sx·sy·sz + cx·cz, sx·cy)` and row 2 `(cx·sy·cz + sx·sz, cx·sy·sz − sx·cz, cx·cy)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046D67F`-`0x0046D71C` |
+
+</details>
 
 `0x00409240(entry)` gives the node count (word `+0x30` for a kind-2 entry, dword `+0x0C` otherwise), `0x00409270(entry,
 n)` the address of node `n`'s record (`+0x40` table entry `>> 12`, 0 past the count or for another kind), and
@@ -317,13 +476,25 @@ page, one row each. The 1,972 palettes share 1,512 contents, and each content is
 same column as the palette table.
 
 `0x005044D0` returns a page's address (data offset + page × palette bytes), and `0x0053BE13` copies that many bytes
-unchanged. The fourth byte of a colour is its alpha. The alpha reference of a draw stops at `0x80` (`0x0053D4B0`), and
+unchanged. The fourth byte of a colour is its alpha. The alpha reference of a draw stops at `0x80`¹, and
 959,330 of the 1,377,728 colours hold `0x80` there, 58,026 hold 0 and 26,496 hold more than `0x80`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053D4B0` |
+
+</details>
 
 Two palettes hold fewer than four pages: `high/c10/c1005/hc1005_01.cm` palette 1 and `high/n11/n1164/hn1164_01.cm`
 palette 2 stop after 64 colours of page 0, where their entry ends. `0x005044D0` does not test the size.
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -441,41 +612,63 @@ not name is given by its offsets, as hex bytes.
 | `content`, `sha256` | fct-palette-contents | the number the colour rows use, and the `sha256` of the palette table |
 | `palette_bytes`, `colours`, `data_bytes`, `palettes` | fct-palette-contents | the record's palette bytes, palette bytes / 4, the bytes present in the entry, and how many of the 1,972 palettes hold this content |
 
+</details>
+
 ## Loader behaviour
 
 ### Binding a model row
 
 - `0x00504E70(sub, bank, root, tag, name)` looks the tag up in the given bank entry and, when that fails,
-  searches the bank for an entry with the tag and name (`0x00409FA0`).
+  searches the bank for an entry with the tag and name¹.
 - The first lookup matches the name too: `sub +0x10` gets the offset `0x00409A30(entry, tag, name)` and
-  word `sub +0x00` the entry's id word (`0x00504EA3`, `0x00504EAE`); a null entry gives the offset −1
-  (`0x00504E90`). On −1 the index `0x00409FA0(root, tag, name)` goes to word `+0x00` (`0x00504EC9`), and the
-  offset is looked up again in the entry `0x00409F50(root, index)` gives (`0x00504EDE`).
+  word `sub +0x00` the entry's id word²; a null entry gives the offset −1
+ ³. On −1 the index `0x00409FA0(root, tag, name)` goes to word `+0x00`⁴, and the
+  offset is looked up again in the entry `0x00409F50(root, index)` gives⁵.
 - `0x00504940` stores the container pointer at `+0x1F8` and the `@FEF` section at `+0x230`.
 - The container is `0x004096C0` of the bank entry for word `+0x1F0` with the offset `+0x200`
-  (`0x0050496E`), and it is copied to `+0x48` (`0x005049C9`). The `@FEF` section is `0x004096C0` of the same
+ ⁶, and it is copied to `+0x48`⁷. The `@FEF` section is `0x004096C0` of the same
   entry when its first word equals word `+0x228`, else of the entry `0x00409F50` gives for `+0x228`
-  (`0x00504981`, `0x00504991`), with the offset `+0x238` (`0x005049A7`).
+ ⁸, with the offset `+0x238`⁹.
 - `0x00504F00` walks the `@FOR` records for the requested key: a match is stored at `+0xB8`; otherwise
   the first record's key, or 0. The option number is kept at `+0xB9` when it is below `@FOR +0x33`,
   else 0. `+0xB3` gets the LOD distance count plus one, and the row's flags `|= 3`.
 - The `@FOR` entry is the low 32 bits of the container pointer `+0x1F8` plus the offset `+0x208`, summed in 32
-  bits, and absent for an offset of -1 (`0x00505036`-`0x00505063`). A key of `0xFF` counts as no match, and a first
-  record's key of `0xFF` gives 0 (`0x005050A2`-`0x005050C8`).
-- A negative option number also gives 0 (`0x005050EA`), and without a `@FOR` entry `+0xB3` is 1 and `+0xB9` 0
-  (`0x005050D6`, `0x0050510F`-`0x00505127`).
+  bits, and absent for an offset of -1¹⁰. A key of `0xFF` counts as no match, and a first
+  record's key of `0xFF` gives 0¹¹.
+- A negative option number also gives 0¹², and without a `@FOR` entry `+0xB3` is 1 and `+0xB9` 0
+ ¹³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00409FA0` |
+| ² | `0x00504EA3`, `0x00504EAE` |
+| ³ | `0x00504E90` |
+| ⁴ | `0x00504EC9` |
+| ⁵ | `0x00504EDE` |
+| ⁶ | `0x0050496E` |
+| ⁷ | `0x005049C9` |
+| ⁸ | `0x00504981`, `0x00504991` |
+| ⁹ | `0x005049A7` |
+| ¹⁰ | `0x00505036`-`0x00505063` |
+| ¹¹ | `0x005050A2`-`0x005050C8` |
+| ¹² | `0x005050EA` |
+| ¹³ | `0x005050D6`, `0x0050510F`-`0x00505127` |
+
+</details>
 
 ### @FCP
 
-- `0x002EDBD0(id)` takes a render id: -1 returns 0 (`0x002EDBD4`-`0x002EDBE0`), and the record is
-  `[0x022C6F28]` + id × `0x740` (`0x002EDBE6`-`0x002EDBF1`). A null record, a record whose `+0x284` is 0 and a record whose
-  word `+0x408` is `0xFFFF` return 0 and store nothing (`0x002EDBF8`-`0x002EDC1F`).
-- Otherwise it takes the container `0x00409F50` returns for word `+0x408` (`0x002EDC21`-`0x002EDC33`), looks
-  `@FCP` up in it by tag and the record's 32-byte name at `+0x3C` (`0x002EDC44`), and stores the
+- `0x002EDBD0(id)` takes a render id: -1 returns 0¹, and the record is
+  `[0x022C6F28]` + id × `0x740`². A null record, a record whose `+0x284` is 0 and a record whose
+  word `+0x408` is `0xFFFF` return 0 and store nothing³.
+- Otherwise it takes the container `0x00409F50` returns for word `+0x408`⁴, looks
+  `@FCP` up in it by tag and the record's 32-byte name at `+0x3C`⁵, and stores the
   payload (`+0x30`) at record `+0x400`, or 0 when absent; it then jumps to `0x003E55F0`, which returns
-  it (`0x002EDC71`). Nothing is checked or converted on load, and every later read goes through the getters.
-- The bank is the descriptor at `+0xD90` of the root that record `+0x10` names (`0x0020E600`,
-  `0x002EDC21`-`0x002EDC2C`), and the lookup gives `0x00409660` the tag `0x50434640`, `@FCP` (`0x002EDC3C`).
+  it⁶. Nothing is checked or converted on load, and every later read goes through the getters.
+- The bank is the descriptor at `+0xD90` of the root that record `+0x10` names⁷, and the lookup gives `0x00409660` the tag `0x50434640`, `@FCP`⁸.
 - `0x003E5AD0(record, id)` returns the bone for a special id: ids below `0x20` from section 1's table,
   `0x104`–`0x106` from `+0x3A`–`+0x3E`, `0xFFFF` otherwise.
   It also gives `0xFFFF` for a record with no `@FCP` (`+0x400` = 0, `0x003E5AD7`-`0x003E5ADA`).
@@ -487,48 +680,100 @@ not name is given by its offsets, as hex bytes.
   bits are `0x7F`, and returns the index of the byte whose low seven bits equal the event, or −1.
   Bytes with the high bit set match only when state is 0, and are tried first.
 - A record without `@FCP` returns −1 at once (`0x003E55F0` gives 0, `0x0041E5CF`). The event compared is
-  `event & 0xFFF` (`0x0041E5D4`), so only an event whose low 12 bits are below `0x7F` can match.
+  `event & 0xFFF`⁹, so only an event whose low 12 bits are below `0x7F` can match.
 - `0x004292B0` plays a motion id of `0x1000` or more through it when the record has its own motion
   entries (`+0x2F8` set): the index picks `@FMC` entry `[+0x2FA] + index` of the model's own
   container, keeping the id's top four bits. An id with no match plays nothing and returns −1.
 - Its arguments are `(record, source, direct)`: the id is word `+0x3B4` of `source`, the record itself
   from `0x0042AC65` and `[arg + 8]` from `0x0042E215`. "Set" means word `+0x2F8` is not `0xFFFF`
-  (`0x004292C4`). An id of `0x104A` is first rewritten to `0x103D` in `source` (`0x004292F7`-`0x004292FC`),
-  and the state is the signed low two bits of `source` byte `+0x40B` (`0x00429315`-`0x0042931B`).
+ ¹⁰. An id of `0x104A` is first rewritten to `0x103D` in `source`¹¹,
+  and the state is the signed low two bits of `source` byte `+0x40B`¹².
 - A match calls `0x00423B10(record, data, (id & 0xF000) | ([+0x2FA] + index))`, with the data
   `0x004096F0` gives for the entry of word `+0x2F8` in the root's descriptor `+0xD90`
-  (`0x0042933A`-`0x0042936E`), and returns its result.
-- No match runs `0x00422C20(record)` (`0x00429378`), which releases the presentation entries `+0xC4` and
-  `+0xC8` (`0x00422C50`, `0x00422C7E`), setting each to -1 (`0x00422C55`, `0x00422C83`) and, after `+0xC4`, word `+0xCC`
-  to `0xFFFF` (`0x00422C5B`); it then clears `+0x68`, `+0xD8`, `+0xE0`, `+0xF0`, `+0xF8` and `+0x23C` and bit
-  `0x40` of byte `+0xC0`, and stores `0x0020E620(0)` at `+0x69C` (`0x00422C8D`-`0x00422CC1`).
-- Without own entries, or for an id below `0x1000`, a `direct` of 0 returns −1 (`0x00429398`); otherwise
+ ¹³, and returns its result.
+- No match runs `0x00422C20(record)`¹⁴, which releases the presentation entries `+0xC4` and
+  `+0xC8`¹⁵, setting each to -1¹⁶ and, after `+0xC4`, word `+0xCC`
+  to `0xFFFF`¹⁷; it then clears `+0x68`, `+0xD8`, `+0xE0`, `+0xF0`, `+0xF8` and `+0x23C` and bit
+  `0x40` of byte `+0xC0`, and stores `0x0020E620(0)` at `+0x69C`¹⁸.
+- Without own entries, or for an id below `0x1000`, a `direct` of 0 returns −1¹⁹; otherwise
   it calls `0x00423B10(record, address, id)` with the address `0x0020E600` decodes from `source` `+0x390`
-  and returns its result (`0x004293B5`).
+  and returns its result²⁰.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EDBD4`-`0x002EDBE0` |
+| ² | `0x002EDBE6`-`0x002EDBF1` |
+| ³ | `0x002EDBF8`-`0x002EDC1F` |
+| ⁴ | `0x002EDC21`-`0x002EDC33` |
+| ⁵ | `0x002EDC44` |
+| ⁶ | `0x002EDC71` |
+| ⁷ | `0x0020E600`, `0x002EDC21`-`0x002EDC2C` |
+| ⁸ | `0x002EDC3C` |
+| ⁹ | `0x0041E5D4` |
+| ¹⁰ | `0x004292C4` |
+| ¹¹ | `0x004292F7`-`0x004292FC` |
+| ¹² | `0x00429315`-`0x0042931B` |
+| ¹³ | `0x0042933A`-`0x0042936E` |
+| ¹⁴ | `0x00429378` |
+| ¹⁵ | `0x00422C50`, `0x00422C7E` |
+| ¹⁶ | `0x00422C55`, `0x00422C83` |
+| ¹⁷ | `0x00422C5B` |
+| ¹⁸ | `0x00422C8D`-`0x00422CC1` |
+| ¹⁹ | `0x00429398` |
+| ²⁰ | `0x004293B5` |
+
+</details>
 
 - `0x0041F340` copies section 8 (head plus `count × 0x1D0` bytes, `0x003E6D10`, `0x003E6CF0`) into the
   record's block at `+0x2FC`, offset `+0x300`, writes the record index at the copy's `+0x08` and
   calls `0x0051D220` on it. The first call ever builds a 64 × 64 8-bit texture and a 256-colour
-  palette from the image embedded at `0x01F2B340` (`0x00184140`, `0x001837A0`); every call clears the
+  palette from the image embedded at `0x01F2B340`¹; every call clears the
   copy's byte `+0x06` and `0x02CA8428`.
 - The section 8 draw stage `0x00425DC0` runs `0x0051D1D0` first: it zeroes the 16 KiB of emulated VU
   memory at `0x02064E30`, calls `0x00258EE0(3)`, and binds the embedded texture and palette to GS
-  addresses `0x2A00` and `0x2E00` (`0x002D7E00`).
-- The image's three statics: `0x02CA842C` is 1 once it is made, which `0x0051D220` tests (`0x0051D226`) and
-  sets (`0x0051D27A`); `0x02CA8430` keeps the 64 × 64 texture's handle from `0x00184140` (`0x0051D295`) and
-  `0x02CA8438` the palette's from `0x001837A0` with 256 entries (`0x0051D2B9`). `0x0051D1D0` binds the two
-  (`0x0051D1F2`, `0x0051D206`).
+  addresses `0x2A00` and `0x2E00`².
+- The image's three statics: `0x02CA842C` is 1 once it is made, which `0x0051D220` tests³ and
+  sets⁴; `0x02CA8430` keeps the 64 × 64 texture's handle from `0x00184140`⁵ and
+  `0x02CA8438` the palette's from `0x001837A0` with 256 entries⁶. `0x0051D1D0` binds the two
+ ⁷.
 - Authored command `0x1F` reaches `0x003E6710(record, on)`: on runs `0x0051DB60` on the copy, which sets
   its word `+0x06` to 1 and resets each entry (`+0x14` = 1.0, `+0x00` and `+0x10` cleared, `+0x1C4`
   = 1, `0x100` bytes at `+0xA0` zeroed); off runs `0x00519720`.
 - `0x0051D2F0(copy, value)` keeps the low two bits of `value` in byte `+0x07` and masks the byte's
   other bits with `value >> 2`; `0x00421280` passes 4 or 6.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00184140`, `0x001837A0` |
+| ² | `0x002D7E00` |
+| ³ | `0x0051D226` |
+| ⁴ | `0x0051D27A` |
+| ⁵ | `0x0051D295` |
+| ⁶ | `0x0051D2B9` |
+| ⁷ | `0x0051D1F2`, `0x0051D206` |
+
+</details>
+
 ### Section 8: sprites along a bone point's path
 
 Section 8 is in 28 models. A record draws a chain of textured sprites that follow the recent path of a point on one
-bone. The bind turns the copy on for every model that has one (`0x0042001D`). Command `0x1F` can also switch it, and no
+bone. The bind turns the copy on for every model that has one¹. Command `0x1F` can also switch it, and no
 shipped command does: none of the 1,583,764 has that id.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0042001D` |
+
+</details>
 
 [`fcp-section8-records.tsv`](fcp-section8-records.tsv) has the 53 records, and
 [`fcp-section8-fields.tsv`](fcp-section8-fields.tsv) has each field with its readers and writers, and
@@ -577,20 +822,48 @@ Record, `0x1D0` bytes:
 
 Each update shifts the sixteen history rows and adds the bone point, and the sample count rises to at most 16. The
 spacing grows by the newest distance when the test on `+0x1B0` passes. It is then multiplied by the decay and capped
-at `+0x5C` and at the path's total length (`0x0051DA60`-`0x0051DAFA`).
+at `+0x5C` and at the path's total length¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051DA60`-`0x0051DAFA` |
+
+</details>
 
 The draw sends the record's first `0x1A0` bytes to VU program `0x002F0280`. The program places `+0x04` sprites at equal
 spacing along a curve through the samples. The first `+0x04 - +0x08` use phase A and the rest phase B, and in each
 the colour moves from start to end by its step per sprite. In all 53 records each step is 1 / (phase steps - 1), or
-0 for a phase of one sprite. Sizes are scaled by the render record (`0x003E5770`), and the spacing by `+0x1C0`.
+0 for a phase of one sprite. Sizes are scaled by the render record¹, and the spacing by `+0x1C0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E5770` |
+
+</details>
 
 `+0x1BC` is zero in all 53 and loaded with `+0x1B0` without being used. Which texels of the embedded image a sprite
 shows follows from its S, T and Q and is outside these tables.
 
-The rows `+0x1B0` is tested against are read from `0x022D9360`-`0x022D938B` (`0x0051D6E7`-`0x0051D73F`), which `0x0051D310`,
+The rows `+0x1B0` is tested against are read from `0x022D9360`-`0x022D938B`¹, which `0x0051D310`,
 `0x00421D70`, `0x004220F0` and `0x003710E0` do not write. They hold what other routines left (`0x0040BD35`, `0x00535767` and
 `0x0054290E` among the stores), so the test is given as code. The distance the update subtracts comes from `0x022D904C`,
-whose only reference is that read (`0x0051D930`) and which lies in zero-filled `.data`.
+whose only reference is that read² and which lies in zero-filled `.data`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051D6E7`-`0x0051D73F` |
+| ² | `0x0051D930` |
+
+</details>
 
 ### @FTR
 
@@ -604,14 +877,28 @@ section 2 length: `count` nodes of `0x290` bytes, then `count + [+0x38]` u16 slo
   its pool values and its number is appended to the u16 list after the nodes; any other node starts
   at the identity;
 - fills the `[+0x38]` extra slots with `0x7FFF`;
-- copies section 2 after the core (`0x003729BD`) and runs `0x003713C0`, which hands it to `0x003E1C50`.
-- `0x003713C0` first re-encodes the bone array `+0x84` from the block handle `+0x80` (`0x003AB7F0`,
-  `0x003713EC`). With a resource word `+0x16` of `0xFFFF` it stops there (`0x003713F6`). Otherwise it
+- copies section 2 after the core¹ and runs `0x003713C0`, which hands it to `0x003E1C50`.
+- `0x003713C0` first re-encodes the bone array `+0x84` from the block handle `+0x80`². With a resource word `+0x16` of `0xFFFF` it stops there³. Otherwise it
   re-resolves the skeleton resource `+0xA0` (`0x004096C0` of the entry `0x00409F50` gives for `+0x16` in the
-  descriptor `+0x18`, offset `+0x1C`, `0x00371424`) and clears `+0x94` (`0x00371435`).
-- When `+0xA0` is not null and the section 2 offset `+0x90` is above 0 (`0x00371443`, `0x0037144C`), it
-  points `+0x94` at the copy, `[+0x84] + [+0x90]` (`0x00371469`), and calls `0x003E1C50` on it
-  (`0x00371487`).
+  descriptor `+0x18`, offset `+0x1C`, `0x00371424`) and clears `+0x94`⁴.
+- When `+0xA0` is not null and the section 2 offset `+0x90` is above 0⁵, it
+  points `+0x94` at the copy, `[+0x84] + [+0x90]`⁶, and calls `0x003E1C50` on it
+ ⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003729BD` |
+| ² | `0x003AB7F0`, `0x003713EC` |
+| ³ | `0x003713F6` |
+| ⁴ | `0x00371435` |
+| ⁵ | `0x00371443`, `0x0037144C` |
+| ⁶ | `0x00371469` |
+| ⁷ | `0x00371487` |
+
+</details>
 
 The binder also accepts kind 0, records of `0x4C` bytes from `+0x30` with the parent at `+0x20`; no
 shipped file uses it.
@@ -631,20 +918,44 @@ shipped file uses it.
 
 `0x005048A0(record, key)` returns the position of the key in the key table, or −1.
 
-It returns −1 for a null record (`0x005048AB`), a row index word `+0x64` of `0xFFFF` (`0x005048C7`), no model
+It returns −1 for a null record¹, a row index word `+0x64` of `0xFFFF`², no model
 row (`0x004780B0` of the root's `+0xDA0` table, `0x005048E3`), no `@FDM` (offset `+0x20C` of −1, `0x005048EE`)
-and a key table offset `+0x32` of 0 (`0x00504901`). The entry is `low32([+0x1F8] + [+0x20C])` of the row
-(`0x005048F6`). Otherwise it compares the key with the table's keys in order
-and returns the first match's position (`0x00504916`-`0x00504922`); a count of 0 or less gives −1 (`0x00504914`).
+and a key table offset `+0x32` of 0³. The entry is `low32([+0x1F8] + [+0x20C])` of the row⁴. Otherwise it compares the key with the table's keys in order
+and returns the first match's position⁵; a count of 0 or less gives −1⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005048AB` |
+| ² | `0x005048C7` |
+| ³ | `0x00504901` |
+| ⁴ | `0x005048F6` |
+| ⁵ | `0x00504916`-`0x00504922` |
+| ⁶ | `0x00504914` |
+
+</details>
 
 ### The draw builder
 
-`0x0053AB50` resolves table A, table B and the records from `+0x34`, `+0x36` and `+0x38`
-(`0x0053B33A`–`0x0053B35A`) and takes the record whose key equals row `+0xB8`. For each part and each of
+`0x0053AB50` resolves table A, table B and the records from `+0x34`, `+0x36` and `+0x38`¹ and takes the record whose key equals row `+0xB8`. For each part and each of
 its selector bytes `s` it reads `A = tableA[3s + part] + [+0x32] × option` and the pair
-`tableB[2A]`, `tableB[2A + 1]` (`0x0053B4B6`–`0x0053B4EC`): the first is an `@FTE` texture slot, the second
-an `@FCT` palette. The texture slots listed at `@FTE +0x30` are added to every draw (`0x0053B45A`). The
-VRAM bytes `+0x00` of the selected textures are summed before upload (`0x0053B5B0`).
+`tableB[2A]`, `tableB[2A + 1]`²: the first is an `@FTE` texture slot, the second
+an `@FCT` palette. The texture slots listed at `@FTE +0x30` are added to every draw³. The
+VRAM bytes `+0x00` of the selected textures are summed before upload⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053B33A`-`0x0053B35A` |
+| ² | `0x0053B4B6`-`0x0053B4EC` |
+| ³ | `0x0053B45A` |
+| ⁴ | `0x0053B5B0` |
+
+</details>
 
 ### The texture slot cache
 
@@ -663,24 +974,53 @@ to `0xFFFF`) and forgets through `0x00521300`. The live count is `0x02CA8458` an
   copies the texture's size and register words with the base-2 logarithms of width and height.
 - `0x00504800(instance, slot)` returns the slot's width and height as one dword once the entry is
   marked uploaded (bit `0x1` of `+0x1C`), else 0. `0x00521320` clears that mark and the dword `+0x14`
-  (`0x00521344`) in all 256 entries.
+ ¹ in all 256 entries.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00521344` |
+
+</details>
 
 ### The upload area
 
 The draw places the selected textures in GS memory through two windows over the addresses from
-`12 × width × height` of the GS frame (`0x022D8EAC`, `0x022D8EB4`) up to `0x3C0000`. Window `i` has a
+`12 × width × height` of the GS frame¹ up to `0x3C0000`. Window `i` has a
 low cursor `0x02EBA460[i]` and a high cursor `0x02EBA468[i]`: window 0's are `0x02EBA460` and `0x02EBA468`,
-window 1's `0x02EBA464` and `0x02EBA46C` (`0x00537AA0` indexes them by window). `0x00537B10` sets window 1's
-(`0x00537B77`, `0x00537B84`-`0x00537B91`).
+window 1's `0x02EBA464` and `0x02EBA46C` (`0x00537AA0` indexes them by window). `0x00537B10` sets window 1's².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x022D8EAC`, `0x022D8EB4` |
+| ² | `0x00537B77`, `0x00537B84`-`0x00537B91` |
+
+</details>
 
 - `0x00537AA0(window, size, end)` takes `size` bytes from the low end (0) or the high end (1) and
   returns their start, or 0 when they do not fit; `0x00537AF0(window, size)` only tests the fit.
 - `0x00537B10(0, end)` puts window 0's end back to its start value and copies it into window 1;
   `0x00537B10(1, end)` copies window 0's current end into window 1. `0x00477F20` calls `0x00537B10(0, 0)`
-  and `0x00537B10(0, 1)` before it draws the instances (`0x00477F2D`, `0x00477F39`).
+  and `0x00537B10(0, 1)` before it draws the instances¹.
 - When a model's textures and palettes do not fit window 1, `0x0053AB50` resets window 1 from window
-  0 and clears every cache mark (`0x0053B67E`–`0x0053B699`). It then takes textures from the low end
-  and palette pages from the high end (`0x0053B761`, `0x0053BB73`).
+  0 and clears every cache mark². It then takes textures from the low end
+  and palette pages from the high end³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00477F2D`, `0x00477F39` |
+| ² | `0x0053B67E`-`0x0053B699` |
+| ³ | `0x0053B761`, `0x0053BB73` |
+
+</details>
 
 The draw writes its transfers and state into the current GS command buffer (`0x005044B0` returns
 `0x02EBEFC0 + 0x18 × [0x02EBEFF0]`), and when fewer than a block's bytes remain it closes the buffer
@@ -692,9 +1032,18 @@ with `0x00504450`: a `{0x10000000, 0}` record, then the flip `0x003A1DB0`. `0x00
 - In `0x0053D4B0` the alpha is the instance's byte `+0xBC` when the draw's `+0x8700` is non-zero and the instance's
   `+0x244` bit `0x20` is clear, and otherwise the part's bits under mask `0xFE`. With instance `+0x08` bit `0x8` it
   writes `0x34000` instead.
-- `0x0053D140` writes a material block: a tag (`0x10000008`, `0x50000005`), two register words per mode (`0x44` and
+- `0x0053D140` writes a material block: a tag¹, two register words per mode (`0x44` and
   `0x42`/`0x43`, or `0x4A`), per-texture pairs from the material when its flag byte has bit `0x4` and, in the `0x44`
   mode only, bit `0x1`, and the two texture handles.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x10000008`, `0x50000005` |
+
+</details>
 
 ### Palettes
 
@@ -704,23 +1053,45 @@ with `0x00504450`: a `{0x10000000, 0}` record, then the flip `0x003A1DB0`. `0x00
   there.
   - For such a new pair it also files the caller's `0x30`-byte animation entry on that palette through `0x003CCC20` (`0x00504E3C`; one of
   128 slots at `[0x02B47798]`, linked into the palette's record by its priority byte `+2`) and keeps the returned
-  handle at `+0x194 + 4n` (`0x00504E41`).
+  handle at `+0x194 + 4n`¹.
   - It returns at once for a row without `@FCT` (offset `+0x21C` of −1, `0x00504D5A`) or a `sub` of 16 or
-    more (`0x00504D80`). The palette resource is made only while slot `index` is −1:
-    `0x003CCB60(0, 0, colours)`, with a null source and destination (`0x00504DB3`), then
-    `0x003CD7C0(handle, 1)`, which sets the record's bit `0x40` (`0x00504DC5`).
-  - A handle of 0 is kept as −1 and ends the call (`0x00504DD3`, `0x00504DEB`). A free map byte is one of
-    `0xFF` (`0x00504E16`), and the handle goes into the entry's `+0x04` before `0x003CCC20` (`0x00504E38`).
+    more². The palette resource is made only while slot `index` is −1:
+    `0x003CCB60(0, 0, colours)`, with a null source and destination³, then
+    `0x003CD7C0(handle, 1)`, which sets the record's bit `0x40`⁴.
+  - A handle of 0 is kept as −1 and ends the call⁵. A free map byte is one of
+    `0xFF`⁶, and the handle goes into the entry's `+0x04` before `0x003CCC20`⁷.
 - `0x005044D0(row, index)` returns the page in use: data offset + `row[+0xBA]` × palette bytes, added to the `@FCT`
   section (the low 32 bits of `+0x1F8` plus `+0x21C`, summed in 32 bits), with the page byte signed
-  (`0x005044E1`-`0x0050450D`). It returns 0 for a row without `@FCT` (`+0x21C` of −1) or an index not below the
-  palette count `+0x0C` (`0x005044D9`, `0x005044ED`).
+ ⁸. It returns 0 for a row without `@FCT` (`+0x21C` of −1) or an index not below the
+  palette count `+0x0C`⁹.
 - `0x00504D20(row, page)` sets `+0xBA`. `0x00428CD0` sets it on a render record, its first child `+0x08` and the
-  rest of that child's tree (`0x0042EF90`). The status step `0x00470780` passes 3 (`0x0047082A`, `0x004708CE`,
-  `0x0047091B`, `0x00470A43`), as do the Stone install in `0x0046FD00` (`0x0046FDD4`) and Stone's step `0x00470AA0`
-  (`0x00470AFE`); `0x00470230` and `0x00470B70` give it 2 in their flash frames (`0x00470330`, `0x00470CEB`).
+  rest of that child's tree¹⁰. The status step `0x00470780` passes 3¹¹, as do the Stone install in `0x0046FD00`¹² and Stone's step `0x00470AA0`
+ ¹³; `0x00470230` and `0x00470B70` give it 2 in their flash frames¹⁴.
 - The type `0xD0` effect body `0x00465CD0` passes its byte `+0x235` while its flag word `+0x232` has bit `0x400`
-  (`0x00465F0C`-`0x00465F4A`); the other callers give it 0.
+ ¹⁵; the other callers give it 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00504E41` |
+| ² | `0x00504D80` |
+| ³ | `0x00504DB3` |
+| ⁴ | `0x00504DC5` |
+| ⁵ | `0x00504DD3`, `0x00504DEB` |
+| ⁶ | `0x00504E16` |
+| ⁷ | `0x00504E38` |
+| ⁸ | `0x005044E1`-`0x0050450D` |
+| ⁹ | `0x005044D9`, `0x005044ED` |
+| ¹⁰ | `0x0042EF90` |
+| ¹¹ | `0x0047082A`, `0x004708CE`, `0x0047091B`, `0x00470A43` |
+| ¹² | `0x0046FDD4` |
+| ¹³ | `0x00470AFE` |
+| ¹⁴ | `0x00470330`, `0x00470CEB` |
+| ¹⁵ | `0x00465F0C`-`0x00465F4A` |
+
+</details>
 
 ### Palette animation
 
@@ -765,10 +1136,20 @@ and the record joins a list (head `0x02B47778`, tail `0x02B47780`, count byte `0
 The 128 operation records are at `[0x02B47798]`.
 
 `0x003CCF20(step)`, each simulation step from `0x00258D70` and `0x00258E40`, walks the records with bit `0x80`
-set (clearing it unless bit `0x40` is set): it copies the source colours into `0x02B477A0` (`0x003CD840`),
+set (clearing it unless bit `0x40` is set): it copies the source colours into `0x02B477A0`¹,
 counts each operation's delay down or its time up by `step`, takes the phase (the time modulo the
 period, or reflected on odd periods in mode 1), applies the operation, and writes the result to the
-destination (`0x003D2B60`). An operation past its length is removed.
+destination². An operation past its length is removed.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CD840` |
+| ² | `0x003D2B60` |
+
+</details>
 
 The kinds call `0x0050AC20`,
 `0x00506B40`, `0x005080A0`, `0x0050A100` (with the second palette), `0x00509BB0`, `0x00507490`, `0x00508C90` and
@@ -779,10 +1160,18 @@ moving time. `0x003CD6C0(handle)` returns the record; `0x003CD7C0` and `0x003CD7
 `0x003CD590` detaches its operations and clears its count; `0x003CD5D0` unregisters it; `0x003CD650(handle)`
 removes one operation from its record.
 
-Both walks skip a record whose `+0x38` is 0 while `0x00181DD0()` is non-zero (`0x003CCF6A`-`0x003CCF77`,
-`0x003CD2DD`-`0x003CD2EA`); a record with `+0x38` non-zero runs either way, still only with bit `0x80` of `+0x01`
-(`0x003CCF60`-`0x003CCF64`). `0x003CCC20` stores `0x00181DD0()` in `+0x38` each time it adds an operation
-(`0x003CCE6B`-`0x003CCE76`).
+Both walks skip a record whose `+0x38` is 0 while `0x00181DD0()` is non-zero¹; a record with `+0x38` non-zero runs either way, still only with bit `0x80` of `+0x01`². `0x003CCC20` stores `0x00181DD0()` in `+0x38` each time it adds an operation³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CCF6A`-`0x003CCF77`, `0x003CD2DD`-`0x003CD2EA` |
+| ² | `0x003CCF60`-`0x003CCF64` |
+| ³ | `0x003CCE6B`-`0x003CCE76` |
+
+</details>
 
 ## Modding notes
 
@@ -814,66 +1203,78 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Enemy AI and gambits** (explained on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [glossary](../Engine-Core/glossary.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x003014C0`, `0x00301AD0`, `0x00305AB0` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x003014C0`](../Enemy-AI-And-Gambits/gambits.md) Ai order: evaluate and resolve action target (on gambits)<br>[`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets)<br>[`0x00305AB0`](../Enemy-AI-And-Gambits/gambits.md) Battle unit: select and commit next action (on gambits) |
 
-**Battle actions**
+**Battle actions** (explained on [action definition row](../Battle-Actions/action-definition-row.md), [quickenings and summons](../Battle-Actions/quickenings-and-summons.md), [force fight mode](../Engine-Core/force-fight-mode.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [action phases](../Battle-Actions/action-phases.md), [game over](../World-Areas-And-Travel/game-over.md), [frame update order](../Engine-Core/frame-update-order.md), [identifier spaces](../Engine-Core/identifier-spaces.md), [call signatures](../Engine-Core/call-signatures.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003204E0` | is called by | `0x00320D70` |
-| `0x00377C20` | is called by | `0x002FFA60`, `0x002FFCF0`, `0x002FFF50`, `0x00305110`, `0x00305230`, `0x00305430`, `0x00307300`, `0x0030C010`, `0x0030D160`, `0x0030D600`, `0x0030DA30`, `0x0030F760` |
-| `0x00377C20` | is also called by | `0x00311B20`, `0x00311CF0`, `0x00312FA0`, `0x00313CD0`, `0x00313DB0` |
-
-**Battle actions** (explained on [action definition row](../Battle-Actions/action-definition-row.md), [quickenings and summons](../Battle-Actions/quickenings-and-summons.md), [force fight mode](../Engine-Core/force-fight-mode.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md))
-
-**Battle actions** (explained on [action phases](../Battle-Actions/action-phases.md), [game over](../World-Areas-And-Travel/game-over.md), [frame update order](../Engine-Core/frame-update-order.md), [identifier spaces](../Engine-Core/identifier-spaces.md))
-
-**Battle actions** (explained on [call signatures](../Engine-Core/call-signatures.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+| [`0x003204E0`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships) | is called by | [`0x00320D70`](../Battle-Actions/action-range.md) Battle action: get authored range band component (on action range) |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x002FFA60`](../Battle-Actions/target-selection.md) Battle action: is target eligible for current action (on target selection)<br>[`0x002FFCF0`](../Engine-Core/force-fight-mode.md) Battle action: check action availability reason (on force fight mode)<br>[`0x002FFF50`](../Battle-Actions/area-of-effect.md) Battle target: compute eligibility block mask (on area of effect)<br>[`0x00305110`](../Battle-Actions/action-phases.md) (on action phases)<br>[`0x00305230`](../Battle-Actions/action-phases.md) (on action phases)<br>[`0x00305430`](../Battle-Actions/action-phases.md) (on action phases)<br>[`0x00307300`](../Battle-Actions/area-of-effect.md) Battle: process action target (on area of effect)<br>[`0x0030C010`](../Battle-Actions/combos.md) (on combos)<br>[`0x0030D160`](../Battle-Actions/area-of-effect.md) Battle: build action target set (on area of effect)<br>[`0x0030D600`](../Battle-Actions/quickenings-and-summons.md) (on quickenings and summons)<br>[`0x0030DA30`](../Movement-And-Pathfinding/heading-speed-to-position-delta.md) (on heading speed to position delta)<br>[`0x0030F760`](../Engine-Core/identifier-spaces.md) Battle unit: commit action (on identifier spaces) |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is also called by | [`0x00311B20`](../Menus-And-HUD/battle-menu.md) Battle unit: issue command by focus handles with optional party fanout (on battle menu)<br>[`0x00311CF0`](../Scripts-And-Script-Commands/battle-verbs.md) Battle unit: issue command (on battle verbs)<br>[`0x00312FA0`](../Scripts-And-Script-Commands/battle-verbs.md) Battle unit: try commit engage auto attack (on battle verbs)<br>[`0x00313CD0`](../Battle-Actions/action-commit.md) Battle unit: process pending action selection queue (on action commit)<br>[`0x00313DB0`](../Battle-Actions/action-phases.md) (on action phases) |
 
 **Gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [enmity](../Enemy-AI-And-Gambits/enmity.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00307D10`, `0x0030A8A0`, `0x0030C210`, `0x0030D9A0` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00307D10`](../Engine-Core/force-fight-mode.md) Battle unit: update engagement state flag (on force fight mode)<br>[`0x0030A8A0`](../Party/party-slots.md) Battle unit: collect mapped four slot units by flags (on party slots)<br>[`0x0030C210`](../Enemy-AI-And-Gambits/enmity.md) Battle unit: has relationship class2 plus in slot mask (on enmity)<br>[`0x0030D9A0`](../Scripts-And-Script-Commands/party-during-scenes.md) Battle runtime: get mode0 to5 from flags and field bit15 (on party during scenes) |
 
 **Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00253C70` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) |
 
 **Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00313A00` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00313A00`](../Battle-Actions/action-phases.md) (on action phases) |
 
 **Items, equipment, shops and licenses** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00309FB0`, `0x0030FD10` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00309FB0`](../Party/party-slots.md) Inventory: query owned count including reserved action items (on party slots)<br>[`0x0030FD10`](../Items-Equipment-Shops-And-Licenses/equipment.md) Equipment: unequip encoded item from active roster (on equipment) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00312280` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00312280`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle unit: process defeat rewards and loot (on strong and weak mode) |
 
 **Status effects and KO** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x0030E360`, `0x0030F690`, `0x00310DB0` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x0030E360`](../Engine-Core/identifier-spaces.md) Battle stats: change status and process side effects (on identifier spaces)<br>[`0x0030F690`](../Damage-And-Battle-Formulas/augments.md) Battle stats: remove statuses from mask and recompute (on augments)<br>[`0x00310DB0`](../Battle-Actions/action-results.md) Battle unit: run periodic combat maintenance (on action results) |
 
 **World, areas and travel** (explained on [party control modes](../Engine-Core/party-control-modes.md), [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | calls | `0x003148F0` |
-| `0x00377C20` | is called by | `0x002342F0` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | calls | [`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x002342F0`](../Enemy-Spawning/enemy-respawning.md) (on enemy respawning) |
 
 </details>
 

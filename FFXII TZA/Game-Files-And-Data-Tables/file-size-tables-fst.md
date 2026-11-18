@@ -15,13 +15,22 @@ short table stops the game at start-up.
 Twelve files ship loose in the install's `FileSizeTables` folder, one per language:
 `FileSizeTable_{JP,US,FR,DE,IT,ES,UK,KR,CH,ASIA,IN,CN}.fst`.
 
-`ResourcePath_Init` (`0x002DF9A0`), called
+`ResourcePath_Init`¹, called
 once at boot, builds the name with
  `sprintf("%sFileSizeTables/FileSizeTable_%s.fst", "../", name)`,
 where `name` is the language's entry in the twelve-string table at `0x01E88B00`
 (`JP US FR DE IT ES UK KR CH ASIA IN CN`, indexed by the locale id it receives), opens it with
 `fopen(…, "rb")` and reads all 820,000 bytes into `0x02EC3EE0` with one `fread`. The working folder is
 the executable's `x64`, so `../` is the install root.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DF9A0` |
+
+</details>
 
 ## Layouts
 
@@ -36,15 +45,38 @@ The kind count and the id stride live only in the readers (`kind × 5000 + id`).
 path-array pointers at `0x0215F000 + kind × 8` that `0x002DF9A0` installs, and an id is the position in the
 kind's path array, so `size[kind][id]` is the size of the file that array names at that position. Seven
 kinds (1, 2, 5, 7, 8, 9, 12) take a per-language array. For KR, CH and CN, kinds 21, 26 and 37 (the
-`.ard`, `.nmb` and event `.ebp` arrays) are replaced too (`0x01E0CFA0`, `0x01EAE0D0`, `0x01EA4D00`); JP,
+`.ard`, `.nmb` and event `.ebp` arrays) are replaced too¹; JP,
 ASIA and IN keep the shared arrays.
 
-The table is used as loaded. `0x002DF9A0` reads the file into `0x02EC3EE0` as one item of `0xC8320` bytes
-(`0x002E0432`-`0x002E0444`); a count other than 1 takes its error path (`0x002E044D`). Only two other instructions
-name the array, and both read it: `0x002DF960` returns `size[kind × 5000 + id]` (`0x002DF977`), and `0x002DF780` tests an
-entry for −1 (`0x002DF7B0`). Nothing converts, relocates or writes it after the read.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01E0CFA0`, `0x01EAE0D0`, `0x01EA4D00` |
+
+</details>
+
+The table is used as loaded. `0x002DF9A0` reads the file into `0x02EC3EE0` as one item of `0xC8320` bytes¹; a count other than 1 takes its error path². Only two other instructions
+name the array, and both read it: `0x002DF960` returns `size[kind × 5000 + id]`³, and `0x002DF780` tests an
+entry for −1⁴. Nothing converts, relocates or writes it after the read.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E0432`-`0x002E0444` |
+| ² | `0x002E044D` |
+| ³ | `0x002DF977` |
+| ⁴ | `0x002DF7B0` |
+
+</details>
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -100,11 +132,21 @@ Four have arrays the table never sizes: kind 6 (`image\FF12\isowaki\ousi00.bin` 
 entries), 27 (`sound\wave\wave0000.wd` onward), 31 (`sound\music\data\music000.bgm` onward) and 35
 (`c:\image\ff12\overlay\in\ff12menuoverlay_00_debug.bin` onward).
 
-`0x0024AC30` sizes kind 35, index `n + 7` (`0x0024AC4C`) and, when `0x0037B330()` is 0, requests it with the `−1` size
-it reads (`0x0024AC9F`). The read issuer refuses it, and the queue completes it with the previous read's status and
+`0x0024AC30` sizes kind 35, index `n + 7`¹ and, when `0x0037B330()` is 0, requests it with the `−1` size
+it reads². The read issuer refuses it, and the queue completes it with the previous read's status and
 nothing read: as delivered when that status is 0 or more, as failed when it is negative. Its callback `0x0024ACF0`
 runs either way, since the failure callback `0x0032E370` calls it for a byte count of −1. No call site of
 `0x0032E620` passes kind 6, 27 or 31.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024AC4C` |
+| ² | `0x0024AC9F` |
+
+</details>
 
 [`file-size-tables-fst-files-rows.tsv`](file-size-tables-fst-files-rows.tsv) gives each of the twelve files with its
 locale id, SHA-256, sized entries and sized kinds.
@@ -127,6 +169,8 @@ size where it differs.
   array's end. JP, CH, ASIA and IN leave all 22 at −1.
 - `system.cnf` (kind 0, id 0) is 57 and `env99.spp` (kind 1, id 24) 3,392 in all twelve tables.
 
+</details>
+
 ## Loader behaviour
 
 - **Boot.** A failed `fopen` or a short `fread` prints through the CRT and then writes to address 0, a
@@ -136,7 +180,7 @@ size where it differs.
   `0x0032EA90`'s zero-clear writes, so it is always null), and otherwise rounds a positive table size up
   to a multiple of 64.
 - **The path.** `0x002DF980(kind, id)` returns the file's path, `[[0x0215F000 + kind × 8] + id × 8]`
-  (`0x002DF980`-`0x002DF995`); `0x001BB2B0` takes a character's asset-list name from the model path it returns
+ ¹; `0x001BB2B0` takes a character's asset-list name from the model path it returns
   ([prefetch manifests](prefetch-manifests.md)).
 - **The staged head read.** `0x0032EB40(slot, kind, id)` takes the same size and, when it is above
   `0x800`, requests only the first 2 KB into `0x022C5C00 + slot × 0x800`.
@@ -148,74 +192,231 @@ size where it differs.
   previous read's status, normally as delivered, with the destination untouched.
 - **No bounds checks.** Neither reader tests the kind or the id against 41 or 5,000.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DF980`-`0x002DF995` |
+
+</details>
+
 ### Behind the staged head read
 
 `0x0032EB40` sizes the file the way `0x0032E400` does (`0x0032EB60`-`0x0032EBA3`: −1 for kind `0xFF`, the override
 pointer at `0x022C51F0`, else `0x002DF960` through the jump `0x0046DE70`, and a positive size becomes
 `(size + 0x3F) & 0xFFFFFFC0`, rounded up to a multiple of 64 for a size up to `0x7FFFFFC0`, at `0x0032EB99`-`0x0032EBA3`).
 It then clears read-layer slot `slot` (`0x0046DE50` at `0x0032EBA8`: its destination `+0x10`, for a slot below 2)
-whatever the size, and files a request only when the size is above `0x800` (`0x0032EBAD`). Both of its callers
-give slot 0 (`0x0033048B`, `0x003EA85B`).
+whatever the size, and files a request only when the size is above `0x800`¹. Both of its callers
+give slot 0².
 
-It gives its request the word `slot << 24 | kind << 16 | id`, file offset 0 and no cancel callback
-(`0x0032EBB5`-`0x0032EBE7`), and the delivery callback `0x0032EC20`, which unpacks that word into
-`0x0046E050(slot, kind, id, dest)` (`0x0032EC20`-`0x0032EC32`). That fills one of two `0xA0`-byte slots at
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032EBAD` |
+| ² | `0x0033048B`, `0x003EA85B` |
+
+</details>
+
+It gives its request the word `slot << 24 | kind << 16 | id`, file offset 0 and no cancel callback¹, and the delivery callback `0x0032EC20`, which unpacks that word into
+`0x0046E050(slot, kind, id, dest)`². That fills one of two `0xA0`-byte slots at
 `0x02CA6070`: the kind, the destination, and a sector that `0x0046DE80(kind, id)` computes from a sector directory at
 `0x02EBA508`.
 
-`0x0046E050` returns at once for a slot of 2 or more (`0x0046E053`). Otherwise it zero-fills the slot's `0xA0` bytes
-(`memset` `0x00861EC0`, `0x0046E095`), then stores the sector at `+0x04` (`0x0046E0A4`), the destination at `+0x10`
-(`0x0046E0A9`), 0 in the byte `+0x98` (`0x0046E0AE`) and the kind at `+0x00` (`0x0046E0C1`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032EBB5`-`0x0032EBE7` |
+| ² | `0x0032EC20`-`0x0032EC32` |
+
+</details>
+
+`0x0046E050` returns at once for a slot of 2 or more¹. Otherwise it zero-fills the slot's `0xA0` bytes
+(`memset` `0x00861EC0`, `0x0046E095`), then stores the sector at `+0x04`², the destination at `+0x10`³, 0 in the byte `+0x98`⁴ and the kind at `+0x00`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046E053` |
+| ² | `0x0046E0A4` |
+| ³ | `0x0046E0A9` |
+| ⁴ | `0x0046E0AE` |
+| ⁵ | `0x0046E0C1` |
+
+</details>
 
 Nothing writes `0x02EBA508`, which is 0 in the image, so the sector is always 0: `0x0046DE80` returns 0 for a null
-directory (`0x0046DE9C`-`0x0046DEA1`).
+directory¹.
 
-The read layer's tick `0x0046DD50` first calls `0x0016D6A0`, a bare `ret 0` (`0x0046DD54`), and acts only in its
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046DE9C`-`0x0046DEA1` |
+
+</details>
+
+The read layer's tick `0x0046DD50` first calls `0x0016D6A0`, a bare `ret 0`¹, and acts only in its
 states 1 to 4. Its state `0x02CA6068` is 0 in the image and written only by the tick itself: 0 at `0x0046DD8C`, 3 at
 `0x0046DE1F`, 4 at `0x0046DDC1`, and at `0x0046DE40` 0 or the 1 it read. So the tick never leaves state 0.
 
-Out of state 0 the tick would not get far. States 1 to 3 first call `0x0053DD10`, which always returns 1 (`mov eax,
-1`): state 1 then keeps 1 (`0x0046DE33`-`0x0046DE40`), and states 2 and 3 return unchanged (`0x0046DDD7`,
-`0x0046DD9E`). Past that test, state 2 would hand `0x02EBA520` and a sector from `0x02EBB520`, `0x02EBB528` and
-`0x02EBB52C` to `0x0016D6A0`, which does nothing, and set 3 (`0x0046DDD9`-`0x0046DE1F`).
+<details>
+<summary>Where in the code</summary>
 
-State 3 would, when `0x00368F30(0)` returns 0, call `0x00369050(0, 0x00536F30)` and set 4 (`0x0046DDA4`-`0x0046DDC1`);
-state 4 sets 0 when `0x00368F30(0)` returns 0 (`0x0046DD7B`-`0x0046DD8C`). `0x00368F30(0)` is non-zero while the qword
-`0x022D7F70` is set, and `0x00369050` stores its second argument there (`0x00369057`).
+| | Code |
+|---|---|
+| ¹ | `0x0046DD54` |
+
+</details>
+
+Out of state 0 the tick would not get far. States 1 to 3 first call `0x0053DD10`, which always returns 1 (`mov eax,
+1`): state 1 then keeps 1¹, and states 2 and 3 return unchanged². Past that test, state 2 would hand `0x02EBA520` and a sector from `0x02EBB520`, `0x02EBB528` and
+`0x02EBB52C` to `0x0016D6A0`, which does nothing, and set 3³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046DE33`-`0x0046DE40` |
+| ² | `0x0046DDD7`, `0x0046DD9E` |
+| ³ | `0x0046DDD9`-`0x0046DE1F` |
+
+</details>
+
+State 3 would, when `0x00368F30(0)` returns 0, call `0x00369050(0, 0x00536F30)` and set 4¹;
+state 4 sets 0 when `0x00368F30(0)` returns 0². `0x00368F30(0)` is non-zero while the qword
+`0x022D7F70` is set, and `0x00369050` stores its second argument there³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046DDA4`-`0x0046DDC1` |
+| ² | `0x0046DD7B`-`0x0046DD8C` |
+| ³ | `0x00369057` |
+
+</details>
 
 `0x00369050` does not use its first argument. After the store it jumps to `0x00863800` with the qword
-`[0x022D7F68]`, which it loaded before the store, as the only argument (`0x00369050`-`0x0036905E`).
+`[0x022D7F68]`, which it loaded before the store, as the only argument¹.
 
-The expansion the tick would hand to `0x00369050` therefore never runs. `0x00536F30`'s only reference is that `lea`
-(`0x0046DDB3`), and `0x00536DD0` and `0x00537030` are reached only by its tail jumps (`0x00536F85`, `0x00536F7F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00369050`-`0x0036905E` |
+
+</details>
+
+The expansion the tick would hand to `0x00369050` therefore never runs. `0x00536F30`'s only reference is that `lea`¹, and `0x00536DD0` and `0x00537030` are reached only by its tail jumps².
 `0x00536F30` reads a header (12 bytes when byte 3 is `d`, else 16; the size in the low 25 bits of `+8`) and by
 the low two bits of `+4` copies the data, expands it with `0x00536DD0`, or with `0x00537030`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046DDB3` |
+| ² | `0x00536F85`, `0x00536F7F` |
+
+</details>
+
 The header is read from the buffer at `[0x02EBB538]`, and the output goes to the buffer at `[0x02EBB530]`. The two bits
-pick: 0 the copy, 1 `0x00536DD0` (`0x00536F85`), 2 `0x00537030` (`0x00536F7F`), and 3 a return that writes no output
-(`0x00536F78`); the size and position stores below come first, on every path (`0x00536F55`, `0x00536F64`).
+pick: 0 the copy, 1 `0x00536DD0`¹, 2 `0x00537030`², and 3 a return that writes no output³; the size and position stores below come first, on every path⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00536F85` |
+| ² | `0x00536F7F` |
+| ³ | `0x00536F78` |
+| ⁴ | `0x00536F55`, `0x00536F64` |
+
+</details>
 
 The copy ignores the size. With `[0x02EBB528]` non-zero it copies `[0x02EBB528]` less the header bytes from past the
-header, then `[0x02EBB52C]` bytes from `0x02EBA520` (`0x00536F8A`-`0x00536FEF`). With `[0x02EBB528]` 0 it copies
-`[0x02EBB52C]` less the header bytes from `0x02EBA520` past the header (`0x00536FF3`-`0x00537022`).
+header, then `[0x02EBB52C]` bytes from `0x02EBA520`¹. With `[0x02EBB528]` 0 it copies
+`[0x02EBB52C]` less the header bytes from `0x02EBA520` past the header².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00536F8A`-`0x00536FEF` |
+| ² | `0x00536FF3`-`0x00537022` |
+
+</details>
 
 In `0x00536DD0` an even control byte b copies `b >> 1` literal bytes, and an odd one with the next byte copies
-`(next >> 4) + 3` bytes from `((word >> 1) & 0x7FF) + 1` bytes back. The word is `b | next << 8` (`0x00536E68`);
+`(next >> 4) + 3` bytes from `((word >> 1) & 0x7FF) + 1` bytes back. The word is `b | next << 8`¹;
 the back copy goes byte by byte through the output, so it can repeat bytes it has just written, and a control byte
-of 0 copies nothing. `0x00536DD0` returns its output count, or 0 without reading for a size of 0 or less
-(`0x00536DDB`).
+of 0 copies nothing. `0x00536DD0` returns its output count, or 0 without reading for a size of 0 or less².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00536E68` |
+| ² | `0x00536DDB` |
+
+</details>
 
 Both expanders take the input byte at position p from `[0x02EBB538] + p` while p is below `[0x02EBB528]`, and from
-`0x02EBA520 + (p − [0x02EBB528])` past it (`0x00536E01`-`0x00536E1F`; `0x00537062`-`0x00537080`).
+`0x02EBA520 + (p − [0x02EBB528])` past it¹.
 
-`0x00536F30` keeps the size in `0x02CA8A70` (`0x00536F55`) and the read position, 12 or 16 past the header's start, in
-`0x02CA8A74` (`0x00536F64`). Each expander reads the size (`0x00536DD2`, `0x00537036`) and the position (`0x00536DEA`,
-`0x00537050`) once. It compares its output count with the size only after each whole token (`0x00536F16`;
-`0x00537150`), so it writes until that count reaches the size or the last token carries it past.
+<details>
+<summary>Where in the code</summary>
 
-Each expander stores the position back after each control byte (`0x00536E2B`; `0x00537090`), after the second byte of
-a back reference or of a repeat (`0x00536E74`; `0x005370C3`), and once after each run of literal bytes (`0x00536F10`;
-`0x00537143`).
+| | Code |
+|---|---|
+| ¹ | `0x00536E01`-`0x00536E1F`; `0x00537062`-`0x00537080` |
+
+</details>
+
+`0x00536F30` keeps the size in `0x02CA8A70`¹ and the read position, 12 or 16 past the header's start, in
+`0x02CA8A74`². Each expander reads the size³ and the position⁴ once. It compares its output count with the size only after each whole token⁵, so it writes until that count reaches the size or the last token carries it past.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00536F55` |
+| ² | `0x00536F64` |
+| ³ | `0x00536DD2`, `0x00537036` |
+| ⁴ | `0x00536DEA`, `0x00537050` |
+| ⁵ | `0x00536F16`; `0x00537150` |
+
+</details>
+
+Each expander stores the position back after each control byte¹, after the second byte of
+a back reference or of a repeat², and once after each run of literal bytes³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00536E2B`; `0x00537090` |
+| ² | `0x00536E74`; `0x005370C3` |
+| ³ | `0x00536F10`; `0x00537143` |
+
+</details>
 
 ## Modding notes
 
@@ -242,8 +443,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Menus and HUD** (explained on [map screens](../Menus-And-HUD/map-screens.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0053DD10` | is called by | `0x003C80C0` |
+| [`0x0053DD10`](../Scripts-And-Script-Commands/event-scenes.md) Input device: query availability state always1 (on event scenes) | is called by | [`0x003C80C0`](../Menus-And-HUD/map-screens.md) (on map screens) |
 
 </details>

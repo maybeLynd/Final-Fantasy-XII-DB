@@ -21,13 +21,34 @@
 
 A script owns eight message slots, records of `0x68` bytes at `0x0215F200` (layout below). Every setter turns a
 negative slot number into 0, and all but eight turn one above 7 into 7 (`0x002E1D10`-`0x002E1D1F`, `0x002E1F80` and the
-others below). `setaskselectignore`, `setmeswinactive` and `setmeswinhidestatus` do nothing for a slot of 8 or more
-(`0x002E20D3`-`0x002E20D6`, `0x002E2160`-`0x002E2163`, `0x002E21E0`-`0x002E21E3`).
+others below). `setaskselectignore`, `setmeswinactive` and `setmeswinhidestatus` do nothing for a slot of 8 or more¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E20D3`-`0x002E20D6`, `0x002E2160`-`0x002E2163`, `0x002E21E0`-`0x002E21E3` |
+
+</details>
 
 Five more setters start with the same test and do nothing for such a slot: `0x002E2010`, which keeps its argument
-in bit `0x1` of the window's `+0x40` (`0x002E2013`), and the four that store their argument in the slot, `0x002E2050`
-at `+0x1C` (`0x002E2053`), `0x002E21A0` at `+0x20` (`0x002E21A3`), `0x002E2120` at `+0x58` (`0x002E2123`) and `0x002E2090` at
-`+0x5C` (`0x002E2093`).
+in bit `0x1` of the window's `+0x40`¹, and the four that store their argument in the slot, `0x002E2050`
+at `+0x1C`², `0x002E21A0` at `+0x20`³, `0x002E2120` at `+0x58`⁴ and `0x002E2090` at
+`+0x5C`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E2013` |
+| ² | `0x002E2053` |
+| ³ | `0x002E21A3` |
+| ⁴ | `0x002E2123` |
+| ⁵ | `0x002E2093` |
+
+</details>
 
 The verbs fill a slot's settings first and
 then open its window with `0x002E16B0`; the settings apply to the next window opened in that slot.
@@ -50,62 +71,115 @@ Verb names and ids are those of the [verb table](../Scripts-And-Script-Commands/
 `messync2` (`0x11`, `0x129`) write two popped values to `+0x3E`: the first to bit `0x2` and the second to bit `0x1`
 (`0x00357820`, through `0x002E1E70` and `0x002E1E40`).
 
-`shapewin` (`0x0033F950`) takes six values with `0x00267E10`, the sixth being the slot
-(`0x0033F968`-`0x0033F9AA`). Its calls run in this order: `0x002E1EA0(slot, first)`, `0x002E1D90(slot, 0, 0)`,
+`shapewin`¹ takes six values with `0x00267E10`, the sixth being the slot². Its calls run in this order: `0x002E1EA0(slot, first)`, `0x002E1D90(slot, 0, 0)`,
 `0x002E1F80(slot, fifth, fourth, third, second)`, `0x002E1FD0(slot, 1)`, `0x002E1E40(slot, 0)` and
-`0x002E1E70(slot, 0)` (`0x0033F9AD`-`0x0033F9F0`). It ends in a jump to `0x002E16B0(0, slot, 0, 0)`
-(`0x0033F9F5`-`0x0033FA18`).
+`0x002E1E70(slot, 0)`³. It ends in a jump to `0x002E16B0(0, slot, 0, 0)`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0033F950` |
+| ² | `0x0033F968`-`0x0033F9AA` |
+| ³ | `0x0033F9AD`-`0x0033F9F0` |
+| ⁴ | `0x0033F9F5`-`0x0033FA18` |
+
+</details>
 
 ### Opening a window
 
-`0x002E16B0(actor, slot, text, font)` builds a creation request from the slot and the text, and creates the window
-(`0x002E194A`):
+`0x002E16B0(actor, slot, text, font)` builds a creation request from the slot and the text, and creates the window¹:
 
-1. With an actor, it sets the actor's name-id bit through `0x0032ABF0` (`0x002E16EB`).
-2. The window kind `+0x3C` becomes the request's kind through `0x002E11B0`: 1-15 stay, -5, -4 and -3 become 14, 13 and
-   15, -1 becomes 16 (the conversation window), any other value 0. The old kind is kept at `+0x40` and `+0x3C`
-   becomes 1 (`0x002E17AD`-`0x002E17B1`).
-3. A set rectangle (`+0x3A`) with a width and height of 1 or more is used as given; otherwise the request asks for an
-   automatic size (`0x002E17C2`).
-4. With `+0x30` 0 or above the opening run is `+0x30` and the closing run `+0x34`, or the opening run when `+0x34`
-   is negative; with a negative `+0x30` both are 132 ms (`0x002E17CF`-`0x002E17F0`). So after `mesopenspeed` a window
-   closes as fast as it opens. A window of kind 0 opens and closes at once (`0x002E177E`).
-5. If the slot still holds a window, a kind -1 window takes the new text as a further page (`0x002A35B0`, which adds it
-   through `0x002A3250`); any other window is closed and destroyed first (`0x002E1846`-`0x002E18A5`).
-6. After creation: with `+0x42` set, `0x002A2AD0` gives the window `+0x56` picture parts (16 by default);
-   with `+0x3B` set, `0x002A3210` applies `askpos` (`0x002E1952`-`0x002E1987`).
-7. The slot is reset for the next use: state 1, the answers `+0x0C` and `+0x2C` -1, the flags, the mask, the run
-   lengths and the 32 macros cleared (`0x002E198C`-`0x002E1A25`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E194A` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | With an actor, it sets the actor's name-id bit through `0x0032ABF0`. | `0x002E16EB` |
+| 2 | The window kind `+0x3C` becomes the request's kind through `0x002E11B0`: 1-15 stay, -5, -4 and -3 become 14, 13 and 15, -1 becomes 16 (the conversation window), any other value 0. The old kind is kept at `+0x40` and `+0x3C` becomes 1. | `0x002E17AD`-`0x002E17B1` |
+| 3 | A set rectangle (`+0x3A`) with a width and height of 1 or more is used as given; otherwise the request asks for an automatic size. | `0x002E17C2` |
+| 4 | With `+0x30` 0 or above the opening run is `+0x30` and the closing run `+0x34`, or the opening run when `+0x34` is negative; with a negative `+0x30` both are 132 ms. So after `mesopenspeed` a window closes as fast as it opens. A window of kind 0 opens and closes at once. | `0x002E17CF`-`0x002E17F0`<br>`0x002E177E` |
+| 5 | If the slot still holds a window, a kind -1 window takes the new text as a further page (`0x002A35B0`, which adds it through `0x002A3250`); any other window is closed and destroyed first. | `0x002E1846`-`0x002E18A5` |
+| 6 | After creation: with `+0x42` set, `0x002A2AD0` gives the window `+0x56` picture parts (16 by default); with `+0x3B` set, `0x002A3210` applies `askpos`. | `0x002E1952`-`0x002E1987` |
+| 7 | The slot is reset for the next use: state 1, the answers `+0x0C` and `+0x2C` -1, the flags, the mask, the run lengths and the 32 macros cleared. | `0x002E198C`-`0x002E1A25` |
 
 `+0x3F` keeps the value `0x002640D0` reads from the current actor manager (`[0x02099D70]+0x28`).
 
 When step 5 closes a window whose kind was not -1, the close writes `0xFE` to `+0x40` after the new kind was stored
-there (`0x002E17AD`, `0x002E1866`), so a window opened over such a window reports `0xFE` through `0x002E1170`, not its kind.
+there¹, so a window opened over such a window reports `0xFE` through `0x002E1170`, not its kind.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E17AD`, `0x002E1866` |
+
+</details>
 
 `0x002E04E0(slot, dx, dy)` moves a slot's rectangle and its open window (`+0x98`/`+0x9A`) by the offset once per
-open: it does nothing while `+0x60` is set and sets it after the move (`0x002E0501`-`0x002E052A`). The open clears
-`+0x60` (`0x002E17A2`). Its one caller is the gauge placement `0x00407B70`, for slot 6 ([Script gauges](script-gauges.md)).
+open: it does nothing while `+0x60` is set and sets it after the move¹. The open clears
+`+0x60`². Its one caller is the gauge placement `0x00407B70`, for slot 6 ([Script gauges](script-gauges.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E0501`-`0x002E052A` |
+| ² | `0x002E17A2` |
+
+</details>
 
 ### What the open leaves as it was
 
 `0x002E16B0` writes every field of the slot (layout below) except these, which keep their values into the next window:
 
-- the rectangle `+0x10`-`+0x16`, read at `0x002E18C3`-`0x002E18E0`; only its flag `+0x3A` is cleared (`0x002E19A1`);
+- the rectangle `+0x10`-`+0x16`, read at `0x002E18C3`-`0x002E18E0`; only its flag `+0x3A` is cleared¹;
 - the `askpos` rows `+0x24` and `+0x28` and the cancel switch `+0x39`, read at `0x002E1978`-`0x002E1981`; only their flag
-  `+0x3B` is cleared, by the same word write as `+0x3A` (`0x002E19A1`);
+  `+0x3B` is cleared, by the same word write as `+0x3A`²;
 - the choice byte `+0x38`, the style `+0x3D` (read at `0x002E174B`) and the `messync` bits `+0x3E`;
-- mask `0xFE` of `+0x44`; the open clears bit `0x1` only (`0x002E19AF`), and no setter writes the others (`0x002E2160`
+- mask `0xFE` of `+0x44`; the open clears bit `0x1` only³, and no setter writes the others (`0x002E2160`
   stores `value & 1`);
 - the `setshapeanime` animation `+0x46`-`+0x4B` and `+0x50`-`+0x53`, which only `0x003E9440` writes
-  (`0x003E9451`-`0x003E9468`) and only `0x003E9320` reads (`0x003E9380`-`0x003E9391`);
+ ⁴ and only `0x003E9320` reads⁵;
 - the bytes `+0x45`, `+0x4D`-`+0x4F` and `+0x64`-`+0x67`, which no instruction reads or writes.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E19A1` |
+| ² | `0x002E19A1` |
+| ³ | `0x002E19AF` |
+| ⁴ | `0x003E9451`-`0x003E9468` |
+| ⁵ | `0x003E9380`-`0x003E9391` |
+
+</details>
 
 So a slot's style, choice flag and `messync` bits carry over until a verb sets them again, while a rectangle or
 `askpos` setting applies to one window only.
 
 The asset path lookups `0x002DF980`, `0x002DF880` and `0x002DF780` could reach the slots only for resource kind 18: that
 kind has no path array, only the cell `0x0215F150` below the slots, which nothing writes, and a lookup reads
-`[cell + n x 8]` without a bound (`0x002DF991`), so a number of 22 or more would land in the slots.
+`[cell + n x 8]` without a bound¹, so a number of 22 or more would land in the slots.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DF991` |
+
+</details>
 
 Kind 18 comes only
 from a bound id of class `M` (`0x002ED812`; [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)),
@@ -133,17 +207,43 @@ once the page is done (1, 6 and any other); for pager states 2, 4 and 6 it also 
 
 A slot whose byte `+0x38` is set is a choice slot; `mes` and `aask_1ff` store it from the text section's flag
 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)). While the list is open the drain copies the
-cursor to `+0x2C`; on answer 2 it copies the answer to `+0x2C` and `+0x0C` once, guarded by `+0x41`
-(`0x002E0AE3`-`0x002E0B19`).
+cursor to `+0x2C`; on answer 2 it copies the answer to `+0x2C` and `+0x0C` once, guarded by `+0x41`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E0AE3`-`0x002E0B19` |
+
+</details>
 
 `0x002A2A60` returns only 1, 2 or 3, so the drain's arms for 0, 4 and other answers, which write states 0, 5 and 8,
-are not taken (`0x002E0AB1`-`0x002E0AD2`).
+are not taken¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E0AB1`-`0x002E0AD2` |
+
+</details>
 
 `0x002A29A0` reads the eight registry slots `0x0209C4D0`-`0x0209C508` in order, and the first that matches decides: a
-window with bit `0x10` of byte `+0x40` set and log mode bits `0x700` of `+0x3E8` non-zero gives 0
-(`0x002A29B8`-`0x002A29C8`), and a skipping window (`+0x3C5` negative) gives the confirm button, `0x2000`, or `0x4000`
-when `0x01FD4A64` is set (`0x002A29CA`, `0x002A29E4`-`0x002A29F5`). When no slot matches it returns the pad word
+window with bit `0x10` of byte `+0x40` set and log mode bits `0x700` of `+0x3E8` non-zero gives 0¹, and a skipping window (`+0x3C5` negative) gives the confirm button, `0x2000`, or `0x4000`
+when `0x01FD4A64` is set². When no slot matches it returns the pad word
 `0x02AD9E0C` (`0x0036FFD0`, tail jump at `0x002A29DC`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A29B8`-`0x002A29C8` |
+| ² | `0x002A29CA`, `0x002A29E4`-`0x002A29F5` |
+
+</details>
 
 The getters the verbs read are `0x002E1130` (the state), `0x002E10F0` (`+0x0C`), `0x002E1080` (`+0x2C`, read by
 `mesisselect`), `0x002E1170` (`+0x40`, read by the `aask_1ff` poll `0x0034BDC0`) and `0x002E10C0` (bit `0x1` of `+0x3E`).
@@ -159,46 +259,131 @@ The getters the verbs read are `0x002E1130` (the state), `0x002E10F0` (`+0x0C`),
 - state 7: 0;
 - any other state: 1.
 
-It also sets `0x022C7F88` to 1 (`0x0035780F`).
+It also sets `0x022C7F88` to 1¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035780F` |
+
+</details>
 
 ### Closing
 
-`0x002E08C0(slot)` closes a slot's window: it starts the window's closing run (`0x002A2720`), sets state 6, calls
+`0x002E08C0(slot)` closes a slot's window: it starts the window's closing run¹, sets state 6, calls
 `0x002F1C50([0x0215F1B6])` when `+0x40` is -1, and writes `0xFE` to `+0x40`. Once the window reports its run over
 (`0x002A28B0`, bit `0x200` of its `+0x40` clear), the drain destroys it with `0x002A2830`, clears the slot and sets
-state 7 (`0x002E0A2E`-`0x002E0A64`).
+state 7².
 
-`0x002E08C0` clamps the slot to 0-7 like the setters (`0x002E08C6`-`0x002E0927`); the window is the slot's `+0x00`, the
-state its `+0x08` and the byte `+0x40` the slot's own (`0x002E08D9`-`0x002E08F8`). With a window it answers 1
-(`0x002E090D`). A slot with no window keeps its state: `0x002E08C0` only writes `0xFE` to `+0x40` and answers 0
-(`0x002E08ED`, `0x002E0929`-`0x002E092B`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A2720` |
+| ² | `0x002E0A2E`-`0x002E0A64` |
+
+</details>
+
+`0x002E08C0` clamps the slot to 0-7 like the setters¹; the window is the slot's `+0x00`, the
+state its `+0x08` and the byte `+0x40` the slot's own². With a window it answers 1³. A slot with no window keeps its state: `0x002E08C0` only writes `0xFE` to `+0x40` and answers 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E08C6`-`0x002E0927` |
+| ² | `0x002E08D9`-`0x002E08F8` |
+| ³ | `0x002E090D` |
+| ⁴ | `0x002E08ED`, `0x002E0929`-`0x002E092B` |
+
+</details>
 
 `0x002E06F0` closes all eight slots the same way. The script unload `0x0032ED80(n)` calls `0x002E0780(n)`, which closes and
-destroys at once every window whose `+0x3F` is n (`0x0032EEBF`).
+destroys at once every window whose `+0x3F` is n¹.
 
-`0x002A2720(window)` acts only on the window its slot `+0x3B8` names in the table `0x0209C4D0` (`0x002A2742`); `0x002A27C0`
-makes the same test (`0x002A27D6`). It starts the closing run (`0x00244DD0`) unless bit `0x100000` of `+0x40` or bit
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032EEBF` |
+
+</details>
+
+`0x002A2720(window)` acts only on the window its slot `+0x3B8` names in the table `0x0209C4D0`¹; `0x002A27C0`
+makes the same test². It starts the closing run³ unless bit `0x100000` of `+0x40` or bit
 `0x20` of `+0x7C` is set, and, for a window that keeps a log, clears the log rows (`0x0209C700`, `0x280` bytes) and the
 published text `0x0209C980`/`0x0209C988`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A2742` |
+| ² | `0x002A27D6` |
+| ³ | `0x00244DD0` |
+
+</details>
+
 `0x002A27C0` asks a window to close: it sets bit `0x40` of `+0x40`, then runs the closing run when bits `0x1` and `0x20` are set and
-otherwise sends message 15 and destroys it at once (`0x00245020`). `0x002A27F0` closes with a run of 1 ms, which is 0
+otherwise sends message 15 and destroys it at once¹. `0x002A27F0` closes with a run of 1 ms, which is 0
 frames.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00245020` |
+
+</details>
 
 ### The window object
 
-`0x002A2C00(request)` builds the window as a `0x410`-byte widget with procedure `0x002A6190` (`0x002A2C10`). Message 1
-registers it in the first free entry of the eight pointers at `0x0209C4D0` and keeps the index at `+0x3B8`
-(`0x002A6202`-`0x002A623E`). Every entry point first checks that the entry still holds the window (`0x002A2720`,
-`0x002A27C0`, `0x002A2830`, `0x002A28B0`, `0x002A2BB0`).
+`0x002A2C00(request)` builds the window as a `0x410`-byte widget with procedure `0x002A6190`¹. Message 1
+registers it in the first free entry of the eight pointers at `0x0209C4D0` and keeps the index at `+0x3B8`². Every entry point first checks that the entry still holds the window³.
 
-Message 18 clears the entry only for an index of 6 or below (`0x002A695B`), so a window registered in entry 7 stays
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A2C10` |
+| ² | `0x002A6202`-`0x002A623E` |
+| ³ | `0x002A2720`, `0x002A27C0`, `0x002A2830`, `0x002A28B0`, `0x002A2BB0` |
+
+</details>
+
+Message 18 clears the entry only for an index of 6 or below¹, so a window registered in entry 7 stays
 there after it is destroyed. The registry `0x0209C4D0`-`0x0209C50F` has two other writers: the register `0x002A6236` and
 the reset `0x002A79E0`, which the startup
 step `0x00253970` runs once and which also clears the eight picture slots at `0x0209C510`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A695B` |
+
+</details>
+
 `0x002A2BB0` answers 1 while a live window has a procedure or a run in progress. `0x002A3090` builds a window for the
-obtained-item notice and the talking-message host (`0x0035E4C5`, `0x00474271`).
+obtained-item notice and the talking-message host¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035E4C5`, `0x00474271` |
+
+</details>
 
 ### What the window procedure does
 
@@ -227,9 +412,27 @@ the painter's `+0x10D8`.
 `0x002B1E20(text, speed)` sets the type-out: 0 sets the shown count `+0x8C` to the length `0x002B43C0` measures, so the
 page shows at once; 1-30 is the rate `+0x9C` itself; a larger value is rate 30 with a step `+0xA0` of value / 30,
 halved (at least 1) outside the field frame. In mode 0, confirm with no wait pending (`+0x54` of the text 0) calls
-`0x002B1E20(text, 0)` (`0x002A5EFB`).
+`0x002B1E20(text, 0)`¹.
 
-The page-end cursor bobs by the offset `+0x3DA`, which `0x002A40B0` alternates (`0x002A46D0`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A5EFB` |
+
+</details>
+
+The page-end cursor bobs by the offset `+0x3DA`, which `0x002A40B0` alternates¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A46D0` |
+
+</details>
 
 ```python
 phase 0: offset 0, lasts 40 / n + 2 ticks
@@ -242,60 +445,154 @@ n = 2 in the field frame (main state 2), 1 otherwise (0x00248F20)
 ### Choice lists
 
 A string with a choice list (token `0x0E`) gets a list widget at `+0xC0`: `0x002A5590` parses the list and builds it with
-`0x002D14E0`, with the row painter `0x002A1B00` (`0x002A5836`-`0x002A5855`). The painter finds the row's option text with
+`0x002D14E0`, with the row painter `0x002A1B00`¹. The painter finds the row's option text with
 `0x002B2D90` and draws it from the scratch `0x0209CB90` through `0x002D89E0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A5836`-`0x002A5855` |
+
+</details>
 
 Options whose bit is set in the text's mask `+0x84` are left out. `0x002B2D20` counts the shown options and `0x002B2CE0`
 turns a row into its option.
 
-`0x002B2CA0(text, n, count)` passes over the hidden options in its loop (`0x002B2CB5`-`0x002B2CB9`) but returns its own
-count of shown options, which equals n when it stops (`0x002B2CBB`), so the result is n, held to the last row `count -
-1` (`0x002B2CCA`-`0x002B2CCF`); a negative n, or any n with a count above `0x20`, is returned unchanged
-(`0x002B2CA2`-`0x002B2CA8`).
+`0x002B2CA0(text, n, count)` passes over the hidden options in its loop¹ but returns its own
+count of shown options, which equals n when it stops², so the result is n, held to the last row `count -
+1`³; a negative n, or any n with a count above `0x20`, is returned unchanged⁴.
 
-Its callers pass the shown count (`0x002A984B`, `0x002A9D6B`), so with option 1 of four hidden, option 2 gives row 2
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B2CB5`-`0x002B2CB9` |
+| ² | `0x002B2CBB` |
+| ³ | `0x002B2CCA`-`0x002B2CCF` |
+| ⁴ | `0x002B2CA2`-`0x002B2CA8` |
+
+</details>
+
+Its callers pass the shown count¹, so with option 1 of four hidden, option 2 gives row 2
 although it is shown in row 1.
 
-The mask is the slot's `setaskselectignore` bits:
-`0x002A6A80` passes the request's `+0x24` to the text set-up `0x002B32D0`, which stores it at `+0x84` (`0x002A6AF7`,
-`0x002B3310`). The confirm windows set up their text through `0x002B3280`, which passes its arguments on to `0x002B32D0` with the
-last two set to 0 (`0x002B3284`-`0x002B32B6`).
+<details>
+<summary>Where in the code</summary>
 
-When the list starts (`0x002A9066`), the start row is option `+0xA4` and the cancel row `+0xA5`, from the token, or from
+| | Code |
+|---|---|
+| ¹ | `0x002A984B`, `0x002A9D6B` |
+
+</details>
+
+The mask is the slot's `setaskselectignore` bits:
+`0x002A6A80` passes the request's `+0x24` to the text set-up `0x002B32D0`, which stores it at `+0x84`¹. The confirm windows set up their text through `0x002B3280`, which passes its arguments on to `0x002B32D0` with the
+last two set to 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A6AF7`, `0x002B3310` |
+| ² | `0x002B3284`-`0x002B32B6` |
+
+</details>
+
+When the list starts¹, the start row is option `+0xA4` and the cancel row `+0xA5`, from the token, or from
 `askpos` when bit `0x20000` of `+0xB0` is set; `0x002A3210` sets that bit and copies the cancel switch to bit `0x40000`. In the list:
 
-- Up and Down move one row and wrap round only on a fresh press; with Triangle held they jump to the first or last
-  row (`0x002B3B20`). A move plays sound 1, a jump `0x17`.
-- Confirm plays sound 2, ends the list (pager state 6) and leaves the option at `+0x54` (`0x002A9D05`-`0x002A9D32`).
-- Cancel with bit `0x40000` set plays 3 and moves the cursor to the cancel row without answering; with no
-  cancel row it plays 5 (`0x002A9D3A`-`0x002A9D9C`).
+<details>
+<summary>Where in the code</summary>
 
-The window answers the list's messages (`0x002A66E7`-`0x002A6801`): `0x8000` keeps the option under the cursor at
+| | Code |
+|---|---|
+| ¹ | `0x002A9066` |
+
+</details>
+
+- Up and Down move one row and wrap round only on a fresh press; with Triangle held they jump to the first or last
+  row¹. A move plays sound 1, a jump `0x17`.
+- Confirm plays sound 2, ends the list (pager state 6) and leaves the option at `+0x54`².
+- Cancel with bit `0x40000` set plays 3 and moves the cursor to the cancel row without answering; with no
+  cancel row it plays 5³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B3B20` |
+| ² | `0x002A9D05`-`0x002A9D32` |
+| ³ | `0x002A9D3A`-`0x002A9D9C` |
+
+</details>
+
+The window answers the list's messages¹: `0x8000` keeps the option under the cursor at
 `+0x124`, `0x8001` sets pager state 6 with that option, and `0x8002` gives the list its cancel mode in `+0xFE` (`0xFF`
 without bit `0x40000`, `0x8` with a cancel row, after moving the list there with `0x002D4840`, and 5 without one).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A66E7`-`0x002A6801` |
+
+</details>
+
 ### The message log
 
-A conversation window (kind 16, which the open marks with bit `0x1000` of `+0x3E8`, `0x002A721E`) keeps its pages as rows of `0x28` bytes at `0x0209C700` unless bit `0x4000` is set; bit `0x10000` of `+0x3E8` records that it keeps them (`0x002A733A`-`0x002A735C`), and the closing start `0x002A2720` clears the rows of a window with bit `0x10000` set (`0x002A2763`, `0x002A277E`). Its mode is
+A conversation window (kind 16, which the open marks with bit `0x1000` of `+0x3E8`, `0x002A721E`) keeps its pages as rows of `0x28` bytes at `0x0209C700` unless bit `0x4000` is set; bit `0x10000` of `+0x3E8` records that it keeps them¹, and the closing start `0x002A2720` clears the rows of a window with bit `0x10000` set². Its mode is
 bits `0x700` of `+0x3E8`:
 
-1. In mode 0, while the text is not typing, Triangle pressed without cancel opens the log (`0x002A5CC0`) when the
-   window has earlier text: the cursor `+0x3C0` goes to the last of the `+0x3C1` rows, the scroll `+0x3BE` to that
-   row (`0x002A5020`), the mode to 1, and sound `0x4E` plays (`0x002A5E7C`).
-2. Mode 1 waits until the window's position and size tweens end, sets mode 3 and fades the mask to colours
-   `0x67`/`0x68` over 80 ms (`0x002A3DF0(1, 0x50)`, `0x002A7783`).
-3. In mode 3, Up or Triangle moves to an earlier row and Down or confirm to a later one (`0x002A5F40`), each move a
-   12-frame scroll with curve 1 through `0x0209C618`-`0x0209C628` that `0x002A5930` steps.
-4. Cancel, when no scroll runs, sets mode 2 and plays sound 3; mode 2 sets mode 0, fades the mask back to
-   `0x69`/`0x6A` and restores `0x0209C980` from `0x0209C988` (`0x002A77DE`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A733A`-`0x002A735C` |
+| ² | `0x002A2763`, `0x002A277E` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | In mode 0, while the text is not typing, Triangle pressed without cancel opens the log when the window has earlier text: the cursor `+0x3C0` goes to the last of the `+0x3C1` rows, the scroll `+0x3BE` to that row, the mode to 1, and sound `0x4E` plays. | `0x002A5CC0`<br>`0x002A5020`<br>`0x002A5E7C` |
+| 2 | Mode 1 waits until the window's position and size tweens end, sets mode 3 and fades the mask to colours `0x67`/`0x68` over 80 ms (`0x002A3DF0(1, 0x50)`, `0x002A7783`). |   |
+| 3 | In mode 3, Up or Triangle moves to an earlier row and Down or confirm to a later one, each move a 12-frame scroll with curve 1 through `0x0209C618`-`0x0209C628` that `0x002A5930` steps. | `0x002A5F40` |
+| 4 | Cancel, when no scroll runs, sets mode 2 and plays sound 3; mode 2 sets mode 0, fades the mask back to `0x69`/`0x6A` and restores `0x0209C980` from `0x0209C988`. | `0x002A77DE` |
 
 `0x002A3DF0(open, ms)` tweens the mask's two colours from their current values over `ms x 60 / 1000` frames, and does
 nothing when they already match. `0x002A69E0` resizes the window's height to its text, at least three lines, with a
-150 ms tween that keeps the bottom edge (`0x00247260`); `0x002B27E0` and `0x002B28B0` measure the height of the text shown.
+150 ms tween that keeps the bottom edge¹; `0x002B27E0` and `0x002B28B0` measure the height of the text shown.
 
-`0x002B27E0` cuts the text with `0x002B20B0(text, n)` (`0x002B280B`). That walks the text a token at a time (`0x002B1FB0`),
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00247260` |
+
+</details>
+
+`0x002B27E0` cuts the text with `0x002B20B0(text, n)`¹. That walks the text a token at a time²,
 adding each token's `0x002B41F0(token, 0)`. It returns the byte offset where the sum has reached n and the next byte
-is `0x10` or above, or where the text ends. `0x002ABB20` also calls it (`0x002ABCEC`).
+is `0x10` or above, or where the text ends. `0x002ABB20` also calls it³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B280B` |
+| ² | `0x002B1FB0` |
+| ³ | `0x002ABCEC` |
+
+</details>
 
 ### Signals
 
@@ -317,12 +614,32 @@ template text `0x467C` with a button from `0x0029DA70`. A signal is replaced whe
 ### Window pictures
 
 Scripts register a picture with `registshape` (`0x17A`): `0x002A7950` takes the first free of the eight `0x20`-byte
-picture slots at `0x0209C510`, loads the picture as the image label `shape` (`0x0024A440`) and returns the slot.
+picture slots at `0x0209C510`, loads the picture as the image label `shape`¹ and returns the slot.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024A440` |
+
+</details>
 
 `0x002A7A40` frees a slot. A window with parts points at an array of `0x60`-byte parts from `+0x3F8`, keeps its count
 at `+0x3F0` and points at a draw order from `+0x400`. `0x002A2AD0(window, n)` allocates both through `0x002497B0`, n ×
-`0x60` bytes for the parts (`0x002A2AEB`-`0x002A2AF9`) and n bytes for the order (`0x002A2B03`-`0x002A2B0A`), and stores
-n at `+0x3F0` (`0x002A2B11`); it starts each part hidden, with colour `0x80808080` and scale 1.0.
+`0x60` bytes for the parts¹ and n bytes for the order², and stores
+n at `+0x3F0`³; it starts each part hidden, with colour `0x80808080` and scale 1.0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A2AEB`-`0x002A2AF9` |
+| ² | `0x002A2B03`-`0x002A2B0A` |
+| ³ | `0x002A2B11` |
+
+</details>
 
 | Verb | Id | Function | Does to a part |
 |---|---|---|---|
@@ -331,31 +648,77 @@ n at `+0x3F0` (`0x002A2B11`); it starts each part hidden, with colour `0x8080808
 | `setshapecolor_18a` | `0x18A` | `0x003E94D0` → `0x002A2650` → `0x002A7C70` | sets the colour, or tweens it over n ticks with a curve |
 | `setshapescale_187` | `0x187` | `0x003E9690` → `0x002A26A0` | sets the scale, or tweens it over n ticks with a curve |
 
-`0x003E9320` uses `0x002A3830` when the slot's `+0x4C` is set (`0x003E9377`) and clears `+0x4C` on every path
-(`0x003E9417`, `0x003E941D`), so the stored animation serves only the `setshapeanime` call that stored it
-(`0x0034016B`-`0x0034017F`); a later `setshape` takes `0x002A3650`.
+`0x003E9320` uses `0x002A3830` when the slot's `+0x4C` is set¹ and clears `+0x4C` on every path², so the stored animation serves only the `setshapeanime` call that stored it³; a later `setshape` takes `0x002A3650`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E9377` |
+| ² | `0x003E9417`, `0x003E941D` |
+| ³ | `0x0034016B`-`0x0034017F` |
+
+</details>
 
 `0x002A7A60` reads a frame's box and palette from the picture's tables. Each tick `0x002A3F90` steps every part with
 `0x002A7AD0`: the frame timer, the colour tween and the scale tween, each through `0x00248F40` ([widgets](widgets.md)).
-A loop count of 0 loops for ever. The parts do not step while a time stop restricts anything (`0x00226BA0`) and story
+A loop count of 0 loops for ever. The parts do not step while a time stop restricts anything¹ and story
 flag `0x6F` is clear ([time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00226BA0` |
+
+</details>
+
 `0x002A5BC0` sorts the draw order by each part's priority byte `+0x0E`, highest first, when `+0x3F2` is set, and
-clears it (`0x002A5CB6`). Only `0x003E95E0` sets it. It takes window i from the slot table (`0x002E1040`: entry i of the
-`0x68`-byte slots at `0x0215F200`, i clamped to 0-7), writes part i's priority byte (`0x003E9626`), sets `+0x3F2` to 1
-(`0x003E961E`) and ors `0x20` into `+0x3F3` (`0x003E962B`). So the parts are re-sorted after a script changes a
+clears it¹. Only `0x003E95E0` sets it. It takes window i from the slot table (`0x002E1040`: entry i of the
+`0x68`-byte slots at `0x0215F200`, i clamped to 0-7), writes part i's priority byte², sets `+0x3F2` to 1³ and ors `0x20` into `+0x3F3`⁴. So the parts are re-sorted after a script changes a
 priority, and `0x002A4EE0` draws the shown parts in that order, centred when bit `0x2` is set. `0x002A2860` frees the arrays.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A5CB6` |
+| ² | `0x003E9626` |
+| ³ | `0x003E961E` |
+| ⁴ | `0x003E962B` |
+
+</details>
 
 ### Skipping
 
-While any actor-manager slot has a skip pending (`0x00267310` for slots 0-4), the drain calls `0x002A38C0(1)`
-(`0x002E09DD`). For every window, `0x002A3730` marks the text window as skipping (`+0x3C5` = `0x80`) and steps its pager
-until a page end, a choice list or an answer, and `0x002A36A0` finishes every part's animation and tweens at once
-(`0x002A7D30`) and freezes the parts (bit `0x80` of `+0x3F3`). `0x002A38C0(0)` clears the freeze and `+0x3C5`.
+While any actor-manager slot has a skip pending (`0x00267310` for slots 0-4), the drain calls `0x002A38C0(1)`¹. For every window, `0x002A3730` marks the text window as skipping (`+0x3C5` = `0x80`) and steps its pager
+until a page end, a choice list or an answer, and `0x002A36A0` finishes every part's animation and tweens at once² and freezes the parts (bit `0x80` of `+0x3F3`). `0x002A38C0(0)` clears the freeze and `+0x3C5`.
 
-`0x002A3730` also calls `0x002B3950(text)` (`0x002A37C9`). It moves the page counter `+0x8C` on by one, keeping the old
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E09DD` |
+| ² | `0x002A7D30` |
+
+</details>
+
+`0x002A3730` also calls `0x002B3950(text)`¹. It moves the page counter `+0x8C` on by one, keeping the old
 value at `+0x8E` and the new one at `+0x90`. It clears `+0x88`, the low byte of `+0xB0` and bit `0x80000` of `+0xB0`, and
 sets `+0x9B` and `+0x9D` to 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A37C9` |
+
+</details>
 
 ### Captions and sizes
 
@@ -365,35 +728,77 @@ sets the window's own width `+0x9C`. `0x002A5460` measures a caption's text plus
 style-3 caption: `0x0028F810`, or the screen height `0x01E0C1DC` when that is negative, less 5 font sizes and 38 times
 `0x0024ABA0`. `0x002A6F80` places the caption window of style 0 or 3.
 
-`0x002B39A0(text, c)` returns the first byte c in a zero-terminated string, or null; the message windows (`0x002A3250`,
-`0x002A5590`, `0x002A6C40`, `0x002A70B0`) and the Clan Primer (`0x00573BE0`) use it. `0x002B39D0` and `0x002B3A80` find a string inside
-the window's text, the second stopping at a given character
-(`0x002A2E52`, `0x002A3438`).
+`0x002B39A0(text, c)` returns the first byte c in a zero-terminated string, or null; the message windows¹ and the Clan Primer² use it. `0x002B39D0` and `0x002B3A80` find a string inside
+the window's text, the second stopping at a given character³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A3250`, `0x002A5590`, `0x002A6C40`, `0x002A70B0` |
+| ² | `0x00573BE0` |
+| ³ | `0x002A2E52`, `0x002A3438` |
+
+</details>
 
 ### The letterbox mask
 
-The conversation window builds a mask widget, procedure `0x002A3960`, stored at `0x0209C610` (`0x002A70B0`). Message 21 keeps
-it from `MessageWinMaskTop` above the window's top edge to the bottom of the screen (`0x002A68AF`-`0x002A68FA`), and the
+The conversation window builds a mask widget, procedure `0x002A3960`, stored at `0x0209C610`¹. Message 21 keeps
+it from `MessageWinMaskTop` above the window's top edge to the bottom of the screen², and the
 window's messages 15 and 18 close and destroy it. Its layout keys are on [screen layouts](screen-layouts.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A70B0` |
+| ² | `0x002A68AF`-`0x002A68FA` |
+
+</details>
 
 ### Hiding windows with the HUD
 
 The HUD switch `0x00251F40` ([HUD](hud.md)) hides and shows windows with the rest of the HUD:
 
-- `0x0035D0E0` walks the widget tree from `0x0208EA28` (`0x0035D280`) and starts the closing run (`0x002A2720`) of every
+- `0x0035D0E0` walks the widget tree from `0x0208EA28`¹ and starts the closing run² of every
   window with parts (`+0x44` bits under mask `0x180000` equal to `0x100000`, set by `0x002A2AD0`) whose `+0x40` bit `0x100000` is clear
-  (`0x0035E5C0`). With bit `0x80` of `[0x020927EC]` it takes every window with parts (`0x0035E5A0`) and then every text window
+ ³. With bit `0x80` of `[0x020927EC]` it takes every window with parts⁴ and then every text window
   (`0x180000`, `0x0035E580`). It then marks slot 6's window inactive (`0x002E2010(6, 0)`).
-- `0x0035D1B0` reopens them the same way (`0x0035D2D0`, `0x00246AC0`) and marks slot 6's window active (`0x002E2010(6, 1)`).
+- `0x0035D1B0` reopens them the same way⁵ and marks slot 6's window active (`0x002E2010(6, 1)`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035D280` |
+| ² | `0x002A2720` |
+| ³ | `0x0035E5C0` |
+| ⁴ | `0x0035E5A0` |
+| ⁵ | `0x0035D2D0`, `0x00246AC0` |
+
+</details>
 
 `0x002A2720` itself skips a window whose `+0x40` bit `0x100000` is set, so `setmeswinhidestatus(slot, 2)` keeps a window up
 while the HUD is off.
 
 ### Message macros
 
-Each window holds 32 resolved macros at `+0x1B8`, `0x10` bytes each, made from the slot's macro table when it is built
-(`0x002A2D95`) and again by `updatemesmacro`. The text's `+0x70` points at them (`0x002A6AD4`), and the escape `0F .`
-reads its argument from there (`0x002AD8F9`). `0x002A30B0(window, n)` resolves entry n by its kind:
+Each window holds 32 resolved macros at `+0x1B8`, `0x10` bytes each, made from the slot's macro table when it is built¹ and again by `updatemesmacro`. The text's `+0x70` points at them², and the escape `0F .`
+reads its argument from there³. `0x002A30B0(window, n)` resolves entry n by its kind:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A2D95` |
+| ² | `0x002A6AD4` |
+| ³ | `0x002AD8F9` |
+
+</details>
 
 | Kind | Becomes |
 |---:|---|
@@ -408,8 +813,17 @@ The escape is listed on [text codes](text-codes.md).
 
 ### The obtained-item notice
 
-`0x002A59C0(ids, gil, count, times, log, flag)` fills the one notice record at `0x022CA438` (`0x0035E550`), which
+`0x002A59C0(ids, gil, count, times, log, flag)` fills the one notice record at `0x022CA438`¹, which
 `0x0035E560` clears first, with up to three lines through `0x0035E500`, and posts it with `0x0035DF40`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035E550` |
+
+</details>
 
 - with `gil` 1, one gil line;
 - otherwise by the id's class (`0x00309440`, [item and ability ids](../Engine-Core/item-and-ability-ids.md)):
@@ -420,11 +834,24 @@ The escape is listed on [text codes](text-codes.md).
 - any other class gives nothing.
 
 `0x0035DF40` writes battle-log lines through `0x0046AA70` when `log` was set ([battle log](../Battle-Actions/battle-log.md))
-and otherwise builds the "You obtain ...!" window `0x0035E070` when no such window is open (`0x022CA430`). `0x002A3060(item,
+and otherwise builds the "You obtain ...!" window `0x0035E070` when no such window is open¹. `0x002A3060(item,
 count, log)` is the single-item entry the item verbs use ([reward
-verbs](../Scripts-And-Script-Commands/reward-verbs.md)), and `0x002A5B90(ids, count)` the list entry (`0x003F3F6B`).
+verbs](../Scripts-And-Script-Commands/reward-verbs.md)), and `0x002A5B90(ids, count)` the list entry².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x022CA430` |
+| ² | `0x003F3F6B` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 `MessageSlot`, the script slot record, `0x68` bytes, eight of them at `0x0215F200`:
 
@@ -534,19 +961,47 @@ Each of the three signal widgets (`0x0209CC18`, `0x0209CC20`, `0x0209CC28`, Sign
 | `+0x148` | `u32` | kind | the signal's kind, the creation record's `+0x10` (`0x002A8A5F`): 1-6 for the right signal `0x0209CC18` (built by `0x002A8220`), 9 or 10 for the left signal `0x0209CC20` (10 when the window's mode bits `+0x3E8` & `0x700` are `0x300`, `0x002A7FF5`-`0x002A8008`), 11 for the log signal `0x0209CC28` (`0x002A815A`). The draw dispatches on it (`0x002A872A`); kind 11 draws the log's up and down arrows (`0x002A89B7`) and keeps its own y (`0x002A86FA`). `0x002A8220` keeps the right signal when the new kind is the same or 3 apart (`0x002A82A9`-`0x002A8308`); `0x002A7F70` keeps the left one while its kind matches (`0x002A8010`) |
 | `+0x14C` | `u32` | widthChanged | 1 on a new right signal whose label width differs from the one it replaced (`0x002A83B3`-`0x002A83B9`); `0x002A8220` clears it on the kept signal (`0x002A82A3`). `0x002A7F70` places the left signal from the right one's x and rebuilds it when the kind changed or this is set (`0x002A8018`) |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 ### The window registry
 
 Entry `i` of the eight pointers at `0x0209C4D0` holds the window registered with index `i` at `+0x3B8` (see The window
 object). All are 0 in the file. These read the entries, by index or in turn:
 
-- the register's scan of every entry (`0x002A6205`);
-- the entry points `0x002A2720` (`0x002A2742`), `0x002A27C0` (`0x002A27D6`), `0x002A27F0` (`0x002A2806`), `0x002A2830`
-  (`0x002A2846`), `0x002A28B0` (`0x002A28C6`) and `0x002A2BB0` (`0x002A2BCA`);
-- the loops `0x002A28E0` (`0x002A28F0`), `0x002A2940` (`0x002A2950`), `0x002A29A0` (`0x002A29B0`), `0x002A2A00` (`0x002A2A10`),
-  `0x002A38C0` (`0x002A38F5`) and `0x002A3F50` (`0x002A3F60`);
-- the caption placement `0x002A6F80` (`0x002A7000`) and the caption build `0x002A70B0` (`0x002A7673`).
+- the register's scan of every entry¹;
+- the entry points `0x002A2720`², `0x002A27C0`³, `0x002A27F0`⁴, `0x002A2830`
+ ⁵, `0x002A28B0`⁶ and `0x002A2BB0`⁷;
+- the loops `0x002A28E0`⁸, `0x002A2940`⁹, `0x002A29A0`¹⁰, `0x002A2A00`¹¹,
+  `0x002A38C0`¹² and `0x002A3F50`¹³;
+- the caption placement `0x002A6F80`¹⁴ and the caption build `0x002A70B0`¹⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A6205` |
+| ² | `0x002A2742` |
+| ³ | `0x002A27D6` |
+| ⁴ | `0x002A2806` |
+| ⁵ | `0x002A2846` |
+| ⁶ | `0x002A28C6` |
+| ⁷ | `0x002A2BCA` |
+| ⁸ | `0x002A28F0` |
+| ⁹ | `0x002A2950` |
+| ¹⁰ | `0x002A29B0` |
+| ¹¹ | `0x002A2A10` |
+| ¹² | `0x002A38F5` |
+| ¹³ | `0x002A3F60` |
+| ¹⁴ | `0x002A7000` |
+| ¹⁵ | `0x002A7673` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -569,26 +1024,48 @@ the index `+0x3B8`, which is below 8.
 
 ### The line copy
 
-The draws copy the window's text record `+0xD0` whole into `0x0209C630`: `0x002A4430` with the address in `rdx`
-(`0x002A4464`), and the log's redraw `0x002A4830` from the image base plus `0x1F7C630` (`0x002A4A89`, `0x002A4D66`).
-`0x002A5F40` measures the copy through `0x002B2880` (`0x002A5F52`, `0x002A5F59`).
+The draws copy the window's text record `+0xD0` whole into `0x0209C630`: `0x002A4430` with the address in `rdx`¹, and the log's redraw `0x002A4830` from the image base plus `0x1F7C630`².
+`0x002A5F40` measures the copy through `0x002B2880`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A4464` |
+| ² | `0x002A4A89`, `0x002A4D66` |
+| ³ | `0x002A5F52`, `0x002A5F59` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x0209C634` | `f32` | 0 (zero-filled tail of `.data`) | `+0x04` of the line copy; after the copy the log's redraw stores there the font-1 height `0x0017F880` (23.0 when font 1 is not registered), cut to a whole number | `0x002A4430` (`0x002A446E`, 16 bytes); `0x002A4830` (`0x002A4A90`, `0x002A4D87`, 16 bytes; the height at `0x002A4B18`, `0x002A4E05`) | `0x002B2970` (`0x002B29A6`, 16 bytes), through `0x002B2880` from `0x002A5F40` |
 
+</details>
+
 ## Modding notes
 
 - `mesopenspeed` values are stored in 33 ms units, but the window keeps run lengths in ten bits of `+0x7C`:
-  bits `0x3FF000` take `open & 0x3FF` and the bits under mask `0xFFC00000` `close << 22` (`0x002A2FAF`-`0x002A2FDF`), so values above 31
+  bits `0x3FF000` take `open & 0x3FF` and the bits under mask `0xFFC00000` `close << 22`¹, so values above 31
   (31 × 33 = 1,023 ms) wrap round.
 - The eighth simultaneous window (registry entry 7) is not removed from the registry when it is destroyed; the entry
-  keeps pointing at the destroyed widget, which the loops over `0x0209C4D0` (`0x002A28E0`, `0x002A29A0`, `0x002A38C0`,
-  `0x002A3F50`) still read until the reset.
+  keeps pointing at the destroyed widget, which the loops over `0x0209C4D0`² still read until the reset.
 - Hidden choices keep their option numbers: the answer is converted from a row to an option number by `0x002B2CE0`,
-  but the start option `+0xA4`, from the token or from `askpos`, goes through `0x002B2CA0` (`0x002A9078`,
-  `0x002A986A`-`0x002A9880`), whose result is not moved up for hidden options: the row it stores at `+0x58` (`0x002A9888`)
+  but the start option `+0xA4`, from the token or from `askpos`, goes through `0x002B2CA0`³, whose result is not moved up for hidden options: the row it stores at `+0x58`⁴
   is one row further down for each hidden option before the start option, held to the last row.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A2FAF`-`0x002A2FDF` |
+| ² | `0x002A28E0`, `0x002A29A0`, `0x002A38C0`, `0x002A3F50` |
+| ³ | `0x002A9078`, `0x002A986A`-`0x002A9880` |
+| ⁴ | `0x002A9888` |
+
+</details>
 
 ## Related
 
@@ -608,22 +1085,28 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [party list](party-list.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0024A1A0` | calls | `0x002DEE80`, `0x002DF0F0` |
-| `0x002A1FB0` | calls | `0x0024A1A0` |
+| [`0x0024A1A0`](message-windows.md) | calls | [`0x002DEE80`](../Sound-And-Music/sound-effects.md) (on sound effects)<br>[`0x002DF0F0`](../Sound-And-Music/sound-effects.md) (on sound effects) |
+| [`0x002A1FB0`](message-windows.md) | calls | [`0x0024A1A0`](message-windows.md) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002A1FB0` | calls | `0x00253690` |
+| [`0x002A1FB0`](message-windows.md) | calls | [`0x00253690`](party-list.md) Game state: get gil (on party list) |
 
 **World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E1450` | is called by | `0x00266D10` |
+| [`0x002E1450`](message-windows.md) | is called by | [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 </details>
 

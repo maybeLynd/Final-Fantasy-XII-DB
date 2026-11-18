@@ -39,38 +39,59 @@ is the restore flag that makes the next apply keep the committed slot (see the a
 The debug override is the dword at `+0xAAC` of the debug singleton `0x001D50D0()`, read by `0x0017D490`.
 Its two readers are `0x0017D490` and the overlay `0x001CD0E0`, which prints it with the format
 `%s%s %d %s, Weather Slot:%d (Triangle/Cross to toggle)` at `0x008FFC80`. The singleton's constructor
-`0x001CCB20` zeroes it with the qword store at `+0xAA8` (`0x001CCBA3`). No instruction in the image stores to
+`0x001CCB20` zeroes it with the qword store at `+0xAA8`¹. No instruction in the image stores to
 `[reg + 0xAAC]`: the two reads are its only references through that offset.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001CCBA3` |
+
+</details>
 
 ### The probabilities the zone script authors
 
 `0x002658B0(slot)` returns the retention probability of a slot:
 
-1. The slot is clamped to 0 to 2 after subtracting one (`0x002658B8`-`0x002658C8`).
-2. The zone's script container must be loaded: bit `0x1` of `0x02098E20` set, the pointer `0x02098E10` non-null
-   and the container's first word above 6 (10,036 of the 10,045 shipped scripts have version 11; the nine
-   language copies of the developer event `evt_t0020` have version 7).
-3. The dword at container `+0x64` is resolved through `0x0020E600` and the signed byte at
-   `section + 1 + slot` is returned. The section is a count byte, always 3 in the shipped scripts, then
-   one byte per slot: the high-level `option weatherProbability = {a, b, c}`.
-4. The section is the container plus the low 32 bits of the resolved value, sign-extended
-   (`0x002658F8`-`0x002658FA`). The count byte is never read, so the clamp of step 1 (`s = slot - 1`, 0 when
-   negative, 2 when above 2: `jns`, `cmovg`, `0x002658B8`-`0x002658C8`) is the only bound on the read
-   `byte [section + 1 + s]` (`0x00265900`).
-5. When the container is not loaded, or its `+0x64` dword is 0 so that `0x0020E600` gives null (`0x002658F6`), the
-   answer is 33 for every slot (`0x00265910`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The slot is clamped to 0 to 2 after subtracting one. | `0x002658B8`-`0x002658C8` |
+| 2 | The zone's script container must be loaded: bit `0x1` of `0x02098E20` set, the pointer `0x02098E10` non-null and the container's first word above 6 (10,036 of the 10,045 shipped scripts have version 11; the nine language copies of the developer event `evt_t0020` have version 7). |   |
+| 3 | The dword at container `+0x64` is resolved through `0x0020E600` and the signed byte at `section + 1 + slot` is returned. The section is a count byte, always 3 in the shipped scripts, then one byte per slot: the high-level `option weatherProbability = {a, b, c}`. |   |
+| 4 | The section is the container plus the low 32 bits of the resolved value, sign-extended. The count byte is never read, so the clamp of step 1 (`s = slot - 1`, 0 when negative, 2 when above 2: `jns`, `cmovg`, `0x002658B8`-`0x002658C8`) is the only bound on the read `byte [section + 1 + s]`. | `0x002658F8`-`0x002658FA`<br>`0x00265900` |
+| 5 | When the container is not loaded, or its `+0x64` dword is 0 so that `0x0020E600` gives null, the answer is 33 for every slot. | `0x002658F6`<br>`0x00265910` |
 
 ### The roll when a zone starts
 
 `0x002620E0(managerRecord)` runs once per zone start, from the field runtime pass `0x0025D9E0`. It
 returns at once unless the manager index at `+0x28` is 0 (the zone's own manager), and it skips its
-body when bit `0x4` of the byte at `+0x10` is already set; it sets that bit itself at the end
-(`0x002621A4`).
+body when bit `0x4` of the byte at `+0x10` is already set; it sets that bit itself at the end¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002621A4` |
+
+</details>
 
 The manager bind `0x0026C8C0`, run on every zone load when the zone's script arrives
-(`0x003304A0` → `0x0032F850`, `0x0032F966`), clears it again (`0x0026CD3F`), so the body runs on every map
+(`0x003304A0` → `0x0032F850`, `0x0032F966`), clears it again¹, so the body runs on every map
 entry, including a return to the area the game keeps in memory. Before it, the start pass runs the
-zone's setup actor (`0x0025DB31`-`0x0025DB74`), which may already have chosen the slot. The body:
+zone's setup actor², which may already have chosen the slot. The body:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026CD3F` |
+| ² | `0x0025DB31`-`0x0025DB74` |
+
+</details>
 
 1. `0x00259B30()` and `0x003E8980(0)`.
 2. `0x0025ACA0()`, the roll, which tail-calls the apply.
@@ -82,7 +103,16 @@ zone's setup actor (`0x0025DB31`-`0x0025DB74`), which may already have chosen th
    `0x002621BC`); they clear bits `0x800` and `0x1000` of the flag word the world tick page names.
 
 The slot passed in steps 3 and 4 is read fresh each time: the override when positive, else
-`payload[0x1060] + 1` (`0x0026210E`-`0x00262187`).
+`payload[0x1060] + 1`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026210E`-`0x00262187` |
+
+</details>
 
 `0x0025ACA0` decides whether the current slot `s` is kept:
 
@@ -120,44 +150,77 @@ roll is 0, 1 or 2 depending on the branch, and a reimplementation must draw the 
 
 ### Applying a slot
 
-`0x0026D910(requested)` is the only apply. Its callers are the roll (`0x0025AD06`), the verb
-`setweatherslot` (`0x0035660E`) and the boot initialiser `0x00266D10`, which calls it twice with slot 1
-(`0x00266E74`, `0x00266E7B`). In order:
+`0x0026D910(requested)` is the only apply. Its callers are the roll¹, the verb
+`setweatherslot`² and the boot initialiser `0x00266D10`, which calls it twice with slot 1³. In order:
 
-1. When the override is positive the request is replaced by it (`0x0026D921`, `0x0026D92A`).
-2. `req = clamp(requested - 1, 0, 2)` (`0x0026D936`-`0x0026D943`): an out-of-range request saturates and
-   nothing reports it.
-3. `0x02099DBC` is zeroed (`0x0026D946`).
-4. When `payload[0x1061]` is 0 the request is committed: `payload[0x1060] = req` (`0x0026D95E`).
-   Otherwise the request is dropped and the committed slot is kept.
-5. `0x00180620(payload[0x1060])` selects the shadow parameter set of the committed slot (the lighting
-   pages own it).
-6. The area's `map_ref.bin` row is read for the field `0x003148F0()` and the four globals of the next
-   section are published, when the table is bound. While `0x02099D88` or `0x02099D90` is null, or the row or lane
-   address is null, it goes to step 7 (`0x0026D9C6`-`0x0026DA0E`): `0x02099DA8`, `0x02099DAC` and `0x02099DB0` keep their
-   values, and `0x02099DBC` keeps the 0 of step 3.
-7. `payload[0x1061]` is cleared (`0x0026DA92`) on every path, including the bail-out when the table is
-   not bound.
-8. The tail jump `0x002E3D40(0, 0, 0, 0)` (`0x0026DAAD`) refreshes the map wind ([below](#the-map-wind)).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025AD06` |
+| ² | `0x0035660E` |
+| ³ | `0x00266E74`, `0x00266E7B` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When the override is positive the request is replaced by it. | `0x0026D921`, `0x0026D92A` |
+| 2 | `req = clamp(requested - 1, 0, 2)`: an out-of-range request saturates and nothing reports it. | `0x0026D936`-`0x0026D943` |
+| 3 | `0x02099DBC` is zeroed. | `0x0026D946` |
+| 4 | When `payload[0x1061]` is 0 the request is committed: `payload[0x1060] = req`. Otherwise the request is dropped and the committed slot is kept. | `0x0026D95E` |
+| 5 | `0x00180620(payload[0x1060])` selects the shadow parameter set of the committed slot (the lighting pages own it). |   |
+| 6 | The area's `map_ref.bin` row is read for the field `0x003148F0()` and the four globals of the next section are published, when the table is bound. While `0x02099D88` or `0x02099D90` is null, or the row or lane address is null, it goes to step 7: `0x02099DA8`, `0x02099DAC` and `0x02099DB0` keep their values, and `0x02099DBC` keeps the 0 of step 3. | `0x0026D9C6`-`0x0026DA0E` |
+| 7 | `payload[0x1061]` is cleared on every path, including the bail-out when the table is not bound. | `0x0026DA92` |
+| 8 | The tail jump `0x002E3D40(0, 0, 0, 0)` refreshes the map wind ([below](#the-map-wind)). | `0x0026DAAD` |
 
 Two slots can be in play inside one call. The gameplay wind class of step 6 is extracted with the
-requested slot `req + 1` (`0x0026DA2C`-`0x0026DA31`), while the model selection of step 5, the two table
+requested slot `req + 1`¹, while the model selection of step 5, the two table
 lookups and the map wind refresh use the committed slot re-read from the payload. They differ only when
 the restore flag dropped the request: after the setup actor's `setweatherslot` arms the flag, the roll
 of the same zone start, when it lands elsewhere, publishes one slot's combat wind under another slot's
 sky.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026DA2C`-`0x0026DA31` |
+
+</details>
+
 Shipped data reaches this: 41 zone scripts author `100, 0, 0` and call `setweatherslot`, and 40 of them can set
-slot 2 or 3. The roll then asks for slot 1 (`0x0025ABA0`), the request is dropped, slot 2 or 3 stays with its sky,
+slot 2 or 3. The roll then asks for slot 1¹, the request is dropped, slot 2 or 3 stays with its sky,
 and the wind class is read from slot 1's entry.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025ABA0` |
+
+</details>
 
 ### The environment variant in map_ref.bin
 
 The map_ref loader `0x00268750` files two reads of resource kind 9: file 4, `map_ref.bin`, into a block
-tagged `MapRef` with the completion `0x002678A0` (`0x00268803`); then file 2, `in/common/test_area_ref.bin` (the
+tagged `MapRef` with the completion `0x002678A0`¹; then file 2, `in/common/test_area_ref.bin` (the
 `ch` copy for Korean and the two Chinese languages; 642 bytes, the two identical), into a block from `0x00267930`
-with no completion (`0x00268838`). That block's pointer goes to `0x02099D98` (`0x00268829`, cleared at `0x00268772`),
+with no completion². That block's pointer goes to `0x02099D98` (`0x00268829`, cleared at `0x00268772`),
 and no instruction reads `0x02099D98` by its address.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00268803` |
+| ² | `0x00268838` |
+
+</details>
 
 `test_area_ref.bin` is 321 `u16` values, one per area index 0 to 320: value n is the first field whose
 `map_ref.bin` row has area n. The fields of each area are consecutive, so value n + 1 minus 1 is area n's last
@@ -215,29 +278,48 @@ the reading the `-10` produces.
 gear ([Model oscillators](../Graphics/model-oscillators-and-pose-sequencer.md)) and does not
 reach the sky, which the weather slot chooses ([What the sky is](#what-the-sky-is)). With `mode` 0 it computes
 the three values
-itself from the current field (`0x003148F0`), its selector (`0x00264F10`) and the committed slot
-(`0x00265920`) through the three wrappers; with a non-zero mode it passes its arguments through. Either
+itself from the current field¹, its selector² and the committed slot³ through the three wrappers; with a non-zero mode it passes its arguments through. Either
 way it tail-calls `0x0040AAD0(preset, azimuth, elevation)`:
 
-1. The azimuth and elevation bytes are stored at `0x02CA4391` and `0x02CA4392` (`0x0040AAFA`, `0x0040AB01`), and
-   `0x0040B3B0(preset)` stores the preset byte at `0x02CA4390` (`0x0040B3B0`) and copies row `preset - 1` of the
-   32-byte table at `0x01EFFA30` to `0x02CA4380`-`0x02CA439C` (preset 0 copies nothing).
-2. The wind direction starts as the unit Z axis `{0, 0, 1}`, the 16 bytes at `0x009155F0` (`0x0040AB0C`), and is
-   rotated about X by `elev + (r1 - 0.15)` and about Y by `(r2 - 0.15) - azimuth * 0.3926991`, where `elev` is 0
-   for class 0, +0.5235988 (30 degrees) for class 1 and -0.5235988 for class 2 or 3 (`0x0040AB18`-`0x0040AB32`), and
-   each sector is 22.5 degrees.
-3. `r1` and `r2` are two draws of `0x003D8E50(0.3)` from the presentation generator (`0x0040AB43`, `0x0040AB7F`).
-   `0x0046D160` builds the X rotation (`0x0040AB5E`) and `0x0046D200` the Y rotation (`0x0040ABA8`), and `0x00202B90`
-   applies each to the vector in place (`0x0040AB72`, `0x0040ABBC`).
-4. `0x0040B430` normalises the vector into `0x02CA43A0` and publishes its tangent with the almost-up
-   reference `{0, 1, 1e-5}` into `0x02CA43B0`.
+<details>
+<summary>Where in the code</summary>
 
-`0x0040B430`, called from `0x0040AAD0` (`0x0040ABC6`) and `0x0040DB70` (`0x0040DB97`), builds the tangent from the reference
-and the direction with `0x00202E10` (`0x0040B522`). It scales the result by 1 over its length, `v * (1.0 / len)` with
-`len = sqrt(x * x + y * y + z * z)`, or by 0 when the length is below the constant at `0x00908E10`
-(`0x0040B542`-`0x0040B57C`), and stores three floats (`0x0040B581`-`0x0040B592`). The model simulation stage
-`0x0040FF30` reads the tangent as one 16-byte value (`0x0041008A`), copies it to `0x022D91E0` (`0x004100D1`) and takes its
-third float (`0x004100E0`):
+| | Code |
+|---|---|
+| ¹ | `0x003148F0` |
+| ² | `0x00264F10` |
+| ³ | `0x00265920` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The azimuth and elevation bytes are stored at `0x02CA4391` and `0x02CA4392`, and `0x0040B3B0(preset)` stores the preset byte at `0x02CA4390` and copies row `preset - 1` of the 32-byte table at `0x01EFFA30` to `0x02CA4380`-`0x02CA439C` (preset 0 copies nothing). | `0x0040AAFA`, `0x0040AB01`<br>`0x0040B3B0` |
+| 2 | The wind direction starts as the unit Z axis `{0, 0, 1}`, the 16 bytes at `0x009155F0`, and is rotated about X by `elev + (r1 - 0.15)` and about Y by `(r2 - 0.15) - azimuth * 0.3926991`, where `elev` is 0 for class 0, +0.5235988 (30 degrees) for class 1 and -0.5235988 for class 2 or 3, and each sector is 22.5 degrees. | `0x0040AB0C`<br>`0x0040AB18`-`0x0040AB32` |
+| 3 | `r1` and `r2` are two draws of `0x003D8E50(0.3)` from the presentation generator. `0x0046D160` builds the X rotation and `0x0046D200` the Y rotation, and `0x00202B90` applies each to the vector in place. | `0x0040AB43`, `0x0040AB7F`<br>`0x0040AB5E`<br>`0x0040ABA8`<br>`0x0040AB72`, `0x0040ABBC` |
+| 4 | `0x0040B430` normalises the vector into `0x02CA43A0` and publishes its tangent with the almost-up reference `{0, 1, 1e-5}` into `0x02CA43B0`. |   |
+
+`0x0040B430`, called from `0x0040AAD0`¹ and `0x0040DB70`², builds the tangent from the reference
+and the direction with `0x00202E10`³. It scales the result by 1 over its length, `v * (1.0 / len)` with
+`len = sqrt(x * x + y * y + z * z)`, or by 0 when the length is below the constant at `0x00908E10`⁴, and stores three floats⁵. The model simulation stage
+`0x0040FF30` reads the tangent as one 16-byte value⁶, copies it to `0x022D91E0`⁷ and takes its
+third float⁸:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0040ABC6` |
+| ² | `0x0040DB97` |
+| ³ | `0x0040B522` |
+| ⁴ | `0x0040B542`-`0x0040B57C` |
+| ⁵ | `0x0040B581`-`0x0040B592` |
+| ⁶ | `0x0041008A` |
+| ⁷ | `0x004100D1` |
+| ⁸ | `0x004100E0` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -266,8 +348,16 @@ The sky is part of each map's remastered scene. Each piece is an ordinary mesh i
 with the mesh `nodename<N>Shape`, attached to YM00 instance N
 ([Map art](map-art.md#matching-models-to-instances)). A piece belongs to the sky when its instance's
 flag word `+0x0C` has `0x10000000`. This is the set the script verb `setskyonly` keeps: while
-`0x0209A704` is set, the draw-list build `0x002F5550` skips every instance without that bit
-(`0x002F5E03`-`0x002F5E10`).
+`0x0209A704` is set, the draw-list build `0x002F5550` skips every instance without that bit¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F5E03`-`0x002F5E10` |
+
+</details>
 
 - In each of the 195 map packs with sky instances, they are instances 0 to n-1. None of these packs has
   an instance with `0x400`.
@@ -280,26 +370,26 @@ flag word `+0x0C` has `0x10000000`. This is the set the script verb `setskyonly`
 - 971 of the 988 pieces use a material group named with `sky`. The other 17 are the distant mountains
   of `sav01` and `sav02`.
 - A piece is drawn only in the weather slots whose bits it carries: `0x1000000`, `0x2000000` and
-  `0x4000000` for slots 1 to 3, tested against `0x0209A6E8` (`0x002F5DF9`). So a weather change swaps sky
+  `0x4000000` for slots 1 to 3, tested against `0x0209A6E8`¹. So a weather change swaps sky
   pieces in and out.
   - 488 pieces are in all three slots, 177 only in slot 1, 39 only in slot 2 and 93 only in slot 3.
   - 81 are in slots 1 and 2, and 110 in slots 2 and 3. So every piece carries at least one slot bit.
 - The draw pass `0x002F4520` draws at once every instance up to the last one with `0x10000000` or `0x400`
-  (`0x002F4804`), then posts the map's opaque command ([Map art](map-art.md#drawing-an-instance)). So
+ ², then posts the map's opaque command ([Map art](map-art.md#drawing-an-instance)). So
   the sky is drawn before the rest of the map.
-- The same bit sets the object's flag `+0xC1` (`0x002F4D3C`, `0x001E69A0`). `0x001E2AF0` then draws the piece
-  with a pass chosen by its mode `+0x78` (`0x001E30BD`):
+- The same bit sets the object's flag `+0xC1`³. `0x001E2AF0` then draws the piece
+  with a pass chosen by its mode `+0x78`⁴:
   - mode 0: `DefaultMapRenderPassNztNzwAtNoBlending`;
   - mode 1: the linear blend (source alpha over inverse source alpha);
   - mode 2: the additive blend;
   - mode 3: the subtractive blend.
 - All four passes test depth with ALWAYS and write no depth, so the map drawn afterwards covers the sky.
-  The mode starts from the flag word's `(flag >> 1) & 7` (`0x002F4A72`-`0x002F4A9C`): it is 0 on 402 sky
+  The mode starts from the flag word's `(flag >> 1) & 7`⁵: it is 0 on 402 sky
   instances, 1 on 403 and 2 on 194.
 - A mode from 4 to 7 matches none of the four passes: `0x001E3107`-`0x001E310B` jump past the four stores, so the
   pass pointer `+0x80` keeps the value it already holds. No shipped sky instance has a mode above 2.
 - Neither the direction `0x02CA43A0` nor the tangent `0x02CA43B0` reaches the sky. Their only readers are
-  `0x0040B430` (`0x0040B4C4`) and the model simulation stage `0x0040FF30` (`0x00410083`, `0x0041008A`), so
+  `0x0040B430`⁶ and the model simulation stage `0x0040FF30`⁷, so
   `setmapwind` and the wind presets do not change how the sky is drawn.
 - `sky_spec` is the specular companion of `nal0102`'s `tex/sky.dds`, and both of its asset lists name
   it. `0x001A7F10` pairs it with that texture, and `0x001E6110` binds it as `SpecularMap` of the sky piece
@@ -308,19 +398,46 @@ flag word `+0x0C` has `0x10000000`. This is the set the script verb `setskyonly`
   `_collada_rbn5101_Upper_floor__phong49`. Two floor instances draw it. The map's sky piece binds
   `alc0200_sky.dds`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F5DF9` |
+| ² | `0x002F4804` |
+| ³ | `0x002F4D3C`, `0x001E69A0` |
+| ⁴ | `0x001E30BD` |
+| ⁵ | `0x002F4A72`-`0x002F4A9C` |
+| ⁶ | `0x0040B4C4` |
+| ⁷ | `0x00410083`, `0x0041008A` |
+
+</details>
+
 ### What combat reads
 
 Three readers take the published classes into combat:
 
 - The combat stage `0x0038B220` multiplies the pending damage factor `0x02AEE054` by 0.5 or 1.2 when a
-  bit of the action row's byte `+0x13` matches the environment class (`0x00263E10`), the target's
-  terrain class (`0x003210E0`) or the wind class 2 (`0x00263E20`); the weather and terrain element
+  bit of the action row's byte `+0x13` matches the environment class¹, the target's
+  terrain class² or the wind class 2³; the weather and terrain element
   scaling page gives the rule table.
 - `0x003895D0` scales `0x02AEDFE0` by 0.8 and `0x00389610` by 0.5 when the wind class is 2 and bit `0x4` of
   the wielder's formula context `+0x1A` (augment 2, Accuracy Boost) is clear (`0x003895D4`;
   [Weapon formulas](../Damage-And-Battle-Formulas/weapon-formulas.md)).
 - The AI selector `0x00301AD0` compares the environment class with an operand for equality
-  (`0x00303059`-`0x00303063`).
+ ⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263E10` |
+| ² | `0x003210E0` |
+| ³ | `0x00263E20` |
+| ⁴ | `0x00303059`-`0x00303063` |
+
+</details>
 
 `0x02099DBC` is read by `0x002E9D90` at four sites. Class 4, the value 246 of the 279 shipped lanes
 select, matches no arm of `0x0038B220` and so scales nothing.
@@ -336,37 +453,56 @@ rebuild `0x00379630`. `0x0026E8D0(slot)`:
 - stores the slot in `0x0209A6E8` and sets the dirty flag `0x0209A708`;
 - recomputes the lighting constants `0x0209A2D0` to `0x0209A370` through `0x003ED0B0`, `0x003ED020` and
   `0x003ECFD0`, from the environment record of slot `[0x0209A6E8]` - 1 in `[0x02EBB7F0]`: `0x0209A2D0` takes
-  `0x003ED0B0()`, the record's `+0x04` dword or -1 while `[0x02EBB7F0]` is 0 (`0x0026E8F1`-`0x0026E8F6`);
-- runs `0x003ED020(i, 0x0209A2F0 + 0x30 × i, 0x0209A300 + 0x30 × i)` for lights 0 to 2 (`0x0026E910`-`0x0026E927`) and
+  `0x003ED0B0()`, the record's `+0x04` dword or -1 while `[0x02EBB7F0]` is 0¹;
+- runs `0x003ED020(i, 0x0209A2F0 + 0x30 × i, 0x0209A300 + 0x30 × i)` for lights 0 to 2² and
   `0x003ECFD0(0x0209A370)`, which copies the record's `+0xF0`-`+0xFC` there, or nothing while `[0x02EBB7F0]` is 0
-  (`0x0026E930`);
+ ³;
 - `0x003B6BA0(0x003ED140())` stores the record's `+0x08` scale at `0x01EFE314`, or 1.0 while `[0x02EBB7F0]` is 0
-  (`0x0026E935`-`0x0026E93A`);
+ ⁴;
 - `0x003ED7B0(slot - 1)`, the tail jump at `0x0026E951`, copies the slot's 0x180-byte environment record of
   `[0x02EBB7F0]` (`+0x10`, `+0x14`, `+0x1C`) to `0x02EBB7F8`, `0x02EBB7FC` and `0x02EBB804`, which `0x003ECCA0` reads each
-  frame; it copies nothing while `[0x02EBB7F0]` is 0 (`0x003ED7BA`).
+  frame; it copies nothing while `[0x02EBB7F0]` is 0⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026E8F1`-`0x0026E8F6` |
+| ² | `0x0026E910`-`0x0026E927` |
+| ³ | `0x0026E930` |
+| ⁴ | `0x0026E935`-`0x0026E93A` |
+| ⁵ | `0x003ED7BA` |
+
+</details>
 
 The preset rebuild `0x00379630`, for an area without a light set, makes the map's lights from those
 constants:
 
-1. it frees the three light handles at `0x02ADD120` to `0x02ADD128` and the handle `0x02ADD11C`
-   (`0x003ABCA0`) and applies the slot with `0x0026E8D0`;
-2. for each of the first `0x0209A2D0` records at `0x0209A2E0` (at most three, 0x30 bytes apart) it files a
-   light request of type 1 (first dword `0x1002001`, the record's `+0x20` vector at request `+0x10`
-   and its `+0x00` vector at `+0x30`) through `0x003AB960` and keeps the handle at `0x02ADD120` onwards;
-3. `0x00379760` files a type-6 request (`0x1042006`) whose colour is `0x0209A370` to `0x0209A378` times the
-   three floats at `0x02EBF460`, the `+0x40` of light group 0 (`0x0037AD10`), with `0x0209A37C` as the
-   fourth value, and keeps it at `0x02ADD11C`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | it frees the three light handles at `0x02ADD120` to `0x02ADD128` and the handle `0x02ADD11C` and applies the slot with `0x0026E8D0`; | `0x003ABCA0` |
+| 2 | for each of the first `0x0209A2D0` records at `0x0209A2E0` (at most three, 0x30 bytes apart) it files a light request of type 1 (first dword `0x1002001`, the record's `+0x20` vector at request `+0x10` and its `+0x00` vector at `+0x30`) through `0x003AB960` and keeps the handle at `0x02ADD120` onwards; |   |
+| 3 | `0x00379760` files a type-6 request (`0x1042006`) whose colour is `0x0209A370` to `0x0209A378` times the three floats at `0x02EBF460`, the `+0x40` of light group 0, with `0x0209A37C` as the fourth value, and keeps it at `0x02ADD11C`. | `0x0037AD10` |
 
 `0x0037ACA0(group)`, run from the refresh `0x003DE920`, clears the group's byte `+0x4C`; for group 0
 while `0x02EBF420` is empty it tail-jumps to `0x003774C0`, which frees the same four handles.
 
 `0x0209A6E8` is read by the draw-list build `0x002F5550` (a model is drawn only when bit `23 + slot` of
-its flag word is set, `0x002F5616`), by the texture page rebuild `0x002F7380` (`0x002F738E`), which
+its flag word is set, `0x002F5616`), by the texture page rebuild `0x002F7380`¹, which
 `0x0026E290` runs once while the dirty flag is set, and by the five lighting passes above. `0x00379860` stores `slot - 1`
 at `0x02EBF408` when `0x02ADD090` exists and the slot is 1 to 3 (`0x00379F50`-`0x00379F5B`; any other slot leaves the value as
 it was), and `0x0037AD40` uses it to pick the slot's effect preset rows (`+4 + slot * 8` and the three at
 `+6 + slot * 8`) of each 0x50-byte preset bank.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F738E` |
+
+</details>
 
 `0x0026FAD0(channel, slot, manager)` instantiates effect rows through `0x0026F470`: a row of the field's
 effect table (`0xA0` bytes, type 3 or others at `+0`) is created only when its byte `+7 + slot` is
@@ -461,22 +597,45 @@ to `0x07B8`, the party comes from one of four maps and a draw of 1 to 100 is abo
 Such a slot stays for the visit: the verb arms the restore flag, so the roll that follows is dropped.
 
 Only the first `setweatherslot` of a zone start takes effect. `0x0026D910` stores a request only while the restore
-flag is 0 (`0x0026D951`-`0x0026D95E`), applies the slot the payload holds (`0x0026D96F`) and clears the flag
-(`0x0026DA92`); the verb's `0x0026D8F0` then sets it again (`0x0026D8F9`). A later call in the same start pass therefore
+flag is 0¹, applies the slot the payload holds² and clears the flag³; the verb's `0x0026D8F0` then sets it again⁴. A later call in the same start pass therefore
 keeps the first call's slot, and the roll after it does the same. The later call still reads the wind class for
-the slot it asked for itself (`0x0026DA2C`-`0x0026DA31`, `0x00377850`) and publishes that class at `0x02099DAC`
-(`0x0026DA3C`, `0x0026DA4E`).
+the slot it asked for itself⁵ and publishes that class at `0x02099DAC`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026D951`-`0x0026D95E` |
+| ² | `0x0026D96F` |
+| ³ | `0x0026DA92` |
+| ⁴ | `0x0026D8F9` |
+| ⁵ | `0x0026DA2C`-`0x0026DA31`, `0x00377850` |
+| ⁶ | `0x0026DA3C`, `0x0026DA4E` |
+
+</details>
 
 [`weather-forced-slots.tsv`](weather-forced-slots.tsv) reads the 366 calls with their tests in words. Of the 231
 that can run, 169 decide the slot, 59 decide it only when no earlier call ran on that visit, and 3 never decide.
 [`weather-calls.tsv`](weather-calls.tsv) gives all 1,744 calls with the tests they sit under: 1,737 in the
 setup actor's `map` function and 7 in its `event` function.
 
-The setup actor's functions run in the order the script image files them (`0x00266C50`), all inside the start pass:
-a function's return picks the next filed one in the same opcode (`0x003DB2A0`, `0x003DB6E0`), and manager `+0x12`
-is cleared only when none is left (`0x0025DB79`). `map` is filed before `event` in all 32 of the 122 calling
+The setup actor's functions run in the order the script image files them¹, all inside the start pass:
+a function's return picks the next filed one in the same opcode², and manager `+0x12`
+is cleared only when none is left³. `map` is filed before `event` in all 32 of the 122 calling
 scripts that file both. `bul_a02` is the one script with calls in both: its `map` calls on every path, so the
 two calls of its `event` (:59, :62) never decide.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00266C50` |
+| ² | `0x003DB2A0`, `0x003DB6E0` |
+| ³ | `0x0025DB79` |
+
+</details>
 
 In `srb_a04` the call at :1373 stands under a local flag that `map` clears at its start (:1193) and sets only on
 the lines after its calls, so an earlier call has always run and it never decides.
@@ -508,12 +667,24 @@ example `rbn_a18` to 236 or 253, `ozm_a01` to 247 or 264). The rule:
 
 ### Boot and the first apply
 
-`0x0022A0B0`, the first boot frame, runs `0x00266D10`, which calls `0x0026D910(1)` twice (`0x00266E74`,
-`0x00266E7B`). When the restore flag is armed, the first call publishes the saved slot and consumes the
+`0x0022A0B0`, the first boot frame, runs `0x00266D10`, which calls `0x0026D910(1)` twice¹. When the restore flag is armed, the first call publishes the saved slot and consumes the
 flag and the second commits slot 1; otherwise both commit slot 1. `0x0026E1D0` and `0x0026E960` reset
-the map-side globals, and `0x002628B0` (`0x00262B53`) sets `0x0209A6FC` to 1 at the zone's start.
+the map-side globals, and `0x002628B0`² sets `0x0209A6FC` to 1 at the zone's start.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00266E74`, `0x00266E7B` |
+| ² | `0x00262B53` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 `MapRefHeader` (`0x30` bytes, offsets from the start of the mapref):
 
@@ -569,7 +740,12 @@ the wind preset, 3 to 6 the azimuth sector, 7 to 8 the elevation class.
 | `+0x18` | `u32` | mode | copied to `0x02CA4394` |
 | `+0x1C` | `u8[4]` | pad | read by neither `0x0040B3B0` nor `0x0040ABF0`, the two functions that address the table; nothing fixes its width |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 `map_ref.bin` (`ps2data/image/ff12/<lang>/common/`, the `in` and `ch` copies byte-identical, 12,288
 bytes) decoded with the header offsets above:
@@ -634,6 +810,8 @@ A roll that starts in slot 1 can keep it by a draw under seven triples, those wh
 whatever slot they are entered with (25 of them also set slots from `setup`). The table gives what the roll does;
 a slot the setup script sets stays, whatever its triple.
 
+</details>
+
 ## Operations
 
 Entering an area with the triple 0, 30, 70 while the saved slot is 2:
@@ -649,17 +827,17 @@ Entering an area with the triple 0, 30, 70 while the saved slot is 2:
 
 A zone script choosing the weather:
 
-1. The bind sets manager `+0x12`; the start pass runs `setup`, whose `map()` picks a slot (from
-   `lastmap()`, the story counter and the save global `mp_last_weather`, payload `+0x940`) and calls
-   `setweatherslot(n)`.
-2. `0x0026D910(n)` commits slot n, publishes its combat classes and refreshes the map wind; `0x0026D8F0` arms
-   the restore flag.
-3. `0x0025DB79` clears `+0x12`, and `0x002620E0` rolls: the result is dropped (`0x0026D951`), slot n stays,
-   the flag is cleared (`0x0026DA92`), and effects, models, textures and lighting are bound to slot n, so the flag the
-   verb armed is 0 once the zone has started.
-4. A later `setweatherslot` in that visit fails the `+0x12` test (`0x003565E2`) and does nothing.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The bind sets manager `+0x12`; the start pass runs `setup`, whose `map()` picks a slot (from `lastmap()`, the story counter and the save global `mp_last_weather`, payload `+0x940`) and calls `setweatherslot(n)`. |   |
+| 2 | `0x0026D910(n)` commits slot n, publishes its combat classes and refreshes the map wind; `0x0026D8F0` arms the restore flag. |   |
+| 3 | `0x0025DB79` clears `+0x12`, and `0x002620E0` rolls: the result is dropped, slot n stays, the flag is cleared, and effects, models, textures and lighting are bound to slot n, so the flag the verb armed is 0 once the zone has started. | `0x0026D951`<br>`0x0026DA92` |
+| 4 | A later `setweatherslot` in that visit fails the `+0x12` test and does nothing. | `0x003565E2` |
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | address | contents | written by |
 |---|---|---|
@@ -678,16 +856,39 @@ count `0x0209A2D0`:
 
 - `+0x00`, the light's direction: each world step `0x0026EB30` turns the vector (0, 0, -1, 1) by the three angles at
   `+0x10`, converted from degrees to radians and wrapped into -π to π, and stores the 16-byte result
-  (`0x0026EB79`-`0x0026EC88`); `0x00379630` files it at the light request's `+0x30` (`0x003796F0`).
-- `+0x10`, three angles in degrees, read by `0x0026EB30` (`0x0026EBBA`, `0x0026EBF9`, `0x0026EC39`).
-- `+0x20`, a vector that `0x00379630` files at the light request's `+0x10` (`0x003796EA`); `0x0026EB30` sets its fourth
-  float `+0x2C` to 1.0 each step (`0x0026EC8D`).
+ ¹; `0x00379630` files it at the light request's `+0x30`².
+- `+0x10`, three angles in degrees, read by `0x0026EB30`³.
+- `+0x20`, a vector that `0x00379630` files at the light request's `+0x10`⁴; `0x0026EB30` sets its fourth
+  float `+0x2C` to 1.0 each step⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026EB79`-`0x0026EC88` |
+| ² | `0x003796F0` |
+| ³ | `0x0026EBBA`, `0x0026EBF9`, `0x0026EC39` |
+| ⁴ | `0x003796EA` |
+| ⁵ | `0x0026EC8D` |
+
+</details>
 
 `0x003ED020(i, &light[i] + 0x10, &light[i] + 0x20)` fills `+0x10` and `+0x20` with 16 bytes each from the environment
 record of slot `[0x0209A6E8]` - 1 in `[0x02EBB7F0]` (`0x180` bytes a record): its `+0x90` + i × `0x20` and `+0xA0` + i ×
-`0x20` (`0x003ED054`-`0x003ED0A5`). It does nothing while `[0x02EBB7F0]` is 0. `0x0026E8D0` (`0x0026E919`) and `0x0026E960`
-(`0x0026EA79`) call it for lights 0 to 2. The map reset `0x0026E640` zeroes `+0x10` and `+0x20` of each light with 16-byte
+`0x20`¹. It does nothing while `[0x02EBB7F0]` is 0. `0x0026E8D0`² and `0x0026E960`³ call it for lights 0 to 2. The map reset `0x0026E640` zeroes `+0x10` and `+0x20` of each light with 16-byte
 stores and sets `0x0209A2D4` to 1.0:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003ED054`-`0x003ED0A5` |
+| ² | `0x0026E919` |
+| ³ | `0x0026EA79` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -700,10 +901,21 @@ stores and sets `0x0209A2D4` to 1.0:
 | `0x0209A360` | `f32[4]` | 0 | light 2 `+0x20` | `0x0026E640`, 0 (`0x0026E719`); `0x003ED020`; `0x0026EB30`, 1.0 in `+0x2C` | `0x00379630` |
 
 `0x00379630` files light requests for the first `0x0209A2D0` lights only, a signed count raised to 0 when negative and
-capped at 3, `n < 0 ? 0 : n > 3 ? 3 : n` (`0x003796A7`-`0x003796C4`); `0x0026EB30` steps all three lights.
+capped at 3, `n < 0 ? 0 : n > 3 ? 3 : n`¹; `0x0026EB30` steps all three lights.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003796A7`-`0x003796C4` |
+
+</details>
 
 Nothing on this path allocates, and no lock or thread check appears in any body named here. The
 in-image routes to `0x0026D910` are the boot setup, the field runtime pass and the script verb.
+
+</details>
 
 ## Modding notes
 
@@ -728,10 +940,20 @@ in-image routes to `0x0026D910` are the boot setup, the field runtime pass and t
 - `test_area_ref.bin` restates `map_ref.bin`'s areas: value n is area n's first field. Its block is kept at
   `0x02099D98`, which no instruction reads by its address; keep its values matching `map_ref.bin` when fields are
   added or moved between areas.
-- `map_ref.bin`'s readers take the field number as the row (`0x00264F26`, `0x0026D987`) and the row's block word as the
-  block (`0x0026D9ED`) without a bound. The shipped rows cover fields 0 to 1,314, past the highest field number 1,311
+- `map_ref.bin`'s readers take the field number as the row¹ and the row's block word as the
+  block² without a bound. The shipped rows cover fields 0 to 1,314, past the highest field number 1,311
   ([Zone asset list](zone-asset-list.md)), and every row's block is below the 93 blocks, so a replacement that drops
   rows or blocks makes those reads land past its tables.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264F26`, `0x0026D987` |
+| ² | `0x0026D9ED` |
+
+</details>
 
 ## Related
 
@@ -764,27 +986,29 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Platform** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001CCB20` | calls | `0x005CC930` |
+| [`0x001CCB20`](../Party/party-members.md) (on party members) | calls | [`0x005CC930`](../PhyreEngine/phyre-modules.md) (on phyre modules) |
 
 **Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0020E5A0` | is called by | `0x00280140` |
-| `0x00268320` | is called by | `0x00280140` |
-| `0x002EF2B0` | is called by | `0x00280140` |
+| [`0x0020E5A0`](weather.md) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
+| [`0x00268320`](weather.md) World persistence: reset banks and mark initialization state | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
+| [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
 
-**Story, events and hunts**
+**Story, events and hunts** (explained on [actor managers](../Characters-And-Objects/actor-managers.md), [identifier spaces](../Engine-Core/identifier-spaces.md), [story flags](../Story-Events-And-Hunts/story-flags.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [story flag ids](../Story-Events-And-Hunts/story-flag-ids.md), [chocobos and airships](chocobos-and-airships.md), [npc names](../Characters-And-Objects/npc-names.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0026C8C0` | calls | `0x00377440` |
-| `0x002EF2B0` | is called by | `0x0032A8A0`, `0x0032A930`, `0x0032A9A0`, `0x0032AA00`, `0x0032AA60`, `0x0032AAD0`, `0x0032AB60`, `0x0032ABF0`, `0x0032AC70`, `0x0032ACF0`, `0x0032AD70`, `0x0032ADF0` |
-
-**Story, events and hunts** (explained on [actor managers](../Characters-And-Objects/actor-managers.md), [identifier spaces](../Engine-Core/identifier-spaces.md), [story flags](../Story-Events-And-Hunts/story-flags.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
-
-**Story, events and hunts** (explained on [story flag ids](../Story-Events-And-Hunts/story-flag-ids.md), [chocobos and airships](chocobos-and-airships.md), [npc names](../Characters-And-Objects/npc-names.md))
+| [`0x0026C8C0`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor manager: bind loaded definition payload (on character se tables chse) | calls | [`0x00377440`](../Story-Events-And-Hunts/event-memory.md) (on event memory) |
+| [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) | is called by | [`0x0032A8A0`](zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list)<br>[`0x0032A930`](../Engine-Core/identifier-spaces.md) Persistent flag: query bank2048 (on identifier spaces)<br>[`0x0032A9A0`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: query bank64 a (on story flags)<br>[`0x0032AA00`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: query bank64 b (on story flags)<br>[`0x0032AA60`](treasure-chests.md) Persistent flag: query bank512 low (on treasure chests)<br>[`0x0032AAD0`](../Characters-And-Objects/field-runtime.md) Persistent flag: query bank512 high (on field runtime)<br>[`0x0032AB60`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: set primary (on story flags)<br>[`0x0032ABF0`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: set bank2048 (on story flags)<br>[`0x0032AC70`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: set bank64 a (on story flags)<br>[`0x0032ACF0`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: set bank64 b (on story flags)<br>[`0x0032AD70`](treasure-chests.md) Persistent flag: set bank512 low (on treasure chests)<br>[`0x0032ADF0`](../Characters-And-Objects/field-runtime.md) Persistent flag: set bank512 high (on field runtime) |
 
 </details>

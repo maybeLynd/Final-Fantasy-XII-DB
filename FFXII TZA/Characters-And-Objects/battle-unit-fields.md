@@ -103,26 +103,14 @@ ten test the pointer for null and the other six are in the table.
 
 `0x00236A60(unit)` prepares a slot for its next occupant without releasing it:
 
-1. when flag bit `0x10` is set it first runs `0x003105D0`;
-2. it writes `0xFFFF` at `+0x695` and `0xFF` at `+0x694`, and clears flag bits `0x4`, `0x8`, `0x10`, `0x100`,
-   `0x200`, `0x400`, `0x800` and `0x4000` (`and dword +0, 0xFFFFB0E3`), bits `0x400000000`, `0x4000000000` and
-   `0x10000000000000` (`and dword +4, 0xFFEFFFBB`) and bits `0x2`, `0x80000`, `0x100000`, `0x200000000` and
-   `0x800000000000` (the register mask `0xFFFF7FFDFFE7FFFD`);
-3. it zeroes `+0x698`, `+0x6A0`, `+0xE60`, `+0xE68`, `+0x24`-`+0x33`, `+0x5C`-`+0x63`, the dword
-   `+0xE54`, `+0xEA4`, `+0xEA8`, `+0xDD0`, `+0x64`-`+0x6F`, and sets `+0x74` to all ones, `+0x55`-`+0x56`
-   to `0xFFFF`, `+0x52` to 0 and `+0x54` to `0xFF`;
-4. it resets the perception cache at `+0xBC0` with `0x00316D30`, which forces header bit `0x1` on before
-   its `0x208`-byte clear and restores it after, and takes the resource accumulator `0x00320450`,
-   which returns the dword `+0x70` (only for a unit with flag bit `0x10`, a stats record and no terminal
-   status outside a town) and zeroes it;
-5. it zeroes `+0xE80`-`+0xE8F`, `+0xE90`, `+0x714` to `0xFFFF`, `+0x6B5`, `+0x6D0`, `+0x6E0`-`+0x6FF`,
-   `+0x748`-`+0x757`, `+0xB90`, the low byte of `+0x6B0`, `+0x708`-`+0x713`, `+0x760`-`+0x773`, and
-   sets `+0x758` and `+0xDC8` to all ones and the dword `+0x774` to all ones (`0x00236BE6`); the commit copy
-   `+0x718`-`+0x72F` and the cancelled record
-   `+0x730`-`+0x747` take the `+0x700`-`+0x717` bytes as they stand after those stores;
-6. it zeroes the `0x610` bytes from `+0x80`, resets the navigation state (`0x003839F0` fills
-   `+0x210`-`+0x28F` with `0xFF`, `0x003839C0` sets `+0x20C`-`+0x20F` to `0xFFFF`) and ends in
-   `0x003176C0`, which zeroes the 32 dwords at `+0xDD4`-`+0xE53`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | when flag bit `0x10` is set it first runs `0x003105D0`; |   |
+| 2 | it writes `0xFFFF` at `+0x695` and `0xFF` at `+0x694`, and clears flag bits `0x4`, `0x8`, `0x10`, `0x100`, `0x200`, `0x400`, `0x800` and `0x4000` (`and dword +0, 0xFFFFB0E3`), bits `0x400000000`, `0x4000000000` and `0x10000000000000` (`and dword +4, 0xFFEFFFBB`) and bits `0x2`, `0x80000`, `0x100000`, `0x200000000` and `0x800000000000` (the register mask `0xFFFF7FFDFFE7FFFD`); |   |
+| 3 | it zeroes `+0x698`, `+0x6A0`, `+0xE60`, `+0xE68`, `+0x24`-`+0x33`, `+0x5C`-`+0x63`, the dword `+0xE54`, `+0xEA4`, `+0xEA8`, `+0xDD0`, `+0x64`-`+0x6F`, and sets `+0x74` to all ones, `+0x55`-`+0x56` to `0xFFFF`, `+0x52` to 0 and `+0x54` to `0xFF`; |   |
+| 4 | it resets the perception cache at `+0xBC0` with `0x00316D30`, which forces header bit `0x1` on before its `0x208`-byte clear and restores it after, and takes the resource accumulator `0x00320450`, which returns the dword `+0x70` (only for a unit with flag bit `0x10`, a stats record and no terminal status outside a town) and zeroes it; |   |
+| 5 | it zeroes `+0xE80`-`+0xE8F`, `+0xE90`, `+0x714` to `0xFFFF`, `+0x6B5`, `+0x6D0`, `+0x6E0`-`+0x6FF`, `+0x748`-`+0x757`, `+0xB90`, the low byte of `+0x6B0`, `+0x708`-`+0x713`, `+0x760`-`+0x773`, and sets `+0x758` and `+0xDC8` to all ones and the dword `+0x774` to all ones; the commit copy `+0x718`-`+0x72F` and the cancelled record `+0x730`-`+0x747` take the `+0x700`-`+0x717` bytes as they stand after those stores; | `0x00236BE6` |
+| 6 | it zeroes the `0x610` bytes from `+0x80`, resets the navigation state (`0x003839F0` fills `+0x210`-`+0x28F` with `0xFF`, `0x003839C0` sets `+0x20C`-`+0x20F` to `0xFFFF`) and ends in `0x003176C0`, which zeroes the 32 dwords at `+0xDD4`-`+0xE53`. |   |
 
 The target buffer at `+0x778` is not touched by the reuse reset.
 
@@ -162,13 +150,31 @@ Struct BattleTargetBuffer base=unit+`0x778` size=`0x208`:
 | perception cache | `+0xBC0`-`+0xDC7`, header bit `0x1` forced on | `0x00316D30` from the reuse reset |
 | target buffer | `+0x778`-`+0x97F`, keeping header bit `0x1` | `0x00316CF0` |
 
-In both target buffers, the header byte `+0x03` and the last four bytes `+0x0C`-`+0x0F` of each 16-byte entry go with the buffer as a block. The buffer clears zero them with the rest of the `0x208` bytes (`0x00316CF0`, memset at `0x00316D0B`; the perception cache's `0x00316D30`, memset at `0x00316D4E`). For the buffer at `+0x778`, `0x0030EDA0` copies them back with the action state `+0x6B0`-`+0xB9F` in its 16-byte stores (`0x0030EDB6`-`0x0030EE44`).
+In both target buffers, the header byte `+0x03` and the last four bytes `+0x0C`-`+0x0F` of each 16-byte entry go with the buffer as a block. The buffer clears zero them with the rest of the `0x208` bytes (`0x00316CF0`, memset at `0x00316D0B`; the perception cache's `0x00316D30`, memset at `0x00316D4E`). For the buffer at `+0x778`, `0x0030EDA0` copies them back with the action state `+0x6B0`-`+0xB9F` in its 16-byte stores¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030EDB6`-`0x0030EE44` |
+
+</details>
 
 The entry's outcome word at `+0x08` is a dword in the code: `0x002FFA14`, `0x0030019B`, `0x00300EAD` and `0x003011E0` clear its bit `0x400` with an `and dword`, and `0x0030071A` loads it as a dword.
 
 ### The spans between named fields
 
-The unit bytes between the named fields, by range. The locomotion block at `+0x80` is the solver's argument (`0x00336CE0`), so its offsets are given in block terms as well; the action state `+0x6B0`-`+0xB9F` is the `0x4F0` bytes `0x0030EDA0` restores from the saved block at `[+0xB88]`.
+The unit bytes between the named fields, by range. The locomotion block at `+0x80` is the solver's argument¹, so its offsets are given in block terms as well; the action state `+0x6B0`-`+0xB9F` is the `0x4F0` bytes `0x0030EDA0` restores from the saved block at `[+0xB88]`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00336CE0` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -207,30 +213,81 @@ The unit bytes between the named fields, by range. The locomotion block at `+0x8
 The saved block at `[+0xB88]` is one of 8 slots of `0x4F0` bytes at `0x022BEFC0`; the byte `0x022BEFB0` marks the slots in
 use, one bit per slot.
 
-The engage auto-attack `0x00312FA0` calls `0x0030EFF0(unit)` (`0x0031307B`). Unless flag bit `0x1000000` is
-set, or the action id `+0x714` is at most `0x21E` with `+0x6B4` at 6 or more, it takes a free slot from `0x0030DFA0`
-(`0x0030F02A`), copies the action state `+0x6B0`-`+0xB9F` into it, clears the action state and stores the slot at
-`+0xB88` (`0x0030F0F1`). With all 8 slots taken, `0x0030DFA0` returns 0 and nothing is saved.
+The engage auto-attack `0x00312FA0` calls `0x0030EFF0(unit)`¹. Unless flag bit `0x1000000` is
+set, or the action id `+0x714` is at most `0x21E` with `+0x6B4` at 6 or more, it takes a free slot from `0x0030DFA0`², copies the action state `+0x6B0`-`+0xB9F` into it, clears the action state and stores the slot at
+`+0xB88`³. With all 8 slots taken, `0x0030DFA0` returns 0 and nothing is saved.
 
-`0x0030EFF0` tests flag bit `0x1000000`, then the action id and `+0x6B4`, and answers 0 when either refuses
-(`0x0030EFFF`-`0x0030F01F`, `0x0030F114`) or when `0x0030DFA0` gives no slot (`0x0030F02A`-`0x0030F035`). The copy of the
-`0x4F0` bytes is `0x0030F047`-`0x0030F0E1`, and the clear of the action state is a fill through `0x00861EC0`
-(`0x0030F0EC`). After the store of `+0xB88` it clears flag bits `0x20` and `0x10000000` (`0x0030F0FD`) and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031307B` |
+| ² | `0x0030F02A` |
+| ³ | `0x0030F0F1` |
+
+</details>
+
+`0x0030EFF0` tests flag bit `0x1000000`, then the action id and `+0x6B4`, and answers 0 when either refuses¹ or when `0x0030DFA0` gives no slot². The copy of the
+`0x4F0` bytes is `0x0030F047`-`0x0030F0E1`, and the clear of the action state is a fill through `0x00861EC0`³. After the store of `+0xB88` it clears flag bits `0x20` and `0x10000000`⁴ and
 answers 1.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030EFFF`-`0x0030F01F`, `0x0030F114` |
+| ² | `0x0030F02A`-`0x0030F035` |
+| ³ | `0x0030F0EC` |
+| ⁴ | `0x0030F0FD` |
+
+</details>
+
 The next-action selector's
-`0x00308270` calls `0x0030EDA0` (`0x003082C6`), which copies the slot back and frees its bit.
+`0x00308270` calls `0x0030EDA0`¹, which copies the slot back and frees its bit.
 
-`0x0030EDA0` copies the `0x4F0` bytes back in nine passes of `0x80` and a tail of `0x70` from `+0xB30`
-(`0x0030EDB6`-`0x0030EE44`). The copy covers `+0xB88` itself (`0x0030EE3A`), so after it the pointer holds what the
-block held when it was saved. The slot search uses the pointer read at entry (`0x0030EDA0`) and, for one of the
-8 slots at `0x022BEFC0`, `0x4F0` bytes apart, clears the slot's bit in `0x022BEFB0` (`0x0030EE50`-`0x0030EE97`).
-`0x0030EDA0` answers 1 whether or not the pointer was one of the slots (`0x0030EE69`, `0x0030EE92`).
+<details>
+<summary>Where in the code</summary>
 
-`0x0030EDA0` uses the pointer `+0xB88` as the copy source without a null test (`0x0030EDBD`), and it makes no
+| | Code |
+|---|---|
+| ¹ | `0x003082C6` |
+
+</details>
+
+`0x0030EDA0` copies the `0x4F0` bytes back in nine passes of `0x80` and a tail of `0x70` from `+0xB30`¹. The copy covers `+0xB88` itself², so after it the pointer holds what the
+block held when it was saved. The slot search uses the pointer read at entry³ and, for one of the
+8 slots at `0x022BEFC0`, `0x4F0` bytes apart, clears the slot's bit in `0x022BEFB0`⁴.
+`0x0030EDA0` answers 1 whether or not the pointer was one of the slots⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030EDB6`-`0x0030EE44` |
+| ² | `0x0030EE3A` |
+| ³ | `0x0030EDA0` |
+| ⁴ | `0x0030EE50`-`0x0030EE97` |
+| ⁵ | `0x0030EE69`, `0x0030EE92` |
+
+</details>
+
+`0x0030EDA0` uses the pointer `+0xB88` as the copy source without a null test¹, and it makes no
 store to the flag dword, so it does not set again the two bits the save cleared. A save on a unit that
-already holds a slot copies the earlier pointer into the new slot with the rest of the state (`0x0030F0D9`);
+already holds a slot copies the earlier pointer into the new slot with the rest of the state²;
 the restore then leaves `+0xB88` at that earlier slot, whose bit in `0x022BEFB0` stays set.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030EDBD` |
+| ² | `0x0030F0D9` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -265,32 +322,42 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Combat** (explained on [battle units](battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x003206E0` |
+| [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse) | is called by | [`0x003206E0`](battle-units.md) (on battle units) |
 
 **Engine core** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002368D0` | is called by | `0x0022A0B0` |
+| [`0x002368D0`](../Game-Files-And-Data-Tables/authored-data-tables.md) Battle storage: initialize work arrays (on authored data tables) | is called by | [`0x0022A0B0`](../Saving-Loading-And-Settings/languages.md) (on languages) |
 
 **Random numbers** (explained on [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002342F0` | calls | `0x00328D80` |
+| [`0x002342F0`](../Enemy-Spawning/enemy-respawning.md) (on enemy respawning) | calls | [`0x00328D80`](../Random-Numbers/random-number-generators.md) (on random number generators) |
 
 **Game files and data tables** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002368D0` | calls | `0x003843F0` |
+| [`0x002368D0`](../Game-Files-And-Data-Tables/authored-data-tables.md) Battle storage: initialize work arrays (on authored data tables) | calls | [`0x003843F0`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables) |
 
 **World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002342F0` | is called by | `0x00266D10` |
+| [`0x002342F0`](../Enemy-Spawning/enemy-respawning.md) (on enemy respawning) | is called by | [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 </details>

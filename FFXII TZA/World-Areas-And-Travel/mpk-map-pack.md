@@ -19,10 +19,21 @@ pack is `<zone>.mpk`; the block pack of an area is the one named `<area>00.mpk`,
 carry only the sound sections (slots 0, 1 and 10) or nothing at all.
 
 The packs are namespace-4 resources. `map_ref.bin` names both packs of a field: the field row's
-first word is the field's own pack index (`0x00264F10`), and the first word of the row's 16-byte block
-record is the block pack index (`0x00264F40`); the block record's second word plus 500 is the sound
-map number stored at `0x02ADD078` (`0x00264FD0`, `0x00378030`). The row and block layouts are on the
+first word is the field's own pack index¹, and the first word of the row's 16-byte block
+record is the block pack index²; the block record's second word plus 500 is the sound
+map number stored at `0x02ADD078`³. The row and block layouts are on the
 weather page, which reads the same two tables.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264F10` |
+| ² | `0x00264F40` |
+| ³ | `0x00264FD0`, `0x00378030` |
+
+</details>
 
 ## Layouts
 
@@ -42,7 +53,16 @@ The header length is `((count + 1) * 4 + 0x3F) & ~0x3F`, 0xC0 for 32 slots. Afte
 whose size is non-zero and in slot order, come a 0x40-byte slot (zero in the file; the loader
 overwrites it with an arena block header) and the section's bytes. There are no offsets: a section's
 position is the running sum, and `0x0036B980` refuses the pack when the sum does not equal the loaded
-block's size (`0x0036BA30`-`0x0036BA45`).
+block's size¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036BA30`-`0x0036BA45` |
+
+</details>
 
 | slot | magic | section | kept by | consumer |
 |---|---|---|---|---|
@@ -66,8 +86,18 @@ shipped pack fills them.
 
 The dataset's use is on the [navigation mesh page](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md).
 Every offset is from the section start: `0x00384160` adds the dataset's address to `+0x0C` to `+0x20`, `+0x28` and the
-grid's `+0x08` and `+0x0C` (`0x00384174`-`0x003842CC`). The readers named below are all the code that loads the
-dataset pointer `0x02AEDFB0` or calls its getter `0x00383840` (`0x00335180`, `0x0033D3E0`, `0x00391410`, `0x00392740`).
+grid's `+0x08` and `+0x0C`¹. The readers named below are all the code that loads the
+dataset pointer `0x02AEDFB0` or calls its getter `0x00383840`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00384174`-`0x003842CC` |
+| ² | `0x00335180`, `0x0033D3E0`, `0x00391410`, `0x00392740` |
+
+</details>
 
 `NavHeader` (`0x30` bytes, offsets from the start of the section):
 
@@ -176,8 +206,16 @@ and the section ends zero-filled to a multiple of 0x40.
 | `+0x14` | `u32[]` | index | count + 1 entries of {u24 offset in 16-byte units from `+0x10`, u8 tag}; the last is the end sentinel with tag `0xFF` |
 
 Before the walk `0x002F6AB0` sets `+0x120` to 1 and `+0x110` to 0, and clears the first 0x48 bytes of
-the two 0x68-byte sub-records at `+0x40` and `+0xA8` with `0x00231F50`, nine qword stores of 0
-(`0x002F6AEA`-`0x002F6B14`).
+the two 0x68-byte sub-records at `+0x40` and `+0xA8` with `0x00231F50`, nine qword stores of 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F6AEA`-`0x002F6B14` |
+
+</details>
 
 `0x002F6AB0(object, kind)` walks the index: an entry whose offset equals the next entry's is skipped,
 otherwise its tag selects an arm (`cmp eax, 0x21`, a 34-case jump table). The arms that store or
@@ -203,9 +241,18 @@ parse a chunk:
 
 Every shipped section carries exactly the 17 tags 0, 1, 11, 12, 17, 22 to 33 and the sentinel, so the
 skipped tags 2 to 8, 10, 13, 15, 16 and 18 to 21 never occur. Five tags share their offset with the next
-entry in some sections, and the walk skips them there (`0x002F6CAA`-`0x002F6CB7`): tag 32 in all 461 (it shares
+entry in some sections, and the walk skips them there¹: tag 32 in all 461 (it shares
 tag 31's offset), tag 27 in 358 (tag 23's), tag 17 in 29 (tag 27's), tag 26 in 2 (tag 32's) and tag 31 in one,
 `tst0108` (tag 17's).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F6CAA`-`0x002F6CB7` |
+
+</details>
 
 The `chunk_bytes` column of
 [`mpk-map-pack-ym00-chunks.tsv`](mpk-map-pack-ym00-chunks.tsv) counts to the next different offset, so the
@@ -292,11 +339,23 @@ section:
   [part 2](mpk-map-pack-ym00-instances-part2.tsv).
 
 `0x003ED190` (tag 25) also sends a light direction to the shadow object through `0x001F1590`, which
-creates the 0xB08-byte shadow object kept at `0x01F82EA8` on first use (`0x001EF2D0`) and stores the direction
-with `0x001F08A0`. The direction is (0.0001, 1, 0) in field `0x11A` (`0x003148F0`); otherwise the
-vector at `+0x10` of the tag-11 chunk (`0x0209A660`) when it is non-zero; otherwise the three angles at
-`+0x90` to `+0x98` of the tag-25 chunk, light 0 of its first weather record (`0x003ED269`), turned into a
+creates the 0xB08-byte shadow object kept at `0x01F82EA8` on first use¹ and stores the direction
+with `0x001F08A0`. The direction is (0.0001, 1, 0) in field `0x11A`²; otherwise the
+vector at `+0x10` of the tag-11 chunk³ when it is non-zero; otherwise the three angles at
+`+0x90` to `+0x98` of the tag-25 chunk, light 0 of its first weather record⁴, turned into a
 direction, or x 0.0001 and y 1.0 when all three are 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EF2D0` |
+| ² | `0x003148F0` |
+| ³ | `0x0209A660` |
+| ⁴ | `0x003ED269` |
+
+</details>
 
 `0x003ED3F0` (tag 9) also passes a direction to `0x001F1590`, the same (0.0001, 1, 0) in field `0x11A`.
 
@@ -341,8 +400,18 @@ again in 16-byte units. A track starts with its own header and then its keys:
 
 `0x00466E70` allocates the slot's track records (0x18 bytes each: key data, time `+0x08`, value
 `+0x0C`, key index `+0x10`) and its 0x130-byte targets, and sets bit `channel` of each target's
-`+0x40`. It then binds the tracks (`0x004677A0`), resets the slots (`0x00467420`) and runs one update
-(`0x004668C0`).
+`+0x40`. It then binds the tracks¹, resets the slots² and runs one update³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004677A0` |
+| ² | `0x00467420` |
+| ³ | `0x004668C0` |
+
+</details>
 
 `MapAnimSlot` (`0x50` bytes, offsets from the start of the [0x02EBB6F0]+i*0x50):
 
@@ -366,8 +435,16 @@ again in 16-byte units. A track starts with its own header and then its keys:
 
 `0x00466E70` gives every slot the loop bit and, when it has a clip, bits `0x1` and `0x10`. `0x00467420` resets
 each live slot: the range becomes the clip's start and end, bit `0x4` is cleared and bit `0x8` set, the time
-and every track's time become the start, the rate 1.0, and every target gets an identity matrix
-(`0x00203170`), colour 1.0 at `+0x50` to `+0x5C`, rotation and translation 0 and scale 1.0.
+and every track's time become the start, the rate 1.0, and every target gets an identity matrix¹, colour 1.0 at `+0x50` to `+0x5C`, rotation and translation 0 and scale 1.0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00203170` |
+
+</details>
 
 `0x004677A0` binds each track's value to its target through `0x00466420(target, channel, &value)`;
 with map entries, entry `+0x02` names the track, `+0x04` the channel and `+0x06` the target. The
@@ -388,20 +465,27 @@ channels are:
 Each world step `0x004668C0` (reached through the thunk at `0x0036F400`) advances every slot with bit `0x1` whose bit `0x8` is set or
 whose step's absolute value exceeds 0.001 (`|+0x48| > 0.001`, `0x00466969`-`0x0046697B`):
 
-1. bits `0x4` and `0x8` are cleared and the time moves by the step;
-2. with `lo` = `+0x3C`, `hi` = `+0x40` and `span = hi - lo`, the loop bit and `span >= 1.0` the
-   time `t` becomes `t - span` when `t >= hi` and `t + span` when `t < lo` (`0x004669A7`-`0x004669CA`);
-   otherwise `t >= hi` stores `hi`, `t < lo` stores `lo`, and either sets bit `0x4` (finished)
-   (`0x004669D1`-`0x004669EA`);
-3. unless the clip's group is above 0x100 with its bit in the hidden-model set (`0x0026E5F0`),
-   `0x00466240` advances each track and `0x00466550` rebuilds each target;
-4. the step is zeroed.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | bits `0x4` and `0x8` are cleared and the time moves by the step; |   |
+| 2 | with `lo` = `+0x3C`, `hi` = `+0x40` and `span = hi - lo`, the loop bit and `span >= 1.0` the time `t` becomes `t - span` when `t >= hi` and `t + span` when `t < lo`; otherwise `t >= hi` stores `hi`, `t < lo` stores `lo`, and either sets bit `0x4` (finished); | `0x004669A7`-`0x004669CA`<br>`0x004669D1`-`0x004669EA` |
+| 3 | unless the clip's group is above 0x100 with its bit in the hidden-model set, `0x00466240` advances each track and `0x00466550` rebuilds each target; | `0x0026E5F0` |
+| 4 | the step is zeroed. |   |
 
 `0x00466240(slot, track)` sets the track's time `t = t + step` for the slot's step, and with
-`lo = max(+0x3C, first key time)`, `hi = min(+0x40, last key time)` and `span = hi - lo`
-(`0x00466251`-`0x0046629E`) checks only the side it moves toward: for a step above 0, `t >= hi` stores
+`lo = max(+0x3C, first key time)`, `hi = min(+0x40, last key time)` and `span = hi - lo`¹ checks only the side it moves toward: for a step above 0, `t >= hi` stores
 `t - span` (loop bit and `span >= 1.0`, key index 0) or `hi`; for a step of 0 or less, `t < lo`
-stores `t + span` (key index the last) or `lo` (`0x004662A2`-`0x004662F6`).
+stores `t + span` (key index the last) or `lo`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00466251`-`0x0046629E` |
+| ² | `0x004662A2`-`0x004662F6` |
+
+</details>
 
 `0x00466240` then finds the key pair around the time and interpolates with a cubic Hermite curve (each key's value, the first key's out-slope and the second
 key's in-slope) into the track's value. The slopes are per unit of time: with u = (t - t0) / (t1 - t0),
@@ -410,16 +494,25 @@ the value is h00(u) v0 + h01(u) v1 + (t1 - t0) (h10(u) out0 + h11(u) in1).
 `0x00466550(slot, target)` reads the bound channels: translation into `+0x70` to `+0x78`, degrees
 turned into radians and wrapped into `+0x60` to `+0x68` (the radian channels overwrite them), scale
 into `+0x80` to `+0x88`. It rebuilds the target's matrix at `+0x00` from the three rotations, each
-applied only when it is not 0 (`0x00202E90`, `0x00202F00`, `0x00202F70`), and the translation, scales its four rows by `+0x80` to `+0x8C`
-(`0x00202FE0`) and, for the `ambient` slot, copies the colour `+0x50` to `+0x5C` to `0x0209A370` to
+applied only when it is not 0¹, and the translation, scales its four rows by `+0x80` to `+0x8C`² and, for the `ambient` slot, copies the colour `+0x50` to `+0x5C` to `0x0209A370` to
 `0x0209A37C`, the ambient colour of the map's lights.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00202E90`, `0x00202F00`, `0x00202F70` |
+| ² | `0x00202FE0` |
+
+</details>
 
 The slot accessors take a slot number and test it against `0x02EBB6E0` and `+0x08`:
 
 - `0x00466C80(slot)` returns the time `+0x44` (0 for a bad slot) and `0x00466AD0(slot)` the finished bit `0x4` (1 for a bad
   slot, the test `0x004735E0` of the actor-control table uses);
-- `0x00473490(slot)` returns the time less the clip's start (`0x00466C40`), the verb `getbganimeframe` (`0x0AD`,
-  `0x0034FEE3`); `0x004734C0(slot)` returns the clip's end (`0x00466BB0`) less its start, `getbganimelastframe` (`0x0AE`,
+- `0x00473490(slot)` returns the time less the clip's start¹, the verb `getbganimeframe` (`0x0AD`,
+  `0x0034FEE3`); `0x004734C0(slot)` returns the clip's end² less its start, `getbganimelastframe` (`0x0AE`,
   `0x00350393`);
 - `0x00467730(slot, t)` seeks: it clears bit `0x4`, sets bit `0x8`, stores `t` as the time of the slot and of every track and
   zeroes the step and each track's `+0x10`; the rewind `0x00473500`, called by `bganimeplay` (`0x09D`, `0x003477B0`),
@@ -427,6 +520,16 @@ The slot accessors take a slot number and test it against `0x02EBB6E0` and `+0x0
   `0x003E8690` and `0x003E8990`, and `0x00466DD0` use it;
 - `0x00466DD0()` sends every playing slot that does not loop and has a non-zero rate to its range end and marks it
   finished; it runs from the script skip's start `0x00360710` and end `0x00360A50`, and from `0x003486A0` and `0x00355300`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00466C40` |
+| ² | `0x00466BB0` |
+
+</details>
 
 The draw code reaches targets through the tag-30 instances. `0x00466CB0(slot, idB, idA, mask)`
 returns the slot's first target when the clip's group is below 0x100 and its bit is in the
@@ -459,18 +562,48 @@ stores the target in each matching instance's 0x70-byte entry at `+0x50` while t
 | `+0x06` | `i16` | target | the target index (`0x0046738C`, `0x0046785E`) |
 | `+0x08` | `u8[8]` | tail | `0xFF` in all 80,317 entries; read by none of `0x00466E70`, `0x004677A0` and `0x00466CB0` |
 
-The track list follows the map entries: a dword count (`0x00466FE5`) and one `{u24 offset, u8 0xFF}` per track in
-16-byte units from the list's start (`0x00467110`-`0x00467123`). Each clip's last key ends where the next index entry
+The track list follows the map entries: a dword count¹ and one `{u24 offset, u8 0xFF}` per track in
+16-byte units from the list's start². Each clip's last key ends where the next index entry
 starts, in all 3,344 clips. Key times rise within every track.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00466FE5` |
+| ² | `0x00467110`-`0x00467123` |
+
+</details>
+
 A key is `{f32 time, f32 value, f32 inSlope,
-f32 outSlope}`: `0x00466240` reads the time (`0x00466383`), the value (`0x00466369`, `0x004663A4`), the second key's in-slope
-(`0x004663D4`) and the first key's out-slope (`0x004663EB`). No shipped clip is named `ambient`, so `0x00466550` never
+f32 outSlope}`: `0x00466240` reads the time¹, the value², the second key's in-slope³ and the first key's out-slope⁴. No shipped clip is named `ambient`, so `0x00466550` never
 copies a colour to `0x0209A370` from this chunk.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00466383` |
+| ² | `0x00466369`, `0x004663A4` |
+| ³ | `0x004663D4` |
+| ⁴ | `0x004663EB` |
+
+</details>
 
 ### Tag 11, the view settings
 
-`0x0026E8C0` keeps the chunk at `0x0209A660`; `0x002F6AB0` copies its first four dwords (`0x002F6DE9`-`0x002F6E6F`).
+`0x0026E8C0` keeps the chunk at `0x0209A660`; `0x002F6AB0` copies its first four dwords¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F6DE9`-`0x002F6E6F` |
+
+</details>
 
 `Ym00ViewSettings` (`0x80` bytes, offsets from the start of the chunk):
 
@@ -487,8 +620,17 @@ copies a colour to `0x0209A370` from this chunk.
 ### Tag 12, the palette animations
 
 `0x00468160(chunk, [+0x150], [+0x1B8])` walks the chunk (the map art page has its palette buffer). The third argument
-is the tag-32 pointer, never set on the shipped data (above); only a kind-4 record would read it (`0x00468360`-`0x004683A3`),
+is the tag-32 pointer, never set on the shipped data (above); only a kind-4 record would read it¹,
 and no shipped record is of kind 4.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00468360`-`0x004683A3` |
+
+</details>
 
 `PalAnimChunk` (`0x4` bytes, offsets from the start of the chunk):
 
@@ -506,9 +648,19 @@ and no shipped record is of kind 4.
 | `+0x08` | `i32` | slot | the texture's palette slot that takes the new palette handle (`0x0046827D`, `0x004682EB`); 0 in all 134 groups |
 | `+0x0C` | `u32` | pad | 0 in all; read by none of `0x00468160` |
 
-Each record is copied to `+0x10` of a `0x40`-byte entry of `[0x02CA6010]` (`0x00468345`-`0x00468357`) and filed by `0x003CCC20`,
-which copies its 0x30 bytes into a palette operation (`0x003CCC7E`-`0x003CCC93`) that `0x003CCF20` runs each step (the
+Each record is copied to `+0x10` of a `0x40`-byte entry of `[0x02CA6010]`¹ and filed by `0x003CCC20`,
+which copies its 0x30 bytes into a palette operation² that `0x003CCF20` runs each step (the
 model-files page has the operation record).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00468345`-`0x00468357` |
+| ² | `0x003CCC7E`-`0x003CCC93` |
+
+</details>
 
 `PalAnimRecord` (`0x30` bytes, offsets from the start of the group+0x10+i*0x30):
 
@@ -533,10 +685,19 @@ model-files page has the operation record).
 
 ### Tag 25, the environment of each weather slot
 
-`0x003ED190(chunk)` keeps the chunk at `0x02EBB7F0` and sets `0x02EBB808` (`0x003ED1CE`, `0x003ED1D5`). The chunk is three
-0x180-byte records, record `n` for weather slot `n + 1`: the readers index it by `[0x0209A6E8] - 1`
-(`0x003ECD0F`-`0x003ECD36`, `0x003ECFDC`-`0x003ECFEB`, `0x003ED034`-`0x003ED051`, `0x003ED0BC`-`0x003ED0CB`, `0x003ED14C`-`0x003ED15B`), and
+`0x003ED190(chunk)` keeps the chunk at `0x02EBB7F0` and sets `0x02EBB808`¹. The chunk is three
+0x180-byte records, record `n` for weather slot `n + 1`: the readers index it by `[0x0209A6E8] - 1`², and
 `0x003ED7B0` by `slot - 1` from `0x0026E8D0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003ED1CE`, `0x003ED1D5` |
+| ² | `0x003ECD0F`-`0x003ECD36`, `0x003ECFDC`-`0x003ECFEB`, `0x003ED034`-`0x003ED051`, `0x003ED0BC`-`0x003ED0CB`, `0x003ED14C`-`0x003ED15B` |
+
+</details>
 
 `Ym00Environment` (`0x180` bytes, offsets from the start of the chunk+n*0x180):
 
@@ -563,14 +724,32 @@ model-files page has the operation record).
 | `+0x1C` | `u32` | mask | the float 1.0 or a low byte of `0xFF` blends by direction (`0x003ECD70`-`0x003ECD82`); another low byte is a bit of `0x0026E5F0`'s set: set skips the entry, clear makes it the entry blended last with the weight `0x02EBF278`[byte] (`0x003ECD84`-`0x003ECE37`); `0xFF` in 1,329 of the 1,359 counted entries |
 
 `0x003ECCA0`, each frame from `0x0036F530`, starts from entry 0 of the current slot and blends entries 1 on; `0x003ECAC0`
-copies an entry whose weight is above 0.996 and blends one whose weight is above 1/256 (`0x003ECAE4`-`0x003ECB0D`).
+copies an entry whose weight is above 0.996 and blends one whose weight is above 1/256¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003ECAE4`-`0x003ECB0D` |
+
+</details>
 
 ### Tag 27
 
 `0x003ED840(chunk, length)` is handed the chunk and its length in 16-byte units (`edx`, set at `0x002F6CB5`). It keeps the
-chunk at `0x02B5F1A0` and, when the length passes the last index entry, the bytes from there at `0x02B5F1B0`
-(`0x003ED840`-`0x003ED865`); `0x003ED820` clears both (`0x003ED823`, `0x003ED82E`). No RIP-relative reference reads
+chunk at `0x02B5F1A0` and, when the length passes the last index entry, the bytes from there at `0x02B5F1B0`¹; `0x003ED820` clears both². No RIP-relative reference reads
 `0x02B5F1A0` or `0x02B5F1B0`, and no 8-byte data pointer holds either address.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003ED840`-`0x003ED865` |
+| ² | `0x003ED823`, `0x003ED82E` |
+
+</details>
 
 `Ym00Tag27` (`0x4` bytes, offsets from the start of the chunk):
 
@@ -614,11 +793,27 @@ The chunk holds one 16-byte entry per tag-0 transform row, from its first byte (
 | `+0x08` | `i16` | sizeC | / 4096: stored with the others at `0x022D91B0` (`0x0032A720`, `0x00230804`) |
 | `+0x0A` | `u8[6]` | tail | read by none of `0x00230790`, `0x0032A6E0`, `0x00379BD0` and `0x00379C50`; the last two bytes are `0xFF` in all 1,506 |
 
-The chunk head is the count (`0x002F6749`) and 12 zero bytes. `0x002F6740` gives each entry a 12-byte state at
-`[+0x1D8]` (`0x002F6773`-`0x002F67A6`): `+0x00` shown, 1 at the start, set to 1 by `0x00379C50` (`0x00379CA7`) and to 0 by
-`0x00379BD0` (`0x00379C27`), read by `0x0022D7E0` (`0x0022D8DE`) and `0x0032A6C0` (`0x0032A6D5`); `+0x08` the alpha, 1.0 at the
-start, read by `0x002F4520` (`0x002F4C0D`) and `0x002F5550` (`0x002F5ECD`). `0x0022D7E0` passes a shown entry to `0x00230790`
-(`0x0022D8F1`-`0x0022D8FB`), and the obstacle grid's registry reads the list through `0x0032A6B0`, `0x0032A6C0` and `0x0032A6E0`.
+The chunk head is the count¹ and 12 zero bytes. `0x002F6740` gives each entry a 12-byte state at
+`[+0x1D8]`²: `+0x00` shown, 1 at the start, set to 1 by `0x00379C50`³ and to 0 by
+`0x00379BD0`⁴, read by `0x0022D7E0`⁵ and `0x0032A6C0`⁶; `+0x08` the alpha, 1.0 at the
+start, read by `0x002F4520`⁷ and `0x002F5550`⁸. `0x0022D7E0` passes a shown entry to `0x00230790`⁹, and the obstacle grid's registry reads the list through `0x0032A6B0`, `0x0032A6C0` and `0x0032A6E0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F6749` |
+| ² | `0x002F6773`-`0x002F67A6` |
+| ³ | `0x00379CA7` |
+| ⁴ | `0x00379C27` |
+| ⁵ | `0x0022D8DE` |
+| ⁶ | `0x0032A6D5` |
+| ⁷ | `0x002F4C0D` |
+| ⁸ | `0x002F5ECD` |
+| ⁹ | `0x0022D8F1`-`0x0022D8FB` |
+
+</details>
 
 ### Tags 31 and 17, the two collision parts
 
@@ -628,15 +823,36 @@ layout. `0x00232380(part, chunk)` fills the 0x68-byte part at `+0x40` (tag 31, `
 `0x002F6DC8`).
 
 `0x0026E960` keeps each part whose grid pointer is set at `0x0209A678` and `0x0209A680`, and copies the
-grid's two sets of the `+0x40` part only (`0x0026E9D3`-`0x0026E9EA`). `0x0026E500(0)` returns the `+0x40` part and any
-other argument the `+0xA8` part (`0x0026E50A`-`0x0026E520`). `0x00322220` keeps the `+0xA8` part, or the `+0x40` part when
-there is no `+0xA8` part, at `0x02EC1378` (`0x0032222B`-`0x00322265`), and the ray casts `0x00318CA0` and `0x0032A4D0` cast
+grid's two sets of the `+0x40` part only¹. `0x0026E500(0)` returns the `+0x40` part and any
+other argument the `+0xA8` part². `0x00322220` keeps the `+0xA8` part, or the `+0x40` part when
+there is no `+0xA8` part, at `0x02EC1378`³, and the ray casts `0x00318CA0` and `0x0032A4D0` cast
 through it (`0x002315E0`, the walker `0x0022F430` with the callback `0x0022D4B0`).
 
-Tag 32 shares tag 31's offset and comes before it in the index of all 461 sections, so `0x002F6AB0` skips it
-(`0x002F6CB5`-`0x002F6CB7`) and its arm, `[+0x1B8]` = chunk (`0x002F6F12`), never runs. Tag 17 is skipped the same way in
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026E9D3`-`0x0026E9EA` |
+| ² | `0x0026E50A`-`0x0026E520` |
+| ³ | `0x0032222B`-`0x00322265` |
+
+</details>
+
+Tag 32 shares tag 31's offset and comes before it in the index of all 461 sections, so `0x002F6AB0` skips it¹ and its arm, `[+0x1B8]` = chunk², never runs. Tag 17 is skipped the same way in
 29 sections, where it shares tag 27's offset, and tag 31 in one, `tst0108`, where 31, 17 and 27 share one offset: in
-that section neither part is filled, and both keep the zeroes `0x002F6AB0` cleared them to (`0x002F6AFB`-`0x002F6B14`).
+that section neither part is filled, and both keep the zeroes `0x002F6AB0` cleared them to³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F6CB5`-`0x002F6CB7` |
+| ² | `0x002F6F12` |
+| ³ | `0x002F6AFB`-`0x002F6B14` |
+
+</details>
 
 `CollChunk` (`0x20` bytes, offsets from the start of the chunk):
 
@@ -668,10 +884,19 @@ that section neither part is filled, and both keep the zeroes `0x002F6AB0` clear
 | `+0x38` | `u64` | hiddenEffects | the hidden effect set, copied to `0x0209A6A8` (`0x0026E9E6`); non-zero in 41 tag-31 grids |
 
 Sub-tag 1 is four banks of `cells + 1` `u16` list starts into the id pool, sub-tag 2 (`[part + 0x28]`). A cell's
-list in bank `k` runs from entry `k (cells + 1) + cell` to the next (`0x0022F855`-`0x0022F890`); each bank's last entry is
+list in bank `k` runs from entry `k (cells + 1) + cell` to the next¹; each bank's last entry is
 the next bank's first, and the first is 0, in all 892. In the shipped parts bank 0 lists the type-0 polygons (floors),
 bank 1 the type-1 polygons, the wall records (`0x4000` + index) and, in 43 tag-31 parts, background NPC shapes (`0x5000` +
 index, each below its section's tag-33 count), bank 2 nothing, and bank 3 the polygons of types 2, 3 and 4 (tag 31 only).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022F855`-`0x0022F890` |
+
+</details>
 
 `CollVertex` (`0x10` bytes, offsets from the start of the [part+0x08]+i*0x10):
 
@@ -746,26 +971,65 @@ index, each below its section's tag-33 count), bank 2 nothing, and bank 3 the po
 - a miss when the id reaches `idBound`, the bucket reaches `bucketCount` or the slot reaches the
   bucket's bound;
 - a hit is `section + recordOffset[bucket] + slot * recordSize`;
-- the three bounds are signed compares (`0x003E8246`, `0x003E826D`, `0x003E827E`) and the division `id / 100` truncates
+- the three bounds are signed compares¹ and the division `id / 100` truncates
   toward zero: `b = hi32(id × 0x51EB851F) >> 5`, plus 1 when that is negative (`imul r9d`, `sar edx, 5`,
-  `shr eax, 0x1f`, `add edx, eax`), and `slot = id - 100 × b` (`0x003E8252`-`0x003E8260`, `0x003E8262`-`0x003E8265`);
+  `shr eax, 0x1f`, `add edx, eax`), and `slot = id - 100 × b`²;
 - a negative id is therefore not a miss: ids -1 to -99 give bucket 0 and a
   negative slot, addressing records before the bucket's first, and lower ids a negative bucket, reading
   `recordOffset` before its table.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E8246`, `0x003E826D`, `0x003E827E` |
+| ² | `0x003E8252`-`0x003E8260`, `0x003E8262`-`0x003E8265` |
+
+</details>
+
 `0x003E8230` answers 0 while no table is published (`[0x02B5D080]` null, `0x003E823D`). Its comparisons are signed: the id
-is compared as a signed integer (`0x003E8244`) and `bucketCount` and the bucket's bound are read as `i16` (`0x003E8268`,
-`0x003E8276`), so a negative id is not refused. An id of -1 to -99 gives bucket 0 and a negative slot, and the answer
-lies that many records before the bucket's first record (`0x003E824D`-`0x003E8291`).
+is compared as a signed integer¹ and `bucketCount` and the bucket's bound are read as `i16`², so a negative id is not refused. An id of -1 to -99 gives bucket 0 and a negative slot, and the answer
+lies that many records before the bucket's first record³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E8244` |
+| ² | `0x003E8268`, `0x003E8276` |
+| ³ | `0x003E824D`-`0x003E8291` |
+
+</details>
 
 `0x003E7EC0` and `0x003E8D50(mode)` walk every bucket's records in the same arithmetic and hand each to
-`0x003E8020` or `0x003E8C50` with the aux table and the weather slot (`0x00265920`); `0x003E8D50` skips
+`0x003E8020` or `0x003E8C50` with the aux table and the weather slot¹; `0x003E8D50` skips
 records whose byte `+0x15` differs from a non-negative mode.
 
-`0x003E8940(section)` first runs `0x003E8D50(-1)` (`0x003E894C`), which walks the table still published at `0x02B5D080`
-(`0x003E8D5F`) and hands every record to `0x003E8C50`, as a negative mode skips no record. It then stores the new section
-(`0x003E8951`) and, when that is non-null with a version other than 1, stores 0 instead (`0x003E895D`-`0x003E8968`). The
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265920` |
+
+</details>
+
+`0x003E8940(section)` first runs `0x003E8D50(-1)`¹, which walks the table still published at `0x02B5D080`² and hands every record to `0x003E8C50`, as a negative mode skips no record. It then stores the new section³ and, when that is non-null with a version other than 1, stores 0 instead⁴. The
 teardown's `0x003E8940(0)` therefore runs that walk over the outgoing table and leaves the pointer 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E894C` |
+| ² | `0x003E8D5F` |
+| ³ | `0x003E8951` |
+| ⁴ | `0x003E895D`-`0x003E8968` |
+
+</details>
 
 `0x003E8020` keeps the record's state in its first word: bit `0x1` processed (set on first touch, when the
 low nibbles of bytes `+0x13` and `+0x14` are copied into their high nibbles and the high nibble of
@@ -785,26 +1049,54 @@ of 0xFFFF is a tombstone that every walker skips.
 | `+0x15` | `i8` | effectArg | third argument of `0x0026FAD0`, negatives as 0; the walker's mode filter |
 
 On first touch `0x003E8020` runs `0x003E8990`, which clears state bits `0x8` and `0x10`, rewinds the animation
-slot (`0x00473500(slot, -1.0, -1.0)`), sets its rate to 0 (`0x004735D0`) and sets the sound emitter's
+slot (`0x00473500(slot, -1.0, -1.0)`), sets its rate to 0¹ and sets the sound emitter's
 flags with `0x00363A90`. A toggle with bit `0x2` clear runs `0x003E85B0` and sets the bit; with bit `0x2` set it
 runs `0x003E8690` and clears it:
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004735D0` |
+
+</details>
+
 - `0x003E85B0` sets the animation slot's rate to 0, turns the light's loop off and stops its animation
   (`0x0037A310`, `0x0037A130`, or `0x003E8A10` and `0x003E8A40` through the aux table), starts the effect
-  channel (`0x0026FAD0`) and clears its flag (`0x002700F0(channel, 0)`), and sets bit `0x10` of the sound
+  channel¹ and clears its flag (`0x002700F0(channel, 0)`), and sets bit `0x10` of the sound
   emitter's flag byte `+8` (`0x00363AD0(id, 1)`, `0x00363AE2`-`0x00363AEC`);
-- `0x003E8690` sets the rate to 1.0, resets, turns on and restarts the light (`0x0037A270`, `0x0037B190`,
-  `0x0037A1D0`, `0x0037A310`), sets the channel's flags (`0x002700F0`, `0x00270130`) and starts it, and
+- `0x003E8690` sets the rate to 1.0, resets, turns on and restarts the light², sets the channel's flags³ and starts it, and
   clears the emitter's bit `0x4`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026FAD0` |
+| ² | `0x0037A270`, `0x0037B190`, `0x0037A1D0`, `0x0037A310` |
+| ³ | `0x002700F0`, `0x00270130` |
+
+</details>
 
 In mode 1 `0x003E8020` sets state bit `0x10` when `0x003E8350` finds that `0x004735E0` (the animation slot), `0x0037B030` (the light,
 or the callback `0x003E82A0` through the aux table) and `0x00362E30` (the emitter's bit `0x1`) all return 0
 and `0x0026FDB0` does not return 2 for the channel.
 
-`0x003E8350` answers 1 at once, before any of those tests, while state bit `0x10` is already set
-(`0x003E8368`-`0x003E83AA`). Otherwise it answers for the first source still running: 2 for the animation slot, 8 for
-the light, 4 for the channel and `0x10` for the emitter (`0x003E83A5`, `0x003E83DA`, `0x003E83FA`, `0x003E8419`), and 0
+`0x003E8350` answers 1 at once, before any of those tests, while state bit `0x10` is already set¹. Otherwise it answers for the first source still running: 2 for the animation slot, 8 for
+the light, 4 for the channel and `0x10` for the emitter², and 0
 when no source is.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E8368`-`0x003E83AA` |
+| ² | `0x003E83A5`, `0x003E83DA`, `0x003E83FA`, `0x003E8419` |
+
+</details>
 
 ### SP1, the sound emitters
 
@@ -827,39 +1119,102 @@ index into a record at `0x022CBAF0 + recordOffset`, dispatches on the record's s
 (`& 0x7F`: 0, 1, 2, other), evaluates the volume through `0x00361810` and starts or updates the voice
 through `0x003638B0`. The emitter record itself is on the map sound list page.
 
-A null list returns `current` at once (`0x003631CA`). An entry's low 15 bits are its index; an index at or above the
-index table's `u16` bound is skipped (`0x00363244`-`0x00363251`), and the entry with bit `0x8000` set is the last one
-walked (`0x00363352`-`0x0036335C`).
+A null list returns `current` at once¹. An entry's low 15 bits are its index; an index at or above the
+index table's `u16` bound is skipped², and the entry with bit `0x8000` set is the last one
+walked³.
 
-With `shape = record[+9] & 0x7F` (`0x0036326A`-`0x0036326E`), shapes 0 and 1 clamp the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003631CA` |
+| ² | `0x00363244`-`0x00363251` |
+| ³ | `0x00363352`-`0x0036335C` |
+
+</details>
+
+With `shape = record[+9] & 0x7F`¹, shapes 0 and 1 clamp the
 listener's position with `0x00361DE0` and `0x003623C0`, shape 2 with `0x00362230`, whose return value also goes to
-`0x00361810`, and any other shape uses the position as it is (`0x0036326A`-`0x003632CC`). The ellipse, the rectangle and
+`0x00361810`, and any other shape uses the position as it is². The ellipse, the rectangle and
 the segment chain are written out as expressions in
 [Geometry primitives](../Movement-And-Pathfinding/geometry-primitives.md#the-volume-clamps).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036326A`-`0x0036326E` |
+| ² | `0x0036326A`-`0x003632CC` |
+
+</details>
+
 `0x00361810` gets, with `[0x022CBA8C]`, the record's `+0x38`, `+0x54` and `+0x58` for shapes 0 and 1, `+0x38`, 0 and
-4.1415930 for shape 2, and -1.0, 0 and 4.1415930 for the other shapes (`0x003632D1`-`0x00363320`).
-`0x003638B0(record, the two values 0x00361810 wrote, current, &position)` runs for every walked entry (`0x00363344`).
-`current` takes its return only when the distance `0x00361810` returned is exactly 0.0 (`0x00361B9A`,
-`0x00363349`-`0x00363350`), and the
-walk returns `current` (`0x00363367`).
+4.1415930 for shape 2, and -1.0, 0 and 4.1415930 for the other shapes¹.
+`0x003638B0(record, the two values 0x00361810 wrote, current, &position)` runs for every walked entry².
+`current` takes its return only when the distance `0x00361810` returned is exactly 0.0³, and the
+walk returns `current`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003632D1`-`0x00363320` |
+| ² | `0x00363344` |
+| ³ | `0x00361B9A`, `0x00363349`-`0x00363350` |
+| ⁴ | `0x00363367` |
+
+</details>
 
 `0x00363B40` builds the per-weather-slot ambient list from the `SPP1` section's `u16 +0x1A` offset
 when it is non-zero, which it is in all 545 shipped lists, else from this header's `+4` list; the
-current slot (`0x00265920`) picks the entry.
+current slot¹ picks the entry.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265920` |
+
+</details>
 
 ### LGT2, the light set
 
-`0x0037AA90(block, group)` accepts the block when its first dword is `LGT2` (`0x3254474C`) and stores
+`0x0037AA90(block, group)` accepts the block when its first dword is `LGT2`¹ and stores
 it in group `group` (0 to 4) of the `0x50`-byte group table at `0x02EBF420`. It walks the chunk chain
 at `block + u16[+4]` (`{u16 size, u16 kind}` chunks, kinds 0 to 3 and 5 to 7 stored to the group's
 slots) and remaps a byte of each of the `u16[+0xA]` 0x70-byte records through `0x01EF94E4`. The
 section's own format is on the section-014 page.
 
-The group is compared unsigned, so a negative group returns at once like one above 4 (`0x0037AA9E`-`0x0037AAA2`), and
-the block is read with no null test (`0x0037AABF`). A block with another magic stores nothing but still sets the
-group's ready byte `+0x4C` (`0x0037AAC5`, `0x0037AC69`). The remapped byte is record `+0x21`, and only its values below 6
-change (`0x0037AC16`-`0x0037AC29`); in group 0 each record's `+0x27` also gets bit `0x20` (`0x0037AC3A`-`0x0037AC62`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x3254474C` |
+
+</details>
+
+The group is compared unsigned, so a negative group returns at once like one above 4¹, and
+the block is read with no null test². A block with another magic stores nothing but still sets the
+group's ready byte `+0x4C`³. The remapped byte is record `+0x21`, and only its values below 6
+change⁴; in group 0 each record's `+0x27` also gets bit `0x20`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037AA9E`-`0x0037AAA2` |
+| ² | `0x0037AABF` |
+| ³ | `0x0037AAC5`, `0x0037AC69` |
+| ⁴ | `0x0037AC16`-`0x0037AC29` |
+| ⁵ | `0x0037AC3A`-`0x0037AC62` |
+
+</details>
 
 ### TIM2 pictures and NPS2 placements
 
@@ -867,10 +1222,22 @@ change (`0x0037AC16`-`0x0037AC29`); in group 0 each record's `+0x27` also gets b
 and keeps its width and height (`u16 +0x14` and `+0x16` of the texture header) at `0x02B457F8` and
 `0x02B457FC`.
 
-It first releases the texture it holds at `0x02B457F0` with `0x0024A680(texture, 0)` and zeroes the pointer
-(`0x003C63A9`-`0x003C63BC`); a null picture stops there (`0x003C63CA`), which is how `0x003C63A0(0)` drops the minimap
-texture. The fourth argument of the registration is `0x0035D530()` (`0x003C63CC`-`0x003C63EC`); the new texture goes to
-`0x02B457F0` (`0x003C63F1`) and its header `[texture + 0x20]` is read with no null test (`0x003C63F8`-`0x003C640E`).
+It first releases the texture it holds at `0x02B457F0` with `0x0024A680(texture, 0)` and zeroes the pointer¹; a null picture stops there², which is how `0x003C63A0(0)` drops the minimap
+texture. The fourth argument of the registration is `0x0035D530()`³; the new texture goes to
+`0x02B457F0`⁴ and its header `[texture + 0x20]` is read with no null test⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C63A9`-`0x003C63BC` |
+| ² | `0x003C63CA` |
+| ³ | `0x003C63CC`-`0x003C63EC` |
+| ⁴ | `0x003C63F1` |
+| ⁵ | `0x003C63F8`-`0x003C640E` |
+
+</details>
 
 `0x00379870(i)` applies placement `i`:
 
@@ -887,31 +1254,75 @@ texture. The fourth argument of the registration is `0x0035D530()` (`0x003C63CC`
 | `+0x1C` | `f32` | height |  |
 | `+0x20` | `u8[32]` | pad2 | zero |
 
-`0x00379870` hands `0x003C6380` the placement's width and height cut to whole numbers (`0x003798DA`, `0x003798DE`), and
-`0x003C6380` keeps them as floats at `0x02B45808` and `0x02B4580C` (`0x003C638E`, `0x003C6396`), beside the position
+`0x00379870` hands `0x003C6380` the placement's width and height cut to whole numbers¹, and
+`0x003C6380` keeps them as floats at `0x02B45808` and `0x02B4580C`², beside the position
 `0x02B45800` and `0x02B45804` that `0x003C6360` stores.
 
-`0x00379870` reads `0x02ADD030 + 8i` with no bound on `i` (`0x00379874`-`0x00379888`). A null placement gives the position
-(0, 0) and 256 x 256 (`0x003798C4`-`0x003798D2`). The version byte `0x31` ("1") keeps the position and uses 256 x 256
-(`0x00379891`-`0x003798A7`); any other version byte takes the width and height at `+0x18` and `+0x1C`
-(`0x003798AE`-`0x003798B3`). The position goes to `0x003C6360` (`0x003798D5`) and the size to `0x003C6380` by a tail jump
-(`0x003798F0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003798DA`, `0x003798DE` |
+| ² | `0x003C638E`, `0x003C6396` |
+
+</details>
+
+`0x00379870` reads `0x02ADD030 + 8i` with no bound on `i`¹. A null placement gives the position
+(0, 0) and 256 x 256². The version byte `0x31` ("1") keeps the position and uses 256 x 256³; any other version byte takes the width and height at `+0x18` and `+0x1C`⁴. The position goes to `0x003C6360`⁵ and the size to `0x003C6380` by a tail jump⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00379874`-`0x00379888` |
+| ² | `0x003798C4`-`0x003798D2` |
+| ³ | `0x00379891`-`0x003798A7` |
+| ⁴ | `0x003798AE`-`0x003798B3` |
+| ⁵ | `0x003798D5` |
+| ⁶ | `0x003798F0` |
+
+</details>
 
 ### WD and MRP, carried but unread
 
 Slot 1 is a wave bank: a `WD` magic, `u16 +2` bank id (46 distinct values, 0x1FA to 0x251), `u32 +4`
 trailing data size (its start is 0x40-aligned), `u32 +8` and `+0xC` record counts (equal in all 46),
 `u32 +0x14` flags (0, 0x8000 or 0x10000), an offset table of `count` dwords at `+0x20` with a record
-stride of 0x20. `0x00378BC0` frees the slot in both modes (`0x00378DBA`, `0x00378E19`), so nothing reads it.
+stride of 0x20. `0x00378BC0` frees the slot in both modes¹, so nothing reads it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00378DBA`, `0x00378E19` |
+
+</details>
 
 Slot 15 is an `MRP` relocated-pointer package (the menu resource package page). The pointer
-`0x02ADD058` has four references: the store (`0x00378F04`), the teardown (`0x003782EB`, `0x003782FC`) and the
-getter `0x00377B90`, whose only caller is `initgauge` (`0x0034DC70`). That verb passes it to `0x003E9020`,
+`0x02ADD058` has four references: the store¹, the teardown² and the
+getter `0x00377B90`, whose only caller is `initgauge`³. That verb passes it to `0x003E9020`,
 which passes it as a 32-bit integer to `0x00408300`, where it becomes the second create parameter of
 the gauge task `0x00406E80`. Only two packs, `rwg0201` and `rwg0202`, carry the slot, with identical
 bytes.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00378F04` |
+| ² | `0x003782EB`, `0x003782FC` |
+| ³ | `0x0034DC70` |
+
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | quantity | value |
 |---|---|
@@ -958,6 +1369,8 @@ bytes.
 | layers per field | What each map shows, collides with, walks on, triggers, lights and plays, and which of its two packs supplies it. The 89 block packs carry only slots 0, 1 and 10 (above), so in the 1,315 fields the own pack supplies the models drawn (`YM00` tag 30), the collision part (tag 31, which `0x002F6AB0` puts at `+0x40` of the mode-1 world object; [Doors, gates and map changes](doors-gates-and-map-changes.md)), the navigation dataset, the `ACTL` records, the `LGT2` lights and the `SP1` sound emitters, and the block pack supplies the sound-effect bank and the map sound list (slots 0 and 10, kept in mode 0). [`mpk-map-pack-field-layers.tsv`](mpk-map-pack-field-layers.tsv) has one row per field, 0 to 1,314: its zone script, its own and block pack, and for each layer the pack with its count (tag-30 instances, the tag-31 chunk's bytes, the navigation section's bytes, `ACTL` records that are not tombstones, `LGT2` light records, `SP1` emitter records, `SPP1` ids); `-` marks a field without that script, pack or layer. The pack names follow the path the read takes for each kind-4 index ([Asset paths](../Game-Files-And-Data-Tables/asset-paths.md)), one file per index; 1,194 fields have an own pack file and 1,281 a block pack file, and an index without a file is sized -1 and not requested (`0x00378062`). The 708 fields with a zone script all have world data and navigation; 389 of them have no `LGT2` section, 206 no `ACTL` section, 6 no `SP1` section and 4 no map sound list. When both packs carry one of slots 9, 15, 16 and 17, the own pack's section is the one bound: the block pack is requested first and the read queue completes requests in order ([File requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md)), and each completion stores the four slots without a test (`0x00378E9D`, `0x00378EC1`, `0x00378EE2`, `0x00378F04`) and then runs the binder (`0x00378F39`) |
 | every section | one row each in [`mpk-map-pack-slots-rows.tsv`](mpk-map-pack-slots-rows.tsv), 4,570 rows for the 550 packs: pack, folder, slot, the section's file offset and size, its first bytes, SHA-256 prefix, and whether the 0x40-byte slot before it is zero (it is in all 4,568 sections). `ous0100.mpk` and `tst0100.mpk` are the same 192 bytes: count 32 and 32 sizes of 0, so the header ends the file at `0xC0` and they hold no section; each has one row, slot `none` and size 0 |
 
+</details>
+
 ## Loader behaviour
 
 ### Two requests per field
@@ -965,65 +1378,91 @@ bytes.
 `0x00331990(field)` requests the block pack in mode 0 and the field's own pack in mode 1 through
 `0x00378A60(field, index, mode)`:
 
-1. Mode 0 returns at once when `0x02ADD0E0` is non-negative and equals `0x02ADD0DC`
-   (`0x00378AD6`-`0x00378AE6`); its own index is not compared. Otherwise `0x00378230(1)` tears the
-   previous packs down (when no load is pending, `0x0032F3D0(0)`) and `0x003784A0` releases the sound
-   sections. So the bound block pack is kept only while one is bound and the last mode-1 index
-   was 0:
-   - `0x02ADD0E0` only ever holds -1 or 0: -1 from the loader reset (`0x00377D29`) and from `0x003784A0`
-     when it releases a bound block pack (`0x003784C9`), otherwise the copy of `0x02ADD0E4` that
-     `0x00378120` makes when it binds the pending block pack (`0x00378175`-`0x0037817B`), and nothing
-     writes `0x02ADD0E4`.
-   - `0x02ADD0DC` is written only by mode 1 (`0x00378AC9`).
-   - `0x0032F3D0(0)` always answers 0: it answers 0 when `[0x02B62DAB]` is 1 or `[0x02B62DA8]` is 3 (`0x00408B30`,
-     `0x00408B10`), and otherwise 1 only when `0x005C5230(4)` is non-zero, which it never is (`0x0032F3D8`-`0x0032F41F`).
-     So `0x00378230(1)` runs on every mode-0 call that gets past the first test (`0x00378AE8`-`0x00378AF5`).
-2. Mode 1 drops the minimap texture (`0x003C63A0(0)`, `0x00378AA4`), stores the index at `0x02ADD0DC` and tears down
-   with `0x00378230(releaseWorld)` (`0x00378AC9`, `0x00378ACF`). The argument is 0, keeping the mode-1 world object, only
-   when `0x0032F3D0(0)` answers non-zero, the index equals the previous `0x02ADD0DC` and `0x02ADD0EA` is clear
-   (`0x00378AA9`-`0x00378AC3`). `0x0032F3D0(0)` always answers 0, so mode 1 always passes 1 and the world object is
-   released.
-3. When no load is pending, `0x00377DC0` requests the loose effect bank `PS2Data\efb\<zone>.efb`
-   (completions `0x003788F0` in mode 1 to `0x02ADD050`, `0x003789A0` in mode 0 to `0x02ADD098`, bind bits
-   `0x20` and `0x40`) and `0x00378030` requests the pack: `0x0032E400(4, index)` sizes it, `0x0036A190` allocates an
-   arena block tagged `MapNo`, and `0x0032E620` submits the load with the completion `0x00378BC0` and
-   the argument `block | mode`.
-4. Mode 1 names the scene from the pack's path (`0x00379A10(4, index)`, with five alias pairs at
-   `0x01EF9490`), which `0x001805D0` receives.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Mode 0 returns at once when `0x02ADD0E0` is non-negative and equals `0x02ADD0DC`; its own index is not compared. Otherwise `0x00378230(1)` tears the previous packs down (when no load is pending, `0x0032F3D0(0)`) and `0x003784A0` releases the sound sections. So the bound block pack is kept only while one is bound and the last mode-1 index was 0:<br>• `0x02ADD0E0` only ever holds -1 or 0: -1 from the loader reset and from `0x003784A0` when it releases a bound block pack, otherwise the copy of `0x02ADD0E4` that `0x00378120` makes when it binds the pending block pack, and nothing writes `0x02ADD0E4`.<br>• `0x02ADD0DC` is written only by mode 1.<br>• `0x0032F3D0(0)` always answers 0: it answers 0 when `[0x02B62DAB]` is 1 or `[0x02B62DA8]` is 3, and otherwise 1 only when `0x005C5230(4)` is non-zero, which it never is. So `0x00378230(1)` runs on every mode-0 call that gets past the first test. | `0x00378AD6`-`0x00378AE6`<br>`0x00377D29`<br>`0x003784C9`<br>`0x00378175`-`0x0037817B`<br>`0x00378AC9`<br>`0x00408B30`, `0x00408B10`<br>`0x0032F3D8`-`0x0032F41F`<br>`0x00378AE8`-`0x00378AF5` |
+| 2 | Mode 1 drops the minimap texture (`0x003C63A0(0)`, `0x00378AA4`), stores the index at `0x02ADD0DC` and tears down with `0x00378230(releaseWorld)`. The argument is 0, keeping the mode-1 world object, only when `0x0032F3D0(0)` answers non-zero, the index equals the previous `0x02ADD0DC` and `0x02ADD0EA` is clear. `0x0032F3D0(0)` always answers 0, so mode 1 always passes 1 and the world object is released. | `0x00378AC9`, `0x00378ACF`<br>`0x00378AA9`-`0x00378AC3` |
+| 3 | When no load is pending, `0x00377DC0` requests the loose effect bank `PS2Data\efb\<zone>.efb` (completions `0x003788F0` in mode 1 to `0x02ADD050`, `0x003789A0` in mode 0 to `0x02ADD098`, bind bits `0x20` and `0x40`) and `0x00378030` requests the pack: `0x0032E400(4, index)` sizes it, `0x0036A190` allocates an arena block tagged `MapNo`, and `0x0032E620` submits the load with the completion `0x00378BC0` and the argument `block \| mode`. |   |
+| 4 | Mode 1 names the scene from the pack's path (`0x00379A10(4, index)`, with five alias pairs at `0x01EF9490`), which `0x001805D0` receives. |   |
 
-Every call of `0x00378A60` first zeroes `0x02EBF9C8` and `0x02ADD0F4` and sets `0x02ADD118` to 1 (`0x00378A82`-`0x00378A95`),
-so the early return of step 1 still makes those stores. Any non-zero mode takes the mode-1 steps (`0x00378A9D`). Step 3
-tests `0x0032F3D0(0)` again (`0x00378B01`); a non-zero answer, which it never gives, skips both requests through the
-return stub `0x0016D6A0` (`0x00378B0A`-`0x00378B14`). Step 4 runs either way, and `0x00377DC0` gets the argument
-step 2 passed to `0x00378230` as its last argument, 1 in mode 0 (`0x00378B16`-`0x00378B2B`).
+Every call of `0x00378A60` first zeroes `0x02EBF9C8` and `0x02ADD0F4` and sets `0x02ADD118` to 1¹,
+so the early return of step 1 still makes those stores. Any non-zero mode takes the mode-1 steps². Step 3
+tests `0x0032F3D0(0)` again³; a non-zero answer, which it never gives, skips both requests through the
+return stub `0x0016D6A0`⁴. Step 4 runs either way, and `0x00377DC0` gets the argument
+step 2 passed to `0x00378230` as its last argument, 1 in mode 0⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00378A82`-`0x00378A95` |
+| ² | `0x00378A9D` |
+| ³ | `0x00378B01` |
+| ⁴ | `0x00378B0A`-`0x00378B14` |
+| ⁵ | `0x00378B16`-`0x00378B2B` |
+
+</details>
 
 The debug verb `mapload` (0x2001, `0x0050D4D0`) requests one pack in mode 1 with field 0. Around
 the pack's allocation `0x0036C1A0` and `0x0036C110` push and pop the current block tag (`0x022D8E1C`,
 stack at `0x022D8DD0`).
 
-`0x00378030(mode, field, index, 4, index)` sizes the pack with its fifth argument (`0x0037804B`-`0x00378059`) and returns
-at once, storing nothing, when the size is 0 or less (`0x00378062`). Otherwise it pushes arena 6 (`0x0036C1D0(6, 5)`,
+`0x00378030(mode, field, index, 4, index)` sizes the pack with its fifth argument¹ and returns
+at once, storing nothing, when the size is 0 or less². Otherwise it pushes arena 6 (`0x0036C1D0(6, 5)`,
 `0x00378075`), pushes the current block tag `0x022D8E1C` and makes it 3 (`0x0036C1A0(3)`, `0x0037807F`), allocates,
-labels the block `MapNo` (`0x0036C660`, `0x0037809B`), pops both (`0x0036C110`, `0x0036C140`, `0x003780A0`-`0x003780A5`)
+labels the block `MapNo`³, pops both⁴
 and submits the load. The arena number stays 6.
 
-The completion argument is a 32-bit dword, the low 32 bits of the block ORed with the mode (`0x003780D0`-`0x003780DD`),
-and `0x00378BC0` takes the block back as `arg & 0xFFFFFFFC` and the mode as `arg & 3` (`0x00378BE2`-`0x00378BF0`). After
-the submit `0x00378030` stores `0x00264FD0(field) + 500` at `0x02ADD078` in either mode (`0x003780E8`-`0x003780FA`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037804B`-`0x00378059` |
+| ² | `0x00378062` |
+| ³ | `0x0036C660`, `0x0037809B` |
+| ⁴ | `0x0036C110`, `0x0036C140`, `0x003780A0`-`0x003780A5` |
+
+</details>
+
+The completion argument is a 32-bit dword, the low 32 bits of the block ORed with the mode¹,
+and `0x00378BC0` takes the block back as `arg & 0xFFFFFFFC` and the mode as `arg & 3`². After
+the submit `0x00378030` stores `0x00264FD0(field) + 500` at `0x02ADD078` in either mode³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003780D0`-`0x003780DD` |
+| ² | `0x00378BE2`-`0x00378BF0` |
+| ³ | `0x003780E8`-`0x003780FA` |
+
+</details>
 
 ### The split
 
-`0x00378BC0` takes the mode from the argument's low two bits (`0x00378BF0`) and the block from the argument
-masked with `0xFFFFFFFC` as a zero-extended 32-bit mask (`0x00378BE2`-`0x00378BED`), which also drops the top
+`0x00378BC0` takes the mode from the argument's low two bits¹ and the block from the argument
+masked with `0xFFFFFFFC` as a zero-extended 32-bit mask², which also drops the top
 32 bits, so the walk reads the right block only while it lies below 4 GB. It first calls `0x0036B970(block, slots, 32)`,
 which is `0x0036B980`:
 
-1. A count above 32 returns 0 (`0x0036B9BB`).
-2. The header length plus the sum of every non-zero size plus 0x40 must equal the arena block's own
-   size, and the arena must have a free handle per extra section (`0x0036BA78`-`0x0036BAA2`); otherwise
-   0 is returned and nothing is split.
-3. Each non-zero section's 0x40 slot is overwritten with a copy of the arena block header (owner
-   bytes, size `+0x18`, tag) and registered as a block of its own; a zero size yields a null slot.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00378BF0` |
+| ² | `0x00378BE2`-`0x00378BED` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A count above 32 returns 0. | `0x0036B9BB` |
+| 2 | The header length plus the sum of every non-zero size plus 0x40 must equal the arena block's own size, and the arena must have a free handle per extra section; otherwise 0 is returned and nothing is split. | `0x0036BA78`-`0x0036BAA2` |
+| 3 | Each non-zero section's 0x40 slot is overwritten with a copy of the arena block header (owner bytes, size `+0x18`, tag) and registered as a block of its own; a zero size yields a null slot. |   |
 
 ### The dispatch
 
@@ -1043,95 +1482,235 @@ pending word `0x02ADD0EC` and the bind word `0x02ADD0F0`:
 | 9 | `0x02ADD0B8`, bit `0x10` | the same |
 | 15 | `0x02ADD058`, bit `0x40000` | the same |
 
-The slot 4 copy does not test its new block. `0x00378CF6` allocates it, top-down on the first try (`0x0036A190`), and when the arena
-cannot make room the allocation's pressure path, retrying bottom-up, gives up and returns 0 (`0x0036C0B2`-`0x0036C0BF`). The labeller
+The slot 4 copy does not test its new block. `0x00378CF6` allocates it, top-down on the first try¹, and when the arena
+cannot make room the allocation's pressure path, retrying bottom-up, gives up and returns 0². The labeller
 `0x0036C660` skips a null block, but the copy at `0x00378D27` (`memcpy`) then writes the dataset to address 0, and the
 game faults there.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036A190` |
+| ² | `0x0036C0B2`-`0x0036C0BF` |
+
+</details>
 
 `0x00378BC0` then clears pending bits under mask `0x7FFFF` one by one and, when the pending word is empty, calls the binder
 `0x003775D0`; `0x00214B70` ends the completion.
 
 ### The bind
 
-`0x003775D0` consumes the bind word: bit `0x80` stores the `SP1` block at `0x022CBAF0` (`0x003635C0`); bit `0x1`
+`0x003775D0` consumes the bind word: bit `0x80` stores the `SP1` block at `0x022CBAF0`¹; bit `0x1`
 walks the `SeSep` bank with `0x002DF070`, frees it and keeps the `SPP1` list at `0x022CBAF8` with the
-sound map number (`0x003635E0`); bit `0x10` publishes the `ACTL` block (`0x003E8940`, cleared again when its
+sound map number²; bit `0x10` publishes the `ACTL` block (`0x003E8940`, cleared again when its
 version is not 1); bit `0x100` binds the lights (`0x0037AA90(block, 0)`) and refreshes with `0x003DE920(0, 1)`;
 bit `0x8` runs `0x00378120`, which:
 
-1. makes the mode-1 `YM00` current (`0x02ADCFF8`) and uploads picture 0 (`0x003C63A0`) and placement 0
-   (`0x00379870`);
-2. hands the mode-0 `YM00` to `0x0026E7D0` (its object at `0x0209A668`, the pack pointer kept at
-   `0x02ADD000`) and the mode-1 one to `0x0026E760` (its object at `0x0209A670`), both built by
-   `0x002F6AB0` from a 0x240-byte allocation;
-3. binds the navigation copy (`0x02ADD008`, `0x00384160`) and copies the current environment record to
-   `0x02ADD10C`-`0x02ADD114`; the verb `seteventfogcolor` (`0x0120`, `0x00351AA0`) later replaces the four bytes at
-   `0x02ADD114` with its four arguments, each clamped to 0 to 255, `v < 0 ? 0 : v > 255 ? 255 : v`
-   (`0x00351ADD`-`0x00351B18`, then `0x00379950`);
-4. stores the tag-11 chunk's vector `+0x10` at `0x02B3F560` (`0x003AFD40`) when its `+0x1C` is non-zero, else
-   (0, 100.0, 0) and a fourth float from a stack dword nothing in `0x00378120` sets (`0x003781CF`-`0x0037821A`), and
-   calls `0x00332130(0)`.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003635C0` |
+| ² | `0x003635E0` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | makes the mode-1 `YM00` current and uploads picture 0 and placement 0; | `0x02ADCFF8`<br>`0x003C63A0`<br>`0x00379870` |
+| 2 | hands the mode-0 `YM00` to `0x0026E7D0` (its object at `0x0209A668`, the pack pointer kept at `0x02ADD000`) and the mode-1 one to `0x0026E760` (its object at `0x0209A670`), both built by `0x002F6AB0` from a 0x240-byte allocation; |   |
+| 3 | binds the navigation copy and copies the current environment record to `0x02ADD10C`-`0x02ADD114`; the verb `seteventfogcolor` (`0x0120`, `0x00351AA0`) later replaces the four bytes at `0x02ADD114` with its four arguments, each clamped to 0 to 255, `v < 0 ? 0 : v > 255 ? 255 : v` (`0x00351ADD`-`0x00351B18`, then `0x00379950`); | `0x02ADD008`, `0x00384160` |
+| 4 | stores the tag-11 chunk's vector `+0x10` at `0x02B3F560` when its `+0x1C` is non-zero, else (0, 100.0, 0) and a fourth float from a stack dword nothing in `0x00378120` sets, and calls `0x00332130(0)`. | `0x003AFD40`<br>`0x003781CF`-`0x0037821A` |
 
 In `0x003775D0` bit `0x1` calls `0x002DEE90(-1)` twice, with `0x005C5230()` between them, then `0x003635E0` with the list
-`0x02ADD068`, the bank `0x02ADD080` and the map number `0x02ADD078`, and zeroes `0x02ADD080` (`0x0037760E`-`0x00377651`). With
-bit `0x1` clear it runs `0x003634B0(0, 0x7F)`, the map sound volume fade, instead (`0x00377659`-`0x00377660`).
+`0x02ADD068`, the bank `0x02ADD080` and the map number `0x02ADD078`, and zeroes `0x02ADD080`¹. With
+bit `0x1` clear it runs `0x003634B0(0, 0x7F)`, the map sound volume fade, instead².
 
-Bits `0x2`, `0x20000` and `0x40000` are cleared with no other action (`0x003775DA`-`0x003775E4`, `0x0037766B`-`0x00377672`,
-`0x003776C9`-`0x003776D3`). The other bits, among them `0x20`, `0x40` and the picture and placement bits `0x200` to
-`0x10000`, are left as they are. The bind ends by setting the ready word `0x02ADD0D8` to 1 (`0x003776E9`).
+<details>
+<summary>Where in the code</summary>
 
-`0x00378120` copies `0x02ADCFE0` to `0x02ADCFF8` (`0x00378132`) and zeroes `0x0209A704` and the byte `0x02ADD0E8` (`0x0037814C`,
-`0x00378156`). The mode-0 hand-over of step 2 runs only while `0x02ADCFF0` is non-null, and then also copies `0x02ADD0E4`
-to `0x02ADD0E0` and zeroes `0x02ADCFF0` (`0x0037815D`-`0x00378181`); the mode-1 call has no null test (`0x00378193`).
+| | Code |
+|---|---|
+| ¹ | `0x0037760E`-`0x00377651` |
+| ² | `0x00377659`-`0x00377660` |
 
-In step 3 the environment record is the dwords `0x02EBB7F8`, `0x02EBB7FC` and `0x02EBB804` (`0x003781AB`-`0x003781C9`), and
-`0x02ADD108` is set to 0xA (`0x003781D6`). In step 4 the stored vector is the four dwords `+0x10` to `+0x1C`
-(`0x003781E6`), the chunk pointer `[0x0209A660]` is read with no null test (`0x003781E0`), and `0x00332130(0)` is a tail jump
-(`0x00378225`).
+</details>
+
+Bits `0x2`, `0x20000` and `0x40000` are cleared with no other action¹. The other bits, among them `0x20`, `0x40` and the picture and placement bits `0x200` to
+`0x10000`, are left as they are. The bind ends by setting the ready word `0x02ADD0D8` to 1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003775DA`-`0x003775E4`, `0x0037766B`-`0x00377672`, `0x003776C9`-`0x003776D3` |
+| ² | `0x003776E9` |
+
+</details>
+
+`0x00378120` copies `0x02ADCFE0` to `0x02ADCFF8`¹ and zeroes `0x0209A704` and the byte `0x02ADD0E8`². The mode-0 hand-over of step 2 runs only while `0x02ADCFF0` is non-null, and then also copies `0x02ADD0E4`
+to `0x02ADD0E0` and zeroes `0x02ADCFF0`³; the mode-1 call has no null test⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00378132` |
+| ² | `0x0037814C`, `0x00378156` |
+| ³ | `0x0037815D`-`0x00378181` |
+| ⁴ | `0x00378193` |
+
+</details>
+
+In step 3 the environment record is the dwords `0x02EBB7F8`, `0x02EBB7FC` and `0x02EBB804`¹, and
+`0x02ADD108` is set to 0xA². In step 4 the stored vector is the four dwords `+0x10` to `+0x1C`³, the chunk pointer `[0x0209A660]` is read with no null test⁴, and `0x00332130(0)` is a tail jump⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003781AB`-`0x003781C9` |
+| ² | `0x003781D6` |
+| ³ | `0x003781E6` |
+| ⁴ | `0x003781E0` |
+| ⁵ | `0x00378225` |
+
+</details>
 
 The teardown `0x00378230(releaseWorld)` frees the stored sections listed below, unbinds the lights
-(`0x0037AA50(0)`) and the `ACTL` (`0x003E8940(0)`), frees the navigation copy and zeroes `0x02ADD008`
-(`0x003782BB`, `0x003782C2`). Its call `0x00384160(0)` returns at once (`0x00384164`) and leaves `0x02AEDFB0` as it
+(`0x0037AA50(0)`) and the `ACTL` (`0x003E8940(0)`), frees the navigation copy and zeroes `0x02ADD008`¹. Its call `0x00384160(0)` returns at once² and leaves `0x02AEDFB0` as it
 was. It also drops the
 pictures and placements and resets the ambient colour; `0x003784A0` frees the block pack's world
 object, the loose effect bank and the two sound sections.
 
-`0x00378230` first zeroes `0x02EBA4DC` and `0x0209A704` (`0x0037824B`, `0x00378253`). With `releaseWorld` set it frees the
-pending mode-1 `YM00` `0x02ADCFE0`, zeroes it and calls `0x001808A0`, which only fetches the map-art context and returns
-(`0x00378259`-`0x00378275`). While `0x02ADCFF8` is set it runs `0x0026EAC0`, then frees that block when `releaseWorld` is set
-or moves it to `0x02ADCFE0` when it is 0, and zeroes `0x02ADCFF8` (`0x0037827A`-`0x003782A8`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003782BB`, `0x003782C2` |
+| ² | `0x00384164` |
+
+</details>
+
+`0x00378230` first zeroes `0x02EBA4DC` and `0x0209A704`¹. With `releaseWorld` set it frees the
+pending mode-1 `YM00` `0x02ADCFE0`, zeroes it and calls `0x001808A0`, which only fetches the map-art context and returns². While `0x02ADCFF8` is set it runs `0x0026EAC0`, then frees that block when `releaseWorld` is set
+or moves it to `0x02ADCFE0` when it is 0, and zeroes `0x02ADCFF8`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037824B`, `0x00378253` |
+| ² | `0x00378259`-`0x00378275` |
+| ³ | `0x0037827A`-`0x003782A8` |
+
+</details>
 
 It frees and zeroes the `SP1` block `0x02ADD060`, the `MRP` block `0x02ADD058` and, after `0x003E8940(0)`, the `ACTL` block
-`0x02ADD0B8`, each only when set (`0x003782D3`-`0x0037831F`). It zeroes `0x02EBF9C8` and `0x02ADD0F4`, sets `0x02ADD118` to 1 and
-drops the minimap texture with `0x003C63A0(0)` (`0x00378326`-`0x0037833E`).
+`0x02ADD0B8`, each only when set¹. It zeroes `0x02EBF9C8` and `0x02ADD0F4`, sets `0x02ADD118` to 1 and
+drops the minimap texture with `0x003C63A0(0)`².
 
-It sets the colour `0x0209A390` to four 1.0 (`0x00378354`) and the colour of each of the five light groups to (1.0, 1.0,
-1.0) through `0x002ECE40` (`0x00378360`-`0x00378375`); while `0x02ADD0E9` is 0 it refreshes group 0 with
-`0x003DE920(0, 0x003DE700(0), 0)` (`0x00378377`-`0x0037838E`). The four pictures and four placements are freed when set and
-all eight pointers zeroed (`0x00378393`-`0x003783DE`).
+<details>
+<summary>Where in the code</summary>
 
-The loose effect bank `0x02ADD088` is freed after `0x0026FF50` and `0x0026F420` (`0x003783E0`-`0x003783FF`) and the lights
-`0x02ADD090` after `0x0037AA50(0)` (`0x00378406`-`0x00378422`). The light handles `0x02ADD120` to `0x02ADD128` and `0x02ADD11C`
-are released through `0x003ABCA0` when non-zero and zeroed (`0x00378429`-`0x0037847E`), and the ready word `0x02ADD0D8` is
-set to 0 (`0x00378484`). It leaves `0x02ADCFF0`, `0x02ADD080`, `0x02ADD068` and `0x02ADCFE8` as they are.
+| | Code |
+|---|---|
+| ¹ | `0x003782D3`-`0x0037831F` |
+| ² | `0x00378326`-`0x0037833E` |
 
-The navigation copy it frees through `0x02ADD008` (`0x003782AF`-`0x003782C9`) is still named by `0x02ADCFE8`, but it is
+</details>
+
+It sets the colour `0x0209A390` to four 1.0¹ and the colour of each of the five light groups to (1.0, 1.0,
+1.0) through `0x002ECE40`²; while `0x02ADD0E9` is 0 it refreshes group 0 with
+`0x003DE920(0, 0x003DE700(0), 0)`³. The four pictures and four placements are freed when set and
+all eight pointers zeroed⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00378354` |
+| ² | `0x00378360`-`0x00378375` |
+| ³ | `0x00378377`-`0x0037838E` |
+| ⁴ | `0x00378393`-`0x003783DE` |
+
+</details>
+
+The loose effect bank `0x02ADD088` is freed after `0x0026FF50` and `0x0026F420`¹ and the lights
+`0x02ADD090` after `0x0037AA50(0)`². The light handles `0x02ADD120` to `0x02ADD128` and `0x02ADD11C`
+are released through `0x003ABCA0` when non-zero and zeroed³, and the ready word `0x02ADD0D8` is
+set to 0⁴. It leaves `0x02ADCFF0`, `0x02ADD080`, `0x02ADD068` and `0x02ADCFE8` as they are.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003783E0`-`0x003783FF` |
+| ² | `0x00378406`-`0x00378422` |
+| ³ | `0x00378429`-`0x0037847E` |
+| ⁴ | `0x00378484` |
+
+</details>
+
+The navigation copy it frees through `0x02ADD008`¹ is still named by `0x02ADCFE8`, but it is
 never bound a second time. `0x00384160` adds the block's address to each offset in place (`0x0020E600`, then
 `0x0020E620`), so a second bind of one block would move its offsets twice. `0x00378120` is the only reader of
-`0x02ADCFE8` that binds (`0x00378198`-`0x003781A6`), and it runs only for bind bit `0x8` (`0x003776D9`-`0x003776E2`), which
+`0x02ADCFE8` that binds², and it runs only for bind bit `0x8`³, which
 the same bind clears.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003782AF`-`0x003782C9` |
+| ² | `0x00378198`-`0x003781A6` |
+| ³ | `0x003776D9`-`0x003776E2` |
+
+</details>
+
 Every pack completion ends in the bind: `0x02ADD0EC` only ever holds bits under `0x7FFFF`, so clearing those
-empties it and `0x003775D0` is called (`0x00378F20`-`0x00378F39`). A completion sets bit `0x8` only for a non-null
+empties it and `0x003775D0` is called¹. A completion sets bit `0x8` only for a non-null
 slot 8 (`0x00378D5B`-`0x00378D6D` in mode 1, `0x00378DDD`-`0x00378DEF` in mode 0). No block pack carries slot 8 (the
 shipped data above), so the bind of `0x02ADCFE8` follows only a mode-1 completion, which has written `0x02ADCFE8`
 first (`0x00378CB6`, then `0x00378D4C`).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00378F20`-`0x00378F39` |
+
+</details>
+
 The effect bank `0x003784A0` frees is the block at `0x02ADD0A0`. When the pointer is non-zero it disposes of the type-2
-effect contexts (`0x0026FF50`), frees the block (`0x003697F0`) and zeroes the pointer. The loose bank's two completions
+effect contexts¹, frees the block² and zeroes the pointer. The loose bank's two completions
 publish at `0x02ADD088`, not at `0x02ADD0A0`. The only two stores to `0x02ADD0A0` write 0: the clear in `0x00377CC0`
-(`0x00377D48`, `rbx` zeroed at `0x00377CCC`) and this free (`0x003784ED`). No instruction takes its address, by `rip`
-or through the image base, so the pointer is always 0 and the free branch (`0x003784DC`-`0x003784ED`) never runs.
+(`0x00377D48`, `rbx` zeroed at `0x00377CCC`) and this free³. No instruction takes its address, by `rip`
+or through the image base, so the pointer is always 0 and the free branch⁴ never runs.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026FF50` |
+| ² | `0x003697F0` |
+| ³ | `0x003784ED` |
+| ⁴ | `0x003784DC`-`0x003784ED` |
+
+</details>
 
 The split also zeroes the dword after the map number `0x02ADD078`:
 
@@ -1141,17 +1720,34 @@ The split also zeroes the dword after the map number `0x02ADD078`:
 | `0x02ADD0A0` | `void*` | 0 (zero-filled tail of `.data`) | the effect-bank block `0x003784A0` frees | the loader reset `0x00377CC0`, 0 (`0x00377D48`); `0x003784A0`, 0 after the free (`0x003784ED`); no store of a block: no other RIP-relative, image-base-relative or address-forming reference names it, the indexed section stores from `0x02ADD010` and `0x02ADD030` cover four slots each (`0x00378C48`, `0x00378C74`), and no 8-byte pointer or 4-byte RVA in the image holds its address | `0x003784A0` (`0x003784D3`, the test; `0x003784E1`, the block passed to `0x003697F0`) |
 
 The world objects go through two helpers. `0x0026EAC0`, called by `0x00378230` while a mode-1 `YM00` is
-current, releases the mode-1 object `0x0209A670`, runs `0x003ECF70` and clears the model block
-(`0x0026E640`); `0x0026EAF0`, called by `0x003784A0`, does the same and then releases the mode-0 object
+current, releases the mode-1 object `0x0209A670`, runs `0x003ECF70` and clears the model block¹; `0x0026EAF0`, called by `0x003784A0`, does the same and then releases the mode-0 object
 `0x0209A668`. Each release is `0x003EC860(slot, 0x0026EDB0)`: when the slot holds an object, `0x0026EDB0`
-runs the object's callback at `+0x128`, the block is freed (`0x003697F0`) and the slot zeroed. The
+runs the object's callback at `+0x128`, the block is freed² and the slot zeroed. The
 teardown also runs `0x00363730`, which zeroes `0x022CBA90`, the `SP1` pointer `0x022CBAF0` and `0x022CBA9A`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026E640` |
+| ² | `0x003697F0` |
+
+</details>
+
 `0x002F6AB0` sets that callback to `0x002F5450`. It frees the object's own tables (`[+0x1C0]` to
-`[+0x218]` and the tag-24 entries' `+0xC0`), removes the tag-14 buffer from the buffer list
-(`0x00468060`), frees the animation slots of tag 23 (`0x00466B10`: both arrays of every slot, then the
-slot array; `0x02EBB6E0` and `0x02EBB6F8` become 0) and releases the paletted textures of tag 12
-(`0x004680D0`).
+`[+0x218]` and the tag-24 entries' `+0xC0`), removes the tag-14 buffer from the buffer list¹, frees the animation slots of tag 23 (`0x00466B10`: both arrays of every slot, then the
+slot array; `0x02EBB6E0` and `0x02EBB6F8` become 0) and releases the paletted textures of tag 12².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00468060` |
+| ² | `0x004680D0` |
+
+</details>
 
 The buffer list at `0x02EBB6A0` is set up at boot by `0x00467BB0` (from `0x0036F4D0`, through `0x00536120`)
 with 0x28-byte entries: the last path component of a name, at most 31 characters, then the buffer
@@ -1162,20 +1758,49 @@ at `+0x20`. `0x00467BF0` appends an entry (`0x005360C0`, which allocates the nod
 
 The start-up initialiser `0x00266D10` resets the loader once through `0x00377CC0`: every section pointer
 and world object pointer is zeroed, `0x02ADD0E0` becomes -1, `0x02ADD118` 1 and `0x02ADD130` the text
-`none`, the start-up tables are requested again (`0x00378540`), and the pending and bind words
-(`0x02ADD0EC`, `0x02ADD0F0`) and `0x02ADD0EA` are cleared.
+`none`, the start-up tables are requested again¹, and the pending and bind words² and `0x02ADD0EA` are cleared.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00378540` |
+| ² | `0x02ADD0EC`, `0x02ADD0F0` |
+
+</details>
 
 The text is five bytes, `none` and its terminator, copied from `0x008C5928` as a dword to `0x02ADD130` and a byte to
-`0x02ADD134` (`0x00377CCE`, `0x00377CDB`); the teardown `0x00378230` writes it the same way (`0x00378471`, `0x0037848F`).
+`0x02ADD134`¹; the teardown `0x00378230` writes it the same way².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00377CCE`, `0x00377CDB` |
+| ² | `0x00378471`, `0x0037848F` |
+
+</details>
 
 ### The map colour and the buffer list's header
 
 The section-11 colour `0x0209A3A0`-`0x0209A3AC` is reset to (1.0, 1.0, 1.0, 1.0) by `0x0026E1D0` (`0x0026E23F`, one 16-byte
 store) and set by the map set-up `0x002F6AB0` from the three integers `0x00466140` unpacks from dword 1,
-each scaled by 1/128, `n * [0x008C5B34]` with the constant 0.0078125 (`0x002F6C42`, `0x002F6E0D`-`0x002F6E53`), with
-alpha 1.0 (`0x002F6E27`). The body-colour reader `0x00231A90` returns it
+each scaled by 1/128, `n * [0x008C5B34]` with the constant 0.0078125¹, with
+alpha 1.0². The body-colour reader `0x00231A90` returns it
 when the body's polygon index is negative (a signed test, `0x00231C52`-`0x00231C55`), and the polygon's vertex colour
 otherwise.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F6C42`, `0x002F6E0D`-`0x002F6E53` |
+| ² | `0x002F6E27` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -1271,16 +1896,20 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Enemy AI and gambits** (explained on [geometry primitives](../Movement-And-Pathfinding/geometry-primitives.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002315E0` | is called by | `0x0032A4D0` |
-| `0x0032A4D0` | is called by | `0x003247F0` |
+| [`0x002315E0`](mpk-map-pack.md) | is called by | [`0x0032A4D0`](../Enemy-AI-And-Gambits/enemy-ai.md) Battle perception: test cached spatial visibility pair (on enemy ai) |
+| [`0x0032A4D0`](../Enemy-AI-And-Gambits/enemy-ai.md) Battle perception: test cached spatial visibility pair (on enemy ai) | is called by | [`0x003247F0`](../Enemy-AI-And-Gambits/enemy-ai.md) Battle unit: rebuild perception candidate cache (on enemy ai) |
 
 **Damage and battle formulas** (explained on [save and teleport crystals](save-and-teleport-crystals.md), [action definition row](../Battle-Actions/action-definition-row.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0046AB10` | calls | `0x0031B860` |
-| `0x0046AB10` | is called by | `0x00469EC0` |
+| [`0x0046AB10`](../Battle-Actions/battle-log.md) (on battle log) | calls | [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log) |
+| [`0x0046AB10`](../Battle-Actions/battle-log.md) (on battle log) | is called by | [`0x00469EC0`](../Battle-Actions/battle-log.md) Battle formula: dispatch post result events (on battle log) |
 
 </details>

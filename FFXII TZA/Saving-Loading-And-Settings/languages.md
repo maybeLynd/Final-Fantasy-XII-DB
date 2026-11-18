@@ -35,9 +35,18 @@ A separate option, DecideButton, swaps which of two buttons confirms and which c
 ### The setting
 
 Every option lives in the GameSetting.ini object whose address is held at `0x01F82D20`, stored once
-by `0x00798261` after the constructor `0x001DE050` runs (`0x00798257`). Field `+0x00` is the Language
+by `0x00798261` after the constructor `0x001DE050` runs¹. Field `+0x00` is the Language
 setting: an index into the code table at `0x01DF0030`, ten pointers to the strings packed at
 `0x008C5904` on a 4-byte pitch:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00798257` |
+
+</details>
 
 | Index | Code | Index | Code |
 |---|---|---|---|
@@ -78,16 +87,37 @@ display language. The game reads no display-language setting: its one UI-languag
 language `[0x01F82D20] + 0x00` ([Phyre application](../PhyreEngine/phyre-application.md#window-helpers)).
 
 The Region Format value lasts only when GameSetting.ini is missing:
-`0x001DED50` then writes the file from the object (`0x001DF240`, `0x001DFD40`). With a file, the parser `0x001DE5D0`
+`0x001DED50` then writes the file from the object¹. With a file, the parser `0x001DE5D0`
 stores its Language line (`0x001DF350`, called at `0x001DEA39`), and a file without a Language line gets the default
-again, 1 `en` in all four quality columns (`0x001DEC72`-`0x001DEC90`).
+again, 1 `en` in all four quality columns².
 
-Steam comes last. After the file, the main routine calls `0x007A0C60` (`0x00798272`): with Steam's apps interface it
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DF240`, `0x001DFD40` |
+| ² | `0x001DEC72`-`0x001DEC90` |
+
+</details>
+
+Steam comes last. After the file, the main routine calls `0x007A0C60`¹: with Steam's apps interface it
 compares Steam's game language with `japanese`, `english`, `french`, `german`, `italian`, `spanish`, `koreana`,
-`tchinese` and `schinese` and stores the index 0 to 8 through `0x001DF340(settings, 0, index)` (`0x007A0F17`). Any
+`tchinese` and `schinese` and stores the index 0 to 8 through `0x001DF340(settings, 0, index)`². Any
 other string, or no interface, leaves the file's value
 ([Steam integration](../Steam-And-Achievements/steam-integration.md)). `0x001DF340` only stores; the
-game's next write of GameSetting.ini (`0x001DFD40`) keeps Steam's choice.
+game's next write of GameSetting.ini³ keeps Steam's choice.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00798272` |
+| ² | `0x007A0F17` |
+| ³ | `0x001DFD40` |
+
+</details>
 
 ### From code to locale id
 
@@ -107,24 +137,49 @@ the locale id the rest of the game uses:
 | `cn` | 11 |
 | anything else, `none` included | 10 |
 
-Ids 0, 6 and 9 are never produced. The two last arms are branchless arithmetic
-(`0x0017E3F0`-`0x0017E406`): the `cn` arm yields 11 and the default arm 10.
+Ids 0, 6 and 9 are never produced. The two last arms are branchless arithmetic¹: the `cn` arm yields 11 and the default arm 10.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017E3F0`-`0x0017E406` |
+
+</details>
 
 ### Where the locale id lives
 
-The first boot frame mode `0x0022A0B0` calls `0x0017E270` and stores the result at `0x01E02814`
-(`0x0022A0C6`-`0x0022A0CB`); that store is the only write to the word in the image. `0x00229E40` returns
+The first boot frame mode `0x0022A0B0` calls `0x0017E270` and stores the result at `0x01E02814`¹; that store is the only write to the word in the image. `0x00229E40` returns
 it (36 call sites in 16 functions), and `0x00229E50` returns 0 for the ids 0, 7, 8, 10 and 11 (mask
 `0xD81`) and 1 otherwise; `0x00254A10` is the same test with the result inverted (1 for those ids).
 The same boot mode stores the constant 10 from `0x0017E410` at `0x01E0281C`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A0C6`-`0x0022A0CB` |
+
+</details>
+
 ### The data folder and the file size table
 
-Boot mode 0 then calls `0x002DF9A0(localeId, [0x01E0280C])` (`0x0022A159`). It selects the per-locale
+Boot mode 0 then calls `0x002DF9A0(localeId, [0x01E0280C])`¹. It selects the per-locale
 file table pointers by locale id (arms for 1 to 8 and 11, with 10 and every other id on the
 default arm) and reads the locale's file size table into `0x02EC3EE0` (820,000 bytes): the path is
 `sprintf("%sFileSizeTables/FileSizeTable_%s.fst", "../", folder[localeId])` with the folder code
 table at `0x01E88B00`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A159` |
+
+</details>
 
 | Locale id | Folder | Locale id | Folder |
 |---|---|---|---|
@@ -136,8 +191,18 @@ table at `0x01E88B00`:
 | 5 | `ES` | 11 | `CN` |
 
 So Japanese (id 10) loads the `IN` tables; the `JP`, `UK` and `ASIA` entries have no id that reaches
-them. A missing or short file is reported through `0x00863100` (`0x002E045D`, `0x002E0486`) and the code then
-writes a zero dword to address 0 (`0x002E0462`, `0x002E048B`).
+them. A missing or short file is reported through `0x00863100`¹ and the code then
+writes a zero dword to address 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E045D`, `0x002E0486` |
+| ² | `0x002E0462`, `0x002E048B` |
+
+</details>
 
 What a language changes besides the text is in its file size table. [languages-kinds.tsv](languages-kinds.tsv) compares,
 for every resource kind, each entry's size in the nine tables a locale reaches. Only eight kinds have entries whose
@@ -193,20 +258,43 @@ Five of the folders have a `jp` folder: the font folder, `prefetchdata`, `effect
   two Chinese languages, not Japanese) it sets `0x01E0CDF8` to 28 and `0x0209CC38` to 1; otherwise
   `0x01E0CDF8` = 24.
 - `0x002ABAA0(flag)` reads the id but has no language dependence in the shipped game: every id
-  returns `0x0024ABA0()` scaled by 15.0 (`0x00916314`) with the flag set or 10.0 (`0x008F8180`) with it
-  clear; its 26.0 arm (`0x00916484`) needs id 7 after `0x00254A10` returned 0, which that id never
+  returns `0x0024ABA0()` scaled by 15.0¹ with the flag set or 10.0² with it
+  clear; its 26.0 arm³ needs id 7 after `0x00254A10` returned 0, which that id never
   does.
-- Script verbs: `0x5C6` (`0x0033FED0`) returns the id with 10 read as 0; `0x59C` (`0x0034BA00`) returns
-  the id with 7, 8, 10 and 11 read as 0; `0x5AA` (`0x0034C010`) returns `0x00229E50()`.
+- Script verbs: `0x5C6`⁴ returns the id with 10 read as 0; `0x59C`⁵ returns
+  the id with 7, 8, 10 and 11 read as 0; `0x5AA`⁶ returns `0x00229E50()`.
 - `0x0029CE40` passes the id to `0x0017F9E0` at area setup; `0x002DDE60` and `0x003B1BA0` read it seven and
   eight times for text layout; `0x002AC5F0`, the text control-code interpreter, reads it at
   `0x002ACBD3`, `0x002ACCFC` and `0x002ACE2E`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00916314` |
+| ² | `0x008F8180` |
+| ³ | `0x00916484` |
+| ⁴ | `0x0033FED0` |
+| ⁵ | `0x0034BA00` |
+| ⁶ | `0x0034C010` |
+
+</details>
+
 ### Confirm and cancel
 
 In the same boot mode, `0x0017E210` returns DecideButton (`+0x64`). The confirm mask `0x01E0C2A0` and
-the cancel mask `0x01E0C2A4` are set from it (`0x0022A0E1`-`0x0022A119`), and `0x01FD4A64` records whether
+the cancel mask `0x01E0C2A4` are set from it¹, and `0x01FD4A64` records whether
 it was non-zero:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A0E1`-`0x0022A119` |
+
+</details>
 
 | DecideButton | Confirm `0x01E0C2A0` | Cancel `0x01E0C2A4` |
 |---|---|---|
@@ -214,8 +302,18 @@ it was non-zero:
 | non-zero | `0x4000` | `0x2000` |
 
 The battle menu `0x002778C0` treats the two differently: the confirm branch tests its handler's
-result and plays sound 2 only on failure (`0x00277EB8`-`0x00277ECE`), the cancel branch discards the
-result and always plays sound 3 (`0x00277E36`-`0x00277E53`).
+result and plays sound 2 only on failure¹, the cancel branch discards the
+result and always plays sound 3².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00277EB8`-`0x00277ECE` |
+| ² | `0x00277E36`-`0x00277E53` |
+
+</details>
 
 ## Operations
 
@@ -231,6 +329,9 @@ result and always plays sound 3 (`0x00277E36`-`0x00277E53`).
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
 | `[0x01F82D20] + 0x00` | `i32` | Language index 0-9 | `0x001DE050`, the file parser `0x001DF350`, Steam's language (`0x007A0F17`) |
@@ -241,6 +342,8 @@ result and always plays sound 3 (`0x00277E36`-`0x00277E53`).
 | `0x01FD4A64` | `i32` | DecideButton was non-zero | `0x0022A0B0` (`0x0022A0FD`) |
 | `0x02EC3EE0` | 820,000 bytes | the locale's file size table | `0x002DF9A0` |
 
+</details>
+
 ## Modding notes
 
 - A new language needs a code in the table at `0x01DF0030`, an arm in `0x0017E270`, a folder code in
@@ -248,9 +351,18 @@ result and always plays sound 3 (`0x00277E36`-`0x00277E53`).
   and `ASIA` are free.
 - Everything downstream reads the id from `0x01E02814` through `0x00229E40`; writing that word after
   boot changes the language-dependent rules without reloading the data folder.
-- DecideButton is a plain setting read at boot (`0x0022A0B0`) and again whenever the Config screen's Confirm
+- DecideButton is a plain setting read at boot¹ and again whenever the Config screen's Confirm
   Button row or the Controls screen's Default changes it: `0x0017E6E0` and `0x0023E020` both rebuild the masks
   through `0x0022A4F0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A0B0` |
+
+</details>
 
 ## Related
 

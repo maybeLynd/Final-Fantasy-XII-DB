@@ -38,35 +38,95 @@ and then updates the looks.
 `0x003E7650` runs once per simulation tick from the world tick `0x00314020`
 ([Frame update order](../Engine-Core/frame-update-order.md)). It walks 32 presentation records of `0x150`
 bytes at `0x02B59D80`, one per battle-unit slot, skipping records whose word `+0` is 0. `0x003E7500` sets a record up: word
-`+0` = 1, `+4` = the character's render-record index, both blocks initialised with that index (`0x004700C0`, `0x0051E140`).
+`+0` = 1, `+4` = the character's render-record index, both blocks initialised with that index¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004700C0`, `0x0051E140` |
+
+</details>
 
 Two readers give other code a record's dwords from `+0xC0`. `0x003E7D10(slot, n)` answers 0 while the byte `0x02B59D71` is
-set (`0x003E7D10`-`0x003E7D17`), for slot -1 (`0x003E7D1C`-`0x003E7D1F`) and for a slot whose record has word `+0` at 0
-(`0x003E7D35`-`0x003E7D39`). Callers pass a render record's dword `+0x6A4` as the slot (among them `0x0041C479`, `0x0041C677`,
+set¹, for slot -1² and for a slot whose record has word `+0` at 0³. Callers pass a render record's dword `+0x6A4` as the slot (among them `0x0041C479`, `0x0041C677`,
 `0x00421446`, `0x00423CD6`, `0x00424DDA`, `0x0042506C`, `0x0042508C`, `0x004257E9`, `0x0042735C`, `0x0042C46A`, `0x00516499`), which the
-clear `0x0041F730` sets to -1 (`0x0041FB4E`).
+clear `0x0041F730` sets to -1⁴.
 
-`0x003E7CD0(index, n)`, from `0x003B0C50` and `0x0046CC70`, answers 0 for the same byte (`0x003E7CD5`-`0x003E7CDB`) and
-otherwise walks the 32 records (`0x003E7CF9`-`0x003E7CFC`) for the first in use (word `+0` set, `0x003E7CE4`-`0x003E7CE8`)
-whose `+4` is the render-record index (`0x003E7CEA`-`0x003E7CEE`), answering 0 when none has it (`0x003E7CFE`). Both return
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E7D10`-`0x003E7D17` |
+| ² | `0x003E7D1C`-`0x003E7D1F` |
+| ³ | `0x003E7D35`-`0x003E7D39` |
+| ⁴ | `0x0041FB4E` |
+
+</details>
+
+`0x003E7CD0(index, n)`, from `0x003B0C50` and `0x0046CC70`, answers 0 for the same byte¹ and
+otherwise walks the 32 records² for the first in use (word `+0` set, `0x003E7CE4`-`0x003E7CE8`)
+whose `+4` is the render-record index³, answering 0 when none has it⁴. Both return
 dword `+0xC0 + 4n`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E7CD5`-`0x003E7CDB` |
+| ² | `0x003E7CF9`-`0x003E7CFC` |
+| ³ | `0x003E7CEA`-`0x003E7CEE` |
+| ⁴ | `0x003E7CFE` |
+
+</details>
 
 For each record it reads the unit's status word through `0x00320BB0`: the OR of the stats record's `+0x64` and `+0x3C`
 ([Statuses](../Status-Effects-And-KO/statuses.md)). Stop is left out of the word while the unit's action id
-`+0x714` is `0x21E` or lower and its action phase `+0x6B4` is 9 or more, or while bit `0x1000000` of its flag word is set
-(`0x00320C10`-`0x00320C37`). `0x00320BB0` also writes whether the stats record's kind byte `+5` is 1 (an enemy) to the record's
+`+0x714` is `0x21E` or lower and its action phase `+0x6B4` is 9 or more, or while bit `0x1000000` of its flag word is set¹. `0x00320BB0` also writes whether the stats record's kind byte `+5` is 1 (an enemy) to the record's
 `+0x84`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320C10`-`0x00320C37` |
+
+</details>
 
 `0x00320BB0(slot, &word, &enemy)` takes the unit from `0x00236820`, which gives 0 for a slot outside 0 to
 `[0x0208E6A0]` − 1. It returns 0 and writes neither output when there is no unit, when bit `0x10` of the unit's flag
-word is clear or when its stats record `+0x698` is null (`0x00320BC0`-`0x00320BDC`); the push then uses a zero word
-and stores 0 in `+0x84` (`0x003E768F`-`0x003E769B`). Every other path returns 1 (`0x00320C0B`).
+word is clear or when its stats record `+0x698` is null¹; the push then uses a zero word
+and stores 0 in `+0x84`². Every other path returns 1³.
 
-The record keeps the rig of the character's render record at `+0x10` (`0x003E6DA0`); with no rig, nothing else runs for
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320BC0`-`0x00320BDC` |
+| ² | `0x003E768F`-`0x003E769B` |
+| ³ | `0x00320C0B` |
+
+</details>
+
+The record keeps the rig of the character's render record at `+0x10`¹; with no rig, nothing else runs for
 that record. When the word differs from the copy at `+8`, the push stores the bits that were set at `+0x140` and the
 bits that were cleared at `+0x144`, then calls one arm per changed bit, cleared bits first. Every arm stores 1 or 0 in
 the record's flag dword `+0xC0 + 4 × bit`. Then, changed or not, it runs the two block updates `0x0046FD00` (block
 `+0x20`) and `0x0051E3A0` (block `+0x70`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E6DA0` |
+
+</details>
 
 ### What each status does
 
@@ -104,69 +164,150 @@ one bit, keep the entry count in the upper seven bits of byte `+7`, and store th
 `0xFF` when the mask is empty. Byte `+5` is the wanted look; the order in the table above is the index order.
 
 Both workers take a look index `n` and change the bit value `1 << n`. An add of a bit already set, or a remove of a
-bit already clear, returns at once with nothing changed (`0x0046FFB4`, `0x00470066`), and the lowest set index is looked
-for among bits `0x1` to `0x2000` only (`0x0046FFD4`-`0x0046FFF0`, `0x00470090`-`0x004700AC`).
+bit already clear, returns at once with nothing changed¹, and the lowest set index is looked
+for among bits `0x1` to `0x2000` only².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046FFB4`, `0x00470066` |
+| ² | `0x0046FFD4`-`0x0046FFF0`, `0x00470090`-`0x004700AC` |
+
+</details>
 
 The update `0x0046FD00(block, render record, display deny, control deny)` runs each tick:
 
-1. It stores the render record at `+0x28` and the hold byte `+0x3A`: the control-deny byte, or 0 while display is
-   denied.
-2. When the wanted look `+5` differs from the shown look `+4`, it copies it over and sets the changing bit, bit `0x1` of
-   `+7`.
-3. It calls the step at `+0x18`; with no step, the changing bit is the answer. A step returns 1 only when its look has
-   fully left.
-4. Only then, with a non-empty list (an entry count in byte `+7`, `0x0046FD72`) and a shown look of 13 or less, it
-   installs the shown look by a switch on `+4` (`0x0046FD7B`-`0x0046FD9A`).
-5. While display is denied it also zeroes render record byte `+0x5E0` and sets the record mode to 0.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It stores the render record at `+0x28` and the hold byte `+0x3A`: the control-deny byte, or 0 while display is denied. |   |
+| 2 | When the wanted look `+5` differs from the shown look `+4`, it copies it over and sets the changing bit, bit `0x1` of `+7`. |   |
+| 3 | It calls the step at `+0x18`; with no step, the changing bit is the answer. A step returns 1 only when its look has fully left. |   |
+| 4 | Only then, with a non-empty list (an entry count in byte `+7`, `0x0046FD72`) and a shown look of 13 or less, it installs the shown look by a switch on `+4`. | `0x0046FD7B`-`0x0046FD9A` |
+| 5 | While display is denied it also zeroes render record byte `+0x5E0` and sets the record mode to 0. |   |
 
 Installing a look clears the changing bit, releases the block's two light handles `+8` and `+0xC`, sets the record
 mode and stores the look's step. Indexes 11 and 12 have no arm in the push; index 12 has a look, the tint with offset
 `(1.5, 2.0, 2.0)`.
 
-The switch entry for index 11 jumps to its end (`0x0046FF20`): nothing is installed and the changing bit stays set.
+The switch entry for index 11 jumps to its end¹: nothing is installed and the changing bit stays set.
 Stone and Petrify are installed in the switch itself: the step `0x00470AA0` or `0x00470780`, the phase `+0x20`, the
-frame `+6` and the state `+0x38` zeroed, and mode 3 or 0 (`0x0046FD9C`-`0x0046FE22`); so is Oil
-(`0x0046FE59`-`0x0046FF00`). Blind, the shared look and index 12 go to the tint `0x004703F0`, Berserk to `0x00470660`,
+frame `+6` and the state `+0x38` zeroed, and mode 3 or 0²; so is Oil³. Blind, the shared look and index 12 go to the tint `0x004703F0`, Berserk to `0x00470660`,
 Doom to `0x00470590` and HP Critical to `0x004704C0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046FF20` |
+| ² | `0x0046FD9C`-`0x0046FE22` |
+| ³ | `0x0046FE59`-`0x0046FF00` |
+
+</details>
 
 `0x003E75A0` resets every block in use of the 32 from `0x02B59D80`, and `0x003E7D50` one block. Each
 reset runs `0x00470000` on the block's `+0x20`, which clears the mask and the bits of byte `+7`
 above bit `0x1`, sets the shown and wanted looks (`+4`, `+5`) to `0xFF` and releases the two lights
-`+8` and `+0xC` (`0x003ABCA0`), and then `0x0051DC60` on `+0x70`.
+`+8` and `+0xC`¹, and then `0x0051DC60` on `+0x70`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003ABCA0` |
+
+</details>
 
 ### The record mode
 
-`0x00428CD0(render record, mode)` stores the mode in byte `+0xBA` of the model instance (`0x00504D20`) of the record and of
+`0x00428CD0(render record, mode)` stores the mode in byte `+0xBA` of the model instance¹ of the record and of
 every record attached under it, skipping those `0x00426220` rejects. `0x005044D0(instance, n)` uses it to pick entry `n`'s
 parameter block: `table + entry.offset + mode × entry.stride`, with the table at instance `+0x1F8` plus `+0x21C`,
 sixteen-byte entries from table `+0x30`, the stride the word at entry `+2` and the offset the dword at entry `+0xC`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00504D20` |
+
+</details>
 
 Stone and Petrify set mode 3 (Petrify in the states its table below names), the flash frames of Doom
 and HP Critical mode 2, every other look mode 0.
 
 `0x00428CD0` reaches the records through their index words: it takes the record again from its own word `+0`,
 returning at once when that is −1, then takes the first child `+0x08` and hands that child's `+0x08` and `+0x0A`
-chains to `0x0042EF90` with the body `0x0042E4F0` (`0x00428CE9`-`0x00428DB8`). A record without a model instance
+chains to `0x0042EF90` with the body `0x0042E4F0`¹. A record without a model instance
 (`0x003E55B0` gives 0 while word `+0x64` is −1) is skipped as well.
 
-`0x005044D0` returns 0 when `+0x21C` is −1 or `n` is not below the dword at table `+0xC` (`0x005044D9`, `0x005044ED`).
-The table address is summed in 32 bits and the mode is read as a signed byte (`0x005044E1`-`0x0050450D`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00428CE9`-`0x00428DB8` |
+
+</details>
+
+`0x005044D0` returns 0 when `+0x21C` is −1 or `n` is not below the dword at table `+0xC`¹.
+The table address is summed in 32 bits and the mode is read as a signed byte².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005044D9`, `0x005044ED` |
+| ² | `0x005044E1`-`0x0050450D` |
+
+</details>
 
 ### The tint
 
-`0x004703F0` stores the offset at `+0x40`, zeroes the phase and envelope, installs the step `0x004700E0` and creates a light
-(`0x003AB960`) from an `0x50`-byte request: type 6 (ambient), priority `0xBF`, byte `+3` = 1 and `+4` = 2, target id the
+`0x004703F0` stores the offset at `+0x40`, zeroes the phase and envelope, installs the step `0x004700E0` and creates a light¹ from an `0x50`-byte request: type 6 (ambient), priority `0xBF`, byte `+3` = 1 and `+4` = 2, target id the
 block's `+0x10`, byte `+5` = `0x90` and `+7` = `0x80`. Its handle goes to `+8`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AB960` |
+
+</details>
+
 Each frame `0x004700E0` returns 0 at once while the hold byte is set. Otherwise the phase `+0x20` rises by
-`[0x01DFE0BC] × 0.0333` and goes back to 0 when it reaches 1 (`0x00470133`). The envelope `+0x24` rises by
+`[0x01DFE0BC] × 0.0333` and goes back to 0 when it reaches 1¹. The envelope `+0x24` rises by
 `0.1 × [0x01DFE0BC]` to 1, or falls at that rate while
-the changing bit is set; at zero it releases the light, zeroes `+8`, clears the step and returns 1
-(`0x00470166`-`0x00470184`). Every other path returns 0.
+the changing bit is set; at zero it releases the light, zeroes `+8`, clears the step and returns 1². Every other path returns 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00470133` |
+| ² | `0x00470166`-`0x00470184` |
+
+</details>
 
 `0x0046FBB0(t)` returns entry `t × (count − 1)` of the table, truncated and clamped to 0 to count − 1, with the count
-`0x01F20538` (`0x0046FBB0`-`0x0046FBE6`). With `p` the pulse at the phase
+`0x01F20538`¹. With `p` the pulse at the phase
 (`0x0046FBB0`, the table `0x01F20AA0`):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046FBB0`-`0x0046FBE6` |
+
+</details>
 
 ```python
 light colour = offset × (0.5 + 0.5p) × envelope, alpha 1.0
@@ -179,14 +320,32 @@ Blind's offset is `(-0.5, -0.5, -0.5)`, the shared look's `(-0.2, -0.7, 0)`. Oil
 
 ### Stone and Petrify
 
-Stone's step `0x00470AA0` raises its phase by `[0x01DFE0BC] × 0.03333` a frame and holds it at 1
-(`0x00470AB3`-`0x00470AD6`): the phase is 0.9999 after 30 frames at 30 fps and after 60 frames at 60 fps, and
+Stone's step `0x00470AA0` raises its phase by `[0x01DFE0BC] × 0.03333` a frame and holds it at 1¹: the phase is 0.9999 after 30 frames at 30 fps and after 60 frames at 60 fps, and
 reaches 1 on the next frame. Each frame it sets render record byte
 `+0x5E0` = 2, `+0x5DC` = `1 + 0.3 × pulse(phase / 2)`, `+0x5EC` = 0.4 and mode 3. When the look changes it sets mode
 0, releases both handles and returns 1 in the same frame. It creates no light.
 
-While the hold byte is set Stone's step returns 0 and writes nothing (`0x00470AAD`); leaving also zeroes both
-handles and the step (`0x00470B53`-`0x00470B59`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00470AB3`-`0x00470AD6` |
+
+</details>
+
+While the hold byte is set Stone's step returns 0 and writes nothing¹; leaving also zeroes both
+handles and the step².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00470AAD` |
+| ² | `0x00470B53`-`0x00470B59` |
+
+</details>
 
 Petrify's step `0x00470780` has four states in byte `+0x38`; frame counts below are multiplied by `[0x01DFE0B4]`:
 
@@ -199,15 +358,33 @@ Petrify's step `0x00470780` has four states in byte `+0x38`; frame counts below 
 
 The count comes from `0x00320CF0(unit, status)`, which returns the stats record's `+0xBC + 4 × status` for Petrify and Doom
 while the status is set ([Status timers](../Status-Effects-And-KO/status-timers.md)), and -1 otherwise. The unit
-is the byte `+0xEA9` of the object behind render record `+0x108` (`0x00263E50`).
+is the byte `+0xEA9` of the object behind render record `+0x108`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263E50` |
+
+</details>
 
 ### Doom, HP Critical and Berserk
 
 Doom's installer `0x00470590` creates the tint's ambient light and installs `0x00470B70`, zeroing the phase, the
-envelope, the frame `+6` and the state `+0x38` with `+0x39` (`0x004705BA`-`0x004705C5`). In the steady state the envelope
+envelope, the frame `+6` and the state `+0x38` with `+0x39`¹. In the steady state the envelope
 moves by `0.33 × [0x01DFE0BC]` a frame, the light colour is `envelope × 0.4 × (0.9, -0.2, -0.2)`, the light scale is 1.0
 and the mode 0. Every steady frame that is not leaving, a Doom count different from the one remembered at `+0x39`
 starts a flash; the installer zeroes `+0x39`, so the look starts with one. The flash runs 21 frames:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004705BA`-`0x004705C5` |
+
+</details>
 
 ```python
 light colour = (0.6 × curve1[f] + 0.4 × envelope) × (0.9, -0.2, -0.2)
@@ -217,15 +394,33 @@ frames 0-20    : ambient mode 1 with +0x5DC = curve1[f]
 ```
 
 HP Critical's installer `0x004704C0` creates the same light with the step `0x00470230`, zeroing the phase and the frame
-`+6` but not the envelope (`0x004704EC`-`0x004704F3`); the step runs the same recipe with the
+`+6` but not the envelope¹; the step runs the same recipe with the
 colour `curve1[f] × (0.64, 0, -0.32)` on a 30-frame cycle. From frame 21 to the end of the cycle it sets bit `0x2` of
 the light's byte `+7`, which makes the light selector skip it, and clears ambient mode. It checks whether to leave only
 when the cycle wraps, so it always finishes its beat.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004704EC`-`0x004704F3` |
+
+</details>
+
 Berserk's installer `0x00470660` creates two lights: the tint's ambient into `+8` and Oil's directional request into
-`+0xC`, without Oil's vector: request `+0x30` stays zero, and the step aims the light every frame
-(`0x004706E6`-`0x00470744`). The installer zeroes the phase and envelope (`0x0047069B`).
+`+0xC`, without Oil's vector: request `+0x30` stays zero, and the step aims the light every frame¹. The installer zeroes the phase and envelope².
 Its step `0x00470EB0` uses the tint's phase and envelope; with `w = (0.5 + 0.5p) × envelope`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004706E6`-`0x00470744` |
+| ² | `0x0047069B` |
+
+</details>
 
 ```python
 ambient colour = (2w, 0, 0)
@@ -242,8 +437,16 @@ still re-aims the light every frame and does nothing else.
 The per-character light gather `0x003ABD50` copies render record `+0x5EC` to `0x02B3F518` before it calls the light selector
 `0x003ACC10`. The ambient evaluator `0x003ACAA0` multiplies a light's red, green, blue and strength by `0x02B3F518`, and
 sets its alpha to `0x02B3F518` itself, while the enable byte `0x02B3F502`
-is set and the light's byte `+5` is below `0x80`, so the status lights (`0x90`, `0x80`) are never dimmed by it
-(`0x003ACB7A`-`0x003ACC00`).
+is set and the light's byte `+5` is below `0x80`, so the status lights (`0x90`, `0x80`) are never dimmed by it¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003ACB7A`-`0x003ACC00` |
+
+</details>
 
 In the selector, an ambient light without bit `0x10` in byte `+5` is changed before it is summed: render record byte `+0x5E0`
 = 2 multiplies it by `+0x5DC`, and 1 blends it toward the record colour `+0x5D0`-`+0x5D8` by `+0x5DC`. A light is skipped
@@ -253,8 +456,17 @@ The lighting itself is on [Character lighting and shadows](character-lighting-an
 ### The second block
 
 Block `+0x70` keeps a mask at `+0x10`. Its workers `0x0051DBF0` (add) and `0x0051DDC0` (remove) take an index `n`,
-set or clear the bit value `1 << n`, return at once when it is already set or clear (`0x0051DC06`, `0x0051DDD6`), and
+set or clear the bit value `1 << n`, return at once when it is already set or clear¹, and
 derive three bytes:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051DC06`, `0x0051DDD6` |
+
+</details>
 
 | Byte | Value |
 |---|---|
@@ -265,38 +477,80 @@ derive three bytes:
 `0x0051E3A0` returns at once while control is denied and display is not. Otherwise it runs the wanted, shown, changing
 and step protocol for each channel: channel A installs `0x0051E0A0` for 2 and `0x0051DC90` for 3, channel B `0x0051DE30` for
 0 and `0x0051E170` for 1. While the Stop byte is set and display is not denied it calls `0x003E7450(render record, 0, 0, 1)`
-every frame. While display is denied it then writes fade channel 5 = 1.0 (`0x00428940`), the shadow's `+0xC` = 1.0
-(`0x003B6B10`) and the shadow's colour = 0 (`0x003B6B30`), after the steps have run.
+every frame. While display is denied it then writes fade channel 5 = 1.0¹, the shadow's `+0xC` = 1.0² and the shadow's colour = 0³, after the steps have run.
 
-`0x0051E3A0` stores the render record at `+0x08` before that return (`0x0051E3C0`). Installing a step clears the
-channel's changing byte and zeroes its phase and envelope (`0x0051E41E`-`0x0051E426`, `0x0051E46F`-`0x0051E477`); a shown
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00428940` |
+| ² | `0x003B6B10` |
+| ³ | `0x003B6B30` |
+
+</details>
+
+`0x0051E3A0` stores the render record at `+0x08` before that return¹. Installing a step clears the
+channel's changing byte and zeroes its phase and envelope²; a shown
 value without a step above installs nothing.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051E3C0` |
+| ² | `0x0051E41E`-`0x0051E426`, `0x0051E46F`-`0x0051E477` |
+
+</details>
 
 These steps use a phase stepping by `0.033 × [0x01DFE0BC]` and an envelope moving by `0.1 × [0x01DFE0BC]`:
 
 - Invisible, `0x0051DC90`: fade channel 5 = `1 - (0.6 + 0.2p) × envelope`, or `1 - (0.88 + 0.08p) × envelope` when the
   block's `+0x14` (the record's enemy flag) is set; `0x00428AF0(record, 1, 1, 0x60)` sets `+0x304` bits `0x20000`, `0x40000` and the
-  byte at the bits under mask `0x7F80000`, and raises bit `0x4000000` of `+0x294` (`0x00428B17`).
+  byte at the bits under mask `0x7F80000`, and raises bit `0x4000000` of `+0x294`¹.
 - Leaving Invisible restores 1.0 and clears the two bits through `0x00428AF0(record, 0, 0, 0x60)`, which writes `0x60`
   to the byte again; it clears the step and returns 1 (`0x0051DCF5`-`0x0051DD20`; [Character fades](character-fades.md)).
 - Index 2, `0x0051E0A0`: fade channel 5 = `1 - envelope`. No status selects it. Leaving restores 1.0, clears the step
-  and returns 1 (`0x0051E0D8`-`0x0051E0F3`); it keeps no phase and leaves `+0x304` alone.
+  and returns 1²; it keeps no phase and leaves `+0x304` alone.
 - Slow, `0x0051E170`, while render record `+0x114` holds a shadow: with `s = (0.5 + 0.3p) × envelope`, the shadow's
   colour = `(128s, 32s, 8s)` as integers, and the vector `(1 + 0.1p, 1 - 0.1p, 1 - 0.1p, 1)` goes to `0x001F1600`, which
   stores it at `0x02CB8390`; then `0x0051E510(word +0 of the record, 1)`.
 - Slow's phase goes back to 0 when it reaches 1
-  (`0x0051E1AC`-`0x0051E1B6`); its envelope rises to 1 while byte `+0x32` is 0 (`0x0051E28B`-`0x0051E29A`) and falls while it
-  is set, the leaving path below running at 0 or below (`0x0051E1D2`-`0x0051E1E6`).
+ ³; its envelope rises to 1 while byte `+0x32` is 0⁴ and falls while it
+  is set, the leaving path below running at 0 or below⁵.
 - Immobilize, `0x0051DE30`: the same with `s = (0.7 + 0.3p) × envelope`, colour `(128s, 16s, 4s)`, vector
   `(1 + 0.3p, 1 - 0.3p, 1 - 0.3p, 1)`, and the shadow's `+0xC` = `1 + (1.5 + 0.5p) × envelope`.
 - Leaving, Slow and Immobilize restore the shadow's `+0xC` to 1.0, its colour to 0, store `(0, 0, 0, 1)` at
-  `0x02CB8390`, call `0x0051E510(word +0 of the record, 0)`, clear the step `+0x40` and return 1 (`0x0051E1EC`, `0x0051E281`; `0x0051DEAF`,
-  `0x0051DF44`).
+  `0x02CB8390`, call `0x0051E510(word +0 of the record, 0)`, clear the step `+0x40` and return 1⁶.
 
-`0x0051E510(index, flag)` takes the render-record index (`0x0051E529`-`0x0051E536`), walks that record and every record
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00428B17` |
+| ² | `0x0051E0D8`-`0x0051E0F3` |
+| ³ | `0x0051E1AC`-`0x0051E1B6` |
+| ⁴ | `0x0051E28B`-`0x0051E29A` |
+| ⁵ | `0x0051E1D2`-`0x0051E1E6` |
+| ⁶ | `0x0051E1EC`, `0x0051E281`; `0x0051DEAF`, `0x0051DF44` |
+
+</details>
+
+`0x0051E510(index, flag)` takes the render-record index¹, walks that record and every record
 attached under it and calls the method at offset `0xC8` of each render
 object (record `+0x6B8`) with 1 or 0. The shadow pool is 160 entries of `0xE0` bytes at `[0x02B40528]`; `0x003B6B10` and
 `0x003B6B30` write only when the handle matches the entry's `+0x10`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051E529`-`0x0051E536` |
+
+</details>
 
 ### The denial latches
 
@@ -314,9 +568,18 @@ lights, so display denial switches them off and lifts the dimming while the step
 ### Stretching the tables for 60 fps
 
 The pulse table, the two curves and the other frame tables from `0x01F20530` to `0x01F264AC` hold one entry per
-frame at 30 fps. When the game switches to the 60 fps time base (`0x001EDDC0`), `0x0033F020` doubles each
-table's frame count and resamples the table in place to twice its entries (`0x0046FBF0`, `0x00471100`,
-`0x00471330`, `0x004715F0`, `0x004718F0`, `0x00472580`, `0x00473210`).
+frame at 30 fps. When the game switches to the 60 fps time base¹, `0x0033F020` doubles each
+table's frame count and resamples the table in place to twice its entries².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EDDC0` |
+| ² | `0x0046FBF0`, `0x00471100`, `0x00471330`, `0x004715F0`, `0x004718F0`, `0x00472580`, `0x00473210` |
+
+</details>
 
 Four resamplers do the work. Each takes the table, the new entry count `n` and the number of channels per entry, copies the
 first `n / 2` entries aside, and writes entry `2k` as source entry `k` and entry `2k + 1` as the mean of
@@ -345,10 +608,22 @@ clears them all at start-up): a set trigger `+0x1C` starts a run of `30 × [0x01
 and the record named by the word `+0x00` gets them at `+0x260`–`+0x268`, its per-axis scale.
 
 - `0x00472580` and `0x00473210` double eight and five counts, copy each to a byte beside the tables
-  (`0x01F240F0`, `0x01F264A8`), halve the floats beside them, and resample three-channel byte tables with
+ ¹, halve the floats beside them, and resample three-channel byte tables with
   `0x0033E990`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01F240F0`, `0x01F264A8` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Presentation record, `0x02B59D80` + slot × `0x150`:
 
@@ -415,7 +690,12 @@ Render-record fields the looks write:
 | `+0x5E0` | `u8` | ambientMode | 1 blend, 2 multiply |
 | `+0x5EC` | `f32` | lightScale | copied to `0x02B3F518` |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured from the executable image.
 
@@ -461,7 +741,12 @@ The 60 fps table has the same `table`, `entry`, `channel`, `f32_bits` and `value
 The samples come from the executable with sha256
 `73461D0896204B1C259C52F61AEF4EFBC95A2FFC388CADB36493D5D1D89721F8`.
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 - `0x02B59D80`: the 32 presentation records.
 - `0x02B59D70`, `0x02B59D71`: the control-deny and display-deny latches; `0x0215FD44`, `0x0215FD45` their requester bits.
@@ -473,14 +758,24 @@ The samples come from the executable with sha256
 | `0x01F20534` | `u32` | 21 | the entry count of the one-float table at `0x01F209F0` (0.75, 0.5, 0.25, 0, 0.33, 0.67, nine entries of 1.0, 0.67, 0.33, 0, 0.25, 0.5, 0.75), the second of the four counts from `0x01F20530`; `0x0046FBF0` doubles it and resamples the table to the new count with `0x0033E5E0` (`0x0046FC58`-`0x0046FC6B`) | `0x0046FBF0` (`0x0046FC23`) | `0x0046FBF0` (`0x0046FC15`, `0x0046FC58`) |
 | `0x02CA4ED0` | `u32` | 0 (zero-filled tail) | the dword just past the 32 records of `0x30` bytes at `0x02CA48D0`; the start-up clear `0x0042F000` stores 0 in it before it clears each record's handle | `0x0042F000` (`0x0042F009`) | no instruction names it apart from that store |
 
+</details>
+
 ## Modding notes
 
 - The order of the colour looks is the bit order of the list; moving a status means changing the index its arm passes.
-- The look colours of the switch in `0x0046FD00` and the steps' colour factors are `.rdata` constants (`0x0046FE34`,
-  `0x0046FE50`, `0x00470C50`, `0x004702B3`, `0x00471041`); the flash frames' `+0x5D8` value is an immediate (`0x00470CF9`,
-  `0x0047033E`).
+- The look colours of the switch in `0x0046FD00` and the steps' colour factors are `.rdata` constants¹; the flash frames' `+0x5D8` value is an immediate².
 - A status light is exempt from the light scale only while its byte `+5` is `0x80` or more.
 - Durations are frame counts scaled by `0x01DFE0B4`, so they keep their length in seconds at 60 fps.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046FE34`, `0x0046FE50`, `0x00470C50`, `0x004702B3`, `0x00471041` |
+| ² | `0x00470CF9`, `0x0047033E` |
+
+</details>
 
 ## Related
 
@@ -502,46 +797,58 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Enemy AI and gambits** (explained on [glossary](../Engine-Core/glossary.md), [gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md), [frame update order](../Engine-Core/frame-update-order.md), [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x00236820` | is called by | `0x00301AD0`, `0x00308C20`, `0x003219D0`, `0x003247F0`, `0x00324F20` |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Battle actions**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236820` | is called by | `0x00306760`, `0x003083B0`, `0x0030F760`, `0x003105D0` |
+| [`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item) | is called by | [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets)<br>[`0x00308C20`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: compute bounded selector scalar (on enemy order sets)<br>[`0x003219D0`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: propagate to perceiving foes (on enmity)<br>[`0x003247F0`](../Enemy-AI-And-Gambits/enemy-ai.md) Battle unit: rebuild perception candidate cache (on enemy ai)<br>[`0x00324F20`](../Enemy-AI-And-Gambits/enemy-ai.md) Battle perception: refresh candidate cache generation (on enemy ai) |
 
 **Battle actions** (explained on [party control modes](../Engine-Core/party-control-modes.md), [gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md), [identifier spaces](../Engine-Core/identifier-spaces.md), [frame update order](../Engine-Core/frame-update-order.md))
 
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item) | is called by | [`0x00306760`](../Party/party-table.md) Battle action: update special presentation sequence (on party table)<br>[`0x003083B0`](../Enemy-AI-And-Gambits/gambit-conditions.md) Battle action: check target eligibility (on gambit conditions)<br>[`0x0030F760`](../Engine-Core/identifier-spaces.md) Battle unit: commit action (on identifier spaces)<br>[`0x003105D0`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Battle unit: cancel and reset current action (on equipping an item) |
+
 **Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236820` | is called by | `0x0031B860`, `0x0031E800` |
+| [`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item) | is called by | [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log)<br>[`0x0031E800`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Battle stats: get owning actor handle (on enemy order sets) |
 
 **Gameplay** (explained on [enmity](../Enemy-AI-And-Gambits/enmity.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236820` | is called by | `0x0030C210` |
+| [`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item) | is called by | [`0x0030C210`](../Enemy-AI-And-Gambits/enmity.md) Battle unit: has relationship class2 plus in slot mask (on enmity) |
 
 **Items, equipment, shops and licenses** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236820` | is called by | `0x0031A300` |
+| [`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item) | is called by | [`0x0031A300`](../Menus-And-HUD/status-and-equip-screen.md) Battle stats: clear all equipment slots by mapped id (on status and equip screen) |
 
 **Enemy spawning** (explained on [battle units](../Characters-And-Objects/battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236820` | is called by | `0x00308D90` |
+| [`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item) | is called by | [`0x00308D90`](../Enemy-Spawning/enemy-spawning.md) Spawn: count active cap tracked actors (on enemy spawning) |
 
 **Menus and HUD** (explained on [action definition row](../Battle-Actions/action-definition-row.md), [target selection](../Battle-Actions/target-selection.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236820` | is called by | `0x0031EB20`, `0x00322A80` |
+| [`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item) | is called by | [`0x0031EB20`](../Battle-Actions/action-definition-row.md) Battle menu: build command entry list (on action definition row)<br>[`0x00322A80`](../Battle-Actions/target-selection.md) (on target selection) |
 
 </details>

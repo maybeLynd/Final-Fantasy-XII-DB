@@ -40,20 +40,35 @@ for Japanese, UK, ASIA and IN.
 - `0x0035C5B0` requests the `bwind` file through the menu-set wrapper `0x00249180` and stores the buffer at
   `0x022CA460`.
 - `0x0029DC90` requests the `signe` file through the menu-set wrapper `0x00249180` (kind 7, id `0x24`,
-  `0x0029DCBF`) only while `0x0209C4A0` is null (`0x0029DC94`); its completion `0x0029DCD0` stores the buffer there.
+  `0x0029DCBF`) only while `0x0209C4A0` is null¹; its completion `0x0029DCD0` stores the buffer there.
 - `0x00473D20` passes kind 9, id 0x21 to `0x0051ED10` and stores the result at `0x02CA6C60`.
-- `0x00379E90` asks the size of kind 9, id 7 (`0x0032E400`) and requests nothing when it is 0 or less
-  (`0x00379EA7`). Otherwise it allocates that size in arena 5 (`0x0036C1D0(5, 5)`, `0x0036A190`, `0x0036C140`) and
+- `0x00379E90` asks the size of kind 9, id 7² and requests nothing when it is 0 or less
+ ³. Otherwise it allocates that size in arena 5 (`0x0036C1D0(5, 5)`, `0x0036A190`, `0x0036C140`) and
   files `0x0032E620(9, 7, buffer, size, record)` with the completion `0x00379F30` and the buffer's low 32 bits
-  as its argument (`0x00379EFE`).
+  as its argument⁴.
 - `0x00379F30` zero-extends that argument and jumps to `0x0035B3E0`, which takes it as the `VIB0` buffer and
   publishes it at `0x02EC0B68`.
 - `0x003B53C0` first clears bits `0x1` and `0x2` of `0x02B40518` and both summon state entries
-  (`0x003B53C4`-`0x003B5400`). It then reads `summoneffectdata.bin` straight into the 672-byte `.data` buffer
+ ⁵. It then reads `summoneffectdata.bin` straight into the 672-byte `.data` buffer
   `0x02AD9B60` with no completion callback: `0x0032E620(9, 0x2A, 0x02AD9B60, size, 0)`, with the size
-  `0x0032E400(9, 0x2A)` gives and no test of that size against 672 (`0x003B5407`-`0x003B5427`).
-- `0x003B53C0` ends by draining the read queue, `0x0032E520(0)` (`0x003B5432`), so the table is in place when it
+  `0x0032E400(9, 0x2A)` gives and no test of that size against 672⁶.
+- `0x003B53C0` ends by draining the read queue, `0x0032E520(0)`⁷, so the table is in place when it
   returns.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029DC94` |
+| ² | `0x0032E400` |
+| ³ | `0x00379EA7` |
+| ⁴ | `0x00379EFE` |
+| ⁵ | `0x003B53C4`-`0x003B5400` |
+| ⁶ | `0x003B5407`-`0x003B5427` |
+| ⁷ | `0x003B5432` |
+
+</details>
 
 ## Layouts
 
@@ -172,6 +187,9 @@ The file has no tag: its first four bytes `64 50 3C 64` are record 0's scale byt
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 Measured over every copy in the archive.
 
 | Fact | Value |
@@ -200,26 +218,33 @@ Every record of the six files, decoded with the layouts above:
 | [`small-bin-tables-quest-window.tsv`](small-bin-tables-quest-window.tsv) | 173 | `questbase.bin` entry: the word, value A, the text index and the flag bit `0x4000000` |
 | [`small-bin-tables-summon-colours.tsv`](small-bin-tables-summon-colours.tsv) | 64 | summon colour record: the six scale bytes and the four tint bytes |
 
+</details>
+
 ## Loader behaviour
 
 ### Footsteps
 
 `0x002E9D90(actor, kind, sound, useVariant)` picks an actor's sound in slot `kind` (0 to 2); another kind gives
--1 (`0x002E9E72`), and so do the gates on [Character SE tables](character-se-tables-chse.md). With a negative
-`useVariant`, kind 1 keeps `sound` as given and treats `useVariant` as 0 (`0x002E9E99`). For kind 1,
+-1¹, and so do the gates on [Character SE tables](character-se-tables-chse.md). With a negative
+`useVariant`, kind 1 keeps `sound` as given and treats `useVariant` as 0². For kind 1,
 the footstep, with a non-negative `useVariant`:
 
-1. The surface is the signed word `+0x8A` of the record at `[[actor′ + 0xC0] + 0x138]`, where `actor′` is
-   the actor the sound resolves to (`0x00263F40`). A null `+0xC0` or `+0x138` gives surface 0 (`0x002E9EDA`,
-   `0x002E9EE9`, `0x002E9F1B`, `0x002E9F27`).
-2. When `useVariant` is non-zero and the weather variant flag `0x02099DBC` (0 or 1, set from
-   `map_ref.bin` for the current weather slot; see [weather](../World-Areas-And-Travel/weather.md)) is
-   non-zero, the table index is the count word `+0x08` plus the surface and the sound starts at −1;
-   otherwise the index is the surface and the sound starts at 0.
-3. The signed byte at `+0x10 + index` is added. With `useVariant` set, the flag is added again, so with
-   the flag at 1 the sound is set B's entry and with the flag at 0 set A's.
-4. `0x003A1240(bank, sound)` checks the actor's bank handle for the slot against its record at
-   `0x02AEEDC8` and returns `bank slot × 512 + sound`, or −1 for a stale handle.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E9E72` |
+| ² | `0x002E9E99` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The surface is the signed word `+0x8A` of the record at `[[actor′ + 0xC0] + 0x138]`, where `actor′` is the actor the sound resolves to. A null `+0xC0` or `+0x138` gives surface 0. | `0x00263F40`<br>`0x002E9EDA`, `0x002E9EE9`, `0x002E9F1B`, `0x002E9F27` |
+| 2 | When `useVariant` is non-zero and the weather variant flag `0x02099DBC` (0 or 1, set from `map_ref.bin` for the current weather slot; see [weather](../World-Areas-And-Travel/weather.md)) is non-zero, the table index is the count word `+0x08` plus the surface and the sound starts at −1; otherwise the index is the surface and the sound starts at 0. |   |
+| 3 | The signed byte at `+0x10 + index` is added. With `useVariant` set, the flag is added again, so with the flag at 1 the sound is set B's entry and with the flag at 0 set A's. |   |
+| 4 | `0x003A1240(bank, sound)` checks the actor's bank handle for the slot against its record at `0x02AEEDC8` and returns `bank slot × 512 + sound`, or −1 for a stale handle. |   |
 
 When the table is not loaded, the sound is the surface plus 32 − flag, plus the flag again: surface + 32
 with the flag set, the surface itself without it. Nothing bounds the surface against 32.
@@ -228,42 +253,65 @@ with the flag set, the surface itself without it. Nothing bounds the surface aga
 
 - **Binding.** `0x0035B3E0` replaces each offset with an address handle (`0x0020E600` / `0x0020E620` over the
   buffer's low 32 bits) and stores the buffer at `0x02EC0B68`.
-- **Starting.** The script verb `vibplay` (`0x23D`, native `0x0034AC30`) pops its argument (`0x00267E10`,
-  `0x0034AC40`) and passes it to `0x0035B650(pattern, 2)` through `0x00379F20` (`0x0034AC56`) when `0x00267310`
-  returns 0 for the calling actor's byte `+0x15`; otherwise it starts nothing (`0x0034AC4B`-`0x0034AC52`).
+- **Starting.** The script verb `vibplay` (`0x23D`, native `0x0034AC30`) pops its argument¹ and passes it to `0x0035B650(pattern, 2)` through `0x00379F20`² when `0x00267310`
+  returns 0 for the calling actor's byte `+0x15`; otherwise it starts nothing³.
 - **Start checks.** `0x0035B650` returns unless the pattern is below the count, the table at `0x02EC0B68` is
-  loaded and one of the eight entries at `0x022C8030` is empty (`0x0035B663`-`0x0035B6B1`).
+  loaded and one of the eight entries at `0x022C8030` is empty⁴.
 - **The slot.** `0x0035B2F0` takes a free 32-byte slot from the list at `0x02EC0B60`: state 1, record at
   `+8`, scale 1.0 at `+0x10`, track 1 at pair 0, track 2 at the record's `u16 +0`, pad 0. `0x0035B650`
   records the handle in the first empty one of eight entries at `0x022C8030` and arms the slot when its
   generation matches the handle and its state is 1: the mask at `+0x1C`, state 2, or 4 when the
-  mask `0x02EC0B40` blocks it (`0x0035B6C5`-`0x0035B707`).
+  mask `0x02EC0B40` blocks it⁵.
 - **No slot.** `0x0035B2F0` takes no slot and returns 0 when the free list is empty (`0x02EC0B60` is `0xFF`) or its
-  head slot's state is not 0 (`0x0035B30C`-`0x0035B31D`). Otherwise it moves the slot to the front of the playing list
-  `0x02EC0B61`, stores the channel at `+0x1A` and returns the handle (`0x0035B31F`-`0x0035B376`).
+  head slot's state is not 0⁶. Otherwise it moves the slot to the front of the playing list
+  `0x02EC0B61`, stores the channel at `+0x1A` and returns the handle⁷.
 - **Stepping.** `0x0035AF20` adds 10,000 × the time base `0x01DFE0BC` (1.0 at 30 fps, 0.5 at 60 fps) to the
   accumulator `0x022C8050` and runs one step per 10,000, keeping the remainder, `acc = acc % 10000`
-  (`0x0035B156`-`0x0035B18E`). With less than 10,000 accumulated it returns at once and the output words keep their
-  last values (`0x0035AF53`-`0x0035AF5A`).
+ ⁸. With less than 10,000 accumulated it returns at once and the output words keep their
+  last values⁹.
 - **Stepping in bytes.** `acc = [0x022C8050] + (int)(10000.0 × [0x01DFE0BC])`, stored at once (`cvttss2si`,
   `0x0035AF2D`-`0x0035AF4C`). While `acc >= 10000` (unsigned, `0x0035AF53`, `0x0035B15F`): `n = acc / 10000` (`mul` by
   `0xD1B71759`, `shr ebp, 0xd`, `0x0035AFA0`-`0x0035AFB5`), each slot runs `n` steps, and `acc = acc - 10000 × n`
-  (`imul eax, ebp, 0xffffd8f0`, `0x0035B156`-`0x0035B15C`); then `[0x022C8050] = acc` (`0x0035B18E`).
+  (`imul eax, ebp, 0xffffd8f0`, `0x0035B156`-`0x0035B15C`); then `[0x022C8050] = acc`¹⁰.
 - **Clearing.** Otherwise it clears the four output words `0x02EC0B50`-`0x02EC0B5F` once, before any step
-  (`0x0035AFAB`), and then runs all the whole steps of each slot on the playing list `0x02EC0B61` in turn. A slot
-  whose mask `+0x1C` shares a bit with `0x02EC0B40` is skipped (`0x0035AFD8`), and a step changes only a slot in
-  state 2 (`0x0035AFF0`).
+ ¹¹, and then runs all the whole steps of each slot on the playing list `0x02EC0B61` in turn. A slot
+  whose mask `+0x1C` shares a bit with `0x02EC0B40` is skipped¹², and a step changes only a slot in
+  state 2¹³.
 - **Levels.** In a step, each track of a playing slot whose pair has a non-zero duration writes
   `(start + (end − start) × elapsed / duration) × scale` when larger than the value already there
   (track 1 to `0x02EC0B50`, track 2 to `0x02EC0B54`, each plus 8 × the slot's channel `+0x1A`, `0x0035B066`,
   `0x0035B0F4`) and advances; a slot whose two tracks have both reached a zero duration goes to state 4
-  (`0x0035B130`).
+ ¹⁴.
 - **Output.** `0x0035AE30` sends the two values of each of the channels 0 and 1 through `0x0035FED0` (track 1 to
   actuator 1, track 2 to actuator 0; channel 1's pair is `0x02EC0B58` and `0x02EC0B5C`) when the vibration
-  switch `0x02EC0B3C` is on, and zeros to both channels otherwise (`0x0035AE41`-`0x0035AE95`).
+  switch `0x02EC0B3C` is on, and zeros to both channels otherwise¹⁵.
 - **Freeing.** It then frees with `0x0035B1A0` every non-zero handle listed at `0x022C8030` whose slot is in
   state 4 and still carries the handle's generation (word `+2` equal to `handle >> 8`), and clears that entry
-  (`0x0035AEB4`-`0x0035AEE2`).
+ ¹⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267E10`, `0x0034AC40` |
+| ² | `0x0034AC56` |
+| ³ | `0x0034AC4B`-`0x0034AC52` |
+| ⁴ | `0x0035B663`-`0x0035B6B1` |
+| ⁵ | `0x0035B6C5`-`0x0035B707` |
+| ⁶ | `0x0035B30C`-`0x0035B31D` |
+| ⁷ | `0x0035B31F`-`0x0035B376` |
+| ⁸ | `0x0035B156`-`0x0035B18E` |
+| ⁹ | `0x0035AF53`-`0x0035AF5A` |
+| ¹⁰ | `0x0035B18E` |
+| ¹¹ | `0x0035AFAB` |
+| ¹² | `0x0035AFD8` |
+| ¹³ | `0x0035AFF0` |
+| ¹⁴ | `0x0035B130` |
+| ¹⁵ | `0x0035AE41`-`0x0035AE95` |
+| ¹⁶ | `0x0035AEB4`-`0x0035AEE2` |
+
+</details>
 
 ### Battle window sizes
 
@@ -271,26 +319,29 @@ with the flag set, the surface itself without it. Nothing bounds the surface aga
 when that is larger, and its row count. `0x0027BDE0(kind, out)` maps the battle window kind to the
 entry: kinds 2 to 7 to entries 1 to 6, kinds 9 to 15 to entries 7 to 13, kinds 16 to 19 to entry 14,
 anything else to entry 0, kind 8 among them (the table at `0x0027BE88`). Nothing bounds the entry against
-the file's count. `0x0027BDE0` stores the width in `out` zero-extended to 32 bits (`0x0027BE7A`) and returns
-the row count (`0x0027BE7C`).
+the file's count. `0x0027BDE0` stores the width in `out` zero-extended to 32 bits¹ and returns
+the row count².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027BE7A` |
+| ² | `0x0027BE7C` |
+
+</details>
 
 `0x0027DED0(menu, kind)` sizes the open list, the object at the menu's `+0x1510`, and returns the visible rows:
 
-1. It stores the menu at the list's `+0xD8` (`0x0027DEF4`) and takes the width and rows from `0x0027BDE0`.
-2. The width goes to the list object's word `+0xEA` (`0x0027DF59`), widened by `0x01E0C364 − 0x01E0C354` for
-   kinds 10 to 14 in mode 4, when the menu's dword `+0x50C` is 4 (`0x0027DF1F`-`0x0027DF41`).
-3. The visible rows are the table's rows clamped to the list length `+0x500` and to at least 1, `v <= 0 ? 1 : v`
-   with `v = min(rows, [+0x500])` (`cmovl`, `cmovle`, `0x0027DF0B`-`0x0027DF17`), stored in byte `+0x1528`
-   (`0x0027DF52`). `0x002D48C0` and then `0x002D4930` get the list length, raised to 1 when it is 0 or less,
-   `len <= 0 ? 1 : len` (`0x0027DF1A`-`0x0027DF1C`, `0x0027DF67`, `0x0027DFD8`).
-4. Between those two calls it writes the list's words `+0x98` = `0x01E0C360`, `+0x9A` = `0x0209ABFC` plus
-   `0x01E0C374` (plus 0 instead for kinds 0 and 1, `0x0027DF86`), `+0x9C` = the word `+0x9C` of the list's
-   `+0xC0` object, and the height `+0x9E` = rows × the row height word `+0x100` (`0x0027DF75`-`0x0027DFC8`).
-   Its null test of the list (`0x0027DFA5`) comes after reads through it (`0x0027DF89`, `0x0027DF93`).
-5. The menu's word `+0x9C` becomes the list's `+0x9C` plus `0x01E0C360`, and its `+0x9E` the list's `+0x9E`
-   plus the same `0x01E0C374` term (`0x0027DFF3`, `0x0027E005`).
-6. For kind `0x11`, or with bit `0x8000` of the dword `+0x1528` set, the menu's `+0x9E` becomes
-   `0x01E0C374` and `0x00247870(list, 0)` runs (`0x0027E00C`-`0x0027E031`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It stores the menu at the list's `+0xD8` and takes the width and rows from `0x0027BDE0`. | `0x0027DEF4` |
+| 2 | The width goes to the list object's word `+0xEA`, widened by `0x01E0C364 − 0x01E0C354` for kinds 10 to 14 in mode 4, when the menu's dword `+0x50C` is 4. | `0x0027DF59`<br>`0x0027DF1F`-`0x0027DF41` |
+| 3 | The visible rows are the table's rows clamped to the list length `+0x500` and to at least 1, `v <= 0 ? 1 : v` with `v = min(rows, [+0x500])` (`cmovl`, `cmovle`, `0x0027DF0B`-`0x0027DF17`), stored in byte `+0x1528`. `0x002D48C0` and then `0x002D4930` get the list length, raised to 1 when it is 0 or less, `len <= 0 ? 1 : len`. | `0x0027DF52`<br>`0x0027DF1A`-`0x0027DF1C`, `0x0027DF67`, `0x0027DFD8` |
+| 4 | Between those two calls it writes the list's words `+0x98` = `0x01E0C360`, `+0x9A` = `0x0209ABFC` plus `0x01E0C374` (plus 0 instead for kinds 0 and 1, `0x0027DF86`), `+0x9C` = the word `+0x9C` of the list's `+0xC0` object, and the height `+0x9E` = rows × the row height word `+0x100`. Its null test of the list comes after reads through it. | `0x0027DF75`-`0x0027DFC8`<br>`0x0027DFA5`<br>`0x0027DF89`, `0x0027DF93` |
+| 5 | The menu's word `+0x9C` becomes the list's `+0x9C` plus `0x01E0C360`, and its `+0x9E` the list's `+0x9E` plus the same `0x01E0C374` term. | `0x0027DFF3`, `0x0027E005` |
+| 6 | For kind `0x11`, or with bit `0x8000` of the dword `+0x1528` set, the menu's `+0x9E` becomes `0x01E0C374` and `0x00247870(list, 0)` runs. | `0x0027E00C`-`0x0027E031` |
 
 Entry 4, the only wide one, is window kind 5: `0x0027E050` opens kind 5 as the command-list
 window with sub-selector 7, beside kinds 4, 6 and 7 with sub-selectors 3, 5 and 6.
@@ -300,63 +351,100 @@ window with sub-selector 7, beside kinds 4, 6 and 7 with sub-selectors 3, 5 and 
 - **Masks.** `0x0029DBE0(key)` returns section 0's button mask for a key below the button count, and for
   `0x100 + n` the mask of the button signal n names. A key of `0x16` or `0x1A`, or a signal naming
   button `0x16` or `0x1A`, returns the word `0x01E0C2A0`; `0x17`, as a key or as a signal's button, returns
-  `0x01E0C2A4`; a key at or past the button count returns 0, tested before those three (`0x0029DC64`).
+  `0x01E0C2A4`; a key at or past the button count returns 0, tested before those three¹.
 - **Mask range.** `0x100 + n` for `n` at or past the signal count goes on to the button test as a key
-  (`0x0029DC02`), so it also returns 0 while the button count is at most `0x100`; only a valid signal's
+ ², so it also returns 0 while the button count is at most `0x100`; only a valid signal's
   out-of-range button clamps to the last button.
 - **Scenes.** `0x0029DA70(out, scene)` finds the scene whose first byte matches, copies `a`, `b` and `n`
   to `out[0..2]`, and fills one 0x18-byte slot per pair from `out + 8`: the button's name and the
   signal's label as strings from the text resolver `0x002F9920`, the word `(~(flag << 2)) & 4` and the
   signal index. A scene id with no scene reads from address 1 and faults.
 - **Scene limits.** A signal index at or past the signal count reads the last signal for the label and the
-  button (`0x0029DB0D`-`0x0029DB14`), and the slot keeps the index as read (`0x0029DBA5`). A button at or past the
-  button count passes the button number itself to `0x002F9920` as the name's text id (`0x0029DB30`-`0x0029DB35`,
-  `0x0029DB76`). With `n` at 0 no slot is filled (`0x0029DAD8`).
+  button³, and the slot keeps the index as read⁴. A button at or past the
+  button count passes the button number itself to `0x002F9920` as the name's text id⁵. With `n` at 0 no slot is filled⁶.
 - **Addresses.** `0x0029DA70` and `0x0029DBE0` add the section and scene offsets to the buffer's low 32 bits and
-  read through the 32-bit sums (`0x0029DA8D`, `0x0029DAA4`, `0x0029DB08`, `0x0029DBF6`, `0x0029DC5E`), so they reach
+  read through the 32-bit sums⁷, so they reach
   the file only while its buffer lies below 4 GB.
 - **Showing.** `0x0029E330(scene)` returns at once while the host `0x0209C498` or the file `0x0209C4A0` is null
-  (`0x0029E349`-`0x0029E35B`). Otherwise it builds the legend on its stack (`0x0029DA70`) and hands it to `0x0029DDF0`,
-  which closes the open pane (`0x0029DF20`) when the legend has no entries.
+ ⁸. Otherwise it builds the legend on its stack⁹ and hands it to `0x0029DDF0`,
+  which closes the open pane¹⁰ when the legend has no entries.
 - **Same legend.** When `a`, `b`, the entry count, each entry's name and bit `0x4` of its flags equal those of the
   legend at `+0xD0` of the open pane `[0x0209C498] + 0x158`, `0x0029DDF0` only copies each entry's label, flags and
-  byte `+0x13` into it (`0x0029DE62`-`0x0029DEE5`). Any other legend, and any legend while no pane is open, goes to
+  byte `+0x13` into it¹¹. Any other legend, and any legend while no pane is open, goes to
   `0x0029E3B0`, which opens the other pane.
 - **Placing.** `0x0029E330` then clears the host's `+0xC4` and `+0xC6` with one dword store and places the
-  pane with `0x0029DCE0` (`0x0029E381`, `0x0029E387`). Its callers are menu screens (`0x00295D20`, `0x0029E110`,
-  `0x002B7B80`, `0x002BAF80`, `0x002D5EB0`, `0x005789D0`).
+  pane with `0x0029DCE0`¹². Its callers are menu screens¹³.
 - **Prompts.** A scene is a legend of one or two prompts, each a button picture and a label
   ([`small-bin-tables-legend-prompts.tsv`](small-bin-tables-legend-prompts.tsv)). The button names are inline icons
   (`0F 40`-`0F 6B`, [text codes](../Menus-And-HUD/text-codes.md)) from text group 18, and the labels are text group 5,
   `key_signal`.
 - **Answers.** Buttons `0x16` and `0x1A` answer to the confirm word `0x01E0C2A0` and `0x17` to the cancel word
-  `0x01E0C2A4` (`0x0029DBE0`), Circle and Cross ([controls](../Controls-And-Input/controls.md)).
-- **Scenes shown.** Scene 5 is "Sort" on the inventory (`0x00565E00`). Scenes 6 to 8 pair "Log" or "Previous" with
-  "Next", "Close" or "Confirm" on the message window's signal (`0x002A8550`, `0x002A86A0`). Scene 11 is "View Hunt Map" on
-  the quest list (`0x005789D0`), and scene 12 is "Sprint" and "Dismount" on the chocobo control window (`0x003CAB00`),
-  also built by the pause task (`0x00228C70`) and the pause overlay (`0x00229590`).
-- **Scenes shown, continued.** Scene 13 is "Toggle Zoom" on the map pages (`0x002B7B80`, `0x002BAF80`) and the License
-  Board (`0x0055E9E0`). Scene 14 is "Shuffle" on the special-attack window (`0x002D5EB0`). Scenes 15 to 18 are "Skip",
+  `0x01E0C2A4`¹⁴, Circle and Cross ([controls](../Controls-And-Input/controls.md)).
+- **Scenes shown.** Scene 5 is "Sort" on the inventory¹⁵. Scenes 6 to 8 pair "Log" or "Previous" with
+  "Next", "Close" or "Confirm" on the message window's signal¹⁶. Scene 11 is "View Hunt Map" on
+  the quest list¹⁷, and scene 12 is "Sprint" and "Dismount" on the chocobo control window¹⁸,
+  also built by the pause task¹⁹ and the pause overlay²⁰.
+- **Scenes shown, continued.** Scene 13 is "Toggle Zoom" on the map pages²¹ and the License
+  Board²². Scene 14 is "Shuffle" on the special-attack window²³. Scenes 15 to 18 are "Skip",
   "Exit to Title Menu", "Quit Game" and "Back" from the pause task, and scene 19 is "Toggle Board" on the License
-  Board grid view (`0x005595E0`).
+  Board grid view²⁴.
 - **Scenes no caller asks for.** The 20 branches to `0x0029DA70`, `0x0029E330` and `0x00295D20` are all calls, and no call
   passes scenes 1 to 4, 9 or 10. Their labels are "Sort" (4), "Log" and "Next" (9), "Exit to Title Menu" (10), and
   for scenes 1 to 3 the labels `0xC5A8`, `0xC5A9` and `0xC54A`, which are empty in `us` and `it`, `DUMMY` in `es` and
   `/` in `fr`.
-- **Panes.** `0x0029E3B0(legend)`, run by `0x0029DDF0`, closes the old pane (`0x0029DF20`) and opens the next of the
-  object's panes, `[0x0209C498] + 0x160 + 0x148 x [+0x3F0]`, under it (`0x00246AD0`). It copies up to four entries,
-  their two strings, flags `& 0x3FFF` and byte `+0x13`, and measures the names (`0x0029CD90`) for the widest,
+- **Panes.** `0x0029E3B0(legend)`, run by `0x0029DDF0`, closes the old pane²⁵ and opens the next of the
+  object's panes, `[0x0209C498] + 0x160 + 0x148 x [+0x3F0]`, under it²⁶. It copies up to four entries,
+  their two strings, flags `& 0x3FFF` and byte `+0x13`, and measures the names²⁷ for the widest,
   `+0xC1`, while the pane's `+0xC0` is 0.
 - **Repeats.** `0x0029E3B0` walks the new legend and the old pane's legend from their last entries in step,
   skipping entries whose flags have bit `0x4`; when the two entries of a step have equal strings, the new one gets
-  bit `0x8000` and the old one bit `0x4000` (`0x0029E5CD`-`0x0029E67F`), before `0x0029DCE0` runs.
+  bit `0x8000` and the old one bit `0x4000`²⁸, before `0x0029DCE0` runs.
 - **Widths.** `0x0029DFB0()`, from `0x0029DCE0`, returns the smallest difference between the first entry's width,
-  with the argument of a leading `0F 5` code (`0x003FFAB0`), and each entry's width.
+  with the argument of a leading `0F 5` code²⁹, and each entry's width.
 - **Colours.** `0x0029D9D0(pane, entry, node)`, from the pane's `0x0029D550`, colours a node by the entry's flags:
-  bit `0x1` colour 3, bit `0x2` colour 7, bit `0x8` colour `0x106`, else 0 (`0x002DD7E0`); unless bit `0x8000` is set
-  it scales the alpha by the pane's `+0x140` / 128, `a = (a * [pane + 0x140]) >> 7` (`0x0029DA44`-`0x0029DA56`).
+  bit `0x1` colour 3, bit `0x2` colour 7, bit `0x8` colour `0x106`, else 0³⁰; unless bit `0x8000` is set
+  it scales the alpha by the pane's `+0x140` / 128, `a = (a * [pane + 0x140]) >> 7`³¹.
 - `0x0029E770(a, b)` writes the two words at `[0x0209C498] + 0xC0` and `+0xC2`; the location map `0x002BA700`, the
   special-attack window `0x002D5EB0`, the quest list `0x005789D0` and `0x0055E9E0` call it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029DC64` |
+| ² | `0x0029DC02` |
+| ³ | `0x0029DB0D`-`0x0029DB14` |
+| ⁴ | `0x0029DBA5` |
+| ⁵ | `0x0029DB30`-`0x0029DB35`, `0x0029DB76` |
+| ⁶ | `0x0029DAD8` |
+| ⁷ | `0x0029DA8D`, `0x0029DAA4`, `0x0029DB08`, `0x0029DBF6`, `0x0029DC5E` |
+| ⁸ | `0x0029E349`-`0x0029E35B` |
+| ⁹ | `0x0029DA70` |
+| ¹⁰ | `0x0029DF20` |
+| ¹¹ | `0x0029DE62`-`0x0029DEE5` |
+| ¹² | `0x0029E381`, `0x0029E387` |
+| ¹³ | `0x00295D20`, `0x0029E110`, `0x002B7B80`, `0x002BAF80`, `0x002D5EB0`, `0x005789D0` |
+| ¹⁴ | `0x0029DBE0` |
+| ¹⁵ | `0x00565E00` |
+| ¹⁶ | `0x002A8550`, `0x002A86A0` |
+| ¹⁷ | `0x005789D0` |
+| ¹⁸ | `0x003CAB00` |
+| ¹⁹ | `0x00228C70` |
+| ²⁰ | `0x00229590` |
+| ²¹ | `0x002B7B80`, `0x002BAF80` |
+| ²² | `0x0055E9E0` |
+| ²³ | `0x002D5EB0` |
+| ²⁴ | `0x005595E0` |
+| ²⁵ | `0x0029DF20` |
+| ²⁶ | `0x00246AD0` |
+| ²⁷ | `0x0029CD90` |
+| ²⁸ | `0x0029E5CD`-`0x0029E67F` |
+| ²⁹ | `0x003FFAB0` |
+| ³⁰ | `0x002DD7E0` |
+| ³¹ | `0x0029DA44`-`0x0029DA56` |
+
+</details>
 
 ### Quest window texts
 
@@ -374,13 +462,32 @@ entry with the higher priority byte, the first on a tie, or 0 when no entry is a
 `0x02B40518` is set; `0x003B53C0` clears both entries before the read.
 
 Entry 1 is compared with entry 0 when entry 0 is active and with a priority of 0 otherwise, and wins only
-with a higher priority (`0x003B538C`-`0x003B5392`). The winner's actor word is tested last, and −1 there gives
-0 (`0x003B539F`-`0x003B53A6`).
+with a higher priority¹. The winner's actor word is tested last, and −1 there gives
+0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B538C`-`0x003B5392` |
+| ² | `0x003B539F`-`0x003B53A6` |
+
+</details>
 
 `0x003B4B60(actor, id)` fills entry 0 when `id` is the first id of the table `0x01EEBAA0` (`0x002EA030(0)`), and entry 1
 when it is the second. The entry gets the actor, the effect from byte `+0xCD` (entry 0) or `+0xCE` (entry 1) of the
 actor's `0x003E56C0` record, the id as its priority byte and state 1, but only when the actor is not −1, its record
-is live and that byte is non-zero (`0x003B4BF4`-`0x003B4C31`, `0x003B4CCA`-`0x003B4CFD`).
+is live and that byte is non-zero¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B4BF4`-`0x003B4C31`, `0x003B4CCA`-`0x003B4CFD` |
+
+</details>
 
 Before entry 1 takes a new actor, the old actor's effect ends (`0x003E6AA0(record, 2)`) and the state becomes 2.
 Each routine compares the winning entry before and after it runs, reading each entry as one qword with
@@ -396,25 +503,42 @@ Each routine compares the winning entry before and after it runs, reading each e
 | `0x02B40514` | `i32` | 0 (zero-filled tail of `.data`) | entry 1's actor, −1 no actor | `0x003B53C0`, −1 (`0x003B53ED`); `0x003B4B60`, the actor (`0x003B4D03`); `0x003B4DA0`, −1 (`0x003B4E2D`); `0x003B5180`, −1 (`0x003B5278`) | `0x003B4B60`, the whole word (`0x003B4C6F`) and its low 16 bits (`0x003B4C8D`); its low 16 bits as the actor index: `0x003B4DA0` (`0x003B4DDE`), `0x003B4E50` (`0x003B4F0D`), `0x003B4FD0` (`0x003B5057`), `0x003B5180` (`0x003B523E`), `0x003B5520` (`0x003B5590`); and as part of the qword at `0x02B40510`, as for `0x02B40511` |
 
 - `0x0036FBB0` first runs `0x003B4E50`, which ends any active summon entry whose actor is -1 or no longer live (record
-  `+0x284` = 0; state 2, `0x003B4EFE`, `0x003B4F5D`) and calls `0x003B4FD0` when the winner changes (`0x003B4FBF`).
+  `+0x284` = 0; state 2, `0x003B4EFE`, `0x003B4F5D`) and calls `0x003B4FD0` when the winner changes¹.
   - It then
     turns record `effect − 1`'s scale A into the floats `0x0209A3C0`, `0x0209A3C4`, `0x0209A3C8` and scale B into `0x0209A3D0`, `0x0209A3D4`, `0x0209A3D8`
-  (each byte × 0.01) and sets bit `0x8` of the light mask `0x02B3F520` (`0x003ACA60`, `0x0036FCB7`), or sets all six to 1.0
-  and clears that bit (`0x003ACA70`, `0x0036FC05`) when no effect is active
+  (each byte × 0.01) and sets bit `0x8` of the light mask `0x02B3F520`², or sets all six to 1.0
+  and clears that bit³ when no effect is active
   ([Character lighting](../Graphics/character-lighting-and-shadows.md)).
 - `0x0036F9F0` returns at once when no summon effect is active (`0x003B5340` gives 0, `0x0036F9FB`). Otherwise it
   copies record `effect − 1`'s colour into the tint packet at `0x02AE9690` and its copies
-  (`0x0036FAC8`-`0x0036FB36`), with the tail floats at `+0x280` and `+0x284` (`0x02AE9660`, `0x02AE9664`), sets a
-  256 × 224 rectangle (`0x02AE9658`, `0x02AE965C`) and submits the packet through `0x003A35E0`.
+ ⁴, with the tail floats at `+0x280` and `+0x284`⁵, sets a
+  256 × 224 rectangle⁶ and submits the packet through `0x003A35E0`.
 - It zeroes `0x02AE9650`-`0x02AE9657` and stores 1.0 at `0x02AE9668`, `0x02AE9670` and `0x02AE9674` (`0x0036FA60`,
-  `0x0036FAA9`-`0x0036FABE`; the store at `0x0036FAA9` is a qword, so it also writes 0 at `0x02AE966C`), and it clears the first word of the template's quad blocks 1 to 3 (`0x02AE9730`,
-  `0x02AE9820`, `0x02AE9910`). `0x0036F550` builds the layered form from the tail fields at `+0x288` to `+0x294`.
+  `0x0036FAA9`-`0x0036FABE`; the store at `0x0036FAA9` is a qword, so it also writes 0 at `0x02AE966C`), and it clears the first word of the template's quad blocks 1 to 3⁷. `0x0036F550` builds the layered form from the tail fields at `+0x288` to `+0x294`.
 - Its other stores are 512.0 at `0x02AE9628` and `0x02AE962C`, 1 at `0x02AE9640` and `0x02AE9644`, `0x0FFFFFF0` at
-  `0x02AE9648`, the floats 0.0, 0.0, 1.0 and 0.875 from `0x00D10FC0` at `0x02AE9680`-`0x02AE968F` (`0x0036FA22`,
-  `0x0036FA29`), the qwords 5, `[0x02AEECF0]`, `0x44` and `0x1001` at `0x02AE96E0`,
-  `0x02AE96F0`, `0x02AE9700` and `0x02AE9710`, and the dword `0x5D` at `0x02AE9720` (`0x0036FA77`-`0x0036FB6B`).
-- It then calls `0x0039D3F0` (`0x0036FB75`) and submits `0x438` bytes from `0x02AE9618` through `0x003A35E0` with
-  the template `0x02AE9600`'s words `+0x08` and `+0x0C` and the microprogram `0x004758E0` (`0x0036FB7A`-`0x0036FB9C`).
+  `0x02AE9648`, the floats 0.0, 0.0, 1.0 and 0.875 from `0x00D10FC0` at `0x02AE9680`-`0x02AE968F`⁸, the qwords 5, `[0x02AEECF0]`, `0x44` and `0x1001` at `0x02AE96E0`,
+  `0x02AE96F0`, `0x02AE9700` and `0x02AE9710`, and the dword `0x5D` at `0x02AE9720`⁹.
+- It then calls `0x0039D3F0`¹⁰ and submits `0x438` bytes from `0x02AE9618` through `0x003A35E0` with
+  the template `0x02AE9600`'s words `+0x08` and `+0x0C` and the microprogram `0x004758E0`¹¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B4FBF` |
+| ² | `0x003ACA60`, `0x0036FCB7` |
+| ³ | `0x003ACA70`, `0x0036FC05` |
+| ⁴ | `0x0036FAC8`-`0x0036FB36` |
+| ⁵ | `0x02AE9660`, `0x02AE9664` |
+| ⁶ | `0x02AE9658`, `0x02AE965C` |
+| ⁷ | `0x02AE9730`, `0x02AE9820`, `0x02AE9910` |
+| ⁸ | `0x0036FA22`, `0x0036FA29` |
+| ⁹ | `0x0036FA77`-`0x0036FB6B` |
+| ¹⁰ | `0x0036FB75` |
+| ¹¹ | `0x0036FB7A`-`0x0036FB9C` |
+
+</details>
 
 Nothing bounds the effect against 64.
 
@@ -465,10 +589,12 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **World, areas and travel** (explained on [ps2data bin families](ps2data-bin-families.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E400` | is called by | `0x00378540` |
-| `0x0032E620` | is called by | `0x00378540` |
-| `0x0036A190` | is called by | `0x00378540` |
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00378540`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00378540`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
+| [`0x0036A190`](resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00378540`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
 
 </details>

@@ -34,8 +34,18 @@ result wrote: 2 pushes the int at `+0xC`, 3 or more the float, 0 or 1 an int 0, 
 callback pushes an int 0 directly. The phase byte is reset to 0 and the call returns 0.
 
 The result stage ignores what the result callback returns. Each push is written inline: a stack already at depth
-63 gets no value and keeps its depth (`0x00262289`, `0x0026231B`, `0x0026233F`, `0x00262363`), and the phase is reset and
-0 returned all the same (`0x00262382`-`0x00262386`).
+63 gets no value and keeps its depth¹, and the phase is reset and
+0 returned all the same².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00262289`, `0x0026231B`, `0x0026233F`, `0x00262363` |
+| ² | `0x00262382`-`0x00262386` |
+
+</details>
 
 So the three callbacks are one fall-through, not three frames. A verb with only a result completes
 on its first invocation; a verb with a poll completes on the first invocation whose poll returns
@@ -76,22 +86,43 @@ poll and no result.
 `0x0050D660` (`debug_bindp`, [script name bindings](script-name-bindings.md)) works on the target
 actor in this order:
 
-- the per-`+0x04` teardown `0x0025AB30`, through the thunk `0x002E35A0` (`0x0050D67B`);
-- `0x002E9A60` turns the popped value into a bound id (`0x0050D68A`), stored in the first scratch dword
-  (`0x0050D6A8`); `0x002E97B0`, called in between (`0x0050D694`), only returns the context, which the
+- the per-`+0x04` teardown `0x0025AB30`, through the thunk `0x002E35A0`¹;
+- `0x002E9A60` turns the popped value into a bound id², stored in the first scratch dword
+ ³; `0x002E97B0`, called in between⁴, only returns the context, which the
   begin drops;
-- `0x0026D610(target, 1, 0)` (`0x0050D6A3`) sets variant 1 and colour 0 (context `+0x14C` and
+- `0x0026D610(target, 1, 0)`⁵ sets variant 1 and colour 0 (context `+0x14C` and
   `+0x14D`, `0x002E609C`) only for a class-3 target with a context, whose byte `+3` masked with
-  `0xE0` is `0x60` (`0x0026D61B`); any other target is left as it is;
-- `0x002EAE20(id)` (`0x0050D6B0`) finds the model's entry on the live list `0x0215FD58` or the requested
+  `0xE0` is `0x60`⁶; any other target is left as it is;
+- `0x002EAE20(id)`⁷ finds the model's entry on the live list `0x0215FD58` or the requested
   list `0x0215FD78`, or pops one from the free list `0x0215FD60` through `0x002E25E0`, and sets holder
-  bit `0x1` of the entry's `+0x20` (`0x002EAE87`); the entry pointer goes to scratch `+8`
-  (`0x0050D6B8`). With the free list empty `0x002E25E0` returns null, and that holder-bit store writes
+  bit `0x1` of the entry's `+0x20`⁸; the entry pointer goes to scratch `+8`
+ ⁹. With the free list empty `0x002E25E0` returns null, and that holder-bit store writes
   address `0x20`, which faults;
-- `0x002EB9D0(entry, −1)` (`0x0050D6BF`) claims a free lane, and a lane of 0 or more is requested with
-  `0x002EB490(entry, lane)` (`0x0050D6D0`);
-- the begin ends in `0x002EC6B0(target, lane)` (`0x0050D6E9`) whether or not the claim succeeded; that
-  call stores the lane's low byte at context `+0x12` (`0x002EC6E3`) when the target has a context.
+- `0x002EB9D0(entry, −1)`¹⁰ claims a free lane, and a lane of 0 or more is requested with
+  `0x002EB490(entry, lane)`¹¹;
+- the begin ends in `0x002EC6B0(target, lane)`¹² whether or not the claim succeeded; that
+  call stores the lane's low byte at context `+0x12`¹³ when the target has a context.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0050D67B` |
+| ² | `0x0050D68A` |
+| ³ | `0x0050D6A8` |
+| ⁴ | `0x0050D694` |
+| ⁵ | `0x0050D6A3` |
+| ⁶ | `0x0026D61B` |
+| ⁷ | `0x0050D6B0` |
+| ⁸ | `0x002EAE87` |
+| ⁹ | `0x0050D6B8` |
+| ¹⁰ | `0x0050D6BF` |
+| ¹¹ | `0x0050D6D0` |
+| ¹² | `0x0050D6E9` |
+| ¹³ | `0x002EC6E3` |
+
+</details>
 
 ### Instantaneous and durative
 
@@ -108,7 +139,16 @@ begin writes it, the poll reads it.
 `wait` (`0x0000`) is the plainest case: its begin `0x0034CF90` pops the frame count and stores it in the first scratch
 dword, scaled by `0x00265880`: counts below 2 pass unscaled while `0x001EDC80` is 0, and the rest are multiplied by the
 frame multiplier `0x01DFE0B4` only when `0x001EDDA0` answers 0, which needs the 60 fps flag `0x01F82E38` set and the
-suppressor `0x01DFE0C0` clear (`0x00265896`-`0x0026589F`, `0x001EDDA0`-`0x001EDDB2`).
+suppressor `0x01DFE0C0` clear¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265896`-`0x0026589F`, `0x001EDDA0`-`0x001EDDB2` |
+
+</details>
 
 The only stores to the flag and the multiplier sit together in `0x001EDDC0`, which sets the flag to 1 and the multiplier
 to 2 for 60 fps (`0x001EDDE8`, `0x001EDDF2`; [startup constants](../Engine-Core/startup-constants.md)), so a
@@ -116,10 +156,19 @@ scaled count is doubled. The raw count is stored instead under any of four gates
 manager 3, `0x001ED130` with `0x001EC5C0` clear for managers 1 and 2, or `0x001ED180` answering 1 (one of its three field
 ids with its three predicates clear, below).
 
-Its poll `0x0034DCC0` decrements that dword and finishes, returning 0, when it goes below zero
-(`0x0034DCCD`). Otherwise it reads the skip mask of the manager named by the target actor's `+0x15`
-(`0x0034DCD7`), stores 0 in the dword when that mask is non-zero (`0x0034DCE4`), and returns 1, so a
+Its poll `0x0034DCC0` decrements that dword and finishes, returning 0, when it goes below zero¹. Otherwise it reads the skip mask of the manager named by the target actor's `+0x15`², stores 0 in the dword when that mask is non-zero³, and returns 1, so a
 skipped wait ends on the following poll.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034DCCD` |
+| ² | `0x0034DCD7` |
+| ³ | `0x0034DCE4` |
+
+</details>
 
 `0x001ED180` holds while the loaded map `0x00314910()` is `0x2F4`, `0x2E9` or `0x27B` and `0x001EC560`,
 `0x00265760` and `0x002E0540` all answer 0 ([zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)).
@@ -129,7 +178,16 @@ skipped wait ends on the following poll.
 `camerasync` (`0x0079`), `effectsync` (`0x00DE`) and `effectreadsync` (`0x00DC`) share the begin
 `0x0034C290`, which pushes a literal 0, pops it back and stores it in the first scratch dword: the verbs
 take no argument because the handler supplies one. `fadesync` (`0x00B9`, `0x0033F4C0`) is the same
-three lines plus a call to `0x00183070`, made as a tail jump (`0x0033F4EE`).
+three lines plus a call to `0x00183070`, made as a tail jump¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0033F4EE` |
+
+</details>
 
 `eventsync` (`0x00ED`) and `eventreadsync` (`0x00E9`) share
 `0x00353E20`, the zero-operand twin of `0x00353A10` (the begin of `eventreadsync_ea` `0x00EA` and
@@ -137,9 +195,19 @@ three lines plus a call to `0x00183070`, made as a tail jump (`0x0033F4EE`).
 value stack the argument-less forms always store 1.
 
 The literal 0 reaches the first scratch dword only below the value stack's limit. At depth 63 the push
-`0x00267F90` writes nothing (`0x00267F96`), and the pop `0x00267E10` then returns the value already in
+`0x00267F90` writes nothing¹, and the pop `0x00267E10` then returns the value already in
 slot 62, so `0x0034C290` and `0x0033F4C0` store that value and `0x00353E20` stores it plus 1, `value + 1`, clamped
-to 1 to 3, `min(max(value + 1, 1), 3)` (`0x00353E42`-`0x00353E69`).
+to 1 to 3, `min(max(value + 1, 1), 3)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267F96` |
+| ² | `0x00353E42`-`0x00353E69` |
+
+</details>
 
 The poll then uses the dword as a selector. `camerasync`'s poll `0x0034C570` asks `0x003DA1A0(index,
 value)` whether that camera channel is still busy, with the index of the current manager (the slot
@@ -147,11 +215,31 @@ value)` whether that camera channel is still busy, with the index of the current
 manager (its `+0x15`) says otherwise.
 
 `0x003DA1A0(index, value)` answers 1 when `value` is 0 to 3, the manager `0x00263FF0(index)` has a non-null `+0xD8` and
-the word at its `+0x118 + value × 0x18` is 1, and 0 otherwise (`0x003DA1A9`-`0x003DA1D0`).
+the word at its `+0x118 + value × 0x18` is 1, and 0 otherwise¹.
 
-The poll returns 0 at once when the channel is idle (`0x0034C591`); for a busy channel it returns
-1 while that mask is zero and 0 once it is non-zero (`0x0034C5A0`). The `+0x15` it reads is the
-target actor's, through `rdx` (`0x0034C593`), which is the issuer for a verb issued with `CALL`.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DA1A9`-`0x003DA1D0` |
+
+</details>
+
+The poll returns 0 at once when the channel is idle¹; for a busy channel it returns
+1 while that mask is zero and 0 once it is non-zero². The `+0x15` it reads is the
+target actor's, through `rdx`³, which is the issuer for a verb issued with `CALL`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034C591` |
+| ² | `0x0034C5A0` |
+| ³ | `0x0034C593` |
+
+</details>
 
 ### Signal waits
 
@@ -171,13 +259,30 @@ install as entry `0x26` of the motion callback table `0x02CA4410` (`0x0041D6C0` 
 
 The four helpers take any `n`. Each addresses byte `n / 8` (rounded toward zero) from its base
 and bit `n % 8` (the remainder keeps the sign of `n`); `0x0026BE50` and `0x0026BE90` set the bit for
-a non-zero second argument and clear it for 0 (`0x0026BE7A`, `0x0026BEBA`).
+a non-zero second argument and clear it for 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026BE7A`, `0x0026BEBA` |
+
+</details>
 
 So an `n` of 64 or more reaches past the eight bytes, `n / 8 >= 8`, and a negative multiple of 8 reaches
 before them, `n / 8 < 0`. A negative remainder shifts the 1 out of the byte: the shift takes its count `& 31`,
-so for `n % 8` of -1 to -7 the byte mask `(1 << ((n % 8) & 31)) & 0xFF` is 0 (`0x0025C10E`, `0x0025C14E`,
-`0x0026BE6E`, `0x0026BEAE`). The test then answers 0, the set and the clear change nothing, and a poll waiting on
+so for `n % 8` of -1 to -7 the byte mask `(1 << ((n % 8) & 31)) & 0xFF` is 0¹. The test then answers 0, the set and the clear change nothing, and a poll waiting on
 such an `n` keeps returning 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025C10E`, `0x0025C14E`, `0x0026BE6E`, `0x0026BEAE` |
+
+</details>
 
 `effectsignalsync(slot, n)` (`0x026A`) waits on one effect slot's bytes instead. Its begin
 `0x00354CB0` pops `n` and the slot and stores the slot's handle, the first dword of record `0x022D94B0 +
@@ -189,12 +294,21 @@ The poll `0x00355160` finishes at once on a zero handle and otherwise keeps the 
 takes the slot from bits `0xFC0` (any other handle returns 1 at once). It then tests bit `n` of
 the bytes at `+0x10` of that slot's record, and returns 1 and clears the bit only when it is set.
 
-Bits `0xFC0` give slots 0 to 63, and `0x0036DFC0` and `0x0036E290` both clamp the slot to 31, `slot > 31 ? 31 : slot`
-(`0x0036DFD8`, `0x0036E2DF`), so slots 32 to 63 use record 31. Neither bounds `n`: the byte is
+Bits `0xFC0` give slots 0 to 63, and `0x0036DFC0` and `0x0036E290` both clamp the slot to 31, `slot > 31 ? 31 : slot`¹, so slots 32 to 63 use record 31. Neither bounds `n`: the byte is
 `n / 8` from `+0x10` and the bit `n % 8`, as for the four helpers above, so an `n` of 64 or more
 reaches past the record's eight signal bytes, `n / 8 >= 8`, and a negative remainder gives an empty mask,
-`(1 << ((n % 8) & 31)) & 0xFF` = 0 (`0x0036E007`, `0x0036E2DA`), on which `0x0036DFC0` returns 0 and `0x0036E290`
+`(1 << ((n % 8) & 31)) & 0xFF` = 0², on which `0x0036DFC0` returns 0 and `0x0036E290`
 sets nothing in the slot.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036DFD8`, `0x0036E2DF` |
+| ² | `0x0036E007`, `0x0036E2DA` |
+
+</details>
 
 ### The skip mask
 
@@ -203,14 +317,32 @@ sets nothing in the slot.
 index and calls `0x00360710`, which sets the bit at the end of its skip bookkeeping (after `0x003601B0(0xF)` and the rest,
 among them `0x002DEDD0`, which stores the current track's point, [music](../Sound-And-Music/music.md)).
 
-It does all of this only for a manager other than 0 whose slot is live with bit `0x80` of its `+0x10` clear
-(`0x00267330`) and whose skip entry is armed, and otherwise returns 0 at once ([event scenes](event-scenes.md)).
-`0x00360A50` clears the bit when the skip ends, for an entry in state 1 or 2 (`0x00360A89`-`0x00360A96`). For state 2 it
-first runs the skip's teardown (`0x00360A98`-`0x00360AC1`) and returns 1; for state 1 it returns 0.
+It does all of this only for a manager other than 0 whose slot is live with bit `0x80` of its `+0x10` clear¹ and whose skip entry is armed, and otherwise returns 0 at once ([event scenes](event-scenes.md)).
+`0x00360A50` clears the bit when the skip ends, for an entry in state 1 or 2². For state 2 it
+first runs the skip's teardown³ and returns 1; for state 1 it returns 0.
 
-Both then zero the entry's state and armed word, clear its bit in `0x022CB9C0` and `0x022CB9D8`, clear the mask bit
-(`0x00360AFA`) and clear bits `0x2000` and `0x80000` of action row 0 (`0x002E1CA0(0, 13)`, `0x002E1CA0(0, 19)`,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267330` |
+| ² | `0x00360A89`-`0x00360A96` |
+| ³ | `0x00360A98`-`0x00360AC1` |
+
+</details>
+
+Both then zero the entry's state and armed word, clear its bit in `0x022CB9C0` and `0x022CB9D8`, clear the mask bit¹ and clear bits `0x2000` and `0x80000` of action row 0 (`0x002E1CA0(0, 13)`, `0x002E1CA0(0, 19)`,
 `0x00360AFF`-`0x00360B12`). An entry in any other state is left as it is and the call returns 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00360AFA` |
+
+</details>
 
 A poll that tests the mask ends its wait when the
 byte is non-zero: `wait` forces its countdown to 0, `camerasync` reports finished, `effectsync`
@@ -224,6 +356,9 @@ aside), the 290 poll slots by 159, and the 1,651 result slots by 1,491. `move` (
 destination. Editing one shared body edits every verb that points at it.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 The callbacks are called as `begin(issuer, target, scratch, stack, manager)`, `poll(issuer, target,
 scratch)`, where an odd return means still running, and `result(issuer, target, scratch, stack)`.
@@ -270,7 +405,12 @@ EffectSlot (`0x18` bytes):
 | `+0x00` | `u32` | handle | the script effect handle |
 | `+0x10` | `u8[8]` | signals | per-slot signal bits |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -282,6 +422,8 @@ EffectSlot (`0x18` bytes):
 | frame multiplier `0x01DFE0B4` | 1 in the image; 2 once `0x001EDDC0` runs for 60 fps (`0x001EDDF2`), the only state in which `0x00265880` applies it |
 | skip-mask readers | 72 call sites of `0x00267310` |
 
+</details>
+
 ## Operations
 
 Per verb call per frame: one lifecycle pass, at most one begin, one poll and one result. A verb
@@ -289,8 +431,13 @@ whose poll returns odd costs one poll per frame until it finishes.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The wait slot's phase byte, result word and scratch block, the family array, the per-manager
 skip mask byte, and the two signal bit arrays with the effect slots' signal bytes.
+
+</details>
 
 ## Modding notes
 
@@ -317,9 +464,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E1CA0` | is called by | `0x00313A00` |
+| [`0x002E1CA0`](../Controls-And-Input/action-availability.md) (on action availability) | is called by | [`0x00313A00`](../Battle-Actions/action-phases.md) (on action phases) |
 
 </details>
 

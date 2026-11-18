@@ -144,6 +144,9 @@ One row per `0xB00` kind, 10 rows, `0x50` to `0x59`.
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 | Fact | Value |
 |---|---|
 | `.efx` files | 3,288, 4,579,689,088 bytes, 1,840 to 25,310,800 bytes each, all under `ps2data/effect_finish` |
@@ -327,8 +330,17 @@ them by definition type or emitter. A field with two forms was reached by more t
 that type's methods, and the reader table has each site.
 
 A field the load function reaches only under a condition is read only when the record's own bytes meet it. Type 2's
-colour at `+0x190` needs byte `+0x4E` to be 1 (`0x00538B48`). One record is long enough to hold that colour and has
+colour at `+0x190` needs byte `+0x4E` to be 1¹. One record is long enough to hold that colour and has
 another byte there, so its four fields are left out.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00538B48` |
+
+</details>
 
 ### Columns of effect-banks-efb-files-rows.tsv and effect-banks-efb-rows.tsv
 
@@ -390,23 +402,45 @@ File offsets of each row, from its first byte.
 | `ticks`, `sprite_row` | bytes `+9` and word `+0xA` of a `show`; `-` otherwise |
 | `jump_to` | word `+0xC` of a `jump`; `-` otherwise |
 
+</details>
+
 ## Loader behaviour
 
 ### The version ladder
 
-`0x003EDAD0` returns at once for a size of 0 (`0x003EDAD2`). It compares the first eight bytes with
-`EFX0010`, `EFX0009` and `EFX0008` (`0x003EDAE4`, `0x003EDB13`, `0x003EDB43`) and sets the version
+`0x003EDAD0` returns at once for a size of 0¹. It compares the first eight bytes with
+`EFX0010`, `EFX0009` and `EFX0008`² and sets the version
 global `0x01EFF3B0` to 10, 9 or 8. No match jumps to `0x003EE24D`, which stores 10 and returns without
 reading a chunk. The successful path ends at the same store, so `0x01EFF3B0` is 10 whenever the
 loader is not running; only the `0x600` record handler reads it, during the parse.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EDAD2` |
+| ² | `0x003EDAE4`, `0x003EDB13`, `0x003EDB43` |
+
+</details>
+
 ### The chunk walk
 
-The walk runs from `+0x10` to `stream + size` (`0x003EDB7B`, `0x003EE221`). At entry the loader clears
+The walk runs from `+0x10` to `stream + size`¹. At entry the loader clears
 bit `0x1` of the current context's byte `+3` and sets it again when the context type is 0, 2, 3, 4,
 5, 6, 8 or 9 (mask `0x37D`, `0x003EDBA2`–`0x003EDBB3`). A chunk takes a run path only when its flag
-is `0x100` and that bit is set (`0x003EDC0C`, `0x003EDC1D`). Anything else goes, one chunk at a time,
+is `0x100` and that bit is set². Anything else goes, one chunk at a time,
 to `0x003EE2D0(chunk + 4, length − 4)`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EDB7B`, `0x003EE221` |
+| ² | `0x003EDC0C`, `0x003EDC1D` |
+
+</details>
 
 Each run path collects the consecutive chunks of its family, takes one block for them in arena 8
 and copies them (`0x0036C1D0(8, 10)`, `0x0036A100`, `0x00861EBA`), then hands each record to its handler
@@ -419,62 +453,165 @@ with the chunk's bias in `0x02EBB738`. The copies truncate lengths to a multiple
 | `0x800` | `+0x870`, or borrowed | `0x003A9730` |
 | `0xA00` | `+0x878`, or borrowed | `0x003A9A70` |
 
-For `0x800` and `0xA00` the loader tests the context's flag byte `+2` bit `0x4` first (`0x003EE117`,
-`0x003EE018`); when it is set it stores the input pointer instead of copying (`0x003EE171`, `0x003EE078`).
+For `0x800` and `0xA00` the loader tests the context's flag byte `+2` bit `0x4` first¹; when it is set it stores the input pointer instead of copying².
 What borrowing implies for the source's lifetime is on the
 [resource ownership](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) page, and
 the repair after a moved source is on the
 [arena page](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EE117`, `0x003EE018` |
+| ² | `0x003EE171`, `0x003EE078` |
+
+</details>
+
 ### The 0x600 family
 
 The sizing pass gives a `0x600` chunk an `0xB0`-byte slot, a `0x610` chunk `0x30 + 4n` bytes with
-`n` the byte at chunk `+0x13` (0 counts as `0x40`), and a `0x620` chunk its own length
-(`0x003EDC8D`–`0x003EDCB1`). A `0x600` copy is zero-filled to its slot (`0x003EDD62`–`0x003EDD79`). Only
-the first run in a stream is parsed: the run flag starts at 1 (`0x003EDAE1`), a later chunk of the
-family is stepped over while it is 0 (`0x003EDC4D`), and the first run clears it (`0x003EDED5`).
+`n` the byte at chunk `+0x13` (0 counts as `0x40`), and a `0x620` chunk its own length¹. A `0x600` copy is zero-filled to its slot². Only
+the first run in a stream is parsed: the run flag starts at 1³, a later chunk of the
+family is stepped over while it is 0⁴, and the first run clears it⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EDC8D`-`0x003EDCB1` |
+| ² | `0x003EDD62`-`0x003EDD79` |
+| ³ | `0x003EDAE1` |
+| ⁴ | `0x003EDC4D` |
+| ⁵ | `0x003EDED5` |
+
+</details>
 
 `0x003A79C0(header)` writes the index byte to the record's `+0`, resets the 29 slots at `+0x2C` to
 the encoded null, registers the record in the table at `[0x02EBEFA8]` (count at `+0`, entries from
-`+8`) and calls `0x00333C80(record)`, which returns `record + 0xA0` (`0x003A79D4`–`0x003A7A21`).
+`+8`) and calls `0x00333C80(record)`, which returns `record + 0xA0`¹.
 
-The index is the header's byte `+1` and the record starts at header `+4` (`0x003A79D4`, `0x003A79DC`); the entry at `+8`
-plus 8 times the index is overwritten and the count goes up by one on every call, also for an index already registered
-(`0x003A7A10`, `0x003A7A1F`). `0x003A79C0` returns `record + 0xA0` itself (`0x003A7A2B`), and the run loop drops it and steps
-`0xB0` bytes (`0x003EDE41`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A79D4`-`0x003A7A21` |
+
+</details>
+
+The index is the header's byte `+1` and the record starts at header `+4`¹; the entry at `+8`
+plus 8 times the index is overwritten and the count goes up by one on every call, also for an index already registered². `0x003A79C0` returns `record + 0xA0` itself³, and the run loop drops it and steps
+`0xB0` bytes⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A79D4`, `0x003A79DC` |
+| ² | `0x003A7A10`, `0x003A7A1F` |
+| ³ | `0x003A7A2B` |
+| ⁴ | `0x003EDE41` |
+
+</details>
 
 `0x00333C80` rewrites an `EFX0009` or `EFX0008` record into the `EFX0010` layout when `0x01EFF3B0` is
-9 or 8 (`0x00333CA1`, `0x00333DFE`). In every version it clears bit `0x2` of `+0x16` when that byte's
+9 or 8¹. In every version it clears bit `0x2` of `+0x16` when that byte's
 high nibble is `0xF`, then sets the high nibble to the index of the last non-zero byte among the
-eleven at `+0x0A` (`0x00333F97`–`0x00333FD9`). The nibble in the file is therefore not the one used.
+eleven at `+0x0A`². The nibble in the file is therefore not the one used.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00333CA1`, `0x00333DFE` |
+| ² | `0x00333F97`-`0x00333FD9` |
+
+</details>
 
 ### The 0x700 records
 
 `0x003A7E80(header, length)` stores the index byte as a word at record `+0xC0` and the subtype at
 `+0xC2`, registers the record in the table `[[0x02EBEFA0]]` at the index, and calls
-`0x004FF270(record, low32(record) + bias)` (`0x003A7E8A`–`0x003A7EC3`). Any index byte is stored: `0x003A7E80` makes no
-comparison with the table's 128 slots (`0x003A7EB7`). `0x003A7E80` returns `record + length`, the chunk's end, since the
-run loop passes the chunk's length less `0x10` (`0x003EDF90`, `0x003A7EC8`–`0x003A7ECC`); the loop drops it and steps by the
-chunk's length (`0x003EDF9C`).
+`0x004FF270(record, low32(record) + bias)`¹. Any index byte is stored: `0x003A7E80` makes no
+comparison with the table's 128 slots². `0x003A7E80` returns `record + length`, the chunk's end, since the
+run loop passes the chunk's length less `0x10`³; the loop drops it and steps by the
+chunk's length⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A7E8A`-`0x003A7EC3` |
+| ² | `0x003A7EB7` |
+| ³ | `0x003EDF90`, `0x003A7EC8`-`0x003A7ECC` |
+| ⁴ | `0x003EDF9C` |
+
+</details>
 
 `0x004FF270` sends subtypes 0 to 3 to `0x00537C80`, `0x00537FA0`, `0x00538350` and `0x005387B0` and returns the record unchanged
-for any other (`0x004FF270`–`0x004FF2A2`).
+for any other¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004FF270`-`0x004FF2A2` |
+
+</details>
 
 Each subtype body rebases a fixed list of stored offsets and returns `record + 0x160`, `0x200`,
-`0x280` or `0x300` (`0x00537CA7`, `0x00537FE3`, `0x005383A1`, `0x0053880F`). A rebase decodes each dword
-with `0x0020E600`, adds the delta and encodes it again with `0x0020E620` (`0x004304F0`, `0x00430AF0`).
+`0x280` or `0x300`¹. A rebase decodes each dword
+with `0x0020E600`, adds the delta and encodes it again with `0x0020E620`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00537CA7`, `0x00537FE3`, `0x005383A1`, `0x0053880F` |
+| ² | `0x004304F0`, `0x00430AF0` |
+
+</details>
 
 ### The 0x800 and 0xA00 records
 
 `0x003A9730` copies the header's id and subtype to payload `+0x280` / `+0x282`, publishes the payload
 at `[[0x02EBEF90]] + id × 8` and calls `0x00442460(payload, low32(payload) + bias)`, which dispatches
-on the subtype (`0x003A973A`–`0x003A9773`, `0x00442460`). `0x003A9A70` copies the id and the element type to
+on the subtype¹. `0x003A9A70` copies the id and the element type to
 `+0x42` / `+0x44`, publishes the payload at `[[0x02EBEF78]] + id × 8` and calls the setup dispatcher
-`0x005004C0(payload, low32(payload) + bias)` (`0x003A9A7A`–`0x003A9AAD`).
+`0x005004C0(payload, low32(payload) + bias)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A973A`-`0x003A9773`, `0x00442460` |
+| ² | `0x003A9A7A`-`0x003A9AAD` |
+
+</details>
 
 Both return the payload plus their second argument, which the run loop sets to the chunk's length less
-`0x10` (`0x003EE0B0`, `0x003EE1B0`), so the result is the chunk's end (`0x003A9778`, `0x003A9AB2`); the loop
-drops it and steps by the chunk's length itself (`0x003EE0BC`, `0x003EE1BC`).
+`0x10`¹, so the result is the chunk's end²; the loop
+drops it and steps by the chunk's length itself³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EE0B0`, `0x003EE1B0` |
+| ² | `0x003A9778`, `0x003A9AB2` |
+| ³ | `0x003EE0BC`, `0x003EE1BC` |
+
+</details>
 
 Neither checks the id against the table size; the tables
 themselves are on the [resource ownership](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md)
@@ -482,18 +619,40 @@ page, and what the records do is on [effect element runtime](effect-element-runt
 
 ### Single chunks and the flag routes
 
-`0x003EE2D0` stores the chunk's bias in `0x02EBB738` and switches on the flag (`0x003EE2DA`–`0x003EE30B`):
+`0x003EE2D0` stores the chunk's bias in `0x02EBB738` and switches on the flag¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EE2DA`-`0x003EE30B` |
+
+</details>
 
 - `0x100`: clears `0x02096B40` and `0x02096BA4` and calls `0x003ED8A0`, which dispatches on the type.
-  It sends `0xB00` to the record store `0x003A9EF0` and `0xA00` to `0x003A99F0` (`0x003EDA78`–`0x003EDAAD`),
+  It sends `0xB00` to the record store `0x003A9EF0` and `0xA00` to `0x003A99F0`¹,
   and has arms for types that no shipped stream carries.
 - `0x101` and `0x102`: make a fixed instance current (`0x0024ED80`: `[0x02096B98]` for `0x101`, `[0x02096C70]` for `0x102`),
-  clear `0x02096BA4` or `0x02096B40` respectively (`0x003EE378`, `0x003EE350`) and go to `0x003EE3B0` or
+  clear `0x02096BA4` or `0x02096B40` respectively² and go to `0x003EE3B0` or
   `0x003EE260`. For a `0xB00` chunk these write the key word 1 or 2 (`0x101` also adds 1 to the slot
-  byte) and call the second record store `0x003AA470` (`0x003EE3E1`–`0x003EE3EF`, `0x003EE291`–`0x003EE29C`).
-- `0x103`: clears both `0x02096B40` and `0x02096BA4` (`0x003EE313`, `0x003EE319`); only type `0x4000` is passed on, its body
-  at `+8` going to `0x0016D680` (`0x003EE324`–`0x003EE338`).
+  byte) and call the second record store `0x003AA470`³.
+- `0x103`: clears both `0x02096B40` and `0x02096BA4`⁴; only type `0x4000` is passed on, its body
+  at `+8` going to `0x0016D680`⁵.
 - Any other flag: the chunk is dropped.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EDA78`-`0x003EDAAD` |
+| ² | `0x003EE378`, `0x003EE350` |
+| ³ | `0x003EE3E1`-`0x003EE3EF`, `0x003EE291`-`0x003EE29C` |
+| ⁴ | `0x003EE313`, `0x003EE319` |
+| ⁵ | `0x003EE324`-`0x003EE338` |
+
+</details>
 
 Type-1 and type-7 contexts never set the run bit, so every chunk of their streams takes this
 route.
@@ -529,39 +688,101 @@ slots), each zeroed; `0x003A76F0` empties the `0x600` table `[0x02EBEFA8]` (256 
 | `0xB00` | `0x003A9EF0` | the record store |
 | `0x1000` | `0x0016D680` | returns its argument and does nothing else |
 
-The `0x600` arm resets the 29 slots at `+0x2C` only for a new record (`0x00333BB0`); an existing
+The `0x600` arm resets the 29 slots at `+0x2C` only for a new record¹; an existing
 record keeps its slots, where the run-path handler `0x003A79C0` resets them every time.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00333BB0` |
+
+</details>
+
 Outside the run block, the `0x500` arm and the `0x601` arm empty a record before freeing it through
-`0x00333C00`, which releases each of the 29 slots (`0x0046F370`, `0x003697F0`) and stores the encoded
+`0x00333C00`, which releases each of the 29 slots¹ and stores the encoded
 null `0x0020E620(0)` in it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046F370`, `0x003697F0` |
+
+</details>
 
 ### The record store
 
 `0x003A9EF0(header)` looks for a node whose word `+0xC`, byte `+0xE` and byte `+0xF` equal the key,
-kind and slot, walking the list at `[0x02EBEF70]` (the context's `+0x18`) through `0x0020E600`
-(`0x003A9EF6`–`0x003A9F3D`). A match is reloaded in place by `0x00500980(node, payload)`
-(`0x003A9F42`), which calls the loader of the node's kind byte `+0xE` from the table above and returns its result; a
-kind byte below `0x50` or above `0x59` returns the payload unchanged (`0x0050098E`, `0x00500A28`). Otherwise the kind
-minus `0x50`, bounded at 9, selects an arm of the table above (`0x003A9F4D`–`0x003A9F76`).
+kind and slot, walking the list at `[0x02EBEF70]` (the context's `+0x18`) through `0x0020E600`¹. A match is reloaded in place by `0x00500980(node, payload)`², which calls the loader of the node's kind byte `+0xE` from the table above and returns its result; a
+kind byte below `0x50` or above `0x59` returns the payload unchanged³. Otherwise the kind
+minus `0x50`, bounded at 9, selects an arm of the table above⁴.
 
-`0x003AA470` is the same search with a six-arm table for kinds `0x50` to `0x55`
-(`0x003AA47C`, `0x003AA4C2`, `0x003AA4DA`). It is reached only from the `0x101` and `0x102` routes,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A9EF6`-`0x003A9F3D` |
+| ² | `0x003A9F42` |
+| ³ | `0x0050098E`, `0x00500A28` |
+| ⁴ | `0x003A9F4D`-`0x003A9F76` |
+
+</details>
+
+`0x003AA470` is the same search with a six-arm table for kinds `0x50` to `0x55`¹. It is reached only from the `0x101` and `0x102` routes,
 which no shipped chunk takes.
-A kind outside `0x50` to `0x55` returns 0 without a node (`0x003AA4DA`, `0x003AA685`).
+A kind outside `0x50` to `0x55` returns 0 without a node².
 
-Its arms build each kind with the same constructor as the first store but a loader of its own (`0x003AA4FD`–`0x003AA5E1`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AA47C`, `0x003AA4C2`, `0x003AA4DA` |
+| ² | `0x003AA4DA`, `0x003AA685` |
+
+</details>
+
+Its arms build each kind with the same constructor as the first store but a loader of its own¹;
 for kinds `0x54` and `0x55` the loader is the first store's, reached through the one-jump thunks `0x0043D8E0` and
 `0x00503D40`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AA4FD`-`0x003AA5E1` |
+
+</details>
+
 A new node is appended to the list: the old last node's encoded link `+0` names it, its own `+4` names the old last
 node (both 0 for a first node), the list's `+8` points at it (for a first node the list's head `+0` as well,
-`0x003AA5F6`, where the search starts, `0x003AA487`) and the count word `+0x18` goes up by one
-(`0x003AA5E9`–`0x003AA678`). The store returns the loader's result.
+`0x003AA5F6`, where the search starts, `0x003AA487`) and the count word `+0x18` goes up by one¹. The store returns the loader's result.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AA5E9`-`0x003AA678` |
+
+</details>
 
 A match is reloaded through `0x00500A60`, which dispatches on the kind byte to the same loaders for kinds `0x50` to
-`0x53` and `0x55`; for any other kind, `0x54` included, it returns the payload and the node is not reloaded
-(`0x00500A7D`–`0x00500A8A`):
+`0x53` and `0x55`; for any other kind, `0x54` included, it returns the payload and the node is not reloaded¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00500A7D`-`0x00500A8A` |
+
+</details>
 
 | Kind | Second loader | What it reads |
 |---:|---|---|
@@ -576,12 +797,21 @@ A match is reloaded through `0x00500A60`, which dispatches on the kind byte to t
   `0x90`-byte sprite row: the four corners `(±0.5 x abs(w) x sx, ±0.5 x abs(h) x sy)` of its rectangle (row
   `+0x08`, `+0x0C` the size `w`, `h`; `+0x18`, `+0x1C` the scales), rotated about z by the row's angle
   `+0x20 x 2π / 360` and offset by `+0x10`, `+0x14`; the last row gets bit `0x2` of `+0x70`
-  (`0x005032D0`-`0x0050378D`).
+ ¹.
 - `0x00503180(record)` then resolves the kind-`0x50` record's slot bytes into handles with
   `0x003AA280(key, 0x52, slot)` and `0x003AA280(key, 0x53, slot)`, and turns each row's pixel rectangle
   into texture coordinates by dividing by the texture's width `+0xA4` and height `+0xA6`.
-- `0x00501750` ends by running `0x00503180` again over every kind-`0x50` record of key 1 (`0x003AA1F0`,
-  `0x003AA240`), so palettes loaded later still reach the sprites.
+- `0x00501750` ends by running `0x00503180` again over every kind-`0x50` record of key 1², so palettes loaded later still reach the sprites.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005032D0`-`0x0050378D` |
+| ² | `0x003AA1F0`, `0x003AA240` |
+
+</details>
 
 ### The kind-0x52 texture loader
 
@@ -592,14 +822,33 @@ it keeps the byte's low six bits as the format `+0xA0`, bit `0x40` as the word `
 `+0xA8`/`+0xAA`. The palettes start at `+0x10`.
 
 Each palette gets two handles: format 0 has 16-colour palettes of `0x40` bytes and format 1 256-colour
-palettes of `0x400` bytes (`0x001837A0` and `0x00183760`); a record with palettes in any other format
+palettes of `0x400` bytes¹; a record with palettes in any other format
 makes the loader return null. The palette data is copied to a new block at
-`+0xB0` (`0x0036A100`), or used in place when bit `0x8` of byte `+2` of `[0x02F97340]` is set.
+`+0xB0`², or used in place when bit `0x8` of byte `+2` of `[0x02F97340]` is set.
 
-The texture's allocated size is the width and height rounded up to a power of two (`0x0017FEA0`). With
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001837A0` and `0x00183760` |
+| ² | `0x0036A100` |
+
+</details>
+
+The texture's allocated size is the width and height rounded up to a power of two¹. With
 `+0x1C8` set it is instead scaled to the reference size: each side is `side / reference ×
 pow2(reference)`, and an image whose size and reference size are both 1920 × 1080 keeps that size. The
 format picks the builder, and its handle goes to `+0xC0` with a code at `+0xB8`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017FEA0` |
+
+</details>
 
 | Format | Builder | Pixel bytes | `+0xB8` |
 |---:|---|---|---:|
@@ -615,17 +864,35 @@ Format bytes `0x80` and `0x81` cannot occur after the six-bit mask; any other fo
 without a texture.
 
 `0x00183A00` and `0x00183C60` create an `RGBA8` texture (format object `0x02CF7480`) of the allocated size,
-or of the image size when the allocation is only one larger. They map it (`0x0017EBD0`), clear it when
+or of the image size when the allocation is only one larger. They map it¹, clear it when
 the sizes differ, and write one byte per texel, the first of each four: `0x00183A00` the low four bits
 of the first byte of each two-byte source pixel, `0x00183C60` the first byte of each three-byte pixel.
-Then they commit it (`0x0062C360`).
+Then they commit it².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017EBD0` |
+| ² | `0x0062C360` |
+
+</details>
 
 ### Uploading textures and palettes
 
-The group draw `0x0024D370` calls `0x003AA2E0(0)` for an instance whose flag byte `+0x36A` has bit `0x1`
-(`0x0024D448`). Once per record table (the latch word `+0x1A` of `[0x02EBEF70]`) it uploads every record of that key:
+The group draw `0x0024D370` calls `0x003AA2E0(0)` for an instance whose flag byte `+0x36A` has bit `0x1`¹. Once per record table (the latch word `+0x1A` of `[0x02EBEF70]`) it uploads every record of that key:
 `0x005011B0` for a kind-`0x52` texture and `0x00501610` for a kind-`0x53` palette; it then frees the
 blocks listed at the table's `+0x10`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024D448` |
+
+</details>
 
 - `0x005011B0` fails on a record without image data `+0xC0`. Each palette of the record (count byte
   `+0xA2`) goes up through `0x002D81D0`, with 256 entries for format byte `+0xA0` 1 and 16 for the
@@ -638,32 +905,92 @@ blocks listed at the table's `+0x10`.
 
 ### The EFB loader
 
-`0x0026FB90(file)` selects arena 8 (`0x0026FBA6`). When a bank is already parsed it first frees
-every type-2 context through `0x0024C550(2)`, which walks `0x020910A0[2]` with `0x0024F410`
-(`0x0026FBAE`–`0x0026FBCE`, `0x0024C599`–`0x0024C5B4`), and then, through its tail jump to `0x0024C460(2)` (`0x0024C5D5`), every
+`0x0026FB90(file)` selects arena 8¹. When a bank is already parsed it first frees
+every type-2 context through `0x0024C550(2)`, which walks `0x020910A0[2]` with `0x0024F410`², and then, through its tail jump to `0x0024C460(2)`³, every
 type-2 instance. In that case it also clears the four bytes at `0x02F8F238` and the row pointer `0x02F8F228` and sets the
-version to 1 (`0x0026FBC0`–`0x0026FBCE`).
+version to 1⁴.
 
-It sets the EFB version `0x02F8F29D` to 1 or 2 from the magic (`0x0026FC13`, `0x0026FC47`); no match pops the arena
-selection and returns 0 (`0x0026FD75`). A refused file that follows a loaded bank therefore leaves no bank loaded:
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026FBA6` |
+| ² | `0x0026FBAE`-`0x0026FBCE`, `0x0024C599`-`0x0024C5B4` |
+| ³ | `0x0024C5D5` |
+| ⁴ | `0x0026FBC0`-`0x0026FBCE` |
+
+</details>
+
+It sets the EFB version `0x02F8F29D` to 1 or 2 from the magic¹; no match pops the arena
+selection and returns 0². A refused file that follows a loaded bank therefore leaves no bank loaded:
 `0x02F8F238` stays 0.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026FC13`, `0x0026FC47` |
+| ² | `0x0026FD75` |
+
+</details>
+
 For each blob it fills a zeroed template with type 2, flags `|= 0x0C` (so the `0x800` and `0xA00` runs are borrowed
-from the file's block) and the blob's index in the word `+0x24` (`0x0026FC85`), builds the context with `0x0024B3A0`,
-makes it current with its record tables, and parses the stream at blob `+0x10` with the blob's `+0` as its size
-(`0x0026FC4E`–`0x0026FCEE`). The next blob starts `0x10` plus that size further on (`0x0026FD2D`).
+from the file's block) and the blob's index in the word `+0x24`¹, builds the context with `0x0024B3A0`,
+makes it current with its record tables, and parses the stream at blob `+0x10` with the blob's `+0` as its size². The next blob starts `0x10` plus that size further on³.
 
-A null context returns 0 with the arena selection popped (`0x0026FC95`); `0x0024B3A0` answers null only for a null
-template (`0x0024B3A9`), and this template is the loader's own stack copy. After the parse it copies the high nibble of
-the lowest-indexed `0x600` record's `+0x16` into the high nibble of the context's byte `+2`, keeping its low nibble
-(`0x0026FD00`–`0x0026FD26`).
+<details>
+<summary>Where in the code</summary>
 
-It then publishes the rows: `0x02F8F228` points past the last blob, `0x02F8F23A` holds the row count and `0x02F8F238` is set
-(`0x0026FD3A`–`0x0026FD56`). Last it runs `0x0024F790` (`0x0026FD64`), which picks the map's entries of the table at
+| | Code |
+|---|---|
+| ¹ | `0x0026FC85` |
+| ² | `0x0026FC4E`-`0x0026FCEE` |
+| ³ | `0x0026FD2D` |
+
+</details>
+
+A null context returns 0 with the arena selection popped¹; `0x0024B3A0` answers null only for a null
+template², and this template is the loader's own stack copy. After the parse it copies the high nibble of
+the lowest-indexed `0x600` record's `+0x16` into the high nibble of the context's byte `+2`, keeping its low nibble³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026FC95` |
+| ² | `0x0024B3A9` |
+| ³ | `0x0026FD00`-`0x0026FD26` |
+
+</details>
+
+It then publishes the rows: `0x02F8F228` points past the last blob, `0x02F8F23A` holds the row count and `0x02F8F238` is set¹. Last it runs `0x0024F790`², which picks the map's entries of the table at
 `0x02F93340` by the map-art name ([effect drawing](effect-drawing.md)), pops the arena selection and returns 1.
 
-The loader also copies the low byte of the file's `u16` blob count `+0x08` into `0x02F8F239` (`0x0026FD3A`-`0x0026FD3E`)
-and stores 0 in `0x02F8F220` (`0x0026FD5D`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026FD3A`-`0x0026FD56` |
+| ² | `0x0026FD64` |
+
+</details>
+
+The loader also copies the low byte of the file's `u16` blob count `+0x08` into `0x02F8F239`¹
+and stores 0 in `0x02F8F220`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026FD3A`-`0x0026FD3E` |
+| ² | `0x0026FD5D` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -675,28 +1002,74 @@ and stores 0 in `0x02F8F220` (`0x0026FD5D`).
 `0x0026FAD0(channel, slot, …)` does nothing until a bank is loaded, or when an instance for the
 channel already exists (`0x0024F680`, which compares only the channel word `+0x04` of the kind-2 instances, not the
 manager word `+0x06`). Otherwise, with arena 8 selected (`0x0026FB22`, popped at `0x0026FB4B`), it walks the rows with
-`0x0026F470(rows [0x02F8F228], count [0x02F8F23A], type 2, channel, slot, manager)` (`0x0026FAED`–`0x0026FB46`).
+`0x0026F470(rows [0x02F8F228], count [0x02F8F23A], type 2, channel, slot, manager)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026FAED`-`0x0026FB46` |
+
+</details>
 
 Whether or not a row matched, it then sets bit `0x8` of the channel byte `0x02F8F23C[channel]` and, when that byte's bit
-`0x1` is clear, bit `0x4` (`0x0026FB50`–`0x0026FB69`). The channel index is not compared with 64 before that store
-(`0x0026FAF9`, `0x0026FB5A`).
+`0x1` is clear, bit `0x4`¹. The channel index is not compared with 64 before that store².
 
-`0x0026FE50(channel)` stops a channel: while a bank is loaded (`0x02F8F238`) it passes the request
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026FB50`-`0x0026FB69` |
+| ² | `0x0026FAF9`, `0x0026FB5A` |
+
+</details>
+
+`0x0026FE50(channel)` stops a channel: while a bank is loaded¹ it passes the request
 `{kind 2, id channel}` to `0x0024DB80`, which unlinks and destroys every kind-2 instance in `0x020910F0[2]`
 whose `u16 +0x04` equals the id, and it clears bits `0x4` and `0x8` of the channel's byte
 `0x02F8F23C[channel]`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02F8F238` |
+
+</details>
+
 The channel bytes are 64 flag bytes at `0x02F8F23C`, one per channel (an instance's word `+0x04`), followed by 32 at
 `0x02F8F27C`, one per issuing manager (the instance's word `+0x06`). The bank reset `0x0026F9F0` (called from `0x00259180`
-at `0x002591E1`) sets all 96 to 3 with twelve 8-byte stores, from `0x02F8F23C` to `0x02F8F294` (`0x0026FA12`-`0x0026FA5F`).
+at `0x002591E1`) sets all 96 to 3 with twelve 8-byte stores, from `0x02F8F23C` to `0x02F8F294`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026FA12`-`0x0026FA5F` |
+
+</details>
 
 The twelve stores are seven bytes apart, from `0x0026FA12`. `0x02F8F23C`, `0x02F8F244`, `0x02F8F24C`, `0x02F8F254`,
 `0x02F8F25C`, `0x02F8F264`, `0x02F8F26C` and `0x02F8F274` take the channel bytes 0-63 eight at a time; `0x02F8F27C`,
 `0x02F8F284`, `0x02F8F28C` and `0x02F8F294` take the manager bytes 0-31.
 
 The update pass holds a bank instance (state 1 then runs only `0x003A7EE0` and `0x003A93F0`) when its channel byte or
-its manager byte has neither bit `0x1` nor bit `0x4` (`0x0024BB2B`-`0x0024BB51`), and the draw gate `0x0024D770` refuses one
-unless both bytes have bit `0x2` (`0x0024D7CD`-`0x0024D7E9`):
+its manager byte has neither bit `0x1` nor bit `0x4`¹, and the draw gate `0x0024D770` refuses one
+unless both bytes have bit `0x2`²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024BB2B`-`0x0024BB51` |
+| ² | `0x0024D7CD`-`0x0024D7E9` |
+
+</details>
 
 | Bit | Meaning | Written by | Read by |
 |---|---|---|---|
@@ -705,22 +1078,55 @@ unless both bytes have bit `0x2` (`0x0024D7CD`-`0x0024D7E9`):
 | `0x4` | run one more step | `0x0026FAD0` (`0x0026FB69`, when bit `0x1` is clear); `0x002700F0(channel, 0)` and `0x0026FFA0(0)`, when bit `0x8` is set (`0x00270115`; `0x0026FFE0`-`0x00270046`); cleared by `0x0026FE50` (`0x0026FE92`), by `0x002700F0(channel, 1)` (`0x00270119`-`0x0027011D`), by `0x0026FFA0(1)` and by the rewrite | `0x0024B9B0` (`0x0024BB36`, `0x0024BB49`, and in the rewrite `0x0024BEBA`, `0x0024BF13`) |
 | `0x8` | started since the last update pass | `0x0026FAD0` (`0x0026FB5D`); cleared by `0x0026FE50` (`0x0026FE92`), by the map teardown's `0x0026F420` (`0x0026F440`-`0x0026F459`) and by the rewrite | `0x002700F0` (`0x0027010F`); `0x0026FFA0` (`0x0026FFF2`, `0x0027002A`) |
 
-After the kind-2 update pass has walked a non-empty list, `0x0024B9B0` rewrites the 64 channel bytes
-(`0x0024BE75`-`0x0024BF5A`): every byte loses bit `0x8`, and a byte that had bit `0x4` also loses bits `0x4` and `0x1`.
+After the kind-2 update pass has walked a non-empty list, `0x0024B9B0` rewrites the 64 channel bytes¹: every byte loses bit `0x8`, and a byte that had bit `0x4` also loses bits `0x4` and `0x1`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024BE75`-`0x0024BF5A` |
+
+</details>
 
 `0x0026FFA0` and
-`0x002700C0` are called with 1 from `0x0026C8C0` (`0x0026CA61`, `0x0026CA6B`). `0x002700F0` is called by `0x003E8440`
-(`0x003E855B`), `0x003E85B0` (`0x003E8656`), `0x003E8690` (`0x003E87B3`) and `0x003E8C50` (`0x003E8D0F`), and `0x00270130` by
-`0x003E8690` (`0x003E87C0`) and `0x003E8C50` (`0x003E8D18`) ([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)). The
+`0x002700C0` are called with 1 from `0x0026C8C0`¹. `0x002700F0` is called by `0x003E8440`², `0x003E85B0`³, `0x003E8690`⁴ and `0x003E8C50`⁵, and `0x00270130` by
+`0x003E8690`⁶ and `0x003E8C50`⁷ ([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)). The
 reset stores the 32 manager bytes, and `0x0024BB49` and `0x0024D7E0` read them.
 
-The third argument of `0x0026FAD0`, the issuing script's manager when `bgeffectplay` (`0x00342880`)
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026CA61`, `0x0026CA6B` |
+| ² | `0x003E855B` |
+| ³ | `0x003E8656` |
+| ⁴ | `0x003E87B3` |
+| ⁵ | `0x003E8D0F` |
+| ⁶ | `0x003E87C0` |
+| ⁷ | `0x003E8D18` |
+
+</details>
+
+The third argument of `0x0026FAD0`, the issuing script's manager when `bgeffectplay`¹
 starts a channel, goes through `0x0026F470` into the instance's word `+0x06`, beside the channel at
 `+0x04`. `0x0026FA80(manager)` passes `{kind 2, +0x06 manager}`
 to `0x0024E7D0`, the twin of `0x0024DB80` keyed on `+0x06`, which unlinks and destroys every bank
 instance that manager started. The skip paths `0x00360710` and `0x00360A50` call it, and so do
-`bgeffectsync` (`0x003436B0`) and `animesync` (`0x00355300`) while their manager is skipping
-(`0x00267310`).
+`bgeffectsync`² and `animesync`³ while their manager is skipping⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00342880` |
+| ² | `0x003436B0` |
+| ³ | `0x00355300` |
+| ⁴ | `0x00267310` |
+
+</details>
 
 `0x0024F650(instance)` returns the next instance of the same list with the same channel word
 `+0x04`, or 0. Two readers walk a channel with it:
@@ -728,31 +1134,79 @@ instance that manager started. The skip paths `0x00360710` and `0x00360A50` call
 - `0x0026FDB0(channel)` answers 0 for a channel of `0x40` or more, 4 with no instance, 2 as soon as
   one instance's state `+0x370` is neither 0 nor 3, else 3 when one is in state 0 and 4 when all
   are in state 3. `0x00473620` turns that into 1 for 2 and 0 otherwise, for `bgeffectstatus`
-  (`0x00343050`) and `bgeffectsync`.
-- `bgeffecttrigger` (`0x003438A0`) calls `0x00270150(channel, n)` through the one-jump stub `0x00473610`, which for `n` of
+ ¹ and `bgeffectsync`.
+- `bgeffecttrigger`² calls `0x00270150(channel, n)` through the one-jump stub `0x00473610`, which for `n` of
   1 to 10 signals
   every instance of the channel (`0x0024FE70`, with arena 8 selected) and puts `n` in the low nibble
   of the word `+0x378` of each one the signal reached.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00343050` |
+| ² | `0x003438A0` |
+
+</details>
+
 `0x0026F470` stops at a row whose byte `+1` is not 1, passes over a type-0 row without moving the row pointer, steps
 over type-1 rows by `0x60`, and for a type-3 row of the requested channel (or any channel when the filter is −1) whose
-slot enable byte is set, looks up the definition (`0x0024F610`) and creates an effect instance of kind 2 (`0x0024B270`)
-(`0x0026F4E3`–`0x0026F5BE`).
+slot enable byte is set, looks up the definition¹ and creates an effect instance of kind 2²³.
 
-Any other type takes a second path (`0x0026F77F`–`0x0026F946`) that creates the same instance
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024F610` |
+| ² | `0x0024B270` |
+| ³ | `0x0026F4E3`-`0x0026F5BE` |
+
+</details>
+
+Any other type takes a second path¹ that creates the same instance
 from a `0xA0`-byte row, with the `0x0026EE00` table at `+0x50` instead of `+0x60` and the three vectors from `+0x60`
 instead of `+0x70`, and copies none of `+0x0E`, `+0x0F`, `+0x10` or bits `0x8`, `0x10` and `0x20` of `+0x0D`. Every
 shipped row is type 3. Which channels the weather code starts is on the [weather](../World-Areas-And-Travel/weather.md)
 page.
 
-The definition byte `+5` is used in both bank versions. `0x0026FAD0` passes type 2 (`0x0026FB38`), and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026F77F`-`0x0026F946` |
+
+</details>
+
+The definition byte `+5` is used in both bank versions. `0x0026FAD0` passes type 2¹, and
 the row builders compare it with the bank version `0x02F8F29D`, which `0x0026FC47` sets to 2 for
 `EFB0002` and `0x0026FBCE`, `0x0026FC13` and `0x0026FF7A` set to 1:
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026FB38` |
+
+</details>
+
 - when the type and the version are both 2, the `0x0024F610` lookup uses key 0 instead of byte `+5`
-  (`0x0026F546`–`0x0026F55B`, `0x0026F7A8`–`0x0026F7BD`), and the instance's `+0x373` is byte `+5` plus 1
-  (`0x0026F731`–`0x0026F748`, `0x0026F904`–`0x0026F91B`);
+ ¹, and the instance's `+0x373` is byte `+5` plus 1
+ ²;
 - otherwise the lookup uses byte `+5` and `+0x373` is 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026F546`-`0x0026F55B`, `0x0026F7A8`-`0x0026F7BD` |
+| ² | `0x0026F731`-`0x0026F748`, `0x0026F904`-`0x0026F91B` |
+
+</details>
 
 Scripts drive the channels through `0x00473640(channel, on, manager)`: with `on` set it runs
 `0x0026FAD0(channel, 0x00265920(), manager)` for the current weather slot, and otherwise
@@ -762,31 +1216,92 @@ the issuing script's manager byte `+0x15`.
 
 ### The map's effect bank
 
-`0x00377DC0(mode, …, index, kind)` gets the map's pack name from `0x002DF880(kind, index, buffer, 0x103)` (`0x00377E09`) and
-builds `PS2Data\efb\<name>.efb` from the text after its last `\` or `/`, less a four-character extension
-(`0x00377E64`–`0x00377EEE`). It takes a fixed block of `0x43D170` bytes tagged `EffMapNo`, with arena 6 selected, and
-queues the read (`0x00377ED0`–`0x00377FF3`). The block is the size of the largest shipped `.efb`.
+`0x00377DC0(mode, …, index, kind)` gets the map's pack name from `0x002DF880(kind, index, buffer, 0x103)`¹ and
+builds `PS2Data\efb\<name>.efb` from the text after its last `\` or `/`, less a four-character extension². It takes a fixed block of `0x43D170` bytes tagged `EffMapNo`, with arena 6 selected, and
+queues the read³. The block is the size of the largest shipped `.efb`.
 
-With no `\` or `/` in the pack name the read is queued with an empty name (`0x00377E58`, `0x00377E7C`, `0x00377F12`), and
-with four characters or fewer after the last one the path is not built either (`0x00377E88`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00377E09` |
+| ² | `0x00377E64`-`0x00377EEE` |
+| ³ | `0x00377ED0`-`0x00377FF3` |
+
+</details>
+
+With no `\` or `/` in the pack name the read is queued with an empty name¹, and
+with four characters or fewer after the last one the path is not built either².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00377E58`, `0x00377E7C`, `0x00377F12` |
+| ² | `0x00377E88` |
+
+</details>
 
 The first argument picks the completion and the global that holds the block ([map
 packs](../World-Areas-And-Travel/mpk-map-pack.md)): mode 1 uses `0x003788F0` and `0x02ADD050` and sets bit `0x20` of the
-pending word `0x02ADD0EC` and the bind word `0x02ADD0F0` (`0x00377F26`–`0x00377F8E`); mode 0 uses `0x003789A0`, `0x02ADD098` and
-bit `0x40` (`0x00377F97`–`0x00377FFF`).
+pending word `0x02ADD0EC` and the bind word `0x02ADD0F0`¹; mode 0 uses `0x003789A0`, `0x02ADD098` and
+bit `0x40`².
 
-`0x003788F0(…, ok)` sets bit `0x20` of both words again while `0x02ADD050` holds a block (`0x00378901`–`0x00378910`). After a
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00377F26`-`0x00377F8E` |
+| ² | `0x00377F97`-`0x00377FFF` |
+
+</details>
+
+`0x003788F0(…, ok)` sets bit `0x20` of both words again while `0x02ADD050` holds a block¹. After a
 good read it parses the block through `0x0026FF90` → `0x0026FB90` with arena 8 selected, clears bit `0x20` of `0x02ADD0F0`
-and publishes the block at `0x02ADD088` (`0x00378920`–`0x0037895B`). It does not test the parse result, so a bank whose
+and publishes the block at `0x02ADD088`². It does not test the parse result, so a bank whose
 magic is refused is published too.
 
-A failed read frees the block (`0x00378975`), clears that bit and zeroes `0x02ADD050` (`0x0037897A`–`0x00378981`); a good read
-with no block only clears the bit (`0x00378967`). The other completion, `0x003789A0`, hands the block to `0x0053DD10`, which
-returns 1 without reading it, and publishes it at `0x02ADD088` too (`0x003789EE`, `0x00378A0B`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00378901`-`0x00378910` |
+| ² | `0x00378920`-`0x0037895B` |
+
+</details>
+
+A failed read frees the block¹, clears that bit and zeroes `0x02ADD050`²; a good read
+with no block only clears the bit³. The other completion, `0x003789A0`, hands the block to `0x0053DD10`, which
+returns 1 without reading it, and publishes it at `0x02ADD088` too⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00378975` |
+| ² | `0x0037897A`-`0x00378981` |
+| ³ | `0x00378967` |
+| ⁴ | `0x003789EE`, `0x00378A0B` |
+
+</details>
 
 Only the map teardown `0x00378230` frees `0x02ADD088`, and it does so after `0x0026FF50` has disposed of
-the type-2 contexts and `0x0026F420` has run (`0x003783E0`–`0x003783FF`). A borrowed bank context never
+the type-2 contexts and `0x0026F420` has run¹. A borrowed bank context never
 outlives the block it reads from.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003783E0`-`0x003783FF` |
+
+</details>
 
 ## Modding notes
 
@@ -830,14 +1345,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Party** (explained on [frame update order](../Engine-Core/frame-update-order.md), [actor managers](../Characters-And-Objects/actor-managers.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0026C8C0` | calls | `0x003590D0`, `0x00359200` |
+| [`0x0026C8C0`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor manager: bind loaded definition payload (on character se tables chse) | calls | [`0x003590D0`](effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x00359200`](../Party/party-leader.md) (on party leader) |
 
 **Story, events and hunts** (explained on [actor managers](../Characters-And-Objects/actor-managers.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0026C8C0` | calls | `0x00377440` |
+| [`0x0026C8C0`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor manager: bind loaded definition payload (on character se tables chse) | calls | [`0x00377440`](../Story-Events-And-Hunts/event-memory.md) (on event memory) |
 
 </details>

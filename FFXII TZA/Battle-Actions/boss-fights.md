@@ -25,44 +25,95 @@ A boss or story fight is not marked by one setting. The area's script builds it 
 The script command `btlAtelSetEventFlagGroup(group, mode)` reaches `0x00239710(actor, mode, group)`
 through its handler `0x0050F8C0`. It stores the group number in the unit's byte `+0xE98`, sets bit `0x1` of
 `+0xE99` for mode 1 and bit `0x2` for mode 2 (clearing them otherwise), and calls
-`0x00306E60(unit, 1)` (`0x0023973A`-`0x00239770`). It returns -1 when the actor has no battle unit (`0x0031B760`,
-`0x0023972C`) and 0 otherwise (`0x0023977A`).
+`0x00306E60(unit, 1)`¹. It returns -1 when the actor has no battle unit² and 0 otherwise³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023973A`-`0x00239770` |
+| ² | `0x0031B760`, `0x0023972C` |
+| ³ | `0x0023977A` |
+
+</details>
 
 `0x00306E60(unit, add)` works only for a non-null enemy-side unit (stats `+0x05` = 1) with a group. It takes the
 unit's slot from `0x002360D0(unit+0x40, 0x00263D30(actor))`: the slot byte that the actor's lane maps to, any value
-but `0xFF` (`0x002360EF`), and a negative result returns (`0x00306EB0`). It sets (`add` = 1) or clears (`add` = 0)
+but `0xFF`¹, and a negative result returns². It sets (`add` = 1) or clears (`add` = 0)
 that slot's bit in the group's member mask, and clears it in the group's defeated mask.
 
-The bit is `1 << (slot & 31)` shifted in 32 bits and sign-extended (`0x00306ECE`, `0x00306ED4`, `0x00306EE7`), so
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002360EF` |
+| ² | `0x00306EB0` |
+
+</details>
+
+The bit is `1 << (slot & 31)` shifted in 32 bits and sign-extended¹, so
 slots 32 and above share the bit of `slot & 31` and slot 31 covers the bits under mask `0xFFFFFFFF80000000`.
 The group's entry is
 `0x02EC13C0 + (group - 1) * 0x18`: the member mask at `+0x00`, the defeated mask at `+0x08` and a pending
-flag at `+0x10` (bit `0x1`). The index `group - 1` has no range test against the 64 entries (`0x00306EB2`-`0x00306EC3`).
+flag at `+0x10` (bit `0x1`). The index `group - 1` has no range test against the 64 entries².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306ECE`, `0x00306ED4`, `0x00306EE7` |
+| ² | `0x00306EB2`-`0x00306EC3` |
+
+</details>
 
 ### A member is defeated
 
-`0x00306F00(unit)` sets the unit's slot bit in the defeated mask (`0x00306F78`), past the same gates and slot
+`0x00306F00(unit)` sets the unit's slot bit in the defeated mask¹, past the same gates and slot
 resolution as `0x00306E60`: a null unit, a null stats record or one whose byte `+5` is not 1, a group byte of 0
-or a negative slot returns 0 (`0x00306F09`-`0x00306F55`). When the defeated mask covers the member
-mask, the group is complete, and it returns 1 after the steps below (`0x00306FF2`, `0x0030701C`); otherwise it
-returns 0 (`0x00306F88`). On completion it:
+or a negative slot returns 0². When the defeated mask covers the member
+mask, the group is complete, and it returns 1 after the steps below³; otherwise it
+returns 0⁴. On completion it:
 
-1. calls `0x00307140(1)`: ten `0x002E1C20(0xC, n)` calls, which set the bit values `0x1`, `0x8`, `0x10`, `0x20`,
-   `0x40`, `0x80`, `0x100`, `0x800`, `0x1000` and `0x100000` (mask `0x1019F9`) of row 12 at `0x0215F1F0`
-   (`0x00307160`-`0x003071BE`), then `0x00359200(1, 2)`, `0x00359330(2, 1, 1)` and
-   `0x0026BD20(2, 0)`;
-2. calls `0x00238B70(1)` and `0x00238AE0(1)`, the battle freeze (below);
-3. with bit `0x1` of `+0xE99` (mode 1), clears unit bit `0x800000000000`, sets the group's pending flag and posts event
-   `0x2005`; otherwise sets unit bit `0x800000000000` and posts event `0x2008`.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306F78` |
+| ² | `0x00306F09`-`0x00306F55` |
+| ³ | `0x00306FF2`, `0x0030701C` |
+| ⁴ | `0x00306F88` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | calls `0x00307140(1)`: ten `0x002E1C20(0xC, n)` calls, which set the bit values `0x1`, `0x8`, `0x10`, `0x20`, `0x40`, `0x80`, `0x100`, `0x800`, `0x1000` and `0x100000` (mask `0x1019F9`) of row 12 at `0x0215F1F0`, then `0x00359200(1, 2)`, `0x00359330(2, 1, 1)` and `0x0026BD20(2, 0)`; | `0x00307160`-`0x003071BE` |
+| 2 | calls `0x00238B70(1)` and `0x00238AE0(1)`, the battle freeze (below); |   |
+| 3 | with bit `0x1` of `+0xE99` (mode 1), clears unit bit `0x800000000000`, sets the group's pending flag and posts event `0x2005`; otherwise sets unit bit `0x800000000000` and posts event `0x2008`. |   |
 
 ### The group-defeated signal
 
-The frame orchestrator calls `0x00307030` (`0x00234717`). When `0x00233D20()` allows it, every pending group
+The frame orchestrator calls `0x00307030`¹. When `0x00233D20()` allows it, every pending group
 has its flag cleared and its number passed to `0x0026ADC0(3, group)`, which stores it in word 3 of the
-array that actor manager 0 points to at `+0x58` (`0x02098E68`), when that manager is active (bit `0x1` of
+array that actor manager 0 points to at `+0x58`², when that manager is active (bit `0x1` of
 `0x02098E20`). `0x00307090` zeroes both masks of all 64 entries and clears their pending flag bit `0x1`
 (`and byte ptr [...], 0xFE`, `0x003070A0`-`0x003070CB`), leaving the flag byte's other bits;
-it is called by the area initialisation (`0x0023442D`).
+it is called by the area initialisation³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234717` |
+| ² | `0x02098E68` |
+| ³ | `0x0023442D` |
+
+</details>
 
 ### Removing enemies
 
@@ -72,32 +123,74 @@ enemy-side unit in group 0.
 
 ### The battle freeze
 
-`0x00238B70(on)` sets or clears bit `0x20` of the battle flags `0x02089340` and sends message `0x30B`
-(`0x002E7C10`) to every unit with bit `0x10` of its first byte. `0x00238AE0(on)` sets or clears bit `0x80`.
+`0x00238B70(on)` sets or clears bit `0x20` of the battle flags `0x02089340` and sends message `0x30B`¹ to every unit with bit `0x10` of its first byte. `0x00238AE0(on)` sets or clears bit `0x80`.
 The script commands `suspendbattle` (`0x0035AB20`: both on, then `0x0035A590`) and `resumebattle`
 (`0x0035A6F0`: `0x00473830(0, 1)`, both off, `0x00267D40(2)`) use the same pair. While bit `0x20` is set, a running
 action is cancelled with reason 2 ([Target selection](target-selection.md)) and idle units are not
 sent back to choose actions ([Action commit](action-commit.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E7C10` |
+
+</details>
+
 `0x00473830(value, mode)` takes the manager from `0x00263FF0(0)` and returns at once when bit `0x1` of the manager's byte
-`+0x10` is clear (`0x0047383E`-`0x0047384C`). Otherwise it walks the indices from the manager's word `+0x1DE` up to, not
-including, that word plus its word `+0x1D6`, and asks `0x00358940(manager, index)` for each record
-(`0x00473853`-`0x00473879`, `0x004738AD`-`0x004738B2`). A record whose qword `+0x30` is null is passed over
-(`0x00473881`-`0x00473886`).
+`+0x10` is clear¹. Otherwise it walks the indices from the manager's word `+0x1DE` up to, not
+including, that word plus its word `+0x1D6`, and asks `0x00358940(manager, index)` for each record². A record whose qword `+0x30` is null is passed over³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0047383E`-`0x0047384C` |
+| ² | `0x00473853`-`0x00473879`, `0x004738AD`-`0x004738B2` |
+| ³ | `0x00473881`-`0x00473886` |
+
+</details>
 
 With mode 1 every such record gets `0x0023A120(record, value)`. With mode 0 a record gets that call only when
-`0x00263BE0(record)` answers 0 or 2 (`0x00473888`-`0x0047388A`, `0x00473893`-`0x004738A8`). Any other mode calls nothing for the
-records (`0x0047388C`-`0x00473891`). The answer of `0x00358940` is used with no null test (`0x00473881`).
+`0x00263BE0(record)` answers 0 or 2¹. Any other mode calls nothing for the
+records². The answer of `0x00358940` is used with no null test³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00473888`-`0x0047388A`, `0x00473893`-`0x004738A8` |
+| ² | `0x0047388C`-`0x00473891` |
+| ³ | `0x00473881` |
+
+</details>
 
 ### The exit lock
 
-`lockmapjump` (`0x0034AD70`) sets bit `0x4` of byte `+0x200` of the running actor manager (`0x002640C0`);
-`unlockmapjump` (`0x0034B1C0`) clears it. `0x00264830` returns 1 when any of actor managers 0-2 (`0x288` apart
+`lockmapjump`¹ sets bit `0x4` of byte `+0x200` of the running actor manager²;
+`unlockmapjump`³ clears it. `0x00264830` returns 1 when any of actor managers 0-2 (`0x288` apart
 from `0x02098E10`) has bit `0x1` of `+0x10` and that bit. The script command `sysucoff` polls it
 (`0x00346A60`, setting its result to 1 at `0x00346A8E`), and an exit trigger that gets 1 from `sysucoff`
 does not jump.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034AD70` |
+| ² | `0x002640C0` |
+| ³ | `0x0034B1C0` |
+
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 In the 1,114 `us` scripts:
 
@@ -116,6 +209,8 @@ In the 1,114 `us` scripts:
 | of those, calling `sysucoff` and branching on its result | 1,525 |
 | of those, calling `sysucoff` before any other command | 1,457 |
 
+</details>
+
 ## Related
 
 - [Quickenings and summons](quickenings-and-summons.md) - another script-visible battle state.
@@ -133,26 +228,30 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 11 calls with 4 other topics</summary>
 
-**Enemy AI and gambits**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0031B760` | is called by | `0x00239040`, `0x003014C0`, `0x00301AD0`, `0x003087E0`, `0x0030F130` |
-
 **Enemy AI and gambits** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [glossary](../Engine-Core/glossary.md), [area of effect](area-of-effect.md), [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0031B760`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning) | is called by | [`0x00239040`](../Party/party-table.md) Battle unit: select ai order set variant from authored unit (on party table)<br>[`0x003014C0`](../Enemy-AI-And-Gambits/gambits.md) Ai order: evaluate and resolve action target (on gambits)<br>[`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets)<br>[`0x003087E0`](area-of-effect.md) Ai order: select final target from candidates (on area of effect)<br>[`0x0030F130`](../Party/party-slots.md) Ai order: build candidate target buffer from stored range and status (on party slots) |
 
 **Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263BE0` | is called by | `0x00226BE0` |
-| `0x00263FF0` | is called by | `0x00226BE0`, `0x002E09A0` |
-| `0x00358940` | is called by | `0x00226BE0` |
+| [`0x00263BE0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00226BE0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock) |
+| [`0x00263FF0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) | is called by | [`0x00226BE0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock)<br>[`0x002E09A0`](../Menus-And-HUD/menus.md) (on menus) |
+| [`0x00358940`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor manager: get record by ordinal (on party during scenes) | is called by | [`0x00226BE0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock) |
 
 **World, areas and travel** (explained on [actor record fields](../Characters-And-Objects/actor-record-fields.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00358940` | is called by | `0x0025E400`, `0x002623A0` |
+| [`0x00358940`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor manager: get record by ordinal (on party during scenes) | is called by | [`0x0025E400`](../Characters-And-Objects/actor-record-fields.md) (on actor record fields)<br>[`0x002623A0`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 </details>

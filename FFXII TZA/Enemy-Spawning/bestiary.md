@@ -71,10 +71,10 @@ of them with a test. Each test is rewritten clause by clause:
 - `getplaymin()` is the minutes of the play clock and `getplaytime()` the play time in seconds (`0x00349700`,
   `0x00348970`, both from the save header's hours, minutes and seconds at `+0x18` to `+0x1B` through `0x00254C90`);
   `0x00254C90(&a, &b, &c)` stores the word `+0x18` and the bytes `+0x1A` and `+0x1B` of the object at `[0x02092758]`, each
-  widened to a dword, through its three pointers in that order (`0x00254C90`-`0x00254CAA`);
-- `btlAtelIsPcOnPoint(-1, N)` holds while the party leader (`0x003272A0`) stands inside region record N of the map
-  (`0x0050FFF0`, `0x002374E0`), and call `0x0290(-1, x, z)` is the leader's ground distance to the point x, z
-  (`0x003448F0`, `0x004686D0`);
+  widened to a dword, through its three pointers in that order¹;
+- `btlAtelIsPcOnPoint(-1, N)` holds while the party leader² stands inside region record N of the map
+ ³, and call `0x0290(-1, x, z)` is the leader's ground distance to the point x, z
+ ⁴;
 - each `g_btl_hunt_` word the tests read is set to 1 in `fon_b01` by Atak, Blok and Stok of the Hunt Club, except
   `g_btl_hunt_fon_アダマンタイマイ`, which the Huntmaster (`バンガ16`) sets, and to 2 by the `hunt_kansi.main` of
   its own zones;
@@ -82,6 +82,18 @@ of them with a test. Each test is rewritten clause by clause:
   [`enemy-spawn-variables.tsv`](enemy-spawn-variables.tsv): a constant by its value, a call result by what the call
   returns, any other word by its writers. A script's file words are one area that all its actors share, so the
   stores of every actor of the script are named.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00254C90`-`0x00254CAA` |
+| ² | `0x003272A0` |
+| ³ | `0x0050FFF0`, `0x002374E0` |
+| ⁴ | `0x003448F0`, `0x004686D0` |
+
+</details>
 
 [`rare-game-catalogue.tsv`](rare-game-catalogue.tsv) has one row for each of the 80 rare game names of those 208
 placements: its maps, levels, Clan Primer entry, trophy and the number of its spawn rules. 31 of them carry a Trophy
@@ -92,8 +104,17 @@ pair of how the zone script enters it and what it tests there, with the tests in
 [`enemy-placement-conditions-terms.tsv`](enemy-placement-conditions-terms.tsv).
 
 A rule entered "when a bank-return selector returns it" has no roll or count test. The selector `0x002354F0` returns
-the first lane of the unit whose kept record has bit `0x4` set (`0x0023555C`) and sets bit `0x4000000` of the unit
-(`0x0023557E`), or returns -1; the script then enters that lane's group.
+the first lane of the unit whose kept record has bit `0x4` set¹ and sets bit `0x4000000` of the unit², or returns -1; the script then enters that lane's group.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023555C` |
+| ² | `0x0023557E` |
+
+</details>
 
 The category is the spawn lifecycle's because a definition does nothing until a zone script spawns it: the
 installer `0x0023A570` applies it to a unit through the spawn record ([Spawn record fields](spawn-record-fields.md)).
@@ -128,44 +149,70 @@ Each line is read as the game reads the files:
 The class row's word `+0x52` is the number of the Clan Primer Bestiary entry whose kill count the enemy's defeats
 raise, for every entry but the two of step 2 ([Clan Primer](../Menus-And-HUD/clan-primer.md), [Handbook files](../Game-Files-And-Data-Tables/handbook-files.md)):
 
-1. At a defeat, `0x003171C0` reads `[[enemy + 0xE68] + 0x52]` (`0x00317213`) and, unless it is `0xFFFF` or the actor's
-   class nibble is 3, passes it to `0x00315820` through the thunk `0x00253750`
-   ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)).
-2. `0x00315820` keeps the count plus one in the save byte `+0x3404` + that number (`0x0031588E`), for a number below
-   `0x200` for which `0x00315D50` returns -1.
-   - The count stops at 254: `0x00315820` adds one to it, holds the sum at `0xFE` (`cmova` at `0x00315884`) and stores
-     the sum plus one (`0x0031588E`), so a defeat past 254 leaves the count at 254.
-   - It returns another value for two numbers of its `menuhandbook.bin` list, which `0x01EED130` pairs with a
-     quest: entry 251, Gilgamesh, with 167, and entry 259, Shadowseer, with 170.
-   - A defeat leaves those two counts unchanged, so the 11 Gilgamesh and 3 Shadowseer definitions name an entry
-     their defeats do not count.
-   - The field-frame sweep `0x00316930` sets each of the two counts to 1 once `0x00315DC0` passes for its quest
-     ([Achievements](../Steam-And-Achievements/achievements.md)), while the count is at most 0 (save
-     byte 0 or 1, `0x003169E0`-`0x003169FA`; the byte becomes 2, `0x00316A0C`).
-3. The entry page's record builder `0x005760A0(record, n)` reads entry *n*'s kill count through `0x00315420(n)`
-   (`0x00576227`), which reads the same byte, save `+0x3404` + *n* (`0x0031545C`), minus 1; a number at or above
-   `0x200` gives -1 (`0x00315424`-`0x0031542C`).
-4. The same builder takes the entry's name from the catalog: the `i32` at `+0x00` of the 12-byte record *n*, a
-   battle-text word for the Bestiary, resolved by `0x003214B0` (`0x0057617B`) and read as string 0 of its row by
-   `0x002B58B0` (`0x00576185`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | At a defeat, `0x003171C0` reads `[[enemy + 0xE68] + 0x52]` and, unless it is `0xFFFF` or the actor's class nibble is 3, passes it to `0x00315820` through the thunk `0x00253750` ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)). | `0x00317213` |
+| 2 | `0x00315820` keeps the count plus one in the save byte `+0x3404` + that number, for a number below `0x200` for which `0x00315D50` returns -1.<br>• The count stops at 254: `0x00315820` adds one to it, holds the sum at `0xFE` (`cmova` at `0x00315884`) and stores the sum plus one, so a defeat past 254 leaves the count at 254.<br>• It returns another value for two numbers of its `menuhandbook.bin` list, which `0x01EED130` pairs with a quest: entry 251, Gilgamesh, with 167, and entry 259, Shadowseer, with 170.<br>• A defeat leaves those two counts unchanged, so the 11 Gilgamesh and 3 Shadowseer definitions name an entry their defeats do not count.<br>• The field-frame sweep `0x00316930` sets each of the two counts to 1 once `0x00315DC0` passes for its quest ([Achievements](../Steam-And-Achievements/achievements.md)), while the count is at most 0 (save byte 0 or 1, `0x003169E0`-`0x003169FA`; the byte becomes 2, `0x00316A0C`). | `0x0031588E`<br>`0x0031588E` |
+| 3 | The entry page's record builder `0x005760A0(record, n)` reads entry *n*'s kill count through `0x00315420(n)`, which reads the same byte, save `+0x3404` + *n*, minus 1; a number at or above `0x200` gives -1. | `0x00576227`<br>`0x0031545C`<br>`0x00315424`-`0x0031542C` |
+| 4 | The same builder takes the entry's name from the catalog: the `i32` at `+0x00` of the 12-byte record *n*, a battle-text word for the Bestiary, resolved by `0x003214B0` and read as string 0 of its row by `0x002B58B0`. | `0x0057617B`<br>`0x00576185` |
 
 Phase `3` of the [action phases](../Battle-Actions/action-phases.md) calls `0x00306010` with the unit, which walks the
 unit's target list `+0x780` (count `+0x77C`, `0x0030601F`-`0x00306025`, `0x00306040`-`0x003060C5`). Each entry whose unit
-`0x0031B760` resolves, other than the unit itself (`0x00306040`-`0x00306053`), is passed with the unit to
-`0x00328530(unit, target)` (`0x0030605B`), and at most one of two entries is marked, since `0x0031B9A0` answers an entry
+`0x0031B760` resolves, other than the unit itself¹, is passed with the unit to
+`0x00328530(unit, target)`², and at most one of two entries is marked, since `0x0031B9A0` answers an entry
 only for a unit whose stats record has byte `+0x05` 1:
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306040`-`0x00306053` |
+| ² | `0x0030605B` |
+
+</details>
+
 - the target's, `0x0031B9A0(target)`, when it is not `0xFFFF` and the acting unit has a stats record `+0x698` with byte
-  `+0x05` 0 (`0x00306060`-`0x0030608A`);
-- the acting unit's, `0x0031B9A0(unit)`, when it is not `0xFFFF` and the target has one (`0x0030608F`-`0x003060B4`).
+  `+0x05` 0¹;
+- the acting unit's, `0x0031B9A0(unit)`, when it is not `0xFFFF` and the target has one².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306060`-`0x0030608A` |
+| ² | `0x0030608F`-`0x003060B4` |
+
+</details>
 
 A mark is `0x00253760(n)`, a jump to `0x00315A90(n)`, which stores 1 in the save byte `+0x3404` + *n* while it is 0, for
-*n* below `0x200` (`0x00315A94`-`0x00315AB7`), so `0x00315420(n)` then reads a count of 0 instead of -1.
+*n* below `0x200`¹, so `0x00315420(n)` then reads a count of 0 instead of -1.
 
-The catalog is kind-7 resource `0x354`, the Bestiary family's base id at `0x00D23740` + 2 × 5 (`0x00575C60`). The US
-build's kind-7 path array `0x01EC73A0`, which `0x002DF9A0` loads in its US case (`0x002DFC0A`) and stores at `0x0215F038` (`0x002DFF7F`), names
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00315A94`-`0x00315AB7` |
+
+</details>
+
+The catalog is kind-7 resource `0x354`, the Bestiary family's base id at `0x00D23740` + 2 × 5¹. The US
+build's kind-7 path array `0x01EC73A0`, which `0x002DF9A0` loads in its US case² and stores at `0x0215F038`³, names
 `myoshiok/us/handbook/menuhandbook_monster.bin` for it. Its 384 entry names are all words of bank 8, the monster
 names. One entry serves every variant of a monster: Wolf and Alpha Wolf both count for entry 2, Wolf.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00575C60` |
+| ² | `0x002DFC0A` |
+| ³ | `0x002DFF7F` |
+
+</details>
 
 202 of the 1,143 placed definitions, in 445 placements, have `0xFFFF` at class row `+0x52` (an empty
 `primer_entry`), which step 1 skips, so their defeats raise no entry's kill count. 73 of them, in 195 placements,
@@ -283,8 +330,18 @@ arguments (`PUSHII`, a pooled int or a pooled float):
 | `btlAtelSetAbility(a, b)` | `0x00510440` → `0x002390B0` | the enemy augment mask `+0xE80`: bit *j* of `a` sets augment 31 - *j*, bit *j* of `b` sets augment 63 - *j*; an actor without a battle unit gets nothing (`0x002390CA`) |
 
 The status table argument is an msp reference (tag 3, resolved by `0x002650B0`): 8 bytes at the script image's
-`[+0x40]` plus the offset. `0x0023A570` has two other callers: `0x00300E40` passes `0xFFFF` (`0x00300F6D`), and `0x003266C0`
-clears unit flag bit `0x4000000` first (`0x00326AFD`), which the enemy path requires.
+`[+0x40]` plus the offset. `0x0023A570` has two other callers: `0x00300E40` passes `0xFFFF`¹, and `0x003266C0`
+clears unit flag bit `0x4000000` first², which the enemy path requires.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00300F6D` |
+| ² | `0x00326AFD` |
+
+</details>
 
 Because the reference level is the placement's own base level, every stat and reward is the base row's value at
 that level and grows by the growth row's value for each level above it ([Stats](../Damage-And-Battle-Formulas/stats.md)):
@@ -330,36 +387,90 @@ So a Wolf placed at levels 2-3 and one placed at levels 6-7 both have 94 HP at t
 The `+0x03` and `+0x15` bits, by their readers:
 
 - `+0x03` bit `0x10`: `0x00238BF0` raises the unit byte `+0x58` to 7 ([Battle units](../Characters-And-Objects/battle-units.md));
-  `0x00236210` returns the motion height without its random part (`0x002362A4`); the gambit target selector
-  `0x00301AD0` tests it (`0x0030268D`).
+  `0x00236210` returns the motion height without its random part¹; the gambit target selector
+  `0x00301AD0` tests it².
 - `+0x03` bit `0x20`: `0x00238BF0` passes it to `0x002E8A10`, which stores it as the render record's shadow kind, mask `0x3000`
   of `+0x304` ([Character lighting and shadows](../Graphics/character-lighting-and-shadows.md)).
 - `0x002E8A10(actor, v)` stores `v & 3` in that mask and also sets bit `0x400000` of the render record's `+0x290`. It
   does nothing for a null actor, a null context `+0xC0`, a context whose dword `+0x00` is -1 or whose low word is
-  `0xFFFF`, a record address of 0, or a record whose dword `+0x284` is 0 (`0x002E8A10`-`0x002E8A62`).
-- `+0x15` bit `0x8`: `0x0031AA30` leaves the target-kind word at 0 for an enemy (`0x0031AACF`); bits `0x8` or `0x10`: it leaves the
-  reach word at -1 instead of `0x01EED2D0[action kind]` (`0x0031AB39`). `0x0031AA30` runs from `0x00321060` and
-  `0x00328530`, and `0x0031AB80` tail-jumps to it (`0x0031ABC5`).
+  `0xFFFF`, a record address of 0, or a record whose dword `+0x284` is 0³.
+- `+0x15` bit `0x8`: `0x0031AA30` leaves the target-kind word at 0 for an enemy⁴; bits `0x8` or `0x10`: it leaves the
+  reach word at -1 instead of `0x01EED2D0[action kind]`⁵. `0x0031AA30` runs from `0x00321060` and
+  `0x00328530`, and `0x0031AB80` tail-jumps to it⁶.
 
-`0x0031AA30(unit, _, id, out)` first stores -1 in the dword `out + 4` and 0 in the dword `out + 0`
-(`0x0031AA48`-`0x0031AA58`), and answers -1 when `0x00322C50(0x14, id, 0)` refuses the id (`0x0031AA60`-`0x0031AA6F`); otherwise
-it answers 0 (`0x0031AB5D`).
+<details>
+<summary>Where in the code</summary>
 
-For the action row it calls `0x0020E600(table dword +0x0C)` on the table `[0x02EBF138]` twice, for the null test
-(`0x0031AA83`) and for the value (`0x0031AA97`): the row is that section at `id * stride`, the stride being the table's
-word `+0x08`, or address 0 when the table or the section is null (`0x0031AA74`-`0x0031AAAE`). A row address of 0 is not
+| | Code |
+|---|---|
+| ¹ | `0x002362A4` |
+| ² | `0x0030268D` |
+| ³ | `0x002E8A10`-`0x002E8A62` |
+| ⁴ | `0x0031AACF` |
+| ⁵ | `0x0031AB39` |
+| ⁶ | `0x0031ABC5` |
+
+</details>
+
+`0x0031AA30(unit, _, id, out)` first stores -1 in the dword `out + 4` and 0 in the dword `out + 0`¹, and answers -1 when `0x00322C50(0x14, id, 0)` refuses the id²; otherwise
+it answers 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031AA48`-`0x0031AA58` |
+| ² | `0x0031AA60`-`0x0031AA6F` |
+| ³ | `0x0031AB5D` |
+
+</details>
+
+For the action row it calls `0x0020E600(table dword +0x0C)` on the table `[0x02EBF138]` twice, for the null test¹ and for the value²: the row is that section at `id * stride`, the stride being the table's
+word `+0x08`, or address 0 when the table or the section is null³. A row address of 0 is not
 handled: no test stands before the row reads at `0x0031AB02`, `0x0031AB10` and `0x0031AB3F`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031AA83` |
+| ² | `0x0031AA97` |
+| ³ | `0x0031AA74`-`0x0031AAAE` |
+
+</details>
 
 The target-kind dword `out + 0` becomes 3, or 4 when the action row's dword `+0x0C` has bit `0x800`, for a party
 member (stats kind 0) and, unless it is the kind-1 unit named below, for a unit whose class nibble `0x00263C20(actor)`
 gives is 3. It becomes 1, or 2 with that bit, for a kind-1 unit of another nibble. It keeps 0 for a kind-1 unit whose
-enemy row byte `+0x15` has bit `0x8`, tested before the nibble (`0x0031AAC2`-`0x0031AAD3`), and for a unit of another
-nibble with no stats record or of a kind above 1 (`0x0031AAB1`-`0x0031AB1D`).
+enemy row byte `+0x15` has bit `0x8`, tested before the nibble¹, and for a unit of another
+nibble with no stats record or of a kind above 1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031AAC2`-`0x0031AAD3` |
+| ² | `0x0031AAB1`-`0x0031AB1D` |
+
+</details>
 
 The reach dword `out + 4` becomes `0x01EED2D0[row byte +0x1E]`, except for a kind-1 unit whose enemy row byte `+0x15`
-has a bit of `0x18` (`0x0031AB20`-`0x0031AB4D`), and `0x0031A990(row, out + 8)` fills the rest (`0x0031AB51`-`0x0031AB58`). A
-null unit is not handled once the id is accepted: its test leads to the read of the actor pointer `+0x10`
-(`0x0031AAB1`-`0x0031AAB4`, `0x0031AAE2`).
+has a bit of `0x18`¹, and `0x0031A990(row, out + 8)` fills the rest². A
+null unit is not handled once the id is accepted: its test leads to the read of the actor pointer `+0x10`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031AB20`-`0x0031AB4D` |
+| ² | `0x0031AB51`-`0x0031AB58` |
+| ³ | `0x0031AAB1`-`0x0031AAB4`, `0x0031AAE2` |
+
+</details>
 
 ### Colour and model variants
 
@@ -367,36 +478,70 @@ Two bytes of each enemy definition choose how its model looks: the variant picks
 which also sets its scale and pose entry, and the colour picks that record's option number. So every chocobo uses the
 one model `m1066`, and only the colour number tells a Red Chocobo (1) from a Brown one (5).
 
-`0x0031C540(actorId, &colour, &variant)` resolves the id to its actor (`0x003588B0`) and the actor's unit (`0x00263E30`,
+`0x0031C540(actorId, &colour, &variant)` resolves the id to its actor¹ and the actor's unit (`0x00263E30`,
 `+0x30`), and reads the two bytes from the unit's definition (`[unit + 0xE60]`, `+0x12` and `+0x11`) when the
 unit's row `+0x698` byte `+5` is 1. Otherwise it fails with both 0 and a non-zero return.
 
-Both outputs are zeroed first (`0x0031C56F`, `0x0031C575`), and the id is resolved only while battle flag
-`0x02089340` bit `0x10` is set (`0x0031C54A`): the answer is −1 without the flag, the actor, the unit or its row
-(`0x0031C5C2`), −2 for a row whose byte `+5` is not 1 (`0x0031C592`), and 0 after a read (`0x0031C5A9`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003588B0` |
+
+</details>
+
+Both outputs are zeroed first¹, and the id is resolved only while battle flag
+`0x02089340` bit `0x10` is set²: the answer is −1 without the flag, the actor, the unit or its row³, −2 for a row whose byte `+5` is not 1⁴, and 0 after a read⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031C56F`, `0x0031C575` |
+| ² | `0x0031C54A` |
+| ³ | `0x0031C5C2` |
+| ⁴ | `0x0031C592` |
+| ⁵ | `0x0031C5A9` |
+
+</details>
 
 The model rebuild hands them on as
-`0x0026D610(actor, variant, colour)` (`0x0037B77C`-`0x0037B7A5`), or as variant 1 and colour 0 when the read fails
+`0x0026D610(actor, variant, colour)`¹, or as variant 1 and colour 0 when the read fails
 ([actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md)). From there:
 
-1. `0x0026D610` stores variant and colour at the actor's secondary `+0x14C` and `+0x14D` (`0x002E6090`).
-2. The presentation set-up `0x002E28E0` passes both to `0x0042FB80` (`0x002E2986`-`0x002E2998`), whose initialiser
-   `0x00420480` keeps the variant at render record `+0x5C`, 1 when it is 0 (`0x00420557`-`0x00420568`), and the colour at
-   `+0x5D` (`0x0042056C`-`0x00420576`).
-3. The bind `0x0041F340` hands both to the model row (`0x0041F641`-`0x0041F69E`, `0x004780C0`). `0x00504F00` matches the
-   variant against the model's `@FOR` record keys (`+0xB8`; the first record's key when no key matches, 0 with no
-   record or a first key of `0xFF`, `0x005050A2`-`0x005050C8`)
-   ([model files](../Graphics/model-files-cm-ca.md)).
-4. `0x00504F00` keeps the colour as the option number `+0xB9`
-   while it is below the `@FOR` option count `+0x33` and not negative, else 0 (`0x005050DB`-`0x0050510B`).
-5. The variant also picks the `@FOR` scale (`0x00504840`, record `+0x26C`) and the pose sequencer entry
-   (`0x004772E0`, record `+0x450`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037B77C`-`0x0037B7A5` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x0026D610` stores variant and colour at the actor's secondary `+0x14C` and `+0x14D`. | `0x002E6090` |
+| 2 | The presentation set-up `0x002E28E0` passes both to `0x0042FB80`, whose initialiser `0x00420480` keeps the variant at render record `+0x5C`, 1 when it is 0, and the colour at `+0x5D`. | `0x002E2986`-`0x002E2998`<br>`0x00420557`-`0x00420568`<br>`0x0042056C`-`0x00420576` |
+| 3 | The bind `0x0041F340` hands both to the model row. `0x00504F00` matches the variant against the model's `@FOR` record keys (`+0xB8`; the first record's key when no key matches, 0 with no record or a first key of `0xFF`, `0x005050A2`-`0x005050C8`) ([model files](../Graphics/model-files-cm-ca.md)). | `0x0041F641`-`0x0041F69E`, `0x004780C0` |
+| 4 | `0x00504F00` keeps the colour as the option number `+0xB9` while it is below the `@FOR` option count `+0x33` and not negative, else 0. | `0x005050DB`-`0x0050510B` |
+| 5 | The variant also picks the `@FOR` scale (`0x00504840`, record `+0x26C`) and the pose sequencer entry (`0x004772E0`, record `+0x450`). |   |
 
 Over the 1,146 definitions, `+0x12` is 0 on 1,065, 1 on 46, 2 on 20, 3 on 8, 4 on 3 and 5 on 4; `+0x11` is 0 on
 1,046, 1 on 27, 2 on 22, 3 on 21, 4 on 21, 5 on 3, 6 on 4, and 7 and 8 on one each. 1,018 rows have both 0.
 
-The chocobos are one model, `m1066` (`0x006D002A`), with one `@FOR` record (key 1) and six option numbers. Every
+The chocobos are one model, `m1066`¹, with one `@FOR` record (key 1) and six option numbers. Every
 chocobo definition has variant 0 and one of these colours:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006D002A` |
+
+</details>
 
 | Colour (`+0x12`) | Definitions |
 |---|---|
@@ -432,37 +577,63 @@ chocobo definition has variant 0 and one of these colours:
 
 The other bytes (`08`-`0F`, `13`-`17`, `19`-`1F`, `24`, `2E`-`2F`, `42`-`51`) are 0 in every row.
 
-`0x0031B9A0(unit)` returns the class row's Bestiary entry word `+0x52` (`0x0031B9CE`-`0x0031B9D5`) only for a unit whose
+`0x0031B9A0(unit)` returns the class row's Bestiary entry word `+0x52`¹ only for a unit whose
 stats record is of kind 1 and whose class nibble `0x00263C20(actor)` gives is not 3; for a null unit, a unit with no
-stats record and every other unit it returns `0xFFFF` (`0x0031B9A9`-`0x0031B9E4`).
+stats record and every other unit it returns `0xFFFF`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B9CE`-`0x0031B9D5` |
+| ² | `0x0031B9A9`-`0x0031B9E4` |
+
+</details>
 
 The `+0x12` and `+0x18` bits, by their readers:
 
 - `+0x12` bits `0x7`: `0x00329F80(unit, action)` picks the action effect by the action's class byte `+0x21`, 0 to 8, and
-  starts no effect for a class above 8 or while the unit's dword `+0x774` is not -1 (`0x00329F86`-`0x00329F93`,
-  `0x00329FE7`-`0x00329FEF`).
+  starts no effect for a class above 8 or while the unit's dword `+0x774` is not -1¹.
 - For a unit whose stats record `+0x698` is of kind 1, its byte `+0x05`, the value is entry
   `5 × class + (+0x12 bits 0x7)` of the table at `0x00D10720`, and a value of those bits above 4 starts no effect
-  (`0x00329F99`-`0x00329FBD`, `0x0032A016`-`0x0032A026`).
+ ².
 - A party member, kind 0, reads the table at `0x00D106B0`, two values per class, the second for a stats record whose
-  byte `+0x04` is `0x1B` to `0x27` (`0x00329FC5`-`0x00329FDE`, `0x00329FF1`-`0x0032A00C`); any other unit reads column 0 of
+  byte `+0x04` is `0x1B` to `0x27`³; any other unit reads column 0 of
   `0x00D10720`.
 - A value of -1 starts nothing; any other goes to `0x002EACD0(unit dword +0x08, 1, unit + 8, value)`, whose answer is
-  kept at `+0x774` (`0x0032A02E`-`0x0032A045`). Row 0 of both tables holds -1 only, so class 0 starts no effect on any
+  kept at `+0x774`⁴. Row 0 of both tables holds -1 only, so class 0 starts no effect on any
   path.
 - `+0x12` bits `0x10` and `0x40`: `0x00238BF0` hands bit `0x10` to `0x0026A3A0` (actor `+0x09` bit `0x40`) and bit `0x40` to `0x0026A430`
   (actor `+0x08` bit `0x8` and `+0x09` bit `0x40`), the bits `partyusecharhit` sets ([Party verbs](../Scripts-And-Script-Commands/party-verbs.md)).
 - `+0x12` bit `0x20`: the view builder `0x0031ADB0` reports kind 1 instead of 2 for a target with it,
   except a target whose `+0x698` record has byte `+5` = 0, which gets kind 2 without the test
-  (`0x0031B379`-`0x0031B3A1`).
-- `+0x12` bit `0x80`: `0x003879C0`, `0x00390AB0` (`0x00390B93`, `0x00390C16`) and the pair clearance `0x0033D660` (`0x0033D794`)
+ ⁵.
+- `+0x12` bit `0x80`: `0x003879C0`, `0x00390AB0`⁶ and the pair clearance `0x0033D660`⁷
   ([Battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)).
-- `+0x18` bits `0xE`, the value 4: the target list notices every unit (`0x003248F8`), actor `+0x13` bit `0x80` is set
-  (`0x00238E23`), and `0x00233EA0`, `0x00233F70`, `0x0031E880` and `0x00325260` test it too.
+- `+0x18` bits `0xE`, the value 4: the target list notices every unit⁸, actor `+0x13` bit `0x80` is set
+ ⁹, and `0x00233EA0`, `0x00233F70`, `0x0031E880` and `0x00325260` test it too.
 - `+0x18` bits `0xE`, other values: the locomotion functions `0x003357B0`, `0x00336710`, `0x00336CE0`, `0x00337470`,
   `0x003377C0`, `0x00337C10`, `0x00337D90`, `0x00338490`, `0x0033A240`, `0x0033C310` and `0x0033E1F0` compare the group with 0, 1,
   2, 4 and 5.
 - `+0x18` bits under mask `0x70`: the placement height byte `+0x1F6` (`0x00239E10`, [Enemy spawning](enemy-spawning.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00329F86`-`0x00329F93`, `0x00329FE7`-`0x00329FEF` |
+| ² | `0x00329F99`-`0x00329FBD`, `0x0032A016`-`0x0032A026` |
+| ³ | `0x00329FC5`-`0x00329FDE`, `0x00329FF1`-`0x0032A00C` |
+| ⁴ | `0x0032A02E`-`0x0032A045` |
+| ⁵ | `0x0031B379`-`0x0031B3A1` |
+| ⁶ | `0x00390B93`, `0x00390C16` |
+| ⁷ | `0x0033D794` |
+| ⁸ | `0x003248F8` |
+| ⁹ | `0x00238E23` |
+
+</details>
 
 The type `+0x04`, by its readers:
 
@@ -472,26 +643,44 @@ The type `+0x04`, by its readers:
   `0x0038825F`, `0x003889FF`, `0x0038D10D`, `0x0038D180`, `0x0038D481`, `0x0038D561`, `0x0038D680`, `0x0038DE21`, `0x0038E09E` and
   `0x0038E7E3`.
 - At `0x0038D680` a context word `+0x18` of 13 stores 1 in the dwords `0x02AEDFBC` and `0x02AEDFB8`; any other stores twice
-  the target's dword `+0x48` in the dword `0x02AEE02C` (`0x0038D680`-`0x0038D6A2`).
+  the target's dword `+0x48` in the dword `0x02AEE02C`¹.
 - The drain slot `0x0038D400(source, target, context)` writes the scratch words of
   [Damage formula](../Damage-And-Battle-Formulas/damage-formula.md#the-scratch-block). A source that is its own target sets
-  `0x02AEDFB8` and `0x02AEDFBC` to 1 (`0x0038D418`-`0x0038D427`); attack `0x02AEE058` below defence `0x02AEE05C` sets
-  `0x02AEDFB8` to 1 and the target's HP loss `0x02AEE004` and the user's HP gain `0x02AEE018` to 0 (`0x0038D441`-`0x0038D46B`).
-- Otherwise the amount is `trunc((attack - defence) * scale)`, the scale `0x02AEE054` (`0x0038D487`-`0x0038D48F`). It
-  goes to the target's loss and the user's gain; against a target of type 13 (`0x0038D481`) it goes to the target's
+  `0x02AEDFB8` and `0x02AEDFBC` to 1²; attack `0x02AEE058` below defence `0x02AEE05C` sets
+  `0x02AEDFB8` to 1 and the target's HP loss `0x02AEE004` and the user's HP gain `0x02AEE018` to 0³.
+- Otherwise the amount is `trunc((attack - defence) * scale)`, the scale `0x02AEE054`⁴. It
+  goes to the target's loss and the user's gain; against a target of type 13⁵ it goes to the target's
   gain `0x02AEE008` and the user's loss `0x02AEE014` instead, while the target's loss takes the old user's loss and the
-  user's gain the old target's gain (`0x0038D4A1`-`0x0038D4BF`).
+  user's gain the old target's gain⁶.
 - A source whose unit `+0x55` is 13 then swaps the target's loss and gain with the user's (`0x0038D4C5`-`0x0038D50B`,
   the unit kept at `[0x02EBF188]`). Reverse on the target (context `+0x08` bit `0x1000`) swaps the target's loss and
-  gain, and Reverse on the source (context `+0x04` bit `0x1000`) the user's (`0x0038D52C`-`0x0038D55B`).
-- A final block recomputes the amount and rewrites (`0x0038D561`-`0x0038D5F8`). Against a type-13 target the target's
+  gain, and Reverse on the source (context `+0x04` bit `0x1000`) the user's⁷.
+- A final block recomputes the amount and rewrites⁸. Against a type-13 target the target's
   gain and the user's loss are the amount, or with Reverse on the target the target's loss is the amount and its
   gain and the user's loss -1. Against any other target the target's loss and the user's gain are the amount, or
   with Reverse on the target the target's gain is the amount and its loss and the user's gain -1.
 - With Reverse on the source the user's word just written moves to the other user's word, and the first becomes
-  -1: against a type-13 target the user's gain takes it and the slot returns (`0x0038D5A8`-`0x0038D5C7`); otherwise
+  -1: against a type-13 target the user's gain takes it and the slot returns⁹; otherwise
   the user's loss takes it. The slot then calls `0x00387B00(source, target)` when the user's loss `0x02AEE014` is not
-  -1 (`0x0038D602`-`0x0038D60D`).
+  -1¹⁰.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038D680`-`0x0038D6A2` |
+| ² | `0x0038D418`-`0x0038D427` |
+| ³ | `0x0038D441`-`0x0038D46B` |
+| ⁴ | `0x0038D487`-`0x0038D48F` |
+| ⁵ | `0x0038D481` |
+| ⁶ | `0x0038D4A1`-`0x0038D4BF` |
+| ⁷ | `0x0038D52C`-`0x0038D55B` |
+| ⁸ | `0x0038D561`-`0x0038D5F8` |
+| ⁹ | `0x0038D5A8`-`0x0038D5C7` |
+| ¹⁰ | `0x0038D602`-`0x0038D60D` |
+
+</details>
 
 ### The base and growth stat rows (slots 5 and 6, 56 bytes)
 
@@ -526,9 +715,18 @@ which `0x003EA710` binds, and no instruction reads or writes them afterwards. Ev
 - The definition pointer unit `+0xE60` is loaded or stored at 32 sites in 25 functions and the class row pointer
   `+0xE68` at 52 sites in 33 functions, and the pointers were followed into the callees that receive them.
   `0x00313120` reads `+0x04`-`+0x06` of the row at `+0xE60` of the unit `0x0031B7E0` resolves from the actor handle the verb
-  `spattackplay` pops (`0x0031337B`), and `0x00317400` reads `+0x7A`: both treat the row as a party row.
+  `spattackplay` pops¹, and `0x00317400` reads `+0x7A`: both treat the row as a party row.
 - `+0xE70` and `+0xE78` (the stat rows) are stored by `0x0023A570` and loaded only by `0x002F8BB0`, `0x002F90C0`, `0x00312280`
   and `0x00317090`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031337B` |
+
+</details>
 
 No instruction in that set touches the bytes above, so the TSV gives them raw.
 
@@ -624,38 +822,50 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [actor record](../Characters-And-Objects/actor-record.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E6090` | is called by | `0x00265B60` |
+| [`0x002E6090`](bestiary.md) | is called by | [`0x00265B60`](../Characters-And-Objects/actor-record.md) (on actor record) |
 
 **Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x003206E0` |
+| [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse) | is called by | [`0x003206E0`](../Characters-And-Objects/battle-units.md) (on battle units) |
 
 **Controls and input** (explained on [debug menu](../Engine-Core/debug-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001D50D0` | is called by | `0x00197160`, `0x00197790`, `0x00197800` |
+| [`0x001D50D0`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships) | is called by | [`0x00197160`](../Controls-And-Input/controls.md) Input manager: translate binding profile to control state (on controls)<br>[`0x00197790`](../Controls-And-Input/on-screen-keyboard.md) (on on screen keyboard)<br>[`0x00197800`](../Controls-And-Input/on-screen-keyboard.md) (on on screen keyboard) |
 
 **Items, equipment, shops and licenses** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236C30` | calls | `0x00238660` |
+| [`0x00236C30`](../Menus-And-HUD/text-string-tables.md) (on text string tables) | calls | [`0x00238660`](../Items-Equipment-Shops-And-Licenses/shops.md) (on shops) |
 
 **Saving, loading and settings** (explained on [save file format](../Saving-Loading-And-Settings/save-file-format.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00865AE0` | is called by | `0x00866200` |
+| [`0x00865AE0`](../Saving-Loading-And-Settings/save-file-format.md) (on save file format) | is called by | [`0x00866200`](../Saving-Loading-And-Settings/save-file-format.md) (on save file format) |
 
 **World, areas and travel** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236C30` | calls | `0x003847B0` |
+| [`0x00236C30`](../Menus-And-HUD/text-string-tables.md) (on text string tables) | calls | [`0x003847B0`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables) |
 
 </details>

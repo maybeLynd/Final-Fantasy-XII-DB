@@ -45,10 +45,20 @@ The columns come from the executable's path arrays, the US size table and the ar
 ### The path array table
 
 The table at `0x0215F000` holds 41 pointers, one per kind, each 0 at load (the zero-filled tail of `.data`).
-`0x002DF9A0(languageId, flag)` fills it once at boot from `0x0022A0B0` (`0x0022A159`): first the arrays every language
-shares (`0x002DF9C5`-`0x002DFBA8`), then the language's own arrays through an 11-entry jump table on `languageId - 1`
-(`0x002DFBAF`-`0x002DFBC9`). That compare is unsigned, so id 0 and every id above 11 take the default arm, and the
+`0x002DF9A0(languageId, flag)` fills it once at boot from `0x0022A0B0`¹: first the arrays every language
+shares², then the language's own arrays through an 11-entry jump table on `languageId - 1`³. That compare is unsigned, so id 0 and every id above 11 take the default arm, and the
 entries for ids 9 and 10 point at the default arm too. Every arm ends by storing the kind 7 array at `0x002DFF7F`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A159` |
+| ² | `0x002DF9C5`-`0x002DFBA8` |
+| ³ | `0x002DFBAF`-`0x002DFBC9` |
+
+</details>
 
 | Global | Kind | Type | Start | Installed array | Set by |
 |---|---|---|---|---|---|
@@ -106,11 +116,22 @@ entries for ids 9 and 10 point at the default arm too. Every arm ends by storing
 | 37 (`0x0215F128`) | `0x01ECBCF0` | `0x01ECBCF0` | `0x01ECBCF0` | `0x01ECBCF0` | `0x01ECBCF0` | `0x01ECBCF0` | `0x01EA4D00` | `0x01EA4D00` | `0x01EA4D00` | `0x01ECBCF0` |
 
 Three functions read the table, each taking the kind as a sign-extended `int` with no bound: the read issuer
-`0x002DF780` (`0x002DF7BF`, `0x002DF830`), the path copy `0x002DF880` (`0x002DF893`, which returns -1 for a null entry) and the
-path lookup `0x002DF980` (`0x002DF98D`). `0x002DF9A0` itself reads the kind 7 slot back 53 times
-(`0x002DFFA3`-`0x002E03E7`) when its second argument is 0: it then replaces 54 entries of the kind 7 array, ids 43 to
-216, with `in_sdver` menu paths (`0x002DFF95`-`0x002E03EE`). The word it passes, `[0x01E0280C]`, ships as 1
+`0x002DF780`¹, the path copy `0x002DF880` (`0x002DF893`, which returns -1 for a null entry) and the
+path lookup `0x002DF980`². `0x002DF9A0` itself reads the kind 7 slot back 53 times³ when its second argument is 0: it then replaces 54 entries of the kind 7 array, ids 43 to
+216, with `in_sdver` menu paths⁴. The word it passes, `[0x01E0280C]`, ships as 1
 ([MRP menu resource packages](mrp-menu-resource-packages.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DF7BF`, `0x002DF830` |
+| ² | `0x002DF98D` |
+| ³ | `0x002DFFA3`-`0x002E03E7` |
+| ⁴ | `0x002DFF95`-`0x002E03EE` |
+
+</details>
 
 ### Shipped data
 
@@ -250,72 +271,79 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022A0B0` | calls | `0x002368D0` |
-| `0x002DF980` | is called by | `0x0032FCA0` |
-| `0x0032E620` | is called by | `0x0032FCA0`, `0x00330310` |
+| [`0x0022A0B0`](../Saving-Loading-And-Settings/languages.md) (on languages) | calls | [`0x002368D0`](authored-data-tables.md) Battle storage: initialize work arrays (on authored data tables) |
+| [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container) |
 
 **Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md), [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022A0B0` | calls | `0x0022BDF0` |
-| `0x0022A0B0` | is called by | `0x0017D4C0` |
-| `0x002DF9A0` | is called by | `0x0022A0B0` |
+| [`0x0022A0B0`](../Saving-Loading-And-Settings/languages.md) (on languages) | calls | [`0x0022BDF0`](../Saving-Loading-And-Settings/game-settings.md) (on game settings) |
+| [`0x0022A0B0`](../Saving-Loading-And-Settings/languages.md) (on languages) | is called by | [`0x0017D4C0`](../Engine-Core/startup-constants.md) (on startup constants) |
+| [`0x002DF9A0`](asset-paths.md) | is called by | [`0x0022A0B0`](../Saving-Loading-And-Settings/languages.md) (on languages) |
 
 **Controls and input** (explained on [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x0022A0B0` | calls | `0x0035B270` |
-| `0x0032E620` | is called by | `0x00291C80` |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Graphics**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022A0B0` | calls | `0x0036FFF0`, `0x0037CCC0` |
-| `0x002DF980` | is called by | `0x001BB2B0` |
-| `0x002E98F0` | is called by | `0x001BB2B0` |
-| `0x0032E620` | is called by | `0x003B2310`, `0x003B53C0` |
+| [`0x0022A0B0`](../Saving-Loading-And-Settings/languages.md) (on languages) | calls | [`0x0035B270`](../Controls-And-Input/vibration.md) (on vibration) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00291C80`](../Graphics/effect-file-list.md) (on effect file list) |
 
 **Graphics** (explained on [startup constants](../Engine-Core/startup-constants.md), [file size tables fst](file-size-tables-fst.md), [standard file formats](standard-file-formats.md), [file requests and the read queue](file-requests-and-the-read-queue.md))
 
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0022A0B0`](../Saving-Loading-And-Settings/languages.md) (on languages) | calls | [`0x0036FFF0`](../Graphics/add-motion-tables.md) (on add motion tables)<br>[`0x0037CCC0`](../Graphics/add-motion-tables.md) (on add motion tables) |
+| [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x001BB2B0`](prefetch-manifests.md) (on prefetch manifests) |
+| [`0x002E98F0`](asset-paths.md) | is called by | [`0x001BB2B0`](prefetch-manifests.md) (on prefetch manifests) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x003B2310`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x003B53C0`](small-bin-tables.md) (on small bin tables) |
+
 **Random numbers** (explained on [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022A0B0` | calls | `0x00379CF0` |
+| [`0x0022A0B0`](../Saving-Loading-And-Settings/languages.md) (on languages) | calls | [`0x00379CF0`](../Engine-Core/startup-constants.md) (on startup constants) |
 
 **Saving, loading and settings** (explained on [file requests and the read queue](file-requests-and-the-read-queue.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E620` | is called by | `0x002EF300` |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x002EF300`](../Saving-Loading-And-Settings/save-file-format.md) (on save file format) |
 
 **Scripts and script commands** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [file requests and the read queue](file-requests-and-the-read-queue.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002ED6F0` | is called by | `0x003580C0` |
-| `0x0032E620` | is called by | `0x0050DFE0` |
+| [`0x002ED6F0`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings) | is called by | [`0x003580C0`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0050DFE0`](file-requests-and-the-read-queue.md) (on file requests and the read queue) |
 
-**World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [ps2data bin families](ps2data-bin-families.md))
+**World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [ps2data bin families](ps2data-bin-families.md), [async load manager](async-load-manager.md), [standard file formats](standard-file-formats.md), [resource arena and relocation](resource-arena-and-relocation.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022A0B0` | calls | `0x00266D10` |
-| `0x0032E620` | is called by | `0x00378540` |
-
-**World, areas and travel**
-
-| Function | | Functions |
-|---|---|---|
-| `0x002DF880` | is called by | `0x00377DC0` |
-| `0x002DF980` | is called by | `0x00379A10` |
-| `0x0032E620` | is called by | `0x00268750`, `0x00378030`, `0x003EA820` |
-
-**World, areas and travel** (explained on [async load manager](async-load-manager.md), [standard file formats](standard-file-formats.md), [ps2data bin families](ps2data-bin-families.md), [resource arena and relocation](resource-arena-and-relocation.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+| [`0x0022A0B0`](../Saving-Loading-And-Settings/languages.md) (on languages) | calls | [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00378540`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
+| [`0x002DF880`](asset-paths.md) | is called by | [`0x00377DC0`](../Graphics/effect-files-efx-efb.md) (on effect files efx efb) |
+| [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x00379A10`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00268750`](ps2data-bin-families.md) Map ref: begin load resources (on ps2data bin families)<br>[`0x00378030`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack)<br>[`0x003EA820`](ard-area-battle-data.md) Area ard: load or unload field resource (on ard area battle data) |
 
 </details>

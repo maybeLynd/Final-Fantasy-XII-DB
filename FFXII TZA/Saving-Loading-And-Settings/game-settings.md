@@ -23,20 +23,49 @@ Two sets of options exist.
 
 ### The settings object
 
-`0x007980A0`, the program's main routine, allocates `0x65C` bytes, builds the object with `0x001DE050(object, path)`
-(`0x00798257`) and keeps it at `0x01F82D20` (`0x00798261`). The path, stored at `+0x450` as a wide string, is built here,
+`0x007980A0`, the program's main routine, allocates `0x65C` bytes, builds the object with `0x001DE050(object, path)`¹ and keeps it at `0x01F82D20`². The path, stored at `+0x450` as a wide string, is built here,
 apart from the save directory `0x02EAF6E0` ([saving and loading](saving-and-loading.md)), though it names the same
 folder.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00798257` |
+| ² | `0x00798261` |
+
+</details>
+
 The pieces are `SHGetFolderPathW` (CSIDL 5, `0x0079817E`), `\My Games\` and `FINAL FANTASY XII THE ZODIAC AGE\`
 (`%s%s`), the user id from `0x001F3ED0` and a backslash (`%s%s\`), each folder made with `_wmkdir` when `_waccess` does
-not find it (`0x001F3EA0`), and `GameSetting.ini` (`0x01CB35F8`) joined with `%s\%s` (`0x00798190`-`0x00798234`).
+not find it¹, and `GameSetting.ini`² joined with `%s\%s`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001F3EA0` |
+| ² | `0x01CB35F8` |
+| ³ | `0x00798190`-`0x00798234` |
+
+</details>
 
 `0x0079FA00` makes `Documents\My Games\` (`%s%s`) and then, in one path, `FINAL FANTASY XII THE ZODIAC AGE\` with the
 user id from `0x001F3ED0` and a backslash inside it (`%s%s%s\`, both through `0x00408ED0`), each with `CreateDirectoryW`
 when `GetFileAttributesW` fails or shows no directory; the game folder itself gets no create of its own unless the id
 is empty. It does nothing when `SHGetFolderPathW` fails, stops when the first create fails, and keeps both paths on
-its own stack (`0x0079FA32`-`0x0079FAE4`) ([Phyre application](../PhyreEngine/phyre-application.md)).
+its own stack¹ ([Phyre application](../PhyreEngine/phyre-application.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079FA32`-`0x0079FAE4` |
+
+</details>
 
 `0x001DE050` fills the object in three steps:
 
@@ -45,20 +74,56 @@ its own stack (`0x0079FA32`-`0x0079FAE4`) ([Phyre application](../PhyreEngine/ph
    GetSystemMetrics(1)`);
 3. Language from the Windows LANGID (see the [languages page](languages.md)).
 
-Before step 1 `0x001DE050` stores `0x0101` at `+0x658` and 1 at `+0x44C` and `+0x65A` (`0x001DE069`-`0x001DE07B`);
-step 2 writes the one value to Resolution (`+0x04`) and WindowSize (`+0x2C`) (`0x001DE0BA`, `0x001DE0BD`). After step
-3 it zeroes the 972 bytes of value tables from `+0x7C` to `+0x447` (`0x001DE130`-`0x001DE13E`) and copies the path to
-`+0x450` with `wcscpy_s` (260 characters) only when the path is not null (`0x001DE143`-`0x001DE157`). It returns the
-object (`0x001DE162`).
+Before step 1 `0x001DE050` stores `0x0101` at `+0x658` and 1 at `+0x44C` and `+0x65A`¹;
+step 2 writes the one value to Resolution (`+0x04`) and WindowSize (`+0x2C`)². After step
+3 it zeroes the 972 bytes of value tables from `+0x7C` to `+0x447`³ and copies the path to
+`+0x450` with `wcscpy_s` (260 characters) only when the path is not null⁴. It returns the
+object⁵.
 
-`0x001DED50` then opens the file: when it is missing, the value tables are initialised (`0x001DF240`)
-and the file is written from the defaults (`0x001DFD40`); otherwise the text is parsed (`0x001DE5D0`).
+<details>
+<summary>Where in the code</summary>
 
-`0x001DED50` opens the path at `+0x450` with `_wfopen_s` mode `"rb"` (`0x001DED8A`). With no file it runs those two and
-returns the result of `0x001DFD40` (`0x001DEE38`-`0x001DEE43`). With a file it clears `+0x658` and `+0x65A` (`0x001DED9F`,
-`0x001DEDA8`), measures the file with `fseek` and `ftell`, and reads it whole with `fread` into a zeroed stack buffer
-of `size + 0x20` bytes (`0x001DEDB3`-`0x001DEE19`). It closes the file (`fclose`, `0x001DEE23`), parses the buffer with
-`0x001DE5D0` and returns 0 (`0x001DEE2F`-`0x001DEE34`); `0x001DF240` does not run on this path.
+| | Code |
+|---|---|
+| ¹ | `0x001DE069`-`0x001DE07B` |
+| ² | `0x001DE0BA`, `0x001DE0BD` |
+| ³ | `0x001DE130`-`0x001DE13E` |
+| ⁴ | `0x001DE143`-`0x001DE157` |
+| ⁵ | `0x001DE162` |
+
+</details>
+
+`0x001DED50` then opens the file: when it is missing, the value tables are initialised¹
+and the file is written from the defaults²; otherwise the text is parsed³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DF240` |
+| ² | `0x001DFD40` |
+| ³ | `0x001DE5D0` |
+
+</details>
+
+`0x001DED50` opens the path at `+0x450` with `_wfopen_s` mode `"rb"`¹. With no file it runs those two and
+returns the result of `0x001DFD40`². With a file it clears `+0x658` and `+0x65A`³, measures the file with `fseek` and `ftell`, and reads it whole with `fread` into a zeroed stack buffer
+of `size + 0x20` bytes⁴. It closes the file (`fclose`, `0x001DEE23`), parses the buffer with
+`0x001DE5D0` and returns 0⁵; `0x001DF240` does not run on this path.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DED8A` |
+| ² | `0x001DEE38`-`0x001DEE43` |
+| ³ | `0x001DED9F`, `0x001DEDA8` |
+| ⁴ | `0x001DEDB3`-`0x001DEE19` |
+| ⁵ | `0x001DEE2F`-`0x001DEE34` |
+
+</details>
 
 ### The 31 settings
 
@@ -100,31 +165,29 @@ presets control.
 | 29 | LastX | 0 | no | number |
 | 30 | LastY | 0 | no | number |
 
-A single default means the four columns are equal. The key table is null-terminated at index 31
-(`0x01DFD148`); the value-name rows hold up to nine pointers and the strings sit at `0x008C5904`
+A single default means the four columns are equal. The key table is null-terminated at index 31¹; the value-name rows hold up to nine pointers and the strings sit at `0x008C5904`
 onward. The value-name rows of the numeric settings hold only a pointer to the string `none`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01DFD148` |
+
+</details>
 
 ### Parsing the file
 
 `0x001DE5D0(object, text)` reads the file line by line:
 
-1. A line without `=` is logged as `[ConfigFile] invalid line`.
-2. The key is matched case-insensitively against the 31 keys; a key outside the table is logged
-   as `[ConfigFile] invalid key`.
-3. `0x001DF350(object, index, value)` stores the value:
-   - Resolution and WindowSize take `width*height` (split at the `*` that `0x00900B10` holds; a value without
-     one is logged as `[ConfigFile] invalid Resolution`), each clamped to at least 640 x 360, packed as
-     `width << 16 | height`;
-   - a setting whose row holds exactly one name (the numeric settings' `none`) takes
-     `atoi(value)`;
-   - otherwise the value is matched case-insensitively against the row's names and its position
-     is stored; a name that matches nothing (or a row with no names at all) is logged as
-     `[ConfigFile] <key> value invalid`.
-4. After the last line, every setting the file did not name, and every preset-controlled setting
-   while Quality is not 3 (Custom), is reloaded from the defaults column selected by Quality.
-5. When Language is neither `jp` (0) nor `kr` or `ch` (6, 7), three value-table pairs at
-   `0x01DFDA58`, `0x01DFDBA8` and `0x01DFDCF8` are set to `{12, 13}`: entries 18 and 19 of the three id tables, 12 into
-   those words and 13 into `0x01DFDA5C`, `0x01DFDBAC` and `0x01DFDCFC` (`0x001DECBA`, `0x001DECCE`, `0x001DECE2`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A line without `=` is logged as `[ConfigFile] invalid line`. |   |
+| 2 | The key is matched case-insensitively against the 31 keys; a key outside the table is logged as `[ConfigFile] invalid key`. |   |
+| 3 | `0x001DF350(object, index, value)` stores the value:<br>• Resolution and WindowSize take `width*height` (split at the `*` that `0x00900B10` holds; a value without one is logged as `[ConfigFile] invalid Resolution`), each clamped to at least 640 x 360, packed as `width << 16 \| height`;<br>• a setting whose row holds exactly one name (the numeric settings' `none`) takes `atoi(value)`;<br>• otherwise the value is matched case-insensitively against the row's names and its position is stored; a name that matches nothing (or a row with no names at all) is logged as `[ConfigFile] <key> value invalid`. |   |
+| 4 | After the last line, every setting the file did not name, and every preset-controlled setting while Quality is not 3 (Custom), is reloaded from the defaults column selected by Quality. |   |
+| 5 | When Language is neither `jp` (0) nor `kr` or `ch` (6, 7), three value-table pairs at `0x01DFDA58`, `0x01DFDBA8` and `0x01DFDCF8` are set to `{12, 13}`: entries 18 and 19 of the three id tables, 12 into those words and 13 into `0x01DFDA5C`, `0x01DFDBAC` and `0x01DFDCFC`. | `0x001DECBA`, `0x001DECCE`, `0x001DECE2` |
 
 The parser reads the text through a string stream: `0x001DF7D0` copies the text into the stream's
 buffer and sets its pointers, `0x001A9E10` builds the key and value strings, `0x001DFA00` returns a
@@ -132,8 +195,16 @@ string's characters (the heap copy once its capacity is above 15) and `0x001DF76
 `0x001A9E10(source, destination, position, count)` makes the destination an empty string,
 length `+0x10` 0, capacity `+0x18` 15 and first byte 0, then fills it with
 `0x001A5500(destination, source, position, count)`, a 0 in the fifth argument slot, and
-answers the destination
-(`0x001A9E16`-`0x001A9E38`).
+answers the destination¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A9E16`-`0x001A9E38` |
+
+</details>
 
 ### Writing the file
 
@@ -143,10 +214,23 @@ its current value (`DecideButton=Circle`). It builds the text in a string stream
 `0x001E00D0` (which calls `0x001E0100` on the stream's buffer at `+8`), and releases the buffer with
 `0x001DF8C0`. `0x001DFD40` writes that text to the ini path with `_wfopen_s("wb")`.
 
-When the open fails `0x001DFD40` writes nothing (`0x001DFD85`). Otherwise it calls `0x001DEE90` with a null buffer and
-takes its result as the length `n` (`0x001DFD87`-`0x001DFD91`), calls it again into a zeroed stack buffer of `n + 1`
-bytes (`0x001DFDB9`-`0x001DFDCE`), writes `n` bytes with `fwrite` and closes the file (`0x001DFDE2`, `0x001DFDEC`). On both
-paths it returns `GetLastError()` (`0x001DFDF2`).
+When the open fails `0x001DFD40` writes nothing¹. Otherwise it calls `0x001DEE90` with a null buffer and
+takes its result as the length `n`², calls it again into a zeroed stack buffer of `n + 1`
+bytes³, writes `n` bytes with `fwrite` and closes the file⁴. On both
+paths it returns `GetLastError()`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DFD85` |
+| ² | `0x001DFD87`-`0x001DFD91` |
+| ³ | `0x001DFDB9`-`0x001DFDCE` |
+| ⁴ | `0x001DFDE2`, `0x001DFDEC` |
+| ⁵ | `0x001DFDF2` |
+
+</details>
 
 ### The three writers
 
@@ -160,20 +244,27 @@ paths it returns `GetLastError()` (`0x001DFDF2`).
 
 `0x001DE4F0(object, quality)` returns at once when Quality already equals the argument; otherwise it
 stores it at `+0x0C` and, for every setting whose reset flag is set, copies the defaults table's
-column `quality` unless the quality is 3. Its one caller is `0x001D5120` (`0x001D5139`), the
+column `quality` unless the quality is 3. Its one caller is `0x001D5120`¹, the
 graphics-settings apply. Of the ten settings the preset stores, it then pushes six to their consumers, in this
 order:
 
-1. Anisotropic (`+0x18`) to the samplers: `0x0018AC50([0x01F7E340])` and `0x001BD940(0x001BDAB0())`
-   (`0x001D513E`-`0x001D5152`), which take the anisotropy from `0x001DE540`
-   ([config screen](../Menus-And-HUD/config-screen.md)).
-2. WaterQuality (`+0x40`) to `0x001A5B00(0x001A9930(), value)`.
-3. Shadow (`+0x1C`) as the pair `0x00900F00[Shadow % 3]` (`0x001DE5A0`), the shadow map size for Low,
-   Medium and High: 512, 1024 and 2048 on each axis, to `0x001EF520(0x001F0850(), high, low)`.
-4. MSAA (`+0x20`) as a non-zero flag to byte `+0xDBA` of `0x00189120()`, and as the sample count
-   `0x00900EE8[MSAA % 5]` = 1, 2, 4, 8 or 9 (`0x001DE570`) to `0x00189520`.
-5. PostAA (`+0x24`) == 1 to byte `+0x4A3` of `0x00193D50()`.
-6. SoftParticle (`+0x38`) == 1 to the virtual slot `+0x60` of the object at the caller's `+0xA80`.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D5139` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Anisotropic (`+0x18`) to the samplers: `0x0018AC50([0x01F7E340])` and `0x001BD940(0x001BDAB0())`, which take the anisotropy from `0x001DE540` ([config screen](../Menus-And-HUD/config-screen.md)). | `0x001D513E`-`0x001D5152` |
+| 2 | WaterQuality (`+0x40`) to `0x001A5B00(0x001A9930(), value)`. |   |
+| 3 | Shadow (`+0x1C`) as the pair `0x00900F00[Shadow % 3]`, the shadow map size for Low, Medium and High: 512, 1024 and 2048 on each axis, to `0x001EF520(0x001F0850(), high, low)`. | `0x001DE5A0` |
+| 4 | MSAA (`+0x20`) as a non-zero flag to byte `+0xDBA` of `0x00189120()`, and as the sample count `0x00900EE8[MSAA % 5]` = 1, 2, 4, 8 or 9 to `0x00189520`. | `0x001DE570` |
+| 5 | PostAA (`+0x24`) == 1 to byte `+0x4A3` of `0x00193D50()`. |   |
+| 6 | SoftParticle (`+0x38`) == 1 to the virtual slot `+0x60` of the object at the caller's `+0xA80`. |   |
 
 | Setting | Low | Medium | High |
 |---|---|---|---|
@@ -202,9 +293,18 @@ in the `ID3D11Device` layout). For every count with a non-zero level count it se
 
 `0x001DF2C0(object, value, forward)` steps from `value` to the next value (or, with `forward` 0, the
 previous one) in 0-4 whose bit is set, wrapping around, and stores it as MSAA (`+0x20`) of the
-object at `0x01F82D20`. Its one caller is the Graphics Settings dispatcher `0x001D1660` (`0x001D4A53`), which the
+object at `0x01F82D20`. Its one caller is the Graphics Settings dispatcher `0x001D1660`¹, which the
 Config screen's Anti-Aliasing row reaches through `0x0017DB90` and `0x001CD040` ([Config screen](../Menus-And-HUD/config-screen.md));
 it then sets byte `+0xDBA` of `0x00189120()` to whether the result is non-zero.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D4A53` |
+
+</details>
 
 ### FrameLimit
 
@@ -218,11 +318,20 @@ it then sets byte `+0xDBA` of `0x00189120()` to whether the result is non-zero.
 | 1 (60) | 2 | 2.0 (`0x01CEBC08`) | 0.5 (`0x01CEBB70`) | 1 |
 
 The 30 fps arm leaves all three cells of the triple at their image values; it begins a multimedia timer period instead
-(`timeGetDevCaps(&caps, 8)`, and only when that returns 0 (`0x001EDE31`) `timeBeginPeriod(wPeriodMin)`, keeping the
+(`timeGetDevCaps(&caps, 8)`, and only when that returns 0¹ `timeBeginPeriod(wPeriodMin)`, keeping the
 period at `0x01F82E40` and setting `0x01F82E3C` = 1; a failed `timeGetDevCaps` begins no period). The 60 fps arm also
 calls `0x0033F020` and ends that period when one was begun (`timeEndPeriod([0x01F82E40])` and `0x01F82E3C` = 0,
 `0x001EDE01`-`0x001EDE17`). Both arms then call `0x0032AE70`, `0x003333D0`, `0x00337A00` and `0x002BDA90` (the last as a tail
 jump, `0x001EDE60`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EDE31` |
+
+</details>
 
 The triple is the game's time base: authored frame counts are multiplied by `0x01DFE0B8` (for
 example the loot pickup lifetime, see the [loot pickups page](../Rewards-EXP-Gil-And-Loot/loot-pickups.md)),
@@ -232,10 +341,21 @@ and per-frame fades by `0x01DFE0BC`, so durations keep their wall-clock length a
 
 The Config screen's command `0x26` calls `0x0017E6E0(value)`: `0x001DF340(object, 25, value)`, which stores the value as
 DecideButton (`+0x64`), then `0x00198960(0x00198790(), value == 0)` for the input manager, then `0x0022A4F0`, which reads
-DecideButton back through `0x0017E210` (`0x0022A4F4`) and sets the confirm mask `0x01E0C2A0` and the cancel mask `0x01E0C2A4`
-to `0x2000` and `0x4000` for value 0 and the reverse otherwise, as 16-bit stores (`0x0022A526`, `0x0022A51F`), and
-`0x01FD4A64` to whether the value is non-zero (`0x0022A510`). The same masks are set at boot (see the
+DecideButton back through `0x0017E210`¹ and sets the confirm mask `0x01E0C2A0` and the cancel mask `0x01E0C2A4`
+to `0x2000` and `0x4000` for value 0 and the reverse otherwise, as 16-bit stores², and
+`0x01FD4A64` to whether the value is non-zero³. The same masks are set at boot (see the
 [languages page](languages.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A4F4` |
+| ² | `0x0022A526`, `0x0022A51F` |
+| ³ | `0x0022A510` |
+
+</details>
 
 The Controls screen's Default calls `0x0017E520`, which runs `0x001DEE70` on the object: CameraRevise
 (`+0x58`) = 1, MouseSensityX (`+0x5C`) = 4, and one 8-byte store that sets MouseSensityY (`+0x60`) to
@@ -258,22 +378,66 @@ normalise), switching on the id through their index tables at `0x002407C0` and `
 | 3, 5 | 17; every other id | unchanged |
 
 Both take the value by pointer, `0x002407F0(id, &value)` and `0x00240750(id, &value)`: `0x002407F0` keeps the pointer in
-`rbx` (`0x002407F9`) and each setter arm reads the value through it (`0x00240818` and the others); the normalising arms of
-`0x00240750` rewrite it in place before they jump to `0x002407F0` (`0x00240776`-`0x002407A3`).
+`rbx`¹ and each setter arm reads the value through it (`0x00240818` and the others); the normalising arms of
+`0x00240750` rewrite it in place before they jump to `0x002407F0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002407F9` |
+| ² | `0x00240776`-`0x002407A3` |
+
+</details>
 
 In `0x002407F0` the ids 7, 15, 18, 22-27 and 31-37, and any id outside 4-38, go straight to `0x0016D6A0` and set
-nothing (`0x002407F6`-`0x002407FF`, `0x0024095E`). Id 8 passes the same value to both of its setters
-(`0x0024084B`-`0x00240854`), id 14 calls `0x0023B2E0` after its setter (`0x002408B8`-`0x002408BF`), and id 17 loads its value
-as a `u16` (`0x002408DF`).
+nothing¹. Id 8 passes the same value to both of its setters², id 14 calls `0x0023B2E0` after its setter³, and id 17 loads its value
+as a `u16`⁴.
 
-`0x002403F0(id, out)` first stores 0 at `out` (`0x002403F9`). An id outside 4-38 (`0x00240405`) and the ids the table
-sends to the exit, 7, 15, 18, 22-27 and 31-37 (`0x00240512`), leave that 0. Every other id stores its getter's
-result from the table below, the music version's `u16` zero-extended (`0x002404B2`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002407F6`-`0x002407FF`, `0x0024095E` |
+| ² | `0x0024084B`-`0x00240854` |
+| ³ | `0x002408B8`-`0x002408BF` |
+| ⁴ | `0x002408DF` |
+
+</details>
+
+`0x002403F0(id, out)` first stores 0 at `out`¹. An id outside 4-38² and the ids the table
+sends to the exit, 7, 15, 18, 22-27 and 31-37³, leave that 0. Every other id stores its getter's
+result from the table below, the music version's `u16` zero-extended⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002403F9` |
+| ² | `0x00240405` |
+| ³ | `0x00240512` |
+| ⁴ | `0x002404B2` |
+
+</details>
 
 Some getters do more than read the field. `0x002DDD70` (id 11) returns the word `0x0215E6DC` `& 1` when that word is
-non-zero, and the inverted bit `0x1000` only when it is 0 (`0x002DDD70`-`0x002DDD8F`). `0x002DDCA0` (id 17) writes 1 to
-`+0x0E` when the field is 2 and `0x0017E490` answers with bit `0x1` clear (`0x002DDCAB`-`0x002DDCC7`). `0x002DDC70`,
-`0x002DDDE0` and `0x002DDE40` (ids 19-21) write 100 back to a volume above 100 (`0x002DDC83`, `0x002DDDF3`, `0x002DDE53`).
+non-zero, and the inverted bit `0x1000` only when it is 0¹. `0x002DDCA0` (id 17) writes 1 to
+`+0x0E` when the field is 2 and `0x0017E490` answers with bit `0x1` clear². `0x002DDC70`,
+`0x002DDDE0` and `0x002DDE40` (ids 19-21) write 100 back to a volume above 100³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DDD70`-`0x002DDD8F` |
+| ² | `0x002DDCAB`-`0x002DDCC7` |
+| ³ | `0x002DDC83`, `0x002DDDF3`, `0x002DDE53` |
+
+</details>
 
 The in-game options are an `0x28`-byte record inside the save image: `0x002DDE60` sets `0x0215E6E0`
 to `0x002536A0() + 8`, writes the template `{0x00000035, 0x00620400}` and patches it (bit `0x20000` of
@@ -301,14 +465,32 @@ the three volumes to 100 (`0x001DBA60(1.0, channel)`), and runs the platform app
 | 29, 30 | Mouse Sensitivity | `0x0032E020`, `0x0032E030` | `0x001DF340(object, 24)`, `0x001DF340(object, 23)`, values 1-6 | `0x0017E420`, `0x0017E430` |
 | 38 | Confirm Button | `0x0017E6E0` | `0x001DF340(object, 25)` DecideButton | `0x0017E210` |
 
-`0x002DDD50()` answers bit `0x8000` of dword 0 of the settings record `[0x0215E6E0]`, as 0 or 1 (`0x002DDD50`-`0x002DDD5C`).
+`0x002DDD50()` answers bit `0x8000` of dword 0 of the settings record `[0x0215E6E0]`, as 0 or 1¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DDD50`-`0x002DDD5C` |
+
+</details>
 
 Because the record lives in the save image, loading a save also loads these options.
 
 ### Active and Wait
 
-`0x002DE060(value)` writes bit `0x8` of the options dword (`0x0215E6E0`) and `0x002DDC30` reads it (1 =
+`0x002DE060(value)` writes bit `0x8` of the options dword¹ and `0x002DDC30` reads it (1 =
 Active). `0x00255290(mode)` maps a UI mode to a halt class, -1 meaning no halt:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0215E6E0` |
+
+</details>
 
 | UI mode | Halt class |
 |---|---|
@@ -323,22 +505,50 @@ Active). `0x00255290(mode)` maps a UI mode to a halt class, -1 meaning no halt:
 actor, so in Wait mode entering UI mode 1 halts the field and in Active mode it does not. The bit's
 readers are the Config getter, `0x00254740`, `0x00255290`, `0x00225CD0`, `0x00225EB0` and `0x00227680`.
 
-Before the halt, `0x00254740` sets bit `0x1` of `0x02EBDBBC` (`0x003B3B40`) when the class is not -1 and the UI mode is 3,
+Before the halt, `0x00254740` sets bit `0x1` of `0x02EBDBBC`¹ when the class is not -1 and the UI mode is 3,
 `0x14` or `0x18` (in both battle modes), 1 (Wait mode only: `0x002DDC30` answers 0 at `0x00254775`) or 4 (Active mode
 only: its class from `0x00255290` is -1 with the bit clear, `0x002552C7`-`0x002552D2`, and `0x0025475D` returns).
-While that bit is set the effect step `0x0024B9B0` sets bit `0x4` of the effect group mask it tests
-(`0x0024B9F1`-`0x0024B9F9`); `0x0024D540`, `0x0024D9C0` and `0x0024E910` clear it (`0x0024D75B`, `0x0024DA05`, `0x0024E99D`).
+While that bit is set the effect step `0x0024B9B0` sets bit `0x4` of the effect group mask it tests²; `0x0024D540`, `0x0024D9C0` and `0x0024E910` clear it³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B3B40` |
+| ² | `0x0024B9F1`-`0x0024B9F9` |
+| ³ | `0x0024D75B`, `0x0024DA05`, `0x0024E99D` |
+
+</details>
 
 In Wait mode the time stop of id 0 also sets bit `0x2` of the input manager's movement-key mode byte (`0x00182D10`,
 reached from `0x00227680` at `0x002277FD`), and its cancel clears it (`0x00182DA0`, from `0x00225CD0` at `0x00225E81` and from
 `0x00225EB0` at `0x00226052`); in Active mode neither call runs ([Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
-The Config getter `0x002403F0` reads the bit through `0x002DDC30` (`0x0024041E`) and stores it at `out`.
+The Config getter `0x002403F0` reads the bit through `0x002DDC30`¹ and stores it at `out`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024041E` |
+
+</details>
 
 ### The FF12CONFIG file
 
-`0x003692D0` resets the block at `0x02B62DA8` with `0x00408BA0` (`0x00369323`) and then runs `0x00408C30`
-(`0x0036943F`), which reads `PS2Data/SQUARE_FF12/FF12CONFIG` from the archive (`0x001D6F20`, `0x800`
+`0x003692D0` resets the block at `0x02B62DA8` with `0x00408BA0`¹ and then runs `0x00408C30`², which reads `PS2Data/SQUARE_FF12/FF12CONFIG` from the archive (`0x001D6F20`, `0x800`
 bytes) and copies its bytes into the globals listed in the layout below.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00369323` |
+| ² | `0x0036943F` |
+
+</details>
 
 - The u16 at file `+0x0A` goes to `0x02B62DB4` unless the dword `0x01E02804` is not negative, in which
   case its low word is stored instead.
@@ -362,70 +572,113 @@ value, the global it is copied to, its readers, and what another value does.
 else sets the same state and which wins, when it takes effect, what reads it, what the player sees, and when it
 changes nothing.
 
-- `0x002DDA30` reads `+0x06` and `+0x10` through the getters `0x00408B80` and `0x00408B40` (`0x002DDA3B`, `0x002DDA66`) only
-  when it is entered with 1. The options-defaults installer `0x002DDE60` enters it with 1 (`0x002DE035`) at start-up,
+- `0x002DDA30` reads `+0x06` and `+0x10` through the getters `0x00408B80` and `0x00408B40`¹ only
+  when it is entered with 1. The options-defaults installer `0x002DDE60` enters it with 1² at start-up,
   on the title screen, on the return to the title and for Restore Defaults; the save-load applier `0x002DE050` enters
   it with 0.
 - Value 1 ORs `0x2000` (Vibration Function) or `0x4000` (Screen Shake) into dword 0 of the options record, and value
-  2 clears that bit (`0x002DDA51`-`0x002DDA8B`). The bits then go to `0x0035FF30`, which lets the pad's motors run
+  2 clears that bit³. The bits then go to `0x0035FF30`, which lets the pad's motors run
   ([Vibration](../Controls-And-Input/vibration.md)), and to `0x0037DDC0`, which gates the camera-shake row
   ([Scripted camera](../Graphics/scripted-camera.md)).
 - After `0x0035FF30` and `0x0037DDC0` the applier pushes the rest of the options record
   `[0x0215E6E0]` in this order: the bits under `0x3` of its `+0x18` to `0x002DF360` as 1 for 1,
   2 for 2 and 0 otherwise
-  (`0x002DDAC9`-`0x002DDAE4`); `0x00368AA0(1, v)` with the dword `+0x1C`, or with bit `0x1` of
-  the word `0x0215E6D8` while that word is not 0 (`0x002DDAE9`-`0x002DDB06`).
+ ⁴; `0x00368AA0(1, v)` with the dword `+0x1C`, or with bit `0x1` of
+  the word `0x0215E6D8` while that word is not 0⁵.
 - The options record's words `+0x20` and `+0x22` are each raised by 1 when odd and copied,
-  sign-extended, to `0x022D8EBC` and `0x022D8EC0` (`0x002DDB0B`-`0x002DDB44`); then come
-  `0x002EF370(1)` and `0x002EF350(1, -1)` (`0x002DDB4A`, `0x002DDB54`).
+  sign-extended, to `0x022D8EBC` and `0x022D8EC0`⁶; then come
+  `0x002EF370(1)` and `0x002EF350(1, -1)`⁷.
 - Bit `0x100` of the options record's dword `+0x04` goes to `0x001E1020` and bit `0x200` to
-  `0x001E0FF0` (`0x002DDB59`-`0x002DDB7C`). A music version of 2 in its word `+0x0E` becomes 1
+  `0x001E0FF0`⁸. A music version of 2 in its word `+0x0E` becomes 1
   while `0x0017E490`
   answers with bit `0x1` clear, and the version goes to `0x002DF530(version, 0)`
-  (`0x002DDB81`-`0x002DDBA9`).
+ ⁹.
 - The options record's three volume words `+0x08`, `+0x0A` and `+0x0C`, each as
   `word / 100.0`, go to
-  `0x002DF2B0` on channels 1, 2 and 3 (`0x002DDBAE`-`0x002DDC25`).
+  `0x002DF2B0` on channels 1, 2 and 3¹⁰.
 - `+0x0D` is the start value of the HDD-use flag `0x02B62DB1`, which the script verb `getusehdd` (`0x376`, `0x00341DD0`)
   returns unchanged. `setusehdd` (`0x375`, `0x00341980`) stores its argument != 0 and the `hddinstall` and
   `networkhddinstall` result `0x003447F0` stores 1, both through `0x00408EC0`. None of the 1,114 decompiled US scripts
   calls these verbs ([Verb table](../Scripts-And-Script-Commands/verb-table.md)).
 - `+0x0A` (236, Throne Road) never picks a field. The start-up `0x003318C0` and the return to the title `0x00331920` use
   `0x02B62DB4` only while `0x02B62DAD` is 1, which needs `0x01E02804` not negative, and then that dword's low word has
-  replaced the file's value. With the shipped -1 both request field 12, `ttl_a01` (`0x00331903`, `0x0033196D`).
+  replaced the file's value. With the shipped -1 both request field 12, `ttl_a01`¹¹.
 - `0x00331920(n)` with `n` not 0 requests field 12 whatever `0x00408B90` answers
-  (`0x0033192D`-`0x0033192F`, `0x0033196D`). With `n` 0 it requests field 12 when `0x00408B90`
+ ¹². With `n` 0 it requests field 12 when `0x00408B90`
   answers 0, calls `0x0016D6A0(0x00408B20(), -1, 1)` when it answers 2, and otherwise
-  requests the field `0x00408B60` gives (`0x00331931`-`0x00331968`).
+  requests the field `0x00408B60` gives¹³.
 - `+0x02` is compared with 3 at 15 sites in five functions (getter `0x00408B10`), each behind a test of `0x02B62DAB`
   that skips the comparison on 1. The loader stores the file's value and sets `0x02B62DAB` to 1 in the same run
-  (`0x00408CCB`, `0x00408D89`), and only the reset `0x00408BA0` also writes that byte, with 1, so the file's value is
+ ¹⁴, and only the reset `0x00408BA0` also writes that byte, with 1, so the file's value is
   never compared.
-- `+0x04` is read once, at start-up (`0x003694E2`): 1 passes 1 and any other value 0 to `0x0016D6A0`, which is a bare
+- `+0x04` is read once, at start-up¹⁵: 1 passes 1 and any other value 0 to `0x0016D6A0`, which is a bare
   `ret`.
 - `+0x03`, `+0x08`, `+0x09`, `+0x0C`, `+0x0E`, `+0x0F`, `+0x11`, `+0x12`, `+0x15` and `+0x16` are copied and never
   read. The reset `0x00408BA0` and the loader's stores are the only instructions that reach their globals: no other
   rip-relative operand, image-base-relative displacement, immediate, data qword or RVA in the image reaches the
   block.
 - `+0x00`, `+0x01`, `+0x05`, `+0x07`, `+0x13`, `+0x14` and every byte from `+0x17` on are not copied: the loader
-  reads only the offsets in the layout from its stack copy (`0x00408CBB`-`0x00408D79`).
+  reads only the offsets in the layout from its stack copy¹⁶.
 
-The loader zeroes a `0x800`-byte buffer with `memset` and reads at most `0x800` bytes into it (`0x00408C80`,
-`0x00408CAE`), so a shorter entry reads as if padded with zeros and anything past `0x800` is never read. Without the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DDA3B`, `0x002DDA66` |
+| ² | `0x002DE035` |
+| ³ | `0x002DDA51`-`0x002DDA8B` |
+| ⁴ | `0x002DDAC9`-`0x002DDAE4` |
+| ⁵ | `0x002DDAE9`-`0x002DDB06` |
+| ⁶ | `0x002DDB0B`-`0x002DDB44` |
+| ⁷ | `0x002DDB4A`, `0x002DDB54` |
+| ⁸ | `0x002DDB59`-`0x002DDB7C` |
+| ⁹ | `0x002DDB81`-`0x002DDBA9` |
+| ¹⁰ | `0x002DDBAE`-`0x002DDC25` |
+| ¹¹ | `0x00331903`, `0x0033196D` |
+| ¹² | `0x0033192D`-`0x0033192F`, `0x0033196D` |
+| ¹³ | `0x00331931`-`0x00331968` |
+| ¹⁴ | `0x00408CCB`, `0x00408D89` |
+| ¹⁵ | `0x003694E2` |
+| ¹⁶ | `0x00408CBB`-`0x00408D79` |
+
+</details>
+
+The loader zeroes a `0x800`-byte buffer with `memset` and reads at most `0x800` bytes into it¹, so a shorter entry reads as if padded with zeros and anything past `0x800` is never read. Without the
 entry no byte is copied and the reset values stay, which plays the same as the shipped file: neither override byte
 is set in either. The entry is read once per start, in start-up step 8
 ([Startup constants](../Engine-Core/startup-constants.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00408C80`, `0x00408CAE` |
+
+</details>
 
 The block's other bytes are not taken from the file:
 
 - `0x02B62DAB` is always 1, and the getter `0x00408B30` reads it only for the 15 tests above.
 - `0x02B62DAD` selects the start-up field: 0 requests field 12, 1 the field in `0x02B62DB4`, and 2 passes the old-save
-  number `0x02B62DC0` to the empty `0x0016D6A0` and requests no field (`0x003318C4`-`0x003318FE`). It is 0 in the shipped game.
+  number `0x02B62DC0` to the empty `0x0016D6A0` and requests no field¹. It is 0 in the shipped game.
 - `0x02B62DB9` is the debug-status flag. It is reset to 0, and no other instruction in the image writes it. While it
-  is 0, a jump to field 0 goes to field 12 (`0x00314463`-`0x0031446E`), the pad updates `0x0035FCA0` and `0x0035FF90`
+  is 0, a jump to field 0 goes to field 12², the pad updates `0x0035FCA0` and `0x0035FF90`
   handle channel 0 only, and the verb `debug_getdebugstatus` (`0x20A6`, `0x0050DFC0`) returns 0.
-- `0x02B62DBA` is reset to 0 and never read. `0x02B62DC0`, a u16, is written only in the old-save branch (`0x00408E87`)
+- `0x02B62DBA` is reset to 0 and never read. `0x02B62DC0`, a u16, is written only in the old-save branch³
   and read by `0x00408B20` at `0x003318EA` and `0x00331953`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003318C4`-`0x003318FE` |
+| ² | `0x00314463`-`0x0031446E` |
+| ³ | `0x00408E87` |
+
+</details>
 
 ### Columns of game-settings-ff12config-values.tsv and game-settings-inputs.tsv
 
@@ -443,6 +696,9 @@ Both tables have one row per entry of the FF12CONFIG layout, 22 rows in the same
 | `inert_when` | when the entry changes nothing, with the reason: `always` on 19 rows (6 entries not copied, 10 copied but never read, `+0x02` whose test no site reaches, `+0x04` whose function is a bare `ret`, and `+0x0A` in the shipped game); on `+0x0D`, in every US script; on `+0x06` and `+0x10`, for any value other than 1 and 2 and while a loaded save's options are in force |
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 `GameSettingObject` (`0x65C` bytes, offsets from the start of the record):
 
@@ -483,6 +739,8 @@ Both tables have one row per entry of the FF12CONFIG layout, 22 rows in the same
 | `+0x15` | `u8` | opt15 | to `0x02B62DBB` (not reset by `0x00408BA0`) |
 | `+0x16` | `u8` | opt16 | to `0x02B62DBC` |
 
+</details>
+
 ## Operations
 
 | Function | Role |
@@ -502,6 +760,9 @@ Both tables have one row per entry of the FF12CONFIG layout, 22 rows in the same
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
 | `0x01F82D20` | `void*` | the settings object | `0x007980A0` |
@@ -512,16 +773,29 @@ Both tables have one row per entry of the FF12CONFIG layout, 22 rows in the same
 | `0x02B62DA8`-`0x02B62DC1` | bytes | the FF12CONFIG block | `0x00408BA0`, `0x00408C30`, `0x00408EC0` |
 
 `0x002DDE60` builds the options template in a `0x28`-byte staging copy at `0x0215E6E8` and does not write it into the
-record directly. It copies the `.rdata` template `0x00917268`-`0x0091728F` into the copy (`0x002DDE6F`-`0x002DDE9F`). It sets
-bit `0x20000` of dword 0 to `0x005C5230() == 2` (`0x002DDEB2`-`0x002DDEC5`), which is always 0 because that stub returns 0. Then
-it copies the staging copy into the record at `[0x0215E6E0]` (`0x002DDECB`-`0x002DDEEF`), and the patches after that go to
+record directly. It copies the `.rdata` template `0x00917268`-`0x0091728F` into the copy¹. It sets
+bit `0x20000` of dword 0 to `0x005C5230() == 2`², which is always 0 because that stub returns 0. Then
+it copies the staging copy into the record at `[0x0215E6E0]`³, and the patches after that go to
 the record:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DDE6F`-`0x002DDE9F` |
+| ² | `0x002DDEB2`-`0x002DDEC5` |
+| ³ | `0x002DDECB`-`0x002DDEEF` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x0215E6E8` | `u32[4]` | 0 (zero-filled tail of `.data`) | dwords 0-3 of the staging copy: `0x35` with bit `0x20000` clear, `0x00620400`, 0 and `0x00010000` | `0x002DDE60` (`0x002DDE88`, 16 bytes; `0x002DDEC5`, dword 0) | `0x002DDE60` (`0x002DDEB2`, dword 0; `0x002DDECB`, 16 bytes) |
 | `0x0215E6F8` | `u32[4]` | 0 (zero-filled tail of `.data`) | dwords 4-7 of the staging copy, all 0 in the template | `0x002DDE60` (`0x002DDE9F`) | `0x002DDE60` (`0x002DDEDC`) |
 | `0x0215E708` | `u64` | 0 (zero-filled tail of `.data`) | the last 8 bytes of the staging copy, 0 in the template | `0x002DDE60` (`0x002DDE97`) | `0x002DDE60` (`0x002DDEE7`) |
+
+</details>
 
 ## Modding notes
 
@@ -579,35 +853,37 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 14 calls with 5 other topics</summary>
 
-**Scripts and script commands**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00182D10` | is called by | `0x00341030` |
-| `0x00182DA0` | is called by | `0x003413E0` |
-| `0x00341980` | calls | `0x00267E10` |
-| `0x00341DD0` | calls | `0x0026B4E0` |
-| `0x00408EC0` | is called by | `0x00341980`, `0x003447F0` |
-| `0x0050DFC0` | calls | `0x0026B4E0` |
-
 **Scripts and script commands** (explained on [controls](../Controls-And-Input/controls.md), [force fight mode](../Engine-Core/force-fight-mode.md), [native commands](../Scripts-And-Script-Commands/native-commands.md), [verb table](../Scripts-And-Script-Commands/verb-table.md))
 
-**World, areas and travel**
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003318C0` | calls | `0x00314440` |
-| `0x00331920` | calls | `0x00314440` |
-| `0x00408B10` | is called by | `0x0032FC30` |
-| `0x00408B20` | is called by | `0x003318C0`, `0x00331920` |
-| `0x00408B30` | is called by | `0x0032FC30` |
+| [`0x00182D10`](game-settings.md) | is called by | [`0x00341030`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x00182DA0`](game-settings.md) | is called by | [`0x003413E0`](game-settings.md) |
+| [`0x00341980`](game-settings.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00341DD0`](game-settings.md) | calls | [`0x0026B4E0`](../Scripts-And-Script-Commands/verb-dispatch.md) (on verb dispatch) |
+| [`0x00408EC0`](game-settings.md) | is called by | [`0x00341980`](game-settings.md)<br>[`0x003447F0`](game-settings.md) |
+| [`0x0050DFC0`](game-settings.md) | calls | [`0x0026B4E0`](../Scripts-And-Script-Commands/verb-dispatch.md) (on verb dispatch) |
 
 **World, areas and travel** (explained on [debug menu](../Engine-Core/debug-menu.md), [frame update order](../Engine-Core/frame-update-order.md), [game over](../World-Areas-And-Travel/game-over.md))
 
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x003318C0`](game-settings.md) | calls | [`0x00314440`](../World-Areas-And-Travel/changing-areas.md) (on changing areas) |
+| [`0x00331920`](game-settings.md) | calls | [`0x00314440`](../World-Areas-And-Travel/changing-areas.md) (on changing areas) |
+| [`0x00408B10`](game-settings.md) | is called by | [`0x0032FC30`](../Story-Events-And-Hunts/tutorials-scenes.md) (on tutorials scenes) |
+| [`0x00408B20`](game-settings.md) | is called by | [`0x003318C0`](game-settings.md)<br>[`0x00331920`](game-settings.md) |
+| [`0x00408B30`](game-settings.md) | is called by | [`0x0032FC30`](../Story-Events-And-Hunts/tutorials-scenes.md) (on tutorials scenes) |
+
 **Gameplay** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00229ED0` | is called by | `0x00237DF0` |
+| [`0x00229ED0`](game-settings.md) | is called by | [`0x00237DF0`](../Enemy-Spawning/enemy-respawning.md) (on enemy respawning) |
 
 </details>

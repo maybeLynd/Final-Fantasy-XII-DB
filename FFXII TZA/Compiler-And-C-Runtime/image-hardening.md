@@ -67,45 +67,100 @@ check slot. A body that "calls `0x0016D6A0`" does nothing at that point.
 ### Stack cookies
 
 The cookie is the qword at `0x01F44830`, named by the load configuration's `SecurityCookie` field. On disk
-it holds `0x00002B992DDFA232`. The entry point `0x00808EE4` calls `__security_init_cookie` (`0x00809B8C`)
+it holds `0x00002B992DDFA232`. The entry point `0x00808EE4` calls `__security_init_cookie`¹
 before anything else, then jumps to the runtime start-up `0x00808D78`.
 
-1. If the cookie still holds the on-disk value (`0x00809BAF`), it builds a new one: the system time
-   (`GetSystemTimeAsFileTime`) xor the thread id xor the process id xor
-   `(counter.low << 32) xor counter` from `QueryPerformanceCounter` (`0x00809BE8`-`0x00809BF3`) xor the
-   address of a stack local,
-   masked to 48 bits; a result equal to the on-disk value becomes `0x00002B992DDFA233`. It is stored at
-   `0x00809C1C`, the cookie's only writer.
-2. In both cases the complement of the cookie is stored at `0x01F44838` (`0x00809C2B`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00809B8C` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | If the cookie still holds the on-disk value, it builds a new one: the system time (`GetSystemTimeAsFileTime`) xor the thread id xor the process id xor `(counter.low << 32) xor counter` from `QueryPerformanceCounter` xor the address of a stack local, masked to 48 bits; a result equal to the on-disk value becomes `0x00002B992DDFA233`. It is stored at `0x00809C1C`, the cookie's only writer. | `0x00809BAF`<br>`0x00809BE8`-`0x00809BF3` |
+| 2 | In both cases the complement of the cookie is stored at `0x01F44838`. | `0x00809C2B` |
 
 A protected function stores `cookie xor rsp` in its frame and, before returning, passes it back to
-`__security_check_cookie` (`0x00808C40`). The check compares it with the cookie (`0x00808C40`), then rotates
+`__security_check_cookie`¹. The check compares it with the cookie², then rotates
 the value left 16 bits and requires the low 16 bits of the result, the cookie's unused top bits, to be
-zero (`0x00808C4A`). On either failure it jumps to `__report_gsfailure` (`0x00809654`), restoring the value
-first on the second path (`0x00808C58`).
+zero³. On either failure it jumps to `__report_gsfailure`⁴, restoring the value
+first on the second path⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808C40` |
+| ² | `0x00808C40` |
+| ³ | `0x00808C4A` |
+| ⁴ | `0x00809654` |
+| ⁵ | `0x00808C58` |
+
+</details>
 
 `__report_gsfailure` asks `IsProcessorFeaturePresent(23)` and, when fast fail is available, executes
-`int 0x29` with code 2 (`0x00809670`): the process ends with a non-continuable `0xC0000409` exception whose first
+`int 0x29` with code 2¹: the process ends with a non-continuable `0xC0000409` exception whose first
 parameter is the code, and the process's own exception handlers are bypassed. Otherwise it builds a
-`0xC0000409` exception record and calls `0x00809620`, which first calls `SetUnhandledExceptionFilter(NULL)`
-(`0x0080962B`), then `UnhandledExceptionFilter`, then `TerminateProcess(GetCurrentProcess(), 0xC0000409)`.
+`0xC0000409` exception record and calls `0x00809620`, which first calls `SetUnhandledExceptionFilter(NULL)`², then `UnhandledExceptionFilter`, then `TerminateProcess(GetCurrentProcess(), 0xC0000409)`.
 Either way the game's own crash filter never runs.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00809670` |
+| ² | `0x0080962B` |
+
+</details>
+
 Before that call `__report_gsfailure` also copies the cookie and its complement `0x01F44838` into two slots of
-its own frame (`0x008096F3`-`0x0080970F`), which it does not read again.
+its own frame¹, which it does not read again.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008096F3`-`0x0080970F` |
+
+</details>
 
 ### Range-check failures
 
-`__report_rangecheckfailure` (`0x00809728`) calls `0x0080973C` with code 8, which fast-fails the same way
+`__report_rangecheckfailure`¹ calls `0x0080973C` with code 8, which fast-fails the same way
 (`int 0x29` at `0x00809758`) or takes the same filter-clearing fallback. The compiler emits a call to it
 where an index into a fixed-size array could not be proved in range.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00809728` |
+
+</details>
 
 ### Teardowns that end in the do-nothing body
 
 185 functions are exactly `lea rcx, [a static]` followed by `jmp 0x0016D6A0`, 12 bytes each. Every one
-is registered with `atexit` (`0x00808B90`), so each is the teardown of a static whose destructor is
+is registered with `atexit`¹, so each is the teardown of a static whose destructor is
 empty; see [static initialisation and teardown](static-initialisation-and-teardown.md). 144 of them
 belong to one structure, Phyre serialization's scalar-conversion tree:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808B90` |
+
+</details>
 
 - The lookup `0x0059A030(source, destination)` calls 144 registrars (`0x005850F0`–`0x00592770`, 383 bytes
   each) once, guarded by the byte `0x02CA9D91`, then walks the tree under the sentinel `0x01F2CDA0` for the
@@ -117,9 +172,20 @@ belong to one structure, Phyre serialization's scalar-conversion tree:
   `PUInt32`, `PInt64`, `PUInt64`, `PUInt128`, `float` and `double`, each returned by its own accessor
   in `0x0062FF50`–`0x00630490`. Each of the 144 ordered pairs occurs once.
 - `0x0059D2D0` stores the routine `0x0059A030` returns, and stores `0x0016D6A0` itself when there is no routine
-  (`0x0059D3BD`-`0x0059D3CA`), so an unsupported pair converts nothing. It asks for (file type, run-time type) when its byte
-  argument is non-zero, which both its callers give (`0x0059AF0D`, `0x0059BA0D`), and for (run-time type, file type)
-  when it is 0 (`0x0059D39C`-`0x0059D3B2`).
+ ¹, so an unsupported pair converts nothing. It asks for (file type, run-time type) when its byte
+  argument is non-zero, which both its callers give², and for (run-time type, file type)
+  when it is 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059D3BD`-`0x0059D3CA` |
+| ² | `0x0059AF0D`, `0x0059BA0D` |
+| ³ | `0x0059D39C`-`0x0059D3B2` |
+
+</details>
 
 Put simply, Phyre's serialization code looks up a converter for each pair of number types, the type stored in the file
 and the type the running code uses, such as `double` to `float`. All 144 pairs of its twelve number types have one;
@@ -128,31 +194,67 @@ any other pair converts nothing.
 The 144 nodes share 68 routines. Every routine takes `(source base, destination base, desc, context)`,
 where `desc` holds the element count, the source stride, the destination stride and a byte that swaps
 the two field offsets read from the context, and converts `count` elements; `0x00592E30` and `0x00595C00`
-convert one per loop pass (`0x00592E80`-`0x00592E90`, `0x00595C50`-`0x00595C5F`). The
+convert one per loop pass¹. The
 pairing follows from the arithmetic:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00592E80`-`0x00592E90`, `0x00595C50`-`0x00595C5F` |
+
+</details>
 
 - a conversion to an 8-bit integer from an integer, `bool` or character source is the one byte copy `0x00595C00`
   (20 pairs), to a 16-bit integer from an integer source at least 16 bits wide `0x00593980` (14), to a 32-bit
   integer from one at least 32 bits wide `0x005939F0` (10); float sources and widening conversions use other
   routines ([scalar-conversion registrars](image-hardening-scalar-conversion-registrars.tsv));
 - `0x00592E30`, the routine of `PUInt8` and `bool` to `PInt64` and to `PUInt64`, stores
-  each source byte zero-extended as a qword (`0x00592E80`-`0x00592E90`);
+  each source byte zero-extended as a qword¹;
 - `0x00594EB0` converts `double` to `float` (`cvtpd2ps`) and `0x00594350` `float` to `double`
   (`cvtps2pd`). Both add `[[context + 0x10] + 0x48]` to the source base and `[[context + 8] + 8]` to the
-  destination base, swapped when the byte `desc + 0xC` is set (`0x00594363`-`0x00594396`,
-  `0x00594EC3`-`0x00594EF6`). After the passes of four they convert the last `count % 4` elements one at a
-  time (`0x005943FC`-`0x00594419`, `0x00594F6E`-`0x00594F8C`);
+  destination base, swapped when the byte `desc + 0xC` is set². After the passes of four they convert the last `count % 4` elements one at a
+  time³;
 - float to integer routines truncate (`cvttss2si`, `cvttsd2si`, 18 routines); integer to float routines
   use `cvtsi2ss`, `cvtsi2sd`, `cvtdq2ps` or `cvtdq2pd` (18 routines); 30 routines move integers only.
 
-One of the other 41 tears down the event record `0x02D3E880`. Its initialiser `0x00165F80` zeroes the record
-(`0x005CC8A0`) and registers `0x008B1B00`. `0x00677450` creates it: when `+0x00` is 0 it calls `0x005CD0A0`,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00592E80`-`0x00592E90` |
+| ² | `0x00594363`-`0x00594396`, `0x00594EC3`-`0x00594EF6` |
+| ³ | `0x005943FC`-`0x00594419`, `0x00594F6E`-`0x00594F8C` |
+
+</details>
+
+One of the other 41 tears down the event record `0x02D3E880`. Its initialiser `0x00165F80` zeroes the record¹ and registers `0x008B1B00`. `0x00677450` creates it: when `+0x00` is 0 it calls `0x005CD0A0`,
 which stores a `CreateEventA` handle (auto-reset, initially unsignalled) at `+0x08` and sets `+0x10`
 and `+0x00`. `0x00677520` closes it through `0x005CD6D0` (`CloseHandle`). The empty teardown never closes
 the handle.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CC8A0` |
+
+</details>
+
 With the record's first byte at 0 `0x00677520` makes no call and answers `0x15`; after
-the close it answers 0 (`0x00677524`-`0x00677543`).
+the close it answers 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00677524`-`0x00677543` |
+
+</details>
 
 ### What the image records about its build
 
@@ -163,6 +265,9 @@ an empty fourth entry. The optional header gives linker version 14.0. There is n
 (`PointerToSymbolTable` and `NumberOfSymbols` are 0).
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 IMAGE_OPTIONAL_HEADER64 (fields used here):
 
@@ -217,7 +322,12 @@ Event record `0x02D3E880`, `0x28` bytes:
 | `+0x20` | `u32` |  | (zeroed by `0x005CC8A0`) |
 | `+0x24` | `u32` |  | (zeroed by `0x005CC8A0`) |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -268,7 +378,12 @@ One row per registrar, 144 rows.
 | `dest_type` | the type descriptor it stores at node `+0x20`, the type converted to |
 | `stored_routine` | the conversion routine it stores at node `+0x28` (68 distinct) |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 ### The scalar-conversion tree
 
@@ -280,20 +395,28 @@ parent. The header's six qwords hold `0x01F2CDA0` on disk, so the tree starts em
 in that order. Each registrar does the following (sites of `0x005850F0`; every registrar has them at the same
 offsets):
 
-1. Inside its guarded block it stores the node's address in `+0x00`, `+0x08` and `+0x10` (`0x0058515C`-`0x0058516A`),
-   the source and destination descriptors with one 16-byte store (`0x00585176`) and the routine (`0x00585184`).
-2. On every call it sets bit `0x1` of `+0x10` (`0x005851BC`) and points `+0x00` and `+0x08` at the sentinel
-   (`0x005851CA`, `0x005851D1`).
-3. It walks down from the root comparing the source, then the destination, as unsigned values: a smaller key
-   follows `+0x00`, a larger one `+0x08` (`0x00585203`-`0x0058522F`). An equal key ends the call (`0x0058523A`).
-4. Otherwise it stores the last node it visited, with bit `0x1` set, in its own `+0x10` (`0x0058524B`), stores itself in
-   that node's `+0x00` or `+0x08`, or in `0x01F2CDB8` when the tree is empty (`0x00585255`), and calls
-   `0x0067F700(0x01F2CDA0, node)` (`0x0058525F`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Inside its guarded block it stores the node's address in `+0x00`, `+0x08` and `+0x10`, the source and destination descriptors with one 16-byte store and the routine. | `0x0058515C`-`0x0058516A`<br>`0x00585176`<br>`0x00585184` |
+| 2 | On every call it sets bit `0x1` of `+0x10` and points `+0x00` and `+0x08` at the sentinel. | `0x005851BC`<br>`0x005851CA`, `0x005851D1` |
+| 3 | It walks down from the root comparing the source, then the destination, as unsigned values: a smaller key follows `+0x00`, a larger one `+0x08`. An equal key ends the call. | `0x00585203`-`0x0058522F`<br>`0x0058523A` |
+| 4 | Otherwise it stores the last node it visited, with bit `0x1` set, in its own `+0x10`, stores itself in that node's `+0x00` or `+0x08`, or in `0x01F2CDB8` when the tree is empty, and calls `0x0067F700(0x01F2CDA0, node)`. | `0x0058524B`<br>`0x00585255`<br>`0x0058525F` |
 
-`0x0067F700` rebalances while the parent's bit `0x1` is set (`0x0067F718`, `0x0067F9A4`) and clears the root's bit `0x1` before
-it returns (`0x0067F9C2`). Bit `0x1` set marks a red node and clear a black one: the tree is a red-black tree. Because
+`0x0067F700` rebalances while the parent's bit `0x1` is set¹ and clears the root's bit `0x1` before
+it returns². Bit `0x1` set marks a red node and clear a black one: the tree is a red-black tree. Because
 the keys arrive in rising order, every insert walks through `+0x08` only, and step 4 stores into a `+0x08`;
-during the build a node's `+0x00` changes after step 2 only in `0x0067F700`'s rotations (`0x0067F984`).
+during the build a node's `+0x00` changes after step 2 only in `0x0067F700`'s rotations³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067F718`, `0x0067F9A4` |
+| ² | `0x0067F9C2` |
+| ³ | `0x0067F984` |
+
+</details>
 
 After all 144 inserts the root is `0x02CAB3D8` (`PUInt8` to `PUInt64`, routine `0x00592E30`). 8 nodes are red and 136
 black, 72 have no child, and every path from the root to the sentinel passes 6 black nodes.
@@ -301,85 +424,236 @@ black, 72 have no child, and every path from the root to the sentinel passes 6 b
 `0x0059FE20`, the `PSerialization` module's shutdown (slot 2 of the vtable `0x00D26C40`, which `0x00160320` installs in `0x01F2CD80`
 at `0x0016036A`; before that, and again after `0x008A8CE0`, `0x01F2CD80` holds the base vtable `0x00D26BC0`, whose slot 2 is
 the stub `0x005C5230`), calls
-`0x0067F580(0x01F2CDA0)` (`0x0059FF08`). It removes every node, rebalancing through `0x0067F9D0`, and leaves each one
-pointing at itself in `+0x00`, `+0x08` and `+0x10` (`0x0067F69D`-`0x0067F6A4`, `0x0067F6BB`-`0x0067F6C2`). It then clears
-the byte `0x02CA9D91` (`0x0059FF0D`), so the next call of `0x0059A030` runs the 144 registrars again.
+`0x0067F580(0x01F2CDA0)`¹. It removes every node, rebalancing through `0x0067F9D0`, and leaves each one
+pointing at itself in `+0x00`, `+0x08` and `+0x10`². It then clears
+the byte `0x02CA9D91`³, so the next call of `0x0059A030` runs the 144 registrars again.
 
-`0x0067F580` re-reads the root `+0x18` before each removal and returns when the root is the tree object or 0
-(`0x0067F5B6`, `0x0067F5BF`); a root whose `+0x00` points at itself sends it back to that read with nothing changed, so it
-never returns (`0x0067F5C5`-`0x0067F5CB`).
+<details>
+<summary>Where in the code</summary>
 
-In `0x0067F580` a child that is the tree object itself counts as missing (`0x0067F5CD`, `0x0067F5D6`). When a
+| | Code |
+|---|---|
+| ¹ | `0x0059FF08` |
+| ² | `0x0067F69D`-`0x0067F6A4`, `0x0067F6BB`-`0x0067F6C2` |
+| ³ | `0x0059FF0D` |
+
+</details>
+
+`0x0067F580` re-reads the root `+0x18` before each removal and returns when the root is the tree object or 0¹; a root whose `+0x00` points at itself sends it back to that read with nothing changed, so it
+never returns².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067F5B6`, `0x0067F5BF` |
+| ² | `0x0067F5C5`-`0x0067F5CB` |
+
+</details>
+
+In `0x0067F580` a child that is the tree object itself counts as missing¹. When a
 node is taken out, the node unlinked from its place is the node itself when one of its links is
-the tree object and otherwise the leftmost node under its link `+0x08` (`0x0067F5D2`-`0x0067F5F0`); that
+the tree object and otherwise the leftmost node under its link `+0x08`²; that
 node's parent goes into the `+0x10` of the child that takes its place, with that child's low bit kept
-and with no test of the child (`0x0067F5F3`-`0x0067F61C`). For a node with no child that store
+and with no test of the child³. For a node with no child that store
 writes the `+0x10` of the tree object.
 
-The child that takes the place is stored in the parent's `+0x00` (`0x0067F630`) when the parent is the root slot
-(`0x0067F620`) or when the parent's `+0x00` holds the node unlinked (`0x0067F625`), and otherwise in the parent's
-`+0x08` (`0x0067F62A`).
+<details>
+<summary>Where in the code</summary>
 
-When the node unlinked is the root's successor and not the root itself (`0x0067F633`), the root has two children,
+| | Code |
+|---|---|
+| ¹ | `0x0067F5CD`, `0x0067F5D6` |
+| ² | `0x0067F5D2`-`0x0067F5F0` |
+| ³ | `0x0067F5F3`-`0x0067F61C` |
+
+</details>
+
+The child that takes the place is stored in the parent's `+0x00`¹ when the parent is the root slot² or when the parent's `+0x00` holds the node unlinked³, and otherwise in the parent's
+`+0x08`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067F630` |
+| ² | `0x0067F620` |
+| ³ | `0x0067F625` |
+| ⁴ | `0x0067F62A` |
+
+</details>
+
+When the node unlinked is the root's successor and not the root itself¹, the root has two children,
 and `0x0067F580` puts the successor in the place of the node it removes:
 
-1. It calls `0x0067F9D0` with the tree and the child that took the successor's place, when bit `0x1` of the
-   successor's `+0x10` is clear (`0x0067F638`-`0x0067F641`).
-2. The successor takes the removed node's `+0x10` whole, bit `0x1` included, and its `+0x00` and `+0x08`
-   (`0x0067F646`-`0x0067F658`).
-3. The node in each of the removed node's two links gets the successor in its `+0x10` and keeps its own low bit.
-   There is no test for the tree object, so a link that holds it has the header's `+0x10` written
-   (`0x0067F65C`-`0x0067F67B`).
-4. The successor is stored in the removed node's parent: in `+0x08` when that qword holds the removed node,
-   otherwise in `+0x00` (`0x0067F67F`-`0x0067F699`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067F633` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It calls `0x0067F9D0` with the tree and the child that took the successor's place, when bit `0x1` of the successor's `+0x10` is clear. | `0x0067F638`-`0x0067F641` |
+| 2 | The successor takes the removed node's `+0x10` whole, bit `0x1` included, and its `+0x00` and `+0x08`. | `0x0067F646`-`0x0067F658` |
+| 3 | The node in each of the removed node's two links gets the successor in its `+0x10` and keeps its own low bit. There is no test for the tree object, so a link that holds it has the header's `+0x10` written. | `0x0067F65C`-`0x0067F67B` |
+| 4 | The successor is stored in the removed node's parent: in `+0x08` when that qword holds the removed node, otherwise in `+0x00`. | `0x0067F67F`-`0x0067F699` |
 
 When the node unlinked is the root itself, `0x0067F580` calls `0x0067F9D0` under the same condition, bit `0x1` of the
-root's `+0x10` clear (`0x0067F6AD`-`0x0067F6B6`).
+root's `+0x10` clear¹.
 
-Step 1 runs before the rest, and `0x0067F9D0` can rotate at the root (`0x0067FC70`), so the removed node is not
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067F6AD`-`0x0067F6B6` |
+
+</details>
+
+Step 1 runs before the rest, and `0x0067F9D0` can rotate at the root¹, so the removed node is not
 always the root when steps 2 to 4 run: `0x0067F580` does not read the root slot again and takes the parent from the
-node's own `+0x10` (`0x0067F67F`-`0x0067F68D`).
+node's own `+0x10`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067FC70` |
+| ² | `0x0067F67F`-`0x0067F68D` |
+
+</details>
 
 In 138 of the 142 two-child removals of a teardown that parent is the root slot `0x01F2CDB8`; the `+0x08` step 4
-tests is then the header's `+0x20`, which holds `0x01F2CDA0`, so the store goes to the root slot. In the other 4
-(`0x02CAC7F8`, `0x02CACA98`, `0x02CACBB0`, `0x02CACC20`) the call has put the node under a new root, and step 4 stores the
+tests is then the header's `+0x20`, which holds `0x01F2CDA0`, so the store goes to the root slot. In the other 4¹ the call has put the node under a new root, and step 4 stores the
 successor in that node's `+0x08`. These counts come from running the image's own `0x0067F700`, `0x0067F580` and
 `0x0067F9D0` in an emulator on the tree the 144 registrars build, not from the running game. The rebuilt tree gives
 the same four.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02CAC7F8`, `0x02CACA98`, `0x02CACBB0`, `0x02CACC20` |
+
+</details>
+
 No instruction names the header's `+0x20` or `+0x28`, and neither the registrars nor `0x0067F700`, `0x0067F580` and
-`0x0067F9D0` store there, so both keep `0x01F2CDA0`. In `0x0067F580` the store at `0x0067F62A` leaves out the root slot
-(`0x0067F620`), and step 4 writes `+0x08` only where it already holds the removed node.
+`0x0067F9D0` store there, so both keep `0x01F2CDA0`. In `0x0067F580` the store at `0x0067F62A` leaves out the root slot¹, and step 4 writes `+0x08` only where it already holds the removed node.
 
-`0x0067F9D0` replaces a node in its parent's link through the same test (`0x0067FA8D`, `0x0067FB44`, `0x0067FBE4`,
-`0x0067FC68`, `0x0067FD41`, `0x0067FDDD`). Its other `+0x08` stores go to the parent of the node it balances, or to nodes
-under that parent, and it leaves when that node is the root it read on entry (`0x0067F9D6`; `0x0067F9DD`, `0x0067FCC3`).
+<details>
+<summary>Where in the code</summary>
 
-It also leaves when the node it balances has bit `0x1` set (`0x0067F9F8`). On every exit it clears bit `0x1` of the
-node it stops on, which after a last rotation is the root it read on entry (`0x0067FDF7`, `0x0067FE03`-`0x0067FE13`);
+| | Code |
+|---|---|
+| ¹ | `0x0067F620` |
+
+</details>
+
+`0x0067F9D0` replaces a node in its parent's link through the same test¹. Its other `+0x08` stores go to the parent of the node it balances, or to nodes
+under that parent, and it leaves when that node is the root it read on entry².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067FA8D`, `0x0067FB44`, `0x0067FBE4`, `0x0067FC68`, `0x0067FD41`, `0x0067FDDD` |
+| ² | `0x0067F9D6`; `0x0067F9DD`, `0x0067FCC3` |
+
+</details>
+
+It also leaves when the node it balances has bit `0x1` set¹. On every exit it clears bit `0x1` of the
+node it stops on, which after a last rotation is the root it read on entry²;
 when that node is the tree object the store goes to the header's `+0x10`.
 
-`0x0067F700` replaces a node in its parent's link through the same test (`0x0067F7B1`, `0x0067F84A`, `0x0067F8DD`,
-`0x0067F978`). Its loop runs only while the parent of the node it stands on has bit `0x1` set (`0x0067F718`,
-`0x0067F9A4`); for the root that test reads the header's `+0x28`, so the loop never takes the root slot for a red
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067F9F8` |
+| ² | `0x0067FDF7`, `0x0067FE03`-`0x0067FE13` |
+
+</details>
+
+`0x0067F700` replaces a node in its parent's link through the same test¹. Its loop runs only while the parent of the node it stands on has bit `0x1` set²; for the root that test reads the header's `+0x28`, so the loop never takes the root slot for a red
 parent and its other `+0x08` stores go to nodes.
 
-A registrar stores into the root slot at `+0x00` only, when the tree is empty (`0x005851E6`, `0x00585255`). `0x0067F6F0`,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067F7B1`, `0x0067F84A`, `0x0067F8DD`, `0x0067F978` |
+| ² | `0x0067F718`, `0x0067F9A4` |
+
+</details>
+
+A registrar stores into the root slot at `+0x00` only, when the tree is empty¹. `0x0067F6F0`,
 which stores its argument at its own `+0x18`, `+0x20` and `+0x28`, is called by none of these routines.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005851E6`, `0x00585255` |
+
+</details>
+
 Before the `0x0067F580` call `0x0059FE20` empties the list at `0x02CA9D88`: each node is
-unlinked first (`0x0059FE60`-`0x0059FE8D`); its array `+0x70` is freed with `0x00584730` only
+unlinked first¹; its array `+0x70` is freed with `0x00584730` only
 when bit `0x80000000` of the count `+0x68` is clear, and both are zeroed; `0x00598040`
 runs on the node's `+0x18`; the array `+0x10` with the count `+0x08` is treated the same
-way; and the node itself is freed (`0x0059FE9C`-`0x0059FEEB`). After the call it clears the
-bytes `0x02CA9D91` and `0x02CA9D90` and answers 0 (`0x0059FF0D`-`0x0059FF1B`).
+way; and the node itself is freed². After the call it clears the
+bytes `0x02CA9D91` and `0x02CA9D90` and answers 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059FE60`-`0x0059FE8D` |
+| ² | `0x0059FE9C`-`0x0059FEEB` |
+| ³ | `0x0059FF0D`-`0x0059FF1B` |
+
+</details>
 
 On that second run every guard is already set, so each registrar runs steps 2 to 4 only, and the tree is rebuilt
 with the same shape. The exit teardown `0x008A81D0`, which `0x00160310` registers with `atexit`, calls
-`0x0067F580(0x01F2CDA0)` twice (`0x008A81E4`, `0x008A81F1`).
+`0x0067F580(0x01F2CDA0)` twice¹.
 
-`0x0059A030` reads `+0x18` (`0x0059A340`), `+0x20` (`0x0059A34E`) and `+0x00` or `+0x08` (`0x0059A36C`) of each node on its
-search path, and `+0x28` of the node it finds (`0x0059A388`). No other function reads or writes a node.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008A81E4`, `0x008A81F1` |
+
+</details>
+
+`0x0059A030` reads `+0x18`¹, `+0x20`² and `+0x00` or `+0x08`³ of each node on its
+search path, and `+0x28` of the node it finds⁴. No other function reads or writes a node.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059A340` |
+| ² | `0x0059A34E` |
+| ³ | `0x0059A36C` |
+| ⁴ | `0x0059A388` |
+
+</details>
 
 Besides the 144
 empty teardown adapters `0x008A83E0` + k x `0x10`, each a `lea` of its node and a `jmp` to the `ret` at `0x0016D6A0`, only the
@@ -409,21 +683,28 @@ conversion pair, its value once the 144 inserts are done, and its own writers an
 
 ### The failure record
 
-When `IsProcessorFeaturePresent(23)` reports no fast fail, `__report_gsfailure` (`0x00809654`) and `0x0080973C` fill an
+When `IsProcessorFeaturePresent(23)` reports no fast fail, `__report_gsfailure`¹ and `0x0080973C` fill an
 exception record at `0x02EAED90` and a context record at `0x02EAEE30` (`0x4D0` bytes, up to `0x02EAF300`). They pass
-`0x01CC72D0`, the read-only pair `0x02EAED90`, `0x02EAEE30`, to `0x00809620` (`0x0080971B`, `0x008097CD`), which passes it to
-`UnhandledExceptionFilter` (`0x00809634`).
+`0x01CC72D0`, the read-only pair `0x02EAED90`, `0x02EAEE30`, to `0x00809620`², which passes it to
+`UnhandledExceptionFilter`³.
 
-1. The context is captured with `RtlCaptureContext` and unwound with `RtlVirtualUnwind`: up to two frames by `0x00809848`
-   for `0x00809654` (`0x00809679`), one by `0x008097D8` for `0x0080973C` (`0x00809761`). Each reads `Rip` (`+0xF8`) to find
-   the frame's unwind entry (`0x00809859`, `0x008097EB`).
-2. Each reporter then stores its return address in `Rip` (`0x00809683`, `0x0080976B`) and the address just above it in
-   `Rsp` (`0x00809693`, `0x0080977B`). `0x00809654` is reached by the jump at `0x00808C5C`, so its return address is the
-   one the failing function's call to `0x00808C40` pushed; `0x0080973C`'s is always `0x00809736`.
-3. `0x00809654` also stores the value it was passed, the failed `cookie xor rsp`, in `Rcx` (`+0x80`, `0x008096AD`).
-4. Each copies `Rip` into `ExceptionAddress` (`0x0080969A`, `0x00809782`) and stores the code `0xC0000409`, flags 1 and
-   one parameter: 2 from `0x00809654` (`0x008096E2`), the argument from `0x0080973C` (`0x008097C2`), which is 8 from its only
-   caller `0x00809728`.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00809654` |
+| ² | `0x0080971B`, `0x008097CD` |
+| ³ | `0x00809634` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The context is captured with `RtlCaptureContext` and unwound with `RtlVirtualUnwind`: up to two frames by `0x00809848` for `0x00809654`, one by `0x008097D8` for `0x0080973C`. Each reads `Rip` (`+0xF8`) to find the frame's unwind entry. | `0x00809679`<br>`0x00809761`<br>`0x00809859`, `0x008097EB` |
+| 2 | Each reporter then stores its return address in `Rip` and the address just above it in `Rsp`. `0x00809654` is reached by the jump at `0x00808C5C`, so its return address is the one the failing function's call to `0x00808C40` pushed; `0x0080973C`'s is always `0x00809736`. | `0x00809683`, `0x0080976B`<br>`0x00809693`, `0x0080977B` |
+| 3 | `0x00809654` also stores the value it was passed, the failed `cookie xor rsp`, in `Rcx` (`+0x80`, `0x008096AD`). |   |
+| 4 | Each copies `Rip` into `ExceptionAddress` and stores the code `0xC0000409`, flags 1 and one parameter: 2 from `0x00809654`, the argument from `0x0080973C`, which is 8 from its only caller `0x00809728`. | `0x0080969A`, `0x00809782`<br>`0x008096E2`<br>`0x008097C2` |
 
 No instruction in the image reads any other field of either record. No RIP-relative, image-base-relative or
 disp32 reference names an address in `0x02EAED90`-`0x02EAF2FF` outside `0x00809654` and `0x0080973C`, and the only data
@@ -442,21 +723,33 @@ qwords that point into it are the pair at `0x01CC72D0`.
 
 ### The runtime's own fast fail
 
-`0x0080996C(code)` is the C runtime start-up's fast fail. It is called with 5 from `0x00808988` (`0x00808A4B`) and with 7
-from `0x00808C90` (`0x00808D3A`, `0x00808D45`), `0x00808D78` (`0x00808D95`, `0x00808DBA`) and `0x00809124` (`0x00809231`,
-`0x0080923C`).
+`0x0080996C(code)` is the C runtime start-up's fast fail. It is called with 5 from `0x00808988`¹ and with 7
+from `0x00808C90`², `0x00808D78`³ and `0x00809124`⁴.
 
-1. When `IsProcessorFeaturePresent(23)` reports fast fail it executes `int 0x29` with the code (`0x00809993`).
-2. Otherwise it clears the dword `0x02EAF300` (`0x00809995`), captures and unwinds a context on its stack and builds an
-   exception record with code `0x40000015` and flags 1 there (`0x00809A50`, `0x00809A58`).
-3. It calls `IsDebuggerPresent` (`0x00809A60`), `SetUnhandledExceptionFilter(NULL)` (`0x00809A81`) and
-   `UnhandledExceptionFilter` (`0x00809A8C`).
-4. When that returns 0 it ands `0x02EAF300` with 0, or with -1 when `IsDebuggerPresent` returned 1 (`0x00809A9A`). It
-   then returns (`0x00809AB0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808A4B` |
+| ² | `0x00808D3A`, `0x00808D45` |
+| ³ | `0x00808D95`, `0x00808DBA` |
+| ⁴ | `0x00809231`, `0x0080923C` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When `IsProcessorFeaturePresent(23)` reports fast fail it executes `int 0x29` with the code. | `0x00809993` |
+| 2 | Otherwise it clears the dword `0x02EAF300`, captures and unwinds a context on its stack and builds an exception record with code `0x40000015` and flags 1 there. | `0x00809995`<br>`0x00809A50`, `0x00809A58` |
+| 3 | It calls `IsDebuggerPresent`, `SetUnhandledExceptionFilter(NULL)` and `UnhandledExceptionFilter`. | `0x00809A60`<br>`0x00809A81`<br>`0x00809A8C` |
+| 4 | When that returns 0 it ands `0x02EAF300` with 0, or with -1 when `IsDebuggerPresent` returned 1. It then returns. | `0x00809A9A`<br>`0x00809AB0` |
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02EAF300` | `u32` | 0 (zero-filled tail of `.data`) | a dword that holds 0 at every point: `0x0080996C` clears it and its one other access ands it with 0 or -1 | `0x0080996C` (`0x00809995`, `0x00809A9A`) | `0x0080996C` (`0x00809A9A`, the read of the `and`) only |
+
+</details>
 
 ## Modding notes
 

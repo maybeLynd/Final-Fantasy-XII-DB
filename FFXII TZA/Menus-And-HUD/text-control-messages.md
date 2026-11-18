@@ -72,64 +72,59 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 29 calls with 13 other topics</summary>
 
-**Characters and objects**
+**Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [ebp camera tables](../EBP-Script-Files/ebp-camera-tables.md), [debug menu](../Engine-Core/debug-menu.md), [ebp camera shake](../EBP-Script-Files/ebp-camera-shake.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E400` | is called by | `0x0032FCA0`, `0x00330310`, `0x003306E0` |
-| `0x003306E0` | calls | `0x002566E0`, `0x00263FF0`, `0x0037DC30` |
-| `0x003306E0` | is called by | `0x0032FCA0` |
-
-**Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
-
-**Characters and objects** (explained on [ebp camera tables](../EBP-Script-Files/ebp-camera-tables.md), [debug menu](../Engine-Core/debug-menu.md), [ebp camera shake](../EBP-Script-Files/ebp-camera-shake.md))
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
+| [`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) | calls | [`0x002566E0`](../EBP-Script-Files/ebp-script-container.md) (on ebp script container)<br>[`0x00263FF0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x0037DC30`](../EBP-Script-Files/ebp-script-container.md) (on ebp script container) |
+| [`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) |
 
 **Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002AC5F0` | calls | `0x00229E40` |
+| [`0x002AC5F0`](text-drawing.md) (on text drawing) | calls | [`0x00229E40`](../Story-Events-And-Hunts/script-language-differences.md) (on script language differences) |
 
-**Graphics** (explained on [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [message windows](message-windows.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md))
+**Graphics** (explained on [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [message windows](message-windows.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [ebp camera tables](../EBP-Script-Files/ebp-camera-tables.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002AC5F0` | calls | `0x003A1DB0` |
-| `0x002AC5F0` | is called by | `0x002AAE40` |
-| `0x0032E400` | is called by | `0x003B2310`, `0x003B53C0` |
-| `0x003306E0` | calls | `0x002561C0` |
+| [`0x002AC5F0`](text-drawing.md) (on text drawing) | calls | [`0x003A1DB0`](../PhyreEngine/the-frame.md) Render command: submit current buffer and swap (on the frame) |
+| [`0x002AC5F0`](text-drawing.md) (on text drawing) | is called by | [`0x002AAE40`](text-drawing.md) (on text drawing) |
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x003B2310`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x003B53C0`](../Game-Files-And-Data-Tables/small-bin-tables.md) (on small bin tables) |
+| [`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) | calls | [`0x002561C0`](../EBP-Script-Files/ebp-camera-tables.md) (on ebp camera tables) |
 
-**Graphics** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [ebp camera tables](../EBP-Script-Files/ebp-camera-tables.md))
+**Game files and data tables** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [startup constants](../Engine-Core/startup-constants.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
 
-**Game files and data tables**
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E400` | is called by | `0x00249210`, `0x0024AC30`, `0x00259DF0`, `0x00379E90`, `0x00384420`, `0x0039C3F0`, `0x003EADE0`, `0x0051ED10` |
-| `0x003306E0` | calls | `0x0032E400` |
-
-**Game files and data tables** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [startup constants](../Engine-Core/startup-constants.md))
-
-**Game files and data tables** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00249210`](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md) (on mrp menu resource packages)<br>[`0x0024AC30`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue)<br>[`0x00259DF0`](../Game-Files-And-Data-Tables/ps2data-bin-families.md) (on ps2data bin families)<br>[`0x00379E90`](../Game-Files-And-Data-Tables/small-bin-tables.md) (on small bin tables)<br>[`0x00384420`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables)<br>[`0x0039C3F0`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x003EADE0`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue)<br>[`0x0051ED10`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue) |
+| [`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) | calls | [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) |
 
 **Scripts and script commands**
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E400` | is called by | `0x0050DF70` |
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0050DF70`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) |
 
-**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E400` | is called by | `0x00378540` |
-
-**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
-
-| Function | | Functions |
-|---|---|---|
-| `0x0032E400` | is called by | `0x00268750`, `0x003319D0`, `0x00378030`, `0x00379A10`, `0x003EA820` |
-
-**World, areas and travel** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00378540`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00268750`](../Game-Files-And-Data-Tables/ps2data-bin-families.md) Map ref: begin load resources (on ps2data bin families)<br>[`0x003319D0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x00378030`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack)<br>[`0x00379A10`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list)<br>[`0x003EA820`](../Game-Files-And-Data-Tables/ard-area-battle-data.md) Area ard: load or unload field resource (on ard area battle data) |
 
 </details>

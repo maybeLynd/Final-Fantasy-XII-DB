@@ -22,10 +22,22 @@ length runs out the status is removed.
 
 ### The periodic step
 
-`0x00310DB0(unit)` runs for every active unit that is not down, from the unit frame `0x00233F70` (`0x00234001`). It
-first refreshes unit `+0x24` (`0x00305E70`) and `+0x60` (`0x002E8100`), and clears unit flag bit `0x40000000` once the battle
+`0x00310DB0(unit)` runs for every active unit that is not down, from the unit frame `0x00233F70`¹. It
+first refreshes unit `+0x24`² and `+0x60`³, and clears unit flag bit `0x40000000` once the battle
 clock passes `+0xDD0`, the window a revive opens ([KO and Game Over](ko-and-game-over.md); `0x00310DDC`-`0x00310DFC`).
-It stops at once, running nothing below, when (`0x00310DCB`-`0x00310E1B`):
+It stops at once, running nothing below, when⁴:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234001` |
+| ² | `0x00305E70` |
+| ³ | `0x002E8100` |
+| ⁴ | `0x00310DCB`-`0x00310E1B` |
+
+</details>
 
 - the unit has no stats record;
 - a special-sequence scene is on screen (`0x022C2160` is 5 or 6);
@@ -33,28 +45,64 @@ It stops at once, running nothing below, when (`0x00310DCB`-`0x00310E1B`):
 
 For a party-side unit (stats `+0x05` = 0) the `+0x24` value is `0x003271E0()`: the id `+0x08` of the
 unit that `0x00327150` finds, the slot unit whose stats record is entry `[[0x02EBF190] + 0x5AA4]` (0 to 39)
-of the records at `[0x02EBF190] + 8`, or 0 when there is no such unit (`0x00305E70`-`0x00305E97`,
-`0x00327150`-`0x003271BF`, `0x003271E0`).
+of the records at `[0x02EBF190] + 8`, or 0 when there is no such unit¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00305E70`-`0x00305E97`, `0x00327150`-`0x003271BF`, `0x003271E0` |
+
+</details>
 
 A summoned Esper at 0 HP or below (a signed 32-bit test, `0x00310E5B`-`0x00310E5F`), or whose summoner is gone or
-down, is dismissed with `0x003138D0(0)` and nothing else runs (`0x00310E21`-`0x00310EFD`). Then four gates skip to the tail, below (`0x00310F12`-`0x00310F4F`): the actor
-manager is not ready (`0x00265680`), the battle or unit eligibility mask is set
+down, is dismissed with `0x003138D0(0)` and nothing else runs¹. Then four gates skip to the tail, below²: the actor
+manager is not ready³, the battle or unit eligibility mask is set
 ([Gaining and losing statuses](status-changes.md)), or unit flag bit `0x1000000000` is set.
 
-Otherwise it builds a result with `0x00385DF0` and applies it with `0x003112F0(result, 0, stats, 0xFFFF, 0)`
-(`0x00310F5D`-`0x00310FAC`). `0x00385DF0` runs five stages in order (`0x00385E08`-`0x00385E3E`): reset the result
-(`0x003848E0`), the status countdown, the buff timers, the area drains and the out-of-combat healing.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00310E21`-`0x00310EFD` |
+| ² | `0x00310F12`-`0x00310F4F` |
+| ³ | `0x00265680` |
+
+</details>
+
+Otherwise it builds a result with `0x00385DF0` and applies it with `0x003112F0(result, 0, stats, 0xFFFF, 0)`¹. `0x00385DF0` runs five stages in order²: reset the result³, the status countdown, the buff timers, the area drains and the out-of-combat healing.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00310F5D`-`0x00310FAC` |
+| ² | `0x00385E08`-`0x00385E3E` |
+| ³ | `0x003848E0` |
+
+</details>
 
 ### The status countdown
 
-`0x00386C70(stats, result)` walks the 32 statuses (`0x00386CD0`-`0x00386F72`). For each status the unit has:
+`0x00386C70(stats, result)` walks the 32 statuses¹. For each status the unit has:
 
-1. While the unit has Stop, every other status is skipped (`0x00386CDE`-`0x00386CE5`, `0x00386E97`-`0x00386E9E`).
-2. **The beat.** `+0x13C[s]` loses 10. While it stays above 0 nothing else happens; at 0 the beat fires and
-   reloads to row `+0x09` × 30 × frame base (`0x00386CEB`-`0x00386CF5`, `0x00386E74`-`0x00386E84`).
-3. **The duration**, only for a status held in the timed word `+0x64` and not in `+0x3C`, whose row has a
-   duration. `+0xBC[s]` loses 10; at 0 or below the status goes into the result's remove mask
-   (`0x00386E88`-`0x00386F55`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00386CD0`-`0x00386F72` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | While the unit has Stop, every other status is skipped. | `0x00386CDE`-`0x00386CE5`, `0x00386E97`-`0x00386E9E` |
+| 2 | **The beat.** `+0x13C[s]` loses 10. While it stays above 0 nothing else happens; at 0 the beat fires and reloads to row `+0x09` × 30 × frame base. | `0x00386CEB`-`0x00386CF5`, `0x00386E74`-`0x00386E84` |
+| 3 | **The duration**, only for a status held in the timed word `+0x64` and not in `+0x3C`, whose row has a duration. `+0xBC[s]` loses 10; at 0 or below the status goes into the result's remove mask. | `0x00386E88`-`0x00386F55` |
 
 The duration and beat are set when the status lands ([Gaining and losing statuses](status-changes.md)); their
 shipped values are on [Statuses](statuses.md). A status held in `+0x3C`, from gear, never runs out.
@@ -68,67 +116,127 @@ shipped values are on [Statuses](statuses.md). A status held in `+0x3C`, from ge
 | Regen (25) | HP rises by `MT19937 % level + 1` | `0x00386D20`-`0x00386D3D` |
 | Petrify (2), Doom (6) | the count `+0xBC[s]` falls by 1; the beat before the last step is a quarter of the usual one | `0x00386E3E`-`0x00386E72` |
 
-When the count of Petrify reaches 0 the unit gains Stone; when Doom's does, its HP is set to 0
-(`0x00386EF5`-`0x00386F0F`). The HP changes go through the HP write ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)),
+When the count of Petrify reaches 0 the unit gains Stone; when Doom's does, its HP is set to 0¹. The HP changes go through the HP write ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)),
 so a Poison beat can finish a unit.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00386EF5`-`0x00386F0F` |
+
+</details>
 
 ### HP Critical
 
 After the walk, the step compares the unit's HP after the beat with a fifth of its maximum (max HP, doubled under
 Bubble, or current HP under Disease). Above 0 and below that line the unit gains HP Critical; at or above it, or
-at 0, it loses it (`0x00386F78`-`0x00386FF3`).
+at 0, it loses it¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00386F78`-`0x00386FF3` |
+
+</details>
 
 ### Buff timers
 
 `0x00385570` counts down the buff timers at `+0x17C` ([Battle buffs](battle-buffs.md); `0x003855CD`-`0x00385645`).
-It reads each timer as a signed 16-bit value and leaves one at 0 or below alone (`0x0038562E`-`0x00385631`); a
+It reads each timer as a signed 16-bit value and leaves one at 0 or below alone¹; a
 positive one loses 1, and the step that takes it from 1 to 0 queues the buff for removal from the battle layer
-`+0x68` (`0x00385636`-`0x0038563C`). A buff that gear or a licence also holds in `+0x78` stays in effect.
+`+0x68`². A buff that gear or a licence also holds in `+0x78` stays in effect.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038562E`-`0x00385631` |
+| ² | `0x00385636`-`0x0038563C` |
+
+</details>
 
 ### Area drains
 
-`0x00385CA0` drains HP and MP of party-side units (`0x002FA390`) while battle flags `0x022C314C` bit `0x1` (HP) or bit `0x2`
-(MP) are set (`0x00385CB0`-`0x00385DDC`). Battle orders `0x4139`-`0x4148` set and clear those bits
+`0x00385CA0` drains HP and MP of party-side units¹ while battle flags `0x022C314C` bit `0x1` (HP) or bit `0x2`
+(MP) are set². Battle orders `0x4139`-`0x4148` set and clear those bits
 ([Battle orders](../Battle-Actions/battle-orders.md)). The drain lands when the battle clock `0x0032A150` is a
 multiple of 10 × frame base:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FA390` |
+| ² | `0x00385CB0`-`0x00385DDC` |
+
+</details>
 
 | Drain | Amount | Sites |
 |---|---|---|
 | HP | max HP / 100 (doubled under Bubble, current HP under Disease), or 1 when that is below 100 | `0x00385CDE`-`0x00385D62` |
 | MP | max MP / 50, or 1 when max MP is below 50 or augment 39 is held | `0x00385D78`-`0x00385DDC` |
 
-The HP drain sets the result's `+0x2C` bit `0x100` and stores the loss in `+0x24` (`0x00385D03`-`0x00385D62`). The MP
+The HP drain sets the result's `+0x2C` bit `0x100` and stores the loss in `+0x24`¹. The MP
 drain sets `+0x2C` bit `0x4000` and stores the loss, -(max MP / 50) or -1, in the word `+0x2A`, with max MP the
-signed 16-bit `+0x28` (`0x00385D9D`-`0x00385DDC`); the applier reads that word under bit `0x4000`
-(`0x0031166A`-`0x00311673`). The period is `30 * [0x01DFE0B4] / 3`, an unsigned divide (`0x00385CE3`-`0x00385CFD`).
+signed 16-bit `+0x28`²; the applier reads that word under bit `0x4000`³. The period is `30 * [0x01DFE0B4] / 3`, an unsigned divide⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00385D03`-`0x00385D62` |
+| ² | `0x00385D9D`-`0x00385DDC` |
+| ³ | `0x0031166A`-`0x00311673` |
+| ⁴ | `0x00385CE3`-`0x00385CFD` |
+
+</details>
 
 ### Out-of-combat healing
 
 `0x00386860` heals an enemy-table unit of category 8 that perceives no foe (`0x00386860`-`0x00386A30`;
 [Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)). Category 8 is the class `0x002F8E90` gives an enemy-table unit
-whose actor class nibble (`0x00263C20`) is 1, 2 or 7; any other class ends the step (`0x003868CE`-`0x003868D6`;
+whose actor class nibble¹ is 1, 2 or 7; any other class ends the step (`0x003868CE`-`0x003868D6`;
 [Battle unit construction](../Characters-And-Objects/battle-unit-construction.md)):
 
-1. It needs a unit that is not asleep or diseased, below its maximum HP, with no foe in its perception list
-   (`0x002F8E70`) and nobody committed against it (`+0xEA8`).
-2. A counter, word `+0x14` of its 64-byte record, rises by one each step; any failed test resets it to 0
-   (`0x00386A27`, `0x00386A2C`). The record is `0x0208D480 + 64 * type` for a party record, else `0x0208DE80 + 64 *`
-   the byte `+0xEA9` of the unit `0x0031B860` gives, which is kept in `0x02EBF188` (`0x00386874`-`0x003868BB`).
-3. Every 30 × frame base steps, starting with the counter at 0, it stores a share of its maximum HP as the
-   result's HP change: 0 % for the first 10 such points, 1 % up to 30, 2 % up to 50, and 5 % from then on
-   (`0x003869A2`-`0x00386A23`). The 0 % points still store, a change of 0 (`0x003869B2`, `0x00386A23`).
-4. The maximum is max HP `+0x24`, doubled under Bubble (`0x00386A03`-`0x00386A0C`): `m = 2 * [+0x24]` when
-   `([+0x64] | [+0x3C]) & 0x10000000`, read at `0x003869EB`. The change is `m * pct / 100`, a signed divide toward
-   zero (`0x00386A0E`-`0x00386A23`).
-5. From the 50th point on the counter is set to 1,500 × frame base before it rises (`0x003869CE`-`0x003869E0`), so it
-   stays between 1,500 and 1,530 × frame base and every later point pays 5 %. A 0 % point leaves bit `0x100` of
-   `+0x2C` as it was (`0x003869B2`, `0x003869E3`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263C20` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It needs a unit that is not asleep or diseased, below its maximum HP, with no foe in its perception list and nobody committed against it (`+0xEA8`). | `0x002F8E70` |
+| 2 | A counter, word `+0x14` of its 64-byte record, rises by one each step; any failed test resets it to 0. The record is `0x0208D480 + 64 * type` for a party record, else `0x0208DE80 + 64 *` the byte `+0xEA9` of the unit `0x0031B860` gives, which is kept in `0x02EBF188`. | `0x00386A27`, `0x00386A2C`<br>`0x00386874`-`0x003868BB` |
+| 3 | Every 30 × frame base steps, starting with the counter at 0, it stores a share of its maximum HP as the result's HP change: 0 % for the first 10 such points, 1 % up to 30, 2 % up to 50, and 5 % from then on. The 0 % points still store, a change of 0. | `0x003869A2`-`0x00386A23`<br>`0x003869B2`, `0x00386A23` |
+| 4 | The maximum is max HP `+0x24`, doubled under Bubble: `m = 2 * [+0x24]` when `([+0x64] \| [+0x3C]) & 0x10000000`, read at `0x003869EB`. The change is `m * pct / 100`, a signed divide toward zero. | `0x00386A03`-`0x00386A0C`<br>`0x00386A0E`-`0x00386A23` |
+| 5 | From the 50th point on the counter is set to 1,500 × frame base before it rises, so it stays between 1,500 and 1,530 × frame base and every later point pays 5 %. A 0 % point leaves bit `0x100` of `+0x2C` as it was. | `0x003869CE`-`0x003869E0`<br>`0x003869B2`, `0x003869E3` |
 
 ### How the stages share the HP change
 
 The result's `+0x24` is the HP change, and bit `0x100` of its `+0x2C` sends it to the HP write: the applier adds it
-with `0x00300530`, or sets HP to it with `0x00300520` when bit `0x8` is also set (`0x00311608`-`0x00311668`). The reset
-leaves `+0x24` at 0 (`0x003848F5`). The stages then write it in order:
+with `0x00300530`, or sets HP to it with `0x00300520` when bit `0x8` is also set¹. The reset
+leaves `+0x24` at 0². The stages then write it in order:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00311608`-`0x00311668` |
+| ² | `0x003848F5` |
+
+</details>
 
 | Stage | What it does to `+0x24` | Sites |
 |---|---|---|
@@ -142,14 +250,32 @@ HP area drain on the same step the change is −16; on one of an enemy's first 1
 still set by Poison; on a 1 % point it is +16; on a step with neither, −100.
 
 Every store the four stages make to
-`+0x2C` is an `or` (`0x00386D20`, `0x00386D3D`, `0x00386D8F`, `0x00386D9B`, `0x00386EFF`, `0x00385D03`, `0x00385D9D`,
-`0x003869E3`), so after Doom's last step a later drain or heal value is set as the HP.
-The HP Critical test reads `+0x24` at the end of the countdown (`0x00386F78`-`0x00386F91`), before the two later
+`+0x2C` is an `or`¹, so after Doom's last step a later drain or heal value is set as the HP.
+The HP Critical test reads `+0x24` at the end of the countdown², before the two later
 stages write it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00386D20`, `0x00386D3D`, `0x00386D8F`, `0x00386D9B`, `0x00386EFF`, `0x00385D03`, `0x00385D9D`, `0x003869E3` |
+| ² | `0x00386F78`-`0x00386F91` |
+
+</details>
 
 ### After the first apply
 
-The step then runs, in order (`0x00310FB1`-`0x003112AC`):
+The step then runs, in order¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00310FB1`-`0x003112AC` |
+
+</details>
 
 1. **Traps.** `0x002F8060` checks the authored trap points near the unit; for each unit a trap catches, the trap's
    action is resolved and applied to it ([Trap points](../World-Areas-And-Travel/traps.md)).
@@ -161,18 +287,50 @@ The step then runs, in order (`0x00310FB1`-`0x003112AC`):
 
 ## Layouts
 
+<details>
+<summary>Show the memory layouts</summary>
+
 Each unit's 64-byte record: for a party record (byte `+5` = 0) `0x0208D480 + type * 0x40`, forty of them, otherwise
-`0x0208DE80 + unit[+0xEA9] * 0x40`, thirty-two (`0x00386C21`-`0x00386C51`). Both banks are in the zero-filled tail of
+`0x0208DE80 + unit[+0xEA9] * 0x40`, thirty-two¹. Both banks are in the zero-filled tail of
 `.data`.
 
-The first list of an action clears the first `0x14` bytes when it resolves the user's current target, keeping
-`+0x10` and, with unit byte `+0x6B7` set, the high nibble of `+0x12`, and then sets bit `0x1` of `+0x12`
-(`0x0038579C`-`0x003857E1`): `rec[+0x12] = (unit[+0x6B7] != 0 ? rec[+0x12] & 0xF0 : 0) OR 1` on the value read before
-the clear ([Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)); `unit[+0x6B7] != 0` reads the battle unit
-`0x0031B860` returns (`0x003857B5`-`0x003857CD`), and `rec.u16[+0x10]` is put back (`0x003857E1`).
+<details>
+<summary>Where in the code</summary>
 
-`0x00386C10` clears the first `0x20` bytes (`0x00386C5B`-`0x00386C66`) when a unit is placed by `btlAtelSetUnitFinish`
-(`0x0023A513`) and from `0x00233AD0` (`0x00233BFC`).
+| | Code |
+|---|---|
+| ¹ | `0x00386C21`-`0x00386C51` |
+
+</details>
+
+The first list of an action clears the first `0x14` bytes when it resolves the user's current target, keeping
+`+0x10` and, with unit byte `+0x6B7` set, the high nibble of `+0x12`, and then sets bit `0x1` of `+0x12`¹: `rec[+0x12] = (unit[+0x6B7] != 0 ? rec[+0x12] & 0xF0 : 0) OR 1` on the value read before
+the clear ([Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)); `unit[+0x6B7] != 0` reads the battle unit
+`0x0031B860` returns², and `rec.u16[+0x10]` is put back³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038579C`-`0x003857E1` |
+| ² | `0x003857B5`-`0x003857CD` |
+| ³ | `0x003857E1` |
+
+</details>
+
+`0x00386C10` clears the first `0x20` bytes¹ when a unit is placed by `btlAtelSetUnitFinish`² and from `0x00233AD0`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00386C5B`-`0x00386C66` |
+| ² | `0x0023A513` |
+| ³ | `0x00233BFC` |
+
+</details>
 
 `BattleRuntimeUnitRecord` (`0x40` bytes, offsets from the start of the record):
 
@@ -190,6 +348,8 @@ the clear ([Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)); `
 | `+0x18` | `f32` | walkLeft | the walk distance left after the last MP step: `0x002F9400` compares the new distance with it (`0x002F9474`) and stores what is left (`0x002F95A6`) (MP gain and cost) |
 | `+0x1C` | `u32` | circle | bit `0x1`: the unit joins the circling formation once KO'd, set by `0x0033CB10` (`0x0033CB60`) when action-timeline event 2 or 6 reaches a KO'd unit (`0x00325651`); bit `0x2`: it has reached its place (`0x0033DA73`); both read by the mode-2 movement `0x0033D890` (`0x0033D953`, `0x0033DA77`) (Battle locomotion) |
 | `+0x20` | `u8[32]` | pad20 | read and written by no function; nothing fixes its width |
+
+</details>
 
 ## Modding notes
 

@@ -24,73 +24,124 @@ framework side: what calls those slots, in what order and on which thread.
 The program's main function `0x007A3770` calls the framework start-up `0x007980A0` on both arms of its
 `IsDebuggerPresent` test. The application object exists before that: `GameApplication`'s static
 initialiser runs the `PApplication` constructor `0x00792350`, which stores the object's address in the
-global `0x02EA5368` (`0x00792550`), sets the default size 1280 by 720 (`+0xD24`, `+0xD28`) and names the
+global `0x02EA5368`¹, sets the default size 1280 by 720 (`+0xD24`, `+0xD28`) and names the
 object `PhyreFrameworkApplication`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00792550` |
+
+</details>
 
 ### The start-up function `0x007980A0`
 
 In order:
 
-1. `SetUnhandledExceptionFilter`, `ImmDisableIME`, `CoInitializeEx`; then the Steam context
-   (see [Steam integration](../Steam-And-Achievements/steam-integration.md)):
-   - `SteamAPI_Init` runs when the context's utils slot `+0x18` is empty; the `jne` at `0x00798121`
-     skips it when the slot is filled.
-   - When `SteamAPI_Init` succeeds (or the utils interface is already present), the Steam callback
-     set-up (`0x0020CD30`, `0x008655E0`) runs (`0x0079811C`-`0x00798137`).
-   - `SteamAPI_RestartAppIfNecessary(0x91640)` (`0x0079813C`) runs either way and calls `exit(1)` when Steam asks
-     for a relaunch.
-2. The Steam callback object (`0x007A0810`), the `My Games\FINAL FANTASY XII THE ZODIAC AGE\<SteamID>\`
-   folder (`0x0079FA00` and the path built after it), and the game settings object, `0x65C` bytes
-   (`0x001DE050`), stored at `0x01F82D20`, read from its file or created with defaults (`0x001DED50`).
-3. The mutex `A8825348-F5CE-4E67-8735-D4AF7E7E58F1`. When it already exists (`ERROR_ALREADY_EXISTS`)
-   or the settings file can be neither read nor written, a message box whose text comes from the string resources (`0x0019A510`)
-   is shown and the function returns.
-4. The command line, converted to narrow strings; then application slot 1 (`0x00798542`), which
-   registers the application's script methods.
-5. Window mode, size and options copied from the settings into the application (`+0xD20` full screen
-   when the settings' mode is 1, `+0xD24`/`+0xD28` the size), and a `PWindow` object on the stack
-   (vtable `0x01CB2480`).
-6. `0x007979B0` (worker count from the process affinity mask), the engine module start-up `0x005A08E0`
-   (`0x00798603`; [Phyre modules](phyre-modules.md)), and `0x0079E520`, which creates the window and runs
-   the run setup. A non-zero result from any of the three runs the module shutdown and returns 1.
-7. Two device callbacks, `0x00798910` and `0x007989B0`; the update thread is told its window
-   (`0x007A4240`, `0x00798653`), which releases it; then the `GetMessageW` loop until `WM_QUIT`, bracketed
-   by `SetThreadExecutionState`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `SetUnhandledExceptionFilter`, `ImmDisableIME`, `CoInitializeEx`; then the Steam context (see [Steam integration](../Steam-And-Achievements/steam-integration.md)):<br>• `SteamAPI_Init` runs when the context's utils slot `+0x18` is empty; the `jne` at `0x00798121` skips it when the slot is filled.<br>• When `SteamAPI_Init` succeeds (or the utils interface is already present), the Steam callback set-up runs.<br>• `SteamAPI_RestartAppIfNecessary(0x91640)` runs either way and calls `exit(1)` when Steam asks for a relaunch. | `0x0020CD30`, `0x008655E0`<br>`0x0079811C`-`0x00798137`<br>`0x0079813C` |
+| 2 | The Steam callback object, the `My Games\FINAL FANTASY XII THE ZODIAC AGE\<SteamID>\` folder (`0x0079FA00` and the path built after it), and the game settings object, `0x65C` bytes, stored at `0x01F82D20`, read from its file or created with defaults. | `0x007A0810`<br>`0x001DE050`<br>`0x001DED50` |
+| 3 | The mutex `A8825348-F5CE-4E67-8735-D4AF7E7E58F1`. When it already exists (`ERROR_ALREADY_EXISTS`) or the settings file can be neither read nor written, a message box whose text comes from the string resources is shown and the function returns. | `0x0019A510` |
+| 4 | The command line, converted to narrow strings; then application slot 1, which registers the application's script methods. | `0x00798542` |
+| 5 | Window mode, size and options copied from the settings into the application (`+0xD20` full screen when the settings' mode is 1, `+0xD24`/`+0xD28` the size), and a `PWindow` object on the stack (vtable `0x01CB2480`). |   |
+| 6 | `0x007979B0` (worker count from the process affinity mask), the engine module start-up `0x005A08E0` (`0x00798603`; [Phyre modules](phyre-modules.md)), and `0x0079E520`, which creates the window and runs the run setup. A non-zero result from any of the three runs the module shutdown and returns 1. |   |
+| 7 | Two device callbacks, `0x00798910` and `0x007989B0`; the update thread is told its window, which releases it; then the `GetMessageW` loop until `WM_QUIT`, bracketed by `SetThreadExecutionState`. | `0x007A4240`, `0x00798653` |
 
 ### Window and run setup
 
 `0x0079E520` creates the window through `0x0079B300`, which registers the class `PhyreFrameworkClass` and
-calls `CreateWindowExW`; a negative result from `0x0079B300` returns 9 at once (`0x0079E544`-`0x0079E548`).
+calls `CreateWindowExW`; a negative result from `0x0079B300` returns 9 at once¹.
 Otherwise it fills the render-interface parameter block at `0x01F403A8` from the window and
 the settings, points the application's `+0xD10` at it, and calls the run setup `0x0079F150`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079E544`-`0x0079E548` |
+
+</details>
+
 It then lowers the main thread's priority by one step (`SetThreadPriority(-1)`, `0x0079E600`) and runs
-`0x007A3D70` on the window's `+0x48` with ScreenMode, the settings' `+0x08` (`0x0079E606`-`0x0079E614`); on a
-failed run setup it runs the application shutdown `0x0079EDD0` (`0x0079E624`). It returns the run setup's
-result (`0x0079E62E`).
+`0x007A3D70` on the window's `+0x48` with ScreenMode, the settings' `+0x08`¹; on a
+failed run setup it runs the application shutdown `0x0079EDD0`². It returns the run setup's
+result³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079E606`-`0x0079E614` |
+| ² | `0x0079E624` |
+| ³ | `0x0079E62E` |
+
+</details>
 
 The run setup `0x0079F150` resets the timing fields, initialises the Phyre render interface, the render
-thread and DirectInput (`0x00797910`), then calls application slot 2 (`0x0079F591`, logged on failure as
+thread and DirectInput¹, then calls application slot 2 (`0x0079F591`, logged on failure as
 `initApplication`).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00797910` |
+
+</details>
+
 It then allocates a 96 MiB arena (`+0xDE8`) split 64 MiB and 32 MiB for the render
-context at `+0xE8` (`0x00607E20`) and a 2 MiB block (`+0xDF0`), starts the worker threads when more than
-one processor is available (`0x0060E9C0`), calls slot 3 (`0x0079F69A`, `initScene`), and finally creates
-the update thread `PhyreFrameworkApplicationUpdateThread` (`0x007A4250`, `0x0079F709`). Any stage's
+context at `+0xE8`¹ and a 2 MiB block (`+0xDF0`), starts the worker threads when more than
+one processor is available², calls slot 3 (`0x0079F69A`, `initScene`), and finally creates
+the update thread `PhyreFrameworkApplicationUpdateThread`³. Any stage's
 non-zero result is returned and ends the start-up.
 
-Three options of the run setup never run in the shipped game: a script file (`0x02EA5220`), a log file
-(`0x02EA5228`) and an input-replay file (`0x02EA5230`) are all zero and have no writer. So the console
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00607E20` |
+| ² | `0x0060E9C0` |
+| ³ | `0x007A4250`, `0x0079F709` |
+
+</details>
+
+Three options of the run setup never run in the shipped game: a script file¹, a log file² and an input-replay file³ are all zero and have no writer. So the console
 object at `+0x58` stays null, the per-frame function `+0xD18` keeps `0x00793E8C`, and the input
 recorder (slot 30) and replay (slot 29) are never called.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02EA5220` |
+| ² | `0x02EA5228` |
+| ³ | `0x02EA5230` |
+
+</details>
 
 ### The script commands
 
 The script-file and input-replay options would each create a `PApplicationScriptProxy` as that
-console object, and both call `0x007A0180` on it: `0x00792760` for a script file, and the run setup itself
-(`0x0079F3F9`) for a replay. It registers sixteen commands through `0x007A0090`, which appends a `0x50`-byte record,
+console object, and both call `0x007A0180` on it: `0x00792760` for a script file, and the run setup itself¹ for a replay. It registers sixteen commands through `0x007A0090`, which appends a `0x50`-byte record,
 the handler at `+0x00` and a name of up to 64 characters at `+0x08`, to the proxy's array (`+0x28`,
 count `+0x30`, capacity `+0x34`, grown to twice the capacity or 16).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079F3F9` |
+
+</details>
 
 | Command | Handler | Command | Handler |
 |---|---|---|---|
@@ -103,67 +154,128 @@ count `+0x30`, capacity `+0x34`, grown to twice the capacity or 16).
 | `KeyDown` | `0x00797EE0` | `Echo` | `0x00796210` |
 | `KeyUp` | `0x00797F20` | `Quit` | `0x00798A30` |
 
-`Timestep` (`0x00799980`) reads one float with `%f` (`0x0071F970`, `vsscanf`) into the fixed step `+0x6C`,
-whatever its value (`0x007999AC`).
-A value of 0 or less returns to real time: it sets the offset `+0x50` to the time since engine start
-(`0x02CB60E8`) less the total `+0x40`, so the total carries on from where the fixed steps left it
-(`clock - [0x02CB60E8] - total`, `0x007999B3`-`0x007999CF`). The handler returns 0 (`0x007999D4`).
+`Timestep`¹ reads one float with `%f` (`0x0071F970`, `vsscanf`) into the fixed step `+0x6C`,
+whatever its value².
+A value of 0 or less returns to real time: it sets the offset `+0x50` to the time since engine start³ less the total `+0x40`, so the total carries on from where the fixed steps left it
+(`clock - [0x02CB60E8] - total`, `0x007999B3`-`0x007999CF`). The handler returns 0⁴.
 Because neither option is ever set, none of these commands runs.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00799980` |
+| ² | `0x007999AC` |
+| ³ | `0x02CB60E8` |
+| ⁴ | `0x007999D4` |
+
+</details>
 
 ### The update thread
 
 The game runs on the update thread, not on the thread that pumps window messages. The thread object
-is the static `0x02EACF10` (`0x007A4190`). `0x007A4250` sets its run word `+0x50` to 1 (`0x007A42A7`) and creates
-the thread through `0x005CD1E0` (`0x007A42AE`) with a stack of `0x100000` bytes (`0x007A428C`), the routine
-`0x007A4230`, a jump to the body `0x007A4310`, and the object as its argument (`0x007A4299`); it then sets the
-object's `+0x48` to 1 and clears `+0x28` (`0x007A42B8`, `0x007A42BC`).
+is the static `0x02EACF10`¹. `0x007A4250` sets its run word `+0x50` to 1² and creates
+the thread through `0x005CD1E0`³ with a stack of `0x100000` bytes⁴, the routine
+`0x007A4230`, a jump to the body `0x007A4310`, and the object as its argument⁵; it then sets the
+object's `+0x48` to 1 and clears `+0x28`⁶.
 
-`0x007A4240` hands the window over: it stores it at `+0x20` and sets `+0x28` to 1 (`0x007A4240`, `0x007A4244`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A4190` |
+| ² | `0x007A42A7` |
+| ³ | `0x007A42AE` |
+| ⁴ | `0x007A428C` |
+| ⁵ | `0x007A4299` |
+| ⁶ | `0x007A42B8`, `0x007A42BC` |
+
+</details>
+
+`0x007A4240` hands the window over: it stores it at `+0x20` and sets `+0x28` to 1¹.
 The body `0x007A4310` spins with `Sleep(0)` until `+0x28` is set, that is until the window is
 handed to it, then loops while its run word `+0x50` is non-zero, calling the window's two slots:
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A4240`, `0x007A4244` |
+
+</details>
+
 - slot 0, `0x007A3110`: returns 9 when the quit byte `+0x69` is set; otherwise `SteamAPI_RunCallbacks`
-  and the input poll `0x007A2440` on the application's input object `+0xDF8`, then returns 0 (`0x007A3140`);
+  and the input poll `0x007A2440` on the application's input object `+0xDF8`, then returns 0¹;
 - slot 1, `0x007A0340`: under the lock at `+0x20`, hands the drawing-area size parked in `+0x1C` to the current
-  screen-mode state as request 0 and clears `+0x1C` (`0x007A0372`, `0x007A0377`). It then
-  runs the screen-mode state step `0x007A3FC0(+0x48, ScreenMode)` (`0x007A0395`), returns 9 on the quit byte, and
-  otherwise jumps through the application's `+0xD18` (`0x007A03C4`). `0x00793E8C` there tail-jumps to slot 28, the
+  screen-mode state as request 0 and clears `+0x1C`². It then
+  runs the screen-mode state step `0x007A3FC0(+0x48, ScreenMode)`³, returns 9 on the quit byte, and
+  otherwise jumps through the application's `+0xD18`⁴. `0x00793E8C` there tail-jumps to slot 28, the
   per-frame update `0x0079C140`.
   - `0x007A3BD0` jumps to slot `+0x28` of the state at `+0x48 + 0x30` and does nothing when no state is current
-    (`0x007A3BD0`-`0x007A3BDC`).
+   ⁵.
   - In the state step the current state's slots `+0x30` and `+0x38` run; a result n other than -1 leaves the
     old state, makes entry n current, logs `[Screen Mode]=======Change State %d` and enters it.
 
-Slot 1 runs only when slot 0 returns 0 (`0x007A4340`). A non-zero result from either slot sets the
-thread's byte `+0x29` (`0x007A4350`) and the loop goes on. When the run word is cleared
-the thread posts `WM_CLOSE` with `wParam` 3 to the window (`0x007A436D`) and runs the game's
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A3140` |
+| ² | `0x007A0372`, `0x007A0377` |
+| ³ | `0x007A0395` |
+| ⁴ | `0x007A03C4` |
+| ⁵ | `0x007A3BD0`-`0x007A3BDC` |
+
+</details>
+
+Slot 1 runs only when slot 0 returns 0¹. A non-zero result from either slot sets the
+thread's byte `+0x29`² and the loop goes on. When the run word is cleared
+the thread posts `WM_CLOSE` with `wParam` 3 to the window³ and runs the game's
 `0x0035E700`, which signals the two objects at `0x022CA610` and `0x022CA618` and waits for `0x022CA630` to
-reach zero; the body then returns 0 (`0x007A4378`).
+reach zero; the body then returns 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A4340` |
+| ² | `0x007A4350` |
+| ³ | `0x007A436D` |
+| ⁴ | `0x007A4378` |
+
+</details>
 
 ### The per-frame update `0x0079C140`
 
 Inherited unchanged by `GameApplication` (slot 28 holds the same address in both vtables). Each call:
 
-1. When a screen-mode change is pending (`+0x20`), copies the size and frame rate from the settings.
-2. Time (`0x0079D920`): with a fixed step above 0 at `+0x6C` (`0x0079D92E`) the delta `+0x48` is the step
-   and the total `+0x40` grows by it; otherwise the total is the performance-counter time since engine
-   start (`0x02CB60E8`) less `+0x50`, and the delta is the change in the total. Both paths also store the
-   total as a float at `+0xE0` (`0x0079D952`, `0x0079D988`).
-3. Returns 9 when the quit byte `+0x69` is set. On the first frame (`+0x64` = 0) clears the delta and
-   calls slot 9, resize (`0x0079C1F1`). Counts the frame at `+0x64`.
-4. Calls slot 30 when a log stream is open, polls the input devices (`0x0079D010`, `0x0079C260`) unless a
-   mode, focus or size request is pending, and calls slot 7, input (`0x0079C26B`).
-5. Measures frames per second over two seconds into `+0x60`, then calls slot 4, animate (`0x0079C2D6`).
-6. Handles the deferred window requests (below), calling slot 9 again after a size change
-   (`0x0079C526`).
-7. Calls each viewport's slot 3 (`0x0079C5FE`) with the viewport as its only argument, and after each one that
-   returns 0 passes the render context to `0x0060F6B0` (`0x0079C61C`). After the last viewport it calls the
-   application's slot 8, render, once (`0x0079C655`).
-   When `0x01FD4A68` is clear and render returned 0, it also runs `0x00600C20` on the render
-   context and the context's slot 2.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When a screen-mode change is pending (`+0x20`), copies the size and frame rate from the settings. |   |
+| 2 | Time: with a fixed step above 0 at `+0x6C` the delta `+0x48` is the step and the total `+0x40` grows by it; otherwise the total is the performance-counter time since engine start less `+0x50`, and the delta is the change in the total. Both paths also store the total as a float at `+0xE0`. | `0x0079D920`<br>`0x0079D92E`<br>`0x02CB60E8`<br>`0x0079D952`, `0x0079D988` |
+| 3 | Returns 9 when the quit byte `+0x69` is set. On the first frame (`+0x64` = 0) clears the delta and calls slot 9, resize. Counts the frame at `+0x64`. | `0x0079C1F1` |
+| 4 | Calls slot 30 when a log stream is open, polls the input devices unless a mode, focus or size request is pending, and calls slot 7, input. | `0x0079D010`, `0x0079C260`<br>`0x0079C26B` |
+| 5 | Measures frames per second over two seconds into `+0x60`, then calls slot 4, animate. | `0x0079C2D6` |
+| 6 | Handles the deferred window requests (below), calling slot 9 again after a size change. | `0x0079C526` |
+| 7 | Calls each viewport's slot 3 with the viewport as its only argument, and after each one that returns 0 passes the render context to `0x0060F6B0`. After the last viewport it calls the application's slot 8, render, once. When `0x01FD4A68` is clear and render returned 0, it also runs `0x00600C20` on the render context and the context's slot 2. | `0x0079C5FE`<br>`0x0079C61C`<br>`0x0079C655` |
 
-One branch of the deferred window requests (`0x0079C4B1`) clears `+0x20`, sets the bytes `+0x1E` and `+0x23` and
-calls `0x00183260`, which sets byte `+0x02` of the game's render manager (`0x00189120`) when one exists.
+One branch of the deferred window requests¹ clears `+0x20`, sets the bytes `+0x1E` and `+0x23` and
+calls `0x00183260`, which sets byte `+0x02` of the game's render manager² when one exists.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079C4B1` |
+| ² | `0x00189120` |
+
+</details>
 
 A non-zero result from animate, resize, a viewport or render is logged (`App failed during animate`,
 `resize`, `viewport render`, `render`) and returned. The game's own slots behind these calls are on
@@ -184,46 +296,71 @@ work on the update thread:
 | 20 | `0x007A0FB0` | `+0x24` | `0x0079EBA0`: saves the window position into the settings |
 
 The window procedure calls slot 14 when the new window is the foreground window (`WM_CREATE`), slot 20
-on `WM_MOVE`, and slot 17 with 1 or 0 around a mouse press on the title bar or border, installing a `WH_MOUSE` hook
-(`0x00798F80`) for its duration. Activation changes are handed to the current screen-mode state through
-`0x007A3BD0` (slot `+0x28` of the state at the window's `+0x48 + 0x30`), and a new drawing-area size is parked in the window's `+0x1C` (`0x007A07C0`) for the
+on `WM_MOVE`, and slot 17 with 1 or 0 around a mouse press on the title bar or border, installing a `WH_MOUSE` hook¹ for its duration. Activation changes are handed to the current screen-mode state through
+`0x007A3BD0` (slot `+0x28` of the state at the window's `+0x48 + 0x30`), and a new drawing-area size is parked in the window's `+0x1C`² for the
 window's slot 1 to apply.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00798F80` |
+| ² | `0x007A07C0` |
+
+</details>
 
 ### Window helpers
 
-- `0x007A0FC0` (`0x00798277`) sets the thread's interface language from the language setting `[0x01F82D20]` `+0x00`
+- `0x007A0FC0`¹ sets the thread's interface language from the language setting `[0x01F82D20]` `+0x00`
   (`SetThreadUILanguage`): 1 `0x409`, 2 `0x40C`, 3 `0x407`, 4 `0x410`, 5 `0x40A`, 6 `0x412`, 7 `0x7C04`,
   8 `0x804`, any other `0x411`.
-- `0x0079F750` is the size callback (`0x0079C558`). By ScreenMode (`+0x08` of the settings) it gives the window the style
+- `0x0079F750` is the size callback². By ScreenMode (`+0x08` of the settings) it gives the window the style
   `0xCF0000` and the WindowSize at the saved position `+0x6C`/`+0x70` (0, windowed), only logs (1, full screen), or
   gives it `WS_POPUP` over the monitor rectangle `0x0017E220` or the screen (2), each time logging
   `[Screen Mode]onSizeCallBack ...` ([Screen mode and aspect](../Graphics/screen-mode-and-aspect.md)).
-- `0x007A04F0` (`0x001DC78C`) hands request 1 with the WindowSize or the Resolution, by ScreenMode, to the window
+- `0x007A04F0`³ hands request 1 with the WindowSize or the Resolution, by ScreenMode, to the window
   object's current screen-mode state (`0x007A3BD0`, the state at `+0x48 + 0x30`).
 - `0x00796310(full)` maximises the window (`ShowWindow` 3), or for 0 maximises and restores it (9)
-  (`0x007A3CE2`, `0x007A3D41`, `0x007A4069`, `0x007A408F`).
-- `0x0079B0B0` stores in `0x02EA5213` whether the game window `0x02EA5248` is the foreground window (`0x007A3E27`,
-  `0x007A3EFF`, `0x007A40EC`); `0x0079EC80` brings it forward (`AttachThreadInput`, topmost and back, `SetForegroundWindow`,
+ ⁴.
+- `0x0079B0B0` stores in `0x02EA5213` whether the game window `0x02EA5248` is the foreground window⁵; `0x0079EC80` brings it forward (`AttachThreadInput`, topmost and back, `SetForegroundWindow`,
   `SwitchToThisWindow`; `0x00799123`, `0x007A3F19`); `0x0079ED60(free)` clips the cursor to the drawing area, or frees it
-  (`0x007A0A89`).
-- `0x00798EB0` is a hook procedure the window procedure installs (`0x00799264`): on code 5 it centres any other window
+ ⁶.
+- `0x00798EB0` is a hook procedure the window procedure installs⁷: on code 5 it centres any other window
   that activates on the screen `0x01F3DA1C` by `0x01F3DA20`, then passes the call on (`CallNextHookEx`, `0x02EA5258`).
 - `0x0079F740` and `0x0079F9D0` set the window object's bytes `+0x1E` and `+0x1F`, and `0x007A0FA0(v)` stores `0x02EA5247`,
   from the window-event code `0x007A3A60`-`0x007A40B0`; `0x007A3D70(obj, i)` makes one of the three objects at `+0x00`,
-  `+0x08`, `+0x10` current at `+0x30` and calls its slots `+0x10` and `+0x18` (`0x0079E614`).
+  `+0x08`, `+0x10` current at `+0x30` and calls its slots `+0x10` and `+0x18`⁸.
 - `0x007A1320` (`0x0079F0AA`, at shutdown) unlinks the input object's devices, the one at `+0x150` and the 18 at `+0x88`,
   from their listener lists.
 - `0x007A37B0` is a `swscanf` (`__stdio_common_vswscanf`) for the XInput test `0x00797AD0` (`0x00797D4F`, `0x00797D8C`;
-  [Controllers](../Controls-And-Input/controllers.md)); `0x0079DA10` (`0x0079E31B`) evaluates one input source against the
+  [Controllers](../Controls-And-Input/controllers.md)); `0x0079DA10`⁹ evaluates one input source against the
   devices: it reads the source's type tag `+0x10` (`0x01F44D90` to `0x01F44FD0`) and device index `+0x18`, with two
   thresholds taken with `sqrtf` and `cosf` ([Phyre input semantics](../Controls-And-Input/phyre-input-semantics.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00798277` |
+| ² | `0x0079C558` |
+| ³ | `0x001DC78C` |
+| ⁴ | `0x007A3CE2`, `0x007A3D41`, `0x007A4069`, `0x007A408F` |
+| ⁵ | `0x007A3E27`, `0x007A3EFF`, `0x007A40EC` |
+| ⁶ | `0x007A0A89` |
+| ⁷ | `0x00799264` |
+| ⁸ | `0x0079E614` |
+| ⁹ | `0x0079E31B` |
+
+</details>
 
 ### Script and replay helpers
 
 These serve the script-file and input-replay options, so they never run in the shipped game:
 
-- `0x0079BDF0` runs the next command line (`0x007A08D6`): a pending `Frames` count steps down and runs `Frames` again;
-  otherwise it parses `name(arguments)` (`0x0079BFD0`) and calls the handler, or logs `Unrecognised command %s(%s)`.
+- `0x0079BDF0` runs the next command line¹: a pending `Frames` count steps down and runs `Frames` again;
+  otherwise it parses `name(arguments)`² and calls the handler, or logs `Unrecognised command %s(%s)`.
 - `0x0079BFD0` splits a line at its parentheses (`Badly formed command %s`); `0x007A1230` skips spaces and `#` comment
   lines (`0x0079C0D0` finds the line end), `0x0079C0F0` finds the next space, and `0x0079D9A0(text, end, quote)` returns the
   text between two quote characters.
@@ -231,11 +368,24 @@ These serve the script-file and input-replay options, so they never run in the s
   `Circle` `0x32`, `Triangle` `0x33`, `Select` `0x38`, `Start` `0x39`, `Up` `0x3C`, `Right` `0x3D`, `Down` `0x3E`,
   `Left` `0x3F`; any other name logs and returns 5.
 - `0x00798AC0` is `RenderFrame`'s screenshot: it logs `PApplication::screenshot: %s`, reads the frame back under the
-  render lock (`0x00615BC0`, `0x00624960`, `0x0061EE30`, `0x00616700`), swaps red and blue and writes a 24-bit BMP.
+  render lock³, swaps red and blue and writes a 24-bit BMP.
 - `0x0079A120` replays one record, logged as `INPUT:...`: kind 1 sets a keyboard key byte
-  (`0x0079A3E9`-`0x0079A401`), kind 2 an action found by name
-  (`0x00873C50`, `0x00873C40`), kind 3 runs a command; `0x0079A550` and `0x00799C90` append a 0x40-byte record, and
+ ⁴, kind 2 an action found by name
+ ⁵, kind 3 runs a command; `0x0079A550` and `0x00799C90` append a 0x40-byte record, and
   `0x0079D430(file)` reads the replay file's `%d:` lines and returns the last number.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A08D6` |
+| ² | `0x0079BFD0` |
+| ³ | `0x00615BC0`, `0x00624960`, `0x0061EE30`, `0x00616700` |
+| ⁴ | `0x0079A3E9`-`0x0079A401` |
+| ⁵ | `0x00873C50`, `0x00873C40` |
+
+</details>
 
 The engine's smaller helpers (threads, locks, arrays, pools and the D3D11 resource accessors) are listed with their
 callers in [phyre-engine-helpers.tsv](phyre-engine-helpers.tsv).
@@ -244,34 +394,73 @@ callers in [phyre-engine-helpers.tsv](phyre-engine-helpers.tsv).
 
 `WM_CLOSE` carries the reason in `wParam`:
 
-- 1 or 2: sets the quit byte `+0x69` and clears the update thread's run word (`0x007A42D0`). The game
+- 1 or 2: sets the quit byte `+0x69` and clears the update thread's run word¹. The game
   posts 1 through `0x0017E030` (called from `0x002280B0`).
 - 4: the same through `0x0079B160`, and sets `0x02EA5245`, the restart request. The game posts 4 through
   `0x0017E050` after a display change that needs a restart ([config screen](../Menus-And-HUD/config-screen.md)).
 - 3: posted by the update thread as it exits; `0x0079B190` runs the application shutdown `0x0079EDD0`
-  (`0x0079B1A0`) and logs `PWindowWin32Base::onClose: An error occurred closing the window on Win32.`
-  when it returns non-zero (`0x0079B1A9`-`0x0079B1B5`). It then releases the device context at its
+ ² and logs `PWindowWin32Base::onClose: An error occurred closing the window on Win32.`
+  when it returns non-zero³. It then releases the device context at its
   argument's `+0x10` (`ReleaseDC`, `0x0079B1C5`) and destroys the window `0x02EA5248` (`DestroyWindow`,
   `0x0079B1D7`), whose `WM_DESTROY` posts `WM_QUIT`.
 - any other value, including 0 from the window's own close: ignored while the bytes `0x02B40E00` and `0x02CA99B0` are both set;
   otherwise quits at once in full-screen mode, and in the other modes shows an OK/Cancel box from the
-  string resources and quits on OK. A Steam state check on the callback object (`0x00865510`) can take
+  string resources and quits on OK. A Steam state check on the callback object⁴ can take
   the first close without quitting.
 
-The application shutdown `0x0079EDD0` stops the update thread (`0x007A42E0`), releases the viewports,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A42D0` |
+| ² | `0x0079B1A0` |
+| ³ | `0x0079B1A9`-`0x0079B1B5` |
+| ⁴ | `0x00865510` |
+
+</details>
+
+The application shutdown `0x0079EDD0` stops the update thread¹, releases the viewports,
 calls slot 5 (`0x0079EF47`, `exitScene`) and slot 6 (`0x0079EF75`, `exitApplication`), then tears down
 the settings block, the renderer, the arenas and the input layer (`0x00799860`, `PInput::Terminate`).
-To stop the thread, `0x007A42E0` clears its run word `+0x50` (`0x007A42EA`), waits for it through
-`0x005CD330` (`0x007A42F9`), which calls `WaitForSingleObject` with no time limit (`0x005CD346`), calls
-`0x005C5230`, which returns 0, on the thread part `+0x30` (`0x007A4301`) and clears `+0x48` (`0x007A4306`).
+To stop the thread, `0x007A42E0` clears its run word `+0x50`², waits for it through
+`0x005CD330`³, which calls `WaitForSingleObject` with no time limit⁴, calls
+`0x005C5230`, which returns 0, on the thread part `+0x30`⁵ and clears `+0x48`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A42E0` |
+| ² | `0x007A42EA` |
+| ³ | `0x007A42F9` |
+| ⁴ | `0x005CD346` |
+| ⁵ | `0x007A4301` |
+| ⁶ | `0x007A4306` |
+
+</details>
 
 When the message loop ends, `0x007980A0` unregisters the Steam callbacks, calls `CoUninitialize`, runs
-the module shutdown `0x005A0840` (`0x007986D5`), closes the mutex and frees the argument strings. With
+the module shutdown `0x005A0840`¹, closes the mutex and frees the argument strings. With
 `0x02EA5245` set it then brings the window forward, takes its own path from `GetModuleFileNameA` and
 starts it again with `CreateProcessA` and the arguments `"-scmd" "appid" "100" -nologo`. Both paths
-end in `ExitProcess(0)` (`0x0079887F`).
+end in `ExitProcess(0)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007986D5` |
+| ² | `0x0079887F` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 The `PApplication` part of the application object, as the framework functions above use it. The
 `GameApplication` fields from `+0x1130` on are on the game application page.
@@ -385,7 +574,12 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x10D0` | `u16` | iconId | the window icon's resource id: `0x0079B300` passes it to LoadIconA with the module handle (`0x0079B758`) and keeps the icon at `0x02EA5250`; the game-application constructor `0x0015BC40` sets it to 40101 (`0x9CA5`) through `0x007A1190`, a 4-byte store (`0x0015BC71`-`0x0015BC7D`); no registered member covers it (`0x00791AC0` registers the `0x1130`-byte class at `0x00791B10`) |
 | `+0x10D5` | `u8[3]` | bytes10D5 | the bytes after the byte the constructor `0x00792350` clears at `+0x10D4` (`0x00792521`), before the qword it clears at `+0x10D8` (`0x00792528`); no registered member covers it (`0x00791AC0` registers the `0x1130`-byte class at `0x00791B10`) |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -398,15 +592,30 @@ The members below are the ones the code of this page's classes uses or the refle
 | arenas | 96 MiB (64 MiB and 32 MiB halves), 2 MiB |
 | frame-rate window | 2.0 seconds |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 ### Window and host statics
 
 The window procedure `0x00798FF0` and the window set-up `0x0079B300` keep the window's state in plain statics. On its
-first call the procedure registers the message `PHYREMSG_HOSTHWND` (`0x01CB33E0`). A host program that sends that
+first call the procedure registers the message `PHYREMSG_HOSTHWND`¹. A host program that sends that
 message with its own window handle in `wParam` makes the game window its child (`SetParent`, `0x0079909F`), and the
-procedure answers with the message `PHYREMSG_SENDHWND` (`0x01CB31E0`) and the game window's handle (`SendMessageW`,
+procedure answers with the message `PHYREMSG_SENDHWND`² and the game window's handle (`SendMessageW`,
 `0x007990BC`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01CB33E0` |
+| ² | `0x01CB31E0` |
+
+</details>
 
 The jump table at `0x007990E4` sends `WM_CREATE`, `WM_DESTROY`, `WM_MOVE`, `WM_SIZE`, `WM_ACTIVATE`,
 `WM_CLOSE`, `WM_ERASEBKGND`, `WM_GETMINMAXINFO`, `WM_DISPLAYCHANGE` and the four title-bar button messages to their
@@ -439,14 +648,32 @@ from outside the executable.
 | `0x02EA5378` | `u8` | 0 (zero-filled tail of `.data`) | 1 while the application's `+0xD44` (VSync, settings `+0x14`) is 0, Off; stored every frame | `0x0079C140` (`0x0079C224`, `sete`) | no instruction names it |
 
 The `lea` of `0x02EA5370` at `0x00797942` names the 8-byte slot before it, which `0x00797910` passes to `0x008088FA` as its
-output pointer (`0x0079795D`).
+output pointer¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079795D` |
+
+</details>
 
 ### The render-interface parameter block
 
 `0x0079E520` fills the block at `0x01F403A8` from the window and from `+0xD20` of the application (`[PWindow + 0x08]`,
-which `0x00792F10` sets from its second argument at `0x00792F4A`), points the application's `+0xD10` at it
-(`0x0079E5DF`) and runs the run setup. The run setup passes the block to `0x006253D0` (`0x0079F492`), which reads it
+which `0x00792F10` sets from its second argument at `0x00792F4A`), points the application's `+0xD10` at it¹ and runs the run setup. The run setup passes the block to `0x006253D0`², which reads it
 through `r14`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079E5DF` |
+| ² | `0x0079F492` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -461,28 +688,68 @@ through `r14`.
 
 An adapter is chosen by `0x006253D0` only when all three of DeviceID, LUIDLow and LUIDHigh match.
 
-`0x006253D0` also prepares a multimedia timer period: it clears the byte `0x02CF2544` (`0x0062542A`) and
-keeps the minimum period `timeGetDevCaps` reports in `0x02CF2540`, or -1 when the call fails
-(`0x00625463`).
+`0x006253D0` also prepares a multimedia timer period: it clears the byte `0x02CF2544`¹ and
+keeps the minimum period `timeGetDevCaps` reports in `0x02CF2540`, or -1 when the call fails².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0062542A` |
+| ² | `0x00625463` |
+
+</details>
 
 The render thread's block `0x19` arm `0x006234A0` ([screen
 fades](../Graphics/screen-fades.md)) begins it on one path with
-`timeBeginPeriod([0x02CF2540])` while `0x02CF2544` is 0, setting the byte to 1 when the call succeeds
-(`0x006236B1`-`0x006236D3`), and on the other ends it with `timeEndPeriod`, clearing the byte
-(`0x0062380A`-`0x00623831`). `0x0062B5A0` ends a period still begun (`0x0062B781`-`0x0062B790`).
+`timeBeginPeriod([0x02CF2540])` while `0x02CF2544` is 0, setting the byte to 1 when the call succeeds¹, and on the other ends it with `timeEndPeriod`, clearing the byte². `0x0062B5A0` ends a period still begun³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006236B1`-`0x006236D3` |
+| ² | `0x0062380A`-`0x00623831` |
+| ³ | `0x0062B781`-`0x0062B790` |
+
+</details>
 
 ### Message-pump callbacks
 
 `0x007980A0` registers two callbacks after the window is created, each with the `PWindow` on its stack (`[rbp - 0x40]`)
-as the argument, and clears both after the message loop (`0x007986BF`, `0x007986C8`). Both callbacks, `0x00798910` and
+as the argument, and clears both after the message loop¹. Both callbacks, `0x00798910` and
 `0x007989B0`, pump pending window messages with `PeekMessageW`, `TranslateMessage` and `DispatchMessageW`, so the
 window keeps answering while the renderer waits.
 
-`0x00798910` loops until no message is left or `WM_QUIT` is next
-(`0x00798997`). `0x007989B0` handles at most one message a call: it looks without removing (`0x007989D4`), returns when
-there is no message or the message is `WM_QUIT` (`0x007989DC`, `0x007989E3`), else removes it (`0x007989FA`),
-translates and dispatches it (`0x00798A09`, `0x00798A14`), with no branch back. Both set the byte `+0x18` of
-their argument to 1 on entry and to 0 before they return (`0x0079891D` and `0x00798999`, `0x007989B8` and `0x00798A1A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007986BF`, `0x007986C8` |
+
+</details>
+
+`0x00798910` loops until no message is left or `WM_QUIT` is next¹. `0x007989B0` handles at most one message a call: it looks without removing², returns when
+there is no message or the message is `WM_QUIT`³, else removes it⁴,
+translates and dispatches it⁵, with no branch back. Both set the byte `+0x18` of
+their argument to 1 on entry and to 0 before they return⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00798997` |
+| ² | `0x007989D4` |
+| ³ | `0x007989DC`, `0x007989E3` |
+| ⁴ | `0x007989FA` |
+| ⁵ | `0x00798A09`, `0x00798A14` |
+| ⁶ | `0x0079891D` and `0x00798999`, `0x007989B8` and `0x00798A1A` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -508,9 +775,19 @@ game.
 
 `0x007A4190` builds the update-thread object `0x02EACF10` on first use: `0x005CC900` zeroes `+0x00`-`+0x17` and
 `+0x30`-`+0x47`, and the bytes after each are cleared by hand. A guard word, `0x02EACF68`, makes the
-building run once (`0x007A41BA`-`0x007A41D5`, `0x007A4214`); it registers `0x008B8620`, a jump to `0x0016D6A0`,
-which returns at once, as the exit teardown (`0x007A4207`), and every call returns `0x02EACF10` (`0x007A4219`,
-`0x007A421E`).
+building run once¹; it registers `0x008B8620`, a jump to `0x0016D6A0`,
+which returns at once, as the exit teardown², and every call returns `0x02EACF10`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A41BA`-`0x007A41D5`, `0x007A4214` |
+| ² | `0x007A4207` |
+| ³ | `0x007A4219`, `0x007A421E` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -528,6 +805,8 @@ product of `+0x00` and `+0x04` with `+0x78`; when they differ it releases the st
 |---|---|---|---|---|---|
 | `0x02D35268` | `u32` | 0 (zero-filled tail of `.data`) | `+0x78` of `0x02D351F0`: the product last stored | `0x0064AD60` (`0x0064ADFB`, 0) | `0x0064AD60` (`0x0064ADD7`, compared for equality) |
 | `0x02D352F0` | `u32` | 0 (zero-filled tail of `.data`) | `+0x78` of `0x02D35278`, the same | `0x0064AD60` (`0x0064AE46`, 0) | `0x0064AD60` (`0x0064AE22`, compared for equality) |
+
+</details>
 
 ## Modding notes
 
@@ -559,15 +838,19 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Engine core** (explained on [debug menu](../Engine-Core/debug-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001C2F50` | is called by | `0x0017D6E0` |
+| [`0x001C2F50`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) | is called by | [`0x0017D6E0`](../Engine-Core/game-application.md) (on game application) |
 
 **Scripts and script commands** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [ebp script container](../EBP-Script-Files/ebp-script-container.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001C3370` | is called by | `0x003522C0`, `0x00353080`, `0x003541B0`, `0x00354B20`, `0x00354E80`, `0x00355970`, `0x00355F60` |
+| [`0x001C3370`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x003522C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00353080`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x003541B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00354B20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00354E80`](../EBP-Script-Files/ebp-script-container.md) (on ebp script container)<br>[`0x00355970`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00355F60`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) |
 
 </details>
 

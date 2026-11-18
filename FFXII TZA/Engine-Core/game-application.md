@@ -28,13 +28,33 @@ is clear (that byte is 1 in the image and every instruction naming it only compa
 `atexit`.
 
 `0x008A6970` stores the vtable `0x008C5760` at `0x01F7E350` again and jumps to the base
-destructor `0x00793250` (`0x008A6970`-`0x008A6985`).
+destructor `0x00793250`¹.
 
-The deleting destructor, slot 0 (`0x0017CC70`), re-installs the vtable, runs the base
-destructor `0x00793250` and, with flag bit `0x1` set, frees the object with `0x00584730(this)` when bit `0x4` is clear
-(`0x0017CC9F`-`0x0017CCA8`). When bit `0x4` is set it passes the size `0x1140` to `0x0016D6A0`, which is `ret 0`
-(`0x0017CCB0`-`0x0017CCB8`), so the storage is kept. With bit `0x1` clear nothing is freed (`0x0017CC99`-`0x0017CC9D`);
-every path returns the object (`0x0017CCBE`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008A6970`-`0x008A6985` |
+
+</details>
+
+The deleting destructor, slot 0¹, re-installs the vtable, runs the base
+destructor `0x00793250` and, with flag bit `0x1` set, frees the object with `0x00584730(this)` when bit `0x4` is clear². When bit `0x4` is set it passes the size `0x1140` to `0x0016D6A0`, which is `ret 0`³, so the storage is kept. With bit `0x1` clear nothing is freed⁴;
+every path returns the object⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017CC70` |
+| ² | `0x0017CC9F`-`0x0017CCA8` |
+| ³ | `0x0017CCB0`-`0x0017CCB8` |
+| ⁴ | `0x0017CC99`-`0x0017CC9D` |
+| ⁵ | `0x0017CCBE` |
+
+</details>
 
 The base is `Phyre::PFramework::PApplication`: `0x00793250` writes its vtable `0x01CB2508` into
 `[this]`, and the RTTI chain names `PApplication` at displacement 0 and `Phyre::PBase` and
@@ -68,22 +88,39 @@ the archive mount and the latch are game code overriding middleware entry points
 ### The boot order
 
 Slot 2, `0x0017CEB0(this, a, b)`, stores `a` at `+0x1130` and `b` at `+0x1138`, moves up three
-directories (`0x0059A770("../../..")`), runs `0x0019B190()`, mounts `../FFXII_TZA.vbf` on the file system `0x0019B1F0()`
-(`0x0019B070`), runs the early set-up `0x0017D6B0` (`0x0017DAC0(0)`, `0x001DDA70`, `0x001D6BE0`, `0x001BE3E0`,
+directories (`0x0059A770("../../..")`), runs `0x0019B190()`, mounts `../FFXII_TZA.vbf` on the file system `0x0019B1F0()`¹, runs the early set-up `0x0017D6B0` (`0x0017DAC0(0)`, `0x001DDA70`, `0x001D6BE0`, `0x001BE3E0`,
 `0x0019CDE0`, the debug display `0x001C2F00`, `0x001DBA40`) and `0x00182F70` with the viewport size
 `+0xD24`/`+0xD28`. The archive path is relative to the executable.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019B070` |
+
+</details>
+
 Three more words that the boot and the application object write:
 
-- `0x0059A770(path)` only stores the path it is given in `0x02CA9D80`. Slot 2 gives it `"../../.."` (`0x008C5858`,
-  `0x0017CED3`-`0x0017CEDD`).
+- `0x0059A770(path)` only stores the path it is given in `0x02CA9D80`. Slot 2 gives it `"../../.."`¹.
 - The burst's `0x001D6990` builds an 8-byte object at `0x01F82CB8` on first use and clears its `+0x00`.
 - The getter of that object is `0x001D69F0`, and its one caller `0x00862BD0(language)` passes the object to
   `0x001D68F0(object, language)`. That stores at `+0x00` the address of a word by language (jump table `0x001D6958`, through `0x001D68FF`): `0x01F82CA8` for 0 and 10,
   `0x01F82C88` for 1 and 6, `0x01F82C90` for 2, `0x01F82C98` for 3, `0x01F82CA0` for 4 and `0x01F82CB0` for 5. For 7 to 9, and
   above 10, it stores 0.
-- Slot 16, `0x00227D40(value)`, takes the lock `0x01F7F510` (`0x0017ED20`), stores the value in `0x01FD46DC` and 1 in
+- Slot 16, `0x00227D40(value)`, takes the lock `0x01F7F510`², stores the value in `0x01FD46DC` and 1 in
   `0x01FD46D8`, and leaves through the unlock `0x0017F760`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008C5858`, `0x0017CED3`-`0x0017CEDD` |
+| ² | `0x0017ED20` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -100,34 +137,90 @@ boot turns the Sticky Keys shortcut off and the shutdown's `0x0017DAC0(1)` turns
 Slot 3, `0x0017CF30`, configures the device (`0x0018D850` with `0x00193D50()`, `0x00182EB0()`, `0x00182E80()`
 and the device byte `+0xD48` of `0x00796E20()`), ensures the two `AsyncJobManager` instances
 (`0x0019A0A0`: `0x01F810F8` and `0x01F81100`, `0x158` bytes each, flags 0 and 1), and queues a job node
-`{0x0017D150, this}` on the first (`0x00199F10`, `0x0019A000`). `0x0019A0A0` tests each pointer on its own
-(`0x0019A0B1`, `0x0019A0E4`): a null one gets `0x00584740(0x158)` and, on a non-null block, `0x001999D0(obj, flag)`, and
-the constructor's result is stored, 0 when the allocation fails (`0x0019A0DD`, `0x0019A112`).
+`{0x0017D150, this}` on the first¹. `0x0019A0A0` tests each pointer on its own²: a null one gets `0x00584740(0x158)` and, on a non-null block, `0x001999D0(obj, flag)`, and
+the constructor's result is stored, 0 when the allocation fails³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00199F10`, `0x0019A000` |
+| ² | `0x0019A0B1`, `0x0019A0E4` |
+| ³ | `0x0019A0DD`, `0x0019A112` |
+
+</details>
 
 That job runs `0x0017D000(app)`: the
 manager-init burst `0x0017D4C0` with slot 2's arguments (`+0x1138`, `+0x1130`; `0x0017D012`-`0x0017D01F`), the
 `0x80`-byte object at `0x01F7E340` (`0x0018A840` on the block from `0x00210EC0(0x80)`, and 0 in `0x01F7E340` when the
 allocation fails, `0x0017D024`-`0x0017D041`), the render
 manager (`0x00189000(app + 0xE8, app + 0x90, +0xD24, +0xD28, [0x01FD4A9C])`, `0xDD8` bytes at `0x01F7F598`),
-and then the latch: `+0x113C = 1` (`0x0017D074`). Nothing clears it afterwards.
+and then the latch: `+0x113C = 1`¹. Nothing clears it afterwards.
 
-`0x0017D4C0(b, a)` builds the managers in order: `0x001DB500`, the pause flag (`0x00199790`), four small objects at
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017D074` |
+
+</details>
+
+`0x0017D4C0(b, a)` builds the managers in order: `0x001DB500`, the pause flag¹, four small objects at
 `0x01F7F4C0` (`0x20`, `0x001A14E0`), `0x01F7F4C8` (`0xC0`, `0x001A16E0`), `0x01F7F4D0` (`0x10`, `0x001A17D0`) and `0x01F7F4D8`
-(`0xA0`, `0x001B24D0`), the `AsyncLoadManager` (`0x001A11B0`), `0x00198750`, `0x0019EF40`, `0x001B6BC0` and `0x001B29F0`.
+(`0xA0`, `0x001B24D0`), the `AsyncLoadManager`², `0x00198750`, `0x0019EF40`, `0x001B6BC0` and `0x001B29F0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00199790` |
+| ² | `0x001A11B0` |
+
+</details>
 
 It then builds the movie player (`0x001B7EE0`, then `0x001B7850` on `0x001B7F20()`), the `SaveloadManager` (`0x001C18A0`,
 `0x001C1710` on `0x001C18E0()`, `0x001C1940`), `0x001B5F10`, `0x001D6990`, `0x001D8150`, `0x001D89D0`, `0x001831A0`, and the startup
 constants `0x0022A0B0(b, a)` ([startup constants](startup-constants.md)).
 `0x001C1710(manager)` first clears the manager's byte `+0x10` with an exchange and then
-jumps to `0x001C1810` (`0x001C1710`-`0x001C1715`).
+jumps to `0x001C1810`¹.
 
-After the constants come `0x001B1BA0`, `0x001B1580` on `0x001B1C00()`, `0x0022A4B0`, the screen fade
-(`0x001D8CD0`), a `0x10`-byte object at `0x01F7F4E0` (`0x001D5600`), `0x001AD3E0`, the procedural-texture
-context (`0x001C0D40`), `0x001D62D0`, `0x00194AB0`, `0x00194AA0(0x00194AF0())` and `0x001DB1E0` (a tail jump, `0x0017D63E`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C1710`-`0x001C1715` |
+
+</details>
+
+After the constants come `0x001B1BA0`, `0x001B1580` on `0x001B1C00()`, `0x0022A4B0`, the screen fade¹, a `0x10`-byte object at `0x01F7F4E0`², `0x001AD3E0`, the procedural-texture
+context³, `0x001D62D0`, `0x00194AB0`, `0x00194AA0(0x00194AF0())` and `0x001DB1E0` (a tail jump, `0x0017D63E`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D8CD0` |
+| ² | `0x001D5600` |
+| ³ | `0x001C0D40` |
+
+</details>
 
 Each of the five objects comes from `0x00210EC0` of its size, and its constructor runs only on a non-null block;
-when the allocation fails 0 is stored in its global (`0x0017D4ED`-`0x0017D4F9`, `0x0017D510`-`0x0017D51C`,
-`0x0017D533`-`0x0017D53F`, `0x0017D556`-`0x0017D562`, `0x0017D5FA`-`0x0017D607`).
+when the allocation fails 0 is stored in its global¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017D4ED`-`0x0017D4F9`, `0x0017D510`-`0x0017D51C`, `0x0017D533`-`0x0017D53F`, `0x0017D556`-`0x0017D562`, `0x0017D5FA`-`0x0017D607` |
+
+</details>
 
 ### What the burst builds
 
@@ -141,45 +234,117 @@ when the allocation fails 0 is stored in its global (`0x0017D4ED`-`0x0017D4F9`, 
 | `0x01F7F598` | `0xDD8` | `0x00189000` | `0x00184F20` | the render manager (below) |
 
 `0x00199F60` names the worker thread `"AsyncJobManager Thread"`, or `"AsyncJobManager No Read No Write Thread"` when the
-flag is non-zero, starts it (`0x005CD1E0`) and sets `+0x154` and `+0x20`.
+flag is non-zero, starts it¹ and sets `+0x154` and `+0x20`.
 
-In order: it empties the job list `+0x50` (`0x002218D0`), creates the locks `+0x28` and `+0x68` (`0x005CD0A0`,
-`0x00199F69`-`0x00199F7F`), fills a thread block (`0x005CC8C0`) with the entry `0x0019A190`, the stack size `0x10000`, the
-priority selector 2 (with which `0x005CD1E0` calls `SetThreadPriority` with -1) and the name (`0x00199F84`-`0x00199FC3`),
-hands the block and `0x7C` to the return stub `0x0016D6A0` (`0x00199FCD`), stores the manager as the thread's argument
-(`0x00199FD7`), sets `+0x154` to 1 (`0x00199FE0`), starts the thread on the record `+0x08` (`0x00199FE7`) and sets `+0x20`
-to 1 (`0x00199FEC`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CD1E0` |
+
+</details>
+
+In order: it empties the job list `+0x50`¹, creates the locks `+0x28` and `+0x68`², fills a thread block³ with the entry `0x0019A190`, the stack size `0x10000`, the
+priority selector 2 (with which `0x005CD1E0` calls `SetThreadPriority` with -1) and the name⁴,
+hands the block and `0x7C` to the return stub `0x0016D6A0`⁵, stores the manager as the thread's argument⁶, sets `+0x154` to 1⁷, starts the thread on the record `+0x08`⁸ and sets `+0x20`
+to 1⁹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002218D0` |
+| ² | `0x005CD0A0`, `0x00199F69`-`0x00199F7F` |
+| ³ | `0x005CC8C0` |
+| ⁴ | `0x00199F84`-`0x00199FC3` |
+| ⁵ | `0x00199FCD` |
+| ⁶ | `0x00199FD7` |
+| ⁷ | `0x00199FE0` |
+| ⁸ | `0x00199FE7` |
+| ⁹ | `0x00199FEC` |
+
+</details>
 
 The destructor body `0x00199C30` (deleting wrapper `0x00199D50`, which frees `0x158` bytes) clears `+0x154`, waits for the
 thread to exit (`0x005CD330`: `WaitForSingleObject`, `GetExitCodeThread`), and releases the pools and the job list.
 
 The pools share one template (`0x001997F0` for the job nodes, `0x0019D5B0`, `0x0019D740`,
 `0x001B8E90`): a vector of N records, a set at `+0x20` filled with the address of every record, a
-second set at `+0x58`, and a lock at `+0x90` created (`0x005CD0A0`) when the flag byte `+0xB8` is set.
+second set at `+0x58`, and a lock at `+0x90` created¹ when the flag byte `+0xB8` is set.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CD0A0` |
+
+</details>
 
 The loops `0x0019CE30`, `0x0019CEF0`, `0x0019D100`, `0x0019D1D0` and `0x0019D420` copy, move and fill the
 `0x130`-byte lists while the vector is sized; `0x0019CFA0`, `0x0019D050`, `0x0019D350` and `0x0019D510` do
-the same for the `0x118`-byte entries. The template's destructors (`0x00199A80`, `0x0019C870`, `0x0019DAD0`, `0x001B3AF0`,
-`0x001E74F0`) are described on [object construction and destruction](../Compiler-And-C-Runtime/object-construction-and-destruction.md).
+the same for the `0x118`-byte entries. The template's destructors¹ are described on [object construction and destruction](../Compiler-And-C-Runtime/object-construction-and-destruction.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00199A80`, `0x0019C870`, `0x0019DAD0`, `0x001B3AF0`, `0x001E74F0` |
+
+</details>
 
 An asset list is 256 bytes copied as a block, a vector of entry pointers at `+0x100`, a word at `+0x120` and a ready
 byte at `+0x128`. `0x0019EB00(manager, list)` holds when the ready byte is set and every entry has its byte `+2` set: it
-returns 1 (`0x0019EB53`) after checking the entries from the first, re-reading the vector's end each time
-(`0x0019EB30`-`0x0019EB51`), and 0 for a null list (`0x0019EB03`), a clear ready byte (`0x0019EB0C`) or at the first entry
-whose byte `+2` is 0 (`0x0019EB3B`); a ready list without entries holds (`0x0019EB25`), and the body ignores the manager
+returns 1¹ after checking the entries from the first, re-reading the vector's end each time², and 0 for a null list³, a clear ready byte⁴ or at the first entry
+whose byte `+2` is 0⁵; a ready list without entries holds⁶, and the body ignores the manager
 argument.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019EB53` |
+| ² | `0x0019EB30`-`0x0019EB51` |
+| ³ | `0x0019EB03` |
+| ⁴ | `0x0019EB0C` |
+| ⁵ | `0x0019EB3B` |
+| ⁶ | `0x0019EB25` |
+
+</details>
 
 The map-art update `0x001A9ED0`, the model asset cache `0x001BC190`, the procedural-texture context `0x001C0DD0` and
 `0x001BB120` ask it before they use a list.
 
 In the model asset cache, `0x001B9A10` finds or inserts a node by a 32-bit key in a map (its caller
 `0x001BAA30` uses it 16 times), `0x001BA910` empties a map of `0x58`-byte nodes, and `0x001BBF40`, from
-the cache's update `0x001BC190`, releases the 32 handles at `+0xA0` (`0x00183720`) and zeroes `+0xA0`
+the cache's update `0x001BC190`, releases the 32 handles at `+0xA0`¹ and zeroes `+0xA0`
 and `+0x1A0`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00183720` |
+
+</details>
+
 `0x001BAA30(cache, model)` binds a model's palette textures; `0x001BC190` calls it, and so does
-`0x001BB120` once the model's asset list (`+0x08`) is ready (`0x0019EB00`). It reads the names of the
+`0x001BB120` once the model's asset list (`+0x08`) is ready¹. It reads the names of the
 list in two passes:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019EB00` |
+
+</details>
 
 1. a texture named `tex_<n>_clut_-1` is palette n: its data address goes to `+0x1A0 + n × 8`, and a
    handle from `0x00183780(0, 1 << d, 1, 0x20)`, d the digit after `idx` in the name, to `+0xA0 + n × 8`;
@@ -201,14 +366,33 @@ list in two passes:
 | `+0x28` | `void*` | paletteHandle | palette n's handle |
 
 `0x00184F20` builds the render manager: two `0x338`-byte camera blocks at `+0x20` and `+0x358` and a
-third at `+0x690` (`0x00184CE0`), the viewport size at `+0xAD8` / `+0xADC`, the four callback slots
+third at `+0x690`¹, the viewport size at `+0xAD8` / `+0xADC`, the four callback slots
 at `+0xC38`, 5.0 at `+0xD14`, the boot argument byte `[0x01FD4A9C]` at `+0xDB8`, then `0x00186CD0`. Its
 height query `0x00186820` answers 2,160 while `+0xDB8` is set or `+0xC30` is 3, else `+0xADC`.
 
-In full, in order: `0x00184F20` zeroes the word `+0x00` and the byte `+0x02` (`0x00184F43`, `0x00184F48`), stores its second
-argument (`app + 0xE8`) at `+0x08` and its third (`app + 0x90`) at `+0x10` (`0x00184F4C`, `0x00184F50`), zeroes `+0x18`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00184CE0` |
+
+</details>
+
+In full, in order: `0x00184F20` zeroes the word `+0x00` and the byte `+0x02`¹, stores its second
+argument (`app + 0xE8`) at `+0x08` and its third (`app + 0x90`) at `+0x10`², zeroes `+0x18`
 and the word `+0x1C`, builds the blocks at `+0x20` and `+0x358` with the array helper `0x00808FE4` (constructor
 `0x00184CE0`, destructor `0x001850B0`) and the third directly.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00184F43`, `0x00184F48` |
+| ² | `0x00184F4C`, `0x00184F50` |
+
+</details>
 
 It then constructs two `Phyre::PWorldMatrixFlyController` objects at `+0x9C8` and `+0xA50` (`0x0062DD10`, vtable
 `0x00D562A8`), stores the width (fourth argument) at `+0xAD8` and the height (fifth) at `+0xADC` and zeroes `+0xAE0`. It
@@ -217,83 +401,152 @@ zeroes `+0xCD0`, the byte `+0xCD4` and the capture state `+0xCD8`, sets the byte
 zeroes the bytes `+0xD18` and `+0xD5C`, the qword `+0xDA0` and the state `+0xDAC`, stores the sixth argument byte at
 `+0xDB8`.
 
-It then zeroes the word `+0xDB9`, the qword `+0xDBC`, the word `+0xDC4`, the dword `+0xDC8` and the byte `+0xDCC`
-(`0x00184FE7`-`0x0018504C`), calls `0x00186CD0(manager)` and returns the manager (`0x0018505C`).
+It then zeroes the word `+0xDB9`, the qword `+0xDBC`, the word `+0xDC4`, the dword `+0xDC8` and the byte `+0xDCC`¹, calls `0x00186CD0(manager)` and returns the manager².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00184FE7`-`0x0018504C` |
+| ² | `0x0018505C` |
+
+</details>
 
 The ring step `0x00186230` first advances the index `+0xCB8` to (index + 1) & 3, then calls each 16-byte entry
 {function, argument} of that slot's vector, from its begin `+0xC38 + 32 × index` to its end `+0xC40 + 32 × index`,
-as function(argument) in order, and empties the slot by setting its end to its begin (`0x0018623F`-`0x0018629A`).
+as function(argument) in order, and empties the slot by setting its end to its begin¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018623F`-`0x0018629A` |
+
+</details>
 
 ### The frame tick
 
 Slot 4, `0x0017CCD0`, returns 0 through the stub while the latch is clear. Otherwise it takes the
 frame delta, the double at `+0x48`, ensures the camera-pair object `0x01F7F5D0` (`0x0018A620`, `0x270`
 bytes with two `Phyre::PCameraPerspective` members; the first `0x0018A670` call hands it the delta), reads the running byte at `[0x0018A7D0()]`
-(the three-byte object `0x01F7F5D8`), and on its first call runs `0x0017D650` (`0x001D6C00`, `0x001BE3E0`)
+(the three-byte object `0x01F7F5D8`), and on its first call runs `0x0017D650`¹
 and sets the run-once byte `+0x113D`. The two calls to `0x0018A670` around that read are a thunk to
-the byte getter `0x00229F90` (`0x01FD49ED`) whose arguments are unused.
+the byte getter `0x00229F90`² whose arguments are unused.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D6C00`, `0x001BE3E0` |
+| ² | `0x01FD49ED` |
+
+</details>
 
 With the running byte clear the pump runs in mode 0. With it set and `0x01FD4A88` set, the object
 `0x01F7F5E0` is reset (`0x0018B040`: `0x0018B3F0(obj, 0)`, `+0x24` = 0, `+0x2C` = -1), every element of the
-vector `0x01F7F5E8` is destroyed through its vtable slot 0 and the vector emptied (`0x0018B810`), the
+vector `0x01F7F5E8` is destroyed through its vtable slot 0 and the vector emptied¹, the
 pump runs in mode 0 and `0x01FD4A88` is cleared; with it set and `0x01FD4A88` clear the pump runs in
 mode 1. A pump result of 0 returns 9; anything else returns 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018B810` |
+
+</details>
 
 `0x0017D6E0(dt, mode)` is the pump. It clears `0x01F7F4B8` (a dword store, `0x0017D706`), runs the render manager's
 deferred callback ring (`0x00186230`: one of four slots at `+0xC38`, index `+0xCB8`; reached through the thunk
 `0x00185C20` on `0x00189120()`, `0x0017D70E`-`0x0017D716`) while `0x01FD4A68` is clear,
 and then loops over passes:
 
-1. `0x0022CB90()`; when the pacing predicate `0x001E05F0` holds and this is not the second pass,
-   `0x001E0550` arms `0x01F82D31` and clears `0x01F82D30`. The predicate, with `0x01E02801` set, runs
-   `0x001E03F0()` and holds when `0x00187540` on the render manager returns 0 and `0x001E04F0()` is at or
-   below `0x01F82D28`; with `0x01E02801` clear it resets `0x01DFDDF8` to the largest double and `0x01F82D28`
-   to 0 and fails;
-2. the pause byte's getter `0x001997D0` is called and its result handed to the return stub
-   `0x0016D6A0`, a compiled-out hook; `0x01F7F4B0 = dt`; `0x001A1460(0x01F7F4C0)`; `0x001DB600()`; the render manager's `0x00189CE0` and `0x00189570`;
-3. the recycle queue `0x001BDAC0` (`0x01F81248`), the `AsyncLoadManager` `0x001A1310` (`0x01F81160`), the
-   first `AsyncJobManager` `0x0019A170()` (`0x01F810F8`), only handed to the return stub `0x0016D6A0`
-   (`0x0017D795`-`0x0017D79D`), so no function of the manager runs here, the map-art context `0x001A9ED0(ctx, dt)`
-   (`0x01F81168`), the procedural-texture context `0x001C0DD0` (`0x01F81258`), the model asset cache
-   `0x001BC190` (`0x01F81240`), `0x001CC600()`;
-4. the movie player `0x001B8400(player, dt)` (`0x01F81218`: `+4` is the status
-   `getmoviestatus` reads through `0x00184860`, `0x001B82F0` starts a movie);
-5. the game step `0x0022A490(dt, mode != 0)`: it stores the mode at `0x02064AA0`, runs the main state
-   machine `0x0022A580` (states 0 to 6 at `0x02064AD3`, [frame update order](frame-update-order.md))
-   and increments `0x02064AD0` when `0x0022A580` returns non-zero; `0x0022A490` returns nothing of its
-   own, so the pump's result is `0x0022A580`'s register value surviving the increment;
-6. `0x001D8AB0(0x001D8A60(), dt)`, the `SaveloadManager` `0x001C1910` (`0x01F81260`), the screen fade
-   `0x001D9080` (`0x01F82CE0`), and the `MultipleDebugDisplay` (`0x01F81270`): `0x0022FFE0` when its byte
-   `+0x463C` is set, then the auto-test walker `0x001C2F50`
-   ([event scenes](../Scripts-And-Script-Commands/event-scenes.md));
-7. when `0x01F82D30` is clear the pump returns (`0x001E0560`, at the end of `0x0022A580`, sets it when
-   `0x01F82D31` was armed; states 4 and 6 also call `0x001E0580` before their handlers); otherwise the frame-end reset `0x001E0590` runs
-   (`0x00185D80` on the render manager, `0x0018B040(0x01F7F5E0)`, `0x0018C8F0(0x01F7F5E8)`, `0x001DB620`,
-   `0x001A14D0(0x01F7F4C0)`, both bytes cleared), `0x01F7F4B8` is set, `dt` becomes 0 and the next pass
-   starts.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x0022CB90()`; when the pacing predicate `0x001E05F0` holds and this is not the second pass, `0x001E0550` arms `0x01F82D31` and clears `0x01F82D30`. The predicate, with `0x01E02801` set, runs `0x001E03F0()` and holds when `0x00187540` on the render manager returns 0 and `0x001E04F0()` is at or below `0x01F82D28`; with `0x01E02801` clear it resets `0x01DFDDF8` to the largest double and `0x01F82D28` to 0 and fails; |   |
+| 2 | the pause byte's getter `0x001997D0` is called and its result handed to the return stub `0x0016D6A0`, a compiled-out hook; `0x01F7F4B0 = dt`; `0x001A1460(0x01F7F4C0)`; `0x001DB600()`; the render manager's `0x00189CE0` and `0x00189570`; |   |
+| 3 | the recycle queue `0x001BDAC0`, the `AsyncLoadManager` `0x001A1310`, the first `AsyncJobManager` `0x0019A170()`, only handed to the return stub `0x0016D6A0`, so no function of the manager runs here, the map-art context `0x001A9ED0(ctx, dt)`, the procedural-texture context `0x001C0DD0`, the model asset cache `0x001BC190`, `0x001CC600()`; | `0x01F81248`<br>`0x01F81160`<br>`0x01F810F8`<br>`0x0017D795`-`0x0017D79D`<br>`0x01F81168`<br>`0x01F81258`<br>`0x01F81240` |
+| 4 | the movie player `0x001B8400(player, dt)` (`0x01F81218`: `+4` is the status `getmoviestatus` reads through `0x00184860`, `0x001B82F0` starts a movie); |   |
+| 5 | the game step `0x0022A490(dt, mode != 0)`: it stores the mode at `0x02064AA0`, runs the main state machine `0x0022A580` (states 0 to 6 at `0x02064AD3`, [frame update order](frame-update-order.md)) and increments `0x02064AD0` when `0x0022A580` returns non-zero; `0x0022A490` returns nothing of its own, so the pump's result is `0x0022A580`'s register value surviving the increment; |   |
+| 6 | `0x001D8AB0(0x001D8A60(), dt)`, the `SaveloadManager` `0x001C1910`, the screen fade `0x001D9080`, and the `MultipleDebugDisplay`: `0x0022FFE0` when its byte `+0x463C` is set, then the auto-test walker `0x001C2F50` ([event scenes](../Scripts-And-Script-Commands/event-scenes.md)); | `0x01F81260`<br>`0x01F82CE0`<br>`0x01F81270` |
+| 7 | when `0x01F82D30` is clear the pump returns (`0x001E0560`, at the end of `0x0022A580`, sets it when `0x01F82D31` was armed; states 4 and 6 also call `0x001E0580` before their handlers); otherwise the frame-end reset `0x001E0590` runs (`0x00185D80` on the render manager, `0x0018B040(0x01F7F5E0)`, `0x0018C8F0(0x01F7F5E8)`, `0x001DB620`, `0x001A14D0(0x01F7F4C0)`, both bytes cleared), `0x01F7F4B8` is set, `dt` becomes 0 and the next pass starts. |   |
 
 `0x001E03F0` keeps the pacing balance `0x01F82D28`. With `0x01FD4A68` clear it adds the real time since its last call
-(`0x005CC930` minus `0x02CB60E8`, kept in `0x01DFDDF8`; nothing on the first call) minus n frame periods, n = `[0x01F3DA18]`
-(`0x00184950`). The period is 1/60 s when `0x0017FE30()` (`0x0079CFA0` on `0x001DDAB0()`) is a multiple of 10, else 0.0166833
+(`0x005CC930` minus `0x02CB60E8`, kept in `0x01DFDDF8`; nothing on the first call) minus n frame periods, n = `[0x01F3DA18]`¹. The period is 1/60 s when `0x0017FE30()` (`0x0079CFA0` on `0x001DDAB0()`) is a multiple of 10, else 0.0166833
 s. The balance is clamped to plus or minus 4 × n periods, or 300 × n while the movie player is in state 3, playing
 (`0x001B7D20`; [movies](../Graphics/movies.md)).
 
-With `0x01FD4A68` set it returns at once and leaves `0x01DFDDF8` as it is (`0x001E03FB`). A call that finds `0x01DFDDF8`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00184950` |
+
+</details>
+
+With `0x01FD4A68` set it returns at once and leaves `0x01DFDDF8` as it is¹. A call that finds `0x01DFDDF8`
 holding the largest double, the first call and the first after the predicate `0x001E05F0` has reset it, neither adds nor
-clamps, `[0x01DFDDF8] == 0x7FEFFFFFFFFFFFFF` (`0x001E0485`-`0x001E0497`). Every call with `0x01FD4A68` clear stores the
-current time in `0x01DFDDF8`, `[0x01DFDDF8] = t` with `t = 0x005CC930() - [0x02CB60E8]` (`0x001E0475`, `0x001E048D`, `0x001E04DD`).
+clamps, `[0x01DFDDF8] == 0x7FEFFFFFFFFFFFFF`². Every call with `0x01FD4A68` clear stores the
+current time in `0x01DFDDF8`, `[0x01DFDDF8] = t` with `t = 0x005CC930() - [0x02CB60E8]`³.
 
-The sum is stored first, `b = [0x01F82D28] + (t - [0x01DFDDF8]) - n × period` (`0x001E0499`-`0x001E04B4`); the clamp
-then tests the upper bound, `b > L` (`0x001E04B0`), and the lower, `b < -L` (`0x001E04BE`-`0x001E04C9`), with
-`L = (playing ? 300 : 4) × n × period` (`0x001E045A`-`0x001E0471`), and stores the bound that was passed (`0x001E04CB`).
+<details>
+<summary>Where in the code</summary>
 
-The movie player is `0x001B7F20()`, `[0x01F81218]`, and `0x001B7D20` compares its `+0x04` with 3 (`0x001E044B`-`0x001E0453`).
+| | Code |
+|---|---|
+| ¹ | `0x001E03FB` |
+| ² | `0x001E0485`-`0x001E0497` |
+| ³ | `0x001E0475`, `0x001E048D`, `0x001E04DD` |
+
+</details>
+
+The sum is stored first, `b = [0x01F82D28] + (t - [0x01DFDDF8]) - n × period`¹; the clamp
+then tests the upper bound, `b > L`², and the lower, `b < -L`³, with
+`L = (playing ? 300 : 4) × n × period`⁴, and stores the bound that was passed⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E0499`-`0x001E04B4` |
+| ² | `0x001E04B0` |
+| ³ | `0x001E04BE`-`0x001E04C9` |
+| ⁴ | `0x001E045A`-`0x001E0471` |
+| ⁵ | `0x001E04CB` |
+
+</details>
+
+The movie player is `0x001B7F20()`, `[0x01F81218]`, and `0x001B7D20` compares its `+0x04` with 3¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E044B`-`0x001E0453` |
+
+</details>
 
 The procedural-texture context's update `0x001C0DD0` does its work once: when its asset list `[ctx]`
-is ready (`0x0019EB00`) it indexes it with `0x001BF2E0` and sets `ctx + 8`. For each asset name (from byte
+is ready¹ it indexes it with `0x001BF2E0` and sets `ctx + 8`. For each asset name (from byte
 3 of the entry) `0x001BF2E0` drops the directory and the extension, and `0x001C0670` splits the rest at
 its last `_`: the part before is the key; a suffix of exactly `color` clears the second output and
 any other suffix sets it; a name without `_` is skipped.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019EB00` |
+
+</details>
 
 A key that `0x001C01B0` does not find gets a `0x28`-byte record, the key and its position, appended to
 the vector at `ctx + 0x58` (`0x001BEEF0` grows it) and entered in the map at `ctx + 0x78`. For a
@@ -310,68 +563,163 @@ Each pumped object is a lazily built singleton: a global pointer, an ensure func
 constructs on first use, and a getter.
 
 The ensure functions `0x00189000` (the render manager), `0x0018A620` (the camera pair, constructor `0x0018A380`), `0x0018A7D0`
-(the three running bytes, zeroed) and `0x00199790` (the pause byte, zeroed) return at once while their pointer is set
-(`0x0018902A`, `0x0018A634`, `0x0018A7DB`, `0x00199794`); otherwise they allocate with `0x00210EC0`, construct or zero only a
-non-null block, and store the result, 0 when the allocation fails (`0x00189067`, `0x0018A656`, `0x0018A807`, `0x001997C1`).
-`0x0018A620` and `0x0018A7D0` return the pointer (`0x0018A62D`, `0x0018A7D4`).
+(the three running bytes, zeroed) and `0x00199790` (the pause byte, zeroed) return at once while their pointer is set¹; otherwise they allocate with `0x00210EC0`, construct or zero only a
+non-null block, and store the result, 0 when the allocation fails².
+`0x0018A620` and `0x0018A7D0` return the pointer³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018902A`, `0x0018A634`, `0x0018A7DB`, `0x00199794` |
+| ² | `0x00189067`, `0x0018A656`, `0x0018A807`, `0x001997C1` |
+| ³ | `0x0018A62D`, `0x0018A7D4` |
+
+</details>
 
 The screen fade `0x01F82CE0` is a `0x38`-byte record built disabled (`+0` = 0, `+0x10` = 3) ([screen
 fade](../Graphics/screen-fades.md)).
 
 The movie player's ensure `0x001B7EE0` (`0xBB8` bytes, constructor `0x001B6D90`), the model asset cache's `0x001BBFC0`
 (`0x238`, `0x001B9370`), the `SaveloadManager`'s `0x001C18A0` (`0xA78`, `0x001C0E20`) and the `AsyncLoadManager`'s
-`0x001A11B0` (`0x140228` bytes from `0x00584740`, `0x0019F620`) return at once while their pointer is set (`0x001B7EF5`,
-`0x001BBFD5`, `0x001C18B5`, `0x001A11C5`); otherwise they allocate (`0x00210EC0` for the first three), run the constructor
-only on a non-null block and store its result, 0 when the allocation fails (`0x001B7F14`, `0x001BBFF4`, `0x001C18D4`,
-`0x001A11E4`).
+`0x001A11B0` (`0x140228` bytes from `0x00584740`, `0x0019F620`) return at once while their pointer is set¹; otherwise they allocate (`0x00210EC0` for the first three), run the constructor
+only on a non-null block and store its result, 0 when the allocation fails².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B7EF5`, `0x001BBFD5`, `0x001C18B5`, `0x001A11C5` |
+| ² | `0x001B7F14`, `0x001BBFF4`, `0x001C18D4`, `0x001A11E4` |
+
+</details>
 
 The recycle queue's `0x001BDA50` (`0x108`, `0x001BC9D0`) and the map-art context's `0x001A98B0` first hand the test that
-their pointer is null to the return stub `0x0016D6A0` (`0x001BDA6D`, `0x001A98CD`) and then follow the same rule
+their pointer is null to the return stub `0x0016D6A0`¹ and then follow the same rule
 (`0x001BDA79`, `0x001A98D9`; stores `0x001BDA9A`, `0x001A9922`). `0x001A98B0` also builds the `0xA0`-byte object kept at
-`0x01F81170` (`0x00584740`, `0x00633040`) before the `0x520`-byte context (`0x001A2130`) and stores it, 0 on a failed
-allocation, without a test of its own (`0x001A98FC`).
+`0x01F81170`² before the `0x520`-byte context³ and stores it, 0 on a failed
+allocation, without a test of its own⁴.
 
-The procedural-texture context's `0x001C0D40` hands the same test to `0x0016D6A0` (`0x001C0D59`) but does not branch on it:
-each call allocates `0x1B8` bytes, runs `0x001BE730` on a non-null block and stores the result, or 0 (`0x001C0D7B`,
-`0x001C0D84`); it is called from `0x0017D4C0` (`0x0017D613`).
+<details>
+<summary>Where in the code</summary>
 
-The screen fade's ensure `0x001D8CD0` returns at once while `0x01F82CE0` is set (`0x001D8CDC`); otherwise it takes
+| | Code |
+|---|---|
+| ¹ | `0x001BDA6D`, `0x001A98CD` |
+| ² | `0x00584740`, `0x00633040` |
+| ³ | `0x001A2130` |
+| ⁴ | `0x001A98FC` |
+
+</details>
+
+The procedural-texture context's `0x001C0D40` hands the same test to `0x0016D6A0`¹ but does not branch on it:
+each call allocates `0x1B8` bytes, runs `0x001BE730` on a non-null block and stores the result, or 0²; it is called from `0x0017D4C0`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C0D59` |
+| ² | `0x001C0D7B`, `0x001C0D84` |
+| ³ | `0x0017D613` |
+
+</details>
+
+The screen fade's ensure `0x001D8CD0` returns at once while `0x01F82CE0` is set¹; otherwise it takes
 `0x00210EC0(0x38)` and on a non-null block writes the byte `+0` = 0, the qword at `+0x04` = 0 (bytes `+0x04` to
-`+0x0B`), `+0x0C` = 0, `+0x10` = 3, the qword `+0x28` = 0 and `+0x30` = 0 (`0x001D8CF4`-`0x001D8D08`), leaving `+0x14` to
-`+0x27` and `+0x34` unwritten, then stores and returns the pointer (`0x001D8D0B`); a failed allocation stores and
-returns 0 (`0x001D8D1A`).
+`+0x0B`), `+0x0C` = 0, `+0x10` = 3, the qword `+0x28` = 0 and `+0x30` = 0², leaving `+0x14` to
+`+0x27` and `+0x34` unwritten, then stores and returns the pointer³; a failed allocation stores and
+returns 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D8CDC` |
+| ² | `0x001D8CF4`-`0x001D8D08` |
+| ³ | `0x001D8D0B` |
+| ⁴ | `0x001D8D1A` |
+
+</details>
 
 Its update `0x001D9080` draws first: inside a `"ScreenImage"` scope `0x001D8BB0` emits a quad over the screen
 (corners from `0x001D8B20`) with colour 255, 255, 255 and the level `+0x1C` as alpha.
 
 It then steps the float level `+0x1C` by the mode `+0x10`: `level += [+0x20]` in mode 0,
-`level -= [+0x20]` in mode 1 (`0x001D90B5`-`0x001D90D0`). It adds 1 to the counter `+0x0C`; in mode 0
+`level -= [+0x20]` in mode 1¹. It adds 1 to the counter `+0x0C`; in mode 0
 with `+0x0C >= +0x14` it sets `level = min(level, 255)` and the mode to 2, and in mode 1 with
-`+0x0C >= +0x18` it sets `level = max(level, 0)` and calls `0x001D8C80` (`0x001D90D5`-`0x001D911F`).
+`+0x0C >= +0x18` it sets `level = max(level, 0)` and calls `0x001D8C80`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D90B5`-`0x001D90D0` |
+| ² | `0x001D90D5`-`0x001D911F` |
+
+</details>
 
 ### The screen captures
 
 The render pass list `0x00187950` services two captures through the render manager:
 
-1. `0x00186010`, when `+0xCD8` is 1, runs `0x00188730`, sets `+0xCD8` to 2, allocates width (`+0xCF0`) ×
-   height × 3 bytes at `+0xCF8` (the height is `0x00186820`'s answer) and reads the frame into it
-   (`0x00600070`, the device's slot 2, `0x00610330`); in any other state it returns at once (`0x00186020`);
-2. `0x00187550`, when `+0xCD8` is 2, clears it, writes `/capture.tga` (an 18-byte header for an
-   uncompressed 24-bit image, then the rows from the last to the first), frees the buffer and
-   clears `+0xCD4`; in any other state it returns at once (`0x0018756F`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00186010`, when `+0xCD8` is 1, runs `0x00188730`, sets `+0xCD8` to 2, allocates width (`+0xCF0`) × height × 3 bytes at `+0xCF8` (the height is `0x00186820`'s answer) and reads the frame into it (`0x00600070`, the device's slot 2, `0x00610330`); in any other state it returns at once; | `0x00186020` |
+| 2 | `0x00187550`, when `+0xCD8` is 2, clears it, writes `/capture.tga` (an 18-byte header for an uncompressed 24-bit image, then the rows from the last to the first), frees the buffer and clears `+0xCD4`; in any other state it returns at once. | `0x0018756F` |
 
 Before its allocation `0x00186010` stores -1 in `+0x20` of `[0x01F7F5E0]` (`0x0018B4E0()`, `0x0018603A`-`0x00186046`) and takes
-the height inline by `0x00186820`'s rule (`0x0018604D`-`0x0018605F`); it zero-fills the buffer (`0x00861EC0`, `0x001860A7`) and
-hands the render manager's `+0x08` to `0x00600070`, to its slot 2 and to `0x00610330` (`0x001860AC`-`0x001860CA`). `0x00187550`
-opens the file with `fopen(..., "wb")` (`0x00187597`); when it does not open, nothing is written and the buffer is still
+the height inline by `0x00186820`'s rule¹; it zero-fills the buffer² and
+hands the render manager's `+0x08` to `0x00600070`, to its slot 2 and to `0x00610330`³. `0x00187550`
+opens the file with `fopen(..., "wb")`⁴; when it does not open, nothing is written and the buffer is still
 freed (`0x001875A3` to `0x001876A4`).
 
-The header (`0x001875A9`-`0x00187613`) has image type 2, the width `+0xCF0`, the height by the same rule and 24 bits per
-pixel; each row is one `fwrite` of width × 3 bytes (`0x00187640`-`0x00187682`), then `fclose` (`0x00187694`); after the free
-(`0x00210EB0`) it nulls `+0xCF8` (`0x001876B5`).
+<details>
+<summary>Where in the code</summary>
 
-Only the constructor (0), `0x00186010` (2) and `0x00187550` (0) store to `+0xCD8`; `0x00186010` (`0x00186016`),
-`0x00187550` (`0x00187565`) and `0x00188730` (`0x00188748`) read it.
+| | Code |
+|---|---|
+| ¹ | `0x0018604D`-`0x0018605F` |
+| ² | `0x00861EC0`, `0x001860A7` |
+| ³ | `0x001860AC`-`0x001860CA` |
+| ⁴ | `0x00187597` |
+
+</details>
+
+The header¹ has image type 2, the width `+0xCF0`, the height by the same rule and 24 bits per
+pixel; each row is one `fwrite` of width × 3 bytes², then `fclose`³; after the free⁴ it nulls `+0xCF8`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001875A9`-`0x00187613` |
+| ² | `0x00187640`-`0x00187682` |
+| ³ | `0x00187694` |
+| ⁴ | `0x00210EB0` |
+| ⁵ | `0x001876B5` |
+
+</details>
+
+Only the constructor (0), `0x00186010` (2) and `0x00187550` (0) store to `+0xCD8`; `0x00186010`¹,
+`0x00187550`² and `0x00188730`³ read it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00186016` |
+| ² | `0x00187565` |
+| ³ | `0x00188748` |
+
+</details>
 
 With the boot byte `+0xDB8` set, `0x00187860` also runs a 3840 × 2160 capture, keyed by the state
 `+0xDAC`:
@@ -389,12 +737,35 @@ With the boot byte `+0xDB8` set, `0x00187860` also runs a 3840 × 2160 capture, 
 `0x001876E0` writes `/Capture 4K/capture%03d.tga` (counter `0x01F7F5A4`), or in state 7 `/Capture
 4K/capture_series%03d_%04d.tga` (series `0x01F7F5A8`, frame `0x01F7F5AC`): an 18-byte header and 2,160 rows of `0x2D00`
 bytes from `+0xDB0`, last row first. It formats the name with `0x0017D2E0` into a zeroed 256-byte buffer and increments
-the number it printed, the frame `0x01F7F5AC` in state 7 (`0x0018773B`) or the counter `0x01F7F5A4` (`0x0018775A`), before it
-opens the file with `fopen(name, "wb")` (`0x00187771`); when the file does not open nothing is written (`0x0018777D`), and
+the number it printed, the frame `0x01F7F5AC` in state 7¹ or the counter `0x01F7F5A4`², before it
+opens the file with `fopen(name, "wb")`³; when the file does not open nothing is written⁴, and
 the number has still advanced.
 
-The header has image type 2, 3,840 × 2,160 (`0xF00`, `0x870`) and 24 bits per pixel (`0x00187783`-`0x001877D7`); each row
-is one `fwrite` (`0x001877F0`-`0x00187818`), and `fclose` ends the file (`0x0018781D`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018773B` |
+| ² | `0x0018775A` |
+| ³ | `0x00187771` |
+| ⁴ | `0x0018777D` |
+
+</details>
+
+The header has image type 2, 3,840 × 2,160 (`0xF00`, `0x870`) and 24 bits per pixel¹; each row
+is one `fwrite`², and `fclose` ends the file³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00187783`-`0x001877D7` |
+| ² | `0x001877F0`-`0x00187818` |
+| ³ | `0x0018781D` |
+
+</details>
 
 ### The loading page
 
@@ -402,23 +773,13 @@ The object the pump steps in pass step 6 through `0x001D8AB0(0x001D8A60(), dt)` 
 at `0x01F82CD8`, `0x40` bytes built by `0x001D89D0` in the init burst with a fade time of 0.264 s at
 `+0x34` and a delay of 5.0 s at `+0x38`. It is the icon that turns while a load runs:
 
-1. `0x001831A0` arms it (`0x001D8A90`: when the start time `+0x08` is 0, the armed byte `+0x1D` = 1).
-   The save-load post-load sequence (`0x00582860`) and the zone change's restore path (`0x00314530`,
-   [zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) call `0x001831A0`.
-2. Each update `0x001D8700` stamps the start time on the first armed pass (`0x005CC930` minus
-   `0x02CB60E8`); once 5 s have passed it sets the shown byte `+0x1C`, clears the armed byte and
-   restarts the fade timer `+0x20`.
-3. While shown, `0x001D8690` sets the alpha `+0x28`: timer / fade time × 255, capped at 255, on the
-   way in; 255 minus that on the way out (`+0x24` set), clearing the shown byte once the timer
-   passes the fade time. The update then adds `dt` to the timer and to the clock `+0x10`, and
-   draws with the angle clock × π through `0x001D7A20`.
-4. `0x001D7A20` draws nothing when qword `+0x10` of `[0x01F82CD0]` is 0 or the pause flag reads set
-   (`0x001D7A44`-`0x001D7A65`, `0x00199780`). Otherwise it sets the
-   sprite state (`0x001D8600`), places the four corners of the layout rectangle of `[0x01F82CD0]`
-   centred for a 1920 × 1080 or 512 × 448 frame, writes the alpha into each, rotates them by the
-   angle (`0x001D8790`) while the running byte `[0x0018A7D0()]` is 0, and emits them (`0x001B06D0`, `0x001B03D0`).
-5. `0x00183070` dismisses it (`0x001D8770`): it zeroes the start time, clears the armed byte and,
-   unless a fade-out already runs, starts one.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x001831A0` arms it (`0x001D8A90`: when the start time `+0x08` is 0, the armed byte `+0x1D` = 1). The save-load post-load sequence and the zone change's restore path (`0x00314530`, [zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) call `0x001831A0`. | `0x00582860` |
+| 2 | Each update `0x001D8700` stamps the start time on the first armed pass (`0x005CC930` minus `0x02CB60E8`); once 5 s have passed it sets the shown byte `+0x1C`, clears the armed byte and restarts the fade timer `+0x20`. |   |
+| 3 | While shown, `0x001D8690` sets the alpha `+0x28`: timer / fade time × 255, capped at 255, on the way in; 255 minus that on the way out (`+0x24` set), clearing the shown byte once the timer passes the fade time. The update then adds `dt` to the timer and to the clock `+0x10`, and draws with the angle clock × π through `0x001D7A20`. |   |
+| 4 | `0x001D7A20` draws nothing when qword `+0x10` of `[0x01F82CD0]` is 0 or the pause flag reads set. Otherwise it sets the sprite state, places the four corners of the layout rectangle of `[0x01F82CD0]` centred for a 1920 × 1080 or 512 × 448 frame, writes the alpha into each, rotates them by the angle while the running byte `[0x0018A7D0()]` is 0, and emits them. | `0x001D7A44`-`0x001D7A65`, `0x00199780`<br>`0x001D8600`<br>`0x001D8790`<br>`0x001B06D0`, `0x001B03D0` |
+| 5 | `0x00183070` dismisses it: it zeroes the start time, clears the armed byte and, unless a fade-out already runs, starts one. | `0x001D8770` |
 
    The actor drive pass `0x0025D9E0` calls it, and so do
    eight functions of the script layer: six command handlers, among them those of `fadesync` (`0x00B9`,
@@ -428,25 +789,64 @@ at `0x01F82CD8`, `0x40` bytes built by `0x001D89D0` in the init burst with a fad
 
 A load shorter than 5 s therefore never shows the icon.
 
-`0x001D8AB0(page, dt)` first runs `0x001D8700` (`0x001D8AC1`) and stops when the shown byte is then clear (`0x001D8AC6`).
-`0x001D8700` does nothing while the armed byte is clear (`0x001D870D`); the pass that finds the start time 0 stores the
-time as a float and returns (`0x001D872B`); a later pass compares the time since the stamp with the delay `+0x38`
-(`0x001D874C`) and, at or past it, writes the word 1 at `+0x1C` (shown 1, armed 0, `0x001D8752`), 0 in the fade timer
-`+0x20` and 0 in the fading-out byte `+0x24` (`0x001D8758`, `0x001D875F`).
+`0x001D8AB0(page, dt)` first runs `0x001D8700`¹ and stops when the shown byte is then clear².
+`0x001D8700` does nothing while the armed byte is clear³; the pass that finds the start time 0 stores the
+time as a float and returns⁴; a later pass compares the time since the stamp with the delay `+0x38`⁵ and, at or past it, writes the word 1 at `+0x1C` (shown 1, armed 0, `0x001D8752`), 0 in the fade timer
+`+0x20` and 0 in the fading-out byte `+0x24`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D8AC1` |
+| ² | `0x001D8AC6` |
+| ³ | `0x001D870D` |
+| ⁴ | `0x001D872B` |
+| ⁵ | `0x001D874C` |
+| ⁶ | `0x001D8758`, `0x001D875F` |
+
+</details>
 
 After `0x001D8690` the update does not test the shown byte again, so the pass that ends a fade-out still advances and
-draws. It converts `dt` (a double) to a float, adds it to the timer (`0x001D8AE8`) and, widened again, to the f64 clock
-(`0x001D8AF1`), stores the angle at `+0x18` (`0x001D8AFE`) and hands it to `0x001D7A20` with the layout object `[0x01F82CD0]`
-(`0x001D8210`) as the receiver (`0x001D8B03`-`0x001D8B0E`).
+draws. It converts `dt` (a double) to a float, adds it to the timer¹ and, widened again, to the f64 clock², stores the angle at `+0x18`³ and hands it to `0x001D7A20` with the layout object `[0x01F82CD0]`⁴ as the receiver⁵.
 
-`0x001D89D0` hands the test that `0x01F82CD8` is null to the return stub `0x0016D6A0` (`0x001D89E4`) and stores nothing
-while the pointer is set (`0x001D89F0`). Otherwise it takes `0x00210EC0(0x40)`; on a non-null block it writes the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D8AE8` |
+| ² | `0x001D8AF1` |
+| ³ | `0x001D8AFE` |
+| ⁴ | `0x001D8210` |
+| ⁵ | `0x001D8B03`-`0x001D8B0E` |
+
+</details>
+
+`0x001D89D0` hands the test that `0x01F82CD8` is null to the return stub `0x0016D6A0`¹ and stores nothing
+while the pointer is set². Otherwise it takes `0x00210EC0(0x40)`; on a non-null block it writes the
 vtable `0x00900390` (RTTI `LoadingPage`), zeroes `+0x08`, `+0x10`, `+0x18`, the word `+0x1C`, `+0x20`, the byte
-`+0x24` and `+0x28`, stores 0.033 at `+0x2C`, 8 at `+0x30`, 0.264 at `+0x34` and 5.0 at `+0x38`
-(`0x001D8A04`-`0x001D8A3A`), and stores and returns the pointer (`0x001D8A41`); a failed allocation stores and returns
-0 (`0x001D8A4E`).
+`+0x24` and `+0x28`, stores 0.033 at `+0x2C`, 8 at `+0x30`, 0.264 at `+0x34` and 5.0 at `+0x38`³, and stores and returns the pointer⁴; a failed allocation stores and returns
+0⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D89E4` |
+| ² | `0x001D89F0` |
+| ³ | `0x001D8A04`-`0x001D8A3A` |
+| ⁴ | `0x001D8A41` |
+| ⁵ | `0x001D8A4E` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### The statics at 0x01F7F490
 
@@ -560,7 +960,16 @@ Globals:
 | `0x02064AA0` | `u32` | the pump mode |  |
 | `0x02064AD0` | `u8` | game step count |  |
 
-`LoadingPage`, `0x40` bytes at `[0x01F82CD8]` (`0x001D89D0`):
+`LoadingPage`, `0x40` bytes at `[0x01F82CD8]`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D89D0` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -629,8 +1038,12 @@ The render manager (`0xDD8` bytes at `[0x01F7F598]`, built by `0x00184F20`, its 
 | `+0xDCD` | `u8[3]` | span0DCD | the three bytes between the byte `+0xDCC` and the dword `+0xDD0` |
 | `+0xDD4` | `u8[4]` | span0DD4 | the last four bytes of the `0xDD8`-byte manager, after the dword `+0xDD0` |
 
+</details>
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -642,6 +1055,8 @@ The render manager (`0xDD8` bytes at `[0x01F7F598]`, built by `0x00184F20`, its 
 | singleton classes | `AsyncJobManager`, `AsyncLoadManager`, `Phyre::PCameraPerspective` (the movie player's camera), `SaveloadManager`, `MultipleDebugDisplay`, from the vtables their constructors install |
 | procedural-texture context | loads `./GameData/D3D11/ArtData/map/proceduralTexture/proceduralTexture_D3D11.ah` and `proceduralTextureConfigs.txt` |
 
+</details>
+
 ## Operations
 
 At start: the framework calls slot 2 (mount), slot 3 (device and the init job); the job builds the
@@ -650,6 +1065,9 @@ the frame end), slot 7 (input) and slot 8 (render), each gated on the latch. Slo
 and read back the pause byte; slots 23 and 24 scale the framework's time by `0x0017E440()`.
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The latch and the run-once byte; the thirteen singleton pointers and the objects behind them; the
 published frame delta and the second-pass flag; the pump mode and the game-step count.
@@ -660,11 +1078,24 @@ The cutscene bookkeeping of `0x001CC600` keeps two static EASTL strings (`+0x00`
 capacity end), which start-up initialisers build empty and `atexit` destructors free:
 
 - `0x01F81358`, the current cut name (initialiser `0x0015C560`, destructor `0x008A69F0`): `0x001CC600` reads its end
-  (`0x001CC622`) and rebuilds it as `"Cut "` plus the count through `0x001A5760` (`0x001CC715`). `0x001CC800` (`0x001CC843`,
-  `0x001CC890`, `0x001CC8C8`), `0x001CC920` (`0x001CC94F`) and the cutscene scene-config reader `0x001C3D50` (`0x001C3E9F`) pass it to the
+ ¹ and rebuilds it as `"Cut "` plus the count through `0x001A5760`². `0x001CC800`³, `0x001CC920`⁴ and the cutscene scene-config reader `0x001C3D50`⁵ pass it to the
   scene-map lookup `0x001FF6B0`, which compares names in `0x001FF4F0`.
 - `0x01F81338`, the previous cut name (initialiser `0x0015CB10`, destructor `0x008A6BF0`): `0x001CC600` assigns the current
-  name to it through `0x001A5760` (`0x001CC630`).
+  name to it through `0x001A5760`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001CC622` |
+| ² | `0x001CC715` |
+| ³ | `0x001CC843`, `0x001CC890`, `0x001CC8C8` |
+| ⁴ | `0x001CC94F` |
+| ⁵ | `0x001C3E9F` |
+| ⁶ | `0x001CC630` |
+
+</details>
 
 `0x001A5760` (assign) and `0x001A52A0` (grow), which it calls, reach the fields through the string's address.
 
@@ -684,6 +1115,8 @@ No other instruction reaches these words: no other RIP-relative, image-base-rela
 
 No other instruction has the displacement `0x113C` or `0x113D`.
 
+</details>
+
 ## Modding notes
 
 - Anything driving the application before the latch is set finds slots 4 and 8 returning at once
@@ -693,17 +1126,17 @@ No other instruction has the displacement `0x113C` or `0x113D`.
 - Slot 5 is deliberately empty, not missing; a hook that expects an unimplemented slot there finds
   a thunk to the stub.
 - A second pump pass runs only while `0x01F82D30` is set. `0x001E0560` sets it at the end of `0x0022A580`
-  (`0x0022A705`) when `0x01F82D31` is armed, and `0x001E0550` arms that byte when the pacing predicate holds
-  (`0x0017D736`). The game step then sees a delta of 0 on the second pass.
+ ¹ when `0x01F82D31` is armed, and `0x001E0550` arms that byte when the pacing predicate holds
+ ². The game step then sees a delta of 0 on the second pass.
 - The pause byte behind `0x01F810F0` is reached through `0x001997D0` (returns the pointer at `0x01F810F0`) and `0x00199780`
   (returns the byte). Its writers and readers:
-  - `0x0017E720(flag)` stores `flag != 0` through `0x001997E0` (`0x0017E728`, `0x0017E73B`). Its only caller is the pause
+  - `0x0017E720(flag)` stores `flag != 0` through `0x001997E0`³. Its only caller is the pause
     overlay `0x00229590`, which passes 0 at `0x002297B0` (after the policy-bit clears `0x002E1CA0` at `0x0022979C` and
     `0x002297A9`) and 1 at `0x002298C1` (after setting `0x01E027FC` = 1 at `0x002298B7`) ([pause screen](../Menus-And-HUD/pause-screen.md)).
-  - The vtable slots 21 and 22 (`0x0017CFD0`, `0x0017D170`) read and write it too, each after `0x001997D0`'s null test
-    (`0x0017CFD9`).
-  - `0x0017E4E0()` returns the byte (`0x0017E4E4`-`0x0017E4F1`). The pre-dispatch step `0x0022A580` copies it to `0x02F974A0`
-    (`0x0022A67A`) and, when `0x01FD4A68` is 0 (it stores 1 there in main states 4 and 6, 0 in the others,
+  - The vtable slots 21 and 22⁴ read and write it too, each after `0x001997D0`'s null test
+   ⁵.
+  - `0x0017E4E0()` returns the byte⁶. The pre-dispatch step `0x0022A580` copies it to `0x02F974A0`
+   ⁷ and, when `0x01FD4A68` is 0 (it stores 1 there in main states 4 and 6, 0 in the others,
     `0x0022A600`-`0x0022A632`), tests the copy at `0x0022A713`: clear, it runs `0x001E05E0()` and, when that is 0,
     `0x001832F0()`, before `0x00375B80(0)`; set, it goes to `0x00375B80(0)` at once.
   - The field frame `0x0022A770` runs `0x002506D0` only while the byte is set (`0x0022A8CA`,
@@ -714,12 +1147,12 @@ No other instruction has the displacement `0x113C` or `0x113D`.
     clear, `0x002481A0`, `0x00248030` and `0x00244970` on `0x0208EA48`, `0x00248190`, `0x002481C0`, `0x00250CA0`, then the tail
     `0x003676B0(1)`.
   - While it is clear the tick continues at `0x002505C9`: it adds 1 or 2 (by `0x001EDE70()` and `0x00181DD0()`,
-    `0x00250546`-`0x00250565`) to `0x0208F570`, zeroes `0x020927DC` (`0x002505D0`), tail-jumps to `0x002508E0` when
-    `0x00229EA0()` is 5 (`0x002505EA`), and otherwise runs the full tick from `0x002505EF`.
+    `0x00250546`-`0x00250565`) to `0x0208F570`, zeroes `0x020927DC`⁸, tail-jumps to `0x002508E0` when
+    `0x00229EA0()` is 5⁹, and otherwise runs the full tick from `0x002505EF`.
   - The full tick is `0x003C9FD0(3)`, `0x00254CC0` (it does not read that 1 or 2), `0x002481A0`, `0x00248030`
     on each of the three
     objects `0x0208EA20`-`0x0208EA30` whose `+0x18` is non-null and on `0x0208EA40` and `0x0208EA48`, `0x00248190`,
-    `0x002481C0`, `0x00244970` on the same objects, `0x00250CA0`, and the tail `0x00367200` of the 1 or 2 (`0x002506BE`),
+    `0x002481C0`, `0x00244970` on the same objects, `0x00250CA0`, and the tail `0x00367200` of the 1 or 2¹⁰,
     which ends the body; `0x002508D0` is a `ret` inside `0x002507C0`, not part of this tick.
   - Both paths of `0x00250540` call `0x002481A0`, the parity flip of `0x0208ED5C` ([widgets](../Menus-And-HUD/widgets.md)).
   - Two console drawers read it through `0x001997D0` and `0x00199780` directly: `0x001D7A20` draws nothing while it is set
@@ -727,6 +1160,24 @@ No other instruction has the displacement `0x113C` or `0x113D`.
     (`0x001D7319`-`0x001D7328` to its epilogue `0x001D7678`).
   - The pump `0x0017D6E0` reads the pointer at `0x0017D73B` only to hand it to `0x0016D6A0`, the compiled-out hook, which is a
     bare `ret`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A705` |
+| ² | `0x0017D736` |
+| ³ | `0x0017E728`, `0x0017E73B` |
+| ⁴ | `0x0017CFD0`, `0x0017D170` |
+| ⁵ | `0x0017CFD9` |
+| ⁶ | `0x0017E4E4`-`0x0017E4F1` |
+| ⁷ | `0x0022A67A` |
+| ⁸ | `0x002505D0` |
+| ⁹ | `0x002505EA` |
+| ¹⁰ | `0x002506BE` |
+
+</details>
 
 ## Related
 
@@ -744,9 +1195,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Input gameplay** (explained on [force fight mode](force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E1CA0` | is called by | `0x00313A00` |
+| [`0x002E1CA0`](../Controls-And-Input/action-availability.md) (on action availability) | is called by | [`0x00313A00`](../Battle-Actions/action-phases.md) (on action phases) |
 
 </details>
 

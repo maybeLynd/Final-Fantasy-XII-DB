@@ -14,7 +14,16 @@ Every line the battle log can show is a row of the battle message table, indexed
 
 `0x00236C30` binds it: `0x00236C7B`-`0x00236C86` pass the pack's directory entry 2 (`[pack+0xC]`) and the
 descriptor slot `0x02EBF018` to `0x003845F0`. The readers then take a row as `table + id * stride` from
-that slot (`0x0046AB10`, `0x00469570`, `0x005369C0`).
+that slot¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046AB10`, `0x00469570`, `0x005369C0` |
+
+</details>
 
 The US file is an `st2e` table: 102 rows of 8 bytes from `+0x20`, and a text heap at `+0x350`. In the
 heap the row count is at `+0x0C`, the offsets from `+0x10`, and each text at `heap + 0x0C + offset`.
@@ -75,26 +84,34 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Party** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032A150` | is called by | `0x003081E0` |
+| [`0x0032A150`](battle-message-list.md) | is called by | [`0x003081E0`](../Random-Numbers/which-roll-uses-which-generator.md) Battle unit: seed party combat stance recheck timer (on which roll uses which generator) |
 
 **Graphics** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032A150` | is called by | `0x00307E70`, `0x00308130` |
+| [`0x0032A150`](battle-message-list.md) | is called by | [`0x00307E70`](../Party/party-slots.md) Party combat: update stance state (on party slots)<br>[`0x00308130`](../Engine-Core/force-fight-mode.md) Battle unit: compute party battle stance (on force fight mode) |
 
 **Enemy spawning** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md), [battle units](../Characters-And-Objects/battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032A150` | is called by | `0x00233780`, `0x00235720`, `0x00235FB0` |
+| [`0x0032A150`](battle-message-list.md) | is called by | [`0x00233780`](../Enemy-Spawning/enemy-respawning.md) Spawn: swap or push banks (on enemy respawning)<br>[`0x00235720`](../Enemy-Spawning/enemy-spawning.md) Spawn: select and prepare automatic entry (on enemy spawning)<br>[`0x00235FB0`](../Enemy-Spawning/enemy-respawning.md) Spawn entry: get elapsed ticks since last death (on enemy respawning) |
 
 **Status effects and KO** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [frame update order](../Engine-Core/frame-update-order.md), [status timers](../Status-Effects-And-KO/status-timers.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032A150` | is called by | `0x00301140`, `0x00310DB0`, `0x00385CA0` |
+| [`0x0032A150`](battle-message-list.md) | is called by | [`0x00301140`](../Graphics/effect-file-loading.md) Battle unit: recover from terminal status set if clear (on effect file loading)<br>[`0x00310DB0`](action-results.md) Battle unit: run periodic combat maintenance (on action results)<br>[`0x00385CA0`](../Status-Effects-And-KO/status-timers.md) (on status timers) |
 
 </details>

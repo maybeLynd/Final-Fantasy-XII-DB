@@ -16,18 +16,12 @@
 
 Every widget is built by `0x002465F0(object, size, procedure, record, borrowed)`:
 
-1. It clears the object (`0x00246612`-`0x00246626`).
-2. It installs the procedure at `+0x00`, or `0x005C5230` (`xor eax, eax` / `ret`) when no procedure is given
-   (`0x0024662B`-`0x00246641`).
-3. It writes the header (below).
-   - The generation bit `0x20000` of `+0x40` takes the parity `0x0208ED5C`, or 0 while `0x0208F560` is set
-     (`0x00246639`-`0x0024666D`); `0x002481A0` sets `0x0208F560` with each parity flip and `0x00248190` clears it after the
-     tick's drains.
-   - It clears bits `0x70000` of the dword `+0x44` and then reads them, so the draw box offsets `+0xAC` and `+0xAD`
-     are always 6 (`0x00246670`-`0x002466CB`). The borrowed bit `0x4000` is bit `0x1` of the fifth argument
-     (`0x002466D1`-`0x002466F2`).
-4. It calls the procedure once with message 1 and the creator's two arguments (`0x00246721`-`0x00246748`), the record's
-   `+0x08` and `+0x10`, or two zeros when no record is given (`0x00246620`, `0x00246726`-`0x00246733`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It clears the object. | `0x00246612`-`0x00246626` |
+| 2 | It installs the procedure at `+0x00`, or `0x005C5230` (`xor eax, eax` / `ret`) when no procedure is given. | `0x0024662B`-`0x00246641` |
+| 3 | It writes the header (below).<br>• The generation bit `0x20000` of `+0x40` takes the parity `0x0208ED5C`, or 0 while `0x0208F560` is set; `0x002481A0` sets `0x0208F560` with each parity flip and `0x00248190` clears it after the tick's drains.<br>• It clears bits `0x70000` of the dword `+0x44` and then reads them, so the draw box offsets `+0xAC` and `+0xAD` are always 6. The borrowed bit `0x4000` is bit `0x1` of the fifth argument. | `0x00246639`-`0x0024666D`<br>`0x00246670`-`0x002466CB`<br>`0x002466D1`-`0x002466F2` |
+| 4 | It calls the procedure once with message 1 and the creator's two arguments, the record's `+0x08` and `+0x10`, or two zeros when no record is given. | `0x00246721`-`0x00246748`<br>`0x00246620`, `0x00246726`-`0x00246733` |
 
 There are three ways in:
 
@@ -37,15 +31,34 @@ There are three ways in:
 | `0x00245000(object, size, procedure, record)` | builds in memory the caller provides, usually inside the parent |
 | `0x002465F0` directly | 7 sites, in `0x00241BF0`, `0x00241C90` and `0x00247AE0` |
 
-A pool or in-place widget is marked borrowed (`+0x40` bit `0x4000`): the release then frees only the pool slot
-(`0x002483E5`-`0x002483F0`), while a heap widget is freed (`0x002483DE`).
+A pool or in-place widget is marked borrowed (`+0x40` bit `0x4000`): the release then frees only the pool slot¹, while a heap widget is freed².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002483E5`-`0x002483F0` |
+| ² | `0x002483DE` |
+
+</details>
 
 ### Sizes
 
 Over the image there are 296 construction sites in 235 functions, building 267 procedures. 265 of them are always
 built at one size, 82 sizes in all from `0xC0` to `0x179E0`, which several procedures share. The other two grow with
-their content: `0x00571A50` is `0xF0` bytes plus two for each counted entry (`0x00570CA8`), and `0x00578450` is `0x100`
-plus eight for each line `0x002B39A0` finds (`0x005782CD`).
+their content: `0x00571A50` is `0xF0` bytes plus two for each counted entry¹, and `0x00578450` is `0x100`
+plus eight for each line `0x002B39A0` finds².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00570CA8` |
+| ² | `0x005782CD` |
+
+</details>
 
 | Size | Procedure | Widget |
 |---|---|---|
@@ -55,8 +68,16 @@ plus eight for each line `0x002B39A0` finds (`0x005782CD`).
 | `0x640` | `0x0057C480` | the confirmation window ([Dialogs](dialogs.md)) |
 
 A parent can hold its children inside itself: the battle menu builds two `0x3010` panels at `+0xC0` and `+0x30D0`, the
-Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, all with `0x00245000`
-(`0x0027A12F`-`0x0027A42D`).
+Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, all with `0x00245000`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027A12F`-`0x0027A42D` |
+
+</details>
 
 ### The header
 
@@ -110,29 +131,71 @@ Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, a
 
 ### The tree
 
-`0x00244960(parent, child)` attaches a child only when it has no parent yet, through `0x00248220`
-(`0x00244960`-`0x00244965`), which appends it to the parent's children, links the siblings, counts it and stores the
-parent (`0x00248230`-`0x00248267`). The links are the old last child's next `+0x20` and the child's previous `+0x28`
-(`0x0024825C`, `0x00248260`); a first child goes to the parent's `+0x18` with neither written (`0x00248239`).
+`0x00244960(parent, child)` attaches a child only when it has no parent yet, through `0x00248220`¹, which appends it to the parent's children, links the siblings, counts it and stores the
+parent². The links are the old last child's next `+0x20` and the child's previous `+0x28`³; a first child goes to the parent's `+0x18` with neither written⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00244960`-`0x00244965` |
+| ² | `0x00248230`-`0x00248267` |
+| ³ | `0x0024825C`, `0x00248260` |
+| ⁴ | `0x00248239` |
+
+</details>
 
 A parent with bit `0x20` passes it to the child and to every descendant of the child through the pre-order walker
-`0x002463F0(widget, callback, value)` with the bit setter `0x002418E0` (`0x00248271`-`0x002482A0`). Only such a parent goes
+`0x002463F0(widget, callback, value)` with the bit setter `0x002418E0`¹. Only such a parent goes
 on to activate the child: when the parent is active and the child has bit `0x2`, it calls `0x002473F0(child, 1)`,
-which sends message 6 (`0x002482AE`-`0x002482C7`). A parent without bit `0x20` skips both steps (`0x0024826F`). The
-parent's bit `0x2000` is set in every case (`0x002482CC`).
+which sends message 6². A parent without bit `0x20` skips both steps³. The
+parent's bit `0x2000` is set in every case⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00248271`-`0x002482A0` |
+| ² | `0x002482AE`-`0x002482C7` |
+| ³ | `0x0024826F` |
+| ⁴ | `0x002482CC` |
+
+</details>
 
 Two shortcuts use the main root `[0x0208EA28]`:
 
-- `0x00246AC0(widget)` opens a widget under it (`0x00246AD0`).
+- `0x00246AC0(widget)` opens a widget under it¹.
 - `0x00247950(widget, on)` attaches a widget that has no parent to it with bit `0x2` set to `on`. For a widget that has a
   parent it sets bit `0x2` to `on` through `0x00247870`, which also runs the activation `0x002473F0` when bit `0x20` is set
-  (`0x0024795C`-`0x0024797A`).
+ ².
 - `0x00247980(parent, widget, on)` does the same under a parent the caller gives; `0x00228130` calls it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00246AD0` |
+| ² | `0x0024795C`-`0x0024797A` |
+
+</details>
 
 Messages travel along the tree:
 
-- `0x00275440(widget, message)` delivers to every ancestor in turn, up to the root (`0x00275452`-`0x00275477`).
-- `0x002753F0(widget, message)` delivers to the widget and then every descendant (`0x002753FA`-`0x00275427`).
+- `0x00275440(widget, message)` delivers to every ancestor in turn, up to the root¹.
+- `0x002753F0(widget, message)` delivers to the widget and then every descendant².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00275452`-`0x00275477` |
+| ² | `0x002753FA`-`0x00275427` |
+
+</details>
 
 The message record and every id are in [Widget messages](widget-messages.md).
 
@@ -140,27 +203,51 @@ The message record and every id are in [Widget messages](widget-messages.md).
 
 `0x00247930(widget, priority)` stores a widget's draw priority at `+0x44` (100 when built) and sets bit `0x2000` on its
 parent. When the walker `0x00244980` reaches an active widget (bit `0x1`) with bit `0x2000`, it re-sorts that widget's
-children with `0x002479B0` and clears the bit when the sort answers other than 0 (`0x0024498C`-`0x0024499F`):
+children with `0x002479B0` and clears the bit when the sort answers other than 0¹:
 
-1. Each child's priority, position in the list and pointer go into the scratch table `0x0208ED60`
-   (`0x00247A0A`-`0x00247A2D`).
-2. The sort `0x00249CE0(scratch, base, size, n, compare)` gets the child count as `n` (`0x00247A36`) and orders the
-   entries with the comparator `0x00244610`: a larger priority first, equal priorities in their old order.
-3. It is a quicksort over index ranges whose bounds are both included: the first is 0 to n - 1 (`0x00249D12`). While
-   a range's last index minus its first is above 10 (`0x00249D36`), so while it holds 12 or more entries, it takes
-   the middle entry as the pivot (`0x00249D60`-`0x00249D6D`) and partitions the range.
-4. It keeps the larger part on a stack of ranges in its scratch, only when that part holds more than 10 entries
-   (`0x00249E54`, `0x00249E7F`), and goes on with the smaller (`0x00249E40`-`0x00249EA0`).
-5. It then finishes with `0x00249680(scratch, base, size, n, compare)` over the whole array (`0x00249ED6`), an
-   insertion sort that takes each element in turn into `scratch` and moves larger ones up by `size` bytes.
-6. The children are relinked in that order (`0x00247A51`-`0x00247AB1`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024498C`-`0x0024499F` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Each child's priority, position in the list and pointer go into the scratch table `0x0208ED60`. | `0x00247A0A`-`0x00247A2D` |
+| 2 | The sort `0x00249CE0(scratch, base, size, n, compare)` gets the child count as `n` and orders the entries with the comparator `0x00244610`: a larger priority first, equal priorities in their old order. | `0x00247A36` |
+| 3 | It is a quicksort over index ranges whose bounds are both included: the first is 0 to n - 1. While a range's last index minus its first is above 10, so while it holds 12 or more entries, it takes the middle entry as the pivot and partitions the range. | `0x00249D12`<br>`0x00249D36`<br>`0x00249D60`-`0x00249D6D` |
+| 4 | It keeps the larger part on a stack of ranges in its scratch, only when that part holds more than 10 entries, and goes on with the smaller. | `0x00249E54`, `0x00249E7F`<br>`0x00249E40`-`0x00249EA0` |
+| 5 | It then finishes with `0x00249680(scratch, base, size, n, compare)` over the whole array, an insertion sort that takes each element in turn into `scratch` and moves larger ones up by `size` bytes. | `0x00249ED6` |
+| 6 | The children are relinked in that order. | `0x00247A51`-`0x00247AB1` |
 
 The root draw passes `0x002450B0` and `0x00245110` set `0x0208F564` to 0 and to 1 and walk the tree with `0x00245E60`. A
-widget's own content is drawn only in the pass equal to its `+0x40` bit `0x1000000`, with bit `0x10000000` clear (`0x0024623A`-`0x0024624B`);
-its box is drawn in that pass when `+0x40` bit `0x80` is also set (`0x002461BB`-`0x002461CE`).
+widget's own content is drawn only in the pass equal to its `+0x40` bit `0x1000000`, with bit `0x10000000` clear¹;
+its box is drawn in that pass when `+0x40` bit `0x80` is also set².
 `0x00247730(widget, pass)` sets that bit on a widget and every descendant.
 
-`0x00245E60` takes each widget's box from `0x00246480(widget, box)` (`0x00245F50`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024623A`-`0x0024624B` |
+| ² | `0x002461BB`-`0x002461CE` |
+
+</details>
+
+`0x00245E60` takes each widget's box from `0x00246480(widget, box)`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00245F50` |
+
+</details>
 
 - the position and size from `+0x98`, an inner rectangle the size of the widget, scale 1.0 at box `+0x1C` and
   `+0x20`, and the alpha `+0xA0`;
@@ -171,45 +258,81 @@ its box is drawn in that pass when `+0x40` bit `0x80` is also set (`0x002461BB`-
 It returns 1 when a float at box `+0x10`-`+0x18` is not 0 or the scale is not 1.0. `0x00246450` returns the position
 alone, with the same bit `0x80` offset.
 
-The box itself is a nine-piece panel. `0x00245E60` sets up a draw record (`0x002D8530`) and calls `0x002455A0` when
-`+0x40` bit `0x100` is set, otherwise `0x00245170` (`0x002461D9`-`0x002461F0`). `0x00245170(widget, record)` draws nothing while
+The box itself is a nine-piece panel. `0x00245E60` sets up a draw record¹ and calls `0x002455A0` when
+`+0x40` bit `0x100` is set, otherwise `0x00245170`². `0x00245170(widget, record)` draws nothing while
 `0x002DD4B0()` (the dword `0x0215E6D0`) is 0. Otherwise:
 
-1. It takes the atlas `0x0208EAA0` (`cm_win_c`), or `0x0208EAB0` with `+0x40` bit `0x400000`, and nine consecutive 8-byte
-   pieces from the index its header gives at `+0x44`: `i16` x and y, then 12-bit width and height.
-2. The middle column is the widget width `+0x9C` less the two corner widths plus `+0xA6`; the middle row the height
-   `+0x9E` less the two corner heights plus `+0xA7`. The panel starts at `+0xA4`, `+0xA5`.
-3. Its colour is `0x80808080` for a style byte `+0xA3` below 2, else colour-table entry `+0xA3 + 0x92`
-   (`0x002DD7E0`); its palette byte is the first piece's byte `+7` for a style below 10, else `0x002DD7B0(+0xA3 +
-   0x92)`.
-4. It draws the nine pieces row by row with `0x002DA7C0` between `0x002DAF30` and `0x002DAC70`, leaving out the
-   middle row or column when its size is not above 0.
+<details>
+<summary>Where in the code</summary>
 
-`0x00272310(widget, out)` gives a widget's place on screen: its own box position
-(`0x00246480`) plus that of every ancestor up the `+0x10` chain, for `0x003EE420` (`0x003EE511`, `0x003EE51F`).
-`0x003EE420` also steps four fades of its object with `0x003EEBD0(object, up)` (`0x003EE6A4`). Each moves by
+| | Code |
+|---|---|
+| ¹ | `0x002D8530` |
+| ² | `0x002461D9`-`0x002461F0` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It takes the atlas `0x0208EAA0` (`cm_win_c`), or `0x0208EAB0` with `+0x40` bit `0x400000`, and nine consecutive 8-byte pieces from the index its header gives at `+0x44`: `i16` x and y, then 12-bit width and height. |   |
+| 2 | The middle column is the widget width `+0x9C` less the two corner widths plus `+0xA6`; the middle row the height `+0x9E` less the two corner heights plus `+0xA7`. The panel starts at `+0xA4`, `+0xA5`. |   |
+| 3 | Its colour is `0x80808080` for a style byte `+0xA3` below 2, else colour-table entry `+0xA3 + 0x92`; its palette byte is the first piece's byte `+7` for a style below 10, else `0x002DD7B0(+0xA3 + 0x92)`. | `0x002DD7E0` |
+| 4 | It draws the nine pieces row by row with `0x002DA7C0` between `0x002DAF30` and `0x002DAC70`, leaving out the middle row or column when its size is not above 0. |   |
+
+`0x00272310(widget, out)` gives a widget's place on screen: its own box position¹ plus that of every ancestor up the `+0x10` chain, for `0x003EE420`².
+`0x003EE420` also steps four fades of its object with `0x003EEBD0(object, up)`³. Each moves by
 `1 / ([0x01DFE0B4] x 9600 / 1000)` and is clamped to 0-1: `+0x1D0` up when `up` is non-zero, `+0x88` up with `+0x1D4`
 bit `0x100`, and `+0x188` and `+0x1B8` up with `+0x1D4` bit `0x200`; each goes down otherwise.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00246480` |
+| ² | `0x003EE511`, `0x003EE51F` |
+| ³ | `0x003EE6A4` |
+
+</details>
 
 `0x003EEA80(block, kind, flag, element, fade)` draws the sprite records of the two `0x30`-byte blocks at `+0x170` and
 `+0x1A0` of that object (`0x003EE612`, `0x003EE637`, with the fade `+0x1D0`), while the block's `+0x18` is positive:
 
 - it scales the element's width word `+0x58` by `+0x18 x fade`: `+0x58 = (int)(+0x58 × fade × +0x18)`, cut toward
-  zero (`0x003EEAC2`-`0x003EEAF5`), and puts the width and `+0x5C` back afterwards;
+  zero¹, and puts the width and `+0x5C` back afterwards;
 - for the one or (with `+0x1C` set) two 8-byte records at `+0x08` it takes x and y from words 0 and 1, u and v as the
   two 12-bit fields of dword `+0x04`, and byte `+0x07`: its high nibble picks a row of the picture's palette table
   (`[[block] + 0x20] + 0x30`, row `+0x12`) and its low nibble is added, giving element `+0x5C`;
 - each record is drawn with `0x002D8CB0(element, [block], rect, kind, flag)`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EEAC2`-`0x003EEAF5` |
+
+</details>
+
 `0x003EE8C0(object, text, a, b)` sets those fades up for a new text. The object holds two 0x1E0-byte
 text entries at `+0xC0`, and the index `+0x4B0` toggles between them:
 
-1. It clears bits `0x100` and `0x200` of the old entry's `+0x1D4`, moves the index and sets both bits on the new one.
-2. It copies up to 0x80 bytes of `text` into the entry (`0x00254F30`); a null or empty text leaves it empty.
-3. It clears bit `0x200` again when `a` and `b` are both 0, zeroes `+0x1D0`, `+0x88`, `+0x188` and `+0x1B8`,
-   keeps `a` at `+0x18C` and `b` at `+0x1BC`, and runs `0x002B3400(entry + 0xA0, 0, 0)`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It clears bits `0x100` and `0x200` of the old entry's `+0x1D4`, moves the index and sets both bits on the new one. |   |
+| 2 | It copies up to 0x80 bytes of `text` into the entry; a null or empty text leaves it empty. | `0x00254F30` |
+| 3 | It clears bit `0x200` again when `a` and `b` are both 0, zeroes `+0x1D0`, `+0x88`, `+0x188` and `+0x1B8`, keeps `a` at `+0x18C` and `b` at `+0x1BC`, and runs `0x002B3400(entry + 0xA0, 0, 0)`. |   |
 
-The battle menu's title writer `0x0027D480` (`0x0027D52F`) and `0x00298250` (`0x002984C0`, on its `+0xC0`) call it.
+The battle menu's title writer `0x0027D480`¹ and `0x00298250` (`0x002984C0`, on its `+0xC0`) call it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027D52F` |
+
+</details>
 
 Two helpers set those offset bytes, and a third sets the per-tick skip:
 
@@ -222,32 +345,67 @@ Two helpers set those offset bytes, and a third sets the per-tick skip:
   `+0x18`, next sibling `+0x20`); `0x00285290` calls it.
 
 `0x00247780(on)` sets bit `0x1` of `0x0208ED58`. While it is set, both passes also call `0x00245510` for a root whose `+0xC0`
-is 1, which hands the root's position and alpha to `0x00367940` (`0x002450D7`-`0x002450F5`, `0x00245137`-`0x00245149`); the
+is 1, which hands the root's position and alpha to `0x00367940`¹; the
 first pass does so only while `0x0208F568` is 0. The script verbs `fsmenu_showcursor` and `fsmenu_hidecursor` set and
-clear the bit (`0x00510964`, `0x005109A3`).
+clear the bit².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002450D7`-`0x002450F5`, `0x00245137`-`0x00245149` |
+| ² | `0x00510964`, `0x005109A3` |
+
+</details>
 
 ### The per-tick update and the input turn
 
-Five UI tick functions (`0x00250540`, `0x002506D0`, `0x00250730`, `0x002507C0`, `0x002508E0`) each flip the parity `0x0208ED5C`
-(`0x002481A0`) and run the drain `0x00248030` over the root widgets:
+Five UI tick functions¹ each flip the parity `0x0208ED5C`² and run the drain `0x00248030` over the root widgets:
 
-1. The drain walks the root's tree in pre-order: a widget's first child, else its next sibling, else back up through
-   the parents until it reaches the root (`0x00248113`-`0x0024815F`).
-2. It acts only on widgets whose generation bit `0x20000` differs from the parity and steps only to such children
-   and siblings (`0x00248073`-`0x00248080`, `0x0024811C`-`0x00248156`). Each widget it steps to gets the half-rate phase
-   update the root gets (below, `0x002480B7`-`0x002480C8`, `0x0024812C`-`0x0024813A`).
-3. A widget with bit `0x400` set is released (`0x00248086`-`0x00248097`), and the walk goes on at its next sibling, or
-   at its parent when it has no next sibling or that sibling is already stamped (`0x0024809C`-`0x002480D6`).
-4. Every other widget gets bit `0x4` set (`0x002480DB`) and message 2 unless bit `0x40000` is set or it has no
-   procedure (`0x002480E1`-`0x002480F9`), and its generation bit is restamped from the parity (`0x00248101`-`0x00248110`).
+<details>
+<summary>Where in the code</summary>
 
-`0x002284F0` also runs the drain (`0x0022865C`). So message 2 reaches every live widget once per UI tick.
+| | Code |
+|---|---|
+| ¹ | `0x00250540`, `0x002506D0`, `0x00250730`, `0x002507C0`, `0x002508E0` |
+| ² | `0x002481A0` |
 
-The same ticks give the focus widget its input turn (`0x002481C0`): message 10, or 11 when a widget up its parent
-chain has bit `0x200` set (`0x002481D0`-`0x0024820D`). The walk starts at the focus widget `0x0208EBC0`; every widget it
-passes, up to the first with bit `0x200` or to the root, must have bits `0x1` and `0x8`, or nothing is sent
-(`0x002481D3`-`0x002481DB`). With no focus widget, or a focus widget without a procedure, nothing is sent either
-(`0x002481CD`, `0x002481EF`, `0x00248201`); the message goes to the focus widget's procedure by a tail jump.
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The drain walks the root's tree in pre-order: a widget's first child, else its next sibling, else back up through the parents until it reaches the root. | `0x00248113`-`0x0024815F` |
+| 2 | It acts only on widgets whose generation bit `0x20000` differs from the parity and steps only to such children and siblings. Each widget it steps to gets the half-rate phase update the root gets (below, `0x002480B7`-`0x002480C8`, `0x0024812C`-`0x0024813A`). | `0x00248073`-`0x00248080`, `0x0024811C`-`0x00248156` |
+| 3 | A widget with bit `0x400` set is released, and the walk goes on at its next sibling, or at its parent when it has no next sibling or that sibling is already stamped. | `0x00248086`-`0x00248097`<br>`0x0024809C`-`0x002480D6` |
+| 4 | Every other widget gets bit `0x4` set and message 2 unless bit `0x40000` is set or it has no procedure, and its generation bit is restamped from the parity. | `0x002480DB`<br>`0x002480E1`-`0x002480F9`<br>`0x00248101`-`0x00248110` |
+
+`0x002284F0` also runs the drain¹. So message 2 reaches every live widget once per UI tick.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022865C` |
+
+</details>
+
+The same ticks give the focus widget its input turn¹: message 10, or 11 when a widget up its parent
+chain has bit `0x200` set². The walk starts at the focus widget `0x0208EBC0`; every widget it
+passes, up to the first with bit `0x200` or to the root, must have bits `0x1` and `0x8`, or nothing is sent³. With no focus widget, or a focus widget without a procedure, nothing is sent either⁴; the message goes to the focus widget's procedure by a tail jump.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002481C0` |
+| ² | `0x002481D0`-`0x0024820D` |
+| ³ | `0x002481D3`-`0x002481DB` |
+| ⁴ | `0x002481CD`, `0x002481EF`, `0x00248201` |
+
+</details>
 
 ### The focus stack
 
@@ -257,68 +415,109 @@ passes, up to the first with bit `0x200` or to the root, must have bits `0x1` an
 | `0x0208EBC8` | the count |
 | `0x0208EBC0` | the widget with the focus |
 
-- `0x002470D0(widget)` takes the focus: it pushes the widget (`0x00244640`) and switches to it (`0x00244830`).
-- A full stack drops its oldest entry (`0x00244650`-`0x002446C2`).
+- `0x002470D0(widget)` takes the focus: it pushes the widget¹ and switches to it².
+- A full stack drops its oldest entry³.
 - `0x00244830(old, new, back)` clears the old widget's bit `0x10` and sends it message 9, then sets the new widget's
-  bit `0x10` and sends it message 8, with `a` = 1 when `back` is non-zero and 0 otherwise (`0x00244865`-`0x002448AD`).
+  bit `0x10` and sends it message 8, with `a` = 1 when `back` is non-zero and 0 otherwise⁴.
 - In `0x00244830` a null widget is skipped, and a widget without a procedure gets its bit changed but no message. The
-  new widget, null included, is stored in `0x0208EBC0` (`0x002448AF`). `0x002470D0` passes `back` = 0 (`0x0024711C`) and
-  `0x002448D0` passes 1 (`0x00244920`).
+  new widget, null included, is stored in `0x0208EBC0`⁵. `0x002470D0` passes `back` = 0⁶ and
+  `0x002448D0` passes 1⁷.
 - `0x002448D0(widget)` gives the focus up. When the widget holds the focus (it is compared with `0x0208EBC0` only, not
   with the stack's top), the top entry is cleared and popped and the new top, if any, takes the focus
-  (`0x002448E6`-`0x00244929`); otherwise its topmost copy is taken out of the stack (`0x00244700(widget, 0)`). It then does
-  the same for each child (`0x00244937`-`0x0024494F`).
+ ⁸; otherwise its topmost copy is taken out of the stack (`0x00244700(widget, 0)`). It then does
+  the same for each child⁹.
 - `0x00244700(widget, all)` takes a widget out of the stack wherever it sits, every copy when `all` is set and the
   topmost one otherwise, then drops entries equal to their neighbour. `0x002446E0(widget)` gives the focus up and
   removes every copy.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00244640` |
+| ² | `0x00244830` |
+| ³ | `0x00244650`-`0x002446C2` |
+| ⁴ | `0x00244865`-`0x002448AD` |
+| ⁵ | `0x002448AF` |
+| ⁶ | `0x0024711C` |
+| ⁷ | `0x00244920` |
+| ⁸ | `0x002448E6`-`0x00244929` |
+| ⁹ | `0x00244937`-`0x0024494F` |
+
+</details>
 
 ### Opening and closing runs
 
 `0x00246AD0(parent, widget)` opens a widget:
 
-1. It attaches the widget under `parent` when it has no parent (`0x00246AF5`), and activates it.
-   - A null widget returns at once (`0x00246AD3`). It clears the widget's `+0x40` bit `0x40` and sets bit `0x2`
-     (`0x00246ADE`-`0x00246B18`). With no parent the attach `0x00248220` activates it under an active parent that has bit
-     `0x20`; with a
-     parent it calls `0x002473F0(widget, 1)` only when the widget's bit `0x20` is set, and otherwise only sets bit `0x2`
-     (`0x00246AFC`-`0x00246B18`).
-2. It sets the rate: 1.0, or one over the game's speed steps in the field at game speed (`0x00246B1B`-`0x00246B49`).
-3. From states 0 and 1 it starts a forward run: the descriptor's length in milliseconds becomes
-   `ms x 60 / 1000` frames (`0x00246BDF`-`0x00246BEC`), started at the frame counter `0x0208F570`.
-   - It sets `+0x40` bit `0x200`, takes the default descriptor `0x00915198` when bit `0x8000` is set or `+0x48`
-     otherwise, and stores it at `+0x68`, the start at `+0x74` and 0 at `+0x78` (`0x00246B95`-`0x00246BBD`). The length is
-     the descriptor's word `+0x02`, or, when `+0x7C` bit `0x400` is set, `(+0x7C >> 12) & 0x3FF`, and the bit is
-     cleared (`0x00246BC4`-`0x00246BDA`); the frames go to `+0x70`.
-4. From state 4 it reverses a closing run in place (`0x00246B72`-`0x00246B90`).
-   - The start becomes `2 x 0x0208F570 - +0x70 - +0x74`, with `+0x70` set to 0 first when `+0x40` bit `0x8000` is set.
-5. It sets state 2 and sends message 14 (`0x00246BFF`).
-   - It keeps the bits of `+0x7C` outside `0x2D` and sets `0x12`, so the state nibble is 2, bit `0x10` is set and bit
-     `0x20` is clear (`0x00246BEF`-`0x00246BF3`); message 14 goes to the procedure `+0x00` when it is not null.
-   - In states 2, 3 and 5-15 it stops after the rate: no run, no state change and no message 14
-     (`0x00246B5C`-`0x00246B6C`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It attaches the widget under `parent` when it has no parent, and activates it.<br>• A null widget returns at once. It clears the widget's `+0x40` bit `0x40` and sets bit `0x2`. With no parent the attach `0x00248220` activates it under an active parent that has bit `0x20`; with a parent it calls `0x002473F0(widget, 1)` only when the widget's bit `0x20` is set, and otherwise only sets bit `0x2`. | `0x00246AF5`<br>`0x00246AD3`<br>`0x00246ADE`-`0x00246B18`<br>`0x00246AFC`-`0x00246B18` |
+| 2 | It sets the rate: 1.0, or one over the game's speed steps in the field at game speed. | `0x00246B1B`-`0x00246B49` |
+| 3 | From states 0 and 1 it starts a forward run: the descriptor's length in milliseconds becomes `ms x 60 / 1000` frames, started at the frame counter `0x0208F570`.<br>• It sets `+0x40` bit `0x200`, takes the default descriptor `0x00915198` when bit `0x8000` is set or `+0x48` otherwise, and stores it at `+0x68`, the start at `+0x74` and 0 at `+0x78`. The length is the descriptor's word `+0x02`, or, when `+0x7C` bit `0x400` is set, `(+0x7C >> 12) & 0x3FF`, and the bit is cleared; the frames go to `+0x70`. | `0x00246BDF`-`0x00246BEC`<br>`0x00246B95`-`0x00246BBD`<br>`0x00246BC4`-`0x00246BDA` |
+| 4 | From state 4 it reverses a closing run in place.<br>• The start becomes `2 x 0x0208F570 - +0x70 - +0x74`, with `+0x70` set to 0 first when `+0x40` bit `0x8000` is set. | `0x00246B72`-`0x00246B90` |
+| 5 | It sets state 2 and sends message 14.<br>• It keeps the bits of `+0x7C` outside `0x2D` and sets `0x12`, so the state nibble is 2, bit `0x10` is set and bit `0x20` is clear; message 14 goes to the procedure `+0x00` when it is not null.<br>• In states 2, 3 and 5-15 it stops after the rate: no run, no state change and no message 14. | `0x00246BFF`<br>`0x00246BEF`-`0x00246BF3`<br>`0x00246B5C`-`0x00246B6C` |
 
 `0x00247570(widget, descriptor)` installs a widget's descriptor at `+0x48`, or the default `0x00915198` for 0. HUD and menu
 code takes most of theirs from the table of `0x28`-byte descriptors at `0x009158C0`, entry `i` through `0x002735E0(i)`
 (for example `0x0029BEE8`, `0x0028B92A`).
 
 `0x00244DD0(widget)` closes it, the mirror image: a backward run from descriptor `+0x14`, length 0 when `0x00181C90`
-returns 1, state 4, then message 15 (`0x00244EF5`).
+returns 1, state 4, then message 15¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00244EF5` |
+
+</details>
 
 Every tick the walker `0x00244970` steps each active widget with `0x00246C20`, which sends message 25 first, steps one tween
-channel (messages 22 and 17, 21, 23), and ends a run with message 19 (forward) or 20 (backward)
-(`0x0024701E`-`0x0024706B`). When a closing run ends, a widget with bit `0x40` set is torn down (`0x002449C3`).
+channel (messages 22 and 17, 21, 23), and ends a run with message 19 (forward) or 20 (backward)¹. When a closing run ends, a widget with bit `0x40` set is torn down².
 
-`0x0208F570` advances through the five tick functions. `0x00228700` saves it in `0x01FD46F4` (`0x00228738`-`0x0022874F`), and
-`0x00228130` writes the saved value back (`0x0022818C`, `0x0022819C`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024701E`-`0x0024706B` |
+| ² | `0x002449C3` |
+
+</details>
+
+`0x0208F570` advances through the five tick functions. `0x00228700` saves it in `0x01FD46F4`¹, and
+`0x00228130` writes the saved value back².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00228738`-`0x0022874F` |
+| ² | `0x0022818C`, `0x0022819C` |
+
+</details>
 
 ### Tweens
 
 Besides its opening and closing runs, a widget has four animated values, one per bit of `+0x80`. Each starter
 refuses while any of the other three bits is set. The starters of bits `0x1`, `0x2` and `0x4` record the start
 value, the change and the length `ms x 60 / 1000` frames, and store a curve in the bits `0x3C00`. The starter of
-bit `0x8` records none of the three: it also refuses when the value equals the float `+0x84`
-(`0x002472B9`-`0x002472C6`), clears the bits `0x3C00`, puts its slot AND 3 into the bits `0xC00`
-(`0x002472CF`-`0x002472E1`) and stores the value at `+0x84` (`0x002472E8`):
+bit `0x8` records none of the three: it also refuses when the value equals the float `+0x84`¹, clears the bits `0x3C00`, puts its slot AND 3 into the bits `0xC00`² and stores the value at `+0x84`³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002472B9`-`0x002472C6` |
+| ² | `0x002472CF`-`0x002472E1` |
+| ³ | `0x002472E8` |
+
+</details>
 
 | Bit | Starter | Animates | Message per step |
 |---|---|---|---|
@@ -328,11 +527,30 @@ bit `0x8` records none of the three: it also refuses when the value equals the f
 | `0x8` | `0x002472A0(widget, value, slot)` | nothing: the float `+0x84` is copied into the draw box's float at `+0x10`, `+0x14` or `+0x18` for slot 0, 1 or 2 (`0x00244D74`-`0x00244DC1`) | no message |
 
 `0x00247260` starts bit `0x2` like `0x00247130` and then replaces the curve with its sixth argument. `0x002468A0` sends 17
-twice instead of starting when the widget is already at the target (`0x002468DE`-`0x00246922`).
+twice instead of starting when the widget is already at the target¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002468DE`-`0x00246922` |
+
+</details>
 
 Each tick `0x00246C20` steps the lowest running bit. The elapsed frames are multiplied by the rate `+0xB8` while the
-game runs at speed (`0x00246C58`-`0x00246C7D`); `0x002418F0` sets that rate the way the opening run does: 1.0, or one over
-the speed steps (`0x00229E70`) when `0x00229DF0` is set and `0x00229EA0` returns 2.
+game runs at speed¹; `0x002418F0` sets that rate the way the opening run does: 1.0, or one over
+the speed steps² when `0x00229DF0` is set and `0x00229EA0` returns 2.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00246C58`-`0x00246C7D` |
+| ² | `0x00229E70` |
+
+</details>
 
 The curve function `0x00248F40(curve, length, t)` returns 1.0 once `t` reaches `length`; before that, with
 `p = t / length`:
@@ -355,31 +573,42 @@ widget's own `+0xC0`-`+0xD3`:
 - `0x002D0410(widget)`, run each tick by the row, writes `start + change x 0x00248F40(curve, length, now - start)` to the
   byte and clears the running bits when the curve reaches 1.0.
 
-The Party Menu's member rows, the Status and Equip rows and the license board use them (`0x00284D76`, `0x002C1D26`,
-`0x00557EA1`, `0x0028453E`, `0x0055A761`).
+The Party Menu's member rows, the Status and Equip rows and the license board use them¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00284D76`, `0x002C1D26`, `0x00557EA1`, `0x0028453E`, `0x0055A761` |
+
+</details>
 
 ### Teardown
 
-1. `0x00244F00` asks for the close: with bits `0x1` and `0x20` set it starts a closing run, otherwise it sends message 15 and tears
-   the widget down now (`0x00244F0A`-`0x00244F39`).
-2. `0x00245020` gives up the focus, sends message 18 to the widget and every descendant (`0x002473B0`), and releases it. A
-   widget with bit `0x20` is instead deactivated and marked for release on the next tick (`0x00245072`-`0x0024509B`).
-   - A null widget is left alone (`0x00245023`). The focus is given up through `0x002448D0`, which does the same for
-     every descendant, and then `0x00244700(widget, 1)` takes every copy of the widget off the focus stack
-     (`0x00245032`-`0x0024503F`); the release is a tail jump to `0x002482E0` (`0x00245085`).
-   - The deferred path is `0x002473F0(widget, 0)`, then bit `0x2` cleared and bit `0x400` set (`0x0024508A`-`0x0024509B`).
-3. The release `0x002482E0` releases the children, unlinks the widget, frees its array, sends message 24 when the
-   procedure is set, clears `+0x40` bit `0x400` and the low four bits of `+0x7C`, has `0x00228450` zero
-   `[0x01FD4948]+0xC8` when that holds the widget, clears the procedure, frees the storage (a borrowed widget instead
-   has bit `0x4000` and byte `+0xA2` cleared) and jumps to `+0x08` when set (`0x00248308`-`0x00248405`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00244F00` asks for the close: with bits `0x1` and `0x20` set it starts a closing run, otherwise it sends message 15 and tears the widget down now. | `0x00244F0A`-`0x00244F39` |
+| 2 | `0x00245020` gives up the focus, sends message 18 to the widget and every descendant, and releases it. A widget with bit `0x20` is instead deactivated and marked for release on the next tick.<br>• A null widget is left alone. The focus is given up through `0x002448D0`, which does the same for every descendant, and then `0x00244700(widget, 1)` takes every copy of the widget off the focus stack; the release is a tail jump to `0x002482E0`.<br>• The deferred path is `0x002473F0(widget, 0)`, then bit `0x2` cleared and bit `0x400` set. | `0x002473B0`<br>`0x00245072`-`0x0024509B`<br>`0x00245023`<br>`0x00245032`-`0x0024503F`<br>`0x00245085`<br>`0x0024508A`-`0x0024509B` |
+| 3 | The release `0x002482E0` releases the children, unlinks the widget, frees its array, sends message 24 when the procedure is set, clears `+0x40` bit `0x400` and the low four bits of `+0x7C`, has `0x00228450` zero `[0x01FD4948]+0xC8` when that holds the widget, clears the procedure, frees the storage (a borrowed widget instead has bit `0x4000` and byte `+0xA2` cleared) and jumps to `+0x08` when set. | `0x00248308`-`0x00248405` |
 
 ### The half-rate phase counter
 
 `+0xB4` lets a widget work on every other tick. The constructor sets it to 1 when `0x001EDDA0` returns 0 and
-`0x00314960` is non-zero (`0x0024674A`-`0x0024675C`); the drain clears it when `0x001EDDA0` returns non-zero and counts it up
-otherwise (`0x00248044`-`0x00248059`). `0x001EDEC0(phase)` answers 1 always when `0x01DFE0C0` is set or `0x01F82E38` is clear,
+`0x00314960` is non-zero¹; the drain clears it when `0x001EDDA0` returns non-zero and counts it up
+otherwise². `0x001EDEC0(phase)` answers 1 always when `0x01DFE0C0` is set or `0x01F82E38` is clear,
 and the phase's low bit inverted otherwise. It has 43 callers in the executable, one per function, and each passes
 its widget's `+0xB4` before doing its gated work:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024674A`-`0x0024675C` |
+| ² | `0x00248044`-`0x00248059` |
+
+</details>
 
 | Function | Loads `+0xB4` | Calls `0x001EDEC0` |
 |---|---|---|
@@ -429,9 +658,19 @@ its widget's `+0xB4` before doing its gated work:
 
 ### The widget that registers itself once
 
-`0x00565DD0` builds the `0x200`-byte widget `0x00565E00` only while `[0x0209AC30] + 0x168` is empty (`0x00565DD7`); its message 1
-stores itself there and its message 18 clears it (`0x00565E50`, `0x0056622D`). So at most one exists at a time, always from
+`0x00565DD0` builds the `0x200`-byte widget `0x00565E00` only while `[0x0209AC30] + 0x168` is empty¹; its message 1
+stores itself there and its message 18 clears it². So at most one exists at a time, always from
 the heap.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00565DD7` |
+| ² | `0x00565E50`, `0x0056622D` |
+
+</details>
 
 ### The title asset and its consumer
 
@@ -440,24 +679,58 @@ the heap.
 | title asset | `0x00394460` | `0xD8` | `0x00394070` | `0x02AEE4C0` |
 | its consumer | `0x00394530` | `0x1D0` | `0x003939B0` | `0x02AEE4C8` |
 
-The script verbs `fsttl_initialize` (`0x00511EA0`) and `fsttl_opencommand` (`0x00511F90`) build them. The asset publishes
-itself on message 1 and sets `+0xC0` bit `0x1` on message 16. The consumer refuses to be built before the asset exists
-(`0x00394543`), and each tick it waits for that bit (`0x00393A88`-`0x00393A9F`) and passes the asset's `+0xD0` on to
+The script verbs `fsttl_initialize`¹ and `fsttl_opencommand`² build them. The asset publishes
+itself on message 1 and sets `+0xC0` bit `0x1` on message 16. The consumer refuses to be built before the asset exists³, and each tick it waits for that bit⁴ and passes the asset's `+0xD0` on to
 `0x003946B0`.
 
-The verbs read and set the pair's bits: `fsttl_initialize` answers the asset's `+0xC0` bit `0x1` (`0x00394500`),
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00511EA0` |
+| ² | `0x00511F90` |
+| ³ | `0x00394543` |
+| ⁴ | `0x00393A88`-`0x00393A9F` |
+
+</details>
+
+The verbs read and set the pair's bits: `fsttl_initialize` answers the asset's `+0xC0` bit `0x1`¹,
 `fsttl_opencommandsync` waits through `0x003944D0`, which answers 0 while `0x01EFAC12` is 2 and the consumer's `+0xC4`
-bit `0x2` is clear, and `fsttl_closecommand` sets the consumer's `+0xC4` bit `0x4` (`0x00394350`). The consumer opens its
+bit `0x2` is clear, and `fsttl_closecommand` sets the consumer's `+0xC4` bit `0x4`². The consumer opens its
 confirm through `0x00394380` and paints its rows with `0x00393950`, which, when `0x00264150`
-answers non-zero, recolours row 0 with colour 1 and the others with colour 0 (`0x00393240`), and sets each row's picture cell.
+answers non-zero, recolours row 0 with colour 1 and the others with colour 0³, and sets each row's picture cell.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00394500` |
+| ² | `0x00394350` |
+| ³ | `0x00393240` |
+
+</details>
 
 ## Layouts
 
+<details>
+<summary>Show the memory layouts</summary>
+
 ### The target tab strip
 
-The strip is `0xD0` bytes. `0x0027C870` is installed only by the battle menu (`0x0027A12F`), so every tab strip is the one inside the battle
+The strip is `0xD0` bytes. `0x0027C870` is installed only by the battle menu¹, so every tab strip is the one inside the battle
 menu, at `+0x60E0`. Its header fields mean what they mean for every widget; the ones below are those the strip's
 own code uses.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027A12F` |
+
+</details>
 
 `TargetTabStrip` (`0xD0` bytes, offsets from the start of the record):
 
@@ -585,10 +858,19 @@ Each `0x3010`-byte panel of the battle menu (procedure `0x00276D30`) keeps four 
 child being one that a node of the battle-menu manager's layout holds at `+0x18`; the manager is the
 object the panel keeps at `+0x2FF8`.
 
-Sprite 0 is node 1 of the child of the manager's node 2 (`0x002770E0`-`0x00277122`); sprites 1, 2 and 3
-are nodes 2, 0 and 1 of the child of the manager's node 5
-(`0x00277196`-`0x00277251`) ([UI typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md)). They
+Sprite 0 is node 1 of the child of the manager's node 2¹; sprites 1, 2 and 3
+are nodes 2, 0 and 1 of the child of the manager's node 5² ([UI typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md)). They
 are drawn with `0x0029F5D0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002770E0`-`0x00277122` |
+| ² | `0x00277196`-`0x00277251` |
+
+</details>
 
 `BattleMenuPanelSprite` (`0x40` bytes, offsets from the start of the record):
 
@@ -623,10 +905,24 @@ These fields sit in each `0x3010`-byte panel; the offsets are from the start of 
 | `+0x2FF6` | `u16` | word2FF6 | the tutorial command group, the battle menu's +0x61C2 copied when the panel is built (0x0027A432-0x0027A43C); 0x002778C0 puts it in the word +0x153A of its list request (0x00279296-0x0027929E) |
 | `+0x3000` | `u32` | dword3000 | the target tabs the chosen action allows, the battle menu's +0x61E4 copied when the panel is built (0x0027A509-0x0027A50F); 0x002778C0 puts its low word in its list request +0x153E (0x00279287-0x0027928F) and passes it as the fourth argument of 0x0027C730 (0x00279B01-0x00279B12) |
 
+</details>
+
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 Both blocks are 0 in the file. `0x00247AE0` zeroes the focus stack, its focus cell and its count together (`0x110`
-bytes from `0x0208EAC0`, `0x00247CED`) and makes the matrix `0x0208ECD0` the identity (`0x00203170`, `0x00247CCD`).
+bytes from `0x0208EAC0`, `0x00247CED`) and makes the matrix `0x0208ECD0` the identity¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00203170`, `0x00247CCD` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -646,12 +942,23 @@ The new-game widget `0x00394130` ([loading a save](../Saving-Loading-And-Setting
 `0x02AEE4D0`. The result callback of verb `0x705D`, `fsttl_newgamestart`, reaches it through `0x00394640` (a
 jump at `0x00512130`), which builds the `0xF0`-byte widget with `0x00244F50(0xF0, 0x00394130, 0)` only while `0x02AEE4D0`
 is 0, so a second call cannot make a second widget. On message `0x12` the widget frees the title asset kept at
-`0x02AEE4C0`, when there is one
-(`0x00244F00`), clears `0x02AEE4D0` (`0x00394155`-`0x00394168`) and passes the message on to `0x005C5230`.
+`0x02AEE4C0`, when there is one¹, clears `0x02AEE4D0`² and passes the message on to `0x005C5230`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00244F00` |
+| ² | `0x00394155`-`0x00394168` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02AEE4D0` | `void*` | 0 (zero-filled tail of `.data`) | the new-game widget while it lives | `0x00394130`: itself on message 1 (`0x003942B2`), 0 on message `0x12` (`0x00394168`) | `0x00394640` (`0x00394640`), from the End handler of verb `0x705D` (`0x00512130`) |
+
+</details>
 
 ## Modding notes
 
@@ -674,34 +981,38 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Enemy AI and gambits** (explained on [gambit screen](gambit-screen.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031EB20` | calls | `0x00327A10` |
+| [`0x0031EB20`](../Battle-Actions/action-definition-row.md) Battle menu: build command entry list (on action definition row) | calls | [`0x00327A10`](widgets.md) Gambit config: classify action target pair compatibility |
 
-**Battle actions**
+**Battle actions** (explained on [call signatures](../Engine-Core/call-signatures.md), [quickenings and summons](../Battle-Actions/quickenings-and-summons.md), [command availability](../Battle-Actions/command-availability.md), [action definition row](../Battle-Actions/action-definition-row.md), [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002778C0` | calls | `0x00311B20`, `0x00311CD0` |
-| `0x0027AA70` | calls | `0x00311CD0` |
-| `0x002D5EB0` | calls | `0x00309C00`, `0x00309C40`, `0x0030DB70` |
-| `0x0031EB20` | calls | `0x002F95D0`, `0x002F9820`, `0x002FFCF0`, `0x00306480`, `0x00317BC0` |
-
-**Battle actions** (explained on [call signatures](../Engine-Core/call-signatures.md), [quickenings and summons](../Battle-Actions/quickenings-and-summons.md), [command availability](../Battle-Actions/command-availability.md), [action definition row](../Battle-Actions/action-definition-row.md))
-
-**Battle actions** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+| [`0x002778C0`](widgets.md) | calls | [`0x00311B20`](battle-menu.md) Battle unit: issue command by focus handles with optional party fanout (on battle menu)<br>[`0x00311CD0`](../Engine-Core/call-signatures.md) (on call signatures) |
+| [`0x0027AA70`](widgets.md) | calls | [`0x00311CD0`](../Engine-Core/call-signatures.md) (on call signatures) |
+| [`0x002D5EB0`](../Battle-Actions/concurrence-list.md) (on concurrence list) | calls | [`0x00309C00`](../Battle-Actions/quickenings-and-summons.md) (on quickenings and summons)<br>[`0x00309C40`](../Battle-Actions/quickenings-and-summons.md) (on quickenings and summons)<br>[`0x0030DB70`](menu-screens.md) (on menu screens) |
+| [`0x0031EB20`](../Battle-Actions/action-definition-row.md) Battle menu: build command entry list (on action definition row) | calls | [`0x002F95D0`](../Status-Effects-And-KO/battle-buffs.md) Battle action: compute modified resource cost amount (on battle buffs)<br>[`0x002F9820`](../Rewards-EXP-Gil-And-Loot/gil.md) Battle unit: uses gil action cost channel (on gil)<br>[`0x002FFCF0`](../Engine-Core/force-fight-mode.md) Battle action: check action availability reason (on force fight mode)<br>[`0x00306480`](../Battle-Actions/command-availability.md) Battle action: check unit action availability (on command availability)<br>[`0x00317BC0`](../Battle-Actions/command-availability.md) (on command availability) |
 
 **Status effects and KO** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265680` | is called by | `0x00310DB0` |
+| [`0x00265680`](../Story-Events-And-Hunts/script-censuses.md) (on script censuses) | is called by | [`0x00310DB0`](../Battle-Actions/action-results.md) Battle unit: run periodic combat maintenance (on action results) |
 
 **Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00254560` | calls | `0x0032A8A0` |
+| [`0x00254560`](widgets.md) | calls | [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) |
 
 </details>
 

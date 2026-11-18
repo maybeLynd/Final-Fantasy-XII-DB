@@ -25,34 +25,84 @@ read unpacks only the blocks it reaches.
 `"../FFXII_TZA.vbf"` into the archive manager from `0x0019B1F0` with `0x0019B070`; it never tests the
 result. `0x0019B070(manager, path)` puts a new `0xB0`-byte archive object in the first empty one of the
 manager's five slots `+0x20..+0x40` and opens it with `0x001F4340`; when the open fails it destroys and
-frees the object (`0x001F4120`) and clears the slot. With all five slots full it returns false without
+frees the object¹ and clears the slot. With all five slots full it returns false without
 opening anything. `0x0017CEB0` is the only caller of `0x0019B070`, so the shipped game fills slot 0 only.
 
-`0x0019B070` allocates the object with `0x00210EC0` (`0x0019B0B4`) and returns the opener's result; when that
-allocation returns null, the slot stays 0 and it returns false without opening anything (`0x0019B0D0`,
-`0x0019B0DD`). After a failed open it frees the `0xB0` bytes with `0x00809950` (`0x0019B10A`) and clears the slot
-(`0x0019B10F`). With all five slots full it returns false from `0x0019B0AD`. Its one call is at `0x0017CEF6`.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001F4120` |
+
+</details>
+
+`0x0019B070` allocates the object with `0x00210EC0`¹ and returns the opener's result; when that
+allocation returns null, the slot stays 0 and it returns false without opening anything². After a failed open it frees the `0xB0` bytes with `0x00809950`³ and clears the slot⁴. With all five slots full it returns false from `0x0019B0AD`. Its one call is at `0x0017CEF6`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019B0B4` |
+| ² | `0x0019B0D0`, `0x0019B0DD` |
+| ³ | `0x0019B10A` |
+| ⁴ | `0x0019B10F` |
+
+</details>
 
 `0x001F4060` constructs the object: an empty key tree whose
 nodes come from a `PMapPair` allocator (`0x0067FFB0`, `0x30`-byte nodes), null tables and handles, and the
-critical section `+0x80`. The nulls are the index `+0x00` (`0x001F407D`), the block-size table `+0x68`, the
-`+0x70` array, the path `+0x78` and the handles `+0xA8` (`0x001F40C2`-`0x001F40CE`); the block count `+0x60` is
-left unwritten. It returns the object (`0x001F40E2`).
+critical section `+0x80`. The nulls are the index `+0x00`¹, the block-size table `+0x68`, the
+`+0x70` array, the path `+0x78` and the handles `+0xA8`²; the block count `+0x60` is
+left unwritten. It returns the object³.
 
-`0x001F4120` destroys it: it deletes the critical section `+0x80` (`0x001F413B`), and `0x001F41A0` frees the path
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001F407D` |
+| ² | `0x001F40C2`-`0x001F40CE` |
+| ³ | `0x001F40E2` |
+
+</details>
+
+`0x001F4120` destroys it: it deletes the critical section `+0x80`¹, and `0x001F41A0` frees the path
 `+0x78`, the index `+0x00` and the `+0x70` array, each only when set, and zeroes it; then it destroys each of
 the handles at `+0xA8` (`0x00215040`: window freed, file closed), frees their array and zeroes `+0xA8`. It then
-erases the tree's nodes one by one (`0x0067FE20`, `0x001F4161`), frees the node pool's blocks (`0x006803D0`,
-`0x00680030`) and calls `0x0067F580` on the tree twice (`0x001F4180`, `0x001F4189`).
+erases the tree's nodes one by one², frees the node pool's blocks³ and calls `0x0067F580` on the tree twice⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001F413B` |
+| ² | `0x0067FE20`, `0x001F4161` |
+| ³ | `0x006803D0`, `0x00680030` |
+| ⁴ | `0x001F4180`, `0x001F4189` |
+
+</details>
 
 ### Loading and checking the index
 
 `0x001F4340(archive, path)` copies the path into a 260-byte buffer (`+0x78`) and opens it with CRT
 `fopen(path, "rb")`; a null path or a failed `fopen` returns false. It reads the magic and refuses
-anything but `0x4B595253` (`'SRYK'`): it logs `"BigFile head wrong!\n"` (`0x009038C8`) through `0x0017D280`
+anything but `0x4B595253` (`'SRYK'`): it logs `"BigFile head wrong!\n"`¹ through `0x0017D280`
 and returns false without closing the file. It reads `indexSize` (the second dword), seeks 16 bytes
 before the end and reads the stored digest there, then reads the first `indexSize` bytes of the file
 in one `fread` into `+0x00` and closes the file.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x009038C8` |
+
+</details>
 
 It hashes that buffer with MD5 (`CryptCreateHash`, `0x8003`) and compares the two 64-bit halves with
 the stored digest; on a mismatch it returns false with no message. None of the six CryptoAPI results
@@ -63,52 +113,80 @@ block-size table, and nothing after `indexSize`: the payload lies outside the ch
 
 After the check the opener:
 
-1. Finds the record array after the keys, the name table after the records, and the block-size
-   table after the names (`+0x68`).
-2. Computes the block count `+0x60` from the last record: its first block plus `size >> 16`, plus one
-   when `size & 0xFFFF` is non-zero.
-3. Builds a one-byte-per-block array at `+0x70`: 0 where the block-size entry is 0, otherwise 1; then,
-   for each entry, its last block is set to 0 when the entry's block-size value equals
-   `size & 0xFFFF`.
-4. Rebases each record's `nameOffset` to a pointer (adding the name table's start) and inserts the
-   record under its key into a red-black tree at `+0x08` (`0x001F4720` → `0x001F3FD0`); nodes hold the key
-   at `+0x18` and the record pointer at `+0x28`, ordered by the halves as signed 64-bit values, `+0x18`
-   first and `+0x20` on a tie (`0x001F4008`-`0x001F4028`).
-5. `0x001F4720` takes a node from the pool's free list (refilled by `0x00680150` when empty, `0x001F4755`), copies
-   the key and the record pointer in, has `0x001F3FD0` link it as a leaf under the last node of the walk
-   (`0x001F4055`), rebalances (`0x0067F700`) and returns 0.
-6. A key already in the tree is not inserted again: `0x001F3FD0` returns the node that holds it (`0x001F4028`,
-   `0x001F405C`), `0x001F4720` puts the new node back on the free list (`0x00680200`) and returns `0x12`, and the
-   opener ignores the result (`0x001F4677`), so the first record with that key is the one a lookup finds. A
-   free list still empty after the refill returns `0xE` with nothing inserted (`0x001F47B8`).
-7. Allocates fifteen `0x30`-byte reader handles (`0x2D8` bytes, a count of 15 first) at `+0xA8`, and
-   opens the archive in each one (`0x00215290`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Finds the record array after the keys, the name table after the records, and the block-size table after the names (`+0x68`). |   |
+| 2 | Computes the block count `+0x60` from the last record: its first block plus `size >> 16`, plus one when `size & 0xFFFF` is non-zero. |   |
+| 3 | Builds a one-byte-per-block array at `+0x70`: 0 where the block-size entry is 0, otherwise 1; then, for each entry, its last block is set to 0 when the entry's block-size value equals `size & 0xFFFF`. |   |
+| 4 | Rebases each record's `nameOffset` to a pointer (adding the name table's start) and inserts the record under its key into a red-black tree at `+0x08` (`0x001F4720` → `0x001F3FD0`); nodes hold the key at `+0x18` and the record pointer at `+0x28`, ordered by the halves as signed 64-bit values, `+0x18` first and `+0x20` on a tie. | `0x001F4008`-`0x001F4028` |
+| 5 | `0x001F4720` takes a node from the pool's free list (refilled by `0x00680150` when empty, `0x001F4755`), copies the key and the record pointer in, has `0x001F3FD0` link it as a leaf under the last node of the walk, rebalances and returns 0. | `0x001F4055`<br>`0x0067F700` |
+| 6 | A key already in the tree is not inserted again: `0x001F3FD0` returns the node that holds it, `0x001F4720` puts the new node back on the free list and returns `0x12`, and the opener ignores the result, so the first record with that key is the one a lookup finds. A free list still empty after the refill returns `0xE` with nothing inserted. | `0x001F4028`, `0x001F405C`<br>`0x00680200`<br>`0x001F4677`<br>`0x001F47B8` |
+| 7 | Allocates fifteen `0x30`-byte reader handles (`0x2D8` bytes, a count of 15 first) at `+0xA8`, and opens the archive in each one. | `0x00215290` |
 
 ### Finding a file
 
 `0x0019AEE0(manager, name)` returns 0 when the manager pointer `0x01F81110` is null. Otherwise it
 MD5-hashes the name from offset `[manager + 0x70]` and asks each filled slot in order 0 to 4 through
 `0x001F47D0(archive, digest)`; the first hit wins. The hash comes from the CryptoAPI provider at
-`[manager + 0x00]` (`0x0019AF38`-`0x0019AF79`), with no result tested. A slot whose call returns 0 passes the
-search to the next one; with no slot left it returns 0 (`0x0019AF6B`, `0x0019AFB5`), and it destroys the hash
-before returning (`0x0019AFAF`).
+`[manager + 0x00]`¹, with no result tested. A slot whose call returns 0 passes the
+search to the next one; with no slot left it returns 0², and it destroys the hash
+before returning³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019AF38`-`0x0019AF79` |
+| ² | `0x0019AF6B`, `0x0019AFB5` |
+| ³ | `0x0019AFAF` |
+
+</details>
 
 `0x001F47D0` walks the tree with the same signed order
-and hands the record to `0x001F4250` (a tail jump, `0x001F4834`); a miss returns 0 (`0x001F4839`). `0x001F4250`
-takes the first free handle of the fifteen under the archive's lock (`+0x80`) and binds it there
-(`0x002150B0`, `0x001F42B7`). When all fifteen are busy it builds a fresh handle for that open
+and hands the record to `0x001F4250` (a tail jump, `0x001F4834`); a miss returns 0¹. `0x001F4250`
+takes the first free handle of the fifteen under the archive's lock (`+0x80`) and binds it there². When all fifteen are busy it builds a fresh handle for that open
 (`0x008098D4(0x30)`, `0x00214FC0`, `0x00215290`), which never joins the pool. The lookup never compares
-names. When that allocation returns null, `0x001F4250` returns 0 (`0x001F42F9`, `0x001F4318`), and `0x0019AEE0`
+names. When that allocation returns null, `0x001F4250` returns 0³, and `0x0019AEE0`
 goes on to the next slot as after a miss.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001F4839` |
+| ² | `0x002150B0`, `0x001F42B7` |
+| ³ | `0x001F42F9`, `0x001F4318` |
+
+</details>
+
 `0x00214FC0` clears the in-use byte, the archive, the record and the position, leaves the file `+0x08` for
-`0x00215290`, and gives the handle a `0x18`-byte window holding a 64 KiB buffer and both bounds 0
-(`0x00214FF0`-`0x00215013`). When the window's allocation returns null the window pointer `+0x28` is 0
-(`0x00215019`), and the bind's write to the window's bounds (`0x002150BE`) faults at address `0x10`.
+`0x00215290`, and gives the handle a `0x18`-byte window holding a 64 KiB buffer and both bounds 0¹. When the window's allocation returns null the window pointer `+0x28` is 0², and the bind's write to the window's bounds³ faults at address `0x10`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00214FF0`-`0x00215013` |
+| ² | `0x00215019` |
+| ³ | `0x002150BE` |
+
+</details>
 
 `0x00215290(handle, path, archive)` opens the archive's path `+0x78` with `fopen(path, "rb")`, stores the
-result at `+0x08` without testing it (`0x002152B3`), and stores the archive at `+0x10` when it is not null
-(`0x002152B7`).
+result at `+0x08` without testing it¹, and stores the archive at `+0x10` when it is not null².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002152B3` |
+| ² | `0x002152B7` |
+
+</details>
 
 `0x002150B0(handle, record)` binds a handle: it stores the record at `+0x18`, sets the position `+0x20`
 and the window's bounds to 0 and the in-use byte `+0x00` to 1. The resolver takes the file's size from
@@ -117,8 +195,17 @@ the record through `0x00215280`.
 Closing a stream releases its handle through `0x002150D0` →
 `0x001F4840(archive, handle)`: a handle of the fifteen is cleared (`0x002152D0`: record, position and
 in-use byte), and any other is destroyed (`0x00215040`: frees its 64 KiB window and closes its file) and
-freed (`0x00809950`, `0x30` bytes, `0x001F488F`). A null handle returns at once (`0x001F4843`), and the release
+freed (`0x00809950`, `0x30` bytes, `0x001F488F`). A null handle returns at once¹, and the release
 does not enter the lock `+0x80`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001F4843` |
+
+</details>
 
 ### Reading bytes
 
@@ -126,65 +213,180 @@ A handle read `0x00215110(handle, buffer, n)` takes n as 32 bits, clamps it to `
 read would pass the entry's size (returning 0 when nothing is left), serves what it can from the handle's
 64 KiB window, and passes the rest to the archive reader `0x0019AFE0`.
 
-The clamp is a 32-bit difference, `n = (uint32)size - (uint32)position` when `position + n > size`
-(`0x00215143`, `0x00215149`-`0x0021514C`): with the position past the size, `position > size`, the difference wraps,
+The clamp is a 32-bit difference, `n = (uint32)size - (uint32)position` when `position + n > size`¹: with the position past the size, `position > size`, the difference wraps,
 and unless it is 0 the read goes on with that length.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00215143`, `0x00215149`-`0x0021514C` |
+
+</details>
+
 The window `+0x28` holds the entry's bytes from the position at its `+0x10` up to the one at its `+0x08`,
-in the buffer at its `+0x00`. A request inside it is copied with `memcpy` (`0x00215182`) and returns n
-without calling `0x0019AFE0`. One that starts inside it and runs past its end copies the window's part first
-(`0x002151A5`); one that starts before it and ends inside it copies its last bytes from the window
-(`0x002151D3`).
+in the buffer at its `+0x00`. A request inside it is copied with `memcpy`¹ and returns n
+without calling `0x0019AFE0`. One that starts inside it and runs past its end copies the window's part first²; one that starts before it and ends inside it copies its last bytes from the window³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00215182` |
+| ² | `0x002151A5` |
+| ³ | `0x002151D3` |
+
+</details>
 
 The rest of the request, or all of any other one, is read through
-`0x0019AFE0(0x0019B1F0(), buffer, count, handle, position, handle +0x10)` (`0x002151F9`), and the result is that
-return plus the bytes copied (`0x002151FE`). The read stores nothing in the handle: its caller `0x002150E0`
-adds a non-zero result to the position `+0x20` (`0x002150F4`).
+`0x0019AFE0(0x0019B1F0(), buffer, count, handle, position, handle +0x10)`¹, and the result is that
+return plus the bytes copied². The read stores nothing in the handle: its caller `0x002150E0`
+adds a non-zero result to the position `+0x20`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002151F9` |
+| ² | `0x002151FE` |
+| ³ | `0x002150F4` |
+
+</details>
 
 A handle seek `0x00215220(handle, offset, origin)` sets the position to the offset (origin 0), adds
 the offset (1) or sets it to the size minus the offset (2), and returns the new position, or
 `FFFFFFFF` for another origin. It tests only the offset argument: a negative offset or one above the
 size returns `FFFFFFFF` after the position has changed, and origin 1 can move the position past the
-size. The offset is a signed 32-bit value (`0x00215220`), another origin leaves the position unchanged
-(`0x00215235`), and the position comes back as its low 32 bits (`0x0021526A`).
+size. The offset is a signed 32-bit value¹, another origin leaves the position unchanged², and the position comes back as its low 32 bits³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00215220` |
+| ² | `0x00215235` |
+| ³ | `0x0021526A` |
+
+</details>
 
 `0x0019A770(manager, buffer, n, handle, position, archive)` plans a read: starting at the record's
-`firstBlock` and its archive `offset` (`0x0019A7AB`, `0x0019A7AE`), it skips
+`firstBlock` and its archive `offset`¹, it skips
 whole 64 KiB blocks by adding each skipped block's stored size (a block-size value of 0 counts as
-`0x10000`). It skips `position >> 16` of them (`0x0019A7C2`) and takes a read record from `0x0019A6E0` with
-the start `position & 0xFFFF`, block `0x10000` and n (`0x0019A805`).
+`0x10000`). It skips `position >> 16` of them² and takes a read record from `0x0019A6E0` with
+the start `position & 0xFFFF`, block `0x10000` and n³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019A7AB`, `0x0019A7AE` |
+| ² | `0x0019A7C2` |
+| ³ | `0x0019A805` |
+
+</details>
 
 The planner stores in the record the block reached `+0x04`, the archive offset `+0x48`, the skipped bytes
 `+0x50`, n `+0x58`, the buffer `+0x28`, the handle's window `+0x20`, the entry `+0x60`, the archive `+0x68`
-and the handle's file `+0x70` (`0x0019A817`-`0x0019A848`), and returns the record.
+and the handle's file `+0x70`¹, and returns the record.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019A817`-`0x0019A848` |
+
+</details>
 
 `0x0019A860` seeks there (`_fseeki64`) and reads the stored blocks with CRT `fread`. It sets the state
-`+0x88` to 1 (`0x0019A887`), seeks the file `+0x70` to `+0x48` from the start (`0x0019A8A2`), and from block
+`+0x88` to 1¹, seeks the file `+0x70` to `+0x48` from the start², and from block
 `+0x04` on reads each block with one `fread` of its stored size (0 read as `0x10000`):
 
-- the head block into the head part's buffer, when the head is used (`0x0019A8D1`);
-- when the middle is used, every full middle block but the last into the buffer `+0x28`, one block ahead
-  of its place: middle block k at the head's length plus `0x10000` × (k + 1) (`0x0019A91E`); the last one
-  into the middle part's buffer (`0x0019A951`);
-- the tail block into the tail part's buffer, when the tail is used (`0x0019A982`).
+<details>
+<summary>Where in the code</summary>
 
-It tests no result and sets the state to 2 (`0x0019A98D`).
+| | Code |
+|---|---|
+| ¹ | `0x0019A887` |
+| ² | `0x0019A8A2` |
+
+</details>
+
+- the head block into the head part's buffer, when the head is used¹;
+- when the middle is used, every full middle block but the last into the buffer `+0x28`, one block ahead
+  of its place: middle block k at the head's length plus `0x10000` × (k + 1)²; the last one
+  into the middle part's buffer³;
+- the tail block into the tail part's buffer, when the tail is used⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019A8D1` |
+| ² | `0x0019A91E` |
+| ³ | `0x0019A951` |
+| ⁴ | `0x0019A982` |
+
+</details>
+
+It tests no result and sets the state to 2¹.
 `0x0019AA20` turns each block into 64 KiB (or the tail's length): a block whose `+0x70` byte is 0 is
-copied as stored, any other is inflated with zlib 1.2.11's `uncompress` (`0x0080C5A0`).
+copied as stored, any other is inflated with zlib 1.2.11's `uncompress`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019A98D` |
+| ² | `0x0080C5A0` |
+
+</details>
 
 `0x0019AA20` ORs every `uncompress` result. When any is non-zero, or the bytes produced do not total the
-request `+0x58` (`0x0019ADD1`-`0x0019ADDA`), it loads string-table text `0x7834` (`0x0019A510`,
+request `+0x58`¹, it loads string-table text `0x7834` (`0x0019A510`,
 [Steam integration](../Steam-And-Achievements/steam-integration.md)) into a `SysAllocStringLen`
-copy (`0x0019AE06`), calls `0x007A0A80(1)` (`0x0019AE1D`), shows the copy with `MessageBoxW` and the icon flag
-`0x10` under the caption "error" (`0x008F3DC0`, `0x0019AE34`), sets the read's state `+0x88` to 6
-(`0x0019AE3A`) and frees the copy (`0x0019AE47`); otherwise the state becomes 5 (`0x0019ADDC`).
+copy², calls `0x007A0A80(1)`³, shows the copy with `MessageBoxW` and the icon flag
+`0x10` under the caption "error"⁴, sets the read's state `+0x88` to 6⁵ and frees the copy⁶; otherwise the state becomes 5⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019ADD1`-`0x0019ADDA` |
+| ² | `0x0019AE06` |
+| ³ | `0x0019AE1D` |
+| ⁴ | `0x008F3DC0`, `0x0019AE34` |
+| ⁵ | `0x0019AE3A` |
+| ⁶ | `0x0019AE47` |
+| ⁷ | `0x0019ADDC` |
+
+</details>
 
 `0x007A0A80(1)` frees the cursor clip (`0x0079ED60(1)`, `0x007A0A89`), reads the cursor state with
-`GetCursorInfo` (`0x007A0A9F`) and, when its flags are 0, shows the cursor with `ShowCursor(1)` and sets
-`0x01F3DA06` to 1 (`0x007A0AB7`, `0x007A0ABD`). Given 0, it first clips the cursor to the drawing area of the window
+`GetCursorInfo`¹ and, when its flags are 0, shows the cursor with `ShowCursor(1)` and sets
+`0x01F3DA06` to 1². Given 0, it first clips the cursor to the drawing area of the window
 `[0x02EA5248]` (`0x0079ED60(0)`: `GetClientRect`, two `ClientToScreen` calls and `ClipCursor`,
 `0x0079ED7B`-`0x0079EDB6`), then hides a cursor whose flags have bit `0x1` with `ShowCursor(0)` and sets the byte to
-0 (`0x007A0ACA`-`0x007A0ADB`).
+0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A0A9F` |
+| ² | `0x007A0AB7`, `0x007A0ABD` |
+| ³ | `0x007A0ACA`-`0x007A0ADB` |
+
+</details>
 
 ### Read records
 
@@ -192,42 +394,99 @@ The manager `0x01F81110` (`0x80` bytes, `0x0019B190` → `0x0019AE70`) holds thi
 bytes built by `0x0019B200(manager + 8, 30)`, which constructs each with `0x0019A3B0` (`0x0019A2A0`: three
 part descriptors, each with its own 64 KiB buffer) and creates a semaphore with thirty counts.
 
-`0x0019B200(bank, count)` stores the count at `bank + 0x08` (`0x0019B219`). It first destroys and frees a
+`0x0019B200(bank, count)` stores the count at `bank + 0x08`¹. It first destroys and frees a
 record array already at `bank + 0x10` (`0x00809054` with `0x0019A500`, `0x00809950`). The new array is
-`count × 0x98` bytes after an 8-byte count (`0x00210EC0`, `0x0019B27A`); when that allocation returns null the
-array pointer is 0 (`0x0019B2AE`). After storing the array (`0x0019B2B0`) it closes a semaphore already at
+`count × 0x98` bytes after an 8-byte count²; when that allocation returns null the
+array pointer is 0³. After storing the array⁴ it closes a semaphore already at
 `bank + 0x00` and stores 0 there (`CloseHandle`, `0x0019B2BC`, `0x0019B2C2`). The new semaphore,
-`CreateSemaphoreW(NULL, count, count, NULL)`, goes to `bank + 0x00` untested (`0x0019B2DA`).
+`CreateSemaphoreW(NULL, count, count, NULL)`, goes to `bank + 0x00` untested⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019B219` |
+| ² | `0x00210EC0`, `0x0019B27A` |
+| ³ | `0x0019B2AE` |
+| ⁴ | `0x0019B2B0` |
+| ⁵ | `0x0019B2DA` |
+
+</details>
 
 - `0x0019A660` waits on the semaphore, then claims the first record whose busy word `+0x90` it can
   change from 0 to 1 atomically, and raises its use count `+0x40`. The semaphore, the record count and
-  the array are the manager's `+0x08`, `+0x10` and `+0x18` (`0x0019A66C`, `0x0019A680`, `0x0019A690`).
-- When the wait does not return 0 (`0x0019A67B`), when the count is 0, or when no busy word changes,
-  `0x0019A660` raises the use count through a null record: the write to address `0x40` faults (`0x0019A6C6`,
-  `0x0019A6B2`). With a null array the exchange at `0x0019A69F` faults at address `0x90`.
+  the array are the manager's `+0x08`, `+0x10` and `+0x18`¹.
+- When the wait does not return 0², when the count is 0, or when no busy word changes,
+  `0x0019A660` raises the use count through a null record: the write to address `0x40` faults³. With a null array the exchange at `0x0019A69F` faults at address `0x90`.
 - `0x0019A6E0(manager, start, block, n)`, `block` = `0x10000`, takes a record that way and sets its state
-  `+0x88` to 0 (`0x0019A700`). With `start`
+  `+0x88` to 0⁴. With `start`
   not 0 it marks the head used with offset `start` and length `head = min(block - start, n)`, an unsigned
-  64-bit min (`0x0019A713`-`0x0019A71F`), then `n -= head` in 32 bits (`0x0019A736`).
+  64-bit min⁵, then `n -= head` in 32 bits⁶.
 - `0x0019A6E0` marks the middle used when `n >= block`
-  (`0x0019A739`-`0x0019A741`) and the tail used with length `n % block` when that is above 0
-  (`0x0019A744`-`0x0019A759`), and returns the record.
+ ⁷ and the tail used with length `n % block` when that is above 0
+ ⁸, and returns the record.
 - After the read, `0x0019A9B0` lowers the use count under the manager's critical section `+0x48`; at 0
-  it resets the record (`0x0019B130`), clears the busy word and releases one semaphore count (the manager's
-  `+0x08`, `0x0019A9F7`). A null record returns at once (`0x0019A9B3`).
+  it resets the record⁹, clears the busy word and releases one semaphore count (the manager's
+  `+0x08`, `0x0019A9F7`). A null record returns at once¹⁰.
 
-`0x0019AFE0(manager, buffer, n, handle, position, archive)` plans the read (`0x0019A770`), fills it
-(`0x0019A860`), finishes it (`0x0019AA20`) and releases the record (`0x0019A9B0`) whatever the state.
-`0x0019AFE0` returns the byte count it was asked for when the read's state is 5 and 0 otherwise
-(`0x0019B033`). Its null test of the planner's record (`0x0019B011`) never branches: `0x0019A660` writes
-through the record before returning it (`0x0019A6B2`, `0x0019A6C6`).
+<details>
+<summary>Where in the code</summary>
 
-The import table has no `CreateFileMapping` or `MapViewOfFile`. `ReadFile` (`0x008C2140`) has three
-call sites (`0x0059A9B0`, `0x0059D4B0`, `0x0059F4A0`), `SetFilePointer` two and `CreateFileA` two (the
-minidump writers `0x005CCAB0` and `0x0079B1E0`); CRT `fread` (`0x008C2EF0`) has 17, including
+| | Code |
+|---|---|
+| ¹ | `0x0019A66C`, `0x0019A680`, `0x0019A690` |
+| ² | `0x0019A67B` |
+| ³ | `0x0019A6C6`, `0x0019A6B2` |
+| ⁴ | `0x0019A700` |
+| ⁵ | `0x0019A713`-`0x0019A71F` |
+| ⁶ | `0x0019A736` |
+| ⁷ | `0x0019A739`-`0x0019A741` |
+| ⁸ | `0x0019A744`-`0x0019A759` |
+| ⁹ | `0x0019B130` |
+| ¹⁰ | `0x0019A9B3` |
+
+</details>
+
+`0x0019AFE0(manager, buffer, n, handle, position, archive)` plans the read¹, fills it², finishes it³ and releases the record⁴ whatever the state.
+`0x0019AFE0` returns the byte count it was asked for when the read's state is 5 and 0 otherwise⁵. Its null test of the planner's record⁶ never branches: `0x0019A660` writes
+through the record before returning it⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019A770` |
+| ² | `0x0019A860` |
+| ³ | `0x0019AA20` |
+| ⁴ | `0x0019A9B0` |
+| ⁵ | `0x0019B033` |
+| ⁶ | `0x0019B011` |
+| ⁷ | `0x0019A6B2`, `0x0019A6C6` |
+
+</details>
+
+The import table has no `CreateFileMapping` or `MapViewOfFile`. `ReadFile`¹ has three
+call sites², `SetFilePointer` two and `CreateFileA` two (the
+minidump writers `0x005CCAB0` and `0x0079B1E0`); CRT `fread`³ has 17, including
 `0x001F4340` and `0x0019A860`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008C2140` |
+| ² | `0x0059A9B0`, `0x0059D4B0`, `0x0059F4A0` |
+| ³ | `0x008C2EF0` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### Index
 
@@ -325,7 +584,12 @@ The reader's own records and banks are listed field by field in
 [`bigfile-archive-slow-reader-record-accesses.tsv`](bigfile-archive-slow-reader-record-accesses.tsv) and
 [`bigfile-archive-slow-reader-block-descriptor-accesses.tsv`](bigfile-archive-slow-reader-block-descriptor-accesses.tsv).
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -416,6 +680,8 @@ stays distinct from non-use.
 `content_status` column of `archive-files.tsv`. `fields_held_raw` stays per extension: it names fields of a format's
 layout, which are the same for each of its files.
 
+</details>
+
 ## Operations
 
 At start-up: one 12 MB read, one MD5 over it and one tree insert per entry. Per file open: one MD5 of
@@ -424,8 +690,13 @@ stored block, and one inflate per compressed block.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The archive manager at `0x01F81110` with its five slots; each archive's index buffer, key tree, block
 tables and reader handles.
+
+</details>
 
 ## Modding notes
 

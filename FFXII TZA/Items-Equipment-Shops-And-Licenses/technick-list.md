@@ -8,7 +8,16 @@
 
 [`technick-list.tsv`](technick-list.tsv) holds one line for each of the 24 rows of the technick table that registry slot `0x02EBF0E8`
 reaches (`battle_pack.bin` directory entry `+0x7C`). Row *n* is technick id `0x4000` + *n*: the class-9 arm of
-`0x0031C5D0` subtracts `0x4000` from the id and multiplies by the row size (`0x0031CEB3`-`0x0031CEC8`).
+`0x0031C5D0` subtracts `0x4000` from the id and multiplies by the row size¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031CEB3`-`0x0031CEC8` |
+
+</details>
 
 Every row's `+0x02` is its action row, rows 158-181 of the action table, and each of those has kind 2 and `+0x22`
 equal to the technick id.
@@ -20,7 +29,16 @@ grants it.
 ### Where the values come from
 
 Each line is read from the `st2e` table at entry `+0x7C`, as [Magick list](magick-list.md) reads its table; the rows
-have the magick table's layout, as the class-9 arm copies them (`0x0031CEEB`-`0x0031CF08`):
+have the magick table's layout, as the class-9 arm copies them¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031CEEB`-`0x0031CF08` |
+
+</details>
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
@@ -57,7 +75,16 @@ Every one-byte text code goes through the glyph table of the shipped `us` font `
   - the 40 chests of `bts_z01`, `pre_a01` and `pre_b01` stand in zone scripts no field loads, and their entries say so.
 - `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).
 
-A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold (`0x002FADF3`-`0x002FAE0D`).
+A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FADF3`-`0x002FAE0D` |
+
+</details>
 
 No script writes story progress 500. The values the scripts write go from 490 (After the captive Penelo) to 520 (After the floating continent), so a list that waits on 500 goes on sale at 520.
 
@@ -103,9 +130,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003060E0` | calls | `0x0031B860` |
-| `0x003064F0` | calls | `0x00320A40` |
+| [`0x003060E0`](magick-list.md) Battle action: check definition category availability (on magick list) | calls | [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log) |
+| [`0x003064F0`](magick-list.md) (on magick list) | calls | [`0x00320A40`](../Menus-And-HUD/gambit-screen.md) (on gambit screen) |
 
 </details>

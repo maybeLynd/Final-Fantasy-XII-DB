@@ -25,11 +25,21 @@ two cells only: it holds the Second Board, node 360 (`0x168`), in another square
 Board square empty (`0xFFFF`).
 
 `BattleStorage_InitializeWorkArrays` clears the twelve board slots at `0x02EBF1A0` and asks `0x00238260(k)` for
-each board *k* from 0 to 11 (`0x002369E5`-`0x00236A24`). When slot *k* is empty, `0x00238260` requests file index
-`0x47 + k` (`0x0023836A`-`0x0023837D`), so board *k* is `board_{k+1}.bin`; that board's callback stores the loaded
+each board *k* from 0 to 11¹. When slot *k* is empty, `0x00238260` requests file index
+`0x47 + k`², so board *k* is `board_{k+1}.bin`; that board's callback stores the loaded
 file's address in slot *k*, releasing a board already there with `0x003844F0` first (`0x00238390`-`0x002383AA` for
 board 0). No request for index 70 is made by the calls to the
 file request functions `0x00384420` and `0x003843F0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002369E5`-`0x00236A24` |
+| ² | `0x0023836A`-`0x0023837D` |
+
+</details>
 
 A board file only places squares on a grid: each square holds a number that points to a row of the license list inside
 `battle_pack.bin`, and that row gives the square's name, LP cost and what it grants. Which squares a character owns is
@@ -39,9 +49,19 @@ saved with that character, not in the board files.
 
 All multi-byte fields are little-endian.
 
-Offsets are from the start of the file. The board's slot holds the loaded file's address as the callback stores it
-(`0x002383AA`), and the readers index the file directly: the width at `+0x04` (`0x003289F0`), the height at `+0x06`
-(`0x00328A03`) and a cell at `+0x08` plus twice `row * width + col` (`0x00328A0C`-`0x00328A14`).
+Offsets are from the start of the file. The board's slot holds the loaded file's address as the callback stores it¹, and the readers index the file directly: the width at `+0x04`², the height at `+0x06`³ and a cell at `+0x08` plus twice `row * width + col`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002383AA` |
+| ² | `0x003289F0` |
+| ³ | `0x00328A03` |
+| ⁴ | `0x00328A0C`-`0x00328A14` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -51,9 +71,19 @@ Offsets are from the start of the file. The board's slot holds the loaded file's
 | `+0x08` | `u16[576]` | cells | row-major, cell(col, row) = cells[row * width + col]; `0xFFFF` = no square |
 
 A cell holds a node number, 0-360, an index into the license node table: section 12 of `battle_pack.bin`, bound
-to `0x02EBF038` by the battle data binder (`0x00236D5C`-`0x00236D67`), 361 records of 24 bytes. The id check
-`0x00322C50` bounds a node number by that table's count (`0x00322FCB`-`0x00322FD9`). What a node record holds and what
+to `0x02EBF038` by the battle data binder¹, 361 records of 24 bytes. The id check
+`0x00322C50` bounds a node number by that table's count². What a node record holds and what
 buying a square does are on [Licenses](licenses.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236D5C`-`0x00236D67` |
+| ² | `0x00322FCB`-`0x00322FD9` |
+
+</details>
 
 ### The readers
 
@@ -62,9 +92,20 @@ Seven functions read cells with the formula above, `cells[row * width + col]`, a
 (`0x00328A01`/`0x00328A0A`, `0x0055C0B7`/`0x0055C0C0`, `0x0055E333`/`0x0055E33B`, `0x0055E773`/`0x0055E77C`,
 `0x005600FB`/`0x00560105`, `0x0055F941`/`0x0055F94A`, `0x003FC99B`/`0x003FC9A2`).
 
-For a column or row outside the board, six return `0xFFFF` and `0x0055BFF0` returns its fourth argument (`0x0055C0D3`).
+For a column or row outside the board, six return `0xFFFF` and `0x0055BFF0` returns its fourth argument¹.
 `0x0055BFF0` takes its board from the slot array at
-`0x02EBF1A0` + 8 x a signed slot byte (`0x0055C0A0`), addressed relative to the image base (`0x0055C0A8`):
+`0x02EBF1A0` + 8 x a signed slot byte², addressed relative to the image base³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055C0D3` |
+| ² | `0x0055C0A0` |
+| ³ | `0x0055C0A8` |
+
+</details>
 
 | Function | Sites |
 |---|---|
@@ -76,32 +117,84 @@ For a column or row outside the board, six return `0xFFFF` and `0x0055BFF0` retu
 | `0x0055F830` | `0x0055F8E7`-`0x0055F95A` |
 | `0x003FC900` | `0x003FC94E`-`0x003FC9B4` |
 
-The board view `0x0055B3F0` reads the width and height as bytes and keeps each plus one at `+0x559` and `+0x55A`
-(`0x0055B484`-`0x0055B4A2`). The board's title and description are text ids `0x3ED + board` and `0x838 + board`
-(`0x00556FE7`, `0x00557010`), rows 5-16 of `menu_command.bin` for the titles.
+The board view `0x0055B3F0` reads the width and height as bytes and keeps each plus one at `+0x559` and `+0x55A`¹. The board's title and description are text ids `0x3ED + board` and `0x838 + board`², rows 5-16 of `menu_command.bin` for the titles.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055B484`-`0x0055B4A2` |
+| ² | `0x00556FE7`, `0x00557010` |
+
+</details>
 
 `0x0055F830(view)` first walks the six qwords from the view's `+0x150`: a pointer that is not null goes
-to `0x003697F0` and its qword is set to 0 (`0x0055F83D`-`0x0055F878`). The member count is the signed byte
-`+0xB2C` of `[0x0209AC30]`; with 0 or less the body returns (`0x0055F87A`-`0x0055F899`). For each member
+to `0x003697F0` and its qword is set to 0¹. The member count is the signed byte
+`+0xB2C` of `[0x0209AC30]`; with 0 or less the body returns². For each member
 index i it asks `0x00282DF0` for the dword at view `+0x120 + 4 × i` and `0x003236B0` for the answer's
-byte `+0x60`; an answer byte of `0xFF` leaves that member's qword at 0 (`0x0055F8C0`-`0x0055F8D5`).
+byte `+0x60`; an answer byte of `0xFF` leaves that member's qword at 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055F83D`-`0x0055F878` |
+| ² | `0x0055F87A`-`0x0055F899` |
+| ³ | `0x0055F8C0`-`0x0055F8D5` |
+
+</details>
 
 Otherwise the board is `[0x02EBF1A0 + 8 × byte]`, the byte taken signed. `0x002497B0` is asked for
 `4 × width × height` bytes, the board's words `+0x04` and `+0x06`; `0x00861EC0(buffer, 0, size)`
-follows, and the buffer goes to the view's qword `+0x150 + 8 × i` (`0x0055F8DB`-`0x0055F90C`). The buffer
-takes one 4-byte entry per square, row by row (`0x0055F910`-`0x0055F9DF`).
+follows, and the buffer goes to the view's qword `+0x150 + 8 × i`¹. The buffer
+takes one 4-byte entry per square, row by row².
 
-The buffer address is used with no null test (`0x0055F8F7`-`0x0055F90C`). A square's grid word is the
-board's word `+0x08 + 2 × (width × row + column)` (`0x0055F94C`-`0x0055F95A`).
+<details>
+<summary>Where in the code</summary>
 
-A square whose grid word is `0xFFFF` gets word `+0x00` = `0xFFFF` and word `+0x02` = 0
-(`0x0055F95A`-`0x0055F962`, `0x0055F9B5`-`0x0055F9BD`). So does a square for which
+| | Code |
+|---|---|
+| ¹ | `0x0055F8DB`-`0x0055F90C` |
+| ² | `0x0055F910`-`0x0055F9DF` |
+
+</details>
+
+The buffer address is used with no null test¹. A square's grid word is the
+board's word `+0x08 + 2 × (width × row + column)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055F8F7`-`0x0055F90C` |
+| ² | `0x0055F94C`-`0x0055F95A` |
+
+</details>
+
+A square whose grid word is `0xFFFF` gets word `+0x00` = `0xFFFF` and word `+0x02` = 0¹. So does a square for which
 `0x00323600(byte +0x60, grid word, 0)` answers 3, 4, 5 or 8, and a square with a grid word of `0x10A`
-to `0x113` while `0x00283730(0x4B9)` answers 0 (`0x0055F964`-`0x0055F99A`). Any other square gets that
+to `0x113` while `0x00283730(0x4B9)` answers 0². Any other square gets that
 `0x00323600` answer in word `+0x00` and, in word `+0x02`, the byte `+0x21` of the record that
-`0x0035D330(0x19, grid word)` answers, read with no null test (`0x0055F99C`-`0x0055F9AF`).
+`0x0035D330(0x19, grid word)` answers, read with no null test³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055F95A`-`0x0055F962`, `0x0055F9B5`-`0x0055F9BD` |
+| ² | `0x0055F964`-`0x0055F99A` |
+| ³ | `0x0055F99C`-`0x0055F9AF` |
+
+</details>
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Board | File | Job | Squares | Second Board at | Second Board in the cn and kr copies |
 |---:|---|---|---:|---|---|
@@ -134,12 +227,30 @@ node number, and the node's name and LP cost from the node record (`+0x00` name 
 
 `license_board.bin`, the single 24 x 24 board at index 70, ships in `ch`, `cn`, `in` and `kr`, four identical
 1,160-byte copies. No call site requests index 70: the one kind-2 request `0x00384420` is reached only from the
-pack, board and text-group loads (`0x0038440A`, `0x0023837D`, `0x0023861E`).
+pack, board and text-group loads¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038440A`, `0x0023837D`, `0x0023861E` |
+
+</details>
 
 The pack holds the same board as its entry `+0x11C`, equal to the file for its 1,160 bytes; the battle-pack load
-stores its address at `0x02EBF200` (`0x00237031`), and no instruction reads that slot
+stores its address at `0x02EBF200`¹, and no instruction reads that slot
 ([Authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md)). The board screen reads only
 the twelve job boards above.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00237031` |
+
+</details>
 
 [`license-board-legacy.tsv`](license-board-legacy.tsv) lists all 576 cells of that board, row by row: 300 hold a node
 and the other 276 the empty marker `0xFFFF`. The node names and LP costs are those of the current node table, entry
@@ -152,12 +263,15 @@ and the other 276 the empty marker `0xFFFF`. The node names and LP costs are tho
 | `cell` | the raw `u16`, `0xFFFF` for an empty square |
 | `name`, `lp_cost` | the node's name and LP cost; `-` for an empty square |
 
+</details>
+
 ## Loader behaviour
 
-1. `BattleStorage_InitializeWorkArrays` zeroes the twelve slots and requests each board once (`0x002369E5`-`0x00236A24`).
-2. A slot that already holds a board is not requested again (`0x00238320`-`0x00238327`).
-3. The grid is used as loaded: nothing writes a board file, and the header's width and height are trusted by
-   every reader.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `BattleStorage_InitializeWorkArrays` zeroes the twelve slots and requests each board once. | `0x002369E5`-`0x00236A24` |
+| 2 | A slot that already holds a board is not requested again. | `0x00238320`-`0x00238327` |
+| 3 | The grid is used as loaded: nothing writes a board file, and the header's width and height are trusted by every reader. |   |
 
 ## Modding notes
 
@@ -182,20 +296,26 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Graphics** (explained on [augments](../Damage-And-Battle-Formulas/augments.md), [battle numbers](../Menus-And-HUD/battle-numbers.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0035D330` | is called by | `0x003BBD00`, `0x00506700` |
+| [`0x0035D330`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors) | is called by | [`0x003BBD00`](../Random-Numbers/which-roll-uses-which-generator.md) (on which roll uses which generator)<br>[`0x00506700`](../Menus-And-HUD/battle-numbers.md) (on battle numbers) |
 
 **Saving, loading and settings** (explained on [native limits](../Engine-Core/native-limits.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00282DF0` | is called by | `0x00583D60` |
+| [`0x00282DF0`](../Menus-And-HUD/menu-screens.md) (on menu screens) | is called by | [`0x00583D60`](../Saving-Loading-And-Settings/save-file-format.md) Save image: finalize header and checksum (on save file format) |
 
 **Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00283730` | calls | `0x0032A8A0` |
+| [`0x00283730`](license-board.md) | calls | [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) |
 
 </details>

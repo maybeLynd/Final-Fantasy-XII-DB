@@ -26,27 +26,56 @@ record's type word:
 | 4 | `PointSound` | no |
 | 5 | `PolygonSound` | yes: an outline of points |
 
-The only record builder `0x00221940` handles types 1, 2, 4 and 5 (`0x002219BF`-`0x002219E0`), and the only writer of the type,
+The only record builder `0x00221940` handles types 1, 2, 4 and 5¹, and the only writer of the type,
 `0x002DE800`, never stores 3 or 4, so `PointSound` and `DirectionSound` are never built. Each class overrides two
 computations of the base `SoundSourceObject`: slot 34 finds where the source is and whether it is in range, and slot 35
 works out how it sounds from the listener.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002219BF`-`0x002219E0` |
+
+</details>
+
 ### The listener
 
-The listener is one `0xA0`-byte object whose pointer is at `0x02EADE08` (`0x007BB610`), built once by `0x007BB620`:
+The listener is one `0xA0`-byte object whose pointer is at `0x02EADE08`¹, built once by `0x007BB620`:
 
-1. `0x00362850` places it each update. In the default microphone mode 0 it stands at the party's focus character,
-   moved 0.3 of the way toward the camera in the horizontal plane only; the factor is `0x022CBB28`, set by `0x00362F70`
-   from `0x0215EFD0` = 0.3 (`0x002DE360`) clamped to 0-1. Mode 1 puts it at a position a script stored, and mode 2 at
-   the camera (The listener's place, below).
-2. Its front is the camera's target minus its eye (`0x003CBFA0`), and its up is fixed at (0, 1, 0) (`0x00211340`).
-3. Lay action 2, `0x007EF630`, stores them and builds the world-to-listener matrix with `0x007EF3B0`, the right-handed
-   builder the game selects (`0x002108CA`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007BB610` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00362850` places it each update. In the default microphone mode 0 it stands at the party's focus character, moved 0.3 of the way toward the camera in the horizontal plane only; the factor is `0x022CBB28`, set by `0x00362F70` from `0x0215EFD0` = 0.3 clamped to 0-1. Mode 1 puts it at a position a script stored, and mode 2 at the camera (The listener's place, below). | `0x002DE360` |
+| 2 | Its front is the camera's target minus its eye, and its up is fixed at (0, 1, 0). | `0x003CBFA0`<br>`0x00211340` |
+| 3 | Lay action 2, `0x007EF630`, stores them and builds the world-to-listener matrix with `0x007EF3B0`, the right-handed builder the game selects. | `0x002108CA` |
 
 `0x007EF630` keeps the position with w = 1.0 at `+0x30` and the front and the up at `+0x40` and `+0x50`, each
-normalised, `v / |v|`, with a refined `rsqrtps` (`0x007EF68D`-`0x007EF741`); the matrix goes to `+0x60`. When the mode
-`0x007A5AF0` reads from `0x02EACFF8` is 2 it builds with `0x007EF1E0` instead (`0x007EF746`-`0x007EF767`); the start block
-gives 1 (`0x002108CA`), which `0x007A5B50` copies there (`0x007A5BAE`). It returns 0 (`0x007EF771`).
+normalised, `v / |v|`, with a refined `rsqrtps`¹; the matrix goes to `+0x60`. When the mode
+`0x007A5AF0` reads from `0x02EACFF8` is 2 it builds with `0x007EF1E0` instead²; the start block
+gives 1³, which `0x007A5B50` copies there⁴. It returns 0⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007EF68D`-`0x007EF741` |
+| ² | `0x007EF746`-`0x007EF767` |
+| ³ | `0x002108CA` |
+| ⁴ | `0x007A5BAE` |
+| ⁵ | `0x007EF771` |
+
+</details>
 
 `0x007EF100` builds the listener with identity axes. Lay action 1 sets it from a position and two direction vectors,
 which `0x007EF790` normalises; actions 3 and 4 set it from a 4 x 4 matrix, inverted first by `0x007A5780` when the
@@ -62,9 +91,27 @@ movement since the last pass and keeps the new position.
 | `PolygonSound` | finds the nearest point of its outline, below; out when the range is 0 or there are no points (`0x007F260E`, `0x007F261C`) |
 
 `DynamicSound` reads its range and settings once from the sound's bank record: range `+0x1C`, 30.0 in every shipped
-sound (`0x007F13EC`).
+sound¹.
 
-A `PolygonSound` outline is drawn by its mode byte `+0x104` (`0x007F25E0`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007F13EC` |
+
+</details>
+
+A `PolygonSound` outline is drawn by its mode byte `+0x104`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007F25E0` |
+
+</details>
 
 | Mode | Shape |
 |---:|---|
@@ -75,34 +122,60 @@ A `PolygonSound` outline is drawn by its mode byte `+0x104` (`0x007F25E0`):
 | `4` | a triangle list |
 
 For a triangle it drops the listener onto the triangle's plane; when that point is inside, the plane distance counts,
-and otherwise the three edges are tried (`0x007F7440`, `0x007F7570`). Distances are full 3-D, through the lane mask
-`(1, 1, 1, 0)` at `0x00D11570`. When the listener stands inside the nearest triangle, the sound has no direction
-(`0x007F20E0`).
+and otherwise the three edges are tried¹. Distances are full 3-D, through the lane mask
+`(1, 1, 1, 0)` at `0x00D11570`. When the listener stands inside the nearest triangle, the sound has no direction².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007F7440`, `0x007F7570` |
+| ² | `0x007F20E0` |
+
+</details>
 
 ### Volume and direction
 
 `0x007F0320(rel, range, inner, k, curve)` turns the source's position in listener space into a gain and a pan:
 
-1. With `d` the distance, the gain is 1 inside `inner`, and otherwise `(range - d) / (range - inner)`, floored at 0
-   (`0x007F03AA`-`0x007F03E8`). A range of 0 or less gives gain 0 and skips step 2 (`0x007F03AA`-`0x007F03AE`).
-2. The gain then goes through curve `curve` of the configuration file's `curv` chunk (`0x007ADC40`, `0x007AE260`). The
-   curve number is byte `+0x21` of the sound's bank record. When the lookup leaves the second qword of its result
-   0, the gain stays as it is (`0x007F043F`-`0x007F0444`).
-3. The pan is `atan2(x, -z) / pi`: 0 straight ahead, +0.5 to the right (`0x007F0482`-`0x007F0487`). That is mode 1 of
-   `0x02EACFF8` (`0x007A5AF0`), the game's; mode 2 gives `atan2(x, z) / pi` (`0x007F0473`-`0x007F0493`). When `x` and `z`
-   are both 0, the pan, the directionality and the vertical pan stay 0 and it returns (`0x007F045A`-`0x007F046D`).
-4. The directionality is `1 - (1 - t) * k`, with `t` the horizontal distance past `inner` as a share of the rest of the
-   range, capped at the horizontal distance over 1.0 (`0x02EAD3F0`) and clamped to 0-1. The vertical pan is always 0.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | With `d` the distance, the gain is 1 inside `inner`, and otherwise `(range - d) / (range - inner)`, floored at 0. A range of 0 or less gives gain 0 and skips step 2. | `0x007F03AA`-`0x007F03E8`<br>`0x007F03AA`-`0x007F03AE` |
+| 2 | The gain then goes through curve `curve` of the configuration file's `curv` chunk. The curve number is byte `+0x21` of the sound's bank record. When the lookup leaves the second qword of its result 0, the gain stays as it is. | `0x007ADC40`, `0x007AE260`<br>`0x007F043F`-`0x007F0444` |
+| 3 | The pan is `atan2(x, -z) / pi`: 0 straight ahead, +0.5 to the right. That is mode 1 of `0x02EACFF8`, the game's; mode 2 gives `atan2(x, z) / pi`. When `x` and `z` are both 0, the pan, the directionality and the vertical pan stay 0 and it returns. | `0x007F0482`-`0x007F0487`<br>`0x007A5AF0`<br>`0x007F0473`-`0x007F0493`<br>`0x007F045A`-`0x007F046D` |
+| 4 | The directionality is `1 - (1 - t) * k`, with `t` the horizontal distance past `inner` as a share of the rest of the range, capped at the horizontal distance over 1.0 and clamped to 0-1. The vertical pan is always 0. | `0x02EAD3F0` |
 
 `0x007F0320` writes the gain, the pan, the directionality and the vertical pan through its first four arguments; the
-inputs above follow on the stack (`0x007F0354`-`0x007F036F`). In step 4, `t` is 0 when the horizontal distance
-`h = sqrt(x^2 + z^2)` is not past `inner` or the range is not above `inner` (`0x007F04CD`-`0x007F04EE`).
+inputs above follow on the stack¹. In step 4, `t` is 0 when the horizontal distance
+`h = sqrt(x^2 + z^2)` is not past `inner` or the range is not above `inner`².
 
-`AmbientSound` gets gain 1 and no direction (`0x007F1CE0`). Each pass the tick `0x007F0820` sends the sound its own volume
-ramp times the gain (`0x007F0C49`-`0x007F0CA5`) and the pan and directionality (`0x007F0D4E`). It also sends three distance
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007F0354`-`0x007F036F` |
+| ² | `0x007F04CD`-`0x007F04EE` |
+
+</details>
+
+`AmbientSound` gets gain 1 and no direction¹. Each pass the tick `0x007F0820` sends the sound its own volume
+ramp times the gain² and the pan and directionality³. It also sends three distance
 values the sound's parameters can read: the distance, `distance / range` and the share past `inner`
 (`zeroone_distance` and `zeroone_distance_rate` read the first two, `0x007E7090`). With directionality 0 every speaker
 gets the same level, and with 1 the sound is fully directional ([Sound effects](sound-effects.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007F1CE0` |
+| ² | `0x007F0C49`-`0x007F0CA5` |
+| ³ | `0x007F0D4E` |
+
+</details>
 
 ### From a request to a source
 
@@ -117,33 +190,90 @@ gets the same level, and with 1 the sound is fully directional ([Sound effects](
 | `4` | `DynamicSound` | no outline; its range comes from the bank |
 
 `0x002DE420` writes the outline for shapes 0 and 2, the ellipse, and 1, the rectangle; it writes nothing for any other
-shape. The ellipse is the centre and 14 points round it, 15 in all, and the rectangle the centre and its four corners with the first repeated, 6 in all (`0x002DEA9A`-`0x002DEB00`). It takes the range from
-record `+0x38`, or 200.0 with the outline lowered by 100 when that is 0 or less (`0x0215EF40`).
+shape. The ellipse is the centre and 14 points round it, 15 in all, and the rectangle the centre and its four corners with the first repeated, 6 in all¹. It takes the range from
+record `+0x38`, or 200.0 with the outline lowered by 100 when that is 0 or less².
 
-The starting volume is byte `+0x19` over 127 times the weather slot's percentage over 100 (`0x00221C11`-`0x00221C42`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DEA9A`-`0x002DEB00` |
+| ² | `0x0215EF40` |
+
+</details>
+
+The starting volume is byte `+0x19` over 127 times the weather slot's percentage over 100¹.
 The sources come from three places:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00221C11`-`0x00221C42` |
+
+</details>
 
 - **Map emitters** (`0x003638B0`, [Map sounds](map-sounds.md)): the 456 map packs' emitters use shape 0 1,364 times,
   1 108 times, 2 400 times and 3 454 times, and shape 4 never.
 - **Character sounds** (`0x0046C8F0`, `0x0046CC70`, [Animation sounds](animation-sounds.md)): an ellipse of half-size 0.1
-  from the template at `0x022CBAB0` (`0x00362F70`), in effect a point.
-- **Moving sounds**: `0x00332C40` and `0x003B99D0` force shape 4 (`0x00332E30`-`0x00332E38`, `0x003B9B6C`-`0x003B9B74`).
+  from the template at `0x022CBAB0`¹, in effect a point.
+- **Moving sounds**: `0x00332C40` and `0x003B99D0` force shape 4².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00362F70` |
+| ² | `0x00332E30`-`0x00332E38`, `0x003B9B6C`-`0x003B9B74` |
+
+</details>
 
 The template copy `0x003617B0` fills a request from the character template at `0x022CBAB0` for `0x00332C40`, `0x003B99D0`
 and `0x0046C8F0`, with the map's sound volume `0x022CBA94` as byte `+0x19`; `0x00332C40` and `0x003B99D0` clamp their
 volumes to 0-127 with `0x0046C8D0`. `0x00361BF0` and `0x00361CF0` work out a pan byte and a volume for a point seen from the listener at
-`0x022CBB00` (`0x00361810`), and scale the volume by `0x022CBA94 / 127`. `0x00332FA0` stops every sound of an effect
-element's list that still plays, through a 16-frame delayed stop (`0x003B3EA0`), and empties the list.
+`0x022CBB00`¹, and scale the volume by `0x022CBA94 / 127`. `0x00332FA0` stops every sound of an effect
+element's list that still plays, through a 16-frame delayed stop², and empties the list.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00361810` |
+| ² | `0x003B3EA0` |
+
+</details>
 
 `0x00361750` is the same template copy except for two floats: `0x003617B0` stores its fifth argument at
 `+0x10` and its sixth at `+0x1C`, while `0x00361750` stores the float `0x022CBB24` at `+0x10` and its
 reciprocal at `+0x1C`. The character sounds call it, `0x0046C8F0` at `0x0046CA4F` and `0x0046CC70` at
-`0x0046CF71`; `0x0046C8F0` also calls `0x003617B0` (`0x0046CB1D`).
+`0x0046CF71`; `0x0046C8F0` also calls `0x003617B0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046CB1D` |
+
+</details>
 
 ### The layer's pools
 
-`0x007A5B50` starts the layer from the block `0x00210760` fills (`0x002108AD`-`0x002108BD`): one page, 128 sources and 512
+`0x007A5B50` starts the layer from the block `0x00210760` fills¹: one page, 128 sources and 512
 actions.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002108AD`-`0x002108BD` |
+
+</details>
 
 | Pool | Built by | Holds |
 |---|---|---|
@@ -156,52 +286,129 @@ and `0x02EADDA0`. Their start-up initialisers `0x0016A180` and `0x0016A110` stor
 rest. The vtable's one slot is the destructor `0x007BA990(queue, flags)`:
 
 - it frees the entry array at `+0x08` when there is one: an array with a count before it (`[array - 8]` not 0)
-  through the array's own slot 0 with argument 3 (`0x007BA9B2`-`0x007BA9C1`), any other through `0x00210EB0` on
-  `array - 8` (`0x007BA9C5`-`0x007BA9C9`);
-- it clears the qwords `+0x08`, `+0x10`, `+0x18`, `+0x20` and the dword `+0x2C` (`0x007BA9CE`-`0x007BA9E0`) and stores
-  the base vtable `0x01CB57A0` of `SQEX::Sd::SeadObject<3, 8>` (`0x007BA9E3`-`0x007BA9EA`);
-- with bit `0x1` of the flags set it frees the object through the driver's free (`0x007AD450`, `0x007BA9FC`), unless
+  through the array's own slot 0 with argument 3¹, any other through `0x00210EB0` on
+  `array - 8`²;
+- it clears the qwords `+0x08`, `+0x10`, `+0x18`, `+0x20` and the dword `+0x2C`³ and stores
+  the base vtable `0x01CB57A0` of `SQEX::Sd::SeadObject<3, 8>`⁴;
+- with bit `0x1` of the flags set it frees the object through the driver's free⁵, unless
   bit `0x4` is set as well: then it calls `0x0016D6A0` with the size `0x30` instead, which does nothing
-  (`0x007BA9F6`-`0x007BAA14`).
+ ⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007BA9B2`-`0x007BA9C1` |
+| ² | `0x007BA9C5`-`0x007BA9C9` |
+| ³ | `0x007BA9CE`-`0x007BA9E0` |
+| ⁴ | `0x007BA9E3`-`0x007BA9EA` |
+| ⁵ | `0x007AD450`, `0x007BA9FC` |
+| ⁶ | `0x007BA9F6`-`0x007BAA14` |
+
+</details>
 
 The destructor follows the last function of libogg's `framing.c` in the image, `0x007BA970`, which ends at
 `0x007BA98A`.
 
-`0x007A5A00(page, out, ...)`, from the game's `0x00221940`, takes the page (`0x007BB690`) and calls `0x007BBAB0`, which builds a
-source through the factory `0x007BBFB0` and appends its handle to the page (`0x007BB9A0`); when the page is full it stops
-the new sound over 0.1 s (`0x007BBB45`). Lay action 0 runs slot 11 with 0 on every source of a page (`0x007BBB70`).
+`0x007A5A00(page, out, ...)`, from the game's `0x00221940`, takes the page¹ and calls `0x007BBAB0`, which builds a
+source through the factory `0x007BBFB0` and appends its handle to the page²; when the page is full it stops
+the new sound over 0.1 s³. Lay action 0 runs slot 11 with 0 on every source of a page⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007BB690` |
+| ² | `0x007BB9A0` |
+| ³ | `0x007BBB45` |
+| ⁴ | `0x007BBB70` |
+
+</details>
 
 The source classes are built over the shared base `0x007EF910` (`0x007EFA30` destroys it), which sits on the
-`Lay::SoundObject` base `0x007F7360` (`0x007F7380`): `DynamicSound` `0x007F0FD0`, `PointSound` `0x007F1760`, `AmbientSound`
+`Lay::SoundObject` base `0x007F7360`¹: `DynamicSound` `0x007F0FD0`, `PointSound` `0x007F1760`, `AmbientSound`
 `0x007F1C50` and `DirectionSound` `0x007F1D40`. `0x007EFEF0` gives a source's ramped volume times its `+0x78`, which
 `0x007F0610` sets.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007F7380` |
+
+</details>
 
 ### The update pass
 
 The `Lay` thread `0x007A5E50` runs a pass, sleeps 32 milliseconds (`Sleep(0x20)`, `0x007A5EEA`) and loops while the stop
-flag `0x02EACFE9` is 0; it makes no pass when the flag is set on entry (`0x007A5E54`-`0x007A5E5D`, `0x007A5EF0`-`0x007A5EF9`).
+flag `0x02EACFE9` is 0; it makes no pass when the flag is set on entry¹.
 Each pass gives every step the time since the last pass in seconds, `(count - [0x02EACFF0]) / rate`, from `0x007AD630`
-and `0x007AD670`, and keeps the new count at `0x02EACFF0` (`0x007A5E80`-`0x007A5EC1`):
+and `0x007AD670`, and keeps the new count at `0x02EACFF0`²:
 
-1. It applies the queued actions (`0x007BAEC0`) and the listener's movement (`0x007BB670`), at `0x007A5EC8` and `0x007A5ED0`.
-2. It runs `0x007BB780` on the pages (`0x007A5ED8`).
-3. It runs every source's slot 34; a source out of range for good is stopped (`0x007EFB60`).
-4. It runs every source's tick (`0x007F0820`), which starts, stops and updates its sound.
+<details>
+<summary>Where in the code</summary>
 
-Steps 3 and 4 are the source pass `0x007BC4F0` (`0x007A5EE0`). Between them it collects every source whose slot 6
-answers true, whose `+0xE0` is set and `+0xE1` clear and that is not in state 2 or 3, into a 32-byte record each
-(`0x02EADEE0`); it hands
+| | Code |
+|---|---|
+| ¹ | `0x007A5E54`-`0x007A5E5D`, `0x007A5EF0`-`0x007A5EF9` |
+| ² | `0x007A5E80`-`0x007A5EC1` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It applies the queued actions and the listener's movement, at `0x007A5EC8` and `0x007A5ED0`. | `0x007BAEC0`<br>`0x007BB670` |
+| 2 | It runs `0x007BB780` on the pages. | `0x007A5ED8` |
+| 3 | It runs every source's slot 34; a source out of range for good is stopped. | `0x007EFB60` |
+| 4 | It runs every source's tick, which starts, stops and updates its sound. | `0x007F0820` |
+
+Steps 3 and 4 are the source pass `0x007BC4F0`¹. Between them it collects every source whose slot 6
+answers true, whose `+0xE0` is set and `+0xE1` clear and that is not in state 2 or 3, into a 32-byte record each²; it hands
 them to the layer's callback (`0x02EADE28`, a `SoundObjectManagerCallback` that `0x007A5AA0` forwards to the object at
 `0x02EACFA0`) and stores each answer back in its source (`0x007EFB20`, `+0xD0`-`+0xF8`).
 
-After the ticks it frees the sources in state 5. `0x007BB780`, step 2, runs `0x007BBD60` on every page, which drops the
-handles of sources that have ended; it runs before the source pass (`0x007A5ED8`, `0x007A5EE0`).
+<details>
+<summary>Where in the code</summary>
 
-Only `DynamicSound` moves: action 8 from `0x00332C40` sets its new position each call while its sound plays (`0x007F1310`).
+| | Code |
+|---|---|
+| ¹ | `0x007A5EE0` |
+| ² | `0x02EADEE0` |
+
+</details>
+
+After the ticks it frees the sources in state 5. `0x007BB780`, step 2, runs `0x007BBD60` on every page, which drops the
+handles of sources that have ended; it runs before the source pass¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A5ED8`, `0x007A5EE0` |
+
+</details>
+
+Only `DynamicSound` moves: action 8 from `0x00332C40` sets its new position each call while its sound plays¹.
 Its Doppler step (speed of sound 340.29, `0x01CB9B30`) needs bank record `+0x48`, which is 0 in every shipped sound, and its
 low-pass stays at 1.0.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007F1310` |
+
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | | |
 |---|---|
@@ -209,13 +416,28 @@ low-pass stays at 1.0.
 | so the distance gain | `(range - d) / (range - inner)` |
 | `DynamicSound` | range 30.0, inner 0, directionality factor 0, no Doppler, in all 13,150 sound records |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 ### The request block
 
 `0x002DE800` builds every placed-sound request in the block at `0x0215E710`, which `0x002DE360` (from `0x003692D0`) resets.
-`0x002DEFA0` (`0x002DEFDF`) and `0x002DF460` (`0x002DF49F`) pass the block's address on, through `0x001DBE00` and `0x001DC190`,
+`0x002DEFA0`¹ and `0x002DF460`² pass the block's address on, through `0x001DBE00` and `0x001DC190`,
 to the record builder `0x00221940`, its only reader. Every field is 0 in the file (the zero-filled tail of `.data`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DEFDF` |
+| ² | `0x002DF49F` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -233,9 +455,21 @@ to the record builder `0x00221940`, its only reader. Every field is 0 in the fil
 ### The character-sound template
 
 `0x00362F70` fills the request template at `0x022CBAB0` and the listener-side constants once; the template copies
-`0x00361750` (`0x00361750`-`0x00361782`), `0x003617B0` (`0x003617B0`-`0x003617DA`), `0x00361BF0` (`0x00361C0B`-`0x00361C5B`) and
-`0x00361CF0` (`0x00361D0B`-`0x00361D3C`) read the whole template, `+0x00`-`+0x3F`, in four 16-byte loads, and nothing else
+`0x00361750`¹, `0x003617B0`², `0x00361BF0`³ and
+`0x00361CF0`⁴ read the whole template, `+0x00`-`+0x3F`, in four 16-byte loads, and nothing else
 reads it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00361750`-`0x00361782` |
+| ² | `0x003617B0`-`0x003617DA` |
+| ³ | `0x00361C0B`-`0x00361C5B` |
+| ⁴ | `0x00361D0B`-`0x00361D3C` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -258,7 +492,16 @@ dword `0x0215EF48`, `0x00361858`-`0x00361866`, `0x00361B3B`-`0x00361B43`).
 ### The listener's place
 
 `0x00362850` keeps the game-side listener at `0x022CBB00` as four floats, x, y, z and 1.0, and its facing at `0x022CBA8C`.
-The microphone mode `0x022CBA9A` (`set_microphone_pos`, `0x00363B00`) picks where they come from (`0x003629DF`-`0x00362A9A`):
+The microphone mode `0x022CBA9A` (`set_microphone_pos`, `0x00363B00`) picks where they come from¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003629DF`-`0x00362A9A` |
+
+</details>
 
 | Mode | Place | Facing |
 |---|---|---|
@@ -279,8 +522,16 @@ pan and volume step `0x00361810`, and by the two calls that hand it to the drive
 | `0x022CBA8C` | `f32` | 0 | the listener's facing, in radians: `0x00361810` subtracts it from the direction of a sound to get the sound's pan (`0x003619C6`-`0x00361A25`) | `0x00362850`: mode 0 (`0x00362925`), mode 2 (`0x00362A79`), mode 1 (`0x00362A92`); `0x00362F70`, 0 (`0x00362FC6`) | `0x00361BF0` (`0x00361C76`), `0x00361CF0` (`0x00361D7E`) and `0x003631B0` (`0x003632EB`), which pass it to `0x00361810` (`0x003619D0`); `0x00362850` (`0x00362AAC`) and `0x00362F70` (`0x0036310E`), which pass it to `0x002DF560` and `0x002DF2C0`, where `0x00211340` and `0x00210F60` overwrite that argument unread (`0x002113A2`, `0x00210FC2`) |
 
 No other instruction reaches these four. The music track slots `0x022CB9F0`-`0x022CBA63` ([music](music.md)) and the
-cutscene skip masks `0x022CB9C0` and `0x022CB9D8`, `u32[5]` each, `0x18` bytes apart (`0x003604D0`, `0x003605A0`, `0x00360710`,
-`0x00360980`, `0x00360A50`), are the indexed tables below them.
+cutscene skip masks `0x022CB9C0` and `0x022CB9D8`, `u32[5]` each, `0x18` bytes apart¹, are the indexed tables below them.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003604D0`, `0x003605A0`, `0x00360710`, `0x00360980`, `0x00360A50` |
+
+</details>
 
 ### The layer's pools
 
@@ -295,7 +546,16 @@ cutscene skip masks `0x022CB9C0` and `0x022CB9D8`, `u32[5]` each, `0x18` bytes a
 The `Lay` free-action queue `0x02EADD70` and the source list `0x02EADE80` have the layouts `DriverQueue` and
 `ObjectList` of [Sound driver objects](sound-driver-objects.md); "through the address" names the helpers a function
 hands the object to. `0x007BAC80` puts the 512 actions on the free-action queue, `0x007BAD60` takes one, and the `Lay`
-runner `0x007BAEC0` gives each back after running it (`0x007BB4FD`-`0x007BB53F`).
+runner `0x007BAEC0` gives each back after running it¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007BB4FD`-`0x007BB53F` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -313,6 +573,8 @@ runner `0x007BAEC0` gives each back after running it (`0x007BB4FD`-`0x007BB53F`)
 | `0x02EADEA8` | `void*` | 0 | source list `+0x28`, last node in use | `0x0016A230` (`0x0016A25C`); `0x007BC4F0` (`0x007BC7C9`); `0x008B8FD0` (`0x008B9030`); through the address: `0x007B5580` (from `0x007BBFB0`); `0x007B2880` (from `0x007BBFB0`); `0x007BC2F0` with `0x007B6AA0` (from `0x007BC400`) | through the address: `0x007B5580` (from `0x007BBFB0`) |
 
 No other instruction reaches these globals.
+
+</details>
 
 ## Modding notes
 
@@ -337,79 +599,82 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Battle actions** (explained on [traps](../World-Areas-And-Travel/traps.md), [battle unit fields](../Characters-And-Objects/battle-unit-fields.md), [animation driven movement](../Movement-And-Pathfinding/animation-driven-movement.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265020` | is called by | `0x002F8060`, `0x00307300`, `0x00320E10` |
+| [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) | is called by | [`0x002F8060`](../World-Areas-And-Travel/traps.md) Battle unit: try trigger nearby authored field action (on traps)<br>[`0x00307300`](../Battle-Actions/area-of-effect.md) Battle: process action target (on area of effect)<br>[`0x00320E10`](../Battle-Actions/action-range.md) (on action range) |
 
 **Damage and battle formulas** (explained on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265020` | is called by | `0x00384F40` |
+| [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) | is called by | [`0x00384F40`](../Battle-Actions/action-results.md) (on action results) |
 
 **Gameplay** (explained on [bestiary](../Enemy-Spawning/bestiary.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265020` | is called by | `0x0031ADB0`, `0x00339630` |
+| [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) | is called by | [`0x0031ADB0`](../Movement-And-Pathfinding/animation-driven-movement.md) (on animation driven movement)<br>[`0x00339630`](../Battle-Actions/action-phases.md) (on action phases) |
 
 **Controls and input** (explained on [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003692D0` | calls | `0x0035F260` |
+| [`0x003692D0`](../Engine-Core/startup-constants.md) (on startup constants) | calls | [`0x0035F260`](../Controls-And-Input/controls.md) (on controls) |
 
-**Movement and pathfinding**
+**Movement and pathfinding** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [bestiary](../Enemy-Spawning/bestiary.md), [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md), [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [world lock](../Scripts-And-Script-Commands/world-lock.md), [battle units](../Characters-And-Objects/battle-units.md), [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md), [party control modes](../Engine-Core/party-control-modes.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [party data](../Party/party-data.md), [force fight mode](../Engine-Core/force-fight-mode.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [subsystem update flags](../Engine-Core/subsystem-update-flags.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00202C70` | is called by | `0x00230790`, `0x00338490` |
-| `0x00265020` | is called by | `0x0024B6F0`, `0x002E45E0`, `0x002EBFA0`, `0x002EC2C0`, `0x00300310`, `0x00310920`, `0x00311E20`, `0x00311F70`, `0x00326BB0`, `0x00336710`, `0x00337C10`, `0x00337D90` |
-| `0x00265020` | is also called by | `0x0033CA00`, `0x003B7E20`, `0x003B7F40`, `0x00505240` |
-
-**Movement and pathfinding** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [bestiary](../Enemy-Spawning/bestiary.md), [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md), [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md))
-
-**Movement and pathfinding** (explained on [world lock](../Scripts-And-Script-Commands/world-lock.md), [battle units](../Characters-And-Objects/battle-units.md), [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md), [party control modes](../Engine-Core/party-control-modes.md))
-
-**Movement and pathfinding** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [party data](../Party/party-data.md), [force fight mode](../Engine-Core/force-fight-mode.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md))
-
-**Movement and pathfinding** (explained on [subsystem update flags](../Engine-Core/subsystem-update-flags.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md))
+| [`0x00202C70`](../Menus-And-HUD/license-board-screen.md) (on license board screen) | is called by | [`0x00230790`](../Movement-And-Pathfinding/collision-mesh-movement.md) (on collision mesh movement)<br>[`0x00338490`](../Party/party-leader.md) Party follow: solve formation (on party leader) |
+| [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) | is called by | [`0x0024B6F0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x002E45E0`](../Movement-And-Pathfinding/facing-and-steering.md) Movement: update steering toward target (on facing and steering)<br>[`0x002EBFA0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock)<br>[`0x002EC2C0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock)<br>[`0x00300310`](../Enemy-Spawning/spawn-record-fields.md) Battle unit: publish locomotion position (on spawn record fields)<br>[`0x00310920`](../Party/party-slots.md) (on party slots)<br>[`0x00311E20`](../Engine-Core/party-control-modes.md) (on party control modes)<br>[`0x00311F70`](../Enemy-Spawning/spawn-record-fields.md) (on spawn record fields)<br>[`0x00326BB0`](../Party/party-data.md) (on party data)<br>[`0x00336710`](../Movement-And-Pathfinding/battle-locomotion.md) Battle locomotion: build solver context (on battle locomotion)<br>[`0x00337C10`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x00337D90`](../Random-Numbers/which-roll-uses-which-generator.md) (on which roll uses which generator) |
+| [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) | is also called by | [`0x0033CA00`](../Status-Effects-And-KO/ko-and-game-over.md) (on ko and game over)<br>[`0x003B7E20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x003B7F40`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x00505240`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md), [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265020` | is called by | `0x002FB150`, `0x00312280` |
+| [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) | is called by | [`0x002FB150`](../Rewards-EXP-Gil-And-Loot/loot-pickups.md) Loot: find overlapping pickup index (on loot pickups)<br>[`0x00312280`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle unit: process defeat rewards and loot (on strong and weak mode) |
 
 **Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265920` | calls | `0x002EF2B0` |
-
-**Scripts and script commands**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00265020` | is called by | `0x0033FD60`, `0x00344AF0`, `0x00345180`, `0x00345830`, `0x003461B0`, `0x00346710`, `0x00346D40`, `0x00347170`, `0x00347580`, `0x003478A0`, `0x00347AB0`, `0x00347FF0` |
-| `0x00265020` | is also called by | `0x0034BE50`, `0x0034CC00`, `0x00350DD0`, `0x003516E0`, `0x003562B0`, `0x00357DE0`, `0x0050E060`, `0x0050F6E0`, `0x00510040`, `0x00510080`, `0x005100C0` |
-| `0x00265920` | is called by | `0x00356250`, `0x0050D360` |
-
-**Scripts and script commands**
-
-| Function | | Functions |
-|---|---|---|
-| `0x002DEBF0` | is called by | `0x0050DA90` |
-| `0x00360710` | is called by | `0x0034ECF0` |
-| `0x00360980` | is called by | `0x0034D3A0` |
-| `0x00363B00` | is called by | `0x00340EF0` |
+| [`0x00265920`](../World-Areas-And-Travel/weather.md) (on weather) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) |
 
 **Scripts and script commands** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [weather](../World-Areas-And-Travel/weather.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
 
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) | is called by | [`0x0033FD60`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x00344AF0`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00345180`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00345830`](../Battle-Actions/action-range.md) (on action range)<br>[`0x003461B0`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00346710`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00346D40`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00347170`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00347580`](../Battle-Actions/action-range.md) (on action range)<br>[`0x003478A0`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00347AB0`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00347FF0`](../Battle-Actions/action-range.md) (on action range) |
+| [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) | is also called by | [`0x0034BE50`](../Battle-Actions/action-range.md) (on action range)<br>[`0x0034CC00`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00350DD0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x003516E0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x003562B0`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00357DE0`](../Battle-Actions/action-range.md) (on action range)<br>[`0x0050E060`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x0050F6E0`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00510040`](../Battle-Actions/action-range.md) (on action range)<br>[`0x00510080`](../Battle-Actions/action-range.md) (on action range)<br>[`0x005100C0`](../Battle-Actions/action-range.md) (on action range) |
+| [`0x00265920`](../World-Areas-And-Travel/weather.md) (on weather) | is called by | [`0x00356250`](spatial-sound.md)<br>[`0x0050D360`](spatial-sound.md) |
+| [`0x002DEBF0`](spatial-sound.md) | is called by | [`0x0050DA90`](spatial-sound.md) |
+| [`0x00360710`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x0034ECF0`](../Scripts-And-Script-Commands/native-commands.md) (on native commands) |
+| [`0x00360980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x0034D3A0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
+| [`0x00363B00`](../Scripts-And-Script-Commands/verb-table.md) (on verb table) | is called by | [`0x00340EF0`](spatial-sound.md) |
+
 **Enemy spawning** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265020` | is called by | `0x00234AF0`, `0x00234DA0`, `0x002350C0` |
+| [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) | is called by | [`0x00234AF0`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning)<br>[`0x00234DA0`](../Party/party-slots.md) Spawn: validate candidate distance to players (on party slots)<br>[`0x002350C0`](../Enemy-Spawning/enemy-spawning.md) Spawn lifecycle: check and retire by native range (on enemy spawning) |
 
 </details>

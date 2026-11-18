@@ -91,30 +91,44 @@ Montblanc's talk in The Clan Hall (Rabanastre) (`rbn_a14`) offers hunts 160 to 1
 
 Each line is read from the shipped files in these steps:
 
-1. the 66 records of `menuquest.dat` from `+0x0C`; a hunt is a record whose key byte 0 is 1 (`0x0037E5B0`), and its
-   position is the number of earlier group-1 records (`0x0037E5B0`, `0x0037EE10`);
-2. the name through `0x002F9920`: text group `id / 10000` (21, `questtitle`), the row whose id equals the record's
-   text id;
-3. the first `menuquest.lst` entry with the quest id: the petitioner line and the low nibble of `+0x04`
-   (`0x0037EFC0`, `0x0037E5B0`);
-4. the hunt's record in `menuquest01.bin` at `0x10 + 20 x position`, section 2 at `sectionAt[2] + item[2]`
-   (`0x0037E8D0`), cut at each `0x03` into at most 12 parts (`0x00578450`);
-5. the position's 28-byte section-5 row: value `k` is the number of parts shown while the progress byte divided by
-   5 is `k` (`0x0037EF70`, `0x0037EE10`);
-6. each code `0F 38` in the text replaced by the name it stands for: `0x003FFB00` turns its payload into a name id
-   and the text interpreter (`0x002ADDAA`) takes the name from `0x002639E0`, entry `2 x id` of `npcdic.bin`, or
-   `2 x id + 1` once story flag `id` of Bank2048 is set ([NPC names](../Characters-And-Objects/npc-names.md));
-7. every one-byte text code through the glyph table of the shipped `us` font `font00.dat`
-   ([Fonts](../Menus-And-HUD/fonts.md)).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | the 66 records of `menuquest.dat` from `+0x0C`; a hunt is a record whose key byte 0 is 1, and its position is the number of earlier group-1 records; | `0x0037E5B0`<br>`0x0037E5B0`, `0x0037EE10` |
+| 2 | the name through `0x002F9920`: text group `id / 10000` (21, `questtitle`), the row whose id equals the record's text id; |   |
+| 3 | the first `menuquest.lst` entry with the quest id: the petitioner line and the low nibble of `+0x04`; | `0x0037EFC0`, `0x0037E5B0` |
+| 4 | the hunt's record in `menuquest01.bin` at `0x10 + 20 x position`, section 2 at `sectionAt[2] + item[2]`, cut at each `0x03` into at most 12 parts; | `0x0037E8D0`<br>`0x00578450` |
+| 5 | the position's 28-byte section-5 row: value `k` is the number of parts shown while the progress byte divided by 5 is `k`; | `0x0037EF70`, `0x0037EE10` |
+| 6 | each code `0F 38` in the text replaced by the name it stands for: `0x003FFB00` turns its payload into a name id and the text interpreter takes the name from `0x002639E0`, entry `2 x id` of `npcdic.bin`, or `2 x id + 1` once story flag `id` of Bank2048 is set ([NPC names](../Characters-And-Objects/npc-names.md)); | `0x002ADDAA` |
+| 7 | every one-byte text code through the glyph table of the shipped `us` font `font00.dat` ([Fonts](../Menus-And-HUD/fonts.md)). |   |
 
-`0x003FFB00(code, out)` is given the code's `0x38` byte (`0x002B52DB`) and returns 3 or 4, the bytes it reads from
+`0x003FFB00(code, out)` is given the code's `0x38` byte¹ and returns 3 or 4, the bytes it reads from
 there. When bits `0x7` of the first payload byte are clear, the id is the signed byte that starts record
-`p1 & 0x7F` of `0x0039BA00`, `p1` being the second payload byte, and it returns 3 (`0x003FFB47`-`0x003FFB59`).
+`p1 & 0x7F` of `0x0039BA00`, `p1` being the second payload byte, and it returns 3².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B52DB` |
+| ² | `0x003FFB47`-`0x003FFB59` |
+
+</details>
 
 Otherwise the id is `(p1 & 0x7F) << 8` ORed with `p2 & 0x7F`, `p2` being the third payload byte, with `0x8000` for
-bit `0x40` of the first payload byte and `0x80` for its bit `0x20` (`0x003FFB0F`-`0x003FFB3F`, `0x003FFB5E`-`0x003FFB72`);
+bit `0x40` of the first payload byte and `0x80` for its bit `0x20`¹;
 bit `0x80` of the first byte is dropped, and it returns 4. The text interpreter reads the id as a signed 16-bit
-word (`0x002ADDA0`).
+word².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FFB0F`-`0x003FFB3F`, `0x003FFB5E`-`0x003FFB72` |
+| ² | `0x002ADDA0` |
+
+</details>
 
 The record text inserts two names this way, id 46 "Tomaj" (hunt 128) and id 726 "Burrogh" (hunt 144), and both
 strings of each pair are the same, so the flag changes nothing in these texts.
@@ -155,8 +169,17 @@ strings of each pair are the same, so the flag changes nothing in these texts.
 | `reward` | the reward package with what it gives, its selector, and the maps whose scripts grant it ("The reward" above) | `0x00344C60`, `0x00290130` |
 | `posted` | where the bill is posted and the story progress, clan rank and earlier hunts its talk tests ("When a bill is posted" above) | the scripts' `getclanrank`, `isquestorder`, `isquestclear` and story progress tests |
 
-The progress byte is the quest's scenario flag, save `+0x1064 + quest` (`0x0046B180`), set by the scripts'
+The progress byte is the quest's scenario flag, save `+0x1064 + quest`¹, set by the scripts'
 `setquestscenarioflag` ([Quests](quests.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046B180` |
+
+</details>
 
 ## Related
 
@@ -175,8 +198,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Rewards: EXP, LP, gil and loot** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00290130` | calls | `0x003F4AA0` |
+| [`0x00290130`](../Rewards-EXP-Gil-And-Loot/gil.md) (on gil) | calls | [`0x003F4AA0`](../Rewards-EXP-Gil-And-Loot/gil.md) (on gil) |
 
 </details>

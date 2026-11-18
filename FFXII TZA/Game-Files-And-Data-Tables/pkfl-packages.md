@@ -1,8 +1,8 @@
-[Home](../../README.md) / [PKFL package files](README.md) / PKFL packages
+[Home](../../README.md) / [Game files and data tables](README.md) / PKFL packages
 
 | title | kind | category | group | summary | addresses |
 |---|---|---|---|---|---|
-| PKFL packages: the per-area .mot, .snd, .vpc and .vpcjp containers, their offset and size directory, and the slot readers | format | PKFL package files | The package format | The PKFL container every area's motion, sound and voice package uses: an 8-byte header and a directory of offset and size pairs, payloads on 0x800 boundaries; how the area loader reads each package's directory into a fixed table, the seven slot readers and their callers, how a slot's payload is requested, the 10,314 shipped packages and what their slots hold, and the rules a package must follow. Every package and every used slot is listed with its decoded payload, the script steps that load and play it, what no script loads, and what a slot number out of range does. | 0x0032FCA0, 0x0032FC30, 0x0032F430, 0x022C6E70, 0x022C6E98, 0x022C6EE8, 0x022C6EC0, 0x0032F260, 0x0032F290, 0x0032F2C0, 0x0032F2F0, 0x0032F3A0, 0x0032F320, 0x0032F360, 0x003DD4C0, 0x003DF440, 0x003DF2C0, 0x003E9F80, 0x003E9EF0, 0x002DF980, 0x003DDA20, 0x0034AB50, 0x00347B00, 0x003DD8D0, 0x003DD980, 0x003DEC90, 0x003EA0D0, 0x0036B970, 0x003499C0, 0x003DD770 |
+| PKFL packages: the per-area .mot, .snd, .vpc and .vpcjp containers, their offset and size directory, and the slot readers | format | Game files and data tables | Archives and file loading | The PKFL container every area's motion, sound and voice package uses: an 8-byte header and a directory of offset and size pairs, payloads on 0x800 boundaries; how the area loader reads each package's directory into a fixed table, the seven slot readers and their callers, how a slot's payload is requested, the 10,314 shipped packages and what their slots hold, and the rules a package must follow. Every package and every used slot is listed with its decoded payload, the script steps that load and play it, what no script loads, and what a slot number out of range does. | 0x0032FCA0, 0x0032FC30, 0x0032F430, 0x022C6E70, 0x022C6E98, 0x022C6EE8, 0x022C6EC0, 0x0032F260, 0x0032F290, 0x0032F2C0, 0x0032F2F0, 0x0032F3A0, 0x0032F320, 0x0032F360, 0x003DD4C0, 0x003DF440, 0x003DF2C0, 0x003E9F80, 0x003E9EF0, 0x002DF980, 0x003DDA20, 0x0034AB50, 0x00347B00, 0x003DD8D0, 0x003DD980, 0x003DEC90, 0x003EA0D0, 0x0036B970, 0x003499C0, 0x003DD770 |
 
 ## What the player sees
 
@@ -19,7 +19,7 @@ data; a play step such as `motionplay` then picks an entry inside the loaded slo
 
 The packages sit beside each area's script in the archive, `<area>.mot`, `<area>.snd`, `<area>.vpc` and
 `<area>.vpcjp`. They are files of the per-area records in the resource kinds the area loader uses
-([file size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)): kind 5 records are
+([file size tables](file-size-tables-fst.md)): kind 5 records are
 `{ebp, mot, fpk}` (three files per zone, index `3a` for field id `a`), kind 8 records `{ebp, mot, snd, vpc}` and kind `0x25`
 records `{ebp, mot, snd, vpcjp}` (four per event, index `4a` for event number `a`). Paths come from `0x002DF980(kind, index)`.
 
@@ -42,6 +42,9 @@ is read on its own into its consumer's buffer ([reading a slot](#reading-a-slot)
 it is 0, every slot reader refuses with −1. The readers return a slot's offset and size as stored.
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -134,7 +137,7 @@ of two orders, read from the package bytes:
 ### What the slots hold
 
 - `.mot`: all 1,101 slots of a folder are `@FRP` version 0 named `<area>.mNN`, `NN` the slot number
-  ([resource sections](../Game-Files-And-Data-Tables/resource-sections.md)). 1,100 hold equal numbers of `@FMC`,
+  ([resource sections](resource-sections.md)). 1,100 hold equal numbers of `@FMC`,
   `@FMN` and `@FMW` members and one `@FRM`; slot 5 of `wdl_a0600` holds 3, 2, 2 and 1.
 - The `@FRP` size at `+0x08` equals the slot size in 1,081 and is smaller in 20, which end in zero bytes: slots 2
   and 4-7 of `dgl_h0100` and `rwg_b0200`, 2-4, 6 and 7 of `dgl_h0101`, and 3-7 of `rwg_b0100`.
@@ -161,9 +164,18 @@ byte-identical in all nine except `var_z0100.vpc` and `var_z0102.vpc`, one versi
 another in `de`, `es`, `fr`, `it` and `us`.
 
 The path arrays name a build's own folder for kind 8 (`in` for Japanese, ASIA and IN) and the `in` or the `ch` copy
-for kind `0x25` ([file size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)). The area loader asks
-kind `0x25` only for the `.vpcjp` (`0x0032FDD4`, `0x0032FFD6`), so the `.vpcjp` in `cn`, `de`, `es`, `fr`, `it`, `kr` and
+for kind `0x25` ([file size tables](file-size-tables-fst.md)). The area loader asks
+kind `0x25` only for the `.vpcjp`¹, so the `.vpcjp` in `cn`, `de`, `es`, `fr`, `it`, `kr` and
 `us`, 1,407 files, are named by no path: the image holds the `in` and `ch` `.vpcjp` paths only.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032FDD4`, `0x0032FFD6` |
+
+</details>
 
 ### What no script loads
 
@@ -178,6 +190,8 @@ kind `0x25` only for the `.vpcjp` (`0x0032FDD4`, `0x0032FFD6`), so the `.vpcjp` 
 - 9 voice slots are never loaded: slots 0 and 1 of `evt_t0005` and 0-6 of `naf_a0101`.
 - Scripts load 33 `.mot` slots that hold nothing, and 2 voice slots: slot 1 of `naf_b0100` and slot 3 of
   `nal_a0100`. 59 `.mot` cue words name such a slot and 73 a slot that is never loaded; neither plays.
+
+</details>
 
 ## Loader behaviour
 
@@ -194,7 +208,18 @@ loads, `0x0032FCA0` (from `0x0032FC30`) reads into them:
 
 A table it does not fill, or a file with no size, gets byte 0 cleared. Each request it files sets a pending
 bit in the slot's word `0x022C6E48[g]`: `0x2000` for the `.mot` (completion `0x003302B0`), `0x1000` for the
-`.snd` (`0x00331760`), `0x8000` for the `.vpc` (`0x00331820`) and `0x4000` for the `.vpcjp` (`0x003317C0`).
+`.snd`¹, `0x8000` for the `.vpc`² and `0x4000` for the `.vpcjp`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00331760` |
+| ² | `0x00331820` |
+| ³ | `0x003317C0` |
+
+</details>
 
 ### The slot readers
 
@@ -219,29 +244,70 @@ otherwise.
 A consumer allocates the slot's size and files the area file's kind and index with the slot's offset as
 the read's file offset (`0x003E9EF0` passes it in the request record), so only that payload is read. The
 read queue rounds the offset down to a `0x800` boundary
-([file requests](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md)). A size of 0
+([file requests](file-requests-and-the-read-queue.md)). A size of 0
 loads nothing.
 
 `0x003E9EF0(record, table)` takes the offset from `0x0032F320` with the manager slot in record byte `+5`, the slot in
-byte `+0` and `table` (`0x003E9EF0`-`0x003E9F0A`). For table 0 (`.vpcjp`) or 1 (`.vpc`) it files the kind word `+0xC`
-or `+0xE`, the index word `+0x10`, the buffer `+0x20` or `+0x28` and the size `+0x14` or `+0x18`
-(`0x003E9F0F`-`0x003E9F59`), with completion `0x003E9D30` for table 0 and `0x003E9E10` otherwise (`0x003E9F1F`-`0x003E9F31`).
-It then sets the record's byte `+4` to 2 unless it is 5 (`0x003E9F5E`-`0x003E9F64`).
+byte `+0` and `table`¹. For table 0 (`.vpcjp`) or 1 (`.vpc`) it files the kind word `+0xC`
+or `+0xE`, the index word `+0x10`, the buffer `+0x20` or `+0x28` and the size `+0x14` or `+0x18`², with completion `0x003E9D30` for table 0 and `0x003E9E10` otherwise³.
+It then sets the record's byte `+4` to 2 unless it is 5⁴.
 
-`0x003DF440(g, id, k)` pushes arena 5 after taking the size (`0x003DF45A`-`0x003DF468`) and pops it on every path
-(`0x003DF541`). For a size above 0 it takes the offset (`0x003DF483`), turns `g` and `id` into the kind and index with
-`0x0032F170` (`0x003DF49A`), and allocates with `0x0036A100`, or, when that gives null, with `0x0036A190` in arena 6
-(`0x003DF4A9`-`0x003DF4C3`).
+<details>
+<summary>Where in the code</summary>
 
-It stores the kind, `index + 2`, the block, `id`, the size and the offset in the slot record, and clears `+0x20`
-(`0x003DF4FF`), where `0x003DF2C0` later keeps the sub-file's second part (`0x003DF4E3`-`0x003DF50F`, `0x003DF2EF`).
-While `0x00267310(g)` is non-zero it parks the record in state 1 and reads nothing (`0x003DF513`-`0x003DF526`);
-otherwise `0x003DF550` files the read (`0x003DF52F`).
+| | Code |
+|---|---|
+| ¹ | `0x003E9EF0`-`0x003E9F0A` |
+| ² | `0x003E9F0F`-`0x003E9F59` |
+| ³ | `0x003E9F1F`-`0x003E9F31` |
+| ⁴ | `0x003E9F5E`-`0x003E9F64` |
+
+</details>
+
+`0x003DF440(g, id, k)` pushes arena 5 after taking the size¹ and pops it on every path². For a size above 0 it takes the offset³, turns `g` and `id` into the kind and index with
+`0x0032F170`⁴, and allocates with `0x0036A100`, or, when that gives null, with `0x0036A190` in arena 6⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DF45A`-`0x003DF468` |
+| ² | `0x003DF541` |
+| ³ | `0x003DF483` |
+| ⁴ | `0x003DF49A` |
+| ⁵ | `0x003DF4A9`-`0x003DF4C3` |
+
+</details>
+
+It stores the kind, `index + 2`, the block, `id`, the size and the offset in the slot record, and clears `+0x20`¹, where `0x003DF2C0` later keeps the sub-file's second part².
+While `0x00267310(g)` is non-zero it parks the record in state 1 and reads nothing³;
+otherwise `0x003DF550` files the read⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DF4FF` |
+| ² | `0x003DF4E3`-`0x003DF50F`, `0x003DF2EF` |
+| ³ | `0x003DF513`-`0x003DF526` |
+| ⁴ | `0x003DF52F` |
+
+</details>
 
 The read `0x003DF550` files is `0x0032E620(kind +0x2C, file +0x2E, block +0x18, size +0x30,
 request)`, the request holding the offset `+0x34`, the low dword of the record's
-address and the completion `0x003DF2C0`; the record's state byte `+0x10` then becomes 3
-(`0x003DF556`-`0x003DF598`).
+address and the completion `0x003DF2C0`; the record's state byte `+0x10` then becomes 3¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DF556`-`0x003DF598` |
+
+</details>
 
 ### The script steps that reach a slot
 
@@ -254,44 +320,128 @@ The manager slot is always the running script's, so a script reads only its own 
 | `voiceread` `0x085`, `voiceread_20a` `0x20A` | `0x0034EE40`, `0x0034E8B0` -> `0x003EA0D0` frees slot `k` (`0x003EA0F0`) and loads it from both tables (`0x003EA139`, `0x003EA14B`); a slot the free leaves in state 2, 4 or 5 is not loaded and the call answers 0 (`0x003EA10B`, `0x003EA11B`). Each table load `0x003E9F80` reads the size with `0x0032F360` (`0x003EA009`) and, while `0x00267310(manager)` is non-zero, parks the slot in state 1 without a read (`0x003EA095`-`0x003EA0A1`); otherwise `0x003E9EF0` reads the offset and files the read (`0x003EA0AD`) | 389, 171 |
 
 A `.mot` slot plays through a motion cue word: the top byte less 0x10 is the slot and the low 24 bits the entry.
-`motionplay` `0x0A5` (`0x0034B2C0`) pushes a blend of 0.0 and runs `motionplay_bb` `0x0BB` (`0x0034AB50`), which splits
-the word (`0x0034AB96`-`0x0034AB9C`) and refuses a slot above 15 (`0x0034ABAB`). `puppetmotionplay` `0x41E` and `0x41F` do
-the same in `0x00347B00` (`0x00347B57`-`0x00347B7D`).
+`motionplay` `0x0A5`¹ pushes a blend of 0.0 and runs `motionplay_bb` `0x0BB`², which splits
+the word³ and refuses a slot above 15⁴. `puppetmotionplay` `0x41E` and `0x41F` do
+the same in `0x00347B00`⁵.
 
-Both also refuse while `0x00267310` gives a non-zero byte for the calling actor's manager slot, its byte `+0x15`
-(`0x0034AB8E`-`0x0034ABA9`, `0x00347B70`-`0x00347B7B`), and take `g` from the running script's record `+0x28`
-(`0x0034ABB0`, `0x00347B82`). `0x0034AB50` pops its last argument as an integer and converts it to a float
-(`0x0034AB72`-`0x0034AB7B`), plays its own actor and calls `0x003DD8D0` (`0x0034ABC2`).
+<details>
+<summary>Where in the code</summary>
 
-`0x00347B00` pops a float
-(`0x00267DB0`, `0x00347B30`) and takes its object from `0x003EB720` with a popped index. `0x003EB720` answers the
+| | Code |
+|---|---|
+| ¹ | `0x0034B2C0` |
+| ² | `0x0034AB50` |
+| ³ | `0x0034AB96`-`0x0034AB9C` |
+| ⁴ | `0x0034ABAB` |
+| ⁵ | `0x00347B57`-`0x00347B7D` |
+
+</details>
+
+Both also refuse while `0x00267310` gives a non-zero byte for the calling actor's manager slot, its byte `+0x15`¹, and take `g` from the running script's record `+0x28`². `0x0034AB50` pops its last argument as an integer and converts it to a float³, plays its own actor and calls `0x003DD8D0`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034AB8E`-`0x0034ABA9`, `0x00347B70`-`0x00347B7B` |
+| ² | `0x0034ABB0`, `0x00347B82` |
+| ³ | `0x0034AB72`-`0x0034AB7B` |
+| ⁴ | `0x0034ABC2` |
+
+</details>
+
+`0x00347B00` pops a float¹ and takes its object from `0x003EB720` with a popped index. `0x003EB720` answers the
 address `0x10` bytes into entry `index` of the 32-pointer table `0x02B5EA20`, or 0 for an index above `0x1F`, a null
-entry or an entry whose byte `+0x40` is 0 (`0x003EB720`-`0x003EB745`). `0x00347B00` does nothing when that is 0
-(`0x00347B63`-`0x00347B6E`), and calls `0x003DD980` with it (`0x00347B95`).
+entry or an entry whose byte `+0x40` is 0². `0x00347B00` does nothing when that is 0³, and calls `0x003DD980` with it⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267DB0`, `0x00347B30` |
+| ² | `0x003EB720`-`0x003EB745` |
+| ³ | `0x00347B63`-`0x00347B6E` |
+| ⁴ | `0x00347B95` |
+
+</details>
 
 In `0x00347B00` the slot test at `0x00347B7D`-`0x00347B80` is unsigned, so a cue word whose
 top byte is below `0x10` is refused as a slot above 15 is. The call is
-`0x003DD980(object, g, slot, entry, float)` (`0x00347B82`-`0x00347B95`).
+`0x003DD980(object, g, slot, entry, float)`¹.
 
-`0x003DD8D0` and `0x003DD980` play only a record in state 4 (`0x003DD905`, `0x003DD9B5`), as motion
-`(16g + k) << 16 | entry` (`0x003DD949`-`0x003DD954`). `0x00427320` takes the block back from `0x003DD740` with `g` from
-bits `0xF00000` and `k` from bits `0xF0000` (`0x00427518`-`0x00427528`). In every shipped cue word the entry is below the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00347B82`-`0x00347B95` |
+
+</details>
+
+`0x003DD8D0` and `0x003DD980` play only a record in state 4¹, as motion
+`(16g + k) << 16 | entry`². `0x00427320` takes the block back from `0x003DD740` with `g` from
+bits `0xF00000` and `k` from bits `0xF0000`³. In every shipped cue word the entry is below the
 slot's `@FMC` count.
 
-`0x003DD8D0` hands `0x002E9560(actor)` to `0x002E4F40` (`0x003DD90E`-`0x003DD919`), sets bit `0x1` of actor byte `+0xD`
-and stores `k` at `+0xF5` (`0x003DD91E`-`0x003DD925`), calls `0x002E8170(actor, [r + 0xD] >> 7)` with `r` the record
-`0x00263F40(actor)` returns (`0x003DD92C`-`0x003DD93B`), and posts with `0x002EB080(actor, motion, 0, float)` (`0x003DD958`).
-`0x003DD980`, with the object `o` that `0x003EB720` answered, hands `0x002E95B0(o)` to `0x002E4FA0`
-(`0x003DD9BE`-`0x003DD9C9`), calls `0x002E81D0(o, 0)` (`0x003DD9D3`) and posts with `0x002EB0D0(0, o, motion, 0, float)`
-(`0x003DD9F9`).
+<details>
+<summary>Where in the code</summary>
 
-`0x002E95B0(o)` answers 0.0 for a null `o` or a dword `+0x00` of -1, and 30.0 (`0x008F8D80`)
+| | Code |
+|---|---|
+| ¹ | `0x003DD905`, `0x003DD9B5` |
+| ² | `0x003DD949`-`0x003DD954` |
+| ³ | `0x00427518`-`0x00427528` |
+
+</details>
+
+`0x003DD8D0` hands `0x002E9560(actor)` to `0x002E4F40`¹, sets bit `0x1` of actor byte `+0xD`
+and stores `k` at `+0xF5`², calls `0x002E8170(actor, [r + 0xD] >> 7)` with `r` the record
+`0x00263F40(actor)` returns³, and posts with `0x002EB080(actor, motion, 0, float)`⁴.
+`0x003DD980`, with the object `o` that `0x003EB720` answered, hands `0x002E95B0(o)` to `0x002E4FA0`⁵, calls `0x002E81D0(o, 0)`⁶ and posts with `0x002EB0D0(0, o, motion, 0, float)`⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DD90E`-`0x003DD919` |
+| ² | `0x003DD91E`-`0x003DD925` |
+| ³ | `0x003DD92C`-`0x003DD93B` |
+| ⁴ | `0x003DD958` |
+| ⁵ | `0x003DD9BE`-`0x003DD9C9` |
+| ⁶ | `0x003DD9D3` |
+| ⁷ | `0x003DD9F9` |
+
+</details>
+
+`0x002E95B0(o)` answers 0.0 for a null `o` or a dword `+0x00` of -1, and 30.0¹
 for a word of -1, a null render record or one whose `+0x284` is 0; otherwise it jumps
-to `0x00423280` with the record `[0x022C6F28] + 0x740 × word` (`0x002E95B0`-`0x002E95E9`).
+to `0x00423280` with the record `[0x022C6F28] + 0x740 × word`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008F8D80` |
+| ² | `0x002E95B0`-`0x002E95E9` |
+
+</details>
 
 `0x00423280` answers 30.0 as well when the record's dword `+0xC4` is -1 or `0x0051B9E0`
 finds no entry for it in the object at `+0xDA8` of `0x0020E600(record +0x10)`; otherwise
-it ends in a jump to `0x0041C3A0` with that entry (`0x00423286`-`0x004232BE`).
+it ends in a jump to `0x0041C3A0` with that entry¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00423286`-`0x004232BE` |
+
+</details>
 
 Each folder's scripts make 15,954 motion cue calls (`motionplay` 7,554, `motionplay_bb` 7,881, `puppetmotionplay`
 514 and `puppetmotionplay_41f` 5), 4,943 voice cue calls and 2,877 sound
@@ -302,34 +452,55 @@ verbs with the same arguments. The four directory tables are reached only by the
 ### Slot numbers out of range
 
 - `.mot`, `k` of 16 or more, record `16g + k` free (state 0, `0x003DDA3B`): `0x003DDA20` arms it with no bound and sets
-  `1 << (k & 31)` in mask `g`. The sweep tests bits `0x1` to `0x8000` of each mask (`0x003DD510`, `0x003DD68A`), so it
-  never reads the table for it; the record stays in state 2 and `motionreadsync` (`0x003499C0`) waits while the state
-  is 2 or 3 (`0x003499E5`).
-- `.mot`, `k` of 16 or more, record `16g + k` in use: `0x003DDA20` arms nothing (`0x003DDA40`, `0x003DDA69`), and
-  `motionreadsync` follows the state of that record (`0x003DD770`).
+  `1 << (k & 31)` in mask `g`. The sweep tests bits `0x1` to `0x8000` of each mask¹, so it
+  never reads the table for it; the record stays in state 2 and `motionreadsync`² waits while the state
+  is 2 or 3³.
+- `.mot`, `k` of 16 or more, record `16g + k` in use: `0x003DDA20` arms nothing⁴, and
+  `motionreadsync` follows the state of that record⁵.
 - Record `16g + k` is, for `k` from 16 to 79 - 16g, a slot of a later manager slot; record 80 starts at the masks
   `0x02B58A60`.
-- `.mot`, an empty slot: the sweep finds size 0 and sets state 0 (`0x003DD574`-`0x003DD578`), so `motionreadsync` goes
+- `.mot`, an empty slot: the sweep finds size 0 and sets state 0⁶, so `motionreadsync` goes
   on and the cues play nothing.
-- `.snd`, `k` above 7: `0x003DEC90` releases nothing (`0x003DEC9E`). `0x003DF440` reads the size (`0x003DF45A`) and, when
-  it is above 0 (a `WD` slot), allocates the block, takes record pointer 0 (`0x003DF4C8`-`0x003DF4E1`) and stores to
-  address `0x2C` (`0x003DF4EA`), which faults. A size of 0 returns at `0x003DF46F`. Either way `1 << (k & 31)` is set
-  in `0x02B59C20[g]` (`0x003DF42B`).
+- `.snd`, `k` above 7: `0x003DEC90` releases nothing⁷. `0x003DF440` reads the size⁸ and, when
+  it is above 0 (a `WD` slot), allocates the block, takes record pointer 0⁹ and stores to
+  address `0x2C`¹⁰, which faults. A size of 0 returns at `0x003DF46F`. Either way `1 << (k & 31)` is set
+  in `0x02B59C20[g]`¹¹.
 - `.snd`, `k` of 16 or more: `0x0032F2F0` reads the pair at table + 8 + 8k, past the `0x88` bytes.
-- Voice, an empty slot: `0x003EA0D0` frees the slot first, both table loads return 0 at size 0 (`0x003EA013`), and the
+- Voice, an empty slot: `0x003EA0D0` frees the slot first, both table loads return 0 at size 0¹², and the
   slot stays free (state 0).
-- Voice, `k` of 64 or more: the record `0x02B5D0B0 + k x 0x40` has no bound (`0x003E9F93`-`0x003E9FAA`); record 64 starts
+- Voice, `k` of 64 or more: the record `0x02B5D0B0 + k x 0x40` has no bound¹³; record 64 starts
   at `0x02B5E0B0`, the word `0x003EA015` tests, and `0x0032F360` reads past the `0x208` bytes.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DD510`, `0x003DD68A` |
+| ² | `0x003499C0` |
+| ³ | `0x003499E5` |
+| ⁴ | `0x003DDA40`, `0x003DDA69` |
+| ⁵ | `0x003DD770` |
+| ⁶ | `0x003DD574`-`0x003DD578` |
+| ⁷ | `0x003DEC9E` |
+| ⁸ | `0x003DF45A` |
+| ⁹ | `0x003DF4C8`-`0x003DF4E1` |
+| ¹⁰ | `0x003DF4EA` |
+| ¹¹ | `0x003DF42B` |
+| ¹² | `0x003EA013` |
+| ¹³ | `0x003E9F93`-`0x003E9FAA` |
+
+</details>
 
 ## Modding notes
 
 - Keep byte 0 non-zero; nothing else in the header is checked, and `slotCount` is never read.
 - Put every payload on a `0x800` boundary: the read starts at the offset rounded down.
 - `.mot` and `.snd` directories are read as 16 slots and `.vpc` and `.vpcjp` as 64. Use `.mot` slots 0-15: the sweep
-  never loads a higher one (`0x003DD68A`), so `motionreadsync` waits for good, or follows the record of another area
-  slot that the number reaches (`0x003499E5`, `0x003DD770`).
+  never loads a higher one¹, so `motionreadsync` waits for good, or follows the record of another area
+  slot that the number reaches².
 - Load `.snd` slots 0-7 only: `eventsoundread` of a slot from 8 up that has a size stores through a null record
-  (`0x003DF4EA`), and one of 16 or more reads past the table. Voice slots are 0-63.
+ ³, and one of 16 or more reads past the table. Voice slots are 0-63.
 - Build a package as the shipped ones are: `PKFL`, the slot count, the pairs, zeros to `0x800`, each payload at the
   next `0x800` boundary and zeros to the boundary after the last. All 10,314 shipped packages rebuild byte for byte
   this way.
@@ -337,24 +508,40 @@ verbs with the same arguments. The four directory tables are reached only by the
   rounded up to 0x40, `h = (4 × (count + 1) + 0x3F) & ~0x3F`, each non-empty part behind 0x40 zero bytes.
   `0x0036B970` refuses one whose header and parts do not add up to the block size: it needs
   `h + Σ (size ? size + 0x40 : 0) == [block + 0x18]`, the block 0x40 bytes before the container
-  (`0x0036BA16`-`0x0036BA45`, `0x0036BA48`).
+ ⁴.
 - A `VSP1` set rebuilds byte for byte from its banks with the cue table padded to 0x40, each bank at the next 0x10
   boundary, and a cue without a bank at the next offset with size 0.
 - A cue's bank offset and size must each fit 24 bits and the bank must start with `sabf`: `0x003E9C10` reads
-  `+0x08 & 0xFFFFFF` and `+0x0C & 0xFFFFFF` (`0x003E9C94`, `0x003E9CE2`), compares the magic (`0x003E9CC6`-`0x003E9CD8`), and
-  writes the volume into bits `0x7F000000` of `+0x08` and the pan into `+0x0F` (`0x003E9CF9`-`0x003E9D09`).
+  `+0x08 & 0xFFFFFF` and `+0x0C & 0xFFFFFF`⁵, compares the magic⁶, and
+  writes the volume into bits `0x7F000000` of `+0x08` and the pan into `+0x0F`⁷.
 - Keep the slot and cue order of the `.vpc` and `.vpcjp` the same, and change the `.vpcjp` in `in` (and `ch` for the
   Korean and Chinese builds); the other `.vpcjp` copies are never read.
-- Keep the package's size-table entry: the area loader reads no directory for a negative size (`0x0032FE54`).
+- Keep the package's size-table entry: the area loader reads no directory for a negative size⁸.
 - Keep the `.vpc` and `.vpcjp` of an area in step: the voice language picks which one plays.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DD68A` |
+| ² | `0x003499E5`, `0x003DD770` |
+| ³ | `0x003DF4EA` |
+| ⁴ | `0x0036BA16`-`0x0036BA45`, `0x0036BA48` |
+| ⁵ | `0x003E9C94`, `0x003E9CE2` |
+| ⁶ | `0x003E9CC6`-`0x003E9CD8` |
+| ⁷ | `0x003E9CF9`-`0x003E9D09` |
+| ⁸ | `0x0032FE54` |
+
+</details>
 
 ## Related
 
-- [Resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md): the script motion slots that read `.mot`.
-- [Resource sections](../Game-Files-And-Data-Tables/resource-sections.md): the `@FRP` containers inside `.mot`.
+- [Resource ownership and disposal](resource-ownership-and-disposal.md): the script motion slots that read `.mot`.
+- [Resource sections](resource-sections.md): the `@FRP` containers inside `.mot`.
 - [Voices](../Sound-And-Music/voices.md): the `VSP1` voice sets and the voice verbs.
 - [Sound banks](../Sound-And-Music/sound-banks.md): the sound data in `.snd`.
-- [File size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md): the kinds and records the packages belong to.
+- [File size tables](file-size-tables-fst.md): the kinds and records the packages belong to.
 
 ### Calls to and from other topics
 
@@ -363,43 +550,47 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 21 calls with 8 other topics</summary>
 
-**Sound and music** (explained on [actor record](../Characters-And-Objects/actor-record.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+**Sound and music** (explained on [actor record](../Characters-And-Objects/actor-record.md), [file requests and the read queue](file-requests-and-the-read-queue.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003DEC90` | calls | `0x002DEB40`, `0x002DF050` |
-| `0x003E9C10` | calls | `0x002DF660` |
+| [`0x003DEC90`](../Characters-And-Objects/actor-record.md) (on actor record) | calls | [`0x002DEB40`](../Sound-And-Music/map-sounds.md) (on map sounds)<br>[`0x002DF050`](../Sound-And-Music/map-sounds.md) (on map sounds) |
+| [`0x003E9C10`](../Sound-And-Music/voices.md) (on voices) | calls | [`0x002DF660`](../Sound-And-Music/audio-manager.md) (on audio manager) |
 
 **Controls and input** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00267310` | is called by | `0x002E09A0` |
+| [`0x00267310`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x002E09A0`](../Menus-And-HUD/menus.md) (on menus) |
 
-**Movement and pathfinding**
+**Movement and pathfinding** (explained on [battle units](../Characters-And-Objects/battle-units.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md), [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263F40` | is called by | `0x00300310`, `0x003003F0`, `0x00310920`, `0x00311F70`, `0x0033FFC0`, `0x00345430`, `0x00349680`, `0x0037D000`, `0x003B7B00`, `0x003B7D80`, `0x003B7F40`, `0x00505240` |
-| `0x00267310` | is called by | `0x002E45E0`, `0x002E5750` |
-| `0x002EB0D0` | is called by | `0x002E28E0` |
-
-**Movement and pathfinding** (explained on [battle units](../Characters-And-Objects/battle-units.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md))
-
-**Movement and pathfinding** (explained on [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md))
-
-**Movement and pathfinding** (explained on [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md))
+| [`0x00263F40`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00300310`](../Enemy-Spawning/spawn-record-fields.md) Battle unit: publish locomotion position (on spawn record fields)<br>[`0x003003F0`](../Enemy-Spawning/spawn-record-fields.md) Battle unit: publish locomotion position and facing (on spawn record fields)<br>[`0x00310920`](../Party/party-slots.md) (on party slots)<br>[`0x00311F70`](../Enemy-Spawning/spawn-record-fields.md) (on spawn record fields)<br>[`0x0033FFC0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x00345430`](../Scripts-And-Script-Commands/verb-table.md) (on verb table)<br>[`0x00349680`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x0037D000`](../Party/party-slots.md) (on party slots)<br>[`0x003B7B00`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x003B7D80`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x003B7F40`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x00505240`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
+| [`0x00267310`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x002E45E0`](../Movement-And-Pathfinding/facing-and-steering.md) Movement: update steering toward target (on facing and steering)<br>[`0x002E5750`](../Movement-And-Pathfinding/facing-and-steering.md) (on facing and steering) |
+| [`0x002EB0D0`](../Damage-And-Battle-Formulas/hp-and-ko.md) (on hp and ko) | is called by | [`0x002E28E0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
 
 **Party** (explained on [party control modes](../Engine-Core/party-control-modes.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x00263F40` | is called by | `0x00304180` |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Saving, loading and settings** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E620` | is called by | `0x002EF300` |
+| [`0x00263F40`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00304180`](../Engine-Core/party-control-modes.md) (on party control modes) |
+
+**Saving, loading and settings** (explained on [file requests and the read queue](file-requests-and-the-read-queue.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x002EF300`](../Saving-Loading-And-Settings/save-file-format.md) (on save file format) |
 
 </details>

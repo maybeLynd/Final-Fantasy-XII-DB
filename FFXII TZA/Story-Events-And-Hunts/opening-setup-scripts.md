@@ -32,20 +32,20 @@ steps table described under [Every step](#every-step).
 ### What the scripts do
 
 - `pre_z0000` is event 212, script id `0xD4` (asset paths kind 8, entry 848). No `us` script loads it with `eventread`
-  or `eventread_e8`. The executable preloads it once (`0x0032F430`) and copies that image when it is requested ([EBP
+  or `eventread_e8`. The executable preloads it once¹ and copies that image when it is requested ([EBP
   script container](../EBP-Script-Files/ebp-script-container.md)).
 - The field runtime pass `0x0025D9E0` requests it ([script
   interpreter](../Scripts-And-Script-Commands/script-interpreter.md)). On manager slot 0, when the slot's byte
-  `+0x10` is `0x80` or more (`0x0025DAAA`), `0x00377DB0` returns non-zero (`0x0025DACC`) and bits `0x10` and `0x8` of that
-  byte are clear, it calls `0x0032FC30` for manager 1 with `0xD4` (`0x0025DAE8`, `0x0025DAED`) and sets bit `0x8`
-  (`0x0025DAF2`).
+  `+0x10` is `0x80` or more², `0x00377DB0` returns non-zero³ and bits `0x10` and `0x8` of that
+  byte are clear, it calls `0x0032FC30` for manager 1 with `0xD4`⁴ and sets bit `0x8`
+ ⁵.
 - Bit `0x80` of byte `+0x10` is the slot's field-busy bit, which the bind writes as `0x82` ([actor
   managers](../Characters-And-Objects/actor-managers.md)). `0x00377DB0` returns `[0x02ADD0D8]`, which the map-pack binder
   `0x003775D0` sets to 1 at `0x003776E9`.
-- With bit `0x8` of that byte set, `0x0025D9E0` calls `0x0032F6C0` for manager 1 instead (`0x0025DAFB`), which reports
+- With bit `0x8` of that byte set, `0x0025D9E0` calls `0x0032F6C0` for manager 1 instead⁶, which reports
   loads still pending ([event scenes](../Scripts-And-Script-Commands/event-scenes.md)). When it returns 0 and
-  manager 1's byte `+0x10` has bit `0x1` clear and its byte `+0x13` is 0 (`0x020990A8`, `0x020990AB`), it sets bit
-  `0x10` (`0x0025DB1E`) and the request is done. The bind writes `0x82` again, so the request is made on each field
+  manager 1's byte `+0x10` has bit `0x1` clear and its byte `+0x13` is 0⁷, it sets bit
+  `0x10`⁸ and the request is done. The bind writes `0x82` again, so the request is made on each field
   load.
 - `制御.init` sets the conversation stage `g_com_会話段階変数` from 0 to 9 by story counter range (up to 85, 343, 1180, 1520,
   1970, 3000, 4100, 5100, 6100 and above), `global_flag[3]` from 0 to 10 (0 below 27, 1 up to 290, then one more at
@@ -65,6 +65,22 @@ steps table described under [Every step](#every-step).
   (fields 114 to 118) ([zone asset list](../World-Areas-And-Travel/zone-asset-list.md)). None of these fields has a
   zone-script entry ([asset paths](../Game-Files-And-Data-Tables/asset-paths.md)), and no `mapjump` of the `us`
   scripts names one of them.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032F430` |
+| ² | `0x0025DAAA` |
+| ³ | `0x0025DACC` |
+| ⁴ | `0x0025DAE8`, `0x0025DAED` |
+| ⁵ | `0x0025DAF2` |
+| ⁶ | `0x0025DAFB` |
+| ⁷ | `0x020990A8`, `0x020990AB` |
+| ⁸ | `0x0025DB1E` |
+
+</details>
 
 ### How a call is read
 
@@ -93,27 +109,32 @@ assignment to it is a write and every comparison a test ([story counter values](
 The four message verbs all end in `mes` (`0x461`, `0x00348DF0`), which looks the text id up in the issuing script's
 section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 
-1. `amese` (`0x0034A420`) pushes 0, 0, 0 and -1; `amest` (`0x0034A090`) pushes 0; `ames` (`0x00349BF0`) pushes 1. Each then
-   jumps to `0x00349800`, the body of `ames_1fe`.
-2. `0x00349800` pops two values (`0x00349827`, `0x00349831`), pushes 0 and 0 (`0x0034983D`, `0x00349847`) and then pushes the
-   two values back in their original order (`0x00349851`, `0x0034985B`), so the zeros lie beneath them; it jumps to
-   `0x00348DF0` (`0x00349884`).
-3. `0x00348DF0` pops eight values. The seventh, the script's second argument, is passed with the current field context
-   to `0x00264D60` (`0x00348E6A`-`0x00348E74`), the section 2 lookup, which keeps the low 24 bits of the id.
-4. `0x00348DF0` reads the entry's flag through `0x002673A0`, bit `0x1` of the entry's upper half (`0x00348E85`), and
-   opens the window through `0x002E16B0` only when that flag is clear (`0x00348EE0`-`0x00348EFF`). With the flag set it
-   still makes its six slot calls (`0x00348E91`-`0x00348ECA`) and fills the call record (`0x00348ED7`-`0x00348EDC`) but
-   opens no window ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `amese` pushes 0, 0, 0 and -1; `amest` pushes 0; `ames` pushes 1. Each then jumps to `0x00349800`, the body of `ames_1fe`. | `0x0034A420`<br>`0x0034A090`<br>`0x00349BF0` |
+| 2 | `0x00349800` pops two values, pushes 0 and 0 and then pushes the two values back in their original order, so the zeros lie beneath them; it jumps to `0x00348DF0`. | `0x00349827`, `0x00349831`<br>`0x0034983D`, `0x00349847`<br>`0x00349851`, `0x0034985B`<br>`0x00349884` |
+| 3 | `0x00348DF0` pops eight values. The seventh, the script's second argument, is passed with the current field context to `0x00264D60`, the section 2 lookup, which keeps the low 24 bits of the id. | `0x00348E6A`-`0x00348E74` |
+| 4 | `0x00348DF0` reads the entry's flag through `0x002673A0`, bit `0x1` of the entry's upper half, and opens the window through `0x002E16B0` only when that flag is clear. With the flag set it still makes its six slot calls and fills the call record but opens no window ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)). | `0x00348E85`<br>`0x00348EE0`-`0x00348EFF`<br>`0x00348E91`-`0x00348ECA`<br>`0x00348ED7`-`0x00348EDC` |
 
 ### Speakers, places and scenes
 
 - The speaker is the second name of each pair the actor's `setnpcname` calls name in `us` `npcdic.bin`. The
   message window opener `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
   second name while that flag is set.
-- A field id is named by its map name, entry `id` of `us` `planmapname.bin` (`0x00377B60`), and its region, the
-  entry after the map names that `0x003778B0` selects through the field's group in `map_ref.bin` (`0x00264F90`).
+- A field id is named by its map name, entry `id` of `us` `planmapname.bin`¹, and its region, the
+  entry after the map names that `0x003778B0` selects through the field's group in `map_ref.bin`².
 - An event id `n` names the scene script at index `4n` of the event file table, which `0x0032FCA0` loads for scene
   managers 1 to 3.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00377B60` |
+| ² | `0x00264F90` |
+
+</details>
 
 ### Every step
 
@@ -236,222 +257,184 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 170 calls with 33 other topics</summary>
 
-**Characters and objects** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
+**Characters and objects** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [script requests](../Scripts-And-Script-Commands/script-requests.md), [field runtime](../Characters-And-Objects/field-runtime.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [frame update order](../Engine-Core/frame-update-order.md), [actor record](../Characters-And-Objects/actor-record.md), [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md), [npc names](../Characters-And-Objects/npc-names.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [force fight mode](../Engine-Core/force-fight-mode.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003775D0` | calls | `0x0037AA90` |
-
-**Characters and objects**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0025D9E0` | calls | `0x0025B250`, `0x0025B600`, `0x0025B820`, `0x0025C170`, `0x00263660`, `0x00269860`, `0x003588B0`, `0x00358940`, `0x003DB280` |
-| `0x00263990` | is called by | `0x0025C230`, `0x0025C830`, `0x00268D10`, `0x00272CB0`, `0x00272CE0` |
-| `0x0032F6C0` | is called by | `0x0025D9E0` |
-| `0x0032FC30` | calls | `0x0032FCA0` |
-| `0x0032FC30` | is called by | `0x0025D9E0` |
-| `0x0032FCA0` | calls | `0x002628B0`, `0x0032ED80`, `0x00330310`, `0x003306E0` |
-
-**Characters and objects**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00355830` | calls | `0x0025D5E0`, `0x003588B0` |
-| `0x003775D0` | calls | `0x003DE920` |
-| `0x00377DB0` | is called by | `0x0025D9E0`, `0x0037B4D0` |
-
-**Characters and objects** (explained on [script requests](../Scripts-And-Script-Commands/script-requests.md), [field runtime](../Characters-And-Objects/field-runtime.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [frame update order](../Engine-Core/frame-update-order.md))
-
-**Characters and objects** (explained on [actor record](../Characters-And-Objects/actor-record.md), [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md), [npc names](../Characters-And-Objects/npc-names.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
-
-**Characters and objects** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
-
-**Characters and objects** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
+| [`0x003775D0`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) | calls | [`0x0037AA90`](../EBP-Script-Files/ebp-lighting-lgt2.md) (on ebp lighting lgt2) |
+| [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass | calls | [`0x0025B250`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x0025B600`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x0025B820`](../Characters-And-Objects/field-runtime.md) (on field runtime)<br>[`0x0025C170`](../Engine-Core/time-stop-and-freeze.md) (on time stop and freeze)<br>[`0x00263660`](../Characters-And-Objects/actor-managers.md) (on actor managers)<br>[`0x00269860`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x003588B0`](../Menus-And-HUD/map-screens.md) Actor handle: resolve registry entry by packed id (on map screens)<br>[`0x00358940`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor manager: get record by ordinal (on party during scenes)<br>[`0x003DB280`](../Characters-And-Objects/actor-record.md) (on actor record) |
+| [`0x00263990`](../Menus-And-HUD/enemy-names-on-screen.md) (on enemy names on screen) | is called by | [`0x0025C230`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x0025C830`](../Menus-And-HUD/text-npc-names.md) (on text npc names)<br>[`0x00268D10`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x00272CB0`](../Menus-And-HUD/enemy-names-on-screen.md) (on enemy names on screen)<br>[`0x00272CE0`](../Characters-And-Objects/npc-names.md) (on npc names) |
+| [`0x0032F6C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass |
+| [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | calls | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) |
+| [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | is called by | [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass |
+| [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) | calls | [`0x002628B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x0032ED80`](../EBP-Script-Files/ebp-camera-shake.md) (on ebp camera shake)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
+| [`0x00355830`](../World-Areas-And-Travel/treasure-chests.md) (on treasure chests) | calls | [`0x0025D5E0`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x003588B0`](../Menus-And-HUD/map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
+| [`0x003775D0`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) | calls | [`0x003DE920`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
+| [`0x00377DB0`](opening-setup-scripts.md) | is called by | [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass<br>[`0x0037B4D0`](../Characters-And-Objects/actor-record-fields.md) (on actor record fields) |
 
 **Sound and music** (explained on [frame update order](../Engine-Core/frame-update-order.md), [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0025D9E0` | calls | `0x00261F90` |
-| `0x003775D0` | calls | `0x003635E0` |
+| [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass | calls | [`0x00261F90`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships) |
+| [`0x003775D0`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) | calls | [`0x003635E0`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) |
 
 **Battle actions** (explained on [action phases](../Battle-Actions/action-phases.md), [battle units](../Characters-And-Objects/battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032F6C0` | is called by | `0x00306B10` |
-| `0x0032FC30` | is called by | `0x00306BD0` |
+| [`0x0032F6C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x00306B10`](../Battle-Actions/quickenings-and-summons.md) (on quickenings and summons) |
+| [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | is called by | [`0x00306BD0`](summons-scenes.md) Battle action: initialize global special sequence mode (on summons scenes) |
 
 **Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00354D00` | calls | `0x00229EA0` |
+| [`0x00354D00`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump) | calls | [`0x00229EA0`](../Graphics/effect-drawing.md) (on effect drawing) |
 
 **Gameplay** (explained on [field runtime](../Characters-And-Objects/field-runtime.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0025D9E0` | calls | `0x00234150` |
+| [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass | calls | [`0x00234150`](../Party/party-slots.md) (on party slots) |
 
 **Movement and pathfinding** (explained on [frame update order](../Engine-Core/frame-update-order.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x0025D9E0` | calls | `0x0025DF00` |
-| `0x00355830` | calls | `0x0026D6D0` |
-| `0x00377DB0` | is called by | `0x002E4A40` |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Party**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0025D9E0` | calls | `0x003590D0` |
-| `0x0034D4E0` | calls | `0x00263750`, `0x0026DC40`, `0x003271D0`, `0x00327850`, `0x00328DB0`, `0x00359C00`, `0x0035A050`, `0x003601B0` |
-| `0x00352190` | calls | `0x00263750`, `0x003170E0`, `0x00322350` |
-| `0x00352AF0` | calls | `0x00322350`, `0x003288F0` |
-| `0x00355830` | calls | `0x003590D0` |
+| [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass | calls | [`0x0025DF00`](../Characters-And-Objects/field-runtime.md) World actor: update runtime and script execution state (on field runtime) |
+| [`0x00355830`](../World-Areas-And-Travel/treasure-chests.md) (on treasure chests) | calls | [`0x0026D6D0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
+| [`0x00377DB0`](opening-setup-scripts.md) | is called by | [`0x002E4A40`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
 
 **Party** (explained on [frame update order](../Engine-Core/frame-update-order.md), [debug menu](../Engine-Core/debug-menu.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party control modes](../Engine-Core/party-control-modes.md))
 
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass | calls | [`0x003590D0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) |
+| [`0x0034D4E0`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs) | calls | [`0x00263750`](../Graphics/model-asset-list.md) (on model asset list)<br>[`0x0026DC40`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x003271D0`](../Scripts-And-Script-Commands/party-verbs.md) Party focus: get preferred definition selector (on party verbs)<br>[`0x00327850`](../Party/party-leader.md) Party focus: set preferred definition selector and refresh (on party leader)<br>[`0x00328DB0`](../Party/party-members.md) Party configuration: reconcile runtime roster first three from requested selectors (on party members)<br>[`0x00359C00`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x0035A050`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x003601B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
+| [`0x00352190`](mt-bur-omisace-scripts.md) (on mt bur omisace scripts) | calls | [`0x00263750`](../Graphics/model-asset-list.md) (on model asset list)<br>[`0x003170E0`](../Party/party-members.md) Party configuration: add selector07 to25 to available primary index (on party members)<br>[`0x00322350`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs) |
+| [`0x00352AF0`](mt-bur-omisace-scripts.md) (on mt bur omisace scripts) | calls | [`0x00322350`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x003288F0`](../Party/party-members.md) Party configuration: remove selector07 to25 (on party members) |
+| [`0x00355830`](../World-Areas-And-Travel/treasure-chests.md) (on treasure chests) | calls | [`0x003590D0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) |
+
 **Graphics** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [frame update order](../Engine-Core/frame-update-order.md), [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x00263990` | is called by | `0x002B0280` |
-| `0x00377B60` | is called by | `0x002B7B80`, `0x002BAF80` |
-| `0x00377DB0` | is called by | `0x0025A2C0` |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Game files and data tables**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032F430` | calls | `0x0032E400`, `0x0032E520`, `0x0032E620` |
-| `0x0032FCA0` | calls | `0x002DF980`, `0x0032E400`, `0x0032E620` |
-| `0x00351880` | calls | `0x001D6A70` |
-| `0x003529E0` | calls | `0x001D6A70` |
+| [`0x00263990`](../Menus-And-HUD/enemy-names-on-screen.md) (on enemy names on screen) | is called by | [`0x002B0280`](../Menus-And-HUD/text-drawing.md) (on text drawing) |
+| [`0x00377B60`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x002B7B80`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x002BAF80`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x00377DB0`](opening-setup-scripts.md) | is called by | [`0x0025A2C0`](../Graphics/scripted-camera.md) (on scripted camera) |
 
 **Game files and data tables** (explained on [startup constants](../Engine-Core/startup-constants.md), [debug menu](../Engine-Core/debug-menu.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
 
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0032F430`](opening-setup-scenes.md) (on opening setup scenes) | calls | [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x0032E520`](../Graphics/effect-file-loading.md) (on effect file loading)<br>[`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) |
+| [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) | calls | [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) |
+| [`0x00351880`](mt-bur-omisace-scenes.md) (on mt bur omisace scenes) | calls | [`0x001D6A70`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
+| [`0x003529E0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | calls | [`0x001D6A70`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
+
 **Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [frame update order](../Engine-Core/frame-update-order.md), [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0025D9E0` | calls | `0x002EF2B0`, `0x00583920` |
-| `0x00264F90` | is called by | `0x00583D60` |
+| [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields)<br>[`0x00583920`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list) | is called by | [`0x00583D60`](../Saving-Loading-And-Settings/save-file-format.md) Save image: finalize header and checksum (on save file format) |
 
-**Scripts and script commands**
+**Scripts and script commands** (explained on [archades scenes](archades-scenes.md), [archades scripts](archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md), [npc names](../Characters-And-Objects/npc-names.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [ebp script container](../EBP-Script-Files/ebp-script-container.md), [debug menu](../Engine-Core/debug-menu.md), [force fight mode](../Engine-Core/force-fight-mode.md), [native commands](../Scripts-And-Script-Commands/native-commands.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00264D60` | is called by | `0x00348DF0`, `0x0034ADA0`, `0x00352A50`, `0x00352EC0`, `0x003534F0`, `0x003545B0`, `0x00354F20`, `0x003555F0`, `0x00356B70`, `0x0050EAB0` |
-| `0x00264F90` | is called by | `0x00357450`, `0x0050CDE0` |
-| `0x002673A0` | is called by | `0x00348DF0`, `0x0034ADA0`, `0x003545B0`, `0x0050EAB0` |
-| `0x002E16B0` | is called by | `0x0033F950`, `0x00348DF0`, `0x0034ADA0`, `0x0050EAB0` |
-| `0x0032F6C0` | is called by | `0x003541B0` |
-
-**Scripts and script commands**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0032FC30` | is called by | `0x003522C0`, `0x00353080`, `0x00353590`, `0x0050D0C0` |
-| `0x003449A0` | calls | `0x00267E10`, `0x0026B4E0` |
-| `0x00345080` | calls | `0x00267E10`, `0x00267F90`, `0x0026B4E0` |
-| `0x003459C0` | calls | `0x00267E10`, `0x0026B4E0` |
-| `0x00348DF0` | calls | `0x00267E10` |
-| `0x00348DF0` | is called by | `0x00349800` |
-| `0x00349800` | calls | `0x00267E10`, `0x00267F90`, `0x00348DF0` |
-
-**Scripts and script commands**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00349800` | is called by | `0x00349BF0`, `0x0034A090`, `0x0034A420`, `0x0034A7A0` |
-| `0x00349BF0` | calls | `0x00267F90`, `0x00349800` |
-| `0x0034A090` | calls | `0x00267F90`, `0x00349800` |
-| `0x0034A420` | calls | `0x00267F90`, `0x00349800` |
-| `0x0034A6D0` | calls | `0x00267E10` |
-| `0x0034ADA0` | calls | `0x00267E10` |
-| `0x0034ADA0` | is called by | `0x0034B760`, `0x0034BB10` |
-| `0x0034B760` | calls | `0x00267F90`, `0x0034ADA0` |
-| `0x0034B9A0` | calls | `0x00267E10` |
-
-**Scripts and script commands**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0034BB10` | calls | `0x00267F90`, `0x0034ADA0` |
-| `0x0034C030` | calls | `0x00267E10` |
-| `0x0034D4E0` | calls | `0x00267E10` |
-| `0x0034DD90` | calls | `0x00267E10` |
-| `0x0034DFA0` | calls | `0x00267E10` |
-| `0x0034E0B0` | calls | `0x00267E10`, `0x0026B4E0` |
-| `0x0034E320` | calls | `0x00267E10` |
-| `0x0034E980` | calls | `0x00267E10`, `0x0026B4E0` |
-| `0x0034EE20` | calls | `0x00267E10` |
-| `0x00351880` | calls | `0x00267E10` |
-| `0x00352190` | calls | `0x00267E10` |
-
-**Scripts and script commands**
-
-| Function | | Functions |
-|---|---|---|
-| `0x003529E0` | calls | `0x00267E10`, `0x00267F90` |
-| `0x00352AF0` | calls | `0x00267E10` |
-| `0x00354D00` | calls | `0x00267E10` |
-| `0x00355830` | calls | `0x00267E10` |
-| `0x00377DB0` | is called by | `0x0050D540` |
-
-**Scripts and script commands** (explained on [archades scenes](archades-scenes.md), [archades scripts](archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md), [npc names](../Characters-And-Objects/npc-names.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
-
-**Scripts and script commands** (explained on [ebp script container](../EBP-Script-Files/ebp-script-container.md), [debug menu](../Engine-Core/debug-menu.md), [force fight mode](../Engine-Core/force-fight-mode.md), [native commands](../Scripts-And-Script-Commands/native-commands.md))
+| [`0x00264D60`](../Menus-And-HUD/aerodrome-airship-dialogue.md) (on aerodrome airship dialogue) | is called by | [`0x00348DF0`](archades-scripts.md) (on archades scripts)<br>[`0x0034ADA0`](nalbina-town-scripts.md) (on nalbina town scripts)<br>[`0x00352A50`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x00352EC0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x003534F0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x003545B0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x00354F20`](../Engine-Core/identifier-spaces.md) (on identifier spaces)<br>[`0x003555F0`](../Engine-Core/identifier-spaces.md) (on identifier spaces)<br>[`0x00356B70`](../Characters-And-Objects/npc-names.md) (on npc names)<br>[`0x0050EAB0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections) |
+| [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list) | is called by | [`0x00357450`](archades-scripts.md) (on archades scripts)<br>[`0x0050CDE0`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) |
+| [`0x002673A0`](archades-scripts.md) (on archades scripts) | is called by | [`0x00348DF0`](archades-scripts.md) (on archades scripts)<br>[`0x0034ADA0`](nalbina-town-scripts.md) (on nalbina town scripts)<br>[`0x003545B0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x0050EAB0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections) |
+| [`0x002E16B0`](../Menus-And-HUD/message-windows.md) (on message windows) | is called by | [`0x0033F950`](../Menus-And-HUD/message-windows.md) (on message windows)<br>[`0x00348DF0`](archades-scripts.md) (on archades scripts)<br>[`0x0034ADA0`](nalbina-town-scripts.md) (on nalbina town scripts)<br>[`0x0050EAB0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections) |
+| [`0x0032F6C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x003541B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
+| [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | is called by | [`0x003522C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00353080`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00353590`](tutorials-scenes.md) (on tutorials scenes)<br>[`0x0050D0C0`](../Engine-Core/debug-menu.md) (on debug menu) |
+| [`0x003449A0`](cerobi-steppe-scripts.md) (on cerobi steppe scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x0026B4E0`](../Scripts-And-Script-Commands/verb-dispatch.md) (on verb dispatch) |
+| [`0x00345080`](victory-pose-scripts.md) (on victory pose scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x00267F90`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x0026B4E0`](../Scripts-And-Script-Commands/verb-dispatch.md) (on verb dispatch) |
+| [`0x003459C0`](mt-bur-omisace-scripts.md) (on mt bur omisace scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x0026B4E0`](../Scripts-And-Script-Commands/verb-dispatch.md) (on verb dispatch) |
+| [`0x00348DF0`](archades-scripts.md) (on archades scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00348DF0`](archades-scripts.md) (on archades scripts) | is called by | [`0x00349800`](archades-scripts.md) (on archades scripts) |
+| [`0x00349800`](archades-scripts.md) (on archades scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x00267F90`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x00348DF0`](archades-scripts.md) (on archades scripts) |
+| [`0x00349800`](archades-scripts.md) (on archades scripts) | is called by | [`0x00349BF0`](archades-scripts.md) (on archades scripts)<br>[`0x0034A090`](ending-message-scripts.md) (on ending message scripts)<br>[`0x0034A420`](archades-scripts.md) (on archades scripts)<br>[`0x0034A7A0`](archades-scripts.md) (on archades scripts) |
+| [`0x00349BF0`](archades-scripts.md) (on archades scripts) | calls | [`0x00267F90`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x00349800`](archades-scripts.md) (on archades scripts) |
+| [`0x0034A090`](ending-message-scripts.md) (on ending message scripts) | calls | [`0x00267F90`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x00349800`](archades-scripts.md) (on archades scripts) |
+| [`0x0034A420`](archades-scripts.md) (on archades scripts) | calls | [`0x00267F90`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x00349800`](archades-scripts.md) (on archades scripts) |
+| [`0x0034A6D0`](cerobi-steppe-scripts.md) (on cerobi steppe scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x0034ADA0`](nalbina-town-scripts.md) (on nalbina town scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x0034ADA0`](nalbina-town-scripts.md) (on nalbina town scripts) | is called by | [`0x0034B760`](nalbina-town-scripts.md) (on nalbina town scripts)<br>[`0x0034BB10`](nalbina-town-scripts.md) (on nalbina town scripts) |
+| [`0x0034B760`](nalbina-town-scripts.md) (on nalbina town scripts) | calls | [`0x00267F90`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x0034ADA0`](nalbina-town-scripts.md) (on nalbina town scripts) |
+| [`0x0034B9A0`](archades-scripts.md) (on archades scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x0034BB10`](nalbina-town-scripts.md) (on nalbina town scripts) | calls | [`0x00267F90`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x0034ADA0`](nalbina-town-scripts.md) (on nalbina town scripts) |
+| [`0x0034C030`](cerobi-steppe-scripts.md) (on cerobi steppe scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x0034D4E0`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x0034DD90`](archades-scripts.md) (on archades scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x0034DFA0`](bhujerba-scripts.md) (on bhujerba scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x0034E0B0`](archades-scripts.md) (on archades scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x0026B4E0`](../Scripts-And-Script-Commands/verb-dispatch.md) (on verb dispatch) |
+| [`0x0034E320`](bhujerba-scripts.md) (on bhujerba scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x0034E980`](bhujerba-scripts.md) (on bhujerba scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x0026B4E0`](../Scripts-And-Script-Commands/verb-dispatch.md) (on verb dispatch) |
+| [`0x0034EE20`](archades-scripts.md) (on archades scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00351880`](mt-bur-omisace-scenes.md) (on mt bur omisace scenes) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00352190`](mt-bur-omisace-scripts.md) (on mt bur omisace scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x003529E0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x00267F90`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00352AF0`](mt-bur-omisace-scripts.md) (on mt bur omisace scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00354D00`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00355830`](../World-Areas-And-Travel/treasure-chests.md) (on treasure chests) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00377DB0`](opening-setup-scripts.md) | is called by | [`0x0050D540`](../Graphics/effect-file-list.md) (on effect file list) |
 
 **Menus and HUD** (explained on [augments](../Damage-And-Battle-Formulas/augments.md), [zone asset list](../World-Areas-And-Travel/zone-asset-list.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263990` | is called by | `0x002AC5F0` |
-| `0x00264F90` | is called by | `0x0029C530` |
-| `0x003778B0` | is called by | `0x0029C530` |
-| `0x00377B60` | is called by | `0x0029C530` |
+| [`0x00263990`](../Menus-And-HUD/enemy-names-on-screen.md) (on enemy names on screen) | is called by | [`0x002AC5F0`](../Menus-And-HUD/text-drawing.md) (on text drawing) |
+| [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list) | is called by | [`0x0029C530`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) |
+| [`0x003778B0`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) | is called by | [`0x0029C530`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) |
+| [`0x00377B60`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x0029C530`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) |
 
-**World, areas and travel** (explained on [actor record fields](../Characters-And-Objects/actor-record-fields.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+**World, areas and travel** (explained on [actor record fields](../Characters-And-Objects/actor-record-fields.md), [force fight mode](../Engine-Core/force-fight-mode.md), [field runtime](../Characters-And-Objects/field-runtime.md), [script variables](../Scripts-And-Script-Commands/script-variables.md), [party control modes](../Engine-Core/party-control-modes.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [debug menu](../Engine-Core/debug-menu.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [debug logging](../Engine-Core/debug-logging.md), [frame update order](../Engine-Core/frame-update-order.md), [changing areas](../World-Areas-And-Travel/changing-areas.md), [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md), [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md), [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md), [graphics settings](../Engine-Core/graphics-settings.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0025D9E0` | calls | `0x0025E400` |
-| `0x0032F430` | is called by | `0x00266D10` |
-
-**World, areas and travel**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0025D9E0` | calls | `0x002677B0`, `0x003148D0`, `0x003148F0`, `0x00314DA0`, `0x0032FC30`, `0x00377DB0`, `0x003EAA70` |
-| `0x0025D9E0` | is called by | `0x00314020` |
-| `0x00264ED0` | is called by | `0x003EA6E0` |
-| `0x00264F90` | is called by | `0x003145E0`, `0x003778B0`, `0x003C0450`, `0x0057FB00` |
-| `0x0032F430` | calls | `0x003EA6B0` |
-| `0x0032FC30` | calls | `0x0025D4D0`, `0x003319D0`, `0x003EA6E0` |
-| `0x0032FC30` | is called by | `0x00314020` |
-
-**World, areas and travel**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0032FCA0` | is called by | `0x0032FC30` |
-| `0x003775D0` | calls | `0x00378120` |
-| `0x003775D0` | is called by | `0x00378BC0` |
-| `0x003778B0` | calls | `0x00264F90` |
-| `0x003778B0` | is called by | `0x0057FB00` |
-| `0x00377B60` | is called by | `0x0057FB00` |
-
-**World, areas and travel** (explained on [field runtime](../Characters-And-Objects/field-runtime.md), [script variables](../Scripts-And-Script-Commands/script-variables.md), [party control modes](../Engine-Core/party-control-modes.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
-
-**World, areas and travel** (explained on [debug menu](../Engine-Core/debug-menu.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [debug logging](../Engine-Core/debug-logging.md))
-
-**World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md), [changing areas](../World-Areas-And-Travel/changing-areas.md), [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md))
-
-**World, areas and travel** (explained on [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md), [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md), [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md), [graphics settings](../Engine-Core/graphics-settings.md))
+| [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass | calls | [`0x0025E400`](../Characters-And-Objects/actor-record-fields.md) (on actor record fields) |
+| [`0x0032F430`](opening-setup-scenes.md) (on opening setup scenes) | is called by | [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass | calls | [`0x002677B0`](../Characters-And-Objects/field-runtime.md) (on field runtime)<br>[`0x003148D0`](../World-Areas-And-Travel/save-and-teleport-crystals.md) World transition: get options (on save and teleport crystals)<br>[`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests)<br>[`0x00314DA0`](../Saving-Loading-And-Settings/save-data-fields.md) World transition: set options (on save data fields)<br>[`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes)<br>[`0x00377DB0`](opening-setup-scripts.md)<br>[`0x003EAA70`](../Sound-And-Music/sound-banks.md) (on sound banks) |
+| [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass | is called by | [`0x00314020`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
+| [`0x00264ED0`](../Game-Files-And-Data-Tables/ard-area-battle-data.md) Map ref: get area ard field resource index (on ard area battle data) | is called by | [`0x003EA6E0`](opening-setup-scripts.md) |
+| [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list) | is called by | [`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump)<br>[`0x003778B0`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list)<br>[`0x003C0450`](../Game-Files-And-Data-Tables/menu-map-files.md) (on menu map files)<br>[`0x0057FB00`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) |
+| [`0x0032F430`](opening-setup-scenes.md) (on opening setup scenes) | calls | [`0x003EA6B0`](../Game-Files-And-Data-Tables/ard-area-battle-data.md) (on ard area battle data) |
+| [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | calls | [`0x0025D4D0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x003319D0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x003EA6E0`](opening-setup-scripts.md) |
+| [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | is called by | [`0x00314020`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
+| [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) | is called by | [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) |
+| [`0x003775D0`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) | calls | [`0x00378120`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) |
+| [`0x003775D0`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) | is called by | [`0x00378BC0`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) |
+| [`0x003778B0`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) | calls | [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list) |
+| [`0x003778B0`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) | is called by | [`0x0057FB00`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) |
+| [`0x00377B60`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x0057FB00`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) |
 
 </details>

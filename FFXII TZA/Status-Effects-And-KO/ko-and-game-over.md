@@ -23,33 +23,53 @@ character among them is put away and no main character in reserve is standing, i
 ### The defeat cleanup
 
 Adding KO, Stone or X-Zone runs `0x00300FC0(unit, 0)` ([Gaining and losing statuses](status-changes.md)), and
-tearing a unit down runs `0x00300FC0(unit, 1)` (`0x00300E59`). It does (`0x00300FC0`-`0x00301132`):
+tearing a unit down runs `0x00300FC0(unit, 1)`¹. It does²:
 
-1. **A summoned Esper** (a party record of type `0x1B`-`0x27`) with argument 0 has its action cancelled
-   (`0x003105D0`) and is dismissed (`0x003138D0(0)`), and nothing else happens (`0x00300FD3`-`0x00301005`).
-2. **Anyone else** loses its target relations (`0x00310780`), has unit flag bits `0x2`, `0x80000`, `0x100000` and
-   `0x200000000` and bit `0x400000000` cleared, stops aiming at another actor (`0x002ED180` with its handle `+8`,
-   which runs `0x00512EE0` on the aim block `+0x650` of its render record when that record is in use, `0x00301015`),
-   and stops moving (`0x0030100D`-`0x00301043`).
-3. Then `0x003219D0(type, 0, null, 1)` sets every living enemy's
-   grudge against its party type to 1 where it was above 0 (`0x00301048`-`0x0030105E`;
-   [Enmity](../Enemy-AI-And-Gambits/enmity.md)).
-4. Then the KO-time wipe tests run, below. On a wipe it sets battle flag `0x400` or `0x200`, runs the survivors'
-   pass `0x003001D0`, arms the request and recomputes party control with `0x0023B040`
-   ([Party leader](../Party/party-leader.md)) (`0x00301063`-`0x003010C0`).
-5. Otherwise a fallen summoner sets battle flag `0x800` (`0x002373C0`, `0x003010C5`-`0x003010CE`), and a fallen
-   controlled character sets `0x100` and arms request `0x17` (`0x003010D8`-`0x003010F1`).
-6. With argument 0, in summon mode, when the fallen unit is the summoner, the Esper is dismissed and party
-   control recomputed (`0x003010F6`-`0x00301123`).
+<details>
+<summary>Where in the code</summary>
 
-The survivors' pass collects the up to four active members still standing and calls `0x002ECEC0` on each
-(`0x003001F8`-`0x00300263`).
+| | Code |
+|---|---|
+| ¹ | `0x00300E59` |
+| ² | `0x00300FC0`-`0x00301132` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | **A summoned Esper** (a party record of type `0x1B`-`0x27`) with argument 0 has its action cancelled and is dismissed (`0x003138D0(0)`), and nothing else happens. | `0x003105D0`<br>`0x00300FD3`-`0x00301005` |
+| 2 | **Anyone else** loses its target relations, has unit flag bits `0x2`, `0x80000`, `0x100000` and `0x200000000` and bit `0x400000000` cleared, stops aiming at another actor (`0x002ED180` with its handle `+8`, which runs `0x00512EE0` on the aim block `+0x650` of its render record when that record is in use, `0x00301015`), and stops moving. | `0x00310780`<br>`0x0030100D`-`0x00301043` |
+| 3 | Then `0x003219D0(type, 0, null, 1)` sets every living enemy's grudge against its party type to 1 where it was above 0 (`0x00301048`-`0x0030105E`; [Enmity](../Enemy-AI-And-Gambits/enmity.md)). |   |
+| 4 | Then the KO-time wipe tests run, below. On a wipe it sets battle flag `0x400` or `0x200`, runs the survivors' pass `0x003001D0`, arms the request and recomputes party control with `0x0023B040` ([Party leader](../Party/party-leader.md)). | `0x00301063`-`0x003010C0` |
+| 5 | Otherwise a fallen summoner sets battle flag `0x800`, and a fallen controlled character sets `0x100` and arms request `0x17`. | `0x002373C0`, `0x003010C5`-`0x003010CE`<br>`0x003010D8`-`0x003010F1` |
+| 6 | With argument 0, in summon mode, when the fallen unit is the summoner, the Esper is dismissed and party control recomputed. | `0x003010F6`-`0x00301123` |
+
+The survivors' pass collects the up to four active members still standing and calls `0x002ECEC0` on each¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003001F8`-`0x00300263` |
+
+</details>
 
 ### The four wipe tests
 
-Each test walks the four active slots (`0x0031B810`) and, for two of them, the nine roster records (`0x00320AB0`).
+Each test walks the four active slots¹ and, for two of them, the nine roster records².
 A unit is down when it has KO, Stone or X-Zone and the field's bit `0x8000` is clear. A main character is a party
 record of type 0-6; a guest is a party record of type 7-25. Each test returns 0 when no slot or record exists.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B810` |
+| ² | `0x00320AB0` |
+
+</details>
 
 | Test | Returns 1 when | Used |
 |---|---|---|
@@ -63,7 +83,16 @@ fallen character as gone only once its body has been torn down.
 
 ### Arming and posting the request
 
-`0x0035C8A0(kind)` arms a request without posting it (`0x0035C8A0`-`0x0035C8DC`):
+`0x0035C8A0(kind)` arms a request without posting it¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035C8A0`-`0x0035C8DC` |
+
+</details>
 
 | Kind | Flag in `0x022C83E8` | Input lock |
 |---|---|---|
@@ -71,120 +100,307 @@ fallen character as gone only once its body has been torn down.
 | `0x18`, the active party down | `0x01` | `0x00254940(1)` |
 | `0x17`, the controlled character down | `0x10` | `0x002548F0(1)` |
 
-`0x0035C8A0` is called by the defeat cleanup `0x00300FC0` with `0x0B` (`0x00301080`), `0x18` (`0x003010B1`) and `0x17`
-(`0x003010F1`), and by the field frame's `0x18` and `0x17` latches (`0x00234736`, `0x002347D9`).
+`0x0035C8A0` is called by the defeat cleanup `0x00300FC0` with `0x0B`¹, `0x18`² and `0x17`³, and by the field frame's `0x18` and `0x17` latches⁴.
 
-While Game Over is armed (bit `0x2` of `0x022C83E8`, read by `0x0035C740`) or a mode request is stored in `0x0215F1A0`
-(`0x002E12D0`), or `0x00228380` answers non-zero (`0x00253CC3`), the input arbiter `0x00253C70` returns before reading
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00301080` |
+| ² | `0x003010B1` |
+| ³ | `0x003010F1` |
+| ⁴ | `0x00234736`, `0x002347D9` |
+
+</details>
+
+While Game Over is armed (bit `0x2` of `0x022C83E8`, read by `0x0035C740`) or a mode request is stored in `0x0215F1A0`¹, or `0x00228380` answers non-zero², the input arbiter `0x00253C70` returns before reading
 any field button (`0x00253C97`-`0x00253CCC`,
 [Controls](../Controls-And-Input/controls.md)).
 
-Every field frame, `0x00234590` posts one (`0x002345EF`-`0x0023461F`). Unless a request is pending (`0x0035C700`: flag
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E12D0` |
+| ² | `0x00253CC3` |
+
+</details>
+
+Every field frame, `0x00234590` posts one¹. Unless a request is pending (`0x0035C700`: flag
 `0x100`, mode `0x02092730` already `0x0B` or `0x18`, or `0x002E12D0`) or a special-sequence scene is running
 (`0x00306BB0`, [Field frame](../Engine-Core/frame-update-order.md)), it
 posts `0x0B` when `0x002371B0` is 1, else `0x18` when `0x00237140` is 1, through `0x0035C7A0`, which calls
-`0x0035C7B0(kind, 1)` (`0x0023461F`, `0x0035C7A5`):
+`0x0035C7B0(kind, 1)`²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002345EF`-`0x0023461F` |
+| ² | `0x0023461F`, `0x0035C7A5` |
+
+</details>
 
 - **`0x0B`**: flag `0x100`; `0x00227370` halts the actors by starting time-stop request 22 (`0x00226BE0(0x16, ...)`,
   [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)), unless bit `0x400000` of `0x01FD46D4` is set; `0x002E1B10(0x0B, 0)`
   stores the mode request at `0x0215F1A0`-`0x0215F1A8`, unless `0x0215F1A1` refuses it; then the arming above
-  (`0x0035C806`-`0x0035C870`).
-- **`0x18`**: `0x00254B40` opens the mode-`0x18` screen, then the arming (`0x0035C7FD`, `0x0035C832`-`0x0035C844`).
+ ¹.
+- **`0x18`**: `0x00254B40` opens the mode-`0x18` screen, then the arming².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035C806`-`0x0035C870` |
+| ² | `0x0035C7FD`, `0x0035C832`-`0x0035C844` |
+
+</details>
 
 `0x0035C7B0(0x0B)` has one other caller, for a wipe that lands outside the field frame: `0x0027EFA0`, run from the
-main loop through `0x00254E50` (`0x0022AC73`, `0x00254E61`). It posts Game Over when `0x002805D0` allows it: Game Over is
+main loop through `0x00254E50`¹. It posts Game Over when `0x002805D0` allows it: Game Over is
 armed (`0x022C83E8` bit `0x2`, `0x0035C740`), the screen object's `+0xD4` is 0, and the mode `0x02092730` is 6, 10,
-`0x0F`, `0x11`, `0x12` or `0x13`, or 2 with its `+0xC4` state outside `0x40` to `0x42` (`0x00280630`-`0x0028063C`).
+`0x0F`, `0x11`, `0x12` or `0x13`, or 2 with its `+0xC4` state outside `0x40` to `0x42`².
 For mode 2 that state is the screen parameter: 0 for Triangle, `0x21` for Select or L3.
 
-It then also runs `0x00252B40(0x0B)`. It calls `0x0035C7B0(0x0B, 0)` (`0x0027EFC8`), so `0x0035C7B0` skips its
-`0x002E1B10` write (`0x0035C815`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022AC73`, `0x00254E61` |
+| ² | `0x00280630`-`0x0028063C` |
+
+</details>
+
+It then also runs `0x00252B40(0x0B)`. It calls `0x0035C7B0(0x0B, 0)`¹, so `0x0035C7B0` skips its
+`0x002E1B10` write².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027EFC8` |
+| ² | `0x0035C815` |
+
+</details>
 
 `0x0035C7A0(0x0B)` also has a caller outside the field frame: `0x00237D60`, the begin of the script verb `callgameover`
-(`0x04D8`, through `0x0033F640`), which calls it (`0x00237D70`) unless `0x0035C700` answers non-zero, and returns 1.
+(`0x04D8`, through `0x0033F640`), which calls it¹ unless `0x0035C700` answers non-zero, and returns 1.
 
-Later in the same frame the field frame keeps three latches current (`0x0023471C`-`0x0023483F`): `0x200` from
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00237D70` |
+
+</details>
+
+Later in the same frame the field frame keeps three latches current¹: `0x200` from
 `0x00237260`, arming `0x18` when it rises; `0x100` while the party leader is missing or down, arming `0x17` when it
 rises and disarming it with `0x0035C8E0` when it falls; and `0x800` from the summoner test. The falling edge of
-`0x200` also calls `0x0035C8E0`, with `0x18`, which that function ignores, so the `0x18` arming stays
-(`0x0023475B`).
+`0x200` also calls `0x0035C8E0`, with `0x18`, which that function ignores, so the `0x18` arming stays².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023471C`-`0x0023483F` |
+| ² | `0x0023475B` |
+
+</details>
 
 `0x0035C8E0` acts only on `0x17`: it clears bit `0x10` of `0x022C83E8` and jumps to `0x002548F0(0)`; any other kind, `0x0B`
-among them, returns at once (`0x0035C8E0`-`0x0035C8F8`). `0x0035D8D0` clears bits `0x1` and `0x10` after calling
-`0x00254850(1)` when bit `0x2` is set (`0x0035D958`-`0x0035D96F`).
+among them, returns at once¹. `0x0035D8D0` clears bits `0x1` and `0x10` after calling
+`0x00254850(1)` when bit `0x2` is set².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035C8E0`-`0x0035C8F8` |
+| ² | `0x0035D958`-`0x0035D96F` |
+
+</details>
 
 The `0x18` arming, bit `0x1` of `0x022C83E8`, is re-decided when the Party Menu closes: while it is set, `0x00280B70`
-stores `0x00237140()` in it and hands that answer to `0x00254940` through `0x0035C940` (`0x00280BF7`-`0x00280C07`,
-`0x0035C940`-`0x0035C955`), so the close leaves it armed only when every member of the four who is not a guest is torn
+stores `0x00237140()` in it and hands that answer to `0x00254940` through `0x0035C940`¹, so the close leaves it armed only when every member of the four who is not a guest is torn
 down by then.
 
-Otherwise, while the `0x17` arming, bit `0x10`, is set (`0x00280C0E`-`0x00280C15`), `0x00280B70` answers 1 when any of the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00280BF7`-`0x00280C07`, `0x0035C940`-`0x0035C955` |
+
+</details>
+
+Otherwise, while the `0x17` arming, bit `0x10`, is set¹, `0x00280B70` answers 1 when any of the
 nine records at `[0x0209AC30] + 0xAC8` whose word `+0x60` is not negative and equals the low byte of `0x003271D0()`, and
-whose byte `+0x00` has bit `0x2` clear, has a bit of `0x80000003` in its dword `+0x44`, and 0 otherwise
-(`0x00280C17`-`0x00280C5C`); `0x0035C920` stores that answer in bit `0x10` and jumps to `0x002548F0` with it
-(`0x0035C920`-`0x0035C938`).
+whose byte `+0x00` has bit `0x2` clear, has a bit of `0x80000003` in its dword `+0x44`, and 0 otherwise²; `0x0035C920` stores that answer in bit `0x10` and jumps to `0x002548F0` with it³.
 
-Within an area nothing clears the wipe's battle flag or the Game Over arm. Battle flag `0x400` is set only at the KO
-(`0x0030106C`) and cleared only by the boot `0x002368D0`, which stores 0 (`0x002369FB`), and the area init `0x002342F0`,
-which, while the up flag `0x02089300` is non-zero (`0x002342F4`-`0x002342FB`), keeps only bits `0x2`-`0x10` and `0xC000` and
-up and then sets `0x10` (`0x0023432D`-`0x00234343`).
+<details>
+<summary>Where in the code</summary>
 
-So after a wipe that sets battle flag `0x400`, the battle-wide mask of `0x0030B770` has bit `0x4`
-(`0x0030B7B4`-`0x0030B7BE`), and `0x0030B9B0` refuses every change it gates, for any target and source
+| | Code |
+|---|---|
+| ¹ | `0x00280C0E`-`0x00280C15` |
+| ² | `0x00280C17`-`0x00280C5C` |
+| ³ | `0x0035C920`-`0x0035C938` |
+
+</details>
+
+Within an area nothing clears the wipe's battle flag or the Game Over arm. Battle flag `0x400` is set only at the KO¹ and cleared only by the boot `0x002368D0`, which stores 0², and the area init `0x002342F0`,
+which, while the up flag `0x02089300` is non-zero³, keeps only bits `0x2`-`0x10` and `0xC000` and
+up and then sets `0x10`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030106C` |
+| ² | `0x002369FB` |
+| ³ | `0x002342F4`-`0x002342FB` |
+| ⁴ | `0x0023432D`-`0x00234343` |
+
+</details>
+
+So after a wipe that sets battle flag `0x400`, the battle-wide mask of `0x0030B770` has bit `0x4`¹, and `0x0030B9B0` refuses every change it gates, for any target and source
 (`0x0030B9E2`-`0x0030B9F6`; [status changes](status-changes.md)), until the area init `0x002342F0`, with the up flag set, or
 the boot `0x002368D0` clears it. Its six direct calls are at `0x0030060F`, `0x00301E61`, `0x00307695`, `0x0030E42C`, `0x00311360`
 and `0x00319257`, and each branches away on that answer.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030B7B4`-`0x0030B7BE` |
+
+</details>
+
 The Game Over arm, bit `0x2` of `0x022C83E8`, is cleared only at boot, by `0x0035C560`, which zeroes the `0x23C8` bytes
-from `0x022C8060` and then sets bit `0x20` (`0x0035C566`-`0x0035C578`), and by the field teardown `0x0035BB70`: its
+from `0x022C8060` and then sets bit `0x20`¹, and by the field teardown `0x0035BB70`: its
 `and 0xFFFC02EC` at `0x0035BB8A` clears bits `0x1`, `0x2`, `0x10`, `0x100` and `0x400`-`0x20000`, so the three arms and
-the posted bit `0x100` together. `0x0035C560` is called from `0x00253970` (`0x002539C5`), `0x0035BB70` from `0x00253A30`
-(`0x00253A3E`) and from `0x003C5E50` (`0x003C5EA7`).
+the posted bit `0x100` together. `0x0035C560` is called from `0x00253970`², `0x0035BB70` from `0x00253A30`³ and from `0x003C5E50`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035C566`-`0x0035C578` |
+| ² | `0x002539C5` |
+| ³ | `0x00253A3E` |
+| ⁴ | `0x003C5EA7` |
+
+</details>
 
 ### The two signals from the fall
 
 A fallen body is torn down only after two unit flag bits are set:
 
-1. **Bit `0x200000000`, the fall has played.** `0x003250F0` sets it when a unit with flag bit `0x4` gets animation event `0x2007`,
-   `0x2008`, `0x200C` or `0x200E` (`0x00325136`-`0x0032519F`). Those are the death clips the HP write and the Stone
-   and X-Zone arms start ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)).
-2. **Bit `0x400000000`, hide the body.** `0x00319F50` sets it on actor timeline code 4 for a unit with KO, Stone or X-Zone
-   without the field's bit `0x8000`, and for a unit with no stats record (`0x0031A124`-`0x0031A127`), together
-   with flag bit `0x400`, and on code 6 for any unit, then refreshes visibility
-   (`0x0031A100`-`0x0031A159`, `0x0031A198`-`0x0031A1A4`). Code 4 is ignored while the unit is carrying out Revive
-   (`0xAE`) on itself.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | **Bit `0x200000000`, the fall has played.** `0x003250F0` sets it when a unit with flag bit `0x4` gets animation event `0x2007`, `0x2008`, `0x200C` or `0x200E`. Those are the death clips the HP write and the Stone and X-Zone arms start ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)). | `0x00325136`-`0x0032519F` |
+| 2 | **Bit `0x400000000`, hide the body.** `0x00319F50` sets it on actor timeline code 4 for a unit with KO, Stone or X-Zone without the field's bit `0x8000`, and for a unit with no stats record, together with flag bit `0x400`, and on code 6 for any unit, then refreshes visibility. Code 4 is ignored while the unit is carrying out Revive (`0xAE`) on itself. | `0x0031A124`-`0x0031A127`<br>`0x0031A100`-`0x0031A159`, `0x0031A198`-`0x0031A1A4` |
 
 Bit `0x200000000` has a second setter: on actor timeline code 2 `0x00319F50` sets the unit's HP to 0
-(`0x00300520` with flags `0x14`) and then sets the bit (`0x0031A089`-`0x0031A0AA`), unless the unit is carrying
+(`0x00300520` with flags `0x14`) and then sets the bit¹, unless the unit is carrying
 out Revive on itself. A unit with no stats record leaves the arm with nothing done, and so does a unit
 that is already down, one with a bit of `0x80000003` in stats `+0x64` or `+0x3C`, while `0x00313F60`
-answers 0 (`0x0031A042`-`0x0031A066`).
+answers 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031A089`-`0x0031A0AA` |
+| ² | `0x0031A042`-`0x0031A066` |
+
+</details>
 
 `0x00313F60` jumps to `0x00377C20`, which answers bit `0x8000` of the 16-bit word at
-`[0x02ADD100] + 8 + 3 × 0x003148F0()`, or 0 with no table or an index at or past its count
-(`0x00377C24`-`0x00377C5F`). `0x003148F0` takes no argument: it answers the field id, the dword `+0x1044` of the
-save's persistent payload `0x002EF2B0()` gives, read as 0 when negative (`0x003148F0`-`0x0031490A`). The word
+`[0x02ADD100] + 8 + 3 × 0x003148F0()`, or 0 with no table or an index at or past its count¹. `0x003148F0` takes no argument: it answers the field id, the dword `+0x1044` of the
+save's persistent payload `0x002EF2B0()` gives, read as 0 when negative². The word
 therefore belongs to the area: a down unit in an area whose word has that bit goes on like a unit that
 is not down.
 
-`0x00319F50` does nothing for a unit with flag bit `0x2`, answering 0, or while `0x00306BB0()` reports `0x022C2160` at 5 or
-6, answering 1 (`0x00319FA3`-`0x00319FB3`). Code 7 sets flag bit `0x200` and refreshes visibility with `0x00312700(unit)`
-for a unit whose byte `+4` has bit `0x40` (`0x0031A1AB`-`0x0031A1BA`).
+<details>
+<summary>Where in the code</summary>
 
-Timeline codes reach `0x00319F50` through `0x002EB740` from two senders: the battle effect program `0x003B8670`
-(`0x003B887D`, `0x003B8988`, `0x003B8A1C`, `0x003B9208`), and `0x002FC010`, which sends each queued value of a finished entry
-of the list `0x02EC3D60` with timeline code 0 (`0x002FC085`, `0x002FC103`) and then timeline code 1 with the value 0
-(`0x002FC12D`, `0x002FC158`).
+| | Code |
+|---|---|
+| ¹ | `0x00377C24`-`0x00377C5F` |
+| ² | `0x003148F0`-`0x0031490A` |
+
+</details>
+
+`0x00319F50` does nothing for a unit with flag bit `0x2`, answering 0, or while `0x00306BB0()` reports `0x022C2160` at 5 or
+6, answering 1¹. Code 7 sets flag bit `0x200` and refreshes visibility with `0x00312700(unit)`
+for a unit whose byte `+4` has bit `0x40`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00319FA3`-`0x00319FB3` |
+| ² | `0x0031A1AB`-`0x0031A1BA` |
+
+</details>
+
+Timeline codes reach `0x00319F50` through `0x002EB740` from two senders: the battle effect program `0x003B8670`¹, and `0x002FC010`, which sends each queued value of a finished entry
+of the list `0x02EC3D60` with timeline code 0² and then timeline code 1 with the value 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B887D`, `0x003B8988`, `0x003B8A1C`, `0x003B9208` |
+| ² | `0x002FC085`, `0x002FC103` |
+| ³ | `0x002FC12D`, `0x002FC158` |
+
+</details>
 
 The fall also starts an effect. On action timeline events 2 and 6, a unit with KO, Stone or X-Zone starts battle
 effect `0x78` on itself and keeps its handle in `+0x74`, unless it is an enemy whose class row byte
-`+0x18 & 0x0E` is 4 (`0x003255DB`-`0x00325649`). Event 9 sets bit `0x80000`, the drop of a hovering body
-(`0x003256FB`).
+`+0x18 & 0x0E` is 4¹. Event 9 sets bit `0x80000`, the drop of a hovering body².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003255DB`-`0x00325649` |
+| ² | `0x003256FB` |
+
+</details>
 
 ### Hiding the body
 
-`0x003125E0(unit)` builds the hide mask, and the model is shown only while it is 0 (`0x003125E0`-`0x003126DD`,
-`0x00312700`). For an active unit, one with flag bit `0x10` (`0x003125F1`):
+`0x003125E0(unit)` builds the hide mask, and the model is shown only while it is 0¹. For an active unit, one with flag bit `0x10`²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003125E0`-`0x003126DD`, `0x00312700` |
+| ² | `0x003125F1` |
+
+</details>
 
 | Mask bit | Condition |
 |---|---|
@@ -193,18 +409,48 @@ effect `0x78` on itself and keeps its handle in `+0x74`, unless it is an enemy w
 | `0x02`, `0x04`, `0x08` | flag bits `0x800`, `0x400`, `0x200` |
 | `0x40`, `0x80` | an enemy whose spawn record has bit `0x10` or bit `0x8` |
 
-A unit without flag bit `0x10` gets mask 1 (`0x00312642`), except mask 0 when it has flag bit `0x8` and a stats
-record and is not down (`0x003125F5`-`0x0031261D`), or at party control level 2, a chocobo ride (`0x0030D9A0`, [Party
+A unit without flag bit `0x10` gets mask 1¹, except mask 0 when it has flag bit `0x8` and a stats
+record and is not down², or at party control level 2, a chocobo ride (`0x0030D9A0`, [Party
 control modes](../Engine-Core/party-control-modes.md)), when it is the rider, the unit `0x0031B8C0` gives
-for the rider's seat `0x00327200` (`0x00312623`-`0x0031263C`).
+for the rider's seat `0x00327200`³.
 
-The unit frame `0x00233F70` refreshes it on every path past its entry tests (`0x00234034`, `0x00234090`, `0x00234112`,
-`0x00234133`); when it returns at those tests (no unit, `0x002671C0()` 0, no navigation dataset, flag bit `0x8` clear or
-flag bit `0x10000` set) it does not (`0x00233F8B`-`0x00233FBD`, `0x00234138`). The switch is on or off; there is
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312642` |
+| ² | `0x003125F5`-`0x0031261D` |
+| ³ | `0x00312623`-`0x0031263C` |
+
+</details>
+
+The unit frame `0x00233F70` refreshes it on every path past its entry tests¹; when it returns at those tests (no unit, `0x002671C0()` 0, no navigation dataset, flag bit `0x8` clear or
+flag bit `0x10000` set) it does not². The switch is on or off; there is
 no fade.
 
-`0x003126E0(unit)` returns 1 while the mask is 0 (`0x003126E4`-`0x003126ED`). `0x00328530` asks it for the
-target and builds its target line through `0x00290320` only when it returns 1 (`0x00328555`-`0x003285A0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234034`, `0x00234090`, `0x00234112`, `0x00234133` |
+| ² | `0x00233F8B`-`0x00233FBD`, `0x00234138` |
+
+</details>
+
+`0x003126E0(unit)` returns 1 while the mask is 0¹. `0x00328530` asks it for the
+target and builds its target line through `0x00290320` only when it returns 1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003126E4`-`0x003126ED` |
+| ² | `0x00328555`-`0x003285A0` |
+
+</details>
 
 ### The fallen unit's frame
 
@@ -212,80 +458,152 @@ target and builds its target line through `0x00290320` only when it returns 1 (`
 `+0x698` record's `+0x64 | +0x3C` against `0x80000003`) when the field's bit `0x8000` is clear (`0x00313F60`,
 `0x00233FD8`-`0x00233FEC`; with that bit set it runs the active frame from `0x00233FEE`, [frame update
 order](../Engine-Core/frame-update-order.md)), and for a unit with flag bit `0x10` that has no `+0x698`
-record (`0x00233FD6`), at `0x00234039`-`0x00234112` and `0x00234130`-`0x00234133`:
+record¹, at `0x00234039`-`0x00234112` and `0x00234130`-`0x00234133`:
 
-- a unit with flag bit `0x2` set runs only `0x00312700` (`0x00234039`-`0x0023403C`, `0x00234130`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233FD6` |
+
+</details>
+
+- a unit with flag bit `0x2` set runs only `0x00312700`¹;
 - an enemy whose class row byte `+0x18 & 0x0E` is 4 only keeps its position up to date: with flag bit `0x2`
   clear, a `+0x698` record whose byte `+5` is 1 and that class row (`[+0xE68]`, `0x00234042`-`0x00234065`) it runs
   `0x00236300`, `0x0033A240(unit + 0x80)`, `0x0023A070` and `0x00312700`;
 - anyone else sets battle flag 2 (unless a group completion is pending), stops moving, runs the drop below, and is
   torn down with `0x00300E40(unit, 0)` once bits `0x200000000` and `0x400000000` are both set and the presentation
-  test on its slot `0x0030CA50` allows it: `0x00322310` non-zero, or `0x003228E0` zero (`0x002340BC`-`0x00234100`); it ends
-  with `0x00312700` either way (`0x00234112`, `0x00234133`).
+  test on its slot `0x0030CA50` allows it: `0x00322310` non-zero, or `0x003228E0` zero²; it ends
+  with `0x00312700` either way³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234039`-`0x0023403C`, `0x00234130` |
+| ² | `0x002340BC`-`0x00234100` |
+| ³ | `0x00234112`, `0x00234133` |
+
+</details>
 
 The drop `0x003057D0` runs while the unit is down, has bit `0x80000` and not bit `0x100000`, and its actor passes `0x00264490`. Each
 frame it lowers the body's height offset by an amount that grows by 0.02 per frame (`+0x19C`), stops at 0, and
-then sets bit `0x100000` (`0x003057E5`-`0x00305896`).
+then sets bit `0x100000`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003057E5`-`0x00305896` |
+
+</details>
 
 ### Tearing down
 
-`0x00300E40(unit, keep)` runs the defeat cleanup with argument 1 (`0x00300FC0`), cancels the action (`0x003105D0`) and
+`0x00300E40(unit, keep)` runs the defeat cleanup with argument 1¹, cancels the action² and
 zeroes `+0x6F8` (8 bytes), `+0x748` and `+0x770`. It clears the issued command (flag bit `0x4000`) unless that
-bit is set with word `+0xBA0` holding `0x113` or `0x95` (`0x00300E7B`-`0x00300EAA`), clears bit `0x400` of
+bit is set with word `+0xBA0` holding `0x113` or `0x95`³, clears bit `0x400` of
 `+0x788` and bit `0x2` of `+0x6B0`, zeroes `+0x750` (8 bytes) and `+0x74C`,
-sets bit `0x20000000000000` and removes the unit's effect `+0x74` (`0x00300E54`-`0x00300ED5`). Then:
+sets bit `0x20000000000000` and removes the unit's effect `+0x74`⁴. Then:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00300FC0` |
+| ² | `0x003105D0` |
+| ³ | `0x00300E7B`-`0x00300EAA` |
+| ⁴ | `0x00300E54`-`0x00300ED5` |
+
+</details>
 
 - **A party member** (a stats record `+0x698` of kind 0) keeps its unit. With no attackers left (`+0xEA0` 0) it
   also runs `0x00322050` and `0x00301310`
   and clears bit `0x4000000`. Then bits `0x400000000`, `0x80000`, `0x100000` and `0x200000000` are cleared and
-  **bit `0x2` is set**, the effect handle `+0x74` becomes -1 (`0x00300F2E`), and visibility is refreshed,
-  so the hide mask's `0x10` keeps the model hidden (`0x00300EEE`-`0x00300F45`).
+  **bit `0x2` is set**, the effect handle `+0x74` becomes -1¹, and visibility is refreshed,
+  so the hide mask's `0x10` keeps the model hidden².
 - **Anyone else** (a null stats record or another kind, `0x00300EE4`, `0x00300EEC`) first has its spawn record
-  cleared by `0x00237080` when `keep` is 0 (`0x00300F5D`-`0x00300F68`). It loses its definition
-  (`0x0023A570(unit, 0xFFFF)`) and has flag bit `0x200000` cleared (`0x00300F7A`).
-- It also loses its actor (`0x0025AB30`), and `0x002697E0`, which is `0x00269860(actor, 0)`, starts one of the
+  cleared by `0x00237080` when `keep` is 0³. It loses its definition
+  (`0x0023A570(unit, 0xFFFF)`) and has flag bit `0x200000` cleared⁴.
+- It also loses its actor⁵, and `0x002697E0`, which is `0x00269860(actor, 0)`, starts one of the
   actor's script functions through `0x003DBB60(actor, 2, entry, 0, 0)` when bit `0x4000` of its `+0x1C` is set
-  (`0x00269910`-`0x002699AB`) and then runs `0x00269640`, unless a spawn group holds it: `0x00236760()` is non-zero (bit
+ ⁶ and then runs `0x00269640`, unless a spawn group holds it: `0x00236760()` is non-zero (bit
   `0x1000` of the party block's flag dword `[0x02EBF190]+4`) and `+0xE99` has bit `0x2`, group mode 2
-  (`0x00300F80`-`0x00300FA4`).
+ ⁷.
 
-Both arms zero dword `+0x30` before returning (`0x00300F4A`, `0x00300FA9`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00300F2E` |
+| ² | `0x00300EEE`-`0x00300F45` |
+| ³ | `0x00300F5D`-`0x00300F68` |
+| ⁴ | `0x00300F7A` |
+| ⁵ | `0x0025AB30` |
+| ⁶ | `0x00269910`-`0x002699AB` |
+| ⁷ | `0x00300F80`-`0x00300FA4` |
+
+</details>
+
+Both arms zero dword `+0x30` before returning¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00300F4A`, `0x00300FA9` |
+
+</details>
 
 ### Standing up again
 
 Removing the last of KO, Stone and X-Zone runs `0x00301140(unit)` (`0x0030E811`;
-[Gaining and losing statuses](status-changes.md)). It reads the stats record `+0x698` with no null test
-(`0x00301146`-`0x00301150`), so a unit without one faults there, and with any of the three still set it returns at
-once (`0x0030115C`). With none of the three left (`0x00301146`-`0x003012F6`):
+[Gaining and losing statuses](status-changes.md)). It reads the stats record `+0x698` with no null test¹, so a unit without one faults there, and with any of the three still set it returns at
+once². With none of the three left³:
 
-1. A body that is hidden, and not already placed (flag bit `0x4000000`), is placed with `0x00311F70` (`0x0030116B`-`0x00301185`).
-   The hidden test is `0x002E9600(actor)` returning 0; it returns bit `0x8` of byte `+0x10` of `[actor+0xC0]`
-   for an actor whose byte `+3` has `0x60` in its top three bits, and 0 otherwise (`0x002E9600`-`0x002E9623`).
-2. The actor is refreshed from the definition (`0x00238BF0`) and the action cancelled (`0x003105D0`); `+0x6F8`,
-   `+0x748` and `+0x770` are zeroed, and the issued command (flag bit `0x4000`) is cleared unless it holds
-   `0x113` or `0x95` (`0x0030118A`-`0x003011DD`).
-   - Then bit `0x400` of `+0x788` and bit `0x2` of `+0x6B0` are cleared, `+0x750` and `+0x74C` zeroed, and
-     flag bit `0x20000000000000` set (`0x003011E0`-`0x0030120B`).
-3. Revive effect `0x7B` starts on the unit, `0x002EACD0` with the unit id `+8`, 1, the address of `+8` and
-   `0x7B` (`0x003011F5`-`0x00301216`), then `0x002E8060(actor)` runs (`0x0030121F`), and the re-plan set is installed
-   ([Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)).
-   - With the install, flag bits `0x800000`, `0x20000000000`, `0x40000000000` and `0x1000000000000` are cleared
-     and `+0xDCC` zeroed, and the weapon is sheathed at once with `0x002ECF10(actor, 0, 0)` (`0x00301224`-`0x00301272`).
-4. The stand-up clip, event `0x200D`, plays (`0x0030127A`-`0x00301282`); it clears bit `0x1000000` when it lands
-   (`0x0032517C`).
-5. Unit flag bits `0x400000000`, `0x700`, `0x2`, `0x180000` and `0x200000000` are cleared, bits `0x1000000` and
-   `0x40000000` set, the old effect removed, and visibility refreshed, so the model is shown.
-   - The old effect is `+0x74`, removed by `0x00319E30` and then set to -1 (`0x0030129E`-`0x003012B3`).
-   - `+0xDD0` = `0x0032A150()` - 5 x trunc(`[0x01DFE0B8]` x -30.0), 150 ticks ahead while `[0x01DFE0B8]` holds its
-     image value 1.0 (`0x003012BA`-`0x003012DB`).
-   - Visibility is `0x0026DC60(actor, 0x003125E0(unit) = 0)` (`0x003012E1`-`0x003012F1`), and last `+0x30` = 0
-     (`0x003012F6`).
+<details>
+<summary>Where in the code</summary>
 
-`0x00311F70` asks `0x00336E40` for a point and moves and turns the actor to it (`0x00311FCE`-`0x003120D5`). Without a
+| | Code |
+|---|---|
+| ¹ | `0x00301146`-`0x00301150` |
+| ² | `0x0030115C` |
+| ³ | `0x00301146`-`0x003012F6` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A body that is hidden, and not already placed (flag bit `0x4000000`), is placed with `0x00311F70`. The hidden test is `0x002E9600(actor)` returning 0; it returns bit `0x8` of byte `+0x10` of `[actor+0xC0]` for an actor whose byte `+3` has `0x60` in its top three bits, and 0 otherwise. | `0x0030116B`-`0x00301185`<br>`0x002E9600`-`0x002E9623` |
+| 2 | The actor is refreshed from the definition and the action cancelled; `+0x6F8`, `+0x748` and `+0x770` are zeroed, and the issued command (flag bit `0x4000`) is cleared unless it holds `0x113` or `0x95`.<br>• Then bit `0x400` of `+0x788` and bit `0x2` of `+0x6B0` are cleared, `+0x750` and `+0x74C` zeroed, and flag bit `0x20000000000000` set. | `0x00238BF0`<br>`0x003105D0`<br>`0x0030118A`-`0x003011DD`<br>`0x003011E0`-`0x0030120B` |
+| 3 | Revive effect `0x7B` starts on the unit, `0x002EACD0` with the unit id `+8`, 1, the address of `+8` and `0x7B`, then `0x002E8060(actor)` runs, and the re-plan set is installed ([Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)).<br>• With the install, flag bits `0x800000`, `0x20000000000`, `0x40000000000` and `0x1000000000000` are cleared and `+0xDCC` zeroed, and the weapon is sheathed at once with `0x002ECF10(actor, 0, 0)`. | `0x003011F5`-`0x00301216`<br>`0x0030121F`<br>`0x00301224`-`0x00301272` |
+| 4 | The stand-up clip, event `0x200D`, plays; it clears bit `0x1000000` when it lands. | `0x0030127A`-`0x00301282`<br>`0x0032517C` |
+| 5 | Unit flag bits `0x400000000`, `0x700`, `0x2`, `0x180000` and `0x200000000` are cleared, bits `0x1000000` and `0x40000000` set, the old effect removed, and visibility refreshed, so the model is shown.<br>• The old effect is `+0x74`, removed by `0x00319E30` and then set to -1.<br>• `+0xDD0` = `0x0032A150()` - 5 x trunc(`[0x01DFE0B8]` x -30.0), 150 ticks ahead while `[0x01DFE0B8]` holds its image value 1.0.<br>• Visibility is `0x0026DC60(actor, 0x003125E0(unit) = 0)`, and last `+0x30` = 0. | `0x0030129E`-`0x003012B3`<br>`0x003012BA`-`0x003012DB`<br>`0x003012E1`-`0x003012F1`<br>`0x003012F6` |
+
+`0x00311F70` asks `0x00336E40` for a point and moves and turns the actor to it¹. Without a
 reference unit, `0x00336E40` returns the unit's own position when `0x022C7D10` is 0; otherwise the anchor
-`0x022C7DD0` for the party leader, and a point near the anchor for anyone else (`0x00336F79`-`0x00336F98`). In summon
-mode `0x00311F70` asks for mode 1 instead (`0x00311FAB`-`0x00311FC9`). `0x0033CA00`
-records the anchor from the actor of the character under control (`0x0033CA15`-`0x0033CAF2`).
+`0x022C7DD0` for the party leader, and a point near the anchor for anyone else². In summon
+mode `0x00311F70` asks for mode 1 instead³. `0x0033CA00`
+records the anchor from the actor of the character under control⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00311FCE`-`0x003120D5` |
+| ² | `0x00336F79`-`0x00336F98` |
+| ³ | `0x00311FAB`-`0x00311FC9` |
+| ⁴ | `0x0033CA15`-`0x0033CAF2` |
+
+</details>
 
 ## Modding notes
 
@@ -310,25 +628,29 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 7 calls with 4 other topics</summary>
 
-**Saving, loading and settings**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00236760` | is called by | `0x001C1720`, `0x002EF690`, `0x00583D60` |
-| `0x002E1C20` | is called by | `0x005823B0`, `0x00582860` |
-
 **Saving, loading and settings** (explained on [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [party data](../Party/party-data.md), [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md), [game application](../Engine-Core/game-application.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00236760`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) | is called by | [`0x001C1720`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x002EF690`](../Party/party-data.md) Save image: copy capture to write submission buffer (on party data)<br>[`0x00583D60`](../Saving-Loading-And-Settings/save-file-format.md) Save image: finalize header and checksum (on save file format) |
+| [`0x002E1C20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x005823B0`](../Saving-Loading-And-Settings/saving-and-loading-transaction.md) (on saving and loading transaction)<br>[`0x00582860`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 
 **Steam and achievements** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003148F0` | is called by | `0x003160C0` |
+| [`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) | is called by | [`0x003160C0`](../Steam-And-Achievements/achievements.md) (on achievements) |
 
 **Random numbers** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002342F0` | calls | `0x00328D80` |
+| [`0x002342F0`](../Enemy-Spawning/enemy-respawning.md) (on enemy respawning) | calls | [`0x00328D80`](../Random-Numbers/random-number-generators.md) (on random number generators) |
 
 </details>

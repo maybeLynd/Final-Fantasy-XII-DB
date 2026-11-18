@@ -28,21 +28,52 @@ bit  0x08000000  float: the value is pushed with tag 2 instead of tag 1
 mask 0xF0000000  width: 0 u8, 1 s8, 2 u16, 3 s16, 4 s32, 5 f32
 ```
 
-For classes 0 to 5 the address is the class's base plus the offset (`0x002625E7`-`0x00262641`). For class 7 the offset
-names an array header in the image (`0x00262496`-`0x002624B7`): the element descriptor at `+0`, the dimension count at
+For classes 0 to 5 the address is the class's base plus the offset¹. For class 7 the offset
+names an array header in the image²: the element descriptor at `+0`, the dimension count at
 `+4` (u16) and the dimensions from `+8`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002625E7`-`0x00262641` |
+| ² | `0x00262496`-`0x002624B7` |
+
+</details>
 
 The resolver pops one index per dimension from the value stack, last dimension `d[n − 1]` first, and folds them
 row-major with `stride = 1`, then for `k = n − 1 … 0`:
-`i = min(max(pop(), 0), d[k] − 1); flat += i × stride; stride ×= d[k]` (`0x002624D2`-`0x00262537`), so a negative
+`i = min(max(pop(), 0), d[k] − 1); flat += i × stride; stride ×= d[k]`¹, so a negative
 index reads element 0 and a large one the last element. With a dimension count of 0 it pops nothing and the flat index
-stays 0 (`0x002624BA`-`0x002624C0`). An empty stack gives the index 0 (`0x002624D8`), and an entry whose tag is neither 1
-nor 2 calls `0x008620C0` and gives 0 as well (`0x002624F3`-`0x002624FB`).
+stays 0². An empty stack gives the index 0³, and an entry whose tag is neither 1
+nor 2 calls `0x008620C0` and gives 0 as well⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002624D2`-`0x00262537` |
+| ² | `0x002624BA`-`0x002624C0` |
+| ³ | `0x002624D8` |
+| ⁴ | `0x002624F3`-`0x002624FB` |
+
+</details>
 
 The resolver takes a popped entry's tag from the byte at stack `+4 + position` and its
-value from the dword at stack `+0x184 + 4 × position` (`0x002624E4`). A tag-1 value is used as it is
-(`0x0026257D`); a tag-2 value is a float and is cut to an integer toward zero
-(`0x00262571`).
+value from the dword at stack `+0x184 + 4 × position`¹. A tag-1 value is used as it is²; a tag-2 value is a float and is cut to an integer toward zero³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002624E4` |
+| ² | `0x0026257D` |
+| ³ | `0x00262571` |
+
+</details>
 
 It then resolves the element descriptor's class as above; an element class of 6 or 7 has no case and falls to
 base 0, the bare offset as an address (`0x00262552`-`0x00262555`; the local class calls the callback here too,
@@ -50,10 +81,22 @@ base 0, the bare offset as an address (`0x00262552`-`0x00262555`; the local clas
 the caller scales it by the element width.
 
 The resolver fills a `0x30`-byte record for its caller: `+0` the constant 6, `+4` the kind (1 int, 2 float, from bit
-`0x8000000` of the element descriptor, `0x00262644`-`0x00262657`), `+8` the actor's `u16` at `+0` (`0x00262676`-`0x0026267A`),
-`+0xA` the variable index and `+0xC` the descriptor (`0x0026248D`, `0x00262492`), `+0x10` the base address plus offset
-(`0x00262661`), `+0x18` the element descriptor (the descriptor itself for classes 0 to 6, `0x0026266E`) and `+0x1C` the
-flat index (`0x00262672`). It returns the element's class in `eax` (`0x00262665`), which `POPV` tests.
+`0x8000000` of the element descriptor, `0x00262644`-`0x00262657`), `+8` the actor's `u16` at `+0`¹,
+`+0xA` the variable index and `+0xC` the descriptor², `+0x10` the base address plus offset³, `+0x18` the element descriptor (the descriptor itself for classes 0 to 6, `0x0026266E`) and `+0x1C` the
+flat index⁴. It returns the element's class in `eax`⁵, which `POPV` tests.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00262676`-`0x0026267A` |
+| ² | `0x0026248D`, `0x00262492` |
+| ³ | `0x00262661` |
+| ⁴ | `0x00262672` |
+| ⁵ | `0x00262665` |
+
+</details>
 
 ### The six homes
 
@@ -69,37 +112,85 @@ flat index (`0x00262672`). It returns the element's class in `eax` (`0x00262665`
 A class-6 descriptor has no case in either resolver and falls to base 0, the bare offset as an
 address; no shipped script declares one.
 
-`PUSHV` (`0x00267FC0`) loads the element by width (`u8` and `s8` at `base + i`, 16-bit widths at
+`PUSHV`¹ loads the element by width (`u8` and `s8` at `base + i`, 16-bit widths at
 `base + 2i`, 32-bit at `base + 4i`), zero- or sign-extending, and pushes it with the kind's tag;
-the kind byte it stores beside the value is the record's `+0`, 6. A width nibble above 5 has no load case
-(`0x00267FE4`-`0x00267FE7`): `PUSHV` loads nothing and pushes whatever its stack frame holds in the value dword.
+the kind byte it stores beside the value is the record's `+0`, 6. A width nibble above 5 has no load case²: `PUSHV` loads nothing and pushes whatever its stack frame holds in the value dword.
 
-`POPV` (`0x00267E60`) pops the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267FC0` |
+| ² | `0x00267FE4`-`0x00267FE7` |
+
+</details>
+
+`POPV`¹ pops the
 top by the kind (a float operand to an int variable is truncated with `cvttss2si`, an int to a
 float variable converted with `cvtdq2ps`) and stores it through `0x0026D530`. It pops the value after the
-resolver has popped any array indices (`0x00267E7F`), so a script pushes the value first and the indices on top.
+resolver has popped any array indices², so a script pushes the value first and the indices on top.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267E60` |
+| ² | `0x00267E7F` |
+
+</details>
 
 `PUSHV` refuses at
 stack depth 63 like every other push; `POPV` on an empty stack stores 0 to an int variable
 silently and, for a float variable, calls `0x008620C0` first; a missing array index reads as 0.
-A top entry whose tag is neither 1 nor 2 is the other way round: an int variable gets 0 after `0x008620C0`
-(`0x00267F0E`-`0x00267F13`), a float variable 0.0 silently (`0x00267EB6`, `0x00267EE7`).
+A top entry whose tag is neither 1 nor 2 is the other way round: an int variable gets 0 after `0x008620C0`¹, a float variable 0.0 silently².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267F0E`-`0x00267F13` |
+| ² | `0x00267EB6`, `0x00267EE7` |
+
+</details>
 
 ### The store saturates by width
 
 `0x0026D530` clamps before it writes: `u8` into 0 to 255, `s8` into −128 to 127, `u16` into 0 to
-65,535, `s32` and `f32` copied as the raw dword, widths 6 to 15 not stored at all (`0x0026D542`-`0x0026D545`).
+65,535, `s32` and `f32` copied as the raw dword, widths 6 to 15 not stored at all¹.
 The `s16` arm clamps into −32,767 to +32,768 and stores the low word, so a script that stores 32,768 reads back
 −32,768 and one that stores −32,768 reads back −32,767. A float at or above 2³¹ truncates to
 `0x80000000` first, which the `u8` arm then clamps to 0.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026D542`-`0x0026D545` |
+
+</details>
+
 ### References
 
-`PUSHP` (`0x00268100`) pushes a reference instead of a value: the element offset plus the flat
+`PUSHP`¹ pushes a reference instead of a value: the element offset plus the flat
 index scaled by the width (2 for widths 2 and 3, 4 for 4 and 5, 1 for any other, `0x00268124`-`0x00268146`), the
-class bits kept, the float bit `0x8000000` dropped and the width nibble forced to 7 (`0x00268155`-`0x0026816C`),
+class bits kept, the float bit `0x8000000` dropped and the width nibble forced to 7²,
 tagged int; the kind byte beside that stack entry is the element's width nibble, so a verb can read the width
-from the entry as well. At stack depth 63 it pushes nothing (`0x00268173`).
+from the entry as well. At stack depth 63 it pushes nothing³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00268100` |
+| ² | `0x00268155`-`0x0026816C` |
+| ³ | `0x00268173` |
+
+</details>
 
 Width 7 is outside the 0 to 5 every loader accepts, so the reference cannot be read as a value by
 mistake. A native verb that takes an out-reference decodes it with `0x002650B0`, which adds the
@@ -108,19 +199,45 @@ writes the result there.
 
 ### Lifetimes of the two banks
 
-`0x0026DB30`, run on every field transition, first clears the dword `0x02099D44` (`0x0026DB3C`), runs the
-field-transition reset `0x003590E0`, zeroes the four party pointers at `0x0209A1F0` (`0x0026DB52`, `0x0026DB5A`), sets
-camera record 0's mode to 2 (`0x0025A500(0, 2)`, `0x0026DB62`), clears the menu request at `0x0215F1A0` (`0x002E15D0`)
-and sets the `disposeentry` state `0x022C8010` to 0 (`0x0035A240`). Then it zeroes `scratch1` unconditionally
-(`0x0026DB80`).
+`0x0026DB30`, run on every field transition, first clears the dword `0x02099D44`¹, runs the
+field-transition reset `0x003590E0`, zeroes the four party pointers at `0x0209A1F0`², sets
+camera record 0's mode to 2 (`0x0025A500(0, 2)`, `0x0026DB62`), clears the menu request at `0x0215F1A0`³
+and sets the `disposeentry` state `0x022C8010` to 0⁴. Then it zeroes `scratch1` unconditionally⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026DB3C` |
+| ² | `0x0026DB52`, `0x0026DB5A` |
+| ³ | `0x002E15D0` |
+| ⁴ | `0x0035A240` |
+| ⁵ | `0x0026DB80` |
+
+</details>
 
 It then compares
 the persistence group word (`+6` of the map-reference row at `[0x02099D88] + [header + 4] +
-field × 8`) of the previous field (`0x00314870`) with the current one (`0x003148F0`); each reads as 0 while
-`[0x02099D88]` or `[0x02099D90]` is null (`0x0026DB91`-`0x0026DB9D`, `0x0026DBC6`-`0x0026DBD2`), so no change is seen then.
-When they differ it zeroes `scratch2` (`0x0026DC11`) and, unless the payload's `+0x1062` has bit `0x20`, runs
-`0x003149E0` before that (`0x0026DBF4`-`0x0026DBFD`); it also zeroes `scratch2` when the transition options
-(`0x003148D0`) have bit `0x8` (`0x0026DC1B`-`0x0026DC2E`).
+field × 8`) of the previous field¹ with the current one²; each reads as 0 while
+`[0x02099D88]` or `[0x02099D90]` is null³, so no change is seen then.
+When they differ it zeroes `scratch2`⁴ and, unless the payload's `+0x1062` has bit `0x20`, runs
+`0x003149E0` before that⁵; it also zeroes `scratch2` when the transition options⁶ have bit `0x8`⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00314870` |
+| ² | `0x003148F0` |
+| ³ | `0x0026DB91`-`0x0026DB9D`, `0x0026DBC6`-`0x0026DBD2` |
+| ⁴ | `0x0026DC11` |
+| ⁵ | `0x0026DBF4`-`0x0026DBFD` |
+| ⁶ | `0x003148D0` |
+| ⁷ | `0x0026DC1B`-`0x0026DC2E` |
+
+</details>
 
 So `scratch2` lives as long
 as the player stays inside one group of fields, and `0x0025D8E0` / `0x00269A20` copy its 512 bytes
@@ -137,13 +254,25 @@ clears it through `0x00287D00`, and the verb `0x05BE` (start `0x00355940`) reads
 `0x00286000`; in the shipped scripts only the Trial Mode
 director uses the pair, to skip its entry sequences once after a load.
 
-`0x00287D00(v)` stores its argument in `0x0209AC10` (`0x00287D00`), so it is a setter. Its two
-callers both give it 0: the verb (`0x00355E80`-`0x00355E82`) and `0x00314754`. Before that
+`0x00287D00(v)` stores its argument in `0x0209AC10`¹, so it is a setter. Its two
+callers both give it 0: the verb² and `0x00314754`. Before that
 call, when `0x00236760` answered 0 and `0x01EED064` is not `0xC`, the dword `+0x4E664` of
-the answer of `0x002EF640` takes `0x01EED064` (`0x00314712`-`0x00314731`); when `0x01EED064` is
-not `0xC` at `0x0031473F`, `0x003C8670` runs and the value is tested once more
-(`0x0031473F`-`0x00314750`). The call runs only when one of these tests finds `0xC`, and
-`0x01E0C3EC` is then set to 1 (`0x00314752`-`0x00314759`). No caller gives it another value.
+the answer of `0x002EF640` takes `0x01EED064`³; when `0x01EED064` is
+not `0xC` at `0x0031473F`, `0x003C8670` runs and the value is tested once more⁴. The call runs only when one of these tests finds `0xC`, and
+`0x01E0C3EC` is then set to 1⁵. No caller gives it another value.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00287D00` |
+| ² | `0x00355E80`-`0x00355E82` |
+| ³ | `0x00314712`-`0x00314731` |
+| ⁴ | `0x0031473F`-`0x00314750` |
+| ⁵ | `0x00314752`-`0x00314759` |
+
+</details>
 
 `global` variables are bytes of the save payload and are saved and loaded with it; `file` and
 `local` variables live in the script image and are gone when the area's scripts unload. `POPV`
@@ -151,6 +280,9 @@ also looks up a notification id (`0x0032F240`, tables `0x022C6D18` and `0x022C6D
 the slot index is 1 to 3 and the class is 0, and discards it: nothing is notified on that path.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Descriptor table [slot+`0x78`]:
 
@@ -217,7 +349,12 @@ Banks:
 | `0x02099DF0` | `...` | scratch1 | `0x200` |
 | `0x02099FF0` | `...` | scratch2 | `0x200` |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -374,10 +511,19 @@ start share its uses: they count once, and each such actor is credited.
 
 - `PUSHV` is a read, `POPV` a store, `PUSHP` a reference and `PUSHDBG` a debug resolve.
 - A store is literal when the instruction before `POPV` pushes a constant, and computed otherwise. A store to an array
-  counts as computed, because the script pushes its subscripts after the value (`0x00267E7F`).
+  counts as computed, because the script pushes its subscripts after the value¹.
 - A test is a `PUSHV` right before `POPXCJMP` or `POPXNCJMP`, the same with `OPNOT` between them, or a `PUSHV`
   and a constant, in either order, before a comparison and one of those jumps.
 - A `PUSHV` right before `POPY` is a switch. A read inside any longer expression counts in `reads` only.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267E7F` |
+
+</details>
 
 ### Every use
 
@@ -408,16 +554,40 @@ here, so a use inside one shows the nearest `POPXCJMP` or `POPXNCJMP` around the
 
 ### Initial values
 
-The binder `0x0026C8C0` sets slot `+0x13` to 1 (`0x0026CC6C`). `0x0026CE60` goes on only while slot `+0x10` has flag `0x1`
-clear and `+0x13` is not 0 (`0x0026CE94`-`0x0026CEA2`). If `+0x13` is still set at `0x0026D2D9`, it clears it,
-calls `0x0026D3E0` with the slot and the image and then sets the flag (`0x0026D2D9`-`0x0026D305`), so the
+The binder `0x0026C8C0` sets slot `+0x13` to 1¹. `0x0026CE60` goes on only while slot `+0x10` has flag `0x1`
+clear and `+0x13` is not 0². If `+0x13` is still set at `0x0026D2D9`, it clears it,
+calls `0x0026D3E0` with the slot and the image and then sets the flag³, so the
 initializers run at most once for each bind.
-The teardown `0x002628B0` clears both again (`0x00262DA8`, `0x00262DB3`).
+The teardown `0x002628B0` clears both again⁴.
 
-`0x0026D3E0` walks every record and skips those with second dword 0 (`0x0026D422`-`0x0026D42C`). An array is replaced by
-its element descriptor (`0x0026D43F`-`0x0026D452`). The class picks the base as in the resolvers, a local through the
-actor the record names (`0x0026D456`-`0x0026D45F`, `0x0026D46F`-`0x0026D4BB`), and the bytes are copied to base plus
-offset (`0x0026D4BD`-`0x0026D4D5`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026CC6C` |
+| ² | `0x0026CE94`-`0x0026CEA2` |
+| ³ | `0x0026D2D9`-`0x0026D305` |
+| ⁴ | `0x00262DA8`, `0x00262DB3` |
+
+</details>
+
+`0x0026D3E0` walks every record and skips those with second dword 0¹. An array is replaced by
+its element descriptor². The class picks the base as in the resolvers, a local through the
+actor the record names³, and the bytes are copied to base plus
+offset⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026D422`-`0x0026D42C` |
+| ² | `0x0026D43F`-`0x0026D452` |
+| ³ | `0x0026D456`-`0x0026D45F`, `0x0026D46F`-`0x0026D4BB` |
+| ⁴ | `0x0026D4BD`-`0x0026D4D5` |
+
+</details>
 
 An initializer exists only for file and local storage in the shipped scripts. The file area itself ships as zero in
 all 128,044 bytes that file variables cover, so a file variable with no initializer starts from zero bytes.
@@ -429,7 +599,16 @@ all 128,044 bytes that file variables cover, so a file variable with no initiali
 | `field` | `scratch1` | zeroed on every field transition (`0x0026DB80`), and by `0x00268320` and `0x002695A0` |
 | `group` | `scratch2` | zeroed when the persistence group changes (`0x0026DC11`) or by option `0x8` (`0x0026DC1B`) |
 
-An array has the lifetime of its element storage. `scratch2` also rides the save image (`0x0025D8E0`, `0x00269A20`).
+An array has the lifetime of its element storage. `scratch2` also rides the save image¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025D8E0`, `0x00269A20` |
+
+</details>
 
 | Fact | Value |
 |---|---|
@@ -509,6 +688,8 @@ One row per offset with a scalar declaration, 587 rows.
 |---|---|
 | `meaning` | one or more sentences on what the scripts use the variable for, written from its uses: who writes it, what its tests choose, or that only the debug display or the developer test scripts name it |
 
+</details>
+
 ## Operations
 
 Per variable opcode: resolve, then load and push or pop and store. Per field transition:
@@ -517,8 +698,13 @@ controller sets `0x0209AC10`.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The save payload bytes `0` to `0xCF5` (the last declared offset, `0xCF4`, is a 16-bit variable), the script
 image's file and local areas, and the two banks.
+
+</details>
 
 ## Modding notes
 

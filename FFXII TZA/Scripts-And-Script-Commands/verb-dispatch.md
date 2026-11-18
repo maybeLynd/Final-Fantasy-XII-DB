@@ -19,8 +19,17 @@ moment passes through it.
 
 The interpreter `0x0025E4C0`, which the per-actor driver `0x0025DF00` of the field runtime runs
 ([script interpreter](script-interpreter.md)), pre-decodes a sixteen-bit operand for every opcode at or above `0x47`,
-as `operand = pc[1] | pc[2] << 8` in a sixteen-bit register (`0x0025E5AF`-`0x0025E5BD`), so the id can never exceed `0xFFFF`.
+as `operand = pc[1] | pc[2] << 8` in a sixteen-bit register¹, so the id can never exceed `0xFFFF`.
 Four three-byte opcodes turn that operand into a verb call:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E5AF`-`0x0025E5BD` |
+
+</details>
 
 | Opcode | Mnemonic | Actor | Result |
 |---|---|---|---|
@@ -98,8 +107,17 @@ on an empty stack it returns 0 without a call, and on a tag that is neither 1 no
 stack it calls `0x008620C0` and returns 0.0, and on a bad tag returns 0.0 silently.
 
 `0x008620C0` loads the address of the message "FFXII tried to call exit(), this might be a serious error!" and
-tail-jumps to the empty stub `0x0016D6A0` (`0x008620C0`-`0x008620C9`), so it does nothing and every failure is silent
+tail-jumps to the empty stub `0x0016D6A0`¹, so it does nothing and every failure is silent
 in play: a script that supplies too few arguments runs on zeros.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008620C0`-`0x008620C9` |
+
+</details>
 
 ### Argument order
 
@@ -109,29 +127,71 @@ pops four references, resolving each through `0x002650B0`, then pops the index, 
 `0x00377AB0(index, out)` and stores `out[0]` through the last reference popped, `out[3]` through
 the first.
 
-Each of those stores is a 4-byte float (`0x0035399B`-`0x003539B9`), whatever the declared width. The
+Each of those stores is a 4-byte float¹, whatever the declared width. The
 handler pops with the int pop `0x00267E10`, so a missing reference is 0, which `0x002650B0` resolves for the
-current slot (`0x002640C0`, `0x00353915`) to class 0 offset 0: the save payload's first byte. It calls no result
-writer and returns through the stack-cookie check `0x00808C40` (`0x003539C6`).
+current slot² to class 0 offset 0: the save payload's first byte. It calls no result
+writer and returns through the stack-cookie check `0x00808C40`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035399B`-`0x003539B9` |
+| ² | `0x002640C0`, `0x00353915` |
+| ³ | `0x003539C6` |
+
+</details>
 
 ### References and actor handles
 
-`PUSHP` (`0x00268100`) pushes the packed reference
-`((ref & 0xFFFFFF) + index × size) | (ref & 0x7000000) | 0x70000000` (`0x00268155`-`0x0026816C`) for the
+`PUSHP`¹ pushes the packed reference
+`((ref & 0xFFFFFF) + index × size) | (ref & 0x7000000) | 0x70000000`² for the
 decoded reference `ref` and element `index`, `size` being 2 for the width nibble `ref >> 28` of 2 or
-3, 4 for 4 or 5 and 1 otherwise (`0x00268124`-`0x00268146`), with tag 1 and the real width in the source byte.
+3, 4 for 4 or 5 and 1 otherwise³, with tag 1 and the real width in the source byte.
 
-`0x002650B0(slot, x, offset)` turns it back into an address. The reference is its third argument (`0x002650B9`),
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00268100` |
+| ² | `0x00268155`-`0x0026816C` |
+| ³ | `0x00268124`-`0x00268146` |
+
+</details>
+
+`0x002650B0(slot, x, offset)` turns it back into an address. The reference is its third argument¹,
 and it ignores the second. It goes
 through the six class bases ([script variables](script-variables.md)) of the class `(offset >> 24) & 7`, by the
 jump table at `0x00265180`; classes 6 and 7 fall to
-base 0 (`0x0026516C`). It has 57 call sites in 29 functions; a store through it is a raw dword whatever the
+base 0². It has 57 call sites in 29 functions; a store through it is a raw dword whatever the
 declared width.
 
-`PUSHACT` (`0x00261806`) packs an actor as `(word + 0xE of the actor's tag-table entry) << 16 |
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002650B9` |
+| ² | `0x0026516C` |
+
+</details>
+
+`PUSHACT`¹ packs an actor as `(word + 0xE of the actor's tag-table entry) << 16 |
 index | 0x4000`, or `0x8000` when the index is past the count of the script image's `+0x80` table,
-the [per-actor tag tables](script-interpreter.md#registers) (`0x0026181B`). The request
+the [per-actor tag tables](script-interpreter.md#registers)². The request
 opcodes and `0x0025AF60` decode the same encoding: bit `0x4000` marks a live handle, bit `0x8000` refuses.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00261806` |
+| ² | `0x0026181B` |
+
+</details>
 
 ### Results
 
@@ -149,6 +209,9 @@ its writer and one that does not ends in a jump to the native function it wraps.
 
 ## Layouts
 
+<details>
+<summary>Show the memory layouts</summary>
+
 ```python
 call instruction   opcode (0x58 / 0x59 / 0x5D / 0x5E), u16 id = family << 12 | command
 family array       0x02B57EF0: 16 × u64 table pointer
@@ -159,7 +222,12 @@ actor handle       word +0xE of the +0x80 tag-table entry << 16 | index | 0x4000
 wait slot          +8 target ordinal, +0xC result, +0x10 A, +0x14 wait kind, +0x15 phase, +0x18 scratch[16]
 ```
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -174,6 +242,8 @@ wait slot          +8 target ordinal, +0xC result, +0x10 A, +0x14 wait kind, +0x
 | result writers | int 28 calls + 321 jumps, float 22 + 31, claim-and-read 1 |
 | lifecycle `0x002621D0` call sites | 3 (`CALL`, `CALLACT`, `CALLPOPA`; `CALLACTPOPA` shares the third) |
 
+</details>
+
 ## Operations
 
 Per call instruction: decode the id, resolve the target, run the lifecycle, push one value, pop it
@@ -182,8 +252,13 @@ result slot.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The value stack `0x02099AC0`, the family array `0x02B57EF0`, and the issuer's wait slot (`+8`, `+0xC`,
 `+0x15`, `+0x18`).
+
+</details>
 
 ## Modding notes
 

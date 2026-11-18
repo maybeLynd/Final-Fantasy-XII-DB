@@ -29,9 +29,18 @@ requested as a whole and relocated in place once it lands; the requesting screen
 | `Loca.mrp` | `0xBF` | the location-map resources `0x00404060` | `0x00404107` |
 | `Party_Book.mrp` | `0xCC` | the Clan Primer back panel `0x00574E80` | `0x00574F94` (through `0x003933F0`) |
 
-Ids are those of the US kind-7 path array (`0x01EC73A0`), which names the `us` copy of every file except
+Ids are those of the US kind-7 path array¹, which names the `us` copy of every file except
 `w_menu.mrp`, taken from `in`. `nowload.mrp` and `title_fore3.mrp` ship but no path string in the executable names
 them, so the game never loads them.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01EC73A0` |
+
+</details>
 
 ## Layouts
 
@@ -62,19 +71,43 @@ The header, with the values of all 116 shipped files:
 
 The load checks only byte `+3`: when it is 1, `0x002A00F0` returns at once and the offsets stay as they are.
 Otherwise it rewrites `+0x08`, `+0x20` (through `0x002A1A80`) and `+0x28` into the engine's 32-bit encoded
-addresses (`0x0020E620`), then the `+0x08` of each of the `+0x24` rows, an offset from the row table's start
-(`0x002A0145`-`0x002A014E`), and sets byte `+3` to 1 (`0x002A016A`). No count or offset is compared with the file size.
+addresses¹, then the `+0x08` of each of the `+0x24` rows, an offset from the row table's start², and sets byte `+3` to 1³. No count or offset is compared with the file size.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020E620` |
+| ² | `0x002A0145`-`0x002A014E` |
+| ³ | `0x002A016A` |
+
+</details>
 
 The same bytes ship in two other carriers:
 
 - `packfiles/mrppack_ys.bin` (kind 7 `0xD3` in the US array, requested by `0x002808D0` through `0x00249180`): for each
   of its 23 units, `0x00280980` fills an empty qword at `[0x0209AC30] + 8 × unit` with `pack + u32[unit]` (the pack is
   at `[0x0209AC30] + 0x3D0`) and relocates the unit with `0x002A00F0`.
-- `0x00280980` leaves a qword already set as it is and does not relocate it again (`0x002809A8`); with the pack
-  pointer null it fills nothing (`0x00280993`). On both paths it ends by jumping to `0x00280AD0` (`0x002809EE`).
+- `0x00280980` leaves a qword already set as it is and does not relocate it again¹; with the pack
+  pointer null it fills nothing². On both paths it ends by jumping to `0x00280AD0`³.
 - Slot 15 of the map packs `rwg0201` and `rwg0202`, kept for the map gauge ([Map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002809A8` |
+| ² | `0x00280993` |
+| ³ | `0x002809EE` |
+
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured over every `.mrp` in the archive.
 
@@ -98,54 +131,128 @@ Measured over every `.mrp` in the archive.
 | atlas `itemgra_c` | named by `save_load` and `shop_new` |
 | every record and item | in the two tables of [UI typed lists](ui-typed-lists.md), with the pack units |
 
+</details>
+
 ## Loader behaviour
 
 ### The request
 
 - `0x00249320(group, kind, id)` and `0x00249350(group, kind, id, heap)` call `0x00249210`, then set the request's
-  completion to `0x00249660` and return the buffer. `0x00249320` always allocates from heap 3 (`0x00249324`).
+  completion to `0x00249660` and return the buffer. `0x00249320` always allocates from heap 3¹.
   `0x003933F0(group, out[], ids[], n)` calls `0x00249320` with kind 7 for each id and stores each buffer.
 - `0x00249210(group, kind, id, heap, top)` takes a free 40-byte request record from the 48 at `[0x0208F578]` (busy
-  bit `0x1` of `+0x20`), zeroes it and sets the bit (`0x00249256`-`0x0024926B`), stores the group at `+0`, gets the
+  bit `0x1` of `+0x20`), zeroes it and sets the bit², stores the group at `+0`, gets the
   size from `0x0032E400`, allocates it, files `0x0032E620` with the completion `0x002495C0`, and counts the request on
   the group (`+0x18`). It returns the record, whose `+8` holds the buffer.
-- It allocates under arena `heap` with tag `0xC` (`0x0036C1D0`, `0x002492B4`), bottom-up (`0x0036A100`) when `top` is 0
-  and top-down (`0x0036A190`) otherwise (`0x002492B9`-`0x002492CC`), then pops the arena (`0x0036C140`). `0x00249320` and
-  `0x00249350` give `top` 0 (`0x0024932A`, `0x00249354`); `0x002493D0` gives 1 (`0x002493D6`).
-- The completion gets the record's address as a 32-bit value (`0x00249286`), which `0x002495C0` sign-extends
-  (`0x002495D9`).
+- It allocates under arena `heap` with tag `0xC`³, bottom-up⁴ when `top` is 0
+  and top-down⁵ otherwise⁶, then pops the arena⁷. `0x00249320` and
+  `0x00249350` give `top` 0⁸; `0x002493D0` gives 1⁹.
+- The completion gets the record's address as a 32-bit value¹⁰, which `0x002495C0` sign-extends
+ ¹¹.
 - A size below 1 files nothing, leaves the buffer null and does not count the request on the group; it calls only
-  the empty function `0x0016D6A0(0x2000)` (`0x002492A6`). The record stays busy: only the completion
+  the empty function `0x0016D6A0(0x2000)`¹². The record stays busy: only the completion
   clears the bit, so each such request loses one of the 48 records for good. With all 48 busy the search
   ends on a null record and the next store writes to address 0.
-- `0x002495C0` calls the record's completion at `+0x10` when it is set (`0x002495E3`): `0x00249660` loads the buffer from
+- `0x002495C0` calls the record's completion at `+0x10` when it is set¹³: `0x00249660` loads the buffer from
   `+8` and jumps to `0x002A00F0`, which relocates the file once (byte `+3` guards a second pass). A record filed
   straight through `0x00249210` keeps the zero the take stores there, so it is only counted. Last, `0x002495C0`
-  clears the record's busy bit (`0x00249637`).
+  clears the record's busy bit¹⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00249324` |
+| ² | `0x00249256`-`0x0024926B` |
+| ³ | `0x0036C1D0`, `0x002492B4` |
+| ⁴ | `0x0036A100` |
+| ⁵ | `0x0036A190` |
+| ⁶ | `0x002492B9`-`0x002492CC` |
+| ⁷ | `0x0036C140` |
+| ⁸ | `0x0024932A`, `0x00249354` |
+| ⁹ | `0x002493D6` |
+| ¹⁰ | `0x00249286` |
+| ¹¹ | `0x002495D9` |
+| ¹² | `0x002492A6` |
+| ¹³ | `0x002495E3` |
+| ¹⁴ | `0x00249637` |
+
+</details>
 
 ### Request groups
 
 A screen takes a group with `0x00249580(widget)`, one of 12 32-byte entries at `0x02090790`, files its requests, and
 closes the group with `0x00249410`. `0x00249580` takes the first entry with bit `0x1` of `+0x00` clear, zeroes it, sets
-the bit, stores the widget at `+0x08` and returns the entry (`0x002495A3`-`0x002495B7`).
+the bit, stores the widget at `+0x08` and returns the entry¹.
 
-With all 12 taken `0x00249580` returns null (`0x002495A0`). A request filed on that null group then counts itself at
-address `0x18` (`0x002492F8`), and closing it writes at address 0 (`0x00249425`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002495A3`-`0x002495B7` |
+
+</details>
+
+With all 12 taken `0x00249580` returns null¹. A request filed on that null group then counts itself at
+address `0x18`², and closing it writes at address 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002495A0` |
+| ² | `0x002492F8` |
+| ³ | `0x00249425` |
+
+</details>
 
 `0x00249410` sets bit `0x2` of `+0x00`, the closed bit. Each completion increments the group's `+0x1A`; once the
-group is closed and the count matches `+0x18`, at the close (`0x00249434`) or at the completion that reaches it
-(`0x002495FA`), the widget gets message `0x10` (or the group's function at `+0x10` runs). A screen therefore
+group is closed and the count matches `+0x18`, at the close¹ or at the completion that reaches it², the widget gets message `0x10` (or the group's function at `+0x10` runs). A screen therefore
 sees its `.mrp` relocated before it is told its files are ready: `0x002495C0` runs the record's completion
 before it raises the group count.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00249434` |
+| ² | `0x002495FA` |
+
+</details>
+
 The message goes to the first slot of the widget's table, with 16 zero bytes after the id, and is skipped for a
-null widget or a null slot (`0x0024945D`-`0x0024947D`, `0x00249612`-`0x00249632`). The group is then released: bit `0x1`
-is cleared (`0x0024947F`, `0x00249634`).
+null widget or a null slot¹. The group is then released: bit `0x1`
+is cleared².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024945D`-`0x0024947D`, `0x00249612`-`0x00249632` |
+| ² | `0x0024947F`, `0x00249634` |
+
+</details>
 
 `0x002486B0(function)` takes a group the same way for a function instead of a widget (`+0x04` = 1, the
-function at `+0x10`), and returns null with all 12 taken (`0x002486D0`). A function group is never released: both
-sites call the function and return without clearing bit `0x1` (`0x00249440`, `0x00249606`). The two functions given
-to `0x002486B0`, by `0x00556500` and `0x00563520`, only store 1 in a flag (`0x00556560`, `0x00563550`).
+function at `+0x10`), and returns null with all 12 taken¹. A function group is never released: both
+sites call the function and return without clearing bit `0x1`². The two functions given
+to `0x002486B0`, by `0x00556500` and `0x00563520`, only store 1 in a flag³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002486D0` |
+| ² | `0x00249440`, `0x00249606` |
+| ³ | `0x00556560`, `0x00563550` |
+
+</details>
 
 `0x002494A0` zeroes the twelve groups and, when `[0x0208F578]` is null, points it at the 48 request records at
 `0x02090910` and zeroes them.

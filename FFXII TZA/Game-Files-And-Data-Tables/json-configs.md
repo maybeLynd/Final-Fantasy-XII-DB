@@ -64,19 +64,46 @@ authored and ignored: among them the 27 `...CheckBoxCheckState` keys of the map 
 `monstertoweapon.json`, a file whose name no string in the executable holds.
 
 The other twelve are `mCascadePartition<a>_2` and `mCascadePartition<a>_3` of the map and `init.json` documents:
-`0x001C7940` builds those names from the format `"mCascadePartition%d_%d"` (`0x001C9199`) and reads them. In cutscene
+`0x001C7940` builds those names from the format `"mCascadePartition%d_%d"`¹ and reads them. In cutscene
 documents the same keys are never asked for, because `0x001C3D50` reads only the `_1` names.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C9199` |
+
+</details>
 
 `0x001C3760` parses `init.json` into the global document `0x01F813C8`, which the area and cutscene loaders fall back
 to. A scene setting is looked up in order: an area's in its map document and then in
-`init.json`, a cutscene's in its cut section, its `Common` section, the current map document and `init.json`
-(`0x001C3D50`).
+`init.json`, a cutscene's in its cut section, its `Common` section, the current map document and `init.json`¹.
 
-The monster viewer reads entry `MonsterId<n>` (`0x001C6320`). For nine keys it falls back to `Common`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C3D50` |
+
+</details>
+
+The monster viewer reads entry `MonsterId<n>`¹. For nine keys it falls back to `Common`
 when the entry lacks them: `eyeVfxZBias`, `lightAmbientA`, `variation`, `clut`, `motionRate`, `bgColorR`, `bgColorG`,
-`bgColorB` and `drawBgColor` (`0x001C6563`-`0x001C6B72`). `monsterWeaponIndex2` is read only when the entry has it
-(`0x001C6419`), and the other 28 keys are read from the entry alone, so a missing one reads as 0 (`0x001C63E7`,
-`0x001C6450`).
+`bgColorB` and `drawBgColor`². `monsterWeaponIndex2` is read only when the entry has it³, and the other 28 keys are read from the entry alone, so a missing one reads as 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C6320` |
+| ² | `0x001C6563`-`0x001C6B72` |
+| ³ | `0x001C6419` |
+| ⁴ | `0x001C63E7`, `0x001C6450` |
+
+</details>
 
 ### Where the values come from
 
@@ -156,8 +183,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Scripts and script commands** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002ED6F0` | is called by | `0x003580C0` |
+| [`0x002ED6F0`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings) | is called by | [`0x003580C0`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs) |
 
 </details>

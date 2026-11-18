@@ -54,36 +54,86 @@ and the story flag banks begin at `+0x1384`.
 | `0x2BD` `isquestok(q)` | `0x00353E80` | `0x0046B1F0` | OK bit *q* |
 
 Two dispatchers reach the same bodies outside the verbs. `0x00329E60(kind, unit, q, v)` reaches the `setquestorder` body
-for kind 4 and the `setquestclear` body for kind 5 (`0x00329EC9`, `0x00329EE0`); the action effect applier `0x00312170`
-(`0x0031225E`) and `0x002FE660` (`0x002FE74E`) call it. Its reader twin `0x00321190(kind, unit, q, out)` answers ordered,
-cleared, scenario flag and contract word for kinds 4-7 (`0x003211FC`-`0x00321232`); `0x00301AD0`, `0x002FAD40`, `0x002FE660` and
+for kind 4 and the `setquestclear` body for kind 5¹; the action effect applier `0x00312170`² and `0x002FE660`³ call it. Its reader twin `0x00321190(kind, unit, q, out)` answers ordered,
+cleared, scenario flag and contract word for kinds 4-7⁴; `0x00301AD0`, `0x002FAD40`, `0x002FE660` and
 `0x00312170` call it. The developer verb `0x206C` `debug_clearquestall` does nothing: its handler `0x0017E7D0` returns at
 once.
 
-`0x00329E60` jumps through the ten-entry table at `0x00329F40` for kinds 1-10 (`0x00329E64`-`0x00329E83`) and returns 0 for
-every kind in 1-10 but 6 and 7. Kinds 1, 2 and 3 pass the low word of `v` to `0x0026ADC0(q, v)`, `0x0026AD10(q, v)` and
-`0x0026ABA0(q, v)` (`0x00329E85`-`0x00329EBD`); kinds 4, 5 and 8 pass `v != 0` to the `setquestorder` body
-`0x0046B3F0(q, set)`, the `setquestclear` body `0x0046B290(q, set)` and the story-flag thunk `0x0032ABE0(q, set)`
-(`0x00329EBE`-`0x00329F02`).
+<details>
+<summary>Where in the code</summary>
 
-Kind 9 stores the low word of `v` in word *q* of the sixteen at `0x0208D334` only for a *q* of 0-15, unsigned
-(`0x00329F03`-`0x00329F1B`), and kind 10 stores `v` in the unit's dword `+0xB90` only for a unit that is not null and a
-*q* of 0 (`0x00329F1C`-`0x00329F29`); both return 0 also when they write nothing (`0x00329F31`-`0x00329F37`). Kinds 6 and 7,
-and any kind outside 1-10, write nothing and return -1 (`0x00329F38`-`0x00329F3F`). The registers are listed on [Enemy
+| | Code |
+|---|---|
+| ¹ | `0x00329EC9`, `0x00329EE0` |
+| ² | `0x0031225E` |
+| ³ | `0x002FE74E` |
+| ⁴ | `0x003211FC`-`0x00321232` |
+
+</details>
+
+`0x00329E60` jumps through the ten-entry table at `0x00329F40` for kinds 1-10¹ and returns 0 for
+every kind in 1-10 but 6 and 7. Kinds 1, 2 and 3 pass the low word of `v` to `0x0026ADC0(q, v)`, `0x0026AD10(q, v)` and
+`0x0026ABA0(q, v)`²; kinds 4, 5 and 8 pass `v != 0` to the `setquestorder` body
+`0x0046B3F0(q, set)`, the `setquestclear` body `0x0046B290(q, set)` and the story-flag thunk `0x0032ABE0(q, set)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00329E64`-`0x00329E83` |
+| ² | `0x00329E85`-`0x00329EBD` |
+| ³ | `0x00329EBE`-`0x00329F02` |
+
+</details>
+
+Kind 9 stores the low word of `v` in word *q* of the sixteen at `0x0208D334` only for a *q* of 0-15, unsigned¹, and kind 10 stores `v` in the unit's dword `+0xB90` only for a unit that is not null and a
+*q* of 0²; both return 0 also when they write nothing³. Kinds 6 and 7,
+and any kind outside 1-10, write nothing and return -1⁴. The registers are listed on [Enemy
 order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md#the-registers).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00329F03`-`0x00329F1B` |
+| ² | `0x00329F1C`-`0x00329F29` |
+| ³ | `0x00329F31`-`0x00329F37` |
+| ⁴ | `0x00329F38`-`0x00329F3F` |
+
+</details>
 
 None of the 1,114 decoded `us` listings calls `setquestcontract` or `getquestcontract` ([verb
 table](../Scripts-And-Script-Commands/verb-table.md)). With those scripts a contract word is written only when
 `setquestorder` or kind 4 of `0x00329E60` sets a clear ordered bit (the verbs table above); a negative field id is
-stored as 0 (`0x00314903`), and the word of a quest never ordered is not written.
+stored as 0¹, and the word of a quest never ordered is not written.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00314903` |
+
+</details>
 
 ### The wrong ordered bit
 
 When `setquestclear` sets a cleared bit it also means to clear the quest's ordered bit, but it computes the byte
-and bit again from the bit position, `q % 8`, instead of from *q* (`0x0046B2EF`-`0x0046B316`). The byte is therefore
+and bit again from the bit position, `q % 8`, instead of from *q*¹. The byte is therefore
 always the first, and the bit value `1 << (q % 8)`: clearing quest 13 clears the ordered bit of quest 5, and the
 verb leaves the quest's own bit as it was. Only quests 0-7 have their own ordered bit cleared by the verb. The
 same happens when a clear arrives through `0x00329E60` kind 5.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046B2EF`-`0x0046B316` |
+
+</details>
 
 The shipped scripts clear the quest's own bit themselves, one line before the clear, with
 `setquestorder(q, 0)` ([the quests](#the-quests)).
@@ -94,14 +144,35 @@ The quest list of the `menuhandbook` object, bound at `0x022C2550`, gives a mini
 
 - The clan rank counts the list's quests that are ordered or cleared and whose scenario flag reaches the minimum
   (`0x00316480`, `0x00316520`-`0x0031654D`; [Shops](../Items-Equipment-Shops-And-Licenses/shops.md) has the rank table).
-- `0x00315DC0(q)` answers false for q = -1 (`0x00315DC8`-`0x00315DCD`) and true for a cleared quest (`0x00315DD5`), else, for a quest in the list, whether its scenario
-  flag reaches the minimum (`0x00315DE9`-`0x00315E6D`). A quest the list does not hold, or an empty list, answers
-  false (`0x00315E27`-`0x00315E45`); only a missing list answers true (`0x00315DF5`-`0x00315E10`, `0x00315E75`).
+- `0x00315DC0(q)` answers false for q = -1¹ and true for a cleared quest², else, for a quest in the list, whether its scenario
+  flag reaches the minimum³. A quest the list does not hold, or an empty list, answers
+  false⁴; only a missing list answers true⁵.
 
-Besides these, the menu's quest readers (`0x0037E780`, `0x0037EAA0`, `0x0037EB90`, `0x0037EC70`, `0x0037EE10`, `0x0037EF70`,
-`0x0037F060`, `0x00380170`, `0x003BC260`, `0x003C0A00`, `0x003F4C30`) and the Clan Primer's hunt panes (`0x00577C30`, `0x005781A0`,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00315DC8`-`0x00315DCD` |
+| ² | `0x00315DD5` |
+| ³ | `0x00315DE9`-`0x00315E6D` |
+| ⁴ | `0x00315E27`-`0x00315E45` |
+| ⁵ | `0x00315DF5`-`0x00315E10`, `0x00315E75` |
+
+</details>
+
+Besides these, the menu's quest readers¹ and the Clan Primer's hunt panes (`0x00577C30`, `0x005781A0`,
 `0x00578310`, `0x00578450`, `0x005789D0`; [Clan Primer](../Menus-And-HUD/clan-primer.md),
 [Quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md)) read the bits.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037E780`, `0x0037EAA0`, `0x0037EB90`, `0x0037EC70`, `0x0037EE10`, `0x0037EF70`, `0x0037F060`, `0x00380170`, `0x003BC260`, `0x003C0A00`, `0x003F4C30` |
+
+</details>
 
 ### The quests
 
@@ -189,8 +260,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0026ADC0` | is called by | `0x00307030` |
+| [`0x0026ADC0`](quests.md) | is called by | [`0x00307030`](../Enemy-Spawning/enemy-respawning.md) (on enemy respawning) |
 
 </details>

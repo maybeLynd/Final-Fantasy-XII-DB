@@ -40,17 +40,37 @@ records start at `+0x20` (`form` `header 0x20`). Its first record's key and UTF-
 have `metricA` and `metricB`. Its `scale` is 2.4; every other `.dat` has 1.
 
 The game never loads `us/fontex_expand.dat`: a `.dat` name
-comes only from the folder's `fontlist.ah` (`0x001B4930`, `0x001B5610`), and `us/fontlist.ah` does not name it. The
-builder always reads a `0x28`-byte header and steps past it (`0x001B4E2F`), so loaded, this file's records would be
+comes only from the folder's `fontlist.ah`¹, and `us/fontlist.ah` does not name it. The
+builder always reads a `0x28`-byte header and steps past it², so loaded, this file's records would be
 read 8 bytes late.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B4930`, `0x001B5610` |
+| ² | `0x001B4E2F` |
+
+</details>
 
 ### Requested files
 
-A `.dat` is requested when its folder's `fontlist.ah` names it (`0x001B4930`). The builder loads the `.dat` header's
-`flags` (`0x001B4E19`) and requests the `.ker` when bit `0x1` is set (`0x001B5024`, request `0x001B5750`, reader `0x001B5230`)
+A `.dat` is requested when its folder's `fontlist.ah` names it¹. The builder loads the `.dat` header's
+`flags`² and requests the `.ker` when bit `0x1` is set (`0x001B5024`, request `0x001B5750`, reader `0x001B5230`)
 and the `.fex` when bit `0x2` is set (`0x001B5045`, request `0x001B5480`, reader `0x001B4C00`). Those two requests are the
 only code in the game that names a `.ker` or a `.fex`. That gives 62 of the 63 `.dat`, 25 of the 34 `.ker` and
 12 of the 14 `.fex` files. The ones never requested are:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B4930` |
+| ² | `0x001B4E19` |
+
+</details>
 
 - `us/fontex_expand.dat`, with its `.fex`;
 - `us/fontex_subtitle.fex`: its `.dat` has flags `0x1`;
@@ -64,13 +84,32 @@ only code in the game that names a `.ker` or a `.fex`. That gives 62 of the 63 `
 
 Every `.dat` a list names has its atlas, `<name>.dds.phyre` in the same folder, and every atlas belongs to one:
 62 atlases for the 62 listed `.dat` files. `us/fontex_expand.dat`, which no list names, has no atlas. After filing the
-glyphs, the font builder requests the atlas for every font it builds, with no test on the flag word
-(`0x001B501F`, `0x001B58E0`); the completion `0x001B6230` hands the texture to the font.
+glyphs, the font builder requests the atlas for every font it builds, with no test on the flag word¹; the completion `0x001B6230` hands the texture to the font.
 
-While byte `+0x2378` of the object `[0x01F811F8]` is 0 (`0x001E9A20`, `0x001B5A38`-`0x001B5A46`), `0x001B58E0` also
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B501F`, `0x001B58E0` |
+
+</details>
+
+While byte `+0x2378` of the object `[0x01F811F8]` is 0¹, `0x001B58E0` also
 requests the font's shadow file, the name in the font's string `+0x100` (`0x001FDE60` at `0x001B5AF9`). The builder
-sets that name with the suffix `_shadow.dds.phyre` (`0x001B4DCD`, `0x001B4FF3`); the completion is `0x001B6110`
-(`0x001B5A62`, `0x001B5B43`). A key the font map does not hold gets no request (`0x001B5937`-`0x001B593A`).
+sets that name with the suffix `_shadow.dds.phyre`²; the completion is `0x001B6110`³. A key the font map does not hold gets no request⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E9A20`, `0x001B5A38`-`0x001B5A46` |
+| ² | `0x001B4DCD`, `0x001B4FF3` |
+| ³ | `0x001B5A62`, `0x001B5B43` |
+| ⁴ | `0x001B5937`-`0x001B593A` |
+
+</details>
 
 Each atlas is a Phyre cluster (`PHYR`, platform `DX11`) holding one `PTexture2D` named
 `ArtData/font/<folder>/<name>.dds`. The two words before the class name are the width and height, which equal the
@@ -89,57 +128,141 @@ Ten font ids belong to the faces whose glyph tables are in `fontpack_fs.bin`
 
 - `font_venus` (11), `font_bookman` (13), `font_iwa_g12` (14) and `font_square` (15) are faces 0, 2, 3 and 4. The
   fontpack binder `0x003643A0` registers ids `0xB`, `0xD`, `0xE` and `0xF` through `0x0017FC00` as it binds those faces'
-  sheets (`0x003643FF`-`0x0036449E`). It registers each id even when that face's sheet slot was already set and nothing
-  is bound (`0x003643E5`).
+  sheets¹. It registers each id even when that face's sheet slot was already set and nothing
+  is bound².
 - The six `font_stf_*` fonts (17 to 22) are the [staff roll](staff-roll.md)'s faces 6 to 11: `0x00365810` registers
-  id slot + 10 for sheet slots 7 to 12 (`0x003658D1`, `0x003658D4`).
+  id slot + 10 for sheet slots 7 to 12³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003643FF`-`0x0036449E` |
+| ² | `0x003643E5` |
+| ³ | `0x003658D1`, `0x003658D4` |
+
+</details>
 
 The face drawer `0x003649A0` takes each glyph's quad and advance from the font whose id is its face byte `+0x60` plus
-11 (`0x00364A50`-`0x00364A58`), and the measure `0x00364530` does the same (`0x003645DD`, `0x00364696`). `0x002D8690`, one of
-the drawer's four callers, uses it only for text that starts with `ex` (`0x00364980`, `0x002D8720`-`0x002D8727`); it
+11¹, and the measure `0x00364530` does the same². `0x002D8690`, one of
+the drawer's four callers, uses it only for text that starts with `ex`³; it
 sets that byte to its record's byte `+0x64` less 1 when that byte is above 0, and to 0
-otherwise, so a record whose byte `+0x64` is 0 draws in face 0, `font_venus` (`0x002D8729`-`0x002D874B`).
+otherwise, so a record whose byte `+0x64` is 0 draws in face 0, `font_venus`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00364A50`-`0x00364A58` |
+| ² | `0x003645DD`, `0x00364696` |
+| ³ | `0x00364980`, `0x002D8720`-`0x002D8727` |
+| ⁴ | `0x002D8729`-`0x002D874B` |
+
+</details>
 
 ### Where faces 2, 3 and 4 are drawn
 
-`0x002D8690`, its twin `0x002D87D0` and `0x002DD5D0` clear the record's byte `+0x64` after each draw (`0x002D8796`,
-`0x002D88D6`, `0x002DD66D`); `0x002DD5D0` draws the `ex` text that `0x002D8910` and `0x002D89E0` hand it (`0x002D8994`,
-`0x002D8A6E`). `0x002D8910(record, x, y, text, sheet)` first builds that context with `0x003659F0`, giving it the
-record's `+0x70` and x and y (`0x002D8954`-`0x002D8982`); for any other text it builds the context with
-`0x002B3400(context, text, sheet)` and draws it with `0x002DD680` (`0x002D899B`-`0x002D89B3`).
+`0x002D8690`, its twin `0x002D87D0` and `0x002DD5D0` clear the record's byte `+0x64` after each draw¹; `0x002DD5D0` draws the `ex` text that `0x002D8910` and `0x002D89E0` hand it². `0x002D8910(record, x, y, text, sheet)` first builds that context with `0x003659F0`, giving it the
+record's `+0x70` and x and y³; for any other text it builds the context with
+`0x002B3400(context, text, sheet)` and draws it with `0x002DD680`⁴.
 
-`0x002DD5D0` sets the context's face `+0x60` from `+0x64` as `0x002D8690` does (`0x002DD651`-`0x002DD665`). It also gives
-the context the record's dword `+0x60` at `+0x00`, its byte `+0x5C` at `+0x61` and its byte `+0x66` at `+0x63`
-(`0x00365B20`), and the colour `rgb = (byte +0x90..+0x92 x s16 +0x5A) >> 7`, `a = (byte +0x93 x s16 +0x58) >> 7` at
-`+0x30`, kept at the record's `+0x94` (`0x002DD5DA`-`0x002DD64E`). It reads neither its x nor its y.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D8796`, `0x002D88D6`, `0x002DD66D` |
+| ² | `0x002D8994`, `0x002D8A6E` |
+| ³ | `0x002D8954`-`0x002D8982` |
+| ⁴ | `0x002D899B`-`0x002D89B3` |
+
+</details>
+
+`0x002DD5D0` sets the context's face `+0x60` from `+0x64` as `0x002D8690` does¹. It also gives
+the context the record's dword `+0x60` at `+0x00`, its byte `+0x5C` at `+0x61` and its byte `+0x66` at `+0x63`², and the colour `rgb = (byte +0x90..+0x92 x s16 +0x5A) >> 7`, `a = (byte +0x93 x s16 +0x58) >> 7` at
+`+0x30`, kept at the record's `+0x94`³. It reads neither its x nor its y.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DD651`-`0x002DD665` |
+| ² | `0x00365B20` |
+| ³ | `0x002DD5DA`-`0x002DD64E` |
+
+</details>
 
 So the face is set by whoever fills `+0x64` just before the draw. The License Board and the menu layouts
 set it above 1:
 
-- `0x0055BAC0`, the [Licenses](license-board-screen.md) square drawer, sets it to 3 (`0x0055BE9D`) for a square in
+- `0x0055BAC0`, the [Licenses](license-board-screen.md) square drawer, sets it to 3¹ for a square in
   state 4 while the board is zoomed in, fills text 19257 (`menu_expansion` row 257, a one-number `ex` template)
-  with the square's `lpCost` (`0x00365B30`, `0x0055BEDE`) and draws it with `0x002D8910` (`0x0055BF18`). The LP cost on a
+  with the square's `lpCost`² and draws it with `0x002D8910`³. The LP cost on a
   square is face 2, `font_bookman`, whose glyphs are the digits 0 to 9.
 - The menu layouts: a type-5 item's `u16` `+0x12` ([UI typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md))
-  becomes the bits under mask `0xFFC0` of its node (`0x0029FEB0`). The type-5 drawer `0x0029FBD0` (`0x0029FC01`-`0x0029FC11`) and the
-  Licenses list pane `0x005599D0` (`0x00559CBA`-`0x00559CCA`) copy them into `+0x64` and draw the node's text with
-  `0x002D8910` (`0x0029FDFD`, `0x00559D18`). An item with `+0x12` = n draws in face n - 1.
-- `0x0029FEB0` keeps only the low ten bits of `+0x12` (`0x0029FF08`-`0x0029FF17`). With `+0x2D` bit `0x4` and a text
+  becomes the bits under mask `0xFFC0` of its node⁴. The type-5 drawer `0x0029FBD0`⁵ and the
+  Licenses list pane `0x005599D0`⁶ copy them into `+0x64` and draw the node's text with
+  `0x002D8910`⁷. An item with `+0x12` = n draws in face n - 1.
+- `0x0029FEB0` keeps only the low ten bits of `+0x12`⁸. With `+0x2D` bit `0x4` and a text
   wider at its scale than the node, `0x0029FBD0` overwrites those bits with the scroll offset
-  (`0x0029FDB1`-`0x0029FDBF`), and its next draw copies that offset into `+0x64` (`0x0029FC01`-`0x0029FC11`).
+ ⁹, and its next draw copies that offset into `+0x64`¹⁰.
 
-`0x0029FF60` fills such a node's text with the `ex` formatter `0x00365B30` when the field is above 0 (`0x0029FFE5`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0055BE9D` |
+| ² | `0x00365B30`, `0x0055BEDE` |
+| ³ | `0x0055BF18` |
+| ⁴ | `0x0029FEB0` |
+| ⁵ | `0x0029FC01`-`0x0029FC11` |
+| ⁶ | `0x00559CBA`-`0x00559CCA` |
+| ⁷ | `0x0029FDFD`, `0x00559D18` |
+| ⁸ | `0x0029FF08`-`0x0029FF17` |
+| ⁹ | `0x0029FDB1`-`0x0029FDBF` |
+| ¹⁰ | `0x0029FC01`-`0x0029FC11` |
+
+</details>
+
+`0x0029FF60` fills such a node's text with the `ex` formatter `0x00365B30` when the field is above 0¹.
 Its call is `0x0029FF60(node, buffer, size, n, id, p)`. The text id is `id`, or the item's `+0x14` plus 100,000 when
-`id` is 0 and `+0x14` is not -1 (`0x0029FF8F`-`0x0029FF9F`); an id from 100,000 up is read with `0x002F9920` (`0x0029FFB8`),
-any lower id with `0x002F9860` (`0x0029FFC1`).
+`id` is 0 and `+0x14` is not -1²; an id from 100,000 up is read with `0x002F9920`³,
+any lower id with `0x002F9860`⁴.
 The field counts as above 0 when the bits under `0xFFC0` of the node's dword `+0x08`, moved to the top of the
-register, make a positive number (`0x0029FFC9`-`0x0029FFD4`).
+register, make a positive number⁵.
 
-With such a field and a buffer of 32 bytes or less, `0x0029CC70` formats instead, with a 32-byte limit
-(`0x0029FFF4`). A field not above 0, that is 0 or with bit `0x8000` of `+0x08` set, formats with `0x002B4090`
-(`0x002A0004`). With no buffer the text goes to the next of the eight rotating buffers through `0x0029CC00`, or
-`0x0029CB80` for a field not above 0 (`0x002A000B`-`0x002A0023`). The node keeps
-the text at `+0x18` and `0x0020E620(p)` at `+0x20` (`0x002A0030`-`0x002A0048`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029FFE5` |
+| ² | `0x0029FF8F`-`0x0029FF9F` |
+| ³ | `0x0029FFB8` |
+| ⁴ | `0x0029FFC1` |
+| ⁵ | `0x0029FFC9`-`0x0029FFD4` |
+
+</details>
+
+With such a field and a buffer of 32 bytes or less, `0x0029CC70` formats instead, with a 32-byte limit¹. A field not above 0, that is 0 or with bit `0x8000` of `+0x08` set, formats with `0x002B4090`². With no buffer the text goes to the next of the eight rotating buffers through `0x0029CC00`, or
+`0x0029CB80` for a field not above 0³. The node keeps
+the text at `+0x18` and `0x0020E620(p)` at `+0x20`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029FFF4` |
+| ² | `0x002A0004` |
+| ³ | `0x002A000B`-`0x002A0023` |
+| ⁴ | `0x002A0030`-`0x002A0048` |
+
+</details>
 
 Over the 4,484 type-5 items of all shipped layout copies, `+0x12` is 0 in 3,182, 1 in 642, 2 in 10, 4 in 330 and
 5 in 320:
@@ -152,43 +275,101 @@ Over the 4,484 type-5 items of all shipped layout copies, `+0x12` is 0 in 3,182,
 No item carries 3: the layouts do not ask for face 2, which the License Board's drawer sets. The one item with 2,
 `quest.mrp` record 7, has no string. The other callers of the drawer pass the face themselves or leave `+0x64` at 0:
 the staff roll's `0x0053E0B0` sets each line's face (staff-roll faces 6 to 11), and `0x005569F0` and the 13 functions
-holding the 23 calls of `0x002D8650` (among them `0x0027E530`) and the call of `0x002D8670` (`0x004046AB`) write no `+0x64`.
+holding the 23 calls of `0x002D8650` (among them `0x0027E530`) and the call of `0x002D8670`¹ write no `+0x64`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004046AB` |
+
+</details>
 
 ### Which text fonts 1, 3, 4, 5 and 6 draw
 
 A text context keeps a font index at `+0xA6`. `0x002B3400` and `0x002B32D0` set it to the place of a sheet argument in the
-sheet table `0x02AEE810`, 1 to 7, or 0 when the argument is 0 or its low 32 bits match none of the table's dwords
-(`0x0039BAD0`, `0x002B3420`-`0x002B3425`, `0x002B3301`-`0x002B3306`). When the language test `0x00254A10` is false and the index
-is 7, both also set the context's bit `0x800` and its sheet `+0x60` to `0x0039C4A0(1)` (`0x002B342B`-`0x002B3452`,
-`0x002B331F`-`0x002B3341`).
+sheet table `0x02AEE810`, 1 to 7, or 0 when the argument is 0 or its low 32 bits match none of the table's dwords¹. When the language test `0x00254A10` is false and the index
+is 7, both also set the context's bit `0x800` and its sheet `+0x60` to `0x0039C4A0(1)`².
 
-`0x002B3400(context, text, sheet)` looks up its third argument (`0x002B340F`, `0x002B341D`) and `0x002B32D0` its second
-(`0x002B32EA`, `0x002B32FA`); neither stores that argument in the context, whose sheet `+0x60` otherwise keeps the
-`0x0039C4A0(0)` that `0x002AC1E0` stores after clearing the context (`0x002AC1F1`, `0x002AC200`-`0x002AC245`), so the index can
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039BAD0`, `0x002B3420`-`0x002B3425`, `0x002B3301`-`0x002B3306` |
+| ² | `0x002B342B`-`0x002B3452`, `0x002B331F`-`0x002B3341` |
+
+</details>
+
+`0x002B3400(context, text, sheet)` looks up its third argument¹ and `0x002B32D0` its second²; neither stores that argument in the context, whose sheet `+0x60` otherwise keeps the
+`0x0039C4A0(0)` that `0x002AC1E0` stores after clearing the context³, so the index can
 name a sheet the context does not hold.
 
-A two-byte code whose lead is at least `[0x01E0CDF8]` is drawn with that index; one-byte codes and lower leads with
-index 0 (`0x002B0280`), and in the character mapping `0x002AC2F0` with 7 once the context's bit `0x800` is set
-(`0x002AC33E`-`0x002AC34E`). `0x0017FD30` passes the index to
-`0x001E9D20`, which finds the record filed under `(group << 32) | index` in the display map `+0xF38` and draws with
-the font keyed by the record's `+0x04` (`0x001E9D50`-`0x001E9DB9`, `0x001B51C0`).
+<details>
+<summary>Where in the code</summary>
 
-The record's index is a slot of the font manager. `0x0017FBC0(id)` files a font in the first empty of the 16 slots
-(`0x001B6510`, `0x001B4590`) and `0x0017FB90(id, slot)` in the given one (`0x001B6470`); `0x001E7F90` files the record. A
-screen's glyph sheet takes the first empty place of the sheet table from 1 (`0x0039BEC0`). `0x0017FBC0` has four
+| | Code |
+|---|---|
+| ¹ | `0x002B340F`, `0x002B341D` |
+| ² | `0x002B32EA`, `0x002B32FA` |
+| ³ | `0x002AC1F1`, `0x002AC200`-`0x002AC245` |
+
+</details>
+
+A two-byte code whose lead is at least `[0x01E0CDF8]` is drawn with that index; one-byte codes and lower leads with
+index 0¹, and in the character mapping `0x002AC2F0` with 7 once the context's bit `0x800` is set². `0x0017FD30` passes the index to
+`0x001E9D20`, which finds the record filed under `(group << 32) | index` in the display map `+0xF38` and draws with
+the font keyed by the record's `+0x04`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B0280` |
+| ² | `0x002AC33E`-`0x002AC34E` |
+| ³ | `0x001E9D50`-`0x001E9DB9`, `0x001B51C0` |
+
+</details>
+
+The record's index is a slot of the font manager. `0x0017FBC0(id)` files a font in the first empty of the 16 slots¹ and `0x0017FB90(id, slot)` in the given one²; `0x001E7F90` files the record. A
+screen's glyph sheet takes the first empty place of the sheet table from 1³. `0x0017FBC0` has four
 callers and `0x0017FB90` one, each with its own id:
 
-- font00 (1): the font pack binder `0x0039C150` files it (`0x0039C27C`) in the first empty slot, slot 0 while no other
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B6510`, `0x001B4590` |
+| ² | `0x001B6470` |
+| ³ | `0x0039BEC0` |
+
+</details>
+
+- font00 (1): the font pack binder `0x0039C150` files it¹ in the first empty slot, slot 0 while no other
   font holds one: index 0, that of every text without a sheet of its own.
 - fontex_subtitle (3): the same binder files it in slot 7 when the language test `0x00254A10` is 0, locale ids 1 to
-  6 and 9 (`0x0039C290`).
+  6 and 9².
 - fontguide (4): `0x003BC4E0`, the map screen's map-data widget, registers the guide picture of `menumap_guide<n>.bin`
-  as a sheet and then the font (`0x003BC7C3`, `0x003BC7CD`), and releases both together (`0x0039BB60`, `0x0017FA70(4)`).
-- fontquest (5): `0x0037F1F0` registers `menuquest.nfs`, the quest menu's name sheet, and then the font (`0x0037F2B9`,
-  `0x0037F2C3`).
-- fonttutorial (6): `0x00575710` registers a Traveler's Tips text bundle's glyph sheet and then the font (`0x0057576C`,
-  `0x005757E5`); only the `ch`, `cn`, `in` and `kr` tutorial bundles carry a sheet
+  as a sheet and then the font³, and releases both together (`0x0039BB60`, `0x0017FA70(4)`).
+- fontquest (5): `0x0037F1F0` registers `menuquest.nfs`, the quest menu's name sheet, and then the font⁴.
+- fonttutorial (6): `0x00575710` registers a Traveler's Tips text bundle's glyph sheet and then the font⁵; only the `ch`, `cn`, `in` and `kr` tutorial bundles carry a sheet
   ([Handbook files](../Game-Files-And-Data-Tables/handbook-files.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039C27C` |
+| ² | `0x0039C290` |
+| ³ | `0x003BC7C3`, `0x003BC7CD` |
+| ⁴ | `0x0037F2B9`, `0x0037F2C3` |
+| ⁵ | `0x0057576C`, `0x005757E5` |
+
+</details>
 
 ### The two bitmap fonts
 
@@ -207,7 +388,16 @@ registration `0x0067D3B0` gives the members, `m_characterCode`, `m_kernPairs`, `
 
 Every record's `m_kernPairs` is 0, so neither font kerns. `m_rotated` is set on 85 records of
 `tuffysdf.fgen.phyre` and 84 of `tuffy.fgen.phyre`; the builder `0x0067B530` then swaps the glyph's texture
-coordinates (`0x0067B818`), and the glyph lies in the texture `m_height` wide and `m_width` high.
+coordinates¹, and the glyph lies in the texture `m_height` wide and `m_width` high.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067B818` |
+
+</details>
 
 `tuffysdf.fgen.phyre` is the debug-information overlay's font: the path `0x009019C8`, through the pointer at
 `0x01DFDE08`, is loaded by `0x001EA3C0` for each of the 32 text lines the `MultipleDebugDisplay` constructor
@@ -218,25 +408,39 @@ loads it.
 ### Changing a font file
 
 - `fontlist.ah` holds one name per line, each line ended by CR LF or LF, with nothing else on it. `0x001B4930` reads
-  a name with `"%s"` (`0x008F4438`, `0x001B49CE`) and steps past exactly the name's length and then only CR and LF
-  bytes (`0x001B49E0`-`0x001B4A01`), so a blank before or after a name makes a later read start inside a name. The list
-  ends at the first read that finds no name (`0x001B49D3`).
-- The folder and a name are joined with `"%s%s"` (`0x008F80F0`) into a 256-byte buffer (`0x001B4A13`-`0x001B4A24`);
+  a name with `"%s"`¹ and steps past exactly the name's length and then only CR and LF
+  bytes², so a blank before or after a name makes a later read start inside a name. The list
+  ends at the first read that finds no name³.
+- The folder and a name are joined with `"%s%s"`⁴ into a 256-byte buffer⁵;
   every folder, such as `./GameData/D3D11/ArtData/font/jp/`, is 33 characters, which leaves 222 for the name.
 - A `.dat` is the `0x28`-byte header and then `0x24`-byte glyph records to the end of the file ([Fonts](fonts.md)
   Layouts). A key must not repeat: the filer `0x001FDCC0` files a record only when the font has no record of that key
-  yet, and returns 0 for a repeated key without storing it (`0x001FDCF7`-`0x001FDD09`, `0x001FDD4C`), so the first
+  yet, and returns 0 for a repeated key without storing it⁶, so the first
   record of a key is the one drawn.
 - A `.ker` is 12-byte pairs and a `.fex` is `{key, count, values}` chunks, each to the end of the file; a `.fex`
   key already loaded stops its reader ([Fonts](fonts.md) Loader behaviour).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008F4438`, `0x001B49CE` |
+| ² | `0x001B49E0`-`0x001B4A01` |
+| ³ | `0x001B49D3` |
+| ⁴ | `0x008F80F0` |
+| ⁵ | `0x001B4A13`-`0x001B4A24` |
+| ⁶ | `0x001FDCF7`-`0x001FDD09`, `0x001FDD4C` |
+
+</details>
+
 ### Changing an atlas
 
 - An atlas must stay a Phyre cluster holding a `PTexture2D` asset. The completion `0x001B6230` takes the first
-  instance of that class from the loaded cluster (`0x001B62A5`-`0x001B62F4`) and hands the font nothing when the cluster
-  or the instance is missing (`0x001B629F`, `0x001B62C0`, `0x001B62F4`).
+  instance of that class from the loaded cluster¹ and hands the font nothing when the cluster
+  or the instance is missing².
 - Glyph records place each glyph in the atlas in pixels, `atlasX` to `atlasX + cellW` and `atlasY` to
-  `atlasY + cellH` from the top (`0x002AA5C7`-`0x002AA647`), so a redrawn atlas keeps every glyph at its record's
+  `atlasY + cellH` from the top³, so a redrawn atlas keeps every glyph at its record's
   rectangle; every shipped atlas has the `.dat` header's `atlasW` x `atlasH`.
 - The texture coordinates are fractions of the `.dat` header's `atlasW` and `atlasH` (font `+0x24`, `+0x28`), not of
   the texture's own size: the emitter `0x001E8070` computes u = x / `atlasW` and v = (`atlasH` - y) / `atlasH` for each
@@ -249,28 +453,53 @@ loads it.
   the completion skips the store at `0x001B629F`, `0x001B62C0`, `0x001B62F4`, `0x001B6310`). The font still lays out and
   measures its text from the `.dat`, but none of its glyphs is drawn (the next bullet): its text is invisible, and
   nothing reads through the null pointer.
-- When `0x001E9D20` opens the font's batch it copies the atlas into the batch's `+0x08` (`0x001E9E90`-`0x001E9E99`). All
-  four batch loops of the flush `0x001E8580` skip a batch whose `+0x08` is 0 (`0x001E86F2`, `0x001E8900`, `0x001E8FB0`,
-  `0x001E9190`), and the shared draw body tests each layer's texture again (`0x002142D3`).
+- When `0x001E9D20` opens the font's batch it copies the atlas into the batch's `+0x08`⁴. All
+  four batch loops of the flush `0x001E8580` skip a batch whose `+0x08` is 0⁵, and the shared draw body tests each layer's texture again⁶.
 - `0x001E9D20` opens a batch only when the batch's `+0x00` is not already the font id: it then stores the id there,
-  the atlas at `+0x08`, the font's `+0x10` (`0x005C5310`) at `+0x10` and copies the batch's `+0x18` to `+0x20`
-  (`0x001E9E80`-`0x001E9EB5`). A batch already holding the id is used as it stands.
-- Before that it stores the font's expansion list for the record's `+0x08` at `+0x08` (`0x001FDD60`,
-  `0x001E9DCA`-`0x001E9DD5`), and last it copies the record's `+0x00` and `+0x0C` to `+0x18` and `+0x1C`
-  (`0x001E9EB9`-`0x001E9EC6`).
+  the atlas at `+0x08`, the font's `+0x10`⁷ at `+0x10` and copies the batch's `+0x18` to `+0x20`
+ ⁸. A batch already holding the id is used as it stands.
+- Before that it stores the font's expansion list for the record's `+0x08` at `+0x08`⁹, and last it copies the record's `+0x00` and `+0x0C` to `+0x18` and `+0x1C`
+ ¹⁰.
 - With a font bound, both halves equal to `+0x18` and `+0x1C` (`a == [+0x18] && b == [+0x1C]`) and byte
   `+0x2379` clear, `0x001E9D20` returns at once: `[+0x00] != 0`, the two equalities for its second and third
-  arguments `a` and `b`, and `[+0x2379] == 0` (`0x001E9D2A`-`0x001E9D4A`). A key the display map does not hold clears
+  arguments `a` and `b`, and `[+0x2379] == 0`¹¹. A key the display map does not hold clears
   `+0x00`-`+0x20` like a missing font
-  (`0x001E9D87`-`0x001E9DA4`, `0x001E9ED4`-`0x001E9EEA`).
+ ¹².
 - A font id that the font list does not hold draws nothing either: the lookup `0x001B51C0` returns 0, `0x001E9D20` clears
-  the current font (`0x001E9DC4`, `0x001E9ED4`), and the emitter adds no vertex while it is 0 (`0x001E80C9`). An id outside
-  1 to 31 is cleared the same way (`0x001E9DD9`-`0x001E9DE3`), because each block has 32 batches indexed by font id.
-  - The block is 0 while `+0x2379` is clear (`0x001E9E6C`-`0x001E9E7C`). With it set, the block is the first of the
+  the current font¹³, and the emitter adds no vertex while it is 0¹⁴. An id outside
+  1 to 31 is cleared the same way¹⁵, because each block has 32 batches indexed by font id.
+  - The block is 0 while `+0x2379` is clear¹⁶. With it set, the block is the first of the
     two `0x2C`-byte slots at `+0x2320` that holds 0 or the fourth argument, which is stored there
-    (`0x001E9E01`-`0x001E9E46`), or block 1 when neither does (`0x001E9E51`-`0x001E9E67`).
+   ¹⁷, or block 1 when neither does¹⁸.
 - A new font in a list needs both `<name>.dat` and `<name>.dds.phyre`: the builder requests the atlas for every
-  font it builds (`0x001B501F`).
+  font it builds¹⁹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B62A5`-`0x001B62F4` |
+| ² | `0x001B629F`, `0x001B62C0`, `0x001B62F4` |
+| ³ | `0x002AA5C7`-`0x002AA647` |
+| ⁴ | `0x001E9E90`-`0x001E9E99` |
+| ⁵ | `0x001E86F2`, `0x001E8900`, `0x001E8FB0`, `0x001E9190` |
+| ⁶ | `0x002142D3` |
+| ⁷ | `0x005C5310` |
+| ⁸ | `0x001E9E80`-`0x001E9EB5` |
+| ⁹ | `0x001FDD60`, `0x001E9DCA`-`0x001E9DD5` |
+| ¹⁰ | `0x001E9EB9`-`0x001E9EC6` |
+| ¹¹ | `0x001E9D2A`-`0x001E9D4A` |
+| ¹² | `0x001E9D87`-`0x001E9DA4`, `0x001E9ED4`-`0x001E9EEA` |
+| ¹³ | `0x001E9DC4`, `0x001E9ED4` |
+| ¹⁴ | `0x001E80C9` |
+| ¹⁵ | `0x001E9DD9`-`0x001E9DE3` |
+| ¹⁶ | `0x001E9E6C`-`0x001E9E7C` |
+| ¹⁷ | `0x001E9E01`-`0x001E9E46` |
+| ¹⁸ | `0x001E9E51`-`0x001E9E67` |
+| ¹⁹ | `0x001B501F` |
+
+</details>
 
 ## Columns
 
@@ -350,138 +579,119 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [npc names](../Characters-And-Objects/npc-names.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0027E530` | calls | `0x00272C80`, `0x00272CB0` |
+| [`0x0027E530`](battle-menu.md) (on battle menu) | calls | [`0x00272C80`](enemy-names-on-screen.md) (on enemy names on screen)<br>[`0x00272CB0`](enemy-names-on-screen.md) (on enemy names on screen) |
 
 **Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00225690` | is called by | `0x00221F40`, `0x00222410`, `0x002238F0`, `0x00223FA0`, `0x002240B0`, `0x00224180`, `0x00224290`, `0x00224360`, `0x00224470` |
+| [`0x00225690`](fonts-files.md) | is called by | [`0x00221F40`](fonts-files.md)<br>[`0x00222410`](fonts-files.md)<br>[`0x002238F0`](../Sound-And-Music/sound-effects.md) (on sound effects)<br>[`0x00223FA0`](fonts-files.md)<br>[`0x002240B0`](fonts-files.md)<br>[`0x00224180`](fonts-files.md)<br>[`0x00224290`](fonts-files.md)<br>[`0x00224360`](fonts-files.md)<br>[`0x00224470`](../Sound-And-Music/audio-manager.md) (on audio manager) |
 
 **Engine core** (explained on [text drawing](text-drawing.md), [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001E8580` | calls | `0x001A1470` |
-| `0x00254A10` | calls | `0x00229E40` |
-| `0x002B0280` | calls | `0x00229E40` |
+| [`0x001E8580`](text-drawing.md) (on text drawing) | calls | [`0x001A1470`](../Graphics/gi-render-commands.md) (on gi render commands) |
+| [`0x00254A10`](text-string-tables.md) (on text string tables) | calls | [`0x00229E40`](../Story-Events-And-Hunts/script-language-differences.md) (on script language differences) |
+| [`0x002B0280`](text-drawing.md) (on text drawing) | calls | [`0x00229E40`](../Story-Events-And-Hunts/script-language-differences.md) (on script language differences) |
 
 **Platform** (explained on [phyre d3d11 device and resources](../PhyreEngine/phyre-d3d11-device-and-resources.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00225690` | is called by | `0x0061F200`, `0x0061F710`, `0x006209C0`, `0x006239C0` |
+| [`0x00225690`](fonts-files.md) | is called by | [`0x0061F200`](../PhyreEngine/phyre-d3d11-device-and-resources.md) (on phyre d3d11 device and resources)<br>[`0x0061F710`](../PhyreEngine/phyre-d3d11-device-and-resources.md) (on phyre d3d11 device and resources)<br>[`0x006209C0`](../PhyreEngine/phyre-d3d11-device-and-resources.md) (on phyre d3d11 device and resources)<br>[`0x006239C0`](../PhyreEngine/phyre-d3d11-device-and-resources.md) (on phyre d3d11 device and resources) |
 
-**Graphics**
+**Graphics** (explained on [message windows](message-windows.md), [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [fonts](fonts.md), [fonts glyphs](fonts-glyphs.md), [text drawing](text-drawing.md), [menu lists](menu-lists.md), [battle numbers](battle-numbers.md), [hud](hud.md), [call signatures](../Engine-Core/call-signatures.md), [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [graphics thread handshake](../Graphics/graphics-thread-handshake.md), [btm exfont bitmaps](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md), [bone trails](../Graphics/bone-trails.md), [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md), [debug menu](../Engine-Core/debug-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0017FD30` | is called by | `0x002AAE40`, `0x002B0280` |
-| `0x001B4590` | is called by | `0x001B47A0` |
-| `0x001B4D70` | calls | `0x001FC060`, `0x001FDCC0`, `0x001FE020`, `0x001FE080` |
-| `0x001B58E0` | calls | `0x001FDE60`, `0x001FDF10` |
-| `0x001B6230` | calls | `0x001FDF10` |
-| `0x001B6510` | calls | `0x001B4590` |
-| `0x001E7F90` | is called by | `0x001B4590` |
-| `0x001FDD60` | is called by | `0x001B4590` |
-| `0x00213560` | is called by | `0x001E8580` |
+| [`0x0017FD30`](fonts-files.md) | is called by | [`0x002AAE40`](text-drawing.md) (on text drawing)<br>[`0x002B0280`](text-drawing.md) (on text drawing) |
+| [`0x001B4590`](fonts.md) (on fonts) | is called by | [`0x001B47A0`](fonts.md) (on fonts) |
+| [`0x001B4D70`](fonts.md) (on fonts) | calls | [`0x001FC060`](fonts-files.md)<br>[`0x001FDCC0`](fonts-files.md)<br>[`0x001FE020`](fonts.md) (on fonts)<br>[`0x001FE080`](fonts.md) (on fonts) |
+| [`0x001B58E0`](fonts-files.md) | calls | [`0x001FDE60`](fonts-files.md)<br>[`0x001FDF10`](fonts-files.md) |
+| [`0x001B6230`](fonts.md) (on fonts) | calls | [`0x001FDF10`](fonts-files.md) |
+| [`0x001B6510`](fonts.md) (on fonts) | calls | [`0x001B4590`](fonts.md) (on fonts) |
+| [`0x001E7F90`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps) | is called by | [`0x001B4590`](fonts.md) (on fonts) |
+| [`0x001FDD60`](aerodrome-airship-dialogue.md) (on aerodrome airship dialogue) | is called by | [`0x001B4590`](fonts.md) (on fonts) |
+| [`0x00213560`](fonts-files.md) | is called by | [`0x001E8580`](text-drawing.md) (on text drawing) |
+| [`0x00225690`](fonts-files.md) | is called by | [`0x001E8070`](fonts.md) (on fonts) |
+| [`0x00254A10`](text-string-tables.md) (on text string tables) | is called by | [`0x002B0280`](text-drawing.md) (on text drawing)<br>[`0x002D2DB0`](widgets.md) (on widgets) |
+| [`0x002AC2F0`](text-drawing.md) (on text drawing) | is called by | [`0x002AAE40`](text-drawing.md) (on text drawing) |
+| [`0x002B0280`](text-drawing.md) (on text drawing) | calls | [`0x003A1DB0`](../PhyreEngine/the-frame.md) Render command: submit current buffer and swap (on the frame) |
+| [`0x002B0280`](text-drawing.md) (on text drawing) | is called by | [`0x003F1530`](hud.md) (on hud) |
+| [`0x002B3400`](fonts-files.md) | is called by | [`0x0035C160`](hud.md) (on hud) |
+| [`0x002D8650`](fonts-files.md) | is called by | [`0x0035C160`](hud.md) (on hud) |
+| [`0x002D8690`](fonts-files.md) | calls | [`0x002B0280`](text-drawing.md) (on text drawing)<br>[`0x003649A0`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps) |
+| [`0x002D87D0`](fonts-files.md) | calls | [`0x002B0280`](text-drawing.md) (on text drawing)<br>[`0x003649A0`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps) |
+| [`0x002DD5D0`](fonts-files.md) | calls | [`0x003649A0`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps) |
+| [`0x002DD680`](fonts-files.md) | calls | [`0x002B0280`](text-drawing.md) (on text drawing) |
+| [`0x002F9920`](clan-primer-entries.md) (on clan primer entries) | is called by | [`0x0037E5B0`](../Game-Files-And-Data-Tables/quest-menu-files.md) (on quest menu files)<br>[`0x0037E8D0`](../Game-Files-And-Data-Tables/quest-menu-files.md) (on quest menu files) |
+| [`0x00364530`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps) | calls | [`0x00366110`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps) |
+| [`0x003649A0`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps) | calls | [`0x003A1DB0`](../PhyreEngine/the-frame.md) Render command: submit current buffer and swap (on the frame)<br>[`0x003A2020`](../Graphics/graphics-thread-handshake.md) (on graphics thread handshake)<br>[`0x003A2090`](../Graphics/legacy-ps2-gs-layer.md) (on legacy ps2 gs layer) |
+| [`0x003649A0`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps) | is called by | [`0x0053E0B0`](staff-roll.md) (on staff roll) |
+| [`0x003659F0`](fonts-files.md) | is called by | [`0x0053E0B0`](staff-roll.md) (on staff roll) |
+| [`0x00365B20`](fonts-files.md) | is called by | [`0x004213E0`](../Graphics/bone-trails.md) (on bone trails) |
+| [`0x0039C4A0`](fonts-files.md) | is called by | [`0x002AAE40`](text-drawing.md) (on text drawing)<br>[`0x002B0280`](text-drawing.md) (on text drawing) |
+| [`0x0053E0B0`](staff-roll.md) (on staff roll) | calls | [`0x003649A0`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps) |
+| [`0x0055BAC0`](license-board-screen.md) (on license board screen) | calls | [`0x002DB080`](menu-sprites.md) (on menu sprites) |
+| [`0x005C5310`](fonts-files.md) | is called by | [`0x001CD0E0`](../Engine-Core/graphics-settings.md) (on graphics settings) |
+| [`0x0079E3C0`](fonts-files.md) | is called by | [`0x001E8070`](fonts.md) (on fonts) |
 
-**Graphics**
+**Game files and data tables** (explained on [fonts](fonts.md), [fonts expansion lists](fonts-expansion-lists.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md), [fonts kerning](fonts-kerning.md), [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [fonts glyphs](fonts-glyphs.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [startup constants](../Engine-Core/startup-constants.md), [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00225690` | is called by | `0x001E8070` |
-| `0x00254A10` | is called by | `0x002B0280`, `0x002D2DB0` |
-| `0x002AC2F0` | is called by | `0x002AAE40` |
-| `0x002B0280` | calls | `0x003A1DB0` |
-| `0x002B0280` | is called by | `0x003F1530` |
-| `0x002B3400` | is called by | `0x0035C160` |
-| `0x002D8650` | is called by | `0x0035C160` |
-| `0x002D8690` | calls | `0x002B0280`, `0x003649A0` |
-| `0x002D87D0` | calls | `0x002B0280`, `0x003649A0` |
-| `0x002DD5D0` | calls | `0x003649A0` |
-
-**Graphics**
-
-| Function | | Functions |
-|---|---|---|
-| `0x002DD680` | calls | `0x002B0280` |
-| `0x002F9920` | is called by | `0x0037E5B0`, `0x0037E8D0` |
-| `0x00364530` | calls | `0x00366110` |
-| `0x003649A0` | calls | `0x003A1DB0`, `0x003A2020`, `0x003A2090` |
-| `0x003649A0` | is called by | `0x0053E0B0` |
-| `0x003659F0` | is called by | `0x0053E0B0` |
-| `0x00365B20` | is called by | `0x004213E0` |
-| `0x0039C4A0` | is called by | `0x002AAE40`, `0x002B0280` |
-| `0x0053E0B0` | calls | `0x003649A0` |
-| `0x0055BAC0` | calls | `0x002DB080` |
-
-**Graphics**
-
-| Function | | Functions |
-|---|---|---|
-| `0x005C5310` | is called by | `0x001CD0E0` |
-| `0x0079E3C0` | is called by | `0x001E8070` |
-
-**Graphics** (explained on [message windows](message-windows.md), [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [fonts](fonts.md), [fonts glyphs](fonts-glyphs.md), [text drawing](text-drawing.md), [menu lists](menu-lists.md))
-
-**Graphics** (explained on [battle numbers](battle-numbers.md), [hud](hud.md), [call signatures](../Engine-Core/call-signatures.md), [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [graphics thread handshake](../Graphics/graphics-thread-handshake.md))
-
-**Graphics** (explained on [btm exfont bitmaps](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md), [bone trails](../Graphics/bone-trails.md), [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md), [debug menu](../Engine-Core/debug-menu.md))
-
-**Game files and data tables**
-
-| Function | | Functions |
-|---|---|---|
-| `0x001B44A0` | calls | `0x001B53F0` |
-| `0x001B4930` | is called by | `0x001B5140` |
-| `0x001B4C00` | is called by | `0x001B6030` |
-| `0x001B4D70` | calls | `0x001B5480`, `0x001B5750`, `0x001B58E0`, `0x0020B5F0` |
-| `0x001B4D70` | is called by | `0x001B5FE0` |
-| `0x001B5230` | is called by | `0x001B6080` |
-| `0x001B5480` | calls | `0x001A0A90`, `0x001A0BB0`, `0x001A1220` |
-| `0x001B5480` | is called by | `0x001B4D70` |
-| `0x001B5610` | calls | `0x001A0A90`, `0x001A0BB0`, `0x001A1220` |
-
-**Game files and data tables**
-
-| Function | | Functions |
-|---|---|---|
-| `0x001B5610` | is called by | `0x001B5140` |
-| `0x001B5750` | calls | `0x001A0A90`, `0x001A0BB0`, `0x001A1220` |
-| `0x001B5750` | is called by | `0x001B4D70` |
-| `0x001B58E0` | calls | `0x001A0A90`, `0x001A0BB0`, `0x001A1220` |
-| `0x001B58E0` | is called by | `0x001B4D70` |
-| `0x001EA3C0` | calls | `0x00796350` |
-| `0x001FC060` | is called by | `0x001B4D70` |
-| `0x001FDCC0` | is called by | `0x001B4D70` |
-| `0x001FDE60` | is called by | `0x001B58E0`, `0x001B6110` |
-
-**Game files and data tables**
-
-| Function | | Functions |
-|---|---|---|
-| `0x001FDF10` | is called by | `0x001B58E0`, `0x001B6230` |
-| `0x00213560` | is called by | `0x001B6230` |
-| `0x00365810` | calls | `0x0032E400`, `0x0032E620` |
-| `0x006B5C70` | is called by | `0x004096F0`, `0x00409960`, `0x00409A60` |
-
-**Game files and data tables** (explained on [fonts](fonts.md), [fonts expansion lists](fonts-expansion-lists.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md), [fonts kerning](fonts-kerning.md), [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [fonts glyphs](fonts-glyphs.md))
-
-**Game files and data tables** (explained on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [startup constants](../Engine-Core/startup-constants.md), [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md))
+| [`0x001B44A0`](fonts.md) (on fonts) | calls | [`0x001B53F0`](fonts.md) (on fonts) |
+| [`0x001B4930`](fonts.md) (on fonts) | is called by | [`0x001B5140`](fonts.md) (on fonts) |
+| [`0x001B4C00`](fonts-expansion-lists.md) (on fonts expansion lists) | is called by | [`0x001B6030`](fonts-expansion-lists.md) (on fonts expansion lists) |
+| [`0x001B4D70`](fonts.md) (on fonts) | calls | [`0x001B5480`](fonts-files.md)<br>[`0x001B5750`](fonts-files.md)<br>[`0x001B58E0`](fonts-files.md)<br>[`0x0020B5F0`](../Game-Files-And-Data-Tables/file-path-resolution.md) (on file path resolution) |
+| [`0x001B4D70`](fonts.md) (on fonts) | is called by | [`0x001B5FE0`](fonts-files.md) |
+| [`0x001B5230`](fonts-kerning.md) (on fonts kerning) | is called by | [`0x001B6080`](fonts.md) (on fonts) |
+| [`0x001B5480`](fonts-files.md) | calls | [`0x001A0A90`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A0BB0`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A1220`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager) |
+| [`0x001B5480`](fonts-files.md) | is called by | [`0x001B4D70`](fonts.md) (on fonts) |
+| [`0x001B5610`](fonts-files.md) | calls | [`0x001A0A90`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A0BB0`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A1220`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager) |
+| [`0x001B5610`](fonts-files.md) | is called by | [`0x001B5140`](fonts.md) (on fonts) |
+| [`0x001B5750`](fonts-files.md) | calls | [`0x001A0A90`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A0BB0`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A1220`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager) |
+| [`0x001B5750`](fonts-files.md) | is called by | [`0x001B4D70`](fonts.md) (on fonts) |
+| [`0x001B58E0`](fonts-files.md) | calls | [`0x001A0A90`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A0BB0`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A1220`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager) |
+| [`0x001B58E0`](fonts-files.md) | is called by | [`0x001B4D70`](fonts.md) (on fonts) |
+| [`0x001EA3C0`](fonts-files.md) | calls | [`0x00796350`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests) |
+| [`0x001FC060`](fonts-files.md) | is called by | [`0x001B4D70`](fonts.md) (on fonts) |
+| [`0x001FDCC0`](fonts-files.md) | is called by | [`0x001B4D70`](fonts.md) (on fonts) |
+| [`0x001FDE60`](fonts-files.md) | is called by | [`0x001B58E0`](fonts-files.md)<br>[`0x001B6110`](fonts.md) (on fonts) |
+| [`0x001FDF10`](fonts-files.md) | is called by | [`0x001B58E0`](fonts-files.md)<br>[`0x001B6230`](fonts.md) (on fonts) |
+| [`0x00213560`](fonts-files.md) | is called by | [`0x001B6230`](fonts.md) (on fonts) |
+| [`0x00365810`](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md) (on btm exfont bitmaps) | calls | [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) |
+| [`0x006B5C70`](fonts-files.md) | is called by | [`0x004096F0`](../Graphics/model-files-cm-ca.md) (on model files cm ca)<br>[`0x00409960`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal)<br>[`0x00409A60`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal) |
 
 **Saving, loading and settings** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00254A10` | is called by | `0x005832B0` |
+| [`0x00254A10`](text-string-tables.md) (on text string tables) | is called by | [`0x005832B0`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) |
 
 **World, areas and travel** (explained on [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [handbook files](../Game-Files-And-Data-Tables/handbook-files.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002F9920` | is called by | `0x003C0450`, `0x00576A50` |
+| [`0x002F9920`](clan-primer-entries.md) (on clan primer entries) | is called by | [`0x003C0450`](../Game-Files-And-Data-Tables/menu-map-files.md) (on menu map files)<br>[`0x00576A50`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) |
 
 </details>

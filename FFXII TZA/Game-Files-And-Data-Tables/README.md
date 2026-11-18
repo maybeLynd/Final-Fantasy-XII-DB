@@ -26,6 +26,7 @@ How the game finds a file by name or id and reads it from the archive or the cac
 | [File requests and the read queue](file-requests-and-the-read-queue.md) | Explanation | How a load is queued, sized, read in parts and completed. |
 | [Asynchronous load manager](async-load-manager.md) | Explanation | The loading thread, its request records and its load kinds. |
 | [File size tables](file-size-tables-fst.md) | Format | The per-language table that sizes every file by kind and id. |
+| [PKFL packages](pkfl-packages.md) | Format | How an area's motion, sound and voice packages are laid out and read. |
 | [Prefetch and asset-header manifests](prefetch-manifests.md) | Format | The lists that preload files into the cache and name a model's parts. |
 | [Asset paths](asset-paths.md) | Reference table | Every file the game asks for by resource kind and id. |
 

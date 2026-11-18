@@ -32,8 +32,17 @@ registers `0x008AADA0` with `atexit`.
 
 `0x005CD9C0` returns the pointer's address for other users of the same singleton, and `0x005CD960` runs the same
 guarded construction and returns nothing; it is reached through the thunk `0x00866B80`, which the thunk
-`0x00863100` jumps to, and `0x00863100` is called by `0x002DF9A0` (`0x002E045D`, `0x002E0486`) and `0x0079EDD0`
-(`0x0079EDFF`).
+`0x00863100` jumps to, and `0x00863100` is called by `0x002DF9A0`¹ and `0x0079EDD0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E045D`, `0x002E0486` |
+| ² | `0x0079EDFF` |
+
+</details>
 
 ### What the sink does
 
@@ -57,11 +66,23 @@ Among its callers in other layers:
 - The prefetch manager writes the `[FileCache]` lines, `0x001DA090` on each map jump and
   `0x001DA290` on map entry ([Prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)).
 - The input code logs every recorded action as `INPUT:%d:%s:%s @ frame=%d` and its kin
-  (`0x0079A120`) and each controller connection and disconnection (`0x007A2140`)
+ ¹ and each controller connection and disconnection²
   ([Vibration](../Controls-And-Input/vibration.md)).
 - The renderer logs binding errors such as `Texture2D (%p) missing Shader Resource View%s`
-  (`0x0062A0A0`) and shadow-split mismatches (`0x00600F30`)
+ ³ and shadow-split mismatches⁴
   (Presentation and rendering).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079A120` |
+| ² | `0x007A2140` |
+| ³ | `0x0062A0A0` |
+| ⁴ | `0x00600F30` |
+
+</details>
 
 ### The two other formatters
 
@@ -88,9 +109,19 @@ the archive open `0x001F4340` prints `BigFile head wrong!`
 ([Bigfile archive](../Game-Files-And-Data-Tables/bigfile-archive.md)).
 
 The settings parser reports bad lines of the
-config file through it: `[ConfigFile] invalid line at [%s]` and `invalid key` (`0x001DE5D0`), and
-`[ConfigFile] %s value invalid [%s]` and `invalid Resolution` (`0x001DF350`)
+config file through it: `[ConfigFile] invalid line at [%s]` and `invalid key`¹, and
+`[ConfigFile] %s value invalid [%s]` and `invalid Resolution`²
 ([Game settings](../Saving-Loading-And-Settings/game-settings.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DE5D0` |
+| ² | `0x001DF350` |
+
+</details>
 
 The executable is a windowed application (PE subsystem 2), so the stream has no console to appear
 in unless one is attached from outside.
@@ -99,10 +130,22 @@ in unless one is attached from outside.
 
 `0x0016D670` returns the address of the `printf` options qword `0x02EBA3D0`, and is its only
 reference in the image. The C initializer `0x00809C50` sets bit `0x4` in it (`4`) and bit `0x2` in the
-`scanf` options qword behind `0x0018A320` (`0x01F7F5B0`) before any game code runs; nothing else
+`scanf` options qword behind `0x0018A320`¹ before any game code runs; nothing else
 writes either, so every formatter above passes the value 4.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01F7F5B0` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
@@ -115,7 +158,12 @@ writes either, so every formatter above passes the value 4.
 | `0x01F7F5B0` | `u64` |  | scanf options, bit `0x2` set by `0x00809C50` |
 | `0x00D360A0` | `vtable` |  | slot 0 `0x005CD8F0` (deleting destructor), slot 1 `0x005CDB90`(sink, channel, text) |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -126,18 +174,37 @@ writes either, so every formatter above passes the value 4.
 | message buffer | 16,384 bytes, truncating |
 | sink action | channel 4 with a debugger attached: `DebugBreak`; otherwise nothing |
 
+</details>
+
 ## Operations
 
 Every log call: format into the stack buffer, build the sink on the first call, call slot 1.
 Every `printf` call: format straight to the C runtime's standard output. At process exit:
-`0x008AADA0` re-establishes the stock object's vtable (`0x008AADB3`), runs the pointer's guarded
+`0x008AADA0` re-establishes the stock object's vtable¹, runs the pointer's guarded
 construction under the guard `0x02CB6158` (`0x008AADD5`, again at `0x008AADE9` on the rebuild path), so
-a pointer not yet built is built there through `0x005CDA30` (`0x008AAE16`), and, only when the pointer
-still names that object (`0x008AADE0`), rebuilds the pointer from `0x005CDA30` (`0x008AADF2`).
+a pointer not yet built is built there through `0x005CDA30`², and, only when the pointer
+still names that object³, rebuilds the pointer from `0x005CDA30`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008AADB3` |
+| ² | `0x008AAE16` |
+| ³ | `0x008AADE0` |
+| ⁴ | `0x008AADF2` |
+
+</details>
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The sink object and its two guards, the two options words, and the standard output stream.
+
+</details>
 
 ## Modding notes
 

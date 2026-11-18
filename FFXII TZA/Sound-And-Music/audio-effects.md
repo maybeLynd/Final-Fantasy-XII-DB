@@ -37,10 +37,18 @@ The type slots are `0x007BD590` (1), `0x007E3260` (2), `0x007D14C0` (3), `0x007D
 ### Running an effect
 
 Slot 3 of the interface runs the effect on one block. It passes the buffer as both input and output, so every effect
-works in place, with the frame count at `+0x08` and the channel count at `+0x0C` of its argument (`0x007D14D0`,
-`0x007DACC0`). Each thunk hands its body the effect's state block: `0x007D14D0` (Filter), `0x007D3C90` (SurroundReverb),
+works in place, with the frame count at `+0x08` and the channel count at `+0x0C` of its argument¹. Each thunk hands its body the effect's state block: `0x007D14D0` (Filter), `0x007D3C90` (SurroundReverb),
 `0x007D8BB0` (Compressor), `0x007D82B0` (SideChainInput), `0x007D9740` (SimpleFilter), `0x007D9C30` (Flanger), `0x007DA2B0`
 (GranularPitchShift) and `0x007DACC0` (HilbertFilter).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D14D0`, `0x007DACC0` |
+
+</details>
 
 The bodies of the filter, the one-pole filter, the flanger, the compressor and the reverb work on eight interleaved
 floats per frame, one per output channel; the pitch shifter and the frequency shifter loop over the given channel count.
@@ -115,10 +123,21 @@ all-pass divide by `(1 + alpha) / 0.9999`, so their poles sit just inside the un
 same `A` with `2 * sqrt(A) * alpha`. The bodies receive `w` and the ramped values from `0x007D1C80`.
 
 `0x007D1C80` reads the frequency ramp at `+0x38` the way `0x007A9E00` reads the 1/Q ramp `+0x68` and the gain ramp
-`+0x98`: the target `+0x44` while the ramp time `+0x4C` is 0 (`0x007D1C9E`), otherwise
-`+0x40 + (+0x44 - +0x40) * 0x007A9E50(+0x48 / +0x4C, curve +0x54)` (`0x007D1CA7`-`0x007D1CC9`). A shape above 8 leaves
-the coefficients as they were (`0x007D1CE2`-`0x007D1CE5`), and shape 0 stores `b0` = 1.0 and zeroes the other four
-(`0x007D1D00`-`0x007D1D11`).
+`+0x98`: the target `+0x44` while the ramp time `+0x4C` is 0¹, otherwise
+`+0x40 + (+0x44 - +0x40) * 0x007A9E50(+0x48 / +0x4C, curve +0x54)`². A shape above 8 leaves
+the coefficients as they were³, and shape 0 stores `b0` = 1.0 and zeroes the other four⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D1C9E` |
+| ² | `0x007D1CA7`-`0x007D1CC9` |
+| ³ | `0x007D1CE2`-`0x007D1CE5` |
+| ⁴ | `0x007D1D00`-`0x007D1D11` |
+
+</details>
 
 ### The one-pole filter
 
@@ -140,7 +159,16 @@ y = b * x + a * y1
 
 `0x007D9530` builds it in mode 0 at 2,000 Hz. It stores `1 / device rate` at `0x01F41D20`, half the rate at `0x01F41D24`,
 that half divided by 2,400 at `0x01F41D28`, and minus the base-10 logarithm of their ratio at `0x01F41D2C`. `0x007D9600`
-puts back the base vtables of the voice's embedded filter when the voice is torn down (`0x007EA32E`).
+puts back the base vtables of the voice's embedded filter when the voice is torn down¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007EA32E` |
+
+</details>
 
 ### The flanger
 
@@ -153,8 +181,17 @@ out  = dry * x + wet * ring[read]
 phase += step                                       ; 5.1415925 is subtracted once it passes pi
 ```
 
-The subtracted constant at `0x01CB7898` is not 2pi, so the sweep is not a whole sine (`0x007D9D6D`-`0x007D9D78`).
+The subtracted constant at `0x01CB7898` is not 2pi, so the sweep is not a whole sine¹.
 `0x007D9EA0` fills the values from five ramps:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D9D6D`-`0x007D9D78` |
+
+</details>
 
 | Value | From | Note |
 |---|---|---|
@@ -199,7 +236,16 @@ The taps are `+-2/pi` and `+-2/(3pi)`, which `0x007DAAB0` stores at `+0x58`-`+0x
 
 ### The compressor
 
-`Compressor` (`0x007D85E0`) takes eight parameters through `0x007D8E40`:
+`Compressor`¹ takes eight parameters through `0x007D8E40`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D85E0` |
+
+</details>
 
 | Id | Value | Stored as |
 |---|---|---|
@@ -211,7 +257,16 @@ The taps are `+-2/pi` and `+-2/(3pi)`, which `0x007DAAB0` stores at `+0x58`-`+0x
 
 `0x007D9200` turns them into its block: threshold `+0x148`, slope `+0x14C`, gains `+0x150` and `+0x154`, attack
 `exp(-2 / (attack * rate))` at `+0x158` and release `exp(-1 / (release * rate))` at `+0x15C`. The rate `+0x138` is
-the builder's argument. It looks the side chain up (`0x007AC3E0`) and keeps it at `+0x168` only when its type is 4.
+the builder's argument. It looks the side chain up¹ and keeps it at `+0x168` only when its type is 4.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AC3E0` |
+
+</details>
 
 `0x007D8BE0` works on each channel with an eight-value gain state, built at 1.0:
 
@@ -222,14 +277,35 @@ state = g + (g < state ? attack : release) * (state - g)
 out = x * outGain * state                                          ; times inGain without a side chain
 ```
 
-The zero and one vectors it compares with live at `0x02EAE040`-`0x02EAE07F`, which the builder fills (`0x007D8794`-`0x007D87A9`).
+The zero and one vectors it compares with live at `0x02EAE040`-`0x02EAE07F`, which the builder fills¹.
 `0x007D8210` gives a side-chain input's buffer, and `0x007D89A0` puts back the base vtables and frees the gain state.
 
-The state step works on `g + 1e-25`, the four floats at `0x01CB7790` (`0x007D8D60`, `0x007D8D67`), both in the attack or
-release choice and in the step, and takes the same amount off the new state (`0x007D8DAE`, `0x007D8DB2`), so
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D8794`-`0x007D87A9` |
+
+</details>
+
+The state step works on `g + 1e-25`, the four floats at `0x01CB7790`¹, both in the attack or
+release choice and in the step, and takes the same amount off the new state², so
 `state = g + c * (state - g - 1e-25)` with `c` the attack or release. With a side chain the body reads its buffer
-through `0x007D8210` (`0x007D8C8E`); without one it reads its own input and takes `outGain * inGain` as the
-output gain, worked out once per block (`0x007D8C81`).
+through `0x007D8210`³; without one it reads its own input and takes `outGain * inGain` as the
+output gain, worked out once per block⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D8D60`, `0x007D8D67` |
+| ² | `0x007D8DAE`, `0x007D8DB2` |
+| ³ | `0x007D8C8E` |
+| ⁴ | `0x007D8C81` |
+
+</details>
 
 ### The side-chain input
 
@@ -241,44 +317,86 @@ buffer by `+0x54` and adds `+0x58`.
 
 `SurroundReverb` keeps its state block at `+0x7D0`, and `0x007D3CB0` runs it once per frame:
 
-1. It writes the input frame into a 24,000-frame eight-channel history (`+0x10` of the block; wrap at `0x007D5682`).
-2. For each output channel (count `+0x0C`), it sums 19 taps of that history, each with its own delay and gain. The
-   byte table `0x01CB73E0` picks one of two delay sets per channel (`0x007D482F`).
-3. It reads 16 delay lines, damps each with a one-pole filter, and mixes them with a 16-point Hadamard transform after
-   scaling each line (`0x007D3B80`, called at `0x007D4D98`): line `i` times the state block's `[+0x418][i]`, then unnormalised
-   butterflies `a + b`, `a - b` at strides 1, 2, 4 and 8.
-4. It writes the mixed lines back: each sample `k` of line `i` becomes `mixed[i][k] + v[i] x s[k]`
-   (`0x007D4DB2`-`0x007D4DF2`), `v[i] = [+0x410][i]` (the pointer `0x007D3D0E` reads is parked at `[rbp+0x18]` by
-   `0x007D3D7E` and reloaded at `0x007D4DA8`), with the same eight samples `s` for every line.
-5. `s = 0.125 x (p + a + r)` per sample (`[0x00D90640]`, `0x007D4CBC`-`0x007D4CC6`): `p` the quad pair formed at
-   `0x007D4B6D` and `0x007D4B81`, `a` the output of the third allpass stage (coefficient `[+0x12C]`, `0x007D4C6A`,
-   `0x007D4C7A`) and `r` the ring sample read at `0x007D4C9F`, added at `0x007D4CB0`.
-6. It runs the output through three filter stages, `0x007D3200` twice and `0x007D33B0` (`0x007D54A7`-`0x007D54EF`).
-7. It moves every line's position on, wrapping each at its length, and moves on four further rings.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It writes the input frame into a 24,000-frame eight-channel history (`+0x10` of the block; wrap at `0x007D5682`). |   |
+| 2 | For each output channel (count `+0x0C`), it sums 19 taps of that history, each with its own delay and gain. The byte table `0x01CB73E0` picks one of two delay sets per channel. | `0x007D482F` |
+| 3 | It reads 16 delay lines, damps each with a one-pole filter, and mixes them with a 16-point Hadamard transform after scaling each line (`0x007D3B80`, called at `0x007D4D98`): line `i` times the state block's `[+0x418][i]`, then unnormalised butterflies `a + b`, `a - b` at strides 1, 2, 4 and 8. |   |
+| 4 | It writes the mixed lines back: each sample `k` of line `i` becomes `mixed[i][k] + v[i] x s[k]`, `v[i] = [+0x410][i]` (the pointer `0x007D3D0E` reads is parked at `[rbp+0x18]` by `0x007D3D7E` and reloaded at `0x007D4DA8`), with the same eight samples `s` for every line. | `0x007D4DB2`-`0x007D4DF2` |
+| 5 | `s = 0.125 x (p + a + r)` per sample (`[0x00D90640]`, `0x007D4CBC`-`0x007D4CC6`): `p` the quad pair formed at `0x007D4B6D` and `0x007D4B81`, `a` the output of the third allpass stage (coefficient `[+0x12C]`, `0x007D4C6A`, `0x007D4C7A`) and `r` the ring sample read at `0x007D4C9F`, added at `0x007D4CB0`. |   |
+| 6 | It runs the output through three filter stages, `0x007D3200` twice and `0x007D33B0`. | `0x007D54A7`-`0x007D54EF` |
+| 7 | It moves every line's position on, wrapping each at its length, and moves on four further rings. |   |
 
-The rings are 16,384, 1,024, 2,048 and 2,048 frames long, the last three read 367, 512 and 1,179 frames back
-(`0x007D55A3`-`0x007D563E`). `0x007D33B0` is one frame of an eight-channel direct-form-1 biquad; `0x007D3200` is the same
+The rings are 16,384, 1,024, 2,048 and 2,048 frames long, the last three read 367, 512 and 1,179 frames back¹. `0x007D33B0` is one frame of an eight-channel direct-form-1 biquad; `0x007D3200` is the same
 frame with both feedback terms taken from the input history (`y = b0*x + (b1 - a1)*x1 + (b2 - a2)*x2`). With their
 flags set, both flush tiny values by adding and subtracting 1.0.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D55A3`-`0x007D563E` |
+
+</details>
+
 `0x007D6CD0` recomputes the reverb's ten equaliser biquads, `0xA0` bytes apart from `+0xBF0`, from parameter ramps
 `0x30` bytes apart from `+0x230`. They are a high-pass, three peaking filters and a low-pass, then a low shelf, three
-peaking filters and a high shelf (`0x007D0EA0`, `0x007D1330`, `0x007D1080`, `0x007D1140`, `0x007D0F60`). The builder calls it
-(`0x007D2DE1`), as do slots 5 and 6.
+peaking filters and a high shelf¹. The builder calls it², as do slots 5 and 6.
 
-`0x007D1EE0` zeroes the filter histories of the block the builder hands it (`0x007D29C3`). `0x007D2F00` frees the reverb's
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D0EA0`, `0x007D1330`, `0x007D1080`, `0x007D1140`, `0x007D0F60` |
+| ² | `0x007D2DE1` |
+
+</details>
+
+`0x007D1EE0` zeroes the filter histories of the block the builder hands it¹. `0x007D2F00` frees the reverb's
 buffers and per-channel tap tables and puts back the base vtables; `0x007D31B0` calls it before freeing the object.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D29C3` |
+
+</details>
 
 ### The build reverb
 
-`BuildReverb` runs its own body in slot 3 of its interface (`0x007DB8D0`). `0x007DB650` frees its buffers at `+0x18`,
+`BuildReverb` runs its own body in slot 3 of its interface¹. `0x007DB650` frees its buffers at `+0x18`,
 `+0x28`, `+0x30`, six at `+0x280` and two at `+0x400`, `0x40` bytes apart, and `+0x480`, and puts back the base vtables.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007DB8D0` |
+
+</details>
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 The shipped `bus ` chunk has one bus with no effects ([Sound engine configuration](sound-engine-config.md)). Every
-builder above is called, or has its address loaded, only in the bus builder `0x007AC4F0` (`0x007AC8F6`-`0x007ACA48`),
+builder above is called, or has its address loaded, only in the bus builder `0x007AC4F0`¹,
 except three that a voice builds for itself:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AC8F6`-`0x007ACA48` |
+
+</details>
 
 | Builder | Other caller | When |
 |---|---|---|
@@ -289,7 +407,12 @@ except three that a voice builds for itself:
 So the reverbs, the compressor, the side-chain input, the biquad filter, the pitch shifter and the frequency shifter
 are not built by the shipped game.
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 All are 16-byte vectors of four `f32`, 0 in the file, that the builders fill each time an effect is built and the
 run functions only read.
@@ -305,7 +428,18 @@ run functions only read.
 | `0x02EAE070` | `f32[4]` | 0 | the same for channels 4-7 (`0x007D8D4B`) | `0x007D85E0` (`0x007D87A2`) | `0x007D8BE0` (`0x007D8D4B`) |
 
 No other instruction reaches these vectors. The address `0x02EAE040` that `0x007D3CB0` takes at `0x007D4584` and `0x007D5672`
-ends a loop over the vectors from `0x02EADF40` (`0x007D4777`-`0x007D47BF`).
+ends a loop over the vectors from `0x02EADF40`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007D4777`-`0x007D47BF` |
+
+</details>
+
+</details>
 
 ## Modding notes
 

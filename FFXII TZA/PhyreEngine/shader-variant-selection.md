@@ -18,15 +18,33 @@ empty context-switch list, so the pick always lands on that one build; the looku
 A context switch is a `0x28`-byte object of class `Phyre::PRendering::PContextSwitch` or one of eight
 subclasses. Each subclass has one static instance in `.data`, starting at `0x01F2EBC8` and spaced
 `0x28` apart. The image carries each object with the base vtable `0x00D80EA8`, its name pointer,
-`+0x20` = 0 and `+0x24` = 1; the installer in the CRT initializer table (`0x008C43E8`–`0x008C4420`) then:
+`+0x20` = 0 and `+0x24` = 1; the installer in the CRT initializer table¹ then:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008C43E8`-`0x008C4420` |
+
+</details>
 
 1. registers it with `0x006B8D20`;
 2. only when that returns 0, adds its word count to the image-wide total `0x02E522E0` and stores the
    count at `+0x20` (3 for `NUM_LIGHTS` at `0x001670F0`, 1 for the others);
 3. installs its own vtable at `+0x00` and registers an `atexit` teardown.
 
-`LOW_RES_PARTICLES`'s installer (`0x00167140`) also writes 0 to `+0x24`. After static initialization
+`LOW_RES_PARTICLES`'s installer¹ also writes 0 to `+0x24`. After static initialization
 `0x02E522E0` is 10.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00167140` |
+
+</details>
 
 Each switch's count word `+0x20` is stored by its installer in step 2, and its `atexit` teardown subtracts it from
 `0x02E522E0` again:
@@ -38,7 +56,16 @@ Each switch's count word `+0x20` is stored by its installer in step 2, and its `
 - `ORTHO_CAMERA`: `0x01F2EC88`, `0x0016724A`, `0x008B5B30`;
 - `INDICES_16BIT`: `0x01F2ECB0`, `0x001671AA`, `0x008B5A30`;
 - `SKINNING_ENABLED`: `0x01F2ECD8`, `0x0016729A`, `0x008B5BB0`;
-- `LOW_RES_PARTICLES`: `0x01F2ED00`, `0x0016715A`, `0x008B59B0`; its `+0x24` is `0x01F2ED04` (`0x0016716B`).
+- `LOW_RES_PARTICLES`: `0x01F2ED00`, `0x0016715A`, `0x008B59B0`; its `+0x24` is `0x01F2ED04`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0016716B` |
+
+</details>
 
 ### Registration
 
@@ -50,19 +77,13 @@ without linking, and otherwise links the switch at the head and returns 0.
 
 `0x00606A20(effect, a2, a3, out, record)` is called only from `0x0060BDEF` in `0x0060B980`:
 
-1. When the effect's variant count (`+0x58`, bit `0x80000000` masked off) is 0 it returns −1.
-2. It reserves `0x02E522E0 × 4` bytes on the stack, rounded up to 16, `(4 * n + 15) & ~15` with the stack probe
-   `0x00808F10` (`0x00606A68`-`0x00606A91`), and points a cursor at the start, so the total is the buffer bound, not the
-   key length.
-3. For each non-null entry of the effect's switch array (`+0x50`, count `+0x48`) it calls vtable
-   slot 2 with seven arguments: the switch, the effect, `a2`, `a3`, the cursor, `out` and `record`.
-   A non-zero return stops the loop.
-4. The key length is how far the cursor moved, in words.
-5. It binary-searches the effect's table at `+0x60` (16-byte entries `{u32 count, words}`; one word is
-   stored inline, more through a pointer), ordering first by word count and then word by word, and
-   returns the matching index or −1. The bounds start at 0 and the variant count less 1, the probe is
-   `mid = (lo + hi) >> 1`, and they move by `lo = max(mid, lo + 1)` and `hi = min(mid, hi - 1)`, not past
-   `mid`, until `lo > hi` (`0x00606AFF`-`0x00606BA4`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When the effect's variant count (`+0x58`, bit `0x80000000` masked off) is 0 it returns −1. |   |
+| 2 | It reserves `0x02E522E0 × 4` bytes on the stack, rounded up to 16, `(4 * n + 15) & ~15` with the stack probe `0x00808F10`, and points a cursor at the start, so the total is the buffer bound, not the key length. | `0x00606A68`-`0x00606A91` |
+| 3 | For each non-null entry of the effect's switch array (`+0x50`, count `+0x48`) it calls vtable slot 2 with seven arguments: the switch, the effect, `a2`, `a3`, the cursor, `out` and `record`. A non-zero return stops the loop. |   |
+| 4 | The key length is how far the cursor moved, in words. |   |
+| 5 | It binary-searches the effect's table at `+0x60` (16-byte entries `{u32 count, words}`; one word is stored inline, more through a pointer), ordering first by word count and then word by word, and returns the matching index or −1. The bounds start at 0 and the variant count less 1, the probe is `mid = (lo + hi) >> 1`, and they move by `lo = max(mid, lo + 1)` and `hi = min(mid, hi - 1)`, not past `mid`, until `lo > hi`. | `0x00606AFF`-`0x00606BA4` |
 
 `0x0060B980` turns a non-negative index into a 64-byte entry (`0x0060BDFA`: `index << 6` plus the table at
 `+0x10` of the entry it selected at `0x0060BD84`–`0x0060BDBF`). On −1 the entry stays null and the draw work under
@@ -85,12 +106,34 @@ Every evaluator writes its words at the cursor, advances it by four per word and
 
 `LOD_BLEND` emits 0 when `a2+0x40` or `a3+0x20` is null; otherwise it reads the first float of the
 12-byte element `a3+0x30` of the array at `[a2+0x40]`, whose count is the dword `+0x20` with bit `0x80000000`
-masked (`0x006B90B5`-`0x006B90B8`): with a count above 1 the elements are at the pointer `+0x28` (`0x006B90C1`), with
-a count of 1 the one element is stored inline at `+0x28` itself (`0x006B90C9`), and with a count of 0 the data is
-null (`0x006B90CD`).
+masked¹: with a count above 1 the elements are at the pointer `+0x28`², with
+a count of 1 the one element is stored inline at `+0x28` itself³, and with a count of 0 the data is
+null⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B90B5`-`0x006B90B8` |
+| ² | `0x006B90C1` |
+| ³ | `0x006B90C9` |
+| ⁴ | `0x006B90CD` |
+
+</details>
 
 Any index is read: an index at or past a non-zero count reads past the data, and with a count of 0 the read is at
-the address `12 * [a3+0x30]` (`0x006B90C7`-`0x006B90DC`). A NaN weight writes 1 (`0x006B90E4`, `0x006B90EF`).
+the address `12 * [a3+0x30]`¹. A NaN weight writes 1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B90C7`-`0x006B90DC` |
+| ² | `0x006B90E4`, `0x006B90EF` |
+
+</details>
 
 For a `PCamera` (members registered by `0x006784E0`), `+0x6C` is the last float of `m_projectionMatrix`, the 64-byte matrix at
 `+0x30`; an orthographic matrix has 1 there and a perspective one 0.
@@ -103,35 +146,97 @@ keeps a light when the mask at `+0x18` of its light type (`light+0x20`) meets th
 `+0x1C` when that type's mask `+0x18` meets the effect's `+0x04`, else 0, so a shadowless light is
 kept with shadow index 0. Each light becomes `(shadowIndex << 5) | lightTypeIndex`.
 
-The count is the smaller of the kept count and the effect's `+0x70`, `kept < [+0x70] ? kept : [+0x70]`
-(`0x006B91F3`-`0x006B91FA`). With a count of 0 it writes one zero word, advances the cursor by 4 and leaves `out` as
-it was (`0x006B9366`-`0x006B9373`). With a count above 1 it sorts all the kept lights by that code (`0x006B83C0` with
+The count is the smaller of the kept count and the effect's `+0x70`, `kept < [+0x70] ? kept : [+0x70]`¹. With a count of 0 it writes one zero word, advances the cursor by 4 and leaves `out` as
+it was². With a count above 1 it sorts all the kept lights by that code (`0x006B83C0` with
 the comparator `0x006B8930`, `0x006B920A`-`0x006B922B`); with a count of 1 it sorts nothing and takes the first kept
 light, even when more were kept.
 
-It zeroes `((10 × count + 35) >> 5) << 2` bytes (`0x00861EC0`, `0x006B9252`) and packs a
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B91F3`-`0x006B91FA` |
+| ² | `0x006B9366`-`0x006B9373` |
+
+</details>
+
+It zeroes `((10 × count + 35) >> 5) << 2` bytes¹ and packs a
 4-bit count followed by 10 bits per light. It also copies the kept light pointers to `out+0x00`
-onward and the count to `out+0x20`; `0x0060B980` reserves four pointer slots there (`0x0060BA9B`–`0x0060BAB7`).
+onward and the count to `out+0x20`; `0x0060B980` reserves four pointer slots there².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00861EC0`, `0x006B9252` |
+| ² | `0x0060BA9B`-`0x0060BAB7` |
+
+</details>
 
 ### Defines for the shader compiler
 
-Slot 3 reads the switch's word back off a cursor, moving it on by 4 (`0x006B94E9`-`0x006B94F2`). The base `0x006B94C0`
-appends nothing for 0 and otherwise builds `-D<name>=<value>` from `"-D"` (`0x00D81068`), the name at `+0x08` and
-`"="` (`0x01CEBB4C`), and the word (`0x0067AEA0`, `0x006B9587`). `NUM_LIGHTS` overrides it (`0x006B9630`) with
+Slot 3 reads the switch's word back off a cursor, moving it on by 4¹. The base `0x006B94C0`
+appends nothing for 0 and otherwise builds `-D<name>=<value>` from `"-D"`², the name at `+0x08` and
+`"="`³, and the word⁴. `NUM_LIGHTS` overrides it⁵ with
 `-DLIGHTTYPE_<i>=` and `-DSHADOWTYPE_<i>=` per light; `SHADER_LOD_LEVEL` overrides it with `0x006B9A20`.
 
-The base's output list ends up one entry long. When its count is not 1 the base allocates a new one-entry array,
-freeing the old one unless bit `0x80000000` of the count is set (`0x006B94FF`-`0x006B9549`). It copies the string into
-a new buffer and stores it as the entry, freeing the entry's previous string unless bit `0x1` of that pointer is
-set (`0x006B95B0`-`0x006B95FD`). A failed allocation returns `0xD` (`0x006B95E1`); otherwise it returns 0.
+<details>
+<summary>Where in the code</summary>
 
-Slot 1 lists the legal values: the base `0x006B9B90` returns two one-word arrays, 0 and 1 (`0x006B9C99`-`0x006B9CAD`),
-reusing arrays of the right size and returning `0xD` when an allocation fails (`0x006B9CC8`, `0x006B9CDD`).
+| | Code |
+|---|---|
+| ¹ | `0x006B94E9`-`0x006B94F2` |
+| ² | `0x00D81068` |
+| ³ | `0x01CEBB4C` |
+| ⁴ | `0x0067AEA0`, `0x006B9587` |
+| ⁵ | `0x006B9630` |
+
+</details>
+
+The base's output list ends up one entry long. When its count is not 1 the base allocates a new one-entry array,
+freeing the old one unless bit `0x80000000` of the count is set¹. It copies the string into
+a new buffer and stores it as the entry, freeing the entry's previous string unless bit `0x1` of that pointer is
+set². A failed allocation returns `0xD`³; otherwise it returns 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B94FF`-`0x006B9549` |
+| ² | `0x006B95B0`-`0x006B95FD` |
+| ³ | `0x006B95E1` |
+
+</details>
+
+Slot 1 lists the legal values: the base `0x006B9B90` returns two one-word arrays, 0 and 1¹,
+reusing arrays of the right size and returning `0xD` when an allocation fails².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B9C99`-`0x006B9CAD` |
+| ² | `0x006B9CC8`, `0x006B9CDD` |
+
+</details>
 
 ### Switches built by name
 
-`0x006B89C0(name)` returns 0 for a null name (`0x006B89CD`, `0x006B89FC`) and otherwise looks the name up in the registry
+`0x006B89C0(name)` returns 0 for a null name¹ and otherwise looks the name up in the registry
 with `_stricmp`, returning the switch it finds.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B89CD`, `0x006B89FC` |
+
+</details>
 
 On a miss it prints
 `PNamedSemanticDynamic::FindOrCreateDynamic : Performance warning - allocating freelist on demand for '%s'.`,
@@ -140,17 +245,41 @@ takes an object from the `0x28`-byte pool and a name slot from the `0x40`-byte p
 length check, and constructs a base switch with `0x006B8590`: `+0x18` = 1 (pool-owned), one key word,
 `+0x24` = 1, registered.
 
-An empty free list is grown with `0x00680150` first (`0x006B8A3E`, `0x006B8A77`). With no object it returns 0, and with
-an object but no name slot it returns the object unconstructed (`0x006B8A92`-`0x006B8A9A`). `0x006B8590` stores `+0x20` =
-1 at once (`0x006B85B3`) but adds 1 to the total `0x02E522E0` only when `0x006B8D20` returns 0 (`0x006B85C3`-`0x006B85CA`).
+An empty free list is grown with `0x00680150` first¹. With no object it returns 0, and with
+an object but no name slot it returns the object unconstructed². `0x006B8590` stores `+0x20` =
+1 at once³ but adds 1 to the total `0x02E522E0` only when `0x006B8D20` returns 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B8A3E`, `0x006B8A77` |
+| ² | `0x006B8A92`-`0x006B8A9A` |
+| ³ | `0x006B85B3` |
+| ⁴ | `0x006B85C3`-`0x006B85CA` |
+
+</details>
 
 `0x006B89C0` is reached through slot 9 of the
 `PNamedSemanticDescriptorForDynamicType<PContextSwitch>` vtable (`0x00D81010`, slot `0x006B94B0`) and
-through `0x006B8DB0`, which returns `0x13` when nothing comes back. Slot 10 (`0x006B8F70`) copies every
+through `0x006B8DB0`, which returns `0x13` when nothing comes back. Slot 10¹ copies every
 registered switch into an array. At shutdown `0x005FDD40` unlinks only pool-owned switches and frees
 both pools.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B8F70` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 PContextSwitch, `0x28` bytes:
 
@@ -226,7 +355,12 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x00` | `void*` | m_name | m_name (ptr), registered by `0x005E52D0` (`0x00632960` at `0x005E5359`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PMaterialSwitch |
 | `+0x08` | `void*` | m_value | m_value (ptr), registered by `0x005E52D0` (`0x00632960` at `0x005E53C7`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PMaterialSwitch |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured over the shader clusters in the archive (`gamedata/d3d11/artdata/shaders/*.phyre`).
 
@@ -268,7 +402,12 @@ The shader files decode as below; the linked tables hold every value.
 | program bindings | each of the 5,625 programs is the target of exactly one `PShaderPass` pointer. In every file `PEffectVariant` `+10` points to the render passes; a `PSceneRenderPass` names its pass at `+0` (a `PSceneRenderPassType` user fixup), its one `PShader` at `+5` and one entry-point record per shader pass at `+10`; `PShader` `+8` points to its shader passes; `PShaderPass` `+0`, `+1`, `+2`, `+3` to the vertex, fragment, geometry and compute program (packed offsets, the same in all 93 files). 1,749 render passes, 2,475 shader passes. `0x00608DD0` (`0x00608EC9`) and `0x00608F20` (`0x0060905B`) hand the pass to `0x00629AA0`, which reads the four program pointers at `+0x0`, `+0x8`, `+0x10`, `+0x18` (`0x00629AB8`-`0x00629AC9`) and sets the vertex, geometry, pixel and compute shaders in that order. 149 programs belong to effects no model imports (the 90 of the 13 effects the executable names and the 59 of `phyredefaultlitshader.fx#9aa82ed5…`); 398 to the 13 render passes no pass record names ([program bindings](shader-variant-selection-programs-binding.tsv)) |
 | replacement checks | one row per code: its program objects, files, render passes, entry points, signatures, input-layout formats, constant buffers and bindings, where each bound resource comes from, the meshes, and each check below as passing uses over all uses ([code contract](shader-variant-selection-codes-contract.tsv)) |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | What |
 |---|---|
@@ -277,17 +416,28 @@ The shader files decode as below; the linked tables hold every value.
 | `0x02E52488` | free list of `0x28`-byte switch objects |
 | `0x02E524B0` | free list of `0x40`-byte name slots |
 
+</details>
+
 ## Modding notes
 
 - An effect can only select a variant it ships; a key with no table entry leaves the draw without one.
 - The `NUM_LIGHTS` output holds four light pointers before its count, so an effect authored with
   `m_maxLightCount` above 4 that keeps a fifth light loses that light: its pointer lands on `+0x20`, and the
-  count, stored after the pointers (`0x006B92E0`, `0x006B9360`), replaces its low half. A sixth or later light is
+  count, stored after the pointers¹, replaces its low half. A sixth or later light is
   written from `+0x28` on, past the record.
 - A switch name the engine does not implement becomes a base switch answering 1; its name must fit
   the 64-byte name slot.
 - Material defines such as `SKINNING_ENABLED` in a `PMaterialSwitch` are compile-time names and do not
   go through this registry.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006B92E0`, `0x006B9360` |
+
+</details>
 
 Replacing a program: each program object is bound by one shader pass, and the 5,625 programs hold 335 codes, so a
 code is replaced in every program the [code contract](shader-variant-selection-codes-contract.tsv) lists for it. A
@@ -298,12 +448,12 @@ replacement keeps:
   (`0x0061E077`-`0x0061E081`; [Phyre D3D11 draws and state](phyre-d3d11-draws-and-state.md)).
 - For a vertex program, the input elements its `m_inputLayout` descs name. `0x0061E0B0` builds one element per desc that
   names a semantic (index `+0x10`, format `+0x14`, slot `+0x18`, offset 0) and hands the program's own code to `CreateInputLayout`
-  (`0x0061E1B9`); a failure returns 9, and `0x00629AA0` returns before the geometry, pixel and compute shaders are set
-  (`0x00629AF0`).
+ ¹; a failure returns 9, and `0x00629AA0` returns before the geometry, pixel and compute shaders are set
+ ².
 - Inputs and descs that match. In 52 of the 53 vertex codes every non-system input element has a desc of the same
   semantic and index
   and every desc an element; `FxaaVS` (`0x0070564b…`) reads only `SV_VertexID` and has no desc.
-- The slot order of its streams. Desc slot k is vertex buffer k of `IASetVertexBuffers` (`0x00629FA7`), the pass's k-th
+- The slot order of its streams. Desc slot k is vertex buffer k of `IASetVertexBuffers`³, the pass's k-th
   stream location; in every pass the stream locations are the shader's stream definitions in order, and each desc's
   render type is the definition at its slot (53 codes).
 - The shipped stream formats. The shipped formats are `R32G32B32_FLOAT` for `Vertex`,
@@ -324,10 +474,10 @@ replacement keeps:
   `$Globals` match in every program that holds them; the other 28 have index `0xFFFFFFFF` and no `$Globals`.
 - The offset, size and name of each `$Globals` variable the pass writes. `0x00628B40` copies each 16-byte value record
   (`+0x00` u16 offset in the block, `+0x04` offset in the buffer, `+0x08` size, `+0x0C` type) into the program's copy
-  at `[program+0x10]` when the buffer offset is below `m_constantBufferSize` (`0x00628BBB`).
+  at `[program+0x10]` when the buffer offset is below `m_constantBufferSize`⁴.
 - The value types the copy takes. Type `0x31` is copied as `size >> 6` 4 × 4 matrices transposed, `0x30` as
   `size / 48` 4 × 3 matrices transposed, both stopping at a matrix whose first word is `0xFFFFFFFF`, and any other type
-  byte for byte (`0x00628BC5`-`0x00628BEA`). In all 307 codes each record starts at a
+  byte for byte⁵. In all 307 codes each record starts at a
   variable, fits it and carries its name, and every variable the code marks used is written.
 - Each resource at the slot its record names. `0x0062A0A0` binds the parameter of each resource record at slot `+0x04`
   (−1 skips it) by its parameter type. Every texture, sampler and constant-buffer binding of the 295 codes that have
@@ -338,7 +488,21 @@ replacement keeps:
   parameter buffer points to (265 codes).
 - The scene-wide buffer. The only binding fed from block 0 is `SceneWideParameterConstantBuffer`, at
   `b1` in the vertex, pixel and geometry codes and at `b0` in 34 geometry pass uses; a constant-buffer slot above 7 is
-  logged `Invalid constant buffer location : %d` (`0x0062A508`).
+  logged `Invalid constant buffer location : %d`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0061E1B9` |
+| ² | `0x00629AF0` |
+| ³ | `0x00629FA7` |
+| ⁴ | `0x00628BBB` |
+| ⁵ | `0x00628BC5`-`0x00628BEA` |
+| ⁶ | `0x0062A508` |
+
+</details>
 
 ## Related
 
@@ -358,29 +522,33 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Platform** (explained on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [phyre d3d11 device and resources](phyre-d3d11-device-and-resources.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x00622F40` | calls | `0x0061E340` |
-| `0x0062A0A0` | calls | `0x006239C0` |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Graphics**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00608DD0` | calls | `0x00629AA0` |
-| `0x00608F20` | calls | `0x00629AA0` |
-| `0x0061E0B0` | is called by | `0x0061DFE0` |
-| `0x0061F650` | is called by | `0x0061DBE0`, `0x0061DCA0`, `0x0061DD60`, `0x0061DFE0` |
-| `0x00629AA0` | calls | `0x0061DBE0`, `0x0061DCA0`, `0x0061DD60`, `0x0061DFE0` |
-| `0x0067AEA0` | is called by | `0x006B9630` |
+| [`0x00622F40`](shader-variant-selection.md) | calls | [`0x0061E340`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state) |
+| [`0x0062A0A0`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state) | calls | [`0x006239C0`](phyre-d3d11-device-and-resources.md) (on phyre d3d11 device and resources) |
 
 **Graphics** (explained on [phyre d3d11 draws and state](phyre-d3d11-draws-and-state.md), [phyre reflection](phyre-reflection.md))
 
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00608DD0`](shader-variant-selection.md) | calls | [`0x00629AA0`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state) |
+| [`0x00608F20`](shader-variant-selection.md) | calls | [`0x00629AA0`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state) |
+| [`0x0061E0B0`](shader-variant-selection.md) | is called by | [`0x0061DFE0`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state) |
+| [`0x0061F650`](shader-variant-selection.md) | is called by | [`0x0061DBE0`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state)<br>[`0x0061DCA0`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state)<br>[`0x0061DD60`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state)<br>[`0x0061DFE0`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state) |
+| [`0x00629AA0`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state) | calls | [`0x0061DBE0`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state)<br>[`0x0061DCA0`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state)<br>[`0x0061DD60`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state)<br>[`0x0061DFE0`](phyre-d3d11-draws-and-state.md) (on phyre d3d11 draws and state) |
+| [`0x0067AEA0`](shader-variant-selection.md) | is called by | [`0x006B9630`](shader-variant-selection.md) |
+
 **Game files and data tables** (explained on [bigfile archive](../Game-Files-And-Data-Tables/bigfile-archive.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00680150` | is called by | `0x001F4720` |
+| [`0x00680150`](shader-variant-selection.md) | is called by | [`0x001F4720`](../Game-Files-And-Data-Tables/bigfile-archive.md) (on bigfile archive) |
 
 </details>
 

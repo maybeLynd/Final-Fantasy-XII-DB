@@ -72,7 +72,16 @@ its three steps. Every draw, inline or not, advances the same word.
 
 ### Rolls on the C runtime rand
 
-`rand` (import `0x008C3098`) has 48 direct call sites in 30 functions, plus one through the stub `0x00861F38` from `0x00149610` (`0x0014963E`), an SSE dither loop.
+`rand` (import `0x008C3098`) has 48 direct call sites in 30 functions, plus one through the stub `0x00861F38` from `0x00149610`¹, an SSE dither loop.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0014963E` |
+
+</details>
 
 | Caller | What it is |
 |---|---|
@@ -107,8 +116,7 @@ draws twice with amplitude 0.3), effect parameters and the script-side effect ve
 
 - Rolls on the MT cannot move the LCG and rolls on the LCG cannot move the MT: no function draws
   from both (the MT thunk callers and the LCG draw and inline sites above are disjoint sets).
-- Every LCG consumer moves every other: a gambit or AI decision that draws (`0x003014C0`,
-  `0x00301830`, `0x003087E0`, `0x00308EC0`), a spawn, a random heading or the stance timer changes the
+- Every LCG consumer moves every other: a gambit or AI decision that draws¹, a spawn, a random heading or the stance timer changes the
   next loot roll, the chain coin and the chain bonus.
 - Within the MT, the order of draws is the only variation: a chest opened before a fight shifts
   every later hit and damage roll by its draws.
@@ -116,8 +124,18 @@ draws twice with amplitude 0.3), effect parameters and the script-side effect ve
   never move the two gameplay generators: their state words are untouched by those sources.
 - `rand` does decide gameplay values of its own: the charge-time term in `0x002F8410`
   (`rand() % n / 100` added at `0x002F8703`, `0x002F8712`), the special-sequence candidate actions in
-  `0x002F88B0` (`0x002F8A14`, `0x002F8B43`) and the locomotion detours in `0x0033E1F0`, `0x003343D0`,
+  `0x002F88B0`² and the locomotion detours in `0x0033E1F0`, `0x003343D0`,
   `0x00334E00`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003014C0`, `0x00301830`, `0x003087E0`, `0x00308EC0` |
+| ² | `0x002F8A14`, `0x002F8B43` |
+
+</details>
 
 ## Operations
 
@@ -132,11 +150,16 @@ draws twice with amplitude 0.3), effect parameters and the script-side effect ve
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
 | `0x02EB3870` / `0x02EB4230` | 624 × `u32` / `i32` | gameplay MT state and index | `0x00866D60`, `0x00866B90`, `0x00863BF0`, `0x00863C80` |
 | `0x022C256C` | `u32` | shared LCG state | `0x00328370`, the seven inline sites, `0x00328D80` |
 | `0x0208E6B0` | `u32` | areas initialised since process start, the next LCG seed | `0x002342F0` |
+
+</details>
 
 ## Modding notes
 

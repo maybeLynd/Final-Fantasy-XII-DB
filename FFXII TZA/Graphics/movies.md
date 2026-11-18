@@ -85,6 +85,9 @@ The movie player is the singleton `0x01F81218` (getter `0x001B7F20`), `0xBB8` by
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 | Fact | Value |
 |---|---|
 | `.mh` files | 43: `us` 35, `in` 7, `jp` 1; 228 to 94,356 bytes (`us/stf.mh` largest) |
@@ -133,8 +136,18 @@ Every value below matches the shipped `.mh` and `.webm` files; the `.webm` files
 ### Subtitle timing by voice language
 
 Subtitle timing depends on the voice language as well as the movie, so a script may hold one function per language.
-`getff12lang` returns 1 for English voices and 0 for Japanese (`0x0034B650`, `0x002DEBB0`). The text locale is separate:
-`unkCall_59c` returns the locale id, with `KR`, `CH`, `IN` and `CN` (7, 8, 10 and 11) read as 0 (`0x0034BA00`).
+`getff12lang` returns 1 for English voices and 0 for Japanese¹. The text locale is separate:
+`unkCall_59c` returns the locale id, with `KR`, `CH`, `IN` and `CN` (7, 8, 10 and 11) read as 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034B650`, `0x002DEBB0` |
+| ² | `0x0034BA00` |
+
+</details>
 
 `Database/Tools/catalogues/voice_recordings.py` writes two tables from the script listings:
 
@@ -183,6 +196,8 @@ it. They are read in listing order, and only a row in the same blocks as that ch
 | text: `us`, `de`, `es`, `fr`, `it`, `in`, `kr`, `cn`, `ch` | the line in each language folder, in the text codes of the dialogue tables |
 | text: `printed_by`, `voice_branch` | the functions that print it, and the values of `voice_branch` on those rows |
 
+</details>
+
 ## Loader behaviour
 
 ### The .mh is never read
@@ -196,41 +211,95 @@ the magic.
 
 `0x001848A0(m)` calls `0x001B82F0` on the singleton, which:
 
-1. tears down any open playback (`0x0067A9B0` on `+0x678`);
-2. stores the id, clears the position and `+0x09`, and sets state 1;
-3. sets `+0xBB0` from the Voice language option (`0x002DEBB0`), which makes the decoder pick the
-   non-English audio track;
-4. stores the Music volume (`0x002DDC70`, at most 100) divided by 100 at `+0x0C`;
-5. calls `0x0067A970(+0x678, 1)` (`0x001B8341`-`0x001B835C`) and `0x0017D940(1)`, which raises busy counter 1 of
-   the prefetch manager (`0x001B8366`, `0x001D9F81`) that the close lowers with `0x0017D960(1)`;
-6. queues `0x001B7F30` as a job on the `AsyncJobManager` (`0x00199F10`, `0x0019A000`), through a tail jump
-   (`0x001B83A3`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | tears down any open playback (`0x0067A9B0` on `+0x678`); |   |
+| 2 | stores the id, clears the position and `+0x09`, and sets state 1; |   |
+| 3 | sets `+0xBB0` from the Voice language option, which makes the decoder pick the non-English audio track; | `0x002DEBB0` |
+| 4 | stores the Music volume (`0x002DDC70`, at most 100) divided by 100 at `+0x0C`; |   |
+| 5 | calls `0x0067A970(+0x678, 1)` and `0x0017D940(1)`, which raises busy counter 1 of the prefetch manager that the close lowers with `0x0017D960(1)`; | `0x001B8341`-`0x001B835C`<br>`0x001B8366`, `0x001D9F81` |
+| 6 | queues `0x001B7F30` as a job on the `AsyncJobManager`, through a tail jump. | `0x00199F10`, `0x0019A000`<br>`0x001B83A3` |
 
-The job `0x001B7F30` starts the reading thread (`0x0067A350`), fetches entry `2m`, and opens the WebM.
-`0x0067A350` always returns 1 (`0x0067A3FF`) and drops the result of the thread start `0x005CD1E0` (`0x0067A3F5`), so
-the arm that sets state 0 and returns without a reset (`0x001B7F6A`, `0x001B80B5`) is never taken. A
-null entry resets the player (`0x001B7690`): id -1, position and duration 0, state 0. A failed open
-sets state 0 and resets (`0x001B8030`-`0x001B803A`), and so does a path with no backslash (`0x001B7FCE`).
+The job `0x001B7F30` starts the reading thread¹, fetches entry `2m`, and opens the WebM.
+`0x0067A350` always returns 1² and drops the result of the thread start `0x005CD1E0`³, so
+the arm that sets state 0 and returns without a reset⁴ is never taken. A
+null entry resets the player⁵: id -1, position and duration 0, state 0. A failed open
+sets state 0 and resets⁶, and so does a path with no backslash⁷.
 
-The null-entry reset is an inline copy of `0x001B7690` (`0x001B8070`-`0x001B80B3`): besides the id, position,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067A350` |
+| ² | `0x0067A3FF` |
+| ³ | `0x0067A3F5` |
+| ⁴ | `0x001B7F6A`, `0x001B80B5` |
+| ⁵ | `0x001B7690` |
+| ⁶ | `0x001B8030`-`0x001B803A` |
+| ⁷ | `0x001B7FCE` |
+
+</details>
+
+The null-entry reset is an inline copy of `0x001B7690`¹: besides the id, position,
 duration and state it clears `+0x09`, tears the playback down (`0x0067A9B0` on `+0x678`) and calls
-`0x0017D960(1)`, `0x002E1CA0(1, 0x15)` and `0x00229AE0(1)`, as `0x001B7690` itself does (`0x001B76A7`-`0x001B76D6`).
+`0x0017D960(1)`, `0x002E1CA0(1, 0x15)` and `0x00229AE0(1)`, as `0x001B7690` itself does².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B8070`-`0x001B80B3` |
+| ² | `0x001B76A7`-`0x001B76D6` |
+
+</details>
 
 ### The picture's geometry
 
 The init burst builds the player's drawing side with `0x001B7850`. It loads
-`/GameData/D3D11/ArtData/shaders/video.fx.phyre` (`0x0019CB20`) into `+0xD0`, sizes three plane
-textures (`0x0060DD70`), Y at `+0x108` at 1920 × 1080 and U and V at `+0x290` and `+0x418` at 960 ×
-540, each with four buffers (`0x00628100`), and binds them to the effect's `YChannel`, `UChannel` and
-`VChannel` (`0x0018D240`, `0x001B81B0`).
+`/GameData/D3D11/ArtData/shaders/video.fx.phyre`¹ into `+0xD0`, sizes three plane
+textures², Y at `+0x108` at 1920 × 1080 and U and V at `+0x290` and `+0x418` at 960 ×
+540, each with four buffers³, and binds them to the effect's `YChannel`, `UChannel` and
+`VChannel`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019CB20` |
+| ² | `0x0060DD70` |
+| ³ | `0x00628100` |
+| ⁴ | `0x0018D240`, `0x001B81B0` |
+
+</details>
 
 It puts the effect into a one-entry `PMaterialSet` of the
-player's cluster `+0x30` (`0x001B80C0`), builds the geometry, keeps the mesh instance at `+0x100`
+player's cluster `+0x30`¹, builds the geometry, keeps the mesh instance at `+0x100`
 with the material set at its `+0x20`, and stores 16/9 (1.7777778) at `+0x668`.
 
-`0x001B72B0(player, cluster)` gives the cluster one `PMesh` (`0x02D3A640`) of one segment (`0x0C0`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B80C0` |
+
+</details>
+
+`0x001B72B0(player, cluster)` gives the cluster one `PMesh`¹ of one segment (`0x0C0`
 bytes, `0x001B7210`) unless it already has exactly one, sets the segment's `+0x18` to 2, and fills
 two vertex streams of three entries:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02D3A640` |
+
+</details>
 
 | Stream | Data type | Entry | Values |
 |---|---|---|---|
@@ -248,8 +317,17 @@ movie fills whatever target it is drawn into. Before each write it waits, 1 ms a
 ([Game application](../Engine-Core/game-application.md)). First, in every state, when `0x0017D980()`
 (`[0x01F7F4B8]`) and `[0x01FD4A68]` are both 0 it releases the kept frames: `0x0067AB40(player + 0x678)` calls
 `0x006CC860(q)` with the queue `q` at `+0xA8`, which passes each frame on the list `q + 0x60 + 0x20 x side` (`side =
-[q + 0xA0]`) to the free function at `q + 0x58`, empties the list and sets `side = (side == 0)` (`0x001B8411`-`0x001B8429`).
+[q + 0xA0]`) to the free function at `q + 0x58`, empties the list and sets `side = (side == 0)`¹.
 Then, by state:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B8411`-`0x001B8429` |
+
+</details>
 
 | State | Meaning | What the update does |
 |---|---|---|
@@ -264,8 +342,16 @@ Then, by state:
 In states 3 and 4, an update in which `0x0067A410` returns 0 sends the player to state 5 and resets it.
 
 `0x001B82A0` enters state 3 only when `+0x08` is set; it then calls `0x00229AE0(0)`, sets state 3, calls
-`0x0067A440` and `0x0067A970(+0x678, 0)` on the playback, and ends with a tail jump to `0x002E1C20(1, 0x15)`
-(`0x001B82A6`-`0x001B82E4`).
+`0x0067A440` and `0x0067A970(+0x678, 0)` on the playback, and ends with a tail jump to `0x002E1C20(1, 0x15)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B82A6`-`0x001B82E4` |
+
+</details>
 
 ### Fetching a frame
 
@@ -273,14 +359,27 @@ The player's constructor `0x001B6D90` builds the playback object at `+0x678` wit
 sets up its three queues (`+0x000`, `+0xA8`, `+0x150`) and three locks and zeroes its counters and
 flags, among them the state `+0x268` and the audio flag `+0x538`.
 
-- Each queue is a `CDataFrameQueue` built by `0x006CC350`: its vtable, two locks (`0x00874D60`), two 0x20-byte frame
-  lists and `0x00584730` as its free function. `0x006CC960` builds the `VbfMkvReader` (`0x0067922B`).
+- Each queue is a `CDataFrameQueue` built by `0x006CC350`: its vtable, two locks¹, two 0x20-byte frame
+  lists and `0x00584730` as its free function. `0x006CC960` builds the `VbfMkvReader`².
 - `0x006CC730(queue, keep)` lets go of the frame a queue holds: with `keep` it pushes the frame onto the list at `+0x60`
   (or `+0x80` when `+0xA0` is 0), otherwise it frees it through `+0x58`; then it closes both lock handles
-  (`0x005CD700`).
+ ³.
 - `0x0067A970(playback, pause)` resets the playback's run event `+0x4D0` to pause it and sets it to run again
-  (`0x005CD500`, `0x005CD5E0`); `0x001B82A0` runs it with 0 (`0x001B82D2`) and `0x001B82F0` with 1 (`0x001B8341`,
-  `0x001B835C`).
+ ⁴; `0x001B82A0` runs it with 0⁵ and `0x001B82F0` with 1⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00874D60` |
+| ² | `0x0067922B` |
+| ³ | `0x005CD700` |
+| ⁴ | `0x005CD500`, `0x005CD5E0` |
+| ⁵ | `0x001B82D2` |
+| ⁶ | `0x001B8341`, `0x001B835C` |
+
+</details>
 
 `0x0067ABF0(playback, y, u, v)`, from the update in states 1, 3 and 4, takes one decoded frame into
 the player's three plane textures `+0x108`, `+0x290` and `+0x418`:
@@ -288,9 +387,19 @@ the player's three plane textures `+0x108`, `+0x290` and `+0x418`:
 - it counts its calls at `+0x530`; while `0x001EDE70()` is set it acts only on every second call;
 - it needs the state `+0x268` at 1, and while `+0x4F4` is set it waits until the frame queue
   `+0xA8` holds at least `+0x2EC` frames, then clears `+0x4F4`;
-- it takes the oldest frame (`0x006CC4F0`), uploads its three planes, the first at frame `+0x10` and
+- it takes the oldest frame¹, uploads its three planes, the first at frame `+0x10` and
   the others `+0x524` and `+0x528` bytes further on, counts the frame at `+0x278`, releases it
-  (`0x006CC550`) and returns 1.
+ ² and returns 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006CC4F0` |
+| ² | `0x006CC550` |
+
+</details>
 
 `0x0067AB50(texture, data)` uploads one plane. It picks the texture's ring record by the counter
 `0x01F7F5A0` modulo the ring size, waits 1 ms at a time while that record's in-use count `+0x38` is
@@ -316,26 +425,56 @@ Each also switches field state ([event scenes](../Scripts-And-Script-Commands/ev
 `0x00368AA0(0, 0)`, `0x0035B7DB`-`0x0035B82B`).
 
 `0x0035B840` sets action row 0 bits `0x1` and `0x100000`, the arena mode 1
-and busy bit `0x10000` before it opens the movie (`0x0035B861`-`0x0035B881`). `0x0035B8D0` stops through `0x001848E0(0)`
-(`0x0035B8D6`), clears busy bit `0x10000`, switches the field systems back on (`0x0035B905`-`0x0035B980`) and sets the
-arena mode back to 0 through its tail jump to `0x0037B450(0)` (`0x0035B98B`).
+and busy bit `0x10000` before it opens the movie¹. `0x0035B8D0` stops through `0x001848E0(0)`², clears busy bit `0x10000`, switches the field systems back on³ and sets the
+arena mode back to 0 through its tail jump to `0x0037B450(0)`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035B861`-`0x0035B881` |
+| ² | `0x0035B8D6` |
+| ³ | `0x0035B905`-`0x0035B980` |
+| ⁴ | `0x0035B98B` |
+
+</details>
 
 A script chooses its movie with `moviestandby` (`0x368`): its result step `0x00356460` passes the
 id to `0x0035B840`, the only caller of `0x001848A0`. `movieplay` (`0x36A`, `0x00356D20`) pops an argument
 that it does not use and runs `0x0035B7D0`, so it plays whichever movie `moviestandby` opened.
 
 `setmoviescreensize(n)` (`0x058C`, `0x00347C40`) stores `n` at `0x02ADD933` through `0x0037B470`, or 3
-for a negative `n`, and `getmoviescreensize` (`0x058D`, `0x00347F40`) returns it (`0x0037B370`). The
+for a negative `n`, and `getmoviescreensize` (`0x058D`, `0x00347F40`) returns it¹. The
 movie start `0x0035B840` resets it to 3 (`0x0037B470(−1)`), and so does `0x0037B390` from the startup
 constants `0x0022A0B0`. The only other reader, the loaded-file play `0x003B1BA0`, discards the value,
 so the setting changes nothing on screen.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037B370` |
+
+</details>
+
 ### The time read-outs
 
 - `0x00184810` returns, in state 3 only, `+0x18 x 29.97 x 0.001` truncated; otherwise -1.
-- `0x001B77B0` (through `0x001847B0`) returns `+0x18 x 0.0333667` truncated (`0x008F8D7C`).
+- `0x001B77B0` (through `0x001847B0`) returns `+0x18 x 0.0333667` truncated¹.
 - `0x001B77E0` (through `0x001847F0`) returns `+0x20 x 0.0333667 - 30`, clamped at 0; for movie id 43
-  (`IVT`) it subtracts 8 instead (`0x01CEBC80`).
+  (`IVT`) it subtracts 8 instead².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008F8D7C` |
+| ² | `0x01CEBC80` |
+
+</details>
 
 ## Modding notes
 
@@ -363,8 +502,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Movement and pathfinding** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E1CD0` | is called by | `0x0026C3E0` |
+| [`0x002E1CD0`](../Controls-And-Input/action-availability.md) (on action availability) | is called by | [`0x0026C3E0`](../Engine-Core/time-stop-and-freeze.md) (on time stop and freeze) |
 
 </details>

@@ -95,18 +95,48 @@ A fresh entry is one with `(flags & 5) == 0`: neither retired nor released. The 
 history counter, the key restore and the affinity reset happen only then.
 
 `0x00312EE0(unit)` leaves the lifecycle point mode of a kind-1 unit. It does nothing for a null unit, a null stats
-record `+0x698` or one whose byte `+0x05` is not 1 (`0x00312EE0`-`0x00312F05`), and nothing when the spawn record's first
-dword has neither bit `0x8` nor bit `0x40` (`0x00312F0B`-`0x00312F1D`); it reads the record pointer `+0x6A0` with no null
+record `+0x698` or one whose byte `+0x05` is not 1¹, and nothing when the spawn record's first
+dword has neither bit `0x8` nor bit `0x40`²; it reads the record pointer `+0x6A0` with no null
 test.
 
-Otherwise it writes the dword it read back with bit `0x40` clear (`0x00312F1F`-`0x00312F24`) and clears bit `0x8` in place
-through the record pointer, read again (`0x00312F29`-`0x00312F30`). It sets bit `0x1` of the unit's dword `+0x6B0`
-(`0x00312F33`), and calls `0x0026DC60(actor, v)` for the unit's actor `+0x10`, with `v` = 1 when `0x003125E0(unit)` answers
-0 and 0 otherwise (`0x00312F3A`-`0x00312F4A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312EE0`-`0x00312F05` |
+| ² | `0x00312F0B`-`0x00312F1D` |
+
+</details>
+
+Otherwise it writes the dword it read back with bit `0x40` clear¹ and clears bit `0x8` in place
+through the record pointer, read again². It sets bit `0x1` of the unit's dword `+0x6B0`³, and calls `0x0026DC60(actor, v)` for the unit's actor `+0x10`, with `v` = 1 when `0x003125E0(unit)` answers
+0 and 0 otherwise⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312F1F`-`0x00312F24` |
+| ² | `0x00312F29`-`0x00312F30` |
+| ³ | `0x00312F33` |
+| ⁴ | `0x00312F3A`-`0x00312F4A` |
+
+</details>
 
 When bit `0x8` was set before the clear, it also takes `0x00265200(actor)`, passes that float through
 `0x0031ACC0(actor, float)`, stores the result at the unit's `+0x160` and `+0x15C`, and calls
-`0x002EACD0(unit dword +0x08, 1, unit + 8, 0x7B)` (`0x00312F4F`-`0x00312F8B`).
+`0x002EACD0(unit dword +0x08, 1, unit + 8, 0x7B)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312F4F`-`0x00312F8B` |
+
+</details>
 
 ### The resets
 
@@ -119,10 +149,19 @@ When bit `0x8` was set before the clear, it also takes `0x00265200(actor)`, pass
 
 ### The copies
 
-`0x00235360` copies `0x250` bytes, four `0x80` blocks and a `0x50` tail (`0x00235460`-`0x002354DD`), from
+`0x00235360` copies `0x250` bytes, four `0x80` blocks and a `0x50` tail¹, from
 the matching history entry over the live one. The three bank loops in `0x00233780`, `0x00233440` and
 `0x00233550` move `0x9400` bytes per bank in 128-byte `movups` pairs. No loop names a field: the stats
 page at `+0x80`, the enmity bytes and the positions travel with everything else.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00235460`-`0x002354DD` |
+
+</details>
 
 ## Related
 
@@ -141,9 +180,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Game files and data tables** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002368D0` | calls | `0x003843F0` |
+| [`0x002368D0`](../Game-Files-And-Data-Tables/authored-data-tables.md) Battle storage: initialize work arrays (on authored data tables) | calls | [`0x003843F0`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables) |
 
 </details>
 

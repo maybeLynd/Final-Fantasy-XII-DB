@@ -20,29 +20,81 @@ still rebuilt from the PlayStation 2 data, and the game refreshes their palettes
 
 ### The context
 
-`0x001A98B0` creates the map-art context once, from the application set-up `0x00186CD0` (`0x00186D05`). It builds a
+`0x001A98B0` creates the map-art context once, from the application set-up `0x00186CD0`¹. It builds a
 0xA0-byte pool kept at `0x01F81170` (`0x00633040`, stored at `0x001A98FC`) and the 0x520-byte context kept at
 `0x01F81168` (constructor `0x001A2130`, stored at `0x001A9922`); `0x001A9930` returns the context. It first hands the
-test that `0x01F81168` is null to the return stub `0x0016D6A0` (`0x001A98CD`) and returns at once while `0x01F81168`
-is set (`0x001A98D9`).
+test that `0x01F81168` is null to the return stub `0x0016D6A0`² and returns at once while `0x01F81168`
+is set³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00186D05` |
+| ² | `0x001A98CD` |
+| ³ | `0x001A98D9` |
+
+</details>
 
 Otherwise the pool's block comes from `0x00584740(0xA0)` and the context's from `0x00210EC0(0x520)`; each constructor runs
-only on a non-null block, a failed allocation stores 0 (`0x001A98F9`-`0x001A98FC`, `0x001A9922`), and the pool pointer is
-written without a test of its own (`0x001A98FC`). The constructor sets the model count `+0x20` to -1, reads `opt.csv`
-(`0x001A9050`), copies the water quality (`[0x01F82D20] + 0x40`) to `+0x2F8` and whether it is non-zero to `+0x2E5`, and
-registers `0x001A97F0` with the render settings block (`0x0060B720`).
+only on a non-null block, a failed allocation stores 0¹, and the pool pointer is
+written without a test of its own². The constructor sets the model count `+0x20` to -1, reads `opt.csv`³, copies the water quality (`[0x01F82D20] + 0x40`) to `+0x2F8` and whether it is non-zero to `+0x2E5`, and
+registers `0x001A97F0` with the render settings block⁴.
 
-The per-frame update `0x001A9ED0(context, dt)` runs from the frame pump (`0x0017D7AD`).
+<details>
+<summary>Where in the code</summary>
 
-It does three things in order. First the [load check](#the-load-waits-for-the-instance-count) (`0x001A9ED6`-`0x001A9F69`);
-the job record it posts holds `0x001A3160` at `+0` and the context at `+8` (`0x001A9F52`, `0x001A9F55`), and the queued byte
-`+0x41A` is set with `xchg` (`0x001A9F35`). Second, while the slot array `+0x88` exists and either the dword at
+| | Code |
+|---|---|
+| ¹ | `0x001A98F9`-`0x001A98FC`, `0x001A9922` |
+| ² | `0x001A98FC` |
+| ³ | `0x001A9050` |
+| ⁴ | `0x0060B720` |
+
+</details>
+
+The per-frame update `0x001A9ED0(context, dt)` runs from the frame pump¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017D7AD` |
+
+</details>
+
+It does three things in order. First the [load check](#the-load-waits-for-the-instance-count)¹;
+the job record it posts holds `0x001A3160` at `+0` and the context at `+8`², and the queued byte
+`+0x41A` is set with `xchg`³. Second, while the slot array `+0x88` exists and either the dword at
 `0x001C1990()` is 1 or the render manager's byte `+0xDCC` is set (`0x00187530` on `0x00189120()`), it sets the byte `+0x251`
-of both objects of every slot below the model count `+0x20`, skipping a null pointer (`0x001A9F6E`-`0x001A9FDA`).
+of both objects of every slot below the model count `+0x20`, skipping a null pointer⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A9ED6`-`0x001A9F69` |
+| ² | `0x001A9F52`, `0x001A9F55` |
+| ³ | `0x001A9F35` |
+| ⁴ | `0x001A9F6E`-`0x001A9FDA` |
+
+</details>
 
 Third the sway of the 2D background figures ([graphics
 settings](../Engine-Core/graphics-settings.md#the-map-art-contexts-keys)), only while `+0x484` and `+0x480`
-are both non-zero (`0x001A9FDC`-`0x001A9FFF`).
+are both non-zero¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A9FDC`-`0x001A9FFF` |
+
+</details>
 
 ### Naming the map
 
@@ -53,46 +105,62 @@ clears the first-pass byte `0x022BE7E0`. The swaps are `dst0109` to `dst0103`, `
 
 `0x001805D0` calls `0x001A7A50(context, name)`:
 
-1. While an asset list is held (`+0x78`), the same name as `+0x241` returns at once; another name
-   first unloads the old map with `0x001A92C0`.
-2. `0x001A7CB0` files a whole-file read of `.\GameData\D3D11\ArtData\map\NoModelGroupMaps.txt` with the
-   completion `0x001A9A30`, but only while the name set `+0x3A0` is empty.
-3. The loaded byte `+0x80` is cleared, the name is copied to `+0x241` and to the probe manager's
-   `+0x16C` (`0x001AD780`). The copy at `+0x241` keeps at most 31 characters (`0x001A1EA0`, whose cap is 32).
-4. The map part of the name is hashed (`0x00674A00`) and looked up in the `opt.csv` table `+0x3E0`:
-   `+0x418` and `+0x419` get bytes 1 and 3 of the entry, or both 0 without one. The render manager's
-   byte `+0xDB9` is cleared and the post-process object's byte `+0x3E8` (`0x00193D50`) set to 1.
-   - The map part is the text after the name's first `\` (`strchr`, `0x001A7AE3`); a name with no `\` makes the
-     hash read from address 1.
-   - `+0x3E8` would get 0 only when `0x005C5230()` answered non-zero with the settings' `+0xD50` at 0
-     (`0x001A7B58`-`0x001A7B6E`), and `0x005C5230` always answers 0.
-5. The asset list `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_D3D11_srm.ah` is requested when
-   `0x0019EAA0` can open it, else `<map>_D3D11.ah`, through `0x0019EB60`; the handle goes to `+0x78`. Every shipped
-   map folder has its `_srm` list, so none of the 456 plain `<map>_d3d11.ah` lists of the map folders is requested.
-6. The texture-animation prefix `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_anime_` is written
-   to `+0x141`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | While an asset list is held (`+0x78`), the same name as `+0x241` returns at once; another name first unloads the old map with `0x001A92C0`. |   |
+| 2 | `0x001A7CB0` files a whole-file read of `.\GameData\D3D11\ArtData\map\NoModelGroupMaps.txt` with the completion `0x001A9A30`, but only while the name set `+0x3A0` is empty. |   |
+| 3 | The loaded byte `+0x80` is cleared, the name is copied to `+0x241` and to the probe manager's `+0x16C`. The copy at `+0x241` keeps at most 31 characters (`0x001A1EA0`, whose cap is 32). | `0x001AD780` |
+| 4 | The map part of the name is hashed and looked up in the `opt.csv` table `+0x3E0`: `+0x418` and `+0x419` get bytes 1 and 3 of the entry, or both 0 without one. The render manager's byte `+0xDB9` is cleared and the post-process object's byte `+0x3E8` set to 1.<br>• The map part is the text after the name's first `\` (`strchr`, `0x001A7AE3`); a name with no `\` makes the hash read from address 1.<br>• `+0x3E8` would get 0 only when `0x005C5230()` answered non-zero with the settings' `+0xD50` at 0, and `0x005C5230` always answers 0. | `0x00674A00`<br>`0x00193D50`<br>`0x001A7B58`-`0x001A7B6E` |
+| 5 | The asset list `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_D3D11_srm.ah` is requested when `0x0019EAA0` can open it, else `<map>_D3D11.ah`, through `0x0019EB60`; the handle goes to `+0x78`. Every shipped map folder has its `_srm` list, so none of the 456 plain `<map>_d3d11.ah` lists of the map folders is requested. |   |
+| 6 | The texture-animation prefix `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_anime_` is written to `+0x141`. |   |
 
 When the `_srm` list does not open, step 5 rebuilds the name as the plain list and requests it whether or not that
-opens (`0x001A7C23`-`0x001A7C53`). A list whose file does not open completes with no entries, and a token whose file
+opens¹. A list whose file does not open completes with no entries, and a token whose file
 does not open leaves its entry empty
 ([Prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md#asset-header-list-records)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A7C23`-`0x001A7C53` |
+
+</details>
 
 ### The load waits for the instance count
 
 The map's world data (`YM00`) lists the zone's instances in its tag-30 chunk; the parser passes their
 count to `0x001806F0`, which stores it at `+0x20`. Each frame `0x001A9ED0` checks the held asset list:
 once `0x0019EB00` reports it loaded, the loaded byte `+0x80` and the queued byte `+0x41A` are clear and
-the count is 0 or more, it sets `+0x41A` and posts `0x001A3160` to the job manager (`0x0019A180`,
-`0x00199F10`, `0x0019A000`). `0x001A3160` runs the load `0x001A5B30`, sets `+0x80` and clears `+0x41A`.
+the count is 0 or more, it sets `+0x41A` and posts `0x001A3160` to the job manager¹. `0x001A3160` runs the load `0x001A5B30`, sets `+0x80` and clears `+0x41A`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019A180`, `0x00199F10`, `0x0019A000` |
+
+</details>
 
 ### Matching models to instances
 
-`0x001A5B30` first rebuilds the texture table `+0x448` (`0x001A7F10`), clears the set `+0xB0`
-(`0x001A5810`) and the key vector `+0x4C8`, and sets `+0x3D8` when the map part of the name (`+0x247`)
+`0x001A5B30` first rebuilds the texture table `+0x448`¹, clears the set `+0xB0`² and the key vector `+0x4C8`, and sets `+0x3D8` when the map part of the name (`+0x247`)
 is in the NoModelGroupMaps set. It registers the cube-map textures with the probe manager
 (`0x001ABC80`, `0x001ABCE0`, stored by `0x001AD7B0` and `0x001AD6E0`; `0x001AAC50` builds a probe variant
 record with six texture slots), then allocates the slot array `+0x88`: 16 bytes per instance, a
 pointer for the main view and one for the sub view.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A7F10` |
+| ² | `0x001A5810` |
+
+</details>
 
 It then walks every `PMeshInstance` (class descriptor `0x02CB6E80`) of every asset in the list. An
 instance whose name `m_name` (`+0x80`) has more than eight characters is matched to the YM00
@@ -100,7 +168,7 @@ instance whose index is the decimal number starting at its ninth character; a nu
 count - 1 skips it. For a match:
 
 - `0x001EE1D0` gives the instance a material array of its own, allocated from the pool `[0x01F81170]`
-  (`0x0063A990`).
+ ¹.
 - Every entry of its mesh's matrix-index array (count at mesh `+0x70`, entries at `+0x78`) is added to
   the set `+0xE8`; with bit `0x400` of `m_extraFlag` (`+0x5C`) set, also to `+0xB0`. An instance without
   the array puts its own index in `+0xB0` when bit `0x400` is set.
@@ -108,50 +176,131 @@ count - 1 skips it. For a match:
   limit and margin (`+0x480` to `+0x48C`).
 - The draw key `+0x4C8[index]` is `m_specialRenderOrder` (`+0x78`) times 0x10000 plus the index when
   the order is positive, else the index times 0x10000.
-- The first instance of an index gets two `MapRenderObject`s of 0x268 bytes (`0x001E1670`), one per
-  view; a later instance with the same index is appended to both (`0x001A7850`). Its destructor `0x001E1C90`
-  (from `0x001E1D90`) unregisters it from `0x01F82D60` (`0x001F8B30`), frees its five vectors (`+0x18`, `+0x38`,
+- The first instance of an index gets two `MapRenderObject`s of 0x268 bytes², one per
+  view; a later instance with the same index is appended to both³. Its destructor `0x001E1C90`
+  (from `0x001E1D90`) unregisters it from `0x01F82D60`⁴, frees its five vectors (`+0x18`, `+0x38`,
   `+0x58`, `+0x78`, `+0x98`) and ends with `0x00212C80`.
 
-Each `MapRenderObject` holds a slot of the registry `0x01F82D60` at `+0x10`. The static initialiser `0x0015CC90` builds the
-registry with `0x001E1520(0x01F82D60, 20000)` (`0x0015CC94`, `0x0015CCA0`): a vector of 20000 slots of `0x18` bytes
-(`0x001E5370`) and two EASTL sets of slot addresses, the free set at `0x01F82D80` and the in-use set at `0x01F82DB8`. It puts
-every slot in the free set (`0x00199DB0` at `0x001E1644`), so the free set's size `0x01F82DA8` starts at 20000; `0x00199DB0`
-adds one per insert (`0x00199E93`, `0x00199ED3`).
+<details>
+<summary>Where in the code</summary>
 
-`0x001E1670` takes the free set's first slot, the node at `0x01F82D90`, while that size is non-zero (`0x001E1979`, `0x001E1983`).
-It lowers the size (`0x001E1998`), unlinks the node and frees its `0x28` bytes through the set's allocator `0x01F82DB0`
-(`0x001E19CC`), inserts the slot into the in-use set (`0x001E19EC`), and stores the slot at `+0x10` and the object at the
-slot's `+0x08` (`0x001E19F6`, `0x001E1A0C`). The destructor `0x001E1C90` hands the slot to `0x001F8B30` (`0x001E1CB7`), which
-moves it back into the free set (`0x001F8BCB`).
+| | Code |
+|---|---|
+| ¹ | `0x0063A990` |
+| ² | `0x001E1670` |
+| ³ | `0x001A7850` |
+| ⁴ | `0x001F8B30` |
+
+</details>
+
+Each `MapRenderObject` holds a slot of the registry `0x01F82D60` at `+0x10`. The static initialiser `0x0015CC90` builds the
+registry with `0x001E1520(0x01F82D60, 20000)`¹: a vector of 20000 slots of `0x18` bytes² and two EASTL sets of slot addresses, the free set at `0x01F82D80` and the in-use set at `0x01F82DB8`. It puts
+every slot in the free set (`0x00199DB0` at `0x001E1644`), so the free set's size `0x01F82DA8` starts at 20000; `0x00199DB0`
+adds one per insert³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0015CC94`, `0x0015CCA0` |
+| ² | `0x001E5370` |
+| ³ | `0x00199E93`, `0x00199ED3` |
+
+</details>
+
+`0x001E1670` takes the free set's first slot, the node at `0x01F82D90`, while that size is non-zero¹.
+It lowers the size², unlinks the node and frees its `0x28` bytes through the set's allocator `0x01F82DB0`³, inserts the slot into the in-use set⁴, and stores the slot at `+0x10` and the object at the
+slot's `+0x08`⁵. The destructor `0x001E1C90` hands the slot to `0x001F8B30`⁶, which
+moves it back into the free set⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E1979`, `0x001E1983` |
+| ² | `0x001E1998` |
+| ³ | `0x001E19CC` |
+| ⁴ | `0x001E19EC` |
+| ⁵ | `0x001E19F6`, `0x001E1A0C` |
+| ⁶ | `0x001E1CB7` |
+| ⁷ | `0x001F8BCB` |
+
+</details>
 
 ### Material extras for each model
 
 `0x001A7F10` pairs textures with their companions. For each texture of the list whose name ends in
 `_n.dds.phyre` or `_spec.dds.phyre` (suffix table `0x008F66F0`, 0x20 bytes apart), it takes the base
-name, maps it through `phyremaps.txt` (`0x001A9940`), resolves the base texture (`0x001A76D0`) and stores
-the companion in the base texture's entry of `+0x448` (`0x001A2F70`): the normal map at `+0x00`, the
+name, maps it through `phyremaps.txt`¹, resolves the base texture² and stores
+the companion in the base texture's entry of `+0x448`³: the normal map at `+0x00`, the
 specular map at `+0x08` and the base name at `+0x40`. Textures under `/ArtData/shared/map/` are
 paired through the `phyremaps.txt` table's values instead.
 
-`0x001A2F70` makes a missing entry from a zeroed 0x60-byte value (`0x001A2FD9`-`0x001A2FE4`): the floats
-`+0x20` = 0.5, `+0x24` = 0, `+0x28` = 0 and `+0x2C` = 1.0 from the 16 bytes at `0x008F6840` (`0x001A2FFA`),
-`+0x30` = 1.0 (`0x01CEBBA8`), `+0x34` = 0, the dword `+0x38` = 1 (`0x001A3017`), and the base name an empty
-string over the static byte `0x02EBA2E0` (`0x001A303E`-`0x001A3054`) whose allocator `+0x58` is the vtable
-`0x00902720` from `0x001EDF00`, which drops the name `EASTL basic_string` it is passed (`0x008F6600`, `0x001A302E`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A9940` |
+| ² | `0x001A76D0` |
+| ³ | `0x001A2F70` |
+
+</details>
+
+`0x001A2F70` makes a missing entry from a zeroed 0x60-byte value¹: the floats
+`+0x20` = 0.5, `+0x24` = 0, `+0x28` = 0 and `+0x2C` = 1.0 from the 16 bytes at `0x008F6840`²,
+`+0x30` = 1.0³, `+0x34` = 0, the dword `+0x38` = 1⁴, and the base name an empty
+string over the static byte `0x02EBA2E0`⁵ whose allocator `+0x58` is the vtable
+`0x00902720` from `0x001EDF00`, which drops the name `EASTL basic_string` it is passed⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A2FD9`-`0x001A2FE4` |
+| ² | `0x001A2FFA` |
+| ³ | `0x01CEBBA8` |
+| ⁴ | `0x001A3017` |
+| ⁵ | `0x001A303E`-`0x001A3054` |
+| ⁶ | `0x008F6600`, `0x001A302E` |
+
+</details>
 
 For every slot `0x001A5B30` then runs, on both objects, `0x001E4000` (the shader parameter handles of
 every material, one 0x220-byte record each, and the ready byte `+0x250`) and looks up the entry of the
-model's main texture, the `TextureSampler` texture of its first material (`0x001E3F70`):
+model's main texture, the `TextureSampler` texture of its first material¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E3F70` |
+
+</details>
 
 - `0x001E55C0(object, normal)` writes 1 to `EnableNormalMap` and binds `NormalMap` on every material of
   an instance without bit `0x200` of `m_extraFlag`, when the entry has a normal map;
 - `0x001E6110(object, specular)` does the same with `EnableSpecularMap` and `SpecularMap`;
 - the main texture is kept at `+0x260`.
 
-The load ends by restarting the texture-animation chain (`0x001A7D50`), loading the probe placements
+The load ends by restarting the texture-animation chain¹, loading the probe placements
 (`0x001AC480`, which also sets `0x01DFE191` when a probe exists), requesting the procedural texture
-configuration (`0x001C0A90`) and resetting every sway entry (`0x001A7770`).
+configuration² and resetting every sway entry³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A7D50` |
+| ² | `0x001C0A90` |
+| ³ | `0x001A7770` |
+
+</details>
 
 ### Procedural detail textures
 
@@ -164,28 +313,75 @@ finds the entry whose name equals the map-art context's `+0x241`, removes it and
 `0x001BF8B0` reads records of eight CRLF-separated values until the text ends or a value fails to read:
 the texture name, the detail kind, five floats, an integer (1 when missing) and an optional float (0
 when missing). It resolves the texture through `0x001A6FF0` (the map's `tex` folder, or its
-`phyremaps.txt` value) and skips a record whose texture has no `+0x448` entry (`0x001A7990`). The kind
+`phyremaps.txt` value) and skips a record whose texture has no `+0x448` entry¹. The kind
 is looked up by name in the procedural context (`+0x78`); `0x001A9CD0` stores the record in the entry.
 
-`0x001A9CD0` resolves the texture name again (`0x001A76D0`, `0x001A9CEB`) and takes its `+0x448` entry through
-`0x001A2F70` (`0x001A9D01`). It stores the kind at `+0x18`, the five floats in file order at `+0x20` to `+0x30`, the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A7990` |
+
+</details>
+
+`0x001A9CD0` resolves the texture name again¹ and takes its `+0x448` entry through
+`0x001A2F70`². It stores the kind at `+0x18`, the five floats in file order at `+0x20` to `+0x30`, the
 optional float at `+0x34` and the integer at `+0x38` (`0x001A9D1E`-`0x001A9D5A`; arguments from `0x001C0013`-`0x001C001E`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A76D0`, `0x001A9CEB` |
+| ² | `0x001A9D01` |
+
+</details>
 
 After the last record `0x001A53F0` applies them: for each slot whose current-view object has a main
 texture (`+0x260`) whose entry carries a kind, it stores the kind at the object's `+0x08` and passes
 the kind's texture (`+0x20`) and the seven values to `0x001E5C40`.
 
-`0x001A53F0` walks the instances 0 to count - 1 and does nothing for a count of 0 or less (`0x001A53FF`). The object is
-slot `2i` or `2i + 1` by the render manager's view byte `+0x1C` (`0x001A5447`-`0x001A5456`). An instance is skipped when
-the slot array `+0x88` is absent, the object or its main texture is null, or the entry's kind is null
-(`0x001A542F`-`0x001A547F`).
+`0x001A53F0` walks the instances 0 to count - 1 and does nothing for a count of 0 or less¹. The object is
+slot `2i` or `2i + 1` by the render manager's view byte `+0x1C`². An instance is skipped when
+the slot array `+0x88` is absent, the object or its main texture is null, or the entry's kind is null³.
 
-The entry comes from `0x001A2F70` (`0x001A5473`), which adds a default entry with a null kind for a texture without
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A53FF` |
+| ² | `0x001A5447`-`0x001A5456` |
+| ³ | `0x001A542F`-`0x001A547F` |
+
+</details>
+
+The entry comes from `0x001A2F70`¹, which adds a default entry with a null kind for a texture without
 one, so that object is skipped too. The values go to `0x001E5C40` in the order `+0x20`, `+0x24`, `+0x28`, `+0x2C`,
-`+0x30`, `+0x34` and the integer `+0x38` (`0x001A5488`-`0x001A54CF`).
+`+0x30`, `+0x34` and the integer `+0x38`².
 
-`0x001E5C40` copies them into the material's shader constants, whose handles `0x001E4000` looks up by name
-(`0x001E480D`-`0x001E4929`). In file order:
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A5473` |
+| ² | `0x001A5488`-`0x001A54CF` |
+
+</details>
+
+`0x001E5C40` copies them into the material's shader constants, whose handles `0x001E4000` looks up by name¹. In file order:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E480D`-`0x001E4929` |
+
+</details>
 
 | Value | Shader constant | Shipped |
 |---|---|---|
@@ -195,7 +391,16 @@ one, so that object is skipped too. The values go to `0x001E5C40` in the order `
 | the integer | `EnableProceduralTexture`; the game writes 0 instead while byte `+0x09` or `+0x0A` of the procedural context `[0x01F81258]` is set or the object's `+0x5C` has bit `0x800` (`0x001E5D19`-`0x001E5D3E`) | 2 or 3 |
 | the optional float | `ProceduralRotation` | absent, so 0 |
 
-The detail kind's texture goes to `ProceduralNormalTexture` (`0x001E6040`).
+The detail kind's texture goes to `ProceduralNormalTexture`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E6040` |
+
+</details>
 
 ### Paletted textures from the PS2 data
 
@@ -210,14 +415,36 @@ runs `0x001A4DB0(context, id, …)`. For an id with no entry yet, `0x001A4DB0` a
 - the index texture at `+0x30`, built by `0x00184140` from the index data, or by `0x00183EE0` when the
   call's flag is set.
 
-An id that already has an entry returns at once, with no texture built and no record appended (`0x001A4E17`).
+An id that already has an entry returns at once, with no texture built and no record appended¹.
 
-- The palette builder gets the palette data, two 16-bit sizes and two format values (`0x001A4ED6`); the format it tests
-  is the second value times 0x100, ORed with the first (`0x001837DD`-`0x001837ED`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A4E17` |
+
+</details>
+
+- The palette builder gets the palette data, two 16-bit sizes and two format values¹; the format it tests
+  is the second value times 0x100, ORed with the first².
 - The index builder gets the index data and its two 16-bit sizes, each `n` rounded up to `v + 1`, a power of two,
-  by `0x0017FEA0` (`0x001A4EE7`-`0x001A4F2F`); the flag that picks `0x00183EE0` is a byte argument (`0x001A4EFC`).
+  by `0x0017FEA0`³; the flag that picks `0x00183EE0` is a byte argument⁴.
 - `0x0017FEA0` works in 16 bits: `v = n - 1`, then `v |= v >> 1`, `v |= v >> 2`, `v |= v >> 4`, `v |= v >> 8`, and
-  it returns `v + 1` (`0x0017FEA0`-`0x0017FECF`), so a size of 0 or above `0x8000` gives 0.
+  it returns `v + 1`⁵, so a size of 0 or above `0x8000` gives 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A4ED6` |
+| ² | `0x001837DD`-`0x001837ED` |
+| ³ | `0x001A4EE7`-`0x001A4F2F` |
+| ⁴ | `0x001A4EFC` |
+| ⁵ | `0x0017FEA0`-`0x0017FECF` |
+
+</details>
 
 It also appends a 32-byte record (id, palette data pointer, sizes and format) to the vector `+0x2A0`;
 when the vector is full (`+0x2A8` at `+0x2B0`), `0x001A40B0` inserts it instead, doubling the capacity
@@ -225,40 +452,111 @@ when the vector is full (`+0x2A8` at `+0x2B0`), `0x001A40B0` inserts it instead,
 
 The record holds the id at `+0x00`, the palette data pointer at `+0x08`, the two sizes at `+0x10` and `+0x12` and
 the two format values at `+0x14` and `+0x18`: the values the palette builder got, which `0x001AA120` hands to `0x00183320`
-each frame (`0x001A4F47`-`0x001A4FA9`). With room, the record is copied to the old end and the end moves on 0x20 bytes
-(`0x001A4F89`-`0x001A4FA9`).
+each frame¹. With room, the record is copied to the old end and the end moves on 0x20 bytes².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A4F47`-`0x001A4FA9` |
+| ² | `0x001A4F89`-`0x001A4FA9` |
+
+</details>
 
 `0x001A40B0(vector, position, record)` is the vector's general insert; `0x001A4DB0` calls it only when the vector is full,
-with the end as the position (`0x001A4FBA`). With room it moves the last record up one place, shifts the records from
-the position up by one and copies the record in, reading a record that lies in the moved range from its new place
-(`0x001A40D2`-`0x001A412B`).
+with the end as the position¹. With room it moves the last record up one place, shifts the records from
+the position up by one and copies the record in, reading a record that lies in the moved range from its new place².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A4FBA` |
+| ² | `0x001A40D2`-`0x001A412B` |
+
+</details>
 
 Full, it allocates the doubled capacity in bytes, `n << 5` with `n = c == 0 ? 1 : c + c` in 32 bits and
-`c = (end - begin) >> 5`, through slot `+0x10` of the allocator (`0x001A4140`-`0x001A4177`); a doubled count `c + c`
-that is 0 in 32 bits leaves the new block null (`0x001A415C`). It copies the records before the position,
-the new record and the rest (`0x001A417D`-`0x001A41F3`), frees the old block through slot `+0x18` with its capacity in
-bytes (`0x001A41F5`-`0x001A4216`) and stores the new begin, end and capacity (`0x001A4221`-`0x001A4239`).
+`c = (end - begin) >> 5`, through slot `+0x10` of the allocator¹; a doubled count `c + c`
+that is 0 in 32 bits leaves the new block null². It copies the records before the position,
+the new record and the rest³, frees the old block through slot `+0x18` with its capacity in
+bytes⁴ and stores the new begin, end and capacity⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A4140`-`0x001A4177` |
+| ² | `0x001A415C` |
+| ³ | `0x001A417D`-`0x001A41F3` |
+| ⁴ | `0x001A41F5`-`0x001A4216` |
+| ⁵ | `0x001A4221`-`0x001A4239` |
+
+</details>
 
 `0x001808D0`, called from `0x0022A770` in a simulation step while `0x00358340()` is non-zero, once a step of the
 frame has started with the accumulator below 1.1 (`0x0022AC5C`-`0x0022AC6E`,
 [frame update order](../Engine-Core/frame-update-order.md)), runs `0x001AA120`, which rewrites each
 recorded palette from its PS2 data through
-`0x00183320`, scaling alpha from 0-128 to 0-255 with `a = min((int)(a × 255.0 × (1 / 128)), 255)`
-(`0x00183440`-`0x0018346A`), so a palette the original code animates in memory animates on screen.
+`0x00183320`, scaling alpha from 0-128 to 0-255 with `a = min((int)(a × 255.0 × (1 / 128)), 255)`¹, so a palette the original code animates in memory animates on screen.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00183440`-`0x0018346A` |
+
+</details>
 
 `0x004680D0` releases the PS2 side and calls `0x00180280`, whose `0x001A5980` frees
-both textures of every entry (`0x00183720`) and empties the map and the vector.
+both textures of every entry¹ and empties the map and the vector.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00183720` |
+
+</details>
 
 The parser keeps the PS2 palettes in a buffer of its own. For a chunk of `n` textures (its first dword), `0x00468160`
 sets `0x02CA6024` to the dword its third argument points to, the map's `+0x1B8`
-([MPK map pack](mpk-map-pack.md)), or to 0 when that pointer is null (`0x004681A4`-`0x004681E5`). It allocates
-`(n + [0x02CA6024]) x 1024` bytes in arena 6 (`0x003EC8D0`) into `0x02CA6018` (`0x00468200`-`0x0046821C`).
+([MPK map pack](mpk-map-pack.md)), or to 0 when that pointer is null¹. It allocates
+`(n + [0x02CA6024]) x 1024` bytes in arena 6² into `0x02CA6018`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004681A4`-`0x004681E5` |
+| ² | `0x003EC8D0` |
+| ³ | `0x00468200`-`0x0046821C` |
+
+</details>
 
 Texture `i` has its
-palette converted into the 1,024-byte slot `i` (`0x003CCB60`, `0x004682B4`-`0x004682D0`). An entry of the `[0x02CA6010]` table
-whose byte `+0x10` is 4 has its palette converted into slot `n` plus its dword `+0x30` (`0x0046835B`-`0x0046837B`). The slot's address goes to
-`0x001801A0` with the texture (`0x004682C8`, `0x00468487`). `0x004680D0` frees the buffer and clears the pointer through
-`0x003EC8A0` (`0x00468145`-`0x0046814C`).
+palette converted into the 1,024-byte slot `i`¹. An entry of the `[0x02CA6010]` table
+whose byte `+0x10` is 4 has its palette converted into slot `n` plus its dword `+0x30`². The slot's address goes to
+`0x001801A0` with the texture³. `0x004680D0` frees the buffer and clears the pointer through
+`0x003EC8A0`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CCB60`, `0x004682B4`-`0x004682D0` |
+| ² | `0x0046835B`-`0x0046837B` |
+| ³ | `0x004682C8`, `0x00468487` |
+| ⁴ | `0x00468145`-`0x0046814C` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -267,17 +565,36 @@ whose byte `+0x10` is 4 has its palette converted into slot `n` plus its dword `
 
 ### The views and the bridge
 
-Byte `+0x1C` of the render manager (`0x00189120`) tells which view is being prepared: `0x00185A10` sets it
-when the camera submitted is the sub view `0x02097B80` (`0x003829D0`, `0x00259FA0`, `0x001821F0`), and
+Byte `+0x1C` of the render manager¹ tells which view is being prepared: `0x00185A10` sets it
+when the camera submitted is the sub view `0x02097B80`², and
 `0x00189CE0` clears it. Every bridge call that picks an object passes that byte as the view, so slot
 `2i` is the main-view object of instance `i` and slot `2i + 1` its sub-view object.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00189120` |
+| ² | `0x003829D0`, `0x00259FA0`, `0x001821F0` |
+
+</details>
+
 The map code reaches the context only through bridge functions at `0x001801A0` to `0x00180A60`. Most
-fetch the context (`0x001A9930`) and do nothing when it is absent; `0x00180650`, `0x00180730`, `0x00180830`
+fetch the context¹ and do nothing when it is absent; `0x00180650`, `0x00180730`, `0x00180830`
 and `0x00180900` call their target without that test, and the flag readers (`0x001803D0` and its
 neighbours) work on the object alone. `0x001809A0` never touches the context: it calls `0x0018CA40`
 twice when it posts (once to test the vector, once for the argument) and tail-jumps to `0x0018C3C0`. The calls the
 map draw makes:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A9930` |
+
+</details>
 
 | Bridge | Target | What it does |
 |---|---|---|
@@ -297,25 +614,63 @@ map draw makes:
 
 ### Building the map draw list
 
-The map draw-list build `0x002F5550` asks `0x001803A0` and `0x00180430` once (`0x002F5D4D`, `0x002F5D56`) and then
-walks the instances. For each it takes the object (`0x002F5D84`) and asks `0x001804F0` (`0x002F5D95`):
+The map draw-list build `0x002F5550` asks `0x001803A0` and `0x00180430` once¹ and then
+walks the instances. For each it takes the object² and asks `0x001804F0`³:
 
-- An instance whose object has bit `0x10` of `m_extraFlag` set (`0x001803D0`, `0x002F5DBE`) is skipped.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F5D4D`, `0x002F5D56` |
+| ² | `0x002F5D84` |
+| ³ | `0x002F5D95` |
+
+</details>
+
+- An instance whose object has bit `0x10` of `m_extraFlag` set¹ is skipped.
 - On the first pass after a load, while `0x022BE7E0` is 0 and the load has finished, `0x001807A0` binds
   the paletted pair of the instance's texture id (its record's `+0x04`) at `0x002F5DE2`; the pass then
-  sets `0x022BE7E0` (`0x002F65D1`).
-- For an instance with a model, the hidden-model set (`0x0026E5F0`) is skipped when the map is in
-  NoModelGroupMaps or the instance has bit `0x20` (`0x00180410`, `0x002F5E6B`); the script-forced set
-  (`0x0026E5D0`) still applies.
-- With bit `0x4` (`0x00180600`, `0x002F5E46`) the instance is left out while its tag-24 entry's `+0xC8`
+  sets `0x022BE7E0`².
+- For an instance with a model, the hidden-model set³ is skipped when the map is in
+  NoModelGroupMaps or the instance has bit `0x20`⁴; the script-forced set
+ ⁵ still applies.
+- With bit `0x4`⁶ the instance is left out while its tag-24 entry's `+0xC8`
   exceeds 1.0.
-- An instance in `+0xB0` (`0x001804A0`, `0x002F5F6C`) keeps its placement without the extra transform its
-  entry carries at `+0x50`. A model whose instance lacks bit `0x8` (`0x00180460`, `0x002F5F93`) is placed
-  with an identity row instead of the YM00 placement row; with bit `0x4000` (`0x00180480`) the row is turned
-  by the sway angle (`0x001802E0`, `0x002F5FE4`).
+- An instance in `+0xB0`⁷ keeps its placement without the extra transform its
+  entry carries at `+0x50`. A model whose instance lacks bit `0x8`⁸ is placed
+  with an identity row instead of the YM00 placement row; with bit `0x4000`⁹ the row is turned
+  by the sway angle¹⁰.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001803D0`, `0x002F5DBE` |
+| ² | `0x002F65D1` |
+| ³ | `0x0026E5F0` |
+| ⁴ | `0x00180410`, `0x002F5E6B` |
+| ⁵ | `0x0026E5D0` |
+| ⁶ | `0x00180600`, `0x002F5E46` |
+| ⁷ | `0x001804A0`, `0x002F5F6C` |
+| ⁸ | `0x00180460`, `0x002F5F93` |
+| ⁹ | `0x00180480` |
+| ¹⁰ | `0x001802E0`, `0x002F5FE4` |
+
+</details>
 
 At the end the build fills the two per-list masks the draw pass reads: an entry is marked culled when
-`0x00180560` (`0x002F6683`) reports the model of its instance out of view.
+`0x00180560`¹ reports the model of its instance out of view.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F6683` |
+
+</details>
 
 `0x001E5080(object, matrix)` decides that test. It answers yes at once when the first instance's mesh
 has a matrix-index array, the first instance has bit `0x40`, or any instance of the object has bit `0x2`.
@@ -324,24 +679,56 @@ Otherwise it multiplies the instance matrix by the view matrix of the current vi
 `0x001E4B80`; any pass answers yes.
 
 `0x00180560` reaches it through `0x001A7A10(context, view, i, matrix)`, which answers no, so the entry is marked culled,
-when the slot array `+0x88` is absent, `i` is outside 0 to count - 1 or instance `i` has no object for the view
-(`0x001A7A10`-`0x001A7A47`). Otherwise it tail-jumps to `0x001E5080` with the object and the matrix (`0x001A7A40`).
+when the slot array `+0x88` is absent, `i` is outside 0 to count - 1 or instance `i` has no object for the view¹. Otherwise it tail-jumps to `0x001E5080` with the object and the matrix².
 
-- The mesh test is the low 31 bits of the count at mesh `+0x70` (`0x001E5099`); the bits are `0x40` of the first
-  instance's `m_extraFlag` (`0x001E50A6`-`0x001E50AE`) and `0x2` of each instance's (`0x001E50C1`-`0x001E50D9`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A7A10`-`0x001A7A47` |
+| ² | `0x001A7A40` |
+
+</details>
+
+- The mesh test is the low 31 bits of the count at mesh `+0x70`¹; the bits are `0x40` of the first
+  instance's `m_extraFlag`² and `0x2` of each instance's³.
 - The matrix it multiplies is built from the argument `A`, `M[r] = (-A[r][0], -A[r][1], A[r][2], r < 3 ? 0 : 1.0)`:
   each row keeps its third value, has its first two negated (`xorps` with `0x80000000`) and ends in 0, the last row
-  in 1.0 (`0x001E50DB`-`0x001E51B9`). The view matrix is picked per instance by the render
-  manager's byte `+0x1C` (`0x001E51F7`-`0x001E51FB`).
-- With no instance passing, it answers no (`0x001E50E3`, `0x001E5230`).
+  in 1.0⁴. The view matrix is picked per instance by the render
+  manager's byte `+0x1C`⁵.
+- With no instance passing, it answers no⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E5099` |
+| ² | `0x001E50A6`-`0x001E50AE` |
+| ³ | `0x001E50C1`-`0x001E50D9` |
+| ⁴ | `0x001E50DB`-`0x001E51B9` |
+| ⁵ | `0x001E51F7`-`0x001E51FB` |
+| ⁶ | `0x001E50E3`, `0x001E5230` |
+
+</details>
 
 `0x001E4B80` takes the eight corners of the bounds into clip space and
 `0x001E25F0` ANDs their outcodes, so a box counts as out of view only when all eight corners lie beyond
 the same plane.
 
-The probe binding (`0x001E6480`) and `0x001E2AF0` take an instance's world box from `0x006045E0`, which
+The probe binding¹ and `0x001E2AF0` take an instance's world box from `0x006045E0`, which
 hands the bounds' origin, extents and matrix (identity without one) to `0x005FD810`; that transforms
 the eight corners and returns their minimum and maximum.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E6480` |
+
+</details>
 
 `0x001E2AF0` then runs `0x001E4F70(object, bounds)`: with no matrix at the object's `+0x10` it tests the bounds as they
 are, otherwise it rebuilds them from that matrix's columns through `0x001854C0` first, and in both cases passes
@@ -349,98 +736,189 @@ them to the clip test `0x001E4B80`.
 
 ### Drawing an instance
 
-The draw pass `0x002F4520` clears the draw map at the start of a list (`0x00180250`, `0x002F481A`). For
-each instance that has an object (`0x00180320`, `0x002F49E3`) it fills the object from the instance's
+The draw pass `0x002F4520` clears the draw map at the start of a list¹. For
+each instance that has an object² it fills the object from the instance's
 PS2 state:
 
-- `0x00180900` (`0x002F4DF8`) passes two flags, a mode, an alpha threshold and two more flags.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00180250`, `0x002F481A` |
+| ² | `0x00180320`, `0x002F49E3` |
+
+</details>
+
+- `0x00180900`¹ passes two flags, a mode, an alpha threshold and two more flags.
   `0x001AA240` keeps a mode of 0, 2 or 3 and turns any other value into 1.
 - `0x001E69A0` stores the flags at `+0xC1`, `+0xC2`, `+0xC4` and `+0xC3`, the mode per instance in
   `+0x78` (0 for instances whose byte in `+0x58` is set, `0x001E69D0`-`0x001E69FA`), the threshold at `+0xC8` unless the
-  first instance's own `m_alphaThreshold` (`+0x74`) is positive (`0x001E69FC`-`0x001E6A21`), and a per-instance byte in
+  first instance's own `m_alphaThreshold` (`+0x74`) is positive², and a per-instance byte in
   `+0x98`.
 - That byte is 1 when `+0xC4` and `+0xC1` are 0, `+0xC2` is non-zero and the instance's mode in `+0x78` is 0, and 0
-  otherwise (`0x001E6A55`-`0x001E6A92`). The arguments come in the order `+0xC1`, `+0xC2`, the mode, the threshold,
-  `+0xC4` and `+0xC3` (`0x001E69A0`, `0x001E69A9`, `0x001E6A32`, `0x001E6A3E`).
-- `0x00180830` (`0x002F4E13`) passes a mode built from bits `0x10` and `0x20` of the record's flag word `+0x0C`;
+  otherwise³. The arguments come in the order `+0xC1`, `+0xC2`, the mode, the threshold,
+  `+0xC4` and `+0xC3`⁴.
+- `0x00180830`⁵ passes a mode built from bits `0x10` and `0x20` of the record's flag word `+0x0C`;
   `0x001A9DD0` stores 3, 2, 1 or 0 at `+0xD0` for 1, 2, 3 or 0, and 0 for any other value. The store is 64 bits
-  wide, so `+0xD4` is zeroed with it (`0x001A9DD0`-`0x001A9E04`).
-- `0x00180730` (`0x002F5149`) passes a mode from 0 to 4, chosen from bits `0x80`, `0x100`, `0x8000` and `0x20000000` of the
+  wide, so `+0xD4` is zeroed with it⁶.
+- `0x00180730`⁷ passes a mode from 0 to 4, chosen from bits `0x80`, `0x100`, `0x8000` and `0x20000000` of the
   record's flag word, with its vectors and matrices. `0x001A9B70` passes 1 to 4 through and any other
   value as 0; `0x001E5790` stores it at `+0xD8` and copies the data the mode uses (layout below).
-- `0x00180650` (`0x002F5225`) draws the object at once (its vtable slot `+0x08`), or stores it in the
-  draw map `+0x4E8` under its key from `+0x4C8` (`0x001A94C0`). An object whose `+0xB8` is set and whose
-  `+0xBC` is 0 is also appended to the list `+0x90` (`0x001A4FE0`), which `0x00180A30` draws through
+- `0x00180650`⁸ draws the object at once (its vtable slot `+0x08`), or stores it in the
+  draw map `+0x4E8` under its key from `+0x4C8`⁹. An object whose `+0xB8` is set and whose
+  `+0xBC` is 0 is also appended to the list `+0x90`¹⁰, which `0x00180A30` draws through
   `0x001A8F80` while `+0x2E5` is set.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F4DF8` |
+| ² | `0x001E69FC`-`0x001E6A21` |
+| ³ | `0x001E6A55`-`0x001E6A92` |
+| ⁴ | `0x001E69A0`, `0x001E69A9`, `0x001E6A32`, `0x001E6A3E` |
+| ⁵ | `0x002F4E13` |
+| ⁶ | `0x001A9DD0`-`0x001A9E04` |
+| ⁷ | `0x002F5149` |
+| ⁸ | `0x002F5225` |
+| ⁹ | `0x001A94C0` |
+| ¹⁰ | `0x001A4FE0` |
+
+</details>
+
 Before the walk of the first list the pass finds the last drawn instance whose record flag word has
-bit `0x400` or bit `0x10000000` set. Instances up to it are drawn at once; at it the pass calls `0x001809A0`
-(`0x002F524B`), and every later instance is queued in the draw map. Once per frame (byte `0x01F7F50D`,
-cleared by `0x0017F270`) `0x001809A0` posts a `RenderMapOpaqueObj` command (`0x001F1D30`) on the render
+bit `0x400` or bit `0x10000000` set. Instances up to it are drawn at once; at it the pass calls `0x001809A0`¹, and every later instance is queued in the draw map. Once per frame (byte `0x01F7F50D`,
+cleared by `0x0017F270`) `0x001809A0` posts a `RenderMapOpaqueObj` command² on the render
 command vector `[0x01F7F5E8]`.
 
-`0x001809A0` returns at once while `0x01F7F50D` is set, or while `[0x01F7F5E8]` (`0x0018CA40`) is null, which leaves the byte
-clear (`0x001809A4`-`0x001809B5`). Otherwise it sets the byte (`0x001809B7`) and tail-jumps to `0x0018C3C0` with the vector
-(`0x001809CA`). That allocates the 0x18-byte command (`0x0085E730`, `0x0018C3E0`), constructs it with `0x001F1D30` when the
-block is non-null (`0x0018C3F7`) and appends the pointer, 0 when the allocation failed, to the vector
-(`0x0018C408`-`0x0018C42C`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F524B` |
+| ² | `0x001F1D30` |
+
+</details>
+
+`0x001809A0` returns at once while `0x01F7F50D` is set, or while `[0x01F7F5E8]`¹ is null, which leaves the byte
+clear². Otherwise it sets the byte³ and tail-jumps to `0x0018C3C0` with the vector⁴. That allocates the 0x18-byte command⁵, constructs it with `0x001F1D30` when the
+block is non-null⁶ and appends the pointer, 0 when the allocation failed, to the vector⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018CA40` |
+| ² | `0x001809A4`-`0x001809B5` |
+| ³ | `0x001809B7` |
+| ⁴ | `0x001809CA` |
+| ⁵ | `0x0085E730`, `0x0018C3E0` |
+| ⁶ | `0x0018C3F7` |
+| ⁷ | `0x0018C408`-`0x0018C42C` |
+
+</details>
 
 The command's draw `0x001F3570` draws the characters' opaque objects first, when `0x0017FE50` returns 0
-and `+0x419` is clear, and then the map's opaque objects with `+0x418` as their order flag
-(`0x0018B1B0`). The pass ends with `0x001802B0`: `0x001A6CC0` draws the queued objects in key order and
+and `+0x419` is clear, and then the map's opaque objects with `+0x418` as their order flag¹. The pass ends with `0x001802B0`: `0x001A6CC0` draws the queued objects in key order and
 empties the draw map.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018B1B0` |
+
+</details>
 
 ### Binding a paletted pair
 
 `0x001A9BF0(context, view, i, id)` finds `id` in `+0x268`; when instance `i` has an object for the view,
 `0x001A2EE0` fetches the pair and `0x001E59B0(object, palette, index)` binds it.
 
-It returns without binding when the slot array `+0x88` is absent (`0x001A9C12`), when `id` has no entry
-(`0x001A9C40`-`0x001A9C68`), or when `i` is outside 0 to count - 1 or slot `2i + view` is null (`0x001A9C6A`-`0x001A9C90`).
-`0x001A2EE0` looks `id` up again (`0x001A9C9E`), and the textures at `+0x28` and `+0x30` of the entry go to `0x001E59B0`
-as the palette and the index (`0x001A9CAA`-`0x001A9CB5`).
+It returns without binding when the slot array `+0x88` is absent¹, when `id` has no entry², or when `i` is outside 0 to count - 1 or slot `2i + view` is null³.
+`0x001A2EE0` looks `id` up again⁴, and the textures at `+0x28` and `+0x30` of the entry go to `0x001E59B0`
+as the palette and the index⁵.
 
-On every material of a ready object `0x001E59B0` writes 1 to `EnableIndexedTex`, binds `PalletTexture` and `IndexTexture`
-(`0x001E6040`), and, when the material has `PalletTexSamplerState`, writes a sampler preset from
-`[0x01F7E340]` (`0x0018AA00`). The preset follows the instance's `m_specialTextureWrapType` (`+0x7C`) when
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A9C12` |
+| ² | `0x001A9C40`-`0x001A9C68` |
+| ³ | `0x001A9C6A`-`0x001A9C90` |
+| ⁴ | `0x001A9C9E` |
+| ⁵ | `0x001A9CAA`-`0x001A9CB5` |
+
+</details>
+
+On every material of a ready object `0x001E59B0` writes 1 to `EnableIndexedTex`, binds `PalletTexture` and `IndexTexture`¹, and, when the material has `PalletTexSamplerState`, writes a sampler preset from
+`[0x01F7E340]`². The preset follows the instance's `m_specialTextureWrapType` (`+0x7C`) when
 it is below 4, else the object's `+0xD0`: 1 gives preset 0, 2 gives 2, 3 gives 3, any other value 1.
 It sets the object's `+0x218`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E6040` |
+| ² | `0x0018AA00` |
+
+</details>
 
 ### The weather slot's shadow set
 
 The weather roll `0x0026D910` calls `0x00180620(slot - 1)`, which runs `0x001A7E40(context, slot - 1)`. That
 copies the slot's map and character shadow minimums (`+0x338` and `+0x344` plus four times the slot)
-to the shadow object's `+0x140` and `+0x144` (`0x001A7E5F`-`0x001A7E7A`), its cascade row (`+0x350` plus 12
+to the shadow object's `+0x140` and `+0x144`¹, its cascade row (`+0x350` plus 12
 times the slot) to
 `+0x870` to `+0x878`, and, while `+0x398` is set, its light direction (`+0x374` plus 12 times the slot) through
 `0x001F08A0`.
 
-The shadow object comes from `0x001F0850()` (`0x001A7E5A`), which builds it on first use; the direction goes to `0x001F08A0`
-as a stack copy of its three floats with the third argument 1 (`0x001A7E9D`-`0x001A7EC5`), and the slot index is used
-without a bound (`0x001A7E54`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A7E5F`-`0x001A7E7A` |
+
+</details>
+
+The shadow object comes from `0x001F0850()`¹, which builds it on first use; the direction goes to `0x001F08A0`
+as a stack copy of its three floats with the third argument 1², and the slot index is used
+without a bound³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A7E5A` |
+| ² | `0x001A7E9D`-`0x001A7EC5` |
+| ³ | `0x001A7E54` |
+
+</details>
 
 ### Leaving a map
 
 `0x001A92C0` unloads, in this order:
 
-1. every instance's material array goes back to the pool (`0x001EEEF0`, `0x0063ABF0`): the instances of each slot's
-   main-view object `[2i]`, skipping a null object (`0x001A92F0`-`0x001A934F`); it frees no array while the slot array is
-   absent or the count is 0 or less (`0x001A92D8`-`0x001A92E8`);
-2. the set `+0xE8` and the key vector are emptied: each node of the set is freed through its allocator and the
-   header reset (`0x001A935C`-`0x001A93AF`), and the key vector's end is set to its begin (`0x001A93B3`-`0x001A93BA`);
-3. `0x001BD7E0` runs `0x001F8860` on every character render object of `[0x01F81248]` (`0x001BDAB0`), which
-   writes 0 to each part record's cube-map enable and unbinds its four cube-map samplers;
-4. `+0x80` is cleared and the asset list is released through a render command (`0x00185A90`,
-   `0x001A97D0`); `+0x78` is then set to 0 (`0x001A93D1`-`0x001A93F6`);
-5. the texture-animation sets are dropped (`0x001A96B0`) and `+0x140` cleared;
-6. `0x001A5890` destroys both objects of every slot, frees the slot array, sets the model count back to
-   -1 and empties the texture table `+0x448`, so the next load waits for the next map's count;
-7. the probe manager drops its probes (`0x001ABE30`): each probe is freed through a render command
-   (`0x001AD490`, which empties its variants with `0x001ABD40`), and its vectors, `+0x130` and `+0x250`
-   are reset;
-8. `0x001BF230` drops the procedural context's pending reads, and the list `+0x90` and every sway entry
-   are emptied: `+0x98` is set to `+0x90` (`0x001A943F`), and each node of the sway map `+0x490` is freed and its
-   header reset (`0x001A9446`-`0x001A9498`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | every instance's material array goes back to the pool: the instances of each slot's main-view object `[2i]`, skipping a null object; it frees no array while the slot array is absent or the count is 0 or less; | `0x001EEEF0`, `0x0063ABF0`<br>`0x001A92F0`-`0x001A934F`<br>`0x001A92D8`-`0x001A92E8` |
+| 2 | the set `+0xE8` and the key vector are emptied: each node of the set is freed through its allocator and the header reset, and the key vector's end is set to its begin; | `0x001A935C`-`0x001A93AF`<br>`0x001A93B3`-`0x001A93BA` |
+| 3 | `0x001BD7E0` runs `0x001F8860` on every character render object of `[0x01F81248]`, which writes 0 to each part record's cube-map enable and unbinds its four cube-map samplers; | `0x001BDAB0` |
+| 4 | `+0x80` is cleared and the asset list is released through a render command; `+0x78` is then set to 0; | `0x00185A90`, `0x001A97D0`<br>`0x001A93D1`-`0x001A93F6` |
+| 5 | the texture-animation sets are dropped and `+0x140` cleared; | `0x001A96B0` |
+| 6 | `0x001A5890` destroys both objects of every slot, frees the slot array, sets the model count back to -1 and empties the texture table `+0x448`, so the next load waits for the next map's count; |   |
+| 7 | the probe manager drops its probes: each probe is freed through a render command (`0x001AD490`, which empties its variants with `0x001ABD40`), and its vectors, `+0x130` and `+0x250` are reset; | `0x001ABE30` |
+| 8 | `0x001BF230` drops the procedural context's pending reads, and the list `+0x90` and every sway entry are emptied: `+0x98` is set to `+0x90`, and each node of the sway map `+0x490` is freed and its header reset. | `0x001A943F`<br>`0x001A9446`-`0x001A9498` |
 
 ### The option files
 
@@ -459,14 +937,28 @@ on a name. [`map-art-nomodelgroupmaps-rows.tsv`](map-art-nomodelgroupmaps-rows.t
 offset, its asset lists and the zones that draw the map.
 
 - Every name has both asset lists, `<map>_d3d11.ah` and `<map>_d3d11_srm.ah`. The 32 maps are the art of 115
-  zones; `dst0103` and `gil0301` are also reached through the alias pairs from `dst0109` and `gil0303` (`0x01EF9490`).
+  zones; `dst0103` and `gil0301` are also reached through the alias pairs from `dst0109` and `gil0303`¹.
 - In these maps the remastered models ignore the map's own hidden-model set: a model is hidden only while a script
   has forced it off with `hidemapmodel` ([Doors, gates and map changes](doors-gates-and-map-changes.md#showing-and-hiding-map-models)).
-- `0x001A6A20` reads each name with `sscanf("%s")` (`0x0018A330`) into a 32-byte stack buffer and stops when a scan
+- `0x001A6A20` reads each name with `sscanf("%s")`² into a 32-byte stack buffer and stops when a scan
   does not return 1. A name of 32 characters or more writes past the buffer into the stack cookie that `0x00808C40`
-  checks. With no text it inserts only `start` (`0x001A6B48`).
+  checks. With no text it inserts only `start`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01EF9490` |
+| ² | `0x0018A330` |
+| ³ | `0x001A6B48` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### The context
 
@@ -554,7 +1046,12 @@ offset, its asset lists and the zones that draw the map.
 | `0x400` | `0x001A5B30` | the instance ids go into `+0xB0` |
 | `0x4000` | `0x00180480` (`0x001E4B60`), `0x001A5B30` | the instance sways |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured over the archive.
 
@@ -574,20 +1071,24 @@ Measured over the archive.
 | procedural floats | first 1.0 in 7,582 records, 0.7 in 1,372, 0.5 in 1,302, 0.9 in 169, 0.6 in 41, 1.2 in 11; second and third 0.0 in all; fourth and fifth equal in every record; integer 2 in 10,027 and 3 in 450 |
 | detail kinds used | `Wall_concrete_01` 6,332, `Steel_rough_01` 1,516, `Rock_roughlittle_01` 1,158, `Sand_little_01` 612, `Fabric_flax_01` 543, `Fabric_carpet_01` 169, `Wood_rough_01` 60, `snow_01` 41, `Leather_base_01` 35, `Wall_concrete_04` 11 |
 
+</details>
+
 ## Operations
 
 Entering a zone, as the map-art context sees it:
 
-1. `0x00379A10` names the map; `0x001A7A50` unloads the previous one and requests the new asset list.
-2. The YM00 parser stores the instance count (`0x001806F0`) and builds the paletted pairs
-   (`0x001801A0`, `0x001A4DB0`).
-3. `0x001A9ED0` sees the list loaded and posts `0x001A3160`; `0x001A5B30` builds the models and requests
-   the procedural configuration; `+0x80` is set.
-4. The first draw-list build binds the paletted pairs (`0x001807A0`) and sets `0x022BE7E0`.
-5. Every frame the build culls with `0x00180560`, the pass fills each object and draws it, and
-   `0x001AA120` refreshes the palettes.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00379A10` names the map; `0x001A7A50` unloads the previous one and requests the new asset list. |   |
+| 2 | The YM00 parser stores the instance count and builds the paletted pairs. | `0x001806F0`<br>`0x001801A0`, `0x001A4DB0` |
+| 3 | `0x001A9ED0` sees the list loaded and posts `0x001A3160`; `0x001A5B30` builds the models and requests the procedural configuration; `+0x80` is set. |   |
+| 4 | The first draw-list build binds the paletted pairs and sets `0x022BE7E0`. | `0x001807A0` |
+| 5 | Every frame the build culls with `0x00180560`, the pass fills each object and draws it, and `0x001AA120` refreshes the palettes. |   |
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | Kind | Role |
 |---|---|---|
@@ -598,6 +1099,8 @@ Entering a zone, as the map-art context sees it:
 | `0x01F7F50D` | `u8` | the map opaque command is posted this frame |
 | `0x01F81258` | `void*` | the procedural-texture context |
 
+</details>
+
 ## Modding notes
 
 - A model is attached to a YM00 instance only through its `PMeshInstance` name: eight characters,
@@ -606,12 +1109,22 @@ Entering a zone, as the map-art context sees it:
   `0x01EF9490`; the five shipped pairs reuse one zone's art for another.
 - `opt.csv` is read once at start-up; only `FlipMapOpaqueOrder` and `ForceNoOpaqueChrFirst` change
   the draw. A missing row leaves both off.
-- A procedural record ends with an optional float. `0x001BF8B0` reads it with `%f` (`0x001BFF84`); when the read fails it stores 0 and leaves the position on the line (`0x001BFFBD`), so the next line starts the next record. No shipped record carries it: every file is eight lines per record, and no texture name begins like a number.
+- A procedural record ends with an optional float. `0x001BF8B0` reads it with `%f`¹; when the read fails it stores 0 and leaves the position on the line², so the next line starts the next record. No shipped record carries it: every file is eight lines per record, and no texture name begins like a number.
 - A texture name that does (a digit, a sign, a point, `inf` or `nan`) would be taken as the previous record's ninth value, and every later record of the file would shift by one line.
 - Keep `NoModelGroupMaps.txt` and `proceduralTextureConfigs.txt` CRLF-separated with no leading
   spaces. A procedural record whose texture has no entry in the texture table is skipped.
 - Normal and specular maps are found by name: `<texture>_n.dds.phyre` and `<texture>_spec.dds.phyre`
   in the same asset list.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001BFF84` |
+| ² | `0x001BFFBD` |
+
+</details>
 
 ## Related
 
@@ -632,8 +1145,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Platform** (explained on [phyre post effect classes](../PhyreEngine/phyre-post-effect-classes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00584740` | is called by | `0x00650D40` |
+| [`0x00584740`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation) | is called by | [`0x00650D40`](../Controls-And-Input/controllers.md) (on controllers) |
 
 </details>

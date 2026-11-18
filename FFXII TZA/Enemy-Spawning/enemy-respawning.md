@@ -30,26 +30,56 @@ tick the list.
 The HP modifier `0x00300530` records a death. On its lethal branch, when the unit's stats
 record at `+0x698` has kind byte `+0x05` = 1 (an enemy built from the enemy definition table,
 [battle unit construction](../Characters-And-Objects/battle-unit-construction.md)), it takes the spawn
-record at unit `+0x6A0` and increments its death count `+0x08` (`0x00300801`). It then reads the
-step counter through `0x0032A150`, divides it by `(int)(30.0 * [0x01DFE0B8])` with an unsigned `div`
-(`0x00300820`) and stores the quotient at `+0x0C` (`0x00300829`): the second of the death.
+record at unit `+0x6A0` and increments its death count `+0x08`¹. It then reads the
+step counter through `0x0032A150`, divides it by `(int)(30.0 * [0x01DFE0B8])` with an unsigned `div`² and stores the quotient at `+0x0C`³: the second of the death.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00300801` |
+| ² | `0x00300820` |
+| ³ | `0x00300829` |
+
+</details>
 
 The divisor is 30 at the 30 fps setting and 60 at 60 fps, so the stamp is in whole seconds of
 normal-speed play at either rate.
 
-It then calls the group table's death handler `0x00306F00` (`0x0030082F`). When that returns 1 the
-group completed, and the modifier skips its own death presentation event (`0x00300836`); otherwise
+It then calls the group table's death handler `0x00306F00`¹. When that returns 1 the
+group completed, and the modifier skips its own death presentation event²; otherwise
 it dispatches, when a local flag allows it, `0x200E` when its argument has bit `0x100`, else `0x2007` when
 bit `0x100` of the source unit's target-buffer entry for this unit is set and `0x2008` when it is clear
-or there is no source unit or no entry (`0x003006F6`-`0x0030072C`, `0x00300838`-`0x0030085F`).
+or there is no source unit or no entry³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030082F` |
+| ² | `0x00300836` |
+| ³ | `0x003006F6`-`0x0030072C`, `0x00300838`-`0x0030085F` |
+
+</details>
 
 ### The authored limit and cooldown
 
 `0x002395A0(table)` is the tail of the script verb that installs a zone's spawn table. The table is
 `b_00` = entry count, `b_01` = whether keys are authored, `w_02` = row stride, rows from `+4`. For
-each live-bank entry `i` whose flag bit `0x2` (committed) is clear (`0x002395E3`) it writes, with
+each live-bank entry `i` whose flag bit `0x2` (committed) is clear¹ it writes, with
 `rand` = `0x00328370` (the shared gameplay generator,
 [random number generators](../Random-Numbers/random-number-generators.md)):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002395E3` |
+
+</details>
 
 ```python
 rec.w_0A = row.b_00 ? row.b_00 + rand % (row.b_01 + 1) : 0      death limit
@@ -60,42 +90,113 @@ rec.b_17 = rec.b_18 = table.b_01 ? row.b_06 : 0                 persistence key
 
 Both numbers are rolled per entry, so two visits to one zone can give the same monster different
 cooldowns. A committed entry keeps its numbers: the roll happens once per bank life. The generator is
-drawn only for a non-zero base (`0x00239607`, `0x00239635`), so an entry takes 0, 1 or 2 draws, and the cooldown
-sum is stored as its low 16 bits (`0x00239652`).
+drawn only for a non-zero base¹, so an entry takes 0, 1 or 2 draws, and the cooldown
+sum is stored as its low 16 bits².
 
-A null table returns at once (`0x002395A3`), and so does a count of 0 or below: `b_00` is read as a signed
-byte (`0x002395C4`, `0x00239679`), and the loop runs `i` from 0 while `i < b_00`, with no test against the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00239607`, `0x00239635` |
+| ² | `0x00239652` |
+
+</details>
+
+A null table returns at once¹, and so does a count of 0 or below: `b_00` is read as a signed
+byte², and the loop runs `i` from 0 while `i < b_00`, with no test against the
 bank's 64 records. The row address `4 + i * w_02` (with `w_02` signed) is added to the low 32 bits of the
-table pointer and the 32-bit sum is sign-extended (`0x002395ED`-`0x002395F9`). The bank pointer `0x0208E690` is
-read with no null test (`0x002395CA`-`0x002395E3`).
+table pointer and the 32-bit sum is sign-extended³. The bank pointer `0x0208E690` is
+read with no null test⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002395A3` |
+| ² | `0x002395C4`, `0x00239679` |
+| ³ | `0x002395ED`-`0x002395F9` |
+| ⁴ | `0x002395CA`-`0x002395E3` |
+
+</details>
 
 ### The clock
 
 The counter `0x0208D45C` is advanced by `0x0032A100`, which the field frame orchestrator `0x00234590` calls once per
-simulation step (`0x002345CA`): when timer 0 reports done (`0x003EBB70(0)`) it restarts it (`0x003EBBB0(0, 0, 1)`,
+simulation step¹: when timer 0 reports done (`0x003EBB70(0)`) it restarts it (`0x003EBBB0(0, 0, 1)`,
 `0x003EBD00(0)`), then reads the timer's value through `0x003EBA90(0)` and increments the counter only
-when that value differs from the one it kept at `0x022C317C` (`0x0032A12A`-`0x0032A135`). The compare is a float
-`ucomiss`, and an unordered result counts as a difference (`0x0032A131`). Every call then stores the value it
-read at `0x022C317C` (`0x0032A13B`).
+when that value differs from the one it kept at `0x022C317C`². The compare is a float
+`ucomiss`, and an unordered result counts as a difference³. Every call then stores the value it
+read at `0x022C317C`⁴.
 
-The only other writer is `0x0032A160`, which zeroes it, and its one caller is the battle runtime reset `0x00237DF0`
-(`0x00237E37`). No save writes or restores it.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002345CA` |
+| ² | `0x0032A12A`-`0x0032A135` |
+| ³ | `0x0032A131` |
+| ⁴ | `0x0032A13B` |
+
+</details>
+
+The only other writer is `0x0032A160`, which zeroes it, and its one caller is the battle runtime reset `0x00237DF0`¹. No save writes or restores it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00237E37` |
+
+</details>
 
 At Frame Rate 60 (`0x01DFE0B8` 2.0) the counter rose by 60.00 a second whenever the field
 ran. It stood still while the battle menu or a talk was open and for 1.4 to 3.4 seconds at each area change.
 
-Other code reads the counter directly (`0x00319600`,
-`0x003247F0`, `0x00317670`, `0x003191B0`); none of it is respawn code.
+Other code reads the counter directly¹; none of it is respawn code.
 
-The same reset zeroes the transition stamp `0x02089374` (`0x00237E53`), sets the two field-history
-words `0x02089372` and `0x02089370` to `0xFFFF` (`0x00237E5D`, `0x00237E64`) and clears the bank parity
-`0x0208D454` (`0x00237E6B`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00319600`, `0x003247F0`, `0x00317670`, `0x003191B0` |
+
+</details>
+
+The same reset zeroes the transition stamp `0x02089374`¹, sets the two field-history
+words `0x02089372` and `0x02089370` to `0xFFFF`² and clears the bank parity
+`0x0208D454`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00237E53` |
+| ² | `0x00237E5D`, `0x00237E64` |
+| ³ | `0x00237E6B` |
+
+</details>
 
 The reset runs from the battle-state guard `0x00233C10`: twice when the
-block pointer `0x02EBF190` is null (`0x00233C3F`, `0x00233C48`), once when the block's stamp is not
-`0x05071901` (`0x00233C59`). Its other callers are the area reset `0x00239960` when the request byte
+block pointer `0x02EBF190` is null¹, once when the block's stamp is not
+`0x05071901`². Its other callers are the area reset `0x00239960` when the request byte
 `0x0208D455` holds -2 (`0x0023998E`; the byte is a one-shot request, copied to `0x0208D456` and set to -1 before the test), `0x00238AA2` and `0x00394486`. An ordinary load whose block passes the
 stamp test does not restart the clock.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233C3F`, `0x00233C48` |
+| ² | `0x00233C59` |
+
+</details>
 
 ### Two readers of the cooldown
 
@@ -105,11 +206,28 @@ slot bytes from `+1`, `0xFF` empty) and the live bank `[0x0208E690] + slot * 0x2
 `0x0031B760` finds for the calling actor.
 
 An accessor returns -1 when `0x0031B760` finds no unit, the map pointer is null, the lane is negative or above
-count - 1 (a signed compare), the slot byte is `0xFF`, or the record address comes to 0 (`0x00235F01`-`0x00235F38`,
-`0x00235F61`-`0x00235F98`, `0x00235FC1`-`0x00235FF8`, `0x002366F1`-`0x00236728`).
+count - 1 (a signed compare), the slot byte is `0xFF`, or the record address comes to 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00235F01`-`0x00235F38`, `0x00235F61`-`0x00235F98`, `0x00235FC1`-`0x00235FF8`, `0x002366F1`-`0x00236728` |
+
+</details>
 
 A fifth reads the flags of the unit's own entry, with the same tests and the lane taken from the unit's
-signed byte `+0x57` (`0x00236682`, `0x0023667C`-`0x002366B8`):
+signed byte `+0x57`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236682`, `0x0023667C`-`0x002366B8` |
+
+</details>
 
 | Accessor | Verb wrapper | Returns |
 |---|---|---|
@@ -129,10 +247,19 @@ directly and differently. It examines no entry at all when the active count `0x0
 the cap byte `0x0208D458` (`0x00235758`-`0x00235766`, returns -1).
 
 It skips an entry whose limit `+0x0A` is non-zero and whose count
-`+0x08` has reached it (`0x002358A1`-`0x002358B0`). For an entry with flag bit `0x1` clear and bit `0x2` set
+`+0x08` has reached it¹. For an entry with flag bit `0x1` clear and bit `0x2` set
 and a non-zero cooldown, it skips while `seconds - stamp < cooldown` as an unsigned compare
 (`0x002358D1` `sub`, `0x002358D5` `cmp`, `0x002358D7` `jb`): the native gate re-admits at `elapsed >= N`.
 An entry with bit `0x1` set, one that range retirement marked, skips the cooldown test altogether.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002358A1`-`0x002358B0` |
+
+</details>
 
 ### After a runtime reset
 
@@ -146,35 +273,86 @@ stamp is exactly `counter + 1`.
 ### Registering a group member
 
 A zone script puts an enemy in a group with verb `0x3030` `btlAtelSetEventFlagGroup(group, mode)`.
-Its handler `0x0050F8C0` pops two ints, `mode` first and `group` second (`0x0050F8D8`, `0x0050F8E2`), and
-tail-jumps to `0x00239710(actor, mode, group)` (`0x0050F8FE`).
+Its handler `0x0050F8C0` pops two ints, `mode` first and `group` second¹, and
+tail-jumps to `0x00239710(actor, mode, group)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0050F8D8`, `0x0050F8E2` |
+| ² | `0x0050F8FE` |
+
+</details>
 
 `0x00239710` needs the
 actor's battle unit (`0x0031B760`, else returns -1) and writes unit `+0xE98` = the low byte of `group` and `+0xE99`
-= `(old & ~3) | (mode == 1) | (mode == 2) << 1`, mask `0xFC` kept: bit `0x1` is cleared in place first
-(`0x0023973A`), then the byte is rebuilt (`0x00239746`-`0x00239766`). It then calls
-`0x00306E60(unit, 1)` and returns 0 (`0x00239770`, `0x0023977A`).
+= `(old & ~3) | (mode == 1) | (mode == 2) << 1`, mask `0xFC` kept: bit `0x1` is cleared in place first¹, then the byte is rebuilt². It then calls
+`0x00306E60(unit, 1)` and returns 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023973A` |
+| ² | `0x00239746`-`0x00239766` |
+| ³ | `0x00239770`, `0x0023977A` |
+
+</details>
 
 `0x00306E60(unit, add)` is the only writer of the member mask. It returns without effect when the unit
 is null, its stats record `+0x698` is null or not kind 1, or its group byte `+0xE98` is 0. It
 resolves the unit's slot as `0x002360D0(map at +0x40, 0x00263D30(actor at +0x10))` and rejects a
 negative. The bit is `(int64)(int32)(1 << (slot & 31))`: a 32-bit shift, sign-extended, so slot 31
 covers the bits under mask `0xFFFFFFFF80000000` and slots 32 and above alias onto `slot & 31`. With `add` set the member mask
-gains the bit, otherwise it loses it; the dead bit is cleared either way (`0x00306EEA`).
+gains the bit, otherwise it loses it; the dead bit is cleared either way¹.
 
-Range retirement (`0x002350C0`, `0x002352BB`) is the one caller with `add` = 0: a retired member leaves
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306EEA` |
+
+</details>
+
+Range retirement¹ is the one caller with `add` = 0: a retired member leaves
 the checklist without dying. Neither `0x00306E60` nor `0x00306F00` tests the group index `group - 1` against the
-table's 64 records (`0x00306EB2`-`0x00306EC3`, `0x00306F57`-`0x00306F6B`): a group byte above 64 reaches memory past
+table's 64 records²: a group byte above 64 reaches memory past
 the table.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002350C0`, `0x002352BB` |
+| ² | `0x00306EB2`-`0x00306EC3`, `0x00306F57`-`0x00306F6B` |
+
+</details>
 
 ### Completing a group
 
 `0x00306F00(unit)` runs on every lethal branch of the HP modifier. Its gates return 0 for a null unit,
-a null stats record `+0x698` or one whose byte `+5` is not 1 (`0x00306F09`-`0x00306F26`), a group byte
-`+0xE98` of 0 (`0x00306F31`-`0x00306F3A`) and a negative slot from `0x002360D0` (`0x00306F4B`-`0x00306F55`),
+a null stats record `+0x698` or one whose byte `+5` is not 1¹, a group byte
+`+0xE98` of 0² and a negative slot from `0x002360D0`³,
 the same gates and slot resolution as the registration. Past them it sets
-`group table[group - 1].deadMask |= bit` (`0x00306F78`) and tests `(memberMask & deadMask) == memberMask`
-(`0x00306F7C`-`0x00306F83`).
+`group table[group - 1].deadMask |= bit`⁴ and tests `(memberMask & deadMask) == memberMask`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306F09`-`0x00306F26` |
+| ² | `0x00306F31`-`0x00306F3A` |
+| ³ | `0x00306F4B`-`0x00306F55` |
+| ⁴ | `0x00306F78` |
+| ⁵ | `0x00306F7C`-`0x00306F83` |
+
+</details>
 
 The test is a mask comparison, not a count, and nothing before it reads whether the bit is in the
 member mask or whether the group has already completed. Every call that passes the gates while the
@@ -184,39 +362,99 @@ call that passes the gates takes it.
 
 On completion it locks the party (next section) and chooses an arm by `+0xE99` bit `0x1`:
 
-- mode 1 (`0x00306FC9`-`0x00306FE8`): clear unit flag bit `0x800000000000`, set the group table's flag bit `0x1`, dispatch
+- mode 1¹: clear unit flag bit `0x800000000000`, set the group table's flag bit `0x1`, dispatch
   presentation event `0x2005`;
-- any other mode (`0x0030700C`-`0x00307012`): set unit flag bit `0x800000000000`, dispatch `0x2008`. The flag is
+- any other mode²: set unit flag bit `0x800000000000`, dispatch `0x2008`. The flag is
   raised later by the reaction handler `0x003250F0`: on the death events it sets unit flag bit `0x200000000`
-  (`0x00325185`) and, when bit `0x800000000000` is set (`0x0032519C`), calls `0x00307110`, which clears bit `0x800000000000` and
-  sets the group table flag (`0x0030711A`-`0x00307133`).
+ ³ and, when bit `0x800000000000` is set⁴, calls `0x00307110`, which clears bit `0x800000000000` and
+  sets the group table flag⁵.
 
-The reaction handler `0x003250F0(actor, event)` returns 0 for a null actor, an actor without a battle unit
-(`0x00263E30`), a unit without flag bit `0x4`, or an event word whose top four bits (`event >> 12`) are not 2
-or 5 (`0x003250FD`-`0x00325130`). Events `0x2002`-`0x203C` go through a jump table (`0x0032513C`-`0x0032515C`): the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306FC9`-`0x00306FE8` |
+| ² | `0x0030700C`-`0x00307012` |
+| ³ | `0x00325185` |
+| ⁴ | `0x0032519C` |
+| ⁵ | `0x0030711A`-`0x00307133` |
+
+</details>
+
+The reaction handler `0x003250F0(actor, event)` returns 0 for a null actor, an actor without a battle unit¹, a unit without flag bit `0x4`, or an event word whose top four bits (`event >> 12`) are not 2
+or 5². Events `0x2002`-`0x203C` go through a jump table³: the
 death events are `0x2007`, `0x2008`, `0x200C` and `0x200E`; `0x2002` calls `0x003082F0`, `0x2003` `0x003083A0`,
-`0x2005`, `0x2037` and `0x2039`-`0x203C` call `0x00312FA0`, `0x200D` clears unit flag bit `0x1000000`
-(`0x0032517C`) and `0x201C` calls `0x00317810`.
+`0x2005`, `0x2037` and `0x2039`-`0x203C` call `0x00312FA0`, `0x200D` clears unit flag bit `0x1000000`⁴ and `0x201C` calls `0x00317810`.
 
-Every accepted event, in the table's range or not, then runs the same tail (`0x003251B3`-`0x003251EA`): when
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263E30` |
+| ² | `0x003250FD`-`0x00325130` |
+| ³ | `0x0032513C`-`0x0032515C` |
+| ⁴ | `0x0032517C` |
+
+</details>
+
+Every accepted event, in the table's range or not, then runs the same tail¹: when
 `0x00322280(event)` is non-zero it sets bit `0x1` of unit dword `+0x690` and, when the stats record `+0x698` is
 non-null and its status words `+0x64` and `+0x3C` together hold any bit of `0x80000003`, calls `0x00313F60`; it then
 zeroes unit dword `+0x28` and returns 1.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003251B3`-`0x003251EA` |
+
+</details>
+
 `0x00306F00` reads no record of an earlier completion. The flag bit `0x1` that both arms set (`0x00306FE0`,
 and `0x00307133` in `0x00307110`) is tested only by `0x00307030` and `0x003070E0`, and cleared by `0x00307030`
-and the reset `0x00307090`. `0x00306F00` returns 0 when the mask test fails (`0x00306F88`) and 1 after either
-arm (`0x00306FF2`, `0x0030701C`).
+and the reset `0x00307090`. `0x00306F00` returns 0 when the mask test fails¹ and 1 after either
+arm².
 
-The completion branch stores into neither mask: of the code that addresses the table (`0x02EC13C0`,
-`0x02EC13D0`, `0x02EC19D0`), the masks' only writers are `0x00306E60`, `0x00306F00` at `0x00306F78` and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306F88` |
+| ² | `0x00306FF2`, `0x0030701C` |
+
+</details>
+
+The completion branch stores into neither mask: of the code that addresses the table¹, the masks' only writers are `0x00306E60`, `0x00306F00` at `0x00306F78` and
 `0x00307090`. So every later call that passes the gates runs the branch again while the dead mask still
-covers the member mask. A member that re-registers clears its own dead bit (`0x00306EEA`); the test then fails
+covers the member mask. A member that re-registers clears its own dead bit²; the test then fails
 until a call sets that bit again.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02EC13C0`, `0x02EC13D0`, `0x02EC19D0` |
+| ² | `0x00306EEA` |
+
+</details>
 
 ### The lock
 
-Three calls run on every completion, each with argument 1 (`0x00306F95`-`0x00306FB2`):
+Three calls run on every completion, each with argument 1¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306F95`-`0x00306FB2` |
+
+</details>
 
 - `0x00307140(on)` calls `0x002E1C20(0xC, n)` ten times when on (`0x002E1CA0(0xC, n)` when off): the row-12
   capability inhibitions ([party roster and control
@@ -226,15 +464,35 @@ Three calls run on every completion, each with argument 1 (`0x00306F95`-`0x00306
   has bit `0x10`, posts `0x002E7C10(actor, actor, 0x30B, 0)`;
 - `0x00238AE0(on)` sets or clears `0x02089340` bit `0x80`.
 
-The ten calls (`0x00307160`-`0x003071BE`) give `n` = 0, 3, 4, 5, 6, 7, 8, 11, 12 and 20, a bit index, so they set or
+The ten calls¹ give `n` = 0, 3, 4, 5, 6, 7, 8, 11, 12 and 20, a bit index, so they set or
 clear the bit values `0x1`, `0x8`, `0x10`, `0x20`, `0x40`, `0x80`, `0x100`, `0x800`, `0x1000` and `0x100000`
-(mask `0x1019F9`) of row 12 at `0x0215F1F0` (`0x002E1C35`-`0x002E1C3C`). `0x00307140` takes any non-zero `on` as on
-(`cmovne`, `0x0030715C`), and its last call is a tail jump (`0x003071F2`).
+(mask `0x1019F9`) of row 12 at `0x0215F1F0`². `0x00307140` takes any non-zero `on` as on
+(`cmovne`, `0x0030715C`), and its last call is a tail jump³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00307160`-`0x003071BE` |
+| ² | `0x002E1C35`-`0x002E1C3C` |
+| ³ | `0x003071F2` |
+
+</details>
 
 The zone script releases the lock with the same calls' off forms through its own verbs; the group table
 never releases it. The next area entry does clear the two `0x02089340` bits: `0x002342F0`, when `0x02089300` is
-non-zero (`0x002342F4`), opens with `0x02089340 = (0x02089340 & 0xFFFFC01E) | 0x10` (`0x0023432D`, `0x00234339`,
+non-zero¹, opens with `0x02089340 = (0x02089340 & 0xFFFFC01E) | 0x10` (`0x0023432D`, `0x00234339`,
 stored at `0x00234343`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002342F4` |
+
+</details>
 
 The AND clears bit `0x1` and the bits under mask `0x3FE0`, among them the lock bits `0x20` and `0x80` and the
 gate the bits under mask `0xF00`, and keeps the bits under mask `0xFFFFC01E`, so the "nothing pending" bit `0x2` is kept; the OR sets
@@ -242,10 +500,19 @@ bit `0x10`. The row-12 inhibitions stay until their off form runs.
 
 ### Delivering the completion to the script
 
-`0x00307030` runs once per simulation step from the orchestrator `0x00234590` (`0x00234717`). It does nothing while the gate
+`0x00307030` runs once per simulation step from the orchestrator `0x00234590`¹. It does nothing while the gate
 `0x00233D20` is closed: `0x02089340 & 0xF00` must be 0 and time-stop request 10 must not be raised
 (`0x00226BD0(10)` = 0, [the time-stop
 registry](../Engine-Core/time-stop-and-freeze.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234717` |
+
+</details>
 
 With the gate open it walks the 64 entries; for each with flag bit `0x1` it clears the bit and calls
 `0x0026ADC0(3, i + 1)`, which stores the group number in word 3 of the 64-word table at `[0x02098E68]`
@@ -254,26 +521,61 @@ when the index is below 64, `0x02098E20` bit `0x1` is set and the pointer is non
 Zone scripts wait on that word (`scratch1 @0x06`) with `waitv`, which waits while it is zero; the word is cleared on
 every field transition ([field runtime](../Characters-And-Objects/field-runtime.md)).
 
-`0x003070E0` reports whether any entry has flag bit `0x1`. The per-unit frame `0x00233F70` calls it
-(`0x00234095`) and sets `0x02089340` bit `0x2` when nothing is pending.
+`0x003070E0` reports whether any entry has flag bit `0x1`. The per-unit frame `0x00233F70` calls it¹ and sets `0x02089340` bit `0x2` when nothing is pending.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234095` |
+
+</details>
 
 ### Resetting the group table
 
 `0x00307090` walks the 64 entries four at a time (`0x60` per step from `0x02EC13D0` to `0x02EC19D0`),
 zeroing both masks and clearing flag bit `0x1` (`and byte ptr [...], 0xFE`). Its one caller is the area
-initialiser `0x002342F0` (`0x0023442D`), straight after the bank rotation, so membership is rebuilt by
+initialiser `0x002342F0`¹, straight after the bank rotation, so membership is rebuilt by
 script after every area entry. The group table is BSS and starts at zero.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023442D` |
+
+</details>
 
 ### The two banks and the return window
 
 `0x002368D0` allocates two banks of `0x9400` bytes tagged `btlKeepCharWork1` and `btlKeepCharWork2`
-at `0x0208E690` and `0x0208E698`, 64 spawn records of `0x250` each, zero-fills both (`0x0023696E`, `0x00236999`), and
-sets the return window `0x0208936C` to 300 (`0x00236A0D`). Bank 1 is the live bank; bank 2 holds the previous area.
+at `0x0208E690` and `0x0208E698`, 64 spawn records of `0x250` each, zero-fills both¹, and
+sets the return window `0x0208936C` to 300². Bank 1 is the live bank; bank 2 holds the previous area.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023696E`, `0x00236999` |
+| ² | `0x00236A0D` |
+
+</details>
 
 `0x00233780` runs once per area initialisation (`0x00234423` in `0x002342F0`), after the area's own reset
 and before the group table reset, and returns at once when either bank pointer is null. It reads the
-entered field id from `0x003148F0`, the counter from `0x0032A150`, and restores when both hold
-(`0x002337D6`-`0x00233803`):
+entered field id from `0x003148F0`, the counter from `0x0032A150`, and restores when both hold¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002337D6`-`0x00233803` |
+
+</details>
 
 ```python
 field == 0x02089372                                          the field from two transitions ago
@@ -298,50 +600,127 @@ Cactite's record still with death count 1, and set the parity to 0. Going A, B, 
 flipped the parity at each move, and on A the same record read death count 0: the area was generated fresh.
 
 `0x00235340(w)` stores `w`, or 300 when `w` is negative (`cmovs`); `0x00235330`
-returns it. Both reach script only through verb `0x306C` `btlAtelSetMapJumoKeep` (`0x005107F0`), which
+returns it. Both reach script only through verb `0x306C` `btlAtelSetMapJumoKeep`¹, which
 no story script calls, so in story play the window is 300 seconds everywhere; the developer Battle Plan Menu
 (`bin/btlctrl` lines 1180 and 1187) passes -1, which gives 300, and 0. After a reset the previous-field
 word is `0xFFFF` (sign-extended to -1 at `0x002337CD`) and `0x003148F0` never returns a negative, so the
 first rotation after any reset wipes.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005107F0` |
+
+</details>
+
 ### The spawn-history counters
 
 `0x0208D354` holds two banks of 64 `u16` counters, selected by the parity `0x0208D454`. The wipe sets the
-new parity's 64 to 1 (`0x002339CC`-`0x002339E2`); the unit installer `0x0023A570` reads a row's counter,
+new parity's 64 to 1¹; the unit installer `0x0023A570` reads a row's counter,
 stores its low byte at the spawn record's `+0x12` and writes back `old + 1`, or 1 once `old` reaches
 `0x00254A40()` ([battle unit construction](../Characters-And-Objects/battle-unit-construction.md)). The
 reset `0x00237DF0` clears the parity, not the counters.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002339CC`-`0x002339E2` |
+
+</details>
+
 `0x00237DF0()` runs `0x0023AF50()`, then `0x0023AC80(record, k)` for each of the 40 stats records at
-`[0x02EBF190] + 8 + k * 0x1C8` (`0x00237DF6`-`0x00237E30`), then `0x0030DA10()`, `0x0032A160()`, `0x003183A0()`, `0x00329CC0()`,
-`0x00313840()` and `0x00304680()` (`0x00237E32`-`0x00237E4B`).
+`[0x02EBF190] + 8 + k * 0x1C8`¹, then `0x0030DA10()`, `0x0032A160()`, `0x003183A0()`, `0x00329CC0()`,
+`0x00313840()` and `0x00304680()`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00237DF6`-`0x00237E30` |
+| ² | `0x00237E32`-`0x00237E4B` |
+
+</details>
 
 It stores 0 at the dword `0x02089374`, `0xFFFF` at the words `0x02089372` and `0x02089370` and 0 at the parity byte
-`0x0208D454` (`0x00237E53`-`0x00237E6B`), calls `0x002FA230()`, `0x002FA260()`, `0x002FA210()` and `0x00229ED0(0)`, stores 0 at the
-dword `0x0208E6B4` and returns 1 (`0x00237E72`-`0x00237E8D`).
+`0x0208D454`¹, calls `0x002FA230()`, `0x002FA260()`, `0x002FA210()` and `0x00229ED0(0)`, stores 0 at the
+dword `0x0208E6B4` and returns 1².
 
-`0x00254A40` answers the constant `0x34` (52) and does nothing else (`0x00254A40`-`0x00254A45`). The installer
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00237E53`-`0x00237E6B` |
+| ² | `0x00237E72`-`0x00237E8D` |
+
+</details>
+
+`0x00254A40` answers the constant `0x34` (52) and does nothing else¹. The installer
 compares the counter it read with that answer, unsigned: a counter below 52 is written back one higher,
-and a counter of 52 or more is written back as 1 (`0x0023A80C`-`0x0023A838`). The byte kept at the spawn
-record's `+0x12` is the low byte of the counter as read, before the write (`0x0023A840`).
+and a counter of 52 or more is written back as 1². The byte kept at the spawn
+record's `+0x12` is the low byte of the counter as read, before the write³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00254A40`-`0x00254A45` |
+| ² | `0x0023A80C`-`0x0023A838` |
+| ³ | `0x0023A840` |
+
+</details>
 
 A row byte of `0xFF` at the spawn entry's `+0x02` reads no counter, makes no call of `0x00254A40` and
-stores 0 at the spawn record's `+0x12` (`0x0023A7E7`-`0x0023A7F1`, `0x0023A840`).
+stores 0 at the spawn record's `+0x12`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023A7E7`-`0x0023A7F1`, `0x0023A840` |
+
+</details>
 
 ### What the save image carries
 
 `0x00233440(image)` zeroes a `0x20010`-byte image, copies bank 2 to `+0x10` and bank 1 to `+0x10010`
 in `0x128` passes of `0x80` bytes, and stores `0x02089372` at `+0` and `0x02089370` at `+2`. A bank whose
-pointer is null is skipped and its part of the image stays zero (`0x00233466`, `0x002334CD`); the two words
-are stored either way (`0x00233529`-`0x0023353A`).
+pointer is null is skipped and its part of the image stays zero¹; the two words
+are stored either way².
 `0x00233550(image)` copies image `+0x10` back into bank 2 and restores the two words; it never touches
-bank 1. With a null bank 2 pointer it skips the copy and still restores the words (`0x0023355A`,
-`0x002335B9`-`0x002335C7`).
+bank 1. With a null bank 2 pointer it skips the copy and still restores the words³.
 
-Its two callers are in the slot-0 restore `0x005843E0` (`0x0058443B`, `0x0058445E`), so only a load
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233466`, `0x002334CD` |
+| ² | `0x00233529`-`0x0023353A` |
+| ³ | `0x0023355A`, `0x002335B9`-`0x002335C7` |
+
+</details>
+
+Its two callers are in the slot-0 restore `0x005843E0`¹, so only a load
 of the field-transition autosave restores bank 2 and the history; a manual slot restores neither
 ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)). The window, the stamp, the
 parity and the counter are in no save.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0058443B`, `0x0058445E` |
+
+</details>
 
 ### Killing or tearing down by group
 
@@ -354,26 +733,66 @@ records a death for each. The mask test keeps 5 bits of the group id, so ids abo
 with `id - 32`.
 
 `0x00234A10(mask)`, which sets bit `0x800` of the unit's dword `+0x00`, and `0x00234A80(mask)`, which clears it, take the
-slot count from the dword `0x0208E6A0` (`0x00234A1E`-`0x00234A24`, `0x00234A60`-`0x00234A66`; `0x00234A8E`-`0x00234A94`,
-`0x00234AD0`-`0x00234AD6`).
+slot count from the dword `0x0208E6A0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234A1E`-`0x00234A24`, `0x00234A60`-`0x00234A66`; `0x00234A8E`-`0x00234A94`, `0x00234AD0`-`0x00234AD6` |
+
+</details>
 
 Each passes over a slot whose unit `0x00321170(i)` gives is null (it gives null for a slot whose byte `+0x00` has bit
 `0x10` clear, `0x0032117E`-`0x00321183`), whose stats record `+0x698` is null or whose record byte `+0x05` is not 1, and a
-unit whose group byte `+0xE98` names a bit that is clear in the mask (`0x00234A28`-`0x00234A4E`, `0x00234A98`-`0x00234ABE`).
-After the flag change each calls `0x00312700(unit)` (`0x00234A50`-`0x00234A59`, `0x00234AC0`-`0x00234AC9`).
+unit whose group byte `+0xE98` names a bit that is clear in the mask¹.
+After the flag change each calls `0x00312700(unit)`².
 
-`0x00237080(record)` writes nothing for a null record (`0x00237080`-`0x00237083`). For any other it makes the four stores
-named below: the flags `& 0xFFFFFF7A`, the word `+0x16` = `0x00FF`, the dword `+0x78` = 0 and the byte `+0x7C` = 0
-(`0x00237085`-`0x00237098`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234A28`-`0x00234A4E`, `0x00234A98`-`0x00234ABE` |
+| ² | `0x00234A50`-`0x00234A59`, `0x00234AC0`-`0x00234AC9` |
+
+</details>
+
+`0x00237080(record)` writes nothing for a null record¹. For any other it makes the four stores
+named below: the flags `& 0xFFFFFF7A`, the word `+0x16` = `0x00FF`, the dword `+0x78` = 0 and the byte `+0x7C` = 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00237080`-`0x00237083` |
+| ² | `0x00237085`-`0x00237098` |
+
+</details>
 
 The teardown `0x00300E40(unit, keepMark)` runs the spawn record clear `0x00237080` (flags
 `& 0xFFFFFF7A`, the word `+0x16` = `0x00FF` so the key `+0x17` is zeroed too, `+0x78`-`+0x7C` zeroed) only
-when `keepMark` is 0 (`0x00300F5D`-`0x00300F68`), and only for a unit whose stats record `+0x698` is null or of
-a kind other than 0 (`0x00300EE4`, `0x00300EEC`); a kind-0 unit takes the party arm and returns at `0x00300F5C`
+when `keepMark` is 0¹, and only for a unit whose stats record `+0x698` is null or of
+a kind other than 0²; a kind-0 unit takes the party arm and returns at `0x00300F5C`
 without it. Range retirement is the one caller passing 1, so a retired entry keeps its bit `0x1` and
 its transient state while every other teardown clears them.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00300F5D`-`0x00300F68` |
+| ² | `0x00300EE4`, `0x00300EEC` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Struct SpawnGroupTable base=`0x02EC13C0` count=64 size=`0x18`:
 
@@ -421,7 +840,12 @@ Globals:
 | `0x02089340` | `u32` |  | battle flags: bit `0x2` nothing pending, bit `0x20` and `0x80` the lock, bits `0xF00` close the gate |
 | `0x02098E68` | `void*` |  | the 64-word field table; word 3 receives the completed group |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 - Every spawned unit's entry preamble calls `btlAtelSetEventFlagGroup` right after its level is
   set: 6,746 calls in 502 of the 769 zone scripts, 6,206 of them `(0, 0)`. The group argument is
@@ -448,6 +872,8 @@ Globals:
   [`zone-asset-list.tsv`](../World-Areas-And-Travel/zone-asset-list.tsv) on all 248 rows; 100 rows are in the Trial
   Mode region.
 
+</details>
+
 ## Operations
 
 A kill, in order: the HP modifier bumps `+0x08` and stamps `+0x0C`; `0x00306F00` sets the dead bit and
@@ -461,33 +887,79 @@ group table reset `0x00307090`, then the zone
 script re-registers every member and reinstalls the spawn table, whose initialiser rolls only the
 uncommitted entries.
 
-In full, past its up-flag test (`0x002342F4`-`0x002342FB`), `0x002342F0` adds 1 to the counter `0x0208E6B0` and gives the old
-value to `0x00328D80(old)` (`0x00234301`-`0x00234320`). It rewrites the dword `0x02089340`, read after that call, as
-`(0x02089340 & 0xFFFFC01E) | 0x10`, zeroes the qword `0x02089350` and sets the cap byte `0x0208D458` to `0x1C`
-(`0x00234325`-`0x00234343`).
+In full, past its up-flag test¹, `0x002342F0` adds 1 to the counter `0x0208E6B0` and gives the old
+value to `0x00328D80(old)`². It rewrites the dword `0x02089340`, read after that call, as
+`(0x02089340 & 0xFFFFC01E) | 0x10`, zeroes the qword `0x02089350` and sets the cap byte `0x0208D458` to `0x1C`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002342F4`-`0x002342FB` |
+| ² | `0x00234301`-`0x00234320` |
+| ³ | `0x00234325`-`0x00234343` |
+
+</details>
 
 It calls `0x00239960()`, `0x0030FE60()` and `0x00322220()`, then `0x0030E990(record, 0, 0x1F, 0, 0, 0)` for each of the 40
-stats records at `[0x02EBF190] + 8 + k * 0x1C8` (`0x00234349`-`0x0023438E`), then `0x0035D020()`, `0x00306570(0)` and
-`0x0030E010()` (`0x00234390`-`0x0023439C`).
+stats records at `[0x02EBF190] + 8 + k * 0x1C8`¹, then `0x0035D020()`, `0x00306570(0)` and
+`0x0030E010()`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234349`-`0x0023438E` |
+| ² | `0x00234390`-`0x0023439C` |
+
+</details>
 
 `0x00383740(&a, &b, &c, &d)` is called next. It fills the four floats only on the way that answers non-zero: with the
-pointer `0x02AEDFB0` null it writes nothing and answers 0 (`0x00383768`-`0x0038376B`). Only after a non-zero answer does
+pointer `0x02AEDFB0` null it writes nothing and answers 0¹. Only after a non-zero answer does
 `0x002342F0` take `(d - b) * (c - a)`, load a float by it, 8.0 for a value up to 20000.0, 12.0 up to 30000.0 and 16.0
-above that, and call `0x003924B0()` (`0x002343A1`-`0x0023441E`). The float is loaded in the first float register, but
-`0x003924B0` writes that register before it reads it (`0x00392575`).
+above that, and call `0x003924B0()`². The float is loaded in the first float register, but
+`0x003924B0` writes that register before it reads it³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00383768`-`0x0038376B` |
+| ² | `0x002343A1`-`0x0023441E` |
+| ³ | `0x00392575` |
+
+</details>
 
 After the bank rotation `0x00233780()`, `0x003221B0()` and the group table reset `0x00307090()` come `0x00307FF0()`,
-`0x00322190()`, the pickup pool reset `0x00319B10()` and `0x0031A8F0()` (`0x00234423`-`0x00234441`). `0x002342F0` calls the chain
-reset `0x003183A0()` here only when `0x00377C20()` answers non-zero (`0x00234446`-`0x0023444F`). The last calls are
-`0x0031BD60()`, `0x00327360()`, `0x0030C3F0()` and `0x0033A380()`, and the function ends in a jump to `0x002FA520()`
-(`0x00234454`-`0x0023446C`).
+`0x00322190()`, the pickup pool reset `0x00319B10()` and `0x0031A8F0()`¹. `0x002342F0` calls the chain
+reset `0x003183A0()` here only when `0x00377C20()` answers non-zero². The last calls are
+`0x0031BD60()`, `0x00327360()`, `0x0030C3F0()` and `0x0033A380()`, and the function ends in a jump to `0x002FA520()`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234423`-`0x00234441` |
+| ² | `0x00234446`-`0x0023444F` |
+| ³ | `0x00234454`-`0x0023446C` |
+
+</details>
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The live bank and the history bank, the four history and window globals, the step counter and its
 last timer value, the parity and the two counter banks, the group table, unit `+0xE98`/`+0xE99` and flag
 bits `0x200000000` and `0x800000000000`, and word 3 of the field table. Only bank 2 and the two field words reach a save,
 and only the autosave's restore brings them back.
+
+</details>
 
 ## Modding notes
 
@@ -537,24 +1009,30 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x003206E0` |
+| [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse) | is called by | [`0x003206E0`](../Characters-And-Objects/battle-units.md) (on battle units) |
 
 **Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00313F60` | is called by | `0x00253C70` |
+| [`0x00313F60`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item) | is called by | [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) |
 
 **Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00306570` | is called by | `0x002341C0` |
-| `0x0030FE60` | is called by | `0x002341C0` |
-| `0x00319B10` | is called by | `0x002341C0` |
-| `0x0031BD60` | is called by | `0x002341C0` |
+| [`0x00306570`](enemy-respawning.md) | is called by | [`0x002341C0`](../World-Areas-And-Travel/traps.md) (on traps) |
+| [`0x0030FE60`](../Enemy-AI-And-Gambits/gambit-conditions.md) (on gambit conditions) | is called by | [`0x002341C0`](../World-Areas-And-Travel/traps.md) (on traps) |
+| [`0x00319B10`](../Rewards-EXP-Gil-And-Loot/loot-pickups.md) (on loot pickups) | is called by | [`0x002341C0`](../World-Areas-And-Travel/traps.md) (on traps) |
+| [`0x0031BD60`](../Party/party-slots.md) (on party slots) | is called by | [`0x002341C0`](../World-Areas-And-Travel/traps.md) (on traps) |
 
 </details>
 

@@ -15,16 +15,28 @@ each bank are on [Battle and menu text tables](../Game-Files-And-Data-Tables/bat
 
 - `0x003214B0(word)` gives the row of bank `(word >> 11) & 0x1F` and row `word & 0x7FF`, and `0x002B58B0(row, k)` its
   string `k`.
-- The interface reads names with `0x002B58B0` on a row of these banks: the gambit screen (`0x00567B60`, `0x0056A890`,
-  `0x0056BC70`), the licence screens (`0x00558CE0`, `0x005618E0`), the battle menu title `0x0027D480`, the party list
-  `0x002986E0` and the battle log's names (`0x00536280`).
+- The interface reads names with `0x002B58B0` on a row of these banks: the gambit screen¹, the licence screens², the battle menu title `0x0027D480`, the party list
+  `0x002986E0` and the battle log's names³.
 - All but the battle log take the row from the name pointer `+0x18` of the query record that `0x0035D330(class, row)`
-  fills (`0x00567BB8`-`0x00567BC3`, `0x0056A98E`, `0x0056BD78`, `0x00558DEA`-`0x00558DF5`, `0x00561A7A`, `0x0027D4BD`-`0x0027D4C8`,
-  `0x00298920`). The query's class arms split the word against `0x02EBF170` themselves, as the class 21 arm does
-  (`0x0031DC58`-`0x0031DC9D`).
-- `0x00536280` splits the word itself (`0x00536292`-`0x005362BF`). `0x003214B0` has one caller, at `0x0057617B`.
+  fills⁴. The query's class arms split the word against `0x02EBF170` themselves, as the class 21 arm does
+ ⁵.
+- `0x00536280` splits the word itself⁶. `0x003214B0` has one caller, at `0x0057617B`.
 - The formatter `0x002B49F0` inserts a word row into a message template: as a plain string (`0F 31`), or by count
   with its plural or article (`0F 6C`, `0F 6D`, `0F 6E`; [Text codes](text-codes.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00567B60`, `0x0056A890`, `0x0056BC70` |
+| ² | `0x00558CE0`, `0x005618E0` |
+| ³ | `0x00536280` |
+| ⁴ | `0x00567BB8`-`0x00567BC3`, `0x0056A98E`, `0x0056BD78`, `0x00558DEA`-`0x00558DF5`, `0x00561A7A`, `0x0027D4BD`-`0x0027D4C8`, `0x00298920` |
+| ⁵ | `0x0031DC58`-`0x0031DC9D` |
+| ⁶ | `0x00536292`-`0x005362BF` |
+
+</details>
 
 ### The strings of a row
 
@@ -44,16 +56,45 @@ their strings 1 and 2 empty (row 19: `FFTA also used Matius per PDIC`); `de` ban
 ### Reading the plural template
 
 In a plural template `{word}` (byte `09`) stands for the whole name and `{word:HHHH}` (byte `08` and two bytes) for
-its first `n` bytes, `n` the two bytes as a little-endian number `& 0x7FFF` (`0x002B4550`, `0x002B4623`-`0x002B46A2`).
+its first `n` bytes, `n` the two bytes as a little-endian number `& 0x7FFF`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B4550`, `0x002B4623`-`0x002B46A2` |
+
+</details>
 
 `0x002B4550(capacity, out, row)` takes the name as the string after the row's two leading zero bytes and the template
-as the next string; a row that does not start with two zero bytes is both its own name and its template
-(`0x002B457A`-`0x002B45B0`). An `n` larger than the name's length copies the whole name (`0x002B466F`-`0x002B4685`). Any
-other code is copied as it stands, by the length `0x002B1FB0` measures (`0x002B45E3`, `0x002B45FB`-`0x002B461B`).
+as the next string; a row that does not start with two zero bytes is both its own name and its template¹. An `n` larger than the name's length copies the whole name². Any
+other code is copied as it stands, by the length `0x002B1FB0` measures³.
 
-When a copy or the closing zero would not fit in the capacity, the output is the empty string
-(`0x002B4600`-`0x002B4603`, `0x002B4635`-`0x002B4638`, `0x002B4690`-`0x002B4693`, `0x002B46BE`-`0x002B46C8`); a null row leaves it
-empty too (`0x002B456B`-`0x002B4574`). Its one call passes a capacity of `0x80` (`0x002B4C62`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B457A`-`0x002B45B0` |
+| ² | `0x002B466F`-`0x002B4685` |
+| ³ | `0x002B45E3`, `0x002B45FB`-`0x002B461B` |
+
+</details>
+
+When a copy or the closing zero would not fit in the capacity, the output is the empty string¹; a null row leaves it
+empty too². Its one call passes a capacity of `0x80`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B4600`-`0x002B4603`, `0x002B4635`-`0x002B4638`, `0x002B4690`-`0x002B4693`, `0x002B46BE`-`0x002B46C8` |
+| ² | `0x002B456B`-`0x002B4574` |
+| ³ | `0x002B4C62` |
+
+</details>
 
 | Row | `us` | `es` | `it` |
 |---|---|---|---|
@@ -123,41 +164,53 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [party control modes](../Engine-Core/party-control-modes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002B58B0` | is called by | `0x0023A570` |
+| [`0x002B58B0`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables) | is called by | [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) |
 
 **Enemy AI and gambits** (explained on [gambits](../Enemy-AI-And-Gambits/gambits.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00567B60` | calls | `0x00327C40` |
+| [`0x00567B60`](text-word-bank.md) | calls | [`0x00327C40`](../Party/party-data.md) Gambit config: copy selected bank for stats index (on party data) |
 
 **Gameplay** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0035D330` | calls | `0x0031C5D0` |
+| [`0x0035D330`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors) | calls | [`0x0031C5D0`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids) |
 
 **Items, equipment, shops and licenses** (explained on [license board screen](license-board-screen.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x005618E0` | calls | `0x00323630`, `0x00323670`, `0x003236B0` |
+| [`0x005618E0`](../Controls-And-Input/on-screen-keyboard.md) (on on screen keyboard) | calls | [`0x00323630`](../Controls-And-Input/on-screen-keyboard.md) Battle stats: get license board selector b (on on screen keyboard)<br>[`0x00323670`](../Controls-And-Input/on-screen-keyboard.md) Battle stats: get license board selector a (on on screen keyboard)<br>[`0x003236B0`](../Game-Files-And-Data-Tables/authored-data-tables.md) Battle stats: get active license board selector (on authored data tables) |
 
 **Graphics** (explained on [text string tables](text-string-tables.md), [battle numbers](battle-numbers.md), [augments](../Damage-And-Battle-Formulas/augments.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002B1FB0` | is called by | `0x002B4810` |
-| `0x002B58B0` | is called by | `0x00506700` |
-| `0x0035D330` | is called by | `0x003BBD00`, `0x00506700` |
+| [`0x002B1FB0`](text-word-bank.md) | is called by | [`0x002B4810`](text-codes.md) (on text codes) |
+| [`0x002B58B0`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables) | is called by | [`0x00506700`](battle-numbers.md) (on battle numbers) |
+| [`0x0035D330`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors) | is called by | [`0x003BBD00`](../Random-Numbers/which-roll-uses-which-generator.md) (on which roll uses which generator)<br>[`0x00506700`](battle-numbers.md) (on battle numbers) |
 
 **World, areas and travel** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003846F0` | calls | `0x003846F0` |
-| `0x003846F0` | is called by | `0x00236C30`, `0x00238850`, `0x0023A160`, `0x003845F0`, `0x003846F0` |
+| [`0x003846F0`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables) | calls | [`0x003846F0`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables) |
+| [`0x003846F0`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables) | is called by | [`0x00236C30`](text-string-tables.md) (on text string tables)<br>[`0x00238850`](../Battle-Actions/action-definition-row.md) (on action definition row)<br>[`0x0023A160`](../Enemy-Spawning/bestiary.md) (on bestiary)<br>[`0x003845F0`](../Battle-Actions/action-definition-row.md) Area data: bind and rebase section descriptor (on action definition row)<br>[`0x003846F0`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables) |
 
 </details>

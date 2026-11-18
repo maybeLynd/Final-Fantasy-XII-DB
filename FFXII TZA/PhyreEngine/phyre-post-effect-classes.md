@@ -58,9 +58,17 @@ by a CRT initializer calling `0x005DC6F0(record, name, 0)` (60 such registration
 | 8 | `0x00653B20` | returns `+0x48` |
 
 `0x005FD050` returns the address of the static `0x02CC0410` on every path, and `0x00655DC0` adds `0x520`
-before its null test, so its 1280 × 720 fallback never runs. `PScreenSpaceReflection`'s slot 5
-(`0x006571A0`) answers for `0x01F2D700` (`DeferredRender`) without the readiness test;
+before its null test, so its 1280 × 720 fallback never runs. `PScreenSpaceReflection`'s slot 5¹ answers for `0x01F2D700` (`DeferredRender`) without the readiness test;
 `PDeferredLighting` and `PLowResParticles` use `0x00657140`, which returns 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006571A0` |
+
+</details>
 
 ### The render slot
 
@@ -80,33 +88,66 @@ variant as on [Shader variant selection](shader-variant-selection.md).
 
 In `0x00652940` the steps and their exits are:
 
-1. When `+0x68` is set, it calls `0x001B81B0([[+0x50] + 8], [+0x68], record)` with a record of `0x42`, `0x02D35140`
-   and its third argument, and returns a non-zero result at once (`0x0065295E`-`0x00652991`).
-2. It pushes the parameter records from `+0xD0` (`0x005DC190`, `0x006529A6`).
-3. It calls `0x0060D4F0`, `0x0060DB50` and `0x005FEFD0`, returning a non-zero result of each at once
-   (`0x006529B7`-`0x006529E8`), then `0x0060CD70(context, 0, 6, 7)` (`0x006529F7`).
-4. It stores the pass record `0x02D36DA0` at context `+0x80` (`0x00652A03`), calls `0x0060B980` with the context's
-   `+0x220` (`0x00652A23`-`0x00652A3F`) and then `0x00600A60` (`0x00652A4F`), returning a non-zero result of either.
-5. Otherwise it returns 0 (`0x00652A72`). Every exit after step 2 first calls the `ret 0` stub `0x0016D6A0` on the
-   pushed records (`0x00652A5F`, `0x00652A6D`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When `+0x68` is set, it calls `0x001B81B0([[+0x50] + 8], [+0x68], record)` with a record of `0x42`, `0x02D35140` and its third argument, and returns a non-zero result at once. | `0x0065295E`-`0x00652991` |
+| 2 | It pushes the parameter records from `+0xD0`. | `0x005DC190`, `0x006529A6` |
+| 3 | It calls `0x0060D4F0`, `0x0060DB50` and `0x005FEFD0`, returning a non-zero result of each at once, then `0x0060CD70(context, 0, 6, 7)`. | `0x006529B7`-`0x006529E8`<br>`0x006529F7` |
+| 4 | It stores the pass record `0x02D36DA0` at context `+0x80`, calls `0x0060B980` with the context's `+0x220` and then `0x00600A60`, returning a non-zero result of either. | `0x00652A03`<br>`0x00652A23`-`0x00652A3F`<br>`0x00652A4F` |
+| 5 | Otherwise it returns 0. Every exit after step 2 first calls the `ret 0` stub `0x0016D6A0` on the pushed records. | `0x00652A72`<br>`0x00652A5F`, `0x00652A6D` |
 
 The instance the workers draw is the one `0x02D34710` points to. The run setup's `0x0064A0E0` passes the static
-`0x01F2E8E0` and the array `0x02D35170` to `0x0060DF70`, then stores the static's address there (`0x0064A3E3`,
-`0x0064A40C`); the application shutdown's `0x0064AD60` stores 0 (`0x0064AE55`). Each worker loads it as the instance
+`0x01F2E8E0` and the array `0x02D35170` to `0x0060DF70`, then stores the static's address there¹; the application shutdown's `0x0064AD60` stores 0². Each worker loads it as the instance
 argument of `0x0060B980`:
 
-- `0x00652940` (`0x00652A35`), `0x006587F0` (`0x00658B4B`), `0x00658BA0` (`0x00658DCB`, `0x00658EEF`, `0x00659022`);
-- `0x00659080` (`0x006593BF`, `0x006594E0`, `0x00659762`, `0x00659947`, `0x006599FF`), `0x00659A90` (`0x00659BD3`),
-  `0x00659C20` (`0x00659E6F`), `0x00659EC0` (`0x0065A371`, `0x0065A573`);
-- `0x0065A640` (`0x0065A7D0`, `0x0065A909`), `0x0065A960` (`0x0065B1F2`), `0x0065BA00` (`0x0065BC2D`, `0x0065BCF5`,
-  `0x0065BE57`, `0x0065C006`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0064A3E3`, `0x0064A40C` |
+| ² | `0x0064AE55` |
+
+</details>
+
+- `0x00652940`¹, `0x006587F0`², `0x00658BA0`³;
+- `0x00659080`⁴, `0x00659A90`⁵,
+  `0x00659C20`⁶, `0x00659EC0`⁷;
+- `0x0065A640`⁸, `0x0065A960`⁹, `0x0065BA00`¹⁰.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00652A35` |
+| ² | `0x00658B4B` |
+| ³ | `0x00658DCB`, `0x00658EEF`, `0x00659022` |
+| ⁴ | `0x006593BF`, `0x006594E0`, `0x00659762`, `0x00659947`, `0x006599FF` |
+| ⁵ | `0x00659BD3` |
+| ⁶ | `0x00659E6F` |
+| ⁷ | `0x0065A371`, `0x0065A573` |
+| ⁸ | `0x0065A7D0`, `0x0065A909` |
+| ⁹ | `0x0065B1F2` |
+| ¹⁰ | `0x0065BC2D`, `0x0065BCF5`, `0x0065BE57`, `0x0065C006` |
+
+</details>
 
 ### How instances come to exist
 
 Each class's `PClassDescriptorConcrete<T>` vtable carries a construct-in-place factory at slot 10
 (`+0x50`); for `PAtmospherics` it is `0x00640280` at `0x00D5B0C0`, which, for a non-null object pointer, runs the
-base constructor `0x00645520` and stores the class vtable `0x00D628A0` and the descriptor `0x02D368A0`
-(`0x0064029E`-`0x006402B9`), and returns 1 either way (`0x006402BD`).
+base constructor `0x00645520` and stores the class vtable `0x00D628A0` and the descriptor `0x02D368A0`¹, and returns 1 either way².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0064029E`-`0x006402B9` |
+| ² | `0x006402BD` |
+
+</details>
 
 The 35 descriptor vtables of the family (`PDepthOfFieldLayered`
 has no descriptor vtable) and the manager's have 36 distinct slot-10 bodies, and no body has a direct call
@@ -129,27 +170,74 @@ the member (`0x00654160`, `0x00656B10`: render target, `ColorBuffer`, `InvColorB
 - `0x00191DA0`, when `+0x3E8` and `+0x3E9` are set and `+0x4A3` is 0 (when `+0x4A3` is set it runs the
   game's `0x001925D0` instead), with source `[+0x290]`. It passes `0x0065A630` the object's `+0x378`, its
   second argument, `[+0x290]`, the target `[arg3]` (null when the byte at `arg3 + 8` is set) and 1
-  (`0x00191E17`-`0x00191E38`); with either flag clear it returns at once (`0x00191DBF`, `0x00191DCC`);
+ ¹; with either flag clear it returns at once²;
 - `0x0018FD70`, called from `0x00187950`, with source `[+0x278]`. It passes `0x0065A630` the object's `+0x378`, its
   second argument, `[+0x278]`, the target `[arg3]` (null when the byte at `arg3 + 8` is set) and 1
-  (`0x0018FD87`-`0x0018FDA8`). It then passes `0x001EE8E0` `[[+0x278]]` (null when the byte at `[+0x278] + 8` is set),
-  its fourth argument, a zeroed record and 0 (`0x0018FDBE`-`0x0018FDDF`).
+ ³. It then passes `0x001EE8E0` `[[+0x278]]` (null when the byte at `[+0x278] + 8` is set),
+  its fourth argument, a zeroed record and 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00191E17`-`0x00191E38` |
+| ² | `0x00191DBF`, `0x00191DCC` |
+| ³ | `0x0018FD87`-`0x0018FDA8` |
+| ⁴ | `0x0018FDBE`-`0x0018FDDF` |
+
+</details>
 
 `0x00191DA0` passes `0x001EE8E0` `[[+0x290]]` (null when the byte at `[+0x290] + 8` is set), its third argument,
-a zeroed record and 0 (`0x00191E3D`-`0x00191E70`).
+a zeroed record and 0¹.
 
-Both then call `0x001EE8E0` (`0x0018FDDF`, `0x00191E70`), the game's shared copy pass, which has 17 call
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00191E3D`-`0x00191E70` |
+
+</details>
+
+Both then call `0x001EE8E0`¹, the game's shared copy pass, which has 17 call
 sites in all: it sets `ColorBuffer`, `ColorBufferSampler` and `ColorBufferOffset` on the material at
-`[0x01F82E58]+0x20`, stores a pass record at `+0x80` of `[0x00189120() + 8]` (`0x001EE921`, `0x001EEBA3`) and submits
+`[0x01F82E58]+0x20`, stores a pass record at `+0x80` of `[0x00189120() + 8]`² and submits
 one draw through `0x0060B980`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018FDDF`, `0x00191E70` |
+| ² | `0x001EE921`, `0x001EEBA3` |
+
+</details>
+
 The pass record comes from the source texture, the first argument, and the dword `+8` of the record passed
-third (`0x001EE925`). A source whose format dword `+0x10` is `0x2A` gets `OpaqueDepth` (`0x01F82E68`,
-`0x001EEB6B`-`0x001EEB75`); otherwise `+8` = 3 gets `OpaqueGray` (`0x01F82E88`), 4 gets `OpaqueRGB` (`0x01F2D6C0`) and
-any other value `Opaque` (`0x01F2D6A0`) (`0x001EEB7E`-`0x001EEB9C`). All 17 call sites pass a record whose `+8` is 0,
+third¹. A source whose format dword `+0x10` is `0x2A` gets `OpaqueDepth`²; otherwise `+8` = 3 gets `OpaqueGray`³, 4 gets `OpaqueRGB`⁴ and
+any other value `Opaque`⁵⁶. All 17 call sites pass a record whose `+8` is 0,
 so the copy draws with `OpaqueDepth` or `Opaque`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EE925` |
+| ² | `0x01F82E68`, `0x001EEB6B`-`0x001EEB75` |
+| ³ | `0x01F82E88` |
+| ⁴ | `0x01F2D6C0` |
+| ⁵ | `0x01F2D6A0` |
+| ⁶ | `0x001EEB7E`-`0x001EEB9C` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 PPostEffectBase (the fields the base slots use):
 
@@ -189,7 +277,17 @@ access tables per class:
 
 ### The deferred lights
 
-`PDeferredLightingBase` holds 129 light slots of `0x80` bytes: 128 at `+0x50`, drawn in order up to the count `+0x4110`, and one at `+0x4050`, drawn first (`0x0065A46C`-`0x0065A4A4`). The light renderer `0x0065A960` (slot in `r8`) turns a slot into the shader parameters whose handles `0x00656936`-`0x006569D7` and `0x00654C23`-`0x00654C40` look up by name (`DeferredPos`, `DeferredDir`, `DeferredColor`, `DeferredSpotAngles`, `DeferredAttenParams`, `DeferredShadowMask`, `DeferredWorldTransform`). The constructor `0x006458A0` gives every slot the defaults below (`0x006458E0`-`0x00645977`).
+`PDeferredLightingBase` holds 129 light slots of `0x80` bytes: 128 at `+0x50`, drawn in order up to the count `+0x4110`, and one at `+0x4050`, drawn first¹. The light renderer `0x0065A960` (slot in `r8`) turns a slot into the shader parameters whose handles `0x00656936`-`0x006569D7` and `0x00654C23`-`0x00654C40` look up by name (`DeferredPos`, `DeferredDir`, `DeferredColor`, `DeferredSpotAngles`, `DeferredAttenParams`, `DeferredShadowMask`, `DeferredWorldTransform`). The constructor `0x006458A0` gives every slot the defaults below².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0065A46C`-`0x0065A4A4` |
+| ² | `0x006458E0`-`0x00645977` |
+
+</details>
 
 `PDeferredLightingSlot0080` (`0x80` bytes, offsets from the start of the record):
 
@@ -283,7 +381,12 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x48` | `u32` | height | height: slot 1 `0x00655DC0` writes it (`0x00655E08`), slot 3 `0x00657680` (`0x00657685`), `0x00657690` (`0x006576BB`) and `0x00655AC0` (`0x00655B59`); slot 8 `0x00653B20` returns it; no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |
 | `+0x4C` | `u8[4]` | bytes4C | the bytes after height (`+0x48`) up to the end of the `0x50`-byte class; no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -291,7 +394,12 @@ The members below are the ones the code of this page's classes uses or the refle
 | clusters declaring any `PPostProcessing` class, as a class or a type | 0 |
 | clusters declaring `PEffect` | 2,184 |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | What |
 |---|---|
@@ -299,6 +407,8 @@ The members below are the ones the code of this page's classes uses or the refle
 | `0x01F2D700` | pass record `DeferredRender`, `PScreenSpaceReflection`'s answer |
 | `0x02CC0410` | the static render context slot 1 reads its default size from |
 | game object `+0x378` | the one `PFXAA`, built by `0x0018CD90` |
+
+</details>
 
 ## Modding notes
 

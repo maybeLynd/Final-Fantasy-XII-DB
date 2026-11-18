@@ -18,9 +18,19 @@ switches on (cut 0 is on when the scene loads), or, on four field maps, a set pi
 
 Slot 14 of the [EBP script container](ebp-script-container.md) directory, present only in event
 scripts. The walker `0x003304A0` passes it to `0x00330110` only for actor managers 1 to 4 (`0x0033066B`
-skips manager 0). `0x00330110` stores the pointer at `0x022C6E20 + manager × 8` (`0x00330140`) and clears
+skips manager 0). `0x00330110` stores the pointer at `0x022C6E20 + manager × 8`¹ and clears
 pending bit `0x10000`; when the manager's pending word empties, the finaliser `0x0032F1B0` binds it with
-`0x0037AA90(section, manager)` (`0x0032F1F9`). The manager index is the light group.
+`0x0037AA90(section, manager)`². The manager index is the light group.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00330140` |
+| ² | `0x0032F1F9` |
+
+</details>
 
 ## Layouts
 
@@ -105,14 +115,38 @@ its type through the jump table `0x0037AC7C`:
 `0x00379F70`, from the boot `0x00266D10` and from `0x00379D00`, resets all five groups: 16-byte zero stores over `+0x00`
 to `+0x3F`, 1.0 into the three colour floats and 0 into `+0x4C` (group 0: `0x00379FA8`, `0x00379FC8`, `0x00379FDA`,
 `0x00379FE9`, `0x00379F90`, `0x00379F84`, `0x00379F77`, `0x00379FA1`). `0x0037B230` resets one group the same way.
-`0x00379D00` calls `0x0037D7F0` first and then jumps to `0x00379F70` (`0x00379D04`-`0x00379D0D`).
+`0x00379D00` calls `0x0037D7F0` first and then jumps to `0x00379F70`¹.
 
-`0x00379F70` also rebuilds the default request `0x02ADD8E0`. It zeroes its `0x50` bytes (`0x0037A0EA`) and stores the
-dword `0x01050006` at `+0x00`, kind 6 with `+0x02` 5 and the filter byte 1 (`0x0037A101`), the test byte `0x02ADD8E4` = 1
-(`0x0037A10D`), the flags `0x02ADD8E7` = `0x20`, the exclusion bit that group 0's records get (`0x0037A0EF`, `0x0037A114`),
-and four 1.0 at `+0x10` (`0x0037A11A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00379D04`-`0x00379D0D` |
+
+</details>
+
+`0x00379F70` also rebuilds the default request `0x02ADD8E0`. It zeroes its `0x50` bytes¹ and stores the
+dword `0x01050006` at `+0x00`, kind 6 with `+0x02` 5 and the filter byte 1², the test byte `0x02ADD8E4` = 1³, the flags `0x02ADD8E7` = `0x20`, the exclusion bit that group 0's records get⁴,
+and four 1.0 at `+0x10`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037A0EA` |
+| ² | `0x0037A101` |
+| ³ | `0x0037A10D` |
+| ⁴ | `0x0037A0EF`, `0x0037A114` |
+| ⁵ | `0x0037A11A` |
+
+</details>
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured over all 10,036 EBP2 containers in the nine language trees.
 
@@ -178,47 +212,89 @@ Offsets are from the start of the LGT2 section and written in hexadecimal.
 | `record_hex` | the record's `0x70` bytes in file order, 224 hexadecimal digits |
 | `chunk_offset` | in ebp-lighting-lgt2-chunks.tsv, where the chunk starts: chunk 0 at the set's `list_offset`, each next chunk at the previous one's offset plus its `size` |
 
+</details>
+
 ## Loader behaviour
 
 ### The bind
 
 `0x0037AA90(section, group)`:
 
-1. returns at once for a group above 4 (`0x0037AA9E`), and for a negative one too, as the compare is unsigned
-   (`0x0037AAA2`); the section's magic is read with no null test (`0x0037AABF`);
-2. on a magic mismatch jumps straight to setting the group's ready byte `+0x4C` (`0x0037AAC5` →
-   `0x0037AC69`);
-3. otherwise resets the group with `0x0037B230` (pointers `+0x00` to `+0x38` zeroed, `+0x40` to `+0x48`
-   set to 1.0, `+0x4C` cleared), stores the section at `+0x00`, and walks the chain from `+0x04` (a `u16`,
-   `0x0037AAE7`) through the jump table at `0x0037AC7C`: type 0 to `+0x08`, 1 to `+0x10`, 2 to `+0x18`,
-   3 to `+0x20`, 6 to `+0x28`, 7 to `+0x30`, type 5's `+0x08` to `+0x38`; type 4 and types above 7 are
-   skipped by their size;
-4. for type 2, when `0x01EF94E0` is non-zero, clears every entry's status (`0x0037AB4D`-`0x0037AB76`) and turns on the
-   first entry whose cut id is 0 (`0x0037A9B0(group, 0)`, which stops at the first match, `0x0037A9E6`);
-5. for type 5, replaces each `slot[i]` with the encoded address of sub-entry `i` (`0x0020E620`);
-6. replaces each record's `+0x21` below 6 with `0x01EF94E4[value]` (`0x0037AC20`): the table holds
-   `0x20, 0x40, 0x60, 0x80, 0xA0, 0xC0`; values of 6 and above stay;
-7. on group 0 only, ORs `0x20` into each record's `+0x27` (`0x0037AC50`);
-8. sets `+0x4C` to 1.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | returns at once for a group above 4, and for a negative one too, as the compare is unsigned; the section's magic is read with no null test; | `0x0037AA9E`<br>`0x0037AAA2`<br>`0x0037AABF` |
+| 2 | on a magic mismatch jumps straight to setting the group's ready byte `+0x4C` (`0x0037AAC5` → `0x0037AC69`); |   |
+| 3 | otherwise resets the group with `0x0037B230` (pointers `+0x00` to `+0x38` zeroed, `+0x40` to `+0x48` set to 1.0, `+0x4C` cleared), stores the section at `+0x00`, and walks the chain from `+0x04` (a `u16`, `0x0037AAE7`) through the jump table at `0x0037AC7C`: type 0 to `+0x08`, 1 to `+0x10`, 2 to `+0x18`, 3 to `+0x20`, 6 to `+0x28`, 7 to `+0x30`, type 5's `+0x08` to `+0x38`; type 4 and types above 7 are skipped by their size; |   |
+| 4 | for type 2, when `0x01EF94E0` is non-zero, clears every entry's status and turns on the first entry whose cut id is 0 (`0x0037A9B0(group, 0)`, which stops at the first match, `0x0037A9E6`); | `0x0037AB4D`-`0x0037AB76` |
+| 5 | for type 5, replaces each `slot[i]` with the encoded address of sub-entry `i`; | `0x0020E620` |
+| 6 | replaces each record's `+0x21` below 6 with `0x01EF94E4[value]`: the table holds `0x20, 0x40, 0x60, 0x80, 0xA0, 0xC0`; values of 6 and above stay; | `0x0037AC20` |
+| 7 | on group 0 only, ORs `0x20` into each record's `+0x27`; | `0x0037AC50` |
+| 8 | sets `+0x4C` to 1. |   |
 
-`0x01EF94E0` is 1 in the image and is set only by `0x0037AA80`, the debug verb `debug_lightdatamustinit`
-(`0x0050D340`). Every pointer refers into the loaded file, and steps 4 to 7 rewrite that file in memory.
+`0x01EF94E0` is 1 in the image and is set only by `0x0037AA80`, the debug verb `debug_lightdatamustinit`¹. Every pointer refers into the loaded file, and steps 4 to 7 rewrite that file in memory.
 
-On the container route the finaliser, for a manager above 0 (`0x0032F1BB`), resets the group (`0x0032F1D4`) and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0050D340` |
+
+</details>
+
+On the container route the finaliser, for a manager above 0¹, resets the group² and
 clears its ready byte (`0x003DE920(group, 0)` → `0x0037ACA0`, which also clears bit `1 << group` of `0x02B59350`,
 `0x003DE953`) before the bind, sets it again after (`0x003DE920(group, 1)` →
 `0x0037ACD0`, which sets `+0x4C` only when `+0x00` is non-null, and sets bit `1 << group` of `0x02B59350`, `0x003DE938`),
-and stores the first cut id plus 1 at manager record `+0x1FC` (`0x0037B290`).
+and stores the first cut id plus 1 at manager record `+0x1FC`³.
 
-For group 0, while `0x02EBF420` holds no section, `0x0037ACD0` ends by jumping to `0x00379290`
-(`0x0037ACF2`-`0x0037ACFE`); a group above 4 does nothing (`0x0037ACD0`-`0x0037ACD3`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032F1BB` |
+| ² | `0x0032F1D4` |
+| ³ | `0x0037B290` |
+
+</details>
+
+For group 0, while `0x02EBF420` holds no section, `0x0037ACD0` ends by jumping to `0x00379290`¹; a group above 4 does nothing².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037ACF2`-`0x0037ACFE` |
+| ² | `0x0037ACD0`-`0x0037ACD3` |
+
+</details>
 
 That id is word `+0x10` of the cuts chunk `+0x18`; when that pointer is null or the chunk's `+0x04` is 0,
-`0x0037B290` returns -1 and 0 is stored (`0x0037B2A9`, `0x0037B2AF`). A section with a bad magic therefore leaves a ready
+`0x0037B290` returns -1 and 0 is stored¹. A section with a bad magic therefore leaves a ready
 group with no chunks, which lights nothing.
 
-When the manager's slot `0x022C6E20` is null (`0x0032F1F2`), the finaliser stops after the reset and the cleared ready
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037B2A9`, `0x0037B2AF` |
+
+</details>
+
+When the manager's slot `0x022C6E20` is null¹, the finaliser stops after the reset and the cleared ready
 byte: it binds nothing, leaves the group not ready and leaves `+0x1FC` as it was.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032F1F2` |
+
+</details>
 
 ### Which records are lit
 
@@ -226,21 +302,51 @@ The collector `0x0037AD40` runs over the five groups and skips any whose `+0x4C`
 adds every record whose state bit `0x1` is clear, first running `0x0037A5B0` on it, and lists the
 record's request (`record + 0x20`):
 
-- the type-0 range, when present (`0x0037ADCB`); after it the collector goes straight to the cuts (`0x0037AE2E`);
+- the type-0 range, when present¹; after it the collector goes straight to the cuts²;
 - otherwise the type-7 set for the selector `0x02EBF408`: the `u16` at `+0x04 + selector × 8`, skipped when it is
-  `0xFFFF` (`0x0037AE47`-`0x0037AE50`), then the next three, up to the first `0xFFFF` (`0x0037AEA0`-`0x0037AEF6`);
+  `0xFFFF`³, then the next three, up to the first `0xFFFF`⁴;
 - then the range of every type-2 cut whose status is non-zero.
 
-The selector is the weather slot minus 1. `0x00379860(slot)` jumps to `0x00379F50` when a map light set is loaded
-(`0x02ADD090`), and `0x00379F50` stores `slot - 1` at `0x02EBF408` for slots 1 to 3 (`0x00379F5B`); the weather roll calls
-`0x00379860` on every zone start ([Weather](../World-Areas-And-Travel/weather.md)). `0x00379F70` resets the selector to 0
-(`0x0037A0C0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037ADCB` |
+| ² | `0x0037AE2E` |
+| ³ | `0x0037AE47`-`0x0037AE50` |
+| ⁴ | `0x0037AEA0`-`0x0037AEF6` |
+
+</details>
+
+The selector is the weather slot minus 1. `0x00379860(slot)` jumps to `0x00379F50` when a map light set is loaded¹, and `0x00379F50` stores `slot - 1` at `0x02EBF408` for slots 1 to 3²; the weather roll calls
+`0x00379860` on every zone start ([Weather](../World-Areas-And-Travel/weather.md)). `0x00379F70` resets the selector to 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02ADD090` |
+| ² | `0x00379F5B` |
+| ³ | `0x0037A0C0` |
+
+</details>
 
 The list starts with a default request at `0x02ADD8E0`. Each frame the collector first copies group 0's
 `+0x40`, `+0x44` and `+0x48` (1.0 after a reset, read at `0x02EBF460`, `0x02EBF464` and `0x02EBF468`) into that
-request's `0x02ADD8F0`, `0x02ADD8F4` and `0x02ADD8F8` (`0x0037AD78`, `0x0037ADA1`, `0x0037AD99`). When a group
+request's `0x02ADD8F0`, `0x02ADD8F4` and `0x02ADD8F8`¹. When a group
 has a type-1 chunk (`+0x10`), the collector calls `0x00265020` for it each frame and discards the
 results; no shipped file has one.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037AD78`, `0x0037ADA1`, `0x0037AD99` |
+
+</details>
 
 The collector writes every listed request into the array at `0x02EBF5C0` and applies the 128 cap only
 at the end, so a frame that lists more than 128 records writes past slot 128 before the count
@@ -257,21 +363,51 @@ and passes every other kind on.
 ### Animation
 
 `0x0037A5B0` acts on records with state bit `0x2`: kind 1 interpolates the three start and end values
-by the current fraction (`0x00466BF0`) into `+0x30` to `+0x38`, scaled by 1/128; kind 2 evaluates the
-four type-5 curves (`0x003CC5F0`) and clamps each result to -1..1 into `+0x30` to `+0x3C`. Each frame
+by the current fraction¹ into `+0x30` to `+0x38`, scaled by 1/128; kind 2 evaluates the
+four type-5 curves² and clamps each result to -1..1 into `+0x30` to `+0x3C`. Each frame
 `0x0037A450` advances a kind-2 clock `+0x1C` by `0x01DFE0BC` and, past the duration `+0x18`, wraps it to
 0 (state bit `0x4`) or holds it at the duration.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00466BF0` |
+| ² | `0x003CC5F0` |
+
+</details>
+
 `0x00466BF0` takes the fraction from the map animation slot numbered by the dword
-`0x02EBB6E4`: the slot is `[0x02EBB6F0] + 0x50 × index`, and the answer is `value × 0.01`
-(`0x008F30E4`) for the float that the pointer `+0xA8` of the slot's `+0x28` target names.
+`0x02EBB6E4`: the slot is `[0x02EBB6F0] + 0x50 × index`, and the answer is `value × 0.01`¹ for the float that the pointer `+0xA8` of the slot's `+0x28` target names.
 It answers 0 for an index below 0 or not below the count `0x02EBB6E0`, for a slot whose
-qword `+0x08` is 0, and for a null `+0xA8` pointer (`0x00466BF0`-`0x00466C3A`).
+qword `+0x08` is 0, and for a null `+0xA8` pointer².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008F30E4` |
+| ² | `0x00466BF0`-`0x00466C3A` |
+
+</details>
 
 `0x0037A450` walks every record of the five groups whose section pointer `+0x00` is set (`0x02EBF420` to
 `0x02EBF5B0` in steps of `0x50`, `0x0037A464`, `0x0037A4E3`) and skips a record with state bit `0x1` or without bit
-`0x2` (`0x0037A488`, `0x0037A490`). Only the clock step tests the kind (`0x0037A492`); the duration test and the
-wrap or hold run on every animated record (`0x0037A4AD`-`0x0037A4CA`).
+`0x2`¹. Only the clock step tests the kind²; the duration test and the
+wrap or hold run on every animated record³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037A488`, `0x0037A490` |
+| ² | `0x0037A492` |
+| ³ | `0x0037A4AD`-`0x0037A4CA` |
+
+</details>
 
 ### Script and map control
 
@@ -288,18 +424,49 @@ Animation start and stop by id go through `0x003E8A40(id, start)`, which calls `
 or clear state bit `0x2` of that one record in group 0. An id missing from the type-6 table selects
 entry 0 of the type-3 table.
 
-The other by-id routines use the same lookup. `0x0037B0F0` sets state bit `0x1`, turning the light off
-(`0x0037B171`), and `0x0037B190` clears it (`0x0037B211`); a group with no type-3 table (a null pointer at `+0x20`), or
-a type-3 index at or past the table's count, changes nothing (`0x0037B15A`, `0x0037B15C`, `0x0037B1FA`, `0x0037B1FC`).
+The other by-id routines use the same lookup. `0x0037B0F0` sets state bit `0x1`, turning the light off¹, and `0x0037B190` clears it²; a group with no type-3 table (a null pointer at `+0x20`), or
+a type-3 index at or past the table's count, changes nothing³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037B171` |
+| ² | `0x0037B211` |
+| ³ | `0x0037B15A`, `0x0037B15C`, `0x0037B1FA`, `0x0037B1FC` |
+
+</details>
 
 `0x0037B030(group, id)` returns 1 only while the record is on, is of kind 2
-and its clock `+0x1C` is below the duration `+0x18` (`0x0037B0A5`-`0x0037B0BE`), and 0 otherwise. For an id
-without bit `0x4000`, `0x003E8440` resets the clock (`0x0037A270`) and starts the animation (`0x0037A1D0`) when
-it returns 0 (`0x003E84D3`-`0x003E851B`).
+and its clock `+0x1C` is below the duration `+0x18`¹, and 0 otherwise. For an id
+without bit `0x4000`, `0x003E8440` resets the clock² and starts the animation³ when
+it returns 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037B0A5`-`0x0037B0BE` |
+| ² | `0x0037A270` |
+| ³ | `0x0037A1D0` |
+| ⁴ | `0x003E84D3`-`0x003E851B` |
+
+</details>
 
 `0x0037A880` and `0x0037A7F0` act on every type-2 entry that carries the cut id, not only the first: the walk
-goes on after a match (`0x0037A8F1`, `0x0037A861`). Both return at once when the group has no cuts chunk
-(`0x0037A8A0`, `0x0037A810`).
+goes on after a match¹. Both return at once when the group has no cuts chunk².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037A8F1`, `0x0037A861` |
+| ² | `0x0037A8A0`, `0x0037A810` |
+
+</details>
 
 ## Modding notes
 
@@ -330,14 +497,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00266D10` | calls | `0x00226BE0` |
+| [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) | calls | [`0x00226BE0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock) |
 
 **Saving, loading and settings** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00266D10` | calls | `0x002EF2D0` |
+| [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) | calls | [`0x002EF2D0`](../Story-Events-And-Hunts/story-flags.md) (on story flags) |
 
 </details>

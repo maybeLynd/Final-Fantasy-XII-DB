@@ -40,26 +40,68 @@ function sits `0x30` bytes in, and the member `m_firstComponent`:
 
 ### Adding and removing components
 
-`0x006AC300(entity, component)` returns 0 at once when the component already belongs to this entity
-(`0x006AC317`). It returns `0x12` when the component's class does not derive from `PComponent`, and
+`0x006AC300(entity, component)` returns 0 at once when the component already belongs to this entity¹. It returns `0x12` when the component's class does not derive from `PComponent`, and
 also when the entity already has a component whose class is the same as, an ancestor of or a
 descendant of the new one's, so an entity holds at most one component of each line of classes. A
-null class pointer at the component's `+0x10` returns `0x12` (`0x006AC327`), and a listed component
-with a null class pointer does not conflict (`0x006AC36A`, `0x006AC38A`).
+null class pointer at the component's `+0x10` returns `0x12`², and a listed component
+with a null class pointer does not conflict³.
 
-Otherwise it removes the component from its old entity (`0x006ACA70`), sets its entity and links it at
-the front. The removal call is made only when the component's `+0x08` holds an entity (`0x006AC39A`),
-and its result is ignored. The component's `+0x00` takes the entity's old first component
-(`0x006AC3AE`), and the function returns 0 (`0x006AC3B4`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006AC317` |
+| ² | `0x006AC327` |
+| ³ | `0x006AC36A`, `0x006AC38A` |
+
+</details>
+
+Otherwise it removes the component from its old entity¹, sets its entity and links it at
+the front. The removal call is made only when the component's `+0x08` holds an entity²,
+and its result is ignored. The component's `+0x00` takes the entity's old first component³, and the function returns 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006ACA70` |
+| ² | `0x006AC39A` |
+| ³ | `0x006AC3AE` |
+| ⁴ | `0x006AC3B4` |
+
+</details>
 
 `0x006ACA70(entity, component)` returns 5 when the component belongs to another entity; otherwise it
 unlinks it from the list and clears its entity. The test compares the component's `+0x08` with the
-entity (`0x006ACA73`), so a component with no entity returns 5 for any non-null entity; a null entity
-with such a component passes the test and faults reading the list head at address 0 (`0x006ACA7F`).
+entity¹, so a component with no entity returns 5 for any non-null entity; a null entity
+with such a component passes the test and faults reading the list head at address 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006ACA73` |
+| ² | `0x006ACA7F` |
+
+</details>
 
 The unlink points the previous component's `+0x00`, or the entity's `+0x00` for the first component,
-at the component's next one (`0x006ACAAD`) and clears the component's `+0x00` (`0x006ACAB0`). A component
-missing from the list only has its entity cleared (`0x006ACAA0`). Both of these paths return 0.
+at the component's next one¹ and clears the component's `+0x00`². A component
+missing from the list only has its entity cleared³. Both of these paths return 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006ACAAD` |
+| ² | `0x006ACAB0` |
+| ³ | `0x006ACAA0` |
+
+</details>
 
 ### The world-matrix registry
 
@@ -70,50 +112,96 @@ points a head's three links back at itself.
 
 - `0x006ACAC0(entity, matrix)` erases the entity's node when it had a matrix, stores the new one and,
   unless that matrix is already registered, inserts the node with the matrix as key and the entity
-  as value. A null new matrix is stored and nothing is inserted (`0x006ACAF6`).
+  as value. A null new matrix is stored and nothing is inserted¹.
 - `0x006ACAC0` sets the node's links to the head `0x01F2EB40` and writes its key and value before the
-  search (`0x006ACB05` to `0x006ACB3E`), so a node skipped as a duplicate (`0x006ACBA6`) holds them while it
+  search (`0x006ACB05` to `0x006ACB3E`), so a node skipped as a duplicate² holds them while it
   stays out of the tree.
-- The erase test reads only the entity's `+0x08` (`0x006ACACF`). For a node left out as a duplicate,
-  `0x0067FE20` finds its left link at the head (`0x0067FE3E`), writes the head's `+0x10` qword and the
-  node's own `+0x08`, and skips the rebalance because the node's bit `0x1` is set (`0x0067FF15`); the
-  registered nodes are not changed, and the node is reset to point at itself (`0x0067FF28`).
+- The erase test reads only the entity's `+0x08`³. For a node left out as a duplicate,
+  `0x0067FE20` finds its left link at the head⁴, writes the head's `+0x10` qword and the
+  node's own `+0x08`, and skips the rebalance because the node's bit `0x1` is set⁵; the
+  registered nodes are not changed, and the node is reset to point at itself⁶.
 - `0x006ABF40(matrix)` walks the tree from the root and returns the entity, or null.
-- `0x006ABEC0({object, class})` uses the object itself when its class is `PWorldMatrix` (`0x02E404B0`)
+- `0x006ABEC0({object, class})` uses the object itself when its class is `PWorldMatrix`⁷
   or derives from it. Otherwise it looks up the class's `getLocalToWorldMatrix` method
-  (`0x005A7B50`) and calls it through `0x006AB600`, which calls slot `+0x10` of the handler at the method's
+ ⁸ and calls it through `0x006AB600`, which calls slot `+0x10` of the handler at the method's
   `+0x28` with the object and takes the matrix from the result. It then looks the matrix up like `0x006ABF40`.
-- `0x006ABEC0` returns null for a null object (`0x006ABECC`), for a class without the method, a null
-  class included (`0x005A7B65`, `0x006ABF08`), and for a null matrix (`0x006ABF18`); otherwise it
-  tail-jumps to `0x006ABF40` (`0x006ABF22`).
+- `0x006ABEC0` returns null for a null object⁹, for a class without the method, a null
+  class included¹⁰, and for a null matrix¹¹; otherwise it
+  tail-jumps to `0x006ABF40`¹².
 - `0x006AB600` gives the handler the object, the `PWorldMatrix` descriptor with bit `0x1` set
-  (`0x006AB656`), a 16-byte-aligned result buffer on its stack and, as a fifth argument, a list that
-  holds the address of its own third argument; the matrix is the buffer's `+0x08` (`0x006AB661`).
-- With a null handler (`0x006AB642`) `0x006AB600` makes no call and returns the qword at the buffer's
+ ¹³, a 16-byte-aligned result buffer on its stack and, as a fifth argument, a list that
+  holds the address of its own third argument; the matrix is the buffer's `+0x08`¹⁴.
+- With a null handler¹⁵ `0x006AB600` makes no call and returns the qword at the buffer's
   `+0x08`, a stack qword that the body leaves unwritten.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006ACAF6` |
+| ² | `0x006ACBA6` |
+| ³ | `0x006ACACF` |
+| ⁴ | `0x0067FE3E` |
+| ⁵ | `0x0067FF15` |
+| ⁶ | `0x0067FF28` |
+| ⁷ | `0x02E404B0` |
+| ⁸ | `0x005A7B50` |
+| ⁹ | `0x006ABECC` |
+| ¹⁰ | `0x005A7B65`, `0x006ABF08` |
+| ¹¹ | `0x006ABF18` |
+| ¹² | `0x006ABF22` |
+| ¹³ | `0x006AB656` |
+| ¹⁴ | `0x006AB661` |
+| ¹⁵ | `0x006AB642` |
+
+</details>
 
 ### Loaded entities and components
 
 Descriptor slot `+0x70` runs on each instance list a cluster load fixes up (the asset-file page). For
 these classes it walks the list's objects, using the class's instance size (`+0x38` of the
 descriptor) as the stride. The list holds the descriptor at `+0x50`, the first object at `+0x58`
-and the count at `+0x70`; a count of zero skips the walk (`0x006AADDF`, `0x006ABFB8`, `0x006AFF1F`):
+and the count at `+0x70`; a count of zero skips the walk¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006AADDF`, `0x006ABFB8`, `0x006AFF1F` |
+
+</details>
 
 - `PEntity`: `0x006AB410` passes the list to `0x006ABFA0`, which inserts every entity with a world matrix
   into the registry, skipping a matrix already present. An entity whose `+0x08` is null is left
-  untouched (`0x006ABFF7`). Every other node is set up as in `0x006ACAC0` before the search (`0x006AC006`
-  to `0x006AC037`), the skipped duplicate's included (`0x006AC0C7`), and the function returns 0
-  (`0x006AC0BF`).
+  untouched¹. Every other node is set up as in `0x006ACAC0` before the search (`0x006AC006`
+  to `0x006AC037`), the skipped duplicate's included², and the function returns 0
+ ³.
 - Components: `0x006AADD0` sets each component's class pointer `+0x10` to the list's descriptor. It is
   slot `+0x70` itself for `PTriggerReceiverComponent` (through `0x006ADD70`) and is called first by
   the `PAnimatableComponent` hook `0x005B80E0` (through `0x005A2610`) and by `0x006AFF00`.
-- `0x006AADD0` returns 0 (`0x006AADFD`), so the exits of `0x005B80E0` and `0x006AFF00` on a nonzero result
-  (`0x005B80F0`, `0x006AFF10`) are not taken. A null first object with a nonzero count faults at its
+- `0x006AADD0` returns 0⁴, so the exits of `0x005B80E0` and `0x006AFF00` on a nonzero result
+ ⁵ are not taken. A null first object with a nonzero count faults at its
   first store (`0x006AADF0`, address `0x10`).
 - `PNameComponent`: `0x006AFF00` (through `0x006AFA70`) also links every name component at the front of
   the list headed at `0x01F2EB78`, through a `{next, previous}` node at `+0x18`. Each node's next is the
   old first node and its previous is the head, and the old first node's previous becomes the node
-  (`0x006AFF47` to `0x006AFF55`), so the list's last component ends up first; it returns 0 (`0x006AFF5F`).
+  (`0x006AFF47` to `0x006AFF55`), so the list's last component ends up first; it returns 0⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006ABFF7` |
+| ² | `0x006AC0C7` |
+| ³ | `0x006AC0BF` |
+| ⁴ | `0x006AADFD` |
+| ⁵ | `0x005B80F0`, `0x006AFF10` |
+| ⁶ | `0x006AFF5F` |
+
+</details>
 
 ### Instances components
 
@@ -123,25 +211,63 @@ and the count at `+0x70`; a count of zero skips the walk (`0x006AADDF`, `0x006AB
 and returns that pair. With no such pair, or with a null class, it returns a null object with the `PBase`
 descriptor (`0x02CF8270`, from `0x006372A0`).
 
-The count is the dword at `+0x18` with bit `0x80000000` cleared (`0x006AF505`), and a pair whose class
-is null is skipped (`0x006AF51C`). The found pair is copied into `result` (`0x006AF557`); otherwise the
-null object and the descriptor are written there (`0x006AF537`, `0x006AF543`). Both paths return the
-address of `result` (`0x006AF547`, `0x006AF554`).
+The count is the dword at `+0x18` with bit `0x80000000` cleared¹, and a pair whose class
+is null is skipped². The found pair is copied into `result`³; otherwise the
+null object and the descriptor are written there⁴. Both paths return the
+address of `result`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006AF505` |
+| ² | `0x006AF51C` |
+| ³ | `0x006AF557` |
+| ⁴ | `0x006AF537`, `0x006AF543` |
+| ⁵ | `0x006AF547`, `0x006AF554` |
+
+</details>
 
 ### The object behind a physics body
 
 `0x0069ECE0(collision object, record)` fills `+0x20` and `+0x28` of a physics callback record with the
 gameplay object behind a Bullet collision object and its class: when bit `0x2` of the object's type
-word `+0x104` is set, the pointer at `+0x108` with `PPhysicsRigidBody`'s descriptor (`0x02E48BD0`);
-when the type is 4, the same pointer with `PPhysicsCharacterController`'s (`0x02E47ED0`). A null
+word `+0x104` is set, the pointer at `+0x108` with `PPhysicsRigidBody`'s descriptor¹;
+when the type is 4, the same pointer with `PPhysicsCharacterController`'s². A null
 pointer leaves both null. The physics functions `0x006A1A70` and `0x006A1DD0` call it.
 
-It clears both fields first (`0x0069ECE6`, `0x0069ECEA`), so a null collision object (`0x0069ECF1`) and a
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02E48BD0` |
+| ² | `0x02E47ED0` |
+
+</details>
+
+It clears both fields first¹, so a null collision object² and a
 type word with bit `0x2` clear that is not 4 also leave both null. The two cases are separate tests,
-of the byte (`0x0069ECF3`) and of the dword (`0x0069ED20`) at `+0x104`; a dword of 4 has bit `0x2`
+of the byte³ and of the dword⁴ at `+0x104`; a dword of 4 has bit `0x2`
 clear, so at most one case fills the record.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0069ECE6`, `0x0069ECEA` |
+| ² | `0x0069ECF1` |
+| ³ | `0x0069ECF3` |
+| ⁴ | `0x0069ED20` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### Reflected members
 
@@ -174,10 +300,20 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x24` | `u8[4]` | bytes24 | the four bytes after the dword the constructor `0x006CDF00` clears at `+0x20` (`0x006CDF36`), before m_entryHandler at `+0x28`; no registered member covers it (`0x006CDFF0` registers the `0x58`-byte class at `0x006CE03A`) |
 
 `0x006CDF00` builds the component at the address in its second argument and does not read its first.
-With a null address it does nothing (`0x006CDF1B`-`0x006CDF1E`). Otherwise it calls
+With a null address it does nothing¹. Otherwise it calls
 `0x006AAA20(address, 0x02E5C710)`, clears the qword `+0x18` and the dword `+0x20`, and calls `0x00681640`
-on `+0x28` and then on `+0x40` (`0x006CDF20`-`0x006CDF47`). It answers 1 in its low byte in both cases
-(`0x006CDF4D`).
+on `+0x28` and then on `+0x40`². It answers 1 in its low byte in both cases³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006CDF1B`-`0x006CDF1E` |
+| ² | `0x006CDF20`-`0x006CDF47` |
+| ³ | `0x006CDF4D` |
+
+</details>
 
 ### Entities and components
 
@@ -203,7 +339,12 @@ The structures below are the ones the mechanisms above use.
 | `+0x08` | `void*` | entity | owning PEntity, or null |
 | `+0x10` | `void*` | classDescriptor | set by `0x006AADD0` on load and checked by `0x006AC300` |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | What |
 |---|---|
@@ -211,6 +352,8 @@ The structures below are the ones the mechanisms above use.
 | `0x01F2EB78` | head of the list of loaded `PNameComponent` objects |
 | `0x02E4EAF0` | `PEntity` class descriptor |
 | `0x02E4E720` | `PComponent` class descriptor |
+
+</details>
 
 ## Modding notes
 

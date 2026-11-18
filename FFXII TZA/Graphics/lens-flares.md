@@ -25,12 +25,33 @@ takes the first slot whose handle `+0x00` is 0: it raises the slot count `0x02AD
 `0x02ADBB34` (wrapping from `0xFFFFFF` to 1), makes the handle `serial << 8 | slot`, stores the depth (0 from its
 only caller, `0x004610EE`) at `+0x04`, zeroes the fades and the light handle, sets bit `0x4` and clears bit `0x8` of
 the flags `+0x54`, and
-copies the 16-byte rectangle to `+0x70`. With the third argument set it also creates a light
-(`0x003AB960`) and keeps its handle at `+0x50`.
+copies the 16-byte rectangle to `+0x70`. With the third argument set it also creates a light¹ and keeps its handle at `+0x50`.
 
-It also zeroes the visibility `+0x08` (`0x003763D2`). The four kept copies `+0x0C`, `+0x14`, `+0x1C` and `+0x24`
-are left as they were (`0x003763CB`-`0x003763F2`). The slot count is a byte (`0x00376391`). `0x00376350` returns the
-handle (`0x00376450`), or 0 with nothing changed when all eight slots are taken (`0x0037638A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AB960` |
+
+</details>
+
+It also zeroes the visibility `+0x08`¹. The four kept copies `+0x0C`, `+0x14`, `+0x1C` and `+0x24`
+are left as they were². The slot count is a byte³. `0x00376350` returns the
+handle⁴, or 0 with nothing changed when all eight slots are taken⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003763D2` |
+| ² | `0x003763CB`-`0x003763F2` |
+| ³ | `0x00376391` |
+| ⁴ | `0x00376450` |
+| ⁵ | `0x0037638A` |
+
+</details>
 
 The light request is type 1, priority 0, subtype 2, scope 1, sub-kind 9 and class 16 (`+7` = `0x40`):
 a directional light that every character takes and that is re-aimed from the camera
@@ -38,10 +59,22 @@ a directional light that every character takes and that is re-aimed from the cam
 `0x50`-byte request is zero (`memset` at `0x00376406`, `0x0037640B`-`0x0037643F`).
 
 `0x00376990(handle)` frees a slot whose handle still matches: it lowers `0x02ADBB30`, clears the handle and
-releases the light (`0x003ABCA0`) when `+0x50` is non-zero, then zeroes `+0x50` (`0x003769B2`-`0x003769CA`); a handle
-of 0 returns at once (`0x00376992`). `0x00376A80` empties all eight slots and both counters: it stores 0 in the byte
+releases the light¹ when `+0x50` is non-zero, then zeroes `+0x50`²; a handle
+of 0 returns at once³. `0x00376A80` empties all eight slots and both counters: it stores 0 in the byte
 `0x02ADBB30`, the serial `0x02ADBB34` and the eight handles and nothing else, so it releases no light and leaves each
-`+0x50` as it was (`0x00376A82`-`0x00376AB9`).
+`+0x50` as it was⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003ABCA0` |
+| ² | `0x003769B2`-`0x003769CA` |
+| ³ | `0x00376992` |
+| ⁴ | `0x00376A82`-`0x00376AB9` |
+
+</details>
 
 Every accessor
 checks that `slot[handle & 0xFF]` still holds the handle and does nothing, or returns 0, otherwise
@@ -63,40 +96,101 @@ checks that `slot[handle & 0xFF]` still holds the handle and does nothing, or re
 Effect element type `0xA1`, named `TsElementType_VLENSFLARE` by `0x002FBA60`, owns a slot when its definition's byte `+0x1B4` has bit `0x4` set. Its birth
 `0x00461090` takes a slot (`0x00376350`, with the light when bit `0x20` of the definition word `+0x1CE` is
 set) and keeps the handle at element `+0x294`. With bit `0x20` it also calls `0x001827B0(1)`, which sets byte
-`+0xED` of the render-parameter block (`0x0018D640`). It then fills the settings from the definition
+`+0xED` of the render-parameter block¹. It then fills the settings from the definition
 with `0x00377010`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018D640` |
+
+</details>
 
 - flag bit `0x1` from bit `0x20` of `+0x1CE` and flag bit `0x2` from bit `0x10`;
 - radii from `+0x1F0`, `+0x1F4` and `+0x1F8`;
 - the dimming strength from `+0x1DC` and the light colour from `+0x1E0` to `+0x1E8`.
 
-Then it projects the element's position `+0x230` through `0x02AEECB0` (`0x0039B550`, `0x00399600`) and
+Then it projects the element's position `+0x230` through `0x02AEECB0`¹ and
 stores the test square, the GS screen position `x / 16 − 0x700` and `y / 16 − 0x720` plus and minus
-the half size `+0x1B6` (`0x00377100`), and the depth (`0x003770D0`). The release `0x00461250` frees the slot.
+the half size `+0x1B6`², and the depth³. The release `0x00461250` frees the slot.
 
-The birth reads the definition at element `+0x20` (`0x004610C5`) and hands `0x00376350` the square {0, 8, 8, 0}
-(`0x004610D6`-`0x004610E6`). It stores the square and the depth without testing what `0x00399600` returns
-(`0x00461191`); the depth is the projected dword after the two screen words, masked to 24 bits (`0x00461208`).
+<details>
+<summary>Where in the code</summary>
 
-`0x00461090(element)` returns 0 when `0x002F2D60` fails (`0x004610B7`). Without bit `0x4` of `+0x1B4` it takes no slot
-and leaves `+0x294` as it was (`0x004610D0`). On both paths it then runs `0x00462160(element)`, stores `0x0044B960()` at
-element `+0x290` and returns 1 (`0x00461213`-`0x0046122E`).
+| | Code |
+|---|---|
+| ¹ | `0x0039B550`, `0x00399600` |
+| ² | `0x00377100` |
+| ³ | `0x003770D0` |
 
-Each draw `0x00461270` repeats the projection, stores the square again in both forms (`0x00377130`,
-`0x00377100`) and the depth, and for a bit `0x20` flare sets the light direction from `0x02AEEAD0` with w 1.0
-(`0x00377160`) and clears flag bit `0x4`. When the projection fails, a bit `0x20` flare sets flag bit `0x4` instead.
+</details>
+
+The birth reads the definition at element `+0x20`¹ and hands `0x00376350` the square {0, 8, 8, 0}². It stores the square and the depth without testing what `0x00399600` returns³; the depth is the projected dword after the two screen words, masked to 24 bits⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004610C5` |
+| ² | `0x004610D6`-`0x004610E6` |
+| ³ | `0x00461191` |
+| ⁴ | `0x00461208` |
+
+</details>
+
+`0x00461090(element)` returns 0 when `0x002F2D60` fails¹. Without bit `0x4` of `+0x1B4` it takes no slot
+and leaves `+0x294` as it was². On both paths it then runs `0x00462160(element)`, stores `0x0044B960()` at
+element `+0x290` and returns 1³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004610B7` |
+| ² | `0x004610D0` |
+| ³ | `0x00461213`-`0x0046122E` |
+
+</details>
+
+Each draw `0x00461270` repeats the projection, stores the square again in both forms¹ and the depth, and for a bit `0x20` flare sets the light direction from `0x02AEEAD0` with w 1.0² and clears flag bit `0x4`. When the projection fails, a bit `0x20` flare sets flag bit `0x4` instead.
 A bit `0x20` flare also passes its screen position, `(x − 1792) / 512` and `(y − 1824) / 448`, to
-`0x00182830`, which stores it at render-parameter block `+0x36C` and `+0x370` (`0x00194470`);
-`0x0018EEE0` copies the pair into the post-process command at `+0x44` and `+0x48` (`0x0018F3F5`).
+`0x00182830`, which stores it at render-parameter block `+0x36C` and `+0x370`³;
+`0x0018EEE0` copies the pair into the post-process command at `+0x44` and `+0x48`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00377130`, `0x00377100` |
+| ² | `0x00377160` |
+| ³ | `0x00194470` |
+| ⁴ | `0x0018F3F5` |
+
+</details>
 
 ### How the parts use the slot
 
-`0x00461270` takes the slot's visibility (`0x003769F0`) as the element's intensity `0x02AEA3D8` (1.0 for an
+`0x00461270` takes the slot's visibility¹ as the element's intensity `0x02AEA3D8` (1.0 for an
 element without a slot), scaled by the alpha byte of the element's colour over 128 unless that byte is
-`0x80`, and reads the two fades (`0x00376A50`, `0x00376A20`). The parts it draws come from the model at definition `+0x208`: the count
+`0x80`, and reads the two fades². The parts it draws come from the model at definition `+0x208`: the count
 `+0x1B2` of parts at the light, then up to `+0x1B3` further parts, each with an offset from the table
 at `+0x170`. With bit `0x8` of `+0x1B4` each part also carries the angle of the light about the screen
 centre, `atan2(y − 2048, x − 2048)`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003769F0` |
+| ² | `0x00376A50`, `0x00376A20` |
+
+</details>
 
 With bit `0x10` of `+0x1CE` set each part gets a scale from the fades, chosen by the part's bits in
 `+0x1CE` (the parts at the light) or in `+0x1CC` and `+0x1CA` (the others):
@@ -110,11 +204,20 @@ Without bit `0x10` every part has scale 1.
 ### The flare packet
 
 The draw hands its parts to the lens-flare microprogram `0x004C0EA0` in a boot template, as the draws in
-[effect element types](effect-element-types.md) do. `0x004C2040`, which `0x0037E0F0` calls at start-up (`0x0037E0FB`),
+[effect element types](effect-element-types.md) do. `0x004C2040`, which `0x0037E0F0` calls at start-up¹,
 builds the `0xC20`-byte template `0x02AEA3A0`. Its VIF codes unpack `0xBC` cells to VU cells 0 to `0xBB` (`+0x1C` =
 `0x6CBC0000`, `0x004C206D`), so the word at `0x02AEA3C0 + 16 × cell + 4 × lane` lands in that cell and lane. Each draw
-writes its values into the template and passes `0x02AEA3B8`, `0xC08` bytes, with the program to `0x003A34D0`
-(`0x004620CF`-`0x004620FC`).
+writes its values into the template and passes `0x02AEA3B8`, `0xC08` bytes, with the program to `0x003A34D0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037E0FB` |
+| ² | `0x004620CF`-`0x004620FC` |
+
+</details>
 
 | Cell | What the draw or the builder puts there |
 |---|---|
@@ -128,33 +231,45 @@ writes its values into the template and passes `0x02AEA3B8`, `0xC08` bytes, with
 | `0xBA` | the `TEX0_1` value: x and y its two words, z the register number 6 (`0x004C20CB`) |
 | `0xBB` | the GIF tag of the parts (`0x004C20D5`-`0x004C20F3`), whose count the program fills in |
 
-The program starts its first pass with the count in cell 2 lane y (`0x004C1006`) and its second with lane x
-(`0x004C17A0`). For the second pass it subtracts cell 0's z and w from its x and y (`0x004C176E`-`0x004C177F`).
+The program starts its first pass with the count in cell 2 lane y¹ and its second with lane x². For the second pass it subtracts cell 0's z and w from its x and y³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004C1006` |
+| ² | `0x004C17A0` |
+| ³ | `0x004C176E`-`0x004C177F` |
+
+</details>
 
 The draw skips the hand-over when a part's row and count reach 32 (`0x00461B3A`, `0x00461C84`, both to `0x00462101`).
 
 ### The per-frame pass
 
 The field frame runs `0x00376470` between its two draws ([the frame](../PhyreEngine/the-frame.md)).
-It reads back last frame's query results (`0x00184AA0`), resets the light scale (`0x003AC870`), clears the
-query list (`0x00184A70`), and for each slot with a handle and flag bit `0x8` clear:
+It reads back last frame's query results¹, resets the light scale², clears the
+query list³, and for each slot with a handle and flag bit `0x8` clear:
 
-1. When flag bit `0x2` or `0x1` is set it measures `d`, the distance of the test square's centre from the
-   centre of the 512 by 448 GS screen (`0x022D8EAC`, `0x022D8EB4`).
-2. For each fade it computes `t = 1 − d / radius`, passes a positive `t` through the easing curve
-   `0x0046FAE0(t, 1, 2)` (0 otherwise), takes `min(1.5 × value, 1)` as the target and moves the fade 40%
-   of the way to it. Flag bit `0x2` runs fade A (`+0x10`, radius `+0x34`, copied to `+0x28`) and fade B
-   (`+0x18`, radius `+0x38`, copied to `+0x2C`); flag bit `0x1` runs fade C (`+0x20`, radius `+0x3C`,
-   copied to `+0x30`).
-3. The visibility target is 0 when the test square leaves the GS screen: `y0` beyond the height,
-   `y1` below 1, `x0` beyond the width or `x1` below 1 (`0x003766BB`-`0x003766D1`). Otherwise it is the query
-   result whose handle matches the slot's, or the result at the slot's own position when no handle does.
-   The visibility `+0x08` moves 40% of the way to the target.
-4. Flag bit `0x1` runs the dimming `0x00376AC0` (below).
-5. The four corners of the float square, at the slot's depth, are transformed by the matrix
-   `0x02AEEB20` and then by the render manager's matrix `+0x6C8` (`0x0017ED50`, which applies it with
-   the row transform `0x0017E7E0` and keeps the product at `0x01F7F550`), each divided by its w. The first and
-   last corners, the depth and the current visibility go into the query list (`0x001849E0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00184AA0` |
+| ² | `0x003AC870` |
+| ³ | `0x00184A70` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When flag bit `0x2` or `0x1` is set it measures `d`, the distance of the test square's centre from the centre of the 512 by 448 GS screen. | `0x022D8EAC`, `0x022D8EB4` |
+| 2 | For each fade it computes `t = 1 − d / radius`, passes a positive `t` through the easing curve `0x0046FAE0(t, 1, 2)` (0 otherwise), takes `min(1.5 × value, 1)` as the target and moves the fade 40% of the way to it. Flag bit `0x2` runs fade A (`+0x10`, radius `+0x34`, copied to `+0x28`) and fade B (`+0x18`, radius `+0x38`, copied to `+0x2C`); flag bit `0x1` runs fade C (`+0x20`, radius `+0x3C`, copied to `+0x30`). |   |
+| 3 | The visibility target is 0 when the test square leaves the GS screen: `y0` beyond the height, `y1` below 1, `x0` beyond the width or `x1` below 1. Otherwise it is the query result whose handle matches the slot's, or the result at the slot's own position when no handle does. The visibility `+0x08` moves 40% of the way to the target. | `0x003766BB`-`0x003766D1` |
+| 4 | Flag bit `0x1` runs the dimming `0x00376AC0` (below). |   |
+| 5 | The four corners of the float square, at the slot's depth, are transformed by the matrix `0x02AEEB20` and then by the render manager's matrix `+0x6C8` (`0x0017ED50`, which applies it with the row transform `0x0017E7E0` and keeps the product at `0x01F7F550`), each divided by its w. The first and last corners, the depth and the current visibility go into the query list. | `0x001849E0` |
 
 A slot without a handle still adds an empty entry. The pass ends with `0x00182530`. The two
 screen-capture states run `0x00376D80` instead, which sets flag bit `0x8` on every live slot, freezing its
@@ -163,14 +278,24 @@ fades, and copies `+0x08`, `+0x10`, `+0x18` and `+0x20` into the word after each
 ### Ending the freeze
 
 `0x00376BE0` undoes the freeze when play returns to the field. The full menu frame `0x0022B8C0` runs it after
-`CLOSE FULLMENU` (`0x0022BBDE`), and the capture-backed frame `0x0022BC20` after it goes back to state 2
-(`0x0022BDCC`). For each slot with a handle (`0x00376C30`) it:
+`CLOSE FULLMENU`¹, and the capture-backed frame `0x0022BC20` after it goes back to state 2². For each slot with a handle³ it:
 
-1. clears flag bit `0x8` (`0x00376C3D`);
-2. copies the four kept words back: `+0x0C` to `+0x08`, `+0x14` to `+0x10`, `+0x1C` to `+0x18` and `+0x24` to
-   `+0x20` (`0x00376C3A`-`0x00376C57`);
-3. when flag bit `0x1` is set (`0x00376C40`), dims the scene colour and the light scale and rewrites the flare light's
-   request as `0x00376AC0` does (`0x00376C62`-`0x00376D43`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022BBDE` |
+| ² | `0x0022BDCC` |
+| ³ | `0x00376C30` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | clears flag bit `0x8`; | `0x00376C3D` |
+| 2 | copies the four kept words back: `+0x0C` to `+0x08`, `+0x14` to `+0x10`, `+0x1C` to `+0x18` and `+0x24` to `+0x20`; | `0x00376C3A`-`0x00376C57` |
+| 3 | when flag bit `0x1` is set, dims the scene colour and the light scale and rewrites the flare light's request as `0x00376AC0` does. | `0x00376C40`<br>`0x00376C62`-`0x00376D43` |
 
 ### Dimming and the flare light
 
@@ -178,86 +303,243 @@ fades, and copies `+0x08`, `+0x10`, `+0x18` and `+0x20` into the word after each
 scene colour `0x020926C0` to `0x020926C8` by `f` and the light scale `0x02B3F51C` by `f` (`0x003AC900`, which
 also sets `0x02B3F503`).
 
-When the slot has a light, it writes into the light's request (`0x003ABD00`): the direction `+0x60` to `+0x68` at request `+0x20`, the words `0x01F004E0` and `0x01F084E0` at `+0x40` and
+When the slot has a light, it writes into the light's request¹: the direction `+0x60` to `+0x68` at request `+0x20`, the words `0x01F004E0` and `0x01F084E0` at `+0x40` and
 `+0x44`, and with `s = min(1.5 × visibility, 1) × fade C` the colour `s × +0x44`, `s × +0x48`,
 `s × +0x4C` with alpha 1.0. When `s` is 0.0001 or less it sets the skip bit `0x2` of request byte `+7`
 instead, and clears it otherwise.
 
-`0x00376AC0` calls `0x003ABD00` only when `+0x50` is non-zero (`0x00376B30`-`0x00376B35`) and writes through its
-result without a test (`0x00376B43`). `0x003ABD00` returns 0 when entry `handle & 0xFF` holds another handle
-(`0x003ABD0E`-`0x003ABD17`), and no route reaches the call that way. The one caller of `0x00376AC0` is the per-frame
-pass (`0x0037672B`), on a slot with a handle (`0x00376544`); `0x00376BE0` makes the same unchecked writes after its
-own `+0x50` test (`0x00376CBB`-`0x00376CD1`).
+<details>
+<summary>Where in the code</summary>
 
-A slot's `+0x50` is written by `0x00376350`, which zeroes it (`0x003763EA`) and stores what `0x003AB960` returns, 0
-when the pool is full (`0x0037644D`), and by `0x00376990`, which releases that light (`0x003769C5`) and zeroes
-`+0x50` (`0x003769CA`) in the call that frees the slot. `0x00376350` returns the slot's handle (`0x00376450`), so the
+| | Code |
+|---|---|
+| ¹ | `0x003ABD00` |
+
+</details>
+
+`0x00376AC0` calls `0x003ABD00` only when `+0x50` is non-zero¹ and writes through its
+result without a test². `0x003ABD00` returns 0 when entry `handle & 0xFF` holds another handle³, and no route reaches the call that way. The one caller of `0x00376AC0` is the per-frame
+pass⁴, on a slot with a handle⁵; `0x00376BE0` makes the same unchecked writes after its
+own `+0x50` test⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00376B30`-`0x00376B35` |
+| ² | `0x00376B43` |
+| ³ | `0x003ABD0E`-`0x003ABD17` |
+| ⁴ | `0x0037672B` |
+| ⁵ | `0x00376544` |
+| ⁶ | `0x00376CBB`-`0x00376CD1` |
+
+</details>
+
+A slot's `+0x50` is written by `0x00376350`, which zeroes it¹ and stores what `0x003AB960` returns, 0
+when the pool is full², and by `0x00376990`, which releases that light³ and zeroes
+`+0x50`⁴ in the call that frees the slot. `0x00376350` returns the slot's handle⁵, so the
 light's handle is kept nowhere else. `0x00376A80` clears only the slot handles, and the pass and `0x00376BE0` skip
 a slot without one.
 
-A light entry's handle `+0x00` changes in three places. `0x003AB960` fills only an entry whose handle is 0
-(`0x003AB970`); `0x003ABCA0(handle)` zeroes only the listed entry whose handle equals its argument (`0x003ABCB0`,
-`0x003ABCCC`); the pool clear `0x003ABB60` zeroes all 128 (`0x003ABB83`) and files one (`0x003ABC1E`). The clear runs
-only through the tail jump of the set-up `0x003AC890` (`0x003AC8E6`), which only `0x00259180` calls (`0x00259196`), at
-start-up (`0x0022A406`); `0x00259180` then empties the flare slots (`0x00376A80`, `0x002591A0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003763EA` |
+| ² | `0x0037644D` |
+| ³ | `0x003769C5` |
+| ⁴ | `0x003769CA` |
+| ⁵ | `0x00376450` |
+
+</details>
+
+A light entry's handle `+0x00` changes in three places. `0x003AB960` fills only an entry whose handle is 0¹; `0x003ABCA0(handle)` zeroes only the listed entry whose handle equals its argument²; the pool clear `0x003ABB60` zeroes all 128³ and files one⁴. The clear runs
+only through the tail jump of the set-up `0x003AC890`⁵, which only `0x00259180` calls⁶, at
+start-up⁷; `0x00259180` then empties the flare slots⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AB970` |
+| ² | `0x003ABCB0`, `0x003ABCCC` |
+| ³ | `0x003ABB83` |
+| ⁴ | `0x003ABC1E` |
+| ⁵ | `0x003AC8E6` |
+| ⁶ | `0x00259196` |
+| ⁷ | `0x0022A406` |
+| ⁸ | `0x00376A80`, `0x002591A0` |
+
+</details>
 
 Another owner's handle, live or already released, names the flare's entry with a different counter value:
-each new handle takes the next value of the 24-bit counter `0x02B3F504` (`0x003AB994`-`0x003AB9A5`), so a value
-comes back only after `0xFFFFFF` creations. The pool block `[0x02B3F528]` is stored once, while it is null
-(`0x003AC894`, `0x003AC8B4`). So `0x003ABD00` matches for every slot that `0x00376AC0` and `0x00376BE0` reach.
+each new handle takes the next value of the 24-bit counter `0x02B3F504`¹, so a value
+comes back only after `0xFFFFFF` creations. The pool block `[0x02B3F528]` is stored once, while it is null². So `0x003ABD00` matches for every slot that `0x00376AC0` and `0x00376BE0` reach.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003AB994`-`0x003AB9A5` |
+| ² | `0x003AC894`, `0x003AC8B4` |
+
+</details>
 
 ### The occlusion query manager
 
-`0x001B29F0` builds the query manager `[0x01F811F0]`, `0x240` bytes, only while `[0x01F811F0]` is 0 (`0x001B29FD`), and
-stores what `0x00210EC0` returns there, a null block included (`0x001B2A24`). `0x001B2630` sets up the lock at `+0x218`
-(`0x005CC8A0`, `0x005CD0A0`), zeroes the count `+0x00`, the two lists `+0x04` to `+0x1C3` (one `memset` of `0x1C0`
-bytes, `0x001B2655`) and the pointer `+0x1C8`, and returns the manager (`0x001B263D`-`0x001B2676`).
+`0x001B29F0` builds the query manager `[0x01F811F0]`, `0x240` bytes, only while `[0x01F811F0]` is 0¹, and
+stores what `0x00210EC0` returns there, a null block included². `0x001B2630` sets up the lock at `+0x218`³, zeroes the count `+0x00`, the two lists `+0x04` to `+0x1C3` (one `memset` of `0x1C0`
+bytes, `0x001B2655`) and the pointer `+0x1C8`, and returns the manager⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B29FD` |
+| ² | `0x001B2A24` |
+| ³ | `0x005CC8A0`, `0x005CD0A0` |
+| ⁴ | `0x001B263D`-`0x001B2676` |
+
+</details>
 
 `0x001B2630` leaves the query pointers `+0x1D0` and the pending bytes `+0x210` as the allocation returned them.
-`0x001B2A30` zeroes the pending bytes and creates the queries on its first run, while `+0x1C8` is 0
-(`0x001B2BB4`-`0x001B2BCF`). `0x001B31D0` returns the manager. `0x001B2680` appends one entry, seven words, to the list
-at `+0x04` and raises the count `+0x00`, without testing the count against 8 (`0x001B2680`-`0x001B26CD`);
+`0x001B2A30` zeroes the pending bytes and creates the queries on its first run, while `+0x1C8` is 0¹. `0x001B31D0` returns the manager. `0x001B2680` appends one entry, seven words, to the list
+at `+0x04` and raises the count `+0x00`, without testing the count against 8²;
 `0x001B26D0` clears the list. `0x001849E0` hands its seven values to `0x001B2680` and adds nothing while `0x001B31D0()`
-returns 0 (`0x00184A07`-`0x00184A0A`).
+returns 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B2BB4`-`0x001B2BCF` |
+| ² | `0x001B2680`-`0x001B26CD` |
+| ³ | `0x00184A07`-`0x00184A0A` |
+
+</details>
 
 `ZBufferObj`, the render command with vtable `0x00903290`, runs `0x001F3A00` as its execute slot: after
 its scene-begin calls it runs `0x001B26F0`, which, when any of the eight entries has a handle, queues
-`0x001B2A30` on the render context (`0x005FEB30`) with a copy of the `0xE0`-byte list.
+`0x001B2A30` on the render context¹ with a copy of the `0xE0`-byte list.
 
-`0x001F3A00(command, context)` runs `0x00188730` on the render manager (`0x00189120`) and `0x005FEFD0(context, 0)`, then
-`0x001B26F0` only while `0x001B31D0()` returns a manager, and ends with a tail jump to `0x00600A60(context, 3)`
-(`0x001F3A09`-`0x001F3A44`). `0x001B26F0` reads the eight handles from `+0x04` and returns without queuing when all
-are 0 (`0x001B2710`-`0x001B2729`); the context it gives `0x005FEB30` is `[0x00189120() + 0x08]` (`0x001B2703`).
+<details>
+<summary>Where in the code</summary>
 
-`0x001B26F0` copies the list into the block that `0x005FEB30` returns (`0x001B274F`-`0x001B27C8`) without a test,
-and that block is never null. `0x005FEB30(context, function, size, &block)` returns 1 at once for a null function
-(`0x005FEB4D`); `0x001B26F0` gives it `0x001B2A30` (`0x001B2743`). Otherwise it sets the block to 0 (`0x005FEB76`) and
-takes `size` + 15, rounded up to 16 (`0xF0` here), `n = (size + (size != 0 ? 15 : 0) + 15) & ~0xF`
-(`0x005FEB61`-`0x005FEB85`), from the context's parameter ring; a size of 0 takes no bytes (`0x005FEB9C`).
+| | Code |
+|---|---|
+| ¹ | `0x005FEB30` |
+
+</details>
+
+`0x001F3A00(command, context)` runs `0x00188730` on the render manager¹ and `0x005FEFD0(context, 0)`, then
+`0x001B26F0` only while `0x001B31D0()` returns a manager, and ends with a tail jump to `0x00600A60(context, 3)`². `0x001B26F0` reads the eight handles from `+0x04` and returns without queuing when all
+are 0³; the context it gives `0x005FEB30` is `[0x00189120() + 0x08]`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00189120` |
+| ² | `0x001F3A09`-`0x001F3A44` |
+| ³ | `0x001B2710`-`0x001B2729` |
+| ⁴ | `0x001B2703` |
+
+</details>
+
+`0x001B26F0` copies the list into the block that `0x005FEB30` returns¹ without a test,
+and that block is never null. `0x005FEB30(context, function, size, &block)` returns 1 at once for a null function²; `0x001B26F0` gives it `0x001B2A30`³. Otherwise it sets the block to 0⁴ and
+takes `size` + 15, rounded up to 16 (`0xF0` here), `n = (size + (size != 0 ? 15 : 0) + 15) & ~0xF`⁵, from the context's parameter ring; a size of 0 takes no bytes⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B274F`-`0x001B27C8` |
+| ² | `0x005FEB4D` |
+| ³ | `0x001B2743` |
+| ⁴ | `0x005FEB76` |
+| ⁵ | `0x005FEB61`-`0x005FEB85` |
+| ⁶ | `0x005FEB9C` |
+
+</details>
 
 The block is the cursor `+0x38`, or the start `+0x28` when the cursor would pass the end `+0x30`,
-`[context + 0x38] + n > [context + 0x30]`, and the cursor moves on by `n` from the block (`0x005FEBA0`-`0x005FEBCB`).
-When the start has no room either, it leaves the block 0, sets the cursor to the start and returns `0xD`
-(`0x005FEBB9`-`0x005FEBD1`).
+`[context + 0x38] + n > [context + 0x30]`, and the cursor moves on by `n` from the block¹.
+When the start has no room either, it leaves the block 0, sets the cursor to the start and returns `0xD`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005FEBA0`-`0x005FEBCB` |
+| ² | `0x005FEBB9`-`0x005FEBD1` |
+
+</details>
 
 It then takes the 0x80-byte command record from a second ring the same way (cursor `+0x60`, end `+0x58`, start
-`+0x50`) and returns `0xD` with the block already set when that ring has no room (`0x005FEBD3`-`0x005FEC04`). It
-rounds a block it takes up to 16 bytes, `block = block + (-block & 0xF)` (`0x005FEC25`-`0x005FEC32`), and returns 0
-(`0x005FEC46`).
+`+0x50`) and returns `0xD` with the block already set when that ring has no room¹. It
+rounds a block it takes up to 16 bytes, `block = block + (-block & 0xF)`², and returns 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005FEBD3`-`0x005FEC04` |
+| ² | `0x005FEC25`-`0x005FEC32` |
+| ³ | `0x005FEC46` |
+
+</details>
 
 The ring is 64 MiB. The run setup `0x0079F150`
 allocates `0x6000000` bytes for the render context at application `+0xE8` and ends the start-up when that
-fails (`0x0079F5C1`-`0x0079F5DC`). `0x00607E20`, called only at `0x0079F5F7`, passes them to `0x00607F00` (its one call
-is `0x00607ED1`), which sets the start and the cursor to the block and the end `0x4000000` bytes on
-(`0x00607F32`-`0x00607F59`).
+fails¹. `0x00607E20`, called only at `0x0079F5F7`, passes them to `0x00607F00` (its one call
+is `0x00607ED1`), which sets the start and the cursor to the block and the end `0x4000000` bytes on².
 
-The render manager's constructor `0x00184F20` stores that context at `+0x08` (`0x00184F4C`), from `0x00189000` at
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079F5C1`-`0x0079F5DC` |
+| ² | `0x00607F32`-`0x00607F59` |
+
+</details>
+
+The render manager's constructor `0x00184F20` stores that context at `+0x08`¹, from `0x00189000` at
 `0x0017D06F`, which passes application `+0xE8`. So `0xF0` bytes always fit at the start of the ring, and
 `0x001B26F0` never writes through a null block.
 
-`0x001B2A30` runs on the render side with the primitive renderer of the context (`0x00624660`). On first
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00184F4C` |
+
+</details>
+
+`0x001B2A30` runs on the render side with the primitive renderer of the context¹. On first
 use it creates eight occlusion queries and keeps them at `+0x1D0` (`+0x1C8` points there). For each
 entry:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00624660` |
+
+</details>
 
 - with no handle it clears the slot's pending byte `+0x210 + i`;
 - it asks the slot's query for its 64-bit sample count. When the count is ready, the visibility is the
@@ -272,14 +554,26 @@ entry:
 Last it copies the eight entries, with their visibility, to `+0xE4` under the lock. `0x001B27E0`, through
 `0x00184AA0`, copies them out under the lock and clamps each visibility again.
 
-`0x001B27E0(manager, out)` copies the `0xE0` bytes from `+0xE4` between `0x005CD4F0` and `0x005CD820` on the lock
-(`0x001B282A`-`0x001B28BE`) and stops there while the queries do not exist yet (`+0x1C8` 0, `0x001B28C4`). Otherwise
+`0x001B27E0(manager, out)` copies the `0xE0` bytes from `+0xE4` between `0x005CD4F0` and `0x005CD820` on the lock¹ and stops there while the queries do not exist yet (`+0x1C8` 0, `0x001B28C4`). Otherwise
 it skips entries without a handle and, for the others, works out the area again as
-`abs(x1 − x0) × 0x00186AA0() / 2 × abs(y1 − y0) × 0x00186A90() / 2` from the render manager
-(`0x001B290E`-`0x001B2978`). An area of 10 or less sets the
-visibility to 0; a larger one keeps `area × v / area`, clamped to 0 to 1 (`0x001B297C`-`0x001B29A5`).
+`abs(x1 − x0) × 0x00186AA0() / 2 × abs(y1 − y0) × 0x00186A90() / 2` from the render manager². An area of 10 or less sets the
+visibility to 0; a larger one keeps `area × v / area`, clamped to 0 to 1³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B282A`-`0x001B28BE` |
+| ² | `0x001B290E`-`0x001B2978` |
+| ³ | `0x001B297C`-`0x001B29A5` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 `FlareSlot` (`0x90` bytes, offsets from the start of the 0x02ADBB40+0x90*slot):
 
@@ -333,7 +627,12 @@ visibility to 0; a larger one keeps `area × v / area`, clamped to 0 to 1 (`0x00
 | `+0x210` | `u8[8]` | issued | a query is in flight |
 | `+0x218` | `u8[40]` | lock | initialised by `0x005CC8A0` |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | What |
 |---|---|
@@ -362,14 +661,35 @@ template when it runs: `0x0022BFF0` copies it into its VU cell at the lane site 
 
 ### The product matrix's cells
 
-`0x0017ED50` stores the matrix row by row and returns `0x01F7F550` (`0x0017EE3A`). The per-frame pass
-`0x00376470` calls it (`0x0037683E`) and passes that pointer (`0x00376848`) to `0x00202D70`, which jumps to the multiply `0x00217150`. The multiply
+`0x0017ED50` stores the matrix row by row and returns `0x01F7F550`¹. The per-frame pass
+`0x00376470` calls it² and passes that pointer³ to `0x00202D70`, which jumps to the multiply `0x00217150`. The multiply
 reads the cells through its second argument at the sites below.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017EE3A` |
+| ² | `0x0037683E` |
+| ³ | `0x00376848` |
+
+</details>
+
 `0x0017ED50(A)` copies its matrix argument to the stack, takes `M` at `0x00189120() + 0x6C8` and forms rows 3, 2, 1
-and 0 of the product as that row of `A` times `M` with `0x0017E7E0(M, out, row)` (`0x0017EDCB`-`0x0017EE20`).
+and 0 of the product as that row of `A` times `M` with `0x0017E7E0(M, out, row)`¹.
 `0x0017E7E0` stores `out[j] = row[0] × M[j] + row[1] × M[4 + j] + row[2] × M[8 + j] + row[3] × M[12 + j]` and
-returns `out` (`0x0017E7E4`-`0x0017E8D5`).
+returns `out`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017EDCB`-`0x0017EE20` |
+| ² | `0x0017E7E4`-`0x0017E8D5` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -392,9 +712,18 @@ returns `out` (`0x0017E7E4`-`0x0017E8D5`).
 
 ### The scene colour's green channel
 
-The scene colour is four floats, red, green, blue and alpha. `0x003769E0`, from the draw `0x0022B0B0` (`0x0022B278`),
+The scene colour is four floats, red, green, blue and alpha. `0x003769E0`, from the draw `0x0022B0B0`¹,
 copies it to `0x0209A380`, the scene colour of the map ambient
 ([how a character is lit](character-lighting-and-shadows.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022B278` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -405,6 +734,8 @@ copies it to `0x0209A380`, the scene colour of the map ambient
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | each row of [lens-flares-state.tsv](lens-flares-state.tsv): the handle of slots 1 to 7, and the four frozen copies and the flags of all eight slots | the row's `type` | 0 (zero-filled tail of `.data`) | the row's `meaning`, for the slot and field it names | the row's `set_by`: `0x00376350`, `0x00376990` and `0x00376A80` for a handle, `0x00376D80` for a frozen copy | the row's `read_by`: the handle checks of every accessor, and `0x00376BE0` for a frozen copy |
+
+</details>
 
 ## Modding notes
 
@@ -431,52 +762,55 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 42 calls with 7 other topics</summary>
 
-**Characters and objects**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0024DA40` | calls | `0x00263C30`, `0x00263FF0`, `0x00358940`, `0x003589B0` |
-| `0x00465690` | calls | `0x00263C30`, `0x00263FF0`, `0x00358940`, `0x003589B0` |
-
 **Characters and objects** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [debug menu](../Engine-Core/debug-menu.md), [frame update order](../Engine-Core/frame-update-order.md), [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-**Controls and input**
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022B8C0` | calls | `0x0017DE60`, `0x00182D40`, `0x002498B0`, `0x0035AE30`, `0x0035AF10`, `0x0035AF20`, `0x0035E9A0`, `0x0035FF90`, `0x0036FDF0` |
-| `0x0022BC20` | calls | `0x0017DE60`, `0x002498B0`, `0x0035AE30`, `0x0035AF10`, `0x0035AF20`, `0x0035E9A0`, `0x0035FF90`, `0x0036FDF0` |
-| `0x005CD4F0` | is called by | `0x0079C140`, `0x007A0340` |
-| `0x005CD820` | is called by | `0x0079C140`, `0x007A0340` |
-| `0x0079F150` | calls | `0x00797910`, `0x0079D920`, `0x0079E3D0` |
+| [`0x0024DA40`](lens-flares.md) | calls | [`0x00263C30`](effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x00263FF0`](effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x00358940`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor manager: get record by ordinal (on party during scenes)<br>[`0x003589B0`](effect-anchors-and-targets.md) Actor handle: encode registry entry (on effect anchors and targets) |
+| [`0x00465690`](lens-flares.md) | calls | [`0x00263C30`](effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x00263FF0`](effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x00358940`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor manager: get record by ordinal (on party during scenes)<br>[`0x003589B0`](effect-anchors-and-targets.md) Actor handle: encode registry entry (on effect anchors and targets) |
 
 **Controls and input** (explained on [frame update order](../Engine-Core/frame-update-order.md), [screen mode and aspect](screen-mode-and-aspect.md), [phyre application](../PhyreEngine/phyre-application.md), [controllers](../Controls-And-Input/controllers.md), [sound engine config](../Sound-And-Music/sound-engine-config.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0079F150` | is called by | `0x0079E520` |
+| [`0x0022B8C0`](graphics-thread-handshake.md) (on graphics thread handshake) | calls | [`0x0017DE60`](../Controls-And-Input/on-screen-keyboard.md) (on on screen keyboard)<br>[`0x00182D40`](../Engine-Core/time-stop-and-freeze.md) (on time stop and freeze)<br>[`0x002498B0`](../Controls-And-Input/controls.md) (on controls)<br>[`0x0035AE30`](../Controls-And-Input/vibration.md) (on vibration)<br>[`0x0035AF10`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x0035AF20`](../Controls-And-Input/vibration.md) (on vibration)<br>[`0x0035E9A0`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x0035FF90`](../Controls-And-Input/controls.md) (on controls)<br>[`0x0036FDF0`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x0022BC20`](graphics-thread-handshake.md) (on graphics thread handshake) | calls | [`0x0017DE60`](../Controls-And-Input/on-screen-keyboard.md) (on on screen keyboard)<br>[`0x002498B0`](../Controls-And-Input/controls.md) (on controls)<br>[`0x0035AE30`](../Controls-And-Input/vibration.md) (on vibration)<br>[`0x0035AF10`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x0035AF20`](../Controls-And-Input/vibration.md) (on vibration)<br>[`0x0035E9A0`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x0035FF90`](../Controls-And-Input/controls.md) (on controls)<br>[`0x0036FDF0`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x005CD4F0`](../Engine-Core/call-signatures.md) (on call signatures) | is called by | [`0x0079C140`](../PhyreEngine/phyre-application.md) (on phyre application)<br>[`0x007A0340`](../PhyreEngine/phyre-application.md) (on phyre application) |
+| [`0x005CD820`](../PhyreEngine/phyre-asset-files.md) (on phyre asset files) | is called by | [`0x0079C140`](../PhyreEngine/phyre-application.md) (on phyre application)<br>[`0x007A0340`](../PhyreEngine/phyre-application.md) (on phyre application) |
+| [`0x0079F150`](../PhyreEngine/phyre-application.md) (on phyre application) | calls | [`0x00797910`](../Controls-And-Input/controllers.md) (on controllers)<br>[`0x0079D920`](../PhyreEngine/phyre-application.md) (on phyre application)<br>[`0x0079E3D0`](../Controls-And-Input/controllers.md) (on controllers) |
+| [`0x0079F150`](../PhyreEngine/phyre-application.md) (on phyre application) | is called by | [`0x0079E520`](../PhyreEngine/phyre-application.md) (on phyre application) |
 
 **Movement and pathfinding** (explained on [the frame](../PhyreEngine/the-frame.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022B0B0` | calls | `0x00357780` |
-| `0x0022B8C0` | calls | `0x00263560`, `0x0037CF00` |
-| `0x0022BC20` | calls | `0x00263560` |
+| [`0x0022B0B0`](graphics-thread-handshake.md) (on graphics thread handshake) | calls | [`0x00357780`](../Menus-And-HUD/hud.md) (on hud) |
+| [`0x0022B8C0`](graphics-thread-handshake.md) (on graphics thread handshake) | calls | [`0x00263560`](../Scripts-And-Script-Commands/world-lock.md) (on world lock)<br>[`0x0037CF00`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
+| [`0x0022BC20`](graphics-thread-handshake.md) (on graphics thread handshake) | calls | [`0x00263560`](../Scripts-And-Script-Commands/world-lock.md) (on world lock) |
 
 **Party** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022B8C0` | calls | `0x00358BB0` |
-| `0x0022BC20` | calls | `0x00358BB0` |
-| `0x00465690` | calls | `0x003590D0` |
+| [`0x0022B8C0`](graphics-thread-handshake.md) (on graphics thread handshake) | calls | [`0x00358BB0`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x0022BC20`](graphics-thread-handshake.md) (on graphics thread handshake) | calls | [`0x00358BB0`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x00465690`](lens-flares.md) | calls | [`0x003590D0`](effect-anchors-and-targets.md) (on effect anchors and targets) |
 
 **Menus and HUD** (explained on [graphics settings](../Engine-Core/graphics-settings.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x005FEFD0` | is called by | `0x0018EEE0` |
-| `0x00600A60` | is called by | `0x0018EEE0` |
+| [`0x005FEFD0`](../PhyreEngine/phyre-bitmap-font-text.md) (on phyre bitmap font text) | is called by | [`0x0018EEE0`](post-processing.md) (on post processing) |
+| [`0x00600A60`](../PhyreEngine/phyre-bitmap-font-text.md) (on phyre bitmap font text) | is called by | [`0x0018EEE0`](post-processing.md) (on post processing) |
 
 </details>

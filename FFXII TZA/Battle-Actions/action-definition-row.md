@@ -33,13 +33,33 @@ menu builds its command lists from those lists.
 All multi-byte fields are little-endian.
 
 Offsets in the table are from the start of the row. Row *n* starts at the header's `+0x0C` plus *n* times the
-header's `u16` stride at `+0x08` (`0x00237FFA`-`0x00238024`); the loop that files the rows stops at the `u32` row count
-at `+0x04` (`0x00237FF5`). In the `us` file the header holds 543 rows, stride 60 and first row `0x20`.
+header's `u16` stride at `+0x08`¹; the loop that files the rows stops at the `u32` row count
+at `+0x04`². In the `us` file the header holds 543 rows, stride 60 and first row `0x20`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00237FFA`-`0x00238024` |
+| ² | `0x00237FF5` |
+
+</details>
 
 The header's `+0x0C`, `+0x10`, `+0x18` and `+0x1C` are offsets from the start of the section: `0x003845F0` adds the
-section address to each one that is not 0 (`0x003845F4`-`0x00384640`). The directory entries of `battle_pack.bin` are
+section address to each one that is not 0¹. The directory entries of `battle_pack.bin` are
 offsets from the start of the file: `0x00238850` passes the file to `0x003846F0`, which adds the file's address to the
-`u32` entries from `+0x04`, one more than the `u16` count at `+0x00` (`0x00384727`-`0x0038478E`).
+`u32` entries from `+0x04`, one more than the `u16` count at `+0x00`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003845F4`-`0x00384640` |
+| ² | `0x00384727`-`0x0038478E` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -107,16 +127,43 @@ ownership rule for each):
 
 ### The action lists
 
-`0x00236A40()`, one of the calls of the first-screen set-up of the start-up state `0x0022B6E0` (`0x0022B77C`), stores the
-dword 1 in the battle system's up flag `0x02089300`, calls `0x002376F0()` and ends with a jump to `0x00237CA0()`
-(`0x00236A44`-`0x00236A57`).
+`0x00236A40()`, one of the calls of the first-screen set-up of the start-up state `0x0022B6E0`¹, stores the
+dword 1 in the battle system's up flag `0x02089300`, calls `0x002376F0()` and ends with a jump to `0x00237CA0()`².
 
-`0x002376F0` sorts the action ids into lists by kind. It is called only by `0x00236A40` (`0x00236A4E`), and it does nothing
-while the action table slot `0x02EBF138` is 0 (`0x002376FF`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022B77C` |
+| ² | `0x00236A44`-`0x00236A57` |
+
+</details>
+
+`0x002376F0` sorts the action ids into lists by kind. It is called only by `0x00236A40`¹, and it does nothing
+while the action table slot `0x02EBF138` is 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236A4E` |
+| ² | `0x002376FF` |
+
+</details>
 
 For each list it walks rows 0-542, a signed 32-bit compare against `0x21F` (`0x00237786` and the same compare after each
-list), and appends the id of each matching row as a `u16` to one array at `0x0208CEC0`, `0x02089340` + `0x3B80`
-(`0x0023777B`). The lists follow each other in the array in this order:
+list), and appends the id of each matching row as a `u16` to one array at `0x0208CEC0`, `0x02089340` + `0x3B80`¹. The lists follow each other in the array in this order:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023777B` |
+
+</details>
 
 1. kind 0;
 2. kind 1 with `+0x2C` bits `0x7` at 0, 1, 2, 3 and 4, five lists (`0x002377FF`; `0x00237881`-`0x0023788B`, an 8-bit compare,
@@ -164,17 +211,12 @@ Entry 21's address `0x0208CE70` is the first id of the magicks with value 0, the
 
 The battle menu's list builder `0x0031EB20` reads the lists ([Battle menu](../Menus-And-HUD/battle-menu.md)):
 
-1. It takes the entry at `0x0208CD20` + mode × `0x10`, the mode being the list block's dword `+0x14`, sign-extended
-   (`0x0031F8ED`-`0x0031F8FF`). When the mode is 1 and the block's dword `+0x18` is not `0xFF`, both 32-bit compares, it
-   takes the entry at `0x0208CE70` + that value × `0x10` instead (`0x0031F902`-`0x0031F920`).
-2. An empty list ends the build at once (`0x0031F923`, an unsigned 16-bit compare of index 0 with the count).
-3. Otherwise it walks the ids while the index is below the count, a signed 32-bit compare with the zero-extended count
-   (`0x0031F95D`-`0x0031F978`), and appends each id to the block's list at `+0x50` + n × 8, counting in `+0x40`
-   (`0x0031F94A`-`0x0031F95A`).
-4. With bit `0x1` of the block's dword `+0x48` clear (`0x0031F8A7`-`0x0031F8B5`, `0x0031F930`), an id goes in only when
-   `0x00306480(id, unit, 0)` answers 0 ([Command availability](command-availability.md); `0x0031F934`-`0x0031F948`). The
-   unit is the `0x1C8`-byte record of `[0x02EBF190]` that the block's byte `+0x2C` names, which must be at most `0x27`,
-   an unsigned 8-bit compare (`0x0031F882`-`0x0031F8A4`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It takes the entry at `0x0208CD20` + mode × `0x10`, the mode being the list block's dword `+0x14`, sign-extended. When the mode is 1 and the block's dword `+0x18` is not `0xFF`, both 32-bit compares, it takes the entry at `0x0208CE70` + that value × `0x10` instead. | `0x0031F8ED`-`0x0031F8FF`<br>`0x0031F902`-`0x0031F920` |
+| 2 | An empty list ends the build at once (`0x0031F923`, an unsigned 16-bit compare of index 0 with the count). |   |
+| 3 | Otherwise it walks the ids while the index is below the count, a signed 32-bit compare with the zero-extended count, and appends each id to the block's list at `+0x50` + n × 8, counting in `+0x40`. | `0x0031F95D`-`0x0031F978`<br>`0x0031F94A`-`0x0031F95A` |
+| 4 | With bit `0x1` of the block's dword `+0x48` clear, an id goes in only when `0x00306480(id, unit, 0)` answers 0 ([Command availability](command-availability.md); `0x0031F934`-`0x0031F948`). The unit is the `0x1C8`-byte record of `[0x02EBF190]` that the block's byte `+0x2C` names, which must be at most `0x27`, an unsigned 8-bit compare. | `0x0031F8A7`-`0x0031F8B5`, `0x0031F930`<br>`0x0031F882`-`0x0031F8A4` |
 
 ### The element byte
 
@@ -216,24 +258,68 @@ Each bit of `+0x13` is one element; no shipped row sets more than one:
 | `0x40000000` | 87 | runs a scene: summon, Quickening, Concurrence ([Quickenings and summons](quickenings-and-summons.md); 17 sites, `0x00304D3F` among them) |
 | `0x80000000` | 64 | consumes an item: the command entry carries the item count (`0x0031F077`) |
 
-Bits `0x2000` and `0x4000` are also copied into the kind-10 AI operand mask as its bits `0x100` and `0x200` (`0x00312213`-`0x00312232`).
+Bits `0x2000` and `0x4000` are also copied into the kind-10 AI operand mask as its bits `0x100` and `0x200`¹.
 Bits `0x80`, `0x400`, `0x8000`, `0x40000` and `0x100000` are set on 324, 292, 24, 1 (Attack) and 81 rows and are read by no instruction.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312213`-`0x00312232` |
+
+</details>
+
 `0x00312170(user, target, action)` builds that mask from the action's row and writes nothing unless both units
-are non-null and `0x0030AB40(user, target, 0)` answers above 1 (`0x003121D0`-`0x003121F3`). A mask of 0 writes
-nothing either (`0x00312235`-`0x00312237`); otherwise the mask is ORed onto the target's present value, the dword
+are non-null and `0x0030AB40(user, target, 0)` answers above 1¹. A mask of 0 writes
+nothing either²; otherwise the mask is ORed onto the target's present value, the dword
 `+0xB90` of the unit, read with `0x00321190(10, target, 0, &old)` and stored with
-`0x00329E60(10, target, 0, mask | old)` (`0x00312239`-`0x0031225E`).
+`0x00329E60(10, target, 0, mask | old)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003121D0`-`0x003121F3` |
+| ² | `0x00312235`-`0x00312237` |
+| ³ | `0x00312239`-`0x0031225E` |
+
+</details>
 
 When the pointer at `0x02EBF138` is 0 or `0x0020E600([0x02EBF138] dword +0x0C)` answers 0, the function does not end: the
-row pointer stays 0 (`0x0031219A`-`0x003121A7`, `0x003121CD`), and past the guards above the reads of `+0x3A`, `+0x13` and
+row pointer stays 0¹, and past the guards above the reads of `+0x3A`, `+0x13` and
 `+0x0C` are then of the addresses `0x3A`, `0x13` and `0x0C`. Otherwise the row is the answer of a second `0x0020E600`
-call on the same section plus the action id times the table's word `+0x08`, in 32 bits (`0x003121A9`-`0x003121CB`).
+call on the same section plus the action id times the table's word `+0x08`, in 32 bits².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031219A`-`0x003121A7`, `0x003121CD` |
+| ² | `0x003121A9`-`0x003121CB` |
+
+</details>
 
 The 60 instructions that read the word test other bits; those that take it whole keep bit `0x2000` (`0x0030770D`, masked by a
-0-or-1 register; `0x002F8689`), bits `0x2000` and `0x4000` (`0x00312213`), bits `0x1000000` and `0x2000000` (`0x0030D3AE`), bits `0x1000`, `0x200000`, `0x1000000` and `0x2000000`
-(`0x0031A99A`), bit `0x8000000` (`0x002F8494`), bits `0x100` and `0x200` (`0x0031DB9E`), bits `0x20` and `0x40` (`0x00322BD5`) or bit `0x80000000` (`0x0031F077`).
+0-or-1 register; `0x002F8689`), bits `0x2000` and `0x4000`¹, bits `0x1000000` and `0x2000000`², bits `0x1000`, `0x200000`, `0x1000000` and `0x2000000`³, bit `0x8000000`⁴, bits `0x100` and `0x200`⁵, bits `0x20` and `0x40`⁶ or bit `0x80000000`⁷.
 No shipped row sets bits `0x400000` or `0x800000`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312213` |
+| ² | `0x0030D3AE` |
+| ³ | `0x0031A99A` |
+| ⁴ | `0x002F8494` |
+| ⁵ | `0x0031DB9E` |
+| ⁶ | `0x00322BD5` |
+| ⁷ | `0x0031F077` |
+
+</details>
 
 ### The flag word at +0x2C
 
@@ -248,27 +334,74 @@ No shipped row sets bits `0x400000` or `0x800000`.
 | `0x2000` | 98 | no License needed ([Command availability](command-availability.md); `0x00323F52`) |
 | `0x4000` | 93 | returned by `0x0030BB30`, as 0 or 1, for categories 1-8 (`0x0030BC0C`-`0x0030BC13`) |
 
-Bits `0x200`, `0x1000` and `0x8000` (3, 20 and 10 rows) are read through the whole word by the AI order selectors
-(`0x00303434`, `0x00303492`, `0x00308CF2`) and by `0x003851F0` and `0x003872D0` (`0x003852AB`, `0x00387382`).
+Bits `0x200`, `0x1000` and `0x8000` (3, 20 and 10 rows) are read through the whole word by the AI order selectors¹ and by `0x003851F0` and `0x003872D0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00303434`, `0x00303492`, `0x00308CF2` |
+| ² | `0x003852AB`, `0x00387382` |
+
+</details>
 
 Bit `0x20` is set on 227 rows and is read by no instruction. The 44 instructions that read the byte `+0x2C` or the
 word test or keep other bits: bits `0x7` (`0x002377FF`, `0x00237885`, `0x00300B3F`, `0x00317CFF`, `0x0031CDC2`, `0x0031EF87`,
-`0x0032A46F` among them), bits `0x8` and `0x10` (`0x002F9323`, `0x002F9377`), bits `0x40` and `0x80` (`0x002FFAF5`, `0x002FFB30`, `0x00322B67`,
+`0x0032A46F` among them), bits `0x8` and `0x10`¹, bits `0x40` and `0x80` (`0x002FFAF5`, `0x002FFB30`, `0x00322B67`,
 `0x00322B78` among them) and the mask `0xFF00` (the word tests above, `0x0030847E`, `0x003084B8`, `0x00308CFB`, `0x00308D02`,
 `0x0030BC10`).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F9323`, `0x002F9377` |
+
+</details>
+
 `0x0030BB30(unit)` answers 0 when the unit's action id `+0x714` is above `0x21E`, an unsigned 16-bit compare, or
-`0x0031B7E0(unit dword +0x710)` answers null (`0x0030BB3A`-`0x0030BB69`), and 1 when `0x0030AB40(unit, target, 0)` answers
-above 1 (`0x0030BB6B`-`0x0030BB7C`).
+`0x0031B7E0(unit dword +0x710)` answers null¹, and 1 when `0x0030AB40(unit, target, 0)` answers
+above 1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030BB3A`-`0x0030BB69` |
+| ² | `0x0030BB6B`-`0x0030BB7C` |
+
+</details>
 
 Otherwise it takes the action's row, the low 32 bits of `0x0020E600([0x02EBF138] dword +0x0C)` plus the action id times
-the table's word `+0x08`, in 32 bits (`0x0030BB82`-`0x0030BBC1`), and answers 1 when the row's category byte `+0x1C` is
-outside 1-8 (`0x0030BBCD`-`0x0030BBD5`). Else it answers 1 when bit `0x4000` of the row's word `+0x2C` is set and 0 when
-it is clear, the row taken again the same way (`0x0030BBD7`-`0x0030BC13`).
+the table's word `+0x08`, in 32 bits¹, and answers 1 when the row's category byte `+0x1C` is
+outside 1-8². Else it answers 1 when bit `0x4000` of the row's word `+0x2C` is set and 0 when
+it is clear, the row taken again the same way³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030BB82`-`0x0030BBC1` |
+| ² | `0x0030BBCD`-`0x0030BBD5` |
+| ³ | `0x0030BBD7`-`0x0030BC13` |
+
+</details>
 
 When `0x02EBF138` is 0 or `0x0020E600` answers 0, the row pointer is 0, so the category read is of the address `0x1C`,
-and, should that read not fault, the flag read of the address `0x2C` (`0x0030BB89`-`0x0030BB9C`, `0x0030BBC3`-`0x0030BBCD`,
-`0x0030BBDA`, `0x0030BBE8`, `0x0030BC0C`).
+and, should that read not fault, the flag read of the address `0x2C`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030BB89`-`0x0030BB9C`, `0x0030BBC3`-`0x0030BBCD`, `0x0030BBDA`, `0x0030BBE8`, `0x0030BC0C` |
+
+</details>
 
 ### The flag word at +0x36
 
@@ -282,6 +415,9 @@ and, should that read not fault, the flag read of the address `0x2C` (`0x0030BB8
 | `0x20` | 14 | the gambit target picker keeps a candidate whose byte `+0x55` is `0x0D` without testing what the action would change (`0x0030844B`-`0x00308457`) |
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Field offset | Values in the 543 rows |
 |---|---|
@@ -310,26 +446,19 @@ a1 0f 00 00 00 64 00 00 04 17 08 00 4c 2d 19 30 14 00 00 00 00 00 00 00 00 00 00
 04 01 00 30 b3 00 00 00 00 00 00 00 30 10 10 27 00 00 00 00 00 00 30 00 01 00 10 00
 ```
 
+</details>
+
 ## Loader behaviour
 
 The table arrives with the battle data resource:
 
-1. `BattleStorage_InitializeWorkArrays` registers `0x00238850` as the handler for resource `0x13`,
-   named `STATIC` (`0x002369BB`-`0x002369CE`).
-2. On delivery `0x00238850` stores the blob pointer in `0x0208E680` and jumps to `0x00236C30(1)`
-   (`0x0023885A`-`0x0023886F`).
-3. `0x00236C30` binds the battle tables from the blob's directory and calls `0x00237FC0` with entry
-   `+0x3C` (`0x00236D7B`-`0x00236D85`).
-4. `0x00237FC0` binds `0x02EBF138` to that section through `0x003845F0` (`0x00237FD5`-`0x00237FDE`), which
-   stores the section pointer and rebases the header's offsets at `+0x0C`, `+0x10`, `+0x18` and
-   `+0x1C` by the section address (`0x003845F4`-`0x00384640`). The header's `+0x14` is 0 in the `us`
-   action_data, so the sub-directory walk `0x003845F0` gives a non-zero `+0x14` (`0x00384644`-`0x003846C7`) does
-   not run for it.
-5. It then walks every row twice (`0x00238033`-`0x00238132`). The first walk takes the largest `+0x38` and `+0x39`
-   other than `0xFF` (`0x00237FF0`-`0x00238055`); the second files each row with both `+0x38` and `+0x39` set (not
-   `0xFF`) into the command grid at `0x0208D308` (`0x002380C0`-`0x0023813F`).
-   - When every row has `0xFF` at `+0x38`, or every row has `0xFF` at `+0x39`, no grid is allocated, `0x0208D308`
-     keeps the 0 stored at `0x00238059` and the second walk does not run (`0x00238073`-`0x0023807D`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `BattleStorage_InitializeWorkArrays` registers `0x00238850` as the handler for resource `0x13`, named `STATIC`. | `0x002369BB`-`0x002369CE` |
+| 2 | On delivery `0x00238850` stores the blob pointer in `0x0208E680` and jumps to `0x00236C30(1)`. | `0x0023885A`-`0x0023886F` |
+| 3 | `0x00236C30` binds the battle tables from the blob's directory and calls `0x00237FC0` with entry `+0x3C`. | `0x00236D7B`-`0x00236D85` |
+| 4 | `0x00237FC0` binds `0x02EBF138` to that section through `0x003845F0`, which stores the section pointer and rebases the header's offsets at `+0x0C`, `+0x10`, `+0x18` and `+0x1C` by the section address. The header's `+0x14` is 0 in the `us` action_data, so the sub-directory walk `0x003845F0` gives a non-zero `+0x14` does not run for it. | `0x00237FD5`-`0x00237FDE`<br>`0x003845F4`-`0x00384640`<br>`0x00384644`-`0x003846C7` |
+| 5 | It then walks every row twice. The first walk takes the largest `+0x38` and `+0x39` other than `0xFF`; the second files each row with both `+0x38` and `+0x39` set (not `0xFF`) into the command grid at `0x0208D308`.<br>• When every row has `0xFF` at `+0x38`, or every row has `0xFF` at `+0x39`, no grid is allocated, `0x0208D308` keeps the 0 stored at `0x00238059` and the second walk does not run. | `0x00238033`-`0x00238132`<br>`0x00237FF0`-`0x00238055`<br>`0x002380C0`-`0x0023813F`<br>`0x00238073`-`0x0023807D` |
 
 ## Modding notes
 
@@ -358,14 +487,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Controls and input** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022B6E0` | calls | `0x00249C30`, `0x0035E9A0` |
+| [`0x0022B6E0`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) | calls | [`0x00249C30`](action-definition-row.md)<br>[`0x0035E9A0`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 **Saving, loading and settings** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022B6E0` | calls | `0x002EF650` |
+| [`0x0022B6E0`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) | calls | [`0x002EF650`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) |
 
 </details>

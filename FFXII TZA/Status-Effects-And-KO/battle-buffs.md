@@ -27,38 +27,55 @@ one set of 128 bits ([Damage formula](../Damage-And-Battle-Formulas/damage-formu
 
 ### The layer write
 
-`0x0030E130(stats, id, timer, flags, mode)` sets or clears one id (`0x0030E130`-`0x0030E358`):
+`0x0030E130(stats, id, timer, flags, mode)` sets or clears one id¹:
 
-1. The id must pass the class-29 id check, 0 to 128 (`0x0030E1D7`-`0x0030E1E5`;
-   [Item and ability ids](../Engine-Core/item-and-ability-ids.md)).
-2. Modes 0 and 2 clear and set `+0x68`; modes 1 and 3 clear and set `+0x78`; any other mode returns at once
-   (`0x0030E1F9`-`0x0030E1FC`). A change to a bit already in the asked state does nothing (`0x0030E1EB`-`0x0030E24E`).
-3. For modes 0 and 2, `0x0030EA40` writes the id's timer, below (`0x0030E251`-`0x0030E264`).
-4. Nothing else happens unless the id's presence in either layer changed (`0x0030E269`-`0x0030E280`).
-5. A result record is built: for a set, `0x00386AE0`, which resets it with `0x003848E0` (`0x00386B07`) and fills
-   it only for id 52; for a clear, an empty one (`0x0030E286`-`0x0030E2DA`).
-   - A record whose `+0x2C` bit `0x1` is set is applied with `0x003112F0(record, 0, stats, 0xFFFF, flags)`
-     (`0x0030E2BE`-`0x0030E2DA`). The clear builder `0x00386A50` clears that bit (`0x00386A66`), and so does
-     `0x00386AE0` for any id but 52 (`0x00386BF0`), so only a set of id 52 can reach `0x003112F0`.
-6. With flags bit `0x2` clear, `0x0046A790` (set) or `0x0046A720` (clear) posts the message of ids 55-57 (`0x0030E2DF`-`0x0030E301`).
-7. Ids 104-113 change the gambit-slot count, below (`0x0030E303`-`0x0030E317`).
-8. Unless flags bit `0x200` is set, the augments are rebuilt (`0x0030E31C`-`0x0030E329`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030E130`-`0x0030E358` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The id must pass the class-29 id check, 0 to 128 (`0x0030E1D7`-`0x0030E1E5`; [Item and ability ids](../Engine-Core/item-and-ability-ids.md)). |   |
+| 2 | Modes 0 and 2 clear and set `+0x68`; modes 1 and 3 clear and set `+0x78`; any other mode returns at once. A change to a bit already in the asked state does nothing. | `0x0030E1F9`-`0x0030E1FC`<br>`0x0030E1EB`-`0x0030E24E` |
+| 3 | For modes 0 and 2, `0x0030EA40` writes the id's timer, below. | `0x0030E251`-`0x0030E264` |
+| 4 | Nothing else happens unless the id's presence in either layer changed. | `0x0030E269`-`0x0030E280` |
+| 5 | A result record is built: for a set, `0x00386AE0`, which resets it with `0x003848E0` and fills it only for id 52; for a clear, an empty one.<br>• A record whose `+0x2C` bit `0x1` is set is applied with `0x003112F0(record, 0, stats, 0xFFFF, flags)`. The clear builder `0x00386A50` clears that bit, and so does `0x00386AE0` for any id but 52, so only a set of id 52 can reach `0x003112F0`. | `0x00386B07`<br>`0x0030E286`-`0x0030E2DA`<br>`0x0030E2BE`-`0x0030E2DA`<br>`0x00386A66`<br>`0x00386BF0` |
+| 6 | With flags bit `0x2` clear, `0x0046A790` (set) or `0x0046A720` (clear) posts the message of ids 55-57. | `0x0030E2DF`-`0x0030E301` |
+| 7 | Ids 104-113 change the gambit-slot count, below. | `0x0030E303`-`0x0030E317` |
+| 8 | Unless flags bit `0x200` is set, the augments are rebuilt. | `0x0030E31C`-`0x0030E329` |
 
 ### Who switches them
 
 Two paths set `+0x68` in shipped play:
 
 - **Enemy AI orders.** Orders `0x4092`-`0x40D1` set id (order − `0x4092`) and orders `0x40D2`-`0x4111` clear id
-  (order − `0x40D2`), in the order handler `0x002FDDA0` (`0x002FDF93`-`0x002FDFAC`, `0x002FDFF5`-`0x002FE00B`).
+  (order − `0x40D2`), in the order handler `0x002FDDA0`¹.
 - **Clearing everything.** Order `0x4091` clears every id 0-127 from `+0x68` through `0x0030E970`, with flags
-  `0x200`, then rebuilds once with `0x0030FED0(stats, 0x200)` (`0x002FDEC1`-`0x002FDEEF`).
+  `0x200`, then rebuilds once with `0x0030FED0(stats, 0x200)`².
 - **Their tests.** The shipped area order sets pair nearly every such order with a test of the same id on the
-  enemy itself, opcode `0x21` "lacks" or `0x20` "has" (`0x00302478`): if the enemy lacks the buff the order sets
+  enemy itself, opcode `0x21` "lacks" or `0x20` "has"³: if the enemy lacks the buff the order sets
   it, and if the enemy has it the order may clear it.
 - **Abilities of recipe 79.** Wall, Magick Barrier, Force Barrier, Greater Barrier, Battle Cry, Shift, Saber,
   Mana Spring, Enrage, Chain Magick, Limit Break, Unleash, Perfect Defense and Chain Reaction set the ids in their
   action row's bytes `+0x10` and `+0x11` (`0xFF` for no id). Slot 187 copies them into the result, and the result
-  applier sets them in mode 2 (`0x0038FF72`, `0x003117CB`).
+  applier sets them in mode 2⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FDF93`-`0x002FDFAC`, `0x002FDFF5`-`0x002FE00B` |
+| ² | `0x002FDEC1`-`0x002FDEEF` |
+| ³ | `0x00302478` |
+| ⁴ | `0x0038FF72`, `0x003117CB` |
+
+</details>
 
 ### What each id does
 
@@ -94,30 +111,70 @@ the damage before Greater Barrier's cut (`0x00390F4E`-`0x00390F85`, then `0x0039
 ### Timers and messages
 
 `0x0030EA40(stats, id, timer)` stores the timer in one of eight slots at `+0x17C`, chosen by the augment row's
-byte `+6`; a byte above 7 means no timer (`0x0030EA9D`-`0x0030EAB9`). A negative timer takes the default `0x00387020`,
+byte `+6`; a byte above 7 means no timer¹. A negative timer takes the default `0x00387020`,
 row `+4` × 30 × frame base (`0x00387074`-`0x0038707F`; the frame base `[0x01DFE0B4]` is 1 at 30 fps and 2 at 60).
 Only ids 55, 56 and 57 have a slot, 3, 4 and 5, with `+4` = 120: 3,600 steps at 30 fps and 7,200 at 60, two
 minutes at one step per frame either way.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030EA9D`-`0x0030EAB9` |
+
+</details>
 
 Each periodic step `0x00385570` walks the ids held in either layer whose row byte `+6` is not `0xFF`
 (`0x003855CD`-`0x00385623`, [Status timers](status-timers.md)), among the ids below the row count `[0x02EBF040] + 4` of
 the augment table (an empty walk without the table, `0x00385585`-`0x003855A3`), and reads the slot's timer as a signed
 16-bit value:
 
-- A timer of 0 or below is left alone (`0x0038562E`-`0x00385631`).
+- A timer of 0 or below is left alone¹.
 - A positive one loses 1 into the result's timer words `+0x42`, which the result applier copies back to `+0x17C`
-  (`0x00385636`-`0x00385645`, `0x00311824`).
-- The step that takes it from 1 to 0 also puts the id in the result's clear list `+0x3E` (`0x0038563C`); a timer
+ ².
+- The step that takes it from 1 to 0 also puts the id in the result's clear list `+0x3E`³; a timer
   already at 0 queues nothing.
 
-The applier clears each listed id with `0x0030E130` in mode 0 and timer 0 (`0x003117E4`-`0x00311807`), and mode 0
-clears `+0x68` only (`0x0030E23E`-`0x0030E24E`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038562E`-`0x00385631` |
+| ² | `0x00385636`-`0x00385645`, `0x00311824` |
+| ³ | `0x0038563C` |
+
+</details>
+
+The applier clears each listed id with `0x0030E130` in mode 0 and timer 0¹, and mode 0
+clears `+0x68` only²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003117E4`-`0x00311807` |
+| ² | `0x0030E23E`-`0x0030E24E` |
+
+</details>
 
 - held in `+0x68` only: the id goes, and the fall message below posts;
 - held in both layers: the `+0x68` bit goes, the id stays in effect through `+0x78`, and the function returns
-  before the message (`0x0030E269`-`0x0030E280`);
-- held in `+0x78` only: mode 0 finds no `+0x68` bit and returns at once (`0x0030E23E`-`0x0030E244`); the id stays in
+  before the message¹;
+- held in `+0x78` only: mode 0 finds no `+0x68` bit and returns at once²; the id stays in
   effect with its timer at 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030E269`-`0x0030E280` |
+| ² | `0x0030E23E`-`0x0030E244` |
+
+</details>
 
 The messages are:
 
@@ -132,17 +189,40 @@ list](../Battle-Actions/battle-message-list.md)).
 
 ### Shift's weakness
 
-Setting id 52 builds a result with `0x00386AE0`, which draws one element through `0x00384B10` (`0x00386B0C`-`0x00386BD9`,
-`0x0030E2DA`). It first resets the result with `0x003848E0(result, 0, stats)` (`0x00386B07`) and keeps the record's unit
-in `0x02EBF188` (`0x00386B60`-`0x00386B65`). The draw is `0x00384B10(0, context)` (`0x00386BD2`-`0x00386BD9`): with `leaveOut`
-0 each of the eight elements can be drawn, and the one context field the draw reads is the result at `+0x10`
-(`0x00386B49`, `0x00384BCD`-`0x00384C0B`).
+Setting id 52 builds a result with `0x00386AE0`, which draws one element through `0x00384B10`¹. It first resets the result with `0x003848E0(result, 0, stats)`² and keeps the record's unit
+in `0x02EBF188`³. The draw is `0x00384B10(0, context)`⁴: with `leaveOut`
+0 each of the eight elements can be drawn, and the one context field the draw reads is the result at `+0x10`⁵.
 
-`0x00384B10(leaveOut, context)` counts the elements not in `leaveOut`, takes a random draw (`0x00384BA6`)
-modulo that count and picks that element, bit `s` (`0x00384B28`-`0x00384BCA`): `k = rand() % n` (`idiv edi`,
-`0x00384BAD`), where `n` is the count of the eight bits clear in `leaveOut`, or 1 when that count is 0 (`0x00384BA2`),
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00386B0C`-`0x00386BD9`, `0x0030E2DA` |
+| ² | `0x00386B07` |
+| ³ | `0x00386B60`-`0x00386B65` |
+| ⁴ | `0x00386BD2`-`0x00386BD9` |
+| ⁵ | `0x00386B49`, `0x00384BCD`-`0x00384C0B` |
+
+</details>
+
+`0x00384B10(leaveOut, context)` counts the elements not in `leaveOut`, takes a random draw¹
+modulo that count and picks that element, bit `s`²: `k = rand() % n` (`idiv edi`,
+`0x00384BAD`), where `n` is the count of the eight bits clear in `leaveOut`, or 1 when that count is 0³,
 and `s = 1 << i` for the clear bit `i` with `k` clear bits below it (`0x00384BB0`-`0x00384BCA`; `s = 0` when every bit
-is set). It then fills the result's affinity bytes together (`0x00384BCD`-`0x00384C0B`):
+is set). It then fills the result's affinity bytes together⁴:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00384BA6` |
+| ² | `0x00384B28`-`0x00384BCA` |
+| ³ | `0x00384BA2` |
+| ⁴ | `0x00384BCD`-`0x00384C0B` |
+
+</details>
 
 | Result byte offset | Value | Change on the enemy |
 |---|---|---|
@@ -162,11 +242,23 @@ draw again, leaving out the element that hit, when a holder of id 52 is hit on i
 `0x0038C3B5`; [Elements](../Damage-And-Battle-Formulas/elements.md)).
 
 The applier's steps on the holder's record `e`:
-- weakness: `e[+0x78] = (e[+0x78] OR s) & s = s` (`0x003119A4`, `0x00311A4A`);
-- absorption: `e[+0x79] = (e[+0x79] OR ~s) & ~s = ~s` (`0x0031197C`, `0x00311A20`);
-- immunity: `e[+0x7B] = e[+0x7B] & ~s` (`0x003119F6`);
+- weakness: `e[+0x78] = (e[+0x78] OR s) & s = s`¹;
+- absorption: `e[+0x79] = (e[+0x79] OR ~s) & ~s = ~s`²;
+- immunity: `e[+0x7B] = e[+0x7B] & ~s`³;
 - halving: `e[+0x7A]` is left as it was; the applier skips a zero byte (`test cl, cl`, `0x003119BB`, `0x00311A61`),
-  and the result's `+0x12B` and `+0x12F` stay 0 from the clear `0x003848E0` (`0x003848F5`).
+  and the result's `+0x12B` and `+0x12F` stay 0 from the clear `0x003848E0`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003119A4`, `0x00311A4A` |
+| ² | `0x0031197C`, `0x00311A20` |
+| ³ | `0x003119F6` |
+| ⁴ | `0x003848F5` |
+
+</details>
 
 ### Gambit slots
 
@@ -175,10 +267,20 @@ gambit sets, held between 0 and 12 (`0x003279B0`, `0x003279BB`-`0x00327A0B`;
 [Gambits](../Enemy-AI-And-Gambits/gambits.md)). Their augment text is "Adds an additional gambit slot.", and
 only the gear and license rebuild sets them, in `+0x78`.
 
-`0x0030E130` calls `0x003279B0(stats, 2 * set - 1)`, 1 for a set (modes 2 and 3) and -1 for a clear
-(`0x0030E18C`-`0x0030E195`, `0x0030E30D`). `0x003279B0` adds it to the count byte `+0x32` of the member's three banks
+`0x0030E130` calls `0x003279B0(stats, 2 * set - 1)`, 1 for a set (modes 2 and 3) and -1 for a clear¹. `0x003279B0` adds it to the count byte `+0x32` of the member's three banks
 `3 * type`, `3 * type + 1` and `3 * type + 2` at `[0x02EBF190] + 0x5B10 + 0x34 * bank`, with `type` the stats byte
-`+0x04` (`0x003279D0`-`0x00327A01`). A null stats record or an enemy's changes nothing (`0x003279B6`-`0x003279BF`).
+`+0x04`². A null stats record or an enemy's changes nothing³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030E18C`-`0x0030E195`, `0x0030E30D` |
+| ² | `0x003279D0`-`0x00327A01` |
+| ³ | `0x003279B6`-`0x003279BF` |
+
+</details>
 
 That rebuild is `0x0030FED0`, which the equipment-slot
 setters `0x0031A410`, `0x0031A510` and `0x0031A630` ([Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)), the
@@ -208,8 +310,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Menus and HUD** (explained on [action definition row](../Battle-Actions/action-definition-row.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002F95D0` | is called by | `0x0031EB20` |
+| [`0x002F95D0`](battle-buffs.md) Battle action: compute modified resource cost amount | is called by | [`0x0031EB20`](../Battle-Actions/action-definition-row.md) Battle menu: build command entry list (on action definition row) |
 
 </details>

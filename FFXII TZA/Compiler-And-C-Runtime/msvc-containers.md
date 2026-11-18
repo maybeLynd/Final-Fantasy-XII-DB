@@ -26,8 +26,17 @@ stops on that byte (`cmp byte ptr [node+0x19], 0`); the EASTL runtime has no mem
 A tree object is 16 bytes: a pointer to its head node and an element count. `0x00714800` makes the
 head: it allocates `0x30` bytes through `0x00210EC0` (which forwards to `malloc`), points the head's
 left, parent and right links at the head itself, and writes `0x0101` at `+0x18`, so the head's colour
-is 1 (black) and its nil byte is 1 (`0x00714848`). When `0x00210EC0` returns null it calls
+is 1 (black) and its nil byte is 1¹. When `0x00210EC0` returns null it calls
 `_invalid_parameter_noinfo_noreturn` (slot `0x008C2DA8`, `0x00714826`); otherwise it returns the head.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00714848` |
+
+</details>
 
 Once the tree has elements, the head's parent link is the root, its left link the smallest node and
 its right link the largest. Real nodes have nil byte 0.
@@ -35,24 +44,57 @@ its right link the largest. Real nodes have nil byte 0.
 ### Lookup
 
 `0x0070D360` is a lookup over the tree at `+0xC8` of its object. It starts at the root (`[head+8]`),
-compares the 64-bit key at node `+0x20` without sign (`0x0070D380`), goes left and remembers the node
+compares the 64-bit key at node `+0x20` without sign¹, goes left and remembers the node
 when the node's key is not below the search key, and goes right otherwise, until it reaches a node
 whose nil byte is set. It takes the qword at `+0x28` of the remembered node when that node's key
-equals the search key, and 0 otherwise (`0x0070D399`-`0x0070D3AE`).
+equals the search key, and 0 otherwise².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0070D380` |
+| ² | `0x0070D399`-`0x0070D3AE` |
+
+</details>
 
 `0x0070D360` does not return that qword. When the qword is 0 it calls `0x006F1F60` with the object, the
-key, its own third, fourth and fifth arguments, 0 and the address of a local (`0x0070D3BC`-`0x0070D3D6`);
-a negative result is returned as it is (`0x0070D3DD`), and otherwise the qword `0x006F1F60` left in the
-local is used (`0x0070D3DF`). It stores the qword at `+0x60` of its object and the dword of its sixth
-argument at `+0x68` (`0x0070D3E4`-`0x0070D3ED`), and returns 0 (`0x0070D3EB`).
+key, its own third, fourth and fifth arguments, 0 and the address of a local¹;
+a negative result is returned as it is², and otherwise the qword `0x006F1F60` left in the
+local is used³. It stores the qword at `+0x60` of its object and the dword of its sixth
+argument at `+0x68`⁴, and returns 0⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0070D3BC`-`0x0070D3D6` |
+| ² | `0x0070D3DD` |
+| ³ | `0x0070D3DF` |
+| ⁴ | `0x0070D3E4`-`0x0070D3ED` |
+| ⁵ | `0x0070D3EB` |
+
+</details>
 
 ### Insert
 
 `0x00712F60` links a new `0x30`-byte node and rebalances. It first compares the count at `+8` with
-`0x0555555555555554` (`0x00712F6D`), one less than the largest count of `0x30`-byte nodes. When the
+`0x0555555555555554`¹, one less than the largest count of `0x30`-byte nodes. When the
 count has reached it, it frees the node through `0x00210EB0` and calls `_Xlength_error` (slot
-`0x008C2618`) with `map/set<T> too long` (`0x00D8E138`). The rotations are inline, and the last store
+`0x008C2618`) with `map/set<T> too long`². The rotations are inline, and the last store
 paints the root black (`0x007131FD`, `mov byte ptr [root+0x18], 1`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00712F6D` |
+| ² | `0x00D8E138` |
+
+</details>
 
 `0x0071E500` is the same routine for `0x60`-byte nodes (limit `0x02AAAAAAAAAAAAA9`). On the length
 failure it first destroys the node's value at `+0x20` (`0x0071E528`, `call 0x0071EE70`).
@@ -63,14 +105,25 @@ failure it first destroys the node's value at `+0x20` (`0x0071E528`, `call 0x007
   head), it calls the clear routine `0x00714B60`. Otherwise it steps through the range, finding each
   successor inline (down the right child and then left, or up while the node is a right child), and
   erases each node with `0x00714DC0`.
-- A range whose start equals its end erases nothing (`0x00714D23`). `0x00714CE0` stores the iterator it
+- A range whose start equals its end erases nothing¹. `0x00714CE0` stores the iterator it
   returns through its second argument and returns that argument: after the clear, the head's left
-  link, which the clear has pointed at the head (`0x00714D0C`-`0x00714D15`); after the loop, the end of
-  the range (`0x00714DB1`).
+  link, which the clear has pointed at the head²; after the loop, the end of
+  the range³.
 - `0x00714DC0` unlinks one node and rebalances with the rotations `0x00714B00` and `0x0071F240`.
 - `0x00714B60` clears the tree: from the root it walks the left links, destroys each node's right
   subtree with `0x00714980` and frees the node through `0x00210EB0`. It then points the head's three
   links back at the head and sets the count to 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00714D23` |
+| ² | `0x00714D0C`-`0x00714D15` |
+| ³ | `0x00714DB1` |
+
+</details>
 
 The full list of these routines is in [`msvc-containers-ordered-container-runtime.tsv`](msvc-containers-ordered-container-runtime.tsv).
 
@@ -96,36 +149,65 @@ One row per routine, 22 rows.
 | B: one map | `0x60` | node builder `0x0071F180` | two strings, at node `+0x20` and `+0x40` |
 | C: a static map at `0x02EA5550` | `0x28` head | `0x00169270` at start-up | nothing: no code inserts into it |
 
-- B's node builder `0x0071F180(tree)` allocates one `0x60`-byte node with `0x00210EC0` (`0x0071F192`-`0x0071F197`) and
-  calls `_invalid_parameter_noinfo_noreturn` (`0x008C2DA8`) when the allocation fails (`0x0071F1A9`). It stores the
+- B's node builder `0x0071F180(tree)` allocates one `0x60`-byte node with `0x00210EC0`¹ and
+  calls `_invalid_parameter_noinfo_noreturn`² when the allocation fails³. It stores the
   tree's head pointer `[tree]` in the node's three links `+0x00`, `+0x08` and `+0x10` and returns the node
-  (`0x0071F1B0`-`0x0071F1D4`).
-- A is cleared by `0x006FF840`, which erases each map's whole range (`0x00714CE0`, `0x00715110`,
-  `0x007151F0`) and frees its head. All three use the one insert `0x00712F60` and the one node erase
+ ⁴.
+- A is cleared by `0x006FF840`, which erases each map's whole range⁵ and frees its head. All three use the one insert `0x00712F60` and the one node erase
   `0x00714DC0`.
-- `0x006FF840` first calls `CPostEffect::Uninitialize` `0x00705520` with 0 (`0x006FF859`). It then erases
-  and frees `+0xC8` (`0x006FF878`, `0x006FF885`), `+0xB8` (`0x006FF8A4`, `0x006FF8B1`) and `+0xA8`
-  (`0x006FF8D0`), whose head it frees by a tail jump to `0x00210EB0` (`0x006FF8E7`).
+- `0x006FF840` first calls `CPostEffect::Uninitialize` `0x00705520` with 0⁶. It then erases
+  and frees `+0xC8`⁷, `+0xB8`⁸ and `+0xA8`
+ ⁹, whose head it frees by a tail jump to `0x00210EB0`¹⁰.
 - `0x006FF5D0` zeroes each map's head pointer and count, then stores the head that `0x00714800`,
-  `0x007147A0` or `0x00714740` returns (`0x006FF639`-`0x006FF648`, `0x006FF657`-`0x006FF666`,
-  `0x006FF675`-`0x006FF684`).
+  `0x007147A0` or `0x00714740` returns¹¹.
 - B is the parsed licence of the post-effect library. `0x006DFF40` calls the checker `0x0071CD10`, which
   calls `0x0071D170`. That routine parses the text into the map (`0x0071CE10`, inserting through
-  `0x0071EA80` and `0x0071E500`) and looks fields up by name: `FeatureId` (`0x00D9B190`), `BeginYear`
-  (`0x00D9B19C`) and the other date fields, `MacAddress` (`0x00D9B1E4`) and `License`.
+  `0x0071EA80` and `0x0071E500`) and looks fields up by name: `FeatureId`¹², `BeginYear`
+ ¹³ and the other date fields, `MacAddress`¹⁴ and `License`.
 - `0x0071EE70` destroys a B element: two strings, the mapped one at `+0x20` of the pair first, then the
   key at `+0x00`.
 - C is built by the dynamic initialiser `0x00169270` (head from `0x00799B20`, `0x28` bytes) and its
-  destructor `0x008B7940` is registered with `atexit` (`0x00808B90`). Only those two routines refer to
+  destructor `0x008B7940` is registered with `atexit`¹⁵. Only those two routines refer to
   `0x02EA5550` and `0x02EA5558`.
-- `0x00169270` calls the return-this stub `0x0016D680` with `0x02EA5550` (`0x0016927B`), zeroes `0x02EA5550`
-  and `0x02EA5558` (`0x00169289`, `0x00169290`), stores the head from `0x00799B20` at `0x02EA5550`
-  (`0x001692A3`) and registers `0x008B7940` by a tail jump to `0x00808B90` (`0x001692AE`). `0x00799B20` calls
+- `0x00169270` calls the return-this stub `0x0016D680` with `0x02EA5550`¹⁶, zeroes `0x02EA5550`
+  and `0x02EA5558`¹⁷, stores the head from `0x00799B20` at `0x02EA5550`
+ ¹⁸ and registers `0x008B7940` by a tail jump to `0x00808B90`¹⁹. `0x00799B20` calls
   `_invalid_parameter_noinfo_noreturn` (slot `0x008C2DA8`) when the allocation returns null
-  (`0x00799B46`).
-- `0x008B7940` erases the whole range with `0x0079B930` (`0x008B795F`), calls the empty stub `0x0016D6A0`
-  with `0x02EA5550` and the addresses of the head's three links (`0x008B7975`-`0x008B7995`) and frees the
-  head by a tail jump to `0x00210EB0` (`0x008B79A2`).
+ ²⁰.
+- `0x008B7940` erases the whole range with `0x0079B930`²¹, calls the empty stub `0x0016D6A0`
+  with `0x02EA5550` and the addresses of the head's three links²² and frees the
+  head by a tail jump to `0x00210EB0`²³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0071F192`-`0x0071F197` |
+| ² | `0x008C2DA8` |
+| ³ | `0x0071F1A9` |
+| ⁴ | `0x0071F1B0`-`0x0071F1D4` |
+| ⁵ | `0x00714CE0`, `0x00715110`, `0x007151F0` |
+| ⁶ | `0x006FF859` |
+| ⁷ | `0x006FF878`, `0x006FF885` |
+| ⁸ | `0x006FF8A4`, `0x006FF8B1` |
+| ⁹ | `0x006FF8D0` |
+| ¹⁰ | `0x006FF8E7` |
+| ¹¹ | `0x006FF639`-`0x006FF648`, `0x006FF657`-`0x006FF666`, `0x006FF675`-`0x006FF684` |
+| ¹² | `0x00D9B190` |
+| ¹³ | `0x00D9B19C` |
+| ¹⁴ | `0x00D9B1E4` |
+| ¹⁵ | `0x00808B90` |
+| ¹⁶ | `0x0016927B` |
+| ¹⁷ | `0x00169289`, `0x00169290` |
+| ¹⁸ | `0x001692A3` |
+| ¹⁹ | `0x001692AE` |
+| ²⁰ | `0x00799B46` |
+| ²¹ | `0x008B795F` |
+| ²² | `0x008B7975`-`0x008B7995` |
+| ²³ | `0x008B79A2` |
+
+</details>
 
 ### Strings
 
@@ -149,33 +231,86 @@ vtables run from `0x009058C0` (`std::_Node_base`) to `0x00905A28` (`std::_Node_c
 Its parser reports errors through `_Xregex_error` (slot `0x008C2430`, 31 call sites).
 
 The game code that uses it is `0x0020A800`, called from `0x0020AC30`. It compiles the pattern
-`(.*)(\\plan_master\\([a-zA-Z]+)\\event\\)(.*)` (`0x00905958`) and matches its string argument
-against it (`0x00203790`), so it tests whether a path has the form `…\plan_master\<name>\event\…`. The
+`(.*)(\\plan_master\\([a-zA-Z]+)\\event\\)(.*)`¹ and matches its string argument
+against it², so it tests whether a path has the form `…\plan_master\<name>\event\…`. The
 regex routines that only this use reaches are listed in
 [`msvc-containers-stl-regex-char.tsv`](msvc-containers-stl-regex-char.tsv).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00905958` |
+| ² | `0x00203790` |
+
+</details>
+
 `0x0020A800` gets a locale from `std::locale::_Init` (import `0x008C2448`, `0x0020A83A`) and takes its
-`collate<char>` and `ctype<char>` facets through `0x00203E60` and `0x001AA6C0` (`0x0020A849`, `0x0020A858`).
-It sets up the parser over the pattern from `0x00905958` to its end `0x00905985` (`0x0020A862`-`0x0020A8D9`),
-reads the first token with the lexer step `0x00209530` (`0x0020A8E4`) and compiles the pattern with
-`0x00206AD0` (`0x0020A8EE`), taking a reference on the compiled result (`lock inc` of its `+0x2C`,
+`collate<char>` and `ctype<char>` facets through `0x00203E60` and `0x001AA6C0`¹.
+It sets up the parser over the pattern from `0x00905958` to its end `0x00905985`²,
+reads the first token with the lexer step `0x00209530`³ and compiles the pattern with
+`0x00206AD0`⁴, taking a reference on the compiled result (`lock inc` of its `+0x2C`,
 `0x0020A8FB`).
 
-It frees the parser's buffer of 4-byte entries through `0x00209AD0` (`0x0020A944`-`0x0020A95C`), finds the
-argument's terminating zero (`0x0020A96D`-`0x0020A987`) and calls `0x00203790` with the argument's start
-and end, 0, the regex, `0x10` and 1 (`0x0020A989`-`0x0020A9A5`). It then drops its reference on the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020A849`, `0x0020A858` |
+| ² | `0x0020A862`-`0x0020A8D9` |
+| ³ | `0x0020A8E4` |
+| ⁴ | `0x0020A8EE` |
+
+</details>
+
+It frees the parser's buffer of 4-byte entries through `0x00209AD0`¹, finds the
+argument's terminating zero² and calls `0x00203790` with the argument's start
+and end, 0, the regex, `0x10` and 1³. It then drops its reference on the
 compiled result; when the count falls from 1 it walks the chain through `+0x10`, calling each
-object's slot 0 with 1 (`0x0020A9B7`-`0x0020A9E5`).
+object's slot 0 with 1⁴.
 
-It releases the locale, calling slot 0 with 1 on the object its slot `+0x10` returns
-(`0x0020A9F8`-`0x0020AA0B`), and returns the byte `0x00203790` returned (`0x0020AA0F`).
+<details>
+<summary>Where in the code</summary>
 
-`0x0020A800` reaches the regex traits' `std::collate<char>` through `0x00203E60` (`0x0020A849`), the library's `use_facet`.
-1. Under the lock `_Lockit` it keeps the cached facet in a local.
-2. It looks the facet's id `collate<char>::id` (import `0x008C2580`) up in the locale and then in the global locale.
-3. When neither has the facet it returns the cached one. When there is no cached facet, `0x00207FB0` builds it (vtable
-   `0x00905888`, `std::collate<char>`), or `bad cast` is thrown (`0x00203F05`-`0x00203F29`).
-4. A new facet is cached, its reference is taken (`[vtable + 8]`) and it is registered with `0x00808850`.
+| | Code |
+|---|---|
+| ¹ | `0x0020A944`-`0x0020A95C` |
+| ² | `0x0020A96D`-`0x0020A987` |
+| ³ | `0x0020A989`-`0x0020A9A5` |
+| ⁴ | `0x0020A9B7`-`0x0020A9E5` |
+
+</details>
+
+It releases the locale, calling slot 0 with 1 on the object its slot `+0x10` returns¹, and returns the byte `0x00203790` returned².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020A9F8`-`0x0020AA0B` |
+| ² | `0x0020AA0F` |
+
+</details>
+
+`0x0020A800` reaches the regex traits' `std::collate<char>` through `0x00203E60`¹, the library's `use_facet`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020A849` |
+
+</details>
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Under the lock `_Lockit` it keeps the cached facet in a local. |   |
+| 2 | It looks the facet's id `collate<char>::id` (import `0x008C2580`) up in the locale and then in the global locale. |   |
+| 3 | When neither has the facet it returns the cached one. When there is no cached facet, `0x00207FB0` builds it (vtable `0x00905888`, `std::collate<char>`), or `bad cast` is thrown. | `0x00203F05`-`0x00203F29` |
+| 4 | A new facet is cached, its reference is taken (`[vtable + 8]`) and it is registered with `0x00808850`. |   |
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -208,8 +343,17 @@ One row per routine, 8 rows in address order.
 Two examples. `0x00209530` is the parser's lexer step: it looks the next character up in the
 metacharacters `()$^.*+?[]|\-{},:=!` plus newline, carriage return and backspace (`0x009059B8`,
 through `strchr`) and turns it into a token according to the syntax flags. `0x00205890` parses one
-alternative. It raises `_Xregex_error` with 5 on a `)` outside any group (`0x00205B02`), and with 6,
+alternative. It raises `_Xregex_error` with 5 on a `)` outside any group¹, and with 6,
 4 and 10 at `0x00205B0E`, `0x00205B1A` and `0x00205B26`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00205B02` |
+
+</details>
 
 ### std::sort
 
@@ -218,16 +362,11 @@ Microsoft `std::sort`: `0x006B82A0` over 8-byte elements with a comparator funct
 over 32-bit values compared with `<`. It passes the element count as the starting depth budget.
 Both follow the library's introsort:
 
-1. A range of 32 elements or fewer goes to an insertion sort: `0x006B6FE0` for the 8-byte elements,
-   `0x006B6F30` for the 32-bit values.
-2. A longer range is partitioned around a median guess (`0x006B7800`, `0x006B7660`): of three elements
-   below 41, of nine from 41 on. The 8-byte partition `0x006B7800` takes the guess from `0x006B6D70`
-   (`cmp rax, 0x28` at `0x006B6D8D`), which orders each group of three with the comparator through
-   `0x006B7560`; the 32-bit partition takes it from `0x006B6C20`. The smaller side is sorted by
-   recursion and the larger by the loop.
-3. Each partition cuts the budget to `budget/2 + budget/4`. When it reaches 0 the range is
-   heap-sorted: `0x006B7290` and `0x006B71A0` build the heap, `0x006B8060` and `0x006B7FC0` pop it, sifting
-   through `0x006B7CF0` and `0x006B7C20`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A range of 32 elements or fewer goes to an insertion sort: `0x006B6FE0` for the 8-byte elements, `0x006B6F30` for the 32-bit values. |   |
+| 2 | A longer range is partitioned around a median guess: of three elements below 41, of nine from 41 on. The 8-byte partition `0x006B7800` takes the guess from `0x006B6D70` (`cmp rax, 0x28` at `0x006B6D8D`), which orders each group of three with the comparator through `0x006B7560`; the 32-bit partition takes it from `0x006B6C20`. The smaller side is sorted by recursion and the larger by the loop. | `0x006B7800`, `0x006B7660` |
+| 3 | Each partition cuts the budget to `budget/2 + budget/4`. When it reaches 0 the range is heap-sorted: `0x006B7290` and `0x006B71A0` build the heap, `0x006B8060` and `0x006B7FC0` pop it, sifting through `0x006B7CF0` and `0x006B7C20`. |   |
 
 ### Library members compiled into the image
 
@@ -238,8 +377,8 @@ that identifies it:
 - `std::string` and `std::wstring` growth, append, assign, erase, find, compare, `operator+` and move. `0x00195670` grows a
   string: it rounds the capacity up with `or 0xF`, grows it by half, and fails through `_Xbad_alloc`.
 - The file streams: the `basic_ifstream<wchar_t>`, `basic_ofstream<wchar_t>` and
-  `basic_ofstream<char>` destructor bodies (`0x00195440`, `0x001954B0`, `0x0019B480`) and the
-  `basic_filebuf` open (`0x00197A50`, `0x0019B990`), `_Endwrite` (`0x00195940`, `0x0019B580`) and close (`0x001969D0`,
+  `basic_ofstream<char>` destructor bodies¹ and the
+  `basic_filebuf` open², `_Endwrite`³ and close (`0x001969D0`,
   `0x0019B8C0`, through `fclose`). The key-binding writer
   `0x001993B0` calls `0x001969D0`.
 - The string streams: the `basic_stringbuf` constructor `0x001DDFD0`, its `str()` `0x001E0100` (the stream's `0x001E0360`) and the
@@ -248,6 +387,17 @@ that identifies it:
   virtual-base offset first). Each steps back to the whole object, runs its destructor and, when bit `0x1` of
   the flag is set, frees the object with the sized `delete` `0x00809950`; the string streams also run the
   `basic_ios` destructor through import slot `0x008C25E8`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00195440`, `0x001954B0`, `0x0019B480` |
+| ² | `0x00197A50`, `0x0019B990` |
+| ³ | `0x00195940`, `0x0019B580` |
+
+</details>
 
   | Deleting destructor | Stream | Steps back | Frees |
   |---|---|---|---|
@@ -258,8 +408,16 @@ that identifies it:
   | `0x001DE400` | `basic_ostringstream<char>` | `0x88` | `0xE8` |
   | `0x001DE4A0` | `basic_stringstream<char>` | `0x98` | `0xF8` |
 - The inserters `0x00194CD0` (wide string) and `0x001DDE10` (narrow), `std::endl` `0x00194EB0`, the
-  `std::exception` and `std::bad_cast` copy constructors, and two vector members (`0x001A4D20`,
-  `0x0020E420`), and `0x001A1EA0`, the header's `sprintf_s` into a 32-byte buffer.
+  `std::exception` and `std::bad_cast` copy constructors, and two vector members¹, and `0x001A1EA0`, the header's `sprintf_s` into a 32-byte buffer.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A4D20`, `0x0020E420` |
+
+</details>
 
 ### Columns of msvc-containers-library-members.tsv
 
@@ -287,6 +445,9 @@ their sentry destructors appear.
 
 ## Layouts
 
+<details>
+<summary>Show the memory layouts</summary>
+
 `MsvcTree` (`0x10` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
@@ -313,7 +474,12 @@ their sentry destructors appear.
 | `+0x10` | `u64` | size | characters in use |
 | `+0x18` | `u64` | capacity | 15 for the inline buffer |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -325,6 +491,8 @@ their sentry destructors appear.
 | further `std::regex` bodies (`msvc-containers-stl-regex-char-members.tsv`) | 92 |
 | other library bodies compiled in (`msvc-containers-library-members.tsv`) | 50 |
 | `std::sort` insertion-sort limit | 32 elements (`cmp rax, 0x20` at `0x006B81AA`) |
+
+</details>
 
 ## Modding notes
 

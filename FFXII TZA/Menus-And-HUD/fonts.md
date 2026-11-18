@@ -21,10 +21,29 @@ text.
 ### The font list
 
 Before its list request `0x001B44A0` stores its third argument in the font display's path byte
-`[0x01F811F8] + 0x2378` (`0x001E9F30`, `0x001B4544`), and it ends by tail-jumping to `0x001E98A0` (`0x001B4587`), which
+`[0x01F811F8] + 0x2378`¹, and it ends by tail-jumping to `0x001E98A0`², which
 loads every palette entry `fontclut_0` to `fontclut_27` not yet loaded through `0x001C5F20`.
 
-`0x001B44A0` picks the language's list and folder from the locale id `[0x01E02814]` (`0x00229E40`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E9F30`, `0x001B4544` |
+| ² | `0x001B4587` |
+
+</details>
+
+`0x001B44A0` picks the language's list and folder from the locale id `[0x01E02814]`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00229E40` |
+
+</details>
 
 | Locale id | Folder |
 |---|---|
@@ -49,17 +68,45 @@ list request reads the list into a third:
 | `0x01DF6DF0` | `void*` | `0x008F81B8`, the `jp` folder `./GameData/D3D11/ArtData/font/jp/` | the language's font folder, which `0x001B4930` puts before each listed name with `"%s%s"` (`0x008F80F0`) | `0x001B44A0` (`0x001B453D`), the folder of the chosen language: `0x008F8700` `cn`, `0x008F86A8` `ch`, `0x008F8758` `kr`, `0x008F8650` `us`, `0x008F81B8` `jp` (`0x001B44CF`-`0x001B452B`) | `0x001B4930` (`0x001B4A0C`) |
 | `0x01F81208` | `void*` | 0 | the loaded font list: the zero-terminated copy of `fontlist.ah` that the list request (kind 4) reads into a new block; `0x001B4930` reads the names from it and frees it | `0x001A0F80`, through the request's `+0x120`, which `0x001B53F0` points at it (`0x001B544B`-`0x001B5452`), storing the block (`0x001A1012`); `0x001B4930`, 0 after freeing it with `0x00210EB0` (`0x001B4BC2`) | `0x001B53F0`, which passes whether it is still 0 to the return stub `0x0016D6A0` (`0x001B543A`-`0x001B5446`); `0x001B4930` (`0x001B4973`, `0x001B4BB3`) |
 
-No other instruction reaches these three. The one address taken near the first two, `0x01DF6DE0` (`0x001B456D`), is the float key slot `+0x308` of the font
+No other instruction reaches these three. The one address taken near the first two, `0x01DF6DE0`¹, is the float key slot `+0x308` of the font
 manager that `0x001CA600` writes with a 4-byte store ([Screen layouts](screen-layouts.md)), and reaches neither.
 
-Each font's atlas is `<name>.dds.phyre` (`0x008F6748`). The builder also names a shadow atlas `<name>_shadow.dds.phyre`
-(`0x008F81E0`), which the shipped build never requests and no font folder ships (the manager's list below).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B456D` |
+
+</details>
+
+Each font's atlas is `<name>.dds.phyre`¹. The builder also names a shadow atlas `<name>_shadow.dds.phyre`², which the shipped build never requests and no font folder ships (the manager's list below).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008F6748` |
+| ² | `0x008F81E0` |
+
+</details>
 
 ### The font builder
 
-`0x001B4D70` reads the header and every glyph record, builds the font (`0x001FC060`) and files each glyph by its key
-(`0x001FDCC0`). A font is known by the header's id, not by its place in the list. The header's flag word (`0x001B4E19`)
+`0x001B4D70` reads the header and every glyph record, builds the font¹ and files each glyph by its key². A font is known by the header's id, not by its place in the list. The header's flag word³
 then asks for two more files:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001FC060` |
+| ² | `0x001FDCC0` |
+| ³ | `0x001B4E19` |
+
+</details>
 
 | Bit | File | Request | Reader |
 |---:|---|---|---|
@@ -67,60 +114,114 @@ then asks for two more files:
 | `0x2` | `<name>.fex` | `0x001B5480` (`0x001B5045`, `0x001B5061`) | `0x001B4C00`, through `0x001B6030` |
 
 The font object keeps three maps keyed by code: the glyphs at `+0x38`, the kerning pairs at `+0x70` and the
-expansion lists at `+0xA8` of the font, each built by the constructor (`0x001FC0E4`, `0x001FC134`, `0x001FC184`). Each map
-has its header node at its own `+0x08` and its root at its own `+0x18` (`0x001FC587`, `0x001FC58E`), so the glyph map's
+expansion lists at `+0xA8` of the font, each built by the constructor¹. Each map
+has its header node at its own `+0x08` and its root at its own `+0x18`², so the glyph map's
 header and root are at the font's `+0x40` and `+0x50`:
 
-- the builder's filer `0x001FDCC0` takes each glyph record from `0x001FC580(font + 0x38, &key)` (`0x001FDCC8`,
-  `0x001FDD13`), which returns the record for the key, inserting an empty one for a new key; `0x001E9860` looks glyphs
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001FC0E4`, `0x001FC134`, `0x001FC184` |
+| ² | `0x001FC587`, `0x001FC58E` |
+
+</details>
+
+- the builder's filer `0x001FDCC0` takes each glyph record from `0x001FC580(font + 0x38, &key)`¹, which returns the record for the key, inserting an empty one for a new key; `0x001E9860` looks glyphs
   up in the same map through `0x001FDEC0(font, key)` (root `+0x50`, header `+0x40`), which returns null for a missing
   key;
 - the `.fex` reader `0x001B4C00` adds a list of n entries for a key with `0x001FDB90(font, key, n)`, which returns 0
   when the map at `+0xA8` already holds the key, and writes entry i with `0x001FDB50(font, key, i, v)`; both find
   the key's entry in that map through `0x001FC640`;
-- for a new key `0x001FDB90` inserts the entry, sizes its list to n zero values (`0x001FDF90`) and returns 1
-  (`0x001FDBF0`-`0x001FDC07`). `0x001FDB50` stores v at index i of the list with no test of i (`0x001FDB78`); the reader
-  only gives it i below the chunk's count (`0x001B4CBC`-`0x001B4CE9`);
+- for a new key `0x001FDB90` inserts the entry, sizes its list to n zero values² and returns 1
+ ³. `0x001FDB50` stores v at index i of the list with no test of i⁴; the reader
+  only gives it i below the chunk's count⁵;
 - `0x001B4D70` builds three names from the file's name with `0x001B31E0`, each from a suffix pointer:
   - `<name>.dat` at `[rbp - 0x38]` (`0x01DF6E08` to `0x008F81F4`, `0x001B4DA8`);
   - `<name>.dds.phyre` at `[rbp - 0x58]` (`0x01DF6DF8` to `0x008F6748`, `0x001B4DB9`-`0x001B4DC7`);
   - `<name>_shadow.dds.phyre` at `[rbp - 0x78]` (`0x01DF6E00` to `0x008F81E0`, `0x001B4DCD`-`0x001B4DDB`).
 - `0x001B4D70` copies `[rbp - 0x58]` (begin `[rbp - 0x58]`, end `[rbp - 0x50]`, `0x001B4F9E`-`0x001B4FAB`) into the font's atlas
-  name `+0xE0` with `0x001FE080` (`0x001B4FB8`), and `[rbp - 0x78]` (`0x001B4FD9`-`0x001B4FE6`) into the shadow name `+0x100`
-  with `0x001FE020` (`0x001B4FF3`); each of the two frees the string it is given;
+  name `+0xE0` with `0x001FE080`⁶, and `[rbp - 0x78]`⁷ into the shadow name `+0x100`
+  with `0x001FE020`⁸; each of the two frees the string it is given;
 - after filing every glyph, the builder tests `0x001FDF80(font)`, whether the glyph map's count `+0x60` (its own
   `+0x28`, which the inserter `0x001FD010` raises at `0x001FD0BB` and `0x001FD14E`) equals the count `+0x18` the
-  constructor was given (`0x001FC095`), and asserts on it (`0x001B4F6C`, "Font Info Buffer size Not Equal with Head
+  constructor was given⁹, and asserts on it (`0x001B4F6C`, "Font Info Buffer size Not Equal with Head
   Data!!").
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001FDCC8`, `0x001FDD13` |
+| ² | `0x001FDF90` |
+| ³ | `0x001FDBF0`-`0x001FDC07` |
+| ⁴ | `0x001FDB78` |
+| ⁵ | `0x001B4CBC`-`0x001B4CE9` |
+| ⁶ | `0x001B4FB8` |
+| ⁷ | `0x001B4FD9`-`0x001B4FE6` |
+| ⁸ | `0x001B4FF3` |
+| ⁹ | `0x001FC095` |
+
+</details>
 
 The font manager is the `0x378`-byte object `[0x01F81200]`, built by `0x001B5F10` with the text renderer `[0x01F811F8]`
 (`0x2380` bytes, `0x001E71B0`); its constructor `0x001B3940` sets up a name vector, three maps keyed by font id
-(`+0x28`, `+0x60`, `+0x98`), two pools (`0x001B36D0`, `0x001B3540`) and 16 slots from `+0x278`.
+(`+0x28`, `+0x60`, `+0x98`), two pools¹ and 16 slots from `+0x278`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B36D0`, `0x001B3540` |
+
+</details>
 
 The manager's layout is in Layouts (The font manager), with every access in [`fonts-font-manager-accesses.tsv`](fonts-font-manager-accesses.tsv) beside
 this page.
 
 - `0x001B58E0(manager, id)`, from `0x001B4D70`, requests the font's atlas through the asynchronous loader
   (`0x001A1220`, `0x001A0A90`, `0x001A0BB0`; the path from `0x001FDF10`) with the completion `0x001B6230`, and, unless
-  `0x001E9A20([0x01F811F8])` answers non-zero (`0x001B5A3F`-`0x001B5A46`), its shadow atlas (`0x001FDE60`) with `0x001B6110`,
+  `0x001E9A20([0x01F811F8])` answers non-zero¹, its shadow atlas² with `0x001B6110`,
   each request filed in its map by the font id.
-- `0x001B58E0` requests nothing when the manager's map `+0x28` holds no font of that id (`0x001B593A`). Each request
+- `0x001B58E0` requests nothing when the manager's map `+0x28` holds no font of that id³. Each request
   is kind 1 with the font at `+0x10` and byte `+0x18` 0, and its `+0x120` points at the value `+0x28` of its map
-  node, which `0x001AE9B0` inserts when the id has no node yet (`0x001B5950`-`0x001B59DA`, `0x001B5A5C`-`0x001B5AEA`).
+  node, which `0x001AE9B0` inserts when the id has no node yet⁴.
 - `0x001E9A20` returns the path byte `+0x2378`. Its one writer `0x001E9F30` is called from `0x001B44A0` with the third
-  argument, which `0x0017F9E0` passes on from `0x0029CE40`: `[0x01E02818] > 0` (`0x0029CE4A`-`0x0029CE55`). `0x01E02818` holds 1
+  argument, which `0x0017F9E0` passes on from `0x0029CE40`: `[0x01E02818] > 0`⁵. `0x01E02818` holds 1
   in `.data`, and its only reference in the image is the read in `0x00229E30`, so the byte is 1 and the shadow atlas is
   not requested. None of the 62 shipped atlas files is a `_shadow` one.
 - `0x001B6230(font, ...)` finds the texture of the loaded atlas (`0x0019CE20`, `0x0019CA80`, a resource of type
-  `0x02CBB900` in its `+0x38` list) and hands it to the font (`0x00213560`).
-- `0x001B6230` returns at once for a null font (`0x001B6233`) and looks the cluster up by the font's atlas name
-  (`0x001FDF10`, `0x001B6254`-`0x001B6268`). It takes the first entry of the `+0x38` list whose class is `0x02CBB900` or
-  derives from it (the chain `+0x50`, then `+0x78`) and whose count `+0x74` is above 0 (`0x001B62A5`-`0x001B62E4`).
+  `0x02CBB900` in its `+0x38` list) and hands it to the font⁶.
+- `0x001B6230` returns at once for a null font⁷ and looks the cluster up by the font's atlas name
+ ⁸. It takes the first entry of the `+0x38` list whose class is `0x02CBB900` or
+  derives from it (the chain `+0x50`, then `+0x78`) and whose count `+0x74` is above 0⁹.
 - The pointer it hands over is that entry's data `+0x60`, stepped by the class size `+0x38` past each instance
-  that the entry's `+0x10` chain lists, plus the class's `+0xF8` (`0x001B62F6`-`0x001B632F`).
+  that the entry's `+0x10` chain lists, plus the class's `+0xF8`¹⁰.
 - `0x001B60D0()` asks for the fonts again: `0x001B5140([0x01F81200])` requests every listed name.
 - `0x001B5CC0(manager, id)`, from `0x0017FA70`, frees the slot registered under the key `[manager] x 32 + id`
-  (`0x002124C0`, `0x001E9A30`).
+ ¹¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B5A3F`-`0x001B5A46` |
+| ² | `0x001FDE60` |
+| ³ | `0x001B593A` |
+| ⁴ | `0x001B5950`-`0x001B59DA`, `0x001B5A5C`-`0x001B5AEA` |
+| ⁵ | `0x0029CE4A`-`0x0029CE55` |
+| ⁶ | `0x00213560` |
+| ⁷ | `0x001B6233` |
+| ⁸ | `0x001FDF10`, `0x001B6254`-`0x001B6268` |
+| ⁹ | `0x001B62A5`-`0x001B62E4` |
+| ¹⁰ | `0x001B62F6`-`0x001B632F` |
+| ¹¹ | `0x002124C0`, `0x001E9A30` |
+
+</details>
 
 ## Layouts
 
@@ -144,15 +245,12 @@ This is the `0x28`-byte header of the 62 listed `.dat` files. The one unlisted f
 
 The two widths are read through `0x0017F920(which)`:
 
-1. `0x0017F920` takes the text renderer `[0x01F811F8]` (`0x001B5FA0`) and jumps to `0x001E9840` (`0x0017F939`).
-2. `0x001E9840` takes the current font from the renderer's `+0x00` and returns `metricA` through `0x001FDDC0`
-   (`[font + 0x1C]`) when `which` is not 0, and `metricB` through `0x001F49E0` (`[font + 0x20]`) when it is 0; with no
-   font it returns 0 (`0x001E9840`-`0x001E9857`).
-3. The text interpreter `0x002AC5F0` passes 0 for the blank token `0x01` and 1 for the space token `0x04`
-   (`0x002ACBAB`-`0x002ACC06`, [Text codes](text-codes.md)), and `0x002B0280` does the same for the two tokens
-   (`0x002B0E1E`-`0x002B0E82`).
-4. The space width, 1, is also asked for by the fixed-advance escape `0F 20` with no glyph (`0x002AD105`), by
-   `0x002B0280` at `0x002B1224`, and by `0x00364530` and `0x003647E0` (`0x0036461C`, `0x003648EA`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x0017F920` takes the text renderer `[0x01F811F8]` and jumps to `0x001E9840`. | `0x001B5FA0`<br>`0x0017F939` |
+| 2 | `0x001E9840` takes the current font from the renderer's `+0x00` and returns `metricA` through `0x001FDDC0` (`[font + 0x1C]`) when `which` is not 0, and `metricB` through `0x001F49E0` (`[font + 0x20]`) when it is 0; with no font it returns 0. | `0x001E9840`-`0x001E9857` |
+| 3 | The text interpreter `0x002AC5F0` passes 0 for the blank token `0x01` and 1 for the space token `0x04` (`0x002ACBAB`-`0x002ACC06`, [Text codes](text-codes.md)), and `0x002B0280` does the same for the two tokens. | `0x002B0E1E`-`0x002B0E82` |
+| 4 | The space width, 1, is also asked for by the fixed-advance escape `0F 20` with no glyph, by `0x002B0280` at `0x002B1224`, and by `0x00364530` and `0x003647E0`. | `0x002AD105`<br>`0x0036461C`, `0x003648EA` |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -217,13 +315,34 @@ The manager at `[0x01F81200]`, `0x378` bytes, from the constructor `0x001B3940`'
 
 The `0xC0`-byte pools built by `0x001B36D0` and `0x001B3540` open the same way: a vector `{begin, end, cap}` with its
 allocator at `+0x18`, an EASTL map at `+0x20` (allocator at `+0x50`), a second map at
-`+0x58` (allocator at `+0x88`, `0x001B3783`-`0x001B37BF`), a lock at `+0x90` (`0x005CC8A0`, `0x001B37C2`), the flag byte the
-constructor was given at `+0xB8` (`0x001B37CE`), and the capacity, which goes to `0x001B5DE0` (`0x001B37D5`-`0x001B37DB`;
-`0x001B36F5`-`0x001B3766`, `0x001B3565`-`0x001B35D6`).
+`+0x58` (allocator at `+0x88`, `0x001B3783`-`0x001B37BF`), a lock at `+0x90`¹, the flag byte the
+constructor was given at `+0xB8`², and the capacity, which goes to `0x001B5DE0`³.
 
-Each of those allocators holds the vtable `0x00902720`, the only thing `0x001EDF00` stores (`0x001EDF00`-`0x001EDF0D`);
-the names passed to it, `EASTL vector` (`0x008C5F58`, `0x001B3710`) and `EASTL set` (`0x008F3CB0`, `0x001B371D`), are not kept
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CC8A0`, `0x001B37C2` |
+| ² | `0x001B37CE` |
+| ³ | `0x001B37D5`-`0x001B37DB`; `0x001B36F5`-`0x001B3766`, `0x001B3565`-`0x001B35D6` |
+
+</details>
+
+Each of those allocators holds the vtable `0x00902720`, the only thing `0x001EDF00` stores¹;
+the names passed to it, `EASTL vector`² and `EASTL set`³, are not kept
 ([EASTL strings and containers](../Third-Party-Libraries/eastl-strings-and-containers.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EDF00`-`0x001EDF0D` |
+| ² | `0x008C5F58`, `0x001B3710` |
+| ³ | `0x008F3CB0`, `0x001B371D` |
+
+</details>
 
 ### The atlas files
 
@@ -248,14 +367,34 @@ The rows are stored bottom row first: a glyph record's `atlasY` counts from the 
   and that of `'` and `^` at rows 17.1 to 21.0.
 
 The draw loop `0x002A9F00` passes the glyph's pixel rectangle, `atlasX` to `atlasX + cellW` and `atlasY` to
-`atlasY + cellH` (`0x002AA5C7`-`0x002AA647`), to `0x0017F7C0`. The completion `0x001B6230` takes the `PTexture2D` instance
+`atlasY + cellH`¹, to `0x0017F7C0`. The completion `0x001B6230` takes the `PTexture2D` instance
 (class `0x02CBB900`) from the loaded cluster's `+0x38` list and hands the font a pointer into the cluster's instance
-data for it (`0x001B62A5`-`0x001B6332`).
+data for it².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AA5C7`-`0x002AA647` |
+| ² | `0x001B62A5`-`0x001B6332` |
+
+</details>
 
 ### The font object
 
-`0x001B4D70` allocates `0x120` bytes (`0x001B4E73`) and builds the font with `0x001FC060` (`0x001B4EC5`), which takes the
+`0x001B4D70` allocates `0x120` bytes¹ and builds the font with `0x001FC060`², which takes the
 header's values as arguments and stores each.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B4E73` |
+| ² | `0x001B4EC5` |
+
+</details>
 
 `Font` (`0x120` bytes, offsets from the start of the font):
 
@@ -311,63 +450,152 @@ header's values as arguments and stores each.
 
 ### Kerning between two glyphs
 
-`0x001FDC10` files a pair as `kern[right][left] = adjust` in the font's map at `+0x70` (`0x001FDC15`, `0x001FDC45`). While
-drawing, `0x002AC2F0` looks a pair up for every glyph that has a kerning code point and follows another glyph
-(`0x002AC518`-`0x002AC52F`):
+`0x001FDC10` files a pair as `kern[right][left] = adjust` in the font's map at `+0x70`¹. While
+drawing, `0x002AC2F0` looks a pair up for every glyph that has a kerning code point and follows another glyph²:
 
-1. `0x001E9780` passes the previous glyph's code point (`0x001E9797`) and the current one to `0x001FDDD0`.
-2. `0x001FDDD0` looks up `kern[current][previous]` (`0x001FDDE6`, `0x001FDE24`) and returns the adjustment, or 0.
-3. `0x0017F8E0` returns `ceil(adjust / scale)` (`0x001E9C17`, `0x0017F908`).
-4. The draw loop `0x002A9F00` adds it to the pen before the glyph (`0x002AA0D2`-`0x002AA0E8`).
+<details>
+<summary>Where in the code</summary>
 
-So the authored pairs apply as authored. The current glyph then becomes the previous one (`0x0017FAE0`, `0x002AC546`).
+| | Code |
+|---|---|
+| ¹ | `0x001FDC15`, `0x001FDC45` |
+| ² | `0x002AC518`-`0x002AC52F` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x001E9780` passes the previous glyph's code point and the current one to `0x001FDDD0`. | `0x001E9797` |
+| 2 | `0x001FDDD0` looks up `kern[current][previous]` and returns the adjustment, or 0. | `0x001FDDE6`, `0x001FDE24` |
+| 3 | `0x0017F8E0` returns `ceil(adjust / scale)`. | `0x001E9C17`, `0x0017F908` |
+| 4 | The draw loop `0x002A9F00` adds it to the pen before the glyph. | `0x002AA0D2`-`0x002AA0E8` |
+
+So the authored pairs apply as authored. The current glyph then becomes the previous one¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017FAE0`, `0x002AC546` |
+
+</details>
 
 ### Expansion lists
 
 An expansion list remaps glyph indices for one piece of text. The key of each list is `0x00674A00` of a three-part path,
-`event\<folder>\<name>` or `plan_map\<folder>\<name>` (`0x001B6350`): a hash starting at `0x1505` that multiplies by 33
-and adds each character, with bit `0x80000000` cleared (`0x00674A03`-`0x00674A23`).
+`event\<folder>\<name>` or `plan_map\<folder>\<name>`¹: a hash starting at `0x1505` that multiplies by 33
+and adds each character, with bit `0x80000000` cleared².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B6350` |
+| ² | `0x00674A03`-`0x00674A23` |
+
+</details>
 
 `0x001B6350(object, id, flag, name, value)` first looks through the pending vector `+0x250` for an entry
 whose dword `+0x04` is the id and whose byte `+0x10` is the flag byte. When it finds one it adds
 nothing and jumps to the empty stub `0x0016D6A0` with the message "Font param status has been set
-loading before" (`0x001B635D`-`0x001B6396`, `0x001B63F1`-`0x001B6407`).
+loading before"¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B635D`-`0x001B6396`, `0x001B63F1`-`0x001B6407` |
+
+</details>
 
 Otherwise it takes a record from `0x001BA860(object + 0x190)` and fills it: byte `+0x00` = 1, qword
 `+0x08` = 0, dword `+0x14` = the hash `0x00674A00` gives for the name, dword `+0x04` = the id, byte
-`+0x10` = the flag and dword `+0x18` = the fifth argument (`0x001B6398`-`0x001B63D2`). When the end
+`+0x10` = the flag and dword `+0x18` = the fifth argument¹. When the end
 `+0x258` is below the capacity `+0x260` the end moves on by 8 and the record's address is stored at the
-old end, unless that is null (`0x001B63D5`-`0x001B63EC`); otherwise
-`0x001AB570(vector, end, address of the record pointer)` is called (`0x001B640C`-`0x001B6414`).
+old end, unless that is null²; otherwise
+`0x001AB570(vector, end, address of the record pointer)` is called³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B6398`-`0x001B63D2` |
+| ² | `0x001B63D5`-`0x001B63EC` |
+| ³ | `0x001B640C`-`0x001B6414` |
+
+</details>
 
 When text is drawn, `0x001E9D20` binds the
-running font and the list for the text's key to the text context (`0x001E9DB9`-`0x001E9DD5`). `0x001FDD60` finds that list in the
-font's map at `+0xA8`, the one the `.fex` reader fills, and returns 0 when the key has no list (`0x001E9DD0`).
+running font and the list for the text's key to the text context¹. `0x001FDD60` finds that list in the
+font's map at `+0xA8`, the one the `.fex` reader fills, and returns 0 when the key has no list².
 `0x001E9860` then reads glyph `list[index]` instead of `index`; an index at or past the list's end gives a null glyph,
-as does a context with no font (`0x001E9866`, `0x001E987E`, `0x001E9890`).
+as does a context with no font³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E9DB9`-`0x001E9DD5` |
+| ² | `0x001E9DD0` |
+| ³ | `0x001E9866`, `0x001E987E`, `0x001E9890` |
+
+</details>
 
 ### Glyph advances
 
 For each glyph `0x002AC2F0` computes the advance:
 
-1. `ceil(advance / scale)` from the glyph record (`0x0017F9C0`, `0x001E9BD0`), or the raw advance when the byte `0x01F811E0`
-   is set. A glyph with no record uses bits `0x1F00000000` of the font sheet's glyph entry (`0x002AC4F6`-`0x002AC504`).
-2. Plus the letter spacing `state + 0x4C` (`0x002AC507`).
-3. Plus 1.5, or 0.5 when `0x00254A10` returns 0, for glyphs marked by bit `0x80000000` of the sheet entry while the float
-   `state + 0x40` is non-zero (`0x002AC4B8`-`0x002AC4DF`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `ceil(advance / scale)` from the glyph record, or the raw advance when the byte `0x01F811E0` is set. A glyph with no record uses bits `0x1F00000000` of the font sheet's glyph entry. | `0x0017F9C0`, `0x001E9BD0`<br>`0x002AC4F6`-`0x002AC504` |
+| 2 | Plus the letter spacing `state + 0x4C`. | `0x002AC507` |
+| 3 | Plus 1.5, or 0.5 when `0x00254A10` returns 0, for glyphs marked by bit `0x80000000` of the sheet entry while the float `state + 0x40` is non-zero. | `0x002AC4B8`-`0x002AC4DF` |
 
-The advance and kerning are then scaled by the text size `state + 0x34` and the x scale `state + 0x38`
-(`0x002AC54B`-`0x002AC5A6`). The `0F 4` code overrides the advance of the next glyph only ([Text codes](text-codes.md)).
+The advance and kerning are then scaled by the text size `state + 0x34` and the x scale `state + 0x38`¹. The `0F 4` code overrides the advance of the next glyph only ([Text codes](text-codes.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AC54B`-`0x002AC5A6` |
+
+</details>
 
 ### Why digits line up
 
-`0x002AE610`, which draws numbers, measures the glyph for `0` once before its loop (`0x002AE7B7`-`0x002AE7EA`). Each
-character of the number is drawn at a copy of the pen, and the pen then moves by that one width (`0x002AEA4C`-`0x002AEA59`),
+`0x002AE610`, which draws numbers, measures the glyph for `0` once before its loop¹. Each
+character of the number is drawn at a copy of the pen, and the pen then moves by that one width²,
 whatever the digit. The shipped fonts agree: every `font00` gives the ten digits one advance, 23 in `us`, 24 in `jp`,
 `ch` and `cn`, and 26 in `kr`.
 
-`0x003EFD00` writes the digits, padded on the left with `0` or a space (`0x003EFD59`-`0x003EFD82`). It writes no minus sign:
-a negative value gives only the padding (`0x003EFD20`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AE7B7`-`0x002AE7EA` |
+| ² | `0x002AEA4C`-`0x002AEA59` |
+
+</details>
+
+`0x003EFD00` writes the digits, padded on the left with `0` or a space¹. It writes no minus sign:
+a negative value gives only the padding².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EFD59`-`0x003EFD82` |
+| ² | `0x003EFD20` |
+
+</details>
 
 ### Character mapping
 
@@ -383,11 +611,27 @@ The font pack binder fills that table when the language test `0x00254A10` is fal
 calls `0x0039C4A0(0)` and `0x002B58F0(buffer, 0x20, n, 0, 1, 0)`, takes the buffer's third byte less `0x20`
 as an index into the 8-byte entries that `0x0020E600` gives for the dword `+0x0C` of `0x0039C4A0`'s answer,
 and stores the entry's first dword under mask `0x01F00000`, shifted right 20, less 2, or 0 when that is
-negative. `0x02AEE894` takes the n of each value larger than every one before it, counting from 0
-(`0x0039C2DF`-`0x0039C395`).
+negative. `0x02AEE894` takes the n of each value larger than every one before it, counting from 0¹.
 
-The index is used signed, and the answers of `0x0039C4A0` and `0x0020E600` are used with no null test
-(`0x0039C355`-`0x0039C363`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039C2DF`-`0x0039C395` |
+
+</details>
+
+The index is used signed, and the answers of `0x0039C4A0` and `0x0020E600` are used with no null test¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0039C355`-`0x0039C363` |
+
+</details>
 
 The font a code is drawn with is a slot of the font manager: two-byte codes whose lead is at least `[0x01E0CDF8]` use
 the context's index `+0xA6`, the place of its glyph sheet in `0x02AEE810`, and other codes index 0, or 7 with the
@@ -397,22 +641,55 @@ it registers its sheet ([Font files](fonts-files.md), Which text fonts 1, 3, 4, 
 
 `0x002AC2F0` turns a text code into a glyph index:
 
-- A byte `0x20` or above is index `byte - 0x20` (`0x002AC37C`).
-- A lead byte `0x10`-`0x1F` and the next byte are index `table[lead & 0xF] + second - 0x20` (`0x002AC38D`-`0x002AC3BC`).
-  The table is `0x00916570`, or `0x009165B0` for locale ids 7, 8 and 11 (`0x002AB7D0`).
+- A byte `0x20` or above is index `byte - 0x20`¹.
+- A lead byte `0x10`-`0x1F` and the next byte are index `table[lead & 0xF] + second - 0x20`².
+  The table is `0x00916570`, or `0x009165B0` for locale ids 7, 8 and 11³.
 
-Numbers reach the font through the font sheet's two character maps (`0x002AE77C`, `0x002AE861`): the first maps `0`-`9`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AC37C` |
+| ² | `0x002AC38D`-`0x002AC3BC` |
+| ³ | `0x002AB7D0` |
+
+</details>
+
+Numbers reach the font through the font sheet's two character maps¹: the first maps `0`-`9`
 to the `font00` digits and the second to the full-width digits.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AE77C`, `0x002AE861` |
+
+</details>
 
 The same maps turn plain characters into text codes. Each holds one `u16` code per character from `0x20`; a code of
 `0x20`-`0xFF` is written as one byte and any other as two:
 
 - `0x002B5AB0(out, ascii, n)` encodes up to `n` characters with the first map, writing a space as the token `0x04`
-  (`0x002B5B2A`); the Brightness row and the title's text consumer use it (`0x0023B5C6`, `0x00393B5B`).
+ ¹; the Brightness row and the title's text consumer use it².
 - `0x002B5A20(out, size, plus, fullwidth)` writes the code of `+` (`plus` set) or `-` from the first map, or the second
   with `fullwidth`, and its terminator.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B5B2A` |
+| ² | `0x0023B5C6`, `0x00393B5B` |
+
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Folder | Fonts listed |
 |---|---:|
@@ -439,37 +716,22 @@ No `us` font asks for a `.fex`, so `us` text always draws glyphs by their own in
 requested, `fontex_expand.fex` and `fontex_subtitle.fex`, are 12-byte `{key, index, value}` triples, 9,032 and 11,481 of
 them.
 
+</details>
+
 ## Loader behaviour
 
-1. The checks enforce nothing. Each test passes its result and message to `0x0016D6A0`, which returns at once
-   (for example `0x001B4F69`-`0x001B4F7B`, `0x001B52D5`-`0x001B52E7`, `0x001B4CF1`-`0x001B4D1C`), so loading goes on whatever a
-   test finds.
-2. Short records are read past their end. The builder reads the `.dat` header's `0x28` bytes without testing the
-   file's size (`0x001B4DEE`-`0x001B4E29`) and then a whole `0x24`-byte glyph record while any byte remains
-   (`0x001B4ED2`, `0x001B4F4E`). The `.ker` reader does the same with its 12-byte pairs (`0x001B52A9`, `0x001B52C6`), and the
-   `.fex` reader with each chunk's 8-byte key and count (`0x001B4C94`, `0x001B4CEB`).
-3. Counts are trusted. A `.dat` header's `glyphCount` bounds nothing: the builder files records to the end of the
-   file, and only the unenforced test `0x001FDF80` compares the two (`0x001B4F6C`). A `.fex` chunk's count sets how many
-   values are read, with no test against the file's end (`0x001B4CA6`, `0x001B4CBE`-`0x001B4CE9`), so a count too large
-   reads past the end, and a count of 0 or below reads no value.
-4. Read this way, the two unrequested `us` `.fex` files would take their first key as a count and run about 2.3 GB
-   past the end.
-5. The `.fex` reader refuses a key already loaded and stops there, without freeing the file (`0x001B4CBA`, `0x001B4D03`).
-   It also leaves the request unfreed: the jump from `0x001B4D11` passes over `0x001B4D21`-`0x001B4D44`.
-6. A `.dat` flag bit asks for its file without checking that it exists; no shipped flag asks for a missing file.
-7. A missing atlas file, or a cluster without a `PTexture2D` instance, is not reported: the completion `0x001B6230`
-   skips the store (`0x001B629F`, `0x001B62C0`, `0x001B62F4`, `0x001B6310`) and the font keeps atlas 0. The font is built and
-   its text laid out, but the flush skips its batch, so its glyphs are never drawn
-   ([Text drawing](text-drawing.md)).
-8. Each reader finds its font by the request's id `+0x30` in the manager's map `+0x28`. With no font of that id,
-   or a null font, it reads nothing (`0x001B4C71`-`0x001B4C81`, `0x001B5292`-`0x001B529E`); with no file data `+0x20` it
-   skips the reading (`0x001B4C8E`, `0x001B52A7`).
-9. Those paths, and a reading that ends normally, free the file data (`0x00210EB0`), zero `+0x20` and `+0x28` and
-   free the request in the pool `+0xD0` (`0x002124C0`) (`0x001B4D21`-`0x001B4D44`, `0x001B52EC`-`0x001B530F`). The
-   completions `0x001B6030` and `0x001B6080` call the readers only while the manager `[0x01F81200]` exists
-   (`0x001B604A`, `0x001B609A`).
-10. A repeated `.ker` pair does not stop its reader: `0x001FDC10` overwrites the adjustment already filed for the
-    same two code points (`0x001FDC5C`-`0x001FDC66`), so the last one in the file applies.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The checks enforce nothing. Each test passes its result and message to `0x0016D6A0`, which returns at once (for example `0x001B4F69`-`0x001B4F7B`, `0x001B52D5`-`0x001B52E7`, `0x001B4CF1`-`0x001B4D1C`), so loading goes on whatever a test finds. |   |
+| 2 | Short records are read past their end. The builder reads the `.dat` header's `0x28` bytes without testing the file's size and then a whole `0x24`-byte glyph record while any byte remains. The `.ker` reader does the same with its 12-byte pairs, and the `.fex` reader with each chunk's 8-byte key and count. | `0x001B4DEE`-`0x001B4E29`<br>`0x001B4ED2`, `0x001B4F4E`<br>`0x001B52A9`, `0x001B52C6`<br>`0x001B4C94`, `0x001B4CEB` |
+| 3 | Counts are trusted. A `.dat` header's `glyphCount` bounds nothing: the builder files records to the end of the file, and only the unenforced test `0x001FDF80` compares the two. A `.fex` chunk's count sets how many values are read, with no test against the file's end, so a count too large reads past the end, and a count of 0 or below reads no value. | `0x001B4F6C`<br>`0x001B4CA6`, `0x001B4CBE`-`0x001B4CE9` |
+| 4 | Read this way, the two unrequested `us` `.fex` files would take their first key as a count and run about 2.3 GB past the end. |   |
+| 5 | The `.fex` reader refuses a key already loaded and stops there, without freeing the file. It also leaves the request unfreed: the jump from `0x001B4D11` passes over `0x001B4D21`-`0x001B4D44`. | `0x001B4CBA`, `0x001B4D03` |
+| 6 | A `.dat` flag bit asks for its file without checking that it exists; no shipped flag asks for a missing file. |   |
+| 7 | A missing atlas file, or a cluster without a `PTexture2D` instance, is not reported: the completion `0x001B6230` skips the store and the font keeps atlas 0. The font is built and its text laid out, but the flush skips its batch, so its glyphs are never drawn ([Text drawing](text-drawing.md)). | `0x001B629F`, `0x001B62C0`, `0x001B62F4`, `0x001B6310` |
+| 8 | Each reader finds its font by the request's id `+0x30` in the manager's map `+0x28`. With no font of that id, or a null font, it reads nothing; with no file data `+0x20` it skips the reading. | `0x001B4C71`-`0x001B4C81`, `0x001B5292`-`0x001B529E`<br>`0x001B4C8E`, `0x001B52A7` |
+| 9 | Those paths, and a reading that ends normally, free the file data, zero `+0x20` and `+0x28` and free the request in the pool `+0xD0`. The completions `0x001B6030` and `0x001B6080` call the readers only while the manager `[0x01F81200]` exists. | `0x00210EB0`<br>`0x002124C0`<br>`0x001B4D21`-`0x001B4D44`, `0x001B52EC`-`0x001B530F`<br>`0x001B604A`, `0x001B609A` |
+| 10 | A repeated `.ker` pair does not stop its reader: `0x001FDC10` overwrites the adjustment already filed for the same two code points, so the last one in the file applies. | `0x001FDC5C`-`0x001FDC66` |
 
 ## Modding notes
 

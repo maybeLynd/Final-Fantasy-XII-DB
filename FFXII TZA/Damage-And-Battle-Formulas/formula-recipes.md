@@ -13,13 +13,34 @@ recipe, and each pointer leads to two lists of `int32` slot numbers, each ended 
 - **The first list** runs when the action executes, through `0x00385680` (the slot call at `0x003859FF`).
   `0x00303830` calls it at `0x00303910`, and is itself called from the action state machine at `0x00304F1D`;
   `0x00303A00` calls it at `0x00303AD7`. It decides hit, evade, block, parry and knockback.
-- **The committed list** runs in `0x00385F60`: it skips the first list (`0x00386365`-`0x0038637B`) and calls each
-  slot of the second at `0x003863D0`, stopping early when `0x02AEDFB8` is 1 (`0x003863D7`).
+- **The committed list** runs in `0x00385F60`: it skips the first list¹ and calls each
+  slot of the second at `0x003863D0`, stopping early when `0x02AEDFB8` is 1².
 
-An action takes its recipe from byte `+0x08` of its row (`0x0038617E`). Recipe 0 means "the weapon's": the
-resolver then takes byte `+0x19` of the main-hand weapon row (`0x003861FD`). A recipe of `0x6D` (109) or more
-returns -1 (`0x00386182`, `0x00386212`). [Weapon formulas](weapon-formulas.md) explains the weapon recipes and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00386365`-`0x0038637B` |
+| ² | `0x003863D7` |
+
+</details>
+
+An action takes its recipe from byte `+0x08` of its row¹. Recipe 0 means "the weapon's": the
+resolver then takes byte `+0x19` of the main-hand weapon row². A recipe of `0x6D` (109) or more
+returns -1³. [Weapon formulas](weapon-formulas.md) explains the weapon recipes and
 [Steal](steal.md) walks through one action recipe.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038617E` |
+| ² | `0x003861FD` |
+| ³ | `0x00386182`, `0x00386212` |
+
+</details>
 
 Besides recipe 0, shipped actions use 89 recipes and weapons 11, and 8 recipes are used by neither (15, 28, 44, 71, 80,
 81, 89, 106). Recipe 0 is the recipe byte of 73 action rows, among them Attack.

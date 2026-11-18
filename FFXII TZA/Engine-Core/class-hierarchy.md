@@ -97,11 +97,23 @@ that class alone, and a hook on a shared body reaches every class that folded on
 A constructor stamps the vtable address into the object's first qword with
 `lea reg, [vtable]; mov [object], reg`.
 
-2,282 of the 2,286 vtables are loaded by such a `lea` in `.text`, at 5,786 sites; the four that no `lea` loads are `AdapterInfoBase` (`0x00906868`),
-`Phyre::PClassDataMemberDynamicType<PClassDataMemberDynamic>` (`0x00D58468`),
-`SoundObjectManagerCallbackHandler` (`0x01CB4328`) and `SQEX::Sd::HashTable` (`0x01CB4AE8`), whose vtable
+2,282 of the 2,286 vtables are loaded by such a `lea` in `.text`, at 5,786 sites; the four that no `lea` loads are `AdapterInfoBase`¹,
+`Phyre::PClassDataMemberDynamicType<PClassDataMemberDynamic>`²,
+`SoundObjectManagerCallbackHandler`³ and `SQEX::Sd::HashTable`⁴, whose vtable
 address is already stored in static objects in the image file's `.data`: `0x01E02580`, `0x01F2DF30`,
 `0x01F403D0`, and `0x01F40440`, `0x01F40C50` and `0x01F41460` for the last.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00906868` |
+| ² | `0x00D58468` |
+| ³ | `0x01CB4328` |
+| ⁴ | `0x01CB4AE8` |
+
+</details>
 
 `AdapterInfoBase` is the base of `AdapterInfos`, `AmdAdapterInfo` and `NvidiaAdapterInfo`; the other three are
 the base of no class.
@@ -114,6 +126,9 @@ named above hold their vtable address in the image file itself.
 
 ## Layouts
 
+<details>
+<summary>Show the memory layouts</summary>
+
 ```
 vtable[-1]  ptr    complete object locator
 locator     u32 signature (1), u32 offset in object, u32 cdOffset, u32 typeDescriptor RVA,
@@ -124,7 +139,12 @@ base desc   u32 typeDescriptor RVA, u32 contained bases, i32 mdisp, i32 pdisp, i
 vtable      ptr slot[0..n-1], each into .text
 ```
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -134,6 +154,8 @@ vtable      ptr slot[0..n-1], each into .text
 | functions in exactly one class | 4,271 ([vtable methods](vtable-methods.md)) |
 | vtables stamped by a `lea` in code | 2,282 at 5,786 sites |
 | largest vtables | `PPFX::IGPUDevice` 77, the `SQEX::Sd::Driver` sound family 44; of the game's own `PrimitiveRendererD3D11` 45, `GameApplication` 31, `CharacterRenderObject` 31 |
+
+</details>
 
 ## Operations
 
@@ -149,8 +171,13 @@ records whose catchable types name type descriptors (`0x0019501D` throws `std::b
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The records are read-only data in `.rdata` and `.data`. The only state is each object's first
 qword.
+
+</details>
 
 ## Modding notes
 

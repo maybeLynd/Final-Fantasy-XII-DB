@@ -15,21 +15,47 @@
 
 ### The music control file
 
-`musicctrl.bin` is kind 9 file `0x20`, `PS2Data\image\ff12\in\common\musicctrl.bin` in the `in` path table
-(`0x01E12660`); a `ch` copy holds the same bytes. The boot loader `0x00379D20` reaches `0x003EAB60` with a jump
-(`0x00379D32`), and `0x003EAB60` requests the whole file and keeps the pointer at `0x02B5E0D0`. The completion
-`0x003EAB90` adds the file's own address to every non-zero page offset (`0x003EAB90`-`0x003EABD6`).
+`musicctrl.bin` is kind 9 file `0x20`, `PS2Data\image\ff12\in\common\musicctrl.bin` in the `in` path table¹; a `ch` copy holds the same bytes. The boot loader `0x00379D20` reaches `0x003EAB60` with a jump², and `0x003EAB60` requests the whole file and keeps the pointer at `0x02B5E0D0`. The completion
+`0x003EAB90` adds the file's own address to every non-zero page offset³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01E12660` |
+| ² | `0x00379D32` |
+| ³ | `0x003EAB90`-`0x003EABD6` |
+
+</details>
 
 ### The track flag file
 
-`musicinfo.bin` is kind 9 file 6 (`PS2Data\image\ff12\in\common\musicinfo.bin`). `0x00360C70` requests it into heap 5
-(`0x00360C70`), and its completion `0x00360B40` keeps the pointer at `0x022CBA50`. `0x00361010(track)` answers bit `0x1` of
+`musicinfo.bin` is kind 9 file 6 (`PS2Data\image\ff12\in\common\musicinfo.bin`). `0x00360C70` requests it into heap 5¹, and its completion `0x00360B40` keeps the pointer at `0x022CBA50`. `0x00361010(track)` answers bit `0x1` of
 the track's first byte, or 0 for a negative track or no file.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00360C70` |
+
+</details>
+
 `0x00360C70` first sets up the four track slots and clears `0x022CBA50` ([Music](music.md)), then asks the size table
-for the file (`0x0032E400(9, 6)`, `0x00360CA9`). A negative size requests nothing and leaves the pointer 0
-(`0x00360CC6`); otherwise it allocates that size in heap 5 (`0x0036C1D0(5, 5)`, `0x0036A190`, `0x0036C140`) and requests
-the file through `0x0032E620` with the completion `0x00360B40` (`0x00360CC8`-`0x00360D19`).
+for the file (`0x0032E400(9, 6)`, `0x00360CA9`). A negative size requests nothing and leaves the pointer 0¹; otherwise it allocates that size in heap 5 (`0x0036C1D0(5, 5)`, `0x0036A190`, `0x0036C140`) and requests
+the file through `0x0032E620` with the completion `0x00360B40`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00360CC6` |
+| ² | `0x00360CC8`-`0x00360D19` |
+
+</details>
 
 `musicctrl.bin` gives each field id a track, plus a ladder of story-counter values that switch it to another track, or
 to silence, as the story moves on. `musicinfo.bin` holds one entry per track, and its boss-music flag keeps that track
@@ -38,15 +64,35 @@ playing when the chocobo or summon music would otherwise take over.
 ## Layouts
 
 All multi-byte fields are little-endian. The two-byte fields of runs and rungs are read a byte at a time, byte
-`+1` shifted above byte `+0` (`0x003EAAA5`-`0x003EAAB4`, `0x003EAAD6`-`0x003EAAE5`, `0x003EAB20`-`0x003EAB2A`), so they need
+`+1` shifted above byte `+0`¹, so they need
 no alignment.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EAAA5`-`0x003EAAB4`, `0x003EAAD6`-`0x003EAAE5`, `0x003EAB20`-`0x003EAB2A` |
+
+</details>
 
 Offsets in each table below are from the start of its own structure: the header, a run, a rung or a
 `musicinfo.bin` entry. A page offset is from the start of `musicctrl.bin`: `0x003EAB90` adds the file's address to
-each one that is not 0 (`0x003EABB6`-`0x003EABC1`), and there are `(maxField + 127) / 128` of them
-(`0x003EAB9A`-`0x003EABA7`). A page's first run is at its offset. A run's rungs follow its 4 bytes, 3 bytes each
-(`0x003EAB07`, `0x003EAB39`), and the next run starts at the run plus `4 + 3 * rungs` (`0x003EAACB`-`0x003EAAD3`). Track
-*t*'s entry in `musicinfo.bin` is at file offset `2 * t` (`0x00361023`).
+each one that is not 0¹, and there are `(maxField + 127) / 128` of them². A page's first run is at its offset. A run's rungs follow its 4 bytes, 3 bytes each³, and the next run starts at the run plus `4 + 3 * rungs`⁴. Track
+*t*'s entry in `musicinfo.bin` is at file offset `2 * t`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EABB6`-`0x003EABC1` |
+| ² | `0x003EAB9A`-`0x003EABA7` |
+| ³ | `0x003EAB07`, `0x003EAB39` |
+| ⁴ | `0x003EAACB`-`0x003EAAD3` |
+| ⁵ | `0x00361023` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -84,9 +130,21 @@ each one that is not 0 (`0x003EABB6`-`0x003EABC1`), and there are `(maxField + 1
    rung's track replaces it.
 5. Track 0 becomes -1.
 
-The story counter is read through `FieldData_GetVariable0` (`0x003EAA78`).
+The story counter is read through `FieldData_GetVariable0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EAA78` |
+
+</details>
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | | |
 |---|---|
@@ -124,16 +182,35 @@ The `track_titles` and `zone_names` columns name each run's tracks and maps: the
 ### Each area's track by story stage and mode
 
 [`music-resolved.tsv`](music-resolved.tsv) gives every field id's track for each stretch of the story counter, as
-`0x003EAA70` resolves the table: 869 rows for the 726 field ids. The counter is read signed (`0x003EAB10`), so `end` is
+`0x003EAA70` resolves the table: 869 rows for the 726 field ids. The counter is read signed¹, so `end` is
 32,767 and a negative counter plays what 0 plays. Field 742 `bul_b02` plays 75 to 1,976, no track to 1,982, 39 to
 2,200, no track to 2,250, 31 to 2,350, 59 to 11,000 and no track after; field 866 `alc_z01` plays no track to 1,950,
 75 to 1,973, 22 to 11,000 and no track after.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EAB10` |
+
+</details>
+
 The music that plays is decided at `0x00261F90`: the saved override replaces the table's track while payload `+0x1063`
-bit `0x40` is set (`0x0026201B`-`0x00262029`). A boss-music track stays (`0x00262041`). Any other track, and no track
-(`0x0026203D`), gives way to the summon track 91 (`0x5B`, `0x00262053`) in summon mode, or else to the chocobo track
+bit `0x40` is set¹. A boss-music track stays². Any other track, and no track³, gives way to the summon track 91 (`0x5B`, `0x00262053`) in summon mode, or else to the chocobo track
 90 (`0x5A`, `0x00262063`) in chocobo mode. 12 rows keep a boss track: fields 357, 552, 777, 933-936, 1150, 1246, 1291,
 1302 and 1311.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026201B`-`0x00262029` |
+| ² | `0x00262041` |
+| ³ | `0x0026203D` |
+
+</details>
 
 ### Columns of music-resolved.tsv
 
@@ -155,9 +232,20 @@ a story counter, flag or other test, 2 only inside an endless loop and 320 under
 each of the 100 Trial Mode zones. Every track number of 0 or more that a call passes is a shipped `musicNNN.win.mab`.
 
 For `musicstop`, `musicclear`, `musicfadeout`, `musicfadeout_231` and `musictrans`, a track of -1 is the current
-track (`0x002DEC00`). `musicread` and `musicplay` with -1 load nothing (`0x00361639`), and `musicreadsync` with -1 does
-not wait (`0x00341FA3`). `setnowmapmusicno` is called 1,363 times; its 229 calls with -1 clear the saved override
+track¹. `musicread` and `musicplay` with -1 load nothing², and `musicreadsync` with -1 does
+not wait³. `setnowmapmusicno` is called 1,363 times; its 229 calls with -1 clear the saved override
 (`0x00345E70` -> `0x0026A720`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DEC00` |
+| ² | `0x00361639` |
+| ³ | `0x00341FA3` |
+
+</details>
 
 | Verb | Call id | Calls | What it does |
 |---|---|---|---|
@@ -182,25 +270,54 @@ not wait (`0x00341FA3`). `setnowmapmusicno` is called 1,363 times; its 229 calls
 | `musicphraseplay` | `0x50E` | 4 | plays a track from a section (`0x003437A0`) |
 | `musicfadeoutsync` | `0x536` | 2,123 | waits for the music fades to end (`0x003466F0`) |
 
-`0x00340260` (`musictrans`) pops three ints: a value, the length and the track
-(`0x0034027D`-`0x0034029A`). A negative track is replaced by the answer of `0x002DEC00`, and
-no call is made when that is negative too (`0x003402BB`-`0x003402C8`). A length of 0 or
-less goes to `0x002DEE30(track, value)`, any other to `0x002DEE50(track, length, value)`
-(`0x003402CA`-`0x003402DE`). While `0x00267310` answers non-zero for the calling actor's byte
+`0x00340260` (`musictrans`) pops three ints: a value, the length and the track¹. A negative track is replaced by the answer of `0x002DEC00`, and
+no call is made when that is negative too². A length of 0 or
+less goes to `0x002DEE30(track, value)`, any other to `0x002DEE50(track, length, value)`³. While `0x00267310` answers non-zero for the calling actor's byte
 `+0x15` it calls `0x002DE7F0(value)` and nothing else, and not even that when the track
-is negative and `0x003604C0` answers a negative value (`0x00340296`-`0x003402B4`).
+is negative and `0x003604C0` answers a negative value⁴.
 
-`0x00346C00` first sets bit `0x40` of the scratch byte `+3` (`0x00346C12`). While `0x00267310`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034027D`-`0x0034029A` |
+| ² | `0x003402BB`-`0x003402C8` |
+| ³ | `0x003402CA`-`0x003402DE` |
+| ⁴ | `0x00340296`-`0x003402B4` |
+
+</details>
+
+`0x00346C00` first sets bit `0x40` of the scratch byte `+3`¹. While `0x00267310`
 answers 0 for the calling actor's byte `+0x15` it pops the flag, the frames and the
 track, a negative track becoming `0x002DEC00()`, and writes the track to the word `+0`,
 the frames to the dword `+8`, the flag as bit `0x10` of the byte `+2`, whose high four
 bits it clears first, and bit `0x80` of the byte `+3`, of which only bits `0xC0` are
-kept (`0x00346CB7`-`0x00346CF2`).
+kept².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00346C12` |
+| ² | `0x00346CB7`-`0x00346CF2` |
+
+</details>
 
 On a non-zero answer it pops the same three, pushes back -1 for the track with the
 other two, calls `0x00345B60`, clears bit `0x80` of the byte `+3` and calls
-`0x00360960(track, 0, 0)` (`0x00346C41`-`0x00346CA6`). Both paths end in a jump to `0x0025D5D0`
-(`0x00346D08`).
+`0x00360960(track, 0, 0)`¹. Both paths end in a jump to `0x0025D5D0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00346C41`-`0x00346CA6` |
+| ² | `0x00346D08` |
+
+</details>
 
 ### Columns of music-script-overrides.tsv
 
@@ -265,19 +382,17 @@ track with no shipped bank: 0, 10, 11, 12, 93 and 130.
 | `runs`, `rungs` | the runs and rungs of `musicctrl.bin` that name the track; for track 0, those with no track |
 | `bank_file` | the track's shipped `music/magi_data/win/musicNNN.win.mab`, or `-` when no file ships |
 
+</details>
+
 ## Loader behaviour
 
-1. Neither loader checks the magic or the sizes.
-2. A page has no end marker: a lookup that runs past a page's last run walks on into the next page's runs. For the
-   four runs that cross a page boundary (above), that is how the earlier page's ids reach their run. Every other
-   page's next first run starts above every id of the page, and the walk stops there. On the last page the last run
-   is field 1,311, and the header refuses anything above it.
-3. A track number is the `NNN` of `music/magi_data/win/musicNNN.win.mab` ([Sound banks](sound-banks.md)).
-4. `0x00361010(t)`, the boss-music test, returns 0 for a negative `t` and reads entry `t` with no upper bound
-   (`0x00361010`-`0x00361027`), so a `t` of 256 or more reads past the file's 256 entries.
-5. Four callers of `0x00361010` pass the track of the run lookup `0x003EAA70` (`0x0025DBCE`, `0x00262041`, `0x0026DE59`,
-   `0x0026DF03`), a byte or -1. The fifth is `isbossmusic` (`0x47B`, `0x00349E10`), which passes the script's value
-   unchecked; all 591 of its calls in the `us` scripts pass `getnowmapmusicno_47a(1)`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Neither loader checks the magic or the sizes. |   |
+| 2 | A page has no end marker: a lookup that runs past a page's last run walks on into the next page's runs. For the four runs that cross a page boundary (above), that is how the earlier page's ids reach their run. Every other page's next first run starts above every id of the page, and the walk stops there. On the last page the last run is field 1,311, and the header refuses anything above it. |   |
+| 3 | A track number is the `NNN` of `music/magi_data/win/musicNNN.win.mab` ([Sound banks](sound-banks.md)). |   |
+| 4 | `0x00361010(t)`, the boss-music test, returns 0 for a negative `t` and reads entry `t` with no upper bound, so a `t` of 256 or more reads past the file's 256 entries. | `0x00361010`-`0x00361027` |
+| 5 | Four callers of `0x00361010` pass the track of the run lookup `0x003EAA70`, a byte or -1. The fifth is `isbossmusic` (`0x47B`, `0x00349E10`), which passes the script's value unchecked; all 591 of its calls in the `us` scripts pass `getnowmapmusicno_47a(1)`. | `0x0025DBCE`, `0x00262041`, `0x0026DE59`, `0x0026DF03` |
 
 ## Modding notes
 
@@ -285,8 +400,18 @@ track with no shipped bank: 0, 10, 11, 12, 93 and 130.
   the run's rung count in step.
 - Rungs are tested in file order and stop at the first value the counter is not above, so keep them rising.
 - Setting a track's boss-music bit keeps it playing through chocobo and summon music.
-- The page offsets are rebased in place with a 32-bit add (`0x003EABBE`) and read back sign-extended (`0x003EAA9C`), so
+- The page offsets are rebased in place with a 32-bit add¹ and read back sign-extended², so
   the file must stay at an address below 2 GB.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EABBE` |
+| ² | `0x003EAA9C` |
+
+</details>
 
 ## Related
 
@@ -303,46 +428,50 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Controls and input** (explained on [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E620` | is called by | `0x00291C80` |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00291C80`](../Graphics/effect-file-list.md) (on effect file list) |
 
-**Graphics**
+**Graphics** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [character effects](../Graphics/character-effects.md), [effect files efx efb](../Graphics/effect-files-efx-efb.md), [effect element runtime](../Graphics/effect-element-runtime.md), [effect element types](../Graphics/effect-element-types.md), [effect anchors and targets](../Graphics/effect-anchors-and-targets.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E400` | is called by | `0x003B2310`, `0x003B53C0` |
-| `0x0032E620` | is called by | `0x003B2310`, `0x003B53C0` |
-| `0x0036A190` | is called by | `0x003A7460`, `0x003A78A0`, `0x003A8020`, `0x003A9100`, `0x003A9C10`, `0x0044A620`, `0x0045FD50`, `0x0046F380`, `0x004FF440`, `0x00504350`, `0x00524800`, `0x00525D50` |
-| `0x0036A190` | is also called by | `0x00529200`, `0x0052A130`, `0x0052ADF0`, `0x0052D3B0`, `0x0052E430` |
-
-**Graphics** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [character effects](../Graphics/character-effects.md))
-
-**Graphics** (explained on [effect files efx efb](../Graphics/effect-files-efx-efb.md), [effect element runtime](../Graphics/effect-element-runtime.md), [effect element types](../Graphics/effect-element-types.md), [effect anchors and targets](../Graphics/effect-anchors-and-targets.md))
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x003B2310`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x003B53C0`](../Game-Files-And-Data-Tables/small-bin-tables.md) (on small bin tables) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x003B2310`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x003B53C0`](../Game-Files-And-Data-Tables/small-bin-tables.md) (on small bin tables) |
+| [`0x0036A190`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x003A7460`](../Graphics/effect-element-runtime.md) (on effect element runtime)<br>[`0x003A78A0`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle)<br>[`0x003A8020`](../Graphics/effect-element-runtime.md) (on effect element runtime)<br>[`0x003A9100`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle)<br>[`0x003A9C10`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle)<br>[`0x0044A620`](../Graphics/effect-element-types.md) (on effect element types)<br>[`0x0045FD50`](../Graphics/effect-element-types.md) (on effect element types)<br>[`0x0046F380`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle)<br>[`0x004FF440`](../Graphics/effect-element-runtime.md) (on effect element runtime)<br>[`0x00504350`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle)<br>[`0x00524800`](../Graphics/effect-element-runtime.md) (on effect element runtime)<br>[`0x00525D50`](../Graphics/effect-element-types.md) (on effect element types) |
+| [`0x0036A190`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is also called by | [`0x00529200`](../Graphics/effect-element-types.md) (on effect element types)<br>[`0x0052A130`](../Graphics/effect-element-types.md) (on effect element types)<br>[`0x0052ADF0`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle)<br>[`0x0052D3B0`](../Graphics/effect-element-types.md) (on effect element types)<br>[`0x0052E430`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) |
 
 **Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x00261F90` | calls | `0x002EF2B0` |
-| `0x0026A720` | calls | `0x002EF2B0` |
-| `0x0032E620` | is called by | `0x002EF300` |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Menus and HUD**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002DEC00` | is called by | `0x003EF2E0` |
-| `0x002DEE50` | is called by | `0x0027FB70`, `0x00280DE0`, `0x002814E0`, `0x003EF2E0` |
-| `0x00360D70` | is called by | `0x003EF2E0` |
-| `0x00361630` | is called by | `0x003EF2E0` |
+| [`0x00261F90`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) |
+| [`0x0026A720`](music-table.md) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x002EF300`](../Saving-Loading-And-Settings/save-file-format.md) (on save file format) |
 
 **Menus and HUD** (explained on [game over](../World-Areas-And-Travel/game-over.md), [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [clan primer](../Menus-And-HUD/clan-primer.md))
 
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x002DEC00`](music-table.md) | is called by | [`0x003EF2E0`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x002DEE50`](music-table.md) | is called by | [`0x0027FB70`](../Story-Events-And-Hunts/tutorials-scenes.md) (on tutorials scenes)<br>[`0x00280DE0`](../Menus-And-HUD/opening-the-main-menu.md) (on opening the main menu)<br>[`0x002814E0`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen)<br>[`0x003EF2E0`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x00360D70`](music-table.md) | is called by | [`0x003EF2E0`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x00361630`](../World-Areas-And-Travel/game-over.md) (on game over) | is called by | [`0x003EF2E0`](../Menus-And-HUD/widgets.md) (on widgets) |
+
 **Movement and pathfinding** (explained on [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00267310` | is called by | `0x002E45E0`, `0x002E5750` |
+| [`0x00267310`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x002E45E0`](../Movement-And-Pathfinding/facing-and-steering.md) Movement: update steering toward target (on facing and steering)<br>[`0x002E5750`](../Movement-And-Pathfinding/facing-and-steering.md) (on facing and steering) |
 
 </details>

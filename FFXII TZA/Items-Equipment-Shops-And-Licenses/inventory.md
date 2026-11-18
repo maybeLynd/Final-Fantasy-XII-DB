@@ -27,9 +27,19 @@ rebaser `0x0030B6A0` turns the offsets into pointers at `+0x08`, `+0x20` and `+0
 (`0x0030B6C0`-`0x0030B6ED`; [Party data](../Party/party-data.md)): each non-zero offset becomes the low 32 bits of
 offset plus block address, and a zero offset leaves its pointer as it was.
 
-It also writes each record's running id base at `+0x40` (`0x0030B6F1`-`0x0030B6F5`), zeroes the `0x200` bytes at
-`+0x57C8`, the whole loot sold tally (`0x0030B702`-`0x0030B737`), and masks the `0x80` bytes at `+0x59C8` with `0xF8`
-(`0x0030B739`-`0x0030B75B`).
+It also writes each record's running id base at `+0x40`¹, zeroes the `0x200` bytes at
+`+0x57C8`, the whole loot sold tally², and masks the `0x80` bytes at `+0x59C8` with `0xF8`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030B6F1`-`0x0030B6F5` |
+| ² | `0x0030B702`-`0x0030B737` |
+| ³ | `0x0030B739`-`0x0030B75B` |
+
+</details>
 
 | Nibble | Ids | Holds | Storage |
 |---|---|---|---|
@@ -51,21 +61,48 @@ Rows 5, 7 and 11 are empty, and nibble F is refused.
 ### The count word
 
 An item, equipment or loot count word is `owned | equipped << 10`: the bits under mask `0x3FF` count the copies owned and the bits under mask `0xFC00`
-the copies being worn. The packed handler `0x002FD150` builds it (`0x002FD30B`-`0x002FD31A`, `0x002FD28C`-`0x002FD298`), and
-its query `0x002FD8D0` answers four kinds: 0 owned minus worn, 1 owned, 2 worn, 3 the region-two byte
-(`0x002FD906`-`0x002FD95B`). The bit handler `0x002FD420` keeps bit value `1 << (index & 15)` of word `index >> 4`.
+the copies being worn. The packed handler `0x002FD150` builds it¹, and
+its query `0x002FD8D0` answers four kinds: 0 owned minus worn, 1 owned, 2 worn, 3 the region-two byte². The bit handler `0x002FD420` keeps bit value `1 << (index & 15)` of word `index >> 4`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD30B`-`0x002FD31A`, `0x002FD28C`-`0x002FD298` |
+| ² | `0x002FD906`-`0x002FD95B` |
+
+</details>
 
 ### Changing the inventory
 
-`0x003008A0(id, delta, absolute, channel, flags)` makes every change (`0x003008A0`-`0x00300B62`):
+`0x003008A0(id, delta, absolute, channel, flags)` makes every change¹:
 
-1. It refuses `0xFFFF`, Unarmed `0x1000`, nibble F, and an index not below the record's id count
-   (`0x003008C0`-`0x0030092C`).
-2. It reads the old value and calls the record's change handler, `+0x48` (`0x00300931`-`0x00300960`).
-3. On channel 1, when the value goes from 0 or less to more than 0, it sets the first-acquisition marks in the
-   party block's flag word `+4`, below (`0x00300968`-`0x00300B5A`).
+<details>
+<summary>Where in the code</summary>
 
-The packed handler has four channels, chosen by `channel` (`0x002FD198`-`0x002FD1B9`):
+| | Code |
+|---|---|
+| ¹ | `0x003008A0`-`0x00300B62` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It refuses `0xFFFF`, Unarmed `0x1000`, nibble F, and an index not below the record's id count. | `0x003008C0`-`0x0030092C` |
+| 2 | It reads the old value and calls the record's change handler, `+0x48`. | `0x00300931`-`0x00300960` |
+| 3 | On channel 1, when the value goes from 0 or less to more than 0, it sets the first-acquisition marks in the party block's flag word `+4`, below. | `0x00300968`-`0x00300B5A` |
+
+The packed handler has four channels, chosen by `channel`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD198`-`0x002FD1B9` |
+
+</details>
 
 | Channel | Changes | Clamp | Sites |
 |---|---|---|---|
@@ -74,36 +111,93 @@ The packed handler has four channels, chosen by `channel` (`0x002FD198`-`0x002FD
 | `2` | worn | 0 to owned | `0x002FD23C`-`0x002FD2A5` |
 | `3` | the region-two byte | 0 to 99 | `0x002FD1BF`-`0x002FD237` |
 
-A rise on channel 1 also sets the item's ever-owned bit (`0x002FD323`-`0x002FD34B`). A relative channel-1 change with
-`flags` bit `0x1` posts the obtain message through `0x0046A630`, in both handlers (`0x002FD2AD`-`0x002FD37C`,
-`0x002FD4FB`-`0x002FD509`).
+A rise on channel 1 also sets the item's ever-owned bit¹. A relative channel-1 change with
+`flags` bit `0x1` posts the obtain message through `0x0046A630`, in both handlers².
 
-Neither handler has a channel 4: the packed handler returns 0 without writing
-(`0x002FD1B5`-`0x002FD1B9`), and the bit handler sets or clears the bit as for any channel. The bit handler
-ignores the channel: a result below 1 clears the bit and 1 or more sets it (`0x002FD49D`-`0x002FD4E5`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD323`-`0x002FD34B` |
+| ² | `0x002FD2AD`-`0x002FD37C`, `0x002FD4FB`-`0x002FD509` |
+
+</details>
+
+Neither handler has a channel 4: the packed handler returns 0 without writing¹, and the bit handler sets or clears the bit as for any channel. The bit handler
+ignores the channel: a result below 1 clears the bit and 1 or more sets it².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD1B5`-`0x002FD1B9` |
+| ² | `0x002FD49D`-`0x002FD4E5` |
+
+</details>
 
 The bundle handlers `0x002FD530`, `0x002FD640` and `0x002FD780` and the gil handler `0x002FD880` act only on a
-relative channel-1 change. The three bundle handlers call `0x003008A0` again for each nested grant
-(`0x002FD53F`-`0x002FD85D`).
+relative channel-1 change. The three bundle handlers call `0x003008A0` again for each nested grant¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD53F`-`0x002FD85D` |
+
+</details>
 
 Before its nested grants the package handler `0x002FD530` gives
-`max(0, gil + rowGil * count)`, `rowGil` the dword at `+0` of its row, to the purse setter `0x00254EE0`
-(`0x002FD5A9`-`0x002FD5C0`) and, when `flags` bit `0x1` is set, passes that value less the purse before the
-change to `0x00469E80` (`0x002FD5C5`-`0x002FD5D3`), which acts only on a value above 0 (`0x00469EA5`-`0x00469EA7`);
+`max(0, gil + rowGil * count)`, `rowGil` the dword at `+0` of its row, to the purse setter `0x00254EE0`¹ and, when `flags` bit `0x1` is set, passes that value less the purse before the
+change to `0x00469E80`², which acts only on a value above 0³;
 the purse cap is not applied to it.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD5A9`-`0x002FD5C0` |
+| ² | `0x002FD5C5`-`0x002FD5D3` |
+| ³ | `0x00469EA5`-`0x00469EA7` |
+
+</details>
+
 The gil handler makes no call of `0x003008A0`: it gives `max(0, gil + (id & 0xFFF) * count)`
-to the purse setter `0x00254EE0` (`0x002FD89A`-`0x002FD8B4`), which keeps the purse at most 99,999,999
-(`0x00254F07`-`0x00254F15`). A package selector, `0xAxxx`, gives its second triple when
+to the purse setter `0x00254EE0`¹, which keeps the purse at most 99,999,999². A package selector, `0xAxxx`, gives its second triple when
 `flags` bit `0x2` is set and its
-first otherwise (`0x002FD6BA`).
+first otherwise³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD89A`-`0x002FD8B4` |
+| ² | `0x00254F07`-`0x00254F15` |
+| ³ | `0x002FD6BA` |
+
+</details>
 
 Most callers use three wrappers. `0x00300B80(id, delta, flags)` is a relative channel-1 change, for adding and
-removing (`0x00300B84`-`0x00300B92`). `0x00300BA0(id, count, flags)` sets the count outright (`0x00300BA4`-`0x00300BB2`).
-`0x0030C410(id)` and `0x0030F9A0(id)` add or remove one worn copy of a piece of equipment
-(`0x0030C447`-`0x0030C45C`, `0x0030F9D7`-`0x0030F9EB`). `0x00300490(id, delta, flags)` makes a channel-4 change
-(`0x00300494`-`0x003004A2`): a member's join calls it, through a function pointer, for an item its gambit actions need,
-and it writes no count (`0x00316F62`-`0x00316F82`).
+removing¹. `0x00300BA0(id, count, flags)` sets the count outright².
+`0x0030C410(id)` and `0x0030F9A0(id)` add or remove one worn copy of a piece of equipment³. `0x00300490(id, delta, flags)` makes a channel-4 change⁴: a member's join calls it, through a function pointer, for an item its gambit actions need,
+and it writes no count⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00300B84`-`0x00300B92` |
+| ² | `0x00300BA4`-`0x00300BB2` |
+| ³ | `0x0030C447`-`0x0030C45C`, `0x0030F9D7`-`0x0030F9EB` |
+| ⁴ | `0x00300494`-`0x003004A2` |
+| ⁵ | `0x00316F62`-`0x00316F82` |
+
+</details>
 
 ### First-acquisition marks
 
@@ -140,13 +234,32 @@ These are every call of `0x003008A0` and its wrappers in the image; the one indi
 `0x00300B80` or `0x00300490`.
 
 The shop purchase `0x002FEEB0` and sale `0x00310870` change the item count through `0x003008A0` and then gil through the
-setter `0x00254EE0`, with no branch before either call (`0x002FEEDB`, `0x002FEEF3`; `0x003108A6`, `0x003108BD`).
+setter `0x00254EE0`, with no branch before either call¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FEEDB`, `0x002FEEF3`; `0x003108A6`, `0x003108BD` |
+
+</details>
 
 After a shop purchase of equipment, when the player accepts the equip offer, the member picker `0x0057AC10` calls
-`0x0031A510` for the member under the cursor at a confirm (`0x0057AF18`), only when its countdown byte `+0xC7` is 0
+`0x0031A510` for the member under the cursor at a confirm¹, only when its countdown byte `+0xC7` is 0
 (`0x0057ADE8`-`0x0057AE06`; a call sets it to `0x18` while copies are left, `0x0057AF8D`, and message 2 lowers it by one,
 `0x0057AD8F`-`0x0057ADA6`), that member can equip the item, a bought copy is left and the member's slot does not already
-hold it, so at most once per copy bought; a refused confirm plays sound 5 (`0x0057AF9B`).
+hold it, so at most once per copy bought; a refused confirm plays sound 5².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0057AF18` |
+| ² | `0x0057AF9B` |
+
+</details>
 
 [Shop screens](../Menus-And-HUD/shop-screens.md) has the picker; that call is the equipping row above.
 
@@ -160,10 +273,29 @@ one after another from `[0x020927C0] + 0x38CC`. Each list's entry count is a 32-
 
 The table `0x02092760` holds 8 bytes per list:
 - `+2`: the capacity, a signed 16-bit number;
-- `+4`: the list's place, stored encoded (`0x0020E620`).
+- `+4`: the list's place, stored encoded¹.
 
-`0x00253240(list, clear)` writes both for one list, through the jump table at `0x0025344C` (`0x002532CC`-`0x002533E7`). When
-`clear` is not 0, it also sets the count to 0 and every entry to `0xFFFF` (`0x002533EE`-`0x0025341F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020E620` |
+
+</details>
+
+`0x00253240(list, clear)` writes both for one list, through the jump table at `0x0025344C`¹. When
+`clear` is not 0, it also sets the count to 0 and every entry to `0xFFFF`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002532CC`-`0x002533E7` |
+| ² | `0x002533EE`-`0x0025341F` |
+
+</details>
 
 | List | Holds | Capacity | Place in the payload |
 |---|---|---:|---|
@@ -189,73 +321,118 @@ removes it, so an item whose list is full stays owned but is missing from the sc
 
 How an id reaches its list:
 
-1. The packed handler and the bit handler store the change first (`0x002FD31A`, `0x002FD4E9`). Then they call
-   `0x00325F40(id, before, after)` (`0x002FD355`, `0x002FD4F6`), the packed handler on channel 1 alone. The bit
-   handler passes the bit before and after the change (`0x002FD499`, `0x002FD4F0`-`0x002FD4F3`), the packed
-   handler the owned count before and after it (`0x002FD2D3`-`0x002FD307`, `0x002FD34E`).
-2. `0x00325F40` first asks the id check `0x00322C50(1, id, 0)` and returns for an id it refuses
-   (`0x00325F55`-`0x00325F67`). It adds the id when `before` is 0 and `after` is not, removes it in the opposite
-   case, and returns when both are 0 or neither is (`0x00325F6D`-`0x00325F8A`).
-3. It picks the list from the id nibble through the table at `0x01EED1B0`, one 16-byte entry per nibble
-   0-10: a pointer to a byte map and the map's length (`0x00325FF0`-`0x00326016`). Nibbles 0 and 2-8 each have a
-   1-byte map and read its byte 0 (`0x00325FE7`). Equipment, nibble 1, reads the byte at its row's class byte
-   `+0x09` (`0x00325FD9`) of the 27 bytes at `0x00D10690` ([Equipment row](equipment-row.md)).
-4. Nibbles 9 and 10 have no map and are passed over (`0x00325FFA`-`0x00326001`), as are a nibble above 10
-   (`0x00325FE9`-`0x00325FEC`), an index not below the map's length (`0x00326003`-`0x0032600C`) and a negative map
-   byte (`0x00326010`-`0x00326016`). Otherwise the map byte is the list number, passed with `id << 16` to the
-   list function (`0x00326018`-`0x0032601D`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The packed handler and the bit handler store the change first. Then they call `0x00325F40(id, before, after)`, the packed handler on channel 1 alone. The bit handler passes the bit before and after the change, the packed handler the owned count before and after it. | `0x002FD31A`, `0x002FD4E9`<br>`0x002FD355`, `0x002FD4F6`<br>`0x002FD499`, `0x002FD4F0`-`0x002FD4F3`<br>`0x002FD2D3`-`0x002FD307`, `0x002FD34E` |
+| 2 | `0x00325F40` first asks the id check `0x00322C50(1, id, 0)` and returns for an id it refuses. It adds the id when `before` is 0 and `after` is not, removes it in the opposite case, and returns when both are 0 or neither is. | `0x00325F55`-`0x00325F67`<br>`0x00325F6D`-`0x00325F8A` |
+| 3 | It picks the list from the id nibble through the table at `0x01EED1B0`, one 16-byte entry per nibble 0-10: a pointer to a byte map and the map's length. Nibbles 0 and 2-8 each have a 1-byte map and read its byte 0. Equipment, nibble 1, reads the byte at its row's class byte `+0x09` of the 27 bytes at `0x00D10690` ([Equipment row](equipment-row.md)). | `0x00325FF0`-`0x00326016`<br>`0x00325FE7`<br>`0x00325FD9` |
+| 4 | Nibbles 9 and 10 have no map and are passed over, as are a nibble above 10, an index not below the map's length and a negative map byte. Otherwise the map byte is the list number, passed with `id << 16` to the list function. | `0x00325FFA`-`0x00326001`<br>`0x00325FE9`-`0x00325FEC`<br>`0x00326003`-`0x0032600C`<br>`0x00326010`-`0x00326016`<br>`0x00326018`-`0x0032601D` |
 
 The list functions:
 
-- `0x00252E60(list, id << 16)` appends. An id already in the list is not added again (`0x00252EE5`). When the list is
+- `0x00252E60(list, id << 16)` appends. An id already in the list is not added again¹. When the list is
   full (the count reaches the capacity), or a `0xFFFF` entry is met before the count, it returns without storing
-  (`0x00252EF7`-`0x00252EFD`, `0x00252EEB`, `0x00252F32`).
+ ².
 - A full list does not take the item away: the handler stored its count first, so the item stays owned and only its
   list entry is missing.
-- After a store, `0x00252E60` calls `0x002CD650` (`0x00252F18`). That sets the category bits at `[0x020927C0] + 0x3244` for
-  each list that is not empty, Key Items only for an id in list 10 outside `0x8000`-`0x805F` (`0x00252FF0`)
+- After a store, `0x00252E60` calls `0x002CD650`³. That sets the category bits at `[0x020927C0] + 0x3244` for
+  each list that is not empty, Key Items only for an id in list 10 outside `0x8000`-`0x805F`⁴
   ([Quickening and Esper list](../Battle-Actions/quickening-and-esper-list.md)).
-- `0x002535D0(list, id << 16)` removes. It writes `0xFFFF` over the id (`0x00253663`-`0x00253668`). Then `0x002534C0`
-  closes the gaps in list order and sets the count to the entries left (`0x00253544`-`0x0025359F`).
+- `0x002535D0(list, id << 16)` removes. It writes `0xFFFF` over the id⁵. Then `0x002534C0`
+  closes the gaps in list order and sets the count to the entries left⁶.
 - `0x002530E0(list, id, target)` moves an id to the target id's place and shifts the entries between them by one
-  (`0x00253170`-`0x00253214`). The inventory screen's move calls it (`0x00565BD0`,
+ ⁷. The inventory screen's move calls it (`0x00565BD0`,
   [Inventory screen](../Menus-And-HUD/inventory-screen.md)).
-- `0x00252F40(list)` returns the address of the list's 8-byte record, `0x02092760 + 8 x list` (`0x00252F55`-`0x00252F5F`); for
-  a list above 11 (unsigned) it calls `0x0016D6A0(0x200)` and returns list 0's (`0x00252F44`-`0x00252F53`). Its callers are
+- `0x00252F40(list)` returns the address of the list's 8-byte record, `0x02092760 + 8 x list`⁸; for
+  a list above 11 (unsigned) it calls `0x0016D6A0(0x200)` and returns list 0's⁹. Its callers are
   `0x00564430` and `0x00565CD0` (the inventory screen and its dialogs), `0x0057B500`, `0x0057CF20` and `0x0057D620` (the shop
   screens), `0x002CCA40` and `0x003FCEE0` (equipment), and `0x002826F0` and `0x00282A40` (party marks).
 - `0x00252FA0(list)` returns the list's entry count, the dword at `[0x020927C0] + 0x47B8 + 4 x list`
-  (`0x00252FCD`-`0x00252FD7`); for a list above 11 it calls the empty stub `0x0016D6A0(0x200)` and reads list 0's count; a
-  second such call after it is never reached (`0x00252FA6`-`0x00252FC8`).
+ ¹⁰; for a list above 11 it calls the empty stub `0x0016D6A0(0x200)` and reads list 0's count; a
+  second such call after it is never reached¹¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00252EE5` |
+| ² | `0x00252EF7`-`0x00252EFD`, `0x00252EEB`, `0x00252F32` |
+| ³ | `0x00252F18` |
+| ⁴ | `0x00252FF0` |
+| ⁵ | `0x00253663`-`0x00253668` |
+| ⁶ | `0x00253544`-`0x0025359F` |
+| ⁷ | `0x00253170`-`0x00253214` |
+| ⁸ | `0x00252F55`-`0x00252F5F` |
+| ⁹ | `0x00252F44`-`0x00252F53` |
+| ¹⁰ | `0x00252FCD`-`0x00252FD7` |
+| ¹¹ | `0x00252FA6`-`0x00252FC8` |
+
+</details>
 
 ### Writes that bypass the change function
 
 - The clear-all `0x003047F0` stores 0 in the first region of each of the fifteen descriptor records whose pointer
-  `+0x08` is set, `+0x10` words from that pointer (`0x00304801`-`0x0030483B`, `0x0030482A`): the item, equipment and
+  `+0x08` is set, `+0x10` words from that pointer¹: the item, equipment and
   loot count words and the magick, technick, gambit, key item and Quickening bit words. The other two regions, the
   items' ever-owned bits `+0x57C0` and the loot's sold tallies `+0x57C8`, are not written.
-- `0x003047F0` ends by tail-jumping to `0x00253480` (`0x0030483D`), which empties all twelve inventory lists (above;
+- `0x003047F0` ends by tail-jumping to `0x00253480`², which empties all twelve inventory lists (above;
   `0x00253240(i, 1)`: every id `0xFFFF`, the count at `[0x020927C0] + 0x47B8 + 4i` = 0) and clears every bit of
   `[0x020927C0] + 0x3244` but bit `0x1` and bit `0x1` of `+0x3245`; the party block reset `0x002370E5` and the
   scenario presets `0x00239B22` call it.
-  - `0x0035C560` calls `0x00253480` directly (`0x0035C584`), right after the HUD reset `0x0028F8B0`
+  - `0x0035C560` calls `0x00253480` directly³, right after the HUD reset `0x0028F8B0`
     ([HUD](../Menus-And-HUD/hud.md)).
-- The rebaser clears every loot sold tally (`0x0030B702`-`0x0030B737`).
+- The rebaser clears every loot sold tally⁴.
 - `takeaway_item_and_equip` copies the item and equipment counts to backups at `+0x4F84` and `+0x5004`
-  (`0x0030FC6F`, `0x0030FCCF`), and `giveback_item_and_equip` adds them back and clears the backups
-  (`0x0030FBBA`-`0x0030FBC7`).
+ ⁵, and `giveback_item_and_equip` adds them back and clears the backups
+ ⁶.
 - The party block reset `0x002370C0` clears the whole block.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00304801`-`0x0030483B`, `0x0030482A` |
+| ² | `0x0030483D` |
+| ³ | `0x0035C584` |
+| ⁴ | `0x0030B702`-`0x0030B737` |
+| ⁵ | `0x0030FC6F`, `0x0030FCCF` |
+| ⁶ | `0x0030FBBA`-`0x0030FBC7` |
+
+</details>
 
 ### Gil
 
-The purse is the dword at `+8` of the save header, `[0x02092758] + 8` (`0x00253690`-`0x00253697`). `0x00254EE0(new)` is its
-setter (`0x00254F1F`). Block writes of the save image at `0x02164280` also replace the purse, without the setter;
+The purse is the dword at `+8` of the save header, `[0x02092758] + 8`¹. `0x00254EE0(new)` is its
+setter². Block writes of the save image at `0x02164280` also replace the purse, without the setter;
 [the gil page](../Rewards-EXP-Gil-And-Loot/gil.md) names them.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00253690`-`0x00253697` |
+| ² | `0x00254F1F` |
+
+</details>
+
 It first reports the difference to counter 6 for a gain or counter 7 for a
-loss (`0x00316A50`, `0x00254EF1`-`0x00254F02`), then keeps the value between 0 and 99,999,999 (`0x00254F07`-`0x00254F15`).
-`0x003004B0(delta, flags)` adds, floored at 0, and with `flags` bit `0x1` posts the gil line (`0x003004C3`-`0x003004E5`);
+loss¹, then keeps the value between 0 and 99,999,999².
+`0x003004B0(delta, flags)` adds, floored at 0, and with `flags` bit `0x1` posts the gil line³;
 `0x00300500` sets, floored at 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00316A50`, `0x00254EF1`-`0x00254F02` |
+| ² | `0x00254F07`-`0x00254F15` |
+| ³ | `0x003004C3`-`0x003004E5` |
+
+</details>
 
 Shops, the bazaar, kill rewards, chests, quest rewards, member joins, the gil
 verbs `addgill` `0x2E7` and `subgill` `0x2E8`, battle actions that cost gil and the gil-stealing trap change it
@@ -286,66 +463,82 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party control modes](../Engine-Core/party-control-modes.md), [force fight mode](../Engine-Core/force-fight-mode.md), [party data](../Party/party-data.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00322C50` | is called by | `0x002367A0`, `0x0023A570`, `0x0031B810`, `0x003266C0`, `0x00329CC0` |
+| [`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x002367A0`](../Party/party-members.md) (on party members)<br>[`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction)<br>[`0x0031B810`](../Enemy-AI-And-Gambits/enmity.md) Battle unit: find mapped definition selector by index (on enmity)<br>[`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots)<br>[`0x00329CC0`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle slot map: initialize mapping classes (on strong and weak mode) |
 
-**Enemy AI and gambits**
+**Enemy AI and gambits** (explained on [glossary](../Engine-Core/glossary.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [battle units](../Characters-And-Objects/battle-units.md), [frame update order](../Engine-Core/frame-update-order.md), [enmity](../Enemy-AI-And-Gambits/enmity.md), [gambit screen](../Menus-And-HUD/gambit-screen.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00322C50` | is called by | `0x00301AD0`, `0x003215C0`, `0x00321630`, `0x00321770`, `0x00321850`, `0x003219D0`, `0x00321B00`, `0x00321E40`, `0x00327A10`, `0x00327CB0` |
-
-**Enemy AI and gambits** (explained on [glossary](../Engine-Core/glossary.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [battle units](../Characters-And-Objects/battle-units.md), [frame update order](../Engine-Core/frame-update-order.md), [enmity](../Enemy-AI-And-Gambits/enmity.md))
-
-**Enemy AI and gambits** (explained on [gambit screen](../Menus-And-HUD/gambit-screen.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+| [`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets)<br>[`0x003215C0`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: read for combatant id (on enmity)<br>[`0x00321630`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: get highest relevant (on enmity)<br>[`0x00321770`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: any above threshold (on enmity)<br>[`0x00321850`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: write for combatant id (on enmity)<br>[`0x003219D0`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: propagate to perceiving foes (on enmity)<br>[`0x00321B00`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: adjust other relevant combatants (on enmity)<br>[`0x00321E40`](../Battle-Actions/weapon-motion-list.md) Battle enmity: clamp and store (on weapon motion list)<br>[`0x00327A10`](../Menus-And-HUD/widgets.md) Gambit config: classify action target pair compatibility (on widgets)<br>[`0x00327CB0`](../Enemy-AI-And-Gambits/gambits.md) Gambit config: load authored preset and rebuild runtime orders (on gambits) |
 
 **Movement and pathfinding** (explained on [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00322C50` | is called by | `0x0031BAC0`, `0x00326BB0` |
+| [`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x0031BAC0`](../Party/party-slots.md) (on party slots)<br>[`0x00326BB0`](../Party/party-data.md) (on party data) |
 
 **Party** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party data](../Party/party-data.md), [party control modes](../Engine-Core/party-control-modes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00322C50` | is called by | `0x003170E0`, `0x0031AC00`, `0x0031B510`, `0x00320800`, `0x00321100`, `0x00326500`, `0x003287A0`, `0x00328DB0`, `0x00329080` |
+| [`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x003170E0`](../Party/party-members.md) Party configuration: add selector07 to25 to available primary index (on party members)<br>[`0x0031AC00`](../Party/party-data.md) (on party data)<br>[`0x0031B510`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x00320800`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x00321100`](../Party/party-members.md) (on party members)<br>[`0x00326500`](../Party/party-leader.md) Party focus: select and request default actor (on party leader)<br>[`0x003287A0`](../Party/party-members.md) Party configuration: demote other runtime roster selectors to non roster (on party members)<br>[`0x00328DB0`](../Party/party-members.md) Party configuration: reconcile runtime roster first three from requested selectors (on party members)<br>[`0x00329080`](../Scripts-And-Script-Commands/party-verbs.md) Party configuration: set definition selector for index (on party verbs) |
 
 **Graphics** (explained on [exp lp and level ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00312280` | calls | `0x0028FB80` |
+| [`0x00312280`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle unit: process defeat rewards and loot (on strong and weak mode) | calls | [`0x0028FB80`](../Menus-And-HUD/hud.md) (on hud) |
 
 **World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00312280` | calls | `0x00377C20` |
+| [`0x00312280`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle unit: process defeat rewards and loot (on strong and weak mode) | calls | [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
 
 **Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00253C70` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) |
 
 **Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00313A00` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00313A00`](../Battle-Actions/action-phases.md) (on action phases) |
 
 **Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00253C70` | calls | `0x001EDE70` |
+| [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) | calls | [`0x001EDE70`](../Menus-And-HUD/map-screens.md) (on map screens) |
 
 **Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00253C70` | calls | `0x0032A8A0` |
+| [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) | calls | [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) |
 
 </details>

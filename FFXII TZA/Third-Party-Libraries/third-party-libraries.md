@@ -25,7 +25,16 @@ Three things are left out on purpose:
 
 - PhyreEngine, the engine the game is built on, which has its own category.
 - The Microsoft C/C++ runtime the compiler links in.
-- `steam_api64.dll` (`0x01DEC066`), which the game loads as a DLL rather than linking.
+- `steam_api64.dll`¹, which the game loads as a DLL rather than linking.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01DEC066` |
+
+</details>
 
 No part of libxml2 is linked: `libxml`, `xmlParse`, `xmlFree` and `XML_PARSE` all occur zero times
 in the image.
@@ -60,42 +69,117 @@ in this category; the rest of this section covers the three small libraries.
 
 Its member list is [`third-party-libraries-zlib.tsv`](third-party-libraries-zlib.tsv).
 
-The two banners are unreferenced constants, ` inflate 1.2.11 Copyright 1995-2017 Mark Adler `
-(`0x01CC9F50`) and ` deflate 1.2.11 Copyright 1995-2017 Jean-loup Gailly and Mark Adler `
-(`0x01CDA260`). The linker placed the library in two ranges:
+The two banners are unreferenced constants, ` inflate 1.2.11 Copyright 1995-2017 Mark Adler `¹ and ` deflate 1.2.11 Copyright 1995-2017 Jean-loup Gailly and Mark Adler `². The linker placed the library in two ranges:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01CC9F50` |
+| ² | `0x01CDA260` |
+
+</details>
 
 - The inflate side, from `0x0080C5A0`. `0x0080C5A0` is zlib's `uncompress`: it passes the address of
   its source-length argument to `uncompress2` (`0x0080C5C0`, call at `0x0080C5AE`). `inflate` loads
-  "incorrect header check" (`0x01CC7C58`) at `0x0080C9AD`.
+  "incorrect header check"¹ at `0x0080C9AD`.
 - The deflate side, from `0x0087AF40`, which is `compress2`; it hands `deflateInit_` the
-  `0x58`-byte stream size (`0x0087AF7B`).
+  `0x58`-byte stream size².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01CC7C58` |
+| ² | `0x0087AF7B` |
+
+</details>
 
 `0x0080C5C0(dest, destLength, source, sourceLength)` takes both lengths through pointers. A destination length of 0
-makes it inflate into a one-byte stack buffer (`0x0080C5F1`, `0x0080C5F3`); otherwise it sets `*destLength` to 0
-first (`0x0080C5ED`). It starts the stream with `0x0080E040` (version "1.2.11" at `0x01CC73A4`, size `0x58`,
-`0x0080C622`) and returns that result when it is not 0 (`0x0080C629`). Then it calls `0x0080C750` with flush 0 until
-the result is not 0 (`0x0080C67F`, `0x0080C688`), refilling the input and output counts from what is left.
+makes it inflate into a one-byte stack buffer¹; otherwise it sets `*destLength` to 0
+first². It starts the stream with `0x0080E040` (version "1.2.11" at `0x01CC73A4`, size `0x58`,
+`0x0080C622`) and returns that result when it is not 0³. Then it calls `0x0080C750` with flush 0 until
+the result is not 0⁴, refilling the input and output counts from what is left.
 
-Afterwards `0x0080C5C0` sets `*sourceLength -= left + availIn` (`0x0080C6A1`, `0x0080C6A3`), stores the output total
-in `*destLength` for a real destination (`0x0080C6B0`) and ends the stream with `0x0080DF00` (`0x0080C6CB`). It
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0080C5F1`, `0x0080C5F3` |
+| ² | `0x0080C5ED` |
+| ³ | `0x0080C629` |
+| ⁴ | `0x0080C67F`, `0x0080C688` |
+
+</details>
+
+Afterwards `0x0080C5C0` sets `*sourceLength -= left + availIn`¹, stores the output total
+in `*destLength` for a real destination² and ends the stream with `0x0080DF00`³. It
 returns 0 for result 1, -3 for result 2, -3 for result -5 when `left + availOut != 0` (`0x0080C6D0`-`0x0080C6ED`;
 `left` becomes 1 for the stack buffer once output was produced, `0x0080C6B5`-`0x0080C6C3`), and the result itself
-otherwise (`0x0080C6EF`).
+otherwise⁴.
 
-`0x0087AF40(dest, destLength, source, sourceLength, level)` sets `*destLength` to 0 (`0x0087AF63`) and starts the
-stream with `0x0087C9F0(stream, level, "1.2.11", 0x58)` (`0x0087AF91`), returning a non-zero result as it is
-(`0x0087AF98`). It calls `0x0087BD60` until the result is not 0 (`0x0087AFE7`, `0x0087AFF0`), with flush 4 once the
-whole source is handed over and 0 before (`0x0087AFD7`-`0x0087AFE3`). It stores the output total in `*destLength`
-(`0x0087B005`), ends the stream with `0x0087C6C0` (`0x0087B008`) and returns 0 for result 1, else the result
-(`0x0087B00D`).
+<details>
+<summary>Where in the code</summary>
 
-The checksum is zlib's table-driven CRC-32: `crc32` (`0x0080E5F0`) jumps to `crc32_z` (`0x0080E910`),
-which returns 0 for a null buffer and otherwise jumps to `crc32_little` (`0x0080E600`). That body
+| | Code |
+|---|---|
+| ¹ | `0x0080C6A1`, `0x0080C6A3` |
+| ² | `0x0080C6B0` |
+| ³ | `0x0080C6CB` |
+| ⁴ | `0x0080C6EF` |
+
+</details>
+
+`0x0087AF40(dest, destLength, source, sourceLength, level)` sets `*destLength` to 0¹ and starts the
+stream with `0x0087C9F0(stream, level, "1.2.11", 0x58)`², returning a non-zero result as it is³. It calls `0x0087BD60` until the result is not 0⁴, with flush 4 once the
+whole source is handed over and 0 before⁵. It stores the output total in `*destLength`⁶, ends the stream with `0x0087C6C0`⁷ and returns 0 for result 1, else the result⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0087AF63` |
+| ² | `0x0087AF91` |
+| ³ | `0x0087AF98` |
+| ⁴ | `0x0087AFE7`, `0x0087AFF0` |
+| ⁵ | `0x0087AFD7`-`0x0087AFE3` |
+| ⁶ | `0x0087B005` |
+| ⁷ | `0x0087B008` |
+| ⁸ | `0x0087B00D` |
+
+</details>
+
+The checksum is zlib's table-driven CRC-32: `crc32`¹ jumps to `crc32_z`²,
+which returns 0 for a null buffer and otherwise jumps to `crc32_little`³. That body
 reads the table at `0x01CC7E70` (`00000000`, `77073096`, ...). Its callers are zlib functions of the
 second range, `0x0087BD60` and `0x0087CA60`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0080E5F0` |
+| ² | `0x0080E910` |
+| ³ | `0x0080E600` |
+
+</details>
+
 Only three places outside zlib call it. The archive block reader `0x0019AA20` and the save reader
-(call at `0x00865DFB`) call `uncompress`; the save writer calls `compress2` (`0x0086646C`).
+(call at `0x00865DFB`) call `uncompress`; the save writer calls `compress2`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0086646C` |
+
+</details>
 
 In plain terms, zlib unpacks compressed blocks of the game archive when they are read, unpacks the compressed layer of
 a save file when a save is loaded, and packs that layer when the game saves.
@@ -103,23 +187,50 @@ a save file when a save is loaded, and packs that layer when the game saves.
 ### JsonBox
 
 The JSON library is identified by its namespace in three RTTI type names,
-`JsonBox::OutputFilter<VSolidusEscaper>`, `<VIndentCanceller>` and `<VIndenter>` (`0x01F48940`,
-`0x01F48990`, `0x01F489E0`), and by the parser's error texts at `0x00904FE8` to `0x00905038` ("Expected
+`JsonBox::OutputFilter<VSolidusEscaper>`, `<VIndentCanceller>` and `<VIndenter>`¹, and by the parser's error texts at `0x00904FE8` to `0x00905038` ("Expected
 '\"', got '", "' instead, ignoring it.", "Expected a digit"), which only `0x002008F0`, `0x00201890`,
 `0x00201C40` and `0x00201EB0` load.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01F48940`, `0x01F48990`, `0x01F489E0` |
+
+</details>
 
 This copy keeps its strings and containers in EASTL:
 
 - `0x001FF740`, the lookup by C string, builds an EASTL string
   from the key and calls the string lookup `0x001FF6B0`. `0x001FF6B0` first makes a value whose tag is not 3 an
-  empty EASTL map (`0x001FF6CF`-`0x001FF713`), and `0x001FF4F0` inserts an entry with tag 6 for a key the map lacks
-  (`0x001FF5E1`, `0x001FFD40`), so the lookup always returns a value; `0x001FF740` frees its string and returns it.
+  empty EASTL map¹, and `0x001FF4F0` inserts an entry with tag 6 for a key the map lacks
+ ², so the lookup always returns a value; `0x001FF740` frees its string and returns it.
 - The value parser `0x00200E60` reads one character and builds an object as an EASTL map on `{`
   and an array as an EASTL vector on `[`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001FF6CF`-`0x001FF713` |
+| ² | `0x001FF5E1`, `0x001FFD40` |
+
+</details>
+
 `0x00200BF0(value, path)` is the file reader the game uses: it opens the path through the engine's
-file stream (`0x00597970`), copies the whole file into memory, wraps it in a string stream and parses
+file stream¹, copies the whole file into memory, wraps it in a string stream and parses
 it with `0x00200E60`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00597970` |
+
+</details>
 
 The writer's `SolidusEscaper` filter is `0x002165B0`. The overflow slot of
 `OutputFilter<SolidusEscaper>` (`0x002016F0`, vtable `0x00905070` slot 3) passes it the filter's two
@@ -130,17 +241,48 @@ state bytes at `+0x70`, the target stream buffer and the character:
   the static string `0x01FD4058` that the start-up initialiser `0x0015FEF0` fills;
 - an unescaped backslash inside a string sets the escaped byte for the next character; every other
   character clears it. Every character but a replaced `/` is written unchanged (`sputc`). The filter
-  returns what `sputc` returns (`0x00216641`), and 0 after a replaced `/` (`0x0021661E`, `0x00216649`).
+  returns what `sputc` returns¹, and 0 after a replaced `/`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00216641` |
+| ² | `0x0021661E`, `0x00216649` |
+
+</details>
 
 The writer's `Indenter` filter is `0x002164D0(state, buffer, character)`. When the state byte is set and the
 character is not a newline it first writes a tab to the stream buffer (`0x002164DF`-`0x002164F7`, `sputc` through
-`0x008C2660`). It then sets the state byte to 1 for a newline and 0 for any other character (`0x002164FD`-`0x00216509`)
-and writes the character with a tail jump to `sputc` (`0x0021651A`), whose result is the filter's result.
+`0x008C2660`). It then sets the state byte to 1 for a newline and 0 for any other character¹
+and writes the character with a tail jump to `sputc`², whose result is the filter's result.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002164FD`-`0x00216509` |
+| ² | `0x0021651A` |
+
+</details>
 
 The overflow slot of `OutputFilter<Indenter>` (`0x002016C0`, vtable `0x00905170` slot 3) is its only caller. For the
-end-of-file value -1 it jumps to the filter's own vtable slot `+0x68` (`0x002016C3`-`0x002016CB`). With no target stream
-buffer at `+0x68` it returns -1 (`0x002016CF`-`0x002016E4`). Otherwise it jumps to `0x002164D0` with the state byte at
-`+0x70`, the target buffer and the character (`0x002016D8`-`0x002016DC`).
+end-of-file value -1 it jumps to the filter's own vtable slot `+0x68`¹. With no target stream
+buffer at `+0x68` it returns -1². Otherwise it jumps to `0x002164D0` with the state byte at
+`+0x70`, the target buffer and the character³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002016C3`-`0x002016CB` |
+| ² | `0x002016CF`-`0x002016E4` |
+| ³ | `0x002016D8`-`0x002016DC` |
+
+</details>
 
 Every call into JsonBox from outside it comes from the game's JSON readers
 (`0x001C2F50` to `0x001CCB20`), a few static initialisers and unwind code. What the game reads with it
@@ -172,27 +314,57 @@ default settings.
 
 The ImGui context is the static object `0x02EA58C0`:
 
-1. The static initialiser `0x00169620`, whose pointer is at `0x008C4910` in the initialiser table, calls
-   the context constructor `0x00791E70` on it and registers `0x008B7DA0` to run at exit. `0x00791E70`
-   runs `0x00791D80` on the context's `+0x08` and `0x00792090` on its `+0xB90`.
-2. `0x00169600` registers `0x008B7D40` at exit for the font atlas `0x02EA54F0`.
-3. At exit `0x008B7DA0` frees the context's buffers (`0x00793140`), and `0x008B7D40` clears the atlas
-   (`0x00795FC0`), both through the free function the context holds.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The static initialiser `0x00169620`, whose pointer is at `0x008C4910` in the initialiser table, calls the context constructor `0x00791E70` on it and registers `0x008B7DA0` to run at exit. `0x00791E70` runs `0x00791D80` on the context's `+0x08` and `0x00792090` on its `+0xB90`. |   |
+| 2 | `0x00169600` registers `0x008B7D40` at exit for the font atlas `0x02EA54F0`. |   |
+| 3 | At exit `0x008B7DA0` frees the context's buffers, and `0x008B7D40` clears the atlas, both through the free function the context holds. | `0x00793140`<br>`0x00795FC0` |
 
 Besides the two constructor calls, `0x00791E70` writes only the context's own fields, and every store is 0 but
-two: -1 at `+0xE7C` (`0x00791FB8`) and 2 at `+0x38D4` (`0x00792062`). The zero stores include the byte `+0x00`
-(`0x00791F88`) and three `memset` ranges through `0x00861EC0`: `0x24E0` bytes from `+0xFA8` (`0x00791F4B`), `0x400`
-from `+0x34B0` (`0x00792032`) and `0x1E0` from `+0x38D8` (`0x00792072`). It returns the context (`0x00792077`).
+two: -1 at `+0xE7C`¹ and 2 at `+0x38D4`². The zero stores include the byte `+0x00`³ and three `memset` ranges through `0x00861EC0`: `0x24E0` bytes from `+0xFA8`⁴, `0x400`
+from `+0x34B0`⁵ and `0x1E0` from `+0x38D8`⁶. It returns the context⁷.
 
-The pointer `0x01F40380` holds the context's address. Only ImGui's own functions (`0x00793140`,
-`0x00795F10`, `0x00795FC0`, `0x007960E0`, `0x00796E70`, `0x00797360`) and the exit stubs `0x008B7B30` and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00791FB8` |
+| ² | `0x00792062` |
+| ³ | `0x00791F88` |
+| ⁴ | `0x00791F4B` |
+| ⁵ | `0x00792032` |
+| ⁶ | `0x00792072` |
+| ⁷ | `0x00792077` |
+
+</details>
+
+The pointer `0x01F40380` holds the context's address. Only ImGui's own functions¹ and the exit stubs `0x008B7B30` and
 `0x008B7D40` read it. From outside the four ImGui runs, the only references to the context, the font
 atlas or any ImGui function are `0x00169620` and the exit stubs.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00793140`, `0x00795F10`, `0x00795FC0`, `0x007960E0`, `0x00796E70`, `0x00797360` |
+
+</details>
+
 A second ImGui object is built the same way. The initialiser `0x00169450` (slot `0x008C48C0`) constructs a
 `PImGuiDynamicMesh` at `0x02EA5850` (`0x00662A50`, vtable `0x01CB3950`), and `0x001694E0` (slot `0x008C48D0`) builds
-a `PDynamicMeshInstance` at `0x02EA5838` that holds its address (`0x005DBF60`). The exit stubs `0x008B7B60` and
+a `PDynamicMeshInstance` at `0x02EA5838` that holds its address¹. The exit stubs `0x008B7B60` and
 `0x008B7B80` release them, and nothing else refers to either.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005DBF60` |
+
+</details>
 
 So the context is built before `main` and destroyed at exit, and nothing uses it in between: no code
 begins an ImGui frame or window. ImGui's own window and identifier literals ("Debug##Default",
@@ -214,19 +386,35 @@ the atlas to `0x00795FC0`; neither stub names one of these fields.
 
 ### The clipboard copy and the solidus string
 
-`0x00796E70` is Dear ImGui's default clipboard-text getter: `0x00791D80` stores its address at `ImGuiIO` `+0xA0`
-(`0x00791DFC`). Each call:
+`0x00796E70` is Dear ImGui's default clipboard-text getter: `0x00791D80` stores its address at `ImGuiIO` `+0xA0`¹. Each call:
 
-1. frees the previous copy through the context's free function (`[0x01F40380] + 0xC0`, `0x00796E87`) and clears
-   `0x02EACD78` (`0x00796E8D`);
-2. opens the clipboard and takes its `CF_UNICODETEXT` (13) data with `OpenClipboard`, `GetClipboardData` and
-   `GlobalLock`, and returns 0 when either of the first two fails;
-3. allocates the text's UTF-8 length plus one through the context's allocator (`[0x01F40380] + 0xB8`, `0x00796F69`),
-   stores the block in `0x02EACD78` (`0x00796F78`) and converts the text into it (`0x00797210`);
-4. unlocks and closes the clipboard and returns `0x02EACD78` (`0x00796F9B`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00791DFC` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | frees the previous copy through the context's free function (`[0x01F40380] + 0xC0`, `0x00796E87`) and clears `0x02EACD78`; | `0x00796E8D` |
+| 2 | opens the clipboard and takes its `CF_UNICODETEXT` (13) data with `OpenClipboard`, `GetClipboardData` and `GlobalLock`, and returns 0 when either of the first two fails; |   |
+| 3 | allocates the text's UTF-8 length plus one through the context's allocator (`[0x01F40380] + 0xB8`, `0x00796F69`), stores the block in `0x02EACD78` and converts the text into it; | `0x00796F78`<br>`0x00797210` |
+| 4 | unlocks and closes the clipboard and returns `0x02EACD78`. | `0x00796F9B` |
 
 The `\/` that `SolidusEscaper` writes is the static string at `0x01FD4058`. `0x002165B0` passes its `begin` and
-`end - begin`, computed on the low 32 bits (`0x00216604`, `0x0021660E`, `0x00216615`), to `sputn`.
+`end - begin`, computed on the low 32 bits¹, to `sputn`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00216604`, `0x0021660E`, `0x00216615` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

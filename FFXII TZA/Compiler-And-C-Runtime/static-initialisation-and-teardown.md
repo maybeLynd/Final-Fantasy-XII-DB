@@ -16,30 +16,60 @@ runs when the player quits from the menu.
 
 The PE entry point is `0x00808EE4`. Everything before the game's `WinMain` happens in this order:
 
-1. `0x00808EE4` calls `__security_init_cookie` (`0x00809B8C`), then jumps to the start-up routine `0x00808D78`.
-2. `0x00808D78` initialises the runtime (`0x0080893C`) and takes the start-up lock (`0x00808900`).
-3. It reads the start-up state `0x02EAECF8`. A value of 1 (start-up already running) fast-fails with code
-   7 (`0x00808DB5`); a value of 0 is set to 1 (`0x00808DC3`).
-4. It runs the C table through `_initterm_e` (`0x00808DDB`). A non-zero result ends start-up with exit
-   code `0xFF` (`0x00808DE4`).
-5. It runs the C++ table through `_initterm` (`0x00808DFC`), which returns nothing to test, and sets the
-   state to 2 (`0x00808E01`).
-6. It releases the lock, checks two dynamic-TLS callback slots (`0x00809C78`, `0x00809C80`, both null in
-   the image), fetches the command line and calls `0x007A3770` with the image base `0x00120000`
-   (`0x00808E8A`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00808EE4` calls `__security_init_cookie`, then jumps to the start-up routine `0x00808D78`. | `0x00809B8C` |
+| 2 | `0x00808D78` initialises the runtime and takes the start-up lock. | `0x0080893C`<br>`0x00808900` |
+| 3 | It reads the start-up state `0x02EAECF8`. A value of 1 (start-up already running) fast-fails with code 7; a value of 0 is set to 1. | `0x00808DB5`<br>`0x00808DC3` |
+| 4 | It runs the C table through `_initterm_e`. A non-zero result ends start-up with exit code `0xFF`. | `0x00808DDB`<br>`0x00808DE4` |
+| 5 | It runs the C++ table through `_initterm`, which returns nothing to test, and sets the state to 2. | `0x00808DFC`<br>`0x00808E01` |
+| 6 | It releases the lock, checks two dynamic-TLS callback slots (`0x00809C78`, `0x00809C80`, both null in the image), fetches the command line and calls `0x007A3770` with the image base `0x00120000`. | `0x00808E8A` |
 
 `0x007A3770` is `WinMain`: it calls `IsDebuggerPresent` and then the game's main routine `0x007980A0` on
-both arms. When `WinMain` returns, the start-up routine calls the runtime's `exit` (`0x00808E9C`).
+both arms. When `WinMain` returns, the start-up routine calls the runtime's `exit`¹.
 
-`WinMain` gets its show mode from `__scrt_get_show_window_mode` `0x00809AB4` (`0x00808E6E`) and its command line
-from `_get_narrow_winmain_command_line` (`0x00808E76`). `exit` is reached because `__scrt_is_managed_app`
-`0x00809AF0` returns 0 (`0x00808E91`): the CLR directory entry of the image's own header is zero (`0x00809B35`). The
-other arm calls `_cexit` and `__scrt_uninitialize_crt` and returns the code (`0x00808EA6`-`0x00808EB4`).
+<details>
+<summary>Where in the code</summary>
 
-The start-up routine has three more paths. A failed `0x0080893C` fast-fails with code 7 (`0x00808D90`). A
-start-up state other than 0 and 1 skips both tables (`0x00808DC1`, `0x00808E0D`). A fault in
-`0x00808DA3`-`0x00808EB8` goes to the filter `0x008A5B94`, which returns `_seh_filter_exe(code, pointers)`
-(`0x008A5BA5`), and the handler at `0x00808EB8` calls `_exit` with the exception code (`0x00808EC5`).
+| | Code |
+|---|---|
+| ¹ | `0x00808E9C` |
+
+</details>
+
+`WinMain` gets its show mode from `__scrt_get_show_window_mode` `0x00809AB4`¹ and its command line
+from `_get_narrow_winmain_command_line`². `exit` is reached because `__scrt_is_managed_app`
+`0x00809AF0` returns 0³: the CLR directory entry of the image's own header is zero⁴. The
+other arm calls `_cexit` and `__scrt_uninitialize_crt` and returns the code⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808E6E` |
+| ² | `0x00808E76` |
+| ³ | `0x00808E91` |
+| ⁴ | `0x00809B35` |
+| ⁵ | `0x00808EA6`-`0x00808EB4` |
+
+</details>
+
+The start-up routine has three more paths. A failed `0x0080893C` fast-fails with code 7¹. A
+start-up state other than 0 and 1 skips both tables². A fault in
+`0x00808DA3`-`0x00808EB8` goes to the filter `0x008A5B94`, which returns `_seh_filter_exe(code, pointers)`³, and the handler at `0x00808EB8` calls `_exit` with the exception code⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808D90` |
+| ² | `0x00808DC1`, `0x00808E0D` |
+| ³ | `0x008A5BA5` |
+| ⁴ | `0x00808EC5` |
+
+</details>
 
 ### The C table
 
@@ -47,22 +77,56 @@ start-up state other than 0 and 1 skips both tables (`0x00808DC1`, `0x00808E0D`)
 between are runtime set-up:
 
 - `0x00808C90` sets the application type and file modes, initialises the module's exit tables
-  (`0x00808988`), registers `0x00809CD4` with `atexit`, and prepares the command line and environment.
+ ¹, registers `0x00809CD4` with `atexit`, and prepares the command line and environment.
 - `0x00808D4C` sets `0x4` in the stdio option word returned by `0x0016D670` and `0x2` in the one returned
   by `0x0018A320`.
 - `0x00809124` creates the lock and the condition variable or event behind thread-safe local statics,
   and registers `0x00809244` to delete them; see
   [lazy statics](lazy-statics-and-one-time-init.md).
 
-In order, `0x00808C90` calls `_set_app_type(2)` (`0x00808C9B`) and `_set_fmode(0x4000)` (`0x00808CA7`), sets the
-word from `__p__commode` to 0 (`0x00808CBE`), and calls `0x00808988(1)` (`0x00808CC0`), `atexit(0x00809CD4)`
-(`0x00808CD5`), `_configure_narrow_argv(1)` (`0x00808CE1`), `InitializeSListHead(0x02EAF310)` through `0x00809C40`
-(`0x00808CEA`), `_configthreadlocale(0)` (`0x00808D15`) and, as `0x0061ECF0` returns 1,
-`_initialize_narrow_environment` (`0x00808D23`). It returns 0 (`0x00808D2D`).
+<details>
+<summary>Where in the code</summary>
 
-A zero result from `0x00808988` or a non-zero one from `_configure_narrow_argv` fast-fails with code 7
-(`0x00808D35`, `0x00808D40`). `__setusermatherr(0x005C5230)` runs only when `0x00809C6C` returns 1, which needs the
-dword `0x01F44870` to be 0 (`0x00809C6E`, `0x00808CFF`); the file holds 1 there.
+| | Code |
+|---|---|
+| ¹ | `0x00808988` |
+
+</details>
+
+In order, `0x00808C90` calls `_set_app_type(2)`¹ and `_set_fmode(0x4000)`², sets the
+word from `__p__commode` to 0³, and calls `0x00808988(1)`⁴, `atexit(0x00809CD4)`⁵, `_configure_narrow_argv(1)`⁶, `InitializeSListHead(0x02EAF310)` through `0x00809C40`⁷, `_configthreadlocale(0)`⁸ and, as `0x0061ECF0` returns 1,
+`_initialize_narrow_environment`⁹. It returns 0¹⁰.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808C9B` |
+| ² | `0x00808CA7` |
+| ³ | `0x00808CBE` |
+| ⁴ | `0x00808CC0` |
+| ⁵ | `0x00808CD5` |
+| ⁶ | `0x00808CE1` |
+| ⁷ | `0x00808CEA` |
+| ⁸ | `0x00808D15` |
+| ⁹ | `0x00808D23` |
+| ¹⁰ | `0x00808D2D` |
+
+</details>
+
+A zero result from `0x00808988` or a non-zero one from `_configure_narrow_argv` fast-fails with code 7¹. `__setusermatherr(0x005C5230)` runs only when `0x00809C6C` returns 1, which needs the
+dword `0x01F44870` to be 0²; the file holds 1 there.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808D35`, `0x00808D40` |
+| ² | `0x00809C6E`, `0x00808CFF` |
+
+</details>
 
 ### The C++ table
 
@@ -104,31 +168,74 @@ The registry inserts share one shape: the routine refuses an object whose name p
 a singly linked list headed by a global (`0x00879570` uses `0x02EB9D80`, `0x00876C80` `0x02EB83B8`, `0x008768A0`
 `0x02EB8348`, and the render-pass insert `0x005FDCB0` uses `0x02CBF998`).
 
-After the push, `0x00879570` and `0x00876C80` return 0 (`0x008795D4`, `0x00876CE4`); both compare the names byte for byte
-(`0x008795A0`-`0x008795C5`, `0x00876CB0`-`0x00876CD5`).
+After the push, `0x00879570` and `0x00876C80` return 0¹; both compare the names byte for byte².
 
-`0x008768A0` reads the name pointer at the object's `+0x08` (`0x008768A4`), compares the name byte for byte with that
-of every object on the list (`0x008768D0`-`0x008768FE`) and, when it is new, stores the old head at the object's
-`+0x10`, makes the object the head and returns 0 (`0x00876900`-`0x0087690A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008795D4`, `0x00876CE4` |
+| ² | `0x008795A0`-`0x008795C5`, `0x00876CB0`-`0x00876CD5` |
+
+</details>
+
+`0x008768A0` reads the name pointer at the object's `+0x08`¹, compares the name byte for byte with that
+of every object on the list² and, when it is new, stores the old head at the object's
+`+0x10`, makes the object the head and returns 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008768A4` |
+| ² | `0x008768D0`-`0x008768FE` |
+| ³ | `0x00876900`-`0x0087690A` |
+
+</details>
 
 1,084 entries register a teardown, each exactly one; 88 register no teardown. None of them takes a
 thread-safe local-static guard.
 
 ### Teardown registration
 
-Every registration in the image goes through `atexit` (`0x00808B90`), which calls `_onexit`
-(`0x00808B40`) and turns its result into 0 or -1.
+Every registration in the image goes through `atexit`¹, which calls `_onexit`² and turns its result into 0 or -1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808B90` |
+| ² | `0x00808B40` |
+
+</details>
 
 - `0x00808C90` calls `0x00808988` with 1 (an executable), which fills the module's two exit tables
   `0x02EAED08` and `0x02EAED20` with the encoded value -1 instead of initialising them.
-- `0x00808988` stores the encoded -1 as `cookie xor -1` (`0x008089DB`-`0x008089F0`) and returns 1 on that path
-  (`0x008089EB`). A type above 1 fast-fails with code 5 (`0x0080899A`, `0x00808A46`). Type 0, when `0x00809960`
+- `0x00808988` stores the encoded -1 as `cookie xor -1`¹ and returns 1 on that path
+ ². A type above 1 fast-fails with code 5³. Type 0, when `0x00809960`
   returns 1 (the dword `0x01F47590` is non-zero), calls `_initialize_onexit_table` on both tables instead and
-  returns 1 only when both calls return 0 (`0x008089A9`-`0x008089CF`).
+  returns 1 only when both calls return 0⁴.
 - `_onexit` decodes the first qword of `0x02EAED08` (`ror64(cookie xor value, cookie & 0x3F)`, cookie
-  `0x01F44830`); it is -1, so it hands the function to the runtime's `_crt_atexit` (`0x00808B68`), and the
+  `0x01F44830`); it is -1, so it hands the function to the runtime's `_crt_atexit`⁵, and the
   `_register_onexit_function` path at `0x00808B79` is never taken. It returns the function when that call
-  returns 0, and null otherwise (`0x00808B7E`-`0x00808B82`).
+  returns 0, and null otherwise⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008089DB`-`0x008089F0` |
+| ² | `0x008089EB` |
+| ³ | `0x0080899A`, `0x00808A46` |
+| ⁴ | `0x008089A9`-`0x008089CF` |
+| ⁵ | `0x00808B68` |
+| ⁶ | `0x00808B7E`-`0x00808B82` |
+
+</details>
 
 All teardowns therefore sit in the runtime's own process table, which its `exit` runs last-registered
 first.
@@ -141,10 +248,19 @@ first.
 | 1 | `0x005A08E0`, the engine set-up, registering the engine shutdown `0x005A0840` |
 | 2 | the runtime's own `0x00808C90` and `0x00809124` |
 
-Library initialisers register theirs the same way: the Bullet initialiser `0x00859D20` builds the static at `0x02EAF400`
-(`0x00852E10`) and registers `0x008B90A0` (`0x00859D95`), which puts back the vtable `0x01CCF348`, releases the buffer
+Library initialisers register theirs the same way: the Bullet initialiser `0x00859D20` builds the static at `0x02EAF400`¹ and registers `0x008B90A0`², which puts back the vtable `0x01CCF348`, releases the buffer
 `[0x02EAF620]` through `0x0085E710` when it is set and `0x02EAF628` is set, clears both fields and runs `0x00839FD0` on the
 object.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00852E10` |
+| ² | `0x00859D95` |
+
+</details>
 
 That is 2,630 call sites (1,574 calls and 1,056 tail jumps) for 2,582 distinct teardown functions. At every
 site the argument is set by a `lea rcx` earlier in the same straight run of code, with no branch between the two.
@@ -158,7 +274,7 @@ depends on what ran first.
 - 405 more are short tail jumps of up to four instructions.
 - 224, nearly all 82 bytes, are list unlinks registered by lazy statics: they splice a node out of an intrusive
   doubly linked list, point the node at itself, and free `+0x18` through `0x00584730` only when bit `0x1` of
-  `+0x20` is set (`0x008A8D40`).
+  `+0x20` is set¹.
 - 327 are 95-byte registry unlinks registered by C++ initialisers: they store the object's own class vtable
   (the one the object holds in the image) back into the object and remove it from its class's singly linked
   registry list by its `+0x10` link (for example `0x008B76B0`). The classes and their lists:
@@ -167,6 +283,15 @@ depends on what ran first.
     `PInputAxisSemantic` (10, `0x02EB82D8`) and `PInputMouseButtonSemantic` (4, `0x02EB8428`);
   - the LOD types `PLODMetricType` (3, `0x02EA06D8`) and `PLODBlendType` (2, `0x02EA0748`).
 - The rest destroy their object inline.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008A8D40` |
+
+</details>
 
 ### The normal quit does not run the teardowns
 
@@ -185,6 +310,9 @@ entry point. The TLS block itself is used: the thread-safe local statics keep ea
 `+0x04`.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Initialiser tables (`.rdata`), qwords:
 
@@ -222,7 +350,12 @@ IMAGE_TLS_DIRECTORY64 at `0x01CEBED8`:
 | `+0x18` | `u64` | AddressOfCallBacks | `0x008C56B0`   first entry null |
 | `+0x20` | `u32` | SizeOfZeroFill | 0 |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -265,15 +398,29 @@ function address in its first column:
 
 The deleting-destructor idiom is on [object construction and destruction](object-construction-and-destruction.md).
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 ### The runtime's DLL flag
 
 `0x0080893C`, the runtime set-up that the start-up routine calls first, takes the runtime's module type in `ecx`. It
 sets the byte `0x02EAED38` to 1 only when that type is 0, the type of a DLL, and otherwise writes back the value it
-read. The start-up routine passes 1 (`0x00808D82`), so the byte stays 0. The runtime clean-up `0x00808B14`, which the
+read. The start-up routine passes 1¹, so the byte stays 0. The runtime clean-up `0x00808B14`, which the
 start-up routine calls at `0x00808EAF` with `dl` 0, runs both of its clean-up steps when the byte is 0 or its second
 argument is 0. Both steps are `0x0061ECF0`, which only returns 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00808D82` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -309,10 +456,19 @@ The other readers come in pairs with the same code, one per registry:
 - `0x00876520` and `0x008770F0` store the object whose name matches their second argument through their first
   argument and return `0x13` when no object has the name;
 - `0x00876590` and `0x00877160` count the list and copy the object pointers into the array they are passed. When the
-  array's count already matches they reuse its buffer (`0x008765C5`); otherwise they give it a new buffer of that
+  array's count already matches they reuse its buffer¹; otherwise they give it a new buffer of that
   many pointers, freeing the old one when bit `0x80000000` of its count word is clear. They return 0, or `0xD` when the
   allocation fails;
 - `0x00876670` and `0x00877240` return the object whose name matches, or 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008765C5` |
+
+</details>
 
 ### Half-precision constants
 
@@ -327,16 +483,36 @@ global. They come in 23 sets of the same three values:
 
 `0x3A7FFFD5` is just below 2^-10; `0x006E0220` adds `0x1000` to the mantissa before it shifts it right by 13, so the
 result rounds up to `0x1400`: with e = -11 and `m = (0x7FFFD5 + 0x1000) >> 13`, which is `0x400`, the half is
-`((e + 15 + (m >> 10)) << 10) | (m & 0x3FF)` (`0x006E029A`-`0x006E02D0`). No instruction reads any of the 69 globals:
+`((e + 15 + (m >> 10)) << 10) | (m & 0x3FF)`¹. No instruction reads any of the 69 globals:
 no RIP-relative, image-base-relative or disp32 reference other than its initialiser's store, and the loop-bound
 `lea` at `0x0072F206` for `0x02EA1A40`, names one.
 
-`0x006E0220` has four more paths. A zero input of either sign gives `0x0000` (`0x006E0223`-`0x006E022A`), and so
-does an exponent `e` below -24, without the sign (`0x006E0254`-`0x006E0257`). An exponent from -24 to -15 gives the
-subnormal `((0x800000 >> (-14 - e)) + 0x1000 + (mantissa >> (-15 - e))) >> 13` (`0x006E025E`-`0x006E0283`). An
-exponent above 15, infinities and NaNs included, gives `0x7BFF`, the largest finite half
-(`0x006E028B`-`0x006E0294`). The subnormal and the other results carry the sign, bit `0x8000` of `bits >> 16`
-(`0x006E0249`-`0x006E0250`, `0x006E0286`, `0x006E0290`, `0x006E02D0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006E029A`-`0x006E02D0` |
+
+</details>
+
+`0x006E0220` has four more paths. A zero input of either sign gives `0x0000`¹, and so
+does an exponent `e` below -24, without the sign². An exponent from -24 to -15 gives the
+subnormal `((0x800000 >> (-14 - e)) + 0x1000 + (mantissa >> (-15 - e))) >> 13`³. An
+exponent above 15, infinities and NaNs included, gives `0x7BFF`, the largest finite half⁴. The subnormal and the other results carry the sign, bit `0x8000` of `bits >> 16`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006E0223`-`0x006E022A` |
+| ² | `0x006E0254`-`0x006E0257` |
+| ³ | `0x006E025E`-`0x006E0283` |
+| ⁴ | `0x006E028B`-`0x006E0294` |
+| ⁵ | `0x006E0249`-`0x006E0250`, `0x006E0286`, `0x006E0290`, `0x006E02D0` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -382,7 +558,16 @@ names one of these globals is in its teardown.
 | `0x02EA58A0` | `void*` | 0 (zero-filled tail of `.data`) | buffer of that array | `0x008B7CB0` (`0x008B7D24`), 0 | `0x008B7CB0` (`0x008B7D13`) |
 
 The array words of `0x01F2E828` lie between `0x01F2E820`, which `0x0064A0E0` and the unwind handlers `0x0089E890` and
-`0x0089E89C` name, and `0x01F2E838`, which `0x0064A0E0` writes (`0x0064A13B`).
+`0x0089E89C` name, and `0x01F2E838`, which `0x0064A0E0` writes¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0064A13B` |
+
+</details>
 
 ### The locale facet list
 
@@ -392,18 +577,38 @@ The array words of `0x01F2E828` lie between `0x01F2E820`, which `0x0064A0E0` and
 takes each node off the front and deletes it through its scalar deleting destructor `0x008087C4`.
 
 `0x0019B2F0(locale)` works under a lock object it builds with the import `0x008C25F0` and
-ends with `0x008C25F8` (`0x0019B313`, `0x0019B3E6`). It turns the id at the import `0x008C25A8`
-into an index (`0x008C2628`) and takes the facet at that index of the locale's table:
+ends with `0x008C25F8`¹. It turns the id at the import `0x008C25A8`
+into an index² and takes the facet at that index of the locale's table:
 the object the locale's `+0x08` names keeps the table pointer at `+0x10` and its size
 at `+0x18`. With no facet there and that object's byte `+0x24` set it looks in the
-table of the object that `0x008C2630` answers (`0x0019B326`-`0x0019B36F`).
+table of the object that `0x008C2630` answers³.
 
-With no facet in either it uses the kept pointer `0x01F81148` (`0x0019B31A`, `0x0019B374`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019B313`, `0x0019B3E6` |
+| ² | `0x008C2628` |
+| ³ | `0x0019B326`-`0x0019B36F` |
+
+</details>
+
+With no facet in either it uses the kept pointer `0x01F81148`¹.
 Only when that is null too does it ask the import `0x008C2790` for a new facet: an
 answer of -1 throws through `0x00861ECC` with the text "bad cast", any other stores the
-facet at `0x01F81148`, calls the facet's slot `+0x08` and registers it with `0x00808850`
-(`0x0019B37E`-`0x0019B3DB`). It answers the facet
-(`0x0019B3EC`).
+facet at `0x01F81148`, calls the facet's slot `+0x08` and registers it with `0x00808850`². It answers the facet³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019B31A`, `0x0019B374` |
+| ² | `0x0019B37E`-`0x0019B3DB` |
+| ³ | `0x0019B3EC` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -418,6 +623,8 @@ and stores 0 in the buffer and, with one 8-byte store, in both dwords.
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02EAF614` | `u32` | 0 (zero-filled tail of `.data`) | `+0x214` of `0x02EAF400`; the 8-byte store that zeroes it also zeroes `0x02EAF618` | `0x008B90A0` (`0x008B90F0`), 0 | no instruction reads it |
+
+</details>
 
 ## Modding notes
 
@@ -436,7 +643,7 @@ and stores 0 in the buffer and, with one 8-byte store, in both dwords.
 - [Phyre input semantics](../Controls-And-Input/phyre-input-semantics.md): the semantic objects the input registrars
   `0x008760A0`, `0x00876490` and `0x008768A0` link into their lists. Each object, with its vtable, name and code, is
   already in the image's data (`0x01F45148` holds the vtable `0x01CD8448`); its initialiser only passes its address to
-  the insert and registers its teardown (`0x0016B5C0`-`0x0016B5DB`).
+  the insert and registers its teardown¹.
 - [Image hardening](image-hardening.md): the cookie set up before the tables run, and the `ret 0`
   teardowns.
 - [Lazy statics and one-time initialisation](lazy-statics-and-one-time-init.md): the statics built on
@@ -448,7 +655,7 @@ and stores 0 in the buffer and, with one 8-byte store, in both dwords.
   fixes after `WinMain` begins.
 - [Controls](../Controls-And-Input/controls.md): the input manager that reads the semantics registered here.
 - [`static-initialisation-and-teardown-alloc-record-0067ffb0-initialisers.tsv`](static-initialisation-and-teardown-alloc-record-0067ffb0-initialisers.tsv):
-  C++ initialisers of one form (59 or 68 bytes) that call `0x0067FFB0` and end with a jump to `atexit` (`0x00808B90`) (8
+  C++ initialisers of one form (59 or 68 bytes) that call `0x0067FFB0` and end with a jump to `atexit`² (8
   rows).
 - [`static-initialisation-and-teardown-atexit-teardown-registration-stubs.tsv`](static-initialisation-and-teardown-atexit-teardown-registration-stubs.tsv):
   12-byte C++ initialisers that only register a teardown with `atexit` (30 rows).
@@ -485,11 +692,11 @@ and stores 0 in the buffer and, with one 8-byte store, in both dwords.
 - [`static-initialisation-and-teardown-registry-unlink-teardowns.tsv`](static-initialisation-and-teardown-registry-unlink-teardowns.tsv):
   the 95-byte registry unlinks, each with the 32-byte initialiser that registers it (327 rows).
 - [`static-initialisation-and-teardown-scalar-deleting-destructors-free.tsv`](static-initialisation-and-teardown-scalar-deleting-destructors-free.tsv):
-  scalar deleting destructors that call their type's destructor and then `free` (`0x00809950`) when bit `0x1` of the
+  scalar deleting destructors that call their type's destructor and then `free`³ when bit `0x1` of the
   flag is set (65 rows).
 - [`static-initialisation-and-teardown-scalar-deleting-destructors-inlined-dtor.tsv`](static-initialisation-and-teardown-scalar-deleting-destructors-inlined-dtor.tsv):
   43-byte scalar deleting destructors whose destructor is inlined to a vtable store; their only call is `free`
-  (`0x00809950`) under the flag (24 rows).
+ ⁴ under the flag (24 rows).
 - [`static-initialisation-and-teardown-scalar-deleting-destructors-shared-base.tsv`](static-initialisation-and-teardown-scalar-deleting-destructors-shared-base.tsv):
   62-byte scalar deleting destructors that install their vtable, call the shared base destructor `0x00212CE0` and free
   under the flag (37 rows).
@@ -513,6 +720,18 @@ and stores 0 in the buffer and, with one 8-byte store, in both dwords.
   35-byte C++ initialisers with no call that end with a jump to `atexit` (3 rows).
 - [`static-initialisation-and-teardown-zeroinit-record-initialisers.tsv`](static-initialisation-and-teardown-zeroinit-record-initialisers.tsv):
   57-byte C++ initialisers with no call that end with a jump to `atexit` (16 rows).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0016B5C0`-`0x0016B5DB` |
+| ² | `0x00808B90` |
+| ³ | `0x00809950` |
+| ⁴ | `0x00809950` |
+
+</details>
 
 Each of these function tables has one row per function:
 

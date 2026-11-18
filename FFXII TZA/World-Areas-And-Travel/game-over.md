@@ -27,104 +27,282 @@ The field frame `0x00234590` checks the party every frame and, when it is wiped,
 through `0x0035C7A0(0x0B)` and `0x0035C7B0(0x0B, 1)`; the four wipe predicates and the post are on
 [when the game is over](../Status-Effects-And-KO/ko-and-game-over.md).
 `0x0035C7B0(kind, post)` refuses while a request is already pending: `0x022C83E8` bit `0x100`, a mode `0x02092730` of
-`0x0B` or `0x18`, or the request byte `0x0215F1A0` (`0x002E12D0`; `0x0035C7BA`-`0x0035C7ED`). Otherwise, for kind `0x0B`, it
+`0x0B` or `0x18`, or the request byte `0x0215F1A0`¹. Otherwise, for kind `0x0B`, it
 runs five steps:
 
-1. sets `0x022C83E8` bit `0x100` (`0x0035C806`);
-2. halts every actor through stop request 22 (`0x16`) of the
-   [time stop registry](../Engine-Core/time-stop-and-freeze.md): `0x00227370` (`0x0035C810`) calls
-   `0x00226BE0(0x16, 0, 0, 0, -1, -1)`, no actor, no handles, fade -1 and flag -1 (`0x0022739B`), and tail-jumps to
-   the apply `0x00226280` (`0x002273A4`); both are skipped when `0x01FD46D4` bit `0x400000`, request 22's active bit,
-   is set (`0x00227374`);
-3. when `post` is non-zero (`0x0035C815`), writes the request `0x0215F1A0 = 1`, `0x0215F1A4 = 0x0B`, `0x0215F1A8 = 0`
-   through `0x002E1B10(0x0B, 0)`, unless the latch `0x0215F1A1` is set; `0x0035C7A0` gives 1 and `0x0027EFA0` 0;
-   `0x002E1B10` answers 1 when it writes (`0x002E1B35`-`0x002E1B47`) and 0 when the latch refuses (`0x002E1B58`), and
-   only for id 2 does it also ask `0x002E0FA0` (`0x002E1B27`-`0x002E1B33`);
-4. sets `0x022C83E8` bit `0x2` (`0x0035C864`);
-5. locks the input group with `0x00254850(1)` (`0x0035C870`): ten `0x002E1C20(8, bit)` calls set bits `0x1`, `0x2`,
-   `0x4`, `0x10`, `0x20`, `0x40`, `0x80`, `0x200`, `0x800` and `0x100000` of action availability row 8
-   (`0x00254861`-`0x002548DA`, [action availability](../Controls-And-Input/action-availability.md)).
+<details>
+<summary>Where in the code</summary>
 
-For kind `0x18` it opens the mode-`0x18` screen with `0x00254B40(0x18)` (`0x0035C7FF`), then sets `0x022C83E8` bit `0x1`
-and tail-jumps to `0x00254940(1)` (`0x0035C832`-`0x0035C844`). For kind `0x17` it sets bit `0x10` and tail-jumps to
-`0x002548F0(1)` (`0x0035C849`-`0x0035C85F`). Any other kind returns after the refusal tests (`0x0035C830`).
+| | Code |
+|---|---|
+| ¹ | `0x002E12D0`; `0x0035C7BA`-`0x0035C7ED` |
 
-A second route needs no field frame. The main loop (`0x0022A770`) calls `0x00254E50` once per tick,
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | sets `0x022C83E8` bit `0x100`; | `0x0035C806` |
+| 2 | halts every actor through stop request 22 (`0x16`) of the [time stop registry](../Engine-Core/time-stop-and-freeze.md): `0x00227370` calls `0x00226BE0(0x16, 0, 0, 0, -1, -1)`, no actor, no handles, fade -1 and flag -1, and tail-jumps to the apply `0x00226280`; both are skipped when `0x01FD46D4` bit `0x400000`, request 22's active bit, is set; | `0x0035C810`<br>`0x0022739B`<br>`0x002273A4`<br>`0x00227374` |
+| 3 | when `post` is non-zero, writes the request `0x0215F1A0 = 1`, `0x0215F1A4 = 0x0B`, `0x0215F1A8 = 0` through `0x002E1B10(0x0B, 0)`, unless the latch `0x0215F1A1` is set; `0x0035C7A0` gives 1 and `0x0027EFA0` 0; `0x002E1B10` answers 1 when it writes and 0 when the latch refuses, and only for id 2 does it also ask `0x002E0FA0`; | `0x0035C815`<br>`0x002E1B35`-`0x002E1B47`<br>`0x002E1B58`<br>`0x002E1B27`-`0x002E1B33` |
+| 4 | sets `0x022C83E8` bit `0x2`; | `0x0035C864` |
+| 5 | locks the input group with `0x00254850(1)`: ten `0x002E1C20(8, bit)` calls set bits `0x1`, `0x2`, `0x4`, `0x10`, `0x20`, `0x40`, `0x80`, `0x200`, `0x800` and `0x100000` of action availability row 8 (`0x00254861`-`0x002548DA`, [action availability](../Controls-And-Input/action-availability.md)). | `0x0035C870` |
+
+For kind `0x18` it opens the mode-`0x18` screen with `0x00254B40(0x18)`¹, then sets `0x022C83E8` bit `0x1`
+and tail-jumps to `0x00254940(1)`². For kind `0x17` it sets bit `0x10` and tail-jumps to
+`0x002548F0(1)`³. Any other kind returns after the refusal tests⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035C7FF` |
+| ² | `0x0035C832`-`0x0035C844` |
+| ³ | `0x0035C849`-`0x0035C85F` |
+| ⁴ | `0x0035C830` |
+
+</details>
+
+A second route needs no field frame. The main loop¹ calls `0x00254E50` once per tick,
 which asks `0x002805D0`: when `0x0035C740()` is non-zero, a mode-screen task is up and the current mode
 `0x02092730` is one of 6, `0x0A`, `0x0F`, `0x11`, `0x12`, `0x13`, or 2 with a sub-id outside
 `0x40` to `0x42`, it runs `0x0027EFA0`.
 
-`0x002805D0` answers 1 only when the area controller `[0x0209AC30] + 0xC0` is also set and the mode-screen task
-`[0x0209AC30] + 0xB8` has 0 in its dword `+0xD4` (`0x002805E4`-`0x00280601`). The mode goes through the byte table
-`0x0028065C` (index mode − 2, `0x00280609`-`0x0028062E`), and the sub-id is the task's dword `+0xC4` (`0x00280630`); every
-other case answers 0 (`0x00280648`).
+<details>
+<summary>Where in the code</summary>
 
-The sub-id test subtracts `0x40` and compares unsigned with 2 (`0x00280636`-`0x0028063C`), so a sub-id below `0x40`
-passes it as one above `0x42` does. The task takes the sub-id from the screen request's second dword
-(`0x0027FDE1`). `openfullscreenmenu_48d(2, n)` opens mode `0x0A`, not mode 2 (`0x002E0DA0`, `0x002E0DD8`), and that mode
+| | Code |
+|---|---|
+| ¹ | `0x0022A770` |
+
+</details>
+
+`0x002805D0` answers 1 only when the area controller `[0x0209AC30] + 0xC0` is also set and the mode-screen task
+`[0x0209AC30] + 0xB8` has 0 in its dword `+0xD4`¹. The mode goes through the byte table
+`0x0028065C` (index mode − 2, `0x00280609`-`0x0028062E`), and the sub-id is the task's dword `+0xC4`²; every
+other case answers 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002805E4`-`0x00280601` |
+| ² | `0x00280630` |
+| ³ | `0x00280648` |
+
+</details>
+
+The sub-id test subtracts `0x40` and compares unsigned with 2¹, so a sub-id below `0x40`
+passes it as one above `0x42` does. The task takes the sub-id from the screen request's second dword². `openfullscreenmenu_48d(2, n)` opens mode `0x0A`, not mode 2³, and that mode
 answers 1 with no sub-id test. The ids the scripts pass are 2, 4, 6, `0x8000` and `0x8004` to `0x8006`, and none
 maps to mode 2.
 
-Mode 2 comes from the input arbiter, with sub-id 0 on Triangle (`0x00253D78`), and `0x0035D750` also posts it with
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00280636`-`0x0028063C` |
+| ² | `0x0027FDE1` |
+| ³ | `0x002E0DA0`, `0x002E0DD8` |
+
+</details>
+
+Mode 2 comes from the input arbiter, with sub-id 0 on Triangle¹, and `0x0035D750` also posts it with
 sub-id 0 from mode `0x18`. The verb `debug_open_triangle_menu2` (id 2037, `0x0050DAB0`) tail-jumps to the post with
 its script argument, and no `us` listing calls it.
 
-Select or L3 sets the byte `0x02092750` to 1 (`0x00253E94`) when `0x00236760` is 0, `0x003BFDF0` is not negative, `0x002501A0`
-is 0, and `0x002500F0(mask, 2)` and `0x00250130` are non-zero; L3 also needs availability bit `0x800` clear and `0x00250200`
-non-zero. A press while the byte is 1 or 2 clears it instead (`0x00253EFA`).
+<details>
+<summary>Where in the code</summary>
 
-With the byte at 1, on that call or a later one, the arbiter posts mode 2 with sub-id `0x21` (`0x00253EE6`) when
+| | Code |
+|---|---|
+| ¹ | `0x00253D78` |
+
+</details>
+
+Select or L3 sets the byte `0x02092750` to 1¹ when `0x00236760` is 0, `0x003BFDF0` is not negative, `0x002501A0`
+is 0, and `0x002500F0(mask, 2)` and `0x00250130` are non-zero; L3 also needs availability bit `0x800` clear and `0x00250200`
+non-zero. A press while the byte is 1 or 2 clears it instead².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00253E94` |
+| ² | `0x00253EFA` |
+
+</details>
+
+With the byte at 1, on that call or a later one, the arbiter posts mode 2 with sub-id `0x21`¹ when
 `0x003CB3E0` is non-zero, `0x002B9FC0` and `0x002B66D0` are 0, `0x003BFDF0` is not negative, availability bit `0x800` is clear
 and `0x00236760` is 0.
 
-Select alone has a second post (`0x00253F01`-`0x00253F18`, the same bit clear and `0x00236760` 0): sub-id `0x21` while story
-flag `0x5E` is clear (`0x00253F53`), and once it is set `0x00264640(2)`, 1 when that is 0 (`0x00253F44`).
+<details>
+<summary>Where in the code</summary>
 
-Arming sets availability bit `0x1` through `0x00254850(1)` (`0x0035C870`, `0x0035C8D7`). The arbiter returns while Game
-Over is armed (`0x00253C97`), and the drain drops a pending id 2 when that bit is set (`0x002E0C5E`-`0x002E0C65`).
+| | Code |
+|---|---|
+| ¹ | `0x00253EE6` |
+
+</details>
+
+Select alone has a second post (`0x00253F01`-`0x00253F18`, the same bit clear and `0x00236760` 0): sub-id `0x21` while story
+flag `0x5E` is clear¹, and once it is set `0x00264640(2)`, 1 when that is 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00253F53` |
+| ² | `0x00253F44` |
+
+</details>
+
+Arming sets availability bit `0x1` through `0x00254850(1)`¹. The arbiter returns while Game
+Over is armed², and the drain drops a pending id 2 when that bit is set³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035C870`, `0x0035C8D7` |
+| ² | `0x00253C97` |
+| ³ | `0x002E0C5E`-`0x002E0C65` |
+
+</details>
 
 The one order left is the screen opening first and the arming landing later in the same step. Opening mode 2
-sets the main-loop state to 4 (`0x002E0D39`), and `0x00254E50` runs only in state 2, so only the check later in that step
-(`0x0022AC73`) can see the new screen. The new task's `+0xD4` is then still 0 (`0x00246626`): only its second update can
-raise it (`0x0027FC09`), and its first only moves `+0xD0` from 0 to 1 (`0x0027FD47`).
+sets the main-loop state to 4¹, and `0x00254E50` runs only in state 2, so only the check later in that step² can see the new screen. The new task's `+0xD4` is then still 0³: only its second update can
+raise it⁴, and its first only moves `+0xD0` from 0 to 1⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E0D39` |
+| ² | `0x0022AC73` |
+| ³ | `0x00246626` |
+| ⁴ | `0x0027FC09` |
+| ⁵ | `0x0027FD47` |
+
+</details>
 
 The open shuts the route through a queued hit. `0x00280A60` calls `0x00252B40`, whose tail `0x00254740` raises freeze
-request 13 for mode 2 (`0x002552E0`, `0x0025479D`) and applies it at once (`0x002547A2`). Its A record clears bit
-`0x2000000` ([time stop](../Engine-Core/time-stop-and-freeze.md)), so the apply starts the effect mask at 0
-(`0x00226334`-`0x00226339`), and what it adds later, `0x76`, `0x2`, `0x108` or the `0x10C` case, leaves bit `0x1` clear.
-That mask goes to `0x0209215E` (`0x00226474`).
+request 13 for mode 2¹ and applies it at once². Its A record clears bit
+`0x2000000` ([time stop](../Engine-Core/time-stop-and-freeze.md)), so the apply starts the effect mask at 0³, and what it adds later, `0x76`, `0x2`, `0x108` or the `0x10C` case, leaves bit `0x1` clear.
+That mask goes to `0x0209215E`⁴.
 
-Between the drain (`0x0031427D`) and the check, `0x00258D70` (`0x0022AC65`, when `0x00358340()` is non-zero; that value
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002552E0`, `0x0025479D` |
+| ² | `0x002547A2` |
+| ³ | `0x00226334`-`0x00226339` |
+| ⁴ | `0x00226474` |
+
+</details>
+
+Between the drain¹ and the check, `0x00258D70` (`0x0022AC65`, when `0x00358340()` is non-zero; that value
 depends on bit `0x4` of `0x022C7F92`, which the `movieend` body writes through `0x00358650`, `0x0035B953`) runs the effect
-passes. With bit `0x1` clear, the kind 1 pass (`0x00258DF8`, `0x0024BA07`) skips every instance outside state 1
-(`0x0024BB54`-`0x0024BB64`), and an instance in state 1 takes its paused step and leaves (`0x0024BB9D`,
-`0x0024BD05`-`0x0024BD17`).
-The state 3 arm that calls `0x002FC010` (`0x0024BD80`) does not run, so a queued value does not reach the applier
+passes. With bit `0x1` clear, the kind 1 pass² skips every instance outside state 1³, and an instance in state 1 takes its paused step and leaves⁴.
+The state 3 arm that calls `0x002FC010`⁵ does not run, so a queued value does not reach the applier
 `0x00307300` that way.
 
-The other caller of `0x002FC010`, the deferred list at `0x02092170` (`0x0024B5EC`), reads no kind mask. On this step
-`0x0024B4F0` reaches it at `0x0022AED7`, after the loop that holds the check (`0x0022AD69`), too late for that check. In
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031427D` |
+| ² | `0x00258DF8`, `0x0024BA07` |
+| ³ | `0x0024BB54`-`0x0024BB64` |
+| ⁴ | `0x0024BB9D`, `0x0024BD05`-`0x0024BD17` |
+| ⁵ | `0x0024BD80` |
+
+</details>
+
+The other caller of `0x002FC010`, the deferred list at `0x02092170`¹, reads no kind mask. On this step
+`0x0024B4F0` reaches it at `0x0022AED7`, after the loop that holds the check², too late for that check. In
 the effect passes only kind 1 reaches `0x002FC010`: the state 3 table at `0x0024BD5B` sends every other kind elsewhere.
 
-Effect programs send timeline codes to `0x00319F50` through `0x002EB740`, and only codes 0 (`0x00319FD8`) and 2
-(`0x0031A042`) have a direct-call path to `0x0030E360`. The 347 shipped commands that send them, `0x03` and `0x22`, are
-all in magic files, and those play as kind 1 (`0x002FCCC0`). A held kind 1 instance runs only `0x003A7EE0` and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024B5EC` |
+| ² | `0x0022AD69` |
+
+</details>
+
+Effect programs send timeline codes to `0x00319F50` through `0x002EB740`, and only codes 0¹ and 2² have a direct-call path to `0x0030E360`. The 347 shipped commands that send them, `0x03` and `0x22`, are
+all in magic files, and those play as kind 1³. A held kind 1 instance runs only `0x003A7EE0` and
 `0x003A93F0`, which have no direct-call path to `0x003B8670`, and no shipped command uses `0x11`, the signal to a kind 1
-instance (`0x003B8CB2`).
+instance⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00319FD8` |
+| ² | `0x0031A042` |
+| ³ | `0x002FCCC0` |
+| ⁴ | `0x003B8CB2` |
+
+</details>
 
 Two direct-call chains from the field frame after the drain still reach `0x00300FC0` through `0x00300E40`. `0x00359800`
 goes through `0x00359A30`, `0x0035A590`, `0x00233F50` and `0x00233EA0` only in dispose state 1, which the `disposeentry`
-begin sets (`0x0035A64F`) and the same tick ends (`0x00359B01`). `0x0037C1A0` goes through `0x0037B4D0`, `0x00233AD0`,
-`0x00324450` and `0x003243F0` only for a slot of the mask that `partystdmotionrecover` fills (`0x0037CFD0`).
+begin sets¹ and the same tick ends². `0x0037C1A0` goes through `0x0037B4D0`, `0x00233AD0`,
+`0x00324450` and `0x003243F0` only for a slot of the mask that `partystdmotionrecover` fills³.
 
-Each chain tears down a unit whose record is already down (`0x00233ED7`-`0x00233EF7`, `0x00324420`), so neither changes
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035A64F` |
+| ² | `0x00359B01` |
+| ³ | `0x0037CFD0` |
+
+</details>
+
+Each chain tears down a unit whose record is already down¹, so neither changes
 what `0x002372E0` reads. Either arms Game Over only when that test is already true while bit `0x2` of `0x022C83E8` is
-clear. A KO with a unit arms at the KO (`0x0030E877`).
+clear. A KO with a unit arms at the KO².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233ED7`-`0x00233EF7`, `0x00324420` |
+| ² | `0x0030E877` |
+
+</details>
 
 A reserve member has no unit, and an action aimed at it through the RESERVE target list sets its statuses without
-arming (`0x00307436`, `0x0030E729`). That write is refused once every counted member of the four is down, because battle
-flag `0x200` or `0x800` is then set and `0x0030B9B0` refuses every HP and status change (`0x0030109D`, `0x003010CE`,
-`0x0030B78C`-`0x0030B7DA`). Before that, a member of the four is still up and arms at its own KO.
+arming¹. That write is refused once every counted member of the four is down, because battle
+flag `0x200` or `0x800` is then set and `0x0030B9B0` refuses every HP and status change². Before that, a member of the four is still up and arms at its own KO.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00307436`, `0x0030E729` |
+| ² | `0x0030109D`, `0x003010CE`, `0x0030B78C`-`0x0030B7DA` |
+
+</details>
 
 This rules out the hit route and, over direct calls and for magic files their action requesters play, the effect
 programs, and the sub-id test stays as written above.
@@ -134,7 +312,16 @@ non-zero), calls `0x0035C7B0(0x0B, 0)` and `0x00252B40(0x0B, 1)`, writes 2 to th
 (`[[0x0209AC30] + 0xC0] + 0xC8`, `0x0027EFE8`, read with no null test, so a null controller faults there), releases
 the mode-screen task `[0x0209AC30] + 0xB8` through `0x00245020` (`0x0027F000`; it returns at once for a null task),
 clears `[0x0209AC30] + 0xDEE`, runs
-`0x00251E80`, sets `+0xDEF = 1` and starts the game-over task directly with `0x003EF750` (`0x0027F02A`).
+`0x00251E80`, sets `+0xDEF = 1` and starts the game-over task directly with `0x003EF750`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027F02A` |
+
+</details>
 
 ### From the request to the screen
 
@@ -146,80 +333,165 @@ default arm `0x00254C2D`, which runs `0x0028F970()` (clears bits `0x10` and `0x4
 
 Around that dispatch `0x00254B50` does more:
 
-- It first returns 0 without opening anything while `0x02092734` is 1 (`0x00254B71`) or when the combined action
-  availability mask holds bit `1 << (id & 31)` (`0x00254B80`-`0x00254BC5`). No word of that mask's table `0x01E0C2C0`
+- It first returns 0 without opening anything while `0x02092734` is 1¹ or when the combined action
+  availability mask holds bit `1 << (id & 31)`². No word of that mask's table `0x01E0C2C0`
   holds bit `0x800`, so id 11 is refused only by the latch.
-- Before it reads the byte table it calls `0x0017E7D0`, `0x0035DA80` and `0x003C8990` (`0x00254BC7`-`0x00254BD1`).
+- Before it reads the byte table it calls `0x0017E7D0`, `0x0035DA80` and `0x003C8990`³.
 - `0x0028F970` changes nothing while `[0x0209BE80]` is null or bit `0x2000` of that dword is set; otherwise it also
-  clears the word `+0x10FA0` (`0x0028F97B`-`0x0028F9AF`), and when `0x00273A20([0x0209BE80] + 0xAB30)` answers non-zero it
-  sets bit `0x40` of `+0x10CFC` (`0x0028F9B6`-`0x0028F9D4`).
+  clears the word `+0x10FA0`⁴, and when `0x00273A20([0x0209BE80] + 0xAB30)` answers non-zero it
+  sets bit `0x40` of `+0x10CFC`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00254B71` |
+| ² | `0x00254B80`-`0x00254BC5` |
+| ³ | `0x00254BC7`-`0x00254BD1` |
+| ⁴ | `0x0028F97B`-`0x0028F9AF` |
+| ⁵ | `0x0028F9B6`-`0x0028F9D4` |
+
+</details>
 
 `0x00280A00(mode, p2, p3)` opens a mode screen only when the root block's `+0xC0` and `+0xB8` are
 both null. It stores the mode with `0x00252B40(mode, 1)` (`0x02092730 = mode & 0x7FFF`, `0x02092734 = 1`,
 `0x020927D8 = mode & 0x7FFF`), spawns the mode-screen task `0x0027FB70` and the area controller `0x00280140`
 (`0xD8` bytes each) and runs `0x0028CA30`. The create arm of `0x0027FB70` for mode `0x0B` sets
-`[0x0209AC30] + 0xDEF = 1` and calls `0x003EF750` (`0x0027FFC3`), which is
+`[0x0209AC30] + 0xDEF = 1` and calls `0x003EF750`¹, which is
 `0x00244F50(0x108, 0x003EF830, 0)`: the game-over task. Those are the only two callers of `0x003EF750`.
 
-`0x00280A00` in full (`0x00280A00`-`0x00280AC0`):
+<details>
+<summary>Where in the code</summary>
 
-- With the root block's `+0xC0` or `+0xB8` set it returns 0 and builds nothing (`0x00280A1A`-`0x00280A30`,
-  `0x00280AAD`).
+| | Code |
+|---|---|
+| ¹ | `0x0027FFC3` |
+
+</details>
+
+`0x00280A00` in full¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00280A00`-`0x00280AC0` |
+
+</details>
+
+- With the root block's `+0xC0` or `+0xB8` set it returns 0 and builds nothing¹.
 - `0x00252B40` stores its second argument, which `0x00280A00` gives as 1, in `0x02092734`, and `mode & 0x7FFF` in both
-  `0x02092730` and `0x020927D8` (`0x00252B40`-`0x00252B52`); it then jumps to `0x00254740`.
-- Both tasks get one create record whose `+0x08` points at `{mode, p2, p3, 0}` (`0x00280A32`-`0x00280A8C`).
-- `0x0028CA30` runs through `0x0028E860` (`0x00280A91`), and the call returns 1 (`0x00280A96`).
+  `0x02092730` and `0x020927D8`²; it then jumps to `0x00254740`.
+- Both tasks get one create record whose `+0x08` points at `{mode, p2, p3, 0}`³.
+- `0x0028CA30` runs through `0x0028E860`⁴, and the call returns 1⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00280A1A`-`0x00280A30`, `0x00280AAD` |
+| ² | `0x00252B40`-`0x00252B52` |
+| ³ | `0x00280A32`-`0x00280A8C` |
+| ⁴ | `0x00280A91` |
+| ⁵ | `0x00280A96` |
+
+</details>
 
 ### The game-over task and its helpers
 
 `0x003EF830` is a task of `0x108` bytes. Its create arm:
 
-1. zeroes `+0xC0` (the state), `+0xE0`, `+0xE8` and `+0xF0` (`0x003EF985`-`0x003EF99A`) and stores itself at
-   `0x02B5F1C8`;
-2. takes a request group for itself (`0x00249580`, `0x003EF9A7`) and in it registers the `gameover_c` texture,
-   kind 7 id `0x39`, through the descriptor at `0x00D11C88` into `+0xF8` (`0x00393460`, `0x003EF9C4`; the
-   descriptor names the string at `0x00D11CD0`, the file is `Tm2_Menu\gameover_c.tm2` in each language folder);
-3. requests `gameover.mrp`, kind 7 id `0x38`, through the id table at `0x00D11CA0` into `+0x100` (`0x003933F0`,
-   `0x003EF9DE`), and closes the group (`0x00249410`, `0x003EF9E6`), whose message `0x10` arrives once both files
-   have landed;
-4. sets its rect to `0x01E0C1D8` x `0x01E0C1DC` at 0, 0 (`0x003EF9EB`-`0x003EFA0A`), attaches itself to the list
-   `0x0208EA28` with priority 100 and runs `0x003678F0`;
-5. spawns two helpers of `0xD0` bytes: the game-over music task `0x003EF2E0` at `+0xD0` and the timing task
-   `0x003EEEC0` at `+0xD8`, whose create record names the game-over task as its parent (`0x003EFA45`-`0x003EFA67`),
-   and returns 0.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | zeroes `+0xC0` (the state), `+0xE0`, `+0xE8` and `+0xF0` and stores itself at `0x02B5F1C8`; | `0x003EF985`-`0x003EF99A` |
+| 2 | takes a request group for itself and in it registers the `gameover_c` texture, kind 7 id `0x39`, through the descriptor at `0x00D11C88` into `+0xF8` (`0x00393460`, `0x003EF9C4`; the descriptor names the string at `0x00D11CD0`, the file is `Tm2_Menu\gameover_c.tm2` in each language folder); | `0x00249580`, `0x003EF9A7` |
+| 3 | requests `gameover.mrp`, kind 7 id `0x38`, through the id table at `0x00D11CA0` into `+0x100`, and closes the group, whose message `0x10` arrives once both files have landed; | `0x003933F0`, `0x003EF9DE`<br>`0x00249410`, `0x003EF9E6` |
+| 4 | sets its rect to `0x01E0C1D8` x `0x01E0C1DC` at 0, 0, attaches itself to the list `0x0208EA28` with priority 100 and runs `0x003678F0`; | `0x003EF9EB`-`0x003EFA0A` |
+| 5 | spawns two helpers of `0xD0` bytes: the game-over music task `0x003EF2E0` at `+0xD0` and the timing task `0x003EEEC0` at `+0xD8`, whose create record names the game-over task as its parent, and returns 0. | `0x003EFA45`-`0x003EFA67` |
 
-Its tick (`0x001EDEC0` on `+0xB4`) runs the state machine `0x003EFAA0` when `0x001EDEC0` answers non-zero
-(`0x003EF966`). Message `0x10` sets `+0xF0 = 1`. Messages `0x0F`, `0x12`, `0x13` and `0x8001` reach it as
-message `0x0C` with that id at `+0x08` and the payload byte at `+0x10` (`0x003EF8C5`-`0x003EF8DB`); it ignores
+Its tick (`0x001EDEC0` on `+0xB4`) runs the state machine `0x003EFAA0` when `0x001EDEC0` answers non-zero¹. Message `0x10` sets `+0xF0 = 1`. Messages `0x0F`, `0x12`, `0x13` and `0x8001` reach it as
+message `0x0C` with that id at `+0x08` and the payload byte at `+0x10`²; it ignores
 other ids there.
 
-Message `0x8001` kills the prompt task at `+0xE8` (`0x00244F00`, `0x003EF8EE`); message `0x12` with payload 1, 2
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EF966` |
+| ² | `0x003EF8C5`-`0x003EF8DB` |
+
+</details>
+
+Message `0x8001` kills the prompt task at `+0xE8`¹; message `0x12` with payload 1, 2
 or 3 clears the helper pointer `+0xD8`, `+0xE0` or `+0xE8`, and other payloads change nothing. Message `0x0F`
-runs `0x003EF680` and message `0x13` `0x003EF770`, each with the payload byte (`0x003EF951`, `0x003EF8FF`). Messages
-other than 1, 2, `0x0C`, `0x10` and `0x12` go to `0x005C5230(task)`, whose answer it returns (`0x003EF872`); every
+runs `0x003EF680` and message `0x13` `0x003EF770`, each with the payload byte². Messages
+other than 1, 2, `0x0C`, `0x10` and `0x12` go to `0x005C5230(task)`, whose answer it returns³; every
 other path returns 0.
 
-The game-over music task `0x003EF2E0` fades the music with `0x002DEE50(0x002DEC00(), 30)` (`0x003EF44C`-`0x003EF45A`). It
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00244F00`, `0x003EF8EE` |
+| ² | `0x003EF951`, `0x003EF8FF` |
+| ³ | `0x003EF872` |
+
+</details>
+
+The game-over music task `0x003EF2E0` fades the music with `0x002DEE50(0x002DEC00(), 30)`¹. It
 marks each loaded music track slot as fading and ends its track once the count `30 / [0x01F3DA18] + 1` runs out,
 emptying a ready slot and flagging any other for release (`0x003611F0(0x1E, 1)`, which starts the task `0x00361080` for
 each slot: `0x00361263`-`0x003612FB`, `0x003610FA`-`0x00361139`), and fades the map sound volume to 0 over 60 frames
 (`0x003634B0(0x3C, 0)`).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EF44C`-`0x003EF45A` |
+
+</details>
+
 Its create arm also sets state 0
-with a count of 15 at `+0xC8` and calls `0x00246AD0(game-over task, self)` (`0x003EF476`-`0x003EF491`). Its tick
+with a count of 15 at `+0xC8` and calls `0x00246AD0(game-over task, self)`¹. Its tick
 (message 2) runs only when `0x001EDEC0` on `+0xB4` answers non-zero, and messages other than 1 and 2 go to
-`0x005C5230` (`0x003EF301`). Its states:
+`0x005C5230`². Its states:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EF476`-`0x003EF491` |
+| ² | `0x003EF301` |
+
+</details>
 
 - state 0 counts down 15 frames, runs `0x00363560` and `0x0024D050`, and once `0x002F1A30(1)` is 0 loads
   music track 7 with `0x00361630(7)` into one of the four music track slots at `0x022CB9F0` (Layouts); when
   no slot is free (`-1`) it releases every slot with `0x00360D70` and retries from state 1;
 - `0x00361630` also answers -1 when the first free slot is slot 2 or 3 (Layouts); state 1 calls `0x00361630(7)` on
   every tick until it answers 0 or more, and either state then goes to state 2 with a count of 0
-  (`0x003EF3D0`-`0x003EF3EB`);
+ ¹;
 - state 2 waits until the slot's state byte is 5 (`0x00360C20(7)`); state 3 is "ready"; states 3, 5 and 7 do
   nothing on a tick;
 - state 4 counts down and then sets its end flag `+0xC4` bit `0x1`;
 - state 6 waits for `0x002F1A30(1)` to be 0 and becomes 7.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EF3D0`-`0x003EF3EB` |
+
+</details>
 
 The timing task `0x003EEEC0` starts the screen fade `0x00251D90(1, 0x3C, 0x78)`, waits until
 `0x00251D20()` is above 2, then 18 frames, plays `0x002C99A0(1000, 8)` and sends the parent message
@@ -227,94 +499,143 @@ The timing task `0x003EEEC0` starts the screen fade `0x00251D90(1, 0x3C, 0x78)`,
 `0x12` to the parent with payload 1.
 
 Its create arm takes the parent from the create record's `+0x08`, zeroes its state byte `+0xC8` and count
-`+0xCC`, and calls `0x00247930(self, 100)` and `0x00246AD0(game-over task, self)` (`0x003EEFEE`-`0x003EF032`). The
-`0x002C99A0` call passes 0 as a third argument (`0x003EEF9A`-`0x003EEFA6`). Its tick runs while `0x001EDEC0` on `+0xB4`
-answers non-zero, and its state step only when the count `+0xCC` is 0 or has just reached 0 (`0x003EEF27`-`0x003EEF4D`).
+`+0xCC`, and calls `0x00247930(self, 100)` and `0x00246AD0(game-over task, self)`¹. The
+`0x002C99A0` call passes 0 as a third argument². Its tick runs while `0x001EDEC0` on `+0xB4`
+answers non-zero, and its state step only when the count `+0xCC` is 0 or has just reached 0³.
 
-The end state is state 3, which waits; state 2 becomes 3 when its 60 frames are over (`0x003EEF86`). In state 4,
-which `0x003EF680` sets, it destroys itself with `0x00244F00` once its count has run out (`0x003EEF71`-`0x003EEF74`).
-Messages other than 1, 2, `0x0F` and `0x12` go to `0x005C5230` (`0x003EEEF7`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EEFEE`-`0x003EF032` |
+| ² | `0x003EEF9A`-`0x003EEFA6` |
+| ³ | `0x003EEF27`-`0x003EEF4D` |
+
+</details>
+
+The end state is state 3, which waits; state 2 becomes 3 when its 60 frames are over¹. In state 4,
+which `0x003EF680` sets, it destroys itself with `0x00244F00` once its count has run out².
+Messages other than 1, 2, `0x0F` and `0x12` go to `0x005C5230`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EEF86` |
+| ² | `0x003EEF71`-`0x003EEF74` |
+| ³ | `0x003EEEF7` |
+
+</details>
 
 ### The state machine
 
 `0x003EFAA0` runs when the countdown `+0xC4` is 0 or has just reached 0. Message `0x13` from the
-helpers (`0x003EF770`) moves it: payload 1 puts it in state 1, payload 2 spawns the prompt task
+helpers¹ moves it: payload 1 puts it in state 1, payload 2 spawns the prompt task
 `0x003EF050` (`0xD8` bytes) at `+0xE8` and goes to state 3, payload 3 goes to state 4. Other payloads change
-nothing (`0x003EF79C`).
+nothing².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EF770` |
+| ² | `0x003EF79C` |
+
+</details>
 
 The prompt task's create record, like the logo task's below, is {0, the game-over task, the dword at `+0x100`},
-the last two sign-extended from 32 bits (`0x003EF7BB`-`0x003EF7E8`, `0x003EFC16`-`0x003EFC48`). States 0, 2, 3 and 4 do
-nothing in `0x003EFAA0` (`0x003EFAFA`); `0x003EF770` and `0x003EF680` move the task out of them.
+the last two sign-extended from 32 bits¹. States 0, 2, 3 and 4 do
+nothing in `0x003EFAA0`²; `0x003EF770` and `0x003EF680` move the task out of them.
 
-1. State 1 waits until the music track slot is ready (game-over music task state 3) and message `0x10` has arrived
-   (`+0xF0`). It then spawns the logo task `0x003EF4A0` (`0xD0` bytes) at `+0xE0`, starts music track 7 at full volume
-   with `0x002DECE0(7)` (`0x003EFC69`; [Music](../Sound-And-Music/music.md)) and goes to state 2.
-   - The music and step 2 below run only when the game-over music task's state byte reads 3 again after the spawn
-     (`0x003EFC5B`-`0x003EFC62`); otherwise the task goes to state 2 without them (`0x003EFCA9`, `0x003EFCAE`).
-   - The logo task's widget is entry 0 of the `gameover.mrp` file its create record names
-     (`0x002432B0(self + 0x50, file, 0, self)`, `0x003EF4E2`); the animation descriptor at `0x00D11CA8` goes to
-     `0x00247570` (`0x003EF539`).
-2. At the same moment the game-over music task enters state 4 with a display count of `0x564`, `0x3DE` or `0x3A2`
-   frames when `0x002DDCA0()` returns 1, 2 or anything else; that is the word at `[0x0215E6E0] + 0x0E`, a 2 downgraded
-   to 1 when `0x0017E490()` has bit `0x1` clear. The downgrade is stored back into the word (`0x002DDCC7`).
-3. The logo task waits 18 frames, then, once `+0xF0` is set, attaches to the parent's list; when it
-   ends it sends `0x13` with payload 2, which spawns the prompt task.
-   - Its create arm copies the widget's rectangle to `+0x98`-`+0x9E`, takes the parent from the record's
-     `+0x08`, calls `0x00247930(self, 99)` and `0x00244960(game-over task, self)`, sets the count `+0xCC` to 18 and
-     calls `0x00247870(self, 0)` (`0x003EF4F9`-`0x003EF569`).
-   - From then on every tick, while `+0xC8` bit `0x1` is clear, counts `+0xCC` down and, once it is 0 and
-     `+0xF0` is set, calls `0x00246AD0(game-over task, self)` (`0x003EF58A`-`0x003EF5BB`).
-   - It forwards messages `0x0F`, `0x12` and `0x13` to the parent with payload 2 (`0x003EF5E1`-`0x003EF601`);
-     message `0x0E` sets its `+0xC8` bit `0x1` (`0x003EF5CD`), and other messages go to `0x005C5230`.
-4. The prompt task `0x003EF050` ends the screen on message 10 when the game-over music task's end flag is set or a
-   button in the mask `0xFF09` of `0x02F9736A` is pressed: it sends `0x8001` to the parent, which kills it.
-   - Its widget is entry 1 of the same file (`0x002432B0(self + 0x50, file, 1, self)`, `0x003EF095`). Like the
-     logo task it copies the rectangle, calls `0x00247930(self, 99)` and `0x00244960(game-over task, self)` and
-     `0x00247870(self, 0)`, with an 18-frame count at `+0xC8` (`0x003EF0AC`-`0x003EF10A`).
-   - Its tick, while `+0xCC` bit `0x1` is clear, counts `+0xC8` down and then calls
-     `0x00246AD0(game-over task, self)` on every tick (`0x003EF12F`-`0x003EF15F`).
-   - Message `0x0C` is passed on to the parent with its own id and payload (`0x003EF1DA`-`0x003EF1E9`). Message
-     `0x0E` sets `+0xCC` bit `0x1` and calls `0x002470D0(self)` (`0x003EF171`-`0x003EF17B`).
-   - Messages `0x0F`, `0x12` and `0x13` go to the parent with payload 3 (`0x003EF18D`, `0x003EF1FB`-`0x003EF214`),
-     and other messages go to `0x005C5230` (`0x003EF233`).
-5. Message `0x0F` with payload 3 runs `0x003EF680`: the logo task is killed, `0x00250C50(100)` and `0x00251EA0(0.8, 0x78)`
-   run and the timing task is set to state 4 for 180 frames. The parent waits 60 frames and goes to state 5.
-   - Unless the game-over music task has already ended, it goes to state 6, the music fades over 120 frames, the
-     loaded tracks are set to end and the map sounds fade over 240 (`0x003611F0(0xF0, 1)`, `0x003634B0(0xF0, 0)`).
-   - `0x003EF680` returns at once for any other payload (`0x003EF683`). The full calls are `0x00250C50(100, 180)` and
-     `0x00251EA0(0.8, 0x78, 0)` (`0x003EF6A9`-`0x003EF6C5`), and the game-over music task's count `+0xC8` becomes 240
-     (`0x003EF720`).
-   - It reads the timing task `+0xD8` with no null test (`0x003EF6A2`-`0x003EF6D1`).
-6. State 5 fades layer 2 to black over 60 frames (`0x002EFA70(2, 0x3C, 0)`), waits 120 frames and goes to 6. State 6
-   runs `0x003EF290(game-over music task, 1)` when the game-over music task's end flag is set (a one-frame music fade;
-   the loaded tracks end after a count of `2 / [0x01F3DA18] + 1` and the map sounds fade over 2 frames), then 7. State
-   7 waits for game-over music task state 7 and destroys it (`0x00244F00`), then 8.
-   - `0x003EF290(game-over music task, n)` runs `0x002DEE50(0x002DEC00(), n, 0)`, `0x003611F0(2n, 1)` and `0x003634B0(2n, 0)`
-     and puts the game-over music task in state 6 with a count of `2n` (`0x003EF29F`-`0x003EF2D2`).
-7. State 8, once `+0xD8`, `+0xE0` and `+0xE8` are all null, destroys the task itself and calls
-   `0x00285EC0(0x0C)` (`0x003EFB32`).
+<details>
+<summary>Where in the code</summary>
 
-The teardown message `0x12` releases the `gameover_c` texture entry at `+0xF8` (`0x00393900`, `0x003EF888`) and
-frees the `gameover.mrp` buffer at `+0x100` (`0x003938B0`, `0x003EF899`), calls `0x00254850(0)` and `0x00254940(0)`
-and runs `0x0027F2E0`. `0x00254850(0)` returns at once with no write (`0x00254856`, `0x002548DF`), so it releases
-nothing; `0x00254940(0)` calls `0x002E1CA0(8, 0xB)` and jumps to `0x002547D0(0)` (`0x00254948`-`0x0025496D`).
+| | Code |
+|---|---|
+| ¹ | `0x003EF7BB`-`0x003EF7E8`, `0x003EFC16`-`0x003EFC48` |
+| ² | `0x003EFAFA` |
 
-Of the ten row-8 bits that `0x00254850(1)` set, the teardown therefore clears `0x800` (`0x00254964`) and, through
-`0x002547D0(0)`, `0x2`, `0x4`, `0x10`, `0x20`, `0x40`, `0x80` and `0x200` (`0x002547F2`-`0x00254836`). Bits `0x1` and
-`0x100000` stay set. `0x00254980(0)` clears both among its seven bits (`0x002549A2`-`0x002549E2`); it is called with 0 at
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | State 1 waits until the music track slot is ready (game-over music task state 3) and message `0x10` has arrived (`+0xF0`). It then spawns the logo task `0x003EF4A0` (`0xD0` bytes) at `+0xE0`, starts music track 7 at full volume with `0x002DECE0(7)` (`0x003EFC69`; [Music](../Sound-And-Music/music.md)) and goes to state 2.<br>• The music and step 2 below run only when the game-over music task's state byte reads 3 again after the spawn; otherwise the task goes to state 2 without them.<br>• The logo task's widget is entry 0 of the `gameover.mrp` file its create record names (`0x002432B0(self + 0x50, file, 0, self)`, `0x003EF4E2`); the animation descriptor at `0x00D11CA8` goes to `0x00247570`. | `0x003EFC5B`-`0x003EFC62`<br>`0x003EFCA9`, `0x003EFCAE`<br>`0x003EF539` |
+| 2 | At the same moment the game-over music task enters state 4 with a display count of `0x564`, `0x3DE` or `0x3A2` frames when `0x002DDCA0()` returns 1, 2 or anything else; that is the word at `[0x0215E6E0] + 0x0E`, a 2 downgraded to 1 when `0x0017E490()` has bit `0x1` clear. The downgrade is stored back into the word. | `0x002DDCC7` |
+| 3 | The logo task waits 18 frames, then, once `+0xF0` is set, attaches to the parent's list; when it ends it sends `0x13` with payload 2, which spawns the prompt task.<br>• Its create arm copies the widget's rectangle to `+0x98`-`+0x9E`, takes the parent from the record's `+0x08`, calls `0x00247930(self, 99)` and `0x00244960(game-over task, self)`, sets the count `+0xCC` to 18 and calls `0x00247870(self, 0)`.<br>• From then on every tick, while `+0xC8` bit `0x1` is clear, counts `+0xCC` down and, once it is 0 and `+0xF0` is set, calls `0x00246AD0(game-over task, self)`.<br>• It forwards messages `0x0F`, `0x12` and `0x13` to the parent with payload 2; message `0x0E` sets its `+0xC8` bit `0x1`, and other messages go to `0x005C5230`. | `0x003EF4F9`-`0x003EF569`<br>`0x003EF58A`-`0x003EF5BB`<br>`0x003EF5E1`-`0x003EF601`<br>`0x003EF5CD` |
+| 4 | The prompt task `0x003EF050` ends the screen on message 10 when the game-over music task's end flag is set or a button in the mask `0xFF09` of `0x02F9736A` is pressed: it sends `0x8001` to the parent, which kills it.<br>• Its widget is entry 1 of the same file (`0x002432B0(self + 0x50, file, 1, self)`, `0x003EF095`). Like the logo task it copies the rectangle, calls `0x00247930(self, 99)` and `0x00244960(game-over task, self)` and `0x00247870(self, 0)`, with an 18-frame count at `+0xC8`.<br>• Its tick, while `+0xCC` bit `0x1` is clear, counts `+0xC8` down and then calls `0x00246AD0(game-over task, self)` on every tick.<br>• Message `0x0C` is passed on to the parent with its own id and payload. Message `0x0E` sets `+0xCC` bit `0x1` and calls `0x002470D0(self)`.<br>• Messages `0x0F`, `0x12` and `0x13` go to the parent with payload 3, and other messages go to `0x005C5230`. | `0x003EF0AC`-`0x003EF10A`<br>`0x003EF12F`-`0x003EF15F`<br>`0x003EF1DA`-`0x003EF1E9`<br>`0x003EF171`-`0x003EF17B`<br>`0x003EF18D`, `0x003EF1FB`-`0x003EF214`<br>`0x003EF233` |
+| 5 | Message `0x0F` with payload 3 runs `0x003EF680`: the logo task is killed, `0x00250C50(100)` and `0x00251EA0(0.8, 0x78)` run and the timing task is set to state 4 for 180 frames. The parent waits 60 frames and goes to state 5.<br>• Unless the game-over music task has already ended, it goes to state 6, the music fades over 120 frames, the loaded tracks are set to end and the map sounds fade over 240 (`0x003611F0(0xF0, 1)`, `0x003634B0(0xF0, 0)`).<br>• `0x003EF680` returns at once for any other payload. The full calls are `0x00250C50(100, 180)` and `0x00251EA0(0.8, 0x78, 0)`, and the game-over music task's count `+0xC8` becomes 240.<br>• It reads the timing task `+0xD8` with no null test. | `0x003EF683`<br>`0x003EF6A9`-`0x003EF6C5`<br>`0x003EF720`<br>`0x003EF6A2`-`0x003EF6D1` |
+| 6 | State 5 fades layer 2 to black over 60 frames (`0x002EFA70(2, 0x3C, 0)`), waits 120 frames and goes to 6. State 6 runs `0x003EF290(game-over music task, 1)` when the game-over music task's end flag is set (a one-frame music fade; the loaded tracks end after a count of `2 / [0x01F3DA18] + 1` and the map sounds fade over 2 frames), then 7. State 7 waits for game-over music task state 7 and destroys it, then 8.<br>• `0x003EF290(game-over music task, n)` runs `0x002DEE50(0x002DEC00(), n, 0)`, `0x003611F0(2n, 1)` and `0x003634B0(2n, 0)` and puts the game-over music task in state 6 with a count of `2n`. | `0x00244F00`<br>`0x003EF29F`-`0x003EF2D2` |
+| 7 | State 8, once `+0xD8`, `+0xE0` and `+0xE8` are all null, destroys the task itself and calls `0x00285EC0(0x0C)`. | `0x003EFB32` |
+
+The teardown message `0x12` releases the `gameover_c` texture entry at `+0xF8`¹ and
+frees the `gameover.mrp` buffer at `+0x100`², calls `0x00254850(0)` and `0x00254940(0)`
+and runs `0x0027F2E0`. `0x00254850(0)` returns at once with no write³, so it releases
+nothing; `0x00254940(0)` calls `0x002E1CA0(8, 0xB)` and jumps to `0x002547D0(0)`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00393900`, `0x003EF888` |
+| ² | `0x003938B0`, `0x003EF899` |
+| ³ | `0x00254856`, `0x002548DF` |
+| ⁴ | `0x00254948`-`0x0025496D` |
+
+</details>
+
+Of the ten row-8 bits that `0x00254850(1)` set, the teardown therefore clears `0x800`¹ and, through
+`0x002547D0(0)`, `0x2`, `0x4`, `0x10`, `0x20`, `0x40`, `0x80` and `0x200`². Bits `0x1` and
+`0x100000` stay set. `0x00254980(0)` clears both among its seven bits³; it is called with 0 at
 `0x0035D90A` and `0x0035DAB3`. The party-down window clears both when the current mode `0x02092730` is `0x18`, through
-`0x002E1CA0(8, 0)` and `0x002E1CA0(8, 0x14)` (`0x0035D728`-`0x0035D746`).
+`0x002E1CA0(8, 0)` and `0x002E1CA0(8, 0x14)`⁴.
 
-`0x002E1CA0(8, 0)` also clears bit `0x1` alone at `0x0027A8AA`, in the chocobo dismount and ride (`0x0035C9A5`,
-`0x0035CF6C`) and in the target cursor (`0x003C8A0A`, `0x003C8AF2`, `0x003C8C97`-`0x003C9085`). `0x00229510` rewrites row 8
-from the copy taken when the Start screen opened (`0x00229554`, `0x00229562`). The area unload clears every row through
-`0x002E0670` (`0x00262CCA`), and the field start through `0x002E1450` (`0x00267155`). No `0x002E1CD0` call names row 8.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00254964` |
+| ² | `0x002547F2`-`0x00254836` |
+| ³ | `0x002549A2`-`0x002549E2` |
+| ⁴ | `0x0035D728`-`0x0035D746` |
+
+</details>
+
+`0x002E1CA0(8, 0)` also clears bit `0x1` alone at `0x0027A8AA`, in the chocobo dismount and ride¹ and in the target cursor². `0x00229510` rewrites row 8
+from the copy taken when the Start screen opened³. The area unload clears every row through
+`0x002E0670`⁴, and the field start through `0x002E1450`⁵. No `0x002E1CD0` call names row 8.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035C9A5`, `0x0035CF6C` |
+| ² | `0x003C8A0A`, `0x003C8AF2`, `0x003C8C97`-`0x003C9085` |
+| ³ | `0x00229554`, `0x00229562` |
+| ⁴ | `0x00262CCA` |
+| ⁵ | `0x00267155` |
+
+</details>
 
 `0x0027F2E0` takes a length of 1 when bit `0x800` of `[0x0209AC30] + 0x400` is set and 200
-otherwise (`0x0027F2ED`-`0x0027F301`), closes menu slot 0 over it (`0x002C98C0` at `0x0027F306`), steps the
+otherwise¹, closes menu slot 0 over it (`0x002C98C0` at `0x0027F306`), steps the
 mode-screen backdrop kept at `0x020927F0` toward its fade (`0x00250F30` at `0x0027F30B`), fades fade slot 3 in over
 length × 60 / 1000 frames when the length is above 1 and slot 3 is active (`0x002CC960` at `0x0027F312`;
 `0x002EFD20(3)`, `0x002EFA70(3, n, 1)`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027F2ED`-`0x0027F301` |
+
+</details>
 
 It then rewrites the low byte of `[0x0209AC30] + 0x400` from its bits `0x200` and `0x400` (2 when bit `0x200` is clear, 1 when bit `0x200` is set and bit `0x400`
 clear, 2 when both are set) and clears bit `0x800`.
@@ -345,7 +666,16 @@ requested as a zone change after a game over; a title-return byte is set instead
 
 `0x00360120` runs every main-loop iteration (`0x0022A977` and `0x0022AE00` in `0x0022A770`), and at `0x0022BDDB` in the
 capture-backed frame `0x0022BC20` (the re-initialisation) only on the frame whose state byte `0x02064AD3` is no longer 5,
-when that frame returns to state 2 (`0x0022BDB2`-`0x0022BDDB`).
+when that frame returns to state 2¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022BDB2`-`0x0022BDDB` |
+
+</details>
 
 It refreshes the busy mask's bit `0x80` with `0x003321E0`, writes `0x022CB724 = 0x5A` and `0x022CB727 = 0`, and when the
 busy mask `0x022CB720` is 0 and either title byte `0x022CB72A` or `0x022CB72B` is set, it runs the resume routine `0x003601D0`
@@ -354,34 +684,44 @@ and then `0x0017F740(0)`, `0x001EC4B0(1)`, `0x001EC4B0(2)`, `0x001830A0(1)`, `0x
 
 `0x003321E0` tests the low dwords of the five pending masks `0x022C6E48` to `0x022C6E68` (8 bytes apart) without
 bit `0x1`: when all five are 0 it clears bit `0x80` through `0x003601C0(7)`, otherwise it sets it through
-`0x003601B0(7)` (`0x003321E0`-`0x00332244`).
+`0x003601B0(7)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003321E0`-`0x00332244` |
+
+</details>
 
 `0x003601D0` is the field teardown, in this order:
 
-1. both speed scales to 1.0 (`0x00229EF0`, `0x00229EE0`), `0x00368AC0(0)`, `0x0032E520(0)`, `0x0035EA30(0)`,
-   `0x0053DD10(1)`;
-2. for managers 0 to 2 with `+0x10` bit `0x1`, the jump lock `+0x200` bit `0x1` is cleared;
-3. `0x002DEE90(-1)`, `0x003634A0(0)`, `0x003633B0(0)`, `0x00362850`, `0x002DF0F0(0, -1)`, `0x002DF060`,
-   `0x001DC330(-1)`, `0x002DEB90(1)`, `0x005C5230`: the sound teardown, in which `0x002DF0F0(0, -1)` and
-   `0x001DC330(-1)` are the audio manager's stop calls for sounds and for voices, and `0x002DEE90(-1)` calls
-   `0x0035EA30(0)` until `0x001DBD00` returns 0 ([audio manager](../Sound-And-Music/audio-manager.md));
-   - `0x001DC330(-1)` is reached through the jump `0x002DF690` (`0x0036025F`), and `0x002DEE90(-1)` runs twice more,
-     before `0x002DEB90(1)` and after `0x005C5230` (`0x00360267`, `0x0036027E`);
-4. the bits `0x1C` of the layer mask are cleared through `0x002DF370(0x1C, 0, 1)` and every music track slot is
-   released (`0x00360D70`), with `0x0035EA30(0)` before and after the release (`0x00360293`, `0x0036029F`);
-5. `0x022CB726 = 1`; `0x022CB727`, `0x022CB72A` and `0x022CB72B` are cleared;
-6. `0x002EF840(0)` to `0x002EF840(6)`, `0x002F1A70`, `0x003DE210`, `0x003DE0A0`, `0x002EFE40(6)`,
-   `0x002EFE50(0xFF)`, `0x002EFA70(2, 0, 0, 0)`, `0x002EFA70(3, 0, 1)`;
-7. `0x002E06B0`, `0x003636A0`, `0x00363750`, `0x00363E40(0)`, `0x0036DF30`, `0x0024E910`, `0x0024D9C0`,
-   `0x00331920(1)`, `0x002EF5F0`, `0x002DDE60`; `0x003636A0`, `0x00363750` (which unbinds the map sound list) and
-   `0x00363E40(0)` are map-sound calls ([map sounds](../Sound-And-Music/map-sounds.md)).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | both speed scales to 1.0, `0x00368AC0(0)`, `0x0032E520(0)`, `0x0035EA30(0)`, `0x0053DD10(1)`; | `0x00229EF0`, `0x00229EE0` |
+| 2 | for managers 0 to 2 with `+0x10` bit `0x1`, the jump lock `+0x200` bit `0x1` is cleared; |   |
+| 3 | `0x002DEE90(-1)`, `0x003634A0(0)`, `0x003633B0(0)`, `0x00362850`, `0x002DF0F0(0, -1)`, `0x002DF060`, `0x001DC330(-1)`, `0x002DEB90(1)`, `0x005C5230`: the sound teardown, in which `0x002DF0F0(0, -1)` and `0x001DC330(-1)` are the audio manager's stop calls for sounds and for voices, and `0x002DEE90(-1)` calls `0x0035EA30(0)` until `0x001DBD00` returns 0 ([audio manager](../Sound-And-Music/audio-manager.md));<br>• `0x001DC330(-1)` is reached through the jump `0x002DF690`, and `0x002DEE90(-1)` runs twice more, before `0x002DEB90(1)` and after `0x005C5230`; | `0x0036025F`<br>`0x00360267`, `0x0036027E` |
+| 4 | the bits `0x1C` of the layer mask are cleared through `0x002DF370(0x1C, 0, 1)` and every music track slot is released, with `0x0035EA30(0)` before and after the release; | `0x00360D70`<br>`0x00360293`, `0x0036029F` |
+| 5 | `0x022CB726 = 1`; `0x022CB727`, `0x022CB72A` and `0x022CB72B` are cleared; |   |
+| 6 | `0x002EF840(0)` to `0x002EF840(6)`, `0x002F1A70`, `0x003DE210`, `0x003DE0A0`, `0x002EFE40(6)`, `0x002EFE50(0xFF)`, `0x002EFA70(2, 0, 0, 0)`, `0x002EFA70(3, 0, 1)`; |   |
+| 7 | `0x002E06B0`, `0x003636A0`, `0x00363750`, `0x00363E40(0)`, `0x0036DF30`, `0x0024E910`, `0x0024D9C0`, `0x00331920(1)`, `0x002EF5F0`, `0x002DDE60`; `0x003636A0`, `0x00363750` (which unbinds the map sound list) and `0x00363E40(0)` are map-sound calls ([map sounds](../Sound-And-Music/map-sounds.md)). |   |
 
 The other title byte has one writer: the script verb `softwarereset` (`0x3E2`, handler `0x0034EB20`,
 a jump to `0x003603D0`, which sets `0x022CB72A = 1`).
 At boot (`0x0022A39E` in `0x0022A0B0`) `0x00360370`
-zeroes the block's dword `0x022CB720`, bytes `0x022CB726`, `0x022CB727`, `0x022CB72A` and `0x022CB72B` and word `0x022CB728`
-(`0x00360372`-`0x00360391`) and stores `0x5A` in the word `0x022CB724` (`0x00360397`-`0x0036039C`).
+zeroes the block's dword `0x022CB720`, bytes `0x022CB726`, `0x022CB727`, `0x022CB72A` and `0x022CB72B` and word `0x022CB728`¹ and stores `0x5A` in the word `0x022CB724`².
 The title screen's own start-up after the teardown belongs to the boot path, outside this page.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00360372`-`0x00360391` |
+| ² | `0x00360397`-`0x0036039C` |
+
+</details>
 
 ### Nothing is reloaded, and where a load puts the party
 
@@ -389,8 +729,18 @@ No step of the chain loads a save, revives a party member or jumps to another fi
 payload's transition record is untouched: `+0x1044` is the field the party was in and `+0x1048`
 the entrance it arrived by (`0x003148B0`; written only by `setnowjumpindex`, `0x0034AC10` to
 `0x00314D80`). A load restores that record, and the field start places the party through
-`0x0037B4D0`, which calls `0x00377A90` (`0x0037BF67`), reads `+0x1048` and resolves it with
-`0x00377AB0` and `0x00264B90(0, 0, entrance)`; the position and angle go to `0x0031BAC0` (`0x0037BFA6`).
+`0x0037B4D0`, which calls `0x00377A90`¹, reads `+0x1048` and resolves it with
+`0x00377AB0` and `0x00264B90(0, 0, entrance)`; the position and angle go to `0x0031BAC0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037BF67` |
+| ² | `0x0037BFA6` |
+
+</details>
 
 `0x00264B90(list, manager, entrance, x, y, z, angle)` turns an alias into an entry of the field header's
 entrance list: `-1` becomes the header's short `+0x52`, `-2` the short `+0x78` (the save-crystal
@@ -399,20 +749,54 @@ list at `+0x54` (list 0) or `+0x84` (list 1), with `x`, `y`, `z` at `+4`, `+8`, 
 angle at `+0x10`. When the entrance does not exist `0x00377AB0` falls back to
 `[[0x0209A678]] + 0x28` and `+0x2C` when `0x02ADD0D8` is set, else to zero.
 
-In full, `0x00264B90` first zeroes its four outputs (`0x00264BBE`-`0x00264BD8`). The header is
-`[0x02098E10 + 0x288 × manager]`, and a null header answers 0 (`0x00264BE3`). The alias tests run in that order
+In full, `0x00264B90` first zeroes its four outputs¹. The header is
+`[0x02098E10 + 0x288 × manager]`, and a null header answers 0². The alias tests run in that order
 on the replaced value, so a `+0x52` of -2 goes on to `+0x78`, and an entrance still negative after the
-last `+0x52` read becomes 0 (`0x00264BEE`-`0x00264C1F`).
+last `+0x52` read becomes 0³.
 
-A header whose first word is 2 or less answers 0 (`0x00264C23`), and so do a list offset that decodes to 0 and
-an entrance not below the list's first dword, its count (`0x00264C3D`-`0x00264C49`). Any non-zero `list` takes
-`+0x84`; the list is the header plus the low 32 bits of the decoded offset (`0x00264C42`-`0x00264C44`). Success
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264BBE`-`0x00264BD8` |
+| ² | `0x00264BE3` |
+| ³ | `0x00264BEE`-`0x00264C1F` |
+
+</details>
+
+A header whose first word is 2 or less answers 0¹, and so do a list offset that decodes to 0 and
+an entrance not below the list's first dword, its count². Any non-zero `list` takes
+`+0x84`; the list is the header plus the low 32 bits of the decoded offset³. Success
 answers 1.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264C23` |
+| ² | `0x00264C3D`-`0x00264C49` |
+| ³ | `0x00264C42`-`0x00264C44` |
+
+</details>
+
 `0x00377AB0(entrance, out)` resolves through `0x00264B50`, which is `0x00264B90(0, 0, entrance, ...)`, into
-`out + 0` to `out + 0x0C` (`0x00377AC5`-`0x00377AE5`). Its fallback writes `+0x28` to `x` and `+0x2C` to `z`
-only while a map is bound (`0x0209A670`) and `[[0x0209A678]]` is non-null, and 0 otherwise; `y` and the angle
-are 0 (`0x00377AEE`-`0x00377B35`). On every path the angle goes through `0x003A1C50` (`0x00377B37`-`0x00377B4A`).
+`out + 0` to `out + 0x0C`¹. Its fallback writes `+0x28` to `x` and `+0x2C` to `z`
+only while a map is bound² and `[[0x0209A678]]` is non-null, and 0 otherwise; `y` and the angle
+are 0³. On every path the angle goes through `0x003A1C50`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00377AC5`-`0x00377AE5` |
+| ² | `0x0209A670` |
+| ³ | `0x00377AEE`-`0x00377B35` |
+| ⁴ | `0x00377B37`-`0x00377B4A` |
+
+</details>
 
 The crystal script sets `setnowjumpindex(-2)` around the save screen and restores the real
 entrance afterwards. On field 403, Valley of the Dead, while the story counter is below 1,345, it heals the party
@@ -426,10 +810,22 @@ argument with `0x00359C60` (1 to 7, 2 to `0x0F`, 3 to 4, 4 to `0x0C`, 5 to `0x10
 in `0x0208D320`, bit `0x8` those in `0x0208D324`, and `0x10` also removes `0x544`.
 
 `0x00237CA0` builds the two groups at start-up: status `i` goes to `0x0208D320` when its status-table
-row has bit `0x2000` of the word at `+6`, else to `0x0208D324`. It zeroes both groups first (`0x00237CCA`) and walks
-statuses 0 to 31, setting bit `1 << i` (`0x00237D36`). The row is the decoded `[0x02EBF118] + 0x0C` plus `i` times
-the word `+0x08`, added in 32 bits (`0x00237D09`-`0x00237D22`); with the table or its decoded rows missing it reads
-`+6` of address 0 and faults (`0x00237D26`-`0x00237D28`).
+row has bit `0x2000` of the word at `+6`, else to `0x0208D324`. It zeroes both groups first¹ and walks
+statuses 0 to 31, setting bit `1 << i`². The row is the decoded `[0x02EBF118] + 0x0C` plus `i` times
+the word `+0x08`, added in 32 bits³; with the table or its decoded rows missing it reads
+`+6` of address 0 and faults⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00237CCA` |
+| ² | `0x00237D36` |
+| ³ | `0x00237D09`-`0x00237D22` |
+| ⁴ | `0x00237D26`-`0x00237D28` |
+
+</details>
 
 KO's row carries `0xA0DF`, so `healall(0)`
 revives ([the thirty-two statuses](../Status-Effects-And-KO/statuses.md)). The
@@ -437,6 +833,9 @@ crystal also calls `btladjustsystem(1)` (`0x517`, `0x0034AAB0` to `0x002FEAC0`),
 clears `0x022C3178` bit `0x1`, zeroes `0x022C3170`, `0x022C3160` and `0x022C3158` and sets `0x022C3168` to -1.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Root block [`0x0209AC30`]:
 
@@ -508,7 +907,12 @@ Request and mode:
 | `0x00254C70` | `u8[]` |  | mode-request arm table (id - 1 → arm) |
 | `0x00254C58` | `u32[6]` |  | arm jump table |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -520,6 +924,8 @@ Request and mode:
 | pause texts | `0x85F` "This will return you to the title screen. Are you sure?", `0x890` "This will close FINAL FANTASY XII THE ZODIAC AGE. Are you sure?" |
 | title map | field `0x0C` is `ttl_a01` ([zone changes](zone-changes-and-mapjump.md)) |
 | display count before the prompt | `0x564`, `0x3DE` or `0x3A2` frames by `0x002DDCA0()` = 1, 2 or other |
+
+</details>
 
 ## Operations
 
@@ -538,11 +944,16 @@ rest is the same.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The root block's `+0x3FC`, `+0x400`, `+0xDEE` and `+0xDEF`; the request bytes `0x0215F1A0` to
 `0x0215F1A8`; `0x022C83E8` bits `0x2` and `0x100`; the mode words `0x02092730`, `0x02092734` and `0x020927D8`; the
 game-over task, its four helpers and `0x02B5F1C8`; the music track slot table; the title bytes `0x022CB720`
 to `0x022CB72B`; the layer mask `0x0215EFD8`; the input groups locked by `0x00254850` and `0x00254940`; the
 actors' halt class `0x16`; `0x022C3158` to `0x022C3178` after a crystal touch.
+
+</details>
 
 ## Modding notes
 
@@ -585,9 +996,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Damage and battle formulas** (explained on [area of effect](../Battle-Actions/area-of-effect.md), [save and teleport crystals](save-and-teleport-crystals.md), [traps](traps.md), [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00307300` | calls | `0x002FEE20`, `0x00300CE0`, `0x0030DAE0`, `0x003112F0`, `0x00320A40`, `0x00385F60` |
-| `0x00319F50` | calls | `0x00300520`, `0x00385F60` |
+| [`0x00307300`](../Battle-Actions/area-of-effect.md) Battle: process action target (on area of effect) | calls | [`0x002FEE20`](../Battle-Actions/area-of-effect.md) (on area of effect)<br>[`0x00300CE0`](../Status-Effects-And-KO/mp.md) Battle stats: modify primary resource (on mp)<br>[`0x0030DAE0`](../Battle-Actions/area-of-effect.md) (on area of effect)<br>[`0x003112F0`](../Rewards-EXP-Gil-And-Loot/gil.md) Battle formula: apply target result (on gil)<br>[`0x00320A40`](../Menus-And-HUD/gambit-screen.md) (on gambit screen)<br>[`0x00385F60`](../Damage-And-Battle-Formulas/steal.md) Battle formula: resolve target result (on steal) |
+| [`0x00319F50`](../Status-Effects-And-KO/ko-and-game-over.md) Battle unit: handle actor timeline event (on ko and game over) | calls | [`0x00300520`](../Damage-And-Battle-Formulas/hp-and-ko.md) (on hp and ko)<br>[`0x00385F60`](../Damage-And-Battle-Formulas/steal.md) Battle formula: resolve target result (on steal) |
 
 </details>

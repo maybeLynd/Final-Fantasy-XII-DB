@@ -33,58 +33,167 @@ Slot `k` always holds sub-file `k` of the calling event's pack:
 ### The packs
 
 `0x003E9F80` loads a slot only for event managers 1-3: `0x0032F360` refuses managers 4 and up, and manager 0 answers -1
-because `0x0032FCA0` loads it as kind 5 and blanks its directory (`0x0032FFAA`, `0x0032FFFC`), so field maps load no voice
-pack. The event's pack directories, `0x208` bytes each, are read by `0x0032FCA0` (`0x0032FF3A`-`0x0032FFE2`):
+because `0x0032FCA0` loads it as kind 5 and blanks its directory¹, so field maps load no voice
+pack. The event's pack directories, `0x208` bytes each, are read by `0x0032FCA0`²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032FFAA`, `0x0032FFFC` |
+| ² | `0x0032FF3A`-`0x0032FFE2` |
+
+</details>
 
 - kind 8, `plan_master\<language>\event\...\<event>.vpc`, into `0x022C6EE8`;
 - kind 37, the `.vpcjp`, into `0x022C6EC0`.
 
-Both tables of a slot are always loaded (`0x003EA0D0`); the language only chooses which one the verbs use. Kind 37 comes
-from the `in` folder, or the `ch` folder for the Korean and Chinese builds (`0x002DFE74`).
+Both tables of a slot are always loaded¹; the language only chooses which one the verbs use. Kind 37 comes
+from the `in` folder, or the `ch` folder for the Korean and Chinese builds².
 
-`0x003EA0D0(manager, slot, allocator)` first frees the slot with `0x003E98B0` (`0x003EA0F0`). A slot that the free leaves
-in state 2, 4 or 5 loads nothing, and the call answers 0 (`0x003EA10B`, `0x003EA11B`, `0x003EA163`). Otherwise it frees
-it again and loads the `.vpc`, table 1, then the `.vpcjp`, table 0, through `0x003E9F80` (`0x003EA139`, `0x003EA14B`),
-and answers 1 when either load answered 1 (`0x003EA150`-`0x003EA15A`).
+<details>
+<summary>Where in the code</summary>
 
-`0x003E9F80(manager, slot, allocator, table)` first stores the language's table at `+0x30` (`0x003E9FB0`-`0x003E9FC0`).
-It answers 0 and loads nothing when the manager's byte `0x022C6D18[m]` is 0 (`0x0032F240`, `0x003E9FCB`) or the size from
-`0x0032F360` is 0 or less (`0x003EA013`). Otherwise it selects arena 12, or 2 while the qword `0x02B5E0B0` is 0, through
-`0x0036C1D0` (`0x003EA015`-`0x003EA031`). It allocates the size with `0x0036A190` when the allocator argument is not 0 and
-with `0x0036A100` when it is 0 (`0x003EA038`-`0x003EA043`); a null block pops the arena (`0x0036C140`) and answers 0
-(`0x003EA04E`-`0x003EA055`).
+| | Code |
+|---|---|
+| ¹ | `0x003EA0D0` |
+| ² | `0x002DFE74` |
+
+</details>
+
+`0x003EA0D0(manager, slot, allocator)` first frees the slot with `0x003E98B0`¹. A slot that the free leaves
+in state 2, 4 or 5 loads nothing, and the call answers 0². Otherwise it frees
+it again and loads the `.vpc`, table 1, then the `.vpcjp`, table 0, through `0x003E9F80`³,
+and answers 1 when either load answered 1⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EA0F0` |
+| ² | `0x003EA10B`, `0x003EA11B`, `0x003EA163` |
+| ³ | `0x003EA139`, `0x003EA14B` |
+| ⁴ | `0x003EA150`-`0x003EA15A` |
+
+</details>
+
+`0x003E9F80(manager, slot, allocator, table)` first stores the language's table at `+0x30`¹.
+It answers 0 and loads nothing when the manager's byte `0x022C6D18[m]` is 0² or the size from
+`0x0032F360` is 0 or less³. Otherwise it selects arena 12, or 2 while the qword `0x02B5E0B0` is 0, through
+`0x0036C1D0`⁴. It allocates the size with `0x0036A190` when the allocator argument is not 0 and
+with `0x0036A100` when it is 0⁵; a null block pops the arena⁶ and answers 0⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E9FB0`-`0x003E9FC0` |
+| ² | `0x0032F240`, `0x003E9FCB` |
+| ³ | `0x003EA013` |
+| ⁴ | `0x003EA015`-`0x003EA031` |
+| ⁵ | `0x003EA038`-`0x003EA043` |
+| ⁶ | `0x0036C140` |
+| ⁷ | `0x003EA04E`-`0x003EA055` |
+
+</details>
 
 It then zeroes the block (`memset`, `0x003EA061`) and stores the kind word, 37 for the `.vpcjp` and 8 for the `.vpc`,
 at `+0x0C` or `+0x0E`, the index from `0x0032F170` plus 3, `index + 3`, at `+0x10`, the block at `+0x20` or `+0x28`,
-the size at `+0x14` or `+0x18`, the manager at byte `+0x05` and the arena at byte `+0x07` (`0x003EA066`-`0x003EA08C`).
-It pops the arena (`0x003EA090`).
+the size at `+0x14` or `+0x18`, the manager at byte `+0x05` and the arena at byte `+0x07`¹.
+It pops the arena².
 
-While the manager's skip byte `0x02099011 + manager × 0x288` is set (`0x00267310`), it parks the slot in state 1 and
-reads nothing (`0x003EA095`-`0x003EA0A1`); otherwise `0x003E9EF0` files the read (`0x003EA0AD`). Both paths answer 1
-(`0x003EA0B2`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EA066`-`0x003EA08C` |
+| ² | `0x003EA090` |
+
+</details>
+
+While the manager's skip byte `0x02099011 + manager × 0x288` is set¹, it parks the slot in state 1 and
+reads nothing²; otherwise `0x003E9EF0` files the read³. Both paths answer 1⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267310` |
+| ² | `0x003EA095`-`0x003EA0A1` |
+| ³ | `0x003EA0AD` |
+| ⁴ | `0x003EA0B2` |
+
+</details>
 
 ### The language
 
-`0x002DDE20` answers bit `0x400` of the options record `*0x0215E6E0 + 4`. Clear plays the `.vpc` and set plays the `.vpcjp`
-(`0x002DEBB0`). Options command `0x10` writes the bit (`0x002DE2F0`, `0x002DE2FD`); a new options record sets it for the
-Japanese, Korean and Chinese builds (`0x002DDF24`-`0x002DDF55`).
+`0x002DDE20` answers bit `0x400` of the options record `*0x0215E6E0 + 4`. Clear plays the `.vpc` and set plays the `.vpcjp`¹. Options command `0x10` writes the bit²; a new options record sets it for the
+Japanese, Korean and Chinese builds³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DEBB0` |
+| ² | `0x002DE2F0`, `0x002DE2FD` |
+| ³ | `0x002DDF24`-`0x002DDF55` |
+
+</details>
 
 ### The cue word
 
 A script names a line as `slot << 24 | index`. `0x003E9C10` plays it only when the slot is ready and the index is below
-its table's count (`0x003E9C10`). It opens a stream on the stream controller (`0x002DF660`) and stores the volume, pan and
+its table's count¹. It opens a stream on the stream controller² and stores the volume, pan and
 a pending bit in the cue entry.
 
-`0x003E9C10(slot, index, pan, volume, start)` first stores the language's table at `+0x30` (`0x003E9C3E`-`0x003E9C4B`).
-A negative volume becomes 0 and one above `0x7F` becomes `0x7F` (`0x003E9C4F`-`0x003E9C5E`). Ready means state 3 with
-that table non-null, and the index is compared unsigned (`0x003E9C61`-`0x003E9C78`); otherwise it returns with no other
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E9C10` |
+| ² | `0x002DF660` |
+
+</details>
+
+`0x003E9C10(slot, index, pan, volume, start)` first stores the language's table at `+0x30`¹.
+A negative volume becomes 0 and one above `0x7F` becomes `0x7F`². Ready means state 3 with
+that table non-null, and the index is compared unsigned³; otherwise it returns with no other
 store. For a ready cue it sets the pending bit `0x80000000` of `+0x08` to `start`: 1 from `0x003E9BF0` and 0 from
-`0x003EA2A0` (`0x003E9C8C`-`0x003E9CA7`).
+`0x003EA2A0`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E9C3E`-`0x003E9C4B` |
+| ² | `0x003E9C4F`-`0x003E9C5E` |
+| ³ | `0x003E9C61`-`0x003E9C78` |
+| ⁴ | `0x003E9C8C`-`0x003E9CA7` |
+
+</details>
 
 It opens the stream only when the cue has no load handle, a non-zero size and no stream yet, and its bank at
 `table + offset` starts with `sabf` (`strncmp`, `0x003E9CA3`-`0x003E9CD8`). `0x002DF660` gets the address of the cue's
-`+0x10`, the bank and the size, and its result is stored as the load handle `+0x14` (`0x003E9CDA`-`0x003E9CF1`). Every
-ready cue then gets the volume in bits `0x7F000000` of `+0x08` and the pan in byte `+0x0F` (`0x003E9CF9`-`0x003E9D09`).
+`+0x10`, the bank and the size, and its result is stored as the load handle `+0x14`¹. Every
+ready cue then gets the volume in bits `0x7F000000` of `+0x08` and the pan in byte `+0x0F`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E9CDA`-`0x003E9CF1` |
+| ² | `0x003E9CF9`-`0x003E9D09` |
+
+</details>
 
 | Cue entry field | Holds |
 |---|---|
@@ -96,18 +205,24 @@ ready cue then gets the volume in bits `0x7F000000` of `+0x08` and the pan in by
 
 ### Starting a line
 
-`0x003E9780` runs at the end of the request pump `0x0032E070` (`0x0032E2AA`). For each of the 64 slots it first stores
-the table the language chooses (`+0x20` or `+0x28`, by `0x002DEBB0`) at `+0x30`, ready or not
-(`0x003E97B0`-`0x003E97C2`). A slot counts as ready in state 3 with that table non-null; its cues are the table's
+`0x003E9780` runs at the end of the request pump `0x0032E070`¹. For each of the 64 slots it first stores
+the table the language chooses (`+0x20` or `+0x28`, by `0x002DEBB0`) at `+0x30`, ready or not². A slot counts as ready in state 3 with that table non-null; its cues are the table's
 count (`+0x04`, signed, above 0) of 16-byte entries. For each cue with a stream (`+0x10` non-zero, `0x003E97F3`):
 
-1. When it has a load handle (`+0x14` non-zero), the load is done (`0x002DEE90(handle)` answers 0), the pending
-   bit is set and the main loop is in mode 2 (`0x00229EA0`: `0x02064AD3`), it starts the stream with
-   `0x002DF680(stream, pan, volume)` (`0x003E980B`-`0x003E9832`). It then clears the pending bit and the load handle
-   and stores −1 in the slot's dword `+0x08` (`0x003E9837`-`0x003E9844`).
-2. With no load handle, when `0x003E9A10(slot, cue)` answers 0 (the stream has stopped sounding, `0x002DF630`), it
-   clears the cue: the pending bit and the qword `+0x10`, the stream id with the load handle
-   (`0x003E985C`-`0x003E9864`). The offset, volume, size and pan stay.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032E2AA` |
+| ² | `0x003E97B0`-`0x003E97C2` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When it has a load handle (`+0x14` non-zero), the load is done (`0x002DEE90(handle)` answers 0), the pending bit is set and the main loop is in mode 2 (`0x00229EA0`: `0x02064AD3`), it starts the stream with `0x002DF680(stream, pan, volume)`. It then clears the pending bit and the load handle and stores −1 in the slot's dword `+0x08`. | `0x003E980B`-`0x003E9832`<br>`0x003E9837`-`0x003E9844` |
+| 2 | With no load handle, when `0x003E9A10(slot, cue)` answers 0 (the stream has stopped sounding, `0x002DF630`), it clears the cue: the pending bit and the qword `+0x10`, the stream id with the load handle. The offset, volume, size and pan stay. | `0x003E985C`-`0x003E9864` |
 A line asked for again while it still plays is not restarted: no new stream is opened and the pending bit is dropped
 when the old one ends.
 
@@ -134,39 +249,105 @@ when the old one ends.
 The speaker argument of `voiceplay_28b` and `voiceplay_28c` has no effect: `0x003EA180` writes only through slot field
 `+0x38`, which is always 0.
 
-`voiceplay_b5` (`0x00351020`), `voiceplay_28b` (`0x00350BC0`), `voiceplay_28c` (`0x00350880`) and `voicestandby`
-(`0x00351B60`) push the missing arguments (speaker -1, pan `0x40`, volume `0x7F`) and a start flag, 1, or 0 for
-`voicestandby`, and jump to `0x003581B0`. It splits the cue into the slot, `cue >> 24`, and the index, the low 24 bits
-(`0x0035820D`-`0x00358218`). A negative speaker becomes the first word of its second argument (`0x0035821F`), and it
-calls `0x003EA180` with it (`0x0035822E`).
+`voiceplay_b5`¹, `voiceplay_28b`², `voiceplay_28c`³ and `voicestandby`⁴ push the missing arguments (speaker -1, pan `0x40`, volume `0x7F`) and a start flag, 1, or 0 for
+`voicestandby`, and jump to `0x003581B0`. It splits the cue into the slot, `cue >> 24`, and the index, the low 24 bits⁵. A negative speaker becomes the first word of its second argument⁶, and it
+calls `0x003EA180` with it⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00351020` |
+| ² | `0x00350BC0` |
+| ³ | `0x00350880` |
+| ⁴ | `0x00351B60` |
+| ⁵ | `0x0035820D`-`0x00358218` |
+| ⁶ | `0x0035821F` |
+| ⁷ | `0x0035822E` |
+
+</details>
 
 While the skip byte `0x02099011 + manager × 0x288` of the calling actor's manager (byte `+0x15`, `0x00267310`) is set it
-opens nothing (`0x00358233`-`0x0035823F`). Otherwise it calls `0x003E9C10` through `0x003E9BF0` for a start flag of 1 and
-through `0x003EA2A0` for 0 (`0x0035824B`-`0x00358257`).
+opens nothing¹. Otherwise it calls `0x003E9C10` through `0x003E9BF0` for a start flag of 1 and
+through `0x003EA2A0` for 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00358233`-`0x0035823F` |
+| ² | `0x0035824B`-`0x00358257` |
+
+</details>
 
 ### Stopping, pan and volume
 
-`0x002DF690(id)` first tries the stream banks (`0x0021D840`). An id other than -1 destroys the bank with that id and
-returns 1, or returns 0 when no bank has it. For -1 it destroys every stream bank and still returns 0 (`0x0021D8BC`).
-`0x00211280` goes on to the battle-voice banks (`0x0021C870`) when the result is 0 (`0x00211298`-`0x002112A2`), so -1 stops
+`0x002DF690(id)` first tries the stream banks¹. An id other than -1 destroys the bank with that id and
+returns 1, or returns 0 when no bank has it. For -1 it destroys every stream bank and still returns 0².
+`0x00211280` goes on to the battle-voice banks³ when the result is 0⁴, so -1 stops
 both kinds. Pan and volume go through the sound-effect setters `0x002256F0` and `0x002257E0`
-([Sound effects](sound-effects.md)). Every voice bank's sound has category 3, so the Config Voice row scales it
-(`0x002DE310`).
+([Sound effects](sound-effects.md)). Every voice bank's sound has category 3, so the Config Voice row scales it⁵.
 
-Each cue helper first takes the slot's table for the language into `+0x30` (`0x002DEBB0`) and checks the slot is ready
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0021D840` |
+| ² | `0x0021D8BC` |
+| ³ | `0x0021C870` |
+| ⁴ | `0x00211298`-`0x002112A2` |
+| ⁵ | `0x002DE310` |
+
+</details>
+
+Each cue helper first takes the slot's table for the language into `+0x30`¹ and checks the slot is ready
 and the index below the count:
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DEBB0` |
+
+</details>
+
 - `0x003E9A10(slot, index)` answers 1 while a line is pending, a load handle at cue `+0x14` with bit `0x80000000` of `+0x08`,
-  and otherwise whether its stream still plays (`0x001DC2C0`); `voicesync` waits on it (`0x003527F0`).
+  and otherwise whether its stream still plays¹; `voicesync` waits on it².
 - `0x003E9B80(slot, index)` answers whether the cue holds a load handle, the test `voicepan` and `voicevolume` wait on
-  (`0x003537B0`).
-- `0x003EA430` and `0x003EA540` pan the cue's stream and set its volume (`0x002DF610`, `0x002DF6A0`), for the results of
-  `voicepan` (`0x00352E80`) and `voicevolume` (`0x00353C20`).
+ ³.
+- `0x003EA430` and `0x003EA540` pan the cue's stream and set its volume⁴, for the results of
+  `voicepan`⁵ and `voicevolume`⁶.
 - `0x003EA330(slot)` hands every cue's load handle and stream to `0x003EA3E0` and clears its pending bit, stream and
   handle.
 
-`0x003E98B0(slot)` frees a slot: one still loading becomes state 4; a parked or ready one has its lines closed
-(`0x003EA330`), both tables and the block at `+0x38` freed, and returns to state 0.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DC2C0` |
+| ² | `0x003527F0` |
+| ³ | `0x003537B0` |
+| ⁴ | `0x002DF610`, `0x002DF6A0` |
+| ⁵ | `0x00352E80` |
+| ⁶ | `0x00353C20` |
+
+</details>
+
+`0x003E98B0(slot)` frees a slot: one still loading becomes state 4; a parked or ready one has its lines closed¹, both tables and the block at `+0x38` freed, and returns to state 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EA330` |
+
+</details>
 
 ### Lines picked by party member
 
@@ -182,11 +363,24 @@ named `VOICEWK` at `0x02B5EC68` and picks a member for every group into the eigh
    the kept table.
 
 `battlevoice_regist_message_and_voice` `0x46E` (`0x00344BB0` -> `0x003EBF20`) stores a voice id and a message id in
-`VOICEWK` entry `n` when group `g` picked candidate `c`. `mesvgetvoiceid` `0x490` (`0x003EBE20`) and `mesvgetmesid` `0x491`
-(`0x003EBE00`) read entry `n` back, -1 without a block, and `mesvgetfaceid` `0x49C` (`0x003EBDC0`) reads the middle word
+`VOICEWK` entry `n` when group `g` picked candidate `c`. `mesvgetvoiceid` `0x490`¹ and `mesvgetmesid` `0x491`² read entry `n` back, -1 without a block, and `mesvgetfaceid` `0x49C`³ reads the middle word
 of the picked candidate of a group.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EBE20` |
+| ² | `0x003EBE00` |
+| ³ | `0x003EBDC0` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -201,7 +395,12 @@ of the picked candidate of a group.
 
 Each cue's bank is a `sabf` container with one sound ([Sound banks](sound-banks.md)).
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | | |
 |---|---|
@@ -408,13 +607,29 @@ Those 58 cues have a name and a length here and no line, because nothing in a sc
 | cue-lines: `sound`, `speaker`, `line_index` | as in voices-cues.tsv |
 | cue-lines: `us`, `de`, `es`, `fr`, `it`, `in`, `kr`, `cn`, `ch` | the line in each language folder, in the text codes of the dialogue tables |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The eight picks at `0x02B5EC70` are one `i32` per group, the candidate the search gave it. `0x003EBD30`, `0x003EBD70`,
 `0x003EBE40` and `0x003EBE70` clear them with four 8-byte stores; the search `0x00321F10` writes them by group through the
-address `0x003EBD30` and `0x003EBE70` hand to `0x00321EA0` (`0x0032203B`); `mesvgetfaceid` `0x003EBDC0` and
-`battlevoice_regist_message_and_voice` `0x003EBF20` read them by group (`0x003EBDD6`, `0x003EBF2A`). `0x003EBD70` also frees
-`VOICEWK` (`0x003697F0`) and forgets the control table; `0x003EBE40` forgets both without freeing.
+address `0x003EBD30` and `0x003EBE70` hand to `0x00321EA0`¹; `mesvgetfaceid` `0x003EBDC0` and
+`battlevoice_regist_message_and_voice` `0x003EBF20` read them by group². `0x003EBD70` also frees
+`VOICEWK`³ and forgets the control table; `0x003EBE40` forgets both without freeing.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032203B` |
+| ² | `0x003EBDD6`, `0x003EBF2A` |
+| ³ | `0x003697F0` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -423,6 +638,8 @@ address `0x003EBD30` and `0x003EBE70` hand to `0x00321EA0` (`0x0032203B`); `mesv
 
 No other instruction reaches these words. The picks' address is taken by `0x003EBD30`, `0x003EBDC0`, `0x003EBE70` and
 `0x003EBF20` only.
+
+</details>
 
 ## Modding notes
 
@@ -444,22 +661,28 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Movement and pathfinding** (explained on [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00267310` | is called by | `0x002E45E0`, `0x002E5750` |
+| [`0x00267310`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x002E45E0`](../Movement-And-Pathfinding/facing-and-steering.md) Movement: update steering toward target (on facing and steering)<br>[`0x002E5750`](../Movement-And-Pathfinding/facing-and-steering.md) (on facing and steering) |
 
 **Menus and HUD** (explained on [clan primer](../Menus-And-HUD/clan-primer.md), [widget messages](../Menus-And-HUD/widget-messages.md), [map screens](../Menus-And-HUD/map-screens.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00229EA0` | is called by | `0x002468A0`, `0x00246C20` |
-| `0x0053DD10` | is called by | `0x003C80C0` |
+| [`0x00229EA0`](../Graphics/effect-drawing.md) (on effect drawing) | is called by | [`0x002468A0`](../Menus-And-HUD/menu-lists.md) (on menu lists)<br>[`0x00246C20`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x0053DD10`](../Scripts-And-Script-Commands/event-scenes.md) Input device: query availability state always1 (on event scenes) | is called by | [`0x003C80C0`](../Menus-And-HUD/map-screens.md) (on map screens) |
 
 **World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0036A190` | is called by | `0x00378540` |
-| `0x003EBE40` | is called by | `0x00266D10` |
+| [`0x0036A190`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00378540`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
+| [`0x003EBE40`](voices.md) | is called by | [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 </details>

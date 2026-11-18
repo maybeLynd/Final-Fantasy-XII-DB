@@ -91,9 +91,18 @@ All multi-byte fields are little-endian.
 
 Function and jump offsets are relative to `codeStart`. The function table's `listOff` follows it directly:
 `jumps = functions + 4 + 8 × count` in every entry. An image whose version word is below 8 has 0x20-byte entries, the
-fields `+0x00` to `+0x1C` above, and `0x00266530` steps through them by 0x20 (`0x00266710`-`0x00266731`); the one such
+fields `+0x00` to `+0x1C` above, and `0x00266530` steps through them by 0x20¹; the one such
 image, `evt_t0020` ([developer scripts](../Story-Events-And-Hunts/developer-scripts.md)), has 11 actors, and
 each one's footer holds 15 entry slots, not 18.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00266710`-`0x00266731` |
+
+</details>
 
 ### Actor lists
 
@@ -103,6 +112,9 @@ list         listOff -> u32 count, {u16 actorOrdinal, u16 functionId}[count]
 ```
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured over the section 0 of all 10,036 containers; `us` figures in brackets.
 
@@ -132,18 +144,38 @@ Measured over the section 0 of all 10,036 containers; `us` figures in brackets.
 | `+0x88` | -1 in 6,571 (729), 0 in 3,276 (364), 4 in 171 (19), 5 in 18 (2); `+0x8A` 0 in all |
 | weather triples | 17 distinct |
 
+</details>
+
 ## Loader behaviour
 
 ### Slot-0 handler
 
 `0x0032F850(packed)` stores the image at `0x022C6C28[manager]` and tests only its first byte
 (`0x0032F87E cmp byte ptr [rdi], 0`). A zero byte sets `0x022C6D18[manager]` to 0 and returns with
-nothing bound (`0x0032F88D`-`0x0032F8A6`); that path does not touch the pending word, so pending bit `0x2` stays set
-and it does not run `0x0032F1B0`, and on it a manager of 5 or more goes to `__report_rangecheckfailure`
-(`0x0032F883`-`0x0032F887`, `0x0032FA04`).
+nothing bound¹; that path does not touch the pending word, so pending bit `0x2` stays set
+and it does not run `0x0032F1B0`, and on it a manager of 5 or more goes to `__report_rangecheckfailure`².
 
-Otherwise `0x022C6D18` becomes 1 (`0x0032F8B6`). It then picks the allocator the manager's actor record pool will
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032F88D`-`0x0032F8A6` |
+| ² | `0x0032F883`-`0x0032F887`, `0x0032FA04` |
+
+</details>
+
+Otherwise `0x022C6D18` becomes 1¹. It then picks the allocator the manager's actor record pool will
 come from (`0x002679F0` calls it through record `+0x88`):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032F8B6` |
+
+</details>
 
 | Manager | Arena | Callback |
 |---|---|---|
@@ -151,20 +183,53 @@ come from (`0x002679F0` calls it through record `+0x88`):
 | 1, 2 with `0xD` enabled | `0xD` | `0x00267BB0` (`0x0032F945`) |
 | 3 with `0xE` enabled | `0xE` | `0x00267C20` (`0x0032F923`) |
 
-Each callback pushes its arena (`0x0036C1D0`), allocates with `0x0036A100`, labels the block
+Each callback pushes its arena¹, allocates with `0x0036A100`, labels the block
 `ateldecode.c` with a per-site tag (`0x1676`, `0x16C1`, `0x16E6`) and pops the arena. The handler
-pushes the chosen arena itself with `0x0036C1D0(arena, 5)` (`0x0032F91E`, `0x0032F940`, `0x0032F955`),
-binds the image with `0x0026C8C0(manager, image, callback)` (`0x0032F966`), stores `0x00330050` at record `+0x108`
-(`0x00268630`, `0x0032F974`), pops the arena (`0x0036C140`, `0x0032F979`) and clears pending bit `0x2` (`0x0032F98E`)
+pushes the chosen arena itself with `0x0036C1D0(arena, 5)`²,
+binds the image with `0x0026C8C0(manager, image, callback)`³, stores `0x00330050` at record `+0x108`⁴, pops the arena⁵ and clears pending bit `0x2`⁶
 ([script container](ebp-script-container.md)).
 
-With the bit cleared it applies the container's clearer rule (`0x0032F99A`-`0x0032F9BF`): when the word without
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036C1D0` |
+| ² | `0x0032F91E`, `0x0032F940`, `0x0032F955` |
+| ³ | `0x0032F966` |
+| ⁴ | `0x00268630`, `0x0032F974` |
+| ⁵ | `0x0036C140`, `0x0032F979` |
+| ⁶ | `0x0032F98E` |
+
+</details>
+
+With the bit cleared it applies the container's clearer rule¹: when the word without
 bit `0x1` is zero it clears bit `0x8` of the record's `+0x11`, and when the word went from non-zero to zero it
-runs `0x0032F1B0(manager)`. For manager 0, once bits `0x2` and `0x200` are both clear (`0x0032F9D0`), it then runs
-`0x0025AFC0(0)` and `0x002EACC0(0x00331990, [0x022C6D28])` (`0x0032F9DA`-`0x0032F9EE`).
+runs `0x0032F1B0(manager)`. For manager 0, once bits `0x2` and `0x200` are both clear², it then runs
+`0x0025AFC0(0)` and `0x002EACC0(0x00331990, [0x022C6D28])`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032F99A`-`0x0032F9BF` |
+| ² | `0x0032F9D0` |
+| ³ | `0x0032F9DA`-`0x0032F9EE` |
+
+</details>
 
 `0x00330050(record)` is a jump to the teardown `0x0032ED80` with the record's dword `+0x28`
-as the manager (`0x00330050`-`0x00330053`).
+as the manager¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00330050`-`0x00330053` |
+
+</details>
 
 ### The bind
 
@@ -185,25 +250,41 @@ The callback goes to `+0x88`. No offset is checked against `+0x04` or the sectio
 
 When the manager's loads finish, `0x0026CE60` builds the actor record pool with `0x002679F0`, which
 sizes it from the type counts and initialises one record per directory entry through `0x00266530`;
-it then runs `0x00266C50` and sets the manager slot's `+0x40` to image + `[+0x38]` (`0x0026D2ED`–`0x0026D2F6`) when
+it then runs `0x00266C50` and sets the manager slot's `+0x40` to image + `[+0x38]`¹ when
 that is still 0. `0x00266530`:
 
-1. forms the directory as image + `[+0x18]` and the actor's entry at `+4 + index × 0x30`, or
-   `× 0x20` when the version word is below 8 (`0x00266710`–`0x00266731`), and stores it at record `+0x40`;
-2. sets record `+2` to 2 for an index below the type-0 count, a signed 32-bit compare, else 1
-   (`0x002666FC`–`0x0026670D`);
-3. for a `partySlot` with bit `0x80` set other than `0xFF` (`0x80` to `0xFE`), files the record in the
-   table `0x0209A1F0` at `partySlot & 0x7F` with no bound check, and sets record `+0x12` to that index and
-   `+0x0F` to 2 for 0 to 3, else 3 (`0x00266738`–`0x00266792`);
-4. sets record `+0x48` to the function table, `+0x50` to the jump table and `+0x58` to the code
-   base (`0x00266795`–`0x002667CA`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026D2ED`-`0x0026D2F6` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | forms the directory as image + `[+0x18]` and the actor's entry at `+4 + index × 0x30`, or `× 0x20` when the version word is below 8, and stores it at record `+0x40`; | `0x00266710`-`0x00266731` |
+| 2 | sets record `+2` to 2 for an index below the type-0 count, a signed 32-bit compare, else 1; | `0x002666FC`-`0x0026670D` |
+| 3 | for a `partySlot` with bit `0x80` set other than `0xFF` (`0x80` to `0xFE`), files the record in the table `0x0209A1F0` at `partySlot & 0x7F` with no bound check, and sets record `+0x12` to that index and `+0x0F` to 2 for 0 to 3, else 3; | `0x00266738`-`0x00266792` |
+| 4 | sets record `+0x48` to the function table, `+0x50` to the jump table and `+0x58` to the code base. | `0x00266795`-`0x002667CA` |
 
 `0x00266C50` reads `startActor`: when it is not negative it files every non-negative function of
 `startList` on that actor, on its top channel in mode 2
 ([script requests](../Scripts-And-Script-Commands/script-requests.md)), through
-`0x003DBB60(actor, channels - 1, function, 2, 0)` (`0x00266CD2`). A `startList` offset of 0 files nothing
-(`0x00266C92`), and when `startActor` names no record (`0x00358940` gives null) the first function that is not
-negative makes it read the channel count at address `0x88` (`0x00266CBB`), which faults.
+`0x003DBB60(actor, channels - 1, function, 2, 0)`¹. A `startList` offset of 0 files nothing², and when `startActor` names no record (`0x00358940` gives null) the first function that is not
+negative makes it read the channel count at address `0x88`³, which faults.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00266CD2` |
+| ² | `0x00266C92` |
+| ³ | `0x00266CBB` |
+
+</details>
 
 ### Functions, jumps and entry slots
 
@@ -214,28 +295,58 @@ negative makes it read the channel count at address `0x88` (`0x00266CBB`), which
 - `0x002652D0(slot, record, entrySlot)` gives the function for one of the 18 entry slots: the
   record's override word, or else the footer's entry; with a version word below 6, entry slot 14
   reads slot 7. The footer is the image plus the dword at `+0x18` of the record's entry `+0x40`
-  (`0x00265319`-`0x0026532F`); an entry slot above 17 (`0x002652DD`) or at or above the footer's signed count word
-  (`0x0026533A`) gives -1.
+ ¹; an entry slot above 17² or at or above the footer's signed count word
+ ³ gives -1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265319`-`0x0026532F` |
+| ² | `0x002652DD` |
+| ³ | `0x0026533A` |
+
+</details>
 
 ### Actor lists
 
 The group request opcodes take a list index as their operand. They resolve the list table and
-bound the index by its count; an index at or past it gives a null list (`0x00261B27`–`0x00261B57`).
+bound the index by its count; an index at or past it gives a null list¹.
 The wait on a list, `0x002674B0`, steps a cursor over its `{actor, function}` pairs and stays while
 a pair from the cursor on still has its function filed on that actor: the cursor stops on that pair and
-moves past each pair that is no longer filed (`0x0026751C`), and the pairs behind it are not tested again.
+moves past each pair that is no longer filed², and the pairs behind it are not tested again.
 Filing and waiting are on
 [script requests](../Scripts-And-Script-Commands/script-requests.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00261B27`-`0x00261B57` |
+| ² | `0x0026751C` |
+
+</details>
 
 ### Header tables read later
 
 Each reader below resolves the offset through `0x0020E600`, returns null (or a default) for a zero
-offset, and bounds the index by the table's count, except `0x002658B0`: it answers 33 for a zero offset
-(`0x002658F6`, `0x00265910`), clamps the slot to 0 to 2, `i = n - 1 < 0 ? 0 : n - 1 > 2 ? 2 : n - 1` for its
-argument `n` (`0x002658B8`-`0x002658C8`), and reads the byte `[section + 1 + i]`, never the section's count byte
-(`0x00265900`). `0x002658B0`, `0x00264AE0` and `0x00264870` read
+offset, and bounds the index by the table's count, except `0x002658B0`: it answers 33 for a zero offset¹, clamps the slot to 0 to 2, `i = n - 1 < 0 ? 0 : n - 1 > 2 ? 2 : n - 1` for its
+argument `n`², and reads the byte `[section + 1 + i]`, never the section's count byte³. `0x002658B0`, `0x00264AE0` and `0x00264870` read
 manager 0's image only; all but `0x00264B90`, `0x003B7210` and `0x0035A270` also require the manager
 record's `+0x10` bit `0x1`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002658F6`, `0x00265910` |
+| ² | `0x002658B8`-`0x002658C8` |
+| ³ | `0x00265900` |
+
+</details>
 
 | Field offset | Reader | Returns |
 |---|---|---|
@@ -254,34 +365,84 @@ ordinals from its word `+0x1DE` for its word `+0x1D6`. For each, `0x00358940(man
 ordinal)` gives an object; when that, its pointer `+0xC0`, a dword there other than -1
 and a word there other than `0xFFFF` are all present, the record is
 `[0x022C6F28] + 0x740 × word`, and `0x00428FE0(record, 0)` is called only for a record
-address other than 0 whose dword `+0x284` is not 0 (`0x002E6440`-`0x002E64A8`).
+address other than 0 whose dword `+0x284` is not 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E6440`-`0x002E64A8` |
+
+</details>
 
 `0x00264B90` maps the index -1 to `+0x52`, -2 to `+0x78` and -3 to `+0x7A`, and any other negative
 index to `+0x52`. The tests run in that order on the replaced value, so a `+0x52` of -2 goes on to `+0x78`, and
-an index still negative after the last `+0x52` read becomes 0 (`0x00264BEE`-`0x00264C1F`).
+an index still negative after the last `+0x52` read becomes 0¹.
 
-`0x00264B90(list, manager, index, x, y, z, angle)` zeroes its four outputs first (`0x00264BBE`-`0x00264BD8`) and
-answers 0 for a null image (`0x00264BE3`), a version of 2 or less (`0x00264C23`), a list offset that decodes to 0 or
-an index not below the count (`0x00264C3D`-`0x00264C49`). Any non-zero `list` takes `+0x84`, and the list is the
-image plus the low 32 bits of the decoded offset (`0x00264C42`-`0x00264C44`); a found record answers 1.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264BEE`-`0x00264C1F` |
+
+</details>
+
+`0x00264B90(list, manager, index, x, y, z, angle)` zeroes its four outputs first¹ and
+answers 0 for a null image², a version of 2 or less³, a list offset that decodes to 0 or
+an index not below the count⁴. Any non-zero `list` takes `+0x84`, and the list is the
+image plus the low 32 bits of the decoded offset⁵; a found record answers 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264BBE`-`0x00264BD8` |
+| ² | `0x00264BE3` |
+| ³ | `0x00264C23` |
+| ⁴ | `0x00264C3D`-`0x00264C49` |
+| ⁵ | `0x00264C42`-`0x00264C44` |
+
+</details>
 
 Four more header fields are read as values, not as table offsets:
 
 - `+0x4C`: `0x00263A30(manager, ordinal)` returns the image plus `+0x4C` plus the first int of the entry's
-  `+0x40` record (`0x00263A83`-`0x00263A8C`), the issuer name `captureactor` (`0x00354E10`) searches by, and
-  `0x00263E40(image, offset)` returns the image plus `+0x4C` plus `offset` (`0x00263E40`-`0x00263E4A`);
-- `+0x7C`: `0x00264790` returns this signed word of manager 0's image (`0x002647A5`), or -1 while manager
+  `+0x40` record¹, the issuer name `captureactor`² searches by, and
+  `0x00263E40(image, offset)` returns the image plus `+0x4C` plus `offset`³;
+- `+0x7C`: `0x00264790` returns this signed word of manager 0's image⁴, or -1 while manager
   0's record `+0x10` lacks bit `0x1`. `0x003C4AE0` passes a positive value to `0x002551B0(0, field)`, which
   indexes the save's exploration bitmaps through `0x003779F0` ([menu map
   files](../Game-Files-And-Data-Tables/menu-map-files.md));
-- `+0x7E`: `0x00264770` returns it the same way (`0x00264785`). The map screen's point-list pane `0x002BA310`
-  compares it with its list's words at `+0xCC` (`0x002BA4A0`-`0x002BA4AA`), and `0x002B7B80` (`0x002B8621`) and
-  `0x004048E0` (`0x00404A6A`) read it;
-- `+0x88`: `0x0026E060`, for `setuptreasure` (`0x00354435`, `0x003552DE`), reads this word of manager 0's
-  image when the record's `+0x10` has bit `0x1` and the version is 11 or above (`0x0026E093`-`0x0026E09B`).
+- `+0x7E`: `0x00264770` returns it the same way⁵. The map screen's point-list pane `0x002BA310`
+  compares it with its list's words at `+0xCC`⁶, and `0x002B7B80`⁷ and
+  `0x004048E0`⁸ read it;
+- `+0x88`: `0x0026E060`, for `setuptreasure`⁹, reads this word of manager 0's
+  image when the record's `+0x10` has bit `0x1` and the version is 11 or above¹⁰.
   A non-negative value ORed with `0x3000000` is the chest model's name index, resolved by `0x002E9A60`
-  through the name table (`0x00263F80`); otherwise the model is -1 ([script name
+  through the name table¹¹; otherwise the model is -1 ([script name
   bindings](../Scripts-And-Script-Commands/script-name-bindings.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263A83`-`0x00263A8C` |
+| ² | `0x00354E10` |
+| ³ | `0x00263E40`-`0x00263E4A` |
+| ⁴ | `0x002647A5` |
+| ⁵ | `0x00264785` |
+| ⁶ | `0x002BA4A0`-`0x002BA4AA` |
+| ⁷ | `0x002B8621` |
+| ⁸ | `0x00404A6A` |
+| ⁹ | `0x00354435`, `0x003552DE` |
+| ¹⁰ | `0x0026E093`-`0x0026E09B` |
+| ¹¹ | `0x00263F80` |
+
+</details>
 
 ## Modding notes
 
@@ -356,28 +517,36 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Engine core** (explained on [global state accessors](../Engine-Core/global-state-accessors.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002B7B80` | calls | `0x001EDEC0` |
+| [`0x002B7B80`](../Menus-And-HUD/map-screens.md) (on map screens) | calls | [`0x001EDEC0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) |
 
 **Controls and input** (explained on [frame update order](../Engine-Core/frame-update-order.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002B7B80` | calls | `0x00250200` |
-| `0x00358940` | is called by | `0x00226BE0` |
+| [`0x002B7B80`](../Menus-And-HUD/map-screens.md) (on map screens) | calls | [`0x00250200`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x00358940`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor manager: get record by ordinal (on party during scenes) | is called by | [`0x00226BE0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock) |
 
 **Steam and achievements** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00264790` | is called by | `0x003160C0` |
-| `0x003779F0` | is called by | `0x003160C0` |
+| [`0x00264790`](ebp-script-image.md) | is called by | [`0x003160C0`](../Steam-And-Achievements/achievements.md) (on achievements) |
+| [`0x003779F0`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x003160C0`](../Steam-And-Achievements/achievements.md) (on achievements) |
 
 **World, areas and travel** (explained on [actor record fields](../Characters-And-Objects/actor-record-fields.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00358940` | is called by | `0x0025E400`, `0x002623A0` |
+| [`0x00358940`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor manager: get record by ordinal (on party during scenes) | is called by | [`0x0025E400`](../Characters-And-Objects/actor-record-fields.md) (on actor record fields)<br>[`0x002623A0`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 </details>

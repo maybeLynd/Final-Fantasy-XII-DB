@@ -18,38 +18,50 @@
 
 The HUD is one `0x10FD0`-byte object whose pointer is at `0x0209BE80`:
 
-1. `0x0028F8B0` first tears down any old one with `0x0028F2F0` and zeroes the word `0x0209E5E8` (`0x002B9FD0`,
-   `0x0028F8B9`), then allocates the object through `0x00271420(0x10FD0)`
-   when the pointer is empty and initialises it with `0x00291750` (`0x0028F8CF`, `0x0028F8DE`).
-2. `0x00291750` clears all `0x10FD0` bytes, allocates the `0x8030`-byte pool into `+0x10FC0` and prepares it
-   (`0x00272470`), builds the part at `+0x5380` (`0x0028A080`), the selection marker `+0x7EA0` (`0x0028CA30`), the help
-   block `+0x8FA0` (`0x002BE450`, `0x002BE0A0`) and the world-object part `+0x57E0` (`0x003FA760`), and sets
-   `+0x10F90` to -1 and byte `+0x10FA2` to 1.
-3. `0x0028F8B0` then clears the two rolling-counter tables (`0x00296260`, `0x00296240`), resets the counter list `+0x80`
-   (`0x004FE3C0`), writes 1 to `+0xAA44`, sets flag bit `0x20` and closes the widget kept at `+0x10F88`
-   (`0x0028F8E3`-`0x0028F952`).
-4. The flags are the dword `+0x10F68`; it also sets `+0x10F90` to -1 again and zeroes `+0x10F88` after
-   `0x00244F00` (`0x0028F922`-`0x0028F95E`). Its tests of `0x0209BE80` before these stores (`0x0028F8F7`, `0x0028F90F`,
-   `0x0028F930`) follow `0x00291750`, which has just cleared the object through that pointer.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x0028F8B0` first tears down any old one with `0x0028F2F0` and zeroes the word `0x0209E5E8`, then allocates the object through `0x00271420(0x10FD0)` when the pointer is empty and initialises it with `0x00291750`. | `0x002B9FD0`, `0x0028F8B9`<br>`0x0028F8CF`, `0x0028F8DE` |
+| 2 | `0x00291750` clears all `0x10FD0` bytes, allocates the `0x8030`-byte pool into `+0x10FC0` and prepares it, builds the part at `+0x5380`, the selection marker `+0x7EA0`, the help block `+0x8FA0` and the world-object part `+0x57E0`, and sets `+0x10F90` to -1 and byte `+0x10FA2` to 1. | `0x00272470`<br>`0x0028A080`<br>`0x0028CA30`<br>`0x002BE450`, `0x002BE0A0`<br>`0x003FA760` |
+| 3 | `0x0028F8B0` then clears the two rolling-counter tables, resets the counter list `+0x80`, writes 1 to `+0xAA44`, sets flag bit `0x20` and closes the widget kept at `+0x10F88`. | `0x00296260`, `0x00296240`<br>`0x004FE3C0`<br>`0x0028F8E3`-`0x0028F952` |
+| 4 | The flags are the dword `+0x10F68`; it also sets `+0x10F90` to -1 again and zeroes `+0x10F88` after `0x00244F00`. Its tests of `0x0209BE80` before these stores follow `0x00291750`, which has just cleared the object through that pointer. | `0x0028F922`-`0x0028F95E`<br>`0x0028F8F7`, `0x0028F90F`, `0x0028F930` |
 
-`0x0028F8B0` runs from `0x0035C560` (`0x0035C57F`). `0x0028F2F0` releases every list in the pool, the two `+0x10F74` and
+`0x0028F8B0` runs from `0x0035C560`¹. `0x0028F2F0` releases every list in the pool, the two `+0x10F74` and
 `+0x10F78` widgets through `0x00274840` (`0x002446E0`, `0x002473B0`, `0x002482E0`: focus, message 18 and release), the
-level-up blink part (`0x00296670`), the pool and the object itself (`0x0028F2F0`-`0x0028F564`). It does nothing while
-`0x0209BE80` is null (`0x0028F2FE`), and otherwise works in this order:
+level-up blink part², the pool and the object itself³. It does nothing while
+`0x0209BE80` is null⁴, and otherwise works in this order:
 
-1. `0x003F8A90` and `0x004FE3C0` on the counter list `+0x80`, the two rolling-counter tables (`0x00296260`, `0x00296240`),
-   `+0x10F90` = -1, and the `+0x10F88` widget closed (`0x00244F00`) and zeroed (`0x0028F304`-`0x0028F368`);
-2. `0x003CA2B0()`, then `0x003F30A0([+0x10F40], 0x00290DF0)` and `+0x10F40` = 0 (`0x0028F374`-`0x0028F39A`);
-3. the pool blocks of the four lists `+0x10F00`, `+0x10F10`, `+0x10F20` and `+0x10F30`, followed through their
-   next pointers `+0xD70`, `+0x868`, `+0x9B0` and `+0x300`, each freed with `0x00273B40` (`0x0028F3A1`-`0x0028F470`);
-4. the widgets through `0x00274840`: `+0x10F74`, read as a dword and passed zero-extended, and `+0x10F78`; then
-   `+0x10F80` through `0x003697F0`; each is zeroed after (`0x0028F472`-`0x0028F4E0`);
-5. the blink part `+0x7FB0` with `0x00296670(+0x7FB0, 6)`, `0x00245020([+0x10FC8])` when it is set, the pool
-   `+0x10FC0` and the object through `0x003697F0`, leaving `0x0209BE80` = 0 (`0x0028F4EE`-`0x0028F554`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035C57F` |
+| ² | `0x00296670` |
+| ³ | `0x0028F2F0`-`0x0028F564` |
+| ⁴ | `0x0028F2FE` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x003F8A90` and `0x004FE3C0` on the counter list `+0x80`, the two rolling-counter tables, `+0x10F90` = -1, and the `+0x10F88` widget closed and zeroed; | `0x00296260`, `0x00296240`<br>`0x00244F00`<br>`0x0028F304`-`0x0028F368` |
+| 2 | `0x003CA2B0()`, then `0x003F30A0([+0x10F40], 0x00290DF0)` and `+0x10F40` = 0; | `0x0028F374`-`0x0028F39A` |
+| 3 | the pool blocks of the four lists `+0x10F00`, `+0x10F10`, `+0x10F20` and `+0x10F30`, followed through their next pointers `+0xD70`, `+0x868`, `+0x9B0` and `+0x300`, each freed with `0x00273B40`; | `0x0028F3A1`-`0x0028F470` |
+| 4 | the widgets through `0x00274840`: `+0x10F74`, read as a dword and passed zero-extended, and `+0x10F78`; then `+0x10F80` through `0x003697F0`; each is zeroed after; | `0x0028F472`-`0x0028F4E0` |
+| 5 | the blink part `+0x7FB0` with `0x00296670(+0x7FB0, 6)`, `0x00245020([+0x10FC8])` when it is set, the pool `+0x10FC0` and the object through `0x003697F0`, leaving `0x0209BE80` = 0. | `0x0028F4EE`-`0x0028F554` |
 
 `0x00296670(records, n)` goes through n records of `0x110` bytes. It closes the record's widget through
 `0x00245020` when `0x00273A20(record)` answers non-zero, and zeroes the dword `+0xF0`, the qword `+0xF8` and
-the dword `+0x100` (`0x00296690`-`0x002966C2`); an n of 0 or less does nothing.
+the dword `+0x100`¹; an n of 0 or less does nothing.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00296690`-`0x002966C2` |
+
+</details>
 
 ### Its parts
 
@@ -75,68 +87,180 @@ What each offset holds:
 | `+0x10FC0` | the pool |
 
 The `+0x5380` part holds three pools, which `0x0028A080` clears (`0x440` bytes). Its update `0x00289970` ends each
-pool's entries in turn (`0x00289979`, `0x00289981`, `0x0028998E`):
+pool's entries in turn¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00289979`, `0x00289981`, `0x0028998E` |
+
+</details>
 
 - twelve `0x30`-byte EXP and LP numbers at `+0x000`, listed from `+0x420`, claimed by `0x00289BD0` and timed out by
-  `0x0028A550`. The number pop-up `0x0028FB80` calls `0x00289D00` twice (`0x0028FBAA`, `0x0028FBC8`), and `0x00289D00` claims
-  through `0x00289BD0` (`0x00289D4C`);
+  `0x0028A550`. The number pop-up `0x0028FB80` calls `0x00289D00` twice¹, and `0x00289D00` claims
+  through `0x00289BD0`²;
 - six `0x28`-byte combo counts at `+0x240`, listed from `+0x428`, claimed by `0x00289D70` and ended by `0x0028A350`.
-  The combo count arrives from `0x00307300` through `0x0028E920` (`0x00307676`), which jumps to `0x00289D70` (`0x0028E935`);
+  The combo count arrives from `0x00307300` through `0x0028E920`³, which jumps to `0x00289D70`⁴;
 - six `0x28`-byte pictures at `+0x330`, listed from `+0x430`, claimed by `0x00289F50` and ended by `0x0028A620`. The
-  action timeout `0x0030AF30` adds one through `0x00290540` (`0x0030B03D`), which jumps to `0x00289F50` (`0x00290585`).
+  action timeout `0x0030AF30` adds one through `0x00290540`⁵, which jumps to `0x00289F50`⁶.
 
-The part's draw `0x00289A10` draws the lists through `0x0028B140` (`0x00289AE7`, `0x00289B2D`) and `0x0028AAA0`
-(`0x00289B7C`), and the pictures through `0x0028A790(entry, list, buffer, alpha)` (`0x00289BAC`), unless
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028FBAA`, `0x0028FBC8` |
+| ² | `0x00289D4C` |
+| ³ | `0x00307676` |
+| ⁴ | `0x0028E935` |
+| ⁵ | `0x0030B03D` |
+| ⁶ | `0x00290585` |
+
+</details>
+
+The part's draw `0x00289A10` draws the lists through `0x0028B140`¹ and `0x0028AAA0`², and the pictures through `0x0028A790(entry, list, buffer, alpha)`³, unless
 the entry's `+0x14` is set: a sprite at the entry's position with w = -1, the picture of `0x0035D3D0` at its cell,
 and a size and alpha from the 5-key track `0x00915F68` at the entry's time `+0x10`; the alpha is scaled by
 `0x00272DE0()` x `alpha` while `+0x0C` is set and is 0 otherwise.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00289AE7`, `0x00289B2D` |
+| ² | `0x00289B7C` |
+| ³ | `0x00289BAC` |
+
+</details>
+
 `0x0028B140(entry, context, list, scale, digit sheet, label sheet, time, alpha, dx, dy)` takes a draw
-record from `0x003F0040(list)` and returns when the answer is null (`0x0028B186`-`0x0028B191`). The entry's byte
+record from `0x003F0040(list)` and returns when the answer is null¹. The entry's byte
 `+0x0E` picks the label: with 0 it is cell `n + 0xF` of the label sheet, the colour `0x002DD7E0(0xBC)`,
 the row base `[0x0209BA6C]` and the dword `0x0209BA70`; otherwise cell `n + 0x10`, `0x002DD7E0(0xBB)`,
-`[0x0209BA6C] + [0x01E0C450]` and `0x0209BA74` (`0x0028B197`-`0x0028B236`). The dword picked is stored in
-`0x0209BA78` (`0x0028B24A`).
+`[0x0209BA6C] + [0x01E0C450]` and `0x0209BA74`². The dword picked is stored in
+`0x0209BA78`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028B186`-`0x0028B191` |
+| ² | `0x0028B197`-`0x0028B236` |
+| ³ | `0x0028B24A` |
+
+</details>
 
 A sheet's data is `[sheet + 0x20] + 0x30`. Its 8-byte cells start at the data's word `+0x10`, and its
 index words are at `+0x16 + 2 × word +0x14` of the data. The label's n is the first index word and the
-digits' n the second (`0x0028B1B7`-`0x0028B1E2`, `0x0028B41D`-`0x0028B435`). A cell's width and height are the
-low 12 bits and the next 12 bits of its dword `+0x04` (`0x0028B3A2`-`0x0028B3BA`).
+digits' n the second¹. A cell's width and height are the
+low 12 bits and the next 12 bits of its dword `+0x04`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028B1B7`-`0x0028B1E2`, `0x0028B41D`-`0x0028B435` |
+| ² | `0x0028B3A2`-`0x0028B3BA` |
+
+</details>
 
 The label's record takes the entry's dwords `+0x00` to `+0x08`, -1.0 at `+0x0C`, 6 at qword `+0x28`,
 the label sheet at `+0xE0`, 0 at word `+0xE8` and dword `+0xF0`, and the four floats that
 `0x00271140(out, cell, texture)` gives: the third and fourth at `+0x30` and `+0x34`, the first and second
-at `+0x38` and `+0x3C` (`0x0028B25F`-`0x0028B35B`). The texture is the sheet's qword `+0x30` under the mask
+at `+0x38` and `+0x3C`¹. The texture is the sheet's qword `+0x30` under the mask
 `0x1FFFFFFFFFFFFFFF`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028B25F`-`0x0028B35B` |
+
+</details>
 
 Qword `+0x20` of the record is the texture with the palette number in its top byte, and dword `+0xEC`
 holds the palette number too. The palette number is `p + (b & 0xF)`, b being the cell's byte `+0x07`
-and p the byte at `data + word +0x12 + (b >> 4)` (`0x0028B2AE`-`0x0028B332`).
+and p the byte at `data + word +0x12 + (b >> 4)`¹.
 
-The 4-key track `0x00915E98` is read with `0x00271AB0(values, track, 4, time)` and gives four words
-(`0x0028B23C`-`0x0028B25A`). The dwords `+0x40`, `+0x44` and `+0x48` are `(fourth word × alpha) >> 7`,
-signed, and `+0x4C` is `trunc(third word × scale)` (`0x0028B360`-`0x0028B387`). The left edge `+0x50` is
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028B2AE`-`0x0028B332` |
+
+</details>
+
+The 4-key track `0x00915E98` is read with `0x00271AB0(values, track, 4, time)` and gives four words¹. The dwords `+0x40`, `+0x44` and `+0x48` are `(fourth word × alpha) >> 7`,
+signed, and `+0x4C` is `trunc(third word × scale)`². The left edge `+0x50` is
 `first word + word 0x01E0C444`, as a signed word, `+ dx`; the top `+0x54` is
 `row base + 3 + second word + word 0x0209BA60`, as a signed word, `+ dy`; `+0x58` and `+0x5C` are those
-`+ width` and `+ height` (`0x0028B38A`-`0x0028B404`). `0x003F1290(context, record)` ends the label
-(`0x0028B409`).
+`+ width` and `+ height`³. `0x003F1290(context, record)` ends the label⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028B23C`-`0x0028B25A` |
+| ² | `0x0028B360`-`0x0028B387` |
+| ³ | `0x0028B38A`-`0x0028B404` |
+| ⁴ | `0x0028B409` |
+
+</details>
 
 The digits follow, one for each of the entry's word `+0x28` characters at `+0x10`; a digit is left out
-while the time is negative (`0x0028B40E`-`0x0028B458`, `0x0028B6AB`-`0x0028B6B5`). The pen starts at
-`(4 - w) × (count + 1)`, w being the width of the digit sheet's cell n (`0x0028B414`-`0x0028B444`). Each
+while the time is negative¹. The pen starts at
+`(4 - w) × (count + 1)`, w being the width of the digit sheet's cell n². Each
 digit reads the 7-key track `0x00915ED0` and takes a record from `0x003F0040(list)`, the body returning
 when the answer is null. The record is filled as the label's is, from the digit sheet and its cell
-`n + character - 0x30`, with 0 at `+0xEC` and with `+0xF0` not written (`0x0028B45E`-`0x0028B576`).
+`n + character - 0x30`, with 0 at `+0xEC` and with `+0xF0` not written³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028B40E`-`0x0028B458`, `0x0028B6AB`-`0x0028B6B5` |
+| ² | `0x0028B414`-`0x0028B444` |
+| ³ | `0x0028B45E`-`0x0028B576` |
+
+</details>
 
 A digit's dwords `+0x40`, `+0x44` and `+0x48` are `(((c × a) >> 7) × alpha) >> 7`, c being byte 0, 1
-and 2 of the colour and a the track's fourth word; `+0x4C` is `trunc(third word × scale)`
-(`0x0028B57C`-`0x0028B5D6`). Its left edge is `pen + first word + word 0x0209BA78 + word 0x01E0C444`, as a
+and 2 of the colour and a the track's fourth word; `+0x4C` is `trunc(third word × scale)`¹. Its left edge is `pen + first word + word 0x0209BA78 + word 0x01E0C444`, as a
 signed word, `+ dx`; its top is `row base + second word + word 0x01E0C454 + word 0x0209BA60`, as a signed
-word, `+ dy` (`0x0028B5DA`-`0x0028B67A`).
+word, `+ dy`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028B57C`-`0x0028B5D6` |
+| ² | `0x0028B5DA`-`0x0028B67A` |
+
+</details>
 
 A digit's width and height are the cell's, each `× 110 / 100`, unsigned; they give `+0x58` and `+0x5C`,
-and the pen moves on by `width - 4` (`0x0028B61B`-`0x0028B64D`, `0x0028B67E`-`0x0028B69E`).
-`0x003F1290(context, record)` ends each digit (`0x0028B6A4`).
+and the pen moves on by `width - 4`¹.
+`0x003F1290(context, record)` ends each digit².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028B61B`-`0x0028B64D`, `0x0028B67E`-`0x0028B69E` |
+| ² | `0x0028B6A4` |
+
+</details>
 
 ### The flag word
 
@@ -177,57 +301,119 @@ Each allocation is a `0x20`-byte block header, PoolBlock, followed by the data:
 
 `0x00273A30(mode, pool, size)` rounds the size up to 16 and returns 0 for size 0:
 
-1. In an empty pool the block goes at `start` when it fits before `end`. The fit test and the data address it
-   returns both take the low 32 bits of `start`, and the block gets no next or previous and becomes the head and
-   the cursor (`0x00273A74`-`0x00273AA9`); a block that does not fit returns 0 (`0x00273A81`).
-2. With mode 0 it tries the gaps after each block from the cursor forwards (`0x00276000`), then from the cursor's
-   previous block backwards (`0x002760A0`), then the gap before the head (`0x00276120`). With no cursor it starts
-   from the head (`0x00273A6C`).
-3. With another mode it tries the gap before the head first, then forwards from the head.
-4. A found block is linked in and becomes the cursor; when no gap fits it returns 0.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | In an empty pool the block goes at `start` when it fits before `end`. The fit test and the data address it returns both take the low 32 bits of `start`, and the block gets no next or previous and becomes the head and the cursor; a block that does not fit returns 0. | `0x00273A74`-`0x00273AA9`<br>`0x00273A81` |
+| 2 | With mode 0 it tries the gaps after each block from the cursor forwards, then from the cursor's previous block backwards, then the gap before the head. With no cursor it starts from the head. | `0x00276000`<br>`0x002760A0`<br>`0x00276120`<br>`0x00273A6C` |
+| 3 | With another mode it tries the gap before the head first, then forwards from the head. |   |
+| 4 | A found block is linked in and becomes the cursor; when no gap fits it returns 0. |   |
 
-The gap tests compare the low 32 bits of the addresses (`0x00276000`, `0x00276120`). Every caller passes mode 0
-(`0x002910AD`, `0x00291234`, `0x002913B9`, `0x00291624`, `0x00291997`).
+The gap tests compare the low 32 bits of the addresses¹. Every caller passes mode 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00276000`, `0x00276120` |
+| ² | `0x002910AD`, `0x00291234`, `0x002913B9`, `0x00291624`, `0x00291997` |
+
+</details>
 
 `0x00273B40(pool, data)` unlinks a block: the head moves to the next block when the freed one had no previous, and a
 freed cursor moves to its next block, or to its previous one at the end. It finds the header at the low 32 bits of
-`data` less `0x20` (`0x00273B40`-`0x00273B43`), joins the block's neighbours to each other and zeroes its next and
-previous (`0x00273B6C`-`0x00273B94`).
+`data` less `0x20`¹, joins the block's neighbours to each other and zeroes its next and
+previous².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00273B40`-`0x00273B43` |
+| ² | `0x00273B6C`-`0x00273B94` |
+
+</details>
 
 ### Target lines
 
 `0x00290320(from, to, kind, flag)` asks for a line from one unit to another through `0x00291320`:
 
-1. It refuses kind 0, a unit that `0x00273780` does not resolve, and a line from a unit to itself (`0x0029134E`, `0x00291359`).
-2. A line with the same ends and kind is returned as it is (`0x00291366`-`0x00291392`).
-3. Otherwise it takes `0x890` bytes from the pool: state `+0x850` = 1, the ends at `+0x810` and `+0x814`, the kind at
-   `+0x840`, and the picture `+0x10F50` with its two texture rectangles (`0x00271140`, `0x002711E0`); `flag` sets
-   `+0x842` bit `0x1` and a hold of 20 x `0x01DFE0B8` at `+0x844` (`0x002913B9`-`0x0029153F`). Through
-   `0x003F5370`, `0x003F5290` fills `+0x120` to `+0x12F` and `+0x180` to `+0x1BF`, taking its four floats
-   from `+0x7F0` (`0x00291547`).
-4. The line is appended to the list at `+0x10F10` (`+0x868` next, `+0x860` previous).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It refuses kind 0, a unit that `0x00273780` does not resolve, and a line from a unit to itself. | `0x0029134E`, `0x00291359` |
+| 2 | A line with the same ends and kind is returned as it is. | `0x00291366`-`0x00291392` |
+| 3 | Otherwise it takes `0x890` bytes from the pool: state `+0x850` = 1, the ends at `+0x810` and `+0x814`, the kind at `+0x840`, and the picture `+0x10F50` with its two texture rectangles; `flag` sets `+0x842` bit `0x1` and a hold of 20 x `0x01DFE0B8` at `+0x844`. Through `0x003F5370`, `0x003F5290` fills `+0x120` to `+0x12F` and `+0x180` to `+0x1BF`, taking its four floats from `+0x7F0`. | `0x00271140`, `0x002711E0`<br>`0x002913B9`-`0x0029153F`<br>`0x00291547` |
+| 4 | The line is appended to the list at `+0x10F10` (`+0x868` next, `+0x860` previous). |   |
 
 Two callers ask for lines:
 
-- `0x00328530(unit, target)`, for each target of a unit (`0x00306010`), when `0x003126E0` passes the target and
-  `0x0031AA30` gives a kind (`0x00328555`-`0x003285A0`);
+- `0x00328530(unit, target)`, for each target of a unit¹, when `0x003126E0` passes the target and
+  `0x0031AA30` gives a kind²;
 - the battle menu's list `0x0027DE30(unit, row)`, for the target `0x00272E10` gives the row, with the kind from
-  `0x00321060` (`0x0027DE82`), handed to `0x00290320` (`0x0027DE99`); a row with no target closes the unit's
-  lines (`0x00290B90`, `0x0027DE6F`).
+  `0x00321060`³, handed to `0x00290320`⁴; a row with no target closes the unit's
+  lines⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00306010` |
+| ² | `0x00328555`-`0x003285A0` |
+| ³ | `0x0027DE82` |
+| ⁴ | `0x0027DE99` |
+| ⁵ | `0x00290B90`, `0x0027DE6F` |
+
+</details>
 
 `0x00328530` answers the byte -1 (`0xFF` in `al`) when the unit or the target is null, when `0x003126E0` refuses the
-target or when `0x0031AA30(unit, 0, word +0x714, out)` answers below 0 (`0x00328540`-`0x0032857B`, `0x0032862D`). Otherwise it
-answers the byte 0 (`0x00328620`): with a kind (the dword at `out`) of 0 (`0x00328581`-`0x00328589`), with no line from
-`0x00290320` (`0x003285A5`-`0x003285A9`), and after a line. A line goes to the empty stub `0x0016D6A0` with the dword
-`0x0031AA30` wrote at `out+4`, unless that dword is -1 (`0x003285AB`-`0x003285B6`).
+target or when `0x0031AA30(unit, 0, word +0x714, out)` answers below 0¹. Otherwise it
+answers the byte 0²: with a kind (the dword at `out`) of 0³, with no line from
+`0x00290320`⁴, and after a line. A line goes to the empty stub `0x0016D6A0` with the dword
+`0x0031AA30` wrote at `out+4`, unless that dword is -1⁵.
 
-After a line, when the unit's stats record `+0x698` exists with byte `+0x05` 0 (`0x003285BB`-`0x003285CD`), the target's
-id `+8` differs from the unit's dword `+0x74C` (`0x003285CF`-`0x003285D8`), `0x0030BCB0(unit, target, 0)` is 0 (the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00328540`-`0x0032857B`, `0x0032862D` |
+| ² | `0x00328620` |
+| ³ | `0x00328581`-`0x00328589` |
+| ⁴ | `0x003285A5`-`0x003285A9` |
+| ⁵ | `0x003285AB`-`0x003285B6` |
+
+</details>
+
+After a line, when the unit's stats record `+0x698` exists with byte `+0x05` 0¹, the target's
+id `+8` differs from the unit's dword `+0x74C`², `0x0030BCB0(unit, target, 0)` is 0 (the
 relationship class from `0x0030AB40` is above 1) and `0x0030BCD0(unit)` is not (for such a unit, bit `0x4` of the stats
-record's first dword) (`0x003285DA`-`0x003285F6`), the target's id is stored in `+0x74C` (`0x00328612`-`0x00328615`).
+record's first dword)³, the target's id is stored in `+0x74C`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003285BB`-`0x003285CD` |
+| ² | `0x003285CF`-`0x003285D8` |
+| ³ | `0x003285DA`-`0x003285F6` |
+| ⁴ | `0x00328612`-`0x00328615` |
+
+</details>
 
 On that path the line goes to `0x0016D6A0` again, or for the first time when the `out+4` dword was -1, unless the unit's
-qword `+0x708` is non-null with a negative word `+4` (`0x003285F8`-`0x0032860D`).
+qword `+0x708` is non-null with a negative word `+4`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003285F8`-`0x0032860D` |
+
+</details>
 
 ### Line states
 
@@ -258,8 +444,16 @@ other 0.
 
 The frame's UI step `0x00252A70` is one scope named "display UI" (`0x001EB150` opens, `0x001EB110` closes)
 around the scene bracket `0x001FBD80(1)` to `0x001FBE50`. Inside it runs `0x0017FC50`, adds 2 over the frame-rate
-value `0x01DFE0B4`, as an unsigned whole number, to the counter `0x0208F574`, and then runs four inner scopes
-(`0x00252A74`-`0x00252B35`):
+value `0x01DFE0B4`, as an unsigned whole number, to the counter `0x0208F574`, and then runs four inner scopes¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00252A74`-`0x00252B35` |
+
+</details>
 
 - "display UI : data transfer": `0x0039BDA0`, `0x00365990` and `0x0024A710(1)`;
 - "display UI : battle": the HUD draw `0x0028EAB0` with the word `0x01E0C2AC`;
@@ -268,30 +462,55 @@ value `0x01DFE0B4`, as an unsigned whole number, to the counter `0x0208F574`, an
 - "display UI : effects": `0x003BBB60`.
 
 The HUD draw `0x0028EAB0`, run from the frame's UI step `0x00252A70` with the word `0x01E0C2AC`, draws the target rings
-every time (`0x0028C590`, `0x0028EBA5`). The lines and the `+0x10F20` and `+0x10F40` marks are drawn only when all of
-these hold (`0x0028EC7A`-`0x0028ED3B`):
+every time¹. The lines and the `+0x10F20` and `+0x10F40` marks are drawn only when all of
+these hold²:
 
-- the options record exists (`0x002DE040`) and Target Lines is on (`0x002DDE00`, dword 1 bit `0x400000`,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028C590`, `0x0028EBA5` |
+| ² | `0x0028EC7A`-`0x0028ED3B` |
+
+</details>
+
+- the options record exists¹ and Target Lines is on (`0x002DDE00`, dword 1 bit `0x400000`,
   [Game settings](../Saving-Loading-And-Settings/game-settings.md));
 - the word has bit `0x1`;
 - flag bit `0x1` is clear.
 
-The selection marker is drawn after them (`0x0028C970`, `0x0028EDC9`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DE040` |
+
+</details>
+
+The selection marker is drawn after them¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028C970`, `0x0028EDC9` |
+
+</details>
 
 ### The draw pass
 
 `0x0028EAB0` runs in this order:
 
-1. `0x003F1220` points a packet record at a 32 KB stack buffer, and `0x003F12D0` empties two depth lists that
-   collect sprites placed in the world; the second gets bit `0x1` of its `+0x18`.
-2. It draws the rings (`0x0028C590`), the part `0x003F8C70(+0xA0)` unless `0x00236760` answers non-zero, the
-   world-object part (`0x003FA570`, `0x003FA600`) when `+0x7C70` is set, and the `+0x10F30` marks (`0x003F7200`)
-   when the word has bit `0x8`.
-3. With the conditions above it draws the lines (`0x003F5100`), the `+0x10F20` marks (`0x003F2CF0`) and the
-   `+0x10F40` marks (`0x003F3260`).
-4. After the "Gaussian Filter" and "display UI 2" markers it draws the part at `+0x10F80` (`0x002C62B0`, the
-   overhead gauges on [Battle menu](battle-menu.md)) when the word has bit `0x4`, and the selection marker.
-5. Last, `0x003F0170` draws both depth lists and `0x003F1530` the screen-space list.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x003F1220` points a packet record at a 32 KB stack buffer, and `0x003F12D0` empties two depth lists that collect sprites placed in the world; the second gets bit `0x1` of its `+0x18`. |   |
+| 2 | It draws the rings, the part `0x003F8C70(+0xA0)` unless `0x00236760` answers non-zero, the world-object part when `+0x7C70` is set, and the `+0x10F30` marks when the word has bit `0x8`. | `0x0028C590`<br>`0x003FA570`, `0x003FA600`<br>`0x003F7200` |
+| 3 | With the conditions above it draws the lines, the `+0x10F20` marks and the `+0x10F40` marks. | `0x003F5100`<br>`0x003F2CF0`<br>`0x003F3260` |
+| 4 | After the "Gaussian Filter" and "display UI 2" markers it draws the part at `+0x10F80` (`0x002C62B0`, the overhead gauges on [Battle menu](battle-menu.md)) when the word has bit `0x4`, and the selection marker. |   |
+| 5 | Last, `0x003F0170` draws both depth lists and `0x003F1530` the screen-space list. |   |
 
 | Function | Does |
 |---|---|
@@ -303,8 +522,16 @@ The selection marker is drawn after them (`0x0028C970`, `0x0028EDC9`).
 | `0x003F12E0(sprite, picture, code, frame)` | binds a sprite to a picture cell found through the picture header's tables (`+0x40`, `+0x42`, `+0x44`): the picture at `+0xE0`, the texture rectangle (`0x00271140`) at `+0x30`-`+0x3C`. `0x003F1430` adds a frame offset; the selection marker's `0x0028D260` and `0x0028D460` use it |
 
 `0x00271140(out, cell, texture word)` gives a cell's texture rectangle as four floats. The width tw is 2 to
-the power of bits 26-29 of the texture word and the height th 2 to the power of bits 30-33
-(`0x0027114F`-`0x00271164`):
+the power of bits 26-29 of the texture word and the height th 2 to the power of bits 30-33¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027114F`-`0x00271164` |
+
+</details>
 
 | Float | Value |
 |---|---|
@@ -314,13 +541,32 @@ the power of bits 26-29 of the texture word and the height th 2 to the power of 
 | `out + 0xC` | the cell's word `+2`, over th |
 
 `0x002711E0` takes a fourth argument n and insets the rectangle. Before the four floats are formed, the two
-12-bit fields each lose n and the two words each gain the signed n shifted right by one bit
-(`0x002711F8`-`0x00271283`).
+12-bit fields each lose n and the two words each gain the signed n shifted right by one bit¹.
 
-`0x003F1530` (`0x003F15B4`) and the widget draw `0x00247AE0` (`0x00247B84`, `0x00247C32`) take their projection from
-`0x008626C0(m, f, sx, sy, ox, oy, z0, z1, n, far)`. It multiplies (`0x00217150`) a perspective matrix of focal length `f`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002711F8`-`0x00271283` |
+
+</details>
+
+`0x003F1530`¹ and the widget draw `0x00247AE0`² take their projection from
+`0x008626C0(m, f, sx, sy, ox, oy, z0, z1, n, far)`. It multiplies³ a perspective matrix of focal length `f`
 (`m00 = m11 = f`, `m23 = 1`, `m33 = 0`) by a screen matrix with the scales `sx`, `sy`, the offsets `ox`, `oy` and the
 depth terms below, then transposes the product:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F15B4` |
+| ² | `0x00247B84`, `0x00247C32` |
+| ³ | `0x00217150` |
+
+</details>
 
 ```python
 k = (z1 - z0) / (far - n)
@@ -330,10 +576,28 @@ m23 = (z0 x far - z1 x n) / (far - n)
 
 ### The target ring
 
-`0x00290370(unit, other, style)` asks for the ring (`0x00290370`-`0x002903C8`):
+`0x00290370(unit, other, style)` asks for the ring¹:
 
-- with `other` set it moves the selection marker to the unit instead (`0x0028CA40`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00290370`-`0x002903C8` |
+
+</details>
+
+- with `other` set it moves the selection marker to the unit instead¹;
 - otherwise it stores the unit at `+0x10F6C`, 0 at `+0x10F70` and the style at `+0x10F72`, and sets flag bit `0x8`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028CA40` |
+
+</details>
 
 Its caller `0x002BF0E0` (thunk `0x002BE080`) picks the style from what the unit is:
 
@@ -345,24 +609,43 @@ Its caller `0x002BF0E0` (thunk `0x002BE080`) picks the style from what the unit 
 | actor class 3 | `0` | `4` |
 | anything else | `1` | `0` |
 
-Kind 1 closes the rings; kind 6 sends the unit to the selection marker (`0x002BF15F`-`0x002BF167`); any other kind first
-needs `0x00273710` to pass and closes the rings otherwise (`0x002BF19D`-`0x002BF1A6`).
+Kind 1 closes the rings; kind 6 sends the unit to the selection marker¹; any other kind first
+needs `0x00273710` to pass and closes the rings otherwise².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002BF15F`-`0x002BF167` |
+| ² | `0x002BF19D`-`0x002BF1A6` |
+
+</details>
 
 ### Building and closing rings
 
 Group 3 of the pump calls `0x002917E0(manager, unit, 0, style)` while bit `0x8` is set:
 
-1. It clears bit `0x8`. A current ring below state 3 is kept for the same unit, or turned to the new unit with state 1,
-   the new colour and a faster spin, `+0xD44` + 0.314 x `0x01DFE0BC`, capped at 0.419 x `0x01DFE0BC` (`0x0029188E`-`0x002918DD`).
-2. Otherwise the old rings fade when there is at most one (`0x00291954`-`0x00291975`); with more, bit `0x8` is set again for
-   the next frame.
-3. It takes `0xD80` bytes from the pool, or sets bit `0x8` again when the pool is full (`0x00291B5F`).
-4. It sets state 1 and the unit, converts the picture's sprite into texture coordinates (`0x00291A8F`), writes the
-   draw packets with the colour index (`0x0028C620`, `0x00291ADB`) and appends the ring (`+0xD70` next, `+0xD68` previous).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It clears bit `0x8`. A current ring below state 3 is kept for the same unit, or turned to the new unit with state 1, the new colour and a faster spin, `+0xD44` + 0.314 x `0x01DFE0BC`, capped at 0.419 x `0x01DFE0BC`. | `0x0029188E`-`0x002918DD` |
+| 2 | Otherwise the old rings fade when there is at most one; with more, bit `0x8` is set again for the next frame. | `0x00291954`-`0x00291975` |
+| 3 | It takes `0xD80` bytes from the pool, or sets bit `0x8` again when the pool is full. | `0x00291B5F` |
+| 4 | It sets state 1 and the unit, converts the picture's sprite into texture coordinates, writes the draw packets with the colour index and appends the ring (`+0xD70` next, `+0xD68` previous). | `0x00291A8F`<br>`0x0028C620`, `0x00291ADB` |
 
-Each pump `0x0028C4C0` steps every ring (`0x0028BB50`) and `0x0028D1C0` frees the rings in state 5 (`0x0028FA50`).
+Each pump `0x0028C4C0` steps every ring¹ and `0x0028D1C0` frees the rings in state 5².
 `0x0028C4F0(list)` closes rings: those in states 0, 1 and 5 become 5, those in state 4 are left, and the others start
 the fade, state 3. `0x0028C560` puts every ring in state 5 and `0x0028C850` counts them.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028BB50` |
+| ² | `0x0028FA50` |
+
+</details>
 
 | Closer | Also |
 |---|---|
@@ -384,68 +667,169 @@ A ring is two halves of six segments. `0x0028C590` draws each ring with `+0xD4C`
 A pickup element's trail is four records of `0x90` bytes from the element's `+0x00`: the position at `+0x00`, a
 quaternion at `+0x10`, the trail points from `+0x20`, 16 bytes each, and their count at `+0x80`.
 
-`0x003FBE90(element, position)` starts the four records (`0x003FBEF0`-`0x003FC127`). For each one:
+`0x003FBE90(element, position)` starts the four records¹. For each one:
 
-- it clears the point count `+0x80` (`0x003FBEF0`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FBEF0`-`0x003FC127` |
+
+</details>
+
+- it clears the point count `+0x80`¹;
 - it draws three angles, each `rand()` mod 360 degrees, and builds a rotation from them with `0x00203170`,
-  `0x00202E90`, `0x00202F00` and `0x00202F70` (`0x003FBEF4`-`0x003FBFD5`);
+  `0x00202E90`, `0x00202F00` and `0x00202F70`²;
 - it turns the vector (x, y, 0.5), with x and y the floats at `0x01EF93F0` and `0x01EF93F4` (both 0.0 in the file;
-  `0x003FBFDA`-`0x003FC00D`), by that rotation (`0x00202B70`) and stores the argument position plus the turned
-  vector at the record's `+0x00` (`0x00202B10`, `0x003FC00D`-`0x003FC024`);
+  `0x003FBFDA`-`0x003FC00D`), by that rotation³ and stores the argument position plus the turned
+  vector at the record's `+0x00`⁴;
 - it draws three more angles the same way and stores the quaternion of that second rotation at the record's
-  `+0x10` (`0x00270B40`, `0x003FC029`-`0x003FC116`).
+  `+0x10`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FBEF0` |
+| ² | `0x003FBEF4`-`0x003FBFD5` |
+| ³ | `0x00202B70` |
+| ⁴ | `0x00202B10`, `0x003FC00D`-`0x003FC024` |
+| ⁵ | `0x00270B40`, `0x003FC029`-`0x003FC116` |
+
+</details>
 
 So each record starts half a unit from the position in a random direction, with a random orientation, and one
 call makes 24 draws.
 
-`0x003FBA80(record, picture, owner, list, fade, level)` draws one trail record. It takes a sprite from the list
-(`0x003F0040`); with no sprite it draws nothing (`0x003FBAB5`-`0x003FBAC0`). On the sprite:
+`0x003FBA80(record, picture, owner, list, fade, level)` draws one trail record. It takes a sprite from the list¹; with no sprite it draws nothing². On the sprite:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F0040` |
+| ² | `0x003FBAB5`-`0x003FBAC0` |
+
+</details>
 
 - the position is the record's `+0x00`, the kind `+0xF0` is -2, the size floats at `+0x50` are -0.5, 0.5, 0.5
-  and -0.5, and the picture goes to `+0xE0` (`0x003FBAE6`-`0x003FBB88`, `0x003FBC50`);
-- the texture rectangle at `+0x30` to `+0x3C` is a cell of the picture, inset by 4 (`0x002711E0`,
-  `0x003FBB01`-`0x003FBB59`);
+  and -0.5, and the picture goes to `+0xE0`¹;
+- the texture rectangle at `+0x30` to `+0x3C` is a cell of the picture, inset by 4²;
 - the level picks the colour and the palette number p: level 1 colour `0x91`, 2 `0x92`, 3 `0x93`, any other
-  `0x90` (`0x002DD7E0`), with p = 1 for levels 2 and 3 and 0 otherwise (`0x003FBB94`-`0x003FBBDA`);
-- red, green and blue go to `+0x40`, `+0x44` and `+0x48` and alpha x `fade` to `+0x4C` (`0x003FBBEF`-`0x003FBC28`);
+  `0x90`³, with p = 1 for levels 2 and 3 and 0 otherwise⁴;
+- red, green and blue go to `+0x40`, `+0x44` and `+0x48` and alpha x `fade` to `+0x4C`⁵;
 - the TEX0 value at `+0x20` is the picture's `+0x30` plus (2p + 12) shifted left by 37, and `+0xEC` is p + 3
-  (`0x003FBBE7`, `0x003FBC19`-`0x003FBC4A`).
+ ⁶.
 
-It links the sprite to the owner with `0x003F1290` (`0x003FBC5A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FBAE6`-`0x003FBB88`, `0x003FBC50` |
+| ² | `0x002711E0`, `0x003FBB01`-`0x003FBB59` |
+| ³ | `0x002DD7E0` |
+| ⁴ | `0x003FBB94`-`0x003FBBDA` |
+| ⁵ | `0x003FBBEF`-`0x003FBC28` |
+| ⁶ | `0x003FBBE7`, `0x003FBC19`-`0x003FBC4A` |
+
+</details>
+
+It links the sprite to the owner with `0x003F1290`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FBC5A` |
+
+</details>
 
 When the record's point count `+0x80` is not 0, `0x003FBA80` also draws the trail as one strip:
 
 - its local block holds the colour as three floats, the count + 1, the record's position with alpha x `fade`,
-  and the points from the record's `+0x20` (`0x003FBC5F`-`0x003FBD2E`);
+  and the points from the record's `+0x20`¹;
 - the first point's alpha is alpha x 127 / 128 less one step, the step being that value over the count, and each
-  later point is one step lower, down to 0 at the last; `fade` is then applied to each (`0x003FBCC7`-`0x003FBD4B`);
-- `0x003F5BE0` wraps the block in its VU1 chunk (`0x003FBD4D`-`0x003FBD52`);
+  later point is one step lower, down to 0 at the last; `fade` is then applied to each²;
+- `0x003F5BE0` wraps the block in its VU1 chunk³;
 - `0x003F5290` writes the matrix block from the four floats `0x00271140` gives for a second cell of the picture,
-  f0 to f3 (`0x003FBD57`-`0x003FBD8F`): `+0x60` and `+0x68` get f0 x 0.5 + f2, `+0x64` gets f1 x 0.5 + f3 and
-  `+0x6C` gets f3 (`0x003F52DC`-`0x003F5316`);
+  f0 to f3⁴: `+0x60` and `+0x68` get f0 x 0.5 + f2, `+0x64` gets f1 x 0.5 + f3 and
+  `+0x6C` gets f3⁵;
 - the same call sets `+0x70`, `+0x74` and `+0x78` of the block to 0.15, `+0x7C` to 1.0, `+0x80` to `+0x8C` to
-  2047.5, and fixed dwords at `+0x00` to `+0x0C` and `+0x90` to `+0x9C` (`0x003F5298`-`0x003F52D2`,
-  `0x003F5319`-`0x003F535D`); of these the dword at `+0x94` is not an immediate but the low 32 bits of the address
-  `0x02EBB798` with bits `0xA0000007` set, shifted right by 3 (`0x003F5319`-`0x003F532E`);
-- it binds the picture with unit 3 and the palette p (`0x002715A0`), fills the matrix block (`0x003F5260`), and
-  sends the 10-record matrix block and then the chunk through the draw state (`0x00271450`, `0x003F5CA0`,
-  `0x002714A0`, `0x00271290`, `0x00271080`, `0x00270FF0`; `0x003FBD94`-`0x003FBE32`).
+  2047.5, and fixed dwords at `+0x00` to `+0x0C` and `+0x90` to `+0x9C`⁶; of these the dword at `+0x94` is not an immediate but the low 32 bits of the address
+  `0x02EBB798` with bits `0xA0000007` set, shifted right by 3⁷;
+- it binds the picture with unit 3 and the palette p⁸, fills the matrix block⁹, and
+  sends the 10-record matrix block and then the chunk through the draw state¹⁰.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FBC5F`-`0x003FBD2E` |
+| ² | `0x003FBCC7`-`0x003FBD4B` |
+| ³ | `0x003FBD4D`-`0x003FBD52` |
+| ⁴ | `0x003FBD57`-`0x003FBD8F` |
+| ⁵ | `0x003F52DC`-`0x003F5316` |
+| ⁶ | `0x003F5298`-`0x003F52D2`, `0x003F5319`-`0x003F535D` |
+| ⁷ | `0x003F5319`-`0x003F532E` |
+| ⁸ | `0x002715A0` |
+| ⁹ | `0x003F5260` |
+| ¹⁰ | `0x00271450`, `0x003F5CA0`, `0x002714A0`, `0x00271290`, `0x00271080`, `0x00270FF0`; `0x003FBD94`-`0x003FBE32` |
+
+</details>
 
 ### The selection marker
 
-The `0x80`-byte marker at `+0x7EA0` keeps two slots. `0x0028CA40(marker, unit)` starts it on a unit's position
-(`0x002E7F70`), or on a new unit fades the old slot out and starts the other. Group 16 of the
-pump (`0x0028C870`) turns it by 10 x `0x01DFE0BC` degrees a frame and fades it in or out by 32 / `0x01DFE0B4` a frame.
+The `0x80`-byte marker at `+0x7EA0` keeps two slots. `0x0028CA40(marker, unit)` starts it on a unit's position¹, or on a new unit fades the old slot out and starts the other. Group 16 of the
+pump² turns it by 10 x `0x01DFE0BC` degrees a frame and fades it in or out by 32 / `0x01DFE0B4` a frame.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E7F70` |
+| ² | `0x0028C870` |
+
+</details>
 
 The first call, while bit `0x1` of the marker's `+0x28` is clear, zeroes its first `0x30` bytes, keeps the unit
-at `+0x24`, takes the position from `0x002E7F70`, copies it to `+0x10` (`0x00202C90`), and sets bit `0x1`, `+0x20` =
-1.0 and `+0x2B` = `0x80` (`0x0028CA57`-`0x0028CAA2`). A request for the unit at `+0x24` only clears bit `0x2` of
-`+0x28` and of the open slot marking that unit, so a fade out stops (`0x0028CAA8`-`0x0028CAEA`). Another unit first
-runs `0x0028DFD0` (`0x0028CAEB`).
+at `+0x24`, takes the position from `0x002E7F70`, copies it to `+0x10`¹, and sets bit `0x1`, `+0x20` =
+1.0 and `+0x2B` = `0x80`². A request for the unit at `+0x24` only clears bit `0x2` of
+`+0x28` and of the open slot marking that unit, so a fade out stops³. Another unit first
+runs `0x0028DFD0`⁴.
 
-A new slot sets bit `0x2` on every open slot not yet fading (`0x0028CAF5`-`0x0028CB1D`), and starts with flag bit
-`0x1`, the unit at `+0x18` and `+0x12` = `0x80` (`0x0028CB4A`-`0x0028CB62`). A unit that `0x003588B0` does not
-resolve keeps the zeroed position (`0x0028CA7D`, `0x0028CB6E`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00202C90` |
+| ² | `0x0028CA57`-`0x0028CAA2` |
+| ³ | `0x0028CAA8`-`0x0028CAEA` |
+| ⁴ | `0x0028CAEB` |
+
+</details>
+
+A new slot sets bit `0x2` on every open slot not yet fading¹, and starts with flag bit
+`0x1`, the unit at `+0x18` and `+0x12` = `0x80`². A unit that `0x003588B0` does not
+resolve keeps the zeroed position³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028CAF5`-`0x0028CB1D` |
+| ² | `0x0028CB4A`-`0x0028CB62` |
+| ³ | `0x0028CA7D`, `0x0028CB6E` |
+
+</details>
 
 `0x0028C970` draws it with `0x0028D260` and, per slot, `0x0028D8A0`, whose `0x0028D460` draws three sprites 2.094 radians
 apart. Both read a colour track at `0x00915FB0` (four keys, `0x0028CB90`) and scale it by `0x0028CD10(angle)`:
@@ -463,37 +847,105 @@ apart. Both read a colour track at `0x00915FB0` (four keys, `0x0028CB90`) and sc
 | `+0x10F30` | 832 | `0x00291010`, only while flag bit `0x800` is set | `0x00290300`, called by `0x0035DAF0` |
 
 `0x0027DC10(actor, unit, action, keep)` asks for a `+0x10F40` mark when `0x0031AB80` reports kind 1, `keep` is 0 and
-`0x00273710` passes the unit. It first calls `0x00290CD0(unit)`, which walks the `+0x10F40` marks (`0x003F35A0`):
-every mark whose `+0x6C` is not the unit loses bit `0x1` of `+0x50` and has `+0x6C` set to 0
-(`0x003F35A7`-`0x003F35B0`); a mark that already names the unit is left as it is.
+`0x00273710` passes the unit. It first calls `0x00290CD0(unit)`, which walks the `+0x10F40` marks¹:
+every mark whose `+0x6C` is not the unit loses bit `0x1` of `+0x50` and has `+0x6C` set to 0²; a mark that already names the unit is left as it is.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F35A0` |
+| ² | `0x003F35A7`-`0x003F35B0` |
+
+</details>
 
 `0x00273710(handle)` passes at once, returning 1, when `0x0031FD20(handle)` answers 0. Otherwise it passes only
 when `0x00320CA0(handle, &word)` answers 1 and the status word it fills has no bit of `0x80000003` (KO, Stone
-and bit `0x80000000`); else it returns 0 (`0x00273718`-`0x00273747`).
+and bit `0x80000000`); else it returns 0¹.
 
-`0x002713E0(out, handle)` resolves the handle with `0x003588B0`. For no unit it returns 0 with `out` untouched
-(`0x002713EB`-`0x002713F5`); else it fills `out` with `0x00264510(unit, out)` and returns 1
-(`0x00271401`-`0x00271406`).
+<details>
+<summary>Where in the code</summary>
 
-`0x00264510` stores 1.0 at `out` `+0xC` (`0x0026451A`) and picks the first three floats by the unit's kind, byte
+| | Code |
+|---|---|
+| ¹ | `0x00273718`-`0x00273747` |
+
+</details>
+
+`0x002713E0(out, handle)` resolves the handle with `0x003588B0`. For no unit it returns 0 with `out` untouched¹; else it fills `out` with `0x00264510(unit, out)` and returns 1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002713EB`-`0x002713F5` |
+| ² | `0x00271401`-`0x00271406` |
+
+</details>
+
+`0x00264510` stores 1.0 at `out` `+0xC`¹ and picks the first three floats by the unit's kind, byte
 `+3` shifted right by 5. Kind 3 with a `+0xC0` pointer that is not null and whose first dword is not -1 leaves
-through `0x002E9CA0(unit, out)` (`0x00264527`-`0x00264555`). Any other kind 3 copies `+0x00`, `+0x04` and `+0x08` of
-the movement context `+0xB8` (`0x00264570`-`0x00264584`). Kind 1 copies `+0x20`, `+0x24` and `+0x28` of that context
-(`0x00264592`-`0x002645A7`). Any other kind gets three zeros (`0x002645B5`-`0x002645BA`).
+through `0x002E9CA0(unit, out)`². Any other kind 3 copies `+0x00`, `+0x04` and `+0x08` of
+the movement context `+0xB8`³. Kind 1 copies `+0x20`, `+0x24` and `+0x28` of that context⁴. Any other kind gets three zeros⁵.
 
-A null unit would get three zeros too, but `0x002713E0` returns 0 before the call for one
-(`0x002713F0`-`0x002713F5`). After the call it returns 1 on every one of these paths, the exit through
-`0x002E9CA0` included (`0x00271406`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026451A` |
+| ² | `0x00264527`-`0x00264555` |
+| ³ | `0x00264570`-`0x00264584` |
+| ⁴ | `0x00264592`-`0x002645A7` |
+| ⁵ | `0x002645B5`-`0x002645BA` |
+
+</details>
+
+A null unit would get three zeros too, but `0x002713E0` returns 0 before the call for one¹. After the call it returns 1 on every one of these paths, the exit through
+`0x002E9CA0` included².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002713F0`-`0x002713F5` |
+| ² | `0x00271406` |
+
+</details>
 
 `0x002E9CA0` takes the word at the start of the unit's `+0xC0` block and the record at `[0x022C6F28]` plus `0x740`
-for each unit of that word (`0x002E9CBE`-`0x002E9CD2`). When the word is not `0xFFFF`, the record address is not 0
-and the record's dword `+0x284` is not 0, `0x003E5700` copies the 16 bytes at the record's `+0x670` to `out`
-(`0x002E9CE4`), and `0x002E9CA0` stores 1.0 at `out` `+0xC` again (`0x002E9CE9`). Otherwise it stores only that 1.0
-and the first three floats of `out` are not written on those arms (`0x002E9CC5`, `0x002E9CD9`, `0x002E9CE2`).
+for each unit of that word¹. When the word is not `0xFFFF`, the record address is not 0
+and the record's dword `+0x284` is not 0, `0x003E5700` copies the 16 bytes at the record's `+0x670` to `out`², and `0x002E9CA0` stores 1.0 at `out` `+0xC` again³. Otherwise it stores only that 1.0
+and the first three floats of `out` are not written on those arms⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E9CBE`-`0x002E9CD2` |
+| ² | `0x002E9CE4` |
+| ³ | `0x002E9CE9` |
+| ⁴ | `0x002E9CC5`, `0x002E9CD9`, `0x002E9CE2` |
+
+</details>
 
 The two other arms of `0x002E9CA0` are not reached on this route, because `0x00264510` has excluded them: a null
-unit returns with nothing written (`0x002E9CA3`), and a null `+0xC0` pointer or a first dword of -1 stores 1.0
-and three zeros (`0x002E9CF6`-`0x002E9D02`).
+unit returns with nothing written¹, and a null `+0xC0` pointer or a first dword of -1 stores 1.0
+and three zeros².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E9CA3` |
+| ² | `0x002E9CF6`-`0x002E9D02` |
+
+</details>
 
 The `+0x10F20` and `+0x10F40` marks:
 
@@ -534,17 +986,25 @@ The part at `+0x10F80`, `0x1D90` bytes, draws marks over units: a status mark fo
 `+0x1B80` and two name boxes. `0x002C63D0`, run by `0x0028FF80` and `0x00290060`, clears it, links its 96 `0x40`-byte unit
 entries, headed by the one at `+0`, into the free list `+0x1D60` and sets the fade distances `+0x1D7C` = 5.0 and
 `+0x1D80` = 17.0. After it, `0x00290060` sets the part's word `+0x1D78` to `0x80` and bit `0x4` of its word
-`+0x1D7A` when `0x002544B0` answers 1 (`0x00290083`-`0x002900A7`).
+`+0x1D7A` when `0x002544B0` answers 1¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00290083`-`0x002900A7` |
+
+</details>
 
 Group 15 of the pump, `0x002C6180`, steps it:
 
-1. It clears every entry's shown bit (`+0x17` bit `0x1`) and sets the closing bit `0x2` of both name boxes (`+0x19B4`).
-2. With `+0x1D7A` bit `0x200` it runs `0x002C8D60`, which calls `0x002C6F70` for each unit of the list `0x0035D500`
-   (`0x0035D510` units), stopping when one returns 0.
-3. It steps the box at `+0x1B80` (`0x002C6BE0`) and the name boxes (`0x002C6B50`), and fades the whole part
-   `+0x1D78` toward `0x80`, or toward 0 while `+0x1D7A` bit `0x8` is set, by 32 / `[0x01DFE0B4]` a frame.
-4. It keeps `0x0028F5B0()` at `+0x1D88`, frees the entries left unshown (`0x002C8DF0`) and copies `0x02092730` to
-   `+0x1D84`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It clears every entry's shown bit (`+0x17` bit `0x1`) and sets the closing bit `0x2` of both name boxes (`+0x19B4`). |   |
+| 2 | With `+0x1D7A` bit `0x200` it runs `0x002C8D60`, which calls `0x002C6F70` for each unit of the list `0x0035D500` (`0x0035D510` units), stopping when one returns 0. |   |
+| 3 | It steps the box at `+0x1B80` and the name boxes, and fades the whole part `+0x1D78` toward `0x80`, or toward 0 while `+0x1D7A` bit `0x8` is set, by 32 / `[0x01DFE0B4]` a frame. | `0x002C6BE0`<br>`0x002C6B50` |
+| 4 | It keeps `0x0028F5B0()` at `+0x1D88`, frees the entries left unshown and copies `0x02092730` to `+0x1D84`. | `0x002C8DF0` |
 
 | Function | Does |
 |---|---|
@@ -575,32 +1035,85 @@ HUD animations read short tracks of keys. `0x00271AB0(out, keys, count, t)` uses
 
 It finds the segment whose times hold `t`, the last one past the end, and blends by `p`, the fraction of the
 segment: curve 1 gives `sin(p x pi/2)`, curve 2 `1 - sin((1 - p) x pi/2)`, any other `p`. Past the last key it keeps
-blending along the last segment. A `t` before the first key also takes the last segment, as no segment holds it
-(`0x00271AD6`-`0x00271B05`). The segment's curve is that of its end key (`0x00271B24`).
+blending along the last segment. A `t` before the first key also takes the last segment, as no segment holds it¹. The segment's curve is that of its end key².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00271AD6`-`0x00271B05` |
+| ² | `0x00271B24` |
+
+</details>
 
 The blend works in 256ths: `(int)(sin(p x pi/2) x 256)` for curve 1, `256 - (int)(sin((1 - p) x pi/2) x 256)` for
-curve 2 and `((t - t0) << 8) / (t1 - t0)` for any other, then divided by 256 (`0x00271B35`-`0x00271BAA`,
-`0x00271BFE`-`0x00271C0B`).
+curve 2 and `((t - t0) << 8) / (t1 - t0)` for any other, then divided by 256¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00271B35`-`0x00271BAA`, `0x00271BFE`-`0x00271C0B` |
+
+</details>
 
 x, y, a and b go to `out + 0`, `+2`, `+4` and `+6` as 16-bit values, and w to `out + 8`,
 each truncated toward zero, `v = (int)(v0 + (v1 - v0) * f)` with `f = (blend << 4) * (1 / 4096.0)`
 (`0x00908E14`; `cvttps2dq` at `0x00271C20` and `0x00271C99`, `0x00271BFE`-`0x00271C9D`).
 `0x0028CB90` does the same over 8-byte keys `{i16 value, u8, u8, i16 curve, u16 time}` and blends through `0x002752E0`.
-`0x002C6DC0(out, keys, n, t)` does it for the overhead display (`0x002C7F90`, `0x002C84E0`) over 8-byte keys
+`0x002C6DC0(out, keys, n, t)` does it for the overhead display¹ over 8-byte keys
 `{i8, i8, u8 curve, u8, i16 time, i16}`, blending through `0x002752E0`.
 
-`0x002752E0(out, a, b, r)` does four 32-bit integers at once: out = (int)(a + (b - a) x r / 256), each lane
-truncated toward zero (`0x002752E0`-`0x00275314`). The factor is (r << 4) x (1 / 4096.0) from `0x00908E14`.
+<details>
+<summary>Where in the code</summary>
 
-`0x003FB8F0(out, keys, n, t)`, called twice by `0x003FAF10` (`0x003FAFE6`, `0x003FB004`), does it over 12-byte keys
+| | Code |
+|---|---|
+| ¹ | `0x002C7F90`, `0x002C84E0` |
+
+</details>
+
+`0x002752E0(out, a, b, r)` does four 32-bit integers at once: out = (int)(a + (b - a) x r / 256), each lane
+truncated toward zero¹. The factor is (r << 4) x (1 / 4096.0) from `0x00908E14`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002752E0`-`0x00275314` |
+
+</details>
+
+`0x003FB8F0(out, keys, n, t)`, called twice by `0x003FAF10`¹, does it over 12-byte keys
 `{i16, i16 time, i16, i16, i32 curve}`: the first pair of keys with start time <= `t` < end time, else the last
 pair; the later key's curve picks the same blends as a 0-256 ratio, and `0x002752E0` blends the three `i16`
 values into a word and two bytes at `out`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FAFE6`, `0x003FB004` |
+
+</details>
+
 ### The picture popup and selection marker keys
 
-`0x0028A790` reads the five keys at `0x00915F68` with `0x00271AB0(out, keys, 5, t)` (`0x0028A81C`, `0x0028A827`), in the 12-byte
+`0x0028A790` reads the five keys at `0x00915F68` with `0x00271AB0(out, keys, 5, t)`¹, in the 12-byte
 layout above, at the entry's time `+0x10`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028A81C`, `0x0028A827` |
+
+</details>
 
 | Key | Time | x | y | a | b | Curve | w |
 |---|---|---|---|---|---|---|---|
@@ -610,10 +1123,20 @@ layout above, at the entry's time `+0x10`:
 | 3 | 196 | 0 | -24 | 255 | 255 | 0 | 256 |
 | 4 | 256 | 0 | -32 | 0 | 128 | 2 | 256 |
 
-`b` goes to the sprite's three colour channels (`0x0028A93D`-`0x0028A94D`). `a` times the alpha factor becomes its alpha
-(`0x0028A950`-`0x0028A964`). `x` and `y` less half the picture's cell, times `w / 256`, give one corner,
-and the same with the whole cell added gives the opposite corner (`0x0028A9B5`-`0x0028AA5A`). `w` is 256 on every key, so
+`b` goes to the sprite's three colour channels¹. `a` times the alpha factor becomes its alpha². `x` and `y` less half the picture's cell, times `w / 256`, give one corner,
+and the same with the whole cell added gives the opposite corner³. `w` is 256 on every key, so
 the picture keeps its cell's size.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028A93D`-`0x0028A94D` |
+| ² | `0x0028A950`-`0x0028A964` |
+| ³ | `0x0028A9B5`-`0x0028AA5A` |
+
+</details>
 
 `0x0028CB90` reads the four 8-byte keys at `0x00915FB0`, for the selection marker:
 
@@ -644,22 +1167,61 @@ The HUD parts and the screens around them share a few small vector helpers:
 ### The active log
 
 The active log, procedure `0x002BE4F0` built by `0x002BDCE0` under the field HUD root, shows one battle-log line at a time.
-The root `0x00253780` reaches that builder through `0x0035C630` (`0x002537E6`), which runs `0x002BDCE0` (through `0x0028E220`),
+The root `0x00253780` reaches that builder through `0x0035C630`¹, which runs `0x002BDCE0` (through `0x0028E220`),
 `0x0028FF80`, the chocobo menu task builder `0x003CA280`, the HUD widget builder `0x003C98E0` and then `0x00290450(1)`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002537E6` |
+
+</details>
+
 The log is built once and lasts the whole run. `0x002BDCE0` does nothing once the help block's `+0x1058` holds the
-log (`0x002BDD20`), and it builds the pane `+0x1080` (`0xF8` bytes, `0x002C0BE0`) and the log, a `0x40C8`-byte heap
-block (`0x002BDE78`-`0x002BDE90`), as the pane's child (`0x002BDFC8`). The manager itself is built once, from the start-up
-`0x00253970` (`0x0022A415`).
+log¹, and it builds the pane `+0x1080` (`0xF8` bytes, `0x002C0BE0`) and the log, a `0x40C8`-byte heap
+block², as the pane's child³. The manager itself is built once, from the start-up
+`0x00253970`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002BDD20` |
+| ² | `0x002BDE78`-`0x002BDE90` |
+| ³ | `0x002BDFC8` |
+| ⁴ | `0x0022A415` |
+
+</details>
 
 `0x002BDB60` hides the pane with a closing run that does not release it (`0x00244DD0` at `0x002BDBE3`; the run ends in
 the teardown only for a widget closed through `0x00244F00`, `0x002449BC`-`0x002449CB`), and `0x002BDC00` opens it again
-under the main root (`0x002BDC94`).
+under the main root¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002BDC94` |
+
+</details>
 
 `0x0028E110` posts a line through `0x002BDB00` ([Battle log](../Battle-Actions/battle-log.md)), and `0x002BE8D0` files it
 as a `0x198`-byte record: the text, `0x180` bytes copied by `0x00254F30`, its colour at `+0x180`, the hold time at
-`+0x184`, an in-use bit at `+0x186` and half its width at `+0x187` (`0x0029CD00`). Records move between three lists
+`+0x184`, an in-use bit at `+0x186` and half its width at `+0x187`¹. Records move between three lists
 linked through `+0x188` and `+0x190`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0029CD00` |
+
+</details>
 
 | List | Offset | Holds |
 |---|---|---|
@@ -669,13 +1231,12 @@ linked through `+0x188` and `+0x190`:
 
 Each tick `0x002BEAC0` steps the log, with the frame base `0x01DFE0B4` as the unit:
 
-1. With nothing shown, it shows the first queued line and fades the log in by 16 a tick up to `0x80` (`+0x40B4`).
-2. A line slides in by `32 / [0x01DFE0B4]` a tick over `0x100` (`+0x40B8`); when it is in, `0x002BF010` retires the line
-   it replaced.
-3. Once the log is fully faded in and no time stop restricts anything (`0x00226BA0`), the timer `+0x40BA` counts up to
-   150 x `[0x01DFE0B4]`. A queued line replaces the shown one when the timer reaches the shown line's hold time.
-4. With nothing queued, the log fades out once the timer is full, and `0x002BEE00` retires every shown line when the
-   fade reaches 0.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | With nothing shown, it shows the first queued line and fades the log in by 16 a tick up to `0x80` (`+0x40B4`). |   |
+| 2 | A line slides in by `32 / [0x01DFE0B4]` a tick over `0x100` (`+0x40B8`); when it is in, `0x002BF010` retires the line it replaced. |   |
+| 3 | Once the log is fully faded in and no time stop restricts anything, the timer `+0x40BA` counts up to 150 x `[0x01DFE0B4]`. A queued line replaces the shown one when the timer reaches the shown line's hold time. | `0x00226BA0` |
+| 4 | With nothing queued, the log fades out once the timer is full, and `0x002BEE00` retires every shown line when the fade reaches 0. |   |
 
 Message 15 stops the steps (bit `0x1` of `+0x40B6`), and the pane set-up `0x002BEF70` installs the layout record and the
 descriptor `0x002735E0(1)` for the log and its pane `0x002C0BE0`.
@@ -683,62 +1244,146 @@ descriptor `0x002735E0(1)` for the log and its pane `0x002C0BE0`.
 ### The HUD switch
 
 `0x00251F40(n)` shows the HUD for `n` above 0 and hides it otherwise, and does nothing while bits `0x40` and `0x80` of `0x01E0C320`
-are both set (`0x00251F51`). Among the parts it switches are the minimap (`0x003C5E00`, `0x003C58B0`), the map overlay page
+are both set¹. Among the parts it switches are the minimap², the map overlay page
 (`0x002B61B0`, `0x002B6140`; [Map screens](map-screens.md)) and the message windows (`0x0035D1B0`, `0x0035D0E0`;
 [Message windows](message-windows.md)).
 
-The switch (`0x00252011`), `0x00255330` (`0x00255371`) and `0x00254AC0` (`0x00254B05`) also close the widget at `[0x02B47740]`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00251F51` |
+| ² | `0x003C5E00`, `0x003C58B0` |
+
+</details>
+
+The switch¹, `0x00255330`² and `0x00254AC0`³ also close the widget at `[0x02B47740]`
 with `0x003C9900`: when it exists, its `+0x40` bit `0x10000` is set to whether `0x002544B0()` answers 1, then `0x00244DD0` runs.
-The switch opens it with `0x003C9F80` (`0x00251FCD`): with the widget present it sets `+0x40` bit `0x8000` to whether
+The switch opens it with `0x003C9F80`⁴: with the widget present it sets `+0x40` bit `0x8000` to whether
 `0x002544B0()` (`[0x020927EC]`) answers 1 and runs `0x00246AC0`; without it, `0x003C99D0` creates it (`0x00244F50(0xD8,
 0x003C9A30, 0)`) and does the same.
 
-That widget's procedure `0x003C9A30` stores the widget at `0x02B47740` when it is created (`0x003C9AE3`) and closes its
-child `+0xC8` with `0x003C98A0` (`0x003C9BA8`, `0x003C9D37`): the child's `+0x7C` becomes `(v & 0x3FF7FF) | 0x4B000800`,
-`0x00244DD0` closes it, and bit `0x2` of the widget's `+0xC4` is cleared (`0x003C98D1`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00252011` |
+| ² | `0x00255371` |
+| ³ | `0x00254B05` |
+| ⁴ | `0x00251FCD` |
+
+</details>
+
+That widget's procedure `0x003C9A30` stores the widget at `0x02B47740` when it is created¹ and closes its
+child `+0xC8` with `0x003C98A0`²: the child's `+0x7C` becomes `(v & 0x3FF7FF) | 0x4B000800`,
+`0x00244DD0` closes it, and bit `0x2` of the widget's `+0xC4` is cleared³.
 The same procedure places that child with
-`0x003C9840` (`0x003C9B6D`, `0x003C9CB8`): it copies the words `+0x0C` and `+0x0E` of layout entry 2 (1 when `0x003C5FB0()`
-answers 0) of the widget (`0x00394690`) to the child's `+0x98` and `+0x9A`.
+`0x003C9840`⁴: it copies the words `+0x0C` and `+0x0E` of layout entry 2 (1 when `0x003C5FB0()`
+answers 0) of the widget⁵ to the child's `+0x98` and `+0x9A`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C9AE3` |
+| ² | `0x003C9BA8`, `0x003C9D37` |
+| ³ | `0x003C98D1` |
+| ⁴ | `0x003C9B6D`, `0x003C9CB8` |
+| ⁵ | `0x00394690` |
+
+</details>
 
 On show it also sets bit `0x1` of the word `+0x1D7A` of the part at `+0x10F80`
-through `0x00290280(0, v)`: `0x0035D560` gives v = 1 when bit `0x200000` of the options word is set (`0x002DDDC0`) and bit `0x400` of
-the script hold mask is clear (`0x002E0FA0`), and `0x0035D550` gives 0 otherwise. For any
-other first argument `0x00290280` stores the low bit of v in bit `0x2` of that word (`0x00290293`-`0x002902C1`).
+through `0x00290280(0, v)`: `0x0035D560` gives v = 1 when bit `0x200000` of the options word is set¹ and bit `0x400` of
+the script hold mask is clear², and `0x0035D550` gives 0 otherwise. For any
+other first argument `0x00290280` stores the low bit of v in bit `0x2` of that word³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DDDC0` |
+| ² | `0x002E0FA0` |
+| ³ | `0x00290293`-`0x002902C1` |
+
+</details>
 
 Scripts reach it through a word of hide bits, one per verb family:
 
-1. `maskopen`, `maskclose`, `sethpmenu` and their fast and `mesv` forms set or clear their bit of `0x0215F1AC` with
-   `0x002E1C40` ([verb table](../Scripts-And-Script-Commands/verb-table.md)):
-   - `0x002E1C40` also clears that bit of `0x0215F1B4` (`0x002E1C5A`-`0x002E1C64`).
-   - The fast forms then set the same bit of `0x0215F1B4` with `0x002E1C70(1, bit)` (`0x003531CE`, `0x00353A8F`, `0x0035609E`,
-     `0x00355DC9`, `0x00353620`).
-   - `maskopen`, `maskclose`, `sethpmenu`, `sethpmenu_436` and `mesvmaskopen` set it the same way while the skip byte
-     `+0x201` of the script's manager slot is set, which `0x00267310` returns (`0x00353DD1`, `0x00354842`, `0x003569C1`,
-     `0x00356416`, `0x00354343`); with that byte clear they end in `0x002E1C40` and the bit of `0x0215F1B4` stays clear.
-2. Each tick `0x002E0940` compares the word with the last one seen (`0x0215F1B0`). On a change it calls
-   `0x00254440(word != 0, b)`, with b = 1 when any bit of `0x0215F1B4` is set, and clears `0x0215F1B4`.
-3. `0x00254440(a, b)` sets the dword `0x01E0C320`, keeps a at `0x02092744` and b at `0x020927EC`, and jumps to
-   `0x00255330(a)`, which hides the HUD for 1 and otherwise runs the switch with the saved value `[0x020927E8]`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `maskopen`, `maskclose`, `sethpmenu` and their fast and `mesv` forms set or clear their bit of `0x0215F1AC` with `0x002E1C40` ([verb table](../Scripts-And-Script-Commands/verb-table.md)):<br>• `0x002E1C40` also clears that bit of `0x0215F1B4`.<br>• The fast forms then set the same bit of `0x0215F1B4` with `0x002E1C70(1, bit)`.<br>• `maskopen`, `maskclose`, `sethpmenu`, `sethpmenu_436` and `mesvmaskopen` set it the same way while the skip byte `+0x201` of the script's manager slot is set, which `0x00267310` returns; with that byte clear they end in `0x002E1C40` and the bit of `0x0215F1B4` stays clear. | `0x002E1C5A`-`0x002E1C64`<br>`0x003531CE`, `0x00353A8F`, `0x0035609E`, `0x00355DC9`, `0x00353620`<br>`0x00353DD1`, `0x00354842`, `0x003569C1`, `0x00356416`, `0x00354343` |
+| 2 | Each tick `0x002E0940` compares the word with the last one seen. On a change it calls `0x00254440(word != 0, b)`, with b = 1 when any bit of `0x0215F1B4` is set, and clears `0x0215F1B4`. | `0x0215F1B0` |
+| 3 | `0x00254440(a, b)` sets the dword `0x01E0C320`, keeps a at `0x02092744` and b at `0x020927EC`, and jumps to `0x00255330(a)`, which hides the HUD for 1 and otherwise runs the switch with the saved value `[0x020927E8]`. |   |
 
 `0x00254440` sets bit `0x40` of `0x01E0C320` when the low byte of b has bit `0x80` clear. With that bit set it
-replaces the whole dword: `0x80` for an a other than 0, 0 for an a of 0 (`0x00254440`-`0x0025445B`).
+replaces the whole dword: `0x80` for an a other than 0, 0 for an a of 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00254440`-`0x0025445B` |
+
+</details>
 
 For 1, `0x00255330` hides the HUD unless bits `0x40` and `0x80` of `0x01E0C320` are both set: it runs the hide
 calls `0x003C8990`, `0x0035DAC0`, `0x0028FF20`, `0x003C58B0`, `0x002B6140`, `0x0035D5A0`, `0x0035D0E0` with `[0x020927EC]`,
-`0x003C9900` and `0x003BBFA0(0)`, and clears bit `0x80` of `0x020927EC` (`0x00255339`-`0x0025537D`). In both cases
-`0x00255330` then clears bits `0xC` of the HUD draw word `0x01E0C2AC` and jumps to `0x0017E7D0`
-(`0x00255387`-`0x00255397`).
+`0x003C9900` and `0x003BBFA0(0)`, and clears bit `0x80` of `0x020927EC`¹. In both cases
+`0x00255330` then clears bits `0xC` of the HUD draw word `0x01E0C2AC` and jumps to `0x0017E7D0`².
 
-Of the hide calls, `0x0028FF20` does nothing while the qword `[[0x0209BE80]+0x10F80]` is 0
-(`0x0028FF2B`-`0x0028FF33`); else it sets bit `0x8` of word `+0x1D7A` of the part that qword points to
-(`0x0028FF64`), first storing 0 in the part's word `+0x1D78` when `0x002544B0` returns 1 (`0x0028FF35`-`0x0028FF4F`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00255339`-`0x0025537D` |
+| ² | `0x00255387`-`0x00255397` |
+
+</details>
+
+Of the hide calls, `0x0028FF20` does nothing while the qword `[[0x0209BE80]+0x10F80]` is 0¹; else it sets bit `0x8` of word `+0x1D7A` of the part that qword points to², first storing 0 in the part's word `+0x1D78` when `0x002544B0` returns 1³;
 the same body is called at `0x00251FF2`, `0x00254AE6` and `0x003C5EED` as well.
 
-For any other value it runs the switch `0x00251F40` with the saved value `[0x020927E8]` and sets bits `0xC` of
-that word (`0x0025539C`-`0x002553A7`).
+<details>
+<summary>Where in the code</summary>
 
-`0x00254480(a, b)`, run by the menu handler `0x00280140` (`0x002801D5`), stores the same two words directly: a at
+| | Code |
+|---|---|
+| ¹ | `0x0028FF2B`-`0x0028FF33` |
+| ² | `0x0028FF64` |
+| ³ | `0x0028FF35`-`0x0028FF4F` |
+
+</details>
+
+For any other value it runs the switch `0x00251F40` with the saved value `[0x020927E8]` and sets bits `0xC` of
+that word¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025539C`-`0x002553A7` |
+
+</details>
+
+`0x00254480(a, b)`, run by the menu handler `0x00280140`¹, stores the same two words directly: a at
 `0x02092744` and b without bit `0x80` at `0x020927EC`, clearing `0x01E0C320` when b has bit `0x80`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002801D5` |
+
+</details>
 
 ### Entry points
 
@@ -764,6 +1409,9 @@ that word (`0x0025539C`-`0x002553A7`).
 The Escape Mode register and arming are on [Escape](../Controls-And-Input/escape.md).
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### The field marker
 
@@ -836,7 +1484,16 @@ This field sits in the part at `+0xA0D0` of the manager, whose two `0x110`-byte 
 
 ### The selection marker's slots
 
-The selection marker keeps two `0x20`-byte slots at its `+0x30` (The selection marker above). A new unit starts the slot that bit `0x2` of the marker's `+0x74` names and flips that bit, so the next unit takes the other slot (`0x0028CB1F`-`0x0028CB66`).
+The selection marker keeps two `0x20`-byte slots at its `+0x30` (The selection marker above). A new unit starts the slot that bit `0x2` of the marker's `+0x74` names and flips that bit, so the next unit takes the other slot¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028CB1F`-`0x0028CB66` |
+
+</details>
 
 `SelectionMarkerSlot` (`0x20` bytes, offsets from the start of the record):
 
@@ -878,39 +1535,101 @@ The part at `+0x7FB0` holds six `0x110`-byte records, one per unit whose level w
 ### The set-up and update of the part at +0xA0
 
 `0x003F8D20`, reached through `0x0028FB40` (from `0x00253825`), sets the part up once. It loads the `partytop_8_c`
-picture into `+0x52B8` (`0x0024A5A0`, `0x003F8D51`) and uploads it. It keeps the marker cell's rectangle at `+0x00`-`+0x0C`
-(`0x002711E0`, `0x003F8E51`-`0x003F8E73`) and the cell's palette at `+0x52C4` (`0x003F8E78`). Then it sets bit `0x1` of
-`+0x52C6` (`0x003F8E5B`), which the draw `0x003F8C70` tests first.
+picture into `+0x52B8`¹ and uploads it. It keeps the marker cell's rectangle at `+0x00`-`+0x0C`² and the cell's palette at `+0x52C4`³. Then it sets bit `0x1` of
+`+0x52C6`⁴, which the draw `0x003F8C70` tests first.
 
-`0x00275490(out, a, b, t)` writes a + (b - a) x t for x, y and z and 1.0 in w (`0x00275490`-`0x002754D9`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024A5A0`, `0x003F8D51` |
+| ² | `0x002711E0`, `0x003F8E51`-`0x003F8E73` |
+| ³ | `0x003F8E78` |
+| ⁴ | `0x003F8E5B` |
+
+</details>
+
+`0x00275490(out, a, b, t)` writes a + (b - a) x t for x, y and z and 1.0 in w¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00275490`-`0x002754D9` |
+
+</details>
 
 Each frame `0x003F8EC0` keeps a point at `+0x10` that follows the controlled character. It copies the position on the
 first frame (`0x003F8F1E`, bit `0x2` of `+0x52C6`) and then moves halfway to it (`0x00275490` at `0x003F8F3D`). With no
-controlled character it clears bit `0x2` (`0x003F8EF2`). It sets the sprite count `+0x52C0` to 0 and the label search
-start `+0x52B0` to the list head (`0x003F8F86`, `0x003F8F7F`). `0x003F9720` measures the lines from the point (`0x003F903B`,
-`0x003F9AA1`) and moves `+0x52B0` past each label it finds (`0x003F99C0`).
+controlled character it clears bit `0x2`¹. It sets the sprite count `+0x52C0` to 0 and the label search
+start `+0x52B0` to the list head². `0x003F9720` measures the lines from the point³ and moves `+0x52B0` past each label it finds⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F8EF2` |
+| ² | `0x003F8F86`, `0x003F8F7F` |
+| ³ | `0x003F903B`, `0x003F9AA1` |
+| ⁴ | `0x003F99C0` |
+
+</details>
 
 ### The labels of the part at +0xA0
 
 Next to its markers the part at `+0xA0` writes a name: an area's name, or text `0x3EC`. It keeps eight
 `0x250`-byte screen labels at its `+0x4020`, listed from `+0x52A0` (links `+0x240` and `+0x248`).
 
-- `0x003F8EA0`, run by `0x0028FA70` (`0x0028FA87`), clears the list head and all eight labels, `0x1280` bytes from
-  `+0x4020` (`0x003F8EBA`).
-- Before its two passes `0x003F8EC0` clears bit `0x2` of `+0x23C` on every listed label (`0x003F8F60`). The passes are
-  `0x003F9720(part, 0)` (`0x003F8F90`) and `0x003F9720(part, 1)` (`0x003F8F9D`), over the zone script's lists 0 and 1.
-- For each marker `0x003F9720` takes a label whose `+0x23C` bit `0x1` is clear (`0x003F9270`, `0x003F9961`). It sets
-  `+0x238` and `+0x23A` (`0x003F9972`, `0x003F997F`) and appends the label to the list (`0x003F99A8`, `0x003F9A2F`,
-  `0x003F9A36`).
-- It copies the text into `+0x130` through `0x003F92B0` (`0x003F9A4E`), which takes the area name from `0x00377870`
-  (`0x003F9314`) or text `0x3EC` from `0x002F9860` (`0x003F935C`). It lays the text out with `0x002B3400` (`0x003F9A67`) and
-  sets `+0x23C` bits `0x1` and `0x2` (`0x003F9A78`).
+- `0x003F8EA0`, run by `0x0028FA70`¹, clears the list head and all eight labels, `0x1280` bytes from
+  `+0x4020`².
+- Before its two passes `0x003F8EC0` clears bit `0x2` of `+0x23C` on every listed label³. The passes are
+  `0x003F9720(part, 0)`⁴ and `0x003F9720(part, 1)`⁵, over the zone script's lists 0 and 1.
+- For each marker `0x003F9720` takes a label whose `+0x23C` bit `0x1` is clear⁶. It sets
+  `+0x238` and `+0x23A`⁷ and appends the label to the list⁸.
+- It copies the text into `+0x130` through `0x003F92B0`⁹, which takes the area name from `0x00377870`
+ ¹⁰ or text `0x3EC` from `0x002F9860`¹¹. It lays the text out with `0x002B3400`¹² and
+  sets `+0x23C` bits `0x1` and `0x2`¹³.
 - After the passes `0x003F8EC0` sets the alpha `+0x33` to 0 on each label that no marker claimed again, the ones
-  without bit `0x2` (`0x003F8FB9`). `0x003F8C70` hands each listed label to `0x003F14D0` (`0x003F8CF3`).
+  without bit `0x2`¹⁴. `0x003F8C70` hands each listed label to `0x003F14D0`¹⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028FA87` |
+| ² | `0x003F8EBA` |
+| ³ | `0x003F8F60` |
+| ⁴ | `0x003F8F90` |
+| ⁵ | `0x003F8F9D` |
+| ⁶ | `0x003F9270`, `0x003F9961` |
+| ⁷ | `0x003F9972`, `0x003F997F` |
+| ⁸ | `0x003F99A8`, `0x003F9A2F`, `0x003F9A36` |
+| ⁹ | `0x003F9A4E` |
+| ¹⁰ | `0x003F9314` |
+| ¹¹ | `0x003F935C` |
+| ¹² | `0x003F9A67` |
+| ¹³ | `0x003F9A78` |
+| ¹⁴ | `0x003F8FB9` |
+| ¹⁵ | `0x003F8CF3` |
+
+</details>
 
 ### The sprites of the part at +0xA0
 
-The part at `+0xA0` keeps 64 sprites of `0x100` bytes at its `+0x20`. `0x003F9390` places them along the lines of the zone script's lists 0 and 1 (`0x003F9720`), and `0x003F8C70` hands them to the depth list on each draw (The draw pass above), so they have the layout every function of that table reads.
+The part at `+0xA0` keeps 64 sprites of `0x100` bytes at its `+0x20`. `0x003F9390` places them along the lines of the zone script's lists 0 and 1¹, and `0x003F8C70` hands them to the depth list on each draw (The draw pass above), so they have the layout every function of that table reads.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F9720` |
+
+</details>
 
 `HudLineSprite` (`0x100` bytes, offsets from the start of the record):
 
@@ -949,12 +1668,32 @@ The part at `+0xA0` keeps 64 sprites of `0x100` bytes at its `+0x20`. `0x003F939
 ### The target-line watcher
 
 The target-line watcher is the `0xD0`-byte widget kept at `0x022C83A8` with procedure `0x0035DAF0`. `0x0035DC60`, run by the
-field set-up `0x00253A10` (`0x00253A1E`), builds it while the cell is 0 (`0x0035DC64`-`0x0035DC82`); message 18 clears the
-cell (`0x0035DB30`). Each tick it keeps one `+0x10F30` mark (Line marks above) from the controlled character to that
+field set-up `0x00253A10`¹, builds it while the cell is 0²; message 18 clears the
+cell³. Each tick it keeps one `+0x10F30` mark (Line marks above) from the controlled character to that
 character's target.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00253A1E` |
+| ² | `0x0035DC64`-`0x0035DC82` |
+| ³ | `0x0035DB30` |
+
+</details>
+
 The field set-up `0x00253A10` is four calls in a row: `0x0035C0D0`, `0x003CA2F0`, `0x0035DC60` and a jump to
-`0x003C8A20` (`0x00253A14`-`0x00253A27`).
+`0x003C8A20`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00253A14`-`0x00253A27` |
+
+</details>
 
 `TargetLineWatcher` (`0xD0` bytes, offsets from the start of the record):
 
@@ -966,7 +1705,12 @@ The field set-up `0x00253A10` is four calls in a row: `0x0035C0D0`, `0x003CA2F0`
 | `+0xC8` | `u32` | shownTarget | the current party record's target, its `+0x08` (`0x0035DB65`), as last seen: stored with a new character (`0x0035DB7B`) or when only the target changed (`0x0035DB9F`-`0x0035DBAB`); 0 on message 1 (`0x0035DC3D`). For a target that is set, is not the character, and for which `0x00320CA0` answers 1 with the bits under mask `0x3` of its word clear, it asks for a `+0x10F30` mark from the character to the target (`0x00290300`, which runs `0x00291010`; `0x0035DBB9`-`0x0035DBD5`); otherwise it drops the character's mark (`0x00290940`, `0x0035DBEC`) |
 | `+0xCC` | `u8[4]` | pad0CC | accessed by no instruction of the procedure or of the cell's creator; nothing fixes its width |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -981,6 +1725,8 @@ The field set-up `0x00253A10` is four calls in a row: `0x0035C0D0`, `0x003CA2F0`
 | `0x0209E614` | `u8` | 0 (zero-filled tail of `.data`) | the first of the two times `0x002BDB20` returns for help-message kind 5, in frames: 30 times the frame-rate multiplier `0x01DFE0B4` (1 at 30 fps; 2 at 60 fps, which `0x001EDDC0` stores at `0x001EDDF2` before it enters `0x002BDA90`) | `0x002BDA90` (`0x002BDAD7`), entered by the tail jump at `0x001EDE60` in `0x001EDDC0` | `0x002BDB20` (`0x002BDB42`, from the base `0x0209E610` it loads at `0x002BDB3B`, index kind - 1), called by `0x0028E110` (`0x0028E136`) |
 
 No other instruction reaches these four.
+
+</details>
 
 ## Modding notes
 
@@ -1007,26 +1753,34 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Enemy AI and gambits** (explained on [action definition row](../Battle-Actions/action-definition-row.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00307300` | calls | `0x003216E0` |
+| [`0x00307300`](../Battle-Actions/area-of-effect.md) Battle: process action target (on area of effect) | calls | [`0x003216E0`](../Enemy-AI-And-Gambits/enmity.md) Battle enmity: apply action parameters (on enmity) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003F8C60` | is called by | `0x00290130` |
+| [`0x003F8C60`](hud.md) | is called by | [`0x00290130`](../Rewards-EXP-Gil-And-Loot/gil.md) (on gil) |
 
 **Status effects and KO** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0030C650` | calls | `0x0030FED0` |
+| [`0x0030C650`](hud.md) Battle stats: advance level to target and recompute growth | calls | [`0x0030FED0`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Battle stats: recompute derived state and auto statuses (on equipping an item) |
 
 **Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00253C70` | calls | `0x0032A8A0` |
+| [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) | calls | [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) |
 
 </details>

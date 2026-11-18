@@ -50,15 +50,32 @@ item's name is the name word of the item's own row, as the matching arm of `0x00
 | `+0x08` | `u16` | item2 | an inventory id, `0xFFFF` for no item |
 | `+0x0A` | `u16` | count2 | as `count1` |
 
-The class-14 handler `0x002FD530` acts only on a relative give on channel 1 and otherwise returns 0 at once
-(`0x002FD53F`-`0x002FD54C`); it gives the gil and then each item that is not `0xFFFF` through
+The class-14 handler `0x002FD530` acts only on a relative give on channel 1 and otherwise returns 0 at once¹; it gives the gil and then each item that is not `0xFFFF` through
 `0x003008A0(item, count × give's count, 0, 1, flags)`, and returns 0.
 
-The row is the decoded row base plus `(id - 0x9000)` times the stride, added in 32 bits
-(`0x002FD586`-`0x002FD5A2`). Nothing guards it: when the slot `0x02EBF070` is null or its decoded row base is 0, the row
-address is 0 (`0x002FD56A`-`0x002FD5A6`) and the gil read at `0x002FD5A9` faults, because the first 64 KB of a Windows
-x64 process are never mapped. The class-14 arm of `0x0031C5D0` copies the five fields to the query record
-(`0x0031D683`-`0x0031D6AB`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD53F`-`0x002FD54C` |
+
+</details>
+
+The row is the decoded row base plus `(id - 0x9000)` times the stride, added in 32 bits¹. Nothing guards it: when the slot `0x02EBF070` is null or its decoded row base is 0, the row
+address is 0² and the gil read at `0x002FD5A9` faults, because the first 64 KB of a Windows
+x64 process are never mapped. The class-14 arm of `0x0031C5D0` copies the five fields to the query record³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD586`-`0x002FD5A2` |
+| ² | `0x002FD56A`-`0x002FD5A6` |
+| ³ | `0x0031D683`-`0x0031D6AB` |
+
+</details>
 
 The `selectors` column lists the package selectors ([Reward selector list](reward-selector-list.md)) that name the
 package, and `script_gives` counts the rows of [Scene rewards](../Story-Events-And-Hunts/scene-rewards.md)

@@ -16,36 +16,56 @@
 ### The opener
 
 The field's input arbiter calls `0x00228380` before it reads a button and reads nothing while it answers non-zero
-([Controls](../Controls-And-Input/controls.md), `0x00253CC3`). Each call (`0x00228380`-`0x0022843A`):
+([Controls](../Controls-And-Input/controls.md), `0x00253CC3`). Each call¹:
 
-1. When the window is not in front (`0x0017E4C0` answers 0) and no inactive-window task exists, it starts one
-   (`0x00228490`). This comes before every test below, so a call that answers 0 can still start the task
-   (`0x0022839B`-`0x002283AE`).
-2. It answers 0 while `0x003603C0` or `0x001D6B70` answers non-zero, or while `0x01FD4950` is 0. `0x01FD4950` is set once,
-   by `0x00229AD0`, which the title asset's factory `0x00394460` runs ([Widgets](widgets.md)). `0x001D6B70` is reached
-   through the jump `0x0017D930` (`0x002283C0`-`0x002283D8`).
-3. With action availability bit `0x200000` set (`0x002E0FA0`, read first at `0x0022838F`) it goes on only when
-   `0x002E1020(1)` also has bit `0x200000`, and then passes argument 0
-   to the overlay of step 5 ([Action availability](../Controls-And-Input/action-availability.md)). Otherwise the argument is 1
-   (`0x00228396`, `0x002283DA`-`0x002283ED`).
-4. With an overlay open it answers 1. With the count `0x01FD46FC` above 0 it counts it down and answers 1
-   (`0x002283EF`-`0x0022840B`).
-5. Otherwise, while the inactive-window task exists, it builds the overlay through `0x002282F0(argument)`; with no task
-   it answers 0. The task is looked at after step 1, so one that the same call started counts (`0x002283B3`-`0x002283BC`),
-   and the call ends with a jump to `0x002282F0`, whose answer it returns (`0x00228420`-`0x00228435`).
+<details>
+<summary>Where in the code</summary>
 
-`0x002282F0` builds the `0xD0`-byte overlay `0x00229590` into `0x01FD4940` when that is empty (`0x00228303`-`0x00228352`).
-The record it passes is `{0, argument, 0}` (`0x00228321`-`0x00228345`). It answers 0 when an overlay is already there
-(`0x0022830D`) and otherwise whether `0x00244F50` returned 0 (`0x0022834F`-`0x0022835C`), so the call that builds the overlay
+| | Code |
+|---|---|
+| ¹ | `0x00228380`-`0x0022843A` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When the window is not in front (`0x0017E4C0` answers 0) and no inactive-window task exists, it starts one. This comes before every test below, so a call that answers 0 can still start the task. | `0x00228490`<br>`0x0022839B`-`0x002283AE` |
+| 2 | It answers 0 while `0x003603C0` or `0x001D6B70` answers non-zero, or while `0x01FD4950` is 0. `0x01FD4950` is set once, by `0x00229AD0`, which the title asset's factory `0x00394460` runs ([Widgets](widgets.md)). `0x001D6B70` is reached through the jump `0x0017D930`. | `0x002283C0`-`0x002283D8` |
+| 3 | With action availability bit `0x200000` set (`0x002E0FA0`, read first at `0x0022838F`) it goes on only when `0x002E1020(1)` also has bit `0x200000`, and then passes argument 0 to the overlay of step 5 ([Action availability](../Controls-And-Input/action-availability.md)). Otherwise the argument is 1. | `0x00228396`, `0x002283DA`-`0x002283ED` |
+| 4 | With an overlay open it answers 1. With the count `0x01FD46FC` above 0 it counts it down and answers 1. | `0x002283EF`-`0x0022840B` |
+| 5 | Otherwise, while the inactive-window task exists, it builds the overlay through `0x002282F0(argument)`; with no task it answers 0. The task is looked at after step 1, so one that the same call started counts, and the call ends with a jump to `0x002282F0`, whose answer it returns. | `0x002283B3`-`0x002283BC`<br>`0x00228420`-`0x00228435` |
+
+`0x002282F0` builds the `0xD0`-byte overlay `0x00229590` into `0x01FD4940` when that is empty¹.
+The record it passes is `{0, argument, 0}`². It answers 0 when an overlay is already there³ and otherwise whether `0x00244F50` returned 0⁴, so the call that builds the overlay
 answers 0 and the opener's later calls answer 1 through step 4 while the overlay stays.
 `0x01FD46FC` is set to 5 when an overlay is destroyed, so a new one cannot open for five calls.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00228303`-`0x00228352` |
+| ² | `0x00228321`-`0x00228345` |
+| ³ | `0x0022830D` |
+| ⁴ | `0x0022834F`-`0x0022835C` |
+
+</details>
 
 ### The inactive-window task
 
 `0x00228490` builds the `0xD0`-byte task `0x002284F0` into `0x01FD4948`
-([Action availability](../Controls-And-Input/action-availability.md)) only while `0x01FD4948` is 0, with a zero record
-(`0x002284A3`-`0x002284D2`).
+([Action availability](../Controls-And-Input/action-availability.md)) only while `0x01FD4948` is 0, with a zero record¹.
 `0x00228480` answers whether it exists.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002284A3`-`0x002284D2` |
+
+</details>
 
 | Message | What the task does |
 |---|---|
@@ -57,21 +77,37 @@ answers 0 and the opener's later calls answer 1 through step 4 while the overlay
 
 `0x001EC5A0` answers whether a movie plays: the movie player's status `+4` is 3 (`0x001B7F20`, `0x001B7D20`,
 [Movies](../Graphics/movies.md)). `0x0017E500(on)` sends the message `0x8002` with 1 or 0 to the game
-window `0x02EA5248`, the handle the window procedure `0x00798FF0` stores (`0x007990FF`).
+window `0x02EA5248`, the handle the window procedure `0x00798FF0` stores¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007990FF` |
+
+</details>
 
 ### Building the overlay
 
-On message 1 the overlay (`0x00229961`-`0x00229A98`):
+On message 1 the overlay¹:
 
-1. prints `PauseMenu Create` (`0x0017DB70`) and clears bytes 0, 1 and 2 of the running object (`0x00183200(0)`,
-   `0x00182FF0(0)`), below;
-2. keeps its argument at `+0xC8`, sets state `+0xC0` to 0, and takes the 1920 x 1080 frame from `0x01E0C1D8` and
-   `0x01E0C1DC` as its size;
-3. sets bits `0x2`, `0x1`, `0x100000` and `0x200` of action availability row 15 (`0x002E1C20`): bits `0x1`, `0x2` and `0x200` keep the main menu, the battle
-   menu and Escape Mode shut, and no reader tests bit `0x100000`;
-4. builds button legend scenes `0x12` and `0x0C` (`0x0029DA70`) and formats text `0x467C`, which holds only size and baseline codes,
-   with it into `0x01FD4960` (`0x002B4090`);
-5. attaches under `0x0208EA48` with priority -9.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00229961`-`0x00229A98` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | prints `PauseMenu Create` and clears bytes 0, 1 and 2 of the running object (`0x00183200(0)`, `0x00182FF0(0)`), below; | `0x0017DB70` |
+| 2 | keeps its argument at `+0xC8`, sets state `+0xC0` to 0, and takes the 1920 x 1080 frame from `0x01E0C1D8` and `0x01E0C1DC` as its size; |   |
+| 3 | sets bits `0x2`, `0x1`, `0x100000` and `0x200` of action availability row 15: bits `0x1`, `0x2` and `0x200` keep the main menu, the battle menu and Escape Mode shut, and no reader tests bit `0x100000`; | `0x002E1C20` |
+| 4 | builds button legend scenes `0x12` and `0x0C` and formats text `0x467C`, which holds only size and baseline codes, with it into `0x01FD4960`; | `0x0029DA70`<br>`0x002B4090` |
+| 5 | attaches under `0x0208EA48` with priority -9. |   |
 
 With a non-zero argument it then opens screen layer 3, `0x002CCD40({3, descriptor, 100, 0})`, and moves to state 1.
 The descriptor is `0x00908B40` when `0x00180120` answers 0, `0x022C7F84` is 0 and world lock 15 is not held
@@ -97,12 +133,31 @@ Each tick (message 2) moves the overlay through its states:
 | `3` | nothing | resumes, below; closes layer 3 (`0x002CCBC0(3)`), state 4 |
 | `4` | layer 3's widget at `[0x0209AC30] + 0x2A8` to be gone | clears the four availability bits (`0x002E1CA0`), turns the framework pause byte off (`0x0017E720(0)`) and releases itself |
 
-On message 4 it draws, once paused with `+0xC8` set, a sprite of the battle atlas (`0x0035D460`) centred on the frame
-(`0x002D8CB0`), and in every state the text at `0x01FD4960` (`0x002D8910`).
+On message 4 it draws, once paused with `+0xC8` set, a sprite of the battle atlas¹ centred on the frame², and in every state the text at `0x01FD4960`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035D460` |
+| ² | `0x002D8CB0` |
+| ³ | `0x002D8910` |
+
+</details>
 
 ### What pausing does
 
-At state 1 the overlay prints `PauseMenu Open` and (`0x0022986B`-`0x002298F2`):
+At state 1 the overlay prints `PauseMenu Open` and¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022986B`-`0x002298F2` |
+
+</details>
 
 - saves the behind-camera switch `0x02098354` at `+0xC4` and clears it (`0x0025A850`, `0x0025A880(0)`); the script verbs
   `tutorial_get_behindcameraenable` (`0x3A0`) and `tutorial_set_behindcameraenable` (`0x3A1`) read and write it;
@@ -111,24 +166,65 @@ At state 1 the overlay prints `PauseMenu Open` and (`0x0022986B`-`0x002298F2`):
 - turns on the framework pause byte at `[0x01F810F0]` (`0x0017E720(1)`, `0x001997E0`;
   [Game application](../Engine-Core/game-application.md));
 - unless the frame mode `0x00229EA0` is 5, sets byte 0 (`0x00183200(1)`, `0x0018A820`) and byte 2 (`0x00182FF0(1)`,
-  `0x0018A830`) of the three-byte running object `[0x01F7F5D8]` (`0x0018A7D0`), whose byte 0 the frame tick reads to
+  `0x0018A830`) of the three-byte running object `[0x01F7F5D8]`¹, whose byte 0 the frame tick reads to
   choose the pump's mode;
-- when the monster viewer's settings byte `+0x118` is set (`0x00181DD0`, `0x001EBA40`), sets its `+0x26E` and the flag
+- when the monster viewer's settings byte `+0x118` is set², sets its `+0x26E` and the flag
   `0x800000` of the render record of its id `+0x134` (`0x00181E10(1)`, `0x001EBC70`, `0x002EF250`).
 
-State 3 undoes each in turn (`0x002297F9`-`0x00229833`): audio on again unless lock 15 is held, the two bytes cleared
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018A7D0` |
+| ² | `0x00181DD0`, `0x001EBA40` |
+
+</details>
+
+State 3 undoes each in turn¹: audio on again unless lock 15 is held, the two bytes cleared
 (`0x0018A820` with 0 also clears bytes 1 and 2), the behind-camera switch restored, and the viewer flag cleared unless
 its `+0x26D` is set.
 
-`0x00183200(on)` and `0x00182FF0(on)` take the running object from `0x0018A7D0` and do nothing when it is 0
-(`0x00183208`-`0x00183210`, `0x00182FF8`-`0x00183000`). Otherwise they end with a jump to `0x0018A820(object, on != 0)` and
-`0x0018A830(object, on != 0)` (`0x00183212`-`0x00183227`, `0x00183002`-`0x00183017`): `0x0018A830` stores byte 2, and
-`0x0018A820` stores byte 0 and, for 0, the word at byte 1 (`0x0018A820`-`0x0018A826`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002297F9`-`0x00229833` |
+
+</details>
+
+`0x00183200(on)` and `0x00182FF0(on)` take the running object from `0x0018A7D0` and do nothing when it is 0¹. Otherwise they end with a jump to `0x0018A820(object, on != 0)` and
+`0x0018A830(object, on != 0)`²: `0x0018A830` stores byte 2, and
+`0x0018A820` stores byte 0 and, for 0, the word at byte 1³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00183208`-`0x00183210`, `0x00182FF8`-`0x00183000` |
+| ² | `0x00183212`-`0x00183227`, `0x00183002`-`0x00183017` |
+| ³ | `0x0018A820`-`0x0018A826` |
+
+</details>
 
 `0x0018A7D0` makes the object on its first call: three bytes from `0x00210EC0(3)`, all set to 0 and kept at
-`[0x01F7F5D8]`; when `0x00210EC0` returns 0 it stores that 0 and answers it (`0x0018A7D4`-`0x0018A812`).
+`[0x01F7F5D8]`; when `0x00210EC0` returns 0 it stores that 0 and answers it¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0018A7D4`-`0x0018A812` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### The pause overlay
 
@@ -157,15 +253,26 @@ The task is the `0xD0`-byte widget kept at `0x01FD4948` with procedure `0x002284
 | `+0xC4` | `u8[4]` | pad0C4 | read and written by no function; nothing fixes its width |
 | `+0xC8` | `void*` | pendingFocus | the widget that asked for the focus while the task held it: the focus call `0x002470D0` hands such a request to `0x002286B0` (`0x002470FF`), which sends the widget its message 10 and keeps it here (`0x002286E3`); when the task is destroyed (message 18) it gives the focus to this widget (`0x00228532`); the release `0x002482E0` clears it through `0x00228450` when the widget being released is the one kept (`0x0022845C`, `0x00228465`); 0 at construction (`0x00228643`) |
 
+</details>
+
 ## Modding notes
 
 - The pause screen is a focus-loss pause only. The overlay is built only while the inactive-window task exists
-  (`0x00228435`), and one call in the executable starts the task, `0x002283AE`, taken when the window is not in
+ ¹, and one call in the executable starts the task, `0x002283AE`, taken when the window is not in
   front.
 - What stops play is the audio mask, the availability bits and the task holding the input; the framework pause byte
   is set and cleared alongside them.
 - `0x01FD46FC` makes the opener answer 1 for five calls after a pause screen closes, which keeps the field input off
   for those frames.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00228435` |
+
+</details>
 
 ## Related
 
@@ -184,8 +291,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00245020` | is called by | `0x00280140` |
+| [`0x00245020`](widgets.md) (on widgets) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
 
 </details>

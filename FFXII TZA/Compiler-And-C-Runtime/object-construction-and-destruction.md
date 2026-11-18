@@ -18,7 +18,16 @@ A constructor stores a vtable with `lea reg, [vtable]; mov [object], reg`. A der
 its base constructor, which stores the base vtable, and then overwrites it with its own. The C++ table
 entry `0x0015BC40` shows both steps for the game's application object `0x01F7E350`: the base constructor
 `0x00792350` stores `Phyre::PFramework::PApplication`'s vtable `0x01CB2508`, and `0x0015BC40` then stores
-`GameApplication`'s vtable `0x008C5760` (`0x0015BC61`).
+`GameApplication`'s vtable `0x008C5760`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0015BC61` |
+
+</details>
 
 Every vtable is preceded by a pointer to its RTTI complete-object locator, so `vtable[-1]` names the
 class; see [class hierarchy](../Engine-Core/class-hierarchy.md).
@@ -30,10 +39,21 @@ Slot 0 of a class with a virtual destructor is its scalar deleting destructor. I
 in `rax`. The size it passes to the deallocator is the class size. The flag is tested where it arrives
 or, when the destructor calls another function first, in the register it was saved to:
 
-- `0x001D70A0` stores `ExtraUI`'s vtable, tests `dl, 1` (`0x001D70B3`) and calls `0x00809950` with
+- `0x001D70A0` stores `ExtraUI`'s vtable, tests `dl, 1`¹ and calls `0x00809950` with
   `edx = 0x90`.
-- `0x00195530` copies `edx` to `ebx` (`0x0019553A`), calls the inner destructor `0x00195180`, then tests
-  `bl, 1` (`0x00195544`) and calls `0x00809950` with `edx = 0x98`.
+- `0x00195530` copies `edx` to `ebx`², calls the inner destructor `0x00195180`, then tests
+  `bl, 1`³ and calls `0x00809950` with `edx = 0x98`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D70B3` |
+| ² | `0x0019553A` |
+| ³ | `0x00195544` |
+
+</details>
 
 `0x00809950` jumps to `0x00210EB0`, which jumps to `0x0019C590`, the `free` import stub; the size is ignored.
 
@@ -41,11 +61,12 @@ or, when the destructor calls another function first, in the register it was sav
 
 Most destructors test a second bit. `0x0086CE50` is the whole pattern:
 
-1. Store the vtable, then test bit `0x1` (`0x0086CE6C`); when clear, return the object.
-2. Test bit `0x4` (`0x0086CE71`).
-3. Clear: call `0x00584730`, which is `if (p) _aligned_free(p)` (`0x0019C570` is the `_aligned_free` import
-   stub).
-4. Set: load the size (`edx = 0x28`) and call `0x0016D6A0`, which is `ret 0`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Store the vtable, then test bit `0x1`; when clear, return the object. | `0x0086CE6C` |
+| 2 | Test bit `0x4`. | `0x0086CE71` |
+| 3 | Clear: call `0x00584730`, which is `if (p) _aligned_free(p)` (`0x0019C570` is the `_aligned_free` import stub). |   |
+| 4 | Set: load the size (`edx = 0x28`) and call `0x0016D6A0`, which is `ret 0`. |   |
 
 A caller passing `0x5` therefore destroys the object and keeps its storage. Two other deallocators sit
 on the bit-clear side: `0x007AD450` frees the block whose base is stored 8 bytes before the object,
@@ -89,59 +110,156 @@ not the class it belongs to; the class comes from where the destructor's address
 | `0x01CD6568` | `PInputSourceVisionTrackerY` | `0x0086D5D0` | `0x28` |
 | `0x01CD6588` | `PInputSourceVisionTrackerZ` | `0x0086D620` | `0x28` |
 
-Slot 2 of the base is `_purecall` (`0x00861EC6`) and every subclass fills it. Slot 1 of the base and of
+Slot 2 of the base is `_purecall`¹ and every subclass fills it. Slot 1 of the base and of
 the 19 touch, motion and vision-tracker classes is `0x0016D6A0`; the key, joypad and mouse classes fill it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00861EC6` |
+
+</details>
 
 ### Counted buffers with an ownership bit
 
 Many records hold an array as two fields: a 32-bit count whose bit `0x80000000` marks storage the record
 does not own, and a pointer. The release helpers free the pointer through `0x00584730` only when bit `0x80000000`
-is clear and then zero both fields (`0x005DD620`, `0x00597B00`). A replace frees the old pointer under the
-same test before storing the new one (`0x00672990`). `0x005CA130` stores a borrowed pointer and sets bit `0x80000000`
+is clear and then zero both fields¹. A replace frees the old pointer under the
+same test before storing the new one². `0x005CA130` stores a borrowed pointer and sets bit `0x80000000`
 with the count.
 
-`0x005CA130(record, pointer, count)` returns 5 and stores nothing when the count it is given already has bit
-`0x80000000` set (`0x005CA148`-`0x005CA14D`). Otherwise, when the old pointer differs from the new one and bit
-`0x80000000` of the old count is clear, it releases the old array with `0x005B7E10(old, oldCount & 0x7FFFFFFF)`
-(`0x005CA162`-`0x005CA17C`). It then stores the pointer and `count | 0x80000000` and returns 0
-(`0x005CA181`-`0x005CA190`).
+<details>
+<summary>Where in the code</summary>
 
-`0x005B7E10` returns at once for a null array (`0x005B7E13`). Otherwise it frees, through `0x00584730`, the pointer
+| | Code |
+|---|---|
+| ¹ | `0x005DD620`, `0x00597B00` |
+| ² | `0x00672990` |
+
+</details>
+
+`0x005CA130(record, pointer, count)` returns 5 and stores nothing when the count it is given already has bit
+`0x80000000` set¹. Otherwise, when the old pointer differs from the new one and bit
+`0x80000000` of the old count is clear, it releases the old array with `0x005B7E10(old, oldCount & 0x7FFFFFFF)`². It then stores the pointer and `count | 0x80000000` and returns 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CA148`-`0x005CA14D` |
+| ² | `0x005CA162`-`0x005CA17C` |
+| ³ | `0x005CA181`-`0x005CA190` |
+
+</details>
+
+`0x005B7E10` returns at once for a null array¹. Otherwise it frees, through `0x00584730`, the pointer
 at `+0x28` of each `0x38`-byte element when that pointer is non-null with bit `0x1` clear, and then the array
-itself (`0x005B7E40`-`0x005B7E63`).
+itself².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005B7E13` |
+| ² | `0x005B7E40`-`0x005B7E63` |
+
+</details>
 
 In some records a count of 0 or 1 keeps the element inline in the pointer field: `0x00627750` and the
 accessor `0x00623F50` use the field itself as the element when `count & 0x7FFFFFFF` is below 2, and
 dereference it otherwise. A tagged-pointer variant marks borrowed storage with bit `0x1` of the pointer
-instead (`0x005A17A0`).
+instead¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A17A0` |
+
+</details>
 
 Both functions handle `0x28`-byte elements. `0x00623F50(record, index)` reads the count at `+0x18` and the
-field at `+0x20`. An index not below `count & 0x7FFFFFFF` returns 0 (`0x00623F5A`, `0x00623F8E`); any other index
-returns the u64 at `+0x08` of element `index` (`0x00623F6A`-`0x00623F88`).
+field at `+0x20`. An index not below `count & 0x7FFFFFFF` returns 0¹; any other index
+returns the u64 at `+0x08` of element `index`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00623F5A`, `0x00623F8E` |
+| ² | `0x00623F6A`-`0x00623F88` |
+
+</details>
 
 `0x00627750(record, count)` sets a new count, with the count word at `+0x00` and the field at `+0x08`. A count
-equal to the whole stored word returns 0 at once (`0x0062776F`). Otherwise `0x0061CF20` gives the new storage: 0
+equal to the whole stored word returns 0 at once¹. Otherwise `0x0061CF20` gives the new storage: 0
 for a count of 0, the field itself for a count of 1, and for a larger count a block of `count * 0x28` bytes
-from `0x0017D260` called with `edx = 8`. It zeroes every element of the new storage (`0x0061CF2C`-`0x0061CF88`). The
+from `0x0017D260` called with `edx = 8`. It zeroes every element of the new storage². The
 old elements are not copied.
 
-A failed allocation for a non-zero count returns 13 (`0x0062779E`). The old array is freed through `0x00584730`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0062776F` |
+| ² | `0x0061CF2C`-`0x0061CF88` |
+
+</details>
+
+A failed allocation for a non-zero count returns 13¹. The old array is freed through `0x00584730`
 when it is non-null, is neither the field itself nor the new storage, and bit `0x80000000` of the old count is
-clear (`0x006277AC`-`0x006277C9`). The field then takes the new block unless the new storage is the field itself,
-the count word takes the new count, and the call returns 0 (`0x006277CE`-`0x006277DD`).
+clear². The field then takes the new block unless the new storage is the field itself,
+the count word takes the new count, and the call returns 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0062779E` |
+| ² | `0x006277AC`-`0x006277C9` |
+| ³ | `0x006277CE`-`0x006277DD` |
+
+</details>
 
 ### Allocator-owned containers
 
 EASTL containers carry an allocator object whose vtable slot `+0x18` frees `(pointer, bytes)`.
 `0x001EDF00` installs the `eastl::allocator_memory_log` vtable; containers pass it a name such as
-`EASTL vector` or `EASTL set` (`0x0019C630`). A vector release calls the allocator with its buffer and
-capacity in bytes (`0x0019CA20`); list clears walk the nodes and release each through the same slot
-(`0x00199B00`).
+`EASTL vector` or `EASTL set`¹. A vector release calls the allocator with its buffer and
+capacity in bytes²; list clears walk the nodes and release each through the same slot³.
 
-`0x0019CA20` handles `0x18`-byte elements. It does nothing when the buffer at `+0x00` is null (`0x0019CA33`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019C630` |
+| ² | `0x0019CA20` |
+| ³ | `0x00199B00` |
+
+</details>
+
+`0x0019CA20` handles `0x18`-byte elements. It does nothing when the buffer at `+0x00` is null¹.
 Otherwise it calls slot `+0x18` of the allocator at `+0x18` with the buffer and
-`(capacityEnd - buffer) / 0x18 * 0x18` bytes, `capacityEnd` being the pointer at `+0x10`
-(`0x0019CA38`-`0x0019CA6C`).
+`(capacityEnd - buffer) / 0x18 * 0x18` bytes, `capacityEnd` being the pointer at `+0x10`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019CA33` |
+| ² | `0x0019CA38`-`0x0019CA6C` |
+
+</details>
 
 The compiler generates the container operations once per element type. 76 such bodies between
 `0x00188640` and `0x001FFF00` are listed in [`object-construction-and-destruction-eastl-container-instances.tsv`](object-construction-and-destruction-eastl-container-instances.tsv)
@@ -179,6 +297,9 @@ jumps to the `malloc` import stub `0x0085E730`; the lazy singleton `0x0018A620` 
 
 ## Layouts
 
+<details>
+<summary>Show the memory layouts</summary>
+
 ```python
 scalar deleting destructor, as the call sites see it
   rcx = object
@@ -202,7 +323,12 @@ PInputSource vtable, `0x20` bytes per class from `0x01CD6260`; the u64 at `-0x08
 | `+0x08` | `u64` | slot1 |  |
 | `+0x10` | `u64` | slot2 |  |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -234,6 +360,8 @@ compiler and library forms by function address; each was profiled against the im
 | `nativeleaf-vectorbufferrelease`, `-vectordestroydeallocloop` | 5 and 5 vector releases, the second destroying each element first |
 | `nativeleaf-bumpallocpop` | 2 cursor steps that copy `+0x10` to `+0x18` (`0x002714A0`) or `+0x20` (`0x002714E0`) and advance `+0x10` by `0x10` |
 | `eastl-container-instances` | 76 vector, tree and list operations generated per element type, with the operation and element size of each |
+
+</details>
 
 ## Modding notes
 
@@ -275,7 +403,7 @@ compiler and library forms by function address; each was profiled against the im
   the caller's container (growth `0x001AB570`, member fetch `0x0018B4E0`), ending with a jump to `0x0018AFF0` (14 rows).
 - [`object-construction-and-destruction-nativeadapter-boundedrangecopycompare.tsv`](object-construction-and-destruction-nativeadapter-boundedrangecopycompare.tsv):
   404-byte functions that copy and compare a bounded range into storage anchored at `[rcx+8]` through `0x0016D720`,
-  `0x0016D840` and `0x001A3100`, checked with `memcmp` (`0x00861ED2`) (4 rows).
+  `0x0016D840` and `0x001A3100`, checked with `memcmp`¹ (4 rows).
 - [`object-construction-and-destruction-nativeadapter-containerpopfront.tsv`](object-construction-and-destruction-nativeadapter-containerpopfront.tsv):
   functions that, when the count at `+0x48` is not 0, take the head node from `+0x30`, lower the count, run
   `0x0016D6D0` and `0x0016DA60` on the node, call slot 3 of the object at `+0x50` with `0x28` and run `0x00199DB0` on
@@ -319,7 +447,7 @@ compiler and library forms by function address; each was profiled against the im
   a second form: the smaller of the index and that count, a lookup on `[this+8]`, `0xD` when it fails, and otherwise
   the range shrinks and its tail is freed through `0x00584730` (4 rows).
 - [`object-construction-and-destruction-nativeleaf-bumpallocpop.tsv`](object-construction-and-destruction-nativeleaf-bumpallocpop.tsv):
-  functions that store `[this+0x10]` to `+0x18` (`0x002714A0`) or `+0x20` (`0x002714E0`) and advance `+0x10` by `0x10`
+  functions that store `[this+0x10]` to `+0x18`² or `+0x20`³ and advance `+0x10` by `0x10`
   (2 rows).
 - [`object-construction-and-destruction-nativeleaf-listwalkvcallslot3.tsv`](object-construction-and-destruction-nativeleaf-listwalkvcallslot3.tsv):
   functions that walk the intrusive list at `[this+0x18]`, calling a member operation with each node and then slot 3
@@ -349,6 +477,17 @@ compiler and library forms by function address; each was profiled against the im
   functions that test a flag in the dword at `[rdx+0x30]`, free `[rdx+0x18]` through `0x00584730` when it is set, zero
   `+0x18` and `+0x30`, and return 1 (6 rows).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00861ED2` |
+| ² | `0x002714A0` |
+| ³ | `0x002714E0` |
+
+</details>
+
 Each of these function tables has one row per function: `address` is where it starts and `targets` the functions it
 calls or jumps to directly.
 
@@ -361,8 +500,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Menus and HUD** (explained on [map screens](../Menus-And-HUD/map-screens.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002714A0` | is called by | `0x005520F0` |
+| [`0x002714A0`](object-construction-and-destruction.md) | is called by | [`0x005520F0`](../Menus-And-HUD/map-screens.md) (on map screens) |
 
 </details>

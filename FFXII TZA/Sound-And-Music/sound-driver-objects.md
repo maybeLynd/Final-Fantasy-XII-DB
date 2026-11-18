@@ -21,10 +21,19 @@ The driver gives every object it creates an eight-byte handle, and every call na
 | `2`-`3` | the object's slot in its pool's list |
 | `4`-`7` | a serial number, one more than the last one given to that kind |
 
-`0x007B2CB0` writes all three for a sound (`0x007B2E49`-`0x007B2E4F`), `0x007B1660` for a bank, `0x007B5690` for a track,
+`0x007B2CB0` writes all three for a sound¹, `0x007B1660` for a bank, `0x007B5690` for a track,
 `0x007B5D20` for a voice and `0x007B72B0` for a music. A lookup takes the slot, checks it is live (bit `0x1` of the list node's
 `+0x1C`) and compares the whole handle with the object's own copy, so a handle of an object that has ended finds
 nothing:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B2E49`-`0x007B2E4F` |
+
+</details>
 
 | Kind | Object | Lookup | Its copy of the handle |
 |---:|---|---|---|
@@ -38,8 +47,18 @@ nothing:
 | `9` | `Magi::Instrument` | `0x007B7FD0` | slot 22 |
 
 `0x007A9160` turns a kind 7 handle into the driver handle its `Lay` source plays (source slot 4), found under the lock
-`0x007BC2A0` gives (`0x007BC2B0`), and passes a kind 8 handle through. Any other kind, and a kind 7 handle that finds no
-source, gives 0 (`0x007A91A4`, `0x007A91C8`). The music calls below use it, so they accept either.
+`0x007BC2A0` gives¹, and passes a kind 8 handle through. Any other kind, and a kind 7 handle that finds no
+source, gives 0². The music calls below use it, so they accept either.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007BC2B0` |
+| ² | `0x007A91A4`, `0x007A91C8` |
+
+</details>
 
 The handle helpers `0x007A4380` (-1), `0x007A5F10`
 (0), `0x007A46E0`, `0x007A4C40`, `0x007A4C70`, `0x007A47A0`, `0x007A9060` and `0x007A9080` build or copy a handle value, and
@@ -63,64 +82,124 @@ a list of `0x28`-byte nodes that its handles index:
 | instruments | `0x007B8170` | `0x208` | 32 | `0x02EADCD0` (`0x007B8060`); never built in the shipped game (below) |
 
 The counts are the shipped ones: the sound count is the categories' sum plus 32 and the sequences and tracks twice
-that (`0x007A4ECC`, `0x007A4ED7`), the voice count is the three start-up counts of
+that¹, the voice count is the three start-up counts of
 [Sound engine configuration](sound-engine-config.md), the bank and event counts come from the start-up block
 `0x00210760` fills (`0x400`, `0x40`), and the music and instrument counts are constants of their builders. `0x007B6AA0`
 links a fresh list's nodes into its free chain.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A4ECC`, `0x007A4ED7` |
+
+</details>
+
 `0x007DF790(pool, size, count, d, align)` works under the pool's lock. With `a = max(align, 8)` it keeps the block
-size `(max(size, 8) + a - 1) / a * a` at `+0x40` and the count at `+0x44` (`0x007DF7BB`-`0x007DF7E8`). It allocates
-`block * count + a - 1` bytes through `0x007AD550` with `d` (`0x007DF7FD`) and keeps the allocation at `+0x28`; when
-that gives 0 it answers -1 (`0x007DF80B`). Otherwise it stores the start `(p + a - 1) / a * a` at `+0x30` and
-`+0x38`, points each block's first qword at the next block, 0 in the last, and answers 0 (`0x007DF810`-`0x007DF85F`).
+size `(max(size, 8) + a - 1) / a * a` at `+0x40` and the count at `+0x44`¹. It allocates
+`block * count + a - 1` bytes through `0x007AD550` with `d`² and keeps the allocation at `+0x28`; when
+that gives 0 it answers -1³. Otherwise it stores the start `(p + a - 1) / a * a` at `+0x30` and
+`+0x38`, points each block's first qword at the next block, 0 in the last, and answers 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007DF7BB`-`0x007DF7E8` |
+| ² | `0x007DF7FD` |
+| ³ | `0x007DF80B` |
+| ⁴ | `0x007DF810`-`0x007DF85F` |
+
+</details>
 
 The instrument pool is never built in the shipped game. The driver start `0x007A4D50` calls the instrument builder
-`0x007B8170` only when start-up block `+0x28` is not 0 (`0x007A519B`-`0x007A51A0`), and `0x00210760` stores 0 there: its
+`0x007B8170` only when start-up block `+0x28` is not 0¹, and `0x00210760` stores 0 there: its
 8-byte store at `0x00210831` writes `0x20` to `+0x24` and 0 to `+0x28`. So the instrument pool and list stay empty, the
-flag `0x02EADC74` that only the builder sets (`0x007B8209`) stays 0, and `0x007B8220` answers 0.
+flag `0x02EADC74` that only the builder sets² stays 0, and `0x007B8220` answers 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A519B`-`0x007A51A0` |
+| ² | `0x007B8209` |
+
+</details>
 
 `0x007AF380` puts a node at the front of a list and `0x007B5580` at the
 back; both print "list append error full!" when no node is free. `0x007B2880` takes a node out, and `0x007B14C0` empties a bank list.
 
 ### Finding by number
 
-Banks and sounds are also kept in hash tables of 257 buckets (`0x007E27B0`): banks at `0x01F40440`, sounds at
+Banks and sounds are also kept in hash tables of 257 buckets¹: banks at `0x01F40440`, sounds at
 `0x01F40C50`. `0x007E2880` adds an object, `0x007E2910` removes it and `0x007E27F0` moves a found one to the front of its
 bucket.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007E27B0` |
+
+</details>
+
 - `0x007B2200(id)` finds the bank whose number is the id's high 16 bits, in bucket `(id >> 16) % 257`
-  (`0x007B2251`). It takes the first bank in the bucket whose slot 4 answers 1, whose slot 2 answers 0 and whose
-  slot 7 record holds that number in its word `+0x0A` (`0x007B2283`-`0x007B22BF`), moves it to the front of the
-  bucket (`0x007E27F0`) and returns it; with no such bank it returns 0 (`0x007B2441`).
+ ¹. It takes the first bank in the bucket whose slot 4 answers 1, whose slot 2 answers 0 and whose
+  slot 7 record holds that number in its word `+0x0A`², moves it to the front of the
+  bucket³ and returns it; with no such bank it returns 0⁴.
 - A bank whose header byte `+0x05` has bit `0x1` set, a music bank only from version byte `+0x04` 2, also needs
-  the number `u16 +0x08` of its first sound or music to equal the id's low 16 bits (`0x007B22EC`-`0x007B231A`,
-  `0x007B237E`-`0x007B23B2`). Other banks match on the high 16 bits alone, and a bank whose content type `+0x48` is
-  neither 1 nor 2 never matches (`0x007B235D`).
+  the number `u16 +0x08` of its first sound or music to equal the id's low 16 bits⁵. Other banks match on the high 16 bits alone, and a bank whose content type `+0x48` is
+  neither 1 nor 2 never matches⁶.
 - `0x007B4540(id)` finds a playing sound by its sound number and its bank's number; `0x007B7860(id)` does the same for a
   music.
 - `0x007A4CA0(out, id)` gives the handle of the playing sound or music with that id, by the bank's content type
   `+0x48`: 1 for a sound bank, 2 for a music bank.
-- `0x007A4BB0(out, id)` gives the handle of the bank that holds the id, under the bank lock (`0x007B24F0`).
+- `0x007A4BB0(out, id)` gives the handle of the bank that holds the id, under the bank lock⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B2251` |
+| ² | `0x007B2283`-`0x007B22BF` |
+| ³ | `0x007E27F0` |
+| ⁴ | `0x007B2441` |
+| ⁵ | `0x007B22EC`-`0x007B231A`, `0x007B237E`-`0x007B23B2` |
+| ⁶ | `0x007B235D` |
+| ⁷ | `0x007B24F0` |
+
+</details>
 
 ### Creating a bank
 
 `0x007A48C0` (from the game's bank loaders `0x00222F20`, `0x00223DA0` and `0x00224C40`) calls `0x007B1660`:
 
-1. It zeroes the handle (`0x007B1684`) and checks the data's tag: `sabf` (`0x007CFF90`) makes a sound bank; `mabf`
-   (`0x007D07A0`) goes to `0x007B18A0`, which makes a music bank the same way; any other data answers -1 (`0x007B16BE`).
-2. It takes a bank block (`0x007DF750`), answering -1 when no block is free (`0x007B16FC`), and a node in the
-   least-filled bank list, and writes a kind 1 handle.
-3. It builds an `OnMemoryBank` (`0x007E29C0`, over the `Bank` base `0x007D07C0`) and runs its slot 8 with the data and
-   the content type, 1 or 2.
-4. It adds the bank to the hash table and answers 0 (`0x007B184A`, `0x007B185C`). It stores the bank in its node only
-   when the node's slot is in the list and live (`0x007B1822`-`0x007B183A`). On failure, a negative answer from slot 8,
-   it gives back the node and the block, zeroes the handle and answers -1 (`0x007B17E2`-`0x007B1813`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It zeroes the handle and checks the data's tag: `sabf` makes a sound bank; `mabf` goes to `0x007B18A0`, which makes a music bank the same way; any other data answers -1. | `0x007B1684`<br>`0x007CFF90`<br>`0x007D07A0`<br>`0x007B16BE` |
+| 2 | It takes a bank block, answering -1 when no block is free, and a node in the least-filled bank list, and writes a kind 1 handle. | `0x007DF750`<br>`0x007B16FC` |
+| 3 | It builds an `OnMemoryBank` (`0x007E29C0`, over the `Bank` base `0x007D07C0`) and runs its slot 8 with the data and the content type, 1 or 2. |   |
+| 4 | It adds the bank to the hash table and answers 0. It stores the bank in its node only when the node's slot is in the list and live. On failure, a negative answer from slot 8, it gives back the node and the block, zeroes the handle and answers -1. | `0x007B184A`, `0x007B185C`<br>`0x007B1822`-`0x007B183A`<br>`0x007B17E2`-`0x007B1813` |
 
-`0x007A4AC0` and `0x007A4B30` do the same for a streaming sound bank (`0x007B1AB0`) and a streaming music bank
-(`0x007B1E10`), described on [Sound streaming](sound-streaming.md). `0x007A88F0(bank, nowait)` releases a bank through
+`0x007A4AC0` and `0x007A4B30` do the same for a streaming sound bank¹ and a streaming music bank², described on [Sound streaming](sound-streaming.md). `0x007A88F0(bank, nowait)` releases a bank through
 `0x007D0A10`; with `nowait` 0 it then sleeps 1 ms at a time until the handle finds nothing. `0x007A8CA0` answers whether a
 bank handle still finds its bank, `0x007A89F0` gives its content type, and `0x007A8C30` gives its readiness: slot 3 for
 a sound bank and slot 4 for a music bank.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B1AB0` |
+| ² | `0x007B1E10` |
+
+</details>
 
 A bank counts its users at `+0x18`: `0x007D0890` adds one and `0x007D0A00`
 takes one away, both atomically; `0x007D0810` puts back the base vtables when a bank is destroyed.
@@ -128,24 +207,52 @@ takes one away, both atomically; `0x007D0810` puts back the base vtables when a 
 ### Creating a sound or a music
 
 `0x007A87C0(bank, out, id, ...)` (from `0x00221C70`, `0x007A4A10` and the `Lay` tick `0x007F0820`) looks the bank up under
-the bank lock (`0x007B24F0`, `0x007B2470`) and calls `0x007D0940` for a sound bank or `0x007D08F0` for a music bank, by the
+the bank lock¹ and calls `0x007D0940` for a sound bank or `0x007D08F0` for a music bank, by the
 content type `+0x48`. It copies the handle that call gives into `out` and answers its result; a handle that finds
-no bank, or a content type other than 1 and 2, answers -1 and leaves `out` as it was (`0x007A8810`-`0x007A88C4`).
+no bank, or a content type other than 1 and 2, answers -1 and leaves `out` as it was².
 `0x007A86E0` takes only a music bank.
 
-`0x007A4A10(out, id)` first finds the bank by number and asks for the sound with bit `0x40000000` set, meaning a
-sound number rather than an index (`0x007A4A7C`).
+<details>
+<summary>Where in the code</summary>
 
-1. `0x007B2CB0` takes a `0x540` block and a node in the sound list; with no block it prints "sound heap empty. could
-   not create sound", with no node "using list full. could not create sound".
-2. It writes a kind 2 handle with the next serial (`0x02EAD4C4`) and builds the object through the factory `0x007B2F70`
-   ([Sound variations](sound-variations.md)).
-3. It records the object in its node and, unless the object is waiting for its bank (slot 38), adds it to the sound
-   hash table.
+| | Code |
+|---|---|
+| ¹ | `0x007B24F0`, `0x007B2470` |
+| ² | `0x007A8810`-`0x007A88C4` |
+
+</details>
+
+`0x007A4A10(out, id)` first finds the bank by number and asks for the sound with bit `0x40000000` set, meaning a
+sound number rather than an index¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A4A7C` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x007B2CB0` takes a `0x540` block and a node in the sound list; with no block it prints "sound heap empty. could not create sound", with no node "using list full. could not create sound". |   |
+| 2 | It writes a kind 2 handle with the next serial and builds the object through the factory `0x007B2F70` ([Sound variations](sound-variations.md)). | `0x02EAD4C4` |
+| 3 | It records the object in its node and, unless the object is waiting for its bank (slot 38), adds it to the sound hash table. |   |
 
 `0x007B72B0(out, bank, number, ...)` makes a music through `0x007B7460`, with its own pool and list. It zeroes `out`,
 takes a block from the music pool `0x02EADBC0` and a node in the music list `0x02EADC10`, and writes a kind 8 handle
-with the next serial `0x02EADBB8` (`0x007B72C6`-`0x007B735E`); with no free block it answers -1 (`0x007B7300`).
+with the next serial `0x02EADBB8`¹; with no free block it answers -1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B72C6`-`0x007B735E` |
+| ² | `0x007B7300` |
+
+</details>
 
 `0x007B7460` checks the music number against the bank's count ("music number is out of range"), resolves a number
 with bit `0x40000000` set through `0x007A8EA0`, and adds the music's track need to `0x02EADBB0`: `0x007B7960` counts it
@@ -153,10 +260,19 @@ from the music's sections and mode transitions in an in-memory bank, and a strea
 `+0x94`. Over the budget `0x02EADBB4`, 32, it prints "track count exceeded numMusicTracks" and goes on.
 
 When `0x007B7460` answers a negative value, `0x007B72B0` takes the node out, gives back the block, puts `0x02EADBB0`
-back to its value before the call and answers -1, leaving the handle in `out` (`0x007B73C2`-`0x007B73F8`). Otherwise
-it stores the music in its node when the node's slot is in the list and live, and answers 0
-(`0x007B7403`-`0x007B7433`). Neither `0x007B72B0` nor `0x007B7460` calls the hash-table add `0x007E2880`, which the sound
+back to its value before the call and answers -1, leaving the handle in `out`¹. Otherwise
+it stores the music in its node when the node's slot is in the list and live, and answers 0². Neither `0x007B72B0` nor `0x007B7460` calls the hash-table add `0x007E2880`, which the sound
 path calls at `0x007B2F1D`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B73C2`-`0x007B73F8` |
+| ² | `0x007B7403`-`0x007B7433` |
+
+</details>
 
 ### Reading a sound's header
 
@@ -168,11 +284,23 @@ object of kind 2, 8 or 9.
 
 ### Posting a command
 
-`0x007AB390` builds 1,024 actions of `0x28` bytes at `0x02EAD0A0` and the two queues `0x02EAD010` and `0x02EAD040`
-(`0x007AB240`), and puts every action on the first. Every call that changes a playing object takes an action from the
-queue (`0x007AB460`), fills it and appends it (`0x007AB550`); a call on a `Lay` source posts to the `Lay` queue instead (`0x007BAD60`, `0x007BAE50`). A call returns
+`0x007AB390` builds 1,024 actions of `0x28` bytes at `0x02EAD0A0` and the two queues `0x02EAD010` and `0x02EAD040`¹, and puts every action on the first. Every call that changes a playing object takes an action from the
+queue², fills it and appends it³; a call on a `Lay` source posts to the `Lay` queue instead⁴. A call returns
 `0x82000000` for a zero handle and -1 for a handle of the wrong kind. Types `0x0B`-`0x1B` run a `Sound` method on
-the driver thread (`0x007AB5C0`):
+the driver thread⁵:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AB240` |
+| ² | `0x007AB460` |
+| ³ | `0x007AB550` |
+| ⁴ | `0x007BAD60`, `0x007BAE50` |
+| ⁵ | `0x007AB5C0` |
+
+</details>
 
 | Call | Kinds | Type | `Lay` type | Runs |
 |---|---|---:|---:|---|
@@ -227,37 +355,62 @@ its own slot:
 | `0x007A6260` | a byte: `0x007BD5B0`, `0x007C5C70`, or an instrument's `+0x204` | slot 30 |
 | `0x007A6470` | 1.0 by default: `0x007BD680`, `0x007C5F70` or `0x007CEE80` | slot 31 |
 
-`0x007A91D0` gives a music's play position in seconds (`0x007C6490`) and `0x007A9250` its `+0x650`. The game's bank
+`0x007A91D0` gives a music's play position in seconds¹ and `0x007A9250` its `+0x650`. The game's bank
 classes call `0x007A7010` to ask whether a sound plays ([Audio manager](audio-manager.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007C6490` |
+
+</details>
 
 ### The update passes
 
 The driver thread `0x007A5400` measures the time since its last pass in seconds and runs, in this order:
 
-1. `0x007B1380`, which advances the external-parameter ramps.
-2. `0x007B6B00`, which runs each event (`0x007EEA00`) and frees it once its state `+0x08` is 2.
-3. The command queue (`0x007AB5C0`), then the master ramps (`0x007AAEA0`).
-4. `0x007B2920`, one bank list per pass in turn (`0x02EAD408`), running each bank's slot 10 and retiring a bank once its
-   slot 2 answers true: it leaves its lists and the hash table, runs slot 9 and is freed.
-5. `0x007B4A70`, every sound: its update (slot 42), and in state 3 it is removed and freed. A sound that was waiting for
-   its bank is rebuilt by the factory once the bank is ready, and `0x007BFFA0` carries its settings over.
-6. `0x007B52B0` (sequences, freed in state 4), `0x007B5AD0` (tracks, freed in state 5), `0x007B7D60` (music, freed in
-   state 7, giving back its track need) and, while instruments exist (`0x007B8220`), `0x007B82D0` (freed in state 7);
-   in the shipped game no instrument exists, so `0x007B82D0` does not run.
-7. `0x007B6050` (voices, freed in state 3) and `0x007B99B0` (external sources), then the bus ramps (`0x007AD310`).
-8. `Sleep(10)` (`0x007A5521`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x007B1380`, which advances the external-parameter ramps. |   |
+| 2 | `0x007B6B00`, which runs each event and frees it once its state `+0x08` is 2. | `0x007EEA00` |
+| 3 | The command queue, then the master ramps. | `0x007AB5C0`<br>`0x007AAEA0` |
+| 4 | `0x007B2920`, one bank list per pass in turn, running each bank's slot 10 and retiring a bank once its slot 2 answers true: it leaves its lists and the hash table, runs slot 9 and is freed. | `0x02EAD408` |
+| 5 | `0x007B4A70`, every sound: its update (slot 42), and in state 3 it is removed and freed. A sound that was waiting for its bank is rebuilt by the factory once the bank is ready, and `0x007BFFA0` carries its settings over. |   |
+| 6 | `0x007B52B0` (sequences, freed in state 4), `0x007B5AD0` (tracks, freed in state 5), `0x007B7D60` (music, freed in state 7, giving back its track need) and, while instruments exist, `0x007B82D0` (freed in state 7); in the shipped game no instrument exists, so `0x007B82D0` does not run. | `0x007B8220` |
+| 7 | `0x007B6050` (voices, freed in state 3) and `0x007B99B0` (external sources), then the bus ramps. | `0x007AD310` |
+| 8 | `Sleep(10)`. | `0x007A5521` |
 
 The driver's threads start through `0x007A5550`, which calls the function at `+0x08` of its block with the argument at
 `+0x10`.
 
-A list walk that meets an empty node prints "sequence NULL!!" and its neighbours (`0x007B4FC0`).
+A list walk that meets an empty node prints "sequence NULL!!" and its neighbours¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B4FC0` |
+
+</details>
 
 ### Ramps
 
 A ramped value holds a start, a target, the time so far and a duration; `0x007A9E00` gives its current value as
 `start + curve(time / duration) x (target - start)`, through the curve `0x007A9E50`, or the target once the duration is
 0. Category, bus and sound volumes, pitches and pans are all such ramps. `0x007BDAC0` gives a curved ramp's value: with a
-curve at `+0x38` the configuration curve shapes it (`0x007AE260`), run backwards when the target is below the start.
+curve at `+0x38` the configuration curve shapes it¹, run backwards when the target is below the start.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007AE260` |
+
+</details>
 
 ### Heap and clock
 
@@ -265,15 +418,35 @@ curve at `+0x38` the configuration curve shapes it (`0x007AE260`), run backwards
 `size + 16` bytes with a header of `0x5EAD5EAD`, the tag and the size; `0x007AD4D0` also zeroes the block and
 `0x007AD5A0` grows one by copying.
 
-The engine start points the Vorbis decoder's allocation hooks at this heap
-(`0x007A4E3E`-`0x007A4E6B`): `0x01F41CF8` (malloc) at `0x007A52E0`, `0x01F41D00` (calloc) at `0x007A52C0`, `0x01F41D08` (realloc)
+The engine start points the Vorbis decoder's allocation hooks at this heap¹: `0x01F41CF8` (malloc) at `0x007A52E0`, `0x01F41D00` (calloc) at `0x007A52C0`, `0x01F41D08` (realloc)
 at `0x007A52F0`, each passing tag 5 to `0x007AD550`, `0x007AD4D0` or `0x007AD5A0`, and the free hook at `0x007A52D0`, a jump to
 `0x007AD540` ([Media decoder libraries](../Third-Party-Libraries/media-decoder-libraries.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A4E3E`-`0x007A4E6B` |
+
+</details>
+
 `0x007AD6D0` reads the performance-counter frequency and start; `0x007AD630` gives counts
-since the start and `0x007AD680` microseconds, which seed `srand` (`0x007A5404`).
+since the start and `0x007AD680` microseconds, which seed `srand`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A5404` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Every pool's list is an `ObjectList` of `DriverListNode`s, and the command queues are `DriverQueue`s. The offsets are
 those of the sequence list `0x02EAD600` and its helpers; the other lists and queues use the same code.
@@ -313,12 +486,25 @@ those of the sequence list `0x02EAD600` and its helpers; the other lists and que
 | `+0x28` | `i32` | capacity | cells (`0x007AB2B0`) |
 | `+0x2C` | `i32` | count | cells queued (`0x007AB37B`) |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The driver keeps its pools, lists and queues in the globals from `0x02EAD010`. Every one is 0 in the file (the
 zero-filled tail of `.data`) until the static initialisers and the driver start `0x007A4D50` fill it; the exit handlers
-`0x008B86A0`-`0x008B8E40` clear the lists and queues again. The counts come from the start-up block `0x00210760` fills
-(`0x00210855`-`0x0021087B`).
+`0x008B86A0`-`0x008B8E40` clear the lists and queues again. The counts come from the start-up block `0x00210760` fills¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00210855`-`0x0021087B` |
+
+</details>
 
 The scalars:
 
@@ -403,21 +589,43 @@ The fields of the lists and queues ("through the address" names the helpers a fu
 
 `0x007AB390` fills the free-action queue `0x02EAD010` with the 1,024 actions; `0x007AB460` takes one from it, `0x007AB550`
 appends a filled one to the command queue `0x02EAD040`, and the command runner `0x007AB5C0` gives each action back to the
-free-action queue after running it (`0x007ABFB9`-`0x007ABFFB`). The `Lay` command queue `0x02EADDA0` works the same way
+free-action queue after running it¹. The `Lay` command queue `0x02EADDA0` works the same way
 for `0x007BAE50` and the `Lay` runner `0x007BAEC0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007ABFB9`-`0x007ABFFB` |
+
+</details>
 
 No other instruction reaches these globals. A function that takes a list's or a queue's address is listed with the helper
 it passes it to.
 
+</details>
+
 ## Modding notes
 
 - At most 92 sounds and 8 music exist at once; a ninety-third sound is refused and plays nothing. `0x007B2CB0` logs
-  "sound heap empty. could not create sound" and returns -1 (`0x007B2D1C`-`0x007B2D75`); the source factory `0x007BBFB0`
-  logs "sound heap empty. could not create sound object" and returns -1 the same way (`0x007BC013`-`0x007BC06C`).
+  "sound heap empty. could not create sound" and returns -1¹; the source factory `0x007BBFB0`
+  logs "sound heap empty. could not create sound object" and returns -1 the same way².
 - No instrument exists in the shipped game: the pool of 32 is built only when start-up block `+0x28` is not 0, and
-  `0x00210760` leaves it 0 (`0x00210831`).
+  `0x00210760` leaves it 0³.
 - A sound id with bit `0x40000000` set names a sound by its number in the bank, not by its index.
 - A handle stays safe to use after its object ends: the serial check makes every call on it do nothing.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007B2D1C`-`0x007B2D75` |
+| ² | `0x007BC013`-`0x007BC06C` |
+| ³ | `0x00210831` |
+
+</details>
 
 ## Related
 

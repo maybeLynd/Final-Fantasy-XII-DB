@@ -16,8 +16,17 @@
 ### The bitmap
 
 The menu root `[0x0209AC30]` keeps one byte per id from `+0xB2E`, with bit value `1 << n` for the party member whose
-record `+0x60` is n (`0x002828A7`). An id becomes its byte index the same way in all three functions that touch it
-(`0x0028281F`-`0x00282848`, `0x00282F10`):
+record `+0x60` is n¹. An id becomes its byte index the same way in all three functions that touch it²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002828A7` |
+| ² | `0x0028281F`-`0x00282848`, `0x00282F10` |
+
+</details>
 
 | Ids | Index |
 |---|---|
@@ -29,31 +38,54 @@ record `+0x60` is n (`0x002828A7`). An id becomes its byte index the same way in
 `0x00282F10(id, member)` answers the member's bit. No other function in the image has a memory operand with the
 displacement `0xB2E`.
 `member` is the member's record: it tests bit value `1 << +0x60`, that field read as a byte, in the id's byte and
-answers 1 when it is set and 0 otherwise (`0x00282F4F`-`0x00282F6E`); the three ranges are tested unsigned
-(`0x00282F13`-`0x00282F48`).
+answers 1 when it is set and 0 otherwise¹; the three ranges are tested unsigned².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00282F4F`-`0x00282F6E` |
+| ² | `0x00282F13`-`0x00282F48` |
+
+</details>
 
 ### Building it
 
 `0x002826F0` rebuilds the bits of every member and `0x00282A40(member)` those of one member. The Party Menu runs
-`0x002826F0` from `0x00281AE0` (`0x00281CB0`), and the license board's grid runs `0x00282A40` (`0x0055DA89`;
+`0x002826F0` from `0x00281AE0`¹, and the license board's grid runs `0x00282A40` (`0x0055DA89`;
 [License Board screen](license-board-screen.md)). For each member pointer of the nine at `[0x0209AC30] + 0xAC8` whose
 record has a member number 0-5 at `+0x60` and bit `0x2` of `+0x00` clear:
 
-1. `0x00282EE0(record)` gives the record's place among the nine `0xC0`-byte records at `[0x0209AC30] + 0x408`, and
-   `0x0031C4C0` its party slot.
-2. For each id of the category lists 1-4 (`0x00252F40`, `0x00252FA0`,
-   [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)), it clears the bit, fills a class-6 query record
-   (`0x0031C5D0`), and sets the bit unless the record's `+0x38` is `0x17`-`0x1A` (`0x002CCA00`) or the member can wear the
-   item in its slot `+0x4C` (`0x00317B70`, [Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)).
-3. For each id of the category lists 9 and 8, it clears the bit and sets it when the member owns the magick or
-   technick and holds its license (`0x00306340`, [Command availability](../Battle-Actions/command-availability.md)).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00281CB0` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00282EE0(record)` gives the record's place among the nine `0xC0`-byte records at `[0x0209AC30] + 0x408`, and `0x0031C4C0` its party slot. |   |
+| 2 | For each id of the category lists 1-4 (`0x00252F40`, `0x00252FA0`, [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)), it clears the bit, fills a class-6 query record, and sets the bit unless the record's `+0x38` is `0x17`-`0x1A` or the member can wear the item in its slot `+0x4C` (`0x00317B70`, [Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)). | `0x0031C5D0`<br>`0x002CCA00` |
+| 3 | For each id of the category lists 9 and 8, it clears the bit and sets it when the member owns the magick or technick and holds its license (`0x00306340`, [Command availability](../Battle-Actions/command-availability.md)). |   |
 
 So an equipment bit means "cannot wear" and an ability bit means "has it".
 
 ### Showing it
 
-`0x003FCAD0`, the row painter of the equipment list under the Status and Equip screen, sets each member's mark frame
-(`0x003FCB9D`):
+`0x003FCAD0`, the row painter of the equipment list under the Status and Equip screen, sets each member's mark frame¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FCB9D` |
+
+</details>
 
 | Row | Bit | Frame |
 |---|---|---|
@@ -64,30 +96,75 @@ So an equipment bit means "cannot wear" and an ability bit means "has it".
 | magick or technick | set | the member's own mark |
 
 `0x003FC900(board, word)` answers 0 for a board number above 11 and for an empty board
-slot `0x02EBF1A0 + 8 × board` (`0x003FC909`-`0x003FC939`). Otherwise it walks every cell of
+slot `0x02EBF1A0 + 8 × board`¹. Otherwise it walks every cell of
 the board; for each cell that is not `0xFFFF` it takes the licence record of that
 number: the table the pointer `0x02EBF038` names holds a dword at `+0xC`, which
 `0x0020E600` turns into the first record's address, and a size word at `+8`; the record
-is read at the low dword of `first + size × number` (`0x003FC9F0`-`0x003FC9F2`).
+is read at the low dword of `first + size × number`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FC909`-`0x003FC939` |
+| ² | `0x003FC9F0`-`0x003FC9F2` |
+
+</details>
 
 `0x003FC900` answers 1 as soon as one of the record's eight words
-at `+8` equals its second argument's word, and 0 with no match (`0x003FC960`-`0x003FCA66`).
+at `+8` equals its second argument's word, and 0 with no match¹.
 
-`0x003FCAD0(list, row, first, last)` works on the mark widgets `[list + 0x10]` from `first` to `last`
-(`0x003FCAE0`-`0x003FCB22`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FC960`-`0x003FCA66` |
+
+</details>
+
+`0x003FCAD0(list, row, first, last)` works on the mark widgets `[list + 0x10]` from `first` to `last`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FCAE0`-`0x003FCB22` |
+
+</details>
 
 - It gives every one frame 7 at `+0x0A`, clears bit `0x1` of `+0x08` and copies frame 7's palette byte, byte `+0x3F`
-  of the mark's group `+0x20`, to `+0x39` (`0x003FCB00`-`0x003FCB1C`). A row whose id `+0x08` is `0xFFFF` stops there
-  (`0x003FCB24`-`0x003FCB2E`).
-- For each of the nine member slots (`0x00282DF0`) that `0x00282FA0` accepts, a member number 0-5 at `+0x60` and record
-  bit `0x2` clear, it sets bit `0x1` of mark `first + slot`, held at `last` (`0x003FCB50`-`0x003FCB81`); the mark index
-  moves on for every slot (`0x003FCBEF`).
-- It asks `0x0035D330(1, id << 16)` for the query record and `0x00282F10` for the bit (`0x003FCB85`-`0x003FCB9D`). Kind 6
+  of the mark's group `+0x20`, to `+0x39`¹. A row whose id `+0x08` is `0xFFFF` stops there
+ ².
+- For each of the nine member slots³ that `0x00282FA0` accepts, a member number 0-5 at `+0x60` and record
+  bit `0x2` clear, it sets bit `0x1` of mark `first + slot`, held at `last`⁴; the mark index
+  moves on for every slot⁵.
+- It asks `0x0035D330(1, id << 16)` for the query record and `0x00282F10` for the bit⁶. Kind 6
   at the record's `+0x00` is equipment; kinds 8 and 9 are the magicks and technicks, which first get frame 8; other
-  kinds keep frame 7 (`0x003FCBA2`-`0x003FCBBC`).
+  kinds keep frame 7⁷.
 - Equipment runs the worn test whether its bit is set or not, over the five words `+0x9A + 4 x k` of the member
-  record (`0x003FCC88`-`0x003FCCBA`); a match gives the member's own mark (`0x003FCBC5`-`0x003FCBE4`). Each frame it writes
-  takes its palette byte from the group's record `frame x 8 + 7` (`0x003FCBB5`, `0x003FCC65`, `0x003FCC74`, `0x003FCBDC`).
+  record⁸; a match gives the member's own mark⁹. Each frame it writes
+  takes its palette byte from the group's record `frame x 8 + 7`¹⁰.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FCB00`-`0x003FCB1C` |
+| ² | `0x003FCB24`-`0x003FCB2E` |
+| ³ | `0x00282DF0` |
+| ⁴ | `0x003FCB50`-`0x003FCB81` |
+| ⁵ | `0x003FCBEF` |
+| ⁶ | `0x003FCB85`-`0x003FCB9D` |
+| ⁷ | `0x003FCBA2`-`0x003FCBBC` |
+| ⁸ | `0x003FCC88`-`0x003FCCBA` |
+| ⁹ | `0x003FCBC5`-`0x003FCBE4` |
+| ¹⁰ | `0x003FCBB5`, `0x003FCC65`, `0x003FCC74`, `0x003FCBDC` |
+
+</details>
 
 `0x002C9B30(n, field)` reads field 0-8 of member n's row of seven `0x10`-byte rows at `0x009170C0`, clamping n to 0-6.
 Fields 0 to 5 are the row's signed bytes `+0` to `+5`, field 6 the float `+8` cut to an
@@ -116,20 +193,26 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Steam and achievements** (explained on [achievements](../Steam-And-Achievements/achievements.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00282FA0` | is called by | `0x003162E0`, `0x00316760` |
+| [`0x00282FA0`](menu-screens.md) (on menu screens) | is called by | [`0x003162E0`](../Steam-And-Achievements/achievements.md) (on achievements)<br>[`0x00316760`](../Steam-And-Achievements/achievements.md) (on achievements) |
 
 **Graphics** (explained on [augments](../Damage-And-Battle-Formulas/augments.md), [battle numbers](battle-numbers.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0035D330` | is called by | `0x003BBD00`, `0x00506700` |
+| [`0x0035D330`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors) | is called by | [`0x003BBD00`](../Random-Numbers/which-roll-uses-which-generator.md) (on which roll uses which generator)<br>[`0x00506700`](battle-numbers.md) (on battle numbers) |
 
 **Saving, loading and settings** (explained on [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00282DF0` | is called by | `0x00583D60` |
+| [`0x00282DF0`](menu-screens.md) (on menu screens) | is called by | [`0x00583D60`](../Saving-Loading-And-Settings/save-file-format.md) Save image: finalize header and checksum (on save file format) |
 
 </details>

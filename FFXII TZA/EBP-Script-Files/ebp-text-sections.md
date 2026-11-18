@@ -25,9 +25,17 @@ manager, the directory walker `0x003304A0` dispatches each present slot:
 | 3 | `0x00330534` (count above 3, offset non-zero) | `0x00330220` | `0x022C6CC8` | `+0xA8` (`0x0026C8A0`) | `0x20` (`0x00330263`) |
 
 The handler takes the manager index from the low four bits of its argument and the section
-address from the rest. The manager bind `0x0026C8C0` zeroes both record fields (`0x0026CC49`,
-`0x0026CC50`), so a script without a bank leaves a null pointer, not a stale one
+address from the rest. The manager bind `0x0026C8C0` zeroes both record fields¹, so a script without a bank leaves a null pointer, not a stale one
 ([actor managers](../Characters-And-Objects/actor-managers.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026CC49`, `0x0026CC50` |
+
+</details>
 
 ## Layouts
 
@@ -45,8 +53,17 @@ Both sections have the same shape. Offsets are from the start of the section.
 ```
 
 Both banks are used in place inside the loaded `.ebp`. The handler stores only the section address (`0x003301BB`,
-and the record field), and a lookup returns that address plus the entry's low 16 bits (`0x00264D85`-`0x00264D8A`), so
+and the record field), and a lookup returns that address plus the entry's low 16 bits¹, so
 a string is read from the section itself ([looking up a string](#looking-up-a-string)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264D85`-`0x00264D8A` |
+
+</details>
 
 A script text id is an entry number. The strings are glyph codes and text codes, not ASCII: the
 character codes are on [battle and menu text tables](../Game-Files-And-Data-Tables/battle-text-tables.md)
@@ -54,6 +71,9 @@ and [fonts](../Menus-And-HUD/fonts.md), and the text codes, including the choice
 [text codes](../Menus-And-HUD/text-codes.md).
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured over every `.ebp` in the archive (`ps2data/plan_master/<language>/` for the nine
 language trees, plus control scripts under `ps2data/image/ff12/{ch,in}/bin/`).
@@ -77,6 +97,8 @@ language trees, plus control scripts under `ps2data/image/ff12/{ch,in}/bin/`).
 The most common `us` captions are `NOT USED` (351), `Ancient Door` (219), `dummy` (193),
 `Way Stone` (130) and `Exit` (89).
 
+</details>
+
 ## Loader behaviour
 
 ### Looking up a string
@@ -84,11 +106,12 @@ The most common `us` captions are `NOT USED` (351), `Ancient Door` (219), `dummy
 `0x00264D60(manager, id)` reads section 2 and `0x00264D90(manager, id)` section 3; the two differ only
 in the record field (`+0xA0`, `+0xA8`):
 
-1. A null bank returns `0x01CEB638`, an empty string.
-2. The id is masked to 24 bits (`0x00264D77`), so bits `0xFF000000` of a script text id do nothing.
-3. The count is the whole first dword, sign-extended and shifted right by 2 (`0x00264D74`,
-   `0x00264D7D`); an id at or above it returns `0x01CEB638` (`0x00264D83`).
-4. Otherwise the result is the section address plus the entry's low 16 bits (`0x00264D85`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A null bank returns `0x01CEB638`, an empty string. |   |
+| 2 | The id is masked to 24 bits, so bits `0xFF000000` of a script text id do nothing. | `0x00264D77` |
+| 3 | The count is the whole first dword, sign-extended and shifted right by 2; an id at or above it returns `0x01CEB638`. | `0x00264D74`, `0x00264D7D`<br>`0x00264D83` |
+| 4 | Otherwise the result is the section address plus the entry's low 16 bits. | `0x00264D85` |
 
 Step 3 reads the flag as part of the count. In the 1,929 sections whose entry 0 is flagged the
 count is at least 16,384, and an id past the real table returns whatever the bytes there
@@ -97,48 +120,136 @@ point to. Nothing compares the table with the section's length.
 ### The flag
 
 `0x002673A0(manager, id)` applies the same mask and bound to section 2 (`[manager + 0xA0]` only) and
-returns bit `0x1` of the entry's upper half (`0x002673C0`, `0x002673C6`). Section 3 has no such reader.
+returns bit `0x1` of the entry's upper half¹. Section 3 has no such reader.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002673C0`, `0x002673C6` |
+
+</details>
 
 - `mes` (`0x461`, `0x00348DF0`) stores the flag in the message slot's byte `+0x38` through
   `0x002E1E00` (slot record `0x0215F200 + slot * 0x68`), returns it in the call record, and opens the
   window through `0x002E16B0` only when the flag is clear. `0x002E1E00` takes a negative slot as slot 0 and a
-  slot above 7 as slot 7 (`0x002E1E00`-`0x002E1E1F`).
+  slot above 7 as slot 7¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E1E00`-`0x002E1E1F` |
+
+</details>
 
   `mes` takes eight values with `0x00267E10`; the seventh is the message id and the eighth the slot
-  (`0x00348E0E`-`0x00348E63`). With the answer of `0x002640C0()` as manager it asks `0x00264D60(manager, id)`
-  for the text and `0x002673A0(manager, id)` for the flag (`0x00348E65`-`0x00348E85`). The calls then run in
+ ¹. With the answer of `0x002640C0()` as manager it asks `0x00264D60(manager, id)`
+  for the text and `0x002673A0(manager, id)` for the flag². The calls then run in
   this order: `0x002E1EA0(slot, second)`, `0x002E1E00(slot, flag)`,
   `0x002E1F80(slot, sixth, fifth, fourth, third)`, `0x002E1F40(slot, first)`, `0x002E1E40(slot, 0)` and
-  `0x002E1E70(slot, 0)` (`0x00348E8A`-`0x00348ECA`).
+  `0x002E1E70(slot, 0)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00348E0E`-`0x00348E63` |
+| ² | `0x00348E65`-`0x00348E85` |
+| ³ | `0x00348E8A`-`0x00348ECA` |
+
+</details>
 
   The call record, its third argument, gets the slot in its dword `+0x00`, the flag in its dword
-  `+0x08` and 0 in its byte `+0x0C` (`0x00348ECF`-`0x00348EDC`). With the flag clear the window call is
-  `0x002E16B0(second argument, slot, text, [manager + 0xB0])` (`0x00348EE0`-`0x00348EFF`).
-- `aask_1ff` (`0x0034ADA0`) does the same but opens the window only when the flag is set. It also writes the call
-  record's byte `+0x0C`: 1 when it opens the window, 0 when it does not (`0x0034AE75`, `0x0034AE8B`); `mes` always
-  writes 0 there (`0x00348EDC`).
-- `debug_mesask_43` (`0x0050EAB0`) always opens the window, stores the flag at `+0x38` through
-  `0x002E1D90`, and returns 1 in the call record when it is clear. It pops five values (`0x0050EAE0`-`0x0050EB06`):
-  one it drops, the cancel row, the start row, the text id, which it masks to 24 bits (`0x0050EB0B`), and the
-  slot. `0x002E1D90` also zeroes the slot's byte `+0x3C` (`0x002E1DBD`).
-- `debug_mesask_43` then calls `0x002E1D50(slot, start, cancel, start)` (`0x0050EB45`), which sets `+0x24`, `+0x28`,
-  `+0x39` and `+0x3B`, and `0x002E1EA0(slot, 4)` for the window style (`0x0050EB52`), opens the window with
+  `+0x08` and 0 in its byte `+0x0C`¹. With the flag clear the window call is
+  `0x002E16B0(second argument, slot, text, [manager + 0xB0])`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00348ECF`-`0x00348EDC` |
+| ² | `0x00348EE0`-`0x00348EFF` |
+
+</details>
+- `aask_1ff`¹ does the same but opens the window only when the flag is set. It also writes the call
+  record's byte `+0x0C`: 1 when it opens the window, 0 when it does not²; `mes` always
+  writes 0 there³.
+- `debug_mesask_43`⁴ always opens the window, stores the flag at `+0x38` through
+  `0x002E1D90`, and returns 1 in the call record when it is clear. It pops five values⁵:
+  one it drops, the cancel row, the start row, the text id, which it masks to 24 bits⁶, and the
+  slot. `0x002E1D90` also zeroes the slot's byte `+0x3C`⁷.
+- `debug_mesask_43` then calls `0x002E1D50(slot, start, cancel, start)`⁸, which sets `+0x24`, `+0x28`,
+  `+0x39` and `+0x3B`, and `0x002E1EA0(slot, 4)` for the window style⁹, opens the window with
   `0x002E16B0` from its own second argument, the slot, the text and the current manager record's `+0xB0`
-  (`0x002640C0`, `0x0050EB57`-`0x0050EB67`).
-- `debug_mesask_43` stores what `0x002E16B0` returns at `+0x00` of the call record (`0x0050EB76`) and
-  `flag == 0` at `+0x08` (`0x0050EB86`).
-- `unkCall_5b6` (`0x003545B0`) hands the string to `0x00474070` only when the flag is clear.
+ ¹⁰.
+- `debug_mesask_43` stores what `0x002E16B0` returns at `+0x00` of the call record¹¹ and
+  `flag == 0` at `+0x08`¹².
+- `unkCall_5b6`¹³ hands the string to `0x00474070` only when the flag is clear.
 
-`0x00474070(text, a, b, c, d, record)` builds a `0x1D8`-byte widget with procedure `0x00474100` (`0x00244F50`, `0x004740D3`)
-from the string and the verb's other four arguments; `unkCall_5b6` passes its script record's `+0xB0` as `record`
-(`0x00354628`-`0x00354644`). The widget's procedure `0x00474100`:
+<details>
+<summary>Where in the code</summary>
 
-- on construction (message 1) builds the text through `0x002A3090` (`0x00474271`);
-- on the draw after its content (message 4) draws the second picture at its `+0x1D0`, `+0x1D4` (`0x001829C0`,
-  `0x0047416C`);
-- on command `0x12` (message 12) destroys itself (`0x00474149`).
+| | Code |
+|---|---|
+| ¹ | `0x0034ADA0` |
+| ² | `0x0034AE75`, `0x0034AE8B` |
+| ³ | `0x00348EDC` |
+| ⁴ | `0x0050EAB0` |
+| ⁵ | `0x0050EAE0`-`0x0050EB06` |
+| ⁶ | `0x0050EB0B` |
+| ⁷ | `0x002E1DBD` |
+| ⁸ | `0x0050EB45` |
+| ⁹ | `0x0050EB52` |
+| ¹⁰ | `0x002640C0`, `0x0050EB57`-`0x0050EB67` |
+| ¹¹ | `0x0050EB76` |
+| ¹² | `0x0050EB86` |
+| ¹³ | `0x003545B0` |
 
-`unkCall_5b7` (`0x00354BE0`) tail-jumps to `0x00474040`, which destroys it.
+</details>
+
+`0x00474070(text, a, b, c, d, record)` builds a `0x1D8`-byte widget with procedure `0x00474100`¹
+from the string and the verb's other four arguments; `unkCall_5b6` passes its script record's `+0xB0` as `record`². The widget's procedure `0x00474100`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00244F50`, `0x004740D3` |
+| ² | `0x00354628`-`0x00354644` |
+
+</details>
+
+- on construction (message 1) builds the text through `0x002A3090`¹;
+- on the draw after its content (message 4) draws the second picture at its `+0x1D0`, `+0x1D4`²;
+- on command `0x12` (message 12) destroys itself³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00474271` |
+| ² | `0x001829C0`, `0x0047416C` |
+| ³ | `0x00474149` |
+
+</details>
+
+`unkCall_5b7`¹ tail-jumps to `0x00474040`, which destroys it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00354BE0` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -147,14 +258,33 @@ from the string and the verb's other four arguments; `unkCall_5b6` passes its sc
 
 No other instruction reaches either: no other RIP-relative, image-base-relative or 32-bit offset reference names them.
 
-While a slot holds a window with `+0x38` set, `0x002E0540` returns 1 and `0x00265680` returns 0
-(`0x002656F2`). The bodies that raise hold request 17 when `0x00265680` returns 0, among them `ucon`,
+While a slot holds a window with `+0x38` set, `0x002E0540` returns 1 and `0x00265680` returns 0¹. The bodies that raise hold request 17 when `0x00265680` returns 0, among them `ucon`,
 then keep the field held ([time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
-until a close path clears the byte (`0x002E0780`).
+until a close path clears the byte².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002656F2` |
+| ² | `0x002E0780` |
+
+</details>
 
 `0x002E0540` walks the eight slots and returns 1 at the first whose qword `+0x00` is non-null and whose byte
-`+0x38` is non-zero or byte `+0x3E` has bit `0x1` set (`0x002E0568`-`0x002E0580`, `0x002E058C`); with no such slot it
-returns 0 (`0x002E0589`).
+`+0x38` is non-zero or byte `+0x3E` has bit `0x1` set¹; with no such slot it
+returns 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E0568`-`0x002E0580`, `0x002E058C` |
+| ² | `0x002E0589` |
+
+</details>
 
 ### Readers
 
@@ -175,21 +305,55 @@ literal name an actor with a negative name id shows ([NPC names](../Characters-A
 
 ### From the message window to the screen
 
-`0x002E16B0` places the string at `+0x38` of the request for a new window (`0x002A2C00`). On the
+`0x002E16B0` places the string at `+0x38` of the request for a new window¹. On the
 window's ordinary layout path `0x002A2C00` passes it to `0x002A6A80`, which hands it to the window's
-text object at `+0xD0` (`0x002B32D0`); the
-text object keeps it at `+0x28` and measures it with `0x002B2150` (`0x002B3D50`, `0x002B3C30`), the
+text object at `+0xD0`²; the
+text object keeps it at `+0x28` and measures it with `0x002B2150`³, the
 routine that sends every byte below `0x10` to the text interpreter `0x002AC5F0`. Section 2 text is
 therefore read with the codes and lengths on [text codes](../Menus-And-HUD/text-codes.md).
 
-`0x002B32D0` first resets the text object (`0x002AC1E0`, `0x002B32F0`). A non-zero fourth argument takes `0x002B3C30`
-(`0x002B3350`-`0x002B3354`), which writes `[+0x94] + 8` and `[+0x96]` to the fifth and sixth arguments when they are
-set (`0x002B3359`-`0x002B3380`); a zero one takes `0x002B3D50` (`0x002B3384`) and copies the words those arguments point
-to into `+0x94` and `+0x96` (`0x002B3389`-`0x002B33AA`). Both store the string at `+0x28` (`0x002B3C39`, `0x002B3D6F`)
-and call `0x002B2150` (`0x002B3D21`, `0x002B3DC2`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A2C00` |
+| ² | `0x002B32D0` |
+| ³ | `0x002B3D50`, `0x002B3C30` |
+
+</details>
+
+`0x002B32D0` first resets the text object¹. A non-zero fourth argument takes `0x002B3C30`², which writes `[+0x94] + 8` and `[+0x96]` to the fifth and sixth arguments when they are
+set³; a zero one takes `0x002B3D50`⁴ and copies the words those arguments point
+to into `+0x94` and `+0x96`⁵. Both store the string at `+0x28`⁶
+and call `0x002B2150`⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AC1E0`, `0x002B32F0` |
+| ² | `0x002B3350`-`0x002B3354` |
+| ³ | `0x002B3359`-`0x002B3380` |
+| ⁴ | `0x002B3384` |
+| ⁵ | `0x002B3389`-`0x002B33AA` |
+| ⁶ | `0x002B3C39`, `0x002B3D6F` |
+| ⁷ | `0x002B3D21`, `0x002B3DC2` |
+
+</details>
 
 On both paths `0x002B32D0` ends by setting `+0x90` to the negated signed byte `+0x9E`, the word `+0x99` to
-`0x2500` and the float `+0x50` to `1.0 / [+0x9E]` (`0x002B33B1`-`0x002B33F0`).
+`0x2500` and the float `+0x50` to `1.0 / [+0x9E]`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B33B1`-`0x002B33F0` |
+
+</details>
 
 ## Modding notes
 
@@ -225,8 +389,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00245020` | is called by | `0x00280140` |
+| [`0x00245020`](../Menus-And-HUD/widgets.md) (on widgets) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
 
 </details>

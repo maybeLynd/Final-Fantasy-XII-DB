@@ -14,15 +14,37 @@ Lua script, so none of this code does anything during play.
 
 ### The object userdata
 
-`0x00682D20(L, object, descriptor)` pushes an engine object: it calls `lua_checkstack(L, 1)`
-(`0x0080F420`), allocates a 16-byte userdata (`0x00810240`), stores the class descriptor and the object
+`0x00682D20(L, object, descriptor)` pushes an engine object: it calls `lua_checkstack(L, 1)`¹, allocates a 16-byte userdata², stores the class descriptor and the object
 pointer in it, fetches `registry["PhyreObject"]` (`0x0080FA50` with index `-1001000`) and sets that as the
-userdata's metatable (`0x00810F60`). The metatable is only an identity tag: no code outside the
+userdata's metatable³. The metatable is only an identity tag: no code outside the
 interpreter stores anything in it.
 
-The two stores (`0x00682D59`, `0x00682D5C`) sit behind a null test of the userdata (`0x00682D57`) that never skips them:
-`0x00810240` returns the new object's address plus `0x30` (`0x00810286`). The metatable call is a tail jump with index
--2 (`0x00682D74`-`0x00682D8B`), so the pushed userdata stays on top of the stack.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0080F420` |
+| ² | `0x00810240` |
+| ³ | `0x00810F60` |
+
+</details>
+
+The two stores¹ sit behind a null test of the userdata² that never skips them:
+`0x00810240` returns the new object's address plus `0x30`³. The metatable call is a tail jump with index
+-2⁴, so the pushed userdata stays on top of the stack.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00682D59`, `0x00682D5C` |
+| ² | `0x00682D57` |
+| ³ | `0x00810286` |
+| ⁴ | `0x00682D74`-`0x00682D8B` |
+
+</details>
 
 Two more value kinds use the same scheme with their own registry keys: `"Vector"` (16-byte
 userdata, pushed by `0x00684280`, `0x00684300`, `0x00684360`, `0x006843D0`, `0x00684450`) and `"Matrix"`
@@ -42,33 +64,65 @@ descriptor, so a derived object is accepted where a base is wanted. They come in
 
 - Reference (`T &`), e.g. `0x00599770` for `PClusterHeader`: a non-Phyre value, or a Phyre object of
   another class, raises a Lua error.
-- `0x00599770` pops the value before any test (`0x00599790`) and returns the object pointer at userdata `+0x08` when
-  the walk reaches the `PClusterHeader` descriptor `0x02CAA0A0` (`0x005997B0`, `0x0059985B`).
-- For a non-Phyre value it first calls `0x0063BC00` with `0x02CAA0A0` (`0x00599817`) and keeps the result as its return
+- `0x00599770` pops the value before any test¹ and returns the object pointer at userdata `+0x08` when
+  the walk reaches the `PClusterHeader` descriptor `0x02CAA0A0`².
+- For a non-Phyre value it first calls `0x0063BC00` with `0x02CAA0A0`³ and keeps the result as its return
   value, which the error never lets it reach.
-- A Phyre userdata whose descriptor word is null skips that call (`0x005997A4`). Both raise at line `0x8D`, with
-  the class name at descriptor `+0x30` (`0x0059981F`-`0x00599856`), and the message
+- A Phyre userdata whose descriptor word is null skips that call⁴. Both raise at line `0x8D`, with
+  the class name at descriptor `+0x30`⁵, and the message
   `"Object obtained from script was not a Phyre Object when an object of type "%s" was required."`
-- A Phyre object of another class raises at line `0x8F` with the two class names (`0x005997C2`-`0x005997FD`):
+- A Phyre object of another class raises at line `0x8F` with the two class names⁶:
   `"Object obtained from script was of type "%s" when an object of type "%s" was required."`
 - Pointer (`T *`), e.g. `0x00599B70`: `nil` yields a null pointer; another Lua type raises
   `"Unable to obtain object pointer from script - found another type of data instead (Lua type %d)"`.
-- `0x00599B70` pops a `nil` before returning null (`0x00599C3E`) and raises for another non-Phyre value, at line
-  `0x76`, with that value still on the stack (`0x00599C50`-`0x00599C8B`). It pops a Phyre value (`0x00599B99`); a null
-  descriptor word returns the object pointer unchecked (`0x00599BAD`, `0x00599C1B`), and the walk returns it on a
-  match (`0x00599BC3`).
-- A Phyre userdata holding a null object pointer (`0x00599BA8`) goes to the same type test, applied to the value
+- `0x00599B70` pops a `nil` before returning null⁷ and raises for another non-Phyre value, at line
+  `0x76`, with that value still on the stack⁸. It pops a Phyre value⁹; a null
+  descriptor word returns the object pointer unchecked¹⁰, and the walk returns it on a
+  match¹¹.
+- A Phyre userdata holding a null object pointer¹² goes to the same type test, applied to the value
   now on top: a `nil` there is popped too and null returned, and any other type raises the line-`0x76` error.
-- A Phyre object of another class raises at line `0x6A` with the two class names (`0x00599BCE`-`0x00599C09`):
+- A Phyre object of another class raises at line `0x6A` with the two class names¹³:
   `"Object pointer obtained from script was of type "%s" when an object of type "%s" was required."`
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00599790` |
+| ² | `0x005997B0`, `0x0059985B` |
+| ³ | `0x00599817` |
+| ⁴ | `0x005997A4` |
+| ⁵ | `0x0059981F`-`0x00599856` |
+| ⁶ | `0x005997C2`-`0x005997FD` |
+| ⁷ | `0x00599C3E` |
+| ⁸ | `0x00599C50`-`0x00599C8B` |
+| ⁹ | `0x00599B99` |
+| ¹⁰ | `0x00599BAD`, `0x00599C1B` |
+| ¹¹ | `0x00599BC3` |
+| ¹² | `0x00599BA8` |
+| ¹³ | `0x00599BCE`-`0x00599C09` |
+
+</details>
 
 Before raising, an accessor writes its source file, line and own name into the record at `0x02E41000`;
 the error itself goes through `luaL_error` (`0x00812960`: `luaL_where`, `lua_pushvfstring`,
 `lua_concat`, `lua_error`).
 
-`luaL_error` does not return. `lua_error` (`0x0080F7F0`) calls `0x0081D2B0`, which ends in `0x0081E2C0` (`0x0081D341`):
-that one jumps back to the protected call (`0x00861EE4`) or, outside one, runs the panic function and calls `abort`
-(`0x0081E340`, `0x0081E342`). An accessor's code after the call therefore never runs.
+`luaL_error` does not return. `lua_error`¹ calls `0x0081D2B0`, which ends in `0x0081E2C0`²:
+that one jumps back to the protected call³ or, outside one, runs the panic function and calls `abort`⁴. An accessor's code after the call therefore never runs.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0080F7F0` |
+| ² | `0x0081D341` |
+| ³ | `0x00861EE4` |
+| ⁴ | `0x0081E340`, `0x0081E342` |
+
+</details>
 
 ### The binding slots of a class descriptor
 
@@ -85,16 +139,47 @@ slot 6  +0x30  push a pointer, nil when null  # 0x00584C70, 0x005A5980
 An abstract class's slot 3 is `0x0063F850`, which only logs that the operation is not supported. The
 push adapters are one-line tail calls into `0x00682D20` through the jump thunk `0x00684080` (or
 `0x00684090`) with the class's descriptor; a class pushed as a base adds the base's offset first
-(`0x005A10F0` adds 8). The nullable form tests the pointer and pushes `nil` (`0x00810620`) instead
-(`0x005A2BA0`).
+(`0x005A10F0` adds 8). The nullable form tests the pointer and pushes `nil`¹ instead².
 
-`0x005A2BA0` reads the pointer from the address in `r8` (`0x005A2BA9`). For null it calls `lua_checkstack(L, 1)`
-(`0x005A2BCE`) and tail-jumps to the `nil` push (`0x005A2BDB`); otherwise it adds 8 (`0x005A2BB4`) and tail-jumps to
-`0x00684080` with the descriptor `0x02CAF0E0` (`0x005A2BB8`-`0x005A2BC4`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00810620` |
+| ² | `0x005A2BA0` |
+
+</details>
+
+`0x005A2BA0` reads the pointer from the address in `r8`¹. For null it calls `lua_checkstack(L, 1)`² and tail-jumps to the `nil` push³; otherwise it adds 8⁴ and tail-jumps to
+`0x00684080` with the descriptor `0x02CAF0E0`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A2BA9` |
+| ² | `0x005A2BCE` |
+| ³ | `0x005A2BDB` |
+| ⁴ | `0x005A2BB4` |
+| ⁵ | `0x005A2BB8`-`0x005A2BC4` |
+
+</details>
 
 `0x00584E10`, slot 3 of `PClusterHeader`, takes the header from the script with the reference accessor `0x00599770`,
-passing it `L` from its second argument (`0x00584E16`, `0x00584E1C`). It copies the 84 bytes the accessor returns to
-the out-value in `r8`: five 16-byte moves and the dword at `+0x50` (`0x00584E21`-`0x00584E4A`).
+passing it `L` from its second argument¹. It copies the 84 bytes the accessor returns to
+the out-value in `r8`: five 16-byte moves and the dword at `+0x50`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00584E16`, `0x00584E1C` |
+| ² | `0x00584E21`-`0x00584E4A` |
+
+</details>
 
 For `PInputMapper` (descriptor vtable `0x01CB1178`) slot 3 is `0x007919D0`: it takes the mapper from the
 script with its reference accessor `0x00796860` and copies it into the out-value with `0x007939A0`, which
@@ -109,55 +194,137 @@ number readers `0x00811640` and `0x00811470`), takes `this` through an accessor,
 function, pushes the result (an object, `nil`, a number through `0x00810580`, or a `"Vector"`) and
 returns 1. `0x006B2400` takes a float; `0x005C1E70` returns a nullable object.
 
-Slot 2 is the native call (`0x005CC300`, `0x005CC3E0`): it calls the member function and, when the
+Slot 2 is the native call¹: it calls the member function and, when the
 caller asks for the result with the matching type tag, writes `{0, result}` to the out-record and
 returns 1. In the `PAnimationClip` caller vtable `0x00D34C38` the two slots are `0x005C1E70` and
 `0x005CC3E0`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005CC300`, `0x005CC3E0` |
+
+</details>
+
 A script caller's slot 2, `0x00686280`, runs the script and converts its result the same way. For a
-`float` result type (`0x01F2E690`) `0x006810B0` reads the top of the Lua stack as a number (`0x00811640`),
-pops it (`0x00811130` with -2) and writes `{0, value}`; `0x00681130` does the same for `double`
-(`0x01F2E6E0`), widening the value. Each returns false for any other result type.
+`float` result type¹ `0x006810B0` reads the top of the Lua stack as a number²,
+pops it (`0x00811130` with -2) and writes `{0, value}`; `0x00681130` does the same for `double`³, widening the value. Each returns false for any other result type.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01F2E690` |
+| ² | `0x00811640` |
+| ³ | `0x01F2E6E0` |
+
+</details>
 
 ### Arrays and copies
 
-`0x00683FF0` pushes an array as a new table (`0x0080F740`), storing element *i* at key *i* with the element
-descriptor's slot 4 and `lua_settable` (`0x00811090`); `0x006841F0` does the same for pointer elements
+`0x00683FF0` pushes an array as a new table¹, storing element *i* at key *i* with the element
+descriptor's slot 4 and `lua_settable`²; `0x006841F0` does the same for pointer elements
 through slot 6.
 
-Both take `(L, count, data, descriptor)` and create the table with `count` array slots (`0x0068400B`, `0x00684213`).
-For each element they push the key *i*, from 1, as a number (`0x00810580`), call the slot with the descriptor, `L`
-and the element's address, and store with `lua_settable(L, -3)` (`0x00684030`-`0x00684052`, `0x00684230`-`0x00684252`).
-`0x00683FF0` steps by the dword at descriptor `+0x38` (`0x00684023`, `0x0068405A`), `0x006841F0` by 8 (`0x0068425A`). A count
-of 0 leaves the table empty (`0x00684012`, `0x0068421A`), and the table stays on top of the stack.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0080F740` |
+| ² | `0x00811090` |
+
+</details>
+
+Both take `(L, count, data, descriptor)` and create the table with `count` array slots¹.
+For each element they push the key *i*, from 1, as a number², call the slot with the descriptor, `L`
+and the element's address, and store with `lua_settable(L, -3)`³.
+`0x00683FF0` steps by the dword at descriptor `+0x38`⁴, `0x006841F0` by 8⁵. A count
+of 0 leaves the table empty⁶, and the table stays on top of the stack.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0068400B`, `0x00684213` |
+| ² | `0x00810580` |
+| ³ | `0x00684030`-`0x00684052`, `0x00684230`-`0x00684252` |
+| ⁴ | `0x00684023`, `0x0068405A` |
+| ⁵ | `0x0068425A` |
+| ⁶ | `0x00684012`, `0x0068421A` |
+
+</details>
 
 `0x00682AA0` copies values between two Lua states: nil, booleans, light userdata,
 numbers and strings directly, and `PhyreObject`, `"Vector"` and `"Matrix"` userdata by re-pushing
 them; other types are logged as unsupported.
 
-`0x00682AA0(from, to, first, count)` returns 1 when either state is null (`0x00682CE1`) and 5 when they are the same
-state or `first` is 0 (`0x00682ACF`). It returns 9 when `lua_checkstack(to, count)` fails (`0x00682AEB`-`0x00682AF4`),
-and otherwise 0 after copying `count` values from index `first` upward (`0x00682CB7`-`0x00682CD2`). Each value goes by
-its `lua_type` (`0x00682B35`) through the nine-entry table at `0x00682CF4`:
+`0x00682AA0(from, to, first, count)` returns 1 when either state is null¹ and 5 when they are the same
+state or `first` is 0². It returns 9 when `lua_checkstack(to, count)` fails³,
+and otherwise 0 after copying `count` values from index `first` upward⁴. Each value goes by
+its `lua_type`⁵ through the nine-entry table at `0x00682CF4`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00682CE1` |
+| ² | `0x00682ACF` |
+| ³ | `0x00682AEB`-`0x00682AF4` |
+| ⁴ | `0x00682CB7`-`0x00682CD2` |
+| ⁵ | `0x00682B35` |
+
+</details>
 
 - nil, booleans, light userdata and numbers are pushed with `0x00810620`, `0x00810450`, `0x008105A0` and `0x00810640`;
 - a string is read with `0x00811530`, pushed with `0x00810660`, and then one value is popped from the source state
-  (`0x00682BAD`);
+ ¹;
 - tables, functions and threads push nothing and log
-  `"Unsupported type being copied between script contexts: '%s'"` with the type name (`0x00811A70`, `0x00682BD8`);
-- userdata is tested as `"Vector"` (`0x00682A10`), then `"Matrix"` (`0x006828F0`), then `"PhyreObject"` inline, and
-  re-pushed by `0x00684450`, `0x00684130` or `0x00682D20` (`0x00682C88`);
+  `"Unsupported type being copied between script contexts: '%s'"` with the type name²;
+- userdata is tested as `"Vector"`³, then `"Matrix"`⁴, then `"PhyreObject"` inline, and
+  re-pushed by `0x00684450`, `0x00684130` or `0x00682D20`⁵;
 - a userdata that is not one of the three pushes nothing and logs
-  `"Unsupported user data being copied between script contexts"` (`0x00682C9B`);
-- an index past the top, whose type is -1 (`0x00811A0B`), is skipped with nothing logged (`0x00682B3D`).
+  `"Unsupported user data being copied between script contexts"`⁶;
+- an index past the top, whose type is -1⁷, is skipped with nothing logged⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00682BAD` |
+| ² | `0x00811A70`, `0x00682BD8` |
+| ³ | `0x00682A10` |
+| ⁴ | `0x006828F0` |
+| ⁵ | `0x00682C88` |
+| ⁶ | `0x00682C9B` |
+| ⁷ | `0x00811A0B` |
+| ⁸ | `0x00682B3D` |
+
+</details>
 
 ### Registration at start-up
 
 The engine start-up `0x005A08E0` calls `0x0067E6C0` (the `PWorldMatrix` methods `getMatrix`,
 `setMatrix`, `setMatrix4x3`, `lookAtWorldMatrix` and member `m_matrix`) and slot 1 of every module in
-its list, stopping at the first that returns non-zero (`0x005A0964`, `0x005A0A39`-`0x005A0A3E`). For the scripting
+its list, stopping at the first that returns non-zero¹. For the scripting
 module this is `0x00685AC0` (slot 1 of `PUtilityScripting`, vtable `0x00D6FD98`), which calls, in this order and
-ignoring their results (`0x00685AC4`-`0x00685AD8`):
+ignoring their results²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005A0964`, `0x005A0A39`-`0x005A0A3E` |
+| ² | `0x00685AC4`-`0x00685AD8` |
+
+</details>
 
 - `0x006822E0`: the `PScript` members (see Layouts);
 - `0x00681F30`: `PScheduler` methods `GetCurrentScheduler`, `GetCurrentScript`, `addScript`,
@@ -166,48 +333,122 @@ ignoring their results (`0x00685AC4`-`0x00685AD8`):
 - `0x00681C50`: the `PAsyncProcessHeader` method `getAsyncResult`;
 - `0x00681D80`: `PClassCallableMethodScript` members `m_script`, `m_nameAsString`, `m_entryPoint`.
 
-`0x006827C0`, `0x00681C50` and `0x00681D80` each pass their class descriptor (`0x02E41170`, `0x02E41270`, `0x02E41070`) to
-`0x006388C0` first (`0x006827DB`, `0x00681C6B`, `0x00681D9B`). Each ends with a tail jump to `0x00639450` with it (`0x006828E6`,
-`0x00681D6C`, `0x00681F1C`), which sets bit `0x40000000` of descriptor `+0xFC` (`0x00639465`). Each registration in
-between runs once, inside its own thread-safe static guard (`0x008092FC`, `0x0080929C`), and passes its record's
-teardown to `atexit` (`0x00808B90`).
+`0x006827C0`, `0x00681C50` and `0x00681D80` each pass their class descriptor¹ to
+`0x006388C0` first². Each ends with a tail jump to `0x00639450` with it³, which sets bit `0x40000000` of descriptor `+0xFC`⁴. Each registration in
+between runs once, inside its own thread-safe static guard⁵, and passes its record's
+teardown to `atexit`⁶.
 
-The members go through `0x00632960`. For `PScriptCallbackHandler` they are `m_entryPoint` at `+0x00` (`0x00682849`)
-and `m_handler` at `+0x08` (`0x006828B7`). For `PClassCallableMethodScript` they are `m_script` at `+0x50`, whose
-sixth argument is 2 (`0x00681DE5`, `0x00681E11`) where the other members give 0, `m_nameAsString` at `+0x58`
-(`0x00681E7F`) and `m_entryPoint` at `+0x60` (`0x00681EED`).
+<details>
+<summary>Where in the code</summary>
 
-`0x00681C50` registers `getAsyncResult` once, inside its guard (`0x02E42490`). `0x00632FB0` fills the method record
-`0x02E42440` (`0x00681CCB`), the record's `+0x28` is cleared (`0x00681CD0`), and the record is linked into the method
-list at `+0x90` of the descriptor at record `+0x10` unless `0x005A7A40` finds a method of that name there
-(`0x00681CF5`-`0x00681D14`). On every call it then builds the caller object at `0x02E42470`: vtable `0x00D70200`, the
-member function `0x00685980` at `+0x08`, and its address in record `+0x28` (`0x00681D31`-`0x00681D54`).
+| | Code |
+|---|---|
+| ¹ | `0x02E41170`, `0x02E41270`, `0x02E41070` |
+| ² | `0x006827DB`, `0x00681C6B`, `0x00681D9B` |
+| ³ | `0x006828E6`, `0x00681D6C`, `0x00681F1C` |
+| ⁴ | `0x00639465` |
+| ⁵ | `0x008092FC`, `0x0080929C` |
+| ⁶ | `0x00808B90` |
+
+</details>
+
+The members go through `0x00632960`. For `PScriptCallbackHandler` they are `m_entryPoint` at `+0x00`¹
+and `m_handler` at `+0x08`². For `PClassCallableMethodScript` they are `m_script` at `+0x50`, whose
+sixth argument is 2³ where the other members give 0, `m_nameAsString` at `+0x58`⁴ and `m_entryPoint` at `+0x60`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00682849` |
+| ² | `0x006828B7` |
+| ³ | `0x00681DE5`, `0x00681E11` |
+| ⁴ | `0x00681E7F` |
+| ⁵ | `0x00681EED` |
+
+</details>
+
+`0x00681C50` registers `getAsyncResult` once, inside its guard¹. `0x00632FB0` fills the method record
+`0x02E42440`², the record's `+0x28` is cleared³, and the record is linked into the method
+list at `+0x90` of the descriptor at record `+0x10` unless `0x005A7A40` finds a method of that name there⁴. On every call it then builds the caller object at `0x02E42470`: vtable `0x00D70200`, the
+member function `0x00685980` at `+0x08`, and its address in record `+0x28`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02E42490` |
+| ² | `0x00681CCB` |
+| ³ | `0x00681CD0` |
+| ⁴ | `0x00681CF5`-`0x00681D14` |
+| ⁵ | `0x00681D31`-`0x00681D54` |
+
+</details>
 
 All of these write the engine's reflection tables through `0x00632960`, `0x00632A10` and `0x00632FB0`;
 no registrar calls the Lua interpreter. `0x00685AC0` then appends four library openers, `math` `0x00819410`, `bit32`
 `0x00818A40`, `string` `0x00817550` and `coroutine` `0x00815500`, with their names to the list at `0x02E41578` through
-`0x006844C0` (`0x00685ADD`-`0x00685B24`). It returns 0 (`0x00685B29`), also when `0x006844C0` returns 13 because its
-allocation failed (`0x006844F2`).
+`0x006844C0`¹. It returns 0², also when `0x006844C0` returns 13 because its
+allocation failed³.
 
-Only `0x006844C0` reads the list's entries, copying the earlier pairs into each new buffer (`0x0068452C`-`0x00684533`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00685ADD`-`0x00685B24` |
+| ² | `0x00685B29` |
+| ³ | `0x006844F2` |
+
+</details>
+
+Only `0x006844C0` reads the list's entries, copying the earlier pairs into each new buffer¹;
 the other two users, `0x00685F60` and `0x008B25C0`, free it. No code calls an opener from the list.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0068452C`-`0x00684533` |
+
+</details>
 
 ### What installs the bindings in Lua
 
 Nothing does. Of the interpreter's functions, code outside it calls 32, and no call puts an engine
 function or table where a script can reach it:
 
-- `lua_pushcclosure` (`0x00810470`) is called only inside the interpreter, at 9 sites, so no binding is ever
+- `lua_pushcclosure`¹ is called only inside the interpreter, at 9 sites, so no binding is ever
   pushed as a Lua function. No data word holds its address.
-- Its callers are `luaL_setfuncs` (`0x0081363A`), the base library's `pairs` and `ipairs` (`0x0081498C`,
-  `0x00814A1C`), `coroutine.wrap` (`0x008151A4`), `string.gmatch` (`0x00815F8B`) and the `io` library's line iterator
-  (`0x00825FB4`).
-- The package library calls it for its searchers table (`0x008288D9`), in its opener (`0x00828D6E`) and in its
-  C-library loader, which pushes a function found with `GetProcAddress` (`0x00828C4C`).
+- Its callers are `luaL_setfuncs`², the base library's `pairs` and `ipairs`³, `coroutine.wrap`⁴, `string.gmatch`⁵ and the `io` library's line iterator
+ ⁶.
+- The package library calls it for its searchers table⁷, in its opener⁸ and in its
+  C-library loader, which pushes a function found with `GetProcAddress`⁹.
 - The only global written from outside is `phyre_pscript`, a light userdata naming the running
-  `PScript`, set by `lua_setglobal` (`0x00810ED0`) in the executor `0x00684F60`.
+  `PScript`, set by `lua_setglobal`¹⁰ in the executor `0x00684F60`.
 - `lua_settable` is used only on tables the array pushers have just created, and `lua_setmetatable`
   only on userdata just pushed.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00810470` |
+| ² | `0x0081363A` |
+| ³ | `0x0081498C`, `0x00814A1C` |
+| ⁴ | `0x008151A4` |
+| ⁵ | `0x00815F8B` |
+| ⁶ | `0x00825FB4` |
+| ⁷ | `0x008288D9` |
+| ⁸ | `0x00828D6E` |
+| ⁹ | `0x00828C4C` |
+| ¹⁰ | `0x00810ED0` |
+
+</details>
 
 The bindings therefore run only when engine code that already holds a `lua_State` calls them, as
 `0x00684F60` does when it pushes an object as the argument of a script's entry point. The game never
@@ -216,35 +457,31 @@ creates a state (see the Lua runtime page), so they never run.
 `0x006852B0(record, n)` is the other caller of that shape, the "execute" of a script record (called from
 `0x00685140`, `0x006853C0` and `0x00685560`):
 
-1. It returns 7 when the record has no script (`+0x08`) and 1 when it has no `lua_State` (`+0x30`).
-2. It fetches the global named by entry `n` of the script's name list at `+0x28` (`lua_getglobal`, `0x0080FB20`)
-   and pushes the record's object (`0x00682D20`, object `+0x10`, descriptor `+0x18`).
-3. It calls the global with that one argument and no results: `lua_pcallk(L, 1, 0, 0, 0, NULL)` (`0x00810340`).
-4. A failure is logged through `0x005CDAA0` as `"execute: lua_pcall failed - error code: %d\n%s (%s)"` with
-   the message and the script's name, and the message is popped.
-5. It runs a full collection (`lua_gc(L, LUA_GCCOLLECT, 0)`, `0x0080F800`) and returns 0.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It returns 7 when the record has no script (`+0x08`) and 1 when it has no `lua_State` (`+0x30`). |   |
+| 2 | It fetches the global named by entry `n` of the script's name list at `+0x28` (`lua_getglobal`, `0x0080FB20`) and pushes the record's object (`0x00682D20`, object `+0x10`, descriptor `+0x18`). |   |
+| 3 | It calls the global with that one argument and no results: `lua_pcallk(L, 1, 0, 0, 0, NULL)`. | `0x00810340` |
+| 4 | A failure is logged through `0x005CDAA0` as `"execute: lua_pcall failed - error code: %d\n%s (%s)"` with the message and the script's name, and the message is popped. |   |
+| 5 | It runs a full collection (`lua_gc(L, LUA_GCCOLLECT, 0)`, `0x0080F800`) and returns 0. |   |
 
 The executor `0x00684F60(record, L, n)` takes the state as an argument and runs the chunk before the entry point:
 
-1. It returns 7 when the record has no script (`+0x08`, `0x00684F82`) and 1 when `L` is null (`0x00684F9B`).
-2. It loads the chunk with `0x00683C30(L, script)` (`0x00684FBC`) and returns 9 when that fails (`0x00684FC3`).
-3. It pushes the script as a light userdata and stores it in the global `phyre_pscript` (`0x00684FD5`, `0x00684FE4`).
-   It then runs the chunk with no arguments and no results, `lua_pcallk(L, 0, 0, 0, 0, NULL)` (`0x00684FFF`).
-4. A failure is logged through `0x005CDAA0` with first argument 3, as
-   `"execute: lua_pcall failed - error code: %d\n%s (%s)"` with the message and the script's `m_sourceName`, bit
-   `0x1` cleared (`0x00685022`-`0x0068503F`). The message is popped and 0 returned.
-5. When the dword at record `+0x20` is negative it logs `"execute: no valid script entryPoint set (%s)"` with the
-   source name and returns 0 (`0x00685054`-`0x00685078`).
-6. Otherwise it fetches the global named by entry `n` of the script's name list at `+0x28`, bit `0x1` cleared
-   (`0x0068507D`-`0x00685097`). It pushes the record's object (`0x00682D20`, object `+0x10`, descriptor `+0x18`,
-   `0x006850A7`) and calls the global with that one argument and no results (`0x006850C2`).
-7. It reads the top of the stack as a string (`0x006850D2`). A failure logs
-   `"execute: lua_pcall failed - error code: %d\n%s"` with first argument 3 and pops the message
-   (`0x006850DB`-`0x006850FA`).
-8. After a success, a string or number on top is logged with `"%s\n"` and first argument 2 (`0x00685101`-`0x00685115`).
-   It returns 0.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It returns 7 when the record has no script (`+0x08`, `0x00684F82`) and 1 when `L` is null. | `0x00684F9B` |
+| 2 | It loads the chunk with `0x00683C30(L, script)` and returns 9 when that fails. | `0x00684FBC`<br>`0x00684FC3` |
+| 3 | It pushes the script as a light userdata and stores it in the global `phyre_pscript`. It then runs the chunk with no arguments and no results, `lua_pcallk(L, 0, 0, 0, 0, NULL)`. | `0x00684FD5`, `0x00684FE4`<br>`0x00684FFF` |
+| 4 | A failure is logged through `0x005CDAA0` with first argument 3, as `"execute: lua_pcall failed - error code: %d\n%s (%s)"` with the message and the script's `m_sourceName`, bit `0x1` cleared. The message is popped and 0 returned. | `0x00685022`-`0x0068503F` |
+| 5 | When the dword at record `+0x20` is negative it logs `"execute: no valid script entryPoint set (%s)"` with the source name and returns 0. | `0x00685054`-`0x00685078` |
+| 6 | Otherwise it fetches the global named by entry `n` of the script's name list at `+0x28`, bit `0x1` cleared. It pushes the record's object (`0x00682D20`, object `+0x10`, descriptor `+0x18`, `0x006850A7`) and calls the global with that one argument and no results. | `0x0068507D`-`0x00685097`<br>`0x006850C2` |
+| 7 | It reads the top of the stack as a string. A failure logs `"execute: lua_pcall failed - error code: %d\n%s"` with first argument 3 and pops the message. | `0x006850D2`<br>`0x006850DB`-`0x006850FA` |
+| 8 | After a success, a string or number on top is logged with `"%s\n"` and first argument 2. It returns 0. | `0x00685101`-`0x00685115` |
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### Reflected members
 
@@ -316,7 +553,12 @@ to 1:
 | `+0x50` | `u8` | m_isPersistent |  |
 | `+0x54` | `u32` | m_executionInterval |  |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured from the executable (SHA-256 `73461d08…d89721f8`).
 
@@ -330,14 +572,30 @@ Measured from the executable (SHA-256 `73461d08…d89721f8`).
 | `lua_pushcclosure` callers outside the interpreter | 0 |
 | globals set from outside | 1, `phyre_pscript` |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 - `0x02E41000`: the most recent accessor failure, overwritten by each.
 - `0x02E41058`: the script record being run. The `PScheduler` slots `0x00685140`, `0x006853C0` and `0x00685560` store the
   record before each call of `0x006852B0` or `0x00684F60` and 0 after it; `0x00683AF0` returns its script `+0x08`, or 0
-  when no record is set, and `0x00681F30` takes that function's address (`0x006820EF`).
+  when no record is set, and `0x00681F30` takes that function's address¹.
 - The registry keys `"PhyreObject"`, `"Vector"` and `"Matrix"`: read, never written, by the binding
   layer.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006820EF` |
+
+</details>
+
+</details>
 
 ## Modding notes
 
@@ -410,8 +668,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x005CD6D0` | is called by | `0x002118E0`, `0x00211AC0`, `0x00219610`, `0x0021AC00`, `0x0021EEA0`, `0x00220B80` |
+| [`0x005CD6D0`](phyre-lua-bindings.md) | is called by | [`0x002118E0`](phyre-lua-bindings.md)<br>[`0x00211AC0`](phyre-lua-bindings.md)<br>[`0x00219610`](phyre-lua-bindings.md)<br>[`0x0021AC00`](phyre-lua-bindings.md)<br>[`0x0021EEA0`](phyre-lua-bindings.md)<br>[`0x00220B80`](phyre-lua-bindings.md) |
 
 </details>

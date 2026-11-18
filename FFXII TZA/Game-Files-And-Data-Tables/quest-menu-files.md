@@ -118,7 +118,16 @@ A record:
 | `+0x04` | `u32` | key | mask `0xFF` group; mask `0x3FF00` quest id; mask `0xFF00000` row picture; mask `0xC0000` not read |
 
 A quest's position is its index among the records of its own group; it selects the quest's record in
-the group's `.bin` file (`0x0037FD50`).
+the group's `.bin` file¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037FD50` |
+
+</details>
 
 ### menuquest.lst
 
@@ -171,7 +180,16 @@ No reader uses `item[5]`: the progress row is found by position. The sections:
 Section 2 holds the parts of the quest record, separated by `0x03`; within a part `0x02` breaks the line.
 A section-5 row is 52 four-bit values, value `k` in byte `k / 2` (the high nibble for odd `k`), then
 two zero bytes. Value `k` is the number of parts shown while the quest's progress byte divided by 5 is
-`k` (`0x0037EF70`).
+`k`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037EF70` |
+
+</details>
 
 Both chunks start the same way:
 
@@ -204,6 +222,9 @@ A `QHT0` entry, read by `0x00473CC0(entry, step)`:
 | `+0x04` | `{u16 first, u16 second}[]` |  | per step: offsets of two label strings from the entry; `0x8000` and up = no label |
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -269,6 +290,8 @@ the notation of the `.lst` table.
 | [`quest-menu-files-bin-rows.tsv`](quest-menu-files-bin-rows.tsv) | 586 | record: quest id and `menuquest.dat` record, `item[6]`, `fill`, the three texts, the section-2 part count, the 52 progress values, and the `QHD0` and `QHT0` entry headers |
 | [`quest-menu-files-bin-steps-rows.tsv`](quest-menu-files-bin-steps-rows.tsv) | 1,063 | `QHD0` step: `a`, `b`, location, the `shown` and `labelled` bits with the values of progress / 5 they cover, and the step's two `QHT0` labels |
 
+</details>
+
 ## Loader behaviour
 
 ### The quest data widget
@@ -283,30 +306,73 @@ the notation of the `.lst` table.
 | 3 | `0x10` | load `menuquest.lst` into `+0xD0` |
 
 `menuquest.dat` always loads, into `+0xC8`. The Hunts page opens it with all four bytes 1
-(`0x0037F440` at `0x00579F1E`); the map-data widget's request `0x003BC9F0` (`0x003BCA48`) and `0x0037E350` open it with all four 0,
+(`0x0037F440` at `0x00579F1E`); the map-data widget's request `0x003BC9F0`¹ and `0x0037E350` open it with all four 0,
 and `0x003F4E70` through `0x0037F3B0` with byte 2 only. When `menuquest.nfs` arrives `0x0037F1F0` keeps it at
 `+0xD8` and registers it as a glyph sheet (`0x0039BEC0`, `0x0017FBC0(5)`).
 
-`0x0037F3B0(owner)` and `0x0037F440(b0, b1, b2, b3, owner)` return 0 while `0x02AED490` is set (`0x0037F3CB`, `0x0037F45E`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003BCA48` |
+
+</details>
+
+`0x0037F3B0(owner)` and `0x0037F440(b0, b1, b2, b3, owner)` return 0 while `0x02AED490` is set¹.
 Otherwise they create the `0x5F0`-byte widget with `0x00244F50` and the procedure `0x0037F4D0`, from a creation record
-of the four bytes and the owner at `+0x08`, and return 1 (`0x0037F406`, `0x0037F49F`); `0x0037F3B0` sets byte 2 alone
-(`0x0037F3FE`).
+of the four bytes and the owner at `+0x08`, and return 1²; `0x0037F3B0` sets byte 2 alone³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037F3CB`, `0x0037F45E` |
+| ² | `0x0037F406`, `0x0037F49F` |
+| ³ | `0x0037F3FE` |
+
+</details>
 
 `0x0037F1F0(widget)` is the completion of a listed file:
 
 - While `+0xE5` is 0 it sends `{0x10, 1, 0}` to the owner `+0xC0`, when the owner and its handler are set, and
-  does nothing else (`0x0037F205`-`0x0037F248`).
-- Otherwise it reads the last listed entry (`0x0037F25D`-`0x0037F27A`): at a state other than 2 or 3 it does nothing,
-  at 3 it removes the entry with `0x0037F7C0(widget, last, 1)` (`0x0037F298`), and at 2 it sets state 1 (`0x0037F2A3`).
+  does nothing else¹.
+- Otherwise it reads the last listed entry²: at a state other than 2 or 3 it does nothing,
+  at 3 it removes the entry with `0x0037F7C0(widget, last, 1)`³, and at 2 it sets state 1⁴.
 - For a kind-2 entry it then runs `0x0037FEA0(buffer, record)`, the record at `buffer + 0x10 + 20 x position` with
-  the published widget's `+0xE7`, or null for a null buffer (`0x0037F2E4`-`0x0037F30B`).
+  the published widget's `+0xE7`, or null for a null buffer⁵.
 - For kind 4 it also calls `0x0037F340` unless `+0xE0` bit `0x1` is set, or bit `0x8` is set with bit `0x40` clear
-  (`0x0037F2C8`-`0x0037F2DD`).
-- An entry it set to 1, of any kind, then goes to the entry's owner `+0x08` through `0x0037F190` (`0x0037F317`).
+ ⁶.
+- An entry it set to 1, of any kind, then goes to the entry's owner `+0x08` through `0x0037F190`⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037F205`-`0x0037F248` |
+| ² | `0x0037F25D`-`0x0037F27A` |
+| ³ | `0x0037F298` |
+| ⁴ | `0x0037F2A3` |
+| ⁵ | `0x0037F2E4`-`0x0037F30B` |
+| ⁶ | `0x0037F2C8`-`0x0037F2DD` |
+| ⁷ | `0x0037F317` |
+
+</details>
 
 Group files load on demand: `0x0037FD50(index)` finds the quest's group and position and posts a request,
 and `0x003800D0` asks for id `0x12A` plus the group. Asking for another group releases the other group
-files first (`0x0037FA80`), so one group's table is held at a time.
+files first¹, so one group's table is held at a time.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037FA80` |
+
+</details>
 
 `0x0037FBA0` queues such a request as a 16-byte entry at `+0x3F0` (count `+0xEF`) unless an equal entry is
 already queued, and `0x0037FFD0`, run from there and from the widget procedure `0x0037F4D0`, moves the first
@@ -315,90 +381,191 @@ down. It waits while the published widget's `+0xE5` is 0 or its last listed entr
 dropped on arrival (3).
 
 - `0x0037FD50(index, owner)` works on the published widget. It reads the record's key before its test, so with
-  `+0xC8` null it reads address `0x10 + 8 x index` (`0x0037FDBC`); an index not below the count answers 0
-  (`0x0037FD86`, `0x0037FDCA`), and a negative one is not refused and takes position 0.
-- Otherwise `0x0037FD50` stores `+0xE6` to `+0xEA` (`0x0037FDDD`-`0x0037FDFF`), posts `{0, 2, group, record, quest id,
-  owner}` to `0x0037FBA0` (`0x0037FE23`) and answers 1 whatever that returns.
+  `+0xC8` null it reads address `0x10 + 8 x index`¹; an index not below the count answers 0
+ ², and a negative one is not refused and takes position 0.
+- Otherwise `0x0037FD50` stores `+0xE6` to `+0xEA`³, posts `{0, 2, group, record, quest id,
+  owner}` to `0x0037FBA0`⁴ and answers 1 whatever that returns.
 - `0x003800D0(widget, request)` asks for `0x12A` plus the group for kind 2 (with 3 and 0); for kind 4 it asks for
-  `0x129` (with 2 and 1) only while `+0xD8` is null, else answers 0 (`0x003800F2`-`0x003800FB`); another kind asks for
+  `0x129` (with 2 and 1) only while `+0xD8` is null, else answers 0⁵; another kind asks for
   id 0.
-- It takes a menu set (`0x00249580`), files the request through `0x00249210` (`0x00380145`), closes the set
-  (`0x00249410`) and answers the record's buffer `+0x08`.
+- It takes a menu set⁶, files the request through `0x00249210`⁷, closes the set
+ ⁸ and answers the record's buffer `+0x08`.
 - `0x0037FA80(widget, group)` walks the list from the last entry and releases each kind-2 entry of another group as
-  `0x0037F7C0` does without force (`0x0037FAF2`-`0x0037FB9A`). It answers 1 when every such entry went, 0 when one was
-  kept because it was at 2 or 3 (`0x0037FB1C`).
+  `0x0037F7C0` does without force⁹. It answers 1 when every such entry went, 0 when one was
+  kept because it was at 2 or 3¹⁰.
 - `0x0037FBA0(widget, request)` first looks for a listed entry of the same kind, and group for kind 2. A match
-  takes the request's owner and answers 0 (`0x0037FCBB`-`0x0037FCC2`): at 1 it runs `0x0037FEA0` for kind 2 and tells
-  the owner through `0x0037F190(owner, request)` (`0x0037FCE4`-`0x0037FD1D`), at 3 it goes back to 2 (`0x0037FCD0`), and
+  takes the request's owner and answers 0¹¹: at 1 it runs `0x0037FEA0` for kind 2 and tells
+  the owner through `0x0037F190(owner, request)`¹², at 3 it goes back to 2¹³, and
   at another state it stays.
-- With no listed match an equal queued request only takes the owner and answers 0 (`0x0037FD34`-`0x0037FD42`).
-- Else, for kind 2, `0x0037FBA0` runs `0x0037FA80` on the published widget and ignores its answer (`0x0037FC49`). It
-  appends the request with no bound on the 32 places (`0x0037FC4E`-`0x0037FC6A`) and answers 1.
+- With no listed match an equal queued request only takes the owner and answers 0¹⁴.
+- Else, for kind 2, `0x0037FBA0` runs `0x0037FA80` on the published widget and ignores its answer¹⁵. It
+  appends the request with no bound on the 32 places¹⁶ and answers 1.
 - It runs `0x0037FFD0` when the published widget is null, or its `+0xE5` is not 0 and its last listed entry is
-  at neither 2 nor 3 (`0x0037FC70`-`0x0037FCA1`).
+  at neither 2 nor 3¹⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037FDBC` |
+| ² | `0x0037FD86`, `0x0037FDCA` |
+| ³ | `0x0037FDDD`-`0x0037FDFF` |
+| ⁴ | `0x0037FE23` |
+| ⁵ | `0x003800F2`-`0x003800FB` |
+| ⁶ | `0x00249580` |
+| ⁷ | `0x00380145` |
+| ⁸ | `0x00249410` |
+| ⁹ | `0x0037FAF2`-`0x0037FB9A` |
+| ¹⁰ | `0x0037FB1C` |
+| ¹¹ | `0x0037FCBB`-`0x0037FCC2` |
+| ¹² | `0x0037FCE4`-`0x0037FD1D` |
+| ¹³ | `0x0037FCD0` |
+| ¹⁴ | `0x0037FD34`-`0x0037FD42` |
+| ¹⁵ | `0x0037FC49` |
+| ¹⁶ | `0x0037FC4E`-`0x0037FC6A` |
+| ¹⁷ | `0x0037FC70`-`0x0037FCA1` |
+
+</details>
 
 The widget lists the group files it asked for at `+0xF0`: `0x18`-byte entries, count `+0xEE`, each with a
 state byte (1 loaded, 2 loading, 3 dropped on arrival) and the buffer at `+0x10`.
 
 - `0x0037F7C0(widget, i, force)` removes entry i and returns 1: a loaded or forced entry has its buffer
-  freed (`0x003697F0`); an entry still loading is marked 3 and kept, returning 0.
-- Without force an entry already at 3 is also kept, returning 0 (`0x0037F801`), and one at state 0 or above 3 is
-  removed without a free (`0x0037F803`). An i not below the count returns 0 (`0x0037F7EA`). A freed entry's state is
-  cleared (`0x0037F823`); removal lowers `+0xEE` and moves the later entries down (`0x0037F826`-`0x0037F847`).
+  freed¹; an entry still loading is marked 3 and kept, returning 0.
+- Without force an entry already at 3 is also kept, returning 0², and one at state 0 or above 3 is
+  removed without a free³. An i not below the count returns 0⁴. A freed entry's state is
+  cleared⁵; removal lowers `+0xEE` and moves the later entries down⁶.
 - `0x0037FA00(widget)`, called from the widget procedure `0x0037F4D0`, frees `menuquest.dat` (`+0xC8`) and
   every listed buffer and empties the list.
-- It clears `+0xC8` (`0x0037FA20`) and each entry's state (`0x0037FA49`), frees a listed buffer whatever its state,
+- It clears `+0xC8`⁷ and each entry's state⁸, frees a listed buffer whatever its state,
   and leaves the queue `+0x3F0` as it is.
 - `0x0037F340(widget)` sends `{0x10, 8}` to the owner's handler at `+0xC0`, then sets bit `0x1` of `+0xE0`
   and `+0xE5` = 2. `0x0037F190(owner, entry)` sends `{0x10, entry byte 1, its word +4 when that byte is 2}`.
 - `0x0037F050()` answers whether no quest data widget exists, and `0x0037F160()` returns `+0xE0` bit `0x80`, or 0
   with no widget; the map-data widget's `0x003BBFB0` reads both.
 - `0x0037E4F0(owner)` closes the widget for an owner. While `+0xE0` bit `0x80` is set it sends `{0x10, 10}` to the
-  owner at once. Otherwise it unregisters the glyph sheet (`0x0037F860`), keeps the owner at `+0xC0` and sets
-  `+0xE5` to 3 when that returns 0, or to 4 with a close request (`0x00244F00`) and `{0x10, 9}` to the owner.
+  owner at once. Otherwise it unregisters the glyph sheet⁹, keeps the owner at `+0xC0` and sets
+  `+0xE5` to 3 when that returns 0, or to 4 with a close request¹⁰ and `{0x10, 9}` to the owner.
   With no widget the owner gets `{0x10, 9}`. `0x0037E350`, `0x003BBFB0`, `0x003F4B40`, `0x003F4E70` and `0x00579420` call it.
 - `0x0037EDB0(id)` returns the index of the `menuquest.dat` record whose key holds quest id `id`, or -1, and
   `0x0037E8A0(i)` returns record i's name, or the empty string `0x01CEB638` past the count.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003697F0` |
+| ² | `0x0037F801` |
+| ³ | `0x0037F803` |
+| ⁴ | `0x0037F7EA` |
+| ⁵ | `0x0037F823` |
+| ⁶ | `0x0037F826`-`0x0037F847` |
+| ⁷ | `0x0037FA20` |
+| ⁸ | `0x0037FA49` |
+| ⁹ | `0x0037F860` |
+| ¹⁰ | `0x00244F00` |
+
+</details>
+
 ### Hunt rows
 
-`0x0037EAA0(row, group)` counts, in record order, the quests of the group that are cleared (`0x0046B1A0`) or
-ordered (`0x0046B240`). It returns the record index of the quest numbered `row` in that count, or -1 when fewer
-quests qualify or `+0xC8` is null (`0x0037EACA`, `0x0037EB48`); group `0xFF` takes every group (`0x0037EB00`).
+`0x0037EAA0(row, group)` counts, in record order, the quests of the group that are cleared¹ or
+ordered². It returns the record index of the quest numbered `row` in that count, or -1 when fewer
+quests qualify or `+0xC8` is null³; group `0xFF` takes every group⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046B1A0` |
+| ² | `0x0046B240` |
+| ³ | `0x0037EACA`, `0x0037EB48` |
+| ⁴ | `0x0037EB00` |
+
+</details>
 
 `0x0037E5B0` then reads the quest: its name, id, picture byte, position and group from `menuquest.dat`, and its
 threshold and petitioner line from `menuquest.lst` (`0x0037E65F`-`0x0037E6AC`, `0x0037E6BC`-`0x0037E746`;
 `0x0037EFC0` reads the line alone).
 
 - `0x0037E5B0(index, out)` answers 0 when `+0xC8` is null or the index is outside the records
-  (`0x0037E5CE`-`0x0037E5E7`), else 1. It searches the `.lst` directory itself, with the rule of `0x0037EFC0`.
-- It writes `+0x00` the name (`0x002F9920`), `+0x08` the quest id, `+0x0A` and `+0x0B` the picture byte, `+0x0C`
-  the position, `+0x0E` the threshold, `+0x0F` the group and `+0x10` the line (`0x0037E603`-`0x0037E746`).
+ ¹, else 1. It searches the `.lst` directory itself, with the rule of `0x0037EFC0`.
+- It writes `+0x00` the name², `+0x08` the quest id, `+0x0A` and `+0x0B` the picture byte, `+0x0C`
+  the position, `+0x0E` the threshold, `+0x0F` the group and `+0x10` the line³.
 - Without `menuquest.lst` or an entry for the quest the threshold is 0 and the line the empty string `0x00D111BA`.
 
-The row builder `0x00577C30(list, layout, row, nodes, sheets)` takes group `list` for lists 0 to 2 and `0xFF`
-otherwise (`0x00577C62`-`0x00577C83`), and finds and reads the quest with `0x0037EAA0` and `0x0037E5B0` without testing
-either answer (`0x00577C87`-`0x00577C93`). It then:
+<details>
+<summary>Where in the code</summary>
 
-- shows the name, and the petitioner line drawn with the `menuquest.nfs` sheet (`0x00577D7F`-`0x00577D95`);
-- for group 1, treats the hunt as done when its current progress part (`0x0037EE10`) is at least the
+| | Code |
+|---|---|
+| ¹ | `0x0037E5CE`-`0x0037E5E7` |
+| ² | `0x002F9920` |
+| ³ | `0x0037E603`-`0x0037E746` |
+
+</details>
+
+The row builder `0x00577C30(list, layout, row, nodes, sheets)` takes group `list` for lists 0 to 2 and `0xFF`
+otherwise¹, and finds and reads the quest with `0x0037EAA0` and `0x0037E5B0` without testing
+either answer². It then:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00577C62`-`0x00577C83` |
+| ² | `0x00577C87`-`0x00577C93` |
+
+</details>
+
+- shows the name, and the petitioner line drawn with the `menuquest.nfs` sheet¹;
+- for group 1, treats the hunt as done when its current progress part² is at least the
   `.lst` threshold; for other groups, when the quest is cleared;
 - picks picture sheet `2 x (picture / 24)`, plus 1 when done, and cell `picture % 24`; a sheet number of
   6 or more becomes sheet 0.
-- names the chosen sheet `q_img_c%03d` with its `+0x40` when that is not 0 (`0x0017D2E0`, `0x00577D17`), and sets the
-  number `row + 1` on `nodes[1]` (`0x00393160`, `0x00577D4F`);
-- sets bit `0x1` of `nodes[4]` while the quest is cleared (`0x00577D9D`-`0x00577DBB`), and of `nodes[5]`, on list 1
+- names the chosen sheet `q_img_c%03d` with its `+0x40` when that is not 0³, and sets the
+  number `row + 1` on `nodes[1]`⁴;
+- sets bit `0x1` of `nodes[4]` while the quest is cleared⁵, and of `nodes[5]`, on list 1
   only, while the hunt is not fully read (`0x00576D20(6, position)`, `0x00577DC4`-`0x00577DFA`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00577D7F`-`0x00577D95` |
+| ² | `0x0037EE10` |
+| ³ | `0x0017D2E0`, `0x00577D17` |
+| ⁴ | `0x00393160`, `0x00577D4F` |
+| ⁵ | `0x00577D9D`-`0x00577DBB` |
+
+</details>
 
 `0x0037EE10` needs the group's `.bin` loaded; without it the row counts as not done.
 
 - `0x0037EE10(quest)` finds the quest's first record, its group and position, then the first listed kind-2 file of
   that group. It answers -1 when that file is missing, not at state 1 or has a null buffer
-  (`0x0037EEB8`-`0x0037EEFF`), and -1 is below every threshold (`0x00577CB1`).
-- Otherwise it answers value `progress / 5` of the section-5 row, as `0x0037EF70` does (`0x0046B180`,
-  `0x0037EF01`-`0x0037EF57`).
+ ¹, and -1 is below every threshold².
+- Otherwise it answers value `progress / 5` of the section-5 row, as `0x0037EF70` does³.
 - An id no record holds takes the byte at `menuquest.dat` `+0x08` as its group and position 0
-  (`0x0037EE7F`-`0x0037EE9E`); with `+0xC8` null it looks for group `0xFF` (`0x0037EE75`).
+ ⁴; with `+0xC8` null it looks for group `0xFF`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037EEB8`-`0x0037EEFF` |
+| ² | `0x00577CB1` |
+| ³ | `0x0046B180`, `0x0037EF01`-`0x0037EF57` |
+| ⁴ | `0x0037EE7F`-`0x0037EE9E` |
+| ⁵ | `0x0037EE75` |
+
+</details>
 
 ### The detail pane
 
@@ -406,12 +573,33 @@ When the group file has loaded, `0x0037E8D0` fills the pane's record: quest id, 
 count from section 5, the section 0, 1 and 2 strings and the `.lst` line.
 
 It answers 0 when `+0xC8` is null, the selected record `+0xE8` is not below the count, or the first listed
-kind-2 entry of group `+0xE6` is missing, not at state 1 or has a null buffer (`0x0037E8EA`-`0x0037E95E`); else it
-fills the record and answers 1 (`0x0037EA88`).
+kind-2 entry of group `+0xE6` is missing, not at state 1 or has a null buffer¹; else it
+fills the record and answers 1².
 
-The record: `+0x00` the quest id, `+0x02` the quest's `questbase.bin` value A (`0x00473B90`), `+0x08` the name,
-`+0x10` the part count (`0x0037EF70`), `+0x18`, `+0x20` and `+0x28` the section 0, 1 and 2 strings, the empty
-string `0x00D111BA` where `sectionAt` or `item` is `0xFFFF`, and `+0x30` the `.lst` line (`0x0037EFC0`, `0x0037EA75`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037E8EA`-`0x0037E95E` |
+| ² | `0x0037EA88` |
+
+</details>
+
+The record: `+0x00` the quest id, `+0x02` the quest's `questbase.bin` value A¹, `+0x08` the name,
+`+0x10` the part count², `+0x18`, `+0x20` and `+0x28` the section 0, 1 and 2 strings, the empty
+string `0x00D111BA` where `sectionAt` or `item` is `0xFFFF`, and `+0x30` the `.lst` line³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00473B90` |
+| ² | `0x0037EF70` |
+| ³ | `0x0037EFC0`, `0x0037EA75` |
+
+</details>
 
 `0x005789D0` builds two text
 panes through `0x00578450`:
@@ -424,84 +612,179 @@ The progress byte is the quest's scenario flag, save `+0x1064 + quest` (`0x0046B
 
 `0x00578450` is the pane's procedure. Message 1 keeps the creation record's `+0x00` at
 `+0xC0`, the quest record `+0x10` at `+0xD0`, the mode byte `+0x20` at `+0xF8` and the
-byte `+0x21` at `+0xF9` (`0x005784F4`-`0x00578538`). Mode 1 is the first pane: `0x00578120`
-lays section 0 out at `+0x100`, and for a cleared quest (`0x0046B1A0`) the empty line
-`0x00D237DC` and section 1 follow; the line count goes to `+0xFA` and `+0xFB`
-(`0x0057854F`-`0x005785BE`).
+byte `+0x21` at `+0xF9`¹. Mode 1 is the first pane: `0x00578120`
+lays section 0 out at `+0x100`, and for a cleared quest² the empty line
+`0x00D237DC` and section 1 follow; the line count goes to `+0xFA` and `+0xFB`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005784F4`-`0x00578538` |
+| ² | `0x0046B1A0` |
+| ³ | `0x0057854F`-`0x005785BE` |
+
+</details>
 
 Mode 0 is the second pane. After `0x00578120` on section 2 it finds the parts with
 `0x002B39A0(text, 3)` and counts each part's lines with `0x002B39A0(text, 2)`: a `0x02`
 counts when it lies before the next part and is not the text's last byte, and the last
-part counts one more when no `0x02` is left (`0x005785C9`-`0x0057869D`).
+part counts one more when no `0x02` is left¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005785C9`-`0x0057869D` |
+
+</details>
 
 The shown count `+0xF4` is the smaller of the record's part count `+0x10` and the parts
 found. The twelve bytes from `+0xE8` hold each part's first line, and `+0xFB` the lines
-of the shown parts (`0x0057869F`-`0x00578718`).
+of the shown parts¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0057869F`-`0x00578718` |
+
+</details>
 
 Both modes then take a pane from `0x003931E0` (kept at `+0xD8`, its `+0xC8` and `+0xD8`
 pointing back), give it the line count with `0x002D48C0` and the byte `+0xF9` with
 `0x002D47C0`, set its byte `+0xFF` to `0x58`, its handler `+0x120` to `0x00578310` and bits
 `0x1000000` of `+0xE4` and `0x800000` of `+0xE0`; a creation dword `+0x08` of 1 also
-sets its byte `+0x103` to `0x64` and bit `0x4000000` of `+0xE4` (`0x0057871A`-`0x0057882B`).
+sets its byte `+0x103` to `0x64` and bit `0x4000000` of `+0xE4`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0057871A`-`0x0057882B` |
+
+</details>
 
 Message 10 runs `0x002D3900` on the pane and, like message 12, passes the message to the
 function at the first qword of `+0xC0`, answering 0 when that qword is null; message 14
-answers 0; any other goes to `0x005C5230` (`0x0057847B`-`0x005784EF`, `0x00578830`).
+answers 0; any other goes to `0x005C5230`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0057847B`-`0x005784EF`, `0x00578830` |
+
+</details>
 
 ### Map markers
 
-Whenever the selected quest's group file is ready (`0x0037F1F0`, `0x0037FBA0`), `0x0037FEA0` takes the quest's
+Whenever the selected quest's group file is ready¹, `0x0037FEA0` takes the quest's
 `QHD0` chunk at `sectionAt[3] + item[3]` and its `QHT0` chunk at `sectionAt[4] + item[4]`. `0x00473D50`
 and `0x00473DB0` publish them at `0x02CA6C68` and `0x02CA6C70` and, the first time, add the chunk's address to
 each `entryAt` and set bit `0x80000000` of `count`. Widget bits `0x100` and `0x200` say whether each chunk is
 set. `0x0037F140()` returns bit `0x200`, or 0 when no widget exists; the map-data widget's procedure `0x003BC4E0`
 reads it.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037F1F0`, `0x0037FBA0` |
+
+</details>
+
 - `0x0037FEA0(buffer, record)` publishes a chunk only when both are set, neither `sectionAt` nor `item` is `0xFFFF`
-  and the 32-bit sum is not 0 (`0x0037FEBA`-`0x0037FEE0`, `0x0037FF11`-`0x0037FF37`). Otherwise it clears that chunk's
-  bit of the published widget and leaves `0x02CA6C68` or `0x02CA6C70` as it was (`0x0037FF0B`, `0x0037FF5F`).
+  and the 32-bit sum is not 0¹. Otherwise it clears that chunk's
+  bit of the published widget and leaves `0x02CA6C68` or `0x02CA6C70` as it was².
 - `0x00473D50` and `0x00473DB0` store the chunk first and skip the rebase when bit `0x80000000` is already set
-  (`0x00473D62`, `0x00473DC2`). Their loop bound `(int32)(n + n) >> 1` is the count `n` doubled as a signed 32-bit
+ ³. Their loop bound `(int32)(n + n) >> 1` is the count `n` doubled as a signed 32-bit
   value and halved (`sar eax, 1`, `0x00473D97`, `0x00473DF7`), so a count from `0x40000000` up rebases no entry and
-  still gets the bit (`0x00473D67`-`0x00473D9E`, `0x00473DC7`-`0x00473DFE`).
+  still gets the bit⁴.
 - In bytes, with `n` = `chunk[+4]`: `if (n >= 0) { if (n + n > 0) for (i = 0; i < (int32)(n + n) >> 1; i++)
   chunk[+8 + 4 × i] += (u32)chunk; chunk[+4] = n | 0x80000000; }` (`0x00473D60`-`0x00473D9E` for `0x02CA6C68`,
   `0x00473DC0`-`0x00473DFE` for `0x02CA6C70`).
 - `0x00473BB0` reads step `j` of entry 0 and tests bit `min(progress / 5, 50)` of `shown` and `labelled`.
-- `0x00473BB0`'s fourth argument is a 28-byte record it zeroes first (`0x00473BBA`-`0x00473BC8`): `+0x00` the type, for
+- `0x00473BB0`'s fourth argument is a 28-byte record it zeroes first⁵: `+0x00` the type, for
   type 0 `+0x04` a, for type 1 `+0x08` a, `+0x0C` location and `+0x10` b, then `+0x14` and `+0x18` the `shown` and
-  `labelled` bytes masked to that bit (`0x00473C6C`-`0x00473C80`).
+  `labelled` bytes masked to that bit⁶.
 - `0x00473B70(i)` returns the byte that entry `i`'s `entryAt` address (at `+8 + 4i` of the published `QHD0` chunk)
-  points at, read as the step count by `0x0037EB90` (`0x0037EBE0`), `0x0037EC70` (`0x0037ECD1`), `0x003BC160` (`0x003BC1C9`)
-  and `0x003BC4E0` (`0x003BC836`).
+  points at, read as the step count by `0x0037EB90`⁷, `0x0037EC70`⁸, `0x003BC160`⁹
+  and `0x003BC4E0`¹⁰.
 - The map-data widget takes the first type-1 step whose `shown` bit is set and looks its `location` up
-  among the map's locations (`0x003BC160`, `0x003C0380`).
+  among the map's locations¹¹.
 - For the location under the cursor, `0x003BDB30` answers 0 unless bits `0x100` and `0x200` of the map-data widget's
-  `+0xD0` are set (`0x003BDBA4`-`0x003BDBB2`); it walks entry 0's steps up to the first that is not type 1 and takes the
-  one with both bits set for that location whose rank among those is its third argument (`0x003BDBE0`-`0x003BDC3B`).
-- While bit `0x400` is set, `0x003BDB30` takes that step's `second` label from `QHT0` (`0x00473CC0`) and answers 0 when
+  `+0xD0` are set¹²; it walks entry 0's steps up to the first that is not type 1 and takes the
+  one with both bits set for that location whose rank among those is its third argument¹³.
+- While bit `0x400` is set, `0x003BDB30` takes that step's `second` label from `QHT0`¹⁴ and answers 0 when
   the entry's `value` is not 1; with the bit clear the label is null. It hands back the step's `b` and the label
-  (`0x003BDC43`-`0x003BDC7D`).
+ ¹⁵.
 - `0x00473CC0(entry, step, first, second)` writes the addresses of the step's two labels to `first` and `second`,
-  null for an offset of `0x8000` or more (`0x00473CE4`-`0x00473D14`), and returns the entry's `value` byte.
+  null for an offset of `0x8000` or more¹⁶, and returns the entry's `value` byte.
 - `0x0037EB90` returns the location of the first step that applies, and `0x0037EC70` whether that step is type
   0 or type 1, which `0x0037E350` hands back to its caller.
 - `0x0037EB90()` answers 0 with no widget at `0x02AED490` or with bit `0x100` of its `+0xE0`
-  clear (`0x0037EBA3`-`0x0037EBCD`). Otherwise it asks `0x00473BB0(0, i, progress, record)` for
+  clear¹⁷. Otherwise it asks `0x00473BB0(0, i, progress, record)` for
   each step `i` below `0x00473B70(0)`, the progress being `0x0046B180(word +0xEA)`, and
   answers the dword `+0x0C` of the first record whose dword `+0x14` is not 0, or -1 when
-  no step has one (`0x0037EBE0`-`0x0037EC66`).
+  no step has one¹⁸.
 - `0x0037ED80()` returns that type, or 2 when no step applies; `0x003BC160`, `0x003C18A0` and `0x00578F50` call it.
 - The map-data widget's `0x003BCAB0(widget)` turns the quest id at `+0xCC` into a record index
-  (`0x0037EDB0`), keeps it at `+0xCE` and loads that quest's group file (`0x0037FD50`); with no such quest it
+ ¹⁹, keeps it at `+0xCE` and loads that quest's group file²⁰; with no such quest it
   returns 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037FEBA`-`0x0037FEE0`, `0x0037FF11`-`0x0037FF37` |
+| ² | `0x0037FF0B`, `0x0037FF5F` |
+| ³ | `0x00473D62`, `0x00473DC2` |
+| ⁴ | `0x00473D67`-`0x00473D9E`, `0x00473DC7`-`0x00473DFE` |
+| ⁵ | `0x00473BBA`-`0x00473BC8` |
+| ⁶ | `0x00473C6C`-`0x00473C80` |
+| ⁷ | `0x0037EBE0` |
+| ⁸ | `0x0037ECD1` |
+| ⁹ | `0x003BC1C9` |
+| ¹⁰ | `0x003BC836` |
+| ¹¹ | `0x003BC160`, `0x003C0380` |
+| ¹² | `0x003BDBA4`-`0x003BDBB2` |
+| ¹³ | `0x003BDBE0`-`0x003BDC3B` |
+| ¹⁴ | `0x00473CC0` |
+| ¹⁵ | `0x003BDC43`-`0x003BDC7D` |
+| ¹⁶ | `0x00473CE4`-`0x00473D14` |
+| ¹⁷ | `0x0037EBA3`-`0x0037EBCD` |
+| ¹⁸ | `0x0037EBE0`-`0x0037EC66` |
+| ¹⁹ | `0x0037EDB0` |
+| ²⁰ | `0x0037FD50` |
+
+</details>
 
 ### Address width
 
-The chunk address is formed with a 32-bit addition (`0x0037FED9`-`0x0037FEDE`, `0x0037FF30`-`0x0037FF35`), the rebased
-offsets are 32-bit (`0x00473D80`, `0x00473DE0`) and are read back sign-extended (`0x00473B7A`, `0x00473BD6`, `0x00473CD0`),
-and the section-5 row address is 32-bit too (`0x0037E9D7`, `0x0037EF05`). The group file buffers must therefore lie
+The chunk address is formed with a 32-bit addition¹, the rebased
+offsets are 32-bit² and are read back sign-extended³,
+and the section-5 row address is 32-bit too⁴. The group file buffers must therefore lie
 below 2 GB.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037FED9`-`0x0037FEDE`, `0x0037FF30`-`0x0037FF35` |
+| ² | `0x00473D80`, `0x00473DE0` |
+| ³ | `0x00473B7A`, `0x00473BD6`, `0x00473CD0` |
+| ⁴ | `0x0037E9D7`, `0x0037EF05` |
+
+</details>
 
 ## Modding notes
 
@@ -537,22 +820,28 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Engine core** (explained on [global state accessors](../Engine-Core/global-state-accessors.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002465F0` | calls | `0x001EDDA0` |
+| [`0x002465F0`](../Menus-And-HUD/widgets.md) (on widgets) | calls | [`0x001EDDA0`](../Graphics/effect-lifecycle.md) (on effect lifecycle) |
 
 **Saving, loading and settings** (explained on [mrp menu resource packages](mrp-menu-resource-packages.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00249210` | is called by | `0x00582790` |
-| `0x00249410` | is called by | `0x00582790` |
-| `0x00249580` | is called by | `0x00582790` |
+| [`0x00249210`](mrp-menu-resource-packages.md) (on mrp menu resource packages) | is called by | [`0x00582790`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
+| [`0x00249410`](mrp-menu-resource-packages.md) (on mrp menu resource packages) | is called by | [`0x00582790`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
+| [`0x00249580`](mrp-menu-resource-packages.md) (on mrp menu resource packages) | is called by | [`0x00582790`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
 
 **Controls and input** (explained on [controls](../Controls-And-Input/controls.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002D3900` | calls | `0x001E0A10`, `0x001E0E30` |
+| [`0x002D3900`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) | calls | [`0x001E0A10`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen)<br>[`0x001E0E30`](../Controls-And-Input/controls.md) (on controls) |
 
 </details>

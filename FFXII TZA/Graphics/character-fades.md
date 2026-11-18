@@ -49,13 +49,24 @@ value = base + ((delta * progress) >> 12)
   channel at once, more starts a ramp. `0x004293C0` is the same with a flag that redirects the ramp to
   the record's first child.
 - The redirect covers only the ramp: for one frame or fewer `0x004293C0` jumps to `0x003E5D00` on the record itself
-  whatever the flag (`0x004293C0`-`0x004293C4`). A flag of exactly 1 sends the ramp to the first child `+8`, and
-  nothing is written when that index is -1 or the child's `+0x284` is 0 (`0x004293CA`-`0x00429402`). Command `0x23`
-  gives the flag its word `+2` (`0x00520190`-`0x0052019F`).
+  whatever the flag¹. A flag of exactly 1 sends the ramp to the first child `+8`, and
+  nothing is written when that index is -1 or the child's `+0x284` is 0². Command `0x23`
+  gives the flag its word `+2`³.
 - `0x003E4370(record)` advances every channel with a non-zero step: progress grows by the step up to
   `0x1000`, and on the update after it arrives the delta is folded into the base and the channel rests.
   It runs from `0x0042C410` and `0x0042C8F0`, the root and child callbacks of the hierarchy walk
   `0x00426090` starts in each simulation step.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004293C0`-`0x004293C4` |
+| ² | `0x004293CA`-`0x00429402` |
+| ³ | `0x00520190`-`0x0052019F` |
+
+</details>
 
 `0x01DFE0B4` is 1 at 30 fps and 2 at 60, and `0x01F82E38` is set at 60
 ([startup constants](../Engine-Core/startup-constants.md)), so a ramp takes the same time at
@@ -79,15 +90,37 @@ popped frame count plus one.
 
 `0x00428C40` takes the frame count as a float and truncates it, `n = (int)count` (`cvttss2si ebx, [rsp + 0x78]`
 at `0x00428C4A`), and always ramps through `0x003E5D60`:
-channels 6, 7 and 8 by calls and 9 by a tail jump (`0x00428C50`-`0x00428CBE`), so a count below 1 still ramps over
+channels 6, 7 and 8 by calls and 9 by a tail jump¹, so a count below 1 still ramps over
 one frame. Both verbs pop five floats with `0x00267DB0`, the frame count first and then alpha, blue, green and red,
-and add 1.0 to the count (`0x0033F559`-`0x0033F5A1`, `0x0033FAFB`-`0x0033FB66`).
+and add 1.0 to the count².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00428C50`-`0x00428CBE` |
+| ² | `0x0033F559`-`0x0033F5A1`, `0x0033FAFB`-`0x0033FB66` |
+
+</details>
 
 `0x002E84B0(actor, ...)` writes nothing for a null actor, a null presentation context `+0xC0`, a context whose
-dword `+0x00` or word `+0x00` is -1, or a record whose `+0x284` is 0 (`0x002E84B3`-`0x002E84ED`). `0x002E8500`
-takes the puppet binding itself and makes the same tests from its dword `+0x00` on (`0x002E8503`-`0x002E8531`).
-`puppetrgbatrans` then pops the puppet number (`0x00267E10`), calls the bare `ret` `0x0016D6A0`, and reaches
-`0x002E8500` only when `0x003EB720(number)` gives a binding (`0x0033FB35`-`0x0033FB72`).
+dword `+0x00` or word `+0x00` is -1, or a record whose `+0x284` is 0¹. `0x002E8500`
+takes the puppet binding itself and makes the same tests from its dword `+0x00` on².
+`puppetrgbatrans` then pops the puppet number³, calls the bare `ret` `0x0016D6A0`, and reaches
+`0x002E8500` only when `0x003EB720(number)` gives a binding⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E84B3`-`0x002E84ED` |
+| ² | `0x002E8503`-`0x002E8531` |
+| ³ | `0x00267E10` |
+| ⁴ | `0x0033FB35`-`0x0033FB72` |
+
+</details>
 
 Of all the references to `0x003E5D60`, `0x003E5D00`, `0x00428940` and `0x004293C0`, conditional jumps included, not one
 writes channel 3, and the references that write the other channels are those
@@ -121,26 +154,57 @@ to `0x0042E1F0`. For a piece whose parent's kind is `0x11` to `0x15`, the parent
 - otherwise it is set to 1.0 at once.
 
 `0x0042E1F0(record, arg)` first runs `0x004292B0(record, [arg + 8], 0)` on every record it is given, piece or not,
-then reads the kind through `0x003E5CF0` (`0x0042E20E`-`0x0042E225`); a piece without a parent is left there
-(`0x0042E227`-`0x0042E22F`).
+then reads the kind through `0x003E5CF0`¹; a piece without a parent is left there².
 
-The parent's own parent index `+6` is used with no -1 test (`0x0042E258`-`0x0042E264`),
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0042E20E`-`0x0042E225` |
+| ² | `0x0042E227`-`0x0042E22F` |
+
+</details>
+
+The parent's own parent index `+6` is used with no -1 test¹,
 so for a parent without a parent the `+0x284` and `+0xCC` tests read the 0x740 bytes before the record array
-`[0x022C6F28]`. The handled record is `[arg + 8]` (`0x0042E2AC`) and the ramp is
-`0x003E5D60(record, 1, 0, 5)`, a tail jump (`0x0042E2C1`-`0x0042E2D7`). A record whose word `+0x2F2` is non-zero skips
-all of this: it tail-jumps to `0x00423B10(record, [arg + 0x10], dword [arg + 0x20])` (`0x0042E1FA`-`0x0042E208`,
-`0x0042E2E6`-`0x0042E2F8`).
+`[0x022C6F28]`. The handled record is `[arg + 8]`² and the ramp is
+`0x003E5D60(record, 1, 0, 5)`, a tail jump³. A record whose word `+0x2F2` is non-zero skips
+all of this: it tail-jumps to `0x00423B10(record, [arg + 0x10], dword [arg + 0x20])`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0042E258`-`0x0042E264` |
+| ² | `0x0042E2AC` |
+| ³ | `0x0042E2C1`-`0x0042E2D7` |
+| ⁴ | `0x0042E1FA`-`0x0042E208`, `0x0042E2E6`-`0x0042E2F8` |
+
+</details>
 
 `0x0042F880`, the handler that completes a pending attachment (owner at `+0x3CE`, slot at `+0x3CC`),
 applies its own test for slot `0x10A` and sets channel 1 to 0 at once when the bits are clear, so the
 piece arrives hidden.
 
-For a piece in slot `0x10A` it reads the record that the owner's word `+0x2C8` names (`0x003326C0`), with no null
-test before reading its kind (`0x0042F98A`). When that record's kind is `0x11` to `0x15`, the piece is tied to it
+For a piece in slot `0x10A` it reads the record that the owner's word `+0x2C8` names¹, with no null
+test before reading its kind². When that record's kind is `0x11` to `0x15`, the piece is tied to it
 instead of the owner, and channel 1 is set to 0 after the tie when bits `0x3` of the owner's `+0x40B` are both
-clear (`0x0042F956`-`0x0042F9CD`,
-`0x0042FA2E`-`0x0042FA3E`). An owner word `+0x2C8` of -1 ends the handler before the tie (`0x0042F97C`). Unlike
+clear³. An owner word `+0x2C8` of -1 ends the handler before the tie⁴. Unlike
 `0x0042E1F0` it does not look at `+0x284` bit `0x8000000` or the event index.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003326C0` |
+| ² | `0x0042F98A` |
+| ³ | `0x0042F956`-`0x0042F9CD`, `0x0042FA2E`-`0x0042FA3E` |
+| ⁴ | `0x0042F97C` |
+
+</details>
 
 ### Distance fade and cull (channels 0 and 4)
 
@@ -158,10 +222,22 @@ tail flag bit `0x1` on:
 
 The visibility test `0x0046C180` asks `0x003B3F10(box)` where the box lies against the view. For each of the eight
 corners, it takes the corner's x, y and z from the box's two corner vectors through the index table
-`0x00D114C4`-`0x00D11523`, three indices a corner (`0x003B3F73`-`0x003B3FB1`). It transforms the corner with the view
-matrix at `0x02B403F0` (`0x00202C90`, `0x00202B70`) and builds a six-bit outcode: x, y and z each above `|w|` or below
-`-|w|` (`0x003B3FE0`-`0x003B4030`). It returns 3 when every corner is outside the same side, 1 when some corner is
-outside, and 0 otherwise (`0x003B4064`-`0x003B4078`).
+`0x00D114C4`-`0x00D11523`, three indices a corner¹. It transforms the corner with the view
+matrix at `0x02B403F0`² and builds a six-bit outcode: x, y and z each above `|w|` or below
+`-|w|`³. It returns 3 when every corner is outside the same side, 1 when some corner is
+outside, and 0 otherwise⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B3F73`-`0x003B3FB1` |
+| ² | `0x00202C90`, `0x00202B70` |
+| ³ | `0x003B3FE0`-`0x003B4030` |
+| ⁴ | `0x003B4064`-`0x003B4078` |
+
+</details>
 
 | Global | Type | Start | Meaning | Written | Read |
 |---|---|---|---|---|---|
@@ -169,22 +245,38 @@ outside, and 0 otherwise (`0x003B4064`-`0x003B4078`).
 | `0x02B404B3` | `u8` | 0 | the history's top byte, set to 0 after each corner, so the word holds the last four corners' outcodes | `0x003B3F10` (`0x003B4048`, the byte of `ebp`, 0 from `0x003B3F65`) | through the word reads above |
 
 - `puppet_setcharclipone(d, v)` (`0x0569`, `0x00340890`) sets two of these inputs on the render record
-  of puppet `d` (`0x003EB700`) when it is live: `0x003EB8C0` writes `v` into bit `0x10` of `+0xD2`, and
+  of puppet `d`¹ when it is live: `0x003EB8C0` writes `v` into bit `0x10` of `+0xD2`, and
   `0x003EB960` writes it into bit `0x8` of `+0x304` and raises bit `0x40` of `+0x290`, whose processor
   `0x0042BCB0` copies that bit into bit `0x200000` of the `+0x284` of the record itself and then of its
-  children (`0x0042BCDE`-`0x0042BDAA`).
+  children².
 - Each of those copies is made only when `0x00426220` answers 0 for the record it would change
-  (`0x0042BD0B`-`0x0042BD12`, `0x0042BD54`-`0x0042BD5B`, `0x0042E764`-`0x0042E76B`).
+ ³.
 - `0x002E83B0(actor, on)` writes bit `0x2` of `+0xD2` on the render record of the actor's context `+0xC0`:
-  set for a non-zero `on`, cleared for 0, the other bits kept (`0x002E83EC`-`0x002E83F9`). It does nothing for a
+  set for a non-zero `on`, cleared for 0, the other bits kept⁴. It does nothing for a
   null actor, a null context, a context whose dword `+0x00` is -1 or whose low word is `0xFFFF`, a record
-  address of 0, or a record whose dword `+0x284` is 0 (`0x002E83B0`-`0x002E83EA`).
+  address of 0, or a record whose dword `+0x284` is 0⁵.
 - `0x002392D0(actor, flags)` calls `0x002E83B0(actor, 0)` when `0x0031B760(actor)` answers non-null and `flags`
-  has bit `0x10` (`0x002392E4`-`0x002392FB`).
-- The record initialiser `0x00420480` sets bits `0x1B` of `+0xD2`, bit `0x2` among them (`0x004204A7`).
-  `0x002E83B0(actor, 1)` would put back that default; its one native call passes 0 (`0x002392FB`), reached from
+  has bit `0x10`⁶.
+- The record initialiser `0x00420480` sets bits `0x1B` of `+0xD2`, bit `0x2` among them⁷.
+  `0x002E83B0(actor, 1)` would put back that default; its one native call passes 0⁸, reached from
   `btlAtelSetEntryFlag` (handler `0x00510300`, `0x0051031B`) through `0x002392D0` when the flags have bit `0x10`, so in the
   game the bit, once cleared, stays clear until the initialiser runs again.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EB700` |
+| ² | `0x0042BCDE`-`0x0042BDAA` |
+| ³ | `0x0042BD0B`-`0x0042BD12`, `0x0042BD54`-`0x0042BD5B`, `0x0042E764`-`0x0042E76B` |
+| ⁴ | `0x002E83EC`-`0x002E83F9` |
+| ⁵ | `0x002E83B0`-`0x002E83EA` |
+| ⁶ | `0x002392E4`-`0x002392FB` |
+| ⁷ | `0x004204A7` |
+| ⁸ | `0x002392FB` |
+
+</details>
 
 When record `+0x6E0` is non-zero the bits are cleared and no distance fade applies; the other term of that test,
 `0x005C5230()`, returns 0. A culled record gets channels 0 and 4 ramped to 0 over one frame. Otherwise
@@ -196,24 +288,51 @@ the character is below record `+0x2A8`, plus 0.15 while the character is already
 camera's height is within the character's half-height band, channel 4 ramps to 0 over three frames
 and `+0x4B7` bit `0x20` is cleared; otherwise it ramps to 1.0 and the bit is set.
 
-`0x0042D7A0` tests the parent as word `+0x06` of -1 (`0x0042D7A6`-`0x0042D7C2`). After `0x0042E850` it calls
+`0x0042D7A0` tests the parent as word `+0x06` of -1¹. After `0x0042E850` it calls
 `0x00421030(record)` and `0x004210D0(record)`; when the latter returns non-zero and the effect handle `+0x288` is
 not -1, it tail-jumps to `0x003B33A0(+0x288, 0x00420FB0(record))`, the visibility write of
-[character effects](character-effects.md) (`0x0042D7C7`-`0x0042D7F9`).
+[character effects](character-effects.md)².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0042D7A6`-`0x0042D7C2` |
+| ² | `0x0042D7C7`-`0x0042D7F9` |
+
+</details>
 
 The settings are the record system's tail ([character render records](character-render-records.md)):
 
-- `setcharclipdistance_327` (`0x327`, `0x00348B00`) pops two floats: the first to `+0x24` (`0x002E83A0`), the
+- `setcharclipdistance_327` (`0x327`, `0x00348B00`) pops two floats: the first to `+0x24`¹, the
   second to `+0x1C` (`0x002EBC30`, through `0x0026A460`);
 - `setcharclipdistance` (`0x157`, `0x00348310`) pops one float to `+0x1C` the same way;
 - `setcharclipfaderange` (`0x328`, `0x003493F0`) pops one float into `+0x24`;
 - `0x0042ED30` restores 34.0 and 4.0 and flag bits `0x1` and `0x4`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E83A0` |
+
+</details>
+
 Two `f32` globals hold the defaults, both in the zero-filled tail of `.data`: `0x021641F4`, the default
 distance, and `0x021641F8`, the default fade range. `0x002EDA70` and `0x002EDA80` store them; `0x002EDA30` and
-`0x002EDA40` read them. `0x0026C8C0`, run from the load completion `0x0032F850`, sets both and the tail from them
-(`0x0026CD96`-`0x0026CDB9`): 4.0 (`0x01CEBC70`, through `0x002EDA60`) into `0x021641F8` and on to `+0x24`, and 34.0
+`0x002EDA40` read them. `0x0026C8C0`, run from the load completion `0x0032F850`, sets both and the tail from them¹: 4.0 (`0x01CEBC70`, through `0x002EDA60`) into `0x021641F8` and on to `+0x24`, and 34.0
 (`0x00D0F8EC`, through `0x002EDA50`) into `0x021641F4` and on to `+0x1C`. Their verbs:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026CD96`-`0x0026CDB9` |
+
+</details>
 
 - `getcharclipdefaultdistance` (`0x329`, `0x00340B50`) and `getcharclipdefaultfaderange` (`0x32A`,
   `0x00340F80`) return the two defaults;
@@ -226,9 +345,18 @@ distance, and `0x021641F8`, the default fade range. `0x002EDA70` and `0x002EDA80
 
 `0x003E48E0(record, selector)` returns one channel's value for selectors 0 to 9, or a product,
 renormalised after every factor (each one shifted right by 12). Any selector other than `0x0B`, `0x0D` and
-`0x0E` is read as the channel at `+0x4C0 + 8 × selector` (`0x003E48FC`-`0x003E4922`); its eight callers give
-4, `0x0B`, `0x0D` and `0x0E` (`0x0042FB59`, `0x0042D3E6`, `0x0042D580`, `0x004FDB49`, `0x0053AE44`, `0x0053AE9A`,
-`0x0053AF2B`, `0x0053D9A1`):
+`0x0E` is read as the channel at `+0x4C0 + 8 × selector`¹; its eight callers give
+4, `0x0B`, `0x0D` and `0x0E`²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E48FC`-`0x003E4922` |
+| ² | `0x0042FB59`, `0x0042D3E6`, `0x0042D580`, `0x004FDB49`, `0x0053AE44`, `0x0053AE9A`, `0x0053AF2B`, `0x0053D9A1` |
+
+</details>
 
 | Selector | Product of channels |
 |---|---|
@@ -250,19 +378,38 @@ fog from `0x003ED0E0`: the far distance `0x02EBB7E8`, the scale `255 / (far − 
 `0x02EBB7E4`, the floor `255 − [0x02EBB7EF]`, and the colour bytes `0x02EBB7EC`–`0x02EBB7EE`.
 
 `0x0041EC00` sets the record's depth `+0x2DC`: the w of its projected origin, replaced by the w of a
-point at the record's distance from the camera position `0x02AEDF20` (`0x005213B0`) straight down the
+point at the record's distance from the camera position `0x02AEDF20`¹ straight down the
 view when that w exceeds 1 in size (negated for a point behind). The depth gives the raw amount `(far − w) × scale` and the
 clamped amount `a` between the floor and 255, and `t = 1 − (a − floor) / (255 − floor)`. With `k` and
 the colour `c` from the type-`0x41` pool below (`0x003E4E70` returns `1 − k`):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005213B0` |
+
+</details>
 
 - the colour is `t × fog × k + c × 255 × (1 − k)` per channel, clamped to 0..255;
 - the amount is the larger of `raw × k` and `2 × t × c.a × (1 − k) + floor × k`, at most 255.
 
 `0x0042D050` and `0x0042CBF0` call it. For an attached record `0x0042CBF0` takes the parent's projected
 point with w + 2 and copies the fog block of the top ancestor, or of the highest one with `+0x284`
-bit `0x4000` (`0x00202C90`); it computes the record's own block only when that ancestor's word `+0x2CA`
+bit `0x4000`¹; it computes the record's own block only when that ancestor's word `+0x2CA`
 names the record and `0x003B4750` finds a pool record for it. A record whose parent is gone is
-detached and computes its own (`0x0041EC00`, `0x0041E960`).
+detached and computes its own².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00202C90` |
+| ² | `0x0041EC00`, `0x0041E960` |
+
+</details>
 
 ### The type-0x41 pool
 
@@ -292,17 +439,17 @@ Effect type `0x41` keeps records in the 64-entry pool of `0x60`-byte records at 
 | `+0x50` | `u32` |  | stamp from `0x00181DD0`() |
 
 - `0x003B4160` takes the first of the 64 records whose `+0x00` is 0 and returns 0 when no record is free
-  (`0x003B4182`-`0x003B4193`); it gives the record the next serial from `0x02B404C4`, wrapping to 1 above
-  `0xFFFFFF` (`0x003B41AB`-`0x003B41BB`), and stores `serial << 8 | slot` at `+0x00` (`0x003B41ED`-`0x003B41F2`),
+ ¹; it gives the record the next serial from `0x02B404C4`, wrapping to 1 above
+  `0xFFFFFF`², and stores `serial << 8 | slot` at `+0x00`³,
   which is never 0, the serial being 1 to 0xFFFFFF (its only writers are `0x003B41BB` and the reset's `0x003B480E`).
-- Before `0x003B4160` copies the caller's `0x30`-byte block to `+0x20` (`0x003B4212`-`0x003B4225`) it changes
+- Before `0x003B4160` copies the caller's `0x30`-byte block to `+0x20`⁴ it changes
   that block in place: the period word (record `+0x2A`) becomes twice itself when `0x001EDDA0()` answers 0
-  (`0x003B41C1`-`0x003B41D1`), and `+0x2E`, `+0x34` and `+0x3C` are set to 0 and `+0x38` to 1 / period
-  (`0x003B41F4`-`0x003B420F`).
-- `0x003B4160` stores a dword 0 at `+0x04`, which zeroes the age and the frame (`0x003B41EA`), and the answer
-  of `0x00181DD0()` at `+0x50` (`0x003B41A8`).
+ ⁵, and `+0x2E`, `+0x34` and `+0x3C` are set to 0 and `+0x38` to 1 / period
+ ⁶.
+- `0x003B4160` stores a dword 0 at `+0x04`, which zeroes the age and the frame⁷, and the answer
+  of `0x00181DD0()` at `+0x50`⁸.
 - A record is freed by storing 0 at its `+0x00`: `0x003B42B0` at `0x003B42DC`, `0x003B4840` at `0x003B48D7`, and the
-  reset `0x003B4790`, which zeroes all 64 records and the serial (`0x003B480E`-`0x003B481D`).
+  reset `0x003B4790`, which zeroes all 64 records and the serial⁹.
 - `0x003B4840`, from `0x00258D70` and `0x00258E40`, steps every record whose stamp is non-zero or while
   `0x00181DD0()` returns 0: it adds one to the age and the frame, wraps the frame past the period,
   sets the phase to `frame / period` (at most 1), and unlinks the record once its age passes a
@@ -319,22 +466,68 @@ Effect type `0x41` keeps records in the 64-entry pool of `0x60`-byte records at 
   and returns the colour and weight of the record whose luma (`0.299 r + 0.587 g + 0.114 b`) times
   weight is lowest. With no record it returns weight 1.
 
-The key tables are two `0x10`-byte entries from `0x02B404E8`, picked by the record's curve number (`0x003B4403`-`0x003B441C`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B4182`-`0x003B4193` |
+| ² | `0x003B41AB`-`0x003B41BB` |
+| ³ | `0x003B41ED`-`0x003B41F2` |
+| ⁴ | `0x003B4212`-`0x003B4225` |
+| ⁵ | `0x003B41C1`-`0x003B41D1` |
+| ⁶ | `0x003B41F4`-`0x003B420F` |
+| ⁷ | `0x003B41EA` |
+| ⁸ | `0x003B41A8` |
+| ⁹ | `0x003B480E`-`0x003B481D` |
+
+</details>
+
+The key tables are two `0x10`-byte entries from `0x02B404E8`, picked by the record's curve number¹:
 a `u32` key count and a pointer to `(phase, value)` pairs of `f32`. The pool reset `0x003B4790` (called from `0x00259180`
 at `0x0025919B`) fills them every time it runs:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B4403`-`0x003B441C` |
+
+</details>
 
 | Curve | Count | Keys (phase, value) | Stores |
 |---|---|---|---|
 | 0 | `0x02B404E8` = 3 | `0x02B404F0` = `0x00D11520`: (0, 1.0), (0.5, 0), (1.0, 1.0) | `0x003B47D0`, `0x003B47DA` |
 | 1 | `0x02B404F8` = 5 | `0x02B40500` = `0x00D11538`: (0, 1.0), (0.25, 0), (0.5, 1.0), (0.75, 0), (1.0, 1.0) | `0x003B47EA`, `0x003B47F4` |
 
-`0x003B4310` forms the base at `0x003B438A` and reads the count (`0x003B441F`) and the key pointer (`0x003B4427`, `0x003B4460`)
-of the record's curve, then the keys around the record's phase (`0x003B4433`, `0x003B446C`-`0x003B4488`). So curve 0 dips
+`0x003B4310` forms the base at `0x003B438A` and reads the count¹ and the key pointer²
+of the record's curve, then the keys around the record's phase³. So curve 0 dips
 from full to nothing and back once per period, and curve 1 twice.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B441F` |
+| ² | `0x003B4427`, `0x003B4460` |
+| ³ | `0x003B4433`, `0x003B446C`-`0x003B4488` |
+
+</details>
+
 The pool keeps a byte count of its records. Taking a record adds 1 and the unlink `0x003B42B0` takes 1 away. The step
-`0x003B4840` frees a record whose lifetime has run out (`0x003B48D7`) without changing the count, so the count runs ahead
+`0x003B4840` frees a record whose lifetime has run out¹ without changing the count, so the count runs ahead
 of the records in use. Its only other store is the reset's 0:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B48D7` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -375,9 +568,18 @@ capped at `90 × [0x01DFE0B4]`; its 16-bit store of 0 at `+0x456` resets it.
 After the latch, when the record has a presentation entry whose resolved data has byte `+1` equal to 1,
 events `0x35` and `0x36` multiply the accumulator by 0.9 and the speed by the result, event `0x0D`
 forces the speed to 0, and any other event resets the accumulator to 1.0.
-A latched call (case 1) returns straight after its decay (`0x0042411A`) and skips this step, so it runs on the
-arming call and on every unlatched call, also for a record without bit `0x8000000` or with a parent (`0x00424129`,
-`0x00424130`).
+A latched call (case 1) returns straight after its decay¹ and skips this step, so it runs on the
+arming call and on every unlatched call, also for a record without bit `0x8000000` or with a parent².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0042411A` |
+| ² | `0x00424129`, `0x00424130` |
+
+</details>
 
 ## Modding notes
 
@@ -406,51 +608,59 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0026C8C0` | calls | `0x002EF2B0` |
+| [`0x0026C8C0`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor manager: bind loaded definition payload (on character se tables chse) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) |
 
 **Story, events and hunts** (explained on [actor managers](../Characters-And-Objects/actor-managers.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0026C8C0` | calls | `0x00377440` |
+| [`0x0026C8C0`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor manager: bind loaded definition payload (on character se tables chse) | calls | [`0x00377440`](../Story-Events-And-Hunts/event-memory.md) (on event memory) |
 
 **World, areas and travel** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0026C8C0` | calls | `0x0026DB30` |
+| [`0x0026C8C0`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor manager: bind loaded definition payload (on character se tables chse) | calls | [`0x0026DB30`](../World-Areas-And-Travel/save-and-teleport-crystals.md) World persistence: reset banks for field transition (on save and teleport crystals) |
 
-**Enemy AI and gambits** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [glossary](../Engine-Core/glossary.md), [area of effect](../Battle-Actions/area-of-effect.md))
+**Enemy AI and gambits** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [glossary](../Engine-Core/glossary.md), [area of effect](../Battle-Actions/area-of-effect.md), [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031B760` | is called by | `0x00239040`, `0x003014C0`, `0x00301AD0`, `0x003087E0`, `0x0030F130` |
-
-**Enemy AI and gambits** (explained on [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md))
+| [`0x0031B760`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning) | is called by | [`0x00239040`](../Party/party-table.md) Battle unit: select ai order set variant from authored unit (on party table)<br>[`0x003014C0`](../Enemy-AI-And-Gambits/gambits.md) Ai order: evaluate and resolve action target (on gambits)<br>[`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets)<br>[`0x003087E0`](../Battle-Actions/area-of-effect.md) Ai order: select final target from candidates (on area of effect)<br>[`0x0030F130`](../Party/party-slots.md) Ai order: build candidate target buffer from stored range and status (on party slots) |
 
 **Battle actions** (explained on [action phases](../Battle-Actions/action-phases.md), [action results](../Battle-Actions/action-results.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031B760` | is called by | `0x00303830`, `0x00306010`, `0x0030EC00` |
+| [`0x0031B760`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning) | is called by | [`0x00303830`](../Battle-Actions/action-results.md) Battle action: evaluate target previews (on action results)<br>[`0x00306010`](../Enemy-Spawning/bestiary.md) (on bestiary)<br>[`0x0030EC00`](../Battle-Actions/action-results.md) Battle action: resolve special sequence targets (on action results) |
 
 **Gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [battle units](../Characters-And-Objects/battle-units.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031B760` | is called by | `0x0030B050`, `0x0030BA30`, `0x0030BFB0` |
+| [`0x0031B760`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning) | is called by | [`0x0030B050`](../Scripts-And-Script-Commands/battle-verbs.md) Battle unit: has relationship class2 plus in tracked actor list (on battle verbs)<br>[`0x0030BA30`](../Characters-And-Objects/battle-units.md) World actor: has active battle action or unit flag14 (on battle units)<br>[`0x0030BFB0`](../Scripts-And-Script-Commands/battle-verbs.md) World actor: query combat stance state (on battle verbs) |
 
-**Enemy spawning**
+**Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md), [native limits](../Engine-Core/native-limits.md), [battle units](../Characters-And-Objects/battle-units.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [enemy respawning](../Enemy-Spawning/enemy-respawning.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031B760` | is called by | `0x002350C0`, `0x00235360`, `0x002354F0`, `0x002355A0`, `0x00235720`, `0x00235EF0`, `0x00235F50`, `0x00235FB0`, `0x00236030`, `0x00236140`, `0x00236670`, `0x002366E0` |
-| `0x0031B760` | is also called by | `0x00236860`, `0x00238FC0`, `0x002391C0`, `0x002393E0`, `0x00239410`, `0x00239710`, `0x00239840`, `0x002398F0`, `0x0023A200`, `0x0023A2E0`, `0x0023A3B0`, `0x0023A410` |
-
-**Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md), [native limits](../Engine-Core/native-limits.md), [battle units](../Characters-And-Objects/battle-units.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
-
-**Enemy spawning** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md))
+| [`0x0031B760`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning) | is called by | [`0x002350C0`](../Enemy-Spawning/enemy-spawning.md) Spawn lifecycle: check and retire by native range (on enemy spawning)<br>[`0x00235360`](../Enemy-Spawning/spawn-record-fields.md) Spawn: select continuous entry (on spawn record fields)<br>[`0x002354F0`](../Enemy-Spawning/enemy-spawning.md) Spawn: select previous map entry (on enemy spawning)<br>[`0x002355A0`](../Enemy-Spawning/enemy-spawning.md) Spawn: prepare random candidate for current entry (on enemy spawning)<br>[`0x00235720`](../Enemy-Spawning/enemy-spawning.md) Spawn: select and prepare automatic entry (on enemy spawning)<br>[`0x00235EF0`](../Enemy-Spawning/enemy-respawning.md) Spawn entry: get death limit (on enemy respawning)<br>[`0x00235F50`](../Enemy-Spawning/enemy-respawning.md) Spawn entry: get death count (on enemy respawning)<br>[`0x00235FB0`](../Enemy-Spawning/enemy-respawning.md) Spawn entry: get elapsed ticks since last death (on enemy respawning)<br>[`0x00236030`](character-fades.md) Spawn entry: get candidate unit id<br>[`0x00236140`](../Enemy-Spawning/spawn-record-fields.md) Spawn entry: get script selection (on spawn record fields)<br>[`0x00236670`](../Enemy-Spawning/enemy-respawning.md) Spawn entry: query range reentry pending (on enemy respawning)<br>[`0x002366E0`](../Enemy-Spawning/enemy-respawning.md) Spawn entry: get respawn cooldown ticks (on enemy respawning) |
+| [`0x0031B760`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning) | is also called by | [`0x00236860`](../Enemy-Spawning/spawn-record-fields.md) Spawn entry: reset transient state (on spawn record fields)<br>[`0x00238FC0`](../Enemy-Spawning/enemy-spawning.md) Battle unit: set native lifecycle mode (on enemy spawning)<br>[`0x002391C0`](../Enemy-Spawning/spawn-record-fields.md) Spawn entry: set range retire inhibit tag (on spawn record fields)<br>[`0x002393E0`](../Characters-And-Objects/battle-units.md) Spawn unit: set lane candidate table (on battle units)<br>[`0x00239410`](../Enemy-Spawning/enemy-spawning.md) Spawn entry: set current candidate state (on enemy spawning)<br>[`0x00239710`](../Enemy-Spawning/enemy-respawning.md) Spawn group: configure unit membership and mode (on enemy respawning)<br>[`0x00239840`](../Enemy-Spawning/enemy-spawning.md) Spawn unit: bind entry and mark cap tracked (on enemy spawning)<br>[`0x002398F0`](../Scripts-And-Script-Commands/reward-verbs.md) (on reward verbs)<br>[`0x0023A200`](../Enemy-Spawning/spawn-record-fields.md) Spawn entry: configure fresh lifecycle float mode (on spawn record fields)<br>[`0x0023A2E0`](../Enemy-Spawning/enemy-spawning.md) Spawn unit: set entry map and reset transient entries (on enemy spawning)<br>[`0x0023A3B0`](../Items-Equipment-Shops-And-Licenses/item-list.md) (on item list)<br>[`0x0023A410`](../Enemy-Spawning/spawn-record-fields.md) Spawn unit: finalize spawn entry activation (on spawn record fields) |
 
 </details>

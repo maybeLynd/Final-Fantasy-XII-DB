@@ -33,18 +33,12 @@ The two controls are rows 28 and 25 of the Controls screen (`0x002414B0`; [Contr
 
 The input arbiter `0x00253C70` keeps the map state in `0x02092750`:
 
-1. Map Transparency toggles the state between 0 and 3 and remembers it in `0x0209E5B0` (`0x00253E2F`-`0x00253E63`).
-   Each toggle also sets `0x0209E5B4` to 1 (`0x00253E45`, `0x00253E5D`). On a later frame, when `0x001EDE70` answers
-   non-zero, the arbiter clears it and skips the Map Transparency and Display Map press tests for that frame
-   (`0x00253D82`-`0x00253D98`, past `0x00253DEC`-`0x00253E9A`); while `0x001EDE70` answers 0 it stays set and the tests run.
-2. State 3 opens the map overlay with `0x002B6220(1)` (`0x00253DE2`) when the field-time container is ready (`0x003CB3E0`),
-   `0x02092754` is 0, the field has a map record (`0x003BFDF0`) and the story counter is at least 16
-   (`0x00253DD1`-`0x00253DDA`).
-3. Display Map closes the overlay and posts menu request 2 with parameter `0x21`, the location map
-   (`0x00253EA4`-`0x00253EF2`, `0x002E1B10` at `0x00253EE6`). Leaving the location map restores the overlay as it was
-   (`0x002BBA2F`-`0x002BBA3C`). The arbiter's other post of request 2 (`0x00253F01`-`0x00253F58`) also sends `0x21` until
-   story flag `0x5E` is set (`0x00253F21`); then it sends `0x00264640(2)`, or 1 when that is 0 ([Menus](menus.md)).
-4. While the state is not 3, the overlay is closed every frame (`0x002B6260`, `0x00253C92`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Map Transparency toggles the state between 0 and 3 and remembers it in `0x0209E5B0`. Each toggle also sets `0x0209E5B4` to 1. On a later frame, when `0x001EDE70` answers non-zero, the arbiter clears it and skips the Map Transparency and Display Map press tests for that frame (`0x00253D82`-`0x00253D98`, past `0x00253DEC`-`0x00253E9A`); while `0x001EDE70` answers 0 it stays set and the tests run. | `0x00253E2F`-`0x00253E63`<br>`0x00253E45`, `0x00253E5D` |
+| 2 | State 3 opens the map overlay with `0x002B6220(1)` when the field-time container is ready, `0x02092754` is 0, the field has a map record and the story counter is at least 16. | `0x00253DE2`<br>`0x003CB3E0`<br>`0x003BFDF0`<br>`0x00253DD1`-`0x00253DDA` |
+| 3 | Display Map closes the overlay and posts menu request 2 with parameter `0x21`, the location map (`0x00253EA4`-`0x00253EF2`, `0x002E1B10` at `0x00253EE6`). Leaving the location map restores the overlay as it was. The arbiter's other post of request 2 also sends `0x21` until story flag `0x5E` is set; then it sends `0x00264640(2)`, or 1 when that is 0 ([Menus](menus.md)). | `0x002BBA2F`-`0x002BBA3C`<br>`0x00253F01`-`0x00253F58`<br>`0x00253F21` |
+| 4 | While the state is not 3, the overlay is closed every frame. | `0x002B6260`, `0x00253C92` |
 
 The location map also opens from `0x0028E630`, `0x0028E660` and `0x0028E690`, and the World Map host `0x00550400` from
 `0x0028E690` and `0x0028E790` ([Menus](menus.md)).
@@ -55,40 +49,62 @@ The overlay and the location map each have a container of 0x179E0 bytes, at `0x0
 `0x002B7590`) and `0x0209E5F0` (`0x002B9D30`, procedure `0x002BA700`). Each holds two 0xBC08-byte pages in place, at `+0x1B0`
 and `+0xBDC0`, and flips between them:
 
-1. The first call creates the container with no page (`0x002B638F`-`0x002B63D7`). `0x002B6350(a, b)` keeps a at
-   `+0x179DA` and returns the address of the page slot that bit `0x4` does not name (`0x002B63AF`-`0x002B63D7`).
-2. A container message `0x20` sets its open request, bit `0x80` of `+0x179D2`.
-3. The next frame's step builds a page in the other slot (`0x00245000`, `0x002B6474`), flips bit `0x4`, attaches the page
-   and sends it `0x21` (`0x002B6526`-`0x002B6541`).
-4. That build is `0x002B6350` again, which the step calls with the container's word `+0x179D0` and byte `+0x179D8`
-   while bit `0x200` is clear, clearing the request on a non-null answer (`0x002B77DB`-`0x002B77FD`). It answers 0 while
-   the other slot still holds a page (`0x00273A20`, `0x002B640E`-`0x002B6415`).
-5. The page has the procedure `0x002B7B80` and a create record of 0, a and the low 32 bits of the container + `0x190`,
-   sign-extended (`0x002B63DC`-`0x002B63F1`, `0x002B6427`). Its `+0xBBF0` is the container, which then gets message
-   `0x29` (`0x002B6483`-`0x002B64B0`).
-6. The page's `+0xBBEE` takes `[0x01E0C1DC]` (`0x1C0`), `+0xBBE0` takes b and `+0xBBE2` the container's old
-   `+0x179DA`, which then takes a (`0x002B64B9`-`0x002B6513`). `0x00244960` attaches the page (`0x002B651B`), and the call
-   returns it.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The first call creates the container with no page. `0x002B6350(a, b)` keeps a at `+0x179DA` and returns the address of the page slot that bit `0x4` does not name. | `0x002B638F`-`0x002B63D7`<br>`0x002B63AF`-`0x002B63D7` |
+| 2 | A container message `0x20` sets its open request, bit `0x80` of `+0x179D2`. |   |
+| 3 | The next frame's step builds a page in the other slot, flips bit `0x4`, attaches the page and sends it `0x21`. | `0x00245000`, `0x002B6474`<br>`0x002B6526`-`0x002B6541` |
+| 4 | That build is `0x002B6350` again, which the step calls with the container's word `+0x179D0` and byte `+0x179D8` while bit `0x200` is clear, clearing the request on a non-null answer. It answers 0 while the other slot still holds a page. | `0x002B77DB`-`0x002B77FD`<br>`0x00273A20`, `0x002B640E`-`0x002B6415` |
+| 5 | The page has the procedure `0x002B7B80` and a create record of 0, a and the low 32 bits of the container + `0x190`, sign-extended. Its `+0xBBF0` is the container, which then gets message `0x29`. | `0x002B63DC`-`0x002B63F1`, `0x002B6427`<br>`0x002B6483`-`0x002B64B0` |
+| 6 | The page's `+0xBBEE` takes `[0x01E0C1DC]` (`0x1C0`), `+0xBBE0` takes b and `+0xBBE2` the container's old `+0x179DA`, which then takes a. `0x00244960` attaches the page, and the call returns it. | `0x002B64B9`-`0x002B6513`<br>`0x002B651B` |
 
-The location map's builder `0x002B9D30` does the same with four differences: the page procedure is `0x002BAF80`
-(`0x002B9E0C`); `+0xBBEE` takes `[0x01E0C1DC]` less `0x002C9430(0x81)` when `0x002C9430(0x80)` plus the container's
-answer to message `0x29` (0 when the container or its procedure is null) is not 0 (`0x002B9E80`-`0x002B9EC6`);
+The location map's builder `0x002B9D30` does the same with four differences: the page procedure is `0x002BAF80`¹; `+0xBBEE` takes `[0x01E0C1DC]` less `0x002C9430(0x81)` when `0x002C9430(0x80)` plus the container's
+answer to message `0x29` (0 when the container or its procedure is null) is not 0²;
 `+0x48` takes the `0x28`-byte descriptor at `0x00916A70` + 40 x `+0x179D9` (entry 8 for `0xFF`, `0x002B9ED4`-
-`0x002B9EFA`); and `+0xBBE0` takes 5 instead of b while the dword `0x02B457D8` is not 0 (`0x002B9F1B`-`0x002B9F33`).
+`0x002B9EFA`); and `+0xBBE0` takes 5 instead of b while the dword `0x02B457D8` is not 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B9E0C` |
+| ² | `0x002B9E80`-`0x002B9EC6` |
+| ³ | `0x002B9F1B`-`0x002B9F33` |
+
+</details>
 
 A page posts messages to every ancestor up to the root through `0x00275440`, which follows the parent link `+0x10`
 that `0x00244960` sets; its container acts on `0x2B` when it has opened and `0x1F` when it is cancelled. The page procedures `0x002B7B80` and `0x002BAF80` answer
 the same 17 messages through their tables at `0x198EB0` and `0x19C28C` from the image base.
 
 `0x002B6220` also copies the field-time container's resources into the overlay's `+0x190` and sends it `0x10` and
-`0x20` (`0x002B6570`).
+`0x20`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B6570` |
+
+</details>
 
 ### The field-time container
 
 `0x02B47760` (`0x003CB440`, procedure `0x003CB650`) draws nothing. It holds the map resources, the map-data widget and a
-preload child `0x003CB4F0` that fills the map cache, and its bit `0x80` marks the preload as finished (`0x003CB551`-`0x003CB55F`),
+preload child `0x003CB4F0` that fills the map cache, and its bit `0x80` marks the preload as finished¹,
 which the overlay waits for. It is created from `0x00253A30` and the HUD-on step `0x00251F40`, and destroyed by
 `0x003CB410`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CB551`-`0x003CB55F` |
+
+</details>
 
 ### Map resources
 
@@ -103,8 +119,18 @@ which the overlay waits for. It is created from `0x00253A30` and the HUD-on step
 
 ### The map-data widget
 
-`0x003BC450(world, location, owner)` creates the widget `0x02B457E0` once (`0x003BC463`) and answers 1; when a widget
-already exists it creates no second one and answers 0 (`0x003BC4C5`). On creation `0x003BC2D0` loads:
+`0x003BC450(world, location, owner)` creates the widget `0x02B457E0` once¹ and answers 1; when a widget
+already exists it creates no second one and answers 0². On creation `0x003BC2D0` loads:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003BC463` |
+| ² | `0x003BC4C5` |
+
+</details>
 
 | File (kind 7) | When |
 |---|---|
@@ -114,38 +140,78 @@ already exists it creates no second one and answers 0 (`0x003BC4C5`). On creatio
 
 `0x003BC2D0` files the three in heap 2 in one request set (`0x00249580`, closed by a tail jump to `0x00249410` at
 `0x003BC3D1`). In the same set it asks for text groups 6 (`menu_mapname`) and `0x17` (`menu01`) when
-`0x002F8040` finds them missing (`0x002491B0`), setting bits `0x1` and `0x2` of the widget's `+0xD0`
-(`0x003BC37A`-`0x003BC3B3`).
+`0x002F8040` finds them missing¹, setting bits `0x1` and `0x2` of the widget's `+0xD0`².
 
-The location container (`0x002BA15C`) and the field-time container (`0x003CB4CC`) pass `(0, 1)`. `0x003C1DF0` then picks the
-last entry of the guide table in `menumap_common.bin` whose story counter and story gate pass (`0x003BD950`) and loads
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002491B0` |
+| ² | `0x003BC37A`-`0x003BC3B3` |
+
+</details>
+
+The location container¹ and the field-time container² pass `(0, 1)`. `0x003C1DF0` then picks the
+last entry of the guide table in `menumap_common.bin` whose story counter and story gate pass³ and loads
 `menumap_guideNN.bin` (kind 7 `0x496` + the entry's byte `+4`). `menumap_area.bin` (`0xA5`) is loaded separately into
-`0x020927D0` (`0x00253780`).
+`0x020927D0`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002BA15C` |
+| ² | `0x003CB4CC` |
+| ³ | `0x003BD950` |
+| ⁴ | `0x00253780` |
+
+</details>
 
 ### What a page draws
 
-Each frame, a page rebuilds its element list (`0x00402A40`) and draws (`0x002B8A19`-`0x002B8B11`):
+Each frame, a page rebuilds its element list¹ and draws²:
 
-1. one quad textured with `w_line01.tm2` (`0x00404230`);
-2. the line elements (`0x004043B0`), pulsing the marked ones;
-3. one marker per point, each a small map view through `0x003C4070` in mode 2 (`0x00404120`, `0x002B96E7`);
-4. the labels (`0x004044D0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00402A40` |
+| ² | `0x002B8A19`-`0x002B8B11` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | one quad textured with `w_line01.tm2`; | `0x00404230` |
+| 2 | the line elements, pulsing the marked ones; | `0x004043B0` |
+| 3 | one marker per point, each a small map view through `0x003C4070` in mode 2; | `0x00404120`, `0x002B96E7` |
+| 4 | the labels. | `0x004044D0` |
 
 ### Zoom and panning
 
 A page keeps its zoom in percent at `+0xD4` and its scroll at `+0xC8`/`+0xCC`:
 
-1. The overlay page starts at `TrackMapScale` (200, `0x002B806C`) through `0x002B7210` and `0x002B6AE0`.
-2. `0x002B6AE0(page, zoom)` changes the zoom and keeps the view centre still. With `c = [+0x9C] >> 1`,
-   `0x002B69B0` takes `v = (c - [+0xC8]) * 100 / [+0xD4] * zoom / 10`, adds 10 when `v % 10 >= 5`, and sets the
-   scroll to `c - v / 10`, all integer divides; y is the same with `+0x9E` and `+0xCC` (`0x002B69BF`-`0x002B6AD4`).
-3. Each frame `0x002B66E0` keeps the tracked point at `+0xBBD8`, placed at the current zoom (`0x00403550`), inside a box
-   of 32 units either side of the view centre. It moves the scroll a sixth of the way per call, at least 1 unit,
-   within the bounds `+0xF8`-`+0x104`, and centres an axis whose bounds cross (`0x002B6865`-`0x002B6923`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The overlay page starts at `TrackMapScale` (200, `0x002B806C`) through `0x002B7210` and `0x002B6AE0`. |   |
+| 2 | `0x002B6AE0(page, zoom)` changes the zoom and keeps the view centre still. With `c = [+0x9C] >> 1`, `0x002B69B0` takes `v = (c - [+0xC8]) * 100 / [+0xD4] * zoom / 10`, adds 10 when `v % 10 >= 5`, and sets the scroll to `c - v / 10`, all integer divides; y is the same with `+0x9E` and `+0xCC`. | `0x002B69BF`-`0x002B6AD4` |
+| 3 | Each frame `0x002B66E0` keeps the tracked point at `+0xBBD8`, placed at the current zoom, inside a box of 32 units either side of the view centre. It moves the scroll a sixth of the way per call, at least 1 unit, within the bounds `+0xF8`-`+0x104`, and centres an axis whose bounds cross. | `0x00403550`<br>`0x002B6865`-`0x002B6923` |
 
 `0x002B6950(out, w, h, mw, mh)` gives a page's margins: 24 units, or the half difference when the map is smaller than
-the view. `0x002B6B50` gives the icon scale from the display aspect (`0x0017FFD0`) and the floats `0x01E0CE50`, `0x01E0CE58`
+the view. `0x002B6B50` gives the icon scale from the display aspect¹ and the floats `0x01E0CE50`, `0x01E0CE58`
 and `0x01E0CE5C`, 1.5 for an aspect below one third.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017FFD0` |
+
+</details>
 
 ### Points, lists and the legend
 
@@ -166,40 +232,74 @@ A point's name comes from `0x002B9C70` by its kind byte `+0x0D`:
 
 The legend is the 14 pairs of icon frame and text id `0x187F`-`0x188C` at `0x00916A10`. The location map's legend
 pane `0x002BC310` paints each row with `0x002BA650`, and the point list pane `0x002BA310` sizes itself to the widest name
-(`0x002BA530`, measured with `0x0029CD00`) and paints each row with `0x002BD8C0`: the name and an icon, from the shared atlas
-(`0x0035D460`) for icons below `0x13` and from the page's own atlas for the rest. `0x002B6310(location)` returns the area
+(`0x002BA530`, measured with `0x0029CD00`) and paints each row with `0x002BD8C0`: the name and an icon, from the shared atlas¹ for icons below `0x13` and from the page's own atlas for the rest. `0x002B6310(location)` returns the area
 of a sub-location's persistence group (`0x003C02B0`, `0x003BF6C0`;
 [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md)).
 
-The point list pane takes its rows from the sub-location icons of the page's sloc block (`0x003BE2D0` of the page's
-`+0x1C`), through `0x00402000(rows, page)` (`0x002BA347`, `0x002BA3A2`):
+<details>
+<summary>Where in the code</summary>
 
-1. it walks kinds 3 to 8 with `0x003DFBB0` and `0x003DFB50`, keeping the entries `0x003FFF40` accepts;
-2. unless the page's `+0x28` bit `0x200` is set, it skips an icon other than `0x14`, `0x17` and `0x18` whose 16-unit cell is
-   not visited (`0x00255150`), on the visit mask that `0x00403F90` copies from `0x002551B0` (all `0xFF` when there is no
-   visit mask or `+0x28` bit `0x8000` is set; the buffer of `0x003C4AE0` when bit `0x1` is set);
-3. an icon `0x0E` adds no row: its entry number goes to `+0xC` of the row before it;
-4. each other entry adds a 0x18-byte row {entry, kind `+8`, entry number `+0xA`, `0xFFFF` at `+0xC`}, and the count is
-   returned (a null `rows` only counts).
+| | Code |
+|---|---|
+| ¹ | `0x0035D460` |
+
+</details>
+
+The point list pane takes its rows from the sub-location icons of the page's sloc block (`0x003BE2D0` of the page's
+`+0x1C`), through `0x00402000(rows, page)`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002BA347`, `0x002BA3A2` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | it walks kinds 3 to 8 with `0x003DFBB0` and `0x003DFB50`, keeping the entries `0x003FFF40` accepts; |   |
+| 2 | unless the page's `+0x28` bit `0x200` is set, it skips an icon other than `0x14`, `0x17` and `0x18` whose 16-unit cell is not visited, on the visit mask that `0x00403F90` copies from `0x002551B0` (all `0xFF` when there is no visit mask or `+0x28` bit `0x8000` is set; the buffer of `0x003C4AE0` when bit `0x1` is set); | `0x00255150` |
+| 3 | an icon `0x0E` adds no row: its entry number goes to `+0xC` of the row before it; |   |
+| 4 | each other entry adds a 0x18-byte row {entry, kind `+8`, entry number `+0xA`, `0xFFFF` at `+0xC`}, and the count is returned (a null `rows` only counts). |   |
 
 `0x004022F0(sloc, icon)` returns 1 when any icon of kinds 3 to 8 equals `icon`, treating `0x14`, `0x17` and `0x18` as one
-icon (`0x003BCBA0`, `0x003BCC46`). `0x00402250(x, y, page, kind, i)` returns the `at` position (`+4`, `+6`) of one sloc entry.
+icon¹. `0x00402250(x, y, page, kind, i)` returns the `at` position (`+4`, `+6`) of one sloc entry.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003BCBA0`, `0x003BCC46` |
+
+</details>
 
 ### Page element helpers
 
-The element list of a map page is linked through `+0x60`. The two page procedures (`0x002B7B80`, `0x002BAF80`) share these
+The element list of a map page is linked through `+0x60`. The two page procedures¹ share these
 helpers:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B7B80`, `0x002BAF80` |
+
+</details>
 
 - `0x004026B0(list, id)` finds the element whose byte `+1` is `id`; `0x00402200` the first with `+0x28` bit `0x20`;
   `0x00402230` the first with bit `0x1`, or the head.
-- `0x003C4AB0()` (`0x002B8435`, `0x002BBD60`) passes the block at `0x02EBA488` to `0x002DD550(block, -4)`, which writes it
-  into the GS command buffer being filled (`0x02EBEFC8 + 0x18 x [0x02EBEFF0]`) and flips the buffer (`0x003A1DB0`)
+- `0x003C4AB0()`¹ passes the block at `0x02EBA488` to `0x002DD550(block, -4)`, which writes it
+  into the GS command buffer being filled (`0x02EBEFC8 + 0x18 x [0x02EBEFF0]`) and flips the buffer²
   ([Render command list](../Graphics/render-command-list.md)).
-- `0x00402DB0(element, buttons)` moves the cursor (`0x002BBBD4`): bits `0x10`, `0x40`, `0x80` and `0x20` take the
+- `0x00402DB0(element, buttons)` moves the cursor³: bits `0x10`, `0x40`, `0x80` and `0x20` take the
   element named by bytes `+8`, `+9`, `+0xA` and `+0xB`, and the element stays put when that id is `-1` or absent.
 - `0x004023D0(lines, line)` returns 1 when the line list (linked through `+0x98`) already holds a line with the same
   two ids (`+0x80`, `+0x82`) and the same two end points (`+0x84`/`+0x86`, `+0x8C`/`+0x8E`), each pair in either
-  order; the element-list rebuild `0x00402A40` asks it before adding a line (`0x00402B25`).
+  order; the element-list rebuild `0x00402A40` asks it before adding a line⁴.
 - `0x00403130(list, zoom)` sets the size `+0x34`/`+0x36` of every element of type 1 (byte `+2`) to its base
   `+0x48`/`+0x4A` divided by the zoom.
 - `0x00403180(list, selected)` animates each element per frame: `+0x4C` steps by 16 up to `0x80` (`0x40` with `+0x4E`
@@ -208,17 +308,35 @@ helpers:
 - The same pass grows each element's scale `+0x38` by 0.05625 (0.046875 when the language test `0x00254A10` is true) to
   1.0, or shrinks it to 0.9 (0.75) with `+0x4E` bit `0x4`.
 - While `0x00264790()` is below 1, `0x00402F00(list, w, h)` copies the first bit `0x1` element's rectangle
-  `+0x20`-`+0x26` to `+0x30`-`+0x36`, projects the party leader (`0x0035D320`, `0x003588B0`, `0x00265020`) through the
-  minimap view (`0x003C3F90`, `0x00202B70`) and shifts the element by how far the leader falls outside a `w` by `h` box.
+  `+0x20`-`+0x26` to `+0x30`-`+0x36`, projects the party leader⁵ through the
+  minimap view⁶ and shifts the element by how far the leader falls outside a `w` by `h` box.
 - `0x00402610(item, src)` stores `0x00275320` of the item's current values at `+0`, copies `src`'s rectangle
   `+0x30`-`+0x36` to `+8` and clears `+0x10`; `0x004026D0(out, src)` copies the same rectangle twice; `0x004022D0` sets
-  a rectangle: the words {0, 0, 8, 8} at `+0x00` and again at `+0x08`, and `0x100` at `+0x10` (`0x004022D2`,
-  `0x004022DA`, `0x004022DC`, `0x004022E3`).
+  a rectangle: the words {0, 0, 8, 8} at `+0x00` and again at `+0x08`, and `0x100` at `+0x10`⁷.
 - `0x00403330(fade)` raises `+0x10` by a sixth of its distance to 256, at least 6, and returns true at 256.
 - `0x00403600(out, sprite)` and `0x00403F00` (pane `0x002BC9C0`) size and draw a sprite 1.75 times its height
-  (`0x002D8C80`).
-- `0x004041D0(slots)` releases three child widgets (`0x0024A680(w, 1)`) and the buffer in the fourth slot (`0x003697F0`), for
-  the location container (`0x002BADD9`) and the field-time container (`0x003CB931`).
+ ⁸.
+- `0x004041D0(slots)` releases three child widgets (`0x0024A680(w, 1)`) and the buffer in the fourth slot⁹, for
+  the location container¹⁰ and the field-time container¹¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B8435`, `0x002BBD60` |
+| ² | `0x003A1DB0` |
+| ³ | `0x002BBBD4` |
+| ⁴ | `0x00402B25` |
+| ⁵ | `0x0035D320`, `0x003588B0`, `0x00265020` |
+| ⁶ | `0x003C3F90`, `0x00202B70` |
+| ⁷ | `0x004022D2`, `0x004022DA`, `0x004022DC`, `0x004022E3` |
+| ⁸ | `0x002D8C80` |
+| ⁹ | `0x003697F0` |
+| ¹⁰ | `0x002BADD9` |
+| ¹¹ | `0x003CB931` |
+
+</details>
 
 The location map's caption pane `[0x02B62D78]` (created by `0x00402680`, procedure `0x00403380`) carries an icon and three
 labels. `0x00402490(texts)` sets the labels from the text ids at `+8`, `+0x10` and `+0x18` of its argument (`-1` keeps a
@@ -230,9 +348,19 @@ widget at `+0x18` of node 4. `0x00402730(atlas, group, frame)` sets the icon and
 `0x002C9430(0x81)` when `0x002C9430(0x80) + v` is not 0.
 
 `0x002BA1F0` is the location sprite pane's continuation, which the pane's procedure `0x002BC9C0` installs at its
-`+0x08` on message 1 (`0x002BCA18`, `0x002BCA1F`): it clears the pane's cell `0x0209E5F8` (`0x002BA1FC`), and when the
-location container `0x0209E5F0` is gone and `0x00402220` answers 0, it returns to the menu with `0x002814E0(0x417)`. `0x002BC2C0`, the exit callback `0x002BAF80` installs
-(`0x002BB202`), does the same when neither `0x0209E5F0` nor `0x0209E5F8` is set, after `0x00285F00(0x0209E608)`.
+`+0x08` on message 1¹: it clears the pane's cell `0x0209E5F8`², and when the
+location container `0x0209E5F0` is gone and `0x00402220` answers 0, it returns to the menu with `0x002814E0(0x417)`. `0x002BC2C0`, the exit callback `0x002BAF80` installs³, does the same when neither `0x0209E5F0` nor `0x0209E5F8` is set, after `0x00285F00(0x0209E608)`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002BCA18`, `0x002BCA1F` |
+| ² | `0x002BA1FC` |
+| ³ | `0x002BB202` |
+
+</details>
 
 ### What is shown
 
@@ -248,36 +376,41 @@ The story gate `0x0032A8A0` ([Story flags](../Story-Events-And-Hunts/story-flags
 | World Map destination (`0x003C08B0`) | its area entry's region byte `+0xA` is non-zero and the story counter (`0x00265270`) is below its word `+8`, where `0xFFFF` never hides (`0x003C08DD`-`0x003C0930`); then it shows when it is the current area, when the screen mode's own test passes (mode 0 every area, 2 the area gate `+0x14` through `0x003C0B70`, 3 the area's bit at `+0x270`, 4 its map owned through `0x003C0BE0`, 6 `0x003C0A00`), or when one of its persistence groups passes `0x003C0D70(g, 1)` (`0x003C0936`-`0x003C09E4`) |
 | icon of a sub-location (`0x003DFB50`, `0x003FFF40`, `0x00400CF0`) | its word `+0xA` is 0, or its gate passes; 1 never shows |
 
-`0x003BCBA0` builds the state an area point reads: bit `0x1` for the current area (`0x003C1070`), bit `0x400` when any of
-the 32 saved bytes at `[0x020927C0] + 0x224 + 32 x entry` is non-zero (`0x00255200`), and bit `0x2` when the map is held:
-the item in word `+0x0E` of the point when that word is not `0xFFFF` and any of bits `0xFC0` of its `+0x10` is set
-(`0x003C06E0`), otherwise the area's map as a key item of class `0x8000` (`0x002543F0`; the map list is `menumap_area.bin`
+`0x003BCBA0` builds the state an area point reads: bit `0x1` for the current area¹, bit `0x400` when any of
+the 32 saved bytes at `[0x020927C0] + 0x224 + 32 x entry` is non-zero², and bit `0x2` when the map is held:
+the item in word `+0x0E` of the point when that word is not `0xFFFF` and any of bits `0xFC0` of its `+0x10` is set³, otherwise the area's map as a key item of class `0x8000` (`0x002543F0`; the map list is `menumap_area.bin`
 `+0xC`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C1070` |
+| ² | `0x00255200` |
+| ³ | `0x003C06E0` |
+
+</details>
 
 ### The minimap
 
-The minimap is the widget `0x003C5910`, at `0x02B476B0` (`0x003C80C0`):
+The minimap is the widget `0x003C5910`, at `0x02B476B0`¹:
 
-1. `0x003C5E00` shows it and `0x003C58B0` hides it (see [Who shows and hides the minimap](#who-shows-and-hides-the-minimap)).
-2. Every world tick, `0x003C6000` keeps it in step while the save-RAM status allows it (`0x00377750`) and copies the party
-   position to `0x02B45810` (`0x00359150`).
-3. Its draw callback `0x003C32B0` calls `0x003C4070` in mode 0, which draws, in this order:
-   - the zone's own map picture `[0x02B457F0]` at 4 pixels per world unit (`0x004001D0`);
-   - the party trail (`0x003C4B20`) while `0x02B45A38` and the trail's point count `0x02B45962` are not 0, at 70/128
-     of the draw's alpha `+0x58` (`0x003C42F8`-`0x003C432D`);
-   - a 12-spoke ring (`0x003C34E0`);
-   - the blinking party marker (`0x003C2E60`) while `0x02B45A28` is not 0 (`0x003C447C`);
-   - up to 64 icons (`0x003C3340`, `0x00400CF0`);
-   - a mark at the controlled character's position (`0x003C29A0`, which finds the character with `0x003588B0` and
-     reads its position with `0x00265020`) while that character's handle `0x022C806C` is not 0 and `0x00264790`
-     returns 0 or less (`0x003C4616`-`0x003C4640`); `0x003C29A0` itself draws nothing when no actor has the handle,
-     when `0x00272DE0` answers 0.0 for it or when `0x0035D3D0` answers null (`0x003C29F7`, `0x003C2A05`, `0x003C2A26`);
-   - and `0x003C37B0` (`0x003C4658`), which returns at once unless `0x02B45970` or the current party record's
-     `+0x08` (`[0x022C8078]`) is not 0 (`0x003C37DA`-`0x003C3807`), and for `0x02B45970` reads the position of the
-     actor `0x003588B0` finds for it (`0x003C3887`-`0x003C389B`).
-4. While the map is jammed (`0x00377780`, verb `setnavimapjamming`), `0x004001D0` draws its jamming passes over the
-   picture (`0x00401620`, `0x004014E0`, `0x004010A0`) and `0x003C4070` draws nothing after the picture: no trail, ring,
-   party marker, icons or marks (`0x003C42B3`-`0x003C42C3`, which jumps to `0x003C4670`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C80C0` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x003C5E00` shows it and `0x003C58B0` hides it (see [Who shows and hides the minimap](#who-shows-and-hides-the-minimap)). |   |
+| 2 | Every world tick, `0x003C6000` keeps it in step while the save-RAM status allows it and copies the party position to `0x02B45810`. | `0x00377750`<br>`0x00359150` |
+| 3 | Its draw callback `0x003C32B0` calls `0x003C4070` in mode 0, which draws, in this order:<br>• the zone's own map picture `[0x02B457F0]` at 4 pixels per world unit;<br>• the party trail while `0x02B45A38` and the trail's point count `0x02B45962` are not 0, at 70/128 of the draw's alpha `+0x58`;<br>• a 12-spoke ring;<br>• the blinking party marker while `0x02B45A28` is not 0;<br>• up to 64 icons;<br>• a mark at the controlled character's position (`0x003C29A0`, which finds the character with `0x003588B0` and reads its position with `0x00265020`) while that character's handle `0x022C806C` is not 0 and `0x00264790` returns 0 or less; `0x003C29A0` itself draws nothing when no actor has the handle, when `0x00272DE0` answers 0.0 for it or when `0x0035D3D0` answers null;<br>• and `0x003C37B0`, which returns at once unless `0x02B45970` or the current party record's `+0x08` (`[0x022C8078]`) is not 0, and for `0x02B45970` reads the position of the actor `0x003588B0` finds for it. | `0x004001D0`<br>`0x003C4B20`<br>`0x003C42F8`-`0x003C432D`<br>`0x003C34E0`<br>`0x003C2E60`<br>`0x003C447C`<br>`0x003C3340`, `0x00400CF0`<br>`0x003C4616`-`0x003C4640`<br>`0x003C29F7`, `0x003C2A05`, `0x003C2A26`<br>`0x003C4658`<br>`0x003C37DA`-`0x003C3807`<br>`0x003C3887`-`0x003C389B` |
+| 4 | While the map is jammed (`0x00377780`, verb `setnavimapjamming`), `0x004001D0` draws its jamming passes over the picture and `0x003C4070` draws nothing after the picture: no trail, ring, party marker, icons or marks (`0x003C42B3`-`0x003C42C3`, which jumps to `0x003C4670`). | `0x00401620`, `0x004014E0`, `0x004010A0` |
 
 The parts of that draw:
 
@@ -286,63 +419,135 @@ The parts of that draw:
   (`0x00248EB0(writer)`), moves the writer's cursor `+0x10` on by `0x30` and writes the two colours as four dwords each,
   moving the cursor by `0x10` after each.
 - `0x003C7EA0(record, m, r, n, first)` (`0x003C326D`, from the party marker) emits a fan of `n` vertices through
-  `0x00181350(v, 1)`: the point (0, 0, 0, 1) through the matrix `m` (`0x00202B70`, `0x00202CA0`) with the record's colour
+  `0x00181350(v, 1)`: the point (0, 0, 0, 1) through the matrix `m`¹ with the record's colour
   bytes `+0x94`-`+0x97`, then n - 1 points in the colour `0x00D116A0` (0, 0, 0, 0x80): the first is `first`, each next
   is the previous through the matrix `r`, and all go through `m`.
 - `0x003C2E60` passes `first` = (cos, sin, 0, 1) of the marker's angle times its radius and closes the batch
-  (`0x00181330`).
+ ².
 - `0x004006A0(table)` (from `0x004001D0`) draws every triangle of an index table (count the `i16` at `+0x04`, 12-byte
   entries from the pointer at `+0x18`) in packets of at most 24. Each entry's three index pairs become a `0x20`-byte
-  row. A packet is drawn when it holds 24 rows (`0x00400705`) or the entries run out (`0x0040070F`), and a new packet is
-  opened (`0x004007C7`) while entries remain (`0x004007C3`), so no entry is dropped.
+  row. A packet is drawn when it holds 24 rows³ or the entries run out⁴, and a new packet is
+  opened⁵ while entries remain⁶, so no entry is dropped.
 - The packet header is the packet's row count ORed with `0x3025C00000008000` when `0x00377780()` reports the map
-  jammed, or `0x302DC00000008000` otherwise, with `0x412` as its second qword (`0x00400721`-`0x0040073B`).
-- `0x004001D0` passes the table `0x01E0C590` (`0x0040032C`), whose count is 136 in the executable. No instruction writes
+  jammed, or `0x302DC00000008000` otherwise, with `0x412` as its second qword⁷.
+- `0x004001D0` passes the table `0x01E0C590`⁸, whose count is 136 in the executable. No instruction writes
   that count: `0x004006A0` reads it at `0x004006AC`, `0x0040070A` and `0x004007BB`, and `0x004017D0` and `0x00401D40`, which also
   receive the table, read only its `+0x00`, `+0x02`, `+0x08` and `+0x10`. Its triangles are drawn as five packets of 24 and
   one of 16.
-- `0x00400870(rows, n)` (`0x004007B6`) builds each triangle's three vertices from the row's index pairs: x and y from the
+- `0x00400870(rows, n)`⁹ builds each triangle's three vertices from the row's index pairs: x and y from the
   float pairs at `0x02B5F2D0`, four ints from the floats at `0x02B5F2A0` and the pair at `0x02B5F820`; it submits them three
-  at a time (`0x00181350`).
+  at a time¹⁰.
 - `0x004010A0` (the jamming pass) takes two phases from the frame counter `f` at `0x0208F570`, `sinf((f % 60) × π / 60)`
   and `sinf((f % 30) × π / 30)`, modulo 60 and modulo 30 as angles through `0x00861F0E` (`sinf`; `0x00401139`-`0x004011A9`),
-  beside a third angle `f × π / 15` of the whole counter (`0x004010C3`-`0x00401130`). It then fills the vertex scratch
-  `0x02B5FD70` with `0x004019F0` (`0x00401353`) and submits it with `0x004009C0` (`0x00401478`).
-- `0x004019F0(points, n, m, q, ..., scaleX, scaleY, picture)` sets a block up from `m` and `q` (`0x00202D70`) and writes
+  beside a third angle `f × π / 15` of the whole counter¹¹. It then fills the vertex scratch
+  `0x02B5FD70` with `0x004019F0`¹² and submits it with `0x004009C0`¹³.
+- `0x004019F0(points, n, m, q, ..., scaleX, scaleY, picture)` sets a block up from `m` and `q`¹⁴ and writes
   two scratch vertices per `0x30`-byte point at `0x02B5FD70 + 0x30 x [0x02B62D70]`, counting it up: x - 640 and x + 640
-  (`0x008C5A98`) with the point's `+0x24`, transformed by the block (`0x00202B70`, `0x00202CA0`).
+ ¹⁵ with the point's `+0x24`, transformed by the block¹⁶.
 - Each of those vertices carries the colour bytes `0x80`, `0x80`, `0x80` with the alpha from argument 7's `+0x58`, and
   texture coordinates from the picture's words `+0x14`, `+0x16` times `scaleX`, `scaleY`.
 - `0x004009C0()` hands the 256 scratch vertices to the batcher as a strip (`0x00181460(0x02B5FD70, 256)`), then for every
-  six vertices up to 250 appends vertices 0 and 1, then 4, 1, 4 and 5 one at a time (`0x00181350`), and resets
+  six vertices up to 250 appends vertices 0 and 1, then 4, 1, 4 and 5 one at a time¹⁷, and resets
   `0x02B62D70` to 0.
 
-The ring takes its entry count from `0x00264AC0(list)` (`0x003C350B`), the first dword of that per-class table of the zone
-script's image (header `+0x70`, `0x00264AE0`), and gets a 6-byte style for each entry from `0x002648F0(entry, out)`
-(`0x003C35D5`, `0x003C36BA`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00202B70`, `0x00202CA0` |
+| ² | `0x00181330` |
+| ³ | `0x00400705` |
+| ⁴ | `0x0040070F` |
+| ⁵ | `0x004007C7` |
+| ⁶ | `0x004007C3` |
+| ⁷ | `0x00400721`-`0x0040073B` |
+| ⁸ | `0x0040032C` |
+| ⁹ | `0x004007B6` |
+| ¹⁰ | `0x00181350` |
+| ¹¹ | `0x004010C3`-`0x00401130` |
+| ¹² | `0x00401353` |
+| ¹³ | `0x00401478` |
+| ¹⁴ | `0x00202D70` |
+| ¹⁵ | `0x008C5A98` |
+| ¹⁶ | `0x00202B70`, `0x00202CA0` |
+| ¹⁷ | `0x00181350` |
+
+</details>
+
+The ring takes its entry count from `0x00264AC0(list)`¹, the first dword of that per-class table of the zone
+script's image (header `+0x70`, `0x00264AE0`), and gets a 6-byte style for each entry from `0x002648F0(entry, out)`²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C350B` |
+| ² | `0x003C35D5`, `0x003C36BA` |
+
+</details>
 
 - the defaults are bytes 1, 1, 1, 1 and the word `0xFFFF`;
-- for an entry, `0x00264920` refills them from record `+0x1D` of the image's table at header `+0x8C` (`0x00264870`):
+- for an entry, `0x00264920` refills them from record `+0x1D` of the image's table at header `+0x8C`¹:
   the story-flag gate `0x0032A8A0` of its words 0, 1, a mode word (4 on a chocobo, `0x00303EC0`; 3 while `0x003135C0`
   answers; else 2) and 6, then its word 5.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264870` |
+
+</details>
+
 The ring draws the lines of its entries with `0x003C7B30`, twice: with the colour pair at `0x01EFE370` for the entries
-whose byte 2 is 1 (`0x003C3642`-`0x003C3668`), and with the pair at `0x00D11640` for those whose byte 2 is 0
-(`0x003C372B`-`0x003C374E`). Each call draws an entry only when its byte 0 is set (`0x003C7D2E`) and its byte 2 equals the
-call's last argument (`0x003C7D39`-`0x003C7D40`).
+whose byte 2 is 1¹, and with the pair at `0x00D11640` for those whose byte 2 is 0². Each call draws an entry only when its byte 0 is set³ and its byte 2 equals the
+call's last argument⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C3642`-`0x003C3668` |
+| ² | `0x003C372B`-`0x003C374E` |
+| ³ | `0x003C7D2E` |
+| ⁴ | `0x003C7D39`-`0x003C7D40` |
+
+</details>
 
 `0x003C7B30` takes a pair's first colour `a` from bytes 0-3 and its second `b` from bytes 4-7, each byte scaled
-`(byte x word) >> 7` by the record's word `+0x5A` (bytes 0-2 and 4-6) or `+0x58` (bytes 3 and 7)
-(`0x003C7B7E`-`0x003C7BF4`), and gives both vertices of a line the colour `(a + (b - a) x t) x 0.5`
-(`0x003C7C22`-`0x003C7CB6`, `0x003C7E00`-`0x003C7E0C`).
+`(byte x word) >> 7` by the record's word `+0x5A` (bytes 0-2 and 4-6) or `+0x58` (bytes 3 and 7)¹, and gives both vertices of a line the colour `(a + (b - a) x t) x 0.5`².
 
-`t` is `(f % 60) / 30` of the frame counter `0x0208F570`, folded to `2 - t` above 1.0 (`0x003C351A`-`0x003C357A`), and both
-calls take it (`0x003C365B`, `0x003C3741`). So the lines pulse between the two colours of their pair every 60 frames: the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C7B7E`-`0x003C7BF4` |
+| ² | `0x003C7C22`-`0x003C7CB6`, `0x003C7E00`-`0x003C7E0C` |
+
+</details>
+
+`t` is `(f % 60) / 30` of the frame counter `0x0208F570`, folded to `2 - t` above 1.0¹, and both
+calls take it². So the lines pulse between the two colours of their pair every 60 frames: the
 ring colours at `0x01EFE370` and `0x01EFE374`, or the fixed bytes `ff 20 00 80` and `ff c0 40 80` at `0x00D11640`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C351A`-`0x003C357A` |
+| ² | `0x003C365B`, `0x003C3741` |
+
+</details>
 
 The minimap's other small state:
 
-- `0x003C5060`, from the tick (`0x003C609B`), keeps a trail of party positions while `0x0035D600()` answers 1 (bit `0x20` of
+- `0x003C5060`, from the tick¹, keeps a trail of party positions while `0x0035D600()` answers 1 (bit `0x20` of
   `0x022C83E8`, which `0x0035D610(v)` sets to v): when the party is more than 3.0 from the last point `0x02B45850`/`0x02B45858`
   in x and z, it writes the position to `0x02B45860 + 16 x [0x02B45960]`, makes it the last point, counts `0x02B45962` up
   to 16 and moves the index on modulo 16.
@@ -350,11 +555,31 @@ The minimap's other small state:
   `0x02B46280`). The script verb `clearnavimapfootmark` (`0x415`) runs it, through the forwarders `0x00343330`,
   `0x003EB980` and `0x0035D5F0`, each a single `jmp`.
 - `0x003C5400(i, v)` and `0x003C53E0(i)` set and clear the dword `0x02B45970 + 4i`; `0x003FFF70` sets slot 1 to the
-  controlled character's record `+8` (`0x00272E10`) when that is non-zero, and clears it otherwise.
-- `0x003C5720(box, item, angle, &x, &y)`, from the widget's draw (`0x003C5CE7`, `0x003C5D21`), returns the item's position,
+  controlled character's record `+8`² when that is non-zero, and clears it otherwise.
+- `0x003C5720(box, item, angle, &x, &y)`, from the widget's draw³, returns the item's position,
   turned by `angle` about the centre of the box `+0x0C`-`+0x12` when the angle is not 0.
 
-The tick also uncovers the map around the party: `0x003C6000` calls `0x003C5500` (`0x003C6096`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C609B` |
+| ² | `0x00272E10` |
+| ³ | `0x003C5CE7`, `0x003C5D21` |
+
+</details>
+
+The tick also uncovers the map around the party: `0x003C6000` calls `0x003C5500`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C6096` |
+
+</details>
 
 1. It works only while `0x0035D630()` answers 1, bit `0x80` of `0x022C83E8` clear (`0x0035D640(v)` sets the bit for v = 0 and
    clears it otherwise, through the thunk `0x002E23D0`).
@@ -365,12 +590,30 @@ The tick also uncovers the map around the party: `0x003C6000` calls `0x003C5500`
    ([Menu map files](../Game-Files-And-Data-Tables/menu-map-files.md)).
 
 The picture comes from the zone's map pack: `0x003C63A0` registers it and `0x00379870` places it, chosen by
-`setnavimapindex` (`0x00377400`) ([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
+`setnavimapindex`¹ ([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00377400` |
+
+</details>
 
 ### Who shows and hides the minimap
 
 `0x003C5E00` has three callers and `0x003C58B0` six; the creator `0x003C80C0` is reached only from `0x003C5E00` and the
-world tick `0x003C6000`, and `0x003C8070`, which also closes it, only from that tick (`0x003C606B`).
+world tick `0x003C6000`, and `0x003C8070`, which also closes it, only from that tick¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C606B` |
+
+</details>
 
 | Step | Shows it (`0x003C5E00`) | Hides it (`0x003C58B0`) |
 |---|---|---|
@@ -384,45 +627,125 @@ world tick `0x003C6000`, and `0x003C8070`, which also closes it, only from that 
 | `0x0035CA70`, called from `0x0035C960` (`0x0035C9CE`) | - | `0x0035CB4B` |
 
 No other script verb's body calls or jumps to either function. Any other verb that changes the minimap does so
-through the HUD switch, the two HUD-off steps or `0x0035CA70`: `debug_switchstatusdisplay` (`0x0050DA20`) flips the HUD
-switch through `0x00255020`, and `setnavimapindex` (`0x00356BF0`) only passes its argument to `0x00377400`.
+through the HUD switch, the two HUD-off steps or `0x0035CA70`: `debug_switchstatusdisplay`¹ flips the HUD
+switch through `0x00255020`, and `setnavimapindex`² only passes its argument to `0x00377400`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0050DA20` |
+| ² | `0x00356BF0` |
+
+</details>
 
 ### Minimap markers
 
-The actors come from a list the minimap tick rebuilds first: `0x003C6000` calls `0x0035D070` (`0x003C6013`), which runs
+The actors come from a list the minimap tick rebuilds first: `0x003C6000` calls `0x0035D070`¹, which runs
 `0x0035E5F0(0x022C8060)`. That builds the lists of actor managers 0 to 2 (`0x0046B560(2)`) and copies them in order, at most
-128: handles to `0x022C8500` (`0x0035D500`), actors to `0x022C8700` (`0x0035D4F0`), the total at `0x022C8B00` (`0x0035D510`),
+128: handles to `0x022C8500`², actors to `0x022C8700`³, the total at `0x022C8B00`⁴,
 and each manager's start and count at `0x022C8B02 + i` and `0x022C8B04 + i`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C6013` |
+| ² | `0x0035D500` |
+| ³ | `0x0035D4F0` |
+| ⁴ | `0x0035D510` |
+
+</details>
 
 Before it builds a list, `0x0046B560` clears bit `0x2` of byte `+0x09` in every record of each manager 0 to 3 whose
 slot byte `+0x10` has bit `0x1` set, the slot being `0x00263FF0(m)`: the records from the word `+0x1DE` for the
-count in the word `+0x1D6`, each through `0x00358940(manager, index)`, whose answer it uses without a null test
-(`0x0046B590`-`0x0046B5DA`).
+count in the word `+0x1D6`, each through `0x00358940(manager, index)`, whose answer it uses without a null test¹.
 
-After that clearing `0x0046B560(mode, handle, count, list)` goes by its mode (`0x0046B5DC`-`0x0046B5F4`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046B590`-`0x0046B5DA` |
+
+</details>
+
+After that clearing `0x0046B560(mode, handle, count, list)` goes by its mode¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046B5DC`-`0x0046B5F4` |
+
+</details>
 
 - mode 0 sets bit `0x2` of byte `+0x09` in the record `0x003588B0(handle)` answers and in the record of each of
   the `count` dword handles of `list`, a null answer being skipped and a count of 0 or less walking nothing,
-  and then calls `0x0046BE80(m)` for managers 0 to 3 (`0x0046B620`-`0x0046B66C`);
-- modes 1, 3 and 4 call `0x0046BAC0(m, mode)` for managers 0 to 2 (`0x0046B5F6`-`0x0046B605`);
-- mode 2 calls `0x0046BD60(m)` for managers 0 to 2 (`0x0046B610`-`0x0046B61C`);
-- any other mode builds nothing (`0x0046B5ED`-`0x0046B5F4`).
+  and then calls `0x0046BE80(m)` for managers 0 to 3¹;
+- modes 1, 3 and 4 call `0x0046BAC0(m, mode)` for managers 0 to 2²;
+- mode 2 calls `0x0046BD60(m)` for managers 0 to 2³;
+- any other mode builds nothing⁴.
 
-`0x0046BD60(m)`, which `0x0046B560` calls for a manager number (`0x0046B612`), fills the list of the manager that
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046B620`-`0x0046B66C` |
+| ² | `0x0046B5F6`-`0x0046B605` |
+| ³ | `0x0046B610`-`0x0046B61C` |
+| ⁴ | `0x0046B5ED`-`0x0046B5F4` |
+
+</details>
+
+`0x0046BD60(m)`, which `0x0046B560` calls for a manager number¹, fills the list of the manager that
 `0x00263FF0(m)` returns. For a manager whose byte `+0x10` has bit `0x1` clear it only stores 0 as the dword
-count `+0x1F8` (`0x0046BD6C`-`0x0046BD7A`, `0x0046BE6D`). Otherwise it walks the records from the word `+0x1DE` for
-the count in the word `+0x1D6`, each through `0x00358940`, whose answer it uses without a null test
-(`0x0046BD85`-`0x0046BDC3`).
+count `+0x1F8`². Otherwise it walks the records from the word `+0x1DE` for
+the count in the word `+0x1D6`, each through `0x00358940`, whose answer it uses without a null test³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046B612` |
+| ² | `0x0046BD6C`-`0x0046BD7A`, `0x0046BE6D` |
+| ³ | `0x0046BD85`-`0x0046BDC3` |
+
+</details>
 
 A record is left out when its byte `+0x18` is 1, when `0x00263C20` gives 6, when bit `0x20` of its byte `+0x0E`
 is clear, when `0x002E9FE0` or `0x002EA6A0` answers 0, or when `0x00263BE0` gives 1 while `0x002647B0` and `0x002675C0`
-both answer 0 (`0x0046BDC3`-`0x0046BE17`). Each listed record adds one dword to the list the qword `+0x1F0`
-points to (`0x0046BDA1`, `0x0046BE36`): `((w & 0x7FF) << 4 | (m & 0xF)) << 16 | index`, with `w` the record's word
-`+0x16` and `index` its 16-bit record index. The number listed goes to the dword `+0x1F8`
-(`0x0046BE19`-`0x0046BE5E`).
+both answer 0¹. Each listed record adds one dword to the list the qword `+0x1F0`
+points to²: `((w & 0x7FF) << 4 | (m & 0xF)) << 16 | index`, with `w` the record's word
+`+0x16` and `index` its 16-bit record index. The number listed goes to the dword `+0x1F8`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046BDC3`-`0x0046BE17` |
+| ² | `0x0046BDA1`, `0x0046BE36` |
+| ³ | `0x0046BE19`-`0x0046BE5E` |
+
+</details>
 
 `0x003C5130` rebuilds the minimap's marker list: one 32-byte entry per actor at `0x02B45A80` (count `0x02B45A70`), then the
-navigation icons (`0x00400550`), then `0x004000E0` merges them into the live list at `0x02B46280`:
+navigation icons¹, then `0x004000E0` merges them into the live list at `0x02B46280`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00400550` |
+
+</details>
 
 1. every live node gets `+0x20` bit `0x2` (stale);
 2. `0x00400AC0(entry, list, i)` handles entry `i`. Unless the entry's bit `0x40000` is set, the actor `0x003588B0(+4)` must
@@ -443,10 +766,20 @@ into the VIF packets, the explored-mask set-up and the page helpers, are listed 
 
 ### The World Map host
 
-The World Map host `[0x02CA8F38]` (`0x00550400`) keeps its state in the word `+0x170`. `0x00550510(v)` stores `v` in bit `0x8`
-(`0x0028E72A`, `0x0028E7EE`). `0x00550610()` re-attaches the host to the root `[0x0208EA20]` and its screen `+0x160` to
-`[0x0208EA28]` (`0x00246AD0`) when bits `0x1` and `0x4` are both set, clearing bit `0x2`; otherwise it sets bit `0x2` (`0x0028E770`,
-`0x0028E81A`).
+The World Map host `[0x02CA8F38]`¹ keeps its state in the word `+0x170`. `0x00550510(v)` stores `v` in bit `0x8`². `0x00550610()` re-attaches the host to the root `[0x0208EA20]` and its screen `+0x160` to
+`[0x0208EA28]`³ when bits `0x1` and `0x4` are both set, clearing bit `0x2`; otherwise it sets bit `0x2`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00550400` |
+| ² | `0x0028E72A`, `0x0028E7EE` |
+| ³ | `0x00246AD0` |
+| ⁴ | `0x0028E770`, `0x0028E81A` |
+
+</details>
 
 ### World Map places
 
@@ -456,31 +789,54 @@ The view `0x005528C0` keeps its places in a list linked through `+0x140`; each p
 - `0x00554BD0` sorts the places into a tree through `+0x150`-`+0x160` by a key at `+0x168` (0 or 1.0, from the byte
   `+0x3B` and the word `+0x3E`), paints each in order with `0x00550BD0`, then re-sorts them by `+0x130` bit `0x2`.
 - `0x00550BD0(place, ctx)` sets the place's marker pieces from its flags: a place with `+0x130` bit `0x4` or `+0x54` bit `0x10000`
-  pulses `64 x sin(frame x pi / 30) + 128` (`0x0208F570`), bit `0x8` dims it to `0x40`, and `+0x54` bits `0x1`, `0x4`, `0x10`, `0x20` and `0x20000`
+  pulses `64 x sin(frame x pi / 30) + 128`¹, bit `0x8` dims it to `0x40`, and `+0x54` bits `0x1`, `0x4`, `0x10`, `0x20` and `0x20000`
   pick the frames shown; it places them with `0x00562190` (`0x00562850`, through the map view `+0x80`).
 - `0x00554A60(list)` eases each place's two scales `+0x138` and `+0x13A` by `0x400` a frame. A place with `+0x130` bit
   `0x1` eases toward `0x4000`, or, with bit `0x2` as well, toward `0x2666`/`0x3666` (`0x3CCC`/`0x2CCC` when the
   language test `0x00254A10` is true). A place without bit `0x1` shrinks, `+0x138` to 0 and `+0x13A` to `0x3666`
   (`0x2CCC` when the language test is true). A place with `+0x54` bit `0x10000` is held at `0x4000`.
-- `0x00554EA0` draws the place names in the same order (`0x002D8650`), re-measuring a name (`0x0029CD00`) when its scale
+- `0x00554EA0` draws the place names in the same order², re-measuring a name³ when its scale
   changes and anchoring it by `0x002718C0`.
 - `0x00551130(x, y, list, find, id)` returns the place whose `+0x39` is `id` when `find` is non-zero. With `find` 0 or
   no such place it returns the first with `+0x54` bit `0x1`, or else the list's first place, and 0 for an empty list.
-  It gives that place's position less half the screen (`0x01E0C1D8`, `0x01E0C1DC`), passed through `0x005552A0`.
+  It gives that place's position less half the screen⁴, passed through `0x005552A0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0208F570` |
+| ² | `0x002D8650` |
+| ³ | `0x0029CD00` |
+| ⁴ | `0x01E0C1D8`, `0x01E0C1DC` |
+
+</details>
 
 ### World Map routes and panes
 
-- `0x005551F0` draws the routes: `0x005520F0` sets the line state (`0x00562E30`) and `0x00562A30` draws each route of the list
+- `0x005551F0` draws the routes: `0x005520F0` sets the line state¹ and `0x00562A30` draws each route of the list
   linked through `+0x1A8` as a ribbon of `w_line01` (`0x00563360` sets the blend state). `0x005621A0` draws a moving dashed
-  stretch along a curve (`0x00270420`, `0x00270260`), its colour pulsing by `sin`.
+  stretch along a curve², its colour pulsing by `sin`.
 - `0x00553DD0` builds the four corner arrows at `+0x9F58` (0x30 bytes each; `0x00562080` resets one) from the atlas
   `+0x108` `+0x48`, and `0x00553BB0` draws them at the screen edges below the menu bars (`0x002C9430(0x80)`) through
   `0x00561F90`, which blends each arrow's two colours by its level `+0x24`; `0x00561F60` steps the level by `+0x26`
   toward 256 or 0.
-- `0x00562120`, `0x005620A0` and `0x00550FB0` move the view: they lerp the centre `+0x10` toward a target (`0x00275490`), and
+- `0x00562120`, `0x005620A0` and `0x00550FB0` move the view: they lerp the centre `+0x10` toward a target³, and
   `0x00550FB0` precomputes 16 points of a three-point path (`0x00275490`, or the curve `0x00270260` when the path bends).
-- `0x00562920` hides the nine pieces of the map view `+0x80`, and `0x00563080` frees the view's resources (`0x003697F0`,
-  `0x0024A680`).
+- `0x00562920` hides the nine pieces of the map view `+0x80`, and `0x00563080` frees the view's resources⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00562E30` |
+| ² | `0x00270420`, `0x00270260` |
+| ³ | `0x00275490` |
+| ⁴ | `0x003697F0`, `0x0024A680` |
+
+</details>
 
 The location list pane `0x005542D0` uses row painters installed at `+0x120` of its list:
 
@@ -488,10 +844,20 @@ The location list pane `0x005542D0` uses row painters installed at `+0x120` of i
   own code (type 1) and `0x00552050` (type 3); each sets the row's icon frame, label and arrow, and hides the row when
   its alpha is 0. `0x005511F0` hides an empty row's three nodes.
 - `0x00551C20` copies the chosen row out, and `0x00551CD0(rect, mode)` gives the pane's rectangle for mode 0 or 1.
-- `0x0057E030` appends a node to a list (`0x00550954`); `0x0057E070` and `0x0057E2F0` clear 0x28- and 0x38-byte records.
+- `0x0057E030` appends a node to a list¹; `0x0057E070` and `0x0057E2F0` clear 0x28- and 0x38-byte records.
 - `0x0057E190` moves a cursor between nodes by the direction bits `0x80`, `0x20`, `0x10` and `0x40`; `0x0057E090` gives the
   scroll that keeps the cursor 8 units inside a box, an eighth of the distance per frame; `0x0057E210` draws the cursor
-  (`0x00368360`).
+ ².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00550954` |
+| ² | `0x00368360` |
+
+</details>
 
 ### Lifetimes
 
@@ -506,6 +872,9 @@ The location list pane `0x005542D0` uses row painters installed at `+0x120` of i
 | minimap `0x02B476B0` | `0x003C80C0` | `0x003C58B0`, `0x003C8070` |
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 The container's own fields, the same for the three containers `0x0209E5C0`, `0x0209E5F0` and `0x02B47760`:
 
@@ -611,14 +980,24 @@ the mesh object of [World Map mesh](../Game-Files-And-Data-Tables/world-map-mesh
 | `+0x180` | `u16` | setupWordC | the set-up record's word `+0x0C` (`0x005505AC`-`0x005505B0`), copied to the screen's `+0x14A` (`0x005524B2`-`0x005524C0`) |
 | `+0x182` | `u8[6]` | tail182 | read and written by no function; nothing fixes its width |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | | |
 |---|---|
 | guide table in `menumap_common.bin` (`us`) | 77 entries, story counter thresholds 0 to 6,150; every entry selects `menumap_guide00.bin` |
 | "???" sites | 6 places in the code load `0x3EC` |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -634,9 +1013,19 @@ No other instruction reaches `0x022C83B8` or `0x02B476B8`. The one address taken
 ### The minimap's box and view
 
 The minimap procedure `0x003C5910` keeps its layout box in globals. On construction (message 1) it copies the box of its
-first layout node (`[+0x60]`, `+0x0C`-`+0x12`) and three quarters of its size (`0x003C5A5C`-`0x003C5ABD`); on each draw
-before its content (message 3) it gives the node the smaller box, centred in the full one (`0x003C5B69`-`0x003C5BDD`).
+first layout node (`[+0x60]`, `+0x0C`-`+0x12`) and three quarters of its size¹; on each draw
+before its content (message 3) it gives the node the smaller box, centred in the full one².
 All of these are 0 in the file (the zero-filled tail).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C5A5C`-`0x003C5ABD` |
+| ² | `0x003C5B69`-`0x003C5BDD` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -650,9 +1039,19 @@ All of these are 0 in the file (the zero-filled tail).
 | `0x02B476DC` | `i32` | 0 | the height | `0x003C5910` (`0x003C5A93`) | `0x003C5910` (`0x003C5B97`) |
 | `0x01EFE374` | `u32` | `0x8040C0FF` | the ring colour: `0x002DD7E0(0xFE)` on construction (`0x003C5B34`); `0x003C6140` scales its four bytes with the other ring bytes from `0x01EFE370` | `0x003C5910` (`0x003C5B39`) | `0x003C6140`, byte by byte (`0x003C6174`, `0x003C617B`, `0x003C6182`, `0x003C6189`) |
 
-The minimap's draw callback `0x003C32B0` hands the view record `0x02B45820` to the map view `0x003C4070` in mode 0
-(`0x003C3315`). `0x003C4070` builds the view matrix `0x02B476F0` from it (identity `0x003C40AF`, then the scale and turn) and
-passes the record on to `0x004001D0` (`0x003C41AB`), `0x003C3340` (`0x003C4611`, outside mode 2) and `0x003C29A0` (`0x003C4640`):
+The minimap's draw callback `0x003C32B0` hands the view record `0x02B45820` to the map view `0x003C4070` in mode 0¹. `0x003C4070` builds the view matrix `0x02B476F0` from it (identity `0x003C40AF`, then the scale and turn) and
+passes the record on to `0x004001D0`², `0x003C3340` (`0x003C4611`, outside mode 2) and `0x003C29A0`³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C3315` |
+| ² | `0x003C41AB` |
+| ³ | `0x003C4640` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -673,9 +1072,23 @@ passes the record on to `0x004001D0` (`0x003C41AB`), `0x003C3340` (`0x003C4611`,
 ### The location map and the overlay
 
 Both containers hand a 6-byte return record to `0x00285F00` when they are gone, which copies it into the menu block
-`[0x0209AC30] + 0x3E0` before the return to the menu (`0x002814E0`): the overlay's from `0x002B7540` (`0x002B7563`), the
-location map's from `0x002BA6B0` (`0x002BA6D3`), `0x002BA1F0` (`0x002BA213`) and `0x002BC2C0` (`0x002BC2E2`). The container
-procedure fills it on its message `0x12`, when it is destroyed (`0x002B79DD`-`0x002B7A53`, `0x002BADF1`-`0x002BAE5C`).
+`[0x0209AC30] + 0x3E0` before the return to the menu¹: the overlay's from `0x002B7540`², the
+location map's from `0x002BA6B0`³, `0x002BA1F0`⁴ and `0x002BC2C0`⁵. The container
+procedure fills it on its message `0x12`, when it is destroyed⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002814E0` |
+| ² | `0x002B7563` |
+| ³ | `0x002BA6D3` |
+| ⁴ | `0x002BA213` |
+| ⁵ | `0x002BC2E2` |
+| ⁶ | `0x002B79DD`-`0x002B7A53`, `0x002BADF1`-`0x002BAE5C` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -690,29 +1103,72 @@ procedure fills it on its message `0x12`, when it is destroyed (`0x002B79DD`-`0x
 | `0x02B47768` | `i32` | 0 | the area whose map resources the preload child `0x003CB4F0` loads: its argument on the opening run (message 14); 0 when `0x003C0CF0` answers 2 and the child destroys itself, and when it is destroyed (message 18) | `0x003CB4F0` (`0x003CB584`; 0 at `0x003CB597`, `0x003CB542`) | `0x003CB4F0`: the requests `0x003C2190` (`0x003CB5BC`, `0x003CB5FB`, `0x003CB618`), `0x003C21C0` (`0x003CB5F0`), and `0x003C2200` when the batch has loaded (message 16, `0x003CB569`) |
 
 The World Map's route draw keeps the route picture's size, which `0x005520F0` reads from the picture header
-(`+0x14`, `+0x16`) and hands to `0x00562E30` (`0x00552215`):
+(`+0x14`, `+0x16`) and hands to `0x00562E30`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00552215` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x01F2CAF8` | `i32` | 16 | the route picture's width, which the two route draws give the sprite batcher as its width (`0x001819A0`) | `0x00562E30` (`0x00562E9A`) | `0x005621A0` (`0x0056234E`, `0x005623B9`); `0x00562A30` (`0x00562AE5`, `0x00562AF7`) |
 | `0x01F2CAFC` | `i32` | 16 | its height | `0x00562E30` (`0x00562EA7`) | `0x005621A0` (`0x00562341`, `0x005623C1`); `0x00562A30` (`0x00562AD8`, `0x00562B02`) |
 
-No other instruction reaches these globals. The one indexed table near `0x01F2CAF8`, `[0x01F2CA10 + 8i]` in `0x0053AB50`
-(`0x0053C807`), takes an index of at most 23 (`0x0053C7AB`-`0x0053C7F9`), so it ends at `0x01F2CACF`.
+No other instruction reaches these globals. The one indexed table near `0x01F2CAF8`, `[0x01F2CA10 + 8i]` in `0x0053AB50`¹, takes an index of at most 23², so it ends at `0x01F2CACF`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053C807` |
+| ² | `0x0053C7AB`-`0x0053C7F9` |
+
+</details>
 
 The same line-state call also fills a `0x54`-byte block at `0x02CA9680` for the two route draws: `0x00562E30` passes its
-own arguments to `0x00563430` (`0x00562E89`), whose fifth argument is the four floats at `+0x8C` of `0x005520F0`'s second
-argument (`0x005521F2`).
+own arguments to `0x00563430`¹, whose fifth argument is the four floats at `+0x8C` of `0x005520F0`'s second
+argument².
 
-- `0x02CA9680`-`0x02CA96BF` is a 4 x 4 matrix. `0x00563430` makes it the identity (`0x00203170`, `0x00563445`), stores 1.0 at
-  `0x02CA9680` and `0x02CA9694` (`0x00563474`, `0x0056347E`), and stores the translation 2048 less half the screen
-  (`0x01E0C1D8`, `0x01E0C1DC`) less its third and fourth arguments at `0x02CA96B0` and `0x02CA96B4` (`0x005634C6`, `0x005634BE`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00562E89` |
+| ² | `0x005521F2` |
+
+</details>
+
+- `0x02CA9680`-`0x02CA96BF` is a 4 x 4 matrix. `0x00563430` makes it the identity¹, stores 1.0 at
+  `0x02CA9680` and `0x02CA9694`², and stores the translation 2048 less half the screen
+ ³ less its third and fourth arguments at `0x02CA96B0` and `0x02CA96B4`⁴.
 - The draws pass every route point through the matrix (`0x00202B70`; `0x005621A0` at `0x00562501` and `0x00562568`,
   `0x00562A30` at `0x00562BC4` and `0x00562BF5`).
-- Float `+0x00` of the rectangle goes to `0x02CA96C8` (`0x005634F7`).
+- Float `+0x00` of the rectangle goes to `0x02CA96C8`⁵.
 - The ribbon's texture comes from the route picture: the first segment takes the column `0x02CA96C0` x width and each
-  further segment the next column (`0x00562D3B`), between the rows `0x02CA96C4` x height and that row plus `0x02CA96CC` x
-  height (`0x00562B0A`-`0x00562B7B`).
+  further segment the next column⁶, between the rows `0x02CA96C4` x height and that row plus `0x02CA96CC` x
+  height⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00203170`, `0x00563445` |
+| ² | `0x00563474`, `0x0056347E` |
+| ³ | `0x01E0C1D8`, `0x01E0C1DC` |
+| ⁴ | `0x005634C6`, `0x005634BE` |
+| ⁵ | `0x005634F7` |
+| ⁶ | `0x00562D3B` |
+| ⁷ | `0x00562B0A`-`0x00562B7B` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -724,12 +1180,23 @@ argument (`0x005521F2`).
 
 Nothing reaches these five globals beyond the listed instructions.
 
+</details>
+
 ## Modding notes
 
 - An area's map item is listed in `menumap_area.bin`; owning it reveals the area's points without visiting them.
 - A World Map destination disappears once the story counter reaches its word `+8`; `0xFFFF` keeps it forever.
-- The overlay cannot open before story counter 16 (`0x00253DDA`).
+- The overlay cannot open before story counter 16¹.
 - The minimap's picture is the zone pack's own image, not a menu file.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00253DDA` |
+
+</details>
 
 ## Related
 
@@ -746,16 +1213,16 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 5 calls with 2 other topics</summary>
 
-**Saving, loading and settings**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00249410` | is called by | `0x00582790` |
-| `0x00249580` | is called by | `0x00582790` |
-| `0x00254440` | is called by | `0x00280140` |
-| `0x00314440` | is called by | `0x00280140` |
-| `0x003145E0` | calls | `0x0020E500` |
-
 **Saving, loading and settings** (explained on [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md), [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md), [changing areas](../World-Areas-And-Travel/changing-areas.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00249410`](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md) (on mrp menu resource packages) | is called by | [`0x00582790`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
+| [`0x00249580`](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md) (on mrp menu resource packages) | is called by | [`0x00582790`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
+| [`0x00254440`](hud.md) (on hud) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
+| [`0x00314440`](../World-Areas-And-Travel/changing-areas.md) (on changing areas) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
+| [`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump) | calls | [`0x0020E500`](../World-Areas-And-Travel/changing-areas.md) (on changing areas) |
 
 </details>

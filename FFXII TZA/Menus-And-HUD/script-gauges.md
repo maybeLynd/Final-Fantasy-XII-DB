@@ -15,10 +15,21 @@ boss fight are built from the same counter.
 
 ### Opening the gauge
 
-The verb `initgauge` (`0x0034DC70`) passes its kind to `0x003E9020`, which closes a gauge already open
-(`0x00408200`), stores the default colours at `0x02B5D098`-`0x02B5D0A4` and calls `0x00408300(type, b)`, b being its own
-second argument (`0x003E9031`, `0x003E9081`-`0x003E90D5`). It calls `0x00408200` only while the byte `0x02B5D090` is set, and
-then sets that byte to 1 and keeps the kind at `0x02B5D091` (`0x003E902A`-`0x003E9043`):
+The verb `initgauge`¹ passes its kind to `0x003E9020`, which closes a gauge already open², stores the default colours at `0x02B5D098`-`0x02B5D0A4` and calls `0x00408300(type, b)`, b being its own
+second argument³. It calls `0x00408200` only while the byte `0x02B5D090` is set, and
+then sets that byte to 1 and keeps the kind at `0x02B5D091`⁴:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034DC70` |
+| ² | `0x00408200` |
+| ³ | `0x003E9031`, `0x003E9081`-`0x003E90D5` |
+| ⁴ | `0x003E902A`-`0x003E9043` |
+
+</details>
 
 | `initgauge` kind | type | child |
 |---|---|---|
@@ -29,34 +40,80 @@ then sets that byte to 1 and keeps the kind at `0x02B5D091` (`0x003E902A`-`0x003
 
 `0x00408300` creates the gauge window `0x00406E80` (0xE8 bytes) only while `0x02B62D80` is null. On creation the
 window stores itself in `0x02B62D80`, builds the child (0x278 or 0x1F8 bytes) at `+0xC0` and loads the layout's
-pictures into the list at `+0xD8` (`0x0024A440`). For type 4 it builds no child and reads the layout record
-through a null pointer (`0x00407018`-`0x0040701F`).
+pictures into the list at `+0xD8`¹. For type 4 it builds no child and reads the layout record
+through a null pointer².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024A440` |
+| ² | `0x00407018`-`0x0040701F` |
+
+</details>
 
 `0x00408300(type, b)` passes the record `{0, type, b}` to `0x00244F50(0xE8, 0x00406E80, record)`, and only while
-`0x02B62D80` is 0 (`0x00408313`-`0x00408346`). The window's message 1 takes the type from `+0x08` of the message
-(`0x00406F71`) and stores the window at `0x02B62D80` (`0x00406FB1`).
+`0x02B62D80` is 0¹. The window's message 1 takes the type from `+0x08` of the message² and stores the window at `0x02B62D80`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00408313`-`0x00408346` |
+| ² | `0x00406F71` |
+| ³ | `0x00406FB1` |
+
+</details>
 
 `0x00407F90(counter)` gives a new counter its defaults: flags `+0xD8` = `0x10`, maximum `+0xE0` = 100, value 0,
 the colours `0x805A5A20`, `0x80276742`, `0x80206266` and `0x800A2A7E` at `+0xF8`-`+0x104`, and the widgets it
 draws with at `+0xC8` and `+0xD0`, which depend on the mode byte `+0xC0`.
 
-What `0x00407F90` stores, in order (`0x00407F96`-`0x00408134`):
+What `0x00407F90` stores, in order¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00407F96`-`0x00408134` |
+
+</details>
 
 - `+0xD8` = `0x10`, the qwords `+0xDC`-`+0x113` cleared, the type word `+0xDC` = 0 and `+0xE0` = 100, the four
-  colours, `+0x114`-`+0x12B` cleared and `+0xD0` = 0 (`0x00407F96`-`0x00408033`).
+  colours, `+0x114`-`+0x12B` cleared and `+0xD0` = 0¹.
 - Mode 0: `+0xC8` = `0x00394660(counter, 1)` and, when that is not 0, `+0xD0` = `0x00394690(+0xC8, 2)`; node 1 is
-  skipped below (`0x0040807E`-`0x004080A4`).
+  skipped below².
 - Mode 1: the window `[0x02B62D80]` gets `+0xC8` bit `0x4`, the timer's stop bit, so a new timer stands until
-  `startgaugetimer`; `+0xC8` = `0x00394660(counter, 2)`, and node 2 is skipped (`0x00408058`-`0x00408075`).
-- Mode 3: `+0xC8` = the counter itself (`0x0040804F`). Other modes leave `+0xC8` as it was, and modes other than 0
+  `startgaugetimer`; `+0xC8` = `0x00394660(counter, 2)`, and node 2 is skipped³.
+- Mode 3: `+0xC8` = the counter itself⁴. Other modes leave `+0xC8` as it was, and modes other than 0
   and 1 skip no node.
 - `0x00394660(w, i)` answers, for `i` below the count `(+0x50 >> 2) & 0xFFFF`, the node's `+0x18` when the node's
-  `+0x08` bits `0x3C` equal 4, and 0 otherwise (`0x00394660`-`0x00394688`). For every node but the skipped one with a
-  non-zero answer, the widget answered gets `0x00247870(widget, 0)` and `+0x40` bit `0x40000` (`0x004080AB`-`0x004080F4`).
-- `+0x44` loses bit `0x100000` and gains bit `0x80000` (`0x004080FB`-`0x00408102`). Unless the mode is 3 it ends with a
-  jump to `0x00394720(counter, 0, 0x42)` (`0x00408109`-`0x0040812A`), which installs entry 0 of the descriptor table
+  `+0x08` bits `0x3C` equal 4, and 0 otherwise⁵. For every node but the skipped one with a
+  non-zero answer, the widget answered gets `0x00247870(widget, 0)` and `+0x40` bit `0x40000`⁶.
+- `+0x44` loses bit `0x100000` and gains bit `0x80000`⁷. Unless the mode is 3 it ends with a
+  jump to `0x00394720(counter, 0, 0x42)`⁸, which installs entry 0 of the descriptor table
   `0x00D112E0` through `0x00247570` and sets `+0x7C` = (old `& 0x3FF`) `| 0x42000 | 0xC00 | 0x10800000`
-  (`0x00394737`-`0x00394773`).
+ ⁹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00407F96`-`0x00408033` |
+| ² | `0x0040807E`-`0x004080A4` |
+| ³ | `0x00408058`-`0x00408075` |
+| ⁴ | `0x0040804F` |
+| ⁵ | `0x00394660`-`0x00394688` |
+| ⁶ | `0x004080AB`-`0x004080F4` |
+| ⁷ | `0x004080FB`-`0x00408102` |
+| ⁸ | `0x00408109`-`0x0040812A` |
+| ⁹ | `0x00394737`-`0x00394773` |
+
+</details>
 
 ### The verbs
 
@@ -88,8 +145,17 @@ and the body), and every verb that changes the gauge does nothing while the wind
 `0x00408140(counter, v)` stops a running ramp (length `+0x118` = 0, `0x00408148`), stores `v` at `+0xE4` and redraws
 by mode: 0 through `0x00407450`,
 1 through `0x00407720`, 3 through `0x00225580` on the value widget, with `v` less the maximum once it passes the
-maximum; modes 2 and 4 and above redraw nothing (`0x00408158`-`0x0040818B`). A ramp lives at `+0x114`-`+0x128` and is
+maximum; modes 2 and 4 and above redraw nothing¹. A ramp lives at `+0x114`-`+0x128` and is
 stepped once per frame by `0x004076B0`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00408158`-`0x0040818B` |
+
+</details>
 
 ```python
 elapsed = elapsed + 1
@@ -97,34 +163,80 @@ value = start + delta * elapsed / length      while elapsed < length
 value = start + delta, length = 0             at the end; 0x004076B0 returns -1 when length is 0
 ```
 
-`0x004076B0(ramp)` is passed the record: the counter's `+0x114` (`0x00407648`, `0x0040657D`) or `+0x180` at `0x00405A27`. It
-answers -1 at once for length 0 (`0x004076B0`-`0x004076BA`). Before the end it works in float: the progress
-`elapsed / length` goes to `+0x128` and the value is `start + delta x progress`, truncated toward zero
-(`0x004076CB`-`0x004076FE`); at the end the progress is 1.0 (`0x00407711`).
+`0x004076B0(ramp)` is passed the record: the counter's `+0x114`¹ or `+0x180` at `0x00405A27`. It
+answers -1 at once for length 0². Before the end it works in float: the progress
+`elapsed / length` goes to `+0x128` and the value is `start + delta x progress`, truncated toward zero³; at the end the progress is 1.0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00407648`, `0x0040657D` |
+| ² | `0x004076B0`-`0x004076BA` |
+| ³ | `0x004076CB`-`0x004076FE` |
+| ⁴ | `0x00407711` |
+
+</details>
 
 Both branches store the value at `+0x124` and answer it; the counter child copies the answer to `+0xE4` and redraws
-through `0x00407450` (`0x00407650`-`0x00407656`). The end test is signed (`0x004076C6`), so a negative length ends the
+through `0x00407450`¹. The end test is signed², so a negative length ends the
 ramp on its first step.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00407650`-`0x00407656` |
+| ² | `0x004076C6` |
+
+</details>
 
 - `0x00407290(counter, target)` starts a ramp of `|target - value| x [+0x10C] / [+0x110]` frames, a 0 becoming 1,
   and only when `+0x110` is not 0 and the counter is not null, `counter != 0 && [counter + 0x110] != 0`
-  (`0x00407293`-`0x004072A9`).
+ ¹.
 - The product (`imul eax, dword ptr [rcx + 0x10c]`) and the divide (`idiv r8d`) of `0x00407290` are signed 32-bit
-  (`0x004072B6`, `0x004072D3`), so a negative rate gives a negative length, which ends the ramp on its first step
-  (`0x004072EE`, `0x004076C6`).
+ ², so a negative rate gives a negative length, which ends the ramp on its first step
+ ³.
   - It stores the start `+0x11C` and the current value `+0x124` = value, the delta `+0x120` = target - value, and
-    0 in elapsed `+0x114` and the progress `+0x128` (`0x004072BD`-`0x004072F1`).
+    0 in elapsed `+0x114` and the progress `+0x128`⁴.
 - `0x00407240(counter, target)` starts a ramp of `+0x108` frames, or 1 when that is 0; its only caller is
-  the boss gauge's bar (`0x00406552`). `changegaugecounterbyframe` (`0x00408450`) starts the same ramp with its own
+  the boss gauge's bar⁵. `changegaugecounterbyframe`⁶ starts the same ramp with its own
   copy of these stores.
 - The counter child steps its ramp only while the window's `+0xC8` bits `0x4` and `0x8` are both clear
-  (`0x00407631`-`0x00407639`).
+ ⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00407293`-`0x004072A9` |
+| ² | `0x004072B6`, `0x004072D3` |
+| ³ | `0x004072EE`, `0x004076C6` |
+| ⁴ | `0x004072BD`-`0x004072F1` |
+| ⁵ | `0x00406552` |
+| ⁶ | `0x00408450` |
+| ⁷ | `0x00407631`-`0x00407639` |
+
+</details>
 
 `0x00407300(counter, a, b, c)` sets `a = a x 60`, `b = b x 60` and `c = c x 60` when the mode byte `+0xC0` is 1,
-a timer (`0x0040730C`-`0x0040731C`), and stores them at `+0xEA`,
+a timer¹, and stores them at `+0xEA`,
 `+0xEC` and `+0xEE`: in that order for types 1 and 3, in reverse order for types 2 and 4, and not at all for
-type 0. A `-1` keeps a threshold, tested after the scaling (`0x00407340`-`0x00407388`): for a timer a `-1` has become
+type 0. A `-1` keeps a threshold, tested after the scaling²: for a timer a `-1` has become
 `-60` and is stored as `0xFFC4`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0040730C`-`0x0040731C` |
+| ² | `0x00407340`-`0x00407388` |
+
+</details>
 
 `0x00408A20(type)` stores the type and sets bit `0x2000000` of the value widget's
 `+0x20` for types 2 and 4, clearing it for 1 and 3. `0x00408780(c0, c1, c2, c3)` stores the colours, `-1`
@@ -132,8 +244,16 @@ keeping one.
 
 ### The timer text
 
-`0x00407720(counter)` writes the timer's value, in frames at 60 per second, into the text at `+0x134`
-(`0x002B4090`) and hands it to the label widget:
+`0x00407720(counter)` writes the timer's value, in frames at 60 per second, into the text at `+0x134`¹ and hands it to the label widget:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B4090` |
+
+</details>
 
 | Flags | Format id | Shown as |
 |---|---|---|
@@ -143,60 +263,133 @@ keeping one.
 
 The hundredths are `(value mod 60) x 100 / 60`.
 
-`0x00407720` works in this order (`0x00407720`-`0x00407991`):
+`0x00407720` works in this order¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00407720`-`0x00407991` |
+
+</details>
 
 - It first calls `0x00407D10(counter)` and stops when the counter's `+0x50` bit `0x1` is clear
-  (`0x00407732`-`0x0040773B`).
+ ¹.
 - The label is node 2 of the frame widget `+0xC8`: `0x00394690(w, i)` answers `+0x60[i]` for `i` below
-  `(+0x50 >> 2) & 0xFFFF`, and 0 otherwise (`0x0040775F`, `0x00394690`-`0x003946AB`).
+  `(+0x50 >> 2) & 0xFFFF`, and 0 otherwise².
 - The text is written only when `0x00393220(label)` answers non-zero, which needs a label, its `+0x08` bit `0x1` and
-  bit `0x10000000` of the dword at `[label]` (`0x004077BD`, `0x00407900`, `0x00393220`-`0x00393239`).
-- A format text from `0x002F9860` that starts with `ex` (`0x00364980`) is filled by `0x00365B30` instead of `0x002B4090`
-  (`0x004077E8`-`0x00407822`, `0x00407919`-`0x0040794D`).
+  bit `0x10000000` of the dword at `[label]`³.
+- A format text from `0x002F9860` that starts with `ex`⁴ is filled by `0x00365B30` instead of `0x002B4090`
+ ⁵.
 - The label then gets the text `+0x134` at `+0x18` and `0x0020E620(0)`, which is 0 less `[0x01F83530]`, at `+0x20`
-  (`0x00407811`-`0x0040781A`, `0x00407954`-`0x0040795D`). The hours format also copies the counter's `+0xF4` to the
-  label's `+0x24` (`0x00407960`-`0x00407966`).
+ ⁶. The hours format also copies the counter's `+0xF4` to the
+  label's `+0x24`⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00407732`-`0x0040773B` |
+| ² | `0x0040775F`, `0x00394690`-`0x003946AB` |
+| ³ | `0x004077BD`, `0x00407900`, `0x00393220`-`0x00393239` |
+| ⁴ | `0x00364980` |
+| ⁵ | `0x004077E8`-`0x00407822`, `0x00407919`-`0x0040794D` |
+| ⁶ | `0x00407811`-`0x0040781A`, `0x00407954`-`0x0040795D` |
+| ⁷ | `0x00407960`-`0x00407966` |
+
+</details>
 
 ### `resetgaugetimer`
 
 `0x004083E0` takes the child of `[0x02B62D80]` when its mode is 1 and then acts only when that is null: it reads
-the type byte from the absolute address `0xDC` (`0x0040841E`) and would store 0 or the maximum at `0xE4`. With a
+the type byte from the absolute address `0xDC`¹ and would store 0 or the maximum at `0xE4`. With a
 timer open the verb therefore changes nothing, and with no timer open it reads unmapped memory. The shipped US
 scripts never call it (`us_calls` 0 in the [verb table](../Scripts-And-Script-Commands/verb-table.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0040841E` |
+
+</details>
+
 `0x00407150(window, on)`, reached through `0x004088A0`, `0x004088B0` and `0x00408190`, is the working reset: on a change of
 the window's `+0xC8` bit `0x2` it ends a counter's ramp at its target, or sets a timer to its maximum for type 1 and
-to 0 for types 2 to 4 (`0x00407204`-`0x00407216`), leaving a timer of type 0 alone.
+to 0 for types 2 to 4¹, leaving a timer of type 0 alone.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00407204`-`0x00407216` |
+
+</details>
 
 The type is byte `+0xDC`, 0 to 4:
-the constructor `0x00407F90` clears it (`0x00407FD6`), a boss-gauge bar `0x004061F0` sets 2 (`0x004066EE`), and `0x00408A20`,
-which stores a script's type (`0x00408A71`, `0x00408A80`, `0x00408A8F`), is reached only from `0x003E8F70`, which turns any
-value outside 1 to 4 into 0 (`0x003E8F84`).
+the constructor `0x00407F90` clears it¹, a boss-gauge bar `0x004061F0` sets 2², and `0x00408A20`,
+which stores a script's type³, is reached only from `0x003E8F70`, which turns any
+value outside 1 to 4 into 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00407FD6` |
+| ² | `0x004066EE` |
+| ³ | `0x00408A71`, `0x00408A80`, `0x00408A8F` |
+| ⁴ | `0x003E8F84` |
+
+</details>
 
 ### Pause, hide and restore
 
 - The byte `0x0215F1B3` is a mask of pause reasons ([Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
-  Whenever it is written, the writer calls `0x00404D70` (non-zero) or `0x00404DC0` (zero) (`0x002E0D67`, `0x002E0D6E`,
-  `0x002E15A3`, `0x002E24B7`-`0x002E24F8`), which sets or clears bit `0x8` of the gauge window's `+0xC8` unless its bit
+  Whenever it is written, the writer calls `0x00404D70` (non-zero) or `0x00404DC0` (zero)¹, which sets or clears bit `0x8` of the gauge window's `+0xC8` unless its bit
   `0x2` is set.
 - The same two functions set or clear bit `0x80` of the boss-gauge manager's `+0xC8` (`[0x02B62D88]`,
   `0x00404D90`-`0x00404DB1` and `0x00404DE0`-`0x00404E01`), unless its bit `0x20` is set.
 - The HUD switch hides the message windows through `0x0035D0E0` and shows them through `0x0035D1B0`
   ([HUD](hud.md)). `0x0035D0E0` also runs `0x004082D0`, which starts the gauge child's closing run with the
-  message at `0x01E0C0F8` unless the child's `+0x40` bit `0x100000` is set (`0x004082E8`): `setgaugehidestatus(2)` sets
+  message at `0x01E0C0F8` unless the child's `+0x40` bit `0x100000` is set²: `setgaugehidestatus(2)` sets
   that bit and 0 or 1 clears it, so with 2 the gauge stays on screen while the HUD is hidden.
 - `0x0035D1B0` runs `0x00408AA0`, which restarts its opening run with message 14
-  (`0x01E0C0E0`) when the script has the gauge shown (`+0xD8` bit `0x4` set and bit `0x8` clear, the state
+ ³ when the script has the gauge shown (`+0xD8` bit `0x4` set and bit `0x8` clear, the state
   `setgaugeshowstatus(1)` leaves, `0x00408399`-`0x0040839F`; `0x004082D0` closes the child without touching these bits, so
   after the HUD hide such a child is closed). Both set the run speed `+0xB8` to `1 / 0x00229E70()` when `0x00229DF0` is
   non-zero and `0x00229EA0` returns 2.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E0D67`, `0x002E0D6E`, `0x002E15A3`, `0x002E24B7`-`0x002E24F8` |
+| ² | `0x004082E8` |
+| ³ | `0x01E0C0E0` |
+
+</details>
+
 ### Placing the gauge
 
-`0x00407B70` reads the positions of two layout children of the window (`0x00394690`), the second named by its third
+`0x00407B70` reads the positions of two layout children of the window¹, the second named by its third
 argument, and does nothing when either is absent. When `0x003C5FB0` (the minimap status test of [Map
 screens](map-screens.md)) returns 0 it takes the second and calls `0x002E04E0(6, dx, dy)` with the difference of the
 two; otherwise it takes the first and the difference is 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00394690` |
+
+</details>
 
 Either way every widget under the root `[0x0208EA28]` whose
 `+0x44` bits `0x80000` and `0x100000` are `0x100000` goes to its base `+0x54`/`+0x56` plus the difference (`0x00407C90`
@@ -239,6 +432,9 @@ scripts](../Story-Events-And-Hunts/trial-mode-scripts.md).
 | `gauge` | the gauge verbs it uses |
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 `GaugeCounter` (`0x1F8` bytes, offsets from the start of the record):
 
@@ -285,18 +481,44 @@ The gauge window is the `0xE8`-byte widget kept at `0x02B62D80` with procedure `
 | `+0xD8` | `void*` | pictures | the array of `+0xE0` picture handles the construct message allocates (`0x00393590`, `0x00407050`) and fills, one load (`0x0024A440`) for each list entry of type 1 and 0 for the others (`0x00407070`-`0x004070AD`); message 18 releases each (`0x0024A680`) and frees the array (`0x00406EBD`-`0x00406F14`); 0 at construction (`0x00406FC6`) |
 | `+0xE0` | `u8` | pictureCount | the number of pictures, byte `+0x24` of the layout record (`0x00407035`); bounds the load and release loops (`0x00407057`, `0x004070B1`, `0x00406ECF`, `0x00406EF7`) |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The gauge verbs keep a small block at `0x02B5D090`: the open byte `0x02B5D090` (set by `0x003E9020`, cleared by `0x003E90E0`
 and `0x003E9100`), the kind byte `0x02B5D091`, and the four colours `setgaugecolor` hands to the gauge, `0x02B5D098` to
 `0x02B5D0A4`.
 
-`setgaugecolor` (`0x00357270`) pops five values and calls `0x003E9120(i, r, g, b, a)` (`0x003572CB`), which:
+`setgaugecolor`¹ pops five values and calls `0x003E9120(i, r, g, b, a)`², which:
 
-- limits `i` to 0..3 (`0x003E9123`-`0x003E9134`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00357270` |
+| ² | `0x003572CB` |
+
+</details>
+
+- limits `i` to 0..3¹;
 - packs the four bytes as `r | g << 8 | b << 16 | a << 24` and stores them in entry `i` of the table
-  (`0x003E9154`-`0x003E9160`);
-- passes all four entries to `0x00408780` (`0x003E9163`-`0x003E917D`).
+ ²;
+- passes all four entries to `0x00408780`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E9123`-`0x003E9134` |
+| ² | `0x003E9154`-`0x003E9160` |
+| ³ | `0x003E9163`-`0x003E917D` |
+
+</details>
 
 The gauge's own colours are therefore the table's: the three entries the verb does not name are the ones the last
 `initgauge` or `setgaugecolor` left, and an entry packed as `0xFFFFFFFF` (all four values 255) leaves that colour of
@@ -308,18 +530,47 @@ the gauge as it was.
 | `0x02B5D09C` | `u32` | 0 | colour entry 1, the gauge's second colour (`+0xFC`, `0x004087B6`): green 0x80, blue 0x80, alpha 0x80 at every open | `0x003E9020`, `0x80808000` (`0x003E9054`); `0x003E9120` for `i` = 1 (`0x003E9160`) | `0x003E9120` (`0x003E9171`) |
 | `0x02B5D0A0` | `u32` | 0 | colour entry 2, the gauge's third colour (`+0x100`, `0x004087C2`): red 0x80, green 0x80, alpha 0x80 at every open | `0x003E9020`, `0x80008080` (`0x003E905E`); `0x003E9120` for `i` = 2 (`0x003E9160`) | `0x003E9120` (`0x003E916A`) |
 
-At every open `0x003E9020` also stores `0x80008000` (green 0x80, alpha 0x80) in entry 0 (`0x003E904A`) and `0x80000080`
-(red 0x80, alpha 0x80) in entry 3 (`0x003E9068`); it does not pass them to the gauge, whose counter starts with the
+At every open `0x003E9020` also stores `0x80008000` (green 0x80, alpha 0x80) in entry 0¹ and `0x80000080`
+(red 0x80, alpha 0x80) in entry 3²; it does not pass them to the gauge, whose counter starts with the
 colours `0x00407F90` gives it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E904A` |
+| ² | `0x003E9068` |
+
+</details>
 
 The gauges' records come from a pool of 32 `0x48`-byte records, which `0x003E7DF0` builds at start-up (called
 at `0x00266E3D`). It zeroes the 32 records from `0x02B5C780`,
-stores `0x20` plus the record's index at `+0x28` and 0 in the byte `+0x2C` (`0x003E7E00`-`0x003E7E38`), then links
-records 3 to 30 both ways, `+0x00` to the next record and `+0x08` to the previous one (`0x003E7E50`-`0x003E7E67`).
+stores `0x20` plus the record's index at `+0x28` and 0 in the byte `+0x2C`¹, then links
+records 3 to 30 both ways, `+0x00` to the next record and `+0x08` to the previous one².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E7E00`-`0x003E7E38` |
+| ² | `0x003E7E50`-`0x003E7E67` |
+
+</details>
 
 It closes the chain at both ends: record 2's `+0x00` is record 3 and its `+0x08` is 0, record 31's `+0x08` is record 30
 and its `+0x00` is 0. Record 0's `+0x00` points to record 2, so records 2 to 31 hang from record 0 as one list of
-30; record 0's `+0x08` and both links of record 1 are 0 (`0x003E7E69`-`0x003E7EAF`).
+30; record 0's `+0x08` and both links of record 1 are 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E7E69`-`0x003E7EAF` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -330,6 +581,8 @@ and its `+0x00` is 0. Record 0's `+0x00` points to record 2, so records 2 to 31 
 | `0x02B5C818` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08` of pool record 2 | `0x003E7DF0` (`0x003E7E06`; 0 at `0x003E7E70`) | as above |
 | `0x02B5D038` | `void*` | 0 (zero-filled tail of `.data`) | `+0x00` of pool record 31, the last of the list | `0x003E7DF0` (`0x003E7E02`; 0 at `0x003E7E9A`) | as above |
 | `0x02B5D040` | `void*` | 0 (zero-filled tail of `.data`) | `+0x08` of pool record 31: record 30 (`0x02B5CFF0`) | `0x003E7DF0` (`0x003E7E06`; `0x003E7E85`) | as above |
+
+</details>
 
 ## Modding notes
 
@@ -358,16 +611,20 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003E9100` | is called by | `0x002628B0` |
+| [`0x003E9100`](script-gauges.md) | is called by | [`0x002628B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
 
 **World, areas and travel** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0024A680` | is called by | `0x003C63A0` |
-| `0x003E7DF0` | is called by | `0x00266D10` |
-| `0x003E90E0` | is called by | `0x00266D10` |
+| [`0x0024A680`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) | is called by | [`0x003C63A0`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) |
+| [`0x003E7DF0`](script-gauges.md) | is called by | [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x003E90E0`](script-gauges.md) | is called by | [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 </details>

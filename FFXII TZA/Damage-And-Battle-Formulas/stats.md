@@ -33,11 +33,31 @@ full list is under [The equipment comparison's warnings](#the-equipment-comparis
 ### The rebuild
 
 `0x002FEF30(stats, out, equipment)` computes the stats block. With `out` and `equipment` null it writes the
-record's own block at `+0x24` and reads the five equipment words at `+0x50` (`0x002FEF95`-`0x002FEFAB`). It
-clears the block first (`0x002FEFB9`-`0x002FEFC8`).
+record's own block at `+0x24` and reads the five equipment words at `+0x50`¹. It
+clears the block first².
 
-The augment rebuild `0x0030FED0` calls it (`0x003103AD`); [Augments](augments.md) lists that function's 25
-callers. The equipment comparison `0x0030A4E0` calls it with its own block (`0x0030A6B7`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FEF95`-`0x002FEFAB` |
+| ² | `0x002FEFB9`-`0x002FEFC8` |
+
+</details>
+
+The augment rebuild `0x0030FED0` calls it¹; [Augments](augments.md) lists that function's 25
+callers. The equipment comparison `0x0030A4E0` calls it with its own block².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003103AD` |
+| ² | `0x0030A6B7` |
+
+</details>
 
 ### The equipment comparison
 
@@ -45,22 +65,30 @@ callers. The equipment comparison `0x0030A4E0` calls it with its own block (`0x0
 (`candidate`, laid out like stats `+0x50`). `out` is a `0x2C`-byte record: the `0x24`-byte stats block, then a
 warning code at `+0x24` (`u32`) and an equipment id at `+0x28` (`u16`). In order:
 
-1. It finds the member's stats with `0x00320AB0(member, 3)`; with no stats it returns -1 and writes nothing
-   (`0x0030A503`-`0x0030A513`).
-2. It writes 0 to `out+0x24` and `0xFFFF` to `out+0x28` (`0x0030A518`-`0x0030A524`). With no candidate it goes to step 6.
-3. The slot it judges is the highest of the five whose candidate word differs from the worn one
-   (`0x0030A565`-`0x0030A5C3`); the piece is that slot's candidate word.
-4. It runs the hand check `0x00318B40(candidate, slot, 0)` ([Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md))
-   and stores the new word of the highest slot the check changed at `out+0x28` (`0x0030A5D5`-`0x0030A640`).
-5. It stores the warning code at `out+0x24` (below).
-6. It builds the stats into `out` with `0x002FEF30(stats, out, words)` (`0x0030A6B7`) and returns that result.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It finds the member's stats with `0x00320AB0(member, 3)`; with no stats it returns -1 and writes nothing. | `0x0030A503`-`0x0030A513` |
+| 2 | It writes 0 to `out+0x24` and `0xFFFF` to `out+0x28`. With no candidate it goes to step 6. | `0x0030A518`-`0x0030A524` |
+| 3 | The slot it judges is the highest of the five whose candidate word differs from the worn one; the piece is that slot's candidate word. | `0x0030A565`-`0x0030A5C3` |
+| 4 | It runs the hand check `0x00318B40(candidate, slot, 0)` ([Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)) and stores the new word of the highest slot the check changed at `out+0x28`. | `0x0030A5D5`-`0x0030A640` |
+| 5 | It stores the warning code at `out+0x24` (below). |   |
+| 6 | It builds the stats into `out` with `0x002FEF30(stats, out, words)` and returns that result. | `0x0030A6B7` |
 
 ### The equipment comparison's warnings
 
-The code is `0x10` when the license test `0x00323C60` refuses the piece (`0x0030A64F`-`0x0030A658`). An empty slot
-(`0xFFFF`) fails that test's id check, so taking a piece off always gives `0x10`. Otherwise `0x00309480` answers
-(`0x0030A691`) from the slot, the piece's and the worn pieces' categories, and whether the hand check changed the off
+The code is `0x10` when the license test `0x00323C60` refuses the piece¹. An empty slot
+(`0xFFFF`) fails that test's id check, so taking a piece off always gives `0x10`. Otherwise `0x00309480` answers² from the slot, the piece's and the worn pieces' categories, and whether the hand check changed the off
 hand.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030A64F`-`0x0030A658` |
+| ² | `0x0030A691` |
+
+</details>
 
 The categories come from `0x0031EA90` through the byte map `0x0031EA74`
 ([Equipment row](../Items-Equipment-Shops-And-Licenses/equipment-row.md)):
@@ -79,24 +107,64 @@ The categories come from `0x0031EA90` through the byte map `0x0031EA74`
 A ranged weapon's ammunition is at hand when `0x003096F0(weapon, worn off hand)` returns 1: the worn off hand holds
 ammunition (ids `0x1184`-`0x11A3`) of the class the weapon's `+0x11` names, or the party owns a copy of one of
 those ammunition ids that no member is wearing: the equipment class's query handler, `0x002FD8D0` in mode 0,
-answers owned minus worn (`0x002FD94B`-`0x002FD95D`), and an answer of 1 or more counts (`0x00309801`-`0x00309890`).
+answers owned minus worn¹, and an answer of 1 or more counts².
 
-`0x003096F0` first calls `0x00322C50(6, weapon, 0)` and returns 0 at once when that answers 0
-(`0x003096FA`-`0x00309715`). Both rows come from the table `[0x02EBF0F8]`: the low 32 bits of the `0x0020E600`
-answer for its dword `+0x0C`, plus the id less `0x1000` times its word `+0x08`
-(`0x00309727`-`0x00309759`, `0x00309780`-`0x003097B5`). With a null table or a null answer the row address is
-0, and the byte is read at address `0x11` or `0x09` (`0x00309764`-`0x00309766`, `0x003097C0`-`0x003097C2`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FD94B`-`0x002FD95D` |
+| ² | `0x00309801`-`0x00309890` |
+
+</details>
+
+`0x003096F0` first calls `0x00322C50(6, weapon, 0)` and returns 0 at once when that answers 0¹. Both rows come from the table `[0x02EBF0F8]`: the low 32 bits of the `0x0020E600`
+answer for its dword `+0x0C`, plus the id less `0x1000` times its word `+0x08`². With a null table or a null answer the row address is
+0, and the byte is read at address `0x11` or `0x09`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003096FA`-`0x00309715` |
+| ² | `0x00309727`-`0x00309759`, `0x00309780`-`0x003097B5` |
+| ³ | `0x00309764`-`0x00309766`, `0x003097C0`-`0x003097C2` |
+
+</details>
 
 In the loop each id's row is found the same way, the byte read at address `0x09` when the table or
-the answer is null (`0x00309801`-`0x00309845`), and an id is asked about only when its row's byte `+0x09`
+the answer is null¹, and an id is asked about only when its row's byte `+0x09`
 is the class. The two tests that follow, for an id of `0xFFFF` and for top four bits above `0xE`, are
-never true for the ids of this loop (`0x00309850`-`0x0030985F`).
+never true for the ids of this loop².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00309801`-`0x00309845` |
+| ² | `0x00309850`-`0x0030985F` |
+
+</details>
 
 The handler record is
 `0x01EEBCC0` + `0x58` x (id shifted right 12); the id's low 12 bits must not be above the record's
-dword `+0x3C` less 1, compared signed, and the pointer at `+0x50` must not be null (`0x00309861`-`0x00309887`).
+dword `+0x3C` less 1, compared signed, and the pointer at `+0x50` must not be null¹.
 The handler is called with the id and 0, and an answer of 1 or more, compared signed, makes
-`0x003096F0` return 1 (`0x00309889`-`0x00309890`, `0x003098C4`). With no such id it returns 0 (`0x003098A7`).
+`0x003096F0` return 1². With no such id it returns 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00309861`-`0x00309887` |
+| ² | `0x00309889`-`0x00309890`, `0x003098C4` |
+| ³ | `0x003098A7` |
+
+</details>
 
 | Code | Slot | When | Help line |
 |---:|---|---|---|
@@ -131,16 +199,37 @@ The help window shows the code as follows:
   (`[0x0209BE80] + 0x8FA0`, through `0x002F9860`, `0x00291D70` and `0x00291D80`). For codes 1-9, `0xE` and `0xF` it does so
   only when the code differs from the last one, kept at `+0xDE3`.
 - Codes `0xA`-`0xD`, which `0x00309480` never returns, have no line (their table rows go to `0x002CA522` with id 0).
-- Codes 0 and `0x10` show the line the caller passes: "Change equipment." (`0x003FE2A2`), the text at `+0x180` of the
-  menu block's widget `+0x108` (`0x003FF97D`) or, in the shop, "Select a character to equip." (`0x0057B3BF`).
+- Codes 0 and `0x10` show the line the caller passes: "Change equipment."¹, the text at `+0x180` of the
+  menu block's widget `+0x108`² or, in the shop, "Select a character to equip."³.
 - No instruction reads `+0xDE4`: the two stores above and the clearing of the whole block when it is first set up
-  (`0x00280110`) are its only accesses. The member panel `0x002CA7C0` calls the comparison for its numbers and reads
+ ⁴ are its only accesses. The member panel `0x002CA7C0` calls the comparison for its numbers and reads
   neither field.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FE2A2` |
+| ² | `0x003FF97D` |
+| ³ | `0x0057B3BF` |
+| ⁴ | `0x00280110` |
+
+</details>
 
 ### A party member's base
 
 For a party record (stats `+0x05` = 0), the base comes from the character row of table `0x02EBF130` that
-the type byte `+0x04` selects (`0x002FF02E`-`0x002FF0DC`):
+the type byte `+0x04` selects¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF02E`-`0x002FF0DC` |
+
+</details>
 
 ```python
 maxHp = (row[+0x18] + 1) * stats[+0x08] * row[+0x19] / 100  # 0x002F8E50
@@ -151,14 +240,33 @@ innate evade = row[+0x2A]
 
 Both divisions truncate towards zero. The four floats are the character's grown values
 ([Stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md)). The row's status
-words `+0x4C` and `+0x48` are ORed into stats `+0x38` and `+0x3C` (`0x002FF0A3`-`0x002FF0D9`).
+words `+0x4C` and `+0x48` are ORed into stats `+0x38` and `+0x3C`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF0A3`-`0x002FF0D9` |
+
+</details>
 
 ### An enemy's base
 
 For any other record the base comes from three area tables, found through the unit's row of `0x02EBF120`
 (selected by `+0x04`): the base row of `0x02EBF148` its word `+0x22` names and the growth row of `0x02EBF140`
-its word `+0x24` names (`0x002FF0E1`-`0x002FF1A4`). With `d` = the unit's level `+0x1C2` minus its reference
-level `+0x88` (`0x002FF1EE`-`0x002FF200`), each stat is:
+its word `+0x24` names¹. With `d` = the unit's level `+0x1C2` minus its reference
+level `+0x88`², each stat is:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF0E1`-`0x002FF1A4` |
+| ² | `0x002FF1EE`-`0x002FF200` |
+
+</details>
 
 ```python
 stat = growth[field] * d + base[field] + stats[adjustment]
@@ -177,8 +285,17 @@ stat = growth[field] * d + base[field] + stats[adjustment]
 | Magick Resist | `+0x2C` | `+0x14` |
 
 Attack Power starts from the adjustment word `+0x10`, and the evades from `+0x18`, `+0x1A`, `+0x1C`, `+0x1E`
-and `+0x20` (`0x002FF202`-`0x002FF2F5`). Two bits of the `0x02EBF120` row's byte `+0x15` switch sources
-(`0x002FF325`-`0x002FF3C8`):
+and `+0x20`¹. Two bits of the `0x02EBF120` row's byte `+0x15` switch sources²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF202`-`0x002FF2F5` |
+| ² | `0x002FF325`-`0x002FF3C8` |
+
+</details>
 
 - **bit `0x1`:** Attack Power adds base and growth `+0x2D`, weapon evade adds `+0x2E`, and the equipped
   weapon's Attack Power and evade are not added;
@@ -188,7 +305,16 @@ and `+0x20` (`0x002FF202`-`0x002FF2F5`). Two bits of the `0x02EBF120` row's byte
 ### Equipment
 
 Each of the five equipment words that names an item (`0x00322C50(6, id)`) adds by the item's group from
-`0x0031E9A0` (`0x002FF3F0`-`0x002FF4A4`):
+`0x0031E9A0`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF3F0`-`0x002FF4A4` |
+
+</details>
 
 | Group | Equipment classes | Adds |
 |---|---|---|
@@ -196,16 +322,33 @@ Each of the five equipment words that names an item (`0x00322C50(6, id)`) adds b
 | `2` | shields | row `+0x18` to shield evade, row `+0x19` to magick evade |
 | `3` | helms, armor, accessories | row `+0x18` to Defense, row `+0x19` to Magick Resist |
 
-Every item then adds its attribute record, whatever its group (`0x002FF4A7`-`0x002FF571`): `u16 +0x00` to max
+Every item then adds its attribute record, whatever its group¹: `u16 +0x00` to max
 HP, `u16 +0x02` to max MP, bytes `+0x04`-`+0x07` to Strength, Magick Power, Vitality and Speed; it ORs
 `+0x0C` into stats `+0x38` and `+0x08` into stats `+0x3C`, and its elements into the affinity bytes
 ([Elements](elements.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF4A7`-`0x002FF571` |
+
+</details>
+
 ### Augments that add stats
 
-Three lists of augment ids add a bonus when the id is set in either augment layer, `+0x68` or `+0x78`
-(`0x002FF581`-`0x002FF77A`). The bonus is the `u16` at `+0x04` of the id's row in the augment table
+Three lists of augment ids add a bonus when the id is set in either augment layer, `+0x68` or `+0x78`¹. The bonus is the `u16` at `+0x04` of the id's row in the augment table
 `0x02EBF040`; each id's text is entry *id* of the augment text bank:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF581`-`0x002FF77A` |
+
+</details>
 
 | List | Ids | Adds to | Bonus | Licenses |
 |---|---|---|---|---|
@@ -215,7 +358,16 @@ Three lists of augment ids add a bonus when the id is set in either augment laye
 
 ### Totals and caps
 
-After the sums, the rebuild limits and stores each value (`0x002FF780`-`0x002FF96D`):
+After the sums, the rebuild limits and stores each value¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF780`-`0x002FF96D` |
+
+</details>
 
 | Stats offset | Value | Limits |
 |---|---|---|
@@ -229,21 +381,59 @@ After the sums, the rebuild limits and stores each value (`0x002FF780`-`0x002FF9
 | `+0x36` | Magick Evade: magick evade, plus `+0x20` for an enemy | 0 to 100 |
 | `+0x37` | MP bars, the number of Mist charges the unit can hold; a party member's stats `+0x20` | at most 3 |
 
-The 9,999 and 1,000,000,000 are literals that one `cmove` picks by the party byte (`0x002FF7BD`-`0x002FF7C8`).
+The 9,999 and 1,000,000,000 are literals that one `cmove` picks by the party byte¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF7BD`-`0x002FF7C8` |
+
+</details>
 
 ### Confuse and Berserk cancel the action in flight
 
 For a party record with a battle unit, the rebuild compares stats `+0x3C` with its value on entry. When
 Confuse (status 5) or Berserk (status 27) changed (mask `0x8000020`, `0x002FF982`-`0x002FF98E`), it cancels
-the unit's current action with `0x003105D0` (`0x002FF9C7`), except in these cases:
+the unit's current action with `0x003105D0`¹, except in these cases:
 
-- the unit word's bit `0x1000000` is set (`0x002FF99C`);
-- the action id `+0x714` is at most `0x21E` and byte `+0x6B4` is at least 9 (`0x002FF9A3`-`0x002FF9BD`);
-- the action id is `0x113` (`0x002FF9BF`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF9C7` |
+
+</details>
+
+- the unit word's bit `0x1000000` is set¹;
+- the action id `+0x714` is at most `0x21E` and byte `+0x6B4` is at least 9²;
+- the action id is `0x113`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF99C` |
+| ² | `0x002FF9A3`-`0x002FF9BD` |
+| ³ | `0x002FF9BF` |
+
+</details>
 
 It then clears the unit's `+0x6F8`, `+0x748`, `+0x770`, `+0x750` and `+0x74C`, bit `0x400` of `+0x788` and bit `0x2`
 of `+0x6B0`, sets bit `0x200000` of `+0x04`, clears bit `0x4000` of the unit word unless `+0xBA0` holds `0x113` or `0x95`,
-and calls `0x00307D10` (`0x002FF9CC`-`0x002FFA40`).
+and calls `0x00307D10`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FF9CC`-`0x002FFA40` |
+
+</details>
 
 ## Modding notes
 
@@ -272,8 +462,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Scripts and script commands** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00320AB0` | is called by | `0x0050FD00`, `0x0050FD50`, `0x0050FDD0`, `0x0050FE20`, `0x0050FE80`, `0x0050FED0`, `0x0050FF20` |
+| [`0x00320AB0`](../Engine-Core/subsystem-update-flags.md) (on subsystem update flags) | is called by | [`0x0050FD00`](stats.md)<br>[`0x0050FD50`](stats.md)<br>[`0x0050FDD0`](stats.md)<br>[`0x0050FE20`](stats.md)<br>[`0x0050FE80`](stats.md)<br>[`0x0050FED0`](stats.md)<br>[`0x0050FF20`](../Characters-And-Objects/battle-unit-construction.md) (on battle unit construction) |
 
 </details>

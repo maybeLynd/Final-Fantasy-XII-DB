@@ -17,8 +17,17 @@
 ### Script variables
 
 A script names a variable by a descriptor: a class in the top bits and an offset in the low 24 bits. The resolver
-picks the base for the class through the jump table at `0x002626A8` (`0x002625EA`-`0x00262603`) and adds the offset
-(`0x00262639`-`0x00262641`):
+picks the base for the class through the jump table at `0x002626A8`¹ and adds the offset²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002625EA`-`0x00262603` |
+| ² | `0x00262639`-`0x00262641` |
+
+</details>
 
 | Class | Base | Set at |
 |---:|---|---|
@@ -29,9 +38,19 @@ picks the base for the class through the jump table at `0x002626A8` (`0x002625EA
 | `4` | actor manager `+0x58` (`0x00262627`) | - |
 | `5` | actor manager `+0x60` (`0x0026262D`) | - |
 
-Class 0 is the save payload itself: `0x002EF2B0` returns the active save buffer plus `0x200` (`0x002EF2B4`-`0x002EF2B9`), and
-the actor manager keeps that pointer at `+0x48` when it binds the loaded definitions (`0x0026CAF8`-`0x0026CAFD`). So a
+Class 0 is the save payload itself: `0x002EF2B0` returns the active save buffer plus `0x200`¹, and
+the actor manager keeps that pointer at `+0x48` when it binds the loaded definitions². So a
 class-0 variable at offset *n* is payload byte *n*, read and written on every access with no copy.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EF2B4`-`0x002EF2B9` |
+| ² | `0x0026CAF8`-`0x0026CAFD` |
+
+</details>
 
 ### The story counter
 
@@ -40,8 +59,20 @@ declare a 256-word array that starts at the same byte ([Story counter values](st
 
 `0x00265270` is the native reader: while bit `0x1` of `0x02098E20` is set and the payload pointer `0x02098E58`, the
 `+0x48` pointer of the slot-0 actor manager at `0x02098E10` stored at `0x0026CAFD`, is not null, it returns the word it
-points at, zero-extended, else 0 (`0x00265270`-`0x0026528B`). 24 call sites in 22 functions read it, among them the
-story schedule `0x00377970` (`0x003779A4`), the input arbiter (`0x00253DD1`) and the music table reader (`0x003EAA78`).
+points at, zero-extended, else 0¹. 24 call sites in 22 functions read it, among them the
+story schedule `0x00377970`², the input arbiter³ and the music table reader⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265270`-`0x0026528B` |
+| ² | `0x003779A4` |
+| ³ | `0x00253DD1` |
+| ⁴ | `0x003EAA78` |
+
+</details>
 
 ### How scenes move it on
 
@@ -60,26 +91,64 @@ Every script write is a literal, and 268 writes in shipping scripts are reachabl
 The first value a shipping script writes is 13 (`naf_a01` `常駐監督.main`) and the last 7,150 (`bhm_d01`
 `ボス監督.main`).
 
-The order comes from those tests, not from the store. `POPV` (`0x00267E60`) pops the value and stores it through
-`0x0026D530` (`0x00267F37`), whose signed 16-bit arm clamps it, `w = v < -32767 ? -32767 : v > 32768 ? 32768 : v`
+The order comes from those tests, not from the store. `POPV`¹ pops the value and stores it through
+`0x0026D530`², whose signed 16-bit arm clamps it, `w = v < -32767 ? -32767 : v > 32768 ? 32768 : v`
 (-32,767 to 32,768, `0x0026D5C7`-`0x0026D5DF`; 32,768 is stored as the word `0x8000`), and writes the word without
-reading the old one (`0x0026D5C4`-`0x0026D5E3`). A write of a value below the counter's lowers it, and a write in item
+reading the old one³. A write of a value below the counter's lowers it, and a write in item
 3 runs whenever its function runs, whatever the counter holds.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267E60` |
+| ² | `0x00267F37` |
+| ³ | `0x0026D5C4`-`0x0026D5E3` |
+
+</details>
+
 `0x0026ABA0(i, v)` stores the word `v`, as it is, as word `i` of the payload `[0x02098E58]`, the counter when `i` is 0,
-for an `i` below `0x100` (a signed test), while bit `0x1` of `0x02098E20` is set and the pointer is not null
-(`0x0026ABA0`-`0x0026ABC0`). For kind 3, `0x00329E60(kind, unit, q, v)` calls it with `q` as `i` and the low word of `v`
+for an `i` below `0x100` (a signed test), while bit `0x1` of `0x02098E20` is set and the pointer is not null¹. For kind 3, `0x00329E60(kind, unit, q, v)` calls it with `q` as `i` and the low word of `v`
 (`0x00329EAB`-`0x00329EB2`; [Quests](quests.md)).
 
-The one call of `0x00329E60` in the action effect applier `0x00312170` passes kind 10 (`0x0031225A`-`0x0031225E`). `0x002FE660`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026ABA0`-`0x0026ABC0` |
+
+</details>
+
+The one call of `0x00329E60` in the action effect applier `0x00312170` passes kind 10¹. `0x002FE660`
 calls it for the battle orders `0x4149` and `0x4155`-`0x4157` while the unit's phase byte `+0x6B4` is 0, with the kind
 from the order record's word `+0x06 >> 12` and `q` the low byte of that word (`0x002FE67B`-`0x002FE6AD`; [Battle
 orders](../Battle-Actions/battle-orders.md)).
 
-`0x002FE660` reads the old value through `0x00321190` (`0x002FE6E7`) and writes the record's signed word `+0x02` for
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031225A`-`0x0031225E` |
+
+</details>
+
+`0x002FE660` reads the old value through `0x00321190`¹ and writes the record's signed word `+0x02` for
 `0x4149`, the old value plus it for `0x4155`, and the old value with the bit that word numbers set or cleared for
-`0x4156` and `0x4157` (`0x002FE71A`-`0x002FE74E`). An order record of kind 3 and a low byte of 0 therefore writes the
+`0x4156` and `0x4157`². An order record of kind 3 and a low byte of 0 therefore writes the
 counter.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FE6E7` |
+| ² | `0x002FE71A`-`0x002FE74E` |
+
+</details>
 
 ### Values only the developer menus set
 
@@ -115,36 +184,42 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Scripts and script commands** (explained on [script variables](../Scripts-And-Script-Commands/script-variables.md), [script interpreter](../Scripts-And-Script-Commands/script-interpreter.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00267E60` | calls | `0x00262440` |
-| `0x00267E60` | is called by | `0x0025E4C0` |
-| `0x0026D530` | is called by | `0x00267E60` |
+| [`0x00267E60`](story-progress.md) | calls | [`0x00262440`](../Scripts-And-Script-Commands/script-variables.md) (on script variables) |
+| [`0x00267E60`](story-progress.md) | is called by | [`0x0025E4C0`](../Scripts-And-Script-Commands/script-interpreter.md) World actor script vm: interpret bytecode (on script interpreter) |
+| [`0x0026D530`](story-progress.md) | is called by | [`0x00267E60`](story-progress.md) |
 
 **Enemy AI and gambits** (explained on [frame update order](../Engine-Core/frame-update-order.md), [glossary](../Engine-Core/glossary.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x002FE660` | calls | `0x00321190` |
-| `0x00312170` | calls | `0x00321190` |
-| `0x00321190` | is called by | `0x00301AD0` |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Battle actions**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00312170` | calls | `0x0030AB40` |
-| `0x00312170` | is called by | `0x00307300`, `0x0030EC00` |
-| `0x00321190` | is called by | `0x002FE660`, `0x00312170` |
-| `0x00329E60` | is called by | `0x002FE660`, `0x00312170` |
+| [`0x002FE660`](story-progress.md) | calls | [`0x00321190`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets) |
+| [`0x00312170`](story-progress.md) | calls | [`0x00321190`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets) |
+| [`0x00321190`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets) | is called by | [`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets) |
 
 **Battle actions** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [game over](../World-Areas-And-Travel/game-over.md), [action results](../Battle-Actions/action-results.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [action definition row](../Battle-Actions/action-definition-row.md))
 
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00312170`](story-progress.md) | calls | [`0x0030AB40`](../Battle-Actions/action-range.md) Battle target: classify relationship class (on action range) |
+| [`0x00312170`](story-progress.md) | is called by | [`0x00307300`](../Battle-Actions/area-of-effect.md) Battle: process action target (on area of effect)<br>[`0x0030EC00`](../Battle-Actions/action-results.md) Battle action: resolve special sequence targets (on action results) |
+| [`0x00321190`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets) | is called by | [`0x002FE660`](story-progress.md)<br>[`0x00312170`](story-progress.md) |
+| [`0x00329E60`](quests.md) (on quests) | is called by | [`0x002FE660`](story-progress.md)<br>[`0x00312170`](story-progress.md) |
+
 **Party** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002FE660` | calls | `0x0031B7E0` |
+| [`0x002FE660`](story-progress.md) | calls | [`0x0031B7E0`](../Engine-Core/identifier-spaces.md) (on identifier spaces) |
 
 </details>
 

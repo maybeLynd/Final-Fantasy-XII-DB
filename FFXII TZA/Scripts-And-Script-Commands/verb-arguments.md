@@ -58,17 +58,46 @@ forms; for slot 1, `ready` in 746 archives and `rlx_ready` in 45).
 
 `0x003DDB40` takes the low 24 bits with no bound; the variables the scripts pass hold only `0x01000000`-`0x01000001`
 and `0x01000010`-`0x01000016`. An id without bit `0x1000000` plays as the render event (manager << 20) | id |
-`0x1000` (`0x003DDB85`-`0x003DDB8E`), the slot of that number of kind 1; the US scripts give 0, 1, 5, 10 and 53 this
+`0x1000`¹, the slot of that number of kind 1; the US scripts give 0, 1, 5, 10 and 53 this
 way (27, 26, 26, 1 and 1 steps).
 
-`0x003DDAD0(actor, unused, id)` is the same body with the float it passes to `0x002EB3E0` fixed at -1.0 (`0x01CEBC9C`,
-`0x003DDB1A`), where `0x003DDB40` passes its fourth argument (`0x003DDB52`, `0x003DDB92`). As in `0x003DDB40`, it overwrites its
-second argument, `edx`, at once with bit `0x80` of byte `+0xD` of `0x00263F40(actor)` for `0x002E8170`
-(`0x003DDAE0`-`0x003DDAEF`). The id is played as above (`0x003DDAF4`-`0x003DDB16`), and the call ends in `0x002EB3E0`
-(`0x003DDB2F`).
+<details>
+<summary>Where in the code</summary>
 
-Its callers are the untimed turn body `0x002690D0`, on its body-turn way (`0x0026937C`), and Mode 3 of the per-frame
-integrator `0x002E5750` (`0x002E59CC`), on [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md).
+| | Code |
+|---|---|
+| ¹ | `0x003DDB85`-`0x003DDB8E` |
+
+</details>
+
+`0x003DDAD0(actor, unused, id)` is the same body with the float it passes to `0x002EB3E0` fixed at -1.0¹, where `0x003DDB40` passes its fourth argument². As in `0x003DDB40`, it overwrites its
+second argument, `edx`, at once with bit `0x80` of byte `+0xD` of `0x00263F40(actor)` for `0x002E8170`³. The id is played as above⁴, and the call ends in `0x002EB3E0`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01CEBC9C`, `0x003DDB1A` |
+| ² | `0x003DDB52`, `0x003DDB92` |
+| ³ | `0x003DDAE0`-`0x003DDAEF` |
+| ⁴ | `0x003DDAF4`-`0x003DDB16` |
+| ⁵ | `0x003DDB2F` |
+
+</details>
+
+Its callers are the untimed turn body `0x002690D0`, on its body-turn way¹, and Mode 3 of the per-frame
+integrator `0x002E5750`², on [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026937C` |
+| ² | `0x002E59CC` |
+
+</details>
 
 | Entry | Id | Render event | Slot | Slot name in the motion archives |
 |---:|---|---|---:|---|
@@ -119,32 +148,42 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Movement and pathfinding** (explained on [native commands](native-commands.md), [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00267F60` | is called by | `0x00345430`, `0x003488B0`, `0x00349680`, `0x003548B0` |
+| [`0x00267F60`](verb-arguments.md) | is called by | [`0x00345430`](verb-table.md) (on verb table)<br>[`0x003488B0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x00349680`](party-during-scenes.md) (on party during scenes)<br>[`0x003548B0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
 
 **Characters and objects** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263F40` | calls | `0x003587C0` |
+| [`0x00263F40`](party-during-scenes.md) (on party during scenes) | calls | [`0x003587C0`](script-requests.md) (on script requests) |
 
 **Battle actions** (explained on [game over](../World-Areas-And-Travel/game-over.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263F40` | is called by | `0x00307300` |
+| [`0x00263F40`](party-during-scenes.md) (on party during scenes) | is called by | [`0x00307300`](../Battle-Actions/area-of-effect.md) Battle: process action target (on area of effect) |
 
 **Party** (explained on [party control modes](../Engine-Core/party-control-modes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263F40` | is called by | `0x00304180` |
+| [`0x00263F40`](party-during-scenes.md) (on party during scenes) | is called by | [`0x00304180`](../Engine-Core/party-control-modes.md) (on party control modes) |
 
 **Graphics** (explained on [party during scenes](party-during-scenes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263F40` | is called by | `0x003B70B0` |
+| [`0x00263F40`](party-during-scenes.md) (on party during scenes) | is called by | [`0x003B70B0`](party-during-scenes.md) (on party during scenes) |
 
 </details>

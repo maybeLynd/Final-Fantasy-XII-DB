@@ -8,9 +8,18 @@
 
 A unit's statuses are 32 bits, status *s* being bit `1 << s`, held in its stats record's words `+0x64` and
 `+0x3C`, with immunities in `+0x38` ([Gaining and losing statuses](status-changes.md)). Each status has a
-40-byte row in `battle_pack.bin` section 15, bound to `0x02EBF118` (`0x00236D94`). The name is entry *s* of text bank
+40-byte row in `battle_pack.bin` section 15, bound to `0x02EBF118`¹. The name is entry *s* of text bank
 5 (row word `+0x00` = `0x2800` + *s*), and the help line is entry *s* of `listhelp_status.bin` (row word `+0x0A`,
 text id 12,000 + *s*, `0x0031E288`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236D94` |
+
+</details>
 
 Each status is one row of a table in `battle_pack.bin`. The row gives the number of the status's name in a text bank
 and of its help line in `listhelp_status.bin`, and holds its length, its beat, and the statuses it removes or is
@@ -21,7 +30,16 @@ shipped rows 42 of these 448 bytes are not `0xFF`, all of them 25 to 31.
 
 ### Duration and beat
 
-The default duration comes from row byte `+0x08` through `0x00387730` (`0x00387740`-`0x00387992`):
+The default duration comes from row byte `+0x08` through `0x00387730`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00387740`-`0x00387992` |
+
+</details>
 
 ```python
 b = row +0x08            (0xFF: no duration)
@@ -31,26 +49,54 @@ beneficial:  v = trunc(b + b * vit / 100); with Spellbound (augment 30) in eithe
 duration timer = v * 300 * frame base
 ```
 
-With a null stats pointer the Vitality is 0 and the Spellbound test is not made (`0x003877B5`-`0x003877C1`,
-`0x0038795B`). The test is bit `0x40` of the stats byte `+0x6B` or `+0x7B`, and `v * 1.5` goes through
-`cvttss2si` before the integer `v * 300 * frame base`, the frame base being the dword `0x01DFE0B4`
-(`0x00387960`-`0x00387992`). A row whose `+0x08` is `0xFF` returns 0 (`0x003877A6`-`0x003877AA`,
-`0x003879A3`-`0x003879A8`).
+With a null stats pointer the Vitality is 0 and the Spellbound test is not made¹. The test is bit `0x40` of the stats byte `+0x6B` or `+0x7B`, and `v * 1.5` goes through
+`cvttss2si` before the integer `v * 300 * frame base`, the frame base being the dword `0x01DFE0B4`². A row whose `+0x08` is `0xFF` returns 0³.
 
-The beat timer is row byte `+0x09` times 30 times the frame base (`0x003876D0`). The periodic step takes 10 off both
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003877B5`-`0x003877C1`, `0x0038795B` |
+| ² | `0x00387960`-`0x00387992` |
+| ³ | `0x003877A6`-`0x003877AA`, `0x003879A3`-`0x003879A8` |
+
+</details>
+
+The beat timer is row byte `+0x09` times 30 times the frame base¹. The periodic step takes 10 off both
 every frame ([Status timers](status-timers.md)), so `+0x08` is in seconds and `+0x09` in tenths of a second at 30
 and at 60 frames per second. Petrify and Doom have no duration in their rows (`+0x08` is `0xFF`); instead
-`0x00387730` returns a count of 11 for them before it reads the row (`0x00387740`), and the count steps down on each
+`0x00387730` returns a count of 11 for them before it reads the row², and the count steps down on each
 beat; the player sees 10. Augment 30's text is "Increases duration of status effects."
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003876D0` |
+| ² | `0x00387740` |
+
+</details>
 
 ### Cancelling and blocking
 
 Two masks over status ids sit in each row:
 
 - **cancels**, row `+0x0C`: when the status lands, each status in the mask is removed from the timed word
-  (`0x0030E63D`-`0x0030E6D7`);
+ ¹;
 - **blocked by**, row `+0x20`: the status is not applied while the target already has any status in the mask
-  (`0x00387E5D`-`0x00387E63`, `0x0038FE0D`, `0x003909DC`).
+ ².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030E63D`-`0x0030E6D7` |
+| ² | `0x00387E5D`-`0x00387E63`, `0x0038FE0D`, `0x003909DC` |
+
+</details>
 
 ### The flag word
 
@@ -70,8 +116,17 @@ Petrify, Confuse, and Oil." and "Remedies remove Sleep, Sap, Immobilize, and Dis
 ### Statuses the game checks together
 
 Code tests the two status words together: it loads `+0x64`, ORs `+0x3C` into it and tests a mask. Over every function of the image this happens at 251 sites in 168 functions (`0x003868F1`-`0x003868F7` is one); the three
-in `0x00390F20` load both words into registers first (`0x00391118`-`0x0039111E`). The masks group the
+in `0x00390F20` load both words into registers first¹. The masks group the
 statuses by what they stop:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00391118`-`0x0039111E` |
+
+</details>
 
 | Mask | Statuses | Sites | What it stops |
 |---|---|---:|---|

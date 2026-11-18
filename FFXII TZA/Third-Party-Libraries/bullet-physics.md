@@ -21,12 +21,23 @@ its material.
 ### Identity and version
 
 The library identifies itself through its own class names. The constructors write the RTTI-named
-vtables `btCompoundShape` (`0x00832390`), `btRigidBody` (`0x00852DB0`) and `btDiscreteDynamicsWorld`
-(`0x00854980`), and the text `Overflow in AABB, object removed from simulation` (`0x01CCE6A0`) is
+vtables `btCompoundShape`¹, `btRigidBody`² and `btDiscreteDynamicsWorld`³, and the text `Overflow in AABB, object removed from simulation`⁴ is
 Bullet's own warning. There is no version string and no `btGetVersion` constant; the version is
 bounded by the serializer's chunk names instead:
 
-- `btStridingMeshInterface::serialize` (`0x008365C0`) names its short-index chunk
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00832390` |
+| ² | `0x00852DB0` |
+| ³ | `0x00854980` |
+| ⁴ | `0x01CCE6A0` |
+
+</details>
+
+- `btStridingMeshInterface::serialize`¹ names its short-index chunk
   `btShortIntIndexTripletData` (`0x01CCDD58`, loaded at `0x00836762`). The older name
   `btShortIntIndexData` occurs nowhere in the image; upstream Bullet renamed it after the 2.76
   release.
@@ -34,6 +45,15 @@ bounded by the serializer's chunk names instead:
   `0x008366E6`. The name `btCharIndexTripletData`, which belongs to the third (byte) arm that every
   release from 2.78 carries, occurs nowhere in the image.
 - No `m_rollingFriction` name and no multibody type name is present.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008365C0` |
+
+</details>
 
 The only Bullet release between those two upstream changes is 2.77, so the linked library is the
 2.77 line. The library's code sits from `0x00830760` (`btCollisionShape::calculateTemporalAabb`) up to
@@ -47,39 +67,42 @@ PhyreEngine wraps Bullet in its `PPhysics` classes; the Bullet-backed ones are n
 `PPhysicsCapsuleBullet`, `PPhysicsCylinderBullet`, `PPhysicsPlaneBullet`, `PPhysicsMeshBullet` and
 `PPhysicsCharacterControllerBullet`. The single route into Bullet is a chain of four calls:
 
-1. `0x006883A0` is slot 14 of both vtables of the one `PPhysicsWorld` descriptor `0x02E494D0` (`0x00D70BC8`, which
-   its registrar `0x00690950` installs, then `0x00D70ED0`, which its initialiser `0x00166B30` installs) and has no
-   direct caller. It passes its second argument, an array of `PPhysicsWorld`
-   instances (data `+0x58`, count `+0x70`, stride at `+0x38` of the class record at `+0x50`), to
-   `0x00698C80`.
-2. `0x00698C80` returns at once unless the first byte of the physics manager is set. Otherwise, for
-   each `PPhysicsWorld` instance, it builds the Bullet world (`0x006A0310`) and walks the world's body
-   lists (`0x0069EF20`). With a count `+0x70` of 0 it calls neither (`0x00698CA5`). It drops the results of
-   both calls and returns 0 on every path (`0x00698CCF`, `0x00698CDC`, `0x00698CE9`).
-3. `0x0069EF20` calls `0x0069F070` for every rigid body in every list and links each body to its list.
-4. `0x0069F070` removes the body from a Bullet world it is already in (world slot `+0xA0`), builds the
-   Bullet body when it has no Bullet body (`0x0069FB10`), builds the world if it is still missing, and puts a
-   body that was in a world back into it (`0x006A65A0`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x006883A0` is slot 14 of both vtables of the one `PPhysicsWorld` descriptor `0x02E494D0` (`0x00D70BC8`, which its registrar `0x00690950` installs, then `0x00D70ED0`, which its initialiser `0x00166B30` installs) and has no direct caller. It passes its second argument, an array of `PPhysicsWorld` instances (data `+0x58`, count `+0x70`, stride at `+0x38` of the class record at `+0x50`), to `0x00698C80`. |   |
+| 2 | `0x00698C80` returns at once unless the first byte of the physics manager is set. Otherwise, for each `PPhysicsWorld` instance, it builds the Bullet world and walks the world's body lists. With a count `+0x70` of 0 it calls neither. It drops the results of both calls and returns 0 on every path. | `0x006A0310`<br>`0x0069EF20`<br>`0x00698CA5`<br>`0x00698CCF`, `0x00698CDC`, `0x00698CE9` |
+| 3 | `0x0069EF20` calls `0x0069F070` for every rigid body in every list and links each body to its list. |   |
+| 4 | `0x0069F070` removes the body from a Bullet world it is already in (world slot `+0xA0`), builds the Bullet body when it has no Bullet body, builds the world if it is still missing, and puts a body that was in a world back into it. | `0x0069FB10`<br>`0x006A65A0` |
 
 In `0x0069EF20(world)` the lists chain from the world's `+0x48` through their first qword, and each list's bodies
-from its `+0x08` through theirs (`0x0069EF2F`-`0x0069EF40`). After each `0x0069F070` call it stores the world at `+0x10`
-of the list that the body's `+0xC8` already names, when there is one (`0x0069EF5B`-`0x0069EF67`). A non-zero result
-is returned at once, before `+0xC8` changes (`0x0069EF6D`); otherwise `+0xC8` becomes the current list
-(`0x0069EF6F`). After a list's last body the list's `+0x10` becomes the world (`0x0069EF7E`), and after the last list
-the function returns 0 (`0x0069EF8A`).
+from its `+0x08` through theirs¹. After each `0x0069F070` call it stores the world at `+0x10`
+of the list that the body's `+0xC8` already names, when there is one². A non-zero result
+is returned at once, before `+0xC8` changes³; otherwise `+0xC8` becomes the current list⁴. After a list's last body the list's `+0x10` becomes the world⁵, and after the last list
+the function returns 0⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0069EF2F`-`0x0069EF40` |
+| ² | `0x0069EF5B`-`0x0069EF67` |
+| ³ | `0x0069EF6D` |
+| ⁴ | `0x0069EF6F` |
+| ⁵ | `0x0069EF7E` |
+| ⁶ | `0x0069EF8A` |
+
+</details>
 
 `0x0069F070(world, body)` runs these steps in order:
 
-1. When the world's Bullet world `+0x60` and the body's Bullet body `+0x118` are both set, it removes the body
-   from that world through slot `+0xA0`, whatever `+0xE9` holds (`0x0069F08E`-`0x0069F0A5`).
-2. When `+0xE9` is set, it also removes the body from the Bullet world of its list (`+0xC8` → `+0x10` →
-   `+0x60`, each link tested for null) and clears `+0xE9` (`0x0069F0B7`-`0x0069F0EA`).
-3. With no Bullet body at entry it calls `0x0069FB10` and returns a non-zero result at once
-   (`0x0069F0F1`-`0x0069F100`).
-4. When the world's `+0x60` is null it calls `0x006A0310`, returns a non-zero result at once, and returns 0 when
-   `+0x60` is still null afterwards (`0x0069F102`-`0x0069F11A`).
-5. Only when `+0xE9` was set at entry does it call `0x006A65A0` with the body, 1 and the byte `+0xE9` as it is
-   then (`0x0069F11C`-`0x0069F12E`). It returns 0 (`0x0069F133`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When the world's Bullet world `+0x60` and the body's Bullet body `+0x118` are both set, it removes the body from that world through slot `+0xA0`, whatever `+0xE9` holds. | `0x0069F08E`-`0x0069F0A5` |
+| 2 | When `+0xE9` is set, it also removes the body from the Bullet world of its list (`+0xC8` → `+0x10` → `+0x60`, each link tested for null) and clears `+0xE9`. | `0x0069F0B7`-`0x0069F0EA` |
+| 3 | With no Bullet body at entry it calls `0x0069FB10` and returns a non-zero result at once. | `0x0069F0F1`-`0x0069F100` |
+| 4 | When the world's `+0x60` is null it calls `0x006A0310`, returns a non-zero result at once, and returns 0 when `+0x60` is still null afterwards. | `0x0069F102`-`0x0069F11A` |
+| 5 | Only when `+0xE9` was set at entry does it call `0x006A65A0` with the body, 1 and the byte `+0xE9` as it is then. It returns 0. | `0x0069F11C`-`0x0069F12E`<br>`0x0069F133` |
 
 `0x0069FB10` is the only caller of the `btRigidBody` constructor and `0x006A0310` the only caller of the
 `btDiscreteDynamicsWorld` constructor.
@@ -94,8 +117,18 @@ zero fill.
 
 The constructor also zeroes `+0x04`, the qword `+0x10` and the fields `+0x48` to `+0x67` (`0x0069126A`-`0x00691295`,
 with `0x005CC900` zeroing `+0x48` to `+0x5F`). It zeroes the bytes `+0x60`, `+0x70` and `+0x80`, the qwords `+0x68`
-and `+0x78` (`0x00874D60`), `+0x88` and `+0x90`, and the word `+0x98` (`0x0069129A`-`0x006912C9`), and returns the object
-(`0x006912D0`).
+and `+0x78`¹, `+0x88` and `+0x90`, and the word `+0x98`², and returns the object³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00874D60` |
+| ² | `0x0069129A`-`0x006912C9` |
+| ³ | `0x006912D0` |
+
+</details>
 
 Only three functions obtain the manager (`0x00698C80`, `0x006A0310` and the script-callback function
 `0x00698720`, which reads only its `+0x10`), and none of them writes it. Apart from the getter, its
@@ -104,17 +137,38 @@ exit-time destructor `0x008B3BE0` and its unwind funclet `0x008A09F0` (`_Init_th
 stays 0, so `0x00698C80` returns before doing anything; and even a direct call to `0x006A0310` returns
 `0x15` because the three solver slots stay null.
 
-The manager also holds an array: a count word at `+0x30` (`0x02E4B020`), whose bit `0x80000000`
-marks memory the array does not own, and a data pointer at `+0x38` (`0x02E4B028`). The constructor
-zeroes both (`0x00691278`, `0x0069127B`). The destructor `0x008B3BE0` frees the data when that bit is
-clear and the pointer is non-null (`0x00584730`), then zeroes both again (`0x008B3C1C`, `0x008B3C23`).
+The manager also holds an array: a count word at `+0x30`¹, whose bit `0x80000000`
+marks memory the array does not own, and a data pointer at `+0x38`². The constructor
+zeroes both³. The destructor `0x008B3BE0` frees the data when that bit is
+clear and the pointer is non-null⁴, then zeroes both again⁵.
 No other instruction names them, so the array is never filled.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02E4B020` |
+| ² | `0x02E4B028` |
+| ³ | `0x00691278`, `0x0069127B` |
+| ⁴ | `0x00584730` |
+| ⁵ | `0x008B3C1C`, `0x008B3C23` |
+
+</details>
 
 ### Building the world
 
-`0x006A0310` returns 0 at once when the `PPhysicsWorld` already has a Bullet world `+0x60` or a broadphase `+0x68`
-(`0x006A032A`-`0x006A033A`). It returns `0x15` when the manager's `+0x20`, `+0x28` or `+0x18` is null
-(`0x006A0348`-`0x006A0363`, `0x006A0527`).
+`0x006A0310` returns 0 at once when the `PPhysicsWorld` already has a Bullet world `+0x60` or a broadphase `+0x68`¹. It returns `0x15` when the manager's `+0x20`, `+0x28` or `+0x18` is null².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006A032A`-`0x006A033A` |
+| ² | `0x006A0348`-`0x006A0363`, `0x006A0527` |
+
+</details>
 
 When its inputs exist, `0x006A0310` builds a `btAxisSweep3` broadphase of 16,384 handles over the
 world's box (`0x00838600` with `0x4000`), hands a new `btGhostPairCallback` to the broadphase's pair
@@ -124,42 +178,68 @@ stores `0x0069E970` in the world's callback slot `+0x90`, and sets gravity from 
 `PPhysicsWorld`'s `+0xB8` and sizes two tables with it (`0x006A5450` on `+0x98`, `0x006A54E0` on `+0xA8`).
 
 The broadphase call is `0x00838600(broadphase, min, max, 0x4000, 0, 0)` with the minimum corner from `+0x14` and the
-maximum from `+0x24` (`0x006A0382`-`0x006A03F5`), and the result is stored at `+0x68` (`0x006A03FB`). The ghost callback
-is an 8-byte object with vtable `0x00D7AB70` stored at `+0x70` (`0x006A0422`-`0x006A042C`) and handed to the pair cache
-through broadphase slot `+0x48` and cache slot `+0x70` (`0x006A043C`, `0x006A0449`).
+maximum from `+0x24`¹, and the result is stored at `+0x68`². The ghost callback
+is an 8-byte object with vtable `0x00D7AB70` stored at `+0x70`³ and handed to the pair cache
+through broadphase slot `+0x48` and cache slot `+0x70`⁴.
 
-The world is stored at `+0x60` (`0x006A0492`) and gets its byte `+0x51` cleared (`0x006A049F`) and 0 at `+0xA0`
-(`0x006A04B5`). The gravity vector is `+0x00` to `+0x08` with a fourth component of 0 (`0x006A04C0`-`0x006A04E0`).
-Every path past these steps returns 0 (`0x006A052E`).
+<details>
+<summary>Where in the code</summary>
 
-A failed broadphase allocation (`0x0085E680`) or ghost-callback allocation (`0x00210EC0`) returns `0xE`.
+| | Code |
+|---|---|
+| ¹ | `0x006A0382`-`0x006A03F5` |
+| ² | `0x006A03FB` |
+| ³ | `0x006A0422`-`0x006A042C` |
+| ⁴ | `0x006A043C`, `0x006A0449` |
+
+</details>
+
+The world is stored at `+0x60`¹ and gets its byte `+0x51` cleared² and 0 at `+0xA0`³. The gravity vector is `+0x00` to `+0x08` with a fourth component of 0⁴.
+Every path past these steps returns 0⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006A0492` |
+| ² | `0x006A049F` |
+| ³ | `0x006A04B5` |
+| ⁴ | `0x006A04C0`-`0x006A04E0` |
+| ⁵ | `0x006A052E` |
+
+</details>
+
+A failed broadphase allocation¹ or ghost-callback allocation² returns `0xE`.
 A failed world allocation does not: when `0x0017D260` returns 0 (`je` at `0x006A046D`), the function
 falls through to `0x006A04A3`, loads the null world from `+0x60` and writes `+0x90` and `+0xA0` through
-it (`0x006A04AE`).
+it³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0085E680` |
+| ² | `0x00210EC0` |
+| ³ | `0x006A04AE` |
+
+</details>
 
 ### Building a rigid body
 
 `0x0069FB10` turns one `PPhysicsRigidBody` into Bullet objects:
 
-1. It returns 0 at once when the body already has a Bullet body (`+0x118`).
-2. It allocates a 128-byte `btCompoundShape` when there is no shape (`+0x120`). The one call to the
-   constructor passes 0 for the dynamic AABB tree (`0x0069FBBA`), so no compound in the game has one.
-3. Each child shape builds itself (its vtable slot `+0x08`); the first failure is returned. The
-   children's masses (`+0x0C`) are summed.
-4. Each child's scale (`+0x50`) is multiplied by the body's scale (`+0x88`) and set on its Bullet
-   shape (slot `+0x28`). This loop reads `+0x50`, `+0x54` and `+0x58` of every child entry without
-   the null check the build loop has, so a null child entry crashes the build. The child's transform is written into the compound (`0x00833390`) with the
-   body's centre of mass subtracted: x takes minus `+0x28`, y minus `+0x2C`, z minus `+0x30`.
-5. Mass and inertia are chosen (see the next heading), and a construction info is filled with
-   Bullet's stock defaults (see Layouts).
-6. Friction and restitution come from a material: the body's `+0x98`, or else the `+0x18` of the first
-   child shape whose `+0x18` is set (`0x006A0133`-`0x006A0167`). With neither, the function returns 9 and builds
-   no body.
-7. A 704-byte, 16-aligned `btRigidBody` is allocated through Bullet's allocator hook (`0x0085E680`) and
-   constructed (`0x00852DB0` → `0x008542B0`); failure returns `0xE`.
-8. A non-dynamic body is put to sleep (`0x0083A3A0` with state 2), the Bullet body gets a back-pointer
-   to the Phyre body at its `+0x108`, the motion type is applied (`0x006A2320`) and the transform and
-   velocities are pushed in (`0x006A4A60`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It returns 0 at once when the body already has a Bullet body (`+0x118`). |   |
+| 2 | It allocates a 128-byte `btCompoundShape` when there is no shape (`+0x120`). The one call to the constructor passes 0 for the dynamic AABB tree, so no compound in the game has one. | `0x0069FBBA` |
+| 3 | Each child shape builds itself (its vtable slot `+0x08`); the first failure is returned. The children's masses (`+0x0C`) are summed. |   |
+| 4 | Each child's scale (`+0x50`) is multiplied by the body's scale (`+0x88`) and set on its Bullet shape (slot `+0x28`). This loop reads `+0x50`, `+0x54` and `+0x58` of every child entry without the null check the build loop has, so a null child entry crashes the build. The child's transform is written into the compound with the body's centre of mass subtracted: x takes minus `+0x28`, y minus `+0x2C`, z minus `+0x30`. | `0x00833390` |
+| 5 | Mass and inertia are chosen (see the next heading), and a construction info is filled with Bullet's stock defaults (see Layouts). |   |
+| 6 | Friction and restitution come from a material: the body's `+0x98`, or else the `+0x18` of the first child shape whose `+0x18` is set. With neither, the function returns 9 and builds no body. | `0x006A0133`-`0x006A0167` |
+| 7 | A 704-byte, 16-aligned `btRigidBody` is allocated through Bullet's allocator hook and constructed (`0x00852DB0` → `0x008542B0`); failure returns `0xE`. | `0x0085E680` |
+| 8 | A non-dynamic body is put to sleep (`0x0083A3A0` with state 2), the Bullet body gets a back-pointer to the Phyre body at its `+0x108`, the motion type is applied and the transform and velocities are pushed in. | `0x006A2320`<br>`0x006A4A60` |
 
 ### Mass and inertia
 
@@ -168,9 +248,18 @@ or the sum of the children's masses when that is 0, and the authored inertia `+0
 the compound's computed inertia (slot `+0x38`) when all three are 0. Every other type is built with
 mass 0.
 
-The inertia call (`0x006A0032`) passes the authored mass `+0xE4` (`xmm8`, loaded at `0x0069FFEA`), not
+The inertia call¹ passes the authored mass `+0xE4` (`xmm8`, loaded at `0x0069FFEA`), not
 the summed mass. A dynamic body with mass 0 and zero inertia therefore gets the children's summed mass
 but an inertia computed for mass 0, which is zero.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006A0032` |
+
+</details>
 
 ### Motion types and collision groups
 
@@ -185,23 +274,63 @@ but an inertia computed for mass 0, which is zero.
 
 The activation write goes through `0x0083A3A0`, which refuses to overwrite states 4 and 5. When the
 body's group byte `+0xE0` is 15, it becomes 1 for types 0 and 2 and 0 for type 1. With no Bullet body
-(`+0x118` null) the function skips the flags and the activation state (`0x006A234C`, `0x006A236D`, `0x006A23A9`)
-but still applies the group rule, and it returns 0 for types 0 to 2 (`0x006A2397`, `0x006A23DA`).
+(`+0x118` null) the function skips the flags and the activation state¹
+but still applies the group rule, and it returns 0 for types 0 to 2².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006A234C`, `0x006A236D`, `0x006A23A9` |
+| ² | `0x006A2397`, `0x006A23DA` |
+
+</details>
 
 `0x006A4A60` re-inserts a body. When the body's `+0xE9` is set, it removes it from the Bullet world
 of its list (`+0xC8` → `+0x10` → `+0x60`, world slot `+0xA0`). It copies the linear velocity `+0x68`
 and angular velocity `+0x78` into the Bullet body, builds its world transform from the orientation
-quaternion `+0x48` (`0x006A57C0`), the position `+0x38` and the centre of mass, and, when asked,
+quaternion `+0x48`¹, the position `+0x38` and the centre of mass, and, when asked,
 re-applies child scales.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006A57C0` |
+
+</details>
+
 Only when `+0xE9` was set does it re-add the body (slot `+0x130`) with group `1 << +0xE0` and the mask
-the world keeps for that group (a 16-bit table at its `+0x78`), and wake it (`0x0083A030`). A new body from `0x0069FB10` has `+0xE9` clear, so `0x006A4A60` gives it only its velocities and
+the world keeps for that group (a 16-bit table at its `+0x78`), and wake it¹. A new body from `0x0069FB10` has `+0xE9` clear, so `0x006A4A60` gives it only its velocities and
 transform.
 
-The wake is `0x0083A030(body, 0)` (`0x006A4DF0`-`0x006A4DF2`, `0x006A4E05`-`0x006A4E07`). Unless its second argument is set
-(`0x0083A030`), it leaves a static or kinematic body (`+0xE8` bit `0x1` or `0x2`) as it is (`0x0083A034`). For any
-other body it sets the activation state `+0xF4` to 1 unless the state is 4 or 5 (`0x0083A03D`-`0x0083A04B`), and it
-clears the dword `+0xF8` (`0x0083A055`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0083A030` |
+
+</details>
+
+The wake is `0x0083A030(body, 0)`¹. Unless its second argument is set², it leaves a static or kinematic body (`+0xE8` bit `0x1` or `0x2`) as it is³. For any
+other body it sets the activation state `+0xF4` to 1 unless the state is 4 or 5⁴, and it
+clears the dword `+0xF8`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006A4DF0`-`0x006A4DF2`, `0x006A4E05`-`0x006A4E07` |
+| ² | `0x0083A030` |
+| ³ | `0x0083A034` |
+| ⁴ | `0x0083A03D`-`0x0083A04B` |
+| ⁵ | `0x0083A055` |
+
+</details>
 
 ### Bullet bodies outside the member list
 
@@ -215,17 +344,35 @@ Three Bullet functions are not in [`bullet-physics-members.tsv`](bullet-physics-
   pulls each velocity shorter than its damping value toward zero by 0.005, or zeroes it when it is
   no longer than 0.005.
 - `0x008324B0` is the `btCompoundShape` destructor body that the deleting destructor `0x00832530` calls.
-  It writes the `btCompoundShape` vtable `0x01CCD7A8` (`0x008324CE`), frees the dynamic AABB tree at `+0x60`
+  It writes the `btCompoundShape` vtable `0x01CCD7A8`¹, frees the dynamic AABB tree at `+0x60`
   when there is one (`0x00840FC0`, then the aligned free `0x0085E710`), and frees the child array at `+0x28`
-  when it is set and the byte `+0x30` says the shape owns it (`0x008324F3`-`0x008324FB`).
-- `0x008324B0` then sets `+0x30` to 1 and zeroes `+0x28` and the qword at `+0x1C` (`0x00832505`-`0x0083250D`),
-  and leaves the `btCollisionShape` vtable in place: it writes `0x01CCD3C8` last (`0x00832518`).
+  when it is set and the byte `+0x30` says the shape owns it².
+- `0x008324B0` then sets `+0x30` to 1 and zeroes `+0x28` and the qword at `+0x1C`³,
+  and leaves the `btCollisionShape` vtable in place: it writes `0x01CCD3C8` last⁴.
 - `0x006A3E20` converts a 3x3 rotation, rows 16 bytes apart, to a quaternion `x, y, z, w`: from the
   trace when it is positive, otherwise from the largest diagonal element. The linker placed it at
-  `0x006A3E20`, outside both Bullet ranges; its only callers are Bullet's `0x0083B050` (`0x0083B3DC`),
-  `0x0083B580` (`0x0083B6A8`) and `0x0084C6B0` (`0x0084C855`).
+  `0x006A3E20`, outside both Bullet ranges; its only callers are Bullet's `0x0083B050`⁵,
+  `0x0083B580`⁶ and `0x0084C6B0`⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008324CE` |
+| ² | `0x008324F3`-`0x008324FB` |
+| ³ | `0x00832505`-`0x0083250D` |
+| ⁴ | `0x00832518` |
+| ⁵ | `0x0083B3DC` |
+| ⁶ | `0x0083B6A8` |
+| ⁷ | `0x0084C855` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 `PPhysicsRigidBody`, the fields the Bullet route reads and writes:
 
@@ -268,12 +415,29 @@ The construction info `0x0069FB10` fills, as `0x008542B0` reads it:
 | `+0x94` | `f32` | additionalAngularDampingThresholdSqr | 0.01 |
 | `+0x98` | `f32` | additionalAngularDampingFactor | 0.01 |
 
-`PPhysicsWorld`'s default instance (`0x0068B9E0`): gravity (0, -9.8, 0) at `+0x00`, 1.0 at `+0x10`, and
+`PPhysicsWorld`'s default instance¹: gravity (0, -9.8, 0) at `+0x00`, 1.0 at `+0x10`, and
 the broadphase box from (-5000, -5000, -5000) at `+0x14` to (5000, 5000, 5000) at `+0x24`. It also
-zeroes `+0x34` to `+0x5F` (`0x0068BA24`-`0x0068BA37`) and leaves `+0x0C`, `+0x20` and `+0x30` as they are.
-With a null instance pointer it writes nothing (`0x0068B9E3`), and it returns 1 on both paths (`0x0068BA3B`).
+zeroes `+0x34` to `+0x5F`² and leaves `+0x0C`, `+0x20` and `+0x30` as they are.
+With a null instance pointer it writes nothing³, and it returns 1 on both paths⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0068B9E0` |
+| ² | `0x0068BA24`-`0x0068BA37` |
+| ³ | `0x0068B9E3` |
+| ⁴ | `0x0068BA3B` |
+
+</details>
+
+</details>
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -294,7 +458,12 @@ One row per function, 467 rows in address order.
 |---|---|
 | `entry` | the function's entry address: 453 from `0x00830760` to `0x00861C80` and 14 from `0x0087F180` to `0x00880020` |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 Six statistics globals of the library, all 0 in the zero-filled tail of `.data`. Like the rest of the library they
 run only inside a world, which the game never builds (above).
@@ -320,6 +489,8 @@ Five more words of the library, which run only inside a world too:
 | `0x02EAF3BC` | `i32` | 0 (zero-filled tail of `.data`) | the count of GJK checks: `0x0084CB30` adds 1 on each run, after its two-dimensional test of the shape types 17 and 18 | `0x0084CB30` (`0x0084CCDA`, `inc`) | only that increment |
 | `0x02EAF3C4` | `i32` | 0 (zero-filled tail of `.data`) | the next rigid-body id: `0x008542B0`, which builds a rigid body from its construction info, gives the body the value at `+0x234` and adds 1 | `0x008542B0` (`0x00854490`) | `0x008542B0` (`0x00854477`) |
 | `0x02EAF3C8` | `i32` | 0 (zero-filled tail of `.data`) | the count of continuous-collision sweeps: `0x00857970` adds 1 for a body whose step moves it farther than its non-zero threshold `+0x118` and whose shape type is below `0x14`, then sweeps the shape (`0x00857A39`-`0x00857AAE`) | `0x00857970` (`0x00857A9D`, `inc`) | only that increment |
+
+</details>
 
 ## Modding notes
 
@@ -372,14 +543,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x005CC900` | is called by | `0x00211840` |
+| [`0x005CC900`](bullet-physics.md) | is called by | [`0x00211840`](../Sound-And-Music/audio-manager.md) (on audio manager) |
 
 **Game files and data tables** (explained on [game application](../Engine-Core/game-application.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x005CC900` | is called by | `0x0019F620`, `0x001D9400` |
+| [`0x005CC900`](bullet-physics.md) | is called by | [`0x0019F620`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x001D9400`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests) |
 
 </details>

@@ -25,27 +25,64 @@
 
 `0x00197EE0` builds the path once into `0x01F80D90`: the Documents folder (`SHGetFolderPathW` with folder 5), then
 `\My Games\`, `FINAL FANTASY XII THE ZODIAC AGE\`, the Steam account id from `0x001F3ED0`, and `keymap.ini`, creating
-each folder that is missing: `0x001F3EA0` calls `_wmkdir` when `_waccess` fails, once per folder
-(`0x00197F22`-`0x00197F98`). The reader and the writer both use that one path.
+each folder that is missing: `0x001F3EA0` calls `_wmkdir` when `_waccess` fails, once per folder¹. The reader and the writer both use that one path.
 
-When `SHGetFolderPathW` fails it returns before any of this and writes nothing to `0x01F80D90`
-(`0x00197F0F`-`0x00197F17`). It also makes the Documents folder itself, then each of the three folders after it is
-appended (`0x00197F22`, `0x00197F49`, `0x00197F70`, `0x00197F98`), and joins `keymap.ini` with a backslash
-(`0x00197F9D`-`0x00197FB8`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00197F22`-`0x00197F98` |
+
+</details>
+
+When `SHGetFolderPathW` fails it returns before any of this and writes nothing to `0x01F80D90`¹. It also makes the Documents folder itself, then each of the three folders after it is
+appended², and joins `keymap.ini` with a backslash³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00197F0F`-`0x00197F17` |
+| ² | `0x00197F22`, `0x00197F49`, `0x00197F70`, `0x00197F98` |
+| ³ | `0x00197F9D`-`0x00197FB8` |
+
+</details>
 
 Before it reads the file, `InputManager_Initialize` sets up the input manager it is given: the vtable `0x008F3640`,
-`+0x39` = 1 (the poll on) and `+0x38` = 0 in one 16-bit store of `0x100` (`0x0019506D`), and zeroes `+0x08`-`+0x09`,
-`+0x0C`-`+0x15`, `+0x18`-`+0x37`, `+0x3A` and `+0x3B` (`0x00195079`-`0x001950AE`). Whichever way it ends, it returns
-the manager (`0x001950DF`, `0x001950F0`).
+`+0x39` = 1 (the poll on) and `+0x38` = 0 in one 16-bit store of `0x100`¹, and zeroes `+0x08`-`+0x09`,
+`+0x0C`-`+0x15`, `+0x18`-`+0x37`, `+0x3A` and `+0x3B`². Whichever way it ends, it returns
+the manager³.
 
-`InputManager_Initialize` (`0x00195060`, from `0x0019877E`) reads the file once, at start-up (`0x001950A9`-`0x001950EB`):
+<details>
+<summary>Where in the code</summary>
 
-1. It clears the three profiles, `0x150` bytes at `0x01F80F90`.
-2. It builds the path and reads the file into the profiles (`0x00198000`).
-3. It checks that no code repeats and no code is reserved (`0x00196550`), and that profile 1 is filled with legal codes
-   (`0x001965E0`).
-4. When both checks pass it publishes what was read (`0x00195DF0`); otherwise it installs the shipped defaults over it
-   (`0x00198B60`).
+| | Code |
+|---|---|
+| ¹ | `0x0019506D` |
+| ² | `0x00195079`-`0x001950AE` |
+| ³ | `0x001950DF`, `0x001950F0` |
+
+</details>
+
+`InputManager_Initialize` (`0x00195060`, from `0x0019877E`) reads the file once, at start-up¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001950A9`-`0x001950EB` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It clears the three profiles, `0x150` bytes at `0x01F80F90`. |   |
+| 2 | It builds the path and reads the file into the profiles. | `0x00198000` |
+| 3 | It checks that no code repeats and no code is reserved, and that profile 1 is filled with legal codes. | `0x00196550`<br>`0x001965E0` |
+| 4 | When both checks pass it publishes what was read; otherwise it installs the shipped defaults over it. | `0x00195DF0`<br>`0x00198B60` |
 
 The file is written by `0x001993B0`, from the Config screen (`0x001E0F40`, called at `0x0023D263`) and when the game shuts
 down (`0x0017D670`, from `0x0017CDC0`). A first run with no file therefore ends by writing the defaults.
@@ -77,84 +114,200 @@ the reader and the writer; the `.tsv` lists them in slot order.
 nothing, and skips an empty one. Then,
 line by line, at most 127 characters each:
 
-1. An empty line is skipped.
-2. A line whose characters 2-9 are `Keyboard` is a header: the number before `]` minus one becomes the profile. The
-   first character can be anything, and a header without `]` ends the read.
-3. A line with `=` is a binding: the name before it is compared case-insensitively with all 28 names, and a match
-   stores the number after it in that slot of the current profile; a name without a match changes nothing.
-4. Any other line ends the read, keeping what was read before it (`0x00198278`, `0x00198387`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | An empty line is skipped. |   |
+| 2 | A line whose characters 2-9 are `Keyboard` is a header: the number before `]` minus one becomes the profile. The first character can be anything, and a header without `]` ends the read. |   |
+| 3 | A line with `=` is a binding: the name before it is compared case-insensitively with all 28 names, and a match stores the number after it in that slot of the current profile; a name without a match changes nothing. |   |
+| 4 | Any other line ends the read, keeping what was read before it. | `0x00198278`, `0x00198387` |
 
-A value or profile number with no digits, or one too large for an `i32`, stops the game: `wcstol` (`0x00198328`,
-`0x0019843C`) leads to `_Xinvalid_argument` or `_Xout_of_range` (`0x00198531`, `0x0019853F`, `0x0019857C`, `0x0019858A`), and
+A value or profile number with no digits, or one too large for an `i32`, stops the game: `wcstol`¹ leads to `_Xinvalid_argument` or `_Xout_of_range`², and
 nothing on the way up catches the exception. This holds for a binding whose name matches nothing too, because the
-value is parsed before the names are compared (`0x00198415`-`0x0019847C`).
+value is parsed before the names are compared³.
 
-Each line is read by `getline` into a 128-character buffer (`0x00198210`-`0x00198222`). `getline` tests every
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00198328`, `0x0019843C` |
+| ² | `0x00198531`, `0x0019853F`, `0x0019857C`, `0x0019858A` |
+| ³ | `0x00198415`-`0x0019847C` |
+
+</details>
+
+Each line is read by `getline` into a 128-character buffer¹. `getline` tests every
 character for the end of the file first, then for LF, then against the count, so a line of up to 127 characters,
 ended by LF or by the end of the file, reads normally; a CR before the LF counts as one of the 127. A line of 128
 or more characters stores its first 127, leaves the rest unread and sets the fail bit, and the 127-character part
 is parsed as a line:
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00198210`-`0x00198222` |
+
+</details>
+
 - a header without `]`, or a line that is neither a header nor a binding, ends the read there as usual
-  (`0x00198278`, `0x00198387`);
+ ¹;
 - a header number or binding value with no digits, or one too large for an int, stops the game: no digits at
   `0x0019853F` (header) and `0x0019858A` (binding), too large at `0x00198531` and `0x0019857C` (wcstol's errno `0x22`,
   tested at `0x00198341` and `0x00198456`);
 - a binding or header that parses returns to the loop, which goes on. Every later `getline` on the
-  failed stream reads nothing and gives an empty line, which is skipped (`0x0019823D`), and the loop tests only the
-  end-of-file bit (`0x00198515`-`0x00198523`), which a failed read never sets, so the read never ends.
+  failed stream reads nothing and gives an empty line, which is skipped², and the loop tests only the
+  end-of-file bit³, which a failed read never sets, so the read never ends.
 
-The name before `=` is copied into a 64-character buffer with no length check (`0x0019838F`-`0x001983BF`). A name of 65
-characters or more overwrites the function's stack guard at `+0x220` of its frame (`0x00198038`), and the guard check
-stops the game when the read returns (`0x00198646`).
+<details>
+<summary>Where in the code</summary>
 
-The reader and the writer go through a wide-character file buffer whose vtable is `0x008F38F0` (`0x001980B9`,
-`0x00199453`); its put-back and seek methods `0x00197E10`, `0x001987A0` and `0x00198880` use the library's buffer helpers
-`0x00195C10` and `0x00195BD0`. The reader copies text from each line into a wide string with `0x00196140`
-(`0x001982FB`, `0x0019840F`), which grows the string's buffer with `0x00195820`.
+| | Code |
+|---|---|
+| ¹ | `0x00198278`, `0x00198387` |
+| ² | `0x0019823D` |
+| ³ | `0x00198515`-`0x00198523` |
+
+</details>
+
+The name before `=` is copied into a 64-character buffer with no length check¹. A name of 65
+characters or more overwrites the function's stack guard at `+0x220` of its frame², and the guard check
+stops the game when the read returns³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019838F`-`0x001983BF` |
+| ² | `0x00198038` |
+| ³ | `0x00198646` |
+
+</details>
+
+The reader and the writer go through a wide-character file buffer whose vtable is `0x008F38F0`¹; its put-back and seek methods `0x00197E10`, `0x001987A0` and `0x00198880` use the library's buffer helpers
+`0x00195C10` and `0x00195BD0`. The reader copies text from each line into a wide string with `0x00196140`², which grows the string's buffer with `0x00195820`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001980B9`, `0x00199453` |
+| ² | `0x001982FB`, `0x0019840F` |
+
+</details>
 
 The two helpers swap the buffer's get area with its one-character put-back cell at
 `+0x70`. The buffer's `+0x18`, `+0x38` and `+0x50` are pointers: to a begin qword, a
 second qword and a count dword. Unless the begin is the cell already, `0x00195C10` saves
 the begin to `+0x88` and `second + 2 × count` to `+0x90`; it then stores the cell's
-address through `+0x18` and `+0x38` and a count of 1 through `+0x50`
-(`0x00195C10`-`0x00195C5E`).
+address through `+0x18` and `+0x38` and a count of 1 through `+0x50`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00195C10`-`0x00195C5E` |
+
+</details>
 
 `0x00195BD0` undoes it: only while the begin is the cell, it stores the saved begin
-through `+0x18` and `+0x38` and the saved length, (`+0x90` - `+0x88`) / 2, through `+0x50`
-(`0x00195BD0`-`0x00195BFF`).
+through `+0x18` and `+0x38` and the saved length, (`+0x90` - `+0x88`) / 2, through `+0x50`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00195BD0`-`0x00195BFF` |
+
+</details>
 
 The number in a `[KeyboardN]` header, minus one, is the profile, which starts at -1 before any header, and
-nothing tests it (`0x0019834A`-`0x0019834C`). Each of the three name groups has its own base: group 0 (buttons)
-`0x01F80F90` (`0x001984BF`), group 1 (sticks) `0x01F80FD0` (`0x001984AF`) and group 2 (extras) `0x01F80FF0` (`0x0019849F`).
-A binding whose name is entry *i* of its group is stored at `base + 0x70 * profile + 4 * i` (`0x0019849B`-`0x001984E9`).
+nothing tests it¹. Each of the three name groups has its own base: group 0 (buttons)
+`0x01F80F90`², group 1 (sticks) `0x01F80FD0`³ and group 2 (extras) `0x01F80FF0`⁴.
+A binding whose name is entry *i* of its group is stored at `base + 0x70 * profile + 4 * i`⁵.
 So:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019834A`-`0x0019834C` |
+| ² | `0x001984BF` |
+| ³ | `0x001984AF` |
+| ⁴ | `0x0019849F` |
+| ⁵ | `0x0019849B`-`0x001984E9` |
+
+</details>
 
 - a binding before the first header, or under `[Keyboard0]` (profile -1), lands in the `0x70` bytes below the
   profiles, `0x01F80F20`-`0x01F80F8F`, the end of the path buffer at `0x01F80D90`;
 - under `[Keyboard4]` (profile 3) it lands in the `0x70` bytes above them, `0x01F810E0`-`0x01F8114F`: buttons at
   `0x01F810E0`-`0x01F8111F`, sticks at `0x01F81120`-`0x01F8113F` and extras at `0x01F81140`-`0x01F8114F`. Each binding below
   overwrites half of an 8-byte word:
-  - Select and L3: the word `0x01F810E0`, which the reader and the writer load (`0x001980DC`, `0x00199486`);
-  - R3 and Start: the object pointer `0x01F810E8` that `0x00194F50` publishes (`0x00195028`);
+  - Select and L3: the word `0x01F810E0`, which the reader and the writer load¹;
+  - R3 and Start: the object pointer `0x01F810E8` that `0x00194F50` publishes²;
   - Up and Right: the pause byte's pointer `0x01F810F0`;
   - Down and Left: the first AsyncJobManager `0x01F810F8`; L2 and R2: the second, at `0x01F81100`;
   - Triangle and Circle: the archive manager `0x01F81110`;
   - Speed1 and Speed2: the word `0x01F81140`, read by `0x0019B8C0`, `0x0019B990`, `0x0019C031` and `0x00202930`;
-  - Speed3 and WalkMode: the object pointer `0x01F81148` that `0x0019B2F0` publishes (`0x0019B3C8`).
+  - Speed3 and WalkMode: the object pointer `0x01F81148` that `0x0019B2F0` publishes³.
 
-  An L1 binding overwrites the byte `0x01F81108`, which `0x0080C440` sets to 1 (`0x0080C4D0`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001980DC`, `0x00199486` |
+| ² | `0x00195028` |
+| ³ | `0x0019B3C8` |
+
+</details>
+
+  An L1 binding overwrites the byte `0x01F81108`, which `0x0080C440` sets to 1¹;
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0080C4D0` |
+
+</details>
 - any larger or negative number reaches `0x70 * (N - 1)` bytes from the table in either direction.
 
-Only profiles 1-3 are ever read back (`0x001965E0`, `0x00196550`, `0x00198B60`).
+Only profiles 1-3 are ever read back¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001965E0`, `0x00196550`, `0x00198B60` |
+
+</details>
 
 ### The two checks
 
 - `0x00196550` looks at all 84 slots of the three profiles: a non-zero code that appears twice, or a code in the list
   of 35 reserved codes at `0x01DF13E0`, fails the file.
 - `0x001965E0` looks at profile 1 only: every one of its 28 codes must be 1-152, and profiles 2 and 3 may hold any code.
-  It counts profile 1's leading codes of 1-152 and runs that same count three times (`0x001965E5`,
-  `0x00196600`-`0x00196671`); it returns 1, a failure, when the count is below 28 (`0x00196663`-`0x0019667B`).
+  It counts profile 1's leading codes of 1-152 and runs that same count three times¹; it returns 1, a failure, when the count is below 28².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001965E5`, `0x00196600`-`0x00196671` |
+| ² | `0x00196663`-`0x0019667B` |
+
+</details>
 
 The reserved codes are 2, 81, 82, 84, 85, 88, 89, 90, 119, 122, 123, 125 and 130-152.
 
@@ -169,20 +322,50 @@ A code is the value the input name registries give a key or a button ([Control n
 are the pad buttons and 28 and up the keyboard keys, with 28-53 the letters A-Z. Codes 1-3, which no name has, are
 the three mouse buttons: the filter `0x001967D0`, which keeps only the cancel binding's input when it runs (the
 Cross slot `+0x38` while confirm setting `0x01FD4A64` is 0, else Circle `+0x34`; `0x00196851`-`0x00196860`), reads a
-code of 1-3 as one of the mouse device's three button bytes and any other code as a key, code minus 28
-(`0x0019686E`-`0x001968AC`). 0 is no binding.
+code of 1-3 as one of the mouse device's three button bytes and any other code as a key, code minus 28¹. 0 is no binding.
 
-The filter stops at the first null object among slots `+0x118` to `+0x148` of `[0x00796E20() + 0xDF8]`
-(`0x00196845`). Then in each non-null object of slots `+0x88` to `+0x110` it clears bytes `+0x30` to `+0x40`, all
-but `+0x31` while `0x01FD4A64` is 0 and all but `+0x32` otherwise (`0x00196944`-`0x0019698F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019686E`-`0x001968AC` |
+
+</details>
+
+The filter stops at the first null object among slots `+0x118` to `+0x148` of `[0x00796E20() + 0xDF8]`¹. Then in each non-null object of slots `+0x88` to `+0x110` it clears bytes `+0x30` to `+0x40`, all
+but `+0x31` while `0x01FD4A64` is 0 and all but `+0x32` otherwise².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00196845` |
+| ² | `0x00196944`-`0x0019698F` |
+
+</details>
 
 ### Circle and Cross
 
 When the published profiles are built from the file or from the defaults, the Circle and Cross codes, slots 13 and
 14, are exchanged when the confirm-button setting `+0x64` of the game settings is not 0: `0x001DFA70` answers whether it
-is 0 (`0x001DFA70`-`0x001DFA77`), and the swap runs when it is not (`0x00195F03`-`0x00195F24`, `0x00198B60`). The file keeps them as written.
+is 0¹, and the swap runs when it is not². The file keeps them as written.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001DFA70`-`0x001DFA77` |
+| ² | `0x00195F03`-`0x00195F24`, `0x00198B60` |
+
+</details>
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 [`keymap-file.tsv`](keymap-file.tsv) lists the 28 slots with the default code of each profile, as `0x00198B60` installs them: group 0
 from `0x01DF09C0`, the stick pairs from the records at `0x01DF0A80`, and group 2 from `0x01DF1470` for profile 1 only.
@@ -207,28 +390,57 @@ Every one of the 28 slots, with its Controls row, the codes it takes, what else 
 | `visible_effect` | what the player sees the control do, with the address of the code that does it |
 | `inert_when` | when the binding does nothing: a code outside the polled bands, the keys a dialog keeps or clears, the menus that clear the stick entries, and the field frames that skip the arbiter |
 
+</details>
+
 ## Loader behaviour
 
 `0x00198B60` copies each profile's defaults into the profiles at `0x01F80F90`, builds the published records at
-`0x01DF1738` with L2 and R2 cleared (`0x01DF1758`), applies the Circle and Cross exchange, and copies the records to
+`0x01DF1738` with L2 and R2 cleared¹, applies the Circle and Cross exchange, and copies the records to
 `0x01F80130`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01DF1758` |
+
+</details>
 
 ### From the file to the input records
 
 The file is converted field by field: `0x00198000` parses each binding's text into a `u32` in its profile slot at
 `0x01F80F90`. When both checks pass, `0x00195DF0` turns each profile *p* into a `0x15C`-byte record at
-`0x01DF1738 + 0x15C * p` (`0x00195E30`-`0x00195FD5`):
+`0x01DF1738 + 0x15C * p`¹:
 
-1. It copies the 16 button codes, profile `+0x00`-`+0x3F`, to record `+0x00`-`+0x3F`.
-2. It clears L2 and R2, record `+0x20` and `+0x24` (`0x00195E86`).
-3. It writes the eight stick codes as four 16-byte entries at record `+0x40`, `+0x50`, `+0x60` and `+0x70`, each
-   `2`, `4` and then the profile's pair: `+0x40`/`+0x44`, `+0x48`/`+0x4C`, `+0x50`/`+0x54`, `+0x58`/`+0x5C`
-   (`0x00195E97`-`0x00195EFA`).
-4. It exchanges Circle and Cross, record `+0x34` and `+0x38`, when `0x001DFA70` returns 0 (`0x00195F03`-`0x00195F24`).
-5. It copies the whole record to `0x01F80130 + 0x15C * p` (`0x00195F2C`-`0x00195FCF`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00195E30`-`0x00195FD5` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It copies the 16 button codes, profile `+0x00`-`+0x3F`, to record `+0x00`-`+0x3F`. |   |
+| 2 | It clears L2 and R2, record `+0x20` and `+0x24`. | `0x00195E86` |
+| 3 | It writes the eight stick codes as four 16-byte entries at record `+0x40`, `+0x50`, `+0x60` and `+0x70`, each `2`, `4` and then the profile's pair: `+0x40`/`+0x44`, `+0x48`/`+0x4C`, `+0x50`/`+0x54`, `+0x58`/`+0x5C`. | `0x00195E97`-`0x00195EFA` |
+| 4 | It exchanges Circle and Cross, record `+0x34` and `+0x38`, when `0x001DFA70` returns 0. | `0x00195F03`-`0x00195F24` |
+| 5 | It copies the whole record to `0x01F80130 + 0x15C * p`. | `0x00195F2C`-`0x00195FCF` |
 
 It reads each profile only up to `+0x5F`, so group 2 (`+0x60`-`+0x6F`) does not enter the records, and it writes
-no record byte from `+0x80` on. It then sets byte `+0x3B` of the input manager it was passed (`0x00195FE0`).
+no record byte from `+0x80` on. It then sets byte `+0x3B` of the input manager it was passed¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00195FE0` |
+
+</details>
 
 ## Modding notes
 
@@ -251,26 +463,34 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Display** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0017CF30` | calls | `0x00182E80`, which returns the display height |
+| [`0x0017CF30`](keymap-file.md) | calls | [`0x00182E80`](../Graphics/render-command-list.md) (on render command list), which returns the display height |
 
 **Saving, loading and settings** (explained on [game application](../Engine-Core/game-application.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0017D4C0` | calls | `0x001C1710`, `0x001C18A0`, `0x001C18E0` |
+| [`0x0017D4C0`](../Engine-Core/startup-constants.md) (on startup constants) | calls | [`0x001C1710`](../Engine-Core/game-application.md) (on game application)<br>[`0x001C18A0`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x001C18E0`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 **Developer** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00796E20` | is called by | `0x001C2F50` |
+| [`0x00796E20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x001C2F50`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) |
 
 **Menus and HUD** (explained on [graphics settings](../Engine-Core/graphics-settings.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00796E20` | is called by | `0x0018EEE0` |
+| [`0x00796E20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x0018EEE0`](../Graphics/post-processing.md) (on post processing) |
 
 </details>

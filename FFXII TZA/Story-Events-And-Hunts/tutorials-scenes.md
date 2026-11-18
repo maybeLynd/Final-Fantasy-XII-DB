@@ -10,18 +10,48 @@ The table [tutorials-scenes.tsv](tutorials-scenes.tsv) has one row per scene scr
 `plan_master/us/event`. No zone script shares their file-name prefix, so their `next` column is `-`. Every
 `eventread` and `eventread_e8` call of the zone and scene scripts names its event id as a number; of the four ids,
 only 429 (`men_z0005`) is named, in field 13 (`ttl_b01`). The menu scene step `0x003C9FD0` requests the other three
-through `0x0032FC30` (`0x003CA07C`) after `0x003CA140` sets their event.
+through `0x0032FC30`¹ after `0x003CA140` sets their event.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CA07C` |
+
+</details>
 
 `0x003C9FD0(m)` acts only for manager 3, while the in-use flag `0x02B47750` is set and the unload request byte
-`0x022C6D20[3]` (`0x0032F6E0(3)`) is clear; otherwise it returns -1 (`0x003C9FD4`-`0x003C9FF6`). In state 1 it requests
+`0x022C6D20[3]` (`0x0032F6E0(3)`) is clear; otherwise it returns -1¹. In state 1 it requests
 the scene with `0x0032FC30(3, id)` for the id at `0x02B4774C`, sets the start hold with `0x0032ED70(3)` and moves to
-state 2 (`0x003CA071`-`0x003CA08B`).
+state 2².
 
-State 3, which `0x003CA1B0(3)` stores (`0x003CA1B0`), starts the scene: once `0x0032F6C0(3)` reports no load pending,
-the step releases the hold with `0x00332130(3)` and moves to state 0 (`0x003CA04A`-`0x003CA062`). In state 4, once no
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C9FD4`-`0x003C9FF6` |
+| ² | `0x003CA071`-`0x003CA08B` |
+
+</details>
+
+State 3, which `0x003CA1B0(3)` stores¹, starts the scene: once `0x0032F6C0(3)` reports no load pending,
+the step releases the hold with `0x00332130(3)` and moves to state 0². In state 4, once no
 load is pending, it disposes of the scene with `0x00332190(3)`, moves to state 5, clears the in-use flag and sets
-the id to -1 (`0x003CA011`-`0x003CA03B`). In any other state it does nothing, and every path past the first tests
+the id to -1³. In any other state it does nothing, and every path past the first tests
 returns 0. The whole state machine is on [Zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CA1B0` |
+| ² | `0x003CA04A`-`0x003CA062` |
+| ³ | `0x003CA011`-`0x003CA03B` |
+
+</details>
 
 | Scene | Event | Loaded in | Lines | What follows |
 |---|---:|---|---:|---|
@@ -32,32 +62,84 @@ returns 0. The whole state machine is on [Zone changes](../World-Areas-And-Trave
 
 What opens the three menu scenes: script verb `openfullscreenmenu_48d` with selector 6 opens menu id 22, and
 `0x002E1A60` turns parameters 0, 1 and 2 into the menu modes `0x40`, `0x41` and `0x42` ([Menus](../Menus-And-HUD/menus.md));
-those load events 437, 438 and 439 through `0x003CA140`, which gives event 440 (`0x1B8`) for any other argument
-(`0x003CA153`-`0x003CA164`). Of the 1,274 `openfullscreenmenu_48d` calls of the `us`
+those load events 437, 438 and 439 through `0x003CA140`, which gives event 440 (`0x1B8`) for any other argument¹. Of the 1,274 `openfullscreenmenu_48d` calls of the `us`
 scripts that decode (`evt_t0020` has no `EBP2` header), two pass selector 6: `grm_a0480` with parameter 0 and `rbn_a03` with 2. The `opened_by` column gives each.
 
-`0x003CA140(n)` does nothing while `0x02B47750` is set (`0x003CA140`-`0x003CA147`). Otherwise it sets `0x02B47750` and
-`0x02B47748` to 1 and stores the event at `0x02B4774C`: 437 for n 0, 438 for 1, 439 for 2 and 440 for any other value
-(`0x003CA149`-`0x003CA199`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CA153`-`0x003CA164` |
+
+</details>
+
+`0x003CA140(n)` does nothing while `0x02B47750` is set¹. Otherwise it sets `0x02B47750` and
+`0x02B47748` to 1 and stores the event at `0x02B4774C`: 437 for n 0, 438 for 1, 439 for 2 and 440 for any other value².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003CA140`-`0x003CA147` |
+| ² | `0x003CA149`-`0x003CA199` |
+
+</details>
 
 No shipped script requests `men_z0002`:
 
-- Event 438 loads for mode `0x41` on menu `0x16` or on menu 2: the menu dispatcher `0x0027FB70` sends both menus to one arm (table `0x00280090`, entries 0 and 20), which hands modes `0x40` and `0x41` to `0x002D7070` (`0x0027FE8C`).
-- Verb `0x48D` (`0x00346308`) gives menu `0x16` mode `0x41` only for parameter 1 of selector 6 (`0x002E1A9A`), and gives
-  menu 2, which every selector above 6 with bit `0x8000` cleared opens (`0x002E0E00`), its parameter unchanged. No
+- Event 438 loads for mode `0x41` on menu `0x16` or on menu 2: the menu dispatcher `0x0027FB70` sends both menus to one arm (table `0x00280090`, entries 0 and 20), which hands modes `0x40` and `0x41` to `0x002D7070`¹.
+- Verb `0x48D`² gives menu `0x16` mode `0x41` only for parameter 1 of selector 6³, and gives
+  menu 2, which every selector above 6 with bit `0x8000` cleared opens⁴, its parameter unchanged. No
   script of the nine language trees passes selector 6 with parameter 1 or a selector above 6.
-- Verb `0x472` (`0x00347112`) passes `0x002E1A60` parameter 0, so mode `0x40` for selector 6, unless its value stack
+- Verb `0x472`⁵ passes `0x002E1A60` parameter 0, so mode `0x40` for selector 6, unless its value stack
   already holds 63 entries; no script of the nine language trees calls it, the undecoded `evt_t0020` image included.
 - The body at `0x003470D0` first pushes the integer 0 with `0x00267F90(context, 0)` (nothing is pushed when the stack
   already holds 63 entries, `0x00267F93`) and stores the low byte of the answer of `0x00229EB0()`, zero-extended, in the
-  dword `+0x04` of its third argument and 0 in the dword `+0x08` (`0x003470DA`-`0x003470F8`).
+  dword `+0x04` of its third argument and 0 in the dword `+0x08`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027FE8C` |
+| ² | `0x00346308` |
+| ³ | `0x002E1A9A` |
+| ⁴ | `0x002E0E00` |
+| ⁵ | `0x00347112` |
+| ⁶ | `0x003470DA`-`0x003470F8` |
+
+</details>
 
   It then takes two values with `0x00267E10(context)`, the pushed 0 and then the script's argument, and calls `0x002E1A60`
-  with the second taken as its first argument and the first taken as its second (`0x003470FF`-`0x00347112`).
-  `0x002E1690()` follows, and the body ends in a jump to `0x002E0650` (`0x00347117`-`0x00347126`).
+  with the second taken as its first argument and the first taken as its second¹.
+  `0x002E1690()` follows, and the body ends in a jump to `0x002E0650`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003470FF`-`0x00347112` |
+| ² | `0x00347117`-`0x00347126` |
+
+</details>
 - The ten calls of the developer menus (`bin/ctrl`, `bin/evctrl` and `bin/mapctrl`, in the `in` and `ch` trees) pass `0x8005`: the save menu, selector 5, with bit `0x8000`, which skips the fade ([Menus](../Menus-And-HUD/menus.md)).
-- The other writers of the request's mode word (`0x0215F1A8`) store 0 (`0x002E0B9D`, `0x002E15DF`, `0x002E1AFA`) or, through the native request `0x002E1B10`, 0, `0x21` or, for menu 2, payload word 2 (`global_flag[2]`, `+0x4`), or 1 when that word is 0 (`0x00253F31`-`0x00253F44`).
+- The other writers of the request's mode word¹ store 0² or, through the native request `0x002E1B10`, 0, `0x21` or, for menu 2, payload word 2 (`global_flag[2]`, `+0x4`), or 1 when that word is 0³.
 - Scripts store only 0 to 15 in that word, apart from the byte fills of `btlctrl` and `mapctrl` (0 or `0xFF` in every byte), and no enemy order writes a payload word.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0215F1A8` |
+| ² | `0x002E0B9D`, `0x002E15DF`, `0x002E1AFA` |
+| ³ | `0x00253F31`-`0x00253F44` |
+
+</details>
 
 ### The scenes
 
@@ -221,118 +303,113 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 77 calls with 19 other topics</summary>
 
-**Characters and objects**
+**Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md), [force fight mode](../Engine-Core/force-fight-mode.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [debug menu](../Engine-Core/debug-menu.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032F6C0` | is called by | `0x0025D9E0` |
-| `0x0032F6E0` | is called by | `0x0025D9E0` |
-| `0x0032FC30` | calls | `0x0032FCA0` |
-| `0x0032FC30` | is called by | `0x0025D9E0` |
-| `0x0032FCA0` | calls | `0x002628B0`, `0x0032ED80`, `0x00330310`, `0x003306E0` |
-| `0x00332130` | calls | `0x00263FF0`, `0x0032F1B0` |
-| `0x00332190` | calls | `0x00263FF0` |
-| `0x003C9FD0` | calls | `0x00332130` |
-
-**Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md), [force fight mode](../Engine-Core/force-fight-mode.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md))
-
-**Characters and objects** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [debug menu](../Engine-Core/debug-menu.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
+| [`0x0032F6C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) |
+| [`0x0032F6E0`](tutorials-scenes.md) | is called by | [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) |
+| [`0x0032FC30`](tutorials-scenes.md) | calls | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) |
+| [`0x0032FC30`](tutorials-scenes.md) | is called by | [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) |
+| [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) | calls | [`0x002628B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x0032ED80`](../EBP-Script-Files/ebp-camera-shake.md) (on ebp camera shake)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
+| [`0x00332130`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | calls | [`0x00263FF0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x0032F1B0`](../Scripts-And-Script-Commands/event-scenes.md) Actor resource: finalize manager runtime after loads (on event scenes) |
+| [`0x00332190`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | calls | [`0x00263FF0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) |
+| [`0x003C9FD0`](tutorials-scenes.md) | calls | [`0x00332130`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
 
 **Sound and music** (explained on [menu screens](../Menus-And-HUD/menu-screens.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x0027FB70` | calls | `0x002DE350`, `0x002DEE50` |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Battle actions**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0027FB70` | calls | `0x00300060` |
-| `0x0032ED70` | is called by | `0x00306BD0` |
-| `0x0032F6C0` | is called by | `0x00306B10` |
-| `0x0032F6E0` | is called by | `0x00306BD0` |
-| `0x0032FC30` | is called by | `0x00306BD0` |
-| `0x00332130` | is called by | `0x00306760` |
-| `0x00332190` | is called by | `0x00306570`, `0x003065D0` |
+| [`0x0027FB70`](tutorials-scenes.md) | calls | [`0x002DE350`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x002DEE50`](../Sound-And-Music/music-table.md) (on music table) |
 
 **Battle actions** (explained on [action phases](../Battle-Actions/action-phases.md), [battle units](../Characters-And-Objects/battle-units.md), [party control modes](../Engine-Core/party-control-modes.md), [frame update order](../Engine-Core/frame-update-order.md))
 
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0027FB70`](tutorials-scenes.md) | calls | [`0x00300060`](../Battle-Actions/action-phases.md) (on action phases) |
+| [`0x0032ED70`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump) | is called by | [`0x00306BD0`](summons-scenes.md) Battle action: initialize global special sequence mode (on summons scenes) |
+| [`0x0032F6C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x00306B10`](../Battle-Actions/quickenings-and-summons.md) (on quickenings and summons) |
+| [`0x0032F6E0`](tutorials-scenes.md) | is called by | [`0x00306BD0`](summons-scenes.md) Battle action: initialize global special sequence mode (on summons scenes) |
+| [`0x0032FC30`](tutorials-scenes.md) | is called by | [`0x00306BD0`](summons-scenes.md) Battle action: initialize global special sequence mode (on summons scenes) |
+| [`0x00332130`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x00306760`](../Party/party-table.md) Battle action: update special presentation sequence (on party table) |
+| [`0x00332190`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x00306570`](../Enemy-Spawning/enemy-respawning.md) (on enemy respawning)<br>[`0x003065D0`](../Damage-And-Battle-Formulas/hp-and-ko.md) (on hp and ko) |
+
 **Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00354D00` | calls | `0x00229EA0` |
+| [`0x00354D00`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump) | calls | [`0x00229EA0`](../Graphics/effect-drawing.md) (on effect drawing) |
 
 **Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E1B10` | is called by | `0x00253C70` |
+| [`0x002E1B10`](../World-Areas-And-Travel/game-over.md) (on game over) | is called by | [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) |
 
 **Game files and data tables** (explained on [debug menu](../Engine-Core/debug-menu.md), [startup constants](../Engine-Core/startup-constants.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032FCA0` | calls | `0x002DF980`, `0x0032E400`, `0x0032E620` |
-| `0x00351880` | calls | `0x001D6A70` |
-| `0x003529E0` | calls | `0x001D6A70` |
+| [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) | calls | [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) |
+| [`0x00351880`](mt-bur-omisace-scenes.md) (on mt bur omisace scenes) | calls | [`0x001D6A70`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
+| [`0x003529E0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | calls | [`0x001D6A70`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
 
-**Scripts and script commands**
+**Scripts and script commands** (explained on [archades scenes](archades-scenes.md), [archades scripts](archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md), [npc names](../Characters-And-Objects/npc-names.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [menus](../Menus-And-HUD/menus.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [ebp script container](../EBP-Script-Files/ebp-script-container.md), [debug menu](../Engine-Core/debug-menu.md), [force fight mode](../Engine-Core/force-fight-mode.md), [native commands](../Scripts-And-Script-Commands/native-commands.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00264D60` | is called by | `0x00348DF0`, `0x0034ADA0`, `0x00352A50`, `0x00352EC0`, `0x003534F0`, `0x003545B0`, `0x00354F20`, `0x003555F0`, `0x00356B70`, `0x0050EAB0` |
-| `0x002E1A60` | is called by | `0x003462D0`, `0x003470D0` |
-| `0x002E1B10` | is called by | `0x0050DAB0` |
-| `0x0032ED70` | is called by | `0x003522C0`, `0x00353080`, `0x00353590` |
-| `0x0032F6C0` | is called by | `0x003541B0` |
+| [`0x00264D60`](../Menus-And-HUD/aerodrome-airship-dialogue.md) (on aerodrome airship dialogue) | is called by | [`0x00348DF0`](archades-scripts.md) (on archades scripts)<br>[`0x0034ADA0`](nalbina-town-scripts.md) (on nalbina town scripts)<br>[`0x00352A50`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x00352EC0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x003534F0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x003545B0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x00354F20`](../Engine-Core/identifier-spaces.md) (on identifier spaces)<br>[`0x003555F0`](../Engine-Core/identifier-spaces.md) (on identifier spaces)<br>[`0x00356B70`](../Characters-And-Objects/npc-names.md) (on npc names)<br>[`0x0050EAB0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections) |
+| [`0x002E1A60`](../Menus-And-HUD/menus.md) (on menus) | is called by | [`0x003462D0`](shared-zone-script-actors.md) (on shared zone script actors)<br>[`0x003470D0`](tutorials-scenes.md) |
+| [`0x002E1B10`](../World-Areas-And-Travel/game-over.md) (on game over) | is called by | [`0x0050DAB0`](../Menus-And-HUD/menus.md) (on menus) |
+| [`0x0032ED70`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump) | is called by | [`0x003522C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00353080`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00353590`](tutorials-scenes.md) |
+| [`0x0032F6C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x003541B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
+| [`0x0032FC30`](tutorials-scenes.md) | is called by | [`0x003522C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00353080`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00353590`](tutorials-scenes.md)<br>[`0x0050D0C0`](../Engine-Core/debug-menu.md) (on debug menu) |
+| [`0x00332130`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x00354B20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00354E80`](../EBP-Script-Files/ebp-script-container.md) (on ebp script container) |
+| [`0x00332190`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x00356D40`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
+| [`0x00348DF0`](archades-scripts.md) (on archades scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00348DF0`](archades-scripts.md) (on archades scripts) | is called by | [`0x00349800`](archades-scripts.md) (on archades scripts) |
+| [`0x00351880`](mt-bur-omisace-scenes.md) (on mt bur omisace scenes) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x003529E0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter)<br>[`0x00267F90`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00354D00`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
 
-**Scripts and script commands**
+**Menus and HUD** (explained on [menu screens](../Menus-And-HUD/menu-screens.md), [hud](../Menus-And-HUD/hud.md), [game over](../World-Areas-And-Travel/game-over.md), [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [action availability](../Controls-And-Input/action-availability.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032FC30` | is called by | `0x003522C0`, `0x00353080`, `0x00353590`, `0x0050D0C0` |
-| `0x00332130` | is called by | `0x00354B20`, `0x00354E80` |
-| `0x00332190` | is called by | `0x00356D40` |
-| `0x00348DF0` | calls | `0x00267E10` |
-| `0x00348DF0` | is called by | `0x00349800` |
-| `0x00351880` | calls | `0x00267E10` |
-| `0x003529E0` | calls | `0x00267E10`, `0x00267F90` |
-| `0x00354D00` | calls | `0x00267E10` |
-
-**Scripts and script commands** (explained on [archades scenes](archades-scenes.md), [archades scripts](archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md), [npc names](../Characters-And-Objects/npc-names.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
-
-**Scripts and script commands** (explained on [menus](../Menus-And-HUD/menus.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [ebp script container](../EBP-Script-Files/ebp-script-container.md), [debug menu](../Engine-Core/debug-menu.md))
-
-**Scripts and script commands** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [native commands](../Scripts-And-Script-Commands/native-commands.md))
-
-**Menus and HUD**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0027FB70` | calls | `0x00280D20`, `0x002909F0`, `0x002D7070`, `0x003EF750` |
-| `0x002D7070` | is called by | `0x0027FB70` |
-| `0x002E1B10` | is called by | `0x0035C7B0`, `0x0035D6B0` |
-| `0x003CA140` | is called by | `0x002D70F0` |
-| `0x003CA1B0` | is called by | `0x002D70F0` |
-
-**Menus and HUD** (explained on [menu screens](../Menus-And-HUD/menu-screens.md), [hud](../Menus-And-HUD/hud.md), [game over](../World-Areas-And-Travel/game-over.md), [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
-
-**Menus and HUD** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [action availability](../Controls-And-Input/action-availability.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md))
-
-**World, areas and travel**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0032FC30` | calls | `0x0025D4D0`, `0x003319D0`, `0x003EA6E0` |
-| `0x0032FC30` | is called by | `0x00314020` |
-| `0x0032FCA0` | is called by | `0x0032FC30` |
-| `0x00332130` | is called by | `0x00378120` |
-| `0x003522C0` | calls | `0x0032FC30` |
-| `0x00353080` | calls | `0x0032FC30` |
-| `0x003C9FD0` | calls | `0x0032FC30` |
+| [`0x0027FB70`](tutorials-scenes.md) | calls | [`0x00280D20`](../Menus-And-HUD/opening-the-main-menu.md) (on opening the main menu)<br>[`0x002909F0`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x002D7070`](tutorials-scenes.md)<br>[`0x003EF750`](../World-Areas-And-Travel/game-over.md) (on game over) |
+| [`0x002D7070`](tutorials-scenes.md) | is called by | [`0x0027FB70`](tutorials-scenes.md) |
+| [`0x002E1B10`](../World-Areas-And-Travel/game-over.md) (on game over) | is called by | [`0x0035C7B0`](../Engine-Core/time-stop-and-freeze.md) (on time stop and freeze)<br>[`0x0035D6B0`](../Menus-And-HUD/menu-screens.md) (on menu screens) |
+| [`0x003CA140`](tutorials-scenes.md) | is called by | [`0x002D70F0`](../Menus-And-HUD/menu-screens.md) (on menu screens) |
+| [`0x003CA1B0`](tutorials-scenes.md) | is called by | [`0x002D70F0`](../Menus-And-HUD/menu-screens.md) (on menu screens) |
 
 **World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md), [debug logging](../Engine-Core/debug-logging.md), [debug menu](../Engine-Core/debug-menu.md), [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0032FC30`](tutorials-scenes.md) | calls | [`0x0025D4D0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x003319D0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x003EA6E0`](opening-setup-scripts.md) (on opening setup scripts) |
+| [`0x0032FC30`](tutorials-scenes.md) | is called by | [`0x00314020`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
+| [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) | is called by | [`0x0032FC30`](tutorials-scenes.md) |
+| [`0x00332130`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x00378120`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) |
+| [`0x003522C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | calls | [`0x0032FC30`](tutorials-scenes.md) |
+| [`0x00353080`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | calls | [`0x0032FC30`](tutorials-scenes.md) |
+| [`0x003C9FD0`](tutorials-scenes.md) | calls | [`0x0032FC30`](tutorials-scenes.md) |
 
 </details>

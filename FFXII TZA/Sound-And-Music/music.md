@@ -15,30 +15,46 @@
 
 ### When the area's music is chosen
 
-The zone setup `0x0025D9E0` calls `0x00261F90` (`0x0025DB8E`) for the zone being entered:
+The zone setup `0x0025D9E0` calls `0x00261F90`¹ for the zone being entered:
 
-1. It returns when the zone's `+0x28` is not 0 or its done bit, `+0x10` bit `0x40`, is set (`0x00261F96`-`0x00261FA7`).
-2. It runs `0x0037B4A0` (`0x00261FB2`). With `+0x17` bit `0x4` clear it sets `+0x10` bit `0x20` and calls
-   `0x0037C910(1)` (`0x00261FB7`-`0x00261FC6`); with the bit set it runs `0x0035A490`, then `0x002E4000(0, 1)` and
-   `0x002E3E20(0, 1)` while byte `0x02099DA0` is 0, then `0x0035AD40` (`0x00261FD5`-`0x00261FFB`). Its test of `+0x28`
-   against 4 there (`0x00261FD0`) never holds, because `+0x28` is 0 on this path.
-3. It chooses music only when `+0x17` bit `0x80` is set (`0x00262000`).
-4. It always sets the done bit on the way out (`0x002620D5`), so the music is chosen once per zone.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025DB8E` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It returns when the zone's `+0x28` is not 0 or its done bit, `+0x10` bit `0x40`, is set. | `0x00261F96`-`0x00261FA7` |
+| 2 | It runs `0x0037B4A0`. With `+0x17` bit `0x4` clear it sets `+0x10` bit `0x20` and calls `0x0037C910(1)`; with the bit set it runs `0x0035A490`, then `0x002E4000(0, 1)` and `0x002E3E20(0, 1)` while byte `0x02099DA0` is 0, then `0x0035AD40`. Its test of `+0x28` against 4 there never holds, because `+0x28` is 0 on this path. | `0x00261FB2`<br>`0x00261FB7`-`0x00261FC6`<br>`0x00261FD5`-`0x00261FFB`<br>`0x00261FD0` |
+| 3 | It chooses music only when `+0x17` bit `0x80` is set. | `0x00262000` |
+| 4 | It always sets the done bit on the way out, so the music is chosen once per zone. | `0x002620D5` |
 
 ### Which track
 
-1. The field id is payload `+0x1044` (`0x0026200F`, `0x003148F0`).
-2. When payload `+0x1063` bit `0x40` is set, the track is the saved override at payload `+0x1534`; otherwise it is the
-   field's track from the music table, `0x003EAA70` (`0x0026201B`-`0x00262034`).
-3. Unless that track is boss music (`0x00361010`, `0x00262041`), the party control mode decides: summon mode makes it `0x5B`,
-   chocobo mode `0x5A` (`0x0026204A`-`0x00262063`). Summon mode is `0x0030D9A0` answering 1 and chocobo mode answering 2
-   (`0x003135C0`, `0x00303EC0`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The field id is payload `+0x1044`. | `0x0026200F`, `0x003148F0` |
+| 2 | When payload `+0x1063` bit `0x40` is set, the track is the saved override at payload `+0x1534`; otherwise it is the field's track from the music table, `0x003EAA70`. | `0x0026201B`-`0x00262034` |
+| 3 | Unless that track is boss music, the party control mode decides: summon mode makes it `0x5B`, chocobo mode `0x5A`. Summon mode is `0x0030D9A0` answering 1 and chocobo mode answering 2. | `0x00361010`, `0x00262041`<br>`0x0026204A`-`0x00262063`<br>`0x003135C0`, `0x00303EC0` |
 
 The table, its story ladder and the boss-music bit are on [Music table](music-table.md).
 
 ### Starting the track
 
-`0x003614C0(track, 0x78, 1)` starts the track at full volume through `0x003614E0` (`0x002620A8`):
+`0x003614C0(track, 0x78, 1)` starts the track at full volume through `0x003614E0`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002620A8` |
+
+</details>
 
 | Case | What happens |
 |---|---|
@@ -51,68 +67,154 @@ The table, its story ladder and the boss-music bit are on [Music table](music-ta
 
 ### No track
 
-When no track is chosen and one is playing, `0x002DEE50(current, 0x78)` and `0x00361170(current, 0x78, 1)` fade it out
-(`0x00262080`, `0x00262090`). When nothing is playing, `+0x17` bit `0x80` is cleared (`0x00262097`). With bit `0x80` clear,
-`0x00360D30` clears `0x022CBA60` and calls `0x002DE050` when it was set (`0x002620C5`-`0x002620D0`).
+When no track is chosen and one is playing, `0x002DEE50(current, 0x78)` and `0x00361170(current, 0x78, 1)` fade it out¹. When nothing is playing, `+0x17` bit `0x80` is cleared². With bit `0x80` clear,
+`0x00360D30` clears `0x022CBA60` and calls `0x002DE050` when it was set³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00262080`, `0x00262090` |
+| ² | `0x00262097` |
+| ³ | `0x002620C5`-`0x002620D0` |
+
+</details>
 
 ### The change task
 
 `0x003614E0` hands the change to one of two tasks, and `0x00361460` ends either one by clearing busy bit `0x40`:
 
-- With `0x022CBA60` clear, `0x00360EE0` loads the track into a slot (`0x00361630`) and waits for it to be ready. With a
-  track playing it crossfades to the new one (`0x002DEC30`); with no track playing, it sets the volume (`0x002DEE30`) and
-  starts the track. When the task's release flag is set it then schedules the old track's end (`0x00361170`).
-- With `0x022CBA60` set, `0x00361340` fades the current track out (`0x002DEE50`, `0x00361170`), waits until no track is
+- With `0x022CBA60` clear, `0x00360EE0` loads the track into a slot¹ and waits for it to be ready. With a
+  track playing it crossfades to the new one²; with no track playing, it sets the volume³ and
+  starts the track. When the task's release flag is set it then schedules the old track's end⁴.
+- With `0x022CBA60` set, `0x00361340` fades the current track out⁵, waits until no track is
   current, then loads, sets the volume and starts the new one the same way. When no track is current,
   `0x003614E0` first runs `0x00360D70`, which empties every ready slot and marks the others for release, and gives the
-  task a length of 0 (`0x00361530`-`0x00361539`).
+  task a length of 0⁶.
 
-The start is fresh (`0x002DED30`) when the top byte of the task word is 0, and from the track's resume point
-(`0x002DEDB0`) otherwise; `0x003614C0` passes 0, so area music always starts fresh.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00361630` |
+| ² | `0x002DEC30` |
+| ³ | `0x002DEE30` |
+| ⁴ | `0x00361170` |
+| ⁵ | `0x002DEE50`, `0x00361170` |
+| ⁶ | `0x00361530`-`0x00361539` |
+
+</details>
+
+The start is fresh¹ when the top byte of the task word is 0, and from the track's resume point² otherwise; `0x003614C0` passes 0, so area music always starts fresh.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002DED30` |
+| ² | `0x002DEDB0` |
+
+</details>
 
 `0x003614E0(track, length, a3, a4, a5)` builds the task word `+0x28` as
-`(a5 << 24) | ((a4 & 0xFF) << 16) | (track & 0xFFFF)` (`0x00361599`-`0x003615C5`): the track in the low 16 bits, the
+`(a5 << 24) | ((a4 & 0xFF) << 16) | (track & 0xFFFF)`¹: the track in the low 16 bits, the
 low byte of `a4` under mask `0xFF0000` and the low byte of `a5` in the top byte.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00361599`-`0x003615C5` |
+
+</details>
 
 It keeps `length` at `+0x30` and `a3` at `+0x38`,
 zeroes `+0x00` and the word `+0x1C`, and stores the end routine `0x00361460` at `+0x08`, the step routine at `+0x10`
-and the task length at `+0x04`: 8 for `0x00361340`, 5 for `0x00360EE0` (`0x0036154C`-`0x003615D7`). `0x003614C0` passes its
-own third argument as `a3`, `0x7F` as `a4` and 0 as `a5` (`0x003614C4`-`0x003614CA`).
+and the task length at `+0x04`: 8 for `0x00361340`, 5 for `0x00360EE0`¹. `0x003614C0` passes its
+own third argument as `a3`, `0x7F` as `a4` and 0 as `a5`².
 
-`0x00361170(track, length, release)` marks the track's slot as fading and schedules `0x00361080` after `length / [0x01F3DA18] + 1` passes (`0x00361186`-`0x00361194`), that is after `length`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036154C`-`0x003615D7` |
+| ² | `0x003614C4`-`0x003614CA` |
+
+</details>
+
+`0x00361170(track, length, release)` marks the track's slot as fading and schedules `0x00361080` after `length / [0x01F3DA18] + 1` passes¹, that is after `length`
 sixtieths of a second.
 `0x00361200` does the same for every loaded slot, with a fade of 120 frames for a negative length. When `0x00361080` runs
 it calls the stop `0x002DEDE0` with the slot's own index, byte `+0x03`, which names no shipped track. With the release
-flag and the fading bit it then stops and frees the slot's track (`0x002DEDE0`, `0x002DEC20`), or marks a slot still
+flag and the fading bit it then stops and frees the slot's track², or marks a slot still
 loading for release.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00361186`-`0x00361194` |
+| ² | `0x002DEDE0`, `0x002DEC20` |
+
+</details>
 
 ### Track slots
 
 The script music verbs load tracks into four slots at `0x022CB9F0` (layout below):
 
-1. `0x00361630(track)`, from `musicread` `0x229` (`0x00341710`) and the begin of `musicplay` `0x22B` (`0x00342770`), keeps a
-   slot already holding the track and clears its two flag bits. A new track takes the first free slot only when that
-   is slot 0 or 1 (`0x0036169A`), asks the music controller for a load id (`0x001DBB80`) and sets state 4.
-2. The pump `0x00360B50` sets state 5 once the load id is done (`0x002DEE90`), and empties a ready slot whose bit `0x1` is set:
-   it stops the track (`0x002DEDE0`) and frees its bank (`0x002DEC20`, `0x00210960`). States 1 and 2 step to a load.
-3. `0x00360DD0` marks every slot except the current track's for release, emptying ready ones at once.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00361630(track)`, from `musicread` `0x229` and the begin of `musicplay` `0x22B`, keeps a slot already holding the track and clears its two flag bits. A new track takes the first free slot only when that is slot 0 or 1, asks the music controller for a load id and sets state 4. | `0x00341710`<br>`0x00342770`<br>`0x0036169A`<br>`0x001DBB80` |
+| 2 | The pump `0x00360B50` sets state 5 once the load id is done, and empties a ready slot whose bit `0x1` is set: it stops the track and frees its bank. States 1 and 2 step to a load. | `0x002DEE90`<br>`0x002DEDE0`<br>`0x002DEC20`, `0x00210960` |
+| 3 | `0x00360DD0` marks every slot except the current track's for release, emptying ready ones at once. |   |
 
 `0x00360C20`, `0x00361480` and `0x00361030` find a track's slot by number and answer its state, its index or its address;
-`0x00360C00` answers a slot's state by index. `musicreadsync` `0x22A` waits while its slot's state is neither 0 nor 5
-(`0x00341F90`).
+`0x00360C00` answers a slot's state by index. `musicreadsync` `0x22A` waits while its slot's state is neither 0 nor 5¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00341F90` |
+
+</details>
 
 The slots open one block, `0x022CB9F0`-`0x022CBA63`, which `0x00360C70` sets up at boot (called from `0x00266D10` at
-`0x00266DD3`). It gives each slot its index and state 0 (`0x00360C90`-`0x00360C9F`), then clears the rest of the block
-(`0x00360CAE`-`0x00360CBE`): the pointer to the track flag file at `0x022CBA50`, two bytes per track with bit `0x1` the boss-music
+`0x00266DD3`). It gives each slot its index and state 0¹, then clears the rest of the block²: the pointer to the track flag file at `0x022CBA50`, two bytes per track with bit `0x1` the boss-music
 bit, read by `0x00361010` and stored by the file's load completion `0x00360B40` (`0x00360B42`;
 [Music table](music-table.md)); the pending music change `0x022CBA58`; and the fade-out flag `0x022CBA60`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00360C90`-`0x00360C9F` |
+| ² | `0x00360CAE`-`0x00360CBE` |
+
+</details>
 
 ### Fresh starts and resume points
 
 The music controller keeps one resume point per track number in the object manager: the position at `+0x3D8` and a
-set flag at `+0x7D8`, 256 each ([Audio manager](audio-manager.md)). `0x00222A40` stores the driver's position
-(`0x007A91D0`) through `0x00221720`; `0x002228A0` starts from a stored point, read by `0x00221100` and `0x00220DA0`, and clears it
-(`0x00221280`). The calls in front of it:
+set flag at `+0x7D8`, 256 each ([Audio manager](audio-manager.md)). `0x00222A40` stores the driver's position¹ through `0x00221720`; `0x002228A0` starts from a stored point, read by `0x00221100` and `0x00220DA0`, and clears it². The calls in front of it:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A91D0` |
+| ² | `0x00221280` |
+
+</details>
 
 | Call | Does |
 |---|---|
@@ -132,20 +234,37 @@ later `0x002DED70` or `0x002DEDB0` continues from.
 
 ### Skipped scenes
 
-While an event manager's skip mask is set (`0x00267310`), the music verbs play nothing:
+While an event manager's skip mask is set¹, the music verbs play nothing:
 
-1. They record the track they would leave playing, a second value and the resume flag at `0x022CB9B0`-`0x022CB9B8`
-   (`0x00360960`); `musicstop` records no track (`0x00345010`).
-2. `skipexec` (`0x00360710`) stores the current track's point (`0x002DEDD0`) and records it with the resume flag set.
-   `0x00360880` runs `0x00360710` for the first armed skip of each of managers 1-3 (`0x022CB9C4`).
-3. The skip-end stage `0x003608D0` starts the recorded track through `0x003614E0` with a 16-frame change, or only sets its
-   volume when it already plays.
-4. `getnowmusicno` `0x0363` (`0x003549D0`) answers the recorded track `0x022CB9B0` (`0x003604C0`) while the skip mask is
-   set, and otherwise the current track `0x0215EF44` (`0x002DEBE0(-1)`, `0x003549FA`-`0x003549FD`).
+<details>
+<summary>Where in the code</summary>
 
-The record is three words that `0x00360960(track, section, resume)` stores (`0x00360960`-`0x00360971`). The skip-end stage
-reads the track and the resume flag (`0x003608D4`, `0x003608E7`, `0x003608F9`, `0x0036090F`); no instruction reads the second
+| | Code |
+|---|---|
+| ¹ | `0x00267310` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | They record the track they would leave playing, a second value and the resume flag at `0x022CB9B0`-`0x022CB9B8`; `musicstop` records no track. | `0x00360960`<br>`0x00345010` |
+| 2 | `skipexec` stores the current track's point and records it with the resume flag set. `0x00360880` runs `0x00360710` for the first armed skip of each of managers 1-3. | `0x00360710`<br>`0x002DEDD0`<br>`0x022CB9C4` |
+| 3 | The skip-end stage `0x003608D0` starts the recorded track through `0x003614E0` with a 16-frame change, or only sets its volume when it already plays. |   |
+| 4 | `getnowmusicno` `0x0363` answers the recorded track `0x022CB9B0` while the skip mask is set, and otherwise the current track `0x0215EF44` (`0x002DEBE0(-1)`, `0x003549FA`-`0x003549FD`). | `0x003549D0`<br>`0x003604C0` |
+
+The record is three words that `0x00360960(track, section, resume)` stores¹. The skip-end stage
+reads the track and the resume flag²; no instruction reads the second
 word:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00360960`-`0x00360971` |
+| ² | `0x003608D4`, `0x003608E7`, `0x003608F9`, `0x0036090F` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -156,8 +275,17 @@ word:
 The Config option for the music version ([Game settings](../Saving-Loading-And-Settings/game-settings.md)) reaches the
 manager through `0x002DF530(version, live)`, which clamps it to 0-2. `0x002109F0` keeps it at manager `+0x30`; when it
 changes while a track is current and `live` is set, `0x00218DC0` sends each of that track's banks action `0x26` with the
-new version and 4.0 (`0x00222AD0`). `0x002228A0` passes manager `+0x30` to the driver's play calls (`0x007A93A0`,
-`0x007A92C0`), so every start uses the chosen version.
+new version and 4.0¹. `0x002228A0` passes manager `+0x30` to the driver's play calls², so every start uses the chosen version.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00222AD0` |
+| ² | `0x007A93A0`, `0x007A92C0` |
+
+</details>
 
 ### The saved override
 
@@ -175,16 +303,38 @@ The shipping scripts call `setnowmapmusicno` 1,393 times, 229 of them with -1, `
 
 The verbs `bgmstreamread` `0x448` to `getbgmstreamstatus` `0x44F` drive a separate streamed-music player. No story
 script calls any of the eight; the developer menu `bin/ctrl` calls all eight (lines 443-456 and
-811-814), and the developer verb `debug_bgmstream` `0x201E` (`0x0050C7F0`) is the only other entry.
-`usebgmstream` `0x44D` (`0x003557C0`) sizes its buffer: `0x003EACA0` rounds the request up to 64 KiB, with at least
+811-814), and the developer verb `debug_bgmstream` `0x201E`¹ is the only other entry.
+`usebgmstream` `0x44D`² sizes its buffer: `0x003EACA0` rounds the request up to 64 KiB, with at least
 `0x30000` bytes, allocates it under the name `BGMSTR`, and `0x003EB180` keeps the buffer and the size at `0x02B5E0E8`
 and `0x02B5E0F0`.
 
-`bgmstreamplay` `0x44A` is a jump (`0x00354D60`) to `0x003EB150`: while
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0050C7F0` |
+| ² | `0x003557C0` |
+
+</details>
+
+`bgmstreamplay` `0x44A` is a jump¹ to `0x003EB150`: while
 the stream is armed (byte `0x02B5E111` non-zero) and its state byte `0x02B5E110` is 5, it sets the state to 6; in any
 other state it changes nothing.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00354D60` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 A track slot, `0x18` bytes, four at `0x022CB9F0` (`0x00360C70` sets them up):
 
@@ -198,11 +348,20 @@ A track slot, `0x18` bytes, four at `0x022CB9F0` (`0x00360C70` sets them up):
 | `+0x10` | `u32` | issueClear | set to 0 with `+0x08` each time a load is issued, before `+0x14` takes the new load id: by the per-frame step `0x00360B50` for a slot in state 2 (`0x00360BCE`, base `0x022CB9F1`, so `[rbx + 0xF]` is slot `+0x10`) and by `0x00361630` when it takes a free slot (`0x003616BD`) |
 | `+0x14` | `u32` | loadId | the music controller's load id (`0x00361630`) |
 
-The script music stream's reader, one record at `0x02B5E0E0` in the zero-filled tail of `.data`. `0x003EB050` resets it
-(`0x003EB052`-`0x003EB096`), `0x003EB100` arms it (`0x003EB10C`-`0x003EB139`) and `0x003EADE0` steps it through states 1 to 8
+The script music stream's reader, one record at `0x02B5E0E0` in the zero-filled tail of `.data`. `0x003EB050` resets it¹, `0x003EB100` arms it² and `0x003EADE0` steps it through states 1 to 8
 (jump table `0x003EAFEC`); `0x003EAD10` releases it (jump table `0x003EAD98`). Each field is a global of its own, at
 `0x02B5E0E0` plus its offset; the lines below name the address of each field from `+0x14` to `+0x2C` and of `+0x33`,
 and the paragraphs above name `0x02B5E0E8`, `0x02B5E0F0`, `0x02B5E110` and `0x02B5E111`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EB052`-`0x003EB096` |
+| ² | `0x003EB10C`-`0x003EB139` |
+
+</details>
 
 `BgmStream` (`0x38` bytes, offsets from the start of the record):
 
@@ -224,6 +383,8 @@ and the paragraphs above name `0x02B5E0E8`, `0x02B5E0F0`, `0x02B5E110` and `0x02
 | `+0x32` | `u8` | pan | `0x40` (`0x003EB06A`), passed to `0x002DF680` at play (`0x003EAEE4`) |
 | `+0x33` | `u8` | volume | global `0x02B5E113`: `0x7F` (`0x003EB073`), stored after the reset's qword store at `+0x30` zeroes it (`0x003EB052`); passed to `0x002DF680` at play (`0x003EAEDF`) |
 | `+0x34` | `u8[4]` | pad34 | written only by the reset's qword store `0x003EB052`; read by no instruction; nothing fixes its width |
+
+</details>
 
 ## Modding notes
 
@@ -249,14 +410,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Engine core** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00266D10` | is called by | `0x0022A0B0` |
+| [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) | is called by | [`0x0022A0B0`](../Saving-Loading-And-Settings/languages.md) (on languages) |
 
 **Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E4D0` | is called by | `0x00280140` |
+| [`0x0032E4D0`](../Graphics/effect-file-loading.md) (on effect file loading) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
 
 </details>

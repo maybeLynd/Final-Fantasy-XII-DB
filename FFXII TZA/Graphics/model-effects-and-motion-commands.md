@@ -18,7 +18,16 @@ All of these are entries of the `@FRP` containers described in [model files](mod
 effect section is registered with the rest of the file in the render resource bank; the bank makes
 the model's effect ticket and effect context, as
 [resource ownership](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) describes.
-The motion entries are read when a presentation entry is set up to play a motion (`0x0041D220`).
+The motion entries are read when a presentation entry is set up to play a motion¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041D220` |
+
+</details>
 
 ## Layouts
 
@@ -44,15 +53,34 @@ The motion entries are read when a presentation entry is set up to play a motion
 | `+0x06` | `...` |  | sub-records: u16 key, u16 (length << 6 \| command count), then the commands |
 
 A key of `0xFFFF` marks the block of commands that the walker `0x0041DA90` runs before the keyed ones; the other
-keys are motion frames. `0x0041CD30` runs no commands: it keeps the marker's offset in the track state's `+0x90`
-(`0x0041CE3D`-`0x0041CE42`). The walker reads `+0x90` (`0x0041DAD3`) and runs that block's commands through the table
-`0x01EFFAF0` (`0x0041DB05`-`0x0041DB81`) before its calls to `0x0041E1D0`, `0x0041E000`, `0x00418880` and `0x00418750`
-(`0x0041DBAD`-`0x0041DBFD`).
+keys are motion frames. `0x0041CD30` runs no commands: it keeps the marker's offset in the track state's `+0x90`¹. The walker reads `+0x90`² and runs that block's commands through the table
+`0x01EFFAF0`³ before its calls to `0x0041E1D0`, `0x0041E000`, `0x00418880` and `0x00418750`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041CE3D`-`0x0041CE42` |
+| ² | `0x0041DAD3` |
+| ³ | `0x0041DB05`-`0x0041DB81` |
+| ⁴ | `0x0041DBAD`-`0x0041DBFD` |
+
+</details>
 
 It runs them only for an active state (byte `+0x95`, `0x0041DAA8`) and an entry with `+0x0C` bit `0x100000`; with
-bit `0x10` also set it skips a command whose table entry has a non-zero byte `+8` (`0x0041DB10`-`0x0041DB3D`). The
+bit `0x10` also set it skips a command whose table entry has a non-zero byte `+8`¹. The
 commands themselves are the authored presentation commands
 ([authored-presentation-commands.md](authored-presentation-commands.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041DB10`-`0x0041DB3D` |
+
+</details>
 
 ### @FMN, the bone channel list
 
@@ -68,11 +96,22 @@ commands themselves are the authored presentation commands
 | `+0x02` | `u16` |  | mask `0x1FF` channel mask, mask `0x7E00` record length (22) |
 | `+0x04` | `u16[9]` |  | channel numbers in the paired @FMW; `0x8000` \| n where the mask bit is clear |
 
-`0x00409190(entry)` gives the start of the records from the kind `+0x04`, by `kind & 3` and `(kind >> 24) & 3`
-(`0x00409195`, `0x004091A1`). For `kind & 3` of 0 it is `+0x40`, `+0x60` or `+0xC0` for 0, 1 or 2; for `kind & 3`
-of 1 it is `+0x70` for 0, `+0x90` for 1, and for 2 `+0xF0` with bit `0x1000` set (`0x004091B3`) or `+0xC0`
-without it. Every other kind gives 0 (`0x004091E7`). The start is added to the entry's low 32 bits,
-sign-extended (`0x004091B7`); both shipped kinds have bit `0x1000` set and give `+0xF0`.
+`0x00409190(entry)` gives the start of the records from the kind `+0x04`, by `kind & 3` and `(kind >> 24) & 3`¹. For `kind & 3` of 0 it is `+0x40`, `+0x60` or `+0xC0` for 0, 1 or 2; for `kind & 3`
+of 1 it is `+0x70` for 0, `+0x90` for 1, and for 2 `+0xF0` with bit `0x1000` set² or `+0xC0`
+without it. Every other kind gives 0³. The start is added to the entry's low 32 bits,
+sign-extended⁴; both shipped kinds have bit `0x1000` set and give `+0xF0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00409195`, `0x004091A1` |
+| ² | `0x004091B3` |
+| ³ | `0x004091E7` |
+| ⁴ | `0x004091B7` |
+
+</details>
 
 ### @FMW, the channel data
 
@@ -105,10 +144,22 @@ literals add to the previous key's frame.
 
 `+0x30` holds 80 (the columns) and `+0x34` the rows. `0x004090D0(container, row, column)` returns the
 entry at slot `row × 80 + column` when the row is below `+0x34`, otherwise slot `column`; an empty
-slot gives NULL, and so does a slot at or past the count `+0x0C` (`0x00409113`-`0x00409117`). The `@FMC`
+slot gives NULL, and so does a slot at or past the count `+0x0C`¹. The `@FMC`
 blocks fill the first `80 × rows` slots and `@FRM` is the last slot.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00409113`-`0x00409117` |
+
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -164,17 +215,37 @@ A container row names the script that loads a package, which does not say who pl
 packages and the 567 action containers with no owner.
 
 A cue word's top byte less `0x10` is the package slot and its low 24 bits the entry, which for these version-0
-packages is the `@FMC` slot (`0x004090D0`, `0x00409122`-`0x00409136`). The rows of the `@FMN` table follow the `0x09`
+packages is the `@FMC` slot¹. The rows of the `@FMN` table follow the `0x09`
 commands of those `@FMC` slots.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004090D0`, `0x00409122`-`0x00409136` |
+
+</details>
 
 `motionplay` and `motionplay_bb` play on the issuing actor or on the actor named before the dot, through `0x003DD8D0`
 and `0x002EB0D0(actor +0xC0)`, so they drive the actor's main model. `puppetmotionplay` plays on the puppet in slot
 `d` of the table at `0x02B5EA20`, through `0x003EB720` and `0x003DD980`.
 
-The main model comes from the `bindp` verbs (`0x00342640`, `0x002E28E0`). `bindh` and `bindc` attach a second model
-(`0x002E3110`), and no `bindh` or `bindc` model in the scripts has a row in `highmodelreplace.bin`, the case in which
-poll `0x003409F0` would bind it as main. A capture (`0x00262F90`) gives the script actor the body of another actor, and
-sets `+0x18`, so `bindp2_d4` then skips (`0x0033F39A`).
+The main model comes from the `bindp` verbs¹. `bindh` and `bindc` attach a second model², and no `bindh` or `bindc` model in the scripts has a row in `highmodelreplace.bin`, the case in which
+poll `0x003409F0` would bind it as main. A capture³ gives the script actor the body of another actor, and
+sets `+0x18`, so `bindp2_d4` then skips⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00342640`, `0x002E28E0` |
+| ² | `0x002E3110` |
+| ³ | `0x00262F90` |
+| ⁴ | `0x0033F39A` |
+
+</details>
 
 | `status` of a cue | Sites | Meaning |
 |---|---|---|
@@ -196,9 +267,18 @@ An `@FMN` row is `resolved_one_model` (46,737), `resolved_several_models` (270),
 section 19 slot 7, and no row of those three names these ids. Their file names assign no model.
 
 `bone_check` compares the track keys with that model's `@FTR` nodes as `0x00373540` does, one claim per node with flag
-`0x100`. A track with no such node gets no row (`0x0041C0A6`), so that bone stays out of the motion. `name_search_fmw`
+`0x100`. A track with no such node gets no row¹, so that bone stays out of the motion. `name_search_fmw`
 and `positional_fmw` are both kept, with their channel counts, and `content` joins the track and channel tables,
 which keep the constant and absent channels.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041C0A6` |
+
+</details>
 
 `one_bind` means the only model this script binds to that actor, and a cue that runs before the bind plays on no
 model of its own. `bind_before_cue` follows only the cue's own function. For `captured_zone_actor` the game finds
@@ -233,32 +313,78 @@ stops that being fixed.
 `models` holds the models the binds fix and `candidates` those the script leaves open. For `party_member_named` the
 candidate is the model in the [party table](../Party/party-table.md) row of the selector ([verb
 arguments](../Scripts-And-Script-Commands/verb-arguments.md), verb `03E9`), and the capture happens only when the
-roster holds that member (`0x003509E0`). `party_slot_at_run_time` lists the models of party-table rows 0 to 16.
+roster holds that member¹. `party_slot_at_run_time` lists the models of party-table rows 0 to 16.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003509E0` |
+
+</details>
 
 A captured zone actor is found by name in the script of manager 0. Its candidates are the models other scripts bind
-as the main model of an actor of that name, with a `bindp` verb (`0x00342640`, `0x002E28E0`), and the models of the enemy
+as the main model of an actor of that name, with a `bindp` verb¹, and the models of the enemy
 placements whose `function` is that name, through `model_id` of the
 [bestiary](../Enemy-Spawning/bestiary.md). When any candidate is in the area of the capturing script
 only those are listed, and `evidence` names each source.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00342640`, `0x002E28E0` |
+
+</details>
+
 A handler's binds count for every name in its `symlink_actors`: a listing declares each such name as running that
 handler's code (`rbn_a01`: `symlink NPC02(NPC01)`). A name in `symlink_actors` has its own directory entry holding
 the same code, function, jump and footer offsets as the handler, with its own local storage offset (`+0x1C`) and
-copy number (`+0x20`); `0x00266530` builds each record from its entry (`0x00266795`-`0x002667CA`).
-`bindh` and `bindc` attach a second model (`0x002E3110`) and the load verbs bind nothing, so neither adds a candidate.
+copy number (`+0x20`); `0x00266530` builds each record from its entry¹.
+`bindh` and `bindc` attach a second model² and the load verbs bind nothing, so neither adds a candidate.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00266795`-`0x002667CA` |
+| ² | `0x002E3110` |
+
+</details>
 
 The cue arguments of all 15,954 sites are literals, so `no_literal_cue` means that no motion verb in the script's
 listing starts that entry. An `ownerless_action` row names no model and no candidate.
 
 `keyed_channels` counts channels with their mask bit set and `constant_channels` those with it clear. All these
-`@FMN` have a non-zero `+0x54`, so `0x00418880` writes each clear channel from the pool (`0x00418ADD`-`0x00418B1F`).
+`@FMN` have a non-zero `+0x54`, so `0x00418880` writes each clear channel from the pool¹.
 `keyed_over_fmw` counts keyed channels past the end of the section the name search finds. It is 0 in every row, and
 the 149 rows whose `name_search_fmw_channels` is 0 have no keyed channel.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00418ADD`-`0x00418B1F` |
+
+</details>
+
 `bone_check` gives `model:on_bones/no_bone/bones_without_track` for each model in `models` and `candidates`, by the
 claim rule of `0x00373540`. A bone without a track gets no row from this motion. Whether it then shows its rest pose
-depends on its byte `+0x28A` while the game runs (`0x0041D6F0`). `skeletons` counts the distinct bone sets among those
+depends on its byte `+0x28A` while the game runs¹. `skeletons` counts the distinct bone sets among those
 models.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041D6F0` |
+
+</details>
 
 `exact_fit` lists the tested models whose bones are exactly the track keys, and `same_bones` every model in [the
 asset list](model-asset-list.tsv) with those bones (eight, then `+n`). They show the skeleton a motion was made on,
@@ -272,6 +398,8 @@ and `reason`.
 
 `Database/Tools/catalogues/motion_playback_models.py` writes the table.
 
+</details>
+
 ## Loader behaviour
 
 ### Binding @FEF
@@ -279,15 +407,28 @@ and `reason`.
 - `0x00504F00` binds the `@FEF` section at model row `+0x228` with `0x00504E70`, which falls back to a
   bank-wide search by tag and name when the model's own entry has no such section.
 - `0x00504940` stores the section pointer at row `+0x230` and calls `0x0016D6A0(ticket, section + 0x30)`
-  with the bank entry's ticket `+0x44` (`0x005049BD`). `0x0016D6A0` is a bare `ret`: binding the row does
+  with the bank entry's ticket `+0x44`¹. `0x0016D6A0` is a bare `ret`: binding the row does
   nothing with the embedded effect.
 - The bank entry is the container's own (word `+0x1F0`) when its first word equals the `@FEF` id word
-  `+0x228` (`0x00504981`), else the one `0x00409F50` gives for `+0x228` (`0x00504991`); the section is
-  `0x004096C0` of that entry with the offset `+0x238` (`0x005049A2`). The call is made only for a non-null
-  section (`0x005049B1`).
+  `+0x228`², else the one `0x00409F50` gives for `+0x228`³; the section is
+  `0x004096C0` of that entry with the offset `+0x238`⁴. The call is made only for a non-null
+  section⁵.
 - `0x0041F340` makes the render record's effect context: when the record's `+0x288` is −1 and the row's
   `@FEF` bank index is set, it calls `0x003B3550(record, ticket)` and stores the result at record `+0x288`
   and row `+0x240`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005049BD` |
+| ² | `0x00504981` |
+| ³ | `0x00504991` |
+| ⁴ | `0x005049A2` |
+| ⁵ | `0x005049B1` |
+
+</details>
 
 - `0x0041F340` takes its blocks in arena 6 through `0x003AB8B0(size, mode)` (`0x0036A100` for mode 0,
   `0x0036B160` for mode 1) and returns them through `0x003AB910`, which calls `0x0036C620` for a null or
@@ -300,8 +441,8 @@ helper below first checks that the slot's id equals the handle and does nothing 
 `+0x10` is the effect instance and its byte `+0x30` holds three flags.
 
 - `0x003B3400`, from `0x003B3550`, takes the head of the free list `0x02EBDBA0`, appends the slot to the
-  used list (`0x02EBDB98` / `0x02EBDBA8`) and writes a new serial (`0x02EBDBB4`) into the bits under mask `0xFFFFFC0` of the id.
-- `0x003B3300(handle)`, from `0x0041E860`, ends the instance (`0x0024EE60`), moves the slot back to the
+  used list (`0x02EBDB98` / `0x02EBDBA8`) and writes a new serial¹ into the bits under mask `0xFFFFFC0` of the id.
+- `0x003B3300(handle)`, from `0x0041E860`, ends the instance², moves the slot back to the
   free list, keeps only bits under mask `0xF000003F` of the id and clears `+0x10`.
 - `0x003B3080(handle)` sets bit `0x1` of `+0x30`. The update pass `0x0024B9B0` holds a kind-3 instance on any
   step the bit is clear in the slot its dword `+4` names, and clears the bit when it is set; `0x0042D830` sets it each time
@@ -316,9 +457,28 @@ helper below first checks that the slot's id equals the handle and does nothing 
 - `0x003B30A0(handle, v)` stores `v` at instance `+0x08`, and `0x003B3CA0(handle, v)` runs `0x003A9490(v)`
   on the instance, then makes the previous instance current again.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02EBDBB4` |
+| ² | `0x0024EE60` |
+
+</details>
+
 - The registration that makes the ticket indexes the pointer table `0x02B64380` by the fold of the name.
-  `0x0041E3A0` calls `0x00409F80` at start-up (`0x0041E40B`), which calls `0x0040A230`: 144 stores of
+  `0x0041E3A0` calls `0x00409F80` at start-up¹, which calls `0x0040A230`: 144 stores of
   `PS2Data\obj_finish\in\<folder>\...\<name>.cm` paths, so every shipped `@FEF` model has its entry.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041E40B` |
+
+</details>
 
 ### The @FEF path table
 
@@ -329,10 +489,22 @@ number: `m1006` folds to `0x500 × 0x6D + 1006` = 140,526, the slot `0x02C76AF0`
 
 The registration `0x00409FE0`
 ([resource ownership](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md)) reads it. For a file with an
-`@FEF` section it folds the last five characters of the file's name (`0x0040A0C0`-`0x0040A129`) and loads that slot
-(`0x0040A12C`). It passes the path to `0x001D6EC0` (`0x0040A17F`), which returns the character-effect path that the
-async-load manager keeps for the same `.cm` (`0x001A09E0`); the number after `chara\h` in that path goes into the
-ticket (`0x003B3B10`, `0x0040A1C4`).
+`@FEF` section it folds the last five characters of the file's name¹ and loads that slot². It passes the path to `0x001D6EC0`³, which returns the character-effect path that the
+async-load manager keeps for the same `.cm`⁴; the number after `chara\h` in that path goes into the
+ticket⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0040A0C0`-`0x0040A129` |
+| ² | `0x0040A12C` |
+| ³ | `0x0040A17F` |
+| ⁴ | `0x001A09E0` |
+| ⁵ | `0x003B3B10`, `0x0040A1C4` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -350,56 +522,114 @@ ticket (`0x003B3B10`, `0x0040A1C4`).
 - `0x0041CA70` picks the command block `0x004090D0(container, +0x31A, +0x31C & 0xFFF)` into `+0x368`, and
   `0x0041CD30` positions each track on its first record, keeping the `0xFFFF` block apart.
 
-Command `0x09` (`0x00417F40`) starts a motion. For a command block with `+0x04 & 3` non-zero, the case of every shipped
-block, the motion is the `@FMN` at slot `(word +2 >> 1) + +0x2A` of the entry's container (`0x0041805C`-`0x00418087`). The
-block with `+0x04 & 3` of 0 would take a name at the command's `+2` instead (`0x00417FF3`-`0x00418057`).
+Command `0x09`¹ starts a motion. For a command block with `+0x04 & 3` non-zero, the case of every shipped
+block, the motion is the `@FMN` at slot `(word +2 >> 1) + +0x2A` of the entry's container². The
+block with `+0x04 & 3` of 0 would take a name at the command's `+2` instead³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00417F40` |
+| ² | `0x0041805C`-`0x00418087` |
+| ³ | `0x00417FF3`-`0x00418057` |
+
+</details>
 
 `+0x2A` comes from `0x0041CC90`, or from the record's first-`@FMC` slot `+0x2FA` for a motion number with bits above
-`0xFFF` (`0x00423E24`-`0x00423E3A`). In the shipped data the slot is an `@FMN` for all 155,630 commands of the `.ca`
+`0xFFF`¹. In the shipped data the slot is an `@FMN` for all 155,630 commands of the `.ca`
 and `.mot` files with no base, and for all 225 of the `.cm` files with the file's first `@FMC` slot as the base.
 
-When the `@FMN`'s kind has `& 3` and `>> 4 & 3` both 1, it binds the channels (`0x0041849B`-`0x00418561`). The `@FMW` is
-found by the `@FMN`'s name: `0x00409930` returns the first slot with that tag and name (`0x00409780`), and when there is
-none `0x00409FA0` searches the bank (`0x004184C5`-`0x004184FB`).
+<details>
+<summary>Where in the code</summary>
 
-The model binder `0x0041FCF0` also keeps the model's own first `@FMC` index at record `+0x2FA`
-(`0x0041FE83`), which the event map in [model files](model-files-cm-ca.md) adds to.
+| | Code |
+|---|---|
+| ¹ | `0x00423E24`-`0x00423E3A` |
+
+</details>
+
+When the `@FMN`'s kind has `& 3` and `>> 4 & 3` both 1, it binds the channels¹. The `@FMW` is
+found by the `@FMN`'s name: `0x00409930` returns the first slot with that tag and name², and when there is
+none `0x00409FA0` searches the bank³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041849B`-`0x00418561` |
+| ² | `0x00409780` |
+| ³ | `0x004184C5`-`0x004184FB` |
+
+</details>
+
+The model binder `0x0041FCF0` also keeps the model's own first `@FMC` index at record `+0x2FA`¹, which the event map in [model files](model-files-cm-ca.md) adds to.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041FE83` |
+
+</details>
 
 ### Reading the channels
 
 - `0x0041BEE0` binds `@FMN` (or `@FRP`) and `@FMW` by tag and name into a track descriptor (`+0x54`,
   `+0x58`), and `0x0041B4E0` resolves the entries.
 - `0x0041B4E0` returns at once, leaving `+0x70` and `+0x78` as they are, when the first resource index
-  `+0x50` is `0xFFFF` (`0x0041B4F1`). Otherwise `+0x70` gets slot `+0x5C` (signed) of the section at
-  `+0x54` in the resource that `0x00409F50` gives for `+0x50` in the bank `+0x48` (`0x0041B51B`).
-- `+0x78` gets slot 0 of the section at `+0x58` in the resource of `+0x52` (`0x0041B539`). Both go through
+  `+0x50` is `0xFFFF`¹. Otherwise `+0x70` gets slot `+0x5C` (signed) of the section at
+  `+0x54` in the resource that `0x00409F50` gives for `+0x50` in the bank `+0x48`².
+- `+0x78` gets slot 0 of the section at `+0x58` in the resource of `+0x52`³. Both go through
   `0x004096C0` and `0x00408F80`; a `+0x52` of `0xFFFF` gives `+0x78` = 0.
 - It walks the `@FMN` records from the start `0x00409190` gives, advancing by each record's length.
   `0x00370E00` turns the node key into a bone, and `0x0041B550` sets up the record's nine channels in a
   `0x108`-byte row (count at owner `+0x2BC`).
 - `0x0041B550` stores the bone at row `+0x100`, the record's offset in the section at `+0xFC` and 0 at `+0x102`
-  (`0x0041B585`-`0x0041B5A3`).
+ ⁴.
 - For channel `k`, 0 to 8, `0x0041B550` tests bit `1 << k` of the record word `+2`: a present channel goes to
   `0x0041B650` with the next u16 of the list at record `+4`, and bit `0x80 << k` of `+0x102` is set when that
   returns 1; an absent one gets frame `0xFFFF` at slot `+0x04` and 0 in the eight bytes at `+0x08`
-  (`0x0041B5B2`-`0x0041B608`).
+ ⁵.
 - With the section's dword `+0x54` at 0 only present channels take a u16 from the list; otherwise every channel
-  takes one (`0x0041B5B9`-`0x0041B5BD`, `0x0041B603`-`0x0041B60F`).
+  takes one⁶.
 - The `@FMN` duration goes to the descriptor's `+0x16`, and to `+0x18` unless state `+0x96` bit `0x40` is
   set.
-- `0x00418880` applies the `@FMN`'s constant values. The pool is the entry plus its `+0x54` (`0x004189CB`-`0x004189D7`). For
+- `0x00418880` applies the `@FMN`'s constant values. The pool is the entry plus its `+0x54`⁷. For
   a channel with its mask bit clear, or with slot frame `+0x04` of `0xFFFF`, and only while `+0x54` is non-zero, it
-  writes `pool[word & 0x7FFF]`, keeping it at the slot's `+0x0C` (`0x00418ADD`-`0x00418B1F`).
+  writes `pool[word & 0x7FFF]`, keeping it at the slot's `+0x0C`⁸.
 - `0x0041B650` starts a channel and `0x0041A470(slot, @FMW, frame)` moves its pair of keys forward until
   the next key's frame is past the requested frame.
 - The values are written to the bone and every bone linked through `+0x278`: `0x00418650` into bone
   `+0x190`, `0x00418700` into `+0x1B0` and `0x004186A0` into `+0x1D0`, the last skipped while bone byte
   `+0x280` bit `0x2` is set.
 - Each writer `(bone, row, column, value)` stores the float at element `row * 4 + column` of its array
-  (`0x00418670`, `0x00418720`, `0x004186D0`), then moves to the bone `0x0020E600` decodes from `+0x278` and
-  stops when that is 0. `0x00418650` and `0x00418700` do nothing for a null bone (`0x00418653`, `0x00418703`).
-- `0x004186A0` tests bit `0x2` of the first bone only (`0x004186A4`): with it set no bone is written, and
+ ⁹, then moves to the bone `0x0020E600` decodes from `+0x278` and
+  stops when that is 0. `0x00418650` and `0x00418700` do nothing for a null bone¹⁰.
+- `0x004186A0` tests bit `0x2` of the first bone only¹¹: with it set no bone is written, and
   the linked bones are written whatever their own bit.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041B4F1` |
+| ² | `0x0041B51B` |
+| ³ | `0x0041B539` |
+| ⁴ | `0x0041B585`-`0x0041B5A3` |
+| ⁵ | `0x0041B5B2`-`0x0041B608` |
+| ⁶ | `0x0041B5B9`-`0x0041B5BD`, `0x0041B603`-`0x0041B60F` |
+| ⁷ | `0x004189CB`-`0x004189D7` |
+| ⁸ | `0x00418ADD`-`0x00418B1F` |
+| ⁹ | `0x00418670`, `0x00418720`, `0x004186D0` |
+| ¹⁰ | `0x00418653`, `0x00418703` |
+| ¹¹ | `0x004186A4` |
+
+</details>
 
 ### Stepping a channel
 
@@ -415,30 +645,68 @@ when its element reaches the length.
   the same, with `0x0041B460` decoding a frame delta and `0x0041B3A0` a value (`literal × scale +
   previous`).
 - The value steps are `binary32`: the literal goes through `cvtdq2ps`, then `mulss` and `addss`
-  (`0x0041B427`-`0x0041B434`, `0x0041BD1D`-`0x0041BD2B`), so a stored value is the result of those rounded steps.
+ ¹, so a stored value is the result of those rounded steps.
 - `0x0041A7F0(slot, @FMW)` reads the first frame delta of a channel; a delta of 0 marks the channel as
   a single key (`+0x04` = `0xFFFF`).
 - `0x0041A8E0(slot, @FMW, frame)` moves the key pair forward until the next key is past `frame`, and
   also marks the channel single when its two key frames meet.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041B427`-`0x0041B434`, `0x0041BD1D`-`0x0041BD2B` |
+
+</details>
+
 ### Applying a frame
 
 `0x0041ADA0(stream, …, entry, frame)`, from the seek `0x0041C850`, puts an entry at a frame: the frame
-modulo the `@FMN` duration (`+0x50`) becomes the entry's `+0x0C`, every channel moves there
-(`0x0041A8E0`), and the bones are written. `0x00418880(stream, entry)`, from the walker, does the same
+modulo the `@FMN` duration (`+0x50`) becomes the entry's `+0x0C`, every channel moves there¹, and the bones are written. `0x00418880(stream, entry)`, from the walker, does the same
 work each frame for a playing entry (bit `0x2` of `+0x08`) whose word `+0x0A` is 1. Both take the bones
 from the model's bone array (`0x0020E600` of model `+0x84`, `0x290` bytes a bone) and the channel rows
 from the owner's `+0x2B8` block (`0x108` bytes a row, count `+0x2BC`).
 
-On a non-zero frame (`0x004189F9`) `0x00418880` can adjust the frame in two steps, both only in 60 fps mode
-(`0x01F82E38`). `name` is the model name at `+0x3C` of the render record the stream's `+0x2E0` points to, and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041A8E0` |
+
+</details>
+
+On a non-zero frame¹ `0x00418880` can adjust the frame in two steps, both only in 60 fps mode². `name` is the model name at `+0x3C` of the render record the stream's `+0x2E0` points to, and
 `motion` is the stream's section name `+0x2EC`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004189F9` |
+| ² | `0x01F82E38` |
+
+</details>
+
 - It first rounds the frame down to a whole frame (`floorf`, `0x004192FE`) when `0x001ED240(name, motion, id, frame)`
-  answers 1 (`0x004192C9`), or when the frame is exactly one frame step (`0x01DFE0BC`) before the end `+0x16` and
-  `0x001EC6B0(motion)` answers 1 (`0x004192F5`).
-- It then adds `0x001ED020(name, …)` to the frame (`0x00419329`, `0x00419334`). The answer is 0 except in the two
+  answers 1¹, or when the frame is exactly one frame step² before the end `+0x16` and
+  `0x001EC6B0(motion)` answers 1³.
+- It then adds `0x001ED020(name, …)` to the frame⁴. The answer is 0 except in the two
   branches the table lists.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004192C9` |
+| ² | `0x01DFE0BC` |
+| ³ | `0x004192F5` |
+| ⁴ | `0x00419329`, `0x00419334` |
+
+</details>
 
 Each branch of those functions, and of four others that test a name in the same way, is a row of the table
 below. A row's conditions all hold together. An event is `0x001EC560` answering non-zero, which needs the marked
@@ -482,7 +750,16 @@ runs, and has no rows here ([frame update order](../Engine-Core/frame-update-ord
 At frame 0 `0x00418880` writes, for each row with a bone, the first value of each of the nine
 channels the record's mask names and that has data (`0x0041A7F0`, then `0x00418650`, `0x00418700` or
 `0x004186A0`), or the channel's bias from the `@FMW` table at `+0x54` when it has no data, after clearing bit `0x1` of
-the bone's byte `+0x28A`; it clears that bit on the non-zero-frame path too (`0x004194B7`).
+the bone's byte `+0x28A`; it clears that bit on the non-zero-frame path too¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004194B7` |
+
+</details>
 
 A bone whose byte `+0x28A` is 0 takes its rest pose from the skeleton
 instead (`0x0041D6F0`: `0x00409270` finds the node for the bone's `+0x27E` and `0x00409300` reads it, all
@@ -503,12 +780,32 @@ While the entry's `+0x96` bit `0x10` is set, `0x00418880` cross-fades each bone 
 is set. The progress `+0x98` advances each frame by `[0x01DFE0BC]` × `+0x9C`, and the blend ends (bit `0x10`
 cleared) once it passes 1.0. The weight is `+0x98` itself when the stream's word `+0x358` is 16 (the value
 authored command `0x08` stores); otherwise it is `+0x98` through the easing curve that the words `+0x358`
-and `+0x35A` (stored by command `0x2C`) select: `0x0046FAE0(+0x98, +0x358, +0x35A)` (`0x004189A4`) reads
+and `+0x35A` (stored by command `0x2C`) select: `0x0046FAE0(+0x98, +0x358, +0x35A)`¹ reads
 `0x01F20E60 + ((a × 3 + b) × 0x1E0)`, 120 floats per curve at 60 fps.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004189A4` |
+
+</details>
+
 The curves' entry count is the dword `0x01F20A98`, 60 in the file: `0x0046FAE0` reads entry
-`t × (count − 1)`, clamped to the curve (`0x0046FAEF`), and `0x0046FBF0` doubles the count for the 60 fps time
-base (`0x0046FC4D`) and resamples the nine curves to it (`0x0046FCC0`).
+`t × (count − 1)`, clamped to the curve¹, and `0x0046FBF0` doubles the count for the 60 fps time
+base² and resamples the nine curves to it³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046FAEF` |
+| ² | `0x0046FC4D` |
+| ³ | `0x0046FCC0` |
+
+</details>
 
 [`motion-blend-curves.tsv`](motion-blend-curves.tsv) lists the 60 stored samples of each of the nine curves, with
 each sample's address and raw bits. `0x0046FAE0` tests the entry against the count and tests neither `a` nor `b`.
@@ -524,8 +821,17 @@ Entries 60 to 119 of each curve are zero in the file.
 | `value` | the same number to nine significant digits |
 
 The 60 fps resampler is `0x0033E5E0`. Entry `2k` is source entry `k`, entry `2k + 1` is the mean of source entries `k`
-and `k + 1`, and the last entry copies source entry 59 (`0x0033E84D`-`0x0033E858`). The table comes from the executable
+and `k + 1`, and the last entry copies source entry 59¹. The table comes from the executable
 with sha256 `73461D0896204B1C259C52F61AEF4EFBC95A2FFC388CADB36493D5D1D89721F8`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0033E84D`-`0x0033E858` |
+
+</details>
 
 It turns the rotation channels into a matrix (`0x0046D380`, three angles through the sine table
 `0x01F004E0`, 32,768 entries) and that into a quaternion at bone `+0x110` (`0x0046D730`, normalised by
@@ -533,8 +839,17 @@ It turns the rotation channels into a matrix (`0x0046D380`, three angles through
 
 It interpolates from the pose kept at `+0x120` toward it with `0x00476F40`, a spherical interpolation
 that takes the shorter arc. It copies the start instead when the sine-table value for the angle is 0
-or the dot product exceeds 1. It writes the result as the rotation of `+0xC0` (`0x00477130`) and mixes
+or the dot product exceeds 1. It writes the result as the rotation of `+0xC0`¹ and mixes
 the translation: `+0xF0` = weight × `+0x1B0` + (1 − weight) × `+0x130`, with w = 1.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00477130` |
+
+</details>
 
 With the entry's `+0x96` bit `0x20` set instead, the quaternion goes to bone `+0x1A0` and bit `0x10` of the
 bone's word `+0x280` is raised. Otherwise the channels build the matrix `0x02CA43D0`, which
@@ -573,26 +888,34 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Party** (explained on [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md), [player movement](../Movement-And-Pathfinding/player-movement.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265680` | is called by | `0x00358CB0`, `0x00358F90` |
+| [`0x00265680`](../Story-Events-And-Hunts/script-censuses.md) (on script censuses) | is called by | [`0x00358CB0`](../Movement-And-Pathfinding/player-movement.md) (on player movement)<br>[`0x00358F90`](../Movement-And-Pathfinding/player-movement.md) Party focus: process actor control presentation state (on player movement) |
 
 **Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00314910` | calls | `0x002EF2B0` |
+| [`0x00314910`](../World-Areas-And-Travel/zone-asset-list.md) World transition: get transition field id (on zone asset list) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) |
 
 **Status effects and KO** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265680` | is called by | `0x00310DB0` |
+| [`0x00265680`](../Story-Events-And-Hunts/script-censuses.md) (on script censuses) | is called by | [`0x00310DB0`](../Battle-Actions/action-results.md) Battle unit: run periodic combat maintenance (on action results) |
 
 **Characters and objects** (explained on [actor record](../Characters-And-Objects/actor-record.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00266530` | calls | `0x00265B60` |
+| [`0x00266530`](../Characters-And-Objects/actor-record.md) Actor storage: initialize record (on actor record) | calls | [`0x00265B60`](../Characters-And-Objects/actor-record.md) (on actor record) |
 
 </details>

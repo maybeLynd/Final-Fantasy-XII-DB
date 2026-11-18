@@ -22,8 +22,17 @@ the bits under mask `0xEF` as byte tests and the bits under mask `0xFF00` as dwo
 nowhere. Bit `0x2` is tested twice, so sixteen tests gate sixteen groups over fifteen distinct bits.
 
 The dword before it, `0x01E0C460`, is the `UISize.json` cell `mHelpMessageFontCount`. `0x001AF470` stores its address
-in a layout slot (`0x001AF5C0`), and the loader writes the cell through that slot as a dword (`0x001CA985`-`0x001CA993`,
+in a layout slot¹, and the loader writes the cell through that slot as a dword (`0x001CA985`-`0x001CA993`,
 [screen layouts](../Menus-And-HUD/screen-layouts.md)), so the store ends at `0x01E0C463` and never reaches this word.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001AF5C0` |
+
+</details>
 
 ### Where the pump runs
 
@@ -32,17 +41,14 @@ the `0x002878A0` predicate holds, `0x003583A0()` holds and the time accumulator 
 first-step flag once per simulation step when `0x003583A0()` holds; the title and loading state
 calls it with 0 ([frame update order](frame-update-order.md)). It runs:
 
-1. `0x02092748` = 1 around `0x00184960(1 + (0x001D6B70() < 1))` ([startup constants](startup-constants.md)),
-   then `0x02092748` = 0; everything below only unless `0x002287A0()` holds;
-2. `0x0208F570 += 0x00184950()`, and, when `first`, `0x00254CC0`, called with that value in `ecx` but not
-   reading it: it adds the dword `0x022CA624` that `0x0035E790` answers (`0x00254CE9`-`0x00254CF8`);
-3. `0x0035BC40`, `0x003C6000`, `0x002481A0`, `0x00248030` on the four objects `0x0208EA28`, `0x0208EA40`,
-   `0x0208EA48` and `0x0208EA50`, `0x00248190`, `0x002481C0` when `first`, `0x00244980` on the same four;
-4. `0x003BBA60` when `0x001EDE80` answers non-zero (`0x00250896`-`0x0025089F`): always while the 60 fps flag `0x01F82E38` is 0
-   or the suppressor `0x01DFE0C0` is set, and otherwise when the frame parity `0x02064AD8` plus the step count `0x02064AA8`
-   is non-zero (`0x001EDE84`-`0x001EDEB3`);
-5. the pump `0x0028E290([0x01E0C2B0])`;
-6. `0x00367200` of `0x00184950()` when `first`, and `0x00228930`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x02092748` = 1 around `0x00184960(1 + (0x001D6B70() < 1))` ([startup constants](startup-constants.md)), then `0x02092748` = 0; everything below only unless `0x002287A0()` holds; |   |
+| 2 | `0x0208F570 += 0x00184950()`, and, when `first`, `0x00254CC0`, called with that value in `ecx` but not reading it: it adds the dword `0x022CA624` that `0x0035E790` answers; | `0x00254CE9`-`0x00254CF8` |
+| 3 | `0x0035BC40`, `0x003C6000`, `0x002481A0`, `0x00248030` on the four objects `0x0208EA28`, `0x0208EA40`, `0x0208EA48` and `0x0208EA50`, `0x00248190`, `0x002481C0` when `first`, `0x00244980` on the same four; |   |
+| 4 | `0x003BBA60` when `0x001EDE80` answers non-zero: always while the 60 fps flag `0x01F82E38` is 0 or the suppressor `0x01DFE0C0` is set, and otherwise when the frame parity `0x02064AD8` plus the step count `0x02064AA8` is non-zero; | `0x00250896`-`0x0025089F`<br>`0x001EDE84`-`0x001EDEB3` |
+| 5 | the pump `0x0028E290([0x01E0C2B0])`; |   |
+| 6 | `0x00367200` of `0x00184950()` when `first`, and `0x00228930`. |   |
 
 ### The sixteen groups, in frame order
 
@@ -74,11 +80,21 @@ Bit `0x2` gates two groups at two points of the frame, the second only when the 
 bit `0x1`.
 
 The argument is the 16-bit word `0x01E0C2B0`. `0x00253970`, the interface start-up, stores
-`0xF` there (`0x002539E5`) and the same `0xF` in the HUD draw word `0x01E0C2AC` (`0x002539D9`). `0x00226280`, the
+`0xF` there¹ and the same `0xF` in the HUD draw word `0x01E0C2AC`². `0x00226280`, the
 world-lock apply that runs at the end of every field frame, stores through
 `0x002547C0` the value `0xF` when the AND of the lock table's first words has bit `0x1000000000`, else `0xE`,
 with bits `0x4` and `0x8` cleared when that AND lacks bit `0x2000000000`. So a lock record that clears bit `0x1000000000` skips group 6 for
 every frame it is held, while the other fifteen groups keep running.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002539E5` |
+| ² | `0x002539D9` |
+
+</details>
 
 `0x0036D840(on)` sets or clears bits `0x4` and `0x8` of two remembered words, `0x02EC0B24` and `0x02EC0B28`, and stores the
 first through the same setter and the second as the HUD draw word `0x01E0C2AC` (`0x00254840`, `0x0036D873`;
@@ -91,6 +107,9 @@ bodies of `resumeposbattletarget` (`0x195`), `resumepartyinfo_spattack` (`0x2A4`
 ([party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md)).
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
@@ -125,7 +144,12 @@ bodies of `resumeposbattletarget` (`0x195`), `resumepartyinfo_spattack` (`0x2A4`
 | `0x02092748` | `u32` |  | set to 1 around the `0x00184960` call in `0x002507C0` |
 | `0x0208F570` | `u32` |  | accumulates `0x00184950`() per `0x002507C0` call |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -133,6 +157,8 @@ bodies of `resumeposbattletarget` (`0x195`), `resumepartyinfo_spattack` (`0x2A4`
 | groups, distinct bits | 16, 15 (bit `0x10` unused) |
 | test widths | 8 byte tests (mask `0xFF`), 8 dword tests (mask `0xFF00`) |
 | `0x00296860`'s second argument | 6 |
+
+</details>
 
 ## Operations
 
@@ -142,8 +168,13 @@ order, ending in the tail jump to `0x0028C870`.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The enable word; the pump argument word; the UI manager object's flag word `+0x10F68` and the
 object pointers the gates test.
+
+</details>
 
 ## Modding notes
 
@@ -173,13 +204,12 @@ object pointers the gates test.
 - [`manager-sub-0209be80-5380-accesses.tsv`](manager-sub-0209be80-5380-accesses.tsv): accesses to its group 1
   sub-object at `+0x5380`, the part the EXP, LP and combo numbers go to (183 rows). A row in a loop over a pool or on
   a pool's list node gives the offset in entry 0; the accesses of `0x00289D70` through the pool B node it finds
-  (`0x00289E19`, `0x00289E1D`, `0x00289E44`, `0x00289E60`, `0x00289E6A`, `0x00289F24`, `0x00289F29`) are not listed.
+ ¹ are not listed.
 - [`manager-sub-5380-pool-a-entry-accesses.tsv`](manager-sub-5380-pool-a-entry-accesses.tsv): every access
   to the first of that part's three pools: 12 entries of `0x30` bytes from its `+0x0` (51 rows).
 - [`manager-sub-5380-pool-b-entry-accesses.tsv`](manager-sub-5380-pool-b-entry-accesses.tsv): accesses to the second
   pool: 6 entries of `0x28` bytes from `+0x240` (63 rows). Not listed: the accesses of `0x00289D70` through the node it
-  finds on the list at `+0x428` or appends (`0x00289E19`, `0x00289E1D`, `0x00289E44`, `0x00289E60`, `0x00289E6A`, `0x00289F24`,
-  `0x00289F29`).
+  finds on the list at `+0x428` or appends².
 - [`manager-sub-5380-pool-c-entry-accesses.tsv`](manager-sub-5380-pool-c-entry-accesses.tsv): every access
   to the third pool: 6 entries of `0x28` bytes from `+0x330` (49 rows).
 - [`subsystem-update-flags-manager-sub-0209be80-57e0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-57e0-accesses.tsv):
@@ -206,11 +236,24 @@ object pointers the gates test.
   every access to its group 8 sub-object at `+0xA0D0` (19 rows).
 - [`manager-sub-0d0-record-accesses.tsv`](manager-sub-0d0-record-accesses.tsv): the address of the two `0x110`-byte
   elements at the start of that sub-object, taken at `0x0028E43D` (1 row). `0x003F7E80` picks element `[+0x980]` and
-  reaches it through `0x00273A20` (`0x00273A22`) and through `0x00245000`, whose `0x002465F0` clears it (`0x00246626`) and
-  writes `+0x0` and `+0x40` (`0x00246641`-`0x0024666D`).
+  reaches it through `0x00273A20`³ and through `0x00245000`, whose `0x002465F0` clears it⁴ and
+  writes `+0x0` and `+0x40`⁵.
 - [`subsystem-update-flags-manager-sub-0209be80-ab30-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-ab30-accesses.tsv):
   every access to its sub-object at `+0xAB30`, the battle menu ([widgets](../Menus-And-HUD/widgets.md)), outside the element
   handlers `0x00279E20` and `0x002985D0` that its `+0` holds (152 rows).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00289E19`, `0x00289E1D`, `0x00289E44`, `0x00289E60`, `0x00289E6A`, `0x00289F24`, `0x00289F29` |
+| ² | `0x00289E19`, `0x00289E1D`, `0x00289E44`, `0x00289E60`, `0x00289E6A`, `0x00289F24`, `0x00289F29` |
+| ³ | `0x00273A22` |
+| ⁴ | `0x00246626` |
+| ⁵ | `0x00246641`-`0x0024666D` |
+
+</details>
 
 In the `route` cells of these tables, `ManagerSingleton0209BE80` names the UI manager object and
 `ManagerSub0209BE80_` with an offset its sub-object at that offset.
@@ -224,48 +267,62 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Enemy AI and gambits** (explained on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [glossary](glossary.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x003014C0`, `0x00301AD0`, `0x00305AB0` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x003014C0`](../Enemy-AI-And-Gambits/gambits.md) Ai order: evaluate and resolve action target (on gambits)<br>[`0x00301AD0`](../Enemy-AI-And-Gambits/enemy-order-sets.md) Ai order: evaluate target selector (on enemy order sets)<br>[`0x00305AB0`](../Enemy-AI-And-Gambits/gambits.md) Battle unit: select and commit next action (on gambits) |
 
 **Gameplay** (explained on [identifier spaces](identifier-spaces.md), [force fight mode](force-fight-mode.md), [enmity](../Enemy-AI-And-Gambits/enmity.md), [frame update order](frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00320AB0` | calls | `0x0031B9F0` |
-| `0x00377C20` | is called by | `0x00307D10`, `0x0030A8A0`, `0x0030C210`, `0x0030D9A0` |
+| [`0x00320AB0`](subsystem-update-flags.md) | calls | [`0x0031B9F0`](identifier-spaces.md) Battle slot map: resolve mapped battle slot (on identifier spaces) |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00307D10`](force-fight-mode.md) Battle unit: update engagement state flag (on force fight mode)<br>[`0x0030A8A0`](../Party/party-slots.md) Battle unit: collect mapped four slot units by flags (on party slots)<br>[`0x0030C210`](../Enemy-AI-And-Gambits/enmity.md) Battle unit: has relationship class2 plus in slot mask (on enmity)<br>[`0x0030D9A0`](../Scripts-And-Script-Commands/party-during-scenes.md) Battle runtime: get mode0 to5 from flags and field bit15 (on party during scenes) |
 
 **Input gameplay** (explained on [force fight mode](force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00313A00` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00313A00`](../Battle-Actions/action-phases.md) (on action phases) |
 
 **Items, equipment, shops and licenses** (explained on [equipment](../Items-Equipment-Shops-And-Licenses/equipment.md), [stats](../Damage-And-Battle-Formulas/stats.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00320AB0` | is called by | `0x002F9F20`, `0x0030A4E0`, `0x0030FAA0`, `0x0030FBE0`, `0x0030FD10` |
-| `0x00377C20` | is called by | `0x00309FB0`, `0x0030FD10` |
+| [`0x00320AB0`](subsystem-update-flags.md) | is called by | [`0x002F9F20`](../Items-Equipment-Shops-And-Licenses/equipment.md) Equipment: build recommended loadout for mapped stats (on equipment)<br>[`0x0030A4E0`](../Damage-And-Battle-Formulas/stats.md) Equipment: evaluate candidate loadout and build derived stats (on stats)<br>[`0x0030FAA0`](../Party/party-data.md) Inventory equipment: restore temporary snapshot and clear backup (on party data)<br>[`0x0030FBE0`](../Items-Equipment-Shops-And-Licenses/equipment.md) Inventory equipment: snapshot and clear temporary state (on equipment)<br>[`0x0030FD10`](../Items-Equipment-Shops-And-Licenses/equipment.md) Equipment: unequip encoded item from active roster (on equipment) |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00309FB0`](../Party/party-slots.md) Inventory: query owned count including reserved action items (on party slots)<br>[`0x0030FD10`](../Items-Equipment-Shops-And-Licenses/equipment.md) Equipment: unequip encoded item from active roster (on equipment) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00320AB0` | is called by | `0x002F8BB0`, `0x00312280` |
-| `0x00377C20` | is called by | `0x00312280` |
+| [`0x00320AB0`](subsystem-update-flags.md) | is called by | [`0x002F8BB0`](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md) Reward: compute experience for recipient (on stat growth per level)<br>[`0x00312280`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle unit: process defeat rewards and loot (on strong and weak mode) |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00312280`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle unit: process defeat rewards and loot (on strong and weak mode) |
 
 **Status effects and KO** (explained on [frame update order](frame-update-order.md), [force fight mode](force-fight-mode.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00320AB0` | is called by | `0x00310DB0` |
-| `0x00377C20` | is called by | `0x0030E360`, `0x0030F690`, `0x00310DB0` |
+| [`0x00320AB0`](subsystem-update-flags.md) | is called by | [`0x00310DB0`](../Battle-Actions/action-results.md) Battle unit: run periodic combat maintenance (on action results) |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects (on identifier spaces)<br>[`0x0030F690`](../Damage-And-Battle-Formulas/augments.md) Battle stats: remove statuses from mask and recompute (on augments)<br>[`0x00310DB0`](../Battle-Actions/action-results.md) Battle unit: run periodic combat maintenance (on action results) |
 
 **Characters and objects**
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003B7080` | calls | `0x003B6CC0` |
+| [`0x003B7080`](subsystem-update-flags.md) | calls | [`0x003B6CC0`](subsystem-update-flags.md) |
 
 </details>

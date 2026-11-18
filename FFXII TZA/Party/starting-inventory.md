@@ -13,21 +13,37 @@ nothing; the items a new party holds come from the first-join lists of the
 
 ### The reader
 
-`0x0023AF50` is the only function that reads the table (`0x0023AF50`-`0x0023B01A`):
+`0x0023AF50` is the only function that reads the table¹:
 
-1. it resets the party block with `0x002370C0` ([Party data](party-data.md));
-2. for each row, while the row number is below the table's count, it calls `0x00300BA0(+0x00, +0x02, 0)`, which is
-   `0x003008A0(id, count, 1, 1, 0)`, the inventory change of
-   [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md);
-3. `0x003008A0` returns -1 at once for id `0xFFFF` (`0x003008C0`-`0x003008C5`);
-4. row `i` is at `0x0020E600(table +0x0C) + i × table +0x08` (`0x0023AF89`-`0x0023AFB3`); with no table bound at
-   `0x02EBF048` the loop ends at once and nothing is added (`0x0023AF77`-`0x0023AF83`). The reader returns 1
-   (`0x0023B00B`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023AF50`-`0x0023B01A` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | it resets the party block with `0x002370C0` ([Party data](party-data.md)); |   |
+| 2 | for each row, while the row number is below the table's count, it calls `0x00300BA0(+0x00, +0x02, 0)`, which is `0x003008A0(id, count, 1, 1, 0)`, the inventory change of [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md); |   |
+| 3 | `0x003008A0` returns -1 at once for id `0xFFFF`; | `0x003008C0`-`0x003008C5` |
+| 4 | row `i` is at `0x0020E600(table +0x0C) + i × table +0x08`; with no table bound at `0x02EBF048` the loop ends at once and nothing is added. The reader returns 1. | `0x0023AF89`-`0x0023AFB3`<br>`0x0023AF77`-`0x0023AF83`<br>`0x0023B00B` |
 
 `0x0023AF50` runs at the start of `0x00237DF0`, which then builds the forty member records with `0x0023AC80`;
 `0x00237DF0` is called by `0x00233C10`, `0x00238A80`, `0x00239960` and `0x00394460`. The last is the title asset's factory,
-which the title script verb `fsttl_initialize` (`0x00511EA0`) runs, calling `0x00237DF0` at `0x00394486`
+which the title script verb `fsttl_initialize`¹ runs, calling `0x00237DF0` at `0x00394486`
 ([Widgets](../Menus-And-HUD/widgets.md), [Verb table](../Scripts-And-Script-Commands/verb-table.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00511EA0` |
+
+</details>
 
 ### Where the values come from
 
@@ -38,7 +54,16 @@ The rows are the `st2e` table at `battle_pack.bin` entry `+0xAC`: 32 rows of 4 b
 | `+0x00` | `u16` | id | `0x0023AF50` | an inventory id; `0xFFFF` on every row |
 | `+0x02` | `u16` | count | `0x0023AF50` | the count to add; 0 on every row |
 
-The table is loaded only by `0x0023AF50` and the loader `0x00236C30` (`0x00236F54`).
+The table is loaded only by `0x0023AF50` and the loader `0x00236C30`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236F54` |
+
+</details>
 
 ### Properties of the shipped rows
 

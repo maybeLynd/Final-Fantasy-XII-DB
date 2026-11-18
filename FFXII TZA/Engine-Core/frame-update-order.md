@@ -39,8 +39,19 @@ stores that flag at `0x02064AA0`, runs `0x0022A580`, and increments `0x02064AD0`
 `0x0022A580` first checks `0x00184AD0()` (a load in progress returns 1 after `0x0020E4E0()`), counts `0x01FD4A80`, runs
 `0x00183100(1)`, `0x001829A0(0)`, `0x00358640(0)`, `0x001EC490(0)`, `0x00214C30(0)`, `0x00183100(0)` again, `0x00182810` once when
 `0x01FD49E0` was set, `0x001831C0(0)` and `0x00183090(0)`, then sets `0x01FD4A68` from the state, stores `0x0017E4E0()` at
-`0x02F974A0` (`0x0022A67A`), runs `0x00259240` (`0x0022A680`) and dispatches on the state byte `0x02064AD3`; it returns the
-handler's value (`0x0022A6E5`, `0x0022A749`):
+`0x02F974A0`¹, runs `0x00259240`² and dispatches on the state byte `0x02064AD3`; it returns the
+handler's value³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A67A` |
+| ² | `0x0022A680` |
+| ³ | `0x0022A6E5`, `0x0022A749` |
+
+</details>
 
 | State | Handler | What it is |
 |---|---|---|
@@ -52,90 +63,217 @@ handler's value (`0x0022A6E5`, `0x0022A749`):
 | 5 | `0x0022BC20` | the capture-backed frame: `0x0017F740(0)`, the pad (`0x0036F2F0`, `0x0035FF90`, `0x0036FDF0`, `0x002498B0`), `0x0036D400(1, 1)`, `0x0024D540(0)`, `0x00374950`, `0x002512B0`, `0x00375500(5)` and `0x00375500(6)` each when `0x003583F0(0)` is non-zero, `0x002528A0`, `0x00252990`, `0x002529F0`, `0x0035AF10`; `0x00314020(1)` under `ATEL CONTROL` (`0x00314020(1, 1)`, `0x0022BCCF`); `0x0036D890`; `0x0027E9E0` when `0x002878A0()` is 0 and `0x0017DE60()` is non-zero; `0x00250540`, `0x0035AF20(0)`, the `0x02EBA3F8` wait, `0x002E65A0`, `0x00332660`, `0x003323B0`, `0x00324510`, `0x0035AE30`, `0x00358BB0`, `0x0036F2C0`, `0x0032E040`, `0x0035E9A0(0x0022BFD0)`, `0x0035EA30(1)`, `0x0017F370(1)`, `0x00375B80(1)`, `0x00376470` and `0x00375500(7)` when `0x003583F0(0)` is non-zero, `0x0024B4F0`, `0x00374FD0`; then unless still 5 it returns to state 2 with `0x00263560`, `0x00376BE0`, `0x00226280`, `0x00375EC0` and `0x00360120` (`0x0022BDB2`-`0x0022BDDB`); last `0x0037DDD0` on every frame, and it returns 1. Its labels go to the return stub `0x0016D6A0` |
 | 6 | `0x0022B000` | a second capture; moves to state 5: `0x0036F2F0`, `0x0035AF10`, `0x0035AE30`, `0x0035FF90`, `0x0036FDF0`, the GS register build `0x0036D400(1, 1)` in place of `0x0022B0B0` (`0x0022B024`), `0x0035AF10`, `0x0035AF20(0)`, `0x0035AE30`, the `0x02EBA3F8` wait, `0x0036F2C0`, `0x0032E040`, `0x002E65A0`, `0x00332590`, `0x00375F20`, `0x00376D80`, `0x00376470` and `0x00375500(7)` when `0x003583F0(0)` is non-zero, `0x00251E00`; then state 5 (`0x0022B097`) and it returns 1 |
 
-`0x00184AD0` returns the byte `+0x41` of the object `0x001C18E0()` answers (`0x00184AD4`-`0x00184AD9`).
+`0x00184AD0` returns the byte `+0x41` of the object `0x001C18E0()` answers¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00184AD4`-`0x00184AD9` |
+
+</details>
 
 States 4 and 6 are entered through the setter `0x00229F00` (called from the request drain `0x002E09A0`
 and from `0x002E2240`); `0x00229EA0` is the getter. `0x01FD4A68` is 1 in states 4 and 6 and 0 otherwise;
 `0x01FD4A84` is 1 in states 2, 3 and 5, and 0 for every other value, including the values above 6 and below 0
-that fall to `0x0022A770` (`0x0022A600`-`0x0022A63A`); in those three states `0x0035E6F0`, `0x00360080`, `0x0035E9F0`
+that fall to `0x0022A770`¹; in those three states `0x0035E6F0`, `0x00360080`, `0x0035E9F0`
 and `0x0035E9B0(-16.0)` run before the dispatch; `0x02064AD8` toggles in every state but 4 and 6;
 states 4 and 6 call `0x001E0580` first, which clears `0x01F82D31`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A600`-`0x0022A63A` |
+
+</details>
+
 `0x00360080` waits for vertical syncs: when `0x022CAE80` is non-zero and `0x00184950()` is not 0 it calls `0x00369170`
-`0x00184950()` times (`0x00360084`-`0x003600A9`), and each call runs `0x00369080` and then waits on the semaphore
+`0x00184950()` times¹, and each call runs `0x00369080` and then waits on the semaphore
 `[0x022D7F90]` that the vertical-sync handler releases ([graphics thread
 handshake](../Graphics/graphics-thread-handshake.md)). `0x0035E9B0` sets `0x022CAE80` to 1 as it ends
 (`0x0035FF80`, reached by the jump at `0x0035E9E7`).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00360084`-`0x003600A9` |
+
+</details>
+
 `0x0022BFB0(v)`, the handler of verb `0x05CA` (through `0x00340B70`), sets `0x01FD49E0` and stores `v` at
-`0x01FD49E4`; on the next pass `0x0022A580` calls `0x00182810(v)` (`0x0022A5E3`) and clears the request.
-`0x00182810` writes `v != 0` to byte `+0x1E9` of the post-process parameter object (`0x00193D50`,
-`0x00193F70`).
+`0x01FD49E4`; on the next pass `0x0022A580` calls `0x00182810(v)`¹ and clears the request.
+`0x00182810` writes `v != 0` to byte `+0x1E9` of the post-process parameter object².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A5E3` |
+| ² | `0x00193D50`, `0x00193F70` |
+
+</details>
 
 State 1's gate `0x0037C2E0` walks the entries of the table `[0x02EBF0A8]` (`0x003204B0` the count,
-`0x00320B30` an entry), skips an entry whose id is 0 or less (`0x0037C33F`), and resolves each other to a record
+`0x00320B30` an entry), skips an entry whose id is 0 or less¹, and resolves each other to a record
 (`0x002EAE20(id, 0)`) at `0x02ADD948`. A record with bit `0x4` of `+0x19` set, or a null record (`0x002E4C70` returns 0
-for both, `0x002E4C73`), goes to `0x002EAF70` (`0x0037C369`). Any other holds the gate (it returns
-1 and resumes there next frame) until bit `0x2` of its `+0x18` is set (`0x002E4C20`), and then gets bit
+for both, `0x002E4C73`), goes to `0x002EAF70`². Any other holds the gate (it returns
+1 and resumes there next frame) until bit `0x2` of its `+0x18` is set³, and then gets bit
 `0x2` of `+0x19` (`0x002EBE20(record, 1)`). The gate returns 0 once every entry is through.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037C33F` |
+| ² | `0x0037C369` |
+| ³ | `0x002E4C20` |
+
+</details>
 
 `0x00320B30(i)` answers -1 for a negative i and for an i above the count dword `+0x04` of the table `[0x02EBF0A8]` less 1,
 an unsigned compare; with no table the count is taken as 0, and with a count of 0 the bound wraps to `0xFFFFFFFF`, so
-every i that is not negative passes (`0x00320B38`-`0x00320B53`).
+every i that is not negative passes¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320B38`-`0x00320B53` |
+
+</details>
 
 It answers -2 when the table is null, when `0x0020E600(dword +0x0C)` is null or when a second `0x0020E600(dword +0x0C)`
-plus the word `+0x08` x i, a 32-bit sum, is 0. Otherwise it answers the dword at that sum (`0x00320B55`-`0x00320B9B`).
+plus the word `+0x08` x i, a 32-bit sum, is 0. Otherwise it answers the dword at that sum¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320B55`-`0x00320B9B` |
+
+</details>
 
 After the handler, with `0x01FD4A84` set and `0x00184950()` = 2, `0x0035E9F0` and `0x0035E9B0(17.0)` run;
 `0x001E0560` arms the pump's second pass when `0x01F82D31` was set; with `0x01FD4A68` clear,
 `0x02F974A0` clear and no second pass armed, `0x001832F0()` runs, and with `0x01FD4A68` clear `0x00375B80(0)`
-then runs whatever the other two hold (`0x0022A70A`-`0x0022A72C`). When the word `0x02064AEC` is non-zero the body
-calls the return stub `0x0016D6A0`, a bare `ret`, and clears the word (`0x0022A731`-`0x0022A73F`); it calls nothing
+then runs whatever the other two hold¹. When the word `0x02064AEC` is non-zero the body
+calls the return stub `0x0016D6A0`, a bare `ret`, and clears the word²; it calls nothing
 through the word.
 
-`0x001832F0` ends in `0x00189C10(0x00189120())`, which stores the dword 0 at `+0xDD0` of the object `0x00189120()` answers
-(`0x001832F4`-`0x00183300`, `0x00189C10`). `0x00375B80` stores its argument in the dword `0x02ADBB20` and does nothing else
-(`0x00375B80`-`0x00375B86`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A70A`-`0x0022A72C` |
+| ² | `0x0022A731`-`0x0022A73F` |
+
+</details>
+
+`0x001832F0` ends in `0x00189C10(0x00189120())`, which stores the dword 0 at `+0xDD0` of the object `0x00189120()` answers¹. `0x00375B80` stores its argument in the dword `0x02ADBB20` and does nothing else².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001832F4`-`0x00183300`, `0x00189C10` |
+| ² | `0x00375B80`-`0x00375B86` |
+
+</details>
 
 ### The menu frame and the monster viewer
 
 The full menu frame `0x0022B8C0` (state 3) runs a few steps that only matter for the Bestiary's
 monster viewer, the object at `0x01F82E18` (`0x001EBA40`, `0x2E0` bytes, constructor `0x001EB190`;
 [Clan Primer](../Menus-And-HUD/clan-primer.md)). `0x001EBA40` builds it only while `0x01F82E18` is null: it allocates
-`0x2E0` bytes (`0x00210EC0`), runs the constructor on a non-null block and stores the result at `0x01F82E18`, null
-when the allocation failed (`0x001EBA4D`-`0x001EBA76`). `0x00181DD0` reads its byte `+0x118`, set while a monster is
+`0x2E0` bytes¹, runs the constructor on a non-null block and stores the result at `0x01F82E18`, null
+when the allocation failed². `0x00181DD0` reads its byte `+0x118`, set while a monster is
 shown:
 
-1. without a monster shown it starts with `0x00182370` (`0x00186110` on the render manager);
-2. after the pad and the UI effects, with `0x02064AA0` at 0, `0x00258EB0` pushes arena 2 (`0x0036C1D0`),
-   runs `0x0024B9B0(0, 4)` and pops it (`0x0036C140`), and `0x00374950` follows;
-3. it installs `0x0022BEB0` as the menu draw callback (`0x002D0570` stores it at `0x0209E630`);
-4. after `OTHER`, with a monster shown, `0x00181B20` posts a `CopyBufferObj` (`0x0018B8B0`,
-   `0x001F1810`) between the first entry of `0x00186910(render manager, 0)` (null when that entry's byte `+8`
-   is set) and the viewer's `+0x278`; `0x00181E50` then steps the viewer's fade at `+0x20` (`0x001EC000`);
-5. with a monster shown it sets `0x02064AE8` and runs `0x003323D0`, `0x00314370(0)` and `0x0036F510`, and
-   when `0x00181DB0()` is 0 and `0x00358340()` holds, `0x00258E40`; `0x00181DB0` is `0x001EB990`, which holds
-   while the viewer's byte `+0x26D` or `+0x26E` is set. Without a monster, a set `0x02064AE8` is
-   cleared and `0x00314370(1)` and `0x0036F510` run.
+<details>
+<summary>Where in the code</summary>
 
-`0x00186110` ends in `0x0018BC00(0x0018CA40())`: it hands the object `0x0018CA40()` answers to `0x0018BC00`
-(`0x00186114`-`0x00186120`).
+| | Code |
+|---|---|
+| ¹ | `0x00210EC0` |
+| ² | `0x001EBA4D`-`0x001EBA76` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | without a monster shown it starts with `0x00182370` (`0x00186110` on the render manager); |   |
+| 2 | after the pad and the UI effects, with `0x02064AA0` at 0, `0x00258EB0` pushes arena 2, runs `0x0024B9B0(0, 4)` and pops it, and `0x00374950` follows; | `0x0036C1D0`<br>`0x0036C140` |
+| 3 | it installs `0x0022BEB0` as the menu draw callback (`0x002D0570` stores it at `0x0209E630`); |   |
+| 4 | after `OTHER`, with a monster shown, `0x00181B20` posts a `CopyBufferObj` between the first entry of `0x00186910(render manager, 0)` (null when that entry's byte `+8` is set) and the viewer's `+0x278`; `0x00181E50` then steps the viewer's fade at `+0x20`; | `0x0018B8B0`, `0x001F1810`<br>`0x001EC000` |
+| 5 | with a monster shown it sets `0x02064AE8` and runs `0x003323D0`, `0x00314370(0)` and `0x0036F510`, and when `0x00181DB0()` is 0 and `0x00358340()` holds, `0x00258E40`; `0x00181DB0` is `0x001EB990`, which holds while the viewer's byte `+0x26D` or `+0x26E` is set. Without a monster, a set `0x02064AE8` is cleared and `0x00314370(1)` and `0x0036F510` run. |   |
+
+`0x00186110` ends in `0x0018BC00(0x0018CA40())`: it hands the object `0x0018CA40()` answers to `0x0018BC00`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00186114`-`0x00186120` |
+
+</details>
 
 The draw callback `0x0022BEB0` brackets the frame's own draws with `0x001FBE50` and `0x001FBD80(1)` (a tail jump,
-`0x0022BF99`). With a monster shown it posts the same copy for the viewer's `+0x270` (`0x00181AB0`); `0x0017F2F0` runs next
-on every call (`0x0022BEC7`).
+`0x0022BF99`). With a monster shown it posts the same copy for the viewer's `+0x270`¹; `0x0017F2F0` runs next
+on every call².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00181AB0` |
+| ² | `0x0022BEC7` |
+
+</details>
 
 With a monster shown and `0x002EF030()` at 1 it interleaves `0x00258EE0(1)` to `0x00258EE0(5)` and `0x00375500(2)` / `(3)`,
-each behind `0x003583F0(0)` or `0x00358350(0)`, with the viewer's turn `0x00184690` (`0x001EC060`): `0x00258EE0(1)`,
+each behind `0x003583F0(0)` or `0x00358350(0)`, with the viewer's turn `0x00184690`¹: `0x00258EE0(1)`,
 `0x00375500(2)` and `0x00258EE0(2)` behind one `0x003583F0(0)`, then `0x00184690`, then `0x00258EE0(3)` and `0x00375500(3)` behind
-a second `0x003583F0(0)`, `0x00258EE0(4)` behind `0x00358350(0)` and `0x00258EE0(5)` behind a third `0x003583F0(0)`
-(`0x0022BEE3`-`0x0022BF55`).
+a second `0x003583F0(0)`, `0x00258EE0(4)` behind `0x00358350(0)` and `0x00258EE0(5)` behind a third `0x003583F0(0)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EC060` |
+| ² | `0x0022BEE3`-`0x0022BF55` |
+
+</details>
 
 It starts the viewer's 80-frame fade (`0x00181C10`, `0x001EBCF0`:
 halved when `0x001EDE70()` is 0, from 200 down by 200 / frames) once `0x00181C70()` (`+0x284`) is 0, with a monster
-shown and `0x002EF030()` at 1 (`0x0022BF5A`-`0x0022BF76`), and, with a monster shown, steps that fade, the one at
-`+0x00`, with `0x00181E30` (`0x001EBF90`). Both fades draw through `0x001EB800`. `0x0017F370(0)` runs before the closing
-`0x001FBD80(1)` (`0x0022BF8B`).
+shown and `0x002EF030()` at 1¹, and, with a monster shown, steps that fade, the one at
+`+0x00`, with `0x00181E30`². Both fades draw through `0x001EB800`. `0x0017F370(0)` runs before the closing
+`0x001FBD80(1)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022BF5A`-`0x0022BF76` |
+| ² | `0x001EBF90` |
+| ³ | `0x0022BF8B` |
+
+</details>
 
 The two capture states share their tail. `0x0022AF50` (state 4) and `0x0022B000` (state 6) both run
 `0x00332590`, which points `0x022C6F20` at `0x022C6F30`, runs `0x0041E500` and `0x00426950`, and clears
@@ -146,7 +284,16 @@ the word after each.
 
 `0x00426950` walks the records of the array `[0x022C6F28]` (`0x740` bytes each) from the index in its dword `+0x48800`. It
 calls `0x0042DA30(record)` for each and only then reads the next index, the record's signed word `+0x04` (through
-`[0x022C6F28]` loaded again), until -1 (`0x00426954`-`0x00426992`).
+`[0x022C6F28]` loaded again), until -1¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00426954`-`0x00426992` |
+
+</details>
 
 State 6 also runs `0x00375F20`, which sets bit `0x1` of the first word of the
 records at `0x02EBF9F0` (stride `0x70`) up to the first whose `+0x58` is 0.
@@ -158,13 +305,34 @@ draw set-up it runs, when `0x0017E4E0()` is 0, `0x001EC760()` passes of the foll
 in the camera, the end-of-frame list and the pacer.
 
 `0x001EC690` advances the counter `0x01F832C4`, which `0x001EC760` among others reads: once when `0x001EC760` returns 0,
-and on every step of the frame's first pass (`0x0022ABA8`-`0x0022ABAD`), so two or four times at double or quadruple
-speed. The event-slot pusher `0x0020AF10` zeroes it (`0x0020AFAA`).
+and on every step of the frame's first pass¹, so two or four times at double or quadruple
+speed. The event-slot pusher `0x0020AF10` zeroes it².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022ABA8`-`0x0022ABAD` |
+| ² | `0x0020AFAA` |
+
+</details>
 
 `0x001EC760` returns 1 at 30 fps (`0x01F82E38` clear, `0x001EC776`). At 60 fps it returns 0 or 2 at listed frames of
-particular scenes, picked during an event (`0x001EC560`) by the cut-scene name (`0x001C50C0`), the scene word `0x01EF9218` or
-story progress (`0x00265270`) and the frame counter `0x01F832C4`, and outside one by the values `0x0024DE30` reports; it
+particular scenes, picked during an event¹ by the cut-scene name², the scene word `0x01EF9218` or
+story progress³ and the frame counter `0x01F832C4`, and outside one by the values `0x0024DE30` reports; it
 returns 1 otherwise.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EC560` |
+| ² | `0x001C50C0` |
+| ³ | `0x00265270` |
+
+</details>
 
 [`frame-update-order-pass-count.tsv`](frame-update-order-pass-count.tsv) lists every case, 31 rows with 108 frames.
 
@@ -175,12 +343,30 @@ returns 1 otherwise.
   answers 1, and `0x1AF4` or `0x13B` with another count goes on to `wdl_b0101`.
 - Outside an event a case needs `0x0024DE30`'s kind to be 1 and its id to be `instance_id`, and the frame is its third
   value. Those answers also add 1 (answer 0) or -1 (answer 2) to the instance's `+0x3A2` through `0x0024FCE0`
-  (`0x001ECFEE`-`0x001ECFFF`).
+ ¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001ECFEE`-`0x001ECFFF` |
+
+</details>
 
 `Database/Tools/catalogues/pass_count_branches.py` writes the table.
 
 Before the pad, once per `0x01E02824` with `0x00264610(0)` non-null, the flag is cleared and the deferred
-`0x0026B730(0x01E02808 & 0xFFFF)` runs unless `0x01E02808` is -1 (`0x0022A7A6`-`0x0022A7BB`). Each pass of the loop then:
+`0x0026B730(0x01E02808 & 0xFFFF)` runs unless `0x01E02808` is -1¹. Each pass of the loop then:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A7A6`-`0x0022A7BB` |
+
+</details>
 
 - runs the speed-mode pad block (below);
 - sets the speed factor `0x02064AC4` to 1.0 or, with the speed permit `0x02064AD2` set, the entry of
@@ -195,45 +381,74 @@ Before the pad, once per `0x01E02824` with `0x00264610(0)` non-null, the flag is
   `0x002507C0(1)` ([subsystem update flags](subsystem-update-flags.md)).
 - `0x0036F460` hands the map animation clock `0x004678E0`
   ([texture animation lists](../Game-Files-And-Data-Tables/texture-animation-lists-ta.md)) the
-  value `(acc - [0x02AD9B50]) * 30 / ([0x01DFE0B8] * 30)` for the accumulator `acc` (`0x0036F472`,
-  `0x0036F4A1`-`0x0036F4B9`), and stores in `0x02AD9B50` `acc`, less 1.0 repeatedly while it is 1.0 or more
-  (`0x0036F47A`-`0x0036F499`);
+  value `(acc - [0x02AD9B50]) * 30 / ([0x01DFE0B8] * 30)` for the accumulator `acc`¹, and stores in `0x02AD9B50` `acc`, less 1.0 repeatedly while it is 1.0 or more
+ ²;
 - `0x0036F460` ends with `0x00468520`, which runs `0x003CD820` on `+0x14` of each record of the table
   `[0x02CA6010]` (count `[0x02CA6020]`, stride `0x40`) whose `+4` is 0.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036F472`, `0x0036F4A1`-`0x0036F4B9` |
+| ² | `0x0036F47A`-`0x0036F499` |
+
+</details>
+
 While the accumulator is at least 1.0, one simulation step runs:
 
-1. `0x00250180(first)`; the tick `0x00314020(0, first)` when `0x001800E0()` is 0 and `0x001800C0()` is 0 or
-   `0x001EC560()` is 0, else `0x002F1770(0, first)` with result 2;
-2. `0x0037A450`, `0x0036D890`, `0x004668C0`; `0x003323D0` when `0x00358290()`; `0x002507C0(first)` when
-   `0x003583A0()`; `0x00258B90(0)` when `0x00358340()`; `0x00314370(result)`; with the mode saved by
-   `0x00358320`, `0x00358640(0)`, `0x0037D4C0`, `0x00314820`, `0x0036F510`, `0x00256F60`, `0x00358640(saved)`;
-3. when `0x00358340()`, `0x00258D70`, then `0x001808D0` if this step or an earlier one of the frame started with
-   the accumulator below 1.1 (`0x00908D4C`): the flag is set at `0x0022ABA0`-`0x0022ABA4`, cleared only at `0x0022A795`
-   before the steps and tested at `0x0022AC6A` (`0x0022AC5C`-`0x0022AC6E`); then `0x00254E50` (the per-tick game-over check,
-   [game over](../World-Areas-And-Travel/game-over.md)) and `0x0035AF20(0)`;
-4. the accumulator loses 1.0 (floored at 0); a state other than 2 zeroes it and stops; otherwise
-   `0x003586A0(1, 1)` when `0x002361A0()`, `(3, 1)` when `0x00265760()`, `(2, 1)` unless `0x00226BC0()`,
-   `(4, 1)` unless `0x002F1A20()`;
-5. `0x02064AD2 = 0x00358550()`, and when it is clear (after `0x0017F740(1)` when set) and `0x003583D0(0)`
-   or `0x003583D0(1)` holds the accumulator is zeroed; `0x003603C0()` zeroes it too; `0x00358280` resets
-   the permit byte; `0x02064AA8` counts the steps of this pass and is zeroed right after the loop,
-   so it is non-zero only while a pass's steps run.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00250180(first)`; the tick `0x00314020(0, first)` when `0x001800E0()` is 0 and `0x001800C0()` is 0 or `0x001EC560()` is 0, else `0x002F1770(0, first)` with result 2; |   |
+| 2 | `0x0037A450`, `0x0036D890`, `0x004668C0`; `0x003323D0` when `0x00358290()`; `0x002507C0(first)` when `0x003583A0()`; `0x00258B90(0)` when `0x00358340()`; `0x00314370(result)`; with the mode saved by `0x00358320`, `0x00358640(0)`, `0x0037D4C0`, `0x00314820`, `0x0036F510`, `0x00256F60`, `0x00358640(saved)`; |   |
+| 3 | when `0x00358340()`, `0x00258D70`, then `0x001808D0` if this step or an earlier one of the frame started with the accumulator below 1.1: the flag is set at `0x0022ABA0`-`0x0022ABA4`, cleared only at `0x0022A795` before the steps and tested at `0x0022AC6A`; then `0x00254E50` (the per-tick game-over check, [game over](../World-Areas-And-Travel/game-over.md)) and `0x0035AF20(0)`; | `0x00908D4C`<br>`0x0022AC5C`-`0x0022AC6E` |
+| 4 | the accumulator loses 1.0 (floored at 0); a state other than 2 zeroes it and stops; otherwise `0x003586A0(1, 1)` when `0x002361A0()`, `(3, 1)` when `0x00265760()`, `(2, 1)` unless `0x00226BC0()`, `(4, 1)` unless `0x002F1A20()`; |   |
+| 5 | `0x02064AD2 = 0x00358550()`, and when it is clear (after `0x0017F740(1)` when set) and `0x003583D0(0)` or `0x003583D0(1)` holds the accumulator is zeroed; `0x003603C0()` zeroes it too; `0x00358280` resets the permit byte; `0x02064AA8` counts the steps of this pass and is zeroed right after the loop, so it is non-zero only while a pass's steps run. |   |
 
 Inside the tick, the drive pass `0x0025D9E0` hands every record of a slot whose byte `+0x10` is below `0x80` to the wait
-resolver `0x0025DF00`, one after another (`0x0025DAC1`, `0x0025DE7A`-`0x0025DEB1`), and on slot 0 runs `0x0025B740` after each
-(`0x0025DE9D`); [field runtime](../Characters-And-Objects/field-runtime.md#the-pass-body) gives its refusals and its other
+resolver `0x0025DF00`, one after another¹, and on slot 0 runs `0x0025B740` after each²; [field runtime](../Characters-And-Objects/field-runtime.md#the-pass-body) gives its refusals and its other
 branches.
 
-For each record the wait resolver `0x0025DF00` runs, in this order: the interpreter `0x0025E4C0` (`0x0025E0D3`) when the
-record's current thread entry is in state 1 or 2, unless `0x001ED180()` holds and `0x001EDE80()` answers 0
-(`0x0025DFA0`-`0x0025DFB0`); the function at the record's `+0x38` under the tests [field
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025DAC1`, `0x0025DE7A`-`0x0025DEB1` |
+| ² | `0x0025DE9D` |
+
+</details>
+
+For each record the wait resolver `0x0025DF00` runs, in this order: the interpreter `0x0025E4C0`¹ when the
+record's current thread entry is in state 1 or 2, unless `0x001ED180()` holds and `0x001EDE80()` answers 0²; the function at the record's `+0x38` under the tests [field
 runtime](../Characters-And-Objects/field-runtime.md#the-wait-resolver) lists, the battle unit frame `0x00233F70` for a record
 bound to a battle unit (`0x0025E222`; the per-unit frame below).
 
-Then `0x002E97B0`, `0x002681E0`, `0x002E5030` (`0x0025E39B`) and `0x002E5750` (`0x0025E3AA`) run, or, under the test at
-`0x0025E224`-`0x0025E23C`, `0x002E6310` alone (`0x0025E241`). `0x002E5180` runs later, from the tick's tail through `0x002623A0`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E0D3` |
+| ² | `0x0025DFA0`-`0x0025DFB0` |
+
+</details>
+
+Then `0x002E97B0`, `0x002681E0`, `0x002E5030`¹ and `0x002E5750`² run, or, under the test at
+`0x0025E224`-`0x0025E23C`, `0x002E6310` alone³. `0x002E5180` runs later, from the tick's tail through `0x002623A0`
 (`0x00314269`, the tail paragraph of the simulation tick below).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E39B` |
+| ² | `0x0025E3AA` |
+| ³ | `0x0025E241` |
+
+</details>
 
 After the steps come three groups:
 
@@ -249,44 +464,100 @@ After the steps come three groups:
   `0x0017F370(1)`, `0x00375B80(1)`, `0x00376470` and `0x00375500(7)` when `0x003583F0`, `0x0024B4F0`,
   `0x00374FD0`, `0x0037DDD0` and `0x00316930`, the end-of-frame achievement pass ([achievements](../Steam-And-Achievements/achievements.md)).
 
-`0x00314820` calls `0x00377520()` and ends in a jump to `0x003B6C70()` (`0x00314824`-`0x0031482D`).
+`0x00314820` calls `0x00377520()` and ends in a jump to `0x003B6C70()`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00314824`-`0x0031482D` |
+
+</details>
 
 The controlled-character change `0x00358BC0` is called through the thunk `0x00358BB0` (`0x0022AE3C`, a `jmp 0x00358BC0`), and
 the time-stop apply `0x00226280` ([time stop and freeze](time-stop-and-freeze.md)) through the thunk `0x0036D810`
-(`0x0022AE41`, a `jmp 0x00226280`); then, before `0x002E65A0`, the frame waits until two reads of `0x02EBA3F8` agree
-(`0x0022AE50`-`0x0022AE5E`), as states 0 and 1 do. The camera block and the step path rejoin at `0x0022ADEA` (`0x0022ADA2`
+(`0x0022AE41`, a `jmp 0x00226280`); then, before `0x002E65A0`, the frame waits until two reads of `0x02EBA3F8` agree¹, as states 0 and 1 do. The camera block and the step path rejoin at `0x0022ADEA` (`0x0022ADA2`
 jumps over the block when a step ran), a call to the return stub `0x0016D6A0`, which `0x0022ADF6` calls once more before
-`0x0035AE30` (`0x0022ADFB`).
+`0x0035AE30`².
 
-`0x00316930` (`0x0022AEE6`) starts with `0x00283270(1)` (`0x00316945`), which reaches the status record fill `0x00329220`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022AE50`-`0x0022AE5E` |
+| ² | `0x0022ADFB` |
+
+</details>
+
+`0x00316930`¹ starts with `0x00283270(1)`², which reaches the status record fill `0x00329220`
 ([party member status record](../Characters-And-Objects/party-member-status-record.md)) nine times, through `0x00320040`
 (`0x00283368`, for i = 0 to 8 by `0x00283433`, and the tail jump at `0x0032008D`), so that fill runs after the pacer.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022AEE6` |
+| ² | `0x00316945` |
+
+</details>
 
 With `0x0017E4E0()` non-zero the frame runs `0x002506D0` and, when `0x001EC560()`, the camera block
 (its `0x00314370(1)` and `0x0037D4C0` each only while `0x02064AA0` is 0) followed by `0x0035AE30`,
 `0x00360120` and the `0x00358370()` pair, and nothing else.
 
-`0x003143D0`, in both camera blocks (`0x0022ADBF`, `0x0022A926`), runs `0x003DAA20`, passes 0.0 to `0x003DA2F0` and `0x003DD210`,
+`0x003143D0`, in both camera blocks¹, runs `0x003DAA20`, passes 0.0 to `0x003DA2F0` and `0x003DD210`,
 as the frozen pass does, runs `0x00255810` and `0x0037D890`, and then the frozen pass `0x0025E400` for slots 0 to 4 through
 `0x0025E3F0`, which passes 0 as its unused second argument (`0x003143D6`-`0x00314403`; [field
 runtime](../Characters-And-Objects/field-runtime.md)). So on a frame with no whole step the focus record `0x02099D78` is still
-republished and `0x002E5180` still runs for each live slot's class-3 records whose `+0xC0` object has a `+0x138`
-(`0x0025E458`-`0x0025E49B`).
+republished and `0x002E5180` still runs for each live slot's class-3 records whose `+0xC0` object has a `+0x138`².
 
-At the end of every pass the accumulator gains `[0x02064AC8] × [0x02064AC4]` (`0x0022AE18`-`0x0022AE34`). The step gain
-`0x02064AC8` is 1.0 at boot (`0x0022A1C8`) and after `0x002628B0` and `0x003601D0`; the verb `gameratio` (`0x14F`, `0x00343EE0`)
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022ADBF`, `0x0022A926` |
+| ² | `0x0025E458`-`0x0025E49B` |
+
+</details>
+
+At the end of every pass the accumulator gains `[0x02064AC8] × [0x02064AC4]`¹. The step gain
+`0x02064AC8` is 1.0 at boot² and after `0x002628B0` and `0x003601D0`; the verb `gameratio` (`0x14F`, `0x00343EE0`)
 sets it to its float argument when that is at least 0.05. With the gain and the speed factor at 1.0 every pass runs one
 step and leaves the accumulator at 1.0, so a pass runs no step only after the accumulator is zeroed (above), with a gain
 below 1.0, or when `0x001EC760` returns 0; a speed factor of 2.0 or 4.0 runs two or four steps a pass.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022AE18`-`0x0022AE34` |
+| ² | `0x0022A1C8` |
+
+</details>
+
 At 60 fps, while the suppressor `0x01DFE0C0` is clear, the predicate `0x001EDE80` answers the frame parity `0x02064AD8` plus the
-steps already run this pass instead of 1 (`0x001EDE9B`-`0x001EDEA7`), so what its callers (`0x002507C0`, `0x0025DF00`,
-`0x0028E290`, `0x0032E040`, `0x003E00C0`, `0x003FA790`, `0x00477480`) run behind it runs on alternate frames (in `0x002507C0`
+steps already run this pass instead of 1¹, so what its callers² run behind it runs on alternate frames (in `0x002507C0`
 that is `0x003BBA60`, `0x00250896`-`0x0025089F`); `0x00184960` sets the suppressor.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EDE9B`-`0x001EDEA7` |
+| ² | `0x002507C0`, `0x0025DF00`, `0x0028E290`, `0x0032E040`, `0x003E00C0`, `0x003FA790`, `0x00477480` |
+
+</details>
 
 ### The speed mode
 
-- The permit byte `0x022C7F9A` is set to 1 at boot (`0x00358510`) and by `0x00358280` at the end of
+- The permit byte `0x022C7F9A` is set to 1 at boot¹ and by `0x00358280` at the end of
   every step; during the step `0x003586A0(k, 1)` sets bit `0x2` when `0x002361A0()`, bit `0x8` when
   `0x00265760()`, bit `0x4` unless `0x00226BC0()` and bit `0x10` unless `0x002F1A20()`; `0x00358550()` is
   `byte == 0x1F`: every precondition held this step.
@@ -299,19 +570,19 @@ that is `0x003BBA60`, `0x00250896`-`0x0025089F`); `0x00184960` sets the suppress
   RIP-relative or 32-bit offset reference), and its one store is `0x00229ED0` (above).
 - The speed keys' `0x00239790(k)` store index 0, 1 or 2 for k = 1, 2 or 4, or 0 when the index already holds
   it, and `0x0023B2E0` sets a non-zero index to 1 when `0x002DDDA0()` is 0 and to 2 when it is 1.
-- `0x00233700` reads the index through `0x00229E20`. From 0 it stores 1 when `0x002DDDA0()` is 0 (`0x00233751`) or 2
-  when it is 1 (`0x0023371F`); from 1 or 2 it stores 0 (`0x0023373A`), and with any other `0x002DDDA0()` value it
+- `0x00233700` reads the index through `0x00229E20`. From 0 it stores 1 when `0x002DDDA0()` is 0² or 2
+  when it is 1³; from 1 or 2 it stores 0⁴, and with any other `0x002DDDA0()` value it
   stores 0 from every index; an index above 2 with `0x002DDDA0()` at 0 or 1 is left as it is. A raise sets
-  `0x0208E6B4` to 1 (`0x00233760`), a store of 0 sets it to 0 (`0x00233741`).
+  `0x0208E6B4` to 1⁵, a store of 0 sets it to 0⁶.
 - `0x002335D0` answers from the mapped word `0x0036FFD0()` and the held word `0x0036FF70()`: 0 for mapped bit
   `0x80`; 1 for mapped bit `0x20`; 0 for mapped bit `0x40` while the held word has neither bit `0x80` nor
-  bit `0x20`; 1 for mapped bit `0x10` under that same held condition; -1 otherwise (`0x002335D9`-`0x00233638`).
-- `0x00233640` reads the index (`0x00229E20`): on an answer of 1 it raises 0 to 1 and 1 to 2, on 0 it lowers 2 to
+  bit `0x20`; 1 for mapped bit `0x10` under that same held condition; -1 otherwise⁷.
+- `0x00233640` reads the index⁸: on an answer of 1 it raises 0 to 1 and 1 to 2, on 0 it lowers 2 to
   1 and 1 to 0, and on -1 or at the end of the range it stores nothing. A move to 1 also writes 0 to the
   Speed Mode Multiplier setting (`0x002DE250(0)`, `0x002336B3`), a move to 2 writes 1 (`0x002DE250(1)`, `0x00233670`)
   ([game settings](../Saving-Loading-And-Settings/game-settings.md)).
-- Every move by `0x00233640` sets `0x0208E6B8` to 1 (`0x00233689`, `0x002336CC`, `0x002336ED`); a move to 1 or 2 sets
-  `0x0208E6B4` to 1 and a move to 0 sets it to 0 (`0x002336E3`).
+- Every move by `0x00233640` sets `0x0208E6B8` to 1⁹; a move to 1 or 2 sets
+  `0x0208E6B4` to 1 and a move to 0 sets it to 0¹⁰.
 - When `0x00233700` or `0x00233640` moves the index to 1 or 2 it also calls `0x00182FB0(index)` (for `0x00233640` also
   on its step down from 2 to 1, `0x002336C7`), as do
   `0x00239790` and `0x0023B2E0`. That runs `0x001D85C0` on the `ExtraUI` object `[0x01F82CD0]` (`0x001D8210`,
@@ -322,14 +593,46 @@ that is `0x003BBA60`, `0x00250896`-`0x0025089F`); `0x00184960` sets the suppress
   `0x0036FF70()` and `0x0036FFD0()` sets the latch and runs `0x0023B200` (the edge through `0x0208E6B8`:
   `0x00233700` on a press, `0x00233640` while held), which keeps running every pass while the latch
   is set.
-- `0x0023B200` tail-jumps to `0x00233700` when bit `0x400` of the word `0x0036FFE0()` (`0x02AD9E10`) is set and
-  `0x0208E6B8` is 0 (`0x0023B204`-`0x0023B21C`). Otherwise a set bit `0x400` of that word clears `0x0208E6B8`
-  (`0x0023B238`), and with bit `0x400` of the held word `0x0036FF70()` it tail-jumps to `0x00233640` (`0x0023B24D`); so
+- `0x0023B200` tail-jumps to `0x00233700` when bit `0x400` of the word `0x0036FFE0()`¹¹ is set and
+  `0x0208E6B8` is 0¹². Otherwise a set bit `0x400` of that word clears `0x0208E6B8`
+ ¹³, and with bit `0x400` of the held word `0x0036FF70()` it tail-jumps to `0x00233640`¹⁴; so
   after the held handler has moved the index, the next press clears `0x0208E6B8` instead of running `0x00233700`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00358510` |
+| ² | `0x00233751` |
+| ³ | `0x0023371F` |
+| ⁴ | `0x0023373A` |
+| ⁵ | `0x00233760` |
+| ⁶ | `0x00233741` |
+| ⁷ | `0x002335D9`-`0x00233638` |
+| ⁸ | `0x00229E20` |
+| ⁹ | `0x00233689`, `0x002336CC`, `0x002336ED` |
+| ¹⁰ | `0x002336E3` |
+| ¹¹ | `0x02AD9E10` |
+| ¹² | `0x0023B204`-`0x0023B21C` |
+| ¹³ | `0x0023B238` |
+| ¹⁴ | `0x0023B24D` |
+
+</details>
+
 `0x003586A0(k, value)` sets the bit `1 << k` of the permit byte `0x022C7F9A` (bit `0x2` for k = 1) for a value other than
-0 and clears it for 0 (`0x003586A0`-`0x003586B8`). `0x002370A0` calls `0x00229ED0(0)`, the speed index reset, and then stores
-0 in the dword `0x0208E6B4` (`0x002370A6`-`0x002370AB`).
+0 and clears it for 0¹. `0x002370A0` calls `0x00229ED0(0)`, the speed index reset, and then stores
+0 in the dword `0x0208E6B4`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003586A0`-`0x003586B8` |
+| ² | `0x002370A6`-`0x002370AB` |
+
+</details>
 
 Three pad readers take a press on only some of a pass's steps while the speed permit is up. They are the field's
 map controls ([map screens](../Menus-And-HUD/map-screens.md#opening-from-the-field)):
@@ -350,42 +653,112 @@ Display Map half of `0x00250200` read the pad without the gate while the locatio
 (`0x002B9FC0`, called at `0x0025013D` and `0x00250235`).
 
 The step index numbers the steps of a pass. `0x00250180(first)` is the first call of every step (`0x0022ABB4`, its only
-caller): it stores 0 when `first` is set and the old value plus one otherwise (`0x00250186`-`0x0025018F`). `first` is 1 on
-the pass's first step (`0x0022AA10`) and 0 after it (`0x0022ACA7`). The UI tick `0x00250540`, run by the full-menu and
-capture-backed frames (`0x0022BA45`, `0x0022BD08`), stores 0 (`0x002505D0`) when `0x0017E4E0()` is 0; with that byte set it
-runs its short block and leaves the index as it is (`0x00250570`-`0x002505C4`).
+caller): it stores 0 when `first` is set and the old value plus one otherwise¹. `first` is 1 on
+the pass's first step² and 0 after it³. The UI tick `0x00250540`, run by the full-menu and
+capture-backed frames⁴, stores 0⁵ when `0x0017E4E0()` is 0; with that byte set it
+runs its short block and leaves the index as it is⁶.
 
-These are the only stores to `0x020927DC`; its other loads are the gate's four (`0x0025014B`, `0x002501B2`, `0x00250212`,
-`0x00250243`).
+<details>
+<summary>Where in the code</summary>
 
-A pass adds `0x02064AC8 × 0x02064AC4` to the accumulator (`0x0022AE18`-`0x0022AE34`) and runs a step for each whole 1.0
-(`0x0022AB90`), so with the step gain at 1.0 and a factor of 2.0 or 4.0 it runs two or four steps, indices 0 to 1 or 0
+| | Code |
+|---|---|
+| ¹ | `0x00250186`-`0x0025018F` |
+| ² | `0x0022AA10` |
+| ³ | `0x0022ACA7` |
+| ⁴ | `0x0022BA45`, `0x0022BD08` |
+| ⁵ | `0x002505D0` |
+| ⁶ | `0x00250570`-`0x002505C4` |
+
+</details>
+
+These are the only stores to `0x020927DC`; its other loads are the gate's four¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025014B`, `0x002501B2`, `0x00250212`, `0x00250243` |
+
+</details>
+
+A pass adds `0x02064AC8 × 0x02064AC4` to the accumulator¹ and runs a step for each whole 1.0², so with the step gain at 1.0 and a factor of 2.0 or 4.0 it runs two or four steps, indices 0 to 1 or 0
 to 3, and of those indices only 0 gives `i % n == 0`: the press counts once per pass. The divisor `n` is the table
-entry at the speed index, `[0x00908BA8 + 4 * [0x01FD4A98]]` truncated (`0x00229E00`), not the factor `0x02064AC4`.
+entry at the speed index, `[0x00908BA8 + 4 * [0x01FD4A98]]` truncated³, not the factor `0x02064AC4`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022AE18`-`0x0022AE34` |
+| ² | `0x0022AB90` |
+| ³ | `0x00229E00` |
+
+</details>
 
 An entry below 1.0 truncates to 0, `(int)e == 0`, and the `idiv` then raises a divide error; the index the writers
 above store is 0 to 2, so the table's fourth entry, 0.0, is never the divisor.
 
 The draw `0x0022B0B0` (from `0x0022A82D` and `0x0022A8B8` in the field frame, and from `0x0022AF50`) also reads the table at
-the speed index (`0x0022B0F2`-`0x0022B103`) and passes the entry to `0x00183030`, which stores it at `+0x330` of the
-map-art context `[0x01F81168]` (`0x00183041`).
+the speed index¹ and passes the entry to `0x00183030`, which stores it at `+0x330` of the
+map-art context `[0x01F81168]`².
 
-`0x001AA2C0` multiplies the two water scroll steps by that value `v`, `step * v` (`0x001AA30D`, `0x001AA333`), the U and V
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022B0F2`-`0x0022B103` |
+| ² | `0x00183041` |
+
+</details>
+
+`0x001AA2C0` multiplies the two water scroll steps by that value `v`, `step * v`¹, the U and V
 scroll speeds `mDebugWaterUFactor` and `mDebugWaterVFactor` ([JSON
 configs](../Game-Files-And-Data-Tables/json-configs.md); [render command
 list](../Graphics/render-command-list.md)). On the map-art context the first step is `(+0x2E8 -
 1.0) * 0.1 / [0x01DFE0B4]` and the second `(+0x2EC - 1.0) * 0.1 / [0x01DFE0B4]`, and the draw adds `+0x30C += step1 * v`
-and `+0x310 += step2 * v` (`0x001AA2C0`-`0x001AA33F`).
+and `+0x310 += step2 * v`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001AA30D`, `0x001AA333` |
+| ² | `0x001AA2C0`-`0x001AA33F` |
+
+</details>
 
 After the adds `0x001AA2C0` wraps both: `+0x30C` and then `+0x310` is lowered by 1.0 when above 1.0 and raised by 1.0
-when below 0 (`0x001AA319`-`0x001AA39B`).
+when below 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001AA319`-`0x001AA39B` |
+
+</details>
 
 The draw does not read the permit, so the water keeps the chosen speed for as long as the speed index is raised.
 
 The pacer `0x0035EB70(n, x)` (`0x0035EC80` and the tail of `0x0035EA30` are jumps to it) compares `0x00368C70()`, the
-`GetCurrentThread` value the start-up step `0x00368ED0` stores at `0x022D7FB0` (`0x00368EE1`), with `GetCurrentThread()`
-(`0x00862090`, `0x0035EB83`-`0x0035EB93`). `GetCurrentThread` returns the same pseudo-handle on every thread, so once that
+`GetCurrentThread` value the start-up step `0x00368ED0` stores at `0x022D7FB0`¹, with `GetCurrentThread()`². `GetCurrentThread` returns the same pseudo-handle on every thread, so once that
 value is stored the two match on every thread and the pacer takes its game-thread path.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00368EE1` |
+| ² | `0x00862090`, `0x0035EB83`-`0x0035EB93` |
+
+</details>
 
 That path first, unless `0x0017D3E0()` is non-zero, runs the vertical-sync handler once through its thread:
 `0x003691B0(0)` releases the semaphore `[0x022CFEEC]` and `0x00369190(0)` waits on `[0x022CFEF0]` (`0x0035EBD6`-`0x0035EBE8`,
@@ -393,14 +766,33 @@ That path first, unless `0x0017D3E0()` is non-zero, runs the vertical-sync handl
 
 It then folds the frame time `0x022CA5D0` into `0x022CA5C4` and `0x022CA5D8`, stores `max(n, 1)` ticks at `0x022CA5F4` and
 `0x022CA628`, `x` at `0x022CA604` and 0 at `0x022CA600`, clears the tick counter `0x022CA5F0` and returns its previous value,
-which it also stores at `0x022CA624` (`0x0035EC0F`-`0x0035EC5F`). The other path, taken only while `0x022D7FB0` still holds
+which it also stores at `0x022CA624`¹. The other path, taken only while `0x022D7FB0` still holds
 its zero start value, spins until the tick counter at `0x022CA5E0` has advanced by `max(n, 1)` and returns how far it
-advanced (`0x0035EB95`-`0x0035EBC3`).
+advanced².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035EC0F`-`0x0035EC5F` |
+| ² | `0x0035EB95`-`0x0035EBC3` |
+
+</details>
 
 Between the fold and the reset (`0x022CA5C4` = 0) the pacer stores at `0x022CA5DC` the result of
 `0x0035E7A0`, which adds `0x022CA5D0` to `0x022CA5C4` once more and measures that sum a against a period
 L of 314, or 264 when `0x00290180()` is 2: it returns the distance from a up to the next multiple of
-L, except that below L, outside frame mode 3 (`0x00229EA0`), it returns 2L - a.
+L, except that below L, outside frame mode 3¹, it returns 2L - a.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00229EA0` |
+
+</details>
 
 ### The ExtraUI overlay
 
@@ -413,20 +805,58 @@ batcher's byte `+0x3A98` is set (`0x001D7110` and `0x001D70D0` return the width 
   speed change sets it to 255, `0x001D85C0`); after a speed change it starts at 1.5 times its size (`0x001D82D0`,
   scale `+0x6C`) and shrinks by 0.1 a frame (0.05 when `0x00184950` is 1) until it reaches 1;
 - a second picture (`+0x70`, `+0x78`, `+0x80`) whose alpha `+0x88` `0x001D8240` swings between 63 and 255 at
-  `+0x8C` (6.0, its sign flipped at each end) per 1/60 second (`0x0017D270`).
+  `+0x8C` (6.0, its sign flipped at each end) per 1/60 second¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017D270` |
+
+</details>
 
 `0x001D8520` also sets `+0x64` to -6.0 when it lowers the alpha from 255.0, and at 63.0 or below (`comiss`, `0x001D857D`)
-sets `+0x64` to 6.0 and `+0x60` to 63.0 plus the step; it never reads `+0x64` (`0x001D8529`-`0x001D858D`).
+sets `+0x64` to 6.0 and `+0x60` to 63.0 plus the step; it never reads `+0x64`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D8529`-`0x001D858D` |
+
+</details>
 
 `0x001D8150` builds the object only while the qword `0x01F82CD0` is null, after passing that test to the return stub
 `0x0016D6A0(qword == 0)`. It takes `0x90` bytes with `0x00210EC0(0x90)`, stores the table address `0x00900370` at `+0x00`,
 zeroes `+0x08`-`+0x69` and `+0x70`-`+0x8F`, stores 1.0 at `+0x6C` and stores the object at `0x01F82CD0`; with no block
-it stores 0 there (`0x001D8158`-`0x001D81F5`).
+it stores 0 there¹.
 
-`0x001D7280` draws the second picture when `0x001C18E0()`'s byte `+0x40` is set or `0x00583920` answers non-zero
-(`0x001D72F0`), and the speed mark while `0x00229DF0` answers non-zero and `+0x68` is set (`0x001D7DD0`).
-`0x001829C0(x, y)`, from `0x00474100`, draws the second picture at a given place (`0x001D76A0`), and `0x00182A40`
-restarts its swing at 255 (`0x001D85A0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D8158`-`0x001D81F5` |
+
+</details>
+
+`0x001D7280` draws the second picture when `0x001C18E0()`'s byte `+0x40` is set or `0x00583920` answers non-zero¹, and the speed mark while `0x00229DF0` answers non-zero and `+0x68` is set².
+`0x001829C0(x, y)`, from `0x00474100`, draws the second picture at a given place³, and `0x00182A40`
+restarts its swing at 255⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D72F0` |
+| ² | `0x001D7DD0` |
+| ³ | `0x001D76A0` |
+| ⁴ | `0x001D85A0` |
+
+</details>
 
 ### The simulation tick
 
@@ -444,7 +874,16 @@ mode 1. It returns `mode == 0`. Every mode runs the prologue:
   movement](../Movement-And-Pathfinding/player-movement.md)), `0x00268650`, `0x0025D650`, `0x00255810`,
   `0x0037D890` and `0x0025D640`.
 
-`0x0025D640` stores 0 in the byte `0x0209A2AA` and does nothing else (`0x0025D640`-`0x0025D647`).
+`0x0025D640` stores 0 in the byte `0x0209A2AA` and does nothing else¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025D640`-`0x0025D647` |
+
+</details>
 
 `0x0025BFB0` reads the mask `0x02099ABC` and returns when it is 0. With bit `0x1` set it runs the manager
 runtime init `0x0026CE60` for each set bit from 4 down to 0, re-reading the mask after each, and
@@ -456,7 +895,7 @@ The slot loops work on the five actor-manager slots at `0x02098E10`, stride `0x2
 shape depends on the mode:
 
 - mode 0: `0x003DF760(0, n, 0, 0, 0)` for n = 1 to 5; then sixteen sub-steps: for each slot, when
-  the sub-step is 0 or the slot's byte `+0x201` (`0x00267310`) is set, the orchestrator
+  the sub-step is 0 or the slot's byte `+0x201`¹ is set, the orchestrator
   `0x00234590(slot)`, the actor drive pass `0x0025D9E0(slot)` ([field
   runtime](../Characters-And-Objects/field-runtime.md)) and `0x00234520(slot)`; after sub-step 0's first
   loop `0x00253C50` and `0x00268D10`; then, under the same gate, the post-pass `0x003DB1F0(slot)`;
@@ -464,16 +903,44 @@ shape depends on the mode:
   `0x00234520`, then `0x00253C50`;
 - any other mode: no slot work.
 
-`0x00253C50` calls `0x00253C70()`, then `0x003C9550()`, and returns the first answer (`0x00253C56`-`0x00253C62`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267310` |
+
+</details>
+
+`0x00253C50` calls `0x00253C70()`, then `0x003C9550()`, and returns the first answer¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00253C56`-`0x00253C62` |
+
+</details>
 
 Sub-steps 1 to 15 repeat the same three calls and the post-pass for a slot whose `+0x201` byte is non-zero; nothing
 receives the step number.
 
 The byte is a bit set: `0x0026A5B0(slot, on, bit)` sets or clears one bit, the script-skip begin `0x00360710(bit, slot)`
-sets it for a non-zero slot (`0x0036085B`) when the slot is live with bit `0x80` of its `+0x10` clear (`0x00267330`
+sets it for a non-zero slot¹ when the slot is live with bit `0x80` of its `+0x10` clear (`0x00267330`
 answers 0, `0x00360758`) and the skip entry is armed (`+0xC` non-zero, `0x00360768`), and the skip end `0x00360A50(bit,
-slot)` clears it (`0x00360AFA`) for an entry in state 1 or 2 (`0x00360A89`-`0x00360A96`; an entry in any other state is left
+slot)` clears it² for an entry in state 1 or 2 (`0x00360A89`-`0x00360A96`; an entry in any other state is left
 as it is), and `0x00267310` returns the whole byte, so any pending skip opts the slot in.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036085B` |
+| ² | `0x00360AFA` |
+
+</details>
 
 Slot 0 never gets a bit, so the field slot is never repeated inside a step (the high-speed mode speeds the field up by
 earning two or four steps a frame, see the speed mode below): the repeats exist for the
@@ -489,30 +956,83 @@ or 3 to 4 (mode 1), which publishes the focus record to `0x02099D78` (`0x003588B
 index `+0x1DE`, two `u16` words, through `0x00358940`; `0x002623E0`-`0x00262426`).
 
 It leaves `0x02099D70` as it was: it points it at the slot array `0x02098E10` while the focus record is resolved and then
-stores the old value back (`0x002623C5`, `0x002623E4`).
+stores the old value back¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002623C5`, `0x002623E4` |
+
+</details>
 
 `0x0026A2A0(index, value)` sets bit `0x8` of the byte `+0x17` of the slot `0x02098E10` + `0x288` x index for a value other
-than 0 and clears it for 0 (`0x0026A2A0`-`0x0026A2BE`). It then sets the veto byte `0x02099DA1` to 1 when any of the five
-slots 0 to 4 has that bit and to 0 otherwise (`0x0026A2C2`-`0x0026A304`).
+than 0 and clears it for 0¹. It then sets the veto byte `0x02099DA1` to 1 when any of the five
+slots 0 to 4 has that bit and to 0 otherwise².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026A2A0`-`0x0026A2BE` |
+| ² | `0x0026A2C2`-`0x0026A304` |
+
+</details>
 
 `0x002E4150(mode, flag)` makes the same walk as `0x002623A0`'s, over the managers `0x00263FF0(i)` for i = 0, 1 and 2 with
 bit `0x1` of `+0x10` set and their actors `0x00358940(manager, j)` (`0x002E4174`-`0x002E41B1`, `0x002E425C`, the loop back at
-`0x002E42A4`). A mode other than 0 or 1 does nothing (`0x002E41A9`).
+`0x002E42A4`). A mode other than 0 or 1 does nothing¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E41A9` |
+
+</details>
 
 Mode 1 acts only with a flag other than 0, and in manager 0 only on an actor whose bits `0x1F` of the byte `+0x03` are
 not 6. It skips an actor whose byte `+0x18` is 1, whose qword `+0xC0` is null or whose first dword there is -1 (each
 actor `0x00358940(manager, j)`). For the rest it calls `0x003E0860(view)` with view = `0x003E6DA0(record)`, the record being
-`[0x022C6F28]` + `0x740` x the first word; view is 0 when that word is -1, the record is null or its dword `+0x284` is 0
-(`0x002E41C0`-`0x002E4252`).
+`[0x022C6F28]` + `0x740` x the first word; view is 0 when that word is -1, the record is null or its dword `+0x284` is 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E41C0`-`0x002E4252` |
+
+</details>
 
 Mode 0 takes every actor `0x00358940(manager, j)` that is not null, whose qword `+0xC0` is not null and whose first
 dword there is not -1. With a flag other than 0 and bit `0x80` of the byte `+0x11` of that object set, it calls
-`0x00426520(the first word)`; for every actor taken, call or not, it then clears bit `0x80` of that byte
-(`0x002E425A`-`0x002E429B`).
+`0x00426520(the first word)`; for every actor taken, call or not, it then clears bit `0x80` of that byte¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E425A`-`0x002E429B` |
+
+</details>
 
 Then `0x00358EE0(mode)`; the request drain `0x002E09A0`; `0x00359800`; `0x003DE640`; `0x002E0940`; `0x0037C1A0`;
-`0x003E7EC0`; `0x0036FD90(0)` when no dialog is open (`0x00228480`); `0x002F1770(mode, arg)`; `0x002EF910`;
+`0x003E7EC0`; `0x0036FD90(0)` when no dialog is open¹; `0x002F1770(mode, arg)`; `0x002EF910`;
 `0x0036E1E0`; `0x003DEB30`; `0x003DF670`; `0x003606E0`; the audio listener `0x00362850`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00228480` |
+
+</details>
 
 Then, when `0x00362DA0()` (the byte `0x022CBA9B`) is 0, the spatial-sound behind factor `0x022CBB28`
 is recomputed ([spatial sound](../Sound-And-Music/spatial-sound.md)): `x = 0x00362DB0() + [0x022C2544]`, where
@@ -520,12 +1040,31 @@ is recomputed ([spatial sound](../Sound-And-Music/spatial-sound.md)): `x = 0x003
 0), and `y = 0x002DEBA0()`, the configured ratio at `0x0215EFD0`; `0x00361700(y <= x ? min(x, 1.0) : y, 0)`
 stores the result, floored at 0, back into `0x022CBB28`.
 
-Then `0x003E7650`, `0x0025D950`, `0x00263660`, `0x002EEEB0` (`0x002EE430`, `0x002EF050`), and the
+Then `0x003E7650`, `0x0025D950`, `0x00263660`, `0x002EEEB0`¹, and the
 tick-active dword is cleared.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EE430`, `0x002EF050` |
+
+</details>
+
 `0x0025D950` passes the decision `0x02099DA3` it has just stored, sign-extended (`movsx`, `0x0025D9AA`), to
-`0x002E8700(decision)` in its closing jump (`0x0025D9B8`); the bit test's result is already stored (`0x0025D980`) when it
+`0x002E8700(decision)` in its closing jump¹; the bit test's result is already stored² when it
 calls `0x002E15F0()`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025D9B8` |
+| ² | `0x0025D980` |
+
+</details>
 
 ### The scheduled tasks
 
@@ -539,31 +1078,91 @@ At double and quadruple speed every task advances once per world step except the
 advances only on the frame's first step, so a music fade keeps its length in frames.
 
 The table `0x022BDEC0` holds 32 tasks of `0x48` bytes, and bit `1 << i` of the mask `0x022BE7C0` marks task i as taken.
-`0x002F16B0()` takes the lowest free task (`0x002F16C3`, `0x002F16D3`) and sets its bit (`0x002F16DE`). It zeroes the
-counter `+0x00` and the length `+0x04` (`0x002F16F4`), the end routine `+0x08` (`0x002F16F7`), the step routine `+0x10`
-(`0x002F16FB`) and `+0x28` (`0x002F1702`), and stores the task's index at `+0x18` (`0x002F16FF`).
+`0x002F16B0()` takes the lowest free task¹ and sets its bit². It zeroes the
+counter `+0x00` and the length `+0x04`³, the end routine `+0x08`⁴, the step routine `+0x10`⁵ and `+0x28`⁶, and stores the task's index at `+0x18`⁷.
 
-The take sets the step `+0x1C` to 1 and the tag `+0x1E` to 0 with one dword store (`0x002F1706`), and the menu byte
-`+0x20` to 1 (`0x002F170A`). With all 32 tasks taken it returns 0 (`0x002F16D5`).
+<details>
+<summary>Where in the code</summary>
 
-The runner `0x002F1780(kind, invert, force)` is reached only through `0x002F1770(kind, force)`, which passes invert as 0
-(`0x002F1773`, `0x002F1775`). It visits the taken tasks in index order. A kind-1 pass skips a task whose menu byte is 0
-(`0x002F17E2`, `0x002F17E8`, `0x002F17EC`), and a pass without force skips a task tagged 1 (`0x002F17FC`, `0x002F1801`).
+| | Code |
+|---|---|
+| ¹ | `0x002F16C3`, `0x002F16D3` |
+| ² | `0x002F16DE` |
+| ³ | `0x002F16F4` |
+| ⁴ | `0x002F16F7` |
+| ⁵ | `0x002F16FB` |
+| ⁶ | `0x002F1702` |
+| ⁷ | `0x002F16FF` |
 
-For each task it runs, the runner calls the step routine with the task (`0x002F1814`). Once the counter has reached
-the length (`0x002F1826`) it calls the end routine and sets the step to 1 when the task has one (`0x002F1837`-
-`0x002F184F`), and clears the task's bit (`0x002F1859`). Last it adds the step to the counter (`0x002F1860`, `0x002F1864`),
+</details>
+
+The take sets the step `+0x1C` to 1 and the tag `+0x1E` to 0 with one dword store¹, and the menu byte
+`+0x20` to 1². With all 32 tasks taken it returns 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F1706` |
+| ² | `0x002F170A` |
+| ³ | `0x002F16D5` |
+
+</details>
+
+The runner `0x002F1780(kind, invert, force)` is reached only through `0x002F1770(kind, force)`, which passes invert as 0¹. It visits the taken tasks in index order. A kind-1 pass skips a task whose menu byte is 0², and a pass without force skips a task tagged 1³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F1773`, `0x002F1775` |
+| ² | `0x002F17E2`, `0x002F17E8`, `0x002F17EC` |
+| ³ | `0x002F17FC`, `0x002F1801` |
+
+</details>
+
+For each task it runs, the runner calls the step routine with the task¹. Once the counter has reached
+the length² it calls the end routine and sets the step to 1 when the task has one³, and clears the task's bit⁴. Last it adds the step to the counter⁵,
 so a task with step 0 never reaches
 its length by counting.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F1814` |
+| ² | `0x002F1826` |
+| ³ | `0x002F1837`-`0x002F184F` |
+| ⁴ | `0x002F1859` |
+| ⁵ | `0x002F1860`, `0x002F1864` |
+
+</details>
+
 `0x002F1770` runs from six sites:
 
-- the simulation tick `0x00314020` (`0x003142C1`), with the tick's own mode and argument: kind 0 with the frame's
-  first-step flag from the field frame (`0x0022ABD8`), kind 1 with force 1 from the full menu frame and the
-  capture-backed frame (`0x0022BA23`, `0x0022BCCF`);
-- the field frame when it skips the tick, kind 0 with the first-step flag (`0x0022ABE5`);
-- the start-up and title states, kind 0 with force 1 (`0x0022B701`, `0x0022B803`);
-- the manager unload `0x002628B0`, kind 0 with force 1, twice (`0x00262AD7`, `0x00262B2C`).
+- the simulation tick `0x00314020`¹, with the tick's own mode and argument: kind 0 with the frame's
+  first-step flag from the field frame², kind 1 with force 1 from the full menu frame and the
+  capture-backed frame³;
+- the field frame when it skips the tick, kind 0 with the first-step flag⁴;
+- the start-up and title states, kind 0 with force 1⁵;
+- the manager unload `0x002628B0`, kind 0 with force 1, twice⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003142C1` |
+| ² | `0x0022ABD8` |
+| ³ | `0x0022BA23`, `0x0022BCCF` |
+| ⁴ | `0x0022ABE5` |
+| ⁵ | `0x0022B701`, `0x0022B803` |
+| ⁶ | `0x00262AD7`, `0x00262B2C` |
+
+</details>
 
 | Taker | The task | Step routine | End routine | Length, step | Menu byte |
 |---|---|---|---|---|---|
@@ -576,62 +1175,109 @@ its length by counting.
 | `0x0037C980`, `0x0037CA00`, `0x0037CA80` (`0x0037C984`, `0x0037CA04`, `0x0037CA84`) | the party read-in ([party control modes](party-control-modes.md)) | `0x0037C730` | - | 4, step 0 | 1 |
 | `0x003DE240`, `0x003DE2A0` (`0x003DE265`, `0x003DE2CC`) | the motion blur fade ([script screen effects](../Graphics/script-screen-effects.md)) | `0x003DE160` | `0x003DE1F0` | frames, step 1 | 0 (`0x003DE291`, `0x003DE2F8`) |
 
-Two tasks are also kept by address. `0x022BE7C8` is the crossfade: `0x002F1A90` stores it (`0x002F1AF2`) and its end
-routine `0x002F1950` clears it (`0x002F19E7`). `0x002F1A20` returns its low 32 bits to `0x001CC600` (`0x001CC7B9`), `0x0022A770`
-(`0x0022AA47`, `0x0022ACEE`) and `0x00353700` (`0x00353704`). `0x002F1A70` copies its length into its counter, so the next
-pass that runs it ends it; the unload (`0x00262B76`), `0x003600D0` (`0x003600E6`) and `0x003601D0` (`0x003602CE`) call it.
+Two tasks are also kept by address. `0x022BE7C8` is the crossfade: `0x002F1A90` stores it¹ and its end
+routine `0x002F1950` clears it². `0x002F1A20` returns its low 32 bits to `0x001CC600`³, `0x0022A770`⁴ and `0x00353700`⁵. `0x002F1A70` copies its length into its counter, so the next
+pass that runs it ends it; the unload⁶, `0x003600D0`⁷ and `0x003601D0`⁸ call it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F1AF2` |
+| ² | `0x002F19E7` |
+| ³ | `0x001CC7B9` |
+| ⁴ | `0x0022AA47`, `0x0022ACEE` |
+| ⁵ | `0x00353704` |
+| ⁶ | `0x00262B76` |
+| ⁷ | `0x003600E6` |
+| ⁸ | `0x003602CE` |
+
+</details>
 
 `0x002F1A70` does nothing while the qword `0x022BE7C8` is null (`0x002F1A77`-`0x002F1A7A`, the copy at `0x002F1A7F` skipped).
 
-`0x022BE7D0` is the message-window hold: `0x002F1C50(n)` takes it when no hold is kept (`0x002F1C5A`, `0x002F1C66`,
-`0x002F1C72`), and its end routine `0x002F18A0` clears it (`0x002F18B1`). `0x002F1710()` ends it at once: the counter becomes
-the length (`0x002F1739`), the end routine runs (`0x002F1749`), the step becomes 1 (`0x002F174B`) and the bit is cleared
-(`0x002F1756`). Square (`0x00253F93`), `0x0025AAD0` (`0x0025AB10`) and the unload (`0x00262A82`) call it.
+`0x022BE7D0` is the message-window hold: `0x002F1C50(n)` takes it when no hold is kept¹, and its end routine `0x002F18A0` clears it². `0x002F1710()` ends it at once: the counter becomes
+the length³, the end routine runs⁴, the step becomes 1⁵ and the bit is cleared⁶. Square⁷, `0x0025AAD0`⁸ and the unload⁹ call it.
 
-`0x002F1A30(tag)` answers 1 while a taken task carries that tag (`0x002F1A41`, `0x002F1A4E`, `0x002F1A54`). Of the twelve
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F1C5A`, `0x002F1C66`, `0x002F1C72` |
+| ² | `0x002F18B1` |
+| ³ | `0x002F1739` |
+| ⁴ | `0x002F1749` |
+| ⁵ | `0x002F174B` |
+| ⁶ | `0x002F1756` |
+| ⁷ | `0x00253F93` |
+| ⁸ | `0x0025AB10` |
+| ⁹ | `0x00262A82` |
+
+</details>
+
+`0x002F1A30(tag)` answers 1 while a taken task carries that tag¹. Of the twelve
 takers (thirteen take sites) only the two music track ends set tag 1, so `0x002F1A30(1)` asks whether a track end
 is still pending. The
 drive pass asks it (`0x0025DD6E`, [field runtime](../Characters-And-Objects/field-runtime.md)), and so do the game-over
-states (`0x003EF349`, `0x003EF423`), the chocobo state machine `0x0035CA70` (`0x0035CBC4`), `0x003466F0` (`0x003466F9`) and
-`0x00347310` (`0x0034732B`); `0x0034DB30` passes a value of its own (`0x0034DBCE`).
+states², the chocobo state machine `0x0035CA70`³, `0x003466F0`⁴ and
+`0x00347310`⁵; `0x0034DB30` passes a value of its own⁶.
 
-The boot `0x00266D10` clears the mask and both kept tasks through `0x002F1A00` (`0x00266E2E`; `0x002F1A02`, `0x002F1A08`,
-`0x002F1A0F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F1A41`, `0x002F1A4E`, `0x002F1A54` |
+| ² | `0x003EF349`, `0x003EF423` |
+| ³ | `0x0035CBC4` |
+| ⁴ | `0x003466F9` |
+| ⁵ | `0x0034732B` |
+| ⁶ | `0x0034DBCE` |
+
+</details>
+
+The boot `0x00266D10` clears the mask and both kept tasks through `0x002F1A00`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00266E2E`; `0x002F1A02`, `0x002F1A08`, `0x002F1A0F` |
+
+</details>
 
 ### The field frame orchestrator
 
 `0x00234590(slot)` returns at once for any slot but 0, so it runs once per simulation step and never
 behind the menu:
 
-1. bit `0x2000` of the battle-state word `0x02089340` is cleared;
-2. the clock: `0x0032A150()` before and after `0x0032A100`, which adds 1 to `0x0208D45C` when timer 0 moved; bit `0x4` = the counter
-   did not move. The area-return window compares that counter, less the start at `0x02089374`, with
-   `(int)(30 × [0x01DFE0B8]) × [0x0208936C]` and expires when the difference is greater (`0x002337E8`-`0x00233803`)
-   ([enemy respawning](../Enemy-Spawning/enemy-respawning.md));
-3. unless `0x0035C700()` or `0x00306BB0()`: UI request `0x0B` when `0x002371B0()` holds, else `0x18` when
-   `0x00237140()` holds (`0x0035C7A0`);
-4. `0x00313A00` (row 2 of [action availability](../Controls-And-Input/action-availability.md)); then, when the force-fight predicate `0x00253B90()` differs from the inverse of bit `0x8`,
-   the unit reset loop below runs and then bit `0x8` is toggled;
-   - the unit reset loop: for every unit `0x0030A880(buffer, 1)` lists, `0x00300140(unit, keep)` with `keep` = unit
-   bit `0x1000000` clear, and (`+0x714` above `0x21E` or `+0x6B4` below 9), and `+0x714` not `0x113`, and
-   the status words `+0x3C | +0x64` clear of `0x8000020`;
-5. bit `0x2` cleared; the lock evaluator `0x0023B040`; `0x0032A650`; `0x003226C0`; `0x0030CBE0`, which walks the action chain ([action phases](../Battle-Actions/action-phases.md)); `0x003065D0`;
-   `0x00325060`, which steps the generation `0x022C2578` that the per-unit `0x003247F0` compares ([enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)); `0x00307E70`; `0x00319600`; `0x00313760`; `0x00304440`; the group completion `0x00307030`;
-6. the `0x18` latch: when `0x00237260()` holds, bit `0x200` is set and request `0x18` raised once
-   (`0x0035C8A0`) and groups 7 and 8 are skipped (`0x0023474B`); otherwise bit `0x200` is cleared
-   (`0x0035C8E0(0x18)` when it was set);
-7. the `0x17` latch: with no leader, no leader record, or a leader whose status words hold
-   `0x80000003` without `0x00377C20()`, bit `0x100` is set and request `0x17` raised once; otherwise bit `0x100`
-   is cleared (`0x0035C8E0(0x17)` when it was set);
-8. bit `0x800`: with the party-control level at 1 (`0x003135C0()`) bit `0x800` is set unless the unit of
-   `0x003137F0()` exists, has a record, and that record's status words are clear of `0x80000003` or
-   `0x00377C20()` holds; at any other level it is cleared;
-9. the obstacle grid `0x00392740` ([navigation mesh](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md)),
-   `0x0033B6D0`, `0x003246C0` when a navigation dataset is loaded, and `0x002F82F0`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | bit `0x2000` of the battle-state word `0x02089340` is cleared; |   |
+| 2 | the clock: `0x0032A150()` before and after `0x0032A100`, which adds 1 to `0x0208D45C` when timer 0 moved; bit `0x4` = the counter did not move. The area-return window compares that counter, less the start at `0x02089374`, with `(int)(30 × [0x01DFE0B8]) × [0x0208936C]` and expires when the difference is greater ([enemy respawning](../Enemy-Spawning/enemy-respawning.md)); | `0x002337E8`-`0x00233803` |
+| 3 | unless `0x0035C700()` or `0x00306BB0()`: UI request `0x0B` when `0x002371B0()` holds, else `0x18` when `0x00237140()` holds; | `0x0035C7A0` |
+| 4 | `0x00313A00` (row 2 of [action availability](../Controls-And-Input/action-availability.md)); then, when the force-fight predicate `0x00253B90()` differs from the inverse of bit `0x8`, the unit reset loop below runs and then bit `0x8` is toggled;<br>• the unit reset loop: for every unit `0x0030A880(buffer, 1)` lists, `0x00300140(unit, keep)` with `keep` = unit bit `0x1000000` clear, and (`+0x714` above `0x21E` or `+0x6B4` below 9), and `+0x714` not `0x113`, and the status words `+0x3C \| +0x64` clear of `0x8000020`; |   |
+| 5 | bit `0x2` cleared; the lock evaluator `0x0023B040`; `0x0032A650`; `0x003226C0`; `0x0030CBE0`, which walks the action chain ([action phases](../Battle-Actions/action-phases.md)); `0x003065D0`; `0x00325060`, which steps the generation `0x022C2578` that the per-unit `0x003247F0` compares ([enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)); `0x00307E70`; `0x00319600`; `0x00313760`; `0x00304440`; the group completion `0x00307030`; |   |
+| 6 | the `0x18` latch: when `0x00237260()` holds, bit `0x200` is set and request `0x18` raised once and groups 7 and 8 are skipped; otherwise bit `0x200` is cleared (`0x0035C8E0(0x18)` when it was set); | `0x0035C8A0`<br>`0x0023474B` |
+| 7 | the `0x17` latch: with no leader, no leader record, or a leader whose status words hold `0x80000003` without `0x00377C20()`, bit `0x100` is set and request `0x17` raised once; otherwise bit `0x100` is cleared (`0x0035C8E0(0x17)` when it was set); |   |
+| 8 | bit `0x800`: with the party-control level at 1 (`0x003135C0()`) bit `0x800` is set unless the unit of `0x003137F0()` exists, has a record, and that record's status words are clear of `0x80000003` or `0x00377C20()` holds; at any other level it is cleared; |   |
+| 9 | the obstacle grid `0x00392740` ([navigation mesh](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md)), `0x0033B6D0`, `0x003246C0` when a navigation dataset is loaded, and `0x002F82F0`. |   |
 
-The window's multiplier `0x0208936C` is 300 from the battle work init `0x002368D0` (`0x00236A0D`), and a script verb
+The window's multiplier `0x0208936C` is 300 from the battle work init `0x002368D0`¹, and a script verb
 (handler `0x005107F0`, through `0x00235340`) sets it, a negative value restoring 300. With 300 the window is 9,000
 steps at 30 fps and 18,000 at 60: 300 seconds at normal speed.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236A0D` |
+
+</details>
 
 `0x00234520(slot)` is also slot 0 only (any other slot returns at `0x00234531`): the lock evaluator again,
 `0x00313DB0`, `0x00319090`, the return stub `0x0016D6A0` (`0x00234542`, a bare `ret`), and then the one-shot at
@@ -648,8 +1294,16 @@ whose byte `+0x14` is at or above `0x80`, only while the manager's `+0x28` is 0,
 For each of them it first calls `0x00234480(0, record)`, calls `0x00234A00(+0x30, 1)` when the record's `+0x30` is set,
 clears the class-3 flag bits (bits `0x100` and `0x2000` of `+0x1C` for a record whose `+0x03 & 0xE0` is `0x60`), sets
 the low bits of byte `+0x0E` (`+0x0E` = `(old & 0xF1) | 1`), calls `0x00238FA0(record, 0x0031C4C0(byte +0x12))` for
-a byte `+0x12` of 0 to 3, and zeroes the `0x00359B80` object's `+0x40`-`+0x63` and byte `+0x65` when it exists
-(`0x00265A94`-`0x00265B0B`).
+a byte `+0x12` of 0 to 3, and zeroes the `0x00359B80` object's `+0x40`-`+0x63` and byte `+0x65` when it exists¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265A94`-`0x00265B0B` |
+
+</details>
 
 `0x00238FA0` only sets flag bit `0x4000000` of the record's unit and does not read its second argument
 ([battle units](../Characters-And-Objects/battle-units.md)).
@@ -662,21 +1316,40 @@ the callback per record ([field runtime](../Characters-And-Objects/field-runtime
 Inside, the unit (`0x0031B760(record)`) must exist, `0x002671C0()` must hold (slot 0 active with
 `0x02098E21` bit `0x1` and `0x02098E20` bit `0x80` clear and `0x02099DA1` zero), a navigation dataset must be
 loaded (`0x00383C80()`), unit flag bit `0x8` must be set and bit `0x10000` clear; when any of these fails the
-callback returns with no further call (`0x00233F8B`-`0x00233FBD`). Then:
+callback returns with no further call¹. Then:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00233F8B`-`0x00233FBD` |
+
+</details>
 
 - bit `0x10` clear: when `0x00267240(record)` holds (byte `+0x10` zero and `+0x14` bit `0x40` or `+0x0C` bit `0x1`)
   and the unit's `+0x698` record exists, bit `0x10` is set: the unit is simulated from the next frame; either
-  way `0x00312700` runs (`0x00234130`);
+  way `0x00312700` runs¹;
 - bit `0x10` set, with a `+0x698` record whose status words `+0x3C | +0x64` are clear of `0x80000003`
   or with `0x00377C20()` (through `0x00313F60`, `0x00233FE5`): the active frame `0x00307C70`, `0x00236300`, `0x00310DB0`
   (the periodic status step, [status timers](../Status-Effects-And-KO/status-timers.md)), `0x003247F0`,
-  `0x00308610`, `0x0023A070`, `0x002350C0` of the actor pointer at unit `+0x10` (`0x0023401E`), then `0x00312700`;
+  `0x00308610`, `0x0023A070`, `0x002350C0` of the actor pointer at unit `+0x10`², then `0x00312700`;
 - bit `0x10` set, the gate failed, bit `0x2` set: `0x00312700` only;
 - bit `0x10` set, the gate failed, bit `0x2` clear, a spawn-backed unit (record byte `+5` = 1 and
   `[+0xE68]+0x18 & 0xE` = 4): `0x00236300`, `0x0033A240(unit + 0x80)`, `0x0023A070`, `0x00312700`;
 - otherwise idle: bit `0x2` of the battle-state word is set when `0x003070E0()` is 0; `0x0026A330(actor,
   0)`; `0x003057D0`; `r = 0x0030CA50(unit)`; with unit bits `0x200000000` and `0x400000000` set and not (`0x00322310(r)` = 0
   and `0x003228E0(r)` non-zero) the unit is torn down (`0x00300E40(unit, 0)`); then `0x00312700`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234130` |
+| ² | `0x0023401E` |
+
+</details>
 
 ### The battle-state word
 
@@ -686,22 +1359,58 @@ callback returns with no further call (`0x00233F8B`-`0x00233FBD`). Then:
 initialisation `0x002342F0` writes `(word & 0xFFFFC01E) | 0x10`: bit `0x10` set, bits `0x1` and `0x3FE0` cleared at
 once.
 
-It does this, and everything else it runs, only while the battle system's up flag `0x02089300` is non-zero
-(`0x002342F4`-`0x002342FB`); it also counts `0x0208E6B0` (`0x00234315`) and zeroes the qword `0x02089350` (`0x00234332`). The
-boot's battle work init `0x002368D0` zeroes the word (`0x002369FB`) and the up flag (`0x002368F8`).
+It does this, and everything else it runs, only while the battle system's up flag `0x02089300` is non-zero¹; it also counts `0x0208E6B0`² and zeroes the qword `0x02089350`³. The
+boot's battle work init `0x002368D0` zeroes the word⁴ and the up flag⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002342F4`-`0x002342FB` |
+| ² | `0x00234315` |
+| ³ | `0x00234332` |
+| ⁴ | `0x002369FB` |
+| ⁵ | `0x002368F8` |
+
+</details>
 
 The area initialisation also runs three resets:
 
-- `0x00307FF0` (`0x00234432`) clears `0x022C1F48` bits `0x2` and `0x4` and zeroes `0x022C1F40`, as the engagement
+- `0x00307FF0`¹ clears `0x022C1F48` bits `0x2` and `0x4` and zeroes `0x022C1F40`, as the engagement
   update does ([force-fight mode](force-fight-mode.md)).
-- `0x00322190` (`0x00234437`) zeroes the sixteen `u16` words at `0x0208D334`. The script verbs write and
-  read them through `0x00328D90` (`0x00328D9F`) and `0x0031B4F0` (`0x0031B4FF`), and the order code through
-  `0x00329E60` (`0x00329F0C`) and `0x00321190` (`0x0032125C`), each for an index of at most 15.
-- `0x0030C3F0` (`0x0023445E`) zeroes the 32 records of 12 bytes at `0x022C1DB0`, one per unit slot byte
+- `0x00322190`² zeroes the sixteen `u16` words at `0x0208D334`. The script verbs write and
+  read them through `0x00328D90`³ and `0x0031B4F0`⁴, and the order code through
+  `0x00329E60`⁵ and `0x00321190`⁶, each for an index of at most 15.
+- `0x0030C3F0`⁷ zeroes the 32 records of 12 bytes at `0x022C1DB0`, one per unit slot byte
   `+0xEA9`, where `0x00312FA0` saves a unit's `+0xDC8` word and `+0xE58` dword and `0x00308270`
   restores them.
 
-For any other n `0x0031B4F0(n)` answers 0 (`0x0031B4F3`, `0x0031B504`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234432` |
+| ² | `0x00234437` |
+| ³ | `0x00328D9F` |
+| ⁴ | `0x0031B4FF` |
+| ⁵ | `0x00329F0C` |
+| ⁶ | `0x0032125C` |
+| ⁷ | `0x0023445E` |
+
+</details>
+
+For any other n `0x0031B4F0(n)` answers 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B4F3`, `0x0031B504` |
+
+</details>
 
 | Bit | Set by | Cleared by | Meaning |
 |---|---|---|---|
@@ -723,40 +1432,86 @@ For any other n `0x0031B4F0(n)` answers 0 (`0x0031B4F3`, `0x0031B504`).
 | `0x4000000` | the verb `btlSetViewCheckMode` (`0x0050F170`) | the same verb with 0 | a script mode flag |
 | `0x20000000` | the verb `btlAtelSetRealBattleMode` (`0x0050F380`, which also runs `0x00308DE0` when it sets the bit, `0x0050F39E`) | the same verb with 0 (`0x0050F3A3`) | a script mode flag |
 
-Two helpers of the unit teardown below: `0x002ED180(handle)`, when the handle resolves (`0x003588B0`) and the actor's
+Two helpers of the unit teardown below: `0x002ED180(handle)`, when the handle resolves¹ and the actor's
 render record is in use (`+0x284` non-zero), clears the actor's aim at another actor: it jumps to `0x003E6B40`, which
-runs `0x00512EE0` on the render record's `+0x650` block (`0x002ED1C9`).
+runs `0x00512EE0` on the render record's `+0x650` block².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003588B0` |
+| ² | `0x002ED1C9` |
+
+</details>
 
 `0x00512EE0(block)` clears bits `0x0F` of the block's byte `+0x0F`, stores `0xFFFF` in the word `+0x0C` and 0 in the
-byte `+0x0E`, and does nothing else (`0x00512EE0`-`0x00512EEA`).
+byte `+0x0E`, and does nothing else¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00512EE0`-`0x00512EEA` |
+
+</details>
 
 `0x0031B770(row)` returns 0 for a row above `0x27`; otherwise it walks the unit table (`0x00236820`, count `0x00236850`)
 and returns the first unit whose `+0x698` is the row's record `[0x02EBF190] + 8 + row × 0x1C8`, or 0 when no unit
-holds it (`0x0031B776`-`0x0031B7D9`).
+holds it¹.
 
-The unit combat frame `0x00308610` also sets bit `0x2` when `0x00307DF0(unit)` is non-zero (`0x00308682`-`0x00308689`,
-`0x00308666`), and its `0x00237670(id)` test runs only with an order in flight (`+0x708` non-null,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031B776`-`0x0031B7D9` |
+
+</details>
+
+The unit combat frame `0x00308610` also sets bit `0x2` when `0x00307DF0(unit)` is non-zero¹, and its `0x00237670(id)` test runs only with an order in flight (`+0x708` non-null,
 `0x003086E6`-`0x003086F2`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00308682`-`0x00308689`, `0x00308666` |
+
+</details>
 
 `0x00300FC0(unit, mode)` is the unit teardown. For a kind-0 record of type `0x1B` to `0x27` in mode
 0 it runs `0x003105D0` and `0x003138D0(0)` only. Otherwise:
 
-1. `0x00310780`, `0x002ED180` with the unit's handle `+8` (above), the flag clears (`*unit &= ~(bits 0x2, 0x80000,
-   0x100000 and 0x200000000)`, `+4 &= ~4`),
-   `0x0026DAC0(actor, -1.0)`, `0x0026A330(actor, 0)`, `0x003219D0(type, 0, 0, 1)`;
-2. `0x002372E0()`: bit `0x400`, `0x003001D0`, request `0x0B`, the lock evaluator `0x0023B040`, return;
-3. else `0x00237260()`: bit `0x200`, `0x003001D0`, request `0x18`, the evaluator, return;
-4. else `0x002373C0()` sets bit `0x800` alone; then an id equal to `0x003590D0()` (read through `0x003272E0`, a jump to
-   it, `0x003010D8`) sets bit `0x100` and raises `0x17`; and in mode 0 at party-control level 1 (`0x0030D9A0()` = 1),
-   when the unit is the one of the summoner's row `[0x02EBF190] + 0x5AD5` (`0x0031B770`), `0x003138D0(0)` and the
-   evaluator run.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00310780`, `0x002ED180` with the unit's handle `+8` (above), the flag clears (`*unit &= ~(bits 0x2, 0x80000, 0x100000 and 0x200000000)`, `+4 &= ~4`), `0x0026DAC0(actor, -1.0)`, `0x0026A330(actor, 0)`, `0x003219D0(type, 0, 0, 1)`; |   |
+| 2 | `0x002372E0()`: bit `0x400`, `0x003001D0`, request `0x0B`, the lock evaluator `0x0023B040`, return; |   |
+| 3 | else `0x00237260()`: bit `0x200`, `0x003001D0`, request `0x18`, the evaluator, return; |   |
+| 4 | else `0x002373C0()` sets bit `0x800` alone; then an id equal to `0x003590D0()` (read through `0x003272E0`, a jump to it, `0x003010D8`) sets bit `0x100` and raises `0x17`; and in mode 0 at party-control level 1 (`0x0030D9A0()` = 1), when the unit is the one of the summoner's row `[0x02EBF190] + 0x5AD5`, `0x003138D0(0)` and the evaluator run. | `0x0031B770` |
 
 ## Layouts
 
+<details>
+<summary>Show the memory layouts</summary>
+
 ### The notice window
 
-The notice window is the `0x1D8`-byte widget with procedure `0x00474100` that `0x00474070` builds and stores at `0x02CA6C80` (`0x004740D8`). `0x00474040` releases it through `0x00245020` and
-clears the cell (`0x00474050`, `0x00474055`).
+The notice window is the `0x1D8`-byte widget with procedure `0x00474100` that `0x00474070` builds and stores at `0x02CA6C80`¹. `0x00474040` releases it through `0x00245020` and
+clears the cell².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004740D8` |
+| ² | `0x00474050`, `0x00474055` |
+
+</details>
 
 `NoticeWindow` (`0x1D8` bytes, offsets from the start of the record):
 
@@ -813,7 +1568,12 @@ Tick globals:
 | `0x0208E6A8` | `void*` |  | the one-shot callback |
 | `0x0208E6A4` | `u32` |  | its handle |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -824,6 +1584,8 @@ Tick globals:
 | console markers | two strings at `0x00D103E0` and `0x00D10420` printed before a deferred mode request |
 | unit callbacks | at most 32 per manager (`0x00265A20`) |
 
+</details>
+
 ## Operations
 
 Per frame: the state handler; in state 2, zero or more whole simulation steps, each one tick with
@@ -832,6 +1594,9 @@ the pacer wait. Per step: the orchestrator's nine groups for slot 0, the drive p
 unit frame per bound record.
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The state byte and the main-loop cells; the tick-active dword, the two tick counters, the
 deferred request and the manager request mask; the battle-state word, its one-shot callback, the
@@ -860,6 +1625,8 @@ slots' `+0x201` bytes; the eight one-byte field flags `0x02099DA0` to `0x02099DA
 | `0x022CA638` | `u32` | 0 (zero-filled tail of `.data`) | the write index of the 256 frame deadlines (`f64`) at `0x022CA640` that the pacer's worker `0x0035EA40` waits on. `0x0035E9B0(t)`, which `0x0022A580` calls with -16.0 and 17.0 (`0x0022A670`, `0x0022A700`), stores `t` at `0x022CA640 + 8 × index` (`0x0035E9C1`), releases the semaphore `[0x022CA610]` (`0x0035E9CD`) and stores `(index + 1) & 0xFF` (`0x0035E9D2`-`0x0035E9DD`), then jumps to `0x0035FF80` (`0x0035E9E7`), which sets `0x022CAE80` to 1, the word `0x00360080` tests; the worker reads the deadlines with its own index (`0x0035EADC`) | `0x0035E9B0` (`0x0035E9DD`) | `0x0035E9B0` (`0x0035E9B4`, `0x0035E9D2`) |
 | `0x02EBF3DC` | `u8` | 0 (zero-filled tail of `.data`) | the step of state 1's gate `0x0037C2E0`: 0 and 1 fetch the next entry, 2 holds on the current record `0x02ADD948`, 3 goes back to 1, 4 is done. The gate stores the step when it holds (2, `0x0037C3AF`, returning 1) and when it finishes (4, `0x0037C39C`, returning 0), and resumes from it on its next call | `0x0037C2E0` (`0x0037C39C`, `0x0037C3AF`); `0x0037CB30`, 0 (`0x0037CB37`), from the start-up's first-screen set-up (`0x0022B795`) | `0x0037C2E0` (`0x0037C2E6`) |
 | `0x02EBF3DD` | `u8` | 0 (zero-filled tail of `.data`) | the gate's entry index: `0x0037C2E0` fetches entry `[0x02EBF3DD]` of the table `[0x02EBF0A8]` (`0x00320B30`) while the index is below the count `0x003204B0()` (a signed compare, `jl` at `0x0037C327`), increments it (`0x0037C337`) and skips an entry whose id is 0 or less (`jle`, signed, `0x0037C33F`) | `0x0037C2E0` (`0x0037C337`); `0x0037CB30`, 0 (`0x0037CB30`) | `0x0037C2E0` (`0x0037C319`, `0x0037C337`) |
+
+</details>
 
 ## Modding notes
 
@@ -900,9 +1667,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263E30` | is called by | `0x003206E0` |
+| [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse) | is called by | [`0x003206E0`](../Characters-And-Objects/battle-units.md) (on battle units) |
 
 </details>
 

@@ -30,7 +30,16 @@ while one is outstanding does nothing.
 
 Only a class-3 actor (`(byte +0x03 & 0xE0) == 0x60`) steers; every setter below returns silently
 for any other class, except that `0x0026B6A0` also writes for class 1 and `0x0026C090` hands class 1
-to it (below); `0x0026B6A0` writes nothing for a class other than 1 and 3 (`0x0026B6F9`).
+to it (below); `0x0026B6A0` writes nothing for a class other than 1 and 3¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026B6F9` |
+
+</details>
 
 Its movement context at `+0xB8` holds a pitch at `+0xA0`, a desired heading
 (yaw) at `+0xA4` and the facing at `+0xA8`. The facing is what the rest of the engine reads:
@@ -60,7 +69,16 @@ must keep each call site's form. `0x00325E60` is the loop form with the two loop
 `atan2(x1 - x0, z1 - z0) - facing`, folds it with the two loops, and returns whether its magnitude
 is below `half`. The talk tests `0x0025BAD0` (class 3) and `0x0025BE50` (class 1) use it, and so do the
 verbs `isrange(angle, actor)` (`0x0295`, `0x00346780`) and `isrange_296(angle, x, z)` (`0x0296`,
-`0x00346EF0`), which pass the actor's facing (`0x00265200`) and half the popped angle.
+`0x00346EF0`), which pass the actor's facing¹ and half the popped angle.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265200` |
+
+</details>
 
 ### Setting the facing
 
@@ -77,20 +95,50 @@ the context's `+0x58` (`0x003DA850` on `+0x50`), into `+0x78` and `+0x68` unless
 has bit `0x20`, and, when the controller has a movement body at `+0x138`, into the body's `+0xF8`
 followed by a rebuild of the body's placement (`0x003DAF20` with the context's `+0x104`-`+0x106`).
 
-When the controller's render record id is not -1 it hands `{aux, angle, 0}` to the render record
-(`0x003EC260`); the writer hands in any non-zero `commit` as 1 (`0x002E5F4B`). `0x003EC260` does nothing for a
-record whose `+0x284` is 0 (`0x003EC28A`-`0x003EC297`). For a record whose `+0x290` bit `0x100000` is clear and
+When the controller's render record id is not -1 it hands `{aux, angle, 0}` to the render record¹; the writer hands in any non-zero `commit` as 1². `0x003EC260` does nothing for a
+record whose `+0x284` is 0³. For a record whose `+0x290` bit `0x100000` is clear and
 word `+0x06` is not -1 it stages and commits nothing: with `+0x284` bit `0x8000000` set it writes nothing,
-otherwise it zeroes `+0x120`-`+0x128` and sets `+0x12C` to 1.0 (`0x003EC29D`-`0x003EC2E8`).
+otherwise it zeroes `+0x120`-`+0x128` and sets `+0x12C` to 1.0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC260` |
+| ² | `0x002E5F4B` |
+| ³ | `0x003EC28A`-`0x003EC297` |
+| ⁴ | `0x003EC29D`-`0x003EC2E8` |
+
+</details>
 
 Any other record takes the triple at `+0x120`-`+0x128` when it differs from the stored one: the old values go
-to `+0x250`-`+0x258`, `+0x12C` is set to 1.0 and `+0x284` bit `0x200` is cleared (`0x003EC2E9`-`0x003EC358`).
+to `+0x250`-`+0x258`, `+0x12C` is set to 1.0 and `+0x284` bit `0x200` is cleared¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC2E9`-`0x003EC358` |
+
+</details>
 
 For `commit` 1 the call then copies the triple to `+0x250`-`+0x258`, calls `0x004288B0(record, -1)` unless
-`+0x284` bit `0x20000` is set (`0x003EC368`, `0x003EC396`), and tail-jumps to `0x003B3CA0(+0x288, 0x1E)` when
-`+0x288` is not -1 (`0x003EC3A3`-`0x003EC3BC`). So, for a record that takes the triple, variant 0 stages a facing
+`+0x284` bit `0x20000` is set¹, and tail-jumps to `0x003B3CA0(+0x288, 0x1E)` when
+`+0x288` is not -1². So, for a record that takes the triple, variant 0 stages a facing
 and variant 1 stages and commits it, a difference only a class-3 actor shows. A null
 actor faults at `0x002E5E55`, which reads its `+0xB8` after the null test.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC368`, `0x003EC396` |
+| ² | `0x003EC3A3`-`0x003EC3BC` |
+
+</details>
 
 `0x002E5F90(actor, aux, commit)` re-runs the writer with the current facing and a new `+0xAC`.
 
@@ -113,19 +161,46 @@ new slot is handed over clean with `0x0026AE90(actor, 0)` and `0x0026C120(actor,
 the saved walk is replayed by the shape now under the cursor (slot 0's) in `+0x62` bits `0x7`: shape 0 passes
 the triple at `+0x10` to `0x002EC2C0` by
 address, shape 1 passes `+0x10`, `+0x14`, `+0x18` to `0x002EBFA0` by value, any other shape resumes
-nothing; then `0x002EC3F0` and `0x002E8EE0` run, for every shape (`0x002EAB16`-`0x002EAB21`).
+nothing; then `0x002EC3F0` and `0x002E8EE0` run, for every shape¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EAB16`-`0x002EAB21` |
+
+</details>
 
 A push while pushed and a pop with nothing pushed do nothing. Like the push, the pop acts only on a class-3
-actor whose byte `+0x18` is not 1 (`0x002EAAA6`-`0x002EAAB7`); it decrements any non-zero selector
-(`0x002EAAD0`-`0x002EAAD5`).
+actor whose byte `+0x18` is not 1¹; it decrements any non-zero selector².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EAAA6`-`0x002EAAB7` |
+| ² | `0x002EAAD0`-`0x002EAAD5` |
+
+</details>
 
 The interruption is a script taking the actor. `0x00263230(record, 1)` runs when a request
-entry starts script execution; any other op returns at once (`0x00263233`). When no script is running on the
+entry starts script execution; any other op returns at once¹. When no script is running on the
 roster (`0x02099DB4` at or below 0)
 it registers `0x00226BE0(6, 0, 0, 0, 4, 0x00377700() != 0)` when `0x0209A2A8` is set and the record's
 byte `+0x0C` is non-negative, and resolves the party focus actor with `0x02099D70` pointed at slot 0
-for the lookup. With `0x02099DB4` above 0 it skips both and the look below, and goes straight to the count
-(`0x0026325A`).
+for the lookup. With `0x02099DB4` above 0 it skips both and the look below, and goes straight to the count².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263233` |
+| ² | `0x0026325A` |
+
+</details>
 
 The focus actor is then made to look at the starting actor, when it exists and has an armed render entry
 (`0x002E7600`; otherwise the look is skipped, `0x002632E4`-`0x002632F7`): `0x002EC2C0` with its position for a
@@ -133,29 +208,71 @@ class-1 record, `0x002EBFA0` with its handle and `0x30B` for class 3, then `0x00
 `0x002EBE50(focus, 1)`, `+0x62` bit `0x80`, `0x002E8EE0` and `0x002ED040(focus, 1)`.
 
 The `+0x62` bit is set in the focus's steering record `[[focus + 0xB8] + 0xF0]` only for a class-1 record and a
-class-3 focus (`0x00263385`-`0x0026339D`); a record of any other class gets only `0x002ED040(focus, 1)` (`0x002633A9`).
+class-3 focus¹; a record of any other class gets only `0x002ED040(focus, 1)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263385`-`0x0026339D` |
+| ² | `0x002633A9` |
+
+</details>
 
 In every case the script
-is counted at the manager's `+0x1E0` and the record's steering pushed (`0x002EAB80`). A record with a
+is counted at the manager's `+0x1E0` and the record's steering pushed¹. A record with a
 battle unit also has its speed set to 0 (`0x0026D6F0(record, 0, 2)`) and `0x0035AE10(record, 1)`. A null record passes
-the `+0x0C` test (`0x00263276`) and faults at `0x002632FD` or `0x002633BB`, which read it without a test.
+the `+0x0C` test² and faults at `0x002632FD` or `0x002633BB`, which read it without a test.
 
-`0x00263050(record, op)` ends it. Op 1 decrements the count, the manager's `+0x1E0 -= 1` (`0x002630B7`), and, when the sum
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EAB80` |
+| ² | `0x00263276` |
+
+</details>
+
+`0x00263050(record, op)` ends it. Op 1 decrements the count, the manager's `+0x1E0 -= 1`¹, and, when the sum
 of the counts of managers 0, 1 and 2 that are live (managers 3 and 4 are not added), which it stores in `0x02099DB4`,
-reaches 0 or below, `sum <= 0` (`0x002630BE`-`0x002630F2`), runs `0x002E1CD0(1, 3)` (clearing action-availability row 3),
+reaches 0 or below, `sum <= 0`², runs `0x002E1CD0(1, 3)` (clearing action-availability row 3),
 zeroes `0x02099DE5`, sets `0x02099DE7` to `0xFF`, calls `0x00263480(record, 2 or 1)` (2 when `+0x0C` bit `0x80` is set) and,
 with `0x0209A2A8` set and `+0x0C` non-negative, `0x00225CD0(6, 4)`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002630B7` |
+| ² | `0x002630BE`-`0x002630F2` |
+
+</details>
 
 It then releases the focus actor's look (`0x002EBE50(focus, 0, 0)` and `0x002E8EE0` when `0x002E7600(focus)` is
 non-zero, then `0x002ED040(focus, 0)` whenever the focus exists). In
 every case it clears record byte `+0x0B` bit `0x8`.
 
-It then pops at once (`0x0026320A`) unless the record's `+0x1C` bit `0x20000` is set and either `+0x18` is
+It then pops at once¹ unless the record's `+0x1C` bit `0x20000` is set and either `+0x18` is
 1 or the entry names a non-negative id (`+0xEA` when not `0xFFFF`, else the word at `+0x24` of the
 entry resolved from `+0x40`, which must hold at least `0x12` words). The deferred case sets `+0x0B`
-bit `0x10`, and op 4, run on the entry's removal, pops (`0x00263076`) and clears the bit when it is set, and does
-nothing otherwise (`0x00263070`). Op 3 tail-calls
-`0x0025B500`; op 2 and every other op return at once (`0x00263066`).
+bit `0x10`, and op 4, run on the entry's removal, pops² and clears the bit when it is set, and does
+nothing otherwise³. Op 3 tail-calls
+`0x0025B500`; op 2 and every other op return at once⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026320A` |
+| ² | `0x00263076` |
+| ³ | `0x00263070` |
+| ⁴ | `0x00263066` |
+
+</details>
 
 ### The steering request
 
@@ -168,8 +285,19 @@ context's `+0xD0`, `0x0026A640` keeps the raw speed at `+0x7C`, `0x0026AE30` sto
 
 `0x00357980` (the move-to-actor family) does the same with
 `0x0026ADF0(actor, manager, number)` storing an actor target: the running manager slot's index
-(`+0x28`, `0x003579CB`) at `+0x00` (`0x0026AE08`), the popped actor number at `+0x04` (`0x0026AE11`) and
-`+0x2A` = 1 (`0x0026AE1C`); a negative actor number means the party focus.
+(`+0x28`, `0x003579CB`) at `+0x00`¹, the popped actor number at `+0x04`² and
+`+0x2A` = 1³; a negative actor number means the party focus.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026AE08` |
+| ² | `0x0026AE11` |
+| ³ | `0x0026AE1C` |
+
+</details>
 
 `0x0026AE90(actor, mode)` collapses modes 2-4 to 1 when `+0x2C` is exactly 0.0, stores the mode at
 `+0x29`, and for mode 0 clears actor byte `+0x0D` bit `0x10`, cancels (`0x002E55C0`: `+0x29` = 0,
@@ -180,94 +308,157 @@ context's `+0xD0`, `0x0026A640` keeps the raw speed at `+0x7C`, `0x0026AE30` sto
 
 The mode is the byte `+0x29` of the object at `+0xF0` of the actor's movement context `+0xB8`.
 `0x00264E10(actor)` returns that byte for a class-3 actor (`+0x03 & 0xE0` = `0x60`) and 0 for any other class;
-it tests none of the three pointers (`0x00264E10`-`0x00264E2F`).
+it tests none of the three pointers¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264E10`-`0x00264E2F` |
+
+</details>
 
 `0x00269C30(actor, accel, mode)` (`setaccr`) stores `+0x2C` = `accel * [0x01DFE0BC]` and `+0x2B` =
 `mode`; `0x0026B450` (`setreachr`) stores the reach `+0x20`.
 
-`0x00264750(actor)` answers 0.0 for an actor that is not class 3 (`0x00264750`-`0x0026475D`) and otherwise jumps to
-`0x002E4BC0(actor)` (`0x0026475E`), which answers the steering record's float `+0x58`, or 0.0 for a null actor or a null
-qword `+0xC0` of the actor (`0x002E4BC0`-`0x002E4BE6`). `0x00264750` itself has no null test: it reads the actor's byte
+`0x00264750(actor)` answers 0.0 for an actor that is not class 3¹ and otherwise jumps to
+`0x002E4BC0(actor)`², which answers the steering record's float `+0x58`, or 0.0 for a null actor or a null
+qword `+0xC0` of the actor³. `0x00264750` itself has no null test: it reads the actor's byte
 `+0x03` at its first instruction. `0x00265600(actor)` answers the steering record's byte `+0x28 & 0x7F` for a class-3
-actor and 0 for any other, with no null test (`0x00265600`-`0x00265622`).
+actor and 0 for any other, with no null test⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00264750`-`0x0026475D` |
+| ² | `0x0026475E` |
+| ³ | `0x002E4BC0`-`0x002E4BE6` |
+| ⁴ | `0x00265600`-`0x00265622` |
+
+</details>
 
 `0x002E5B90(actor, step)` stores the float at the steering record's `+0x58`, and stores nothing for a null actor or a
-null qword `+0xC0` of the actor (`0x002E5B90`-`0x002E5BB2`). `0x0026B450(actor, reach)` stores its float at the steering
-record's `+0x20`, the reach, for a class-3 actor only, and nothing for a null actor (`0x0026B450`-`0x0026B472`).
+null qword `+0xC0` of the actor¹. `0x0026B450(actor, reach)` stores its float at the steering
+record's `+0x20`, the reach, for a class-3 actor only, and nothing for a null actor².
 `0x0026A170(actor, value)` stores the turn lock `+0x65` for a class-3 actor only, with no null test: 1 for a value other
-than 0 and 0 for 0 (`0x0026A170`-`0x0026A190`).
+than 0 and 0 for 0³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E5B90`-`0x002E5BB2` |
+| ² | `0x0026B450`-`0x0026B472` |
+| ³ | `0x0026A170`-`0x0026A190` |
+
+</details>
 
 While `+0x29` is non-zero the wait resolver `0x0025DF00` re-issues `0x0026D6F0(actor, +0x7C *
-[0x01DFE0BC], ...)` every frame (`0x0025DF83`), which is why mode 0 zeroes `+0x7C`.
+[0x01DFE0BC], ...)` every frame¹, which is why mode 0 zeroes `+0x7C`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025DF83` |
+
+</details>
 
 ### Steering toward the target
 
 `0x002E45E0(actor, context)`, the steering update, runs from the per-frame driver `0x002E5030` when that driver does not
 refuse the actor (byte `+0x18` 1, a null controller `+0xC0` or its byte `+0x14F` bit `0x1`, a class other than 3,
-`0x002E5048`-`0x002E507F`) and the steering request's mode byte `+0x29` is 1 to 4 (`0x002E50A0`-`0x002E50B8`). Each frame:
+`0x002E5048`-`0x002E507F`) and the steering request's mode byte `+0x29` is 1 to 4¹. Each frame:
 
-1. the target point, by the selected request's kind byte `+0x2A` (`0x002E4610`-`0x002E463B`):
-   - kind 0 is the stored position with reach `+0x20` (`0x002E46C6`-`0x002E46CD`);
-   - kind 1 resolves the actor (`0x003587C0` with the manager index `+0x00`, or `0x003590D0` → `0x003588B0` when the actor
-     number `+0x04` is negative, `0x002E4641`-`0x002E4664`), reads its position (`0x00265020`, `0x002E467C`), and adds to the
-     reach both bodies' radii (`0x003DA6A0`: `sqrt(0x003DA730(a)) + a.+0x5C` for each over the two `+0x50` sub-blocks,
-     `0x002E4681`-`0x002E469E`);
-   - an unresolvable actor target is the origin, with the reach `+0x20` alone (`0x002E46A5`-`0x002E46BF`);
-   - any other kind leaves the reach at 0 and the target point a 16-byte local that this path never writes; steps 2 to
-     7 still run on it;
-2. the bearing (`0x003A19C0`, `0x002E46D2`-`0x002E46E1`): yaw `atan2(dx, dz)` and pitch `atan2(dy, sqrt(dx^2 + dz^2))`,
-   looped into range; the desired yaw `+0xA4` and pitch `+0xA0` each approach them by at most the request's caps
-   `+0x50` and `+0x54` (`0x003A1AD0`: wrap the difference, step by `min(|diff|, cap)` and snap when below the cap, then
-   loop the result into range, `0x003A1B70`-`0x003A1B8A`; `0x002E46E6`-`0x002E4722`):
-   - the new yaw and pitch are stored after step 4 (`0x002E4797`, `0x002E479F`);
-3. when the stepRequest byte `+0x201` of the actor's manager record (`0x02098E10 + 0x288 *` actor byte `+0x15`, read by
-   `0x00267310`) is non-zero, `0x0026AFE0` places the actor on the target at once (`0x002E4727`-`0x002E4751`);
-4. the remaining distance is `distance - reach`, three-dimensional (`0x003A1920`) when `0x00264460` or actor byte `+0x08`
-   bit `0x4` says so, else flat (`0x004686D0`) (`0x002E4756`-`0x002E478E`);
-5. the ramp, with `v = +0x24` and `a = +0x2C` of the request, by its mode `+0x29` (`0x002E47A7`-`0x002E47CE`); `v` then
-   goes to the context's `+0xD0` and `+0xF8` (`0x002E48B5`, `0x002E48C0`), and `+0xF8` keeps it after arrival:
-   - mode 1 leaves `v`;
-   - mode 2 measures `d0`, the distance from the context's start snapshot `+0x30` (written by `0x0026AF10`), the way
-     step 4 does (`0x00264460`, `0x003A1920` or `0x004686D0`, `0x002E47D4`-`0x002E4823`), and when `max(a, d0) < v^2 / 2a` sets
-     `v = max(a, sqrt(2a * max(a, d0)))`, the root by `0x003A1D30` (`0x002E4823`-`0x002E4850`);
-   - mode 3 sets `v = max(a, sqrt(|2a * rem|))` when `max(a, rem) < v^2 / 2a`, `rem` being the remaining distance: the
-     root `0x003A1D30` is `sqrtf(fabs(x))`, so a negative `rem` inside the reach still gives a speed
-     (`0x002E4861`-`0x002E4895`);
-   - mode 4 runs the mode 2 step, then the mode 3 step on the new `v` (`0x002E4854`-`0x002E485F`);
-6. actor byte `+0x0D` bit `0x10` (near) is set when `[0x02164200] * +0x24 > remaining`, with the request's `+0x24`
-   before the ramp, and cleared otherwise (`0x002E4899`-`0x002E48D0`); `0x02164200` is 3.0 at run time: its only writer is
-   the setter `0x002EBE40`, called by `0x00266D10` at boot and by the verb `debug_charmovestopvelrratio` (`0x0050D320`);
-7. arrival, when `[0x01DFE0B8] * v > remaining` (`0x002E48D4`-`0x002E48F3`):
-   - for a position target (`+0x2A` = 0) a zero reach `+0x20` snaps the actor onto it (`0x0026AFE0`), and the request's
-     `+0x24` and `+0x2C` and the context's `+0xD0` are zeroed (`0x002E48F9`-`0x002E4944`); `0x002E4903` skips this for any
-     other kind;
-   - for every target `+0x29` = 0 (`0x002E494E`), a movement mode 2 (`+0x28` & `0x7F`) is torn down
-     (`0x0026C120(actor, 0)`, `0x002E4951`-`0x002E4969`), and `+0x24` and `+0xD0` are zeroed, for a position target a second
-     time (`0x002E4975`, `0x002E4978`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E50A0`-`0x002E50B8` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | the target point, by the selected request's kind byte `+0x2A`:<br>• kind 0 is the stored position with reach `+0x20`;<br>• kind 1 resolves the actor (`0x003587C0` with the manager index `+0x00`, or `0x003590D0` → `0x003588B0` when the actor number `+0x04` is negative, `0x002E4641`-`0x002E4664`), reads its position, and adds to the reach both bodies' radii (`0x003DA6A0`: `sqrt(0x003DA730(a)) + a.+0x5C` for each over the two `+0x50` sub-blocks, `0x002E4681`-`0x002E469E`);<br>• an unresolvable actor target is the origin, with the reach `+0x20` alone;<br>• any other kind leaves the reach at 0 and the target point a 16-byte local that this path never writes; steps 2 to 7 still run on it; | `0x002E4610`-`0x002E463B`<br>`0x002E46C6`-`0x002E46CD`<br>`0x00265020`, `0x002E467C`<br>`0x002E46A5`-`0x002E46BF` |
+| 2 | the bearing: yaw `atan2(dx, dz)` and pitch `atan2(dy, sqrt(dx^2 + dz^2))`, looped into range; the desired yaw `+0xA4` and pitch `+0xA0` each approach them by at most the request's caps `+0x50` and `+0x54` (`0x003A1AD0`: wrap the difference, step by `min(\|diff\|, cap)` and snap when below the cap, then loop the result into range, `0x003A1B70`-`0x003A1B8A`; `0x002E46E6`-`0x002E4722`):<br>• the new yaw and pitch are stored after step 4; | `0x003A19C0`, `0x002E46D2`-`0x002E46E1`<br>`0x002E4797`, `0x002E479F` |
+| 3 | when the stepRequest byte `+0x201` of the actor's manager record (`0x02098E10 + 0x288 *` actor byte `+0x15`, read by `0x00267310`) is non-zero, `0x0026AFE0` places the actor on the target at once; | `0x002E4727`-`0x002E4751` |
+| 4 | the remaining distance is `distance - reach`, three-dimensional when `0x00264460` or actor byte `+0x08` bit `0x4` says so, else flat; | `0x003A1920`<br>`0x004686D0`<br>`0x002E4756`-`0x002E478E` |
+| 5 | the ramp, with `v = +0x24` and `a = +0x2C` of the request, by its mode `+0x29`; `v` then goes to the context's `+0xD0` and `+0xF8`, and `+0xF8` keeps it after arrival:<br>• mode 1 leaves `v`;<br>• mode 2 measures `d0`, the distance from the context's start snapshot `+0x30` (written by `0x0026AF10`), the way step 4 does (`0x00264460`, `0x003A1920` or `0x004686D0`, `0x002E47D4`-`0x002E4823`), and when `max(a, d0) < v^2 / 2a` sets `v = max(a, sqrt(2a * max(a, d0)))`, the root by `0x003A1D30`;<br>• mode 3 sets `v = max(a, sqrt(\|2a * rem\|))` when `max(a, rem) < v^2 / 2a`, `rem` being the remaining distance: the root `0x003A1D30` is `sqrtf(fabs(x))`, so a negative `rem` inside the reach still gives a speed;<br>• mode 4 runs the mode 2 step, then the mode 3 step on the new `v`; | `0x002E47A7`-`0x002E47CE`<br>`0x002E48B5`, `0x002E48C0`<br>`0x002E4823`-`0x002E4850`<br>`0x002E4861`-`0x002E4895`<br>`0x002E4854`-`0x002E485F` |
+| 6 | actor byte `+0x0D` bit `0x10` (near) is set when `[0x02164200] * +0x24 > remaining`, with the request's `+0x24` before the ramp, and cleared otherwise; `0x02164200` is 3.0 at run time: its only writer is the setter `0x002EBE40`, called by `0x00266D10` at boot and by the verb `debug_charmovestopvelrratio`; | `0x002E4899`-`0x002E48D0`<br>`0x0050D320` |
+| 7 | arrival, when `[0x01DFE0B8] * v > remaining`:<br>• for a position target (`+0x2A` = 0) a zero reach `+0x20` snaps the actor onto it, and the request's `+0x24` and `+0x2C` and the context's `+0xD0` are zeroed; `0x002E4903` skips this for any other kind;<br>• for every target `+0x29` = 0, a movement mode 2 (`+0x28` & `0x7F`) is torn down (`0x0026C120(actor, 0)`, `0x002E4951`-`0x002E4969`), and `+0x24` and `+0xD0` are zeroed, for a position target a second time. | `0x002E48D4`-`0x002E48F3`<br>`0x0026AFE0`<br>`0x002E48F9`-`0x002E4944`<br>`0x002E494E`<br>`0x002E4975`, `0x002E4978` |
 
 The classical `v = sqrt(2 a d)` with `a` floored in keeps a stopping distance from going negative.
-At 60 fps the arrival scale `[0x01DFE0B8]` is 2.0 and the speed is halved, `speed * [0x01DFE0BC]` (`0x0026D6A0`), so in
+At 60 fps the arrival scale `[0x01DFE0B8]` is 2.0 and the speed is halved, `speed * [0x01DFE0BC]`¹, so in
 ramp mode 1 a walk ends at the same distance from its goal at either frame rate: two 60 fps frames out, one 30 fps
-frame. A ramped mode tests arrival with the ramped `v` (`0x002E48D4`-`0x002E48DC`), and with `a` halved too (`setaccr`)
+frame. A ramped mode tests arrival with the ramped `v`², and with `a` halved too (`setaccr`)
 `sqrt(2 a d)` is `sqrt(0.5)` of its 30 fps value, not half, so that cancellation does not carry over.
 
-`0x0026AFE0(actor, x, y, z, flag)` is that placement; both steer sites give it `flag` 0 (`0x002E474D`, `0x002E4924`).
-For class 3 it calls `0x002E5DF0`, or for a non-zero `flag` `0x002EB930` and then `0x002E5C70`
-(`0x0026B014`-`0x0026B03A`): the two forms of `0x002E5C90(actor, x, y, z, flag)`, which returns at once for actor byte
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026D6A0` |
+| ² | `0x002E48D4`-`0x002E48DC` |
+
+</details>
+
+`0x0026AFE0(actor, x, y, z, flag)` is that placement; both steer sites give it `flag` 0¹.
+For class 3 it calls `0x002E5DF0`, or for a non-zero `flag` `0x002EB930` and then `0x002E5C70`²: the two forms of `0x002E5C90(actor, x, y, z, flag)`, which returns at once for actor byte
 `+0x18` = 1, writes the point into the context's `+0x00`-`+0x08`, runs the movement body's placement on it
-(`0x003DB1B0`, and `0x003DAE00` when `0x00267260` is non-zero), writes the placed point back (`0x002E5D9E`-`0x002E5DB1`)
-and passes it to the render record (`0x002E6000`).
+(`0x003DB1B0`, and `0x003DAE00` when `0x00267260` is non-zero), writes the placed point back³
+and passes it to the render record⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E474D`, `0x002E4924` |
+| ² | `0x0026B014`-`0x0026B03A` |
+| ³ | `0x002E5D9E`-`0x002E5DB1` |
+| ⁴ | `0x002E6000` |
+
+</details>
 
 For class 1 `0x0026AFE0` sets the context's byte `+0x5D` bit `0x1` and writes the point to `+0x00`, `+0x10` and
-`+0x20` (`0x0026B041`-`0x0026B076`); any other class gets neither. Then, unless actor byte `+0x18` is 1, it clears
-the push accumulators (`0x003DA9F0`) and `+0xEF` of the controller's movement body `+0x138`, when the controller
-and the body exist (`0x0026B07B`-`0x0026B0A1`). Its third caller, `0x0026AF80`, gives `flag` 1.
+`+0x20`¹; any other class gets neither. Then, unless actor byte `+0x18` is 1, it clears
+the push accumulators² and `+0xEF` of the controller's movement body `+0x138`, when the controller
+and the body exist³. Its third caller, `0x0026AF80`, gives `flag` 1.
 
-`0x0026AF80(actor, x, y, z)` always calls `0x0026AFE0(actor, x, y, z, 1)`, the 1 being the stack dword at `[rsp+0x20]`
-(`0x0026AF80`-`0x0026AF91`). It then jumps to `0x002E4A10(actor)`, which for a class-3 actor copies the movement context's
-dwords `+0x00`, `+0x04` and `+0x08` to `+0x10`, `+0x14` and `+0x18` (`0x002E4A10`-`0x002E4A32`). Only that jump is left
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026B041`-`0x0026B076` |
+| ² | `0x003DA9F0` |
+| ³ | `0x0026B07B`-`0x0026B0A1` |
+
+</details>
+
+`0x0026AF80(actor, x, y, z)` always calls `0x0026AFE0(actor, x, y, z, 1)`, the 1 being the stack dword at `[rsp+0x20]`¹. It then jumps to `0x002E4A10(actor)`, which for a class-3 actor copies the movement context's
+dwords `+0x00`, `+0x04` and `+0x08` to `+0x10`, `+0x14` and `+0x18`². Only that jump is left
 out, when the actor's byte `+0x15` is `n` below 3 and the byte `+0x10` of the record `0x02098E10 + 0x288 * n` has bit
-`0x1` set and bit `0x80` clear (`0x0026AF96`-`0x0026AFCA`).
+`0x1` set and bit `0x80` clear³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026AF80`-`0x0026AF91` |
+| ² | `0x002E4A10`-`0x002E4A32` |
+| ³ | `0x0026AF96`-`0x0026AFCA` |
+
+</details>
 
 ### The movement mode and the turn direction
 
@@ -275,23 +466,43 @@ out, when the actor's byte `+0x15` is `n` below 3 and the byte `+0x10` of the re
 
 - mode 0: when `+0x65` is set, `0x002EBE50(actor, 0, 0)` and `0x002E8EE0(actor)`; then
   `0x002E6300(actor, context, old)`, which returns `+0x64` when the old mode had bit `0x80`;
-- modes 2 and 3: the turn direction bit, `+0x62` bit `0x40` set when `wrap(+0x34 - +0xA8)` (`0x003A1C50`)
+- modes 2 and 3: the turn direction bit, `+0x62` bit `0x40` set when `wrap(+0x34 - +0xA8)`¹
   is negative, else cleared; `+0x58` = `pi/20` (`0x3E20D97C`, nine degrees) and `+0x5C` = `pi`
-  (`0x40490FDB`), the second a store nothing reads;
+ ², the second a store nothing reads;
 - mode 4: the direction bit; then, when the frame count `+0x68` is at most `[0x01DFE0B4]` (unsigned),
   the facing is set to `+0x34` through `0x0026B620` and the mode reset to 0;
 - any other mode: stored and nothing else.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A1C50` |
+| ² | `0x40490FDB` |
+
+</details>
 
 So a character turns the short way round because the difference is wrapped before its sign is
 taken, once, when the mode is set.
 
 ### The per-frame integrator
 
-`0x002E5750(actor, direct)` runs once per actor from the wait resolver (`0x0025E3AA`) and is skipped
+`0x002E5750(actor, direct)` runs once per actor from the wait resolver¹ and is skipped
 when actor byte `+0x18` is 1 or the controller's `+0x14F` has bit `0x1`. With `direct` non-zero it adds
 the two floats of its third argument to the heading and pitch instead. Otherwise it reads the mode
-`+0x28 & 0x7F` (`0x00265600`) and the turn step `+0x58` (`0x00264750` → `0x002E4BC0`), floors the step at
+`+0x28 & 0x7F`² and the turn step `+0x58` (`0x00264750` → `0x002E4BC0`), floors the step at
 `0x3C0EFA35` (half a degree) for any active mode (`0x0026AC70` → `0x002E5B90`), and dispatches:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E3AA` |
+| ² | `0x00265600` |
+
+</details>
 
 | Mode | Each frame |
 |---|---|
@@ -302,94 +513,269 @@ the two floats of its third argument to the heading and pitch instead. Otherwise
 | 5 | waits while `0x002EA780` reports the render record's turn still running (`0x003E6AF0` non-zero and `0x002EA910` = 1); when it stops, `0x0026C120(actor, 0)` (`0x002E5A63`-`0x002E5A6E`); `0x002EA780` also gives 0, ending the wait at once, for a null actor, an actor without a controller at `+0xC0`, a render id of -1, a render record address that computes to null or a render record whose `+0x284` is 0 (`0x002EA789`-`0x002EA7C3`) |
 
 By address, `0x002E5750` returns at once when the actor's byte `+0x18` is 1, or when the controller `+0xC0` is present
-and its byte `+0x14F` has bit `0x1` (`0x002E575A`-`0x002E577D`). With `direct` other than 0 it calls
+and its byte `+0x14F` has bit `0x1`¹. With `direct` other than 0 it calls
 `0x0026B6A0(actor, h, 0)` with `h = 0x00265200(actor) + [pair+0x04]`, and then jumps to `0x0026B520(actor, p, 0)` with
-`p = 0x002651C0(actor) + [pair+0x00]`, the pair being its third argument (`0x002E5783`-`0x002E57BE`).
+`p = 0x002651C0(actor) + [pair+0x00]`, the pair being its third argument².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E575A`-`0x002E577D` |
+| ² | `0x002E5783`-`0x002E57BE` |
+
+</details>
 
 Otherwise it reads the mode `0x00265600(actor)`, the facing `0x00265200(actor)`, the step `0x00264750(actor)` and the spin
-`0x00265810(actor)`, in that order (`0x002E57D9`-`0x002E57FE`); the spin is the steering record's `+0x3C`, which `0x00265810`
+`0x00265810(actor)`, in that order¹; the spin is the steering record's `+0x3C`, which `0x00265810`
 reads through `0x002E4BF0(actor)` for a class-3 actor; `0x00265810` answers 0.0 for any other class, and `0x002E4BF0` 0.0
 for a null actor or a null qword `+0xC0` of the actor.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E57D9`-`0x002E57FE` |
+
+</details>
+
 For a mode other than 0, when the float at `0x00D0F8DC`, `0x3C0EFA35` or pi/360, is above the step, it calls
-`0x0026AC70(actor, that float)` and takes the float as the step for this pass (`0x002E5802`-`0x002E5821`); `0x0026AC70` hands
+`0x0026AC70(actor, that float)` and takes the float as the step for this pass¹; `0x0026AC70` hands
 the one-pass wrap of `float * [0x01DFE0BC]` to `0x002E5B90`, the store of `+0x58`, for a class-3 actor. Mode 0 and a mode
-above 5 do nothing more (`0x002E5825`-`0x002E584D`).
+above 5 do nothing more².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E5802`-`0x002E5821` |
+| ² | `0x002E5825`-`0x002E584D` |
+
+</details>
 
 Mode 1 calls `0x0026B5A0(actor, w)` with `w` the one-pass wrap of the sum `t0 = facing + spin`:
-`w = t - trunc(t / 2pi) * 2pi - s` with `t = t0 + s`, and `s` pi for a sum of 0 or above and -pi for any other
-(`0x002E5A9E`-`0x002E5AED`). Mode 2 calls `0x0026B5A0(actor, n)` with `n` what `0x003A1AD0(facing, d, step)` answers and `d`
-what `0x00263CC0(actor)` answers (`0x002E5A78`-`0x002E5A94`).
+`w = t - trunc(t / 2pi) * 2pi - s` with `t = t0 + s`, and `s` pi for a sum of 0 or above and -pi for any other¹. Mode 2 calls `0x0026B5A0(actor, n)` with `n` what `0x003A1AD0(facing, d, step)` answers and `d`
+what `0x00263CC0(actor)` answers².
 
-Mode 3 takes the target from `0x00265550(actor)` and tests `0x002654E0(actor)` (`0x002E595C`-`0x002E5972`). With an answer of
-0 the new facing is `0x003A1AD0(facing, target, step)` (`0x002E5A21`-`0x002E5A30`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E5A9E`-`0x002E5AED` |
+| ² | `0x002E5A78`-`0x002E5A94` |
+
+</details>
+
+Mode 3 takes the target from `0x00265550(actor)` and tests `0x002654E0(actor)`¹. With an answer of
+0 the new facing is `0x003A1AD0(facing, target, step)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E595C`-`0x002E5972` |
+| ² | `0x002E5A21`-`0x002E5A30` |
+
+</details>
 
 Otherwise it reads the direction `0x002655D0(actor)` and the index `0x00265630(actor)`; when `0x00265510(actor)` answers
 other than 0 and the index is not below `0x00265530(actor)`, a signed test, it calls `0x0026C070(actor, 0)` and, for a
 controller present whose first dword is not -1, `0x003DDAD0(actor, b, 0x1000000)` with `b` the controller's byte
-`+0x12`, signed (`0x002E5978`-`0x002E59CC`), which `0x003DDAD0` overwrites at once ([standard
+`+0x12`, signed¹, which `0x003DDAD0` overwrites at once ([standard
 motions](../Scripts-And-Script-Commands/verb-arguments.md#standard-motions)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E5978`-`0x002E59CC` |
+
+</details>
 
 Mode 3 then takes its new facing by the controller: one present whose first dword is 0 or above, a signed test, gives
 `0x003EC040(that dword, target, direction, 0)`; a null controller or a negative dword gives
-`0x003A1AD0(facing, target, step)`. Both of these ways then call `0x0026C300(actor, index + 1)` (`0x002E59D1`-`0x002E5A1A`);
+`0x003A1AD0(facing, target, step)`. Both of these ways then call `0x0026C300(actor, index + 1)`¹;
 the way of the 0 answer above does not.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E59D1`-`0x002E5A1A` |
+
+</details>
 
 On each of the three ways, when `0x00267310(actor byte +0x15)` answers other than 0 the new facing becomes
 `0x00265550(actor)`, read again; the new facing `n` is stored with `0x0026B6A0(actor, n, 0)`, and when it compares equal
-to the target `0x0026C120(actor, 0)` follows (`0x002E5A33`-`0x002E5A6E`).
+to the target `0x0026C120(actor, 0)` follows¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E5A33`-`0x002E5A6E` |
+
+</details>
 
 Mode 4 reads the target `0x00265550(actor)`, the start `0x002652A0(actor)`, the index `0x00265630(actor)` and the total
-`0x00265660(actor)` (`0x002E5862`-`0x002E5885`).
+`0x00265660(actor)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E5862`-`0x002E5885` |
+
+</details>
 
 In mode 4, when `0x00267310(actor byte +0x15)` answers other than 0 the index becomes the total. When the index is then
 not below the total, a signed test, it calls `0x0026B6A0(actor, target, 0)` and `0x0026C120(actor, 0)`; otherwise
 `0x0026B6A0(actor, v, 0)` with `v = start + w * (index / total)`, `w` the one-pass wrap of `target - start` as in mode
-1; `(float) index / (float) total` is formed first, each float from a signed dword (`0x002E588A`-`0x002E5926`).
+1; `(float) index / (float) total` is formed first, each float from a signed dword¹.
 
-Both ways of mode 4 end with `0x0026C300(actor, index + 1)`, the index being the total on the stepRequest way
-(`0x002E592B`-`0x002E5931`). With a total of 0, an index of 0 or above takes the first way and a negative index gives
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E588A`-`0x002E5926` |
+
+</details>
+
+Both ways of mode 4 end with `0x0026C300(actor, index + 1)`, the index being the total on the stepRequest way¹. With a total of 0, an index of 0 or above takes the first way and a negative index gives
 `index / 0.0`.
 
-`0x0026C300(actor, n)` stores `(float) n` at the steering record's `+0x78` for a class-3 actor and nothing for any other
-(`0x0026C300`-`0x0026C324`).
+<details>
+<summary>Where in the code</summary>
 
-Mode 5 calls `0x002EA780(actor)` and, on an answer of 0, `0x0026C120(actor, 0)` (`0x002E5853`-`0x002E585D`,
-`0x002E5A63`-`0x002E5A6E`).
+| | Code |
+|---|---|
+| ¹ | `0x002E592B`-`0x002E5931` |
+
+</details>
+
+`0x0026C300(actor, n)` stores `(float) n` at the steering record's `+0x78` for a class-3 actor and nothing for any other¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026C300`-`0x0026C324` |
+
+</details>
+
+Mode 5 calls `0x002EA780(actor)` and, on an answer of 0, `0x0026C120(actor, 0)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E5853`-`0x002E585D`, `0x002E5A63`-`0x002E5A6E` |
+
+</details>
 
 With mode 2 at Frame Rate 60 and at 30, the facing moved by exactly `pi/20` per pass,
 `0x002E5750` ran once per rendered frame (about 60 and 30 times a second), and a half turn took 20 frames, a third
 of a second at 60 and two thirds at 30. The step is not scaled by the frame rate.
 
-`0x002EA910` is 1 for an actor without a live render record or without an active entry (`0x003E6DF0`);
+`0x002EA910` is 1 for an actor without a live render record or without an active entry¹;
 otherwise it returns the render entry's own test `0x003E2C00` ([character render
 records](../Graphics/character-render-records.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E6DF0` |
+
+</details>
+
 `0x002E7600(actor)` answers 0 for a null actor, a null qword `+0xC0` of the actor, a first dword or a first word of that
 object of -1, a render record address of 0, or a render record whose dword `+0x284` is 0; otherwise it jumps to
-`0x003E6AF0(record)` (`0x002E7600`-`0x002E7642`). The record is `[0x022C6F28] + 0x740 * n`, with `n` that first word, signed.
+`0x003E6AF0(record)`¹. The record is `[0x022C6F28] + 0x740 * n`, with `n` that first word, signed.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E7600`-`0x002E7642` |
+
+</details>
 
 `0x003E6AF0(record)` answers 0 when the record's dword `+0x18` is -1, when `0x002ED570(q, that dword)` answers null, or
 when `0x00370E20(entry)` answers null for the entry `0x002ED570` gave; `q` is the qword `+0xD98` of what
 `0x0020E600(record dword +0x10)` answers, read with no null test. Otherwise it jumps to `0x003E2BD0(x)` with `x` the
-answer of `0x00370E20` (`0x003E6AF0`-`0x003E6B3F`). `0x003E6DF0(record)` finds the entry the same way and jumps to
-`0x0020E600(entry dword +0x94)`, or answers 0 with no entry (`0x003E6DF0`-`0x003E6E35`).
+answer of `0x00370E20`¹. `0x003E6DF0(record)` finds the entry the same way and jumps to
+`0x0020E600(entry dword +0x94)`, or answers 0 with no entry².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E6AF0`-`0x003E6B3F` |
+| ² | `0x003E6DF0`-`0x003E6E35` |
+
+</details>
 
 `0x003EC040(id, target, direction, mode)` reads the render record and writes nothing. It returns 0 for an id of
 -1, for a record whose `+0x284` is 0, and for a record whose `+0x290` bit `0x100000` is clear, `+0x284` bit
-`0x8000000` set and word `+0x06` not -1 (`0x003EC05E`-`0x003EC0B5`). It returns the record's own `+0x124` for the
+`0x8000000` set and word `+0x06` not -1¹. It returns the record's own `+0x124` for the
 animation states `0x35`, `0x36` and `0x0D` (`+0xCC & 0xFFF`) when the entry from `0x00422D50` has a non-zero sum
-of `+0x370` and `+0x378` and the byte at that sum plus 1 is 1 (`0x003EC0C5`-`0x003EC102`).
+of `+0x370` and `+0x378` and the byte at that sum plus 1 is 1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC05E`-`0x003EC0B5` |
+| ² | `0x003EC0C5`-`0x003EC102` |
+
+</details>
 
 It returns the target unchanged when `+0x290` bit `0x100000` is clear and word `+0x06` is not -1, and without an
-active entry (`0x003E56C0`, `0x003EC10C`-`0x003EC124`). Otherwise it steps the record's `+0x124` toward the target by
+active entry¹. Otherwise it steps the record's `+0x124` toward the target by
 the entry's rate scaled by `[0x01DFE0BC]`, `step = rate × [0x01DFE0BC]` (`mulss`, `0x003EC139`, `0x003EC15A`), and returns
 the result:
 
-- for a non-zero `mode`, by `+0x28` through `0x003A1AD0` (`0x003EC129`-`0x003EC146`);
-- for `mode` 0, by `+0x24`: the short way through `0x003A1AD0` for direction 2 (`0x003EC171`), one way for
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E56C0`, `0x003EC10C`-`0x003EC124` |
+
+</details>
+
+- for a non-zero `mode`, by `+0x28` through `0x003A1AD0`¹;
+- for `mode` 0, by `+0x24`: the short way through `0x003A1AD0` for direction 2², one way for
   directions 0 and 1 (`+0x124` plus the rate for 0 and minus it for 1, unwrapped, `0x003EC1C8`-`0x003EC1E1`), and
-  the target unchanged for any other direction (`0x003EC161`, `0x003EC16F`).
+  the target unchanged for any other direction³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC129`-`0x003EC146` |
+| ² | `0x003EC171` |
+| ³ | `0x003EC161`, `0x003EC16F` |
+
+</details>
 
 The remaining angle goes through `0x003EC510(angle, direction)`, which loops it into range and then,
 when non-zero, makes it positive for direction 0 or negative for direction 1 by a full turn, so the
@@ -401,156 +787,338 @@ the rate snaps to the target.
 `0x002690D0(actor)` is the untimed turn body behind `raturn`, `raturna`, `raturnya` and their
 relatives:
 
-1. it takes the wrapped delta from the facing to `+0x34` and computes a frame count from the step
-   (`|delta / +0x58|`, or through `0x003EBF60` when the render selector `0x002E9B60()` is not
-   negative), scaled by the context's `+0x98` or `+0x9C` (by resume shape 1 or not) and floored
-   at 1;
-2. it writes the target to `+0x70` (`0x0026A8E0`) and zeroes `+0x74` and the context's `+0x224`;
-3. when the delta is at least `pi/3`, or `+0x65` is set, or the actor has no armed render entry
-   (`0x002E7600` = 0), it takes the body turn: `0x002EC380(actor, 1, frames)` (bits `0x38` of `+0x62` =
-   1, `+0x60` = `frames / [0x01DFE0BC]`), `+0x28` |= `0x80`, `+0x68` = `(target - facing) / +0x58`
-   (the raw difference; only the frame count uses the wrapped one);
-4. the body turn goes on with `+0x78` = `[0x01DFE0B4]`, `+0x64` = 1, `0x003DDAD0(actor, 0, 0x1000004 -
-   direction)` with `direction` = `+0x62` bit `0x40` as read at entry, and `+0x66` = the curve value;
-5. otherwise the animation turn: `0x002EC380(actor, 2, frames)` and `+0x28` = 5;
-6. both end with `0x002EBE50(actor, 1, 1)`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | it takes the wrapped delta from the facing to `+0x34` and computes a frame count from the step (`\|delta / +0x58\|`, or through `0x003EBF60` when the render selector `0x002E9B60()` is not negative), scaled by the context's `+0x98` or `+0x9C` (by resume shape 1 or not) and floored at 1; |   |
+| 2 | it writes the target to `+0x70` and zeroes `+0x74` and the context's `+0x224`; | `0x0026A8E0` |
+| 3 | when the delta is at least `pi/3`, or `+0x65` is set, or the actor has no armed render entry (`0x002E7600` = 0), it takes the body turn: `0x002EC380(actor, 1, frames)` (bits `0x38` of `+0x62` = 1, `+0x60` = `frames / [0x01DFE0BC]`), `+0x28` \|= `0x80`, `+0x68` = `(target - facing) / +0x58` (the raw difference; only the frame count uses the wrapped one); |   |
+| 4 | the body turn goes on with `+0x78` = `[0x01DFE0B4]`, `+0x64` = 1, `0x003DDAD0(actor, 0, 0x1000004 - direction)` with `direction` = `+0x62` bit `0x40` as read at entry, and `+0x66` = the curve value; |   |
+| 5 | otherwise the animation turn: `0x002EC380(actor, 2, frames)` and `+0x28` = 5; |   |
+| 6 | both end with `0x002EBE50(actor, 1, 1)`. |   |
 
 `0x003EBF60(index, angle, out1, out2)` answers 0, with nothing stored, for an index word of -1, for a record whose dword
-`+0x284` is 0, read with no test of the record address, or when `0x003E56C0(record)` answers null
-(`0x003EBF60`-`0x003EBFB1`, `0x003EC029`-`0x003EC03A`).
+`+0x284` is 0, read with no test of the record address, or when `0x003E56C0(record)` answers null¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EBF60`-`0x003EBFB1`, `0x003EC029`-`0x003EC03A` |
+
+</details>
 
 Otherwise `rate = [0x01DFE0BC] * f`, with `f` the float `+0x24` of that answer; the float at `out2` takes
 `(angle - a * (1.0 - d * d / c)) / rate` with `d = angle - b`, where `a` is `[0x00915614]`, pi/4, `b` is `[0x00915730]`,
 3pi/4, and `c` is `[0x00915738]`, the square of 3pi/4; the float at `out1` takes the absolute value of `angle / rate`,
-and the answer is 1 (`0x003EBFB3`-`0x003EC028`).
+and the answer is 1¹.
 
-`0x002EC380(actor, kind, frames)` does nothing for an actor that is not class 3 (`0x002EC380`-`0x002EC388`). Otherwise it
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EBFB3`-`0x003EC028` |
+
+</details>
+
+`0x002EC380(actor, kind, frames)` does nothing for an actor that is not class 3¹. Otherwise it
 makes bits `0x38` of the steering record's byte `+0x62` `(kind << 3) & 0x38` and stores its word `+0x60` =
-`frames / [0x01DFE0BC]`, truncated (`0x002EC38A`-`0x002EC3BB`).
+`frames / [0x01DFE0BC]`, truncated².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EC380`-`0x002EC388` |
+| ² | `0x002EC38A`-`0x002EC3BB` |
+
+</details>
 
 `0x0026C330(actor, frames)` (`turnt`, `rturnt`, `rturnat`, `dira`) sets `+0x68` = `+0x66` =
 `[0x01DFE0B4] + frames / [0x01DFE0BC]` (the quotient truncated, `0x0026C343`, and 0 for a non-positive count) as
-16-bit words (`0x0026C373`, `0x0026C3A0`) and `+0x78` = `[0x01DFE0B4]` as a float (`0x0026C37D`); its
+16-bit words¹ and `+0x78` = `[0x01DFE0B4]` as a float²; its
 callers then set mode 4.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026C373`, `0x0026C3A0` |
+| ² | `0x0026C37D` |
+
+</details>
 
 ### The steer channel and the head
 
-`0x002EBE50(actor, op, force)` starts or clears the steer channel, for a class-3 actor only (`0x002EBE5A`-`0x002EBE67`). Op
-0 zeroes the context's `+0xB4` and `+0x224` (`0x002EBE79`-`0x002EBE8B`). Otherwise, when `+0x63` is 0 or `force` is set,
-`+0xB4` takes the facing, what `0x00265200(actor)` answers, and `+0x224` 0 (`0x002EBE90`-`0x002EBEB6`); the deltas
+`0x002EBE50(actor, op, force)` starts or clears the steer channel, for a class-3 actor only¹. Op
+0 zeroes the context's `+0xB4` and `+0x224`². Otherwise, when `+0x63` is 0 or `force` is set,
+`+0xB4` takes the facing, what `0x00265200(actor)` answers, and `+0x224` 0³; the deltas
 `wrap(+0x70 - +0xB4)` and, with `+0x62` bit `0x80` clear, `wrap(+0x74 - +0x224)` are taken, each by
-`0x003A1C50(difference)` (`0x002EBEBC`-`0x002EBEF2`), and the second result is dropped (`0x002EBEF2`; `0x002EBF1D` overwrites
+`0x003A1C50(difference)`⁴, and the second result is dropped (`0x002EBEF2`; `0x002EBF1D` overwrites
 it).
 
-`+0xB4` and `+0x224` then become `+0x70` and `+0x74` (`0x002EBEF7`-`0x002EBF0A`); and when `+0x62` bits `0x38` are 0 they
-become 2, the byte made `(old & 0xD7) | 0x10`, with `+0x60` = `max(1, |delta / +0x6C|)` frames from the first delta,
-truncated (`cvttss2si ecx, xmm0`, `0x002EBF5F`), 1 when `+0x6C` is 0 or below (`0x002EBF10`-`0x002EBF63`). `+0x63` = `op` on
-both paths, op 0 included (`0x002EBE8B`, `0x002EBF6C`-`0x002EBF76`); then `0x002EC3F0(actor)` and `0x002E8EE0(actor)`
-(`0x002EBF7A`-`0x002EBF82`).
+<details>
+<summary>Where in the code</summary>
 
-`0x002E8EE0(actor)` pushes `+0x62` bit `0x80` (`0x003E6BD0`) and `+0x63` (`0x003E6BC0`) into the render record
+| | Code |
+|---|---|
+| ¹ | `0x002EBE5A`-`0x002EBE67` |
+| ² | `0x002EBE79`-`0x002EBE8B` |
+| ³ | `0x002EBE90`-`0x002EBEB6` |
+| ⁴ | `0x002EBEBC`-`0x002EBEF2` |
+
+</details>
+
+`+0xB4` and `+0x224` then become `+0x70` and `+0x74`¹; and when `+0x62` bits `0x38` are 0 they
+become 2, the byte made `(old & 0xD7) | 0x10`, with `+0x60` = `max(1, |delta / +0x6C|)` frames from the first delta,
+truncated (`cvttss2si ecx, xmm0`, `0x002EBF5F`), 1 when `+0x6C` is 0 or below². `+0x63` = `op` on
+both paths, op 0 included³; then `0x002EC3F0(actor)` and `0x002E8EE0(actor)`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EBEF7`-`0x002EBF0A` |
+| ² | `0x002EBF10`-`0x002EBF63` |
+| ³ | `0x002EBE8B`, `0x002EBF6C`-`0x002EBF76` |
+| ⁴ | `0x002EBF7A`-`0x002EBF82` |
+
+</details>
+
+`0x002E8EE0(actor)` pushes `+0x62` bit `0x80`¹ and `+0x63`² into the render record
 and sets its `+0x290` bit `0x800`.
-It acts only on a class-3 actor (`0x002E8EF1`), and makes each push, with its `+0x290` bit, only when the
-controller's render id is not -1 and the record (`[0x022C6F28] + 0x740 * id`) has a non-zero `+0x284`
-(`0x002E8F13`-`0x002E8F55`, `0x002E8F6F`-`0x002E8FAE`). The look request at record `+0x580` takes the bit as bit
-`0x1000000` and sets bit `0x4` (`0x003E3440`), and takes bit `0x1` of `+0x63` as bit `0x800000` and sets bit `0x2`
-(`0x003E33E0`).
+It acts only on a class-3 actor³, and makes each push, with its `+0x290` bit, only when the
+controller's render id is not -1 and the record (`[0x022C6F28] + 0x740 * id`) has a non-zero `+0x284`⁴. The look request at record `+0x580` takes the bit as bit
+`0x1000000` and sets bit `0x4`⁵, and takes bit `0x1` of `+0x63` as bit `0x800000` and sets bit `0x2`⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E6BD0` |
+| ² | `0x003E6BC0` |
+| ³ | `0x002E8EF1` |
+| ⁴ | `0x002E8F13`-`0x002E8F55`, `0x002E8F6F`-`0x002E8FAE` |
+| ⁵ | `0x003E3440` |
+| ⁶ | `0x003E33E0` |
+
+</details>
 
 `0x002EC3F0(actor)` stages the head-look request by the shape (bits `0x7`) and the selector (bits
 `0x38`) of `+0x62`, with the one-shot latch `+0x6A` bit `0x1` remapping selector 2 to 1; the latch is
-cleared on every call for a class-3 actor (`0x002EC433`). Each target is given the frame count `+0x60` as a
-float (`0x002EC46D`, `0x002EC49F`, `0x002EC4C9`, `0x002EC4E3`):
+cleared on every call for a class-3 actor¹. Each target is given the frame count `+0x60` as a
+float²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EC433` |
+| ² | `0x002EC46D`, `0x002EC49F`, `0x002EC4C9`, `0x002EC4E3` |
+
+</details>
 
 - shapes 0-1 go to `0x002E7650` (selector 1) or `0x002E79A0` (selector 2);
 - shapes 2-3 with selector 1 go to `0x003E6B90(record, frames, +0x10, +0x14)` and `0x003E6C00(record, 1,
-  id, 0x30B)` for shape 3 (`0x002E78D0`), else `0x002E7720`;
-- shapes 2-3 with selector 2 go to `0x003E6B70(record, frames, +0x10, +0x14)` for shape 3 (`0x002E7860`), else
+  id, 0x30B)` for shape 3¹, else `0x002E7720`;
+- shapes 2-3 with selector 2 go to `0x003E6B70(record, frames, +0x10, +0x14)` for shape 3², else
   `0x002E77F0` ([the staged look
   command](../Graphics/character-rig-and-look.md));
-- shapes 4-7, and a selector other than 1 and 2, stage nothing (`0x002EC440`, `0x002EC44E`, `0x002EC4C0`).
+- shapes 4-7, and a selector other than 1 and 2, stage nothing³.
 
-`0x002E7650`, `0x002E7720` and `0x002E79A0` each do nothing for a null actor (`0x002E7650`-`0x002E7653`, `0x002E7720`-`0x002E7723`,
-`0x002E79A4`-`0x002E79A7`) and act only on a live render record of the actor: the object at the actor's `+0xC0` not null,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E78D0` |
+| ² | `0x002E7860` |
+| ³ | `0x002EC440`, `0x002EC44E`, `0x002EC4C0` |
+
+</details>
+
+`0x002E7650`, `0x002E7720` and `0x002E79A0` each do nothing for a null actor¹ and act only on a live render record of the actor: the object at the actor's `+0xC0` not null,
 its first dword and its first word not -1, the record address `[0x022C6F28] + 0x740 * n` not 0, with `n` that word,
-signed, and the record's dword `+0x284` not 0 (`0x002E765E`-`0x002E769B`, `0x002E772E`-`0x002E776B`, `0x002E79A9`-`0x002E79E3`).
+signed, and the record's dword `+0x284` not 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E7650`-`0x002E7653`, `0x002E7720`-`0x002E7723`, `0x002E79A4`-`0x002E79A7` |
+| ² | `0x002E765E`-`0x002E769B`, `0x002E772E`-`0x002E776B`, `0x002E79A9`-`0x002E79E3` |
+
+</details>
 
 On that record `0x002E7650` calls `0x003E6BB0(record)`, `0x002E7720` `0x003E6B80(record)` and `0x002E79A0` `0x003E6BA0(record)`,
-each with the caller's further arguments as they came, and then sets bit `0x800` of the record's `+0x290`
-(`0x002E769D`-`0x002E76A5`, `0x002E776D`-`0x002E7775`, `0x002E79E5`-`0x002E79ED`). The three callees add `0x580` to the record and
+each with the caller's further arguments as they came, and then sets bit `0x800` of the record's `+0x290`¹. The three callees add `0x580` to the record and
 jump to `0x003E33C0`, `0x003E31E0` and `0x003E33A0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E769D`-`0x002E76A5`, `0x002E776D`-`0x002E7775`, `0x002E79E5`-`0x002E79ED` |
+
+</details>
 
 `0x002E7650` and `0x002E7720` then find the record again by the same tests, so a lookup that failed the first time fails
 again and `0x003E6C00` never runs alone; they call `0x003E6C00(record, 1, d, 0x30B)` with `d` the first dword of the
-object at `+0xC0`, and set bit `0x800` of the record's `+0x290` again (`0x002E76AF`-`0x002E76FF`, `0x002E777F`-`0x002E77CF`);
+object at `+0xC0`, and set bit `0x800` of the record's `+0x290` again¹;
 `0x002E79A0` has no such call.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E76AF`-`0x002E76FF`, `0x002E777F`-`0x002E77CF` |
+
+</details>
 
 `0x002E7A80(actor, target, id)` calls `0x002EDB30(w, 0, d, id)`, with `w` the first word of the actor's `+0xC0` object and
 `d` the first dword of the target's, when both objects are present and neither first dword is -1; a null actor or a
-null target counts as an absent object (`0x002E7A80`-`0x002E7AC8`). Whether or not that call was made, it then calls
+null target counts as an absent object¹. Whether or not that call was made, it then calls
 `0x003E6C00(record, 1, d2, 0x30B)` on the actor's live render record, found by the tests above, with `d2` the first
-dword of the actor's `+0xC0` object, and sets bit `0x800` of the record's `+0x290` (`0x002E7ACD`-`0x002E7B22`).
+dword of the actor's `+0xC0` object, and sets bit `0x800` of the record's `+0x290`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E7A80`-`0x002E7AC8` |
+| ² | `0x002E7ACD`-`0x002E7B22` |
+
+</details>
 
 The look-at verbs set the shapes:
 
-- `0x002EC140(actor, a, b)` does nothing for an actor that is not class 3 (`0x002EC146`-`0x002EC159`). Otherwise it stores
-  the raw pair at `+0x10`/`+0x14`, makes the byte `+0x62` `(old & 0xFA) | 2`, shape 2 (`0x002EC15B`-`0x002EC18A`), writes
-  `+0x70` and `+0x74` from them with `0x0026A8E0(actor, a)` and `0x0026A870(actor, b)` (`0x002EC18E`-`0x002EC199`), and zeroes
+- `0x002EC140(actor, a, b)` does nothing for an actor that is not class 3¹. Otherwise it stores
+  the raw pair at `+0x10`/`+0x14`, makes the byte `+0x62` `(old & 0xFA) | 2`, shape 2², writes
+  `+0x70` and `+0x74` from them with `0x0026A8E0(actor, a)` and `0x0026A870(actor, b)`³, and zeroes
   `+0xB4` (`0x0026A9C0(actor, 0.0)`) and `+0x224` (`0x0026A950(actor, 0.0)`, `0x002EC19E`-`0x002EC1AF`);
-- `0x002EC1C0` stores the pair wrapped once each (`0x002EC1C6`-`0x002EC258`)
+- `0x002EC1C0` stores the pair wrapped once each⁴
   with shape 3 and writes `+0x70` and `+0x74` from it, leaving `+0xB4` and `+0x224` as they are;
 - `0x002EC1C0(actor, a, b)` wraps each float as `0x0026A9C0` does, then stores the two at the steering record's `+0x10`
   and `+0x14`, makes its byte `+0x62` `(old & 0xFB) | 3`, and calls `0x0026A8E0(actor, a)` and `0x0026A870(actor, b)` with
-  the wrapped values (`0x002EC260`-`0x002EC2A2`); for an actor that is not class 3 it stores nothing and calls nothing
-  (`0x002EC247`-`0x002EC25E`);
-- `0x002EC2C0(actor, vec)` does nothing for an actor that is not class 3 (`0x002EC2D9`-`0x002EC2E7`). Otherwise it copies
+  the wrapped values⁵; for an actor that is not class 3 it stores nothing and calls nothing
+ ⁶;
+- `0x002EC2C0(actor, vec)` does nothing for an actor that is not class 3⁷. Otherwise it copies
   all 16 bytes of the position `vec` to `+0x10`-`+0x1F`, so the fourth float lands on the handle `+0x1C`; it reads
-  them with `movaps`, so `vec` must be 16-byte aligned (`0x002EC2F0`-`0x002EC2FA`). It then clears bits `0x7` of `+0x62`,
-  shape 0 (`0x002EC308`);
-- `0x002EC2C0` then stages the position on the render record's look request with `0x002E7B40(actor, vec)` (`0x002EC30C`).
+  them with `movaps`, so `vec` must be 16-byte aligned⁸. It then clears bits `0x7` of `+0x62`,
+  shape 0⁹;
+- `0x002EC2C0` then stages the position on the render record's look request with `0x002E7B40(actor, vec)`¹⁰.
   `0x002E7B40` does nothing for a null actor; on the actor's live render record (the object at `+0xC0` not null, its
   first dword and first word not -1, the record address not 0 and its dword `+0x284` not 0) it calls
-  `0x003E6CC0(record, 0, vec)` and sets bit `0x800` of the record's `+0x290` (`0x002E7B40`-`0x002E7B9A`);
+  `0x003E6CC0(record, 0, vec)` and sets bit `0x800` of the record's `+0x290`¹¹;
 - `0x002E7B40` then finds the record again by the same tests, calls `0x003E6C00(record, 1, d, 0x30B)` with `d` the first
-  dword of the `+0xC0` object, and sets bit `0x800` of the record's `+0x290` again (`0x002E7BA4`-`0x002E7BF4`);
+  dword of the `+0xC0` object, and sets bit `0x800` of the record's `+0x290` again¹²;
 - `0x002EC2C0` then reads the movement context's floats `+0x00`, `+0x04` and `+0x08` with
   `0x00265020(actor, &p0, &p1, &p2)`, sets `+0x70` from the bearing to the position, `0x0026A8E0(actor, bearing)` with the
   bearing what `0x003A19A0(p2, p0, vec float +0x08, vec float +0x00)` answers, and sets `+0x74` and `+0x224` to 0 with
-  `0x0026A870(actor, 0.0)` and `0x0026A950(actor, 0.0)` (`0x002EC311`-`0x002EC35E`);
-- `0x003E6CC0(record)` jumps to `0x003E36F0(record + 0x580)`, its further arguments as they came (`0x003E6CC0`-`0x003E6CC7`);
+  `0x0026A870(actor, 0.0)` and `0x0026A950(actor, 0.0)`¹³;
+- `0x003E6CC0(record)` jumps to `0x003E36F0(record + 0x580)`, its further arguments as they came¹⁴;
 - `0x002EBFA0(actor, manager, ordinal, id)` stores an actor target with shape 1 and its handle at
-  `+0x1C` (`0x003589B0`), the three arguments at `+0x10`, `+0x14` and `+0x18`, sets `+0x70` from the bearing
+  `+0x1C`¹⁵, the three arguments at `+0x10`, `+0x14` and `+0x18`, sets `+0x70` from the bearing
   to the target and `+0x74` and `+0x224` to 0, and runs `0x002E7A80(actor, target, id)`
-  (`0x002EC005`-`0x002EC0CA`);
+ ¹⁶;
 - `0x002EBFA0` falls back to the position form with `0x0026A1A0(actor, 1)` (bit `0x80`) when the target has
   no render record (no controller at `+0xC0`, or a render id of -1) or the actor is not class 3, giving
-  `0x002EC2C0` the target's position (`0x00265470`) with a fourth float of 1.0 (`0x002EC0D6`-`0x002EC110`), and
-  clears the channel (`0x002E64E0`) when the actor does not resolve (`0x003587C0(manager, ordinal)` is null,
+  `0x002EC2C0` the target's position¹⁷ with a fourth float of 1.0¹⁸, and
+  clears the channel¹⁹ when the actor does not resolve (`0x003587C0(manager, ordinal)` is null,
   `0x002EBFD6`).
 
-Shapes 4-7 are never written. `0x002EC510(shape, actor, target)`, called by the `raturn` verbs
-(`0x0034E710`, `0x0034EFE0`, `0x0034F4F0`) and `0x003578B0`, `0x0050F6E0`, picks the look-at verb by shape for a
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EC146`-`0x002EC159` |
+| ² | `0x002EC15B`-`0x002EC18A` |
+| ³ | `0x002EC18E`-`0x002EC199` |
+| ⁴ | `0x002EC1C6`-`0x002EC258` |
+| ⁵ | `0x002EC260`-`0x002EC2A2` |
+| ⁶ | `0x002EC247`-`0x002EC25E` |
+| ⁷ | `0x002EC2D9`-`0x002EC2E7` |
+| ⁸ | `0x002EC2F0`-`0x002EC2FA` |
+| ⁹ | `0x002EC308` |
+| ¹⁰ | `0x002EC30C` |
+| ¹¹ | `0x002E7B40`-`0x002E7B9A` |
+| ¹² | `0x002E7BA4`-`0x002E7BF4` |
+| ¹³ | `0x002EC311`-`0x002EC35E` |
+| ¹⁴ | `0x003E6CC0`-`0x003E6CC7` |
+| ¹⁵ | `0x003589B0` |
+| ¹⁶ | `0x002EC005`-`0x002EC0CA` |
+| ¹⁷ | `0x00265470` |
+| ¹⁸ | `0x002EC0D6`-`0x002EC110` |
+| ¹⁹ | `0x002E64E0` |
+
+</details>
+
+Shapes 4-7 are never written. `0x002EC510(shape, actor, target)`, called by the `raturn` verbs¹ and `0x003578B0`, `0x0050F6E0`, picks the look-at verb by shape for a
 class-3 actor with a movement context: 0 `0x002EC2C0` with the target as a position, 1 `0x002EBFA0` with
 the target's byte `+0x15` and word `+0x00` and `0x30B`, 2 and 3 `0x002EC140` and `0x002EC1C0` with the
 float at `+0x04` and 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0034E710`, `0x0034EFE0`, `0x0034F4F0` |
+
+</details>
 
 `0x00263B90(actor, slot)` returns steering slot 0 or 1 (`context + 0x120 + 0x80 * slot`) of a class-3
 actor, null for any other; `0x0026AC00` (verb `sethomingangzx`) runs `0x002E5B60` for a class-3 actor.
 
 `0x0026A9C0(actor, angle)` wraps the angle in one pass: `w = t - trunc(t / 2pi) * 2pi - s`, where `t = angle + s` and
 `s` is pi for an angle of 0 or above and -pi for any other. Only a class-3 actor gets `w`, at `+0xB4` of the movement
-context `+0xB8` (`0x0026A9C0`-`0x0026AA20`). `0x0026AC00(actor, angle)` wraps `angle * [0x01DFE0BC]` the same way and jumps to
-`0x002E5B60(actor, w)` for a class-3 actor; for any other it returns with nothing stored (`0x0026AC00`-`0x0026AC61`).
+context `+0xB8`¹. `0x0026AC00(actor, angle)` wraps `angle * [0x01DFE0BC]` the same way and jumps to
+`0x002E5B60(actor, w)` for a class-3 actor; for any other it returns with nothing stored².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026A9C0`-`0x0026AA20` |
+| ² | `0x0026AC00`-`0x0026AC61` |
+
+</details>
 
 `0x0026D630` is the class-3 test in front of `0x002E60C0` for the verb `setvelrotangzx` (`0x003C`,
-`0x003535C0`): the popped float, times `[0x01DFE0BC]` and wrapped once (`0x0026D636`-`0x0026D685`), becomes the spin
+`0x003535C0`): the popped float, times `[0x01DFE0BC]` and wrapped once¹, becomes the spin
 rate `+0x3C` of the selected slot; `0x002E60C0` writes it only for a non-null actor with a controller at
-`+0xC0` (`0x002E60C3`-`0x002E60DD`).
+`+0xC0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026D636`-`0x0026D685` |
+| ² | `0x002E60C3`-`0x002E60DD` |
+
+</details>
 
 `0x00265580(actor, i)`, behind the verb `getdestrotangzx_227` (`0x0227`, `0x00341250`), returns the
 target heading `+0x34` of slot `i` (`context + 0x154 + 0x80 * i`), with `i` capped at the selector
 `+0xDC` and the selected slot for a negative `i`; it returns 0 for any other class.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Movement context (actor `+0xB8`), class 3:
 
@@ -607,7 +1175,12 @@ Struct SteeringRecord size=`0x80`:
 | `+0x78` | `f32` |  | turn frame index |
 | `+0x7C` | `f32` | raw move speed (re-armed each frame) |  |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Constant | Value | Role |
 |---|---|---|
@@ -619,6 +1192,8 @@ Struct SteeringRecord size=`0x80`:
 
 `setaccr` (`0x122`) is called twice in each language tree's story scripts and by no developer script, so almost every scripted move
 runs in ramp mode 1.
+
+</details>
 
 ## Operations
 
@@ -634,9 +1209,14 @@ replays the saved walk by its shape.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 The context's angles, mirrors and selector; the two steering records; actor bytes `+0x0D` bits `0x10`
 and `0x20`, `+0x0B` bits `0x8` and `0x10` and `+0x1C` bit `0x20000`; the render record's `+0x124`, `+0x284`, `+0x290` and
 its staged triple; the globals `0x02164200` and `0x02099DB4`.
+
+</details>
 
 ## Modding notes
 

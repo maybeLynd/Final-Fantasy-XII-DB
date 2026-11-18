@@ -27,24 +27,50 @@ reference container on [presentation entries](presentation-entries.md) hands out
 Its storage is reserved when a model binds: the model bind `0x0041F340` (from `0x0041FCF0`) lays out in the record's
 arena block the skeleton bytes `0x003712E0` sizes, then the `@FCP` section-8 copy at that size (record
 `+0x300`, `0x0041F5C1`) in the block `0x003E6D10` sizes (`s`, rounded up to 16: `((s + 15) / 16) × 16`, `0x0041F458`-
-`0x0041F469`), then one entry followed by one `0x108`-byte channel row per `@FTR` node (`0x00409240`), the pair
-rounded up to 16, `0x3A0 + 0x108 × n + (n & 1 ? 8 : 0)` with `n` the node count (`0x0041F452`-`0x0041F47B`).
+`0x0041F469`), then one entry followed by one `0x108`-byte channel row per `@FTR` node¹, the pair
+rounded up to 16, `0x3A0 + 0x108 × n + (n & 1 ? 8 : 0)` with `n` the node count².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00409240` |
+| ² | `0x0041F452`-`0x0041F47B` |
+
+</details>
 
 - The encoded offsets go to record `+0x480` (the entry) and `+0x484` (its rows). When the model's
-  `@FCP` byte `+0x01` is non-zero (`0x003E55F0`) a second entry and row block follow at `+0x488` and
-  `+0x48C`, and record `+0x284` bit `0x10000` is set (`0x0041F4A4`-`0x0041F4C7`).
+  `@FCP` byte `+0x01` is non-zero¹ a second entry and row block follow at `+0x488` and
+  `+0x48C`, and record `+0x284` bit `0x10000` is set².
 - `0x0051BA80(container, id, source, offset, request)` binds a motion: it builds an entry on its own stack with
   `0x0041CB90` (the defaults) and `0x0041D220` (the request), admits a new id when given −1 (`0x0051F080` of the source
-  and offset), copies the `0x3A0` bytes into the slot `0x0051F240` resolves (`0x0051BB20`-`0x0051BB7D`), re-resolves the
-  copy with `0x0041CA70`, stores the id at `+0x00` (`0x0051BB8B`) and returns it (`0x0051BB89`).
+  and offset), copies the `0x3A0` bytes into the slot `0x0051F240` resolves³, re-resolves the
+  copy with `0x0041CA70`, stores the id at `+0x00`⁴ and returns it⁵.
 - Given −1 it returns −1 before building anything when the container has no free node (`0x0051F150` negative,
-  `0x0051BAB3`-`0x0051BABF`), and after the build when `0x0051F080` answers a negative id (`0x0051BAFC`).
+  `0x0051BAB3`-`0x0051BABF`), and after the build when `0x0051F080` answers a negative id⁶.
 - When the request fails, an entry that already had the id is reset with `0x0041CF00` and the id in its `+0x00`,
-  read before the reset, released (`0x0051F190`, `0x0051BB8F`-`0x0051BBB2`); with id −1 a failed request changes
-  nothing. Either way it returns −1 (`0x0051BBB7`).
+  read before the reset, released⁷; with id −1 a failed request changes
+  nothing. Either way it returns −1⁸.
 - The request is at least `0x3C` bytes: `+0x00` the motion file, `+0x08` the skeleton bank, `+0x10` the file
   index, `+0x14` the skeleton id, `+0x18` the section name, `+0x20` the motion number, `+0x24` a word,
   `+0x28` the arena handle of the row block, `+0x30` the row offset, `+0x34` a word and `+0x38` a dword.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003E55F0` |
+| ² | `0x0041F4A4`-`0x0041F4C7` |
+| ³ | `0x0051BB20`-`0x0051BB7D` |
+| ⁴ | `0x0051BB8B` |
+| ⁵ | `0x0051BB89` |
+| ⁶ | `0x0051BAFC` |
+| ⁷ | `0x0051F190`, `0x0051BB8F`-`0x0051BBB2` |
+| ⁸ | `0x0051BBB7` |
+
+</details>
 
 `0x0041D220(entry, request)` sets bits `0x1` and `0x100000` of `+0x0C`, copies the request fields to `+0x31C`,
 `+0x2EC` (the name, `0x00409210`), `+0x330`, `+0x338`, `+0x310`, `+0x318`, `+0x2B0`, `+0x2B8`, `+0x31A`,
@@ -60,17 +86,43 @@ at track state `+0x20` (`0x0041CAE8`, where both skips land).
 
 For each of the `+0x28` track states whose word `+0x0A` is 1 and motion index `+0x50` is not −1 it then resolves
 `+0x70` (the record at `+0x54` in the section the first index `+0x50` names in the bank `+0x48`, `0x00408F80` with
-the word `+0x5C`) and `+0x78` (the data at `+0x58` in the section of the second index `+0x52`, `0x00408F80` with 0)
-(`0x0041CB10`-`0x0041CB66`).
+the word `+0x5C`) and `+0x78` (the data at `+0x58` in the section of the second index `+0x52`, `0x00408F80` with 0)¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041CB10`-`0x0041CB66` |
+
+</details>
 
 `0x0041CF00(entry)`, from `0x0051BA40` and `0x0051BA80`, is the reset: each of the `+0x28` track states gets `+0x00` −1,
 `+0x04` 0, `+0x08` to `+0x17` zero, the words `+0x18` 0 and `+0x1A` 30, `+0x20` 30.0, `+0x48` 0, `+0x50` and
 `+0x52` −1, `+0x60` 0, `+0x68` −1, `+0x70` and `+0x78` 0, its cursor `+0x8C` back to its start `+0x88` and bit
-`0x80` of `+0x96` cleared (`0x0041CF22`-`0x0041CF82`).
+`0x80` of `+0x96` cleared¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041CF22`-`0x0041CF82` |
+
+</details>
 
 With `+0x0C` bit `0x1000` set it clears the bones' second set first (`0x002ED570` of `+0x330`, `+0x338`, then
-`0x00372280`) and clears the bit (`0x0041CFAC`); then `0x0041CB90` restores the entry defaults listed in the layout
+`0x00372280`) and clears the bit¹; then `0x0041CB90` restores the entry defaults listed in the layout
 below (a tail jump, `0x0041CFBB`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041CFAC` |
+
+</details>
 
 The entry is run every frame by the per-entry update `0x0041C410` through the walker `0x0041DA90`,
 which calls the sampler `0x00418880` (both on [presentation entries](presentation-entries.md)); its
@@ -81,65 +133,161 @@ It lives as long as the record's arena block; the id goes back through `0x0051F1
 
 `0x0041BEE0(entry, state, state, file; motion index, word, name, word, pointer, bound id, layer,
 dword)` binds a motion into a track state. It finds the sections by tag and the state's name
-`+0x24`: `@FMN` (`0x4E4D4640`), else `@FRP` (`0x50524640`), into `+0x54`, and `@FMW` (`0x574D4640`)
-into `+0x58` (`0x00409A30`, `0x0041BFE7`-`0x0041C027`).
+`+0x24`: `@FMN`¹, else `@FRP`², into `+0x54`, and `@FMW`³
+into `+0x58`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x4E4D4640` |
+| ² | `0x50524640` |
+| ³ | `0x574D4640` |
+| ⁴ | `0x00409A30`, `0x0041BFE7`-`0x0041C027` |
+
+</details>
 
 It lists the skeleton's bones in the scratch list (`0x00370BB0`, see
-[the motion bone list](skeleton-entries-and-bones.md#the-motion-bone-list)), resolves the pair
-(`0x0041B4E0`), resolves the row block (`0x003AB7F0` of entry `+0x2B0` plus `+0x2B8`) and zeroes the
-row count `+0x2BC` (`0x0041C03B`-`0x0041C06A`).
+[the motion bone list](skeleton-entries-and-bones.md#the-motion-bone-list)), resolves the pair¹, resolves the row block (`0x003AB7F0` of entry `+0x2B0` plus `+0x2B8`) and zeroes the
+row count `+0x2BC`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041B4E0` |
+| ² | `0x0041C03B`-`0x0041C06A` |
+
+</details>
 
 It then walks the `@FMN` records from the start `0x00409190` gives, each record's length being bits
-`0x7E00` of its word `+2` (`0x0041C15C`-`0x0041C168`), and for each:
+`0x7E00` of its word `+2`¹, and for each:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041C15C`-`0x0041C168` |
+
+</details>
 
 - For a kind-2 skeleton (dword `+0x9C` = 2) `0x00370E00(skeleton, record word +0)` claims the listed
-  bone with flag bit `0x100` whose key (`0x00409250`) equals the record's bone id and unlinks it (`0x00373540`,
-  `0x003735AF`); for any other kind it returns −1, so no record gets a row (`0x0041C0A6`-`0x0041C0B3`).
+  bone with flag bit `0x100` whose key¹ equals the record's bone id and unlinks it²; for any other kind it returns −1, so no record gets a row³.
 - `0x00373540` takes the first such bone in the order of the scratch list `[0x01EF9438]` and returns its index; it
   returns −1 when no listed bone matches and when the skeleton's `@FTR` entry `+0xA0` decodes to null
-  (`0x0037354F`-`0x003735D1`). The unlink joins the bone's neighbours and moves the list head on when the bone was
-  first (`0x003735E9`-`0x00373638`).
-- With a layer other than −1 the bone's byte `+0x283` must equal it (`0x0041C0B9`-`0x0041C0D2`).
+ ⁴. The unlink joins the bone's neighbours and moves the list head on when the bone was
+  first⁵.
+- With a layer other than −1 the bone's byte `+0x283` must equal it⁶.
 - Bit `0x2` of the bone's byte `+0x28B` becomes the inverse of (its own bit `0x1` xor bit `0x2` of byte `+0x28A`),
-  and its bit `0x1` becomes bit `0x2` of `+0x28A` (`0x0041C0E2`-`0x0041C11C`).
+  and its bit `0x1` becomes bit `0x2` of `+0x28A`⁷.
 - `0x0041B550(row, @FMN section, record, bone, @FMW data, the bind's last argument)` fills row number `+0x2BC` of the
   block with the record's channels (on [model effects](model-effects-and-motion-commands.md#reading-the-channels)),
-  and the count goes up (`0x0041C126`-`0x0041C155`).
+  and the count goes up⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00409250` |
+| ² | `0x00373540`, `0x003735AF` |
+| ³ | `0x0041C0A6`-`0x0041C0B3` |
+| ⁴ | `0x0037354F`-`0x003735D1` |
+| ⁵ | `0x003735E9`-`0x00373638` |
+| ⁶ | `0x0041C0B9`-`0x0041C0D2` |
+| ⁷ | `0x0041C0E2`-`0x0041C11C` |
+| ⁸ | `0x0041C126`-`0x0041C155` |
+
+</details>
 
 After the walk the state's `+0x1C` becomes `(duration − [0x01DFE0BC]) / duration` for a non-zero
-duration (`0x0041C1AA`-`0x0041C1C8`), and `0x0041C260` keeps the current rotations for a blend when
+duration¹, and `0x0041C260` keeps the current rotations for a blend when
 `+0x96` bit `0x10` is set.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041C1AA`-`0x0041C1C8` |
+
+</details>
 
 ### The sampler
 
-`0x00418880(entry, state, state)`, called by the walker only when the state's word `+0x0A` is 1
-(`0x0041DBD7`-`0x0041DBED`), is described on [model effects](model-effects-and-motion-commands.md#applying-a-frame),
+`0x00418880(entry, state, state)`, called by the walker only when the state's word `+0x0A` is 1¹, is described on [model effects](model-effects-and-motion-commands.md#applying-a-frame),
 with [the blend](model-effects-and-motion-commands.md#blending-into-a-new-motion). What it touches
 of the objects here:
 
-- it runs for a state with `+0x08` bit `0x2` set (`0x004188FE`), and takes the skeleton entry from
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041DBD7`-`0x0041DBED` |
+
+</details>
+
+- it runs for a state with `+0x08` bit `0x2` set¹, and takes the skeleton entry from
   the state's bank and id (`0x0046E8B0` of `+0x60`, `+0x68`) and the bones from that entry's `+0x84`;
 - from the presentation entry it takes the rows (`+0x2B0`, `+0x2B8`), the ease
   words `+0x358` and `+0x35A` for the blend weight, and the name `+0x2EC` and the block `+0x2E0` for
   its special cases;
-- into a bone it writes `+0x190` (`0x00418650`), `+0x1B0` (`0x00418700`) and `+0x1D0` (`0x004186A0`, skipped
+- into a bone it writes `+0x190`², `+0x1B0`³ and `+0x1D0` (`0x004186A0`, skipped
   for a tied bone), or `+0x1A0`, `+0x1C0` and `+0x1E0` when the state's `+0x96` bit `0x20` is set (the writers
   add 16 × that bit, `0x004189DA`-`0x004189DE`); on that branch it also turns `+0x1A0` into a quaternion and
-  sets bit `0x10` of `+0x280` (`0x00418E5F`, `0x00419CAC`);
-- it rebuilds `+0xC0`, `+0xF0` and `+0x100` in place (`0x00418F37`-`0x00418F83`) and clears bit `0x1` of `+0x28A`
-  of every bone it samples whose byte is non-zero (`0x00418AD7`, `0x004194B7`); a bone whose byte is 0 takes
-  its rest pose instead (`0x0041D6F0`).
+  sets bit `0x10` of `+0x280`⁴;
+- it rebuilds `+0xC0`, `+0xF0` and `+0x100` in place⁵ and clears bit `0x1` of `+0x28A`
+  of every bone it samples whose byte is non-zero⁶; a bone whose byte is 0 takes
+  its rest pose instead⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004188FE` |
+| ² | `0x00418650` |
+| ³ | `0x00418700` |
+| ⁴ | `0x00418E5F`, `0x00419CAC` |
+| ⁵ | `0x00418F37`-`0x00418F83` |
+| ⁶ | `0x00418AD7`, `0x004194B7` |
+| ⁷ | `0x0041D6F0` |
+
+</details>
 
 ### The node records and the attach tree
 
 A skeleton entry's `+0x84` is the encoded address of its node array, `+0x88` nodes of `0x290`
 bytes, then the u16 slots (`+0x8A` of them list the pool-built nodes). `0x003712E0` sizes it and
 `0x00372820` builds it from the model's `@FTR` ([model files](model-files-cm-ca.md#ftr-the-skeleton)).
-`0x00372820` copies the `@FTR` header's dword `+0x04`, the kind, to entry `+0x9C` and branches on it
-(`0x003729DD`-`0x003729F7`): kind 2 runs the loop below, kind 0 its own loop further down.
+`0x00372820` copies the `@FTR` header's dword `+0x04`, the kind, to entry `+0x9C` and branches on it¹: kind 2 runs the loop below, kind 0 its own loop further down.
 
-For a kind-2 skeleton it first writes the identity into node 0's `+0x80` (`0x00372A44`) and clears the
-skeleton's byte `+0xA7` (`0x00372A50`). For each node (`0x00372A80`-`0x00372CA8`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003729DD`-`0x003729F7` |
+
+</details>
+
+For a kind-2 skeleton it first writes the identity into node 0's `+0x80`¹ and clears the
+skeleton's byte `+0xA7`². For each node³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00372A44` |
+| ² | `0x00372A50` |
+| ³ | `0x00372A80`-`0x00372CA8` |
+
+</details>
 
 - A node whose record has flag bit `0x100` starts with `0x00373DC0`: identity at `+0x1F0` and
   `+0x230`, `(0, 0, 0, 1)` at `+0x1A0` and `+0x1C0`, 1.0 at `+0x1E0`-`+0x1EC`, `+0x280` 0, bit `0x1` of
@@ -147,178 +295,466 @@ skeleton's byte `+0xA7` (`0x00372A50`). For each node (`0x00372A80`-`0x00372CA8`
   `+0x27C` −1, bits `0x1` and `0x2` of `+0x28B` set, `+0x283` 0 and `+0x28A` 3.
 - For that node `0x00409300` then reads, with record bit `0x200000`, the pool translation (mask `0x3800000`) and
   rotation (mask `0x1C000000`) into `+0xF0` and `+0xC0`, else writes the identity over `+0xC0`-`+0xFF`
-  (`0x00409428`); `0x004094D0` puts the pool matrix into `+0x150` (sixteen pool dwords with record bit `0x200000`,
+ ¹; `0x004094D0` puts the pool matrix into `+0x150` (sixteen pool dwords with record bit `0x200000`,
   else the identity `0x01F204E0` through `0x0046D110`).
 - Any other node gets the short init: identity at `+0x1F0` and `+0x230`, `+0x280` 0, `+0x278` the
-  encoded null, `+0x27C`, `+0x270`, `+0x274`, `+0x272` and `+0x276` −1 (`0x00372AAA`-`0x00372AED`).
+  encoded null, `+0x27C`, `+0x270`, `+0x274`, `+0x272` and `+0x276` −1².
 - Both then store the node's own encoded address at `+0x284`, set bit `0x4` of `+0x280`, write the
   index at `+0x27E` and the parent from record bits `0xFFF000` (`0xFFF` → −1) at `+0x270`
-  (`0x00372AFB`-`0x00372B34`). With a parent, the node becomes its first child `+0x274` when that is −1,
-  else it is inserted after the first child in the sibling chain `+0x272` (`0x00372B5C`-`0x00372B99`);
-  without one it joins node 0's chain (`0x00372B45`-`0x00372B53`).
+ ³. With a parent, the node becomes its first child `+0x274` when that is −1,
+  else it is inserted after the first child in the sibling chain `+0x272`⁴;
+  without one it joins node 0's chain⁵.
 - A node with flag bit `0x100` then copies `+0xF0` to `+0x1B0` and `+0x130`, gets 1.0 at `+0x100`-`+0x10C`,
   `+0x140`-`+0x14C`, `+0x19C`, `+0x1AC`, `+0x1CC` and `+0x1D0`-`+0x1DC`, and is listed in the next
-  u16 slot (`0x00372BA1`-`0x00372C97`); any other node gets none of that.
+  u16 slot⁶; any other node gets none of that.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00409428` |
+| ² | `0x00372AAA`-`0x00372AED` |
+| ³ | `0x00372AFB`-`0x00372B34` |
+| ⁴ | `0x00372B5C`-`0x00372B99` |
+| ⁵ | `0x00372B45`-`0x00372B53` |
+| ⁶ | `0x00372BA1`-`0x00372C97` |
+
+</details>
 
 For a kind-0 skeleton (`0x4C`-byte records from `+0x30`, `0x00372CE4`-`0x00372E7E`) every node gets
-`0x00373DC0` (`0x00372CEB`), bit `0x4` of `+0x280`, its index at `+0x27E` and its parent from the record's
-word `+0x20` (`0x00372D22`), the same chaining (`0x00372D50`-`0x00372D90`; node 0's chain at
+`0x00373DC0`¹, bit `0x4` of `+0x280`, its index at `+0x27E` and its parent from the record's
+word `+0x20`², the same chaining (`0x00372D50`-`0x00372D90`; node 0's chain at
 `0x00372D37`-`0x00372D46`), `0x00409300`, the translation copy and the 1.0 stores; it writes neither
-`+0x284` nor `+0x150`, and sets the listed count `+0x8A` to 0 (`0x00372EC4`).
+`+0x284` nor `+0x150`, and sets the listed count `+0x8A` to 0³.
 
-After the loop a kind-2 skeleton runs `0x00373D00` and a kind-0 skeleton `0x00373D00` then `0x00373EA0`
-(`0x00372E84`-`0x00372EE2`). `0x00373D00` writes the rest pose of each listed bone: its parent's `+0x80`
-(node 0's `+0x1F0` for a root) times its own `+0xC0` (`0x00202D70`); `0x00373EA0` writes the inverse of
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00372CEB` |
+| ² | `0x00372D22` |
+| ³ | `0x00372EC4` |
+
+</details>
+
+After the loop a kind-2 skeleton runs `0x00373D00` and a kind-0 skeleton `0x00373D00` then `0x00373EA0`¹. `0x00373D00` writes the rest pose of each listed bone: its parent's `+0x80`
+(node 0's `+0x1F0` for a root) times its own `+0xC0`²; `0x00373EA0` writes the inverse of
 that `+0x80` into `+0x150` (`0x00202D50` → `0x00217610`), the bind-pose inverse the composer applies
 last.
 
-Both loop over the listed count `+0x8A` (`0x00373D44`, `0x00373EE4`), which the kind-0 path has just
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00372E84`-`0x00372EE2` |
+| ² | `0x00202D70` |
+
+</details>
+
+Both loop over the listed count `+0x8A`¹, which the kind-0 path has just
 set to 0, so at build time neither writes anything for a kind-0 skeleton; a kind-2 skeleton takes
 `+0x150` from the pool or the identity.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00373D44`, `0x00373EE4` |
+
+</details>
+
 The links form two trees. The parent link `+0x270` and the sibling and first-child links `+0x272`
-and `+0x274` describe the model's own hierarchy. The builder reads `+0x272` and `+0x274` while chaining
-(`0x00372B45`, `0x00372B67`, `0x00372B8A`, `0x00372D37`, `0x00372D5B`, `0x00372D80`), and no other of the 71 functions that
+and `+0x274` describe the model's own hierarchy. The builder reads `+0x272` and `+0x274` while chaining¹, and no other of the 71 functions that
 carry the immediate `0x290` reads either. The composer walks the parent link alone.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00372B45`, `0x00372B67`, `0x00372B8A`, `0x00372D37`, `0x00372D5B`, `0x00372D80` |
+
+</details>
 
 The second tree crosses skeletons: `+0x276` names a bone of the parent skeleton for a root bone,
 and `+0x278` with `+0x27C` names the tied child bone; `0x00372F60`, from the entry refresh `0x0046E420` and
-the bank's re-link `0x0046E8D0`, rewrites `+0x278` from `+0x27C` (`0x00372FCD`-`0x00372FEF`).
+the bank's re-link `0x0046E8D0`, rewrites `+0x278` from `+0x27C`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00372FCD`-`0x00372FEF` |
+
+</details>
 
 `0x00373F40(entry, parent entry)`, from `0x0042E550` and `0x0046E0F0`, places an attached skeleton; with a null parent
-entry it returns without writing (`0x00373F63`-`0x00373F66`). With a slot `+0x14`, node 0's `+0x1F0` becomes the
-parent's slot bone `+0x80` (the parent's node 0 `+0x1F0` for slot 0) times the entry's own `+0x40`
-(`0x00373FB3`-`0x00373FE1`); then every root bone with a `+0x276` copies that parent bone's `+0x80` into its `+0x1F0`
-(`0x00373FF0`-`0x0037402E`).
+entry it returns without writing¹. With a slot `+0x14`, node 0's `+0x1F0` becomes the
+parent's slot bone `+0x80` (the parent's node 0 `+0x1F0` for slot 0) times the entry's own `+0x40`²; then every root bone with a `+0x276` copies that parent bone's `+0x80` into its `+0x1F0`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00373F63`-`0x00373F66` |
+| ² | `0x00373FB3`-`0x00373FE1` |
+| ³ | `0x00373FF0`-`0x0037402E` |
+
+</details>
 
 `0x00372280(entry)`, which the player's `0x0041CF00` runs under `+0x0C` bit `0x1000`, clears the second set on every
-listed bone: bit `0x10` of `+0x280`, and `+0x1A0`, `+0x1C0` back to `(0, 0, 0, 1)` (`0x003722F4`-`0x00372322`). The
+listed bone: bit `0x10` of `+0x280`, and `+0x1A0`, `+0x1C0` back to `(0, 0, 0, 1)`¹. The
 listed bones are the `+0x8A` node numbers stored after the `+0x88` nodes of the array `+0x84` decodes to; with
-that array null it writes nothing (`0x0037228D`-`0x003722C0`).
+that array null it writes nothing².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003722F4`-`0x00372322` |
+| ² | `0x0037228D`-`0x003722C0` |
+
+</details>
 
 `0x0041D4D0` is its counterpart: it sets or clears `+0x0C` bit `0x1000` together with bit `0x20` of every state's
-`+0x96` (`0x0041D4D9`-`0x0041D554`).
+`+0x96`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041D4D9`-`0x0041D554` |
+
+</details>
 
 ### Composing the pose
 
 `0x003703A0(entry)` is the skeleton-entry update (from `0x004242B0` and `0x0046E0F0`). It allocates two
 per-bone arrays on its stack, the first of 8 bytes a bone, for pointers, and the second of `0x10` bytes a
-bone, bones being the entry's sign-extended word `+0x8A` (`0x0037040E`-`0x0037045E`), and zero-fills both
-with `0x00861EC0`
-(`0x00370461`-`0x00370485`). It builds the record's mapping table `+0x6D0` when it is null and both the
+bone, bones being the entry's sign-extended word `+0x8A`¹, and zero-fills both
+with `0x00861EC0`². It builds the record's mapping table `+0x6D0` when it is null and both the
 record and the record of the skeleton named by entry `+0x0C` have a pointer at `+0x6B8`
 (`0x003704F6`-`0x0037055B`; [add-motion tables](add-motion-tables.md#skeletonmappingbin)).
 
-The skeleton that entry `+0x0C` decodes to must also be not null (`0x00370512`-`0x0037051E`). The build
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037040E`-`0x0037045E` |
+| ² | `0x00370461`-`0x00370485` |
+
+</details>
+
+The skeleton that entry `+0x0C` decodes to must also be not null¹. The build
 calls `0x0019C580(bones x 4, 0x10, 0, -1)`, stores the answer at `+0x6D0` without testing it, fills it
 with `0x00861EC0(table, -1, bones x 4)` so every dword is -1, and calls
-`0x0017EF60([record + 0x6B8], [other record + 0x6B8], table)` (`0x0037055D`-`0x003705AC`).
+`0x0017EF60([record + 0x6B8], [other record + 0x6B8], table)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00370512`-`0x0037051E` |
+| ² | `0x0037055D`-`0x003705AC` |
+
+</details>
 
 A record whose `+0x6B8`
-is null first gets it from `0x0017F0D0([record + 0x6B0])` when `0x0017EFC0` accepts that dword, and 0 otherwise
-(`0x003704C2`-`0x003704EF`). The record's address is not tested first: with the entry's word `+0xA8` at
-`0xFFFF`, or the record's `+0x284` at 0, the address is 0 (`0x003703E8`-`0x0037040A`) and `0x003704C2` reads
-at address `0x6B8`. It then calls the final-pose composer `0x00373860` once (`0x003705BA`) and sets bit
-`0x800` of the entry's `+0x00` (`0x003705BF`).
+is null first gets it from `0x0017F0D0([record + 0x6B0])` when `0x0017EFC0` accepts that dword, and 0 otherwise¹. The record's address is not tested first: with the entry's word `+0xA8` at
+`0xFFFF`, or the record's `+0x284` at 0, the address is 0² and `0x003704C2` reads
+at address `0x6B8`. It then calls the final-pose composer `0x00373860` once³ and sets bit
+`0x800` of the entry's `+0x00`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003704C2`-`0x003704EF` |
+| ² | `0x003703E8`-`0x0037040A` |
+| ³ | `0x003705BA` |
+| ⁴ | `0x003705BF` |
+
+</details>
 
 When bit `0x200` of the entry's `+0x00` is set, its dword `+0x90` is above 0 and `+0x94` decodes to an
-address that is not null, `0x003703A0` calls `0x003E00C0` on that address before the `+0x6B8` test
-(`0x0037048A`-`0x003704BD`) and `0x003DFFE0` on it after the composer (`0x003705C6`-`0x003705F9`). It then fills
+address that is not null, `0x003703A0` calls `0x003E00C0` on that address before the `+0x6B8` test¹ and `0x003DFFE0` on it after the composer². It then fills
 the record's output array `+0x6C0`. When that pointer is null it calls
 `0x0019C580(bones x 0x40, 0x10, 0, -1)`, bones being the entry's word `+0x8A`, stores the answer at
-`+0x6C0` and leaves when the answer is null (`0x003705FE`-`0x0037062E`).
+`+0x6C0` and leaves when the answer is null³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037048A`-`0x003704BD` |
+| ² | `0x003705C6`-`0x003705F9` |
+| ³ | `0x003705FE`-`0x0037062E` |
+
+</details>
 
 For each bone i below the word `+0x8A` whose pointer in the first stack array is not null, it copies the
-`0x40` bytes that pointer names and the bone's 16 bytes of the second array (`0x003706B5`-`0x00370718`).
+`0x40` bytes that pointer names and the bone's 16 bytes of the second array¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003706B5`-`0x00370718` |
+
+</details>
 
 A mapped step follows when all of these hold: the record's dword `+0x6C8` is 2, its `+0x6D0` is not
-null and the entry's dword `+0xB0` is not -1 (`0x00370634`-`0x00370659`); the skeleton that entry `+0x0C`
-decodes to is not null and its `+0x84` decodes to bone records (`0x00370683`-`0x003706B1`, `0x0037071E`); and
-i is below the dword `+0x20` of the `0x30`-byte entry that `+0xB0` picks at `[0x02AD9E30]` (`0x0037065D`-`0x00370673`,
-`0x00370723`).
+null and the entry's dword `+0xB0` is not -1¹; the skeleton that entry `+0x0C`
+decodes to is not null and its `+0x84` decodes to bone records²; and
+i is below the dword `+0x20` of the `0x30`-byte entry that `+0xB0` picks at `[0x02AD9E30]`³.
 
-The step reads the dword i of that entry's list `+0x28` (`0x00370728`-`0x0037072C`). When it is a number m
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00370634`-`0x00370659` |
+| ² | `0x00370683`-`0x003706B1`, `0x0037071E` |
+| ³ | `0x0037065D`-`0x00370673`, `0x00370723` |
+
+</details>
+
+The step reads the dword i of that entry's list `+0x28`¹. When it is a number m
 other than -1, `0x003703A0` calls `0x00202D60(copy, own bone i + 0x150)`, `0x00202D70(copy, other bone m +
-0x150, copy)` and `0x00202D70(copy, other bone m + 0x80, copy)` (`0x00370730`-`0x00370787`). The bone records
+0x150, copy)` and `0x00202D70(copy, other bone m + 0x80, copy)`². The bone records
 are `0x290` bytes apart, the entry's own decoded from its dword `+0x84` before the loop, with no null
-test (`0x00370664`, `0x0037067E`).
+test³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00370728`-`0x0037072C` |
+| ² | `0x00370730`-`0x00370787` |
+| ³ | `0x00370664`, `0x0037067E` |
+
+</details>
 
 For every such bone, mapped or not, `0x00202FE0(row, row, float)` is then called for the copy's rows at
-`+0x00`, `+0x10` and `+0x20` with the first, second and third float of the 16 bytes
-(`0x00370790`-`0x003707C1`). The first `0x3C` bytes of the
-copy are stored at `[+0x6C0]` + i x `0x40` (`0x003707C6`-`0x003707F9`), and the dword `+0x3C` there takes
-the sign-extended word `+0x270` of the entry's own bone record i (`0x003707FE`-`0x0037081E`).
+`+0x00`, `+0x10` and `+0x20` with the first, second and third float of the 16 bytes¹. The first `0x3C` bytes of the
+copy are stored at `[+0x6C0]` + i x `0x40`², and the dword `+0x3C` there takes
+the sign-extended word `+0x270` of the entry's own bone record i³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00370790`-`0x003707C1` |
+| ² | `0x003707C6`-`0x003707F9` |
+| ³ | `0x003707FE`-`0x0037081E` |
+
+</details>
 
 `0x00373860(entry, out pointers, out scales)` does nothing when the entry's word `+0xA8` is `0xFFFF` or
-its render record's `+0x284` is 0 (`0x003738C8`-`0x00373912`); otherwise it first applies the add-motion
-tracks (`0x003714A0`), then for each listed bone (`0x00373970`-`0x00373CA3`):
+its render record's `+0x284` is 0¹; otherwise it first applies the add-motion
+tracks², then for each listed bone³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003738C8`-`0x00373912` |
+| ² | `0x003714A0` |
+| ³ | `0x00373970`-`0x00373CA3` |
+
+</details>
 
 - stores at `+0x284` the encoded address of the bone's skinning slot: `+0x00` when the skeleton's
-  byte `+0xA7` has 1 in its low nibble, else `+0x40` (`0x0037397B`-`0x00373998`);
+  byte `+0xA7` has 1 in its low nibble, else `+0x40`¹;
 - takes its source matrix: the parent's `+0x80` (`+0x270`), else the `+0x276` bone's `+0x80` in the
-  parent skeleton that entry `+0x0C` names, else node 0's `+0x1F0` (`0x0037399E`-`0x003739DD`);
+  parent skeleton that entry `+0x0C` names, else node 0's `+0x1F0`²;
 - with `+0x280` bit `0x10` set takes the second-set path (the `+0x96` bit `0x20` set): `+0x1A0`
-  as a matrix (`0x00477130`) times `+0xC0`, the translation `+0xF0` plus `+0x1C0` (`0x00202B10`), the scale `+0x100` times `+0x1E0`
-  (`0x00202D80`), then the source (`0x00373AC7`), `+0x230` (`0x00373ADF`), the
+  as a matrix³ times `+0xC0`, the translation `+0xF0` plus `+0x1C0`⁴, the scale `+0x100` times `+0x1E0`
+ ⁵, then the source⁶, `+0x230`⁷, the
   row scales (row i times `s[i]`, `s = +0x100 × +0x1E0` with `s[3] = +0x10C`; `0x00202FE0`,
-  `0x00373AE4`-`0x00373B39`) and `+0x150` (`0x003739EA`-`0x00373B51`);
+  `0x00373AE4`-`0x00373B39`) and `+0x150`⁸;
 - with that bit clear, takes `0x00372610(source, +0xC0, +0x230, +0x100, +0x150)`
   ([the tie](skeleton-entries-and-bones.md#tying-bones-to-another-skeleton));
 - copies `0x02AD9E40`, the product before `+0x150`, into `+0x80`, and `0x02AD9E80`, the product with
-  `+0x150`, into the slot `+0x284` names (`0x00373B8A`-`0x00373BB8`);
-- when the skeleton that entry `+0x0C` names resolves (`0x00373BBD`), the record's add-motion
+  `+0x150`, into the slot `+0x284` names⁹;
+- when the skeleton that entry `+0x0C` names resolves¹⁰, the record's add-motion
   state `+0x6C8` is 2 and its `+0x6D0` table maps the bone to a
   partner bone, the bone's `+0x80` and its skinning slot are overwritten with that partner bone's
-  `+0x80` and the matrix its `+0x284` names (`0x00373BC6`-`0x00373C4F`).
+  `+0x80` and the matrix its `+0x284` names¹¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037397B`-`0x00373998` |
+| ² | `0x0037399E`-`0x003739DD` |
+| ³ | `0x00477130` |
+| ⁴ | `0x00202B10` |
+| ⁵ | `0x00202D80` |
+| ⁶ | `0x00373AC7` |
+| ⁷ | `0x00373ADF` |
+| ⁸ | `0x003739EA`-`0x00373B51` |
+| ⁹ | `0x00373B8A`-`0x00373BB8` |
+| ¹⁰ | `0x00373BBD` |
+| ¹¹ | `0x00373BC6`-`0x00373C4F` |
+
+</details>
 
 Each bone's `+0x80` address and its 16-byte scale (`+0x100`, or `+0x100` × `+0x1E0` with lane 3 from
-`+0x10C` on the second-set path) go to the two out arrays (`0x00373C6F`-`0x00373C8F`), and at the end the
-skeleton's byte `+0xA7` gets 1 in its high nibble (`0x00373CA9`-`0x00373CB1`). So `+0x80` is the matrix
+`+0x10C` on the second-set path) go to the two out arrays¹, and at the end the
+skeleton's byte `+0xA7` gets 1 in its high nibble². So `+0x80` is the matrix
 children chain from and lookups return, and `+0x00` / `+0x40` are the two skinning slots, the current
 one named by `+0x284`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00373C6F`-`0x00373C8F` |
+| ² | `0x00373CA9`-`0x00373CB1` |
+
+</details>
 
 ### Chunk links and the two-chunk party member
 
 `0x00370390(child, parent, slot)` is the chunk link: it jumps to `0x00373160` only for a kind-2 skeleton
 (dword `+0x9C` = 2, the `@FTR` kind the builder copied) and returns otherwise.
 `0x0046E640(bank, child, parent, slot)` reaches it to tie one skeleton's bones to another's by key; the tie, the
-saved parent link `+0x28E` (`0x00373244`), the root test on it (`0x003732CB`) and the undo are on
+saved parent link `+0x28E`¹, the root test on it² and the undo are on
 [skeleton entries](skeleton-entries-and-bones.md#tying-bones-to-another-skeleton).
 
-`0x0046E640` looks both indexes up with `0x002ED570(bank, index)`, taking null for an index of -1 (`0x0046E665`-`0x0046E685`).
-Only when both entries exist does it call `0x00370390(child, parent, slot)` (`0x0046E688`-`0x0046E69B`) and then store at
-the child's `+0x0C` the encoded address (`0x0020E620`) of the entry its `+0x08` names, or of null when `+0x08` is -1
-(`0x0046E6A0`-`0x0046E6BC`). On every path it ends with a tail jump to `0x0046E6F0(bank)`, the update-list rebuild
-(`0x0046E6DC`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00373244` |
+| ² | `0x003732CB` |
+
+</details>
+
+`0x0046E640` looks both indexes up with `0x002ED570(bank, index)`, taking null for an index of -1¹.
+Only when both entries exist does it call `0x00370390(child, parent, slot)`² and then store at
+the child's `+0x0C` the encoded address³ of the entry its `+0x08` names, or of null when `+0x08` is -1⁴. On every path it ends with a tail jump to `0x0046E6F0(bank)`, the update-list rebuild⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046E665`-`0x0046E685` |
+| ² | `0x0046E688`-`0x0046E69B` |
+| ³ | `0x0020E620` |
+| ⁴ | `0x0046E6A0`-`0x0046E6BC` |
+| ⁵ | `0x0046E6DC` |
+
+</details>
 
 Values the channel writers store into a tied parent bone are stored into the child bone at `+0x278`
-as well (`0x00418679`, `0x00418729`, `0x004186D9`), and the composer takes a tied root's source from the parent skeleton through `+0x276`.
+as well¹, and the composer takes a tied root's source from the parent skeleton through `+0x276`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00418679`, `0x00418729`, `0x004186D9` |
+
+</details>
 
 A party member in a story scene can be two chunks: the bound model and a second skeleton tied to it. A child
-record attached with code `0x7FFF` goes through `0x004215A0` to `0x004219C0(parent, −1, child)`
-(`0x0042164D`-`0x00421661`), and `0x004219C0` ties the skeletons with `0x0046E640` (`0x00421AC1`).
+record attached with code `0x7FFF` goes through `0x004215A0` to `0x004219C0(parent, −1, child)`¹, and `0x004219C0` ties the skeletons with `0x0046E640`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0042164D`-`0x00421661` |
+| ² | `0x00421AC1` |
+
+</details>
 
 The skeleton-entry update builds `+0x6D0` when the record has the pointer `+0x6B8` that `0x0017F0D0`
-answers for its dword `+0x6B0` (`0x003704CC`-`0x003704E6`) and the `+0x6B8` of the record of the skeleton
-named by `+0x0C` is not null (`0x00370553`); the composer uses it only while `+0x6C8` is 2. That second
+answers for its dword `+0x6B0`¹ and the `+0x6B8` of the record of the skeleton
+named by `+0x0C` is not null²; the composer uses it only while `+0x6C8` is 2. That second
 record's address is not tested: when the skeleton's word `+0xA8` is `0xFFFF` or the record's `+0x284`
-is 0 the test reads from a null record address (`0x0037052B`-`0x00370553`).
+is 0 the test reads from a null record address³.
 
-`0x0053AB50` builds `+0x6D0` the same way when it is null (`0x0053ACF9`-`0x0053ADB0`). The composer reads the table's
-dword at the index the bone's word `+0x27E` gives and takes no partner for a negative value
-(`0x00373BD4`-`0x00373BEE`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003704CC`-`0x003704E6` |
+| ² | `0x00370553` |
+| ³ | `0x0037052B`-`0x00370553` |
+
+</details>
+
+`0x0053AB50` builds `+0x6D0` the same way when it is null¹. The composer reads the table's
+dword at the index the bone's word `+0x27E` gives and takes no partner for a negative value².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053ACF9`-`0x0053ADB0` |
+| ² | `0x00373BD4`-`0x00373BEE` |
+
+</details>
 
 `0x004219C0` takes both skeleton entries (`0x002ED570` of each record's `+0x18`, no entry for −1) from its banks
-`+0xD98` and ties nothing when either is missing (`0x004219E4`-`0x00421A60`). It sets the child's `+0x2F2` to 0; with
-key −1 it sets the child's `+0x284` bit `0x4000000` and `+0x2F2` to 1 and ties at slot −1 (`0x00421A62`-`0x00421A7E`).
+`+0xD98` and ties nothing when either is missing¹. It sets the child's `+0x2F2` to 0; with
+key −1 it sets the child's `+0x284` bit `0x4000000` and `+0x2F2` to 1 and ties at slot −1².
 Another key goes through `0x00372800`, which answers −1 for a skeleton other than kind 2 and asks `0x003737C0`
-otherwise, retried with key `0x1E`; when both give −1 it ties nothing (`0x00421A87`-`0x00421AB1`).
+otherwise, retried with key `0x1E`; when both give −1 it ties nothing³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004219E4`-`0x00421A60` |
+| ² | `0x00421A62`-`0x00421A7E` |
+| ³ | `0x00421A87`-`0x00421AB1` |
+
+</details>
 
 After the tie a child with `+0x284` bit `0x4000000` set gets `0x003E5D30`, which puts its fade channels 0, 1 and 4
 back to 1.0 ([character fades](character-fades.md); `0x00421AC6`-`0x00421AD5`).
 
 Equipment goes the same way: `0x0041F010` ties a child to a bone through `0x004211B0`, which calls
-`0x0046E640` (`0x00421255`) when the child's skeleton entry has bit `0x80` of its first byte (`0x00421237`).
+`0x0046E640`¹ when the child's skeleton entry has bit `0x80` of its first byte².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00421255` |
+| ² | `0x00421237` |
+
+</details>
 
 ### The locomotion query and its model gates
 
@@ -329,22 +765,52 @@ entry's render record `+0x2E0` (speed, facing, run threshold) and the entry's mo
 Two gates in the model decide the fallback:
 
 - The `@FCP` gate: each direction byte comes from dword `0x30` of section 9 (ids `0x63070F30`,
-  `0x62070E30`, `0x61070D30`, `0x60070C30`), read by `0x004FE2F0` on the record (`0x00425A28`-`0x00425AF1`),
-  and state 7 reads byte 3 of dword `0x2D` (`0x63070B2D`, `0x00425BA9`); a payload older than version 7
+  `0x62070E30`, `0x61070D30`, `0x60070C30`), read by `0x004FE2F0` on the record¹,
+  and state 7 reads byte 3 of dword `0x2D`²; a payload older than version 7
   answers 0.
 - The `@FRM` gate, the jump-table case for state 6 (`0x00425D60` entry 5): the query resolves the motion
-  file `+0x310` and index `+0x318` (`0x00425AC2`-`0x00425AD9`), and `0x00422D90`
-  resolves the block (`0x003AB7F0`), finds the `@FRM` section (`0x4D524640`) and returns its payload at
-  `+0x30` (`0x00422DAB`-`0x00422DCC`); when the `0x60070C30` byte is 2, 3 or 4, the low six bits of byte
-  `+2` there decide the fallback (`0x00425B0E`-`0x00425B3D`).
-- `0x00422D90` returns 0 when the block is null or has no `@FRM` section (`0x00422DA1`, `0x00422DBE`); the payload
-  address is the one `0x00408F80` gives cut to 32 bits and sign-extended, plus `0x30` (`0x00422DCA`-`0x00422DCC`).
+  file `+0x310` and index `+0x318`³, and `0x00422D90`
+  resolves the block⁴, finds the `@FRM` section⁵ and returns its payload at
+  `+0x30`⁶; when the `0x60070C30` byte is 2, 3 or 4, the low six bits of byte
+  `+2` there decide the fallback⁷.
+- `0x00422D90` returns 0 when the block is null or has no `@FRM` section⁸; the payload
+  address is the one `0x00408F80` gives cut to 32 bits and sign-extended, plus `0x30`⁹.
 
-The query then sets bit `0x2000` of the entry's `+0x0C` (`0x00425B55`), applies the mode (mode 2 only when
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00425A28`-`0x00425AF1` |
+| ² | `0x63070B2D`, `0x00425BA9` |
+| ³ | `0x00425AC2`-`0x00425AD9` |
+| ⁴ | `0x003AB7F0` |
+| ⁵ | `0x4D524640` |
+| ⁶ | `0x00422DAB`-`0x00422DCC` |
+| ⁷ | `0x00425B0E`-`0x00425B3D` |
+| ⁸ | `0x00422DA1`, `0x00422DBE` |
+| ⁹ | `0x00422DCA`-`0x00422DCC` |
+
+</details>
+
+The query then sets bit `0x2000` of the entry's `+0x0C`¹, applies the mode (mode 2 only when
 the record's `+0x108` object passes `0x002ED530`, `0x00425B5D`-`0x00425B84`) and returns the state in its
-low word (`0x00425D0C`-`0x00425D11`).
+low word².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00425B55` |
+| ² | `0x00425D0C`-`0x00425D11` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### The presentation entry (0x3A0 bytes)
 
@@ -354,12 +820,30 @@ fill `+0x30` to `+0x2AF`.
 `0x0041CB90` writes −1 to the dwords `+0x00`, `+0x04`, `+0x08`, `+0x324` (so `+0x324` and `+0x326`), `+0x338`,
 `+0x35C` and `+0x360` and to the words `+0x318` and `+0x2D8`, `0xFF` to `+0x2DC`, −1.0 to `+0x344`, `+0x348` and
 `+0x34C`, `0x10` to the dword `+0x358` and `[0x01DFE0BC] × [0x008F8D80]` to `+0x340`, and clears mask `0x7` of
-`+0x2E8` (`0x0041CB90`-`0x0041CC90`).
+`+0x2E8`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041CB90`-`0x0041CC90` |
+
+</details>
 
 It writes 0 to `+0x0C`, `+0x18`-`+0x2B`, `+0x2B0`-`+0x2BD`, `+0x2C0`-`+0x2D7`, `+0x2E0`-`+0x2E7`,
 `+0x310`-`+0x317`, `+0x31A`-`+0x31D`, `+0x320`-`+0x323`, `+0x328`-`+0x32B`, `+0x330`-`+0x337`, `+0x33C`,
-`+0x350`-`+0x357`, `+0x368`-`+0x36F` and `+0x388`-`+0x38F` (`0x0041CBA0`-`0x0041CC95`). It does not write the track
+`+0x350`-`+0x357`, `+0x368`-`+0x36F` and `+0x388`-`+0x38F`¹. It does not write the track
 states `+0x30`-`+0x2AF`, `+0x370`-`+0x387` or the rows below marked as not touched.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041CBA0`-`0x0041CC95` |
+
+</details>
 
 | Offset | Type | Field |
 |---|---|---|
@@ -515,13 +999,20 @@ placement `0x00373F40` (P).
 | `+0x28C` | `u8[2]` | not touched by the routines on this page |
 | `+0x28E` | `i16` | the parent link saved by L, tested by L's root handling |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 - `[0x01EF9438]`, normally `0x02AD9EC0`: the scratch bone list the bind claims bones from.
 - `0x02AD9E40` and `0x02AD9E80`: the composer's two product matrices, copied into `+0x80` and the skinning slot.
 - `0x01F204E0`: the identity matrix `0x0046D110` copies into a pool node's `+0x150` without record bit `0x200000`.
 - `0x02CA43D0`: the 48-byte pose template `0x0041D180` copies into `+0xC0`.
 - `0x01DFE0BC` and `0x008F8D80`: the frame constant and rate whose product is the entry's step `+0x340`.
+
+</details>
 
 ## Related
 
@@ -543,122 +1034,116 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Damage and battle formulas** (explained on [damage formula](../Damage-And-Battle-Formulas/damage-formula.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x004FE2F0` | is called by | `0x00384E50` |
+| [`0x004FE2F0`](model-files-cm-ca.md) (on model files cm ca) | is called by | [`0x00384E50`](../Damage-And-Battle-Formulas/damage-formula.md) (on damage formula) |
 
 **Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0041C410` | calls | `0x00229EA0` |
+| [`0x0041C410`](animation-playback.md) | calls | [`0x00229EA0`](effect-drawing.md) (on effect drawing) |
 
 **Gameplay** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00202B10` | is called by | `0x00339630` |
-
-**Movement and pathfinding**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00202B10` | is called by | `0x00334220`, `0x003347C0`, `0x00334E00`, `0x00335B60`, `0x00335E50`, `0x00336E40`, `0x00337470`, `0x00338490`, `0x00339F00`, `0x0033A3D0`, `0x0033BAA0`, `0x0033C310` |
-| `0x00202B10` | is also called by | `0x0033CC80`, `0x0033D890`, `0x0033DB60`, `0x0033DFD0` |
-
-**Movement and pathfinding**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00202FE0` | is called by | `0x00334220`, `0x00334E00`, `0x00335B60`, `0x00335E50`, `0x00336E40`, `0x00338490`, `0x00339F00`, `0x0033A3D0`, `0x0033BAA0`, `0x0033CC80`, `0x0033D890`, `0x0033DFD0` |
+| [`0x00202B10`](animation-playback.md) | is called by | [`0x00339630`](../Battle-Actions/action-phases.md) (on action phases) |
 
 **Movement and pathfinding** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [bestiary](../Enemy-Spawning/bestiary.md), [force fight mode](../Engine-Core/force-fight-mode.md))
 
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00202B10`](animation-playback.md) | is called by | [`0x00334220`](animation-playback.md)<br>[`0x003347C0`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x00334E00`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x00335B60`](../Movement-And-Pathfinding/battle-locomotion.md) Battle locomotion: test forward step clearance (on battle locomotion)<br>[`0x00335E50`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x00336E40`](../Status-Effects-And-KO/ko-and-game-over.md) (on ko and game over)<br>[`0x00337470`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x00338490`](../Party/party-leader.md) Party follow: solve formation (on party leader)<br>[`0x00339F00`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x0033A3D0`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x0033BAA0`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x0033C310`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion) |
+| [`0x00202B10`](animation-playback.md) | is also called by | [`0x0033CC80`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x0033D890`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x0033DB60`](../EBP-Script-Files/ebp-position-entries.md) (on ebp position entries)<br>[`0x0033DFD0`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion) |
+| [`0x00202FE0`](animation-playback.md) | is called by | [`0x00334220`](animation-playback.md)<br>[`0x00334E00`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x00335B60`](../Movement-And-Pathfinding/battle-locomotion.md) Battle locomotion: test forward step clearance (on battle locomotion)<br>[`0x00335E50`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x00336E40`](../Status-Effects-And-KO/ko-and-game-over.md) (on ko and game over)<br>[`0x00338490`](../Party/party-leader.md) Party follow: solve formation (on party leader)<br>[`0x00339F00`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x0033A3D0`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x0033BAA0`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x0033CC80`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x0033D890`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion)<br>[`0x0033DFD0`](../Movement-And-Pathfinding/battle-locomotion.md) (on battle locomotion) |
+
 **Party** (explained on [actor record](../Characters-And-Objects/actor-record.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002ED530` | calls | `0x0030BEB0` |
+| [`0x002ED530`](presentation-entries.md) (on presentation entries) | calls | [`0x0030BEB0`](presentation-entries.md) (on presentation entries) |
 
-**Game files and data tables**
+**Game files and data tables** (explained on [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md), [resource lifecycle](../Game-Files-And-Data-Tables/resource-lifecycle.md), [resource sections](../Game-Files-And-Data-Tables/resource-sections.md), [character render records](character-render-records.md), [model effects and motion commands](model-effects-and-motion-commands.md), [bestiary](../Enemy-Spawning/bestiary.md), [native limits](../Engine-Core/native-limits.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002ED570` | is called by | `0x00409CA0`, `0x00409D60`, `0x00409F50`, `0x00409FE0`, `0x0046E1B0`, `0x004780B0` |
-| `0x003712E0` | calls | `0x00409660`, `0x00409F50` |
-| `0x003714A0` | calls | `0x004780B0` |
-| `0x00372820` | calls | `0x004096C0`, `0x00409A30`, `0x00409F50` |
-| `0x003AB7F0` | is called by | `0x002ED570`, `0x00409600`, `0x00409780`, `0x00409A60`, `0x00409FE0`, `0x0040A210`, `0x0051FBB0`, `0x0051FCF0`, `0x0051FE30`, `0x0051FF30` |
-
-**Game files and data tables**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00408F80` | calls | `0x004090D0` |
-| `0x004090D0` | is called by | `0x00408F80` |
-| `0x00409210` | is called by | `0x00409780` |
-| `0x004096C0` | calls | `0x00409600` |
-| `0x004096C0` | is called by | `0x00504940` |
-| `0x00409A30` | calls | `0x00409780` |
-| `0x00409A30` | is called by | `0x00409FE0`, `0x0040A1E0`, `0x00504E70`, `0x00504F00` |
-| `0x0041B4E0` | calls | `0x00408F80`, `0x004096C0`, `0x00409F50` |
-| `0x0041BEE0` | calls | `0x002ED570`, `0x00409A30`, `0x00409F50` |
-
-**Game files and data tables**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0041CA70` | calls | `0x00408F80`, `0x004090D0`, `0x004096C0`, `0x00409F50` |
-| `0x0041CF00` | calls | `0x002ED570` |
-| `0x0041D220` | calls | `0x002ED570`, `0x00409210`, `0x00409660`, `0x00409A30`, `0x00409F50` |
-| `0x0041F340` | calls | `0x002ED570`, `0x00409660`, `0x00409F50`, `0x00409FA0` |
-| `0x0041FCF0` | calls | `0x004096C0`, `0x00409930`, `0x00409960`, `0x00409A30`, `0x00409C00`, `0x00409F50`, `0x00409FA0` |
-| `0x004211B0` | calls | `0x002ED570` |
-
-**Game files and data tables**
-
-| Function | | Functions |
-|---|---|---|
-| `0x004215A0` | calls | `0x002ED570` |
-| `0x004219C0` | calls | `0x002ED570` |
-| `0x00422D90` | calls | `0x00408F80`, `0x00408F90` |
-| `0x004242B0` | calls | `0x002ED570` |
-| `0x004256E0` | calls | `0x00409600`, `0x00409F50` |
-| `0x0042E550` | calls | `0x002ED570` |
-| `0x0046E0F0` | calls | `0x002ED570` |
-| `0x0046E420` | calls | `0x002ED570` |
-| `0x0046E640` | calls | `0x002ED570` |
-| `0x0046E6F0` | calls | `0x002ED570` |
-| `0x0046E8B0` | calls | `0x002ED570` |
-| `0x0046E8D0` | calls | `0x002ED570` |
-
-**Game files and data tables** (explained on [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md), [resource lifecycle](../Game-Files-And-Data-Tables/resource-lifecycle.md), [resource sections](../Game-Files-And-Data-Tables/resource-sections.md))
-
-**Game files and data tables** (explained on [character render records](character-render-records.md), [model effects and motion commands](model-effects-and-motion-commands.md), [bestiary](../Enemy-Spawning/bestiary.md), [native limits](../Engine-Core/native-limits.md))
+| [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) | is called by | [`0x00409CA0`](character-effects.md) (on character effects)<br>[`0x00409D60`](character-effects.md) (on character effects)<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca)<br>[`0x00409FE0`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal)<br>[`0x0046E1B0`](animation-playback.md)<br>[`0x004780B0`](animation-playback.md) |
+| [`0x003712E0`](animation-playback.md) | calls | [`0x00409660`](../Game-Files-And-Data-Tables/resource-sections.md) (on resource sections)<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca) |
+| [`0x003714A0`](add-motion-tables.md) Add motion: apply bone pose (on add motion tables) | calls | [`0x004780B0`](animation-playback.md) |
+| [`0x00372820`](animation-playback.md) | calls | [`0x004096C0`](animation-playback.md)<br>[`0x00409A30`](animation-playback.md)<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca) |
+| [`0x003AB7F0`](presentation-entries.md) (on presentation entries) | is called by | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones)<br>[`0x00409600`](animation-playback.md) Resource entry: get resolved base pointer<br>[`0x00409780`](../Game-Files-And-Data-Tables/resource-sections.md) Resource entry: find section index and offset (on resource sections)<br>[`0x00409A60`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal)<br>[`0x00409FE0`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal)<br>[`0x0040A210`](../Game-Files-And-Data-Tables/resource-sections.md) (on resource sections)<br>[`0x0051FBB0`](character-render-records.md) (on character render records)<br>[`0x0051FCF0`](skeleton-entries-and-bones.md) (on skeleton entries and bones)<br>[`0x0051FE30`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal)<br>[`0x0051FF30`](../Game-Files-And-Data-Tables/resource-sections.md) (on resource sections) |
+| [`0x00408F80`](animation-playback.md) | calls | [`0x004090D0`](animation-playback.md) |
+| [`0x004090D0`](animation-playback.md) | is called by | [`0x00408F80`](animation-playback.md) |
+| [`0x00409210`](animation-playback.md) | is called by | [`0x00409780`](../Game-Files-And-Data-Tables/resource-sections.md) Resource entry: find section index and offset (on resource sections) |
+| [`0x004096C0`](animation-playback.md) | calls | [`0x00409600`](animation-playback.md) Resource entry: get resolved base pointer |
+| [`0x004096C0`](animation-playback.md) | is called by | [`0x00504940`](model-files-cm-ca.md) (on model files cm ca) |
+| [`0x00409A30`](animation-playback.md) | calls | [`0x00409780`](../Game-Files-And-Data-Tables/resource-sections.md) Resource entry: find section index and offset (on resource sections) |
+| [`0x00409A30`](animation-playback.md) | is called by | [`0x00409FE0`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal)<br>[`0x0040A1E0`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal)<br>[`0x00504E70`](model-files-cm-ca.md) (on model files cm ca)<br>[`0x00504F00`](model-files-cm-ca.md) (on model files cm ca) |
+| [`0x0041B4E0`](model-effects-and-motion-commands.md) (on model effects and motion commands) | calls | [`0x00408F80`](animation-playback.md)<br>[`0x004096C0`](animation-playback.md)<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca) |
+| [`0x0041BEE0`](animation-playback.md) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones)<br>[`0x00409A30`](animation-playback.md)<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca) |
+| [`0x0041CA70`](animation-playback.md) | calls | [`0x00408F80`](animation-playback.md)<br>[`0x004090D0`](animation-playback.md)<br>[`0x004096C0`](animation-playback.md)<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca) |
+| [`0x0041CF00`](animation-playback.md) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x0041D220`](animation-playback.md) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones)<br>[`0x00409210`](animation-playback.md)<br>[`0x00409660`](../Game-Files-And-Data-Tables/resource-sections.md) (on resource sections)<br>[`0x00409A30`](animation-playback.md)<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca) |
+| [`0x0041F340`](animation-playback.md) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones)<br>[`0x00409660`](../Game-Files-And-Data-Tables/resource-sections.md) (on resource sections)<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca)<br>[`0x00409FA0`](animation-playback.md) |
+| [`0x0041FCF0`](animation-playback.md) | calls | [`0x004096C0`](animation-playback.md)<br>[`0x00409930`](model-effects-and-motion-commands.md) (on model effects and motion commands)<br>[`0x00409960`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal)<br>[`0x00409A30`](animation-playback.md)<br>[`0x00409C00`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal)<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca)<br>[`0x00409FA0`](animation-playback.md) |
+| [`0x004211B0`](animation-playback.md) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x004215A0`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x004219C0`](animation-playback.md) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x00422D90`](animation-playback.md) | calls | [`0x00408F80`](animation-playback.md)<br>[`0x00408F90`](../Game-Files-And-Data-Tables/resource-sections.md) (on resource sections) |
+| [`0x004242B0`](animation-playback.md) Character render record: update skeleton final pose | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x004256E0`](animation-playback.md) | calls | [`0x00409600`](animation-playback.md) Resource entry: get resolved base pointer<br>[`0x00409F50`](model-files-cm-ca.md) (on model files cm ca) |
+| [`0x0042E550`](animation-playback.md) Character render record: update skeleton parent link and final pose | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x0046E0F0`](animation-playback.md) Skeleton model group: update final poses | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x0046E420`](animation-playback.md) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x0046E640`](animation-playback.md) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x0046E6F0`](skeleton-entries-and-bones.md) (on skeleton entries and bones) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x0046E8B0`](animation-playback.md) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+| [`0x0046E8D0`](animation-playback.md) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
 
 **Story, events and hunts** (explained on [model effects and motion commands](model-effects-and-motion-commands.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00418880` | calls | `0x001EC6B0`, `0x001ED240` |
+| [`0x00418880`](model-effects-and-motion-commands.md) (on model effects and motion commands) | calls | [`0x001EC6B0`](animation-playback.md) M1009;<br>[`0x001ED240`](model-effects-and-motion-commands.md) G0999; (on model effects and motion commands) |
 
 **Menus and HUD** (explained on [call signatures](../Engine-Core/call-signatures.md), [hud](../Menus-And-HUD/hud.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00202B10` | is called by | `0x002C7B10`, `0x002C84E0`, `0x003FC170`, `0x005512B0` |
+| [`0x00202B10`](animation-playback.md) | is called by | [`0x002C7B10`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x002C84E0`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x003FC170`](animation-playback.md)<br>[`0x005512B0`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests) |
 
 **World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003714A0` | calls | `0x00377C20` |
+| [`0x003714A0`](add-motion-tables.md) Add motion: apply bone pose (on add motion tables) | calls | [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
 
 **Saving, loading and settings** (explained on [save file format](../Saving-Loading-And-Settings/save-file-format.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0019C580` | is called by | `0x00866200` |
+| [`0x0019C580`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation) | is called by | [`0x00866200`](../Saving-Loading-And-Settings/save-file-format.md) (on save file format) |
 
 </details>
 

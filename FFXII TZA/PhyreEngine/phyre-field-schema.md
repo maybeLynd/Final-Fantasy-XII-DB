@@ -16,7 +16,16 @@ field name, every asset loads through the plain path.
 Every `.phyre` file starts with a cluster header whose marker is `RYHP` and whose size `m_size` is
 84 in every shipped file; the packed namespace follows at byte 84 and is `m_packedNamespaceSize`
 bytes long. `0x0059E070` reads the header through `0x0059A3B0`, then the namespace; `0x0059A3B0` reads both,
-the namespace through `0x0059A6F0` (`0x0059A5BF`, `0x0059A5D7`), and `0x0059E070` reads neither itself.
+the namespace through `0x0059A6F0`¹, and `0x0059E070` reads neither itself.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059A5BF`, `0x0059A5D7` |
+
+</details>
 
 The other half is the executable's own registrations: every reflected member is registered by one
 of four constructors (`0x00632960` plain, `0x00632A10` array, `0x00632A70` fixed-size array, `0x00632BE0`
@@ -381,16 +390,40 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x04` | `u32` | m_textureBufferIndex | m_textureBufferIndex (u32), registered by `0x005E9350` (`0x00632960` at `0x005E94CA`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderParameterCaptureBufferTextureBase |
 
 The per-draw block builder `0x00602A40` fills one record per capture-buffer entry and supplies a default for an empty
-reference. It loads three defaults before the loop: the default 2D texture `0x02CBBE00` (`0x00602AB9`), the default
-object `0x02CBC018` (`0x00602AD1`) and the default sampler state `0x02CBC368` (`0x00602ADB`).
+reference. It loads three defaults before the loop: the default 2D texture `0x02CBBE00`¹, the default
+object `0x02CBC018`² and the default sampler state `0x02CBC368`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00602AB9` |
+| ² | `0x00602AD1` |
+| ³ | `0x00602ADB` |
+
+</details>
 
 - A `PShaderParameterCaptureBufferTexture2D` record with a null `m_texture` (`+0x10`) receives `0x02CBBE00`
-  (`0x00602B7F`).
-- A `PShaderParameterCaptureBufferTextureCubeMap` record with a null `m_texture` receives `0x02CBC018` (`0x00602B99`).
-- Otherwise both read the texture's `+0x0C` (`0x00602B77`, `0x00602B91`), which the builder stores into
-  `m_textureBufferIndex` (`0x00602CA3`).
+ ¹.
+- A `PShaderParameterCaptureBufferTextureCubeMap` record with a null `m_texture` receives `0x02CBC018`².
+- Otherwise both read the texture's `+0x0C`³, which the builder stores into
+  `m_textureBufferIndex`⁴.
 - A `PShaderParameterCaptureBufferSampler` record with a null `m_samplerState` (`+0x08`) receives `0x02CBC368`
-  (`0x00602BA2`, `0x00602BAC`).
+ ⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00602B7F` |
+| ² | `0x00602B99` |
+| ³ | `0x00602B77`, `0x00602B91` |
+| ⁴ | `0x00602CA3` |
+| ⁵ | `0x00602BA2`, `0x00602BAC` |
+
+</details>
 
 `PShaderPassInfo` (`0x30` bytes, offsets from the start of the record):
 
@@ -533,6 +566,9 @@ object `0x02CBC018` (`0x00602AD1`) and the default sampler state `0x02CBC368` (`
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 | Fact | Value |
 |---|---|
 | `.phyre` files | 35,984; `m_size` 84 in all |
@@ -559,6 +595,8 @@ object `0x02CBC018` (`0x00602AD1`) and the default sampler state `0x02CBC368` (`
 | [phyre-field-schema-field-schema.tsv](phyre-field-schema-field-schema.tsv) | 897 | registered members: class, member, offset, type, attribute word, registration site; 895 rows are the static registrations, and two give only the site and caller of the calls the array constructor `0x00632A10` (`0x00632A41`) and the dynamic-member builder `0x00632B30` (`0x00632B89`) make on `0x00632960` |
 | [phyre-field-schema-accessor-fields.tsv](phyre-field-schema-accessor-fields.tsv) | 73 | member offsets and widths read from script-accessor adapters |
 
+</details>
+
 ## Loader behaviour
 
 ### Checking the namespace
@@ -566,8 +604,19 @@ object `0x02CBC018` (`0x00602AD1`) and the default sampler state `0x02CBC368` (`
 `0x0059E070` returns `0x15` when the byte at `0x02CA9D90` is clear and `0xB` when the stream's slot
 `+0x10` check fails. After the header it accepts the namespace only when it starts with `0x01020304` and
 `+0x04 == +0x1C + 0x20 + 4 × (nTypes + 9 × nClasses + 6 × nMembers) + stringPoolSize`; otherwise it
-returns 6. It then matches the tables (`0x0059B430`), handles dynamic classes (`0x0059AC00`) and reads
-the instances (`0x0059E300`).
+returns 6. It then matches the tables¹, handles dynamic classes² and reads
+the instances³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059B430` |
+| ² | `0x0059AC00` |
+| ³ | `0x0059E300` |
+
+</details>
 
 ### Matching by name
 
@@ -576,12 +625,21 @@ the instances (`0x0059E300`).
 - **Types.** Each type-table name is hashed and looked up in the global type tree; a miss logs
   "Unable to find type".
 - **Classes.** Each class name is looked up in the type tree and must belong to the target
-  namespace, then in the namespace itself (`0x0063BA10`). A miss with `w7` bit `0x1` clear logs "File
+  namespace, then in the namespace itself¹. A miss with `w7` bit `0x1` clear logs "File
   refers to compiled class … which does not exist in the current runtime".
 - **Members.** Each member name is searched in the matched class's member list and then its
   ancestors', with an exact comparison, so a file member can land on a base-class member.
 - **Member types.** `w1` selects a type-table entry or a class record, and the entry's matched type
   becomes the member's file type.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0063BA10` |
+
+</details>
 
 ### Reporting differences
 
@@ -599,7 +657,16 @@ None of these stops the load.
 ### Choosing a copy routine
 
 `0x0059D2D0` gives every file member a routine, walking the parent records first. A class whose file record is
-missing or declares no members gets no routine (`0x0059D2F4`, `0x0059D303`):
+missing or declares no members gets no routine¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059D2F4`, `0x0059D303` |
+
+</details>
 
 - no matching run-time member: the empty `0x0016D6A0`, so the bytes are skipped;
 - same type, and the run-time width (the type's size, or 8 for a pointer or for a kind-2 counted buffer without
@@ -612,39 +679,99 @@ missing or declares no members gets no routine (`0x0059D2F4`, `0x0059D303`):
   pair up in the tree they fill ([Image hardening](../Compiler-And-C-Runtime/image-hardening.md)).
 
 The byte argument of `0x0059D2D0` orders that pair: 0 gives (run-time type, file type), any other value (file type,
-run-time type) (`0x0059D39C`-`0x0059D3B2`). Both callers give 1, which `0x0059E070` sets (`0x0059E1DC`, `0x0059E218`).
+run-time type)¹. Both callers give 1, which `0x0059E070` sets².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059D39C`-`0x0059D3B2` |
+| ² | `0x0059E1DC`, `0x0059E218` |
+
+</details>
 
 `0x00599390` and `0x00595E70` take (source base, destination base, desc, context), where `desc` holds the element
 count, the source stride, the destination stride and a byte at `+0xC`. With that byte clear, the source is read at
 the run-time offset `+0x48` and the destination written at `w2`; with it set, the other way round. Each routine runs
 `desc` count times, stepping the two bases by the two strides.
 
-`0x00595E70` copies one byte each time. `0x00599390` copies `w3` bytes with `memcpy` (`0x00861EBA`), and for a fixed-size
-array `w3` times the larger of `w5` and the run-time count `+0x60` (`0x005993F3`-`0x0059940D`). A fixed-size array whose
+`0x00595E70` copies one byte each time. `0x00599390` copies `w3` bytes with `memcpy`¹, and for a fixed-size
+array `w3` times the larger of `w5` and the run-time count `+0x60`². A fixed-size array whose
 count differs while its offset or attribute word also differs is therefore copied at the larger count.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00861EBA` |
+| ² | `0x005993F3`-`0x0059940D` |
+
+</details>
 
 ### Dynamic classes
 
 For a class record with `w7` bit `0x1` and no registered match, `0x0059AC00` takes the parent from
 `w0`, refuses an abstract parent or one without a default constructor, and builds a
-`PClassDescriptorDynamic` (`0x00632E80`). Its file members become `PClassDataMemberDynamic` records
+`PClassDescriptorDynamic`¹. Its file members become `PClassDataMemberDynamic` records
 through `0x006393A0` and `0x00632B30`. A flagged class still without a descriptor returns `0x13`. No
 shipped file sets the flag.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00632E80` |
+
+</details>
+
 `0x006393A0(descriptor, name, type, attributes, context)` adds one member and returns its record; `0x0059AC00` gives
-it the file member's `w4` bit `0x2` alone as the attributes and context 0 (`0x0059AE57`, `0x0059AE9B`). It returns 0
+it the file member's `w4` bit `0x2` alone as the attributes and context 0¹. It returns 0
 when `0x0063A4C0` refuses the member: a null name, a name `0x00597220` already finds in the class or an ancestor, or a
 member without attribute bit `0x2` whose type gives, through its slot `+0x08`, a class descriptor that is abstract
-(flag bit `0x2`) or is this class or derives from it (`0x0063A4D8`-`0x0063A525`).
+(flag bit `0x2`) or is this class or derives from it².
 
-Otherwise `0x006393A0` takes the offset from `0x0063C630`, allocates `0x60` bytes (`0x00584740`), returning 0 when that
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0059AE57`, `0x0059AE9B` |
+| ² | `0x0063A4D8`-`0x0063A525` |
+
+</details>
+
+Otherwise `0x006393A0` takes the offset from `0x0063C630`, allocates `0x60` bytes¹, returning 0 when that
 fails, and builds the record with `0x00632B30`, giving it the attributes with bit `0x1` set and flag 0.
 
-`0x00632B30` builds the record through `0x00632960` with attribute bit `0x1` cleared (`0x00632B5D`), so `0x00632FB0` keeps
-the given name pointer. It then installs its vtable `0x00D58358`, stores a copy of the name (`0x001C26B0`) at `+0x58`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00584740` |
+
+</details>
+
+`0x00632B30` builds the record through `0x00632960` with attribute bit `0x1` cleared¹, so `0x00632FB0` keeps
+the given name pointer. It then installs its vtable `0x00D58358`, stores a copy of the name² at `+0x58`
 and ORs bit `0x1` back into `+0x28`. Unless the name is the pointer held at `0x01F2DF28`, it also points the name
-`+0x20` at the copy with bit `0x1` cleared (`0x00632BB5`-`0x00632BC7`); for that name the copy is made from a null
-pointer, so `+0x58` is 0 (`0x00632B99`-`0x00632BAB`). It returns the record.
+`+0x20` at the copy with bit `0x1` cleared³; for that name the copy is made from a null
+pointer, so `+0x58` is 0⁴. It returns the record.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00632B5D` |
+| ² | `0x001C26B0` |
+| ³ | `0x00632BB5`-`0x00632BC7` |
+| ⁴ | `0x00632B99`-`0x00632BAB` |
+
+</details>
 
 ## Modding notes
 
@@ -673,26 +800,34 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Application** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00584740` | is called by | `0x001A98B0` |
+| [`0x00584740`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation) | is called by | [`0x001A98B0`](../World-Areas-And-Travel/map-art.md) (on map art) |
 
 **Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md), [sound engine](../Sound-And-Music/sound-engine.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00584740` | is called by | `0x002125A0`, `0x00225C40`, `0x006794D0` |
+| [`0x00584740`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation) | is called by | [`0x002125A0`](../Controls-And-Input/controllers.md) (on controllers)<br>[`0x00225C40`](../Controls-And-Input/controllers.md) (on controllers)<br>[`0x006794D0`](../Sound-And-Music/sound-engine.md) (on sound engine) |
 
 **Controls and input** (explained on [controllers](../Controls-And-Input/controllers.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00584740` | is called by | `0x007973D0`, `0x00797460`, `0x00797690` |
+| [`0x00584740`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation) | is called by | [`0x007973D0`](../Controls-And-Input/controllers.md) (on controllers)<br>[`0x00797460`](../Controls-And-Input/controllers.md) (on controllers)<br>[`0x00797690`](../Controls-And-Input/controllers.md) (on controllers) |
 
 **Platform** (explained on [phyre post effect classes](phyre-post-effect-classes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00584740` | is called by | `0x00650D40` |
+| [`0x00584740`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation) | is called by | [`0x00650D40`](../Controls-And-Input/controllers.md) (on controllers) |
 
 </details>

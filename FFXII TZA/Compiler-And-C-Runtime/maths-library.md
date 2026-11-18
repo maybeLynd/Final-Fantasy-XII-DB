@@ -46,11 +46,19 @@ Together they are reached from 1,563 call or jump sites:
 | `ceilf` | 37 | `acosf` | 9 |
 | `sqrt` | 36 | `sin` | 8 |
 
-One double-precision routine is linked into the executable instead: `0x008958C0(x)`, called twice by `0x00895DC0`
-(`0x0089622D`, `0x0089624A`). It reduces the argument against the table at `0x0300E7D0`, picks one of 64 entries of 32
+One double-precision routine is linked into the executable instead: `0x008958C0(x)`, called twice by `0x00895DC0`¹. It reduces the argument against the table at `0x0300E7D0`, picks one of 64 entries of 32
 bytes at `0x0300E880` (a step of pi / 32, `0.09817477042088285`), and finishes with sine and cosine series; entry 16,
 the one `x = 0` selects, holds 0 and 1.0, so it returns 1.0 for 0, and entry 32, the one `x = pi / 2` selects,
 holds 0 and 0: a cosine at both points.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0089622D`, `0x0089624A` |
+
+</details>
 
 The other 24 imports have 7 sites or fewer each; `tanh`, `sinh`, `cosh`, `modf`, `log2f`, `log10f`,
 `log10`, `fmodf`, `fmod`, `asin`, `acos` and `__setusermatherr` have one each.
@@ -63,7 +71,7 @@ The code section has four `sqrtss` instructions and no `sqrtsd`, `rsqrtss` or `r
   at `0x02EADEF0`. It is a dynamic initialiser, named in the start-up table at `0x008C4AE8`.
 - `0x007D0FB7` in `0x007D0F60` and `0x007D119B` in `0x007D1140` take the square root of a gain while
   computing the five coefficients of a shelving filter, each scaled by `0.9999` over the leading
-  term. `0x007D1C80`, slot 8 of the `SQEX::Sd::Driver::Filter` vtable (`0x01CB7078`), jumps to both.
+  term. `0x007D1C80`, slot 8 of the `SQEX::Sd::Driver::Filter` vtable¹, jumps to both.
   - With `A` the gain (fourth argument), `q` the third, `C = 0x007B8BA0(w)`, `S = 0x007B8C80(w)`,
     `k = S x q x sqrt(A)`, `P = A + 1` and `M = A - 1`, the low shelf `0x007D1140` has `a0 = P + M C + k`,
     `b0 = A (P - M C + k)`, `b1 = 2A (M - P C)`, `b2 = A (P - M C - k)`, `a1 = -2 (M + P C)` and `a2 = P + M C - k`.
@@ -76,31 +84,62 @@ The code section has four `sqrtss` instructions and no `sqrtsd`, `rsqrtss` or `r
     `+0x28` 0 gives `p = p0 + (p3 - p0) t`, mode 1 the cubic Bezier `(1 - t)^3 p0 + 3(1 - t)^2 t p1 + 3(1 - t) t^2 p2 +
     t^3 p3`, with the points `(x, y)` at `+0x04`, `+0x0C`, `+0x14` and `+0x1C`.
   - `r = sqrt(x^2 + y^2)`, with `p` scaled to length 1 when `r > 1`; the ramp at `+0xB8` gets `atan2(x, y) / pi`
-    (0 when `p` is zero) and the ramp at `+0xE8` gets `min(r, 1)` (`0x007E9030`).
-  - A mode byte other than 0 and 1 leaves `p` at (0, 0) (`0x007E90D9`-`0x007E90DB`), so both ramps get 0. Each
-    ramp is set by `0x007CA560` with the ramp, the value and zeros (`0x007E91C3`, `0x007E91F5`, `0x007E9210`), and
-    the function returns 0 (`0x007E921A`).
+    (0 when `p` is zero) and the ramp at `+0xE8` gets `min(r, 1)`².
+  - A mode byte other than 0 and 1 leaves `p` at (0, 0)³, so both ramps get 0. Each
+    ramp is set by `0x007CA560` with the ramp, the value and zeros⁴, and
+    the function returns 0⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01CB7078` |
+| ² | `0x007E9030` |
+| ³ | `0x007E90D9`-`0x007E90DB` |
+| ⁴ | `0x007E91C3`, `0x007E91F5`, `0x007E9210` |
+| ⁵ | `0x007E921A` |
+
+</details>
 
 ### The sound engine's vector routines
 
 Fourteen `sqrtps` and ten `rsqrtps` sit in `0x007EF1E0` to `0x007F74E0`, in virtual functions of the
-sound engine's source classes: `0x007F25E0` is slot 34 of `SQEX::Sd::Lay::PolygonSound` (`0x01CB9F18`)
-and `0x007F1EC0` slot 7 of `SQEX::Sd::Lay::DirectionSound` (`0x01CB9DD0`). `0x007EF1E0` shows the pattern:
+sound engine's source classes: `0x007F25E0` is slot 34 of `SQEX::Sd::Lay::PolygonSound`¹
+and `0x007F1EC0` slot 7 of `SQEX::Sd::Lay::DirectionSound`². `0x007EF1E0` shows the pattern:
 
-1. A cross product from two shuffles, `0xC9` (y, z, x) and `0xD2` (z, x, y) (`0x007EF1F5` to `0x007EF242`).
-2. A squared length: the product with itself, times the mask `1, 1, 1, 0` (`0x00D11570`), summed with
-   two `haddps` (`0x007EF24F`).
-3. A reciprocal square root, `rsqrtps` (`0x007EF257`), refined once:
-   `y = (3 - x·y0·y0) · 0.5 · y0`, with `3.0` from `0x00D560A0` and `0.5` from `0x00D22600`.
-4. With the eye `[rdx]`, `b = [r8]` and `a = [r9]`, it writes four 16-byte rows to its first argument:
-   `s`, the normalised `a × b`; `u`, the normalised `b × s`; and `b`, each with `-dot(eye, row)` in its
-   fourth lane; then (0, 0, 0, 1) from `0x008C5FD0` (`0x007EF281`-`0x007EF39E`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01CB9F18` |
+| ² | `0x01CB9DD0` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A cross product from two shuffles, `0xC9` (y, z, x) and `0xD2` (z, x, y) (`0x007EF1F5` to `0x007EF242`). |   |
+| 2 | A squared length: the product with itself, times the mask `1, 1, 1, 0`, summed with two `haddps`. | `0x00D11570`<br>`0x007EF24F` |
+| 3 | A reciprocal square root, `rsqrtps`, refined once: `y = (3 - x·y0·y0) · 0.5 · y0`, with `3.0` from `0x00D560A0` and `0.5` from `0x00D22600`. | `0x007EF257` |
+| 4 | With the eye `[rdx]`, `b = [r8]` and `a = [r9]`, it writes four 16-byte rows to its first argument: `s`, the normalised `a × b`; `u`, the normalised `b × s`; and `b`, each with `-dot(eye, row)` in its fourth lane; then (0, 0, 0, 1) from `0x008C5FD0`. | `0x007EF281`-`0x007EF39E` |
 
 `0x007F1EC0` calls `0x007F0210` with its arguments and returns its result. Unless that result is negative, it
 copies the direction at `+0x18` to `+0x20` of its third argument to `+0x100` and normalises it the same
-way, keeping `+0x10C` (`0x007F1EF2`-`0x007F1F69`).
+way, keeping `+0x10C`¹.
 The second argument reaches `0x007F0210` as a pointer to a local copy of the 8 bytes at
-`[rdx]`, not as the caller's pointer (`0x007F1ECA`-`0x007F1ED5`).
+`[rdx]`, not as the caller's pointer².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007F1EF2`-`0x007F1F69` |
+| ² | `0x007F1ECA`-`0x007F1ED5` |
+
+</details>
 
 Routines that use `sqrtps` take the exact root and load only the mask. What the sound engine does
 with these values is on [spatial-sound.md](../Sound-And-Music/spatial-sound.md).
@@ -110,45 +149,71 @@ with these values is on [spatial-sound.md](../Sound-And-Music/spatial-sound.md).
 The runtime linked into the image carries four-wide `float` power routines with their tables in
 `_RDATA`:
 
-- `0x00809900` tests the CPU level the start-up probe `__isa_available_init` (`0x00809458`) stores at
+- `0x00809900` tests the CPU level the start-up probe `__isa_available_init`¹ stores at
   `0x01F44858`. At level 2 or above it jumps to `0x0080A000`, otherwise to `0x00809D80`. It is called once,
-  from the post-effect library (`0x006EA4CF`).
+  from the post-effect library².
 - Both targets give e to the power x for the four floats in xmm0. They take
-  n = x × 64 / ln 2 as an integer (`42B8AA3B`) and r = x - n × ln 2 / 64 with the
-  constant in two parts (`3C316000`, `3690BFBF`) (`0x00809D87`-`0x00809E42`,
-  `0x0080A007`-`0x0080A0BB`).
+  n = x × 64 / ln 2 as an integer³ and r = x - n × ln 2 / 64 with the
+  constant in two parts⁴⁵.
 - The result is 2^(n / 64) × (1 + r + r × r / 2): the fraction of 2^(j / 64) comes
   from the 64 qwords at `0x03005100` (`0x03005500` for `0x0080A000`) by the low six bits of
   n, and the exponent from n shifted right by 6 (same ranges).
-- `0x00809D80` makes the integer by adding and taking away 1.5 × 2^23 (`CB400000`),
-  `0x0080A000` with `cvtps2dq` and `roundps` (`0x00809DA6`, `0x00809DCE`, `0x0080A01F`,
-  `0x0080A044`). Otherwise the two bodies take the same steps.
+- `0x00809D80` makes the integer by adding and taking away 1.5 × 2^23⁶,
+  `0x0080A000` with `cvtps2dq` and `roundps`⁷. Otherwise the two bodies take the same steps.
 - When a lane's magnitude is above 86.5 (`42AD0000`, compared as integers) both take
-  a second path (`0x00809E50`, `0x0080A0C0`): a lane below 105.0 (`42D20000`) takes its
+  a second path⁸: a lane below 105.0⁹ takes its
   power of two in two steps by sign, a larger finite lane gives the square of
   `7F000000` or of `0x00800000` by sign, an infinite lane gives infinity or 0 by sign,
-  and a lane that is not a number gives its own square (`0x00809ECD`-`0x00809FFA`,
-  `0x0080A140`-`0x0080A26D`).
+  and a lane that is not a number gives its own square¹⁰.
 - `0x00809920` is `jmp 0x0080A270`, called once from `0x00767052`, also in the post-effect library.
-  `0x0080A270` widens the four inputs to `double` (`0x0080A298`), seeds a reciprocal with `rcpps`
+  `0x0080A270` widens the four inputs to `double`¹¹, seeds a reciprocal with `rcpps`
   (`0x0080A339`, `0x0080A33D`, the only two in the image), and loads tables from `0x03006800`.
 - For each lane flagged in a bit mask, `0x0080A270` calls the scalar routine `0x0080B8A0` with pointers to
-  that lane's entries in three four-float arrays based at `r13` (`0x0080A710`).
+  that lane's entries in three four-float arrays based at `r13`¹².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00809458` |
+| ² | `0x006EA4CF` |
+| ³ | `42B8AA3B` |
+| ⁴ | `3C316000`, `3690BFBF` |
+| ⁵ | `0x00809D87`-`0x00809E42`, `0x0080A007`-`0x0080A0BB` |
+| ⁶ | `CB400000` |
+| ⁷ | `0x00809DA6`, `0x00809DCE`, `0x0080A01F`, `0x0080A044` |
+| ⁸ | `0x00809E50`, `0x0080A0C0` |
+| ⁹ | `42D20000` |
+| ¹⁰ | `0x00809ECD`-`0x00809FFA`, `0x0080A140`-`0x0080A26D` |
+| ¹¹ | `0x0080A298` |
+| ¹² | `0x0080A710` |
+
+</details>
 
 ### Angles and distance helpers
 
-Angles are `float` radians. The read-only sections hold `pi` (`40490FDB`) twice and `2pi` four times,
+Angles are `float` radians. The read-only sections hold `pi`¹ twice and `2pi` four times,
 with 192 and 246 code references; no `f32` constant equals 180/pi, 65536/2pi, 4096/2pi or their
 inverses.
 
-- `0x0033CB70` wraps an angle. When it is within ±4pi (`0x00D10B0C`, `0x00D10B20`) it adds or subtracts
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `40490FDB` |
+
+</details>
+
+- `0x0033CB70` wraps an angle. When it is within ±4pi¹ it adds or subtracts
   2pi until the result is in [-pi, pi]. Beyond that it subtracts 2pi times the truncated quotient
   once (`0x0033CBCD` to `0x0033CBE8`), so the result can lie between pi and 2pi in magnitude.
 - The quotient and the product are rounded to single precision, `r = x - (float)(int)(x / 2pi) * 2pi` in `float`
   (`divss`, `cvttss2si`, `mulss`, `subss`, 2pi at `0x01CEBC78`, `0x0033CBCD`-`0x0033CBE8`), so that once-only result can
   land just past 0 or 2pi: `31.415926` (10pi) gives `-1.9e-6` and `2224.2476` gives `6.283203`. From |x / 2pi| of
-  2^31 up the conversion `cvttss2si` (`0x0033CBD5`) yields `0x80000000` and the result is x + 2^31 · 2pi.
-- `0x0033CEF0` turns a moving unit. Below 60 degrees of error (`0x0091572C`) it eases the turn rate:
+  2^31 up the conversion `cvttss2si`² yields `0x80000000` and the result is x + 2^31 · 2pi.
+- `0x0033CEF0` turns a moving unit. Below 60 degrees of error³ it eases the turn rate:
   `rate = (1 - cos(3a)) / 2 · (rate - 1°) + 1°`, with one degree at `0x008C5F68`. The rest of the
   routine is on [battle-locomotion.md](../Movement-And-Pathfinding/battle-locomotion.md).
 - `0x004686D0` returns `sqrtf((a.z - b.z)² + (a.x - b.x)²)` by tail-jumping to the `sqrtf` stub;
@@ -157,6 +222,17 @@ inverses.
 - `0x00380190(out, axis, angle)` builds a quaternion from an axis and an angle: x, y and z are the
   axis divided by its length (`sqrtf`) times `sinf(angle / 2)`, w is `cosf(angle / 2)`. Its callers
   are the camera's sphere sweep `0x00230C10` and the scripted camera's matrix rebuild `0x003CBD60`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00D10B0C`, `0x00D10B20` |
+| ² | `0x0033CBD5` |
+| ³ | `0x0091572C` |
+
+</details>
 
 ### A power in the battle formulas
 
@@ -169,11 +245,24 @@ to an integer and stores it at `0x02AEE004`. What that value is in the damage st
 
 No instruction in the code section loads or stores `MXCSR`. `_controlfp` (slot `0x008C2D18`) is called
 at six sites in two post-effect routines, `0x006E5A20` and `0x0077A8C0`. Each reads the control word with
-`_controlfp(0, 0)`, sets `0x10000` under the mask `0x30000` (`0x006E5AF3`), and at the end restores the
-saved bits under the same mask (`0x006E97D8`). Two x87 helpers at `0x00125743` (`fldcw`) and `0x00125753`
+`_controlfp(0, 0)`, sets `0x10000` under the mask `0x30000`¹, and at the end restores the
+saved bits under the same mask². Two x87 helpers at `0x00125743` (`fldcw`) and `0x00125753`
 (`fstcw`) have no references.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006E5AF3` |
+| ² | `0x006E97D8` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 `Vec3Xz` (`0xC` bytes, offsets from the start of the record):
 
@@ -183,7 +272,12 @@ saved bits under the same mask (`0x006E97D8`). Two x87 helpers at `0x00125743` (
 | `+0x04` | `f32` | y | the height, which both helpers skip: each reads `+0x00` and `+0x08` only, so the distance is horizontal |
 | `+0x08` | `f32` | z | read by the distance helpers |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -195,36 +289,60 @@ saved bits under the same mask (`0x006E97D8`). Two x87 helpers at `0x00125743` (
 | `_controlfp` sites | 6 |
 | `pi` / `2pi` as `f32` in read-only data | 2 / 4 copies |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 ### The CPU probe's other outputs
 
 The start-up probe `0x00809458`, called once from `0x00808959`, writes three globals besides the CPU level
-`0x01F44858`. It reads the `cpuid` leaf 0 vendor string and tests it for `GenuineIntel` (`0x0080948B`-`0x008094D2`) and
-`AuthenticAMD`, then reads leaf 1 (`0x008094DA`), and leaf 7 when leaf 0 reports 7 or more (`0x00809575`).
+`0x01F44858`. It reads the `cpuid` leaf 0 vendor string and tests it for `GenuineIntel`¹ and
+`AuthenticAMD`, then reads leaf 1², and leaf 7 when leaf 0 reports 7 or more³.
 
-1. It sets `0x01F4485C` to 2 (`0x00809472`) as the level becomes 1 (`0x00809481`).
-2. For `GenuineIntel` it sets `0x01F44860` to all ones (`0x008094F3`) and bit `0x4` of `0x02EAED88` (`0x00809504`), and bit `0x1`
-   when the leaf 1 signature masked with `0x0FFF3FF0` is `0x106C0`, `0x20660`, `0x20670`, `0x30650`, `0x30660` or
-   `0x30670` (`0x0080953E`).
-3. For `AuthenticAMD` it sets bit `0x4` of `0x02EAED88` when `sig & 0x0FF00F00`, the leaf 1 signature masked with
-   `0x0FF00F00`, is at least `0x00600F00`: `(sig & 0x0FF00F00) >= 0x00600F00`, unsigned (`0x0080954A`-`0x0080955C`).
-4. When leaf 7 `ebx` bit `0x200` is set it sets bit `0x2` of `0x02EAED88` (`0x00809590`).
-5. When leaf 1 `ecx` bit `0x100000` is set the level becomes 2 and `0x01F4485C` 6 (`0x0080959E`, `0x008095A8`). When `ecx` bits
-   `0x8000000` and `0x10000000` are also set and `xgetbv` reports both bits of `XCR0 & 6`, the level becomes 3 and `0x01F4485C` gains
-   bit `0x8` (`0x008095E3`, `0x008095F1`). When leaf 7 `ebx` bit `0x20` is set as well, the level becomes 5 and `0x01F4485C` gains
-   bit `0x20` (`0x008095FC`, `0x00809606`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0080948B`-`0x008094D2` |
+| ² | `0x008094DA` |
+| ³ | `0x00809575` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It sets `0x01F4485C` to 2 as the level becomes 1. | `0x00809472`<br>`0x00809481` |
+| 2 | For `GenuineIntel` it sets `0x01F44860` to all ones and bit `0x4` of `0x02EAED88`, and bit `0x1` when the leaf 1 signature masked with `0x0FFF3FF0` is `0x106C0`, `0x20660`, `0x20670`, `0x30650`, `0x30660` or `0x30670`. | `0x008094F3`<br>`0x00809504`<br>`0x0080953E` |
+| 3 | For `AuthenticAMD` it sets bit `0x4` of `0x02EAED88` when `sig & 0x0FF00F00`, the leaf 1 signature masked with `0x0FF00F00`, is at least `0x00600F00`: `(sig & 0x0FF00F00) >= 0x00600F00`, unsigned. | `0x0080954A`-`0x0080955C` |
+| 4 | When leaf 7 `ebx` bit `0x200` is set it sets bit `0x2` of `0x02EAED88`. | `0x00809590` |
+| 5 | When leaf 1 `ecx` bit `0x100000` is set the level becomes 2 and `0x01F4485C` 6. When `ecx` bits `0x8000000` and `0x10000000` are also set and `xgetbv` reports both bits of `XCR0 & 6`, the level becomes 3 and `0x01F4485C` gains bit `0x8`. When leaf 7 `ebx` bit `0x20` is set as well, the level becomes 5 and `0x01F4485C` gains bit `0x20`. | `0x0080959E`, `0x008095A8`<br>`0x008095E3`, `0x008095F1`<br>`0x008095FC`, `0x00809606` |
 
 So `0x01F4485C` has one bit set for each level the probe reached: `0x2` for level 1, `0x4` for 2, `0x8` for 3
 and `0x20` for 5. No instruction outside the probe reads any of
-the three: the probe's own reads are its loads of `0x02EAED88` (`0x008094B2`) and `0x01F4485C` (`0x008095DA`) and the
+the three: the probe's own reads are its loads of `0x02EAED88`¹ and `0x01F4485C`² and the
 `or` on `0x01F44860`. No image-base-relative or disp32 reference and no data qword names them.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008094B2` |
+| ² | `0x008095DA` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x01F4485C` | `u32` | 2 | one bit per CPU level the probe reached: 2 (level 1), 6 (level 2), `0xE` (level 3), `0x2E` (level 5) | `0x00809458` (`0x00809472`, `0x008095A8`, `0x008095F1`, `0x00809606`) | `0x00809458` (`0x008095DA`) only |
 | `0x01F44860` | `u64` | `0x202F` | all ones on a `GenuineIntel` processor, otherwise its start value | `0x00809458` (`0x008094F3`) | `0x00809458` (`0x008094F3`, the read of the `or`) only |
 | `0x02EAED88` | `u32` | 0 (zero-filled tail of `.data`) | bit `0x4`: `GenuineIntel`, or `AuthenticAMD` with the leaf 1 signature at least `0x00600F00`; bit `0x1`: `GenuineIntel` with one of the six signatures in step 2; bit `0x2`: leaf 7 `ebx` bit `0x200` | `0x00809458` (`0x00809504`, `0x0080953E`, `0x0080955C`, `0x00809590`) | `0x00809458` (`0x008094B2`) only |
+
+</details>
 
 ## Modding notes
 

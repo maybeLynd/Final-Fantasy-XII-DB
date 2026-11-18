@@ -14,15 +14,35 @@ are why monsters gather in particular parts of a field.
 ## Where it comes from
 
 Slot 16 of the [EBP script container](ebp-script-container.md) directory, in zone scripts only. The
-walker `0x003304A0` calls `0x003320E0` (`0x00330615`), which clears the pointer's low four bits and tail
-calls `0x003DFE60(0, section)`: the section is stored as field root 0 at `0x02B59D48` (`0x003DFE6A`). Slot 17
-would go to root 1 (`0x00332110`) in the same way; no shipped container has a slot 17. `0x003DFA50`
+walker `0x003304A0` calls `0x003320E0`¹, which clears the pointer's low four bits and tail
+calls `0x003DFE60(0, section)`: the section is stored as field root 0 at `0x02B59D48`². Slot 17
+would go to root 1³ in the same way; no shipped container has a slot 17. `0x003DFA50`
 releases the roots.
 
-`0x003DFA50` passes each non-null root, `0x02B59D48` and `0x02B59D50`, to `0x00331880` and nulls it
-(`0x003DFA70`-`0x003DFA7D`), then does the same for the navigation-icon block `0x02B59D58`
-(`0x003DFA8A`-`0x003DFA9B`). The boot clear `0x003DFDA0` zeroes both roots with one 16-byte
-store (`0x003DFDAE`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00330615` |
+| ² | `0x003DFE6A` |
+| ³ | `0x00332110` |
+
+</details>
+
+`0x003DFA50` passes each non-null root, `0x02B59D48` and `0x02B59D50`, to `0x00331880` and nulls it¹, then does the same for the navigation-icon block `0x02B59D58`². The boot clear `0x003DFDA0` zeroes both roots with one 16-byte
+store³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DFA70`-`0x003DFA7D` |
+| ² | `0x003DFA8A`-`0x003DFA9B` |
+| ³ | `0x003DFDAE` |
+
+</details>
 
 ## Layouts
 
@@ -52,6 +72,9 @@ All multi-byte fields are little-endian.
 | `+0x20` | `f32[4]` |  | value 0 |
 
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 Measured over all 10,036 EBP2 containers in the nine language trees.
 
@@ -84,6 +107,8 @@ rows, read from the `us` tree; every figure above reproduces from the same read 
 | `x`, `y`, `z` | the position, `+0x10` to `+0x18` |
 | `heading` | `+0x1C`, in radians |
 
+</details>
+
 ## Loader behaviour
 
 ### Binding
@@ -96,14 +121,35 @@ records are read from the loaded file whenever they are needed.
 `0x003DFD00(class, index, out)` zeroes a 0x30-byte output (`0x003DFD10` to `0x003DFD23`) and returns 0 when
 the root is null. Then:
 
-- when byte 7 of the magic is `'3'` or above (`0x003DFD2C`), it returns 0 for an index at or past
-  `count` (`0x003DFD33`) and otherwise copies record `index` whole (`0x003DFD48` to `0x003DFD63`);
+- when byte 7 of the magic is `'3'` or above¹, it returns 0 for an index at or past
+  `count`² and otherwise copies record `index` whole (`0x003DFD48` to `0x003DFD63`);
 - below `'3'` it reads 16-byte records at `+0x10 + index × 0x10` into output `+0x10` to `+0x1C` with
   the type byte 0 (`0x003DFD69` to `0x003DFD9A`).
 
-Both branches test the index against `count` `+0x0C` with a signed compare (`0x003DFD33`, `0x003DFD69`),
-so a negative index is not refused, and both return 1 after the copy (`0x003DFD40`, `0x003DFD9A`). The class
-indexes `0x02B59D48` without a bound check (`0x003DFD0A`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DFD2C` |
+| ² | `0x003DFD33` |
+
+</details>
+
+Both branches test the index against `count` `+0x0C` with a signed compare¹,
+so a negative index is not refused, and both return 1 after the copy². The class
+indexes `0x02B59D48` without a bound check³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DFD33`, `0x003DFD69` |
+| ² | `0x003DFD40`, `0x003DFD9A` |
+| ³ | `0x003DFD0A` |
+
+</details>
 
 Nothing reads `size`, the first seven magic bytes or the trailing zero dwords.
 
@@ -124,20 +170,50 @@ Nothing reads `size`, the first seven magic bytes or the trailing zero dwords.
 | `debug_positioninfo` (`0x0050EBA0`) | the accessor with a class from its argument |
 
 `0x00312DF0(point, index, radius, ctx, out)` takes the point from entry `index` through `0x00320940` when
-`point` is null, and returns -1 when that fails (`0x00312EA3`-`0x00312EB7`). It copies the point's y to
+`point` is null, and returns -1 when that fails¹. It copies the point's y to
 `out + 4`, then tries up to nine spots. Each sets x = `point.x + (rand % (2r + 1)) - r` and
 z = `point.z + (rand % (2r + 1)) - r`, with `rand` from `0x00328370`. It returns 0 at the first spot that
-`0x00317DE0(ctx, out, r != 0)` accepts (`0x00312E40`-`0x00312E9F`), and -2 after the ninth (`0x00312EBC`).
+`0x00317DE0(ctx, out, r != 0)` accepts², and -2 after the ninth³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312EA3`-`0x00312EB7` |
+| ² | `0x00312E40`-`0x00312E9F` |
+| ³ | `0x00312EBC` |
+
+</details>
 
 ### The older-layout reader
 
-`getcrystalid` (`0x00352C80`) and `getanchorid` (`0x003532D0`) call `0x00264CA0`, which for a kind of 6 or
+`getcrystalid`¹ and `getanchorid`² call `0x00264CA0`, which for a kind of 6 or
 9 calls `0x003DFAC0(kind, index)`. That routine reads root 0 as an earlier layout:
 
-- it needs byte 7 at least `'2'` (`0x003DFAE1`) and decodes `+0x08` as an offset (`0x0020E600`, base 0)
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00352C80` |
+| ² | `0x003532D0` |
+
+</details>
+
+- it needs byte 7 at least `'2'`¹ and decodes `+0x08` as an offset (`0x0020E600`, base 0)
   to a table: `u32 n` at `+0`, then for each kind a `s32` offset at `+8 + kind × 16` and a `s32`
   count at `+0x10 + kind × 16`;
 - for `kind < n` and `index < count` it returns `root + offset + 32 × index`, else 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DFAE1` |
+
+</details>
 
 On an `FF12POS3` table `+0x08` is `size`, so `n` is the trailing `0x0000000A` and the count is read
 past the records. In the 517 `us` tables that count lies inside the section, and is 0, for kind 6 in
@@ -149,11 +225,20 @@ past the records. In the 517 `us` tables that count lies inside the section, and
   magic `'3'`: a lower digit switches the accessor to 16-byte records.
 - Fixed indices carry meaning: wander orders and AI conditions use entry `n + 1`, the class steering
   solver entry 8 and the routine at `0x0033DB60` entry 32. Append new entries rather than reorder.
-- An index at or past `count` yields an all-zero record (the accessor) or -1 (`0x00320940`), not a
+- An index at or past `count` yields an all-zero record (the accessor) or -1¹, not a
   crash.
 - The extents of a box are full sizes; placement uses half of each on either side of the point, in
   the frame the heading rotates. Type 0 ignores both.
 - `getcrystalid` and `getanchorid` with kind 6 or 9 do not read `FF12POS3` records; use other kinds.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320940` |
+
+</details>
 
 ## Related
 
@@ -172,8 +257,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003DFDA0` | is called by | `0x00266D10` |
+| [`0x003DFDA0`](ebp-position-entries.md) | is called by | [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) |
 
 </details>

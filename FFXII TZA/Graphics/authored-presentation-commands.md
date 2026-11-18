@@ -24,13 +24,32 @@ frame.
 `0x0041DA90(entry, stream)` runs the commands of the stream's current block. The block is at
 `[stream + 0x368] + [entry + 0x90]`; its byte `+2 & 0x3F` is the command count and the commands start
 at `+4`. Each command begins with a word whose bits `0x7F` are the id and the bits under mask `0xFF80` the command's
-length in bytes, which is how the walk steps to the next (`0x0041DB6A`). Nothing runs unless bit `0x100000` of
+length in bytes, which is how the walk steps to the next¹. Nothing runs unless bit `0x100000` of
 the stream's `+0x0C` is set. With bit `0x10` of `+0x0C` also set, a command whose pair-table flag is set is
-skipped (`0x0041DB37`).
+skipped².
 
-The id is clamped to `0x4B` (`0x0041DB25`) and the command is dispatched through the pair table:
-`call [0x01EFFAF0 + id x 16]` with the command in `rcx`, the entry in `rdx` and the stream in `r8`
-(`0x0041DB66`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041DB6A` |
+| ² | `0x0041DB37` |
+
+</details>
+
+The id is clamped to `0x4B`¹ and the command is dispatched through the pair table:
+`call [0x01EFFAF0 + id x 16]` with the command in `rcx`, the entry in `rdx` and the stream in `r8`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041DB25` |
+| ² | `0x0041DB66` |
+
+</details>
 
 ### The pair table
 
@@ -51,36 +70,65 @@ Bank A `0x02CA4410` and bank B `0x02CA4670` hold 75 pointers each; `0x0041CCA0` 
 stores into bank A and `0x0041D6D0(id, fn)` into bank B.
 
 `0x004269A0`, the character render system's start-up, stores 24 handlers in bank A and one, id 5, in
-bank B (`0x00426A12` to `0x00426B84`). The actor side's `0x002EA320` and `0x002EA5F0` store ids 4
-(`0x002E70C0`), 5 (`0x0016D6A0`), 6 (`0x002E7090`), `0x0C` (`0x002E70A0`) and `0x26` (`0x002E7080`) in bank A.
+bank B (`0x00426A12` to `0x00426B84`). The actor side's `0x002EA320` and `0x002EA5F0` store ids 4¹, 5², 6³, `0x0C`⁴ and `0x26`⁵ in bank A.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E70C0` |
+| ² | `0x0016D6A0` |
+| ³ | `0x002E7090` |
+| ⁴ | `0x002E70A0` |
+| ⁵ | `0x002E7080` |
+
+</details>
 
 ### The bespoke invokers that use the banks
 
 - Id 4, `0x00417AD0`, switches on the command's byte `+2`: subtype 1 calls bank-A slot 4 with the actor
   `[stream + 0x2C0]` four times, tagged `0x80` to `0x83`; subtype 2 sets bit `0x200000` and subtype 4 bit `0x8000`
   of the stream's `+0x0C` before the call; subtypes 10 and 11 set bits `0x2` and `0x1` of the render record's
-  `+0x419`; subtype 12 queries the record (`0x0041F2F0`) and may call `0x00423F20`;
-  - while bank-A slot 4 (`[0x02CA4430]`) is empty it skips the switch and only sets the end bit (`0x00417AFC`);
-  - the switch goes through the jump table `0x00417C2C` (`0x00417B02`-`0x00417B25`); subtypes 3 and 5 to 9, and 0 or
-    above 12, make the plain call, the actor in `rcx` and the command in `rdx` (`0x00417BC5`-`0x00417BCC`), as do
-    subtypes 2 and 4 after their bit (`0x00417C00`, `0x00417BBE`); subtypes 10 to 12 make no slot call;
+  `+0x419`; subtype 12 queries the record¹ and may call `0x00423F20`;
+  - while bank-A slot 4 (`[0x02CA4430]`) is empty it skips the switch and only sets the end bit²;
+  - the switch goes through the jump table `0x00417C2C`³; subtypes 3 and 5 to 9, and 0 or
+    above 12, make the plain call, the actor in `rcx` and the command in `rdx`⁴, as do
+    subtypes 2 and 4 after their bit⁵; subtypes 10 to 12 make no slot call;
   - subtype 1 passes a copy of the command's first four bytes with byte `+2` replaced by the tag
-    (`0x00417B27`-`0x00417B80`);
+   ⁶;
   - subtype 12 fills a `0x40`-byte block with `0x0041F2F0(record, 0x10, block)`, the record being
     `[stream + 0x2E0]`; when bit `0x2` of the block's byte `+0x3C` is set it calls
-    `0x00423F20(record, signed word +0xCC)` and sets bit `0x1` of the record's word `+0x5E` (`0x00417B88`-`0x00417BB7`);
+    `0x00423F20(record, signed word +0xCC)` and sets bit `0x1` of the record's word `+0x5E`⁷;
   - the handler ends by setting bit `0x10` of the stream's `+0x2C8`.
 - Id 5, `0x00417C60`, calls bank-A slot 5 with the actor, then bank-B slot 5 with the render record,
   then sets bit `0x20` of `+0x2C8`. Bank-A slot 5 is the empty `0x0016D6A0`, so the command is the
   character sound.
-  - Both calls pass the command in `rdx`, each is skipped while its slot is empty (`0x00417C77`, `0x00417C8F`), and
-    the render record is `[stream + 0x2E0]` (`0x00417C94`).
+  - Both calls pass the command in `rdx`, each is skipped while its slot is empty⁸, and
+    the render record is `[stream + 0x2E0]`⁹.
 - Id 6, `0x00417CC0`, calls bank-A slot 6 with the actor and sets bit `0x40` of `+0x2C8`.
   - Slot `0x0C` is not in the pair table; `0x0041DA90` calls it with the actor and `stream + 0x31C` when the motion
     reaches the time at `+0x34C` (not −1), and also for an entry with `+0x96` bit `0x4` whose word `+0x04` is 2.
     Either call needs stream `+0x0C` bit `0x100000` set, bits `0x20000200` clear, and byte `0x01EFFBB8` zero when bit
     `0x10` is set; it then sets bit `0x200`.
 - Ids `0x0D` to `0x10` are the ramp setters below.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041F2F0` |
+| ² | `0x00417AFC` |
+| ³ | `0x00417B02`-`0x00417B25` |
+| ⁴ | `0x00417BC5`-`0x00417BCC` |
+| ⁵ | `0x00417C00`, `0x00417BBE` |
+| ⁶ | `0x00417B27`-`0x00417B80` |
+| ⁷ | `0x00417B88`-`0x00417BB7` |
+| ⁸ | `0x00417C77`, `0x00417C8F` |
+| ⁹ | `0x00417C94` |
+
+</details>
 
 ### The motion invokers
 
@@ -159,10 +207,19 @@ Each handler takes the render record and the command:
 | `0x3F` | `0x00520510` | on a record with no parent, applies `0x00520E90` to it and its sub-tree with a bone (word `+2`), a direction (floats `+4` to `+0xC`), a preset (word `+0x10 & 0xFFF`, 0 when the bone is -1) and a flag (bit `0x8000` of word `+0x10`) |
 | `0x48` | `0x005205B0` | as `0x3F`, with the bone found by the low 16 bits of dword `+0x10` (`0x00372800`), and the preset (low 12 bits) and flag (bit `0x8000`) in word `+2` |
 
-`0x00426870(index, fn, arg)` calls `fn(record, arg)` on the record at `[0x022C6F28] + index x 0x740` at once
-(`0x00426880`-`0x004268A3`) and, when its first child `+8` is not -1, walks the children with `0x0042EF90`, which
-calls `fn` on each child, descends into that child's children `+8` and moves on to its next sibling `+0xA`
-(`0x0042EFB0`-`0x0042EFE7`). An index of -1 calls nothing (`0x00426874`).
+`0x00426870(index, fn, arg)` calls `fn(record, arg)` on the record at `[0x022C6F28] + index x 0x740` at once¹ and, when its first child `+8` is not -1, walks the children with `0x0042EF90`, which
+calls `fn` on each child, descends into that child's children `+8` and moves on to its next sibling `+0xA`². An index of -1 calls nothing³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00426880`-`0x004268A3` |
+| ² | `0x0042EFB0`-`0x0042EFE7` |
+| ³ | `0x00426874` |
+
+</details>
 
 ### The shadow command, 0x34
 
@@ -181,8 +238,16 @@ second-pool entry (`+0x118`, through `0x003AFC10`), one arm per bit:
 ### The ramp channels
 
 Commands `0x0D` to `0x10` animate the character's first-pool shadow entry. Their invokers take the
-entry's handle from `+0x35C` of the stream, the walker's `r8` (`0x004173E3`, `0x00417440`, `0x00417473`,
-`0x004174D0`), and do nothing when it is -1; the step count is the command's byte `+2`.
+entry's handle from `+0x35C` of the stream, the walker's `r8`¹, and do nothing when it is -1; the step count is the command's byte `+2`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004173E3`, `0x00417440`, `0x00417473`, `0x004174D0` |
+
+</details>
 
 | Command | Invoker | Setter | Counter | Value | Step |
 |---|---|---|---|---|---|
@@ -193,58 +258,148 @@ entry's handle from `+0x35C` of the stream, the walker's `r8` (`0x004173E3`, `0x
 
 The pair commands pass the floats `+4` and `+8`; the single ones pass float `+4`. The pair invokers build the
 16-byte block {float `+4`, float `+8`, 0, 1.0} on the stack and pass its address, of which the setters read the
-first two floats (`0x004173EF`-`0x00417421`, `0x003B6AC5`-`0x003B6AE0`, `0x003B6A46`-`0x003B6A61`); the single ones pass
+first two floats¹; the single ones pass
 float `+4` in `xmm2` with a tail jump. A setter:
 
-1. finds the slot `[0x02B40528] + (handle & 0xFF) x 0xE0` and returns without writing when its `+0x10`
-   is not the handle;
-2. with 0 steps, stores the value and clears the counter, which cancels a running ramp;
-3. otherwise stores the count and the step `(target - current) x (1 / steps)`, computing the
-   reciprocal first (`0x003B69E8`, `0x003B69EC`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004173EF`-`0x00417421`, `0x003B6AC5`-`0x003B6AE0`, `0x003B6A46`-`0x003B6A61` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | finds the slot `[0x02B40528] + (handle & 0xFF) x 0xE0` and returns without writing when its `+0x10` is not the handle; |   |
+| 2 | with 0 steps, stores the value and clears the counter, which cancels a running ramp; |   |
+| 3 | otherwise stores the count and the step `(target - current) x (1 / steps)`, computing the reciprocal first. | `0x003B69E8`, `0x003B69EC` |
 
 A fifth channel, counter `+0x43`, value `+0x98`, step `+0x9C`, is set by `0x003B5D40(handle, n)` (from
-`0x0041D560`), which returns without writing when the slot's `+0x10` is not the handle (`0x003B5D52`). It copies
+`0x0041D560`), which returns without writing when the slot's `+0x10` is not the handle¹. It copies
 the slot's last built values `+0xC0` to `+0xD4` into the blend set `+0x80` to
 `+0x94`, sets the counter to `n` and the value to 0, and takes the first step at
-once (`0x003B5D5C`-`0x003B5E0B`): a cross-fade from the previous shadow to the new one.
+once²: a cross-fade from the previous shadow to the new one.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B5D52` |
+| ² | `0x003B5D5C`-`0x003B5E0B` |
+
+</details>
 
 The step is not `1 / n`. `0x003B5D40` stores 1.0 at `0x022D914C`, the integer `n` at `0x022D9148` and the qword
 `0x3F800000` at `0x022D8F90`, then divides 1.0 by the dword `0x022D9148` read as a float, `divss xmm0, [0x022D9148]`
-at `0x003B5DD7`, and stores the quotient at `+0x9C` (`0x003B5DBF`-`0x003B5DEF`).
-`0x0041D560` gives an `n` of at least 1 (`0x0041D5B6`-`0x0041D5BC`); an integer from 1 to 255 read as a float is a
+at `0x003B5DD7`, and stores the quotient at `+0x9C`¹.
+`0x0041D560` gives an `n` of at least 1²; an integer from 1 to 255 read as a float is a
 denormal, so the quotient overflows and the step and, after the first step, the value are +infinity.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B5DBF`-`0x003B5DEF` |
+| ² | `0x0041D5B6`-`0x0041D5BC` |
+
+</details>
+
 The builder's weight `0x0046FAE0(+0x98, 1, 2)` reads entry `(int)(value x (count - 1))` of its curve, clamped to
-the curve (`0x003B6528`-`0x003B6539`, `0x0046FB10`-`0x0046FB2E`). For +infinity the conversion gives `0x80000000`,
+the curve¹. For +infinity the conversion gives `0x80000000`,
 which the clamp `i < 0 ? 0 : i > count - 1 ? count - 1 : i` turns into entry 0 (`cmovs eax, r9d` at `0x0046FB1F`),
-0.1746 at `0x01F21418`; the 60 fps resampling `0x0033E5E0` keeps entry 0 as it is (`0x0033E690`-`0x0033E6EF`).
+0.1746 at `0x01F21418`; the 60 fps resampling `0x0033E5E0` keeps entry 0 as it is².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B6528`-`0x003B6539`, `0x0046FB10`-`0x0046FB2E` |
+| ² | `0x0033E690`-`0x0033E6EF` |
+
+</details>
 
 So while the counter is non-zero, `n - 1` passes, each blended value is a fixed mix of 0.1746 of the new values
-and 0.8254 of the previous ones (`0x003B6546`-`0x003B65EC`), and then it shows the new values.
+and 0.8254 of the previous ones¹, and then it shows the new values.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B6546`-`0x003B65EC` |
+
+</details>
 
 ### Advancing the channels
 
-`0x003B5890`, called once per character-update pass from `0x00426090` (`0x00426112`), walks all 160 slots.
+`0x003B5890`, called once per character-update pass from `0x00426090`¹, walks all 160 slots.
 A slot advances when bit `0x1` of `+0x40` is set and bit `0x1` of `+0x41 | [0x02B40524]` is clear. It steps the
 channels in the order `+0x00`, `+0x02`, `+0x01`, `+0x03`, `+0x43`: each with a non-zero counter adds
 its step to its value and decrements the counter. The value is never snapped to the target, so it
 ends within float rounding of it.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00426112` |
+
+</details>
+
 `0x003B5C00(handle)` applies the same step to one slot without the
-pause tests; `0x0041C850` and `0x0041D820` call it (`0x0041C8E6`, `0x0041D9C6`). It returns without writing when the
-slot's `+0x10` is not the handle or bit `0x1` of its `+0x40` is clear (`0x003B5C11`-`0x003B5C1E`).
+pause tests; `0x0041C850` and `0x0041D820` call it¹. It returns without writing when the
+slot's `+0x10` is not the handle or bit `0x1` of its `+0x40` is clear².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041C8E6`, `0x0041D9C6` |
+| ² | `0x003B5C11`-`0x003B5C1E` |
+
+</details>
 
 ### What the channels drive
 
-`0x003B62D0(handle, out)` builds the slot's shadow draw record each frame and returns 1 (`0x003B67A0`). It
+`0x003B62D0(handle, out)` builds the slot's shadow draw record each frame and returns 1¹. It
 returns 0 instead:
 
-- with nothing written, when the slot's `+0x10` is not the handle (`0x003B62EE`-`0x003B62FB`), when the slot's
-  word `+0x04` is `0xFFFF` (`0x003B6310`-`0x003B6314`), when the render record's dword `+0x284` is 0
-  (`0x003B632F`-`0x003B633D`), when `0x00421FF0` gives null for bone `+0x3C` or bone `+0x3E` (`0x003B6357`,
-  `0x003B6374`), or when `0x003B6BF0` gives null (`0x003B6391`-`0x003B6394`);
-- after out `+0x14`, `+0x6C`, `+0x10`, `+0x30` and `+0x20` are written (`0x003B63C6`-`0x003B641D`), when out
-  `+0x10` is below 4 or above `0x64` (`0x003B6425`-`0x003B642F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B67A0` |
+
+</details>
+
+- with nothing written, when the slot's `+0x10` is not the handle¹, when the slot's
+  word `+0x04` is `0xFFFF`², when the render record's dword `+0x284` is 0
+ ³, when `0x00421FF0` gives null for bone `+0x3C` or bone `+0x3E`⁴, or when `0x003B6BF0` gives null⁵;
+- after out `+0x14`, `+0x6C`, `+0x10`, `+0x30` and `+0x20` are written⁶, when out
+  `+0x10` is below 4 or above `0x64`⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B62EE`-`0x003B62FB` |
+| ² | `0x003B6310`-`0x003B6314` |
+| ³ | `0x003B632F`-`0x003B633D` |
+| ⁴ | `0x003B6357`, `0x003B6374` |
+| ⁵ | `0x003B6391`-`0x003B6394` |
+| ⁶ | `0x003B63C6`-`0x003B641D` |
+| ⁷ | `0x003B6425`-`0x003B642F` |
+
+</details>
 
 While counter `+0x43` is non-zero it blends
 each channel value with the blend set by a weight from `0x0046FAE0`. Then:
@@ -253,14 +408,26 @@ each channel value with the blend set by a weight from `0x0046FAE0`. Then:
   the character's facing (render record `+0x124`);
 - `+0x58`, `+0x5C` multiply the shadow's two extents: out `+0x34 = s[+0x18] x [+0x08] x [+0x44] x [+0x58]`
   and `+0x38` the same with `s[+0x1C]` and `+0x5C`, `s` being the shadow record `0x003B6BF0` returns
-  (`0x003B64D2`-`0x003B64F5`, `0x003B6707`-`0x003B670C`);
+ ¹;
 - `+0x70` plus the facing plus `+0xBC` is the shadow's rotation (out `+0x24`);
 - `+0x78` multiplies the strength term: out `+0x28 = [+0x0C] x s[+0x0C] x [0x01EFE314] x [+0x2C] x 0.5 x [+0x78]`
   (0.5 at `0x01CEBB70`; `0x003B64FA`-`0x003B6519`, `0x003B671A`).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B64D2`-`0x003B64F5`, `0x003B6707`-`0x003B670C` |
+
+</details>
+
 The values used are saved at `+0xC0` to `+0xD4` for the next cross-fade.
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 A command record:
 
@@ -294,18 +461,49 @@ A first-pool shadow slot (`0xE0` bytes, 160 at `[0x02B40528]`), the ramp fields:
 | `+0x9C` | `f32` |  | its step |
 | `+0xC0` | `f32[6]` |  | the values last built |
 
-`0x003B56D0` takes the first of the 160 slots whose `+0x40` bit `0x1` is clear and returns 0 when no slot is free
-(`0x003B56F0`-`0x003B5707`); it gives the slot the next generation from `0x02B40520`, wrapping to 1 above `0xFFFFFF`
-(`0x003B5719`-`0x003B5744`), and stores `generation << 8 | slot` at `+0x10` (`0x003B574A`-`0x003B5756`).
+`0x003B56D0` takes the first of the 160 slots whose `+0x40` bit `0x1` is clear and returns 0 when no slot is free¹; it gives the slot the next generation from `0x02B40520`, wrapping to 1 above `0xFFFFFF`², and stores `generation << 8 | slot` at `+0x10`³.
 
-`0x003B6890` sets the generation to 0 when it allocates or resets the pool (`0x003B68C9`-`0x003B68CB`). It runs from the
-start-up `0x004269A0` (`0x00426C25`) and allocates only while `[0x02B40528]` is null, under arena 6 (`0x0036C1D0(6, 6)`,
-`0x0036A100(0x8C00)`, `0x0036C140`; `0x003B689E`-`0x003B68BD`). Every call also zeroes the gate `0x02B40524` (`0x003B68D7`); when
-the pool exists it clears bit `0x1` of `+0x40` in all 160 slots, two a step (`0x003B68DD`-`0x003B68F7`).
+<details>
+<summary>Where in the code</summary>
 
-The pool pointer is stored untested (`0x003B68B6`). When both of `0x0036A100`'s attempts give 0 (`0x0036BC60`, then
-`0x0036BFE0`), it returns 0 (`0x0036A151`-`0x0036A154`), `[0x02B40528]` stays 0, and the first clear writes address `0x40`
-(`0x003B68E2`), which faults.
+| | Code |
+|---|---|
+| ¹ | `0x003B56F0`-`0x003B5707` |
+| ² | `0x003B5719`-`0x003B5744` |
+| ³ | `0x003B574A`-`0x003B5756` |
+
+</details>
+
+`0x003B6890` sets the generation to 0 when it allocates or resets the pool¹. It runs from the
+start-up `0x004269A0`² and allocates only while `[0x02B40528]` is null, under arena 6 (`0x0036C1D0(6, 6)`,
+`0x0036A100(0x8C00)`, `0x0036C140`; `0x003B689E`-`0x003B68BD`). Every call also zeroes the gate `0x02B40524`³; when
+the pool exists it clears bit `0x1` of `+0x40` in all 160 slots, two a step⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B68C9`-`0x003B68CB` |
+| ² | `0x00426C25` |
+| ³ | `0x003B68D7` |
+| ⁴ | `0x003B68DD`-`0x003B68F7` |
+
+</details>
+
+The pool pointer is stored untested¹. When both of `0x0036A100`'s attempts give 0 (`0x0036BC60`, then
+`0x0036BFE0`), it returns 0², `[0x02B40528]` stays 0, and the first clear writes address `0x40`³, which faults.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003B68B6` |
+| ² | `0x0036A151`-`0x0036A154` |
+| ³ | `0x003B68E2` |
+
+</details>
 
 [The ramp-channel access table](authored-presentation-commands-ramp-channel-record-accesses.tsv) lists every slot
 field access of the 23 functions that load the slot base `0x02B40528`, among them the two ramp setters `0x003B6950`
@@ -343,7 +541,12 @@ The slot's other fields, from the take `0x003B56D0`, the builder `0x003B62D0`, t
 | `+0xB8` | `u32` | keptBaseOffsetY | the kept base offset's second axis (block `+0x5C`, `0x003B5F3D`; restored into `+0x4C` at `0x003B5EE9`-`0x003B5EF0`) |
 | `+0xBC` | `f32` | lookRotation | a rotation added to the shadow's rotation after the facing (`0x003B6712`): `0x003B6B60` sets it (`0x003B6B76`) from the look controller; 0 at take (`0x003B5850`) |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | Holds |
 |---|---|
@@ -370,6 +573,8 @@ name something else: 224,124 rows. `decoded` spells the operand, `link_kind` and
 
 The effect ids of `0x18` (`0x64` to `0x67` and `0x94`) are not joined to files, and the ground under the actor picks
 among them while the game runs. `0x09`'s `finish_flag` is the word the playback page uses for bit `0x4` of `+0x96`.
+
+</details>
 
 ## Modding notes
 
@@ -401,14 +606,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Scripts and script commands**
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0036A100` | is called by | `0x0050D8F0` |
+| [`0x0036A100`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x0050D8F0`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) |
 
 **World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0036A100` | is called by | `0x00267930`, `0x003319D0`, `0x003EA820` |
+| [`0x0036A100`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00267930`](../Compiler-And-C-Runtime/memory-and-allocation.md) (on memory and allocation)<br>[`0x003319D0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x003EA820`](../Game-Files-And-Data-Tables/ard-area-battle-data.md) Area ard: load or unload field resource (on ard area battle data) |
 
 </details>

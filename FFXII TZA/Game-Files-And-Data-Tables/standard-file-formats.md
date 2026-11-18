@@ -20,13 +20,26 @@ TGA files are under `gamedata/titleimage/in/`, the movies under `gamedata/d3d11/
 JSON documents under `jsondata/`, the CSV tables under `ps2data/`, `jsondata/` and `prefetchdata/`,
 and the PS2 leftovers under `ps2data/cdi/in/` and `ps2data/image/ff12/myoshiok/<lang>/`.
 
-The executable reaches them two ways. Most are opened by a literal path: `./PS2Data/opt.csv`
-(`0x008F6560`), the five `.\PS2Data\soft_particle\softparticle_*.csv` names (`0x00915400`–`0x009154D8`),
-`/eventList.csv` (`0x00900738`), the `JsonData/...` names (`0x008F9E38`–`0x008F9EE0`), the title-image
-directory `/GameData/titleimage/` (`0x00D22660`) and the movie pattern `%s%s.webm` (`0x008F8D70`). The
+The executable reaches them two ways. Most are opened by a literal path: `./PS2Data/opt.csv`¹, the five `.\PS2Data\soft_particle\softparticle_*.csv` names²,
+`/eventList.csv`³, the `JsonData/...` names⁴, the title-image
+directory `/GameData/titleimage/`⁵ and the movie pattern `%s%s.webm`⁶. The
 PS2 icon pair and the boot descriptor are instead entries of the per-kind path arrays that
 `0x002DF9A0` installs at boot, and are read by kind and id
 (see [File size tables](file-size-tables-fst.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008F6560` |
+| ² | `0x00915400`-`0x009154D8` |
+| ³ | `0x00900738` |
+| ⁴ | `0x008F9E38`-`0x008F9EE0` |
+| ⁵ | `0x00D22660` |
+| ⁶ | `0x008F8D70` |
+
+</details>
 
 ## Layouts
 
@@ -141,6 +154,9 @@ Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
 
 ## Shipped data
 
+<details>
+<summary>Show the shipped data</summary>
+
 | Fact | Value |
 |---|---|
 | archive | 89,414 entries, 48 extensions; eight are public formats |
@@ -180,14 +196,26 @@ Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
 | font `.dat` | 63 in `gamedata/d3d11/artdata/font/<lang>/`; [Font files](../Menus-And-HUD/fonts-files.md) |
 | the 19 files whose lines or header no other table reads | one row each in [`standard-file-formats-small-files.tsv`](standard-file-formats-small-files.tsv): `texlist.txt`, the four `ps2data/add_motion` texts, `parametersmanagermonstergallerystruct.txt`, the nine `eventlist.csv`, `parametersmanageruisizestruct.csv`, the two `.tga` and `sead.win.config`; size, SHA-256, the copies with the same bytes, first bytes, the header or record count read with the page's layout, and that page |
 
+</details>
+
 ## Loader behaviour
 
 ### The title images
 
 `0x00473E80(index)`, whose one caller is `0x0034E340`, returns for an index above 3 and otherwise takes
 the name from the four-entry table at `0x01F26568`: `warning.tga`, `SQEX Logo size_FFX.tga`,
-`rating_01.tga`, `thankyou.tga`. The test is signed (`0x00473EA3`), so a negative index is not refused and
-reads its name pointer from `0x01F26568 + 8 × index`, before the table (`0x00473F6D`-`0x00473F86`).
+`rating_01.tga`, `thankyou.tga`. The test is signed¹, so a negative index is not refused and
+reads its name pointer from `0x01F26568 + 8 × index`, before the table².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00473EA3` |
+| ² | `0x00473F6D`-`0x00473F86` |
+
+</details>
 
 It maps the language from `0x00229E40` to a folder (1 `us`, 2 `fr`, 3 `de`, 4 `it`, 5 `es`, 10 `in`;
 any other language gets an empty folder), formats `/GameData/titleimage/<folder>/<name>` with
@@ -196,32 +224,41 @@ again with folder `in`. Only `in/` ships, so every language reads the `in/` imag
 and 3 name files that ship nowhere.
 
 The path goes to `0x00183180` → `0x001D8D60(picture, path)`, the decoder, with the screen picture object
-`[0x01F82CE0]` (`0x001D8D30`). In order:
+`[0x01F82CE0]`¹. In order:
 
-1. It releases the picture's old texture `+0x28` (`0x00183720`) and clears the pointer
-   (`0x001D8D94`-`0x001D8DA2`), and while the picture still plays (byte `+0x00` non-zero) it runs
-   `0x001D8FF0`, the stop that verb `0x5A4` also reaches (`0x001D8DAA`-`0x001D8DB2`).
-2. It opens a stream on the path and returns without a texture when the open fails (`0x0059D920` and
-   `0x0059FAC0` both answer 0, `0x001D8DCD`-`0x001D8DE2`), reads the 18-byte header, and creates a texture of the
-   header's width and height (`0x00184380`).
-3. When the texture is not created it closes the stream and returns with `+0x28` null
-   (`0x001D8E1C`-`0x001D8E2B`).
-4. Otherwise it reads `width × height × 3` bytes straight after the header into a block from `0x00210EC0`
-   (the size from the width and height read as signed 16-bit words, `0x001D8E30`-`0x001D8E5C`), closes the
-   stream, maps the texture (`0x0017EBD0`), and hands them to `0x001EE820` with its flip flag fixed at 0
-   (`0x001D8E9E`).
-5. It commits the texture (`0x0062C360`); when that returns 0 it stores `[0x01F7F5A0] % m`, the counter modulo the
-   low 31 bits of the texture's `+0x30` (1 when they are 0), at `+0x0C` and 0 at `+0x08`
-   (`0x001D8EC2`-`0x001D8EF9`). Here `m = [+0x30] & 0x7FFFFFFF`, or 1 when that is 0 (`cmovne`,
-   `0x001D8EC9`-`0x001D8ED3`), and the unsigned `div ecx` (`0x001D8EDE`) runs before the commit call.
-   It then frees the block (`0x00210EB0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D8D30` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It releases the picture's old texture `+0x28` and clears the pointer, and while the picture still plays (byte `+0x00` non-zero) it runs `0x001D8FF0`, the stop that verb `0x5A4` also reaches. | `0x00183720`<br>`0x001D8D94`-`0x001D8DA2`<br>`0x001D8DAA`-`0x001D8DB2` |
+| 2 | It opens a stream on the path and returns without a texture when the open fails (`0x0059D920` and `0x0059FAC0` both answer 0, `0x001D8DCD`-`0x001D8DE2`), reads the 18-byte header, and creates a texture of the header's width and height. | `0x00184380` |
+| 3 | When the texture is not created it closes the stream and returns with `+0x28` null. | `0x001D8E1C`-`0x001D8E2B` |
+| 4 | Otherwise it reads `width × height × 3` bytes straight after the header into a block from `0x00210EC0` (the size from the width and height read as signed 16-bit words, `0x001D8E30`-`0x001D8E5C`), closes the stream, maps the texture, and hands them to `0x001EE820` with its flip flag fixed at 0. | `0x0017EBD0`<br>`0x001D8E9E` |
+| 5 | It commits the texture; when that returns 0 it stores `[0x01F7F5A0] % m`, the counter modulo the low 31 bits of the texture's `+0x30` (1 when they are 0), at `+0x0C` and 0 at `+0x08`. Here `m = [+0x30] & 0x7FFFFFFF`, or 1 when that is 0 (`cmovne`, `0x001D8EC9`-`0x001D8ED3`), and the unsigned `div ecx` runs before the commit call. It then frees the block. | `0x0062C360`<br>`0x001D8EC2`-`0x001D8EF9`<br>`0x001D8EDE`<br>`0x00210EB0` |
 
 - **Pixels.** `0x001EE820(dest, pitch, source, sourceRow, width, height, flip)` writes each pixel as bytes 2,
   1, 0 and `0xFF`, row 0 first, moving the destination on by the mapped pitch and the source by `sourceRow`
-  per row (`0x001EE880`-`0x001EE8BA`).
+  per row¹.
 - **Flip.** A non-zero flip flag starts at row `height − 1` and moves back one pitch per row
-  (`0x001EE838`-`0x001EE847`, `0x001EE8B3`-`0x001EE8B6`). Nothing reads the image type, depth or descriptor, so a
+ ². Nothing reads the image type, depth or descriptor, so a
   compressed, 32-bit or bottom-up TGA loads wrong.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EE880`-`0x001EE8BA` |
+| ² | `0x001EE838`-`0x001EE847`, `0x001EE8B3`-`0x001EE8B6` |
+
+</details>
 
 Scripts ask for an image with verb `0x5A2`, whose native `0x0034E340` passes its argument on to
 `0x00473E80`. Of the four, the player only ever sees the SQUARE ENIX logo:
@@ -242,21 +279,41 @@ rights holder's permission, or knowingly downloading such a copy, is illegal.
 ### Per-map render options: opt.csv
 
 `0x001A9050`, called from the map-art set-up `0x001A2130`, first empties the tree at `+0x3E0` of the map-art
-object (`0x001A5810`, `0x001A9079`). It opens `./PS2Data/opt.csv` through the stream helper `0x001D6F20` and
-returns when that gives no stream (`0x001A9095`). It reads the file whole into a block of its size plus 2 with
-a 0 after the last byte (`0x001A90B6`-`0x001A90E9`), frees the block and stops when its first byte is 0
-(`0x001A90F7`), and otherwise walks it a line at a time, freeing the block at the end (`0x00210EB0`,
-`0x001A927F`):
+object¹. It opens `./PS2Data/opt.csv` through the stream helper `0x001D6F20` and
+returns when that gives no stream². It reads the file whole into a block of its size plus 2 with
+a 0 after the last byte³, frees the block and stops when its first byte is 0⁴, and otherwise walks it a line at a time, freeing the block at the end⁵:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A5810`, `0x001A9079` |
+| ² | `0x001A9095` |
+| ³ | `0x001A90B6`-`0x001A90E9` |
+| ⁴ | `0x001A90F7` |
+| ⁵ | `0x00210EB0`, `0x001A927F` |
+
+</details>
 
 - a line ends at the next CR, and the next line starts two bytes later; a file without CR yields no
   rows;
-- the walk stops at the first line with no CR before the end of the file and drops that line (`0x001A914F`,
-  `0x001A9165`), and it stops when the byte two past a CR is 0 (`0x001A9266`);
+- the walk stops at the first line with no CR before the end of the file and drops that line¹, and it stops when the byte two past a CR is 0²;
 - the first line is skipped as the header, and only lines with exactly five fields are kept;
 - the map name is hashed with `0x00674A00` (start 5381, multiply by 33, add each byte as a signed value,
   `0x00674A17`, keep 31 bits);
 - each of the other four fields becomes 1 when it starts with `Y` or `y`, and the four bytes go into a
   tree node keyed by the hash (tree at `+0x3E0` of the map-art object).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A914F`, `0x001A9165` |
+| ² | `0x001A9266` |
+
+</details>
 
 When a map is entered, `0x001A7A50` hashes the map name (the text after the backslash of
 `<area>\<map>`) and looks it up. A hit copies byte 1 (FlipMapOpaqueOrder) to `+0x418` and byte 3
@@ -272,62 +329,118 @@ rows do:
   End and Muthru Bazaar in Rabanastre, Sea Breeze Lane in Balfonheim Port, Platform 1 - Refinery in the
   Ogir-Yensa Sandsea, Augur Hill in the Nam-Yensa Sandsea, the Fane of the Path in Eruyt Village, and the
   Quietened Trace and Grand Bower of the Salikawood.
-- The map walk of `RenderMapOpaqueObj` (`0x001F3570`) passes `+0x418` to `0x0018B1B0` as its reverse flag
-  (`0x001F35FF`-`0x001F361B`): 0 runs the map entries of the render command list from the first filed to the
+- The map walk of `RenderMapOpaqueObj`¹ passes `+0x418` to `0x0018B1B0` as its reverse flag
+ ²: 0 runs the map entries of the render command list from the first filed to the
   last, 1 from the last to the first.
 - ForceNoOpaqueChrFirst takes the characters' solid parts out of the map's opaque pass and leaves them to
   the general opaque pass. It is Yes on nine maps: the six Royal Palace maps from the Cellar Stores to the
   Garden Stairs (`rrp_a01` to `rrp_a06`), the Hall of the Light at Mt Bur-Omisace, the bridge of the
   Dreadnought Leviathan (`rsn_z01`) and the Rabanastre map `rbn_x01`.
-- On a frame whose map pass posted `RenderMapOpaqueObj` (`0x001809A0`), its draw `0x001F3570` normally walks the
-  characters' opaque objects just before the map's (`0x001F3586`-`0x001F35D0`), and the draw of
-  `RenderOpaqueObj`, `0x001F36B0`, leaves them out (`0x001F36B9`-`0x001F36D7`). With `+0x419` set, `0x001F3594`
+- On a frame whose map pass posted `RenderMapOpaqueObj`³, its draw `0x001F3570` normally walks the
+  characters' opaque objects just before the map's⁴, and the draw of
+  `RenderOpaqueObj`, `0x001F36B0`, leaves them out⁵. With `+0x419` set, `0x001F3594`
   skips that walk and `0x001F36C7` lets `0x001F36B0` draw them where `RenderOpaqueObj` sits in the list (filed
   by `0x0017F070` at `0x0022B38F`).
 - ForceMSAAOff (Yes on no map) and SMAA (Yes on all 459) change nothing: the entry has one lookup,
-  `0x001A7A50`, which keeps bytes 1 and 3 only (`0x001A7BA2`, `0x001A7BAD`), and the tree at `+0x3E0` of the
+  `0x001A7A50`, which keeps bytes 1 and 3 only⁶, and the tree at `+0x3E0` of the
   map-art context is addressed only by its builder `0x001A2130`, the reader `0x001A9050` and that lookup.
-- A map with no row gets both bytes 0 (`0x001A7BD6`): scenery first to last and characters before it. One zone
+- A map with no row gets both bytes 0⁷: scenery first to last and characters before it. One zone
   is in that case, `ttl_d01` (pack `tst0102`). No two shipped names share a hash, so no map takes another's
   row.
-- A flag is Yes only when it starts with `Y` or `y` (`0x001A91B6`-`0x001A91F6`), so `1`, `true` or an empty
+- A flag is Yes only when it starts with `Y` or `y`⁸, so `1`, `true` or an empty
   field is No. A line without exactly five fields is skipped, and a later row whose name hashes the same
-  replaces the earlier entry (`0x001A9253`).
+  replaces the earlier entry⁹.
 - Seven rows are never looked up. `fon0113` and `mrm0213` are no zone's map pack, and `dst0109`, `dst0110`,
   `frs0109`, `frs0110` and `gil0303` belong to the zones that `0x00379A10` sends to the art of `dst0103`,
   `dst0105`, `frs0101`, `frs0106` and `gil0301`, whose rows they use instead.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001F3570` |
+| ² | `0x001F35FF`-`0x001F361B` |
+| ³ | `0x001809A0` |
+| ⁴ | `0x001F3586`-`0x001F35D0` |
+| ⁵ | `0x001F36B9`-`0x001F36D7` |
+| ⁶ | `0x001A7BA2`, `0x001A7BAD` |
+| ⁷ | `0x001A7BD6` |
+| ⁸ | `0x001A91B6`-`0x001A91F6` |
+| ⁹ | `0x001A9253` |
+
+</details>
+
 ### Soft-particle tables
 
 `0x0024C970` (from `0x00259180`) clears four 0x800-byte tables and reads `chara`, `event`, `magic` and
-`common` into them (`0x02F96B40`, `0x02F96340`, `0x02F95B40`, `0x02F95340`) with `0x0024F240`, then reads
+`common` into them¹ with `0x0024F240`, then reads
 `softparticle_bg.csv` with `0x0024EF90`.
 
-The same body first clears the `0x1670` bytes from `0x020910A0` (`0x0024C983`), sets the five 16-bit effect masks
-`0x0209215E` to `0x02092166` to `0x3FF` and `0x020926F4` to `0x4003C` (`0x0024C98A`-`0x0024CB18`), and selects arena 8 with
-`0x0036C1D0(8, 10)` (`0x0024CB25`) before the tables. After `0x0024EF90` it pops the arena (`0x0036C140`, `0x0024CBCB`) and
-sets `0x02092700` to -1 (`0x0024CBD0`) ([startup constants](../Engine-Core/startup-constants.md)).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02F96B40`, `0x02F96340`, `0x02F95B40`, `0x02F95340` |
+
+</details>
+
+The same body first clears the `0x1670` bytes from `0x020910A0`¹, sets the five 16-bit effect masks
+`0x0209215E` to `0x02092166` to `0x3FF` and `0x020926F4` to `0x4003C`², and selects arena 8 with
+`0x0036C1D0(8, 10)`³ before the tables. After `0x0024EF90` it pops the arena⁴ and
+sets `0x02092700` to -1⁵ ([startup constants](../Engine-Core/startup-constants.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024C983` |
+| ² | `0x0024C98A`-`0x0024CB18` |
+| ³ | `0x0024CB25` |
+| ⁴ | `0x0036C140`, `0x0024CBCB` |
+| ⁵ | `0x0024CBD0` |
+
+</details>
 
 - `0x0024F240(path, table)` opens the file through `0x001D6F20` and returns when that gives no stream
-  (`0x0024F26C`). It reads the file whole into a block of its size plus 2 from `0x0036A100`, ending it with a
-  0, and returns after freeing the block (`0x003697F0`, `0x0024F397`) when the first byte is 0 (`0x0024F2B8`) or
+ ¹. It reads the file whole into a block of its size plus 2 from `0x0036A100`, ending it with a
+  0, and returns after freeing the block² when the first byte is 0³ or
   once the walk is done.
 - `0x0024F240` scans each CR-terminated line with `"%c%d.efx,%s"`. With three matches, the entry for
   the effect number gets byte 0 = (the rest does not start with `N`); when it is set, `"Yes,%d"` gives
   the factor at `+2`, or 10 without a number. The header line fails the scan. The effect number is not
   bounded against the table's 512 entries, and it is read as signed, so a negative one writes before the
-  table (`0x0024F32A`, `0x0024F332`).
-- The scan is `sscanf` (`0x0018A330`, `0x0024F31B`): the letter `%c` is compared with nothing, and the rest
-  goes into a 32-byte stack buffer with no width limit (`0x0024F2FD`). With byte 0 clear the factor word is
-  left as it was (`0x0024F33E`), and the factor is stored as 16 bits (`0x0024F365`).
-- The walk stops at the first line with no CR before the end of the file and drops that line (`0x0024F2E6`,
-  `0x0024F2F4`), and it stops when the byte two past a CR is 0 (`0x0024F381`).
+  table⁴.
+- The scan is `sscanf`⁵: the letter `%c` is compared with nothing, and the rest
+  goes into a 32-byte stack buffer with no width limit⁶. With byte 0 clear the factor word is
+  left as it was⁷, and the factor is stored as 16 bits⁸.
+- The walk stops at the first line with no CR before the end of the file and drops that line⁹, and it stops when the byte two past a CR is 0¹⁰.
 - `0x0024EF90` keeps lines with exactly five fields, copies the map name, reads GroupId with `"%d,"`,
   and, when that succeeds, writes the next 4-byte entry of `0x02F8F340`: GroupId, UseSoftParticle not
   `N`, factor with `"%d"`.
 - Each time the map name differs from the previous kept row's, `0x0024EF90` appends a 16-byte record (name, first
   row) to `0x02F93340`. The kept-row count goes to `0x02092714` and the record count, one per run of rows with the
   same map name, to `0x02092718` (433 records for the 418 shipped maps). VFXName is not stored.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024F26C` |
+| ² | `0x003697F0`, `0x0024F397` |
+| ³ | `0x0024F2B8` |
+| ⁴ | `0x0024F32A`, `0x0024F332` |
+| ⁵ | `0x0018A330`, `0x0024F31B` |
+| ⁶ | `0x0024F2FD` |
+| ⁷ | `0x0024F33E` |
+| ⁸ | `0x0024F365` |
+| ⁹ | `0x0024F2E6`, `0x0024F2F4` |
+| ¹⁰ | `0x0024F381` |
+
+</details>
 
 [`standard-file-formats-softparticle-rows.tsv`](standard-file-formats-softparticle-rows.tsv) lists the 853
 effect rows of the four per-type tables and
@@ -338,7 +451,7 @@ map and zones it joins to, whether the game reads it and what it changes. What t
 - With the Soft Particles option on, a soft effect fades out where it comes close to the scenery or a
   character behind it, instead of cutting a hard edge into them. The fade spans `factor / 100` in
   depth: 0.1 for the shipped 10, up to 5 for the five map rows with 500.
-- Effects drawn as a `GiSprite` (`0x008647C0`) or a VU program packet (`0x001DB840`) take the answer of
+- Effects drawn as a `GiSprite`¹ or a VU program packet² take the answer of
   `0x0024D140` and pass it to the primitive renderer's slot `+0x58` (`0x006CAD90`, called at `0x008646D3` and
   `0x001DB416`), which keeps the switch at `+0x208E8` and the factor at `+0x208EC`; `0x006C8920` copies both
   into the draw record at `+0x854` and `+0x858`.
@@ -346,7 +459,7 @@ map and zones it joins to, whether the game reads it and what it changes. What t
   well (`0x006C982E`-`0x006C98B6`; slot `+0x60`, `0x006CADB0`, stores the option), and uploads
   `softParticleEnabled` and `softParticleFactor` to the pixel-shader constants (`$Globals` `+0x28` and
   `+0x38`).
-- The three pixel shaders that read them (`0x01F33068`, `0x01F346B8`, `0x01F39544`) take both depths as
+- The three pixel shaders that read them³ take both depths as
   `100 / (1000 - 999.9 * d)`, the scene's from the depth texture, and multiply the effect's alpha by their
   difference over the factor, capped at 1, `diff / factor > 1 ? 1 : diff / factor`. A pixel more than 0.5
   behind the scene keeps its alpha.
@@ -356,28 +469,50 @@ map and zones it joins to, whether the game reads it and what it changes. What t
   Bomb (`h0033`), the Purobolos (`h0034`) and the Air Cutter Remora (`h0090`, factor 30).
 - On the maps, 288 of the 2,373 rows say Yes, and 125 of them, on 94 maps, reach an effect the map draws,
   with factors from 10 to 500. The key is the effect's channel: `0x0024D140` compares the map-bank instance's
-  word `+4` with each GroupId of the map's run (`0x0024D221`-`0x0024D246`), and every shipped GroupId is a
+  word `+4` with each GroupId of the map's run⁴, and every shipped GroupId is a
   channel from 0 to 63.
 - An effect number a table does not list is hard with factor 0.1, because `0x0024C970` clears the tables
-  first; so is any number of 512 or more (`0x0024D1CE`, `0x0024D26B`, `0x0024D297`, `0x0024D2C0`). Location and
+  first; so is any number of 512 or more⁵. Location and
   quest effects have event ids from 512 up (`0x003B2310`, copied into the context at `0x003B2242`), so they are
   never soft.
-- In the per-type files a value is Yes unless it starts with a capital `N` (`0x0024F325`), so `no` or `0` is
+- In the per-type files a value is Yes unless it starts with a capital `N`⁶, so `no` or `0` is
   Yes. A Yes whose text does not scan as `Yes,%d`, such as `Yes`, `yes,20` or `Yes,abc`, gets factor 10
-  (`0x0024F371`); a line that does not scan as `%c%d.efx,%s` is skipped (`0x0024F323`). Any letter may stand
+ ⁷; a line that does not scan as `%c%d.efx,%s` is skipped⁸. Any letter may stand
   before the number.
-- In `softparticle_bg.csv` a GroupId that does not scan drops the row (`0x0024F110`); a factor that does not
+- In `softparticle_bg.csv` a GroupId that does not scan drops the row⁹; a factor that does not
   scan repeats the previous row's, since `0x0024F149` ignores the scan's result; a GroupId above 255 keeps
-  only its low byte (`0x0024F129`), so 261 acts as 5. A map with no rows stores -1 as its first row
-  (`0x0024F83F`), and all its effects are hard (`0x0024D1F8`).
+  only its low byte¹⁰, so 261 acts as 5. A map with no rows stores -1 as its first row
+ ¹¹, and all its effects are hard¹².
 - 820 map rows are never read. 210 are on 39 maps no zone loads, the 14 `dgl01` maps and test maps such as
   `rbn_test` among them; 162 are in a second run of 14 maps of Giruvegan, the Great Crystal and the Golmore
-  Jungle, as `0x0024F790` takes only a map's first run (`0x0024F810`-`0x0024F835`); 442 repeat a channel an
-  earlier row of the run names, and the first match wins (`0x0024D23C`).
+  Jungle, as `0x0024F790` takes only a map's first run¹³; 442 repeat a channel an
+  earlier row of the run names, and the first match wins¹⁴.
 - The other 6 name a channel no row of the map's effect bank uses (`rbn0101`, `rbn0301`, `var0103`). Of the
   per-type rows, 15 name effects the game never loads: `h0000`, which the character-effect table does not
   name, and the event effects 0, 11 to 13, 47, 48, 95 to 98, 172 and 190 to 192, which no script loads with
   `effectread` or `effectread_e0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008647C0` |
+| ² | `0x001DB840` |
+| ³ | `0x01F33068`, `0x01F346B8`, `0x01F39544` |
+| ⁴ | `0x0024D221`-`0x0024D246` |
+| ⁵ | `0x0024D1CE`, `0x0024D26B`, `0x0024D297`, `0x0024D2C0` |
+| ⁶ | `0x0024F325` |
+| ⁷ | `0x0024F371` |
+| ⁸ | `0x0024F323` |
+| ⁹ | `0x0024F110` |
+| ¹⁰ | `0x0024F129` |
+| ¹¹ | `0x0024F83F` |
+| ¹² | `0x0024D1F8` |
+| ¹³ | `0x0024F810`-`0x0024F835` |
+| ¹⁴ | `0x0024D23C` |
+
+</details>
 
 ### Event prefetch schedule: eventList.csv
 
@@ -389,11 +524,20 @@ schedule triggers is on [Prefetch manifests](prefetch-manifests.md).
 
 ### The JSON reader
 
-`0x00200BF0(document, path)` opens a stream on the path (`0x00597970`), and when the stream has a
-positive length reads it whole, terminates it with a zero byte and parses it into the document
-(`0x00200E60`). An empty or missing file parses nothing. Keys are then fetched with `0x001FF740` and
+`0x00200BF0(document, path)` opens a stream on the path¹, and when the stream has a
+positive length reads it whole, terminates it with a zero byte and parses it into the document². An empty or missing file parses nothing. Keys are then fetched with `0x001FF740` and
 read as numbers or strings (see [Graphics settings](../Engine-Core/graphics-settings.md)
 for the readers and the lookup order). Every reader below goes through `0x00200BF0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00597970` |
+| ² | `0x00200E60` |
+
+</details>
 
 ### init.json and monstergallery.json
 
@@ -407,34 +551,62 @@ one). `TrackingMapScreenRateX`/`Y` and `TrackingMapScreenSuperWideMul`/`Plus`, w
 
 `0x001C7360` and `0x001C7520`, both called from the developer menu `0x001D1660`, are the only writers: when
 the key holds a non-null value, they store new tracking values in `0x01F813C8` and write the whole document
-back to `JsonData/init.json` through an output file stream (`0x00202930`).
+back to `JsonData/init.json` through an output file stream¹.
 
-- `0x001C7360(x, y)` looks up `TrackingMapScreenRateX` and tests its tag (`0x001FF740`, `0x00200BE0`) twice, the
-  first result unused, and returns when its value is null (`0x001C73BC`). It then stores `x` and `y` as doubles
-  in `TrackingMapScreenRateX` and `TrackingMapScreenRateY` (`0x001FEE10`, `0x001C73E1`, `0x001C7406`); only the
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00202930` |
+
+</details>
+
+- `0x001C7360(x, y)` looks up `TrackingMapScreenRateX` and tests its tag¹ twice, the
+  first result unused, and returns when its value is null². It then stores `x` and `y` as doubles
+  in `TrackingMapScreenRateX` and `TrackingMapScreenRateY`³; only the
   first key is tested.
-- The lookup adds an absent key to `0x01F813C8` with a null value (`0x001FF4F0`, `0x001FF5E1`), so that early return
+- The lookup adds an absent key to `0x01F813C8` with a null value⁴, so that early return
   leaves the key in the document as null without writing the file.
-- `0x001C7520(mul, plus)` does the same with `TrackingMapScreenSuperWideMul`, which it tests (`0x001C757C`), and
-  `TrackingMapScreenSuperWidePlus` (`0x001C75A1`, `0x001C75C6`).
+- `0x001C7520(mul, plus)` does the same with `TrackingMapScreenSuperWideMul`, which it tests⁵, and
+  `TrackingMapScreenSuperWidePlus`⁶.
 - Both build the path string `JsonData/init.json` (18 bytes through `memmove`, `0x001C74AA`, `0x001C766A`) and
-  call `0x00202930(0x01F813C8, path, 1, 0)` (`0x001C74CE`, `0x001C768E`).
+  call `0x00202930(0x01F813C8, path, 1, 0)`⁷.
 - `0x00202930(document, path, a, b)` opens the file for output (`0x0019B990`, mode 2) and, when that fails, sets
-  the stream's fail bit and writes nothing (`0x00202A35`-`0x00202A64`). Otherwise it writes the document with
-  `0x00201460(document, stream, a, b)` (`0x00202A76`) and closes the file (`0x0019B8C0`, `0x00202A80`), setting
-  the fail bit when the close fails (`0x00202A85`-`0x00202AA2`).
+  the stream's fail bit and writes nothing⁸. Otherwise it writes the document with
+  `0x00201460(document, stream, a, b)`⁹ and closes the file¹⁰, setting
+  the fail bit when the close fails¹¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001FF740`, `0x00200BE0` |
+| ² | `0x001C73BC` |
+| ³ | `0x001FEE10`, `0x001C73E1`, `0x001C7406` |
+| ⁴ | `0x001FF4F0`, `0x001FF5E1` |
+| ⁵ | `0x001C757C` |
+| ⁶ | `0x001C75A1`, `0x001C75C6` |
+| ⁷ | `0x001C74CE`, `0x001C768E` |
+| ⁸ | `0x00202A35`-`0x00202A64` |
+| ⁹ | `0x00202A76` |
+| ¹⁰ | `0x0019B8C0`, `0x00202A80` |
+| ¹¹ | `0x00202A85`-`0x00202AA2` |
+
+</details>
 
 ### Map, cutscene, font-colour and layout documents
 
 - Maps: `0x001C61F0` (from `0x00214C30`) runs while `0x01DF6E48` (1 as shipped, written only by the
   developer menu) or `0x01F81282` is set. `0x001C53F0` takes the map-art object's `<area>\<map>` string
   (the text at `+0x241` of the object `0x001A9930` returns), keeps the text after the first backslash, or
-  the whole string when it has no backslash (`0x001C54B1`), and appends `.json` (`0x001B31E0`, `0x001C551C`).
-- When that name differs from the last one (`0x01F81388`), it becomes the last name and
-  `JsonData/Maps/<map>.json` is parsed into `0x01F81328` (`0x001C627B`-`0x001C62A1`); the area scene-config
+  the whole string when it has no backslash¹, and appends `.json`².
+- When that name differs from the last one³, it becomes the last name and
+  `JsonData/Maps/<map>.json` is parsed into `0x01F81328`⁴; the area scene-config
   loader `0x001C7940` then applies it. `0x001C7940` also runs on the document as it is when the name is the
-  same (`0x001C626A`, `0x001C62DA`). A name that is `.json` alone, from an empty map name, loads and applies
-  nothing (`0x001C622B`-`0x001C6244`).
+  same⁵. A name that is `.json` alone, from an empty map name, loads and applies
+  nothing⁶.
 - Cutscenes: `0x001C5930`, entered by a tail jump from `0x001EC600`, parses
   `JsonData/CutScenes/<name>.json` into `0x01F813A8 + slot × 0x10` and `<name>_2ndScreen.json` into
   `0x01F813D8 + slot × 0x10`, the slot being `0x01DF6E4C`. `0x001C5750`, reached from
@@ -451,34 +623,56 @@ back to `JsonData/init.json` through an output file stream (`0x00202930`).
   `mShadowRed/Green/Blue/Alpha` and `mFontRed/Green/Blue/Alpha` as integers at `+0x04` to `+0x20`,
   and clears the document. Nothing fetches `mClutComment`.
 - When the document has no `mClutIndex` (the lookup gives the tag-6 entry, `0x00200BE0`), `0x001C76E0` returns at once
-  without clearing it (`0x001C76FA`-`0x001C7701`). The lookup `0x001FF740` has already added `mClutIndex` to it with a tag-6
+  without clearing it⁷. The lookup `0x001FF740` has already added `mClutIndex` to it with a tag-6
   value (`0x001FF4F0`: `0x001FF5E1`, `0x001FF647`), after making a document that is not an object (tag 3) an empty object
   (`0x001FF6B0`: `0x001FF6CF`-`0x001FF713`).
-- The entry comes from `0x001E94E0(0x001B5FA0(), index)` (`0x001C7733`), which takes entry 0 for an index above 27 or below
-  0, the compare being unsigned (`0x001E94F6`-`0x001E94FA`, `0x001E9560`); the clear is the tail jump to `0x00202880`
-  (`0x001C783B`).
+- The entry comes from `0x001E94E0(0x001B5FA0(), index)`⁸, which takes entry 0 for an index above 27 or below
+  0, the compare being unsigned⁹; the clear is the tail jump to `0x00202880`
+ ¹⁰.
 - Layouts: `0x001C6C00` (from `0x001B1580`) loads `UISize.json` or `UISize_sd.json`
   ([Screen layouts](../Menus-And-HUD/screen-layouts.md)).
 - `0x001C2F50` (from `0x0017D6E0`) parses `/Tools/AutoTest/MapIndex.json` for a `MapIndex` value; no such
   file ships.
 
-The walker is the auto-test that visits every map in turn. Each frame the pump calls it. It does nothing unless the
-application object's auto-test byte `+0x10D4` is set (`0x001C2F7C`), which retail never sets, and its own enable word
-`0x01F8127C` is non-zero (`0x001C2F89`). Its steps:
+<details>
+<summary>Where in the code</summary>
 
-1. While `0x01DF6E40` is set it reads the starting index `MapIndex` from `/Tools/AutoTest/MapIndex.json` (path
-   pointer `0x01DF6E38` to `0x008F9E00`), stores it in `0x01F81278` (`0x00200B80`, `0x001C30B2`), and clears the byte.
-2. While the arrival word `0x01EEBADC` is set it moves the index on by one. For an index up to `0x522`, if the map
-   table's entry `0x01DF6E60 + index × 0x10` has a name pointer at `+0x08`, it clears the arrival word and makes the
-   call `0x0016D6A0(0x4B, entry +0x00, 0)` (`0x001C30E3`-`0x001C3110`). That stub only returns, so the jump is compiled out.
-   Past `0x522` it sets the document's `MapIndex` to 0 (`0x001FEDA0`, `0x001C3218`).
-3. While the arrival word is 0 it waits. Once the application time (`0x0017D8D0`, the application object's `+0x40`)
-   less `0x022BDD50` is above 120.0 (`0x008F9E30`), it puts the current index in the document's `MapIndex` (`0x001C332E`)
-   and stores 1 through a null pointer (`0x001C3339`, `rbx` 0), which stops the game.
-4. A fade that starts on a layer whose last fade had finished arms both words. `0x002EFA70` sets each to 1 when it is
-   0, and `0x022BDD50` to 0 ([Screen fades](../Graphics/screen-fades.md)).
-5. The `eventsync` verbs' polls `0x00355F60` (`0x00ED`) and `0x00355970` (`0x00EE`) set the arrival word to 1 when the
-   auto-test byte is non-zero (`0x001C3370`).
+| | Code |
+|---|---|
+| ¹ | `0x001C54B1` |
+| ² | `0x001B31E0`, `0x001C551C` |
+| ³ | `0x01F81388` |
+| ⁴ | `0x001C627B`-`0x001C62A1` |
+| ⁵ | `0x001C626A`, `0x001C62DA` |
+| ⁶ | `0x001C622B`-`0x001C6244` |
+| ⁷ | `0x001C76FA`-`0x001C7701` |
+| ⁸ | `0x001C7733` |
+| ⁹ | `0x001E94F6`-`0x001E94FA`, `0x001E9560` |
+| ¹⁰ | `0x001C783B` |
+
+</details>
+
+The walker is the auto-test that visits every map in turn. Each frame the pump calls it. It does nothing unless the
+application object's auto-test byte `+0x10D4` is set¹, which retail never sets, and its own enable word
+`0x01F8127C` is non-zero². Its steps:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C2F7C` |
+| ² | `0x001C2F89` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | While `0x01DF6E40` is set it reads the starting index `MapIndex` from `/Tools/AutoTest/MapIndex.json` (path pointer `0x01DF6E38` to `0x008F9E00`), stores it in `0x01F81278`, and clears the byte. | `0x00200B80`, `0x001C30B2` |
+| 2 | While the arrival word `0x01EEBADC` is set it moves the index on by one. For an index up to `0x522`, if the map table's entry `0x01DF6E60 + index × 0x10` has a name pointer at `+0x08`, it clears the arrival word and makes the call `0x0016D6A0(0x4B, entry +0x00, 0)`. That stub only returns, so the jump is compiled out. Past `0x522` it sets the document's `MapIndex` to 0. | `0x001C30E3`-`0x001C3110`<br>`0x001FEDA0`, `0x001C3218` |
+| 3 | While the arrival word is 0 it waits. Once the application time (`0x0017D8D0`, the application object's `+0x40`) less `0x022BDD50` is above 120.0, it puts the current index in the document's `MapIndex` and stores 1 through a null pointer (`0x001C3339`, `rbx` 0), which stops the game. | `0x008F9E30`<br>`0x001C332E` |
+| 4 | A fade that starts on a layer whose last fade had finished arms both words. `0x002EFA70` sets each to 1 when it is 0, and `0x022BDD50` to 0 ([Screen fades](../Graphics/screen-fades.md)). |   |
+| 5 | The `eventsync` verbs' polls `0x00355F60` (`0x00ED`) and `0x00355970` (`0x00EE`) set the arrival word to 1 when the auto-test byte is non-zero. | `0x001C3370` |
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -494,12 +688,28 @@ The map and cutscene loaders keep their document names in static EASTL strings (
 `+0x10` capacity end), which start-up initialisers build empty and `atexit` destructors free:
 
 - `0x01F81288`, the map document name (initialiser `0x0015C9E0`, destructor `0x008A6B90`): `0x001C53F0` empties it
-  (`0x001C5429`) and rebuilds it through `0x001A5760` (`0x001C544E`): first the whole `<area>\<map>` string
-  (`0x001C5458`), then the part it keeps, cut out with `0x001A9E50` (`0x001C54C6`, `0x001C54DB`).
+ ¹ and rebuilds it through `0x001A5760`²: first the whole `<area>\<map>` string
+ ³, then the part it keeps, cut out with `0x001A9E50`⁴.
 - `0x01F81388`, the last map name (initialiser `0x0015C8D0`, destructor `0x008A6B30`): `0x001C61F0` compares the new name
-  with it (`0x001C624A`, `memcmp` at `0x001C6263`) and, when they differ, assigns it through `0x001A5760` (`0x001C6274`).
+  with it (`0x001C624A`, `memcmp` at `0x001C6263`) and, when they differ, assigns it through `0x001A5760`⁵.
 - `0x01F812A8`, the cutscene document name (initialiser `0x0015C7C0`, destructor `0x008A6AD0`): `0x001C5930` reads its
-  length (`0x001C5978`) and assigns it through `0x001A5760` (`0x001C59EB`); `0x001C5040` empties it (`0x001C504B`-`0x001C505E`).
+  length⁶ and assigns it through `0x001A5760`⁷; `0x001C5040` empties it⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C5429` |
+| ² | `0x001C544E` |
+| ³ | `0x001C5458` |
+| ⁴ | `0x001C54C6`, `0x001C54DB` |
+| ⁵ | `0x001C6274` |
+| ⁶ | `0x001C5978` |
+| ⁷ | `0x001C59EB` |
+| ⁸ | `0x001C504B`-`0x001C505E` |
+
+</details>
 
 `0x001A5760` (assign) and `0x001A52A0` (grow), which it calls, reach the fields through the string's address.
 
@@ -517,15 +727,46 @@ The strings' addresses are taken only at the sites above.
 ### The PS2 memory-card icon pair
 
 `0x00582790` asks `0x00249210` for kind 7 id `0x2C` (`icon.sys`) and kind 7 id `0x2D` (`icon1.ico`),
-storing the data pointers at `+0x110` and `+0x118` of the save object (`0x00582814`, `0x0058282F`).
+storing the data pointers at `+0x110` and `+0x118` of the save object¹.
 
-It asks only while byte `+0xC1` of the save object is 0 (`0x005827DD`), takes the two from arenas 3 and 2,
-bottom-up (`0x005827F6`, `0x0058281B`), and then stores `0x00393600(2)` at `+0x120` (`0x0058283D`); both requests go into
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00582814`, `0x0058282F` |
+
+</details>
+
+It asks only while byte `+0xC1` of the save object is 0¹, takes the two from arenas 3 and 2,
+bottom-up², and then stores `0x00393600(2)` at `+0x120`³; both requests go into
 the screen's request group, with no completion of their own.
 
-`0x00249210` sizes the file from the [file size table](file-size-tables-fst.md) (`0x0032E400`),
-allocates a buffer and queues the read (`0x0032E620`); for a size below 1 it does neither and the data pointer
-stays null (`0x0024929F`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005827DD` |
+| ² | `0x005827F6`, `0x0058281B` |
+| ³ | `0x0058283D` |
+
+</details>
+
+`0x00249210` sizes the file from the [file size table](file-size-tables-fst.md)¹,
+allocates a buffer and queues the read²; for a size below 1 it does neither and the data pointer
+stays null³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032E400` |
+| ² | `0x0032E620` |
+| ³ | `0x0024929F` |
+
+</details>
 
 Every kind-7 array that `0x002DF9A0` installs holds the pair at ids 44 and 45. The KR, CH and CN arrays
 (languages 7, 8 and 11; `0x01E0E530`, `0x01E5A3D0`, `0x01EABBA0`) name the `ch` copies, the others the `in`
@@ -533,14 +774,31 @@ copies. Ids 46 and 47 name `icon2.ico` and `icon3.ico`, which ship nowhere and a
 table.
 
 `0x005832B0`, called from state 7 of the save transaction `0x00581DA0`, uses `icon.sys` as a template.
-It clears a `0x3C4`-byte image, stamps `PS2D` (`0x00583307`), writes a title of play time and save
+It clears a `0x3C4`-byte image, stamps `PS2D`¹, writes a title of play time and save
 number at `+0xC0` and its line-break position at `+0x06`, copies bytes `+0x0C` to `+0xBF` from the
 loaded `icon.sys`, and writes the name `0x005837F0` returns for kinds 2, 3 and 4 (`static.ico`) at
 `+0x104`, `+0x144` and `+0x184`.
 
-State 7 builds this image at `+0xE8` of the transaction record; the storage request it then files
-(`0x00582540`) names only the numbered slot file. How the slot files are written and deleted is on
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00583307` |
+
+</details>
+
+State 7 builds this image at `+0xE8` of the transaction record; the storage request it then files¹ names only the numbered slot file. How the slot files are written and deleted is on
 [Saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00582540` |
+
+</details>
 
 [`standard-file-formats-icon-rows.tsv`](standard-file-formats-icon-rows.tsv) lists the four files, with
 size, SHA-256, kind-7 id and the locale ids that load each copy, then every field of `icon.sys` and
@@ -548,18 +806,29 @@ size, SHA-256, kind-7 id and the locale ids that load each copy, then every fiel
 record and texture of `icon1.ico`, each with the code that reads it.
 
 - Of `icon.sys` the image takes bytes `+0x0C` to `+0xBF`: `0x005832B0` copies one dword and eleven 16-byte
-  blocks (`0x005835AF`-`0x0058363C`), ending at the file's last byte. Bytes `+0x00` to `+0x0B` are not copied:
-  the image is cleared, and the game writes its own `PS2D` (`0x00583307`) and line break.
+  blocks¹, ending at the file's last byte. Bytes `+0x00` to `+0x0B` are not copied:
+  the image is cleared, and the game writes its own `PS2D`² and line break.
 - In the PS2 layout these bytes are the memory-card browser's background (transparency 109 of 128 and four
   corner colours, (39, 24, 6) on the left and (186, 164, 125) on the right), three light directions and
   colours and the ambient light of the 3D icon.
 - `icon1.ico` is a one-shape, one-frame model of 36 vertices with a 128 x 128 texture of 16-bit texels,
   which ends the file. Of the functions that hold the save object, `0x00582790`, `0x00582860`, `0x00582FC0`,
   `0x005832B0` and every other reader of its global `0x02CA99B8`, only `0x00582FC0` reads `+0x118`, to free the
-  buffer (`0x00583010`).
+  buffer³.
 - A replacement `icon.sys` needs at least `0xC0` bytes and a matching size-table entry for id `0x2C`, as the
   copy reads `0xC0` bytes of the buffer and the read is sized by the table. No field holds a value out of
   range.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005835AF`-`0x0058363C` |
+| ² | `0x00583307` |
+| ³ | `0x00583010` |
+
+</details>
 
 ### The boot descriptor
 
@@ -582,18 +851,43 @@ file's SHA-256.
 `0x001B7F30` gets a path with `0x002DF980(0x1C, movie × 2)`: `0x002DF980` returns
 `[[0x0215F000 + kind × 8] + index × 8]`, and kind 28 is the movie kind. That entry is a PS2
 `movie_finish\<lang>\<NAME>.md` path. The player keeps the text between the last backslash and the
-last dot, formats `"%s%s.webm"` with the prefix `/GameData/D3D11/ArtData/video/` (`0x01DF6E28`), and
+last dot, formats `"%s%s.webm"` with the prefix `/GameData/D3D11/ArtData/video/`¹, and
 opens it with `0x0067A480` on the player object at its `+0x678`. A null path entry stops the movie.
 
-- Before the path it starts the reading thread (`0x0067A350`). The arm that sets the state `+0x04` to 0 and
-  returns when that call answers 0 (`0x001B7F6A`, `0x001B80B5`) is never taken: `0x0067A350` has one exit, returns 1
-  (`0x0067A3FF`) and drops the result of the thread start `0x005CD1E0` (`0x0067A3F5`).
-- The name is found with `strrchr` for `\` and `.` (`0x001B7FB4`, `0x001B7FC5`) and copied with `strncpy` into
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01DF6E28` |
+
+</details>
+
+- Before the path it starts the reading thread¹. The arm that sets the state `+0x04` to 0 and
+  returns when that call answers 0² is never taken: `0x0067A350` has one exit, returns 1
+ ³ and drops the result of the thread start `0x005CD1E0`⁴.
+- The name is found with `strrchr` for `\` and `.`⁵ and copied with `strncpy` into
   a zeroed 32-byte buffer, the count being the last dot less the character after the backslash
-  (`0x001B7FD0`-`0x001B7FF7`). With no dot after the last backslash that count wraps around and `strncpy`
+ ⁶. With no dot after the last backslash that count wraps around and `strncpy`
   writes past the buffer.
-- A path with no backslash resets the player with `0x001B7690` (`0x001B7FCE`, `0x001B803A`), and a failed open
-  sets the state to 0 and resets it the same way (`0x001B8030`-`0x001B803A`).
+- A path with no backslash resets the player with `0x001B7690`⁷, and a failed open
+  sets the state to 0 and resets it the same way⁸.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0067A350` |
+| ² | `0x001B7F6A`, `0x001B80B5` |
+| ³ | `0x0067A3FF` |
+| ⁴ | `0x0067A3F5` |
+| ⁵ | `0x001B7FB4`, `0x001B7FC5` |
+| ⁶ | `0x001B7FD0`-`0x001B7FF7` |
+| ⁷ | `0x001B7FCE`, `0x001B803A` |
+| ⁸ | `0x001B8030`-`0x001B803A` |
+
+</details>
 
 The first 98 ids of kind 28 hold 45 `.md` paths at even ids, each followed by its `.mh` path, and
 four empty pairs. 40 of the 45 base names have a `.webm`; `dlb`, `opd`, `se1`, `se2` and `bd2` have
@@ -619,7 +913,16 @@ reading of every Japanese comment.
   as its header says; `menuquest_group_MAX` is 3 while the highest group id is 2.
 - `menumap_world_debug.h` defines its table only under `#ifdef DEBUG` and gives every sub-location the offset
   (0, 0).
-`JsonData/debugMenuSettings.json` (`0x008FCCB0`) is a string with no code reference and no shipped file.
+`JsonData/debugMenuSettings.json`¹ is a string with no code reference and no shipped file.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008FCCB0` |
+
+</details>
 
 [`standard-file-formats-mapjump-nocrystal-rows.tsv`](standard-file-formats-mapjump-nocrystal-rows.tsv) lists
 the 1,777 lines of `prefetchdata/ff12mapjump_custom_nocrystal.csv` in file order: the header line
@@ -631,9 +934,9 @@ both places and the `mapjump` calls of the source zone's US script that reach th
   holding `csv` in any case are the seven read paths (`opt.csv`, `eventList.csv` and the five soft-particle
   names, each referenced by one function), and no string holds `crystal` or `ff12map`, so no format string
   can build the name.
-- Every prefetch path is `/PrefetchData/` (`0x00900648`) with a language folder and a fixed tail: `common.txt`
-  (`0x001DA610`), `Maps/<map>.txt` (`0x001DA290`), `eventList.csv` (`0x001D9A40`) and `Events/<n>.txt`
-  (`0x001D9DA0`), whose add-on form is the one path without a language. No path ends at the folder's top level,
+- Every prefetch path is `/PrefetchData/`¹ with a language folder and a fixed tail: `common.txt`
+ ², `Maps/<map>.txt`³, `eventList.csv`⁴ and `Events/<n>.txt`
+ ⁵, whose add-on form is the one path without a language. No path ends at the folder's top level,
   the executable imports no directory search, and no prefetch list, `.ah`, JSON, CSV or text file in the
   archive names the file.
 - The rows are the zone-to-zone jumps the zone scripts make, without the crystal warps: 1,616 pairs are
@@ -648,6 +951,19 @@ both places and the `mapjump` calls of the source zone's US script that reach th
   against 20 pairs of the other modes: 9 lead to fields without a zone script (293, 294, 434 and 769), 6
   from the three `dor_a` rooms to `dor_c12` and `dor_e01`, 3 to `byu_b01`, one from `fon_b01` to `fon_a04`,
   and one from `gil_a01` to itself.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00900648` |
+| ² | `0x001DA610` |
+| ³ | `0x001DA290` |
+| ⁴ | `0x001D9A40` |
+| ⁵ | `0x001D9DA0` |
+
+</details>
 
 ## Modding notes
 
@@ -666,11 +982,20 @@ both places and the `mapjump` calls of the source zone's US script that reach th
   map record.
 - Editing a JSON value is enough; the documents are read by key, and absent keys fall back as
   [Graphics settings](../Engine-Core/graphics-settings.md) describes. The developer
-  menu's tracking-camera rows rewrite `init.json` (`0x001C7360`, `0x001C7520`).
+  menu's tracking-camera rows rewrite `init.json`¹.
 - A new font colour needs `fontclut_<n>.json` with `mClutIndex` equal to `n`, for `n` below 28.
 - A movie is replaced by a `.webm` of the same base name in `gamedata/d3d11/artdata/video/`.
 - `icon.sys` supplies only the colour and light block (`+0x0C` to `+0xBF`) of the image
   `0x005832B0` builds; the title and icon names are written by the game.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001C7360`, `0x001C7520` |
+
+</details>
 
 ## Related
 

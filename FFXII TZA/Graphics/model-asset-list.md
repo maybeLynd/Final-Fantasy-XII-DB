@@ -9,7 +9,16 @@
 [`model-asset-list.tsv`](model-asset-list.tsv) holds one line for each model a bound id can name: 1,084 models over eleven letter
 classes. For each it gives the files the game loads for that model and the tables and scripts that name it. A bound
 id is a letter class in the bits under mask `0xFF0000` and a number in the bits under mask `0xFFFF` ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md));
-`c0` (`0x00630000`) is Vaan's model, `chara/c10/c1004/c1004`.
+`c0`¹ is Vaan's model, `chara/c10/c1004/c1004`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00630000` |
+
+</details>
 
 | Class | Models | Folder | Kind | Index | Lanes |
 |---|---:|---|---:|---|---:|
@@ -32,48 +41,66 @@ Class `M` maps to kind `0x12`, a runtime slot with no path array, so it names no
 The columns come from the path arrays of [Asset paths](../Game-Files-And-Data-Tables/asset-paths.md) and the
 archive index:
 
-1. **The model file.** `0x002ED6F0` turns a letter into a resource kind, the number into a file index and gives the
-   model's lane count (the table above). The kind's path array names the `.cm` at that index
-   ([Model files](model-files-cm-ca.md)).
-2. **The lane files.** The lane loader `0x002E6EB0` files lane *k* as index + 1 + *k* (index + `0x43` + *k* for kind
-   1, which no class of the eleven maps to; `0x002E6F99`-`0x002E6FA2`). For class `m` it files lane 0 as
-   index + 1, lanes 1-15 all as index + 2, and lanes from 16 as index + 1 + (*k* − 14) (`0x002E6FD1`-`0x002E6FF6`), so a
-   monster has one motion set where a character has fifteen.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | **The model file.** `0x002ED6F0` turns a letter into a resource kind, the number into a file index and gives the model's lane count (the table above). The kind's path array names the `.cm` at that index ([Model files](model-files-cm-ca.md)). |   |
+| 2 | **The lane files.** The lane loader `0x002E6EB0` files lane *k* as index + 1 + *k* (index + `0x43` + *k* for kind 1, which no class of the eleven maps to; `0x002E6F99`-`0x002E6FA2`). For class `m` it files lane 0 as index + 1, lanes 1-15 all as index + 2, and lanes from 16 as index + 1 + (*k* − 14), so a monster has one motion set where a character has fifteen. | `0x002E6FD1`-`0x002E6FF6` |
 
    For each lane bit of the record's `+0x28` whose buffer slot `+0x60 + 4k` is 0, it
    takes the size from `0x002E9920`, a buffer handle from `0x0036B160(size)`, stored in the
    slot, and calls `0x0032E620(kind, file, 0x0036A000(handle), size, request)`; the request
    holds the record's word `+0x20` shifted left 16 with the lane, and the callback
-   `0x002E4E50` (`0x002E6F35`-`0x002E700C`).
+   `0x002E4E50`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E6F35`-`0x002E700C` |
+
+</details>
 
    A lane that got its request, or whose slot was already set, has its bit set in
    `+0x34`; every lane tried has its bit cleared in `+0x28`. A handle of 0 skips the lane
-   as a size not above 0 does (`0x002E6EED`-`0x002E6EF6`, `0x002E6F52`-`0x002E6F57`,
-   `0x002E7027`-`0x002E703D`).
+   as a size not above 0 does¹.
 
-3. **The remastered parts.** `0x001BB2B0` names a model's `.ah` list from its `.cm` path: the text after
-   `PS2Data\obj_finish\in\`, less `.cm`, with `\` turned into `/`, as `./GameData/D3D11/ArtData/chr/<name>_d3d11.ah`.
-   The binding's load `0x002EAD50` requests it through `0x0017F000` before the model's own file
-   ([Prefetch and asset-header manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)).
-   - `0x0017F000` requests nothing and returns 0 while the object at `0x01F81240` is null (`0x0017F010`).
-4. **The remastered files.** `pc_meshes` and `pc_textures` count the list's `.dae.phyre` and `.dds.phyre` paths.
-5. **Further motions.** Kind 30's motion files are listed with the model whose `.cm` folder holds them.
-6. **The sounds.** Row *n* of the model's letter table `charseinfo_<letter>.bin`, which `0x002ED950` returns, names
-   three SE blocks and a battle-voice bank ([Character sound tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md)).
-   `0x002E60F0` turns a block id into a kind-32 `.seb` and its `.win.sab`, and the bank number names `shoutNN`
-   ([Sound banks](../Sound-And-Music/sound-banks.md)).
-7. **The users,** joined by bound id: [Bestiary](../Enemy-Spawning/bestiary.md) `model_id`,
-   [Party table](../Party/party-table.md) `model`, and the script manifests of
-   [Actor manifest](../EBP-Script-Files/ebp-actor-manifest.md) (`ebp-actor-manifest-ids.tsv`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E6EED`-`0x002E6EF6`, `0x002E6F52`-`0x002E6F57`, `0x002E7027`-`0x002E703D` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 3 | **The remastered parts.** `0x001BB2B0` names a model's `.ah` list from its `.cm` path: the text after `PS2Data\obj_finish\in\`, less `.cm`, with `\` turned into `/`, as `./GameData/D3D11/ArtData/chr/<name>_d3d11.ah`. The binding's load `0x002EAD50` requests it through `0x0017F000` before the model's own file ([Prefetch and asset-header manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)).<br>• `0x0017F000` requests nothing and returns 0 while the object at `0x01F81240` is null. | `0x0017F010` |
+| 4 | **The remastered files.** `pc_meshes` and `pc_textures` count the list's `.dae.phyre` and `.dds.phyre` paths. |   |
+| 5 | **Further motions.** Kind 30's motion files are listed with the model whose `.cm` folder holds them. |   |
+| 6 | **The sounds.** Row *n* of the model's letter table `charseinfo_<letter>.bin`, which `0x002ED950` returns, names three SE blocks and a battle-voice bank ([Character sound tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md)). `0x002E60F0` turns a block id into a kind-32 `.seb` and its `.win.sab`, and the bank number names `shoutNN` ([Sound banks](../Sound-And-Music/sound-banks.md)). |   |
+| 7 | **The users,** joined by bound id: [Bestiary](../Enemy-Spawning/bestiary.md) `model_id`, [Party table](../Party/party-table.md) `model`, and the script manifests of [Actor manifest](../EBP-Script-Files/ebp-actor-manifest.md) (`ebp-actor-manifest-ids.tsv`). |   |
 
 ### The motion lanes
 
 A 24-lane model's lane files follow its `.cm` in this order. `0x00320170` gives a unit's lane as its animation set
 from `0x003202F0`, which the main-hand weapon's motion class picks unless an enemy record's definition row
-byte `+0x13` or the bare-handed Brawler row gives it (`0x0032031F`-`0x00320389`)
+byte `+0x13` or the bare-handed Brawler row gives it¹
 ([Weapon motion list](../Battle-Actions/weapon-motion-list.md)), and an actor that is one of the four
-`0x00263750` roster actors its set from `0x00320230` (`0x003201B0`-`0x0032021C`); without battle flag `0x02089340` bit
-`0x10` the lane is −1 (`0x0032018F`, `0x0032030B`):
+`0x00263750` roster actors its set from `0x00320230`²; without battle flag `0x02089340` bit
+`0x10` the lane is −1³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032031F`-`0x00320389` |
+| ² | `0x003201B0`-`0x0032021C` |
+| ³ | `0x0032018F`, `0x0032030B` |
+
+</details>
 
 | Lane | File | Animation set: the equipment categories of its weapons |
 |---:|---|---|
@@ -108,8 +135,17 @@ They are the motions a unit plays for an action, outside its lanes.
 The battle code asks the skill-motion cache for a
 model, a motion number and a weapon class (`0x00325B40`, [Character render records](character-render-records.md)). The
 cache sizes the file with `0x003DC8D0` and reads it with `0x003DC5B0`, and both take the file from `0x003DCA30`. That
-function always gives kind 30 (`0x003DCA49`) and looks the model and motion up in three tables, in order
+function always gives kind 30¹ and looks the model and motion up in three tables, in order
 ([Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md)):
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DCA49` |
+
+</details>
 
 | Table | Records | Files named | Of them shipped |
 |---|---:|---:|---:|
@@ -149,10 +185,20 @@ Replacing a file:
 - The file is read whole, with the size the language's `.fst` gives (`0x0032E400`, from `0x003DC8D0`), so a resized file
   needs its new size in every `.fst`. `0x003DC8D0` keeps the size for a model, motion and weapon class in one of
   sixteen entries and does not clear them.
-- The cache counts 32 KiB units, `(size + 0x7FFF) >> 15` (`0x003DCE13`-`0x003DCE22`). It files a new entry only while
-  the units of the entries in use plus the new ones stay at 4 or below (`0x003DCE38`-`0x003DCE3E`), and returns 0
+- The cache counts 32 KiB units, `(size + 0x7FFF) >> 15`¹. It files a new entry only while
+  the units of the entries in use plus the new ones stay at 4 or below², and returns 0
   otherwise. A file larger than 131,072 bytes therefore never fits; the largest shipped one is 130,208 bytes.
 - An index no table names is never read, so a file added at such an index needs a table record that names it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DCE13`-`0x003DCE22` |
+| ² | `0x003DCE38`-`0x003DCE3E` |
+
+</details>
 
 ### Shipped data
 
@@ -203,102 +249,106 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 61 calls with 17 other topics</summary>
 
-**Characters and objects**
+**Characters and objects** (explained on [party control modes](../Engine-Core/party-control-modes.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [frame update order](../Engine-Core/frame-update-order.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263750` | is called by | `0x003266C0`, `0x0035A8D0` |
-| `0x00320170` | calls | `0x00263E30`, `0x003588B0` |
-| `0x00320170` | is called by | `0x0037B4D0` |
-| `0x0032E400` | is called by | `0x0032FCA0`, `0x00330310`, `0x003306E0` |
-| `0x0032E620` | is called by | `0x0032FCA0`, `0x00330310` |
-
-**Characters and objects** (explained on [party control modes](../Engine-Core/party-control-modes.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [frame update order](../Engine-Core/frame-update-order.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
-
-**Characters and objects** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+| [`0x00263750`](model-asset-list.md) | is called by | [`0x003266C0`](../Party/party-slots.md) Battle group: refresh four actor definitions (on party slots)<br>[`0x0035A8D0`](../Scripts-And-Script-Commands/verb-table.md) (on verb table) |
+| [`0x00320170`](model-asset-list.md) | calls | [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse)<br>[`0x003588B0`](../Menus-And-HUD/map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
+| [`0x00320170`](model-asset-list.md) | is called by | [`0x0037B4D0`](../Characters-And-Objects/actor-record-fields.md) (on actor record fields) |
+| [`0x0032E400`](effect-file-list.md) (on effect file list) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
+| [`0x0032E620`](effect-file-list.md) (on effect file list) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container) |
 
 **Sound and music** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002E60F0` | calls | `0x003A1650` |
+| [`0x002E60F0`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) (on character se tables chse) | calls | [`0x003A1650`](../Sound-And-Music/sound-banks.md) (on sound banks) |
 
 **Battle actions** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00325B40` | is called by | `0x0030CBE0` |
+| [`0x00325B40`](model-asset-list.md) | is called by | [`0x0030CBE0`](effect-file-list.md) (on effect file list) |
 
 **Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003202F0` | calls | `0x0031B860` |
+| [`0x003202F0`](model-asset-list.md) | calls | [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log) |
 
 **Gameplay** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00320230` | calls | `0x00322C50` |
+| [`0x00320230`](../Battle-Actions/weapon-motion-list.md) (on weapon motion list) | calls | [`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) |
 
 **Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263750` | is called by | `0x00226BE0` |
-| `0x0032E620` | is called by | `0x00291C80` |
+| [`0x00263750`](model-asset-list.md) | is called by | [`0x00226BE0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock) |
+| [`0x0032E620`](effect-file-list.md) (on effect file list) | is called by | [`0x00291C80`](effect-file-list.md) (on effect file list) |
 
 **Movement and pathfinding** (explained on [frame update order](../Engine-Core/frame-update-order.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263750` | is called by | `0x0034A940`, `0x0037CF00`, `0x0037D000` |
+| [`0x00263750`](model-asset-list.md) | is called by | [`0x0034A940`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x0037CF00`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x0037D000`](../Party/party-slots.md) (on party slots) |
 
 **Party** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party control modes](../Engine-Core/party-control-modes.md), [debug menu](../Engine-Core/debug-menu.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263750` | is called by | `0x003261D0`, `0x00326500`, `0x003272F0`, `0x003273D0`, `0x0034D4E0`, `0x00350CD0` |
-| `0x00320170` | calls | `0x00263750` |
+| [`0x00263750`](model-asset-list.md) | is called by | [`0x003261D0`](../Party/party-members.md) Party configuration: reconcile roster from current selectors (on party members)<br>[`0x00326500`](../Party/party-leader.md) Party focus: select and request default actor (on party leader)<br>[`0x003272F0`](../Party/party-leader.md) (on party leader)<br>[`0x003273D0`](../Party/party-members.md) Party configuration: set selectors and reconcile roster (on party members)<br>[`0x0034D4E0`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x00350CD0`](../Party/party-members.md) (on party members) |
+| [`0x00320170`](model-asset-list.md) | calls | [`0x00263750`](model-asset-list.md) |
 
 **Saving, loading and settings** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x0032E620` | is called by | `0x002EF300` |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Scripts and script commands**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00263750` | is called by | `0x003415D0`, `0x00341CB0`, `0x00342250`, `0x00342910`, `0x00342EC0`, `0x003446D0`, `0x00344740`, `0x00346EB0`, `0x003473E0`, `0x00347970`, `0x0034AF80`, `0x0034DF40` |
-| `0x00263750` | is also called by | `0x0034F060`, `0x0034F890`, `0x00350050`, `0x003507B0`, `0x003509E0`, `0x00352190`, `0x00352FA0`, `0x003537D0` |
-| `0x002ED6F0` | is called by | `0x003580C0` |
-| `0x0032E400` | is called by | `0x0050DF70` |
+| [`0x0032E620`](effect-file-list.md) (on effect file list) | is called by | [`0x002EF300`](../Saving-Loading-And-Settings/save-file-format.md) (on save file format) |
 
 **Scripts and script commands** (explained on [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E620` | is called by | `0x0050DFE0` |
+| [`0x00263750`](model-asset-list.md) | is called by | [`0x003415D0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x00341CB0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x00342250`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x00342910`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x00342EC0`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x003446D0`](../Scripts-And-Script-Commands/battle-verbs.md) (on battle verbs)<br>[`0x00344740`](../Scripts-And-Script-Commands/battle-verbs.md) (on battle verbs)<br>[`0x00346EB0`](../Scripts-And-Script-Commands/battle-verbs.md) (on battle verbs)<br>[`0x003473E0`](../Scripts-And-Script-Commands/battle-verbs.md) (on battle verbs)<br>[`0x00347970`](../Scripts-And-Script-Commands/battle-verbs.md) (on battle verbs)<br>[`0x0034AF80`](../Battle-Actions/weapon-motion-list.md) (on weapon motion list)<br>[`0x0034DF40`](../Battle-Actions/weapon-motion-list.md) (on weapon motion list) |
+| [`0x00263750`](model-asset-list.md) | is also called by | [`0x0034F060`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x0034F890`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x00350050`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x003507B0`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x003509E0`](../Battle-Actions/weapon-motion-list.md) (on weapon motion list)<br>[`0x00352190`](../Story-Events-And-Hunts/mt-bur-omisace-scripts.md) (on mt bur omisace scripts)<br>[`0x00352FA0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x003537D0`](../Battle-Actions/weapon-motion-list.md) (on weapon motion list) |
+| [`0x002ED6F0`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings) | is called by | [`0x003580C0`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs) |
+| [`0x0032E400`](effect-file-list.md) (on effect file list) | is called by | [`0x0050DF70`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) |
+| [`0x0032E620`](effect-file-list.md) (on effect file list) | is called by | [`0x0050DFE0`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue) |
 
-**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E400` | is called by | `0x00378540` |
-| `0x0032E620` | is called by | `0x00378540` |
-
-**World, areas and travel**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00325B40` | calls | `0x00313F60` |
-| `0x0032E400` | is called by | `0x00268750`, `0x003319D0`, `0x00378030`, `0x00379A10`, `0x003EA820` |
-| `0x0032E620` | is called by | `0x00268750`, `0x00378030`, `0x003EA820` |
-
-**World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
-
-**World, areas and travel** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+| [`0x0032E400`](effect-file-list.md) (on effect file list) | is called by | [`0x00378540`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
+| [`0x0032E620`](effect-file-list.md) (on effect file list) | is called by | [`0x00378540`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
+| [`0x00325B40`](model-asset-list.md) | calls | [`0x00313F60`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item) |
+| [`0x0032E400`](effect-file-list.md) (on effect file list) | is called by | [`0x00268750`](../Game-Files-And-Data-Tables/ps2data-bin-families.md) Map ref: begin load resources (on ps2data bin families)<br>[`0x003319D0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x00378030`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack)<br>[`0x00379A10`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list)<br>[`0x003EA820`](../Game-Files-And-Data-Tables/ard-area-battle-data.md) Area ard: load or unload field resource (on ard area battle data) |
+| [`0x0032E620`](effect-file-list.md) (on effect file list) | is called by | [`0x00268750`](../Game-Files-And-Data-Tables/ps2data-bin-families.md) Map ref: begin load resources (on ps2data bin families)<br>[`0x00378030`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack)<br>[`0x003EA820`](../Game-Files-And-Data-Tables/ard-area-battle-data.md) Area ard: load or unload field resource (on ard area battle data) |
 
 </details>

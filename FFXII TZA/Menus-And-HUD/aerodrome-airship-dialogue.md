@@ -12,12 +12,26 @@
 
 A row's key is the script, the section and the text id, the entry number in that section:
 
-- `mes` (`0x00348DF0`), which the verbs `ames`, `amese`, `amest` and `ames_1fe` reach, and `aask_1ff` (`0x0034ADA0`) look the text id up in the section 2 of the script that issues them through `0x00264D60`, which keeps the low 24 bits of the id. The field-sign and gauge-label verbs read section 2 the same way.
-- `fieldsign` (`0x00355A00`) and `fieldsignmesbyid` (`0x00357120`) read a section 3 caption through `0x00264D90` and
+- `mes`¹, which the verbs `ames`, `amese`, `amest` and `ames_1fe` reach, and `aask_1ff`² look the text id up in the section 2 of the script that issues them through `0x00264D60`, which keeps the low 24 bits of the id. The field-sign and gauge-label verbs read section 2 the same way.
+- `fieldsign`³ and `fieldsignmesbyid`⁴ read a section 3 caption through `0x00264D90` and
   give it to the actor as its name text ([NPC names](../Characters-And-Objects/npc-names.md)).
-- `fieldsign` changes nothing when `0x002642C0` finds no sign record (`0x00355A2E`), and gives the actor the empty
-  string at `0x02F8F2A0` instead of a caption when the record's word `+0x0A` is negative (`0x00355A90`-`0x00355AD0`).
+- `fieldsign` changes nothing when `0x002642C0` finds no sign record⁵, and gives the actor the empty
+  string at `0x02F8F2A0` instead of a caption when the record's word `+0x0A` is negative⁶.
 - The `lines` column of [`aerodrome-airship-scripts.tsv`](../Story-Events-And-Hunts/aerodrome-airship-scripts.tsv), the table of [Aerodrome airship scenes](../Story-Events-And-Hunts/aerodrome-airship-scenes.md), names section 2 rows by the same key: 1 of its rows names 1 of the 2 section 2 rows here.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00348DF0` |
+| ² | `0x0034ADA0` |
+| ³ | `0x00355A00` |
+| ⁴ | `0x00357120` |
+| ⁵ | `0x00355A2E` |
+| ⁶ | `0x00355A90`-`0x00355AD0` |
+
+</details>
 
 ### The scripts
 
@@ -38,9 +52,27 @@ The rows whose `us` to `it` strings hold Japanese text, kana or kanji:
 
 ### The alternate font and the expansion lists
 
-`{alt-font}` is the escape `0F 21`, which switches the string to the alternate font record (`0x002AD151`) ([Text codes](text-codes.md)), font 3, `fontex_subtitle` ([Text drawing](text-drawing.md), [Fonts](fonts.md)).
+`{alt-font}` is the escape `0F 21`, which switches the string to the alternate font record¹ ([Text codes](text-codes.md)), font 3, `fontex_subtitle` ([Text drawing](text-drawing.md), [Fonts](fonts.md)).
 
-In the `in`, `kr`, `cn` and `ch` trees the expansion codes of a string draw their glyphs from the expansion list keyed by `0x00674A00` of the script's path, `event\<folder>\<name>` or `plan_map\<folder>\<name>` (`0x001B6350`): `0x001E9D20` binds the running font's list for that key, which `0x001FDD60` finds in the font's map `+0xA8` ([Fonts](fonts.md), Expansion lists).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AD151` |
+
+</details>
+
+In the `in`, `kr`, `cn` and `ch` trees the expansion codes of a string draw their glyphs from the expansion list keyed by `0x00674A00` of the script's path, `event\<folder>\<name>` or `plan_map\<folder>\<name>`¹: `0x001E9D20` binds the running font's list for that key, which `0x001FDD60` finds in the font's map `+0xA8` ([Fonts](fonts.md), Expansion lists).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001B6350` |
+
+</details>
 
 No string of these scripts carries `{alt-font}`, so every one takes the list of `fontex_expand` ([Font expansion lists](fonts-expansion-lists.md)).
 
@@ -48,7 +80,16 @@ No cell of the `in`, `kr`, `cn` or `ch` columns holds `{exp:...}`: every expansi
 
 ### Choice lists
 
-2 `us` strings end in a choice list, `{choice:n}[a|b|...]` with its n options between the brackets: token `0x0E` (`0x002AC825`) ([Text codes](text-codes.md), Choice lists). Options per list in `us`: 1 with 2, 1 with 3.
+2 `us` strings end in a choice list, `{choice:n}[a|b|...]` with its n options between the brackets: token `0x0E`¹ ([Text codes](text-codes.md), Choice lists). Options per list in `us`: 1 with 2, 1 with 3.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AC825` |
+
+</details>
 
 Strings with a choice list per tree: `us` 2, `de` 2, `es` 2, `fr` 2, `it` 2, `in` 2, `kr` 2, `cn` 2, `ch` 2.
 
@@ -103,50 +144,51 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [script requests](../Scripts-And-Script-Commands/script-requests.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00355A00` | calls | `0x0025D5E0`, `0x00269F20`, `0x0026B4A0` |
-| `0x00357120` | calls | `0x00269F20` |
+| [`0x00355A00`](aerodrome-airship-dialogue.md) | calls | [`0x0025D5E0`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x00269F20`](enemy-names-on-screen.md) (on enemy names on screen)<br>[`0x0026B4A0`](../Scripts-And-Script-Commands/script-requests.md) (on script requests) |
+| [`0x00357120`](aerodrome-airship-dialogue.md) | calls | [`0x00269F20`](enemy-names-on-screen.md) (on enemy names on screen) |
 
 **Movement and pathfinding** (explained on [party control modes](../Engine-Core/party-control-modes.md), [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00355A00` | calls | `0x0026AB60`, `0x0026B0C0`, `0x0026B620`, `0x0026BB00`, `0x0026BC70`, `0x0026BD50`, `0x0026BDD0`, `0x0026BFF0` |
+| [`0x00355A00`](aerodrome-airship-dialogue.md) | calls | [`0x0026AB60`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x0026B0C0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x0026B620`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x0026BB00`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x0026BC70`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x0026BD50`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x0026BDD0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation)<br>[`0x0026BFF0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
 
 **Graphics** (explained on [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001FDD60` | is called by | `0x001B4590` |
+| [`0x001FDD60`](aerodrome-airship-dialogue.md) | is called by | [`0x001B4590`](fonts.md) (on fonts) |
 
-**Game files and data tables** (explained on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [sprite batcher](../Graphics/sprite-batcher.md))
+**Game files and data tables** (explained on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [sprite batcher](../Graphics/sprite-batcher.md), [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00674A00` | is called by | `0x001A7A50`, `0x001A9050`, `0x001B1440`, `0x001B1C10`, `0x0020BE50`, `0x0020C1B0` |
+| [`0x00674A00`](fonts.md) (on fonts) | is called by | [`0x001A7A50`](../World-Areas-And-Travel/map-art.md) (on map art)<br>[`0x001A9050`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats)<br>[`0x001B1440`](../Graphics/sprite-batcher.md) (on sprite batcher)<br>[`0x001B1C10`](../Graphics/sprite-batcher.md) (on sprite batcher)<br>[`0x0020BE50`](../Engine-Core/call-signatures.md) (on call signatures)<br>[`0x0020C1B0`](../Game-Files-And-Data-Tables/file-path-resolution.md) (on file path resolution) |
 
-**Game files and data tables** (explained on [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md))
+**Scripts and script commands** (explained on [npc names](../Characters-And-Objects/npc-names.md), [archades scenes](../Story-Events-And-Hunts/archades-scenes.md), [archades scripts](../Story-Events-And-Hunts/archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md), [force fight mode](../Engine-Core/force-fight-mode.md))
 
-**Scripts and script commands**
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002642C0` | is called by | `0x00355A00` |
-| `0x00264D60` | is called by | `0x00348DF0`, `0x0034ADA0`, `0x00352A50`, `0x00352EC0`, `0x003534F0`, `0x003545B0`, `0x00354F20`, `0x003555F0`, `0x00356B70`, `0x0050EAB0` |
-| `0x00264D90` | is called by | `0x00355A00`, `0x00357120` |
-| `0x00348DF0` | calls | `0x00267E10` |
-| `0x00348DF0` | is called by | `0x00349800` |
-| `0x0034ADA0` | calls | `0x00267E10` |
-| `0x0034ADA0` | is called by | `0x0034B760`, `0x0034BB10` |
-
-**Scripts and script commands** (explained on [npc names](../Characters-And-Objects/npc-names.md), [archades scenes](../Story-Events-And-Hunts/archades-scenes.md), [archades scripts](../Story-Events-And-Hunts/archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md))
-
-| Function | | Functions |
-|---|---|---|
-| `0x00355A00` | calls | `0x00267E10` |
-| `0x00357120` | calls | `0x00267E10` |
-
-**Scripts and script commands** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+| [`0x002642C0`](aerodrome-airship-dialogue.md) | is called by | [`0x00355A00`](aerodrome-airship-dialogue.md) |
+| [`0x00264D60`](aerodrome-airship-dialogue.md) | is called by | [`0x00348DF0`](../Story-Events-And-Hunts/archades-scripts.md) (on archades scripts)<br>[`0x0034ADA0`](../Story-Events-And-Hunts/nalbina-town-scripts.md) (on nalbina town scripts)<br>[`0x00352A50`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x00352EC0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x003534F0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x003545B0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections)<br>[`0x00354F20`](../Engine-Core/identifier-spaces.md) (on identifier spaces)<br>[`0x003555F0`](../Engine-Core/identifier-spaces.md) (on identifier spaces)<br>[`0x00356B70`](../Characters-And-Objects/npc-names.md) (on npc names)<br>[`0x0050EAB0`](../EBP-Script-Files/ebp-text-sections.md) (on ebp text sections) |
+| [`0x00264D90`](aerodrome-airship-dialogue.md) | is called by | [`0x00355A00`](aerodrome-airship-dialogue.md)<br>[`0x00357120`](aerodrome-airship-dialogue.md) |
+| [`0x00348DF0`](../Story-Events-And-Hunts/archades-scripts.md) (on archades scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00348DF0`](../Story-Events-And-Hunts/archades-scripts.md) (on archades scripts) | is called by | [`0x00349800`](../Story-Events-And-Hunts/archades-scripts.md) (on archades scripts) |
+| [`0x0034ADA0`](../Story-Events-And-Hunts/nalbina-town-scripts.md) (on nalbina town scripts) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x0034ADA0`](../Story-Events-And-Hunts/nalbina-town-scripts.md) (on nalbina town scripts) | is called by | [`0x0034B760`](../Story-Events-And-Hunts/nalbina-town-scripts.md) (on nalbina town scripts)<br>[`0x0034BB10`](../Story-Events-And-Hunts/nalbina-town-scripts.md) (on nalbina town scripts) |
+| [`0x00355A00`](aerodrome-airship-dialogue.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+| [`0x00357120`](aerodrome-airship-dialogue.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
 
 </details>

@@ -22,13 +22,22 @@ once nothing in the field is pending any more, runs the one-time sequence that f
 `0x00314020(mode, arg)`, the world tick, is the only caller of the pass `0x0025D9E0(slot)`.
 
 - In mode 0 it runs up to 16 sub-steps. Sub-step 0 runs every slot 0-4; a later sub-step runs a
-  slot only while that slot's byte `+0x201` (`0x00267310`) is non-zero. Each slot visit is
+  slot only while that slot's byte `+0x201`¹ is non-zero. Each slot visit is
   `0x00234590(slot)`, the pass, `0x00234520(slot)`; after the first sub-step's slot loop the tick runs
   `0x00253C50` and `0x00268D10` once, and each sub-step ends with the resource pass `0x003DB1F0(slot)`
   under the same gate.
 - In mode 1 it runs slots 3 and 4 only, each as `0x00234590`, the pass, `0x003DB1F0`, `0x00234520`, and
   then `0x00253C50` once.
 - Other modes run no slot.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00267310` |
+
+</details>
 
 A slot is a `0x288`-byte block at `0x02098E10 + slot * 0x288`; five of them fill `0x02098E10`-`0x02099AB7`.
 The fields the pass uses:
@@ -55,23 +64,30 @@ Struct ActorManagerSlot base=`0x02098E10` size=`0x288`:
 
 The pass returns 1 without driving anything when:
 
-1. the save-write busy flag `0x02CA99E8` (`0x00583920`) is non-zero;
-2. after copying flags bit `0x80` into flags2 bit `0x1`: `+0x13` is non-zero or flags bit `0x1` is set, flags2
-   bit `0x8` is clear, and the byte `0x022C6D20[slot]` (`0x0032F6E0`) is non-zero, in which case it first
-   runs `0x0026A5F0(slot)`, which sets bit `slot` of `0x02099ABC` (and the bits under mask `0xE` for slot 0) and calls
-   `0x002E15D0` and `0x002E1690`;
-3. flags bit `0x1` is clear;
-4. the byte `0x022CB726` (`0x003603C0`) is non-zero;
-5. flags3 bit `0x10` is set: it runs the frozen pass `0x0025E400(slot, 1)` instead, which zeroes the two
-   simulation scales (`0x003DA2F0(0)`, `0x003DD210(0)`), republishes the focus record `0x02099D78` (leaving
-   `0x02099D70` as it was) and runs `0x002E5180` for every record of sequence class 3
-   (`+0x03 & 0xE0 == 0x60`) whose `+0xC0` object has a `+0x138`;
-6. flags2 bit `0x4` is set.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | the save-write busy flag `0x02CA99E8` is non-zero; | `0x00583920` |
+| 2 | after copying flags bit `0x80` into flags2 bit `0x1`: `+0x13` is non-zero or flags bit `0x1` is set, flags2 bit `0x8` is clear, and the byte `0x022C6D20[slot]` is non-zero, in which case it first runs `0x0026A5F0(slot)`, which sets bit `slot` of `0x02099ABC` (and the bits under mask `0xE` for slot 0) and calls `0x002E15D0` and `0x002E1690`; | `0x0032F6E0` |
+| 3 | flags bit `0x1` is clear; |   |
+| 4 | the byte `0x022CB726` is non-zero; | `0x003603C0` |
+| 5 | flags3 bit `0x10` is set: it runs the frozen pass `0x0025E400(slot, 1)` instead, which zeroes the two simulation scales (`0x003DA2F0(0)`, `0x003DD210(0)`), republishes the focus record `0x02099D78` (leaving `0x02099D70` as it was) and runs `0x002E5180` for every record of sequence class 3 (`+0x03 & 0xE0 == 0x60`) whose `+0xC0` object has a `+0x138`; |   |
+| 6 | flags2 bit `0x4` is set. |   |
 
 The frozen pass walks the records only while the slot's `+0x10` bit `0x1` is set and its count `+0x20` is
-positive (`0x0025E458`-`0x0025E46F`), and does not test the `0x00358940` result before reading its `+0xC0`
-(`0x0025E47B`). It resolves the focus with slot 0 as the current slot (`0x0025E429`-`0x0025E45C`), and it uses
-only its first argument, the slot (`0x0025E412`).
+positive¹, and does not test the `0x00358940` result before reading its `+0xC0`². It resolves the focus with slot 0 as the current slot³, and it uses
+only its first argument, the slot⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E458`-`0x0025E46F` |
+| ² | `0x0025E47B` |
+| ³ | `0x0025E429`-`0x0025E45C` |
+| ⁴ | `0x0025E412` |
+
+</details>
 
 ### The two globals
 
@@ -81,43 +97,54 @@ the result is null when there is no focus or the handle does not resolve.
 
 The pass first stores the address of slot 0's block `0x02098E10` in `0x02099D70`, then resolves the focus
 (`0x003588B0` of the answer of `0x003590D0()`, or 0 when that answer is 0),
-and then stores the slot's own block there together with the focus in `0x02099D78`
-(`0x0025DA8C`-`0x0025DABA`).
+and then stores the slot's own block there together with the focus in `0x02099D78`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025DA8C`-`0x0025DABA` |
+
+</details>
 
 ### The pass body
 
 The body takes one of these branches after the refusals:
 
-1. Flags bit `0x80` clear (the field is not busy): every record 0 to `recordCount - 1` is driven through
-   the wait resolver `0x0025DF00`; on slot 0 `0x0025B740` runs after each; the return value is the AND
-   of every record's `+0x14` bit `0x40`. Then `0x0025C170`, `0x0025B250` and `0x0025B820` run for the slot and
-   the pass ends.
-2. On slot 0 only: `0x02ADD0D8` (`0x00377DB0`) must be non-zero, else return 1. While flags bit `0x10` is
-   clear: with bit `0x8` clear the pass issues the deferred mode request `0x0032FC30(1, 0xD4)`, sets bit `0x8`
-   and returns 1; with bit `0x8` set it returns 1 while the request word of slot 1 (`0x022C6E48 + 8`,
-   `0x0032F6C0(1)`, bit `0x1` masked off) is non-zero or slot 1's flags bit `0x1` or `+0x13` is set, and
-   otherwise sets bit `0x10` and continues.
-3. `drivePending` set: the designated record `0x00358940(slot, payload i16 +0x50)` is driven once, then:
-   - if its `+0x14` bit `0x40` is clear and its low nibble is clear the pass ends with 0;
-   - while bit `0x40` is clear and the low nibble is not, `0x003DB280(record)` runs and the record is driven again. No
-     write in the [record table](actor-record-fields.tsv) sets a bit under mask `0xF` of `+0x14`, so the repeat is
-     not reached;
-   - once bit `0x40` is set, `drivePending` is cleared, the init core `0x002620E0` runs and the pass ends with 0.
-4. Otherwise the area music select `0x00261F90(slot)` runs first: on slot index 0 with flags bit `0x40`
-   clear it selects and starts the area's track once per field while flags3 bit `0x80` is set (`0x00262000`),
-   sets flags bit `0x20` when flags3 bit `0x4`
-   is clear, and sets bit `0x40` at its end ([music](../Sound-And-Music/music-table.md)).
-   Then the two holds below are checked, each marking the pass busy.
-5. With flags3 bit `0x80` clear and flags bit `0x20` clear the main work runs: the init core, the roster loop,
-   the all-records loop, the trigger bit and the field-settled sequence, described below.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Flags bit `0x80` clear (the field is not busy): every record 0 to `recordCount - 1` is driven through the wait resolver `0x0025DF00`; on slot 0 `0x0025B740` runs after each; the return value is the AND of every record's `+0x14` bit `0x40`. Then `0x0025C170`, `0x0025B250` and `0x0025B820` run for the slot and the pass ends. |   |
+| 2 | On slot 0 only: `0x02ADD0D8` must be non-zero, else return 1. While flags bit `0x10` is clear: with bit `0x8` clear the pass issues the deferred mode request `0x0032FC30(1, 0xD4)`, sets bit `0x8` and returns 1; with bit `0x8` set it returns 1 while the request word of slot 1 (`0x022C6E48 + 8`, `0x0032F6C0(1)`, bit `0x1` masked off) is non-zero or slot 1's flags bit `0x1` or `+0x13` is set, and otherwise sets bit `0x10` and continues. | `0x00377DB0` |
+| 3 | `drivePending` set: the designated record `0x00358940(slot, payload i16 +0x50)` is driven once, then:<br>• if its `+0x14` bit `0x40` is clear and its low nibble is clear the pass ends with 0;<br>• while bit `0x40` is clear and the low nibble is not, `0x003DB280(record)` runs and the record is driven again. No write in the [record table](actor-record-fields.tsv) sets a bit under mask `0xF` of `+0x14`, so the repeat is not reached;<br>• once bit `0x40` is set, `drivePending` is cleared, the init core `0x002620E0` runs and the pass ends with 0. |   |
+| 4 | Otherwise the area music select `0x00261F90(slot)` runs first: on slot index 0 with flags bit `0x40` clear it selects and starts the area's track once per field while flags3 bit `0x80` is set, sets flags bit `0x20` when flags3 bit `0x4` is clear, and sets bit `0x40` at its end ([music](../Sound-And-Music/music-table.md)). Then the two holds below are checked, each marking the pass busy. | `0x00262000` |
+| 5 | With flags3 bit `0x80` clear and flags bit `0x20` clear the main work runs: the init core, the roster loop, the all-records loop, the trigger bit and the field-settled sequence, described below. |   |
 
 `0x0025B740`, which branch 1 runs after each record on slot 0, jumps to `0x00238B20(1)` only when all of these
 hold, tested in this order: the actor `0x003588B0(0x003590D0())` exists; `0x003B7730()` is non-zero; the actor's secondary
 context `+0xC0`, when present, has bit `0x1` of `+0x14F` clear and a non-null `+0x138`; the actor's byte
 `+0x09` has bit `0x1` and its byte `+0x08` bit `0x2`; `0x00265680()` is non-zero; and the secondary context is present
-with a `+0x138` object whose word `+0x88` is not 0 (`0x0025B746`-`0x0025B7C8`).
+with a `+0x138` object whose word `+0x88` is not 0¹.
 
-A test of `0x0025B740` that fails ends in a plain return, with no call and no store (`0x0025B7CD`-`0x0025B7D2`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025B746`-`0x0025B7C8` |
+
+</details>
+
+A test of `0x0025B740` that fails ends in a plain return, with no call and no store¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025B7CD`-`0x0025B7D2` |
+
+</details>
 
 The two holds of branch 4:
 
@@ -126,12 +153,30 @@ The two holds of branch 4:
   ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)).
   The bit is cleared when `0x00360D60()` is 0, or when the track is negative and both `0x003135C0()`
   and `0x00303EC0()` are 0.
-- With flags bit `0x20` set, the bit is cleared once `0x02ADD968` is 0 (`0x0037CB40`).
+- With flags bit `0x20` set, the bit is cleared once `0x02ADD968` is 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037CB40` |
+
+</details>
 
 In the first hold, a track that is not negative is first put to `0x00361010(track)`, which answers bit `0x1` of the byte
 `[0x022CBA50] + 2 × track`, or 0 while `0x022CBA50` is null; a non-zero answer goes straight to the
-`0x00360D60` test, and an answer of 0 asks `0x003135C0` and `0x00303EC0` first, each through a jump
-(`0x0037C8F0`, `0x0037C860`), and goes to the `0x00360D60` test all the same (`0x0025DBC8`-`0x0025DBF6`).
+`0x00360D60` test, and an answer of 0 asks `0x003135C0` and `0x00303EC0` first, each through a jump¹, and goes to the `0x00360D60` test all the same².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0037C8F0`, `0x0037C860` |
+| ² | `0x0025DBC8`-`0x0025DBF6` |
+
+</details>
 
 At the end of branches 4 and 5 flags bit `0x80` is rewritten from the busy mark; every branch then runs
 `0x0025B600` on slot 0 and increments `+0x24` and `+0x38`.
@@ -140,10 +185,19 @@ At the end of branches 4 and 5 flags bit `0x80` is rewritten from the busy mark;
 
 `0x002620E0(slot)` does nothing for a slot whose index is not 0. On slot 0 with flags bit `0x4` clear it
 runs `0x00259B30`, `0x003E8980(0)`, `0x0025ACA0`, instantiates the field's effect rows for channels 0 and
-`0x1F` (`0x0026FAD0`) with the lane from `0x0017D490()` when it is above 0, and otherwise the persistent save payload's
+`0x1F`¹ with the lane from `0x0017D490()` when it is above 0, and otherwise the persistent save payload's
 byte `+0x1060` plus 1, then
 `0x00379860(lane)`, `0x00379290`, `0x003DE920(0, 1)` and `0x00363B40`, and sets bit `0x4` ([weather](../World-Areas-And-Travel/weather.md)
 has the lane). It always ends with `0x003601C0(0xB)` and `0x003601C0(0xC)`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026FAD0` |
+
+</details>
 
 ### The roster loop
 
@@ -173,9 +227,20 @@ on every record of the slot's class-3 range (ordinals `+0x1DE` to `+0x1DE + +0x1
 `entrystart` verb's begin (`0x013F`, `0x003574B0`) runs it on slot 0.
 
 `0x00269860(record, 1)` returns 0 without filing while the scripts-live byte `0x02099DE1` is clear or for a null
-record (`0x00269876`, `0x00269888`). Otherwise it files the record's `spawn` request on channel 2 when `+0x1C` bit
-`0x80` is set, the slot names a function and `+0x18` is not 1 (`0x002698AC`-`0x002699AB`), then returns
-`0x00269640(record)` (`0x002699B3`); [script requests](../Scripts-And-Script-Commands/script-requests.md) has both.
+record¹. Otherwise it files the record's `spawn` request on channel 2 when `+0x1C` bit
+`0x80` is set, the slot names a function and `+0x18` is not 1², then returns
+`0x00269640(record)`³; [script requests](../Scripts-And-Script-Commands/script-requests.md) has both.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00269876`, `0x00269888` |
+| ² | `0x002698AC`-`0x002699AB` |
+| ³ | `0x002699B3` |
+
+</details>
 
 ### The field-settled sequence
 
@@ -186,33 +251,58 @@ When flags bit `0x80` is set, nothing marked the pass busy and the slot index is
 ([zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)).
 
 Then it runs `0x002E1C40(1, 2)`, which with a first argument other than 0 clears bit `0x4`, the bit
-`1 << 2` its second argument names, in the words `0x0215F1AC` and `0x0215F1B4` (`0x002E1C40`-`0x002E1C6B`),
+`1 << 2` its second argument names, in the words `0x0215F1AC` and `0x0215F1B4`¹,
 clears flags bit
 `0x80` and runs `0x00254A90`, `0x00259FB0`, `0x00234150`, `0x00250960(0, 0)` when `0x02099DA7` is set (then cleared),
 and `0x00263660`.
 
-The sequence starts with a call of `0x0017E7D0`, a jump to the empty stub `0x0016D6A0` (`0x0025DDAD`), and
-its fade request passes a fourth argument of 0, `0x002EFA70(2, 8, 1, 0)` (`0x0025DDF4`-`0x0025DE02`).
-`0x003135C0` is reached through the jump at `0x0037C8F0` (`0x0025DDBA`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E1C40`-`0x002E1C6B` |
+
+</details>
+
+The sequence starts with a call of `0x0017E7D0`, a jump to the empty stub `0x0016D6A0`¹, and
+its fade request passes a fourth argument of 0, `0x002EFA70(2, 8, 1, 0)`².
+`0x003135C0` is reached through the jump at `0x0037C8F0`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025DDAD` |
+| ² | `0x0025DDF4`-`0x0025DE02` |
+| ³ | `0x0025DDBA` |
+
+</details>
 
 ### The wait resolver
 
 `0x0025DF00(slot, record)` is what every drive above calls. For a record whose `+0x18` is not 1 it
 first runs `0x002E4A10(record)`; then, for sequence class 3 only, when the steering request
 `[[record + 0xB8] + 0xF0]` has a non-zero mode at `+0x29`, it calls `0x0026D6F0(record, speed * [0x01DFE0BC], mode)`
-with the request's `+0x7C` as the speed and mode 0 when the speed is positive, 2 otherwise
-(`0x0025DF21`-`0x0025DF83`).
+with the request's `+0x7C` as the speed and mode 0 when the speed is positive, 2 otherwise¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025DF21`-`0x0025DF83` |
+
+</details>
 
 Then it resolves the current wait slot `[record + 0xA8] + (i8 record +0x11) * 0x28` in a loop:
 
-1. when `0x001ED180()` is non-zero and `0x001EDE80()` is 0 the resolver leaves the loop (the half-rate
-   gate) (`0x0025DFA0`-`0x0025DFB0`);
-2. the slot's `parked` byte `+0x16` is cleared; when `0x001EDDA0()` is 0 and the byte was set, a zero
-   `0x001ED180()` leaves the loop (`0x0025DFB6`-`0x0025DFEC`);
-3. the slot's `waitKind` `+0x14` selects the arm in the table below through the eight-entry jump table at
-   `0x0025E3CC` (`0x0025DFF0`-`0x0025E008`); a completed wait sets `waitKind` to 1 and loops, a held wait sets
-   `parked` `+0x16` and leaves (`0x0025E127`); kind 5's arm, `0x002674B0(slot, &targetRef)` and the store of
-   `+0x14`, is `0x0025E00A`-`0x0025E022`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | when `0x001ED180()` is non-zero and `0x001EDE80()` is 0 the resolver leaves the loop (the half-rate gate); | `0x0025DFA0`-`0x0025DFB0` |
+| 2 | the slot's `parked` byte `+0x16` is cleared; when `0x001EDDA0()` is 0 and the byte was set, a zero `0x001ED180()` leaves the loop; | `0x0025DFB6`-`0x0025DFEC` |
+| 3 | the slot's `waitKind` `+0x14` selects the arm in the table below through the eight-entry jump table at `0x0025E3CC`; a completed wait sets `waitKind` to 1 and loops, a held wait sets `parked` `+0x16` and leaves; kind 5's arm, `0x002674B0(slot, &targetRef)` and the store of `+0x14`, is `0x0025E00A`-`0x0025E022`. | `0x0025DFF0`-`0x0025E008`<br>`0x0025E127` |
 
 | Kind | Arm | Held while | On completion |
 |---|---|---|---|
@@ -226,59 +316,128 @@ Then it resolves the current wait slot `[record + 0xA8] + (i8 record +0x11) * 0x
 
 After the loop the resolver finishes the visit:
 
-1. record `+0x108` is cleared (`0x0025E134`);
-2. record `+0x0C` bit `0x1` is set when `+0x1C` bit `0x800` is on, `+0x14` bit `0x40` is off, `+0x18` is not 1,
-   and the entry `0x003DB550(record, +0x62)` has the non-zero id the record's `+0xDE` names (or, when that is
-   -1, the word `+0x18` of the payload row reached through `+0x40`, used only when that row's count
-   exceeds 11); otherwise it is cleared (`0x0025E12B`-`0x0025E1A9`);
-3. `+0x0D` bit `0x40` is cleared; for a record with `+0x10` = 0 that is settled or matched, with `+0x13`
-   bit `0x2` and `+0x09` bit `0x80` clear, no `0x00359B80` value at `+0x40`, `+0x14` bit `0x10` set, `+0x18` = 0,
-   `+0x09` bit `0x20` clear and a callback at `+0x38`, the bit is set and `[record + 0x38](slot index,
-   record)` runs: the battle unit frame `0x00233F70` for a record bound to a battle unit
-   (`0x0025E1AD`-`0x0025E222`);
-4. the steering update runs: `0x002E97B0`, `0x002681E0`, `0x002E5030` and `0x002E5750` when `+0x13` bit `0x1` is
-   clear and `+0x10C` is 0, or `+0x0B` bit `0x20` is set; otherwise `0x002E6310(record)`
-   (`0x0025E224`-`0x0025E3AA`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | record `+0x108` is cleared; | `0x0025E134` |
+| 2 | record `+0x0C` bit `0x1` is set when `+0x1C` bit `0x800` is on, `+0x14` bit `0x40` is off, `+0x18` is not 1, and the entry `0x003DB550(record, +0x62)` has the non-zero id the record's `+0xDE` names (or, when that is -1, the word `+0x18` of the payload row reached through `+0x40`, used only when that row's count exceeds 11); otherwise it is cleared; | `0x0025E12B`-`0x0025E1A9` |
+| 3 | `+0x0D` bit `0x40` is cleared; for a record with `+0x10` = 0 that is settled or matched, with `+0x13` bit `0x2` and `+0x09` bit `0x80` clear, no `0x00359B80` value at `+0x40`, `+0x14` bit `0x10` set, `+0x18` = 0, `+0x09` bit `0x20` clear and a callback at `+0x38`, the bit is set and `[record + 0x38](slot index, record)` runs: the battle unit frame `0x00233F70` for a record bound to a battle unit; | `0x0025E1AD`-`0x0025E222` |
+| 4 | the steering update runs: `0x002E97B0`, `0x002681E0`, `0x002E5030` and `0x002E5750` when `+0x13` bit `0x1` is clear and `+0x10C` is 0, or `+0x0B` bit `0x20` is set; otherwise `0x002E6310(record)`. | `0x0025E224`-`0x0025E3AA` |
 
 In step 2, the payload row is payload + the low 32 bits of `0x0020E600(dword +0x18 of the record's +0x40
-object)`; when its count is 11 or less the id compared is `0xFFFF` (`0x0025DF97`, `0x0025E16A`-`0x0025E192`). The
-entry's word `+0x04` is read between the `+0x18` compare and its branch (`0x0025E14E`-`0x0025E157`), so also for
+object)`; when its count is 11 or less the id compared is `0xFFFF`¹. The
+entry's word `+0x04` is read between the `+0x18` compare and its branch², so also for
 a record whose `+0x18` is 1, and with no null test, though `0x003DB550(record, index)` answers null for an
-index of `0xFF` (`0x0025E142`-`0x0025E149`).
+index of `0xFF`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025DF97`, `0x0025E16A`-`0x0025E192` |
+| ² | `0x0025E14E`-`0x0025E157` |
+| ³ | `0x0025E142`-`0x0025E149` |
+
+</details>
 
 In step 3, the `0x00359B80` value is that of `0x00359B80(record)`: a null answer counts as 0, and otherwise the
 dword `+0x40` of the object it answers must be 0. The call is made whenever `+0x10` is 0 and the record is
-settled or matched, before the `+0x13` and `+0x09` bits are tested (`0x0025E1BE`-`0x0025E1FA`).
+settled or matched, before the `+0x13` and `+0x09` bits are tested¹.
 
-The four-call branch first zeroes two 16-byte locals (`0x0025E24B`-`0x0025E261`) and calls `0x002E97B0(record)`,
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E1BE`-`0x0025E1FA` |
+
+</details>
+
+The four-call branch first zeroes two 16-byte locals¹ and calls `0x002E97B0(record)`,
 which answers the secondary context `[record+0xC0]`. A null answer goes straight to `0x002681E0(record)`, with
-a flag of 0 for both later calls (`0x0025E266`-`0x0025E271`, `0x0025E389`-`0x0025E38C`). Otherwise the context first
-loses bit `0x4` of its byte `+0x10` (`0x0025E277`).
+a flag of 0 for both later calls². Otherwise the context first
+loses bit `0x4` of its byte `+0x10`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E24B`-`0x0025E261` |
+| ² | `0x0025E266`-`0x0025E271`, `0x0025E389`-`0x0025E38C` |
+| ³ | `0x0025E277` |
+
+</details>
 
 The record tests below are three: the context's word `+0x00` is not -1, the render record
 `[0x022C6F28] + 0x740 × (that word, sign-extended)` is not at address 0, and its dword `+0x284` is not 0.
 
 When the context's dword `+0x00` is not -1 and the record is of sequence class 3,
 `0x003DA710([record+0xB8] + 0x50, &f0, &f1)` first copies the floats `+0x50` and `+0x54` of the movement context
-`[record+0xB8]` into two locals, before the record tests and whatever `+0x13` holds (`0x0025E27B`-`0x0025E2A5`).
+`[record+0xB8]` into two locals, before the record tests and whatever `+0x13` holds¹.
 
-For another class the call is skipped (`0x0025E28E`) and no instruction of the resolver writes the two locals;
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E27B`-`0x0025E2A5` |
+
+</details>
+
+For another class the call is skipped¹ and no instruction of the resolver writes the two locals;
 `0x00266AD0` plants a null `+0xC0` for sequences 0 to 4, which the descriptor table `0x01E0C328` gives classes 0
 to 2 ([the actor record](actor-record.md)), so a record of another class as planted takes the null-answer
 way and does not come here.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E28E` |
+
+</details>
+
 A render record that passes the tests then gets `0x003E6EF0(render record, &first, &second, f)` and, tested
-again, `0x003E68B0(render record)`; one that fails gets neither (`0x0025E2AA`-`0x0025E326`). `f` is 1000000.0
-(`0x0091573C`) when the record's byte `+0x13` is `0x80` or more, else the smaller of `f0` and `f1`. Before
+again, `0x003E68B0(render record)`; one that fails gets neither¹. `f` is 1000000.0² when the record's byte `+0x13` is `0x80` or more, else the smaller of `f0` and `f1`. Before
 the last two calls, `0x003E6EF0` is the only call that is given the addresses of the two zeroed locals.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E2AA`-`0x0025E326` |
+| ² | `0x0091573C` |
+
+</details>
 
 Only with `+0x0D` bit `0x2` set, a non-zero `0x003E68B0` answer and the tests passed once more does it call
 `0x003E6A70(render record)`: bit `0x2` of that answer goes to bit `0x4` of the context's `+0x10` and sets the
 record's `+0x0C` bit `0x10`, and it is the flag of `0x002E5030`; bit `0x1` of the answer is the flag of
-`0x002E5750` (`0x0025E328`-`0x0025E385`). Both flags are 0 unless `0x003E6A70` is called and answers non-zero.
+`0x002E5750`¹. Both flags are 0 unless `0x003E6A70` is called and answers non-zero.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E328`-`0x0025E385` |
+
+</details>
 
 The branch ends with `0x002681E0(record)`, `0x002E5030(record, flag, &first)` and
-`0x002E5750(record, flag, &second)` (`0x0025E389`-`0x0025E3AA`).
+`0x002E5750(record, flag, &second)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025E389`-`0x0025E3AA` |
+
+</details>
 
 ### The wait slots
 
@@ -308,17 +467,32 @@ The interpreter `0x0025E4C0` arms a wait only when the thing waited on is alread
 the base.
 
 Kind 7 is armed by the list opcodes REQALL `0x5F` and REQIALL `0x63` while the slot's skip mask is set
-([script interpreter](../Scripts-And-Script-Commands/script-interpreter.md)): they store `listRef`
-(`0x00261B5E`), zero `listCursor` (`0x00261B61`), pop `waitChannel` (`0x00261B80`) and, while `0x00267420`
-finds a record with that channel bit set, write `waitKind` and `commandPhase` as the word `0x0107`
-(`0x00261B97`).
+([script interpreter](../Scripts-And-Script-Commands/script-interpreter.md)): they store `listRef`¹, zero `listCursor`², pop `waitChannel`³ and, while `0x00267420`
+finds a record with that channel bit set, write `waitKind` and `commandPhase` as the word `0x0107`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00261B5E` |
+| ² | `0x00261B61` |
+| ³ | `0x00261B80` |
+| ⁴ | `0x00261B97` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ```python
 return value = AND over the driven records of (record +0x14 bit 0x40)   (forced to 0 by branches 3 and the roster loop)
 record +0x14: bit 0x10 drive the bound battle unit through +0x38 (0x0025DF00), bit 0x40 settled (both functions), mask 0xF the repeat gate of branch 3
 ```
+
+</details>
 
 ## Operations
 
@@ -353,15 +527,13 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 12 calls with 3 other topics</summary>
 
-**Story, events and hunts**
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md), [story flags](../Story-Events-And-Hunts/story-flags.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [story flag ids](../Story-Events-And-Hunts/story-flag-ids.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [npc names](npc-names.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002EF2B0` | is called by | `0x0032A8A0`, `0x0032A930`, `0x0032A9A0`, `0x0032AA00`, `0x0032AA60`, `0x0032AAD0`, `0x0032AB60`, `0x0032ABF0`, `0x0032AC70`, `0x0032ACF0`, `0x0032AD70`, `0x0032ADF0` |
-
-**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md), [story flags](../Story-Events-And-Hunts/story-flags.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [story flag ids](../Story-Events-And-Hunts/story-flag-ids.md))
-
-**Story, events and hunts** (explained on [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [npc names](npc-names.md))
+| [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields) | is called by | [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list)<br>[`0x0032A930`](../Engine-Core/identifier-spaces.md) Persistent flag: query bank2048 (on identifier spaces)<br>[`0x0032A9A0`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: query bank64 a (on story flags)<br>[`0x0032AA00`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: query bank64 b (on story flags)<br>[`0x0032AA60`](../World-Areas-And-Travel/treasure-chests.md) Persistent flag: query bank512 low (on treasure chests)<br>[`0x0032AAD0`](field-runtime.md) Persistent flag: query bank512 high<br>[`0x0032AB60`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: set primary (on story flags)<br>[`0x0032ABF0`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: set bank2048 (on story flags)<br>[`0x0032AC70`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: set bank64 a (on story flags)<br>[`0x0032ACF0`](../Story-Events-And-Hunts/story-flags.md) Persistent flag: set bank64 b (on story flags)<br>[`0x0032AD70`](../World-Areas-And-Travel/treasure-chests.md) Persistent flag: set bank512 low (on treasure chests)<br>[`0x0032ADF0`](field-runtime.md) Persistent flag: set bank512 high |
 
 </details>
 

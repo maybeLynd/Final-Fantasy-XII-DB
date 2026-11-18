@@ -28,9 +28,21 @@ Gil is a signed 32-bit value at `+0x08` of the game-state block whose address is
 
 The setter is `0x00254EE0(newValue)`, and every row of Operations reaches it. The save header is the start of the
 save image at `0x02164280` (`0x0025397E` stores that address in `[0x02092758]`), and block writes of the image replace
-gil without the setter: `0x002EF650` and `0x002EF5F0` zero its `0x56690` bytes (`0x002EF663`, `0x002EF603`), `0x00253A80`
-zeroes its first `0x58` bytes (`0x00253A93`), `0x00583C00` copies `0xE240` bytes over it (`0x00583C30`-`0x00583C9D`), and
-`0x002EF300` requests a read of `0xE240` bytes of a file into it (`0x002EF317`-`0x002EF336`).
+gil without the setter: `0x002EF650` and `0x002EF5F0` zero its `0x56690` bytes¹, `0x00253A80`
+zeroes its first `0x58` bytes², `0x00583C00` copies `0xE240` bytes over it³, and
+`0x002EF300` requests a read of `0xE240` bytes of a file into it⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EF663`, `0x002EF603` |
+| ² | `0x00253A93` |
+| ³ | `0x00583C30`-`0x00583C9D` |
+| ⁴ | `0x002EF317`-`0x002EF336` |
+
+</details>
 
 The setter does this:
 
@@ -61,10 +73,11 @@ before calling the setter (see Operations), so for them the spent amount never e
 The slot is base `0x384C` plus the row's offset byte, read by `0x003166F0` and written by `0x00316BF0`.
 For one call the meter does, in order:
 
-1. Computes the new saturating total.
-2. Calls `0x00315E90(kind)`, the achievement check, which reads the total stored so far (`0x00316760`),
-   before the new one is written.
-3. Stores the new total (`0x00316BF0`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Computes the new saturating total. |   |
+| 2 | Calls `0x00315E90(kind)`, the achievement check, which reads the total stored so far, before the new one is written. | `0x00316760` |
+| 3 | Stores the new total. | `0x00316BF0` |
 
 ### The achievement check
 
@@ -75,25 +88,53 @@ it, it sets the bit and calls `0x008632B0` with the achievement id from `0x00D10
 
 `0x008632B0` unlocks the Steam achievement through `0x0020CE60`, which marks the achievement record
 (`+0x190` = 1) and calls Steam's user-stats interface (vtable `+0x38`, then `+0x50`). Records 8 and
-10 of the achievement descriptor table `0x01DFE410` are `ACH_COUNT_GET_GIL` "Plunderer" (`0x01DFF0D0`)
-and `ACH_COUNT_USE_GIL` "Spendthrift" (`0x01DFF400`); each record's first dword is its counter kind, 6
+10 of the achievement descriptor table `0x01DFE410` are `ACH_COUNT_GET_GIL` "Plunderer"¹
+and `ACH_COUNT_USE_GIL` "Spendthrift"²; each record's first dword is its counter kind, 6
 and 7.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01DFF0D0` |
+| ² | `0x01DFF400` |
+
+</details>
 
 The meter runs only for the kind matching the change's direction, and its own check reads the total from
 before the update, so the change that reaches a threshold does not unlock the achievement by itself.
 
-The end-of-field-frame sweep `0x00316930` evaluates descriptors 0-29 with the stored totals (`0x00316A36`-`0x00316A43`),
+The end-of-field-frame sweep `0x00316930` evaluates descriptors 0-29 with the stored totals¹,
 kinds 6 and 7 among them (mode 0, `0x00D10490`, `0x00D10498`), so Plunderer and Spendthrift unlock at the first
 sweep after the stored total reaches the threshold, with no further gain or spend
 ([achievements](../Steam-And-Achievements/achievements.md#the-sweep-and-the-re-send)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00316A36`-`0x00316A43` |
+
+</details>
 
 ### The thresholds
 
 The thresholds come from the handbook file `menuhandbook.bin`, loaded raw into `[0x022C2550]` by
 `0x003158B0` (resource 7, 200). `0x003165C0(kind)` follows four 16-bit relative offsets from file
 `+0x08`, then reads a kind bitmask at `+4` and packed 32-bit values at `+8`. When the kind's bit is
-clear it returns 0 (`0x0031661A`-`0x0031661C`). Its callers then take the row's dword at `0x00D10464 + kind*8`
-(`0x00315F24`-`0x00315F28`, `0x00316AFD`-`0x00316B01`), which is 0 for kinds 6 and 7.
+clear it returns 0¹. Its callers then take the row's dword at `0x00D10464 + kind*8`², which is 0 for kinds 6 and 7.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031661A`-`0x0031661C` |
+| ² | `0x00315F24`-`0x00315F28`, `0x00316AFD`-`0x00316B01` |
+
+</details>
 
 In the shipped files of every language the gained threshold is **100,000** and the spent threshold
 is **1,000,000**.
@@ -108,16 +149,36 @@ is **1,000,000**.
 - `0x002F9820` does not report the unit as a party member with augment 32 (Offering), bit `0x1` of stats byte
   `+0x6C` or `+0x7C`.
 
-The tests run in the order listed, each answering 0 (`0x00309070`-`0x0030908F`, `0x003090D0`-`0x003090E4`, `0x003090FB`), and
+The tests run in the order listed, each answering 0¹, and
 `0x002F9820(unit)` takes only the unit. A null unit, or a unit with no record at `+0x698`, does not take the enemy exit
-and goes on to the other tests (`0x00309070`-`0x0030907F`); unless one of them answers 0 first, `0x002F9820` then reads
-`+0x698` of the null unit or byte `+0x6C` of the null record (`0x002F9823`-`0x002F9841`).
+and goes on to the other tests²; unless one of them answers 0 first, `0x002F9820` then reads
+`+0x698` of the null unit or byte `+0x6C` of the null record³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00309070`-`0x0030908F`, `0x003090D0`-`0x003090E4`, `0x003090FB` |
+| ² | `0x00309070`-`0x0030907F` |
+| ³ | `0x002F9823`-`0x002F9841` |
+
+</details>
 
 The action row is the low 32 bits of the second of two `0x0020E600` calls for the dword `+0x0C` of `[0x02EBF138]`, plus
-the id times the table's word `+0x08`, a 32-bit sum; only the first answer is tested for null (`0x0030909D`-`0x003090CA`).
-With a null `[0x02EBF138]` or a null first answer the row address is 0 and the byte is read at address `0x1E`
-(`0x00309098`-`0x003090A8`, `0x003090CE`-`0x003090D0`). The last step, `0x002F95D0(unit, action)` below, is a tail jump
-(`0x003090E6`-`0x003090F6`).
+the id times the table's word `+0x08`, a 32-bit sum; only the first answer is tested for null¹.
+With a null `[0x02EBF138]` or a null first answer the row address is 0 and the byte is read at address `0x1E`². The last step, `0x002F95D0(unit, action)` below, is a tail jump³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030909D`-`0x003090CA` |
+| ² | `0x00309098`-`0x003090A8`, `0x003090CE`-`0x003090D0` |
+| ³ | `0x003090E6`-`0x003090F6` |
+
+</details>
 
 Augment row 32's description (id 13032) reads "Enables casting of magicks with gil, rather than
 MP.", and the shipped equipment row with augment byte `+0x1A` = 32 is the Turtleshell Choker
@@ -144,16 +205,38 @@ gil += (enemyStats.b[+0x1C2] - enemyStats.b[+0x88]) * [[enemy+0xE78] + 0x30]
 `0x10` set. Here `level` is the recipient's byte `+0x1C2` and `LP` is that recipient's share capped
 at 999. Such a recipient receives no LP from the kill. This sits under the same reward gate as EXP and
 LP (`+0xE9A` and the killer test, see [EXP, LP and level-ups](exp-lp-and-level-ups.md)). The total is floored at 0 and stored through
-the setter (`0x00312553`-`0x0031255D`), and the difference is posted as a gain notification (`0x00312566`).
+the setter¹, and the difference is posted as a gain notification².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00312553`-`0x0031255D` |
+| ² | `0x00312566` |
+
+</details>
 
 ### The gain notification
 
 `0x00469E80(amount)` posts message `0x26` through `0x0046AB10` when the amount
 is positive, and does nothing otherwise.
 The amount is the dword `+0x10` of a zeroed `0x30`-byte context on its stack, passed as
-`0x0046AB10(0, 0x26, context)` (`0x00469E87`-`0x00469EB2`).
+`0x0046AB10(0, 0x26, context)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00469E87`-`0x00469EB2` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### The quest result window
 
@@ -168,20 +251,52 @@ The quest result window is the `0x100`-byte widget with procedure `0x003F4E70` t
 | `+0xC1` | `u8[63]` | window | the window's own fields: `+0xC4` the creation record's dword `+0x10`, `+0xC8` what `0x0037E8A0` returns, `+0xD0`-`+0xF3` the `0x24` bytes the creation record points to, `+0xF4` and `+0xF8` the saved `0x02092730` and bit `0x1` of `0x02092734` (`0x003F4F87`-`0x003F4FE2`); bit `0x2` of `+0xF8` is cleared by the construct message (`0x003F4FAC`) and set by `0x003F4DD0` (`0x003F4E44`) |
 
 The procedure `0x003F4E70` handles messages 1, 2, 16 and 18 and answers 0 for each; any
-other message goes to `0x005C5230` (`0x003F4E79`-`0x003F4E9F`). Message 1 ends with
-`0x00244960([0x0208EA28], window)` whatever `+0xC0` holds (`0x003F5019`-`0x003F5023`). Message
-16 also runs `0x003F4DD0(window)` after storing `+0xC8` (`0x003F4F26`-`0x003F4F30`).
+other message goes to `0x005C5230`¹. Message 1 ends with
+`0x00244960([0x0208EA28], window)` whatever `+0xC0` holds². Message
+16 also runs `0x003F4DD0(window)` after storing `+0xC8`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F4E79`-`0x003F4E9F` |
+| ² | `0x003F5019`-`0x003F5023` |
+| ³ | `0x003F4F26`-`0x003F4F30` |
+
+</details>
 
 `0x003F4DD0` starts the grant list `0x003F4840` as a `0x130`-byte widget, `0x00244F50(0x130, 0x003F4840, record)`.
 The record's dword `+0x00` and qword `+0x10` are 0, and its qword `+0x08` points at four stack qwords:
-the window's `+0xC8`, the address of its `+0xD0`, the address of a zeroed `0x18`-byte block and 0
-(`0x003F4DEA`-`0x003F4E3F`). It then sets bit `0x2` of the window's dword `+0xF8` and does not read the
-call's answer (`0x003F4E44`).
+the window's `+0xC8`, the address of its `+0xD0`, the address of a zeroed `0x18`-byte block and 0¹. It then sets bit `0x2` of the window's dword `+0xF8` and does not read the
+call's answer².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F4DEA`-`0x003F4E3F` |
+| ² | `0x003F4E44` |
+
+</details>
 
 Message 2 closes the window with `0x00244F00` only when bit `0x2` of `+0xF8` is set and
-the window at `0x02B5F1F8` is absent or has its byte `+0xC0` at 3 (`0x003F4F3D`-`0x003F4F66`).
+the window at `0x02B5F1F8` is absent or has its byte `+0xC0` at 3¹.
 Message 18 runs `0x0037E4F0(0)` before the restore, makes the restore only when `+0xF4`
-is not -1 and `+0xC0` is 0, and always zeroes `0x02B5F200` (`0x003F4EA4`-`0x003F4EE9`).
+is not -1 and `+0xC0` is 0, and always zeroes `0x02B5F200`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F4F3D`-`0x003F4F66` |
+| ² | `0x003F4EA4`-`0x003F4EE9` |
+
+</details>
+
+</details>
 
 ## Operations
 
@@ -208,12 +323,24 @@ Every function that changes gil: the callers of the setter and of its two wrappe
 | `0x003112F0` | `0x00311A9E` | applies a result: when the result's dword `+0x08` is non-zero, gil = max(gil - value, 0) (`0x00311A84`-`0x00311A9E`) |
 | `0x003058B0` | `0x003058B5` (jump) | sets gil to 99,999,999 (`mov ecx, 0x05F5E0FF; jmp 0x00254EE0`); called from `0x001D3E9C`, `0x0023E168` and `0x00240BAE` |
 
-The reward record applier `0x003F4AA0` is called only by `0x00290130`, which fetches the record
-(`0x003F8C60`), applies it and posts message `0x100` (`0x003F4BD0`). `0x00290130` is reached through the
+The reward record applier `0x003F4AA0` is called only by `0x00290130`, which fetches the record¹, applies it and posts message `0x100`². `0x00290130` is reached through the
 thunk `0x002E1A50` (`jmp 0x00290130`), called at `0x00344C9A` in `0x00344C60`, the Start handler of the script
 verb `questresultwindow` (`0x37C`).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F8C60` |
+| ² | `0x003F4BD0` |
+
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
@@ -224,16 +351,18 @@ verb `questresultwindow` (`0x37C`).
 | unit `+0xE58` | `i32` | gil reserved for the action being carried out | `0x0030EFC0`; cleared by `0x00300280`, `0x00305640` |
 | unit `+0xE54` | `i32` | gil amount from the action's result evaluation, deducted on consume | `0x00303954`, `0x00303B2E` |
 
+</details>
+
 ## Modding notes
 
-- The cap is the constant `0x05F5E0FF` in `0x00254EE0` (`0x00254F09`) and in `0x003058B0`; it is not data.
+- The cap is the constant `0x05F5E0FF` in `0x00254EE0`¹ and in `0x003058B0`; it is not data.
 - The shop's rolling gil total carries the same constant twice: `0x002A1DC0` flags a roll whose end
   passes it, and `0x002524C0(current, change)` returns the change to roll: 99,999,999 for a current
   above the cap, 0 for a negative current, the current itself when the change would go below 0,
   `99,999,999 - current` when the sum would pass the cap, else the change. Raising the cap means
   patching these too.
 - When the change would take the total below 0, the change `0x002524C0` tests against the cap is the current, so a
-  current of 50,000,000 or more gives `99,999,999 - current` instead of the current (`0x002524DC`-`0x002524F8`).
+  current of 50,000,000 or more gives `99,999,999 - current` instead of the current².
 - Writing `[0x02092758] + 8` directly skips both the clamp and the gained/spent totals. Write through
   `0x00254EE0`, or `0x003004B0` for a relative change.
 - The Plunderer and Spendthrift thresholds are in `menuhandbook.bin`, the record reached through the
@@ -244,6 +373,16 @@ verb `questresultwindow` (`0x37C`).
   there.
 - A kill's gil comes from the enemy's two records at `+0xE70` and `+0xE78` (dword `+0x30` of each)
   and the level difference in its stats.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00254F09` |
+| ² | `0x002524DC`-`0x002524F8` |
+
+</details>
 
 ## Related
 
@@ -260,8 +399,10 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002EF650` | is called by | `0x00280140` |
+| [`0x002EF650`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
 
 </details>

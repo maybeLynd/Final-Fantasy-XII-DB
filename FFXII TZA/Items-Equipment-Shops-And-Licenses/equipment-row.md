@@ -36,13 +36,31 @@ augment.
 All multi-byte fields are little-endian.
 
 Offsets in the row table are from the start of the row, and offsets in the bonus record table from the start of
-the record. Row *n* starts at the header's `+0x0C` plus *n* times the header's `u16` stride at `+0x08`
-(`0x002381CC`-`0x002381DA`). In the `us` file the header holds 557 rows (`+0x04`), stride 52, rows at `0x20` and
+the record. Row *n* starts at the header's `+0x0C` plus *n* times the header's `u16` stride at `+0x08`¹. In the `us` file the header holds 557 rows (`+0x04`), stride 52, rows at `0x20` and
 bonus records at `0x7144` (`+0x18`).
 
-The header's `+0x0C` and `+0x18` are offsets from the start of the section, rebased by `0x003845F0` (`0x0038460E`,
-`0x0038462F`). A row's `+0x28` is an offset from the header's `+0x18` (`0x00238225`-`0x0023823E`). The directory entry
-`+0x38` is an offset from the start of `battle_pack.bin`, rebased by `0x003846F0` (`0x00384759`-`0x00384780`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002381CC`-`0x002381DA` |
+
+</details>
+
+The header's `+0x0C` and `+0x18` are offsets from the start of the section, rebased by `0x003845F0`¹. A row's `+0x28` is an offset from the header's `+0x18`². The directory entry
+`+0x38` is an offset from the start of `battle_pack.bin`, rebased by `0x003846F0`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038460E`, `0x0038462F` |
+| ² | `0x00238225`-`0x0023823E` |
+| ³ | `0x00384759`-`0x00384780` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -85,15 +103,37 @@ covers `+0x24`. No row pointer is stored in memory outside the stack, and no row
 
 `0x0030AC50(action id, weapon id)` takes both ids as words. The action row is looked up only when
 `0x00322C50(0x14, id, 0)` answers non-zero, the weapon row only when `0x00322C50(6, id, 0)` does; a row
-whose slot (`0x02EBF138`, `0x02EBF0F8`) or whose `0x0020E600` answer is null counts as missing
-(`0x0030AC5F`-`0x0030AD09`). The weapon row index is the id less `0x1000` (`0x0030ACFE`). With no action row
-the answer is -1 (`0x0030AD0B`-`0x0030AD0E`, `0x0030AD6E`-`0x0030AD73`).
+whose slot¹ or whose `0x0020E600` answer is null counts as missing². The weapon row index is the id less `0x1000`³. With no action row
+the answer is -1⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x02EBF138`, `0x02EBF0F8` |
+| ² | `0x0030AC5F`-`0x0030AD09` |
+| ³ | `0x0030ACFE` |
+| ⁴ | `0x0030AD0B`-`0x0030AD0E`, `0x0030AD6E`-`0x0030AD73` |
+
+</details>
 
 When the action row's word `+0x24` is not `0xFFFF`, has bit `0x8000` and the row's dword `+0x0C` lacks
-bit `0x40000000`, the answer is that word's low 15 bits (`0x0030AD10`-`0x0030AD2F`). When the word is
+bit `0x40000000`, the answer is that word's low 15 bits¹. When the word is
 `0xFFFF`, the weapon row exists and `+0x0C` lacks the bit, the answer is the low 15 bits of the
-weapon row's word `+0x2C` (`0x0030AD43`-`0x0030AD5A`). Every other case answers -1, among them a word
-`+0x24` without bit `0x8000` (`0x0030AD48`-`0x0030AD4B`, `0x0030AD73`).
+weapon row's word `+0x2C`². Every other case answers -1, among them a word
+`+0x24` without bit `0x8000`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030AD10`-`0x0030AD2F` |
+| ² | `0x0030AD43`-`0x0030AD5A` |
+| ³ | `0x0030AD48`-`0x0030AD4B`, `0x0030AD73` |
+
+</details>
 
 The bonus record is 24 bytes:
 
@@ -130,10 +170,22 @@ What each record field does to a unit is on [Stats](../Damage-And-Battle-Formula
 ### The class byte and the group
 
 `0x0031E9F0` maps the class `+0x09` through the 27 bytes at `0x0031EA74` and the jump table at `0x0031EA50` to a
-category 1-9, or 0 for a class above 26 (`0x0031EA4A`), and `0x0031E9A0` folds the category into the group, 0 for
-category 0 (`0x0031E9A0`-`0x0031E9DD`). The group decides what
-`+0x18`, `+0x19` and `+0x1A` mean in the stats rebuild `0x002FEF30` (`0x002FF451`), the augment rebuild `0x0030FED0`
-(`0x003100E5`) and the query filler `0x0031C5D0` (`0x0031CA54`):
+category 1-9, or 0 for a class above 26¹, and `0x0031E9A0` folds the category into the group, 0 for
+category 0². The group decides what
+`+0x18`, `+0x19` and `+0x1A` mean in the stats rebuild `0x002FEF30`³, the augment rebuild `0x0030FED0`⁴ and the query filler `0x0031C5D0`⁵:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031EA4A` |
+| ² | `0x0031E9A0`-`0x0031E9DD` |
+| ³ | `0x002FF451` |
+| ⁴ | `0x003100E5` |
+| ⁵ | `0x0031CA54` |
+
+</details>
 
 | Category | Classes | Group | `+0x18` | `+0x19` | `+0x1A` |
 |---|---|---|---|---|---|
@@ -151,18 +203,40 @@ Reach is in tenths (`0x00309300` at `0x0030938B`); the recipe is the plain Attac
 
 Most combat readers do not test the group: they read the weapon fields of the main-hand item, stats `+0x50`. They
 read the element, status chance and statuses from the off-hand item instead when the weapon's `+0x11` is 23 or
-above as an unsigned byte (`0x0038BEDE`, `0x0038FA54`, `0x00384D09`). That includes the -1 of two-handed weapons, whose
+above as an unsigned byte¹. That includes the -1 of two-handed weapons, whose
 off hand is empty, so they fall back to the weapon's own fields.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038BEDE`, `0x0038FA54`, `0x00384D09` |
+
+</details>
 
 ### Pairing
 
 The off-hand item's class must equal the main-hand item's `+0x11` (`0x002F7EC0` at `0x002F7F70`-`0x002F7F76`).
-`0x002F7EC0(off, main)` answers 1 at once when either word is empty, `0xFFFF` (`0x002F7ED5`-`0x002F7EED`), and 0 with no
-equipment table bound (`0x002F7EEF`-`0x002F7EF9`, `0x002F7F87`). The
+`0x002F7EC0(off, main)` answers 1 at once when either word is empty, `0xFFFF`¹, and 0 with no
+equipment table bound². The
 shipped rows use 18, a shield, on one-handed weapons, 23-26 on the four ammunition weapons, and -1 elsewhere, so
 two-handed weapons take nothing in the off hand.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F7ED5`-`0x002F7EED` |
+| ² | `0x002F7EEF`-`0x002F7EF9`, `0x002F7F87` |
+
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Class | Category | Rows | Off hand | First items |
 |---|---|---:|---|---|
@@ -198,7 +272,7 @@ The rows count ids `0x1000`-`0x11A3`, and the names are each row's own name word
 and "Reserve", lie past the inventory's counts, so the party cannot hold them, but 124 of them are equipped.
 
 - Enemies: 958 of the 1,146 enemy definitions put one of 97 rows in the main hand `+0x16`, and 36 put one of 12
-  other rows in the off hand `+0x1C`; `0x0023AC80` installs both (`0x0023ADA8`, `0x0023ADBA`).
+  other rows in the off hand `+0x1C`; `0x0023AC80` installs both¹.
 - Guests: Lamont, Larsa and Reddas carry rows 468, 469, 484 and 485 from the party table (`+0x0A`-`+0x13`,
   `0x0023AE8C`-`0x0023AEDA`) and the scenario presets (`+0x04`-`+0x0D`, `0x00239C62`-`0x00239CBF`).
 - Espers: the 13 "Reserve" rows 179-191 are the main hands of the 13 Espers and rows 544-556 their body pieces, one
@@ -206,6 +280,15 @@ and "Reserve", lie past the inventory's counts, so the party cannot hold them, b
 - Reserve: rows 440, 444-449, 462-464, 486, 490 and 491 have no reference in the area files, `battle_pack.bin` (party
   table, scenario presets, shops, bazaar, reward packages and selectors, licenses, starting inventory), the
   chests and other records of the shipped scripts, or an immediate of the executable.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023ADA8`, `0x0023ADBA` |
+
+</details>
 
 | Field | Values in rows 0-419 |
 |---|---|
@@ -223,23 +306,37 @@ combo 5, weapon evade 5, element fire (`0x01`), charge base 32, bonus record 0, 
 offset 4200 (record 175), which holds Regen and Libra and protects from Petrify, Stop, Sleep, Confuse, Doom, Blind, Poison, Silence,
 Sap, Oil, Disable, Immobilize, Slow and Disease.
 
+</details>
+
 ## Loader behaviour
 
-1. `0x00236C30` passes the directory entry `+0x38` to `0x00238160` (`0x00236D73`).
-2. `0x00238160` binds `0x02EBF0F8` to the section through `0x003845F0`, which rebases the header's rows offset `+0x0C`
-   and bonus offset `+0x18` by the section address (`0x0038460E`, `0x0038462F`).
-3. It then rewrites every row's `+0x28` to the encoded address of its bonus record, header `+0x18` plus the stored
-   offset (`0x00238225`-`0x0023823E`). Nothing else writes a row.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00236C30` passes the directory entry `+0x38` to `0x00238160`. | `0x00236D73` |
+| 2 | `0x00238160` binds `0x02EBF0F8` to the section through `0x003845F0`, which rebases the header's rows offset `+0x0C` and bonus offset `+0x18` by the section address. | `0x0038460E`, `0x0038462F` |
+| 3 | It then rewrites every row's `+0x28` to the encoded address of its bonus record, header `+0x18` plus the stored offset. Nothing else writes a row. | `0x00238225`-`0x0023823E` |
 
 ### What the load checks
 
 The load makes three tests, none of them on the file's contents:
 
-- `0x00384420` files no request when `0x0032E400` gives the file a negative size (`0x00384453`-`0x00384459`); the size
+- `0x00384420` files no request when `0x0032E400` gives the file a negative size¹; the size
   read comes from that size table, not from the file.
-- `0x003845F0` leaves the slot null when the section entry is null (`0x003845F7`-`0x003845FA`), and rebases a header
-  offset only when it is not 0 (`0x0038460A`, `0x0038461A`, `0x0038462B`, `0x0038463C`).
-- `0x00238160` rewrites rows up to the header's row count `+0x04` (`0x00238190`-`0x0023819E`).
+- `0x003845F0` leaves the slot null when the section entry is null², and rebases a header
+  offset only when it is not 0³.
+- `0x00238160` rewrites rows up to the header's row count `+0x04`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00384453`-`0x00384459` |
+| ² | `0x003845F7`-`0x003845FA` |
+| ³ | `0x0038460A`, `0x0038461A`, `0x0038462B`, `0x0038463C` |
+| ⁴ | `0x00238190`-`0x0023819E` |
+
+</details>
 
 The load never checks the `st2e` magic, the stride, the row count against the section's size, or that a row's
 `+0x28` lands inside the bonus records. `0x00238850`, `0x003846F0`, `0x00236C30`, `0x003845F0` and `0x00238160` read no row
@@ -277,20 +374,26 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E400` | is called by | `0x0032FCA0`, `0x00330310`, `0x003306E0` |
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
 
 **Saving, loading and settings** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00235E90` | is called by | `0x00253A80` |
+| [`0x00235E90`](equipment-row.md) | is called by | [`0x00253A80`](../Saving-Loading-And-Settings/save-data-fields.md) Save runtime: initialize header and image backed state (on save data fields) |
 
 **Scripts and script commands**
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0032E400` | is called by | `0x0050DF70` |
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0050DF70`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) |
 
 </details>

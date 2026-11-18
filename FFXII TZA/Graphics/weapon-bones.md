@@ -15,11 +15,23 @@ the anchor query finds a point on a child by key (`0x00426770`;
 [Effect anchors and targets](effect-anchors-and-targets.md), point kinds 4 and 5, and the fallback to a child's
 `n_grip`).
 
-`0x00426770` asks `0x00421E20` for the point on the record itself, whose index is its word `+0x00` (`0x00426776`,
-`0x004267B7`), then on its first child `+0x08` (`0x004267FC`), then through `0x0042EF90` with the body `0x0042DA00` on
-that child's children `+0x08` and next siblings `+0x0A`, each with its descendants (`0x00426829`, `0x00426844`).
-Each hit replaces the stored result (`0x004267C1`, `0x00426806`, `0x0042DA1F`), so the last record in that order with
-the point gives it; with no hit it returns null (`0x0042684E`-`0x00426853`). The two points:
+`0x00426770` asks `0x00421E20` for the point on the record itself, whose index is its word `+0x00`¹, then on its first child `+0x08`², then through `0x0042EF90` with the body `0x0042DA00` on
+that child's children `+0x08` and next siblings `+0x0A`, each with its descendants³.
+Each hit replaces the stored result⁴, so the last record in that order with
+the point gives it; with no hit it returns null⁵. The two points:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00426776`, `0x004267B7` |
+| ² | `0x004267FC` |
+| ³ | `0x00426829`, `0x00426844` |
+| ⁴ | `0x004267C1`, `0x00426806`, `0x0042DA1F` |
+| ⁵ | `0x0042684E`-`0x00426853` |
+
+</details>
 
 | Point | Key | Point id (`0x00422380`) |
 |---|---|---|
@@ -104,32 +116,42 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [debug menu](../Engine-Core/debug-menu.md), [frame update order](../Engine-Core/frame-update-order.md), [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003A4290` | calls | `0x00263C30`, `0x00263FF0`, `0x00358940`, `0x003589B0` |
+| [`0x003A4290`](effect-anchors-and-targets.md) (on effect anchors and targets) | calls | [`0x00263C30`](effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x00263FF0`](effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x00358940`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor manager: get record by ordinal (on party during scenes)<br>[`0x003589B0`](effect-anchors-and-targets.md) Actor handle: encode registry entry (on effect anchors and targets) |
 
 **Sound and music** (explained on [animation sounds](../Sound-And-Music/animation-sounds.md), [effect anchors and targets](effect-anchors-and-targets.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00421E20` | is called by | `0x00332C40`, `0x003B99D0` |
+| [`0x00421E20`](effect-anchors-and-targets.md) (on effect anchors and targets) | is called by | [`0x00332C40`](../Sound-And-Music/spatial-sound.md) (on spatial sound)<br>[`0x003B99D0`](effect-anchors-and-targets.md) (on effect anchors and targets) |
 
 **Movement and pathfinding** (explained on [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md), [traps](../World-Areas-And-Travel/traps.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003A4290` | calls | `0x00264670`, `0x0026E350` |
+| [`0x003A4290`](effect-anchors-and-targets.md) (on effect anchors and targets) | calls | [`0x00264670`](effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x0026E350`](effect-anchors-and-targets.md) (on effect anchors and targets) |
 
 **Party** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003A4290` | calls | `0x003590D0` |
+| [`0x003A4290`](effect-anchors-and-targets.md) (on effect anchors and targets) | calls | [`0x003590D0`](effect-anchors-and-targets.md) (on effect anchors and targets) |
 
 **Game files and data tables** (explained on [resource sections](../Game-Files-And-Data-Tables/resource-sections.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00421E20` | calls | `0x002ED570` |
+| [`0x00421E20`](effect-anchors-and-targets.md) (on effect anchors and targets) | calls | [`0x002ED570`](skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
 
 </details>

@@ -190,17 +190,11 @@ the calling function.
 
 A system message is an entry of the message list, not a line of the script. The steps:
 
-1. The helper calls `setmeswinmesid(0, number)` (`0x47E`, `0x0034A2C0`), which stores the number in the dword `+0x58` of
-   message slot 0 (`0x002E2120`, [message windows](../Menus-And-HUD/message-windows.md)); `0x002E2120` takes a negative
-   slot as 0 and ignores a slot of 8 or more (`0x002E2120`-`0x002E2129`). It then opens the window with
-   `ames_1fe` on a section 2 entry that is an empty string in every carrying script.
-2. The window opener `0x002E16B0` copies the word into the window request (`0x002E17C5`). When it is non-zero
-   (`0x002A2D4A`), the window build `0x002A2C00` takes its low byte minus 1 (`0x002A2D62`-`0x002A2D6B`) and calls
-   `0x002A5330` (`0x002A2D71`).
-3. `0x002A5330` reads that entry of the list `0x0039BB20` returns, the qword at `0x02AEE888`: section 5 of
-   the language's `packfiles/fontpack_it.bin` (the `us` copy for the `us` text; the file carries that name in every
-   language folder), bound to `0x02AEE888` by `0x0039C150` (`0x0039C26B`). It formats the entry's text (`0x002F9860`) with the names its
-   kind selects into the buffer `0x0209C990` and returns it to the build (`0x002A2D76`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The helper calls `setmeswinmesid(0, number)` (`0x47E`, `0x0034A2C0`), which stores the number in the dword `+0x58` of message slot 0 (`0x002E2120`, [message windows](../Menus-And-HUD/message-windows.md)); `0x002E2120` takes a negative slot as 0 and ignores a slot of 8 or more. It then opens the window with `ames_1fe` on a section 2 entry that is an empty string in every carrying script. | `0x002E2120`-`0x002E2129` |
+| 2 | The window opener `0x002E16B0` copies the word into the window request. When it is non-zero, the window build `0x002A2C00` takes its low byte minus 1 and calls `0x002A5330`. | `0x002E17C5`<br>`0x002A2D4A`<br>`0x002A2D62`-`0x002A2D6B`<br>`0x002A2D71` |
+| 3 | `0x002A5330` reads that entry of the list `0x0039BB20` returns, the qword at `0x02AEE888`: section 5 of the language's `packfiles/fontpack_it.bin` (the `us` copy for the `us` text; the file carries that name in every language folder), bound to `0x02AEE888` by `0x0039C150`. It formats the entry's text with the names its kind selects into the buffer `0x0209C990` and returns it to the build. | `0x0039C26B`<br>`0x002F9860`<br>`0x002A2D76` |
 
 List = count:u32, then 8-byte entries from +4 entry n-1 for message number n:
 
@@ -211,13 +205,33 @@ List = count:u32, then 8-byte entries from +4 entry n-1 for message number n:
 | `+0x04` | `u16` |  | second id |
 | `+0x07` | `u8` |  | kind: 0 text only; 1 to 5 name the ids through `0x0035D330`; 1 also gives the first id (`0x00300B80`, `0x002A541B`) |
 
-`0x002A5330(n)` reads entry 0 for an index at or above the list's count or below 0 (`0x002A534D`-`0x002A5355`). Kinds 1,
+`0x002A5330(n)` reads entry 0 for an index at or above the list's count or below 0¹. Kinds 1,
 3 and 5 name the first id only: kind 1 through `0x0035D330(0x11, id << 16)`, kind 3 through `0x0035D330(2, id)` and
 kind 5 through `0x0035D330(0xD, id << 16)`. Kind 2 names the first id with class `0x14` and the second with class 2,
-kind 4 both with class 2 (`0x002A5363`-`0x002A53EC`).
+kind 4 both with class 2².
 
-Kind 1 also gives one of the first id, `0x00300B80(id, 1, 0)` (`0x002A540D`-`0x002A541B`). The text and the names go to
-`0x002B4090(0x200, 0x0209C990, text, name1, name2)`, which fills the buffer `0x0209C990` (`0x002A5420`-`0x002A5440`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A534D`-`0x002A5355` |
+| ² | `0x002A5363`-`0x002A53EC` |
+
+</details>
+
+Kind 1 also gives one of the first id, `0x00300B80(id, 1, 0)`¹. The text and the names go to
+`0x002B4090(0x200, 0x0209C990, text, name1, name2)`, which fills the buffer `0x0209C990`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A540D`-`0x002A541B` |
+| ² | `0x002A5420`-`0x002A5440` |
+
+</details>
 
 The `us` list holds 145 entries. The messages callers pass are of kind 0 or 5, so no message gives an item:
 
@@ -439,98 +453,102 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Characters and objects** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00352FA0` | calls | `0x00264050`, `0x0035AE10` |
-| `0x00354110` | calls | `0x002693D0` |
+| [`0x00352FA0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | calls | [`0x00264050`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes)<br>[`0x0035AE10`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
+| [`0x00354110`](shared-zone-script-actors.md) | calls | [`0x002693D0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
 
 **Engine core** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x003462D0` | calls | `0x00229EB0` |
-| `0x00354D00` | calls | `0x00229EA0` |
+| [`0x003462D0`](shared-zone-script-actors.md) | calls | [`0x00229EB0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
+| [`0x00354D00`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump) | calls | [`0x00229EA0`](../Graphics/effect-drawing.md) (on effect drawing) |
 
 **Gameplay** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00300B80` | is called by | `0x00316DF0`, `0x00323540` |
-| `0x0035D330` | calls | `0x0031C5D0` |
+| [`0x00300B80`](shared-zone-script-actors.md) | is called by | [`0x00316DF0`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Definition runtime: activate and apply configured side effects (on strong and weak mode)<br>[`0x00323540`](../Party/party-members.md) Definition runtime: deactivate and remove configured items (on party members) |
+| [`0x0035D330`](shared-zone-script-actors.md) | calls | [`0x0031C5D0`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids) |
 
 **Items, equipment, shops and licenses** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [identifier spaces](../Engine-Core/identifier-spaces.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x002A5330` | calls | `0x00300B80` |
-| `0x00300B80` | calls | `0x003008A0` |
-| `0x00300B80` | is called by | `0x00323910` |
+| [`0x002A5330`](shared-zone-script-actors.md) | calls | [`0x00300B80`](shared-zone-script-actors.md) |
+| [`0x00300B80`](shared-zone-script-actors.md) | calls | [`0x003008A0`](../Scripts-And-Script-Commands/reward-verbs.md) Inventory: modify encoded item and update discovery state (on reward verbs) |
+| [`0x00300B80`](shared-zone-script-actors.md) | is called by | [`0x00323910`](../Items-Equipment-Shops-And-Licenses/buying-a-license.md) Battle stats: set license node state and apply side effects (on buying a license) |
 
 **Party** (explained on [debug menu](../Engine-Core/debug-menu.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00352FA0` | calls | `0x00263750`, `0x002647C0` |
+| [`0x00352FA0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | calls | [`0x00263750`](../Graphics/model-asset-list.md) (on model asset list)<br>[`0x002647C0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
 
 **Graphics** (explained on [augments](../Damage-And-Battle-Formulas/augments.md), [battle numbers](../Menus-And-HUD/battle-numbers.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0035D330` | is called by | `0x003BBD00`, `0x00506700` |
+| [`0x0035D330`](shared-zone-script-actors.md) | is called by | [`0x003BBD00`](../Random-Numbers/which-roll-uses-which-generator.md) (on which roll uses which generator)<br>[`0x00506700`](../Menus-And-HUD/battle-numbers.md) (on battle numbers) |
 
-**Game files and data tables** (explained on [debug logging](../Engine-Core/debug-logging.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [debug menu](../Engine-Core/debug-menu.md))
+**Game files and data tables** (explained on [debug logging](../Engine-Core/debug-logging.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [debug menu](../Engine-Core/debug-menu.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0017D280` | is called by | `0x0017D9D0`, `0x001B14E0`, `0x001F4340`, `0x002EEEE0` |
-| `0x008620C0` | is called by | `0x0032E3B0` |
-
-**Game files and data tables** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+| [`0x0017D280`](shared-zone-script-actors.md) | is called by | [`0x0017D9D0`](../Engine-Core/startup-constants.md) (on startup constants)<br>[`0x001B14E0`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x001F4340`](../Compiler-And-C-Runtime/runtime-services.md) (on runtime services)<br>[`0x002EEEE0`](../Engine-Core/debug-menu.md) (on debug menu) |
+| [`0x008620C0`](../Scripts-And-Script-Commands/verb-dispatch.md) (on verb dispatch) | is called by | [`0x0032E3B0`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [loot pickups](../Rewards-EXP-Gil-And-Loot/loot-pickups.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00300B80` | is called by | `0x00319920`, `0x003F4AA0` |
+| [`0x00300B80`](shared-zone-script-actors.md) | is called by | [`0x00319920`](../Rewards-EXP-Gil-And-Loot/loot-pickups.md) (on loot pickups)<br>[`0x003F4AA0`](../Rewards-EXP-Gil-And-Loot/gil.md) (on gil) |
 
-**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
+**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md), [debug logging](../Engine-Core/debug-logging.md), [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [party data](../Party/party-data.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00254CB0` | is called by | `0x00280140` |
+| [`0x00254CB0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
+| [`0x0017D280`](shared-zone-script-actors.md) | is called by | [`0x001DE5D0`](../Saving-Loading-And-Settings/game-settings.md) (on game settings)<br>[`0x001DF350`](../Saving-Loading-And-Settings/game-settings.md) Game setting config: parse one setting value (on game settings) |
+| [`0x00254CB0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) | is called by | [`0x00580840`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen)<br>[`0x00580EB0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen)<br>[`0x005819F0`](../Saving-Loading-And-Settings/saving-and-loading-transaction.md) Save slot scan: controller callback (on saving and loading transaction) |
 
-**Saving, loading and settings** (explained on [debug logging](../Engine-Core/debug-logging.md), [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [party data](../Party/party-data.md))
+**Menus and HUD** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md), [battle menu](../Menus-And-HUD/battle-menu.md), [small bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md), [menu screens](../Menus-And-HUD/menu-screens.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [party control modes](../Engine-Core/party-control-modes.md), [controls](../Controls-And-Input/controls.md), [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [dialogs](../Menus-And-HUD/dialogs.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0017D280` | is called by | `0x001DE5D0`, `0x001DF350` |
-| `0x00254CB0` | is called by | `0x00580840`, `0x00580EB0`, `0x005819F0` |
-
-**Menus and HUD**
-
-| Function | | Functions |
-|---|---|---|
-| `0x002B4090` | is called by | `0x00252030`, `0x00292B70`, `0x00295D90`, `0x002A86A0`, `0x002D66D0`, `0x003CA310`, `0x003CAB00`, `0x00551F00`, `0x005595E0` |
-| `0x0035D330` | is called by | `0x00250270`, `0x00273E30`, `0x0027B880`, `0x0027D480`, `0x0027F210`, `0x00292B70`, `0x002986E0`, `0x002C38B0`, `0x002C4720`, `0x00558CE0`, `0x00559E30`, `0x00560210` |
-
-**Menus and HUD**
-
-| Function | | Functions |
-|---|---|---|
-| `0x0035D330` | is also called by | `0x005618E0`, `0x00567B60`, `0x0056A890`, `0x0056AE80`, `0x0056B100`, `0x0056BC70` |
-
-**Menus and HUD** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md), [battle menu](../Menus-And-HUD/battle-menu.md), [small bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md))
-
-**Menus and HUD** (explained on [menu screens](../Menus-And-HUD/menu-screens.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [party control modes](../Engine-Core/party-control-modes.md), [controls](../Controls-And-Input/controls.md))
-
-**Menus and HUD** (explained on [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [dialogs](../Menus-And-HUD/dialogs.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md))
+| [`0x002B4090`](shared-zone-script-actors.md) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00292B70`](../Menus-And-HUD/text-codes.md) (on text codes)<br>[`0x00295D90`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x002A86A0`](../Menus-And-HUD/message-windows.md) (on message windows)<br>[`0x002D66D0`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x003CA310`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships)<br>[`0x003CAB00`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships)<br>[`0x00551F00`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save)<br>[`0x005595E0`](../Game-Files-And-Data-Tables/small-bin-tables.md) (on small bin tables) |
+| [`0x0035D330`](shared-zone-script-actors.md) | is called by | [`0x00250270`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x00273E30`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x0027B880`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x0027D480`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x0027F210`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item)<br>[`0x00292B70`](../Menus-And-HUD/text-codes.md) (on text codes)<br>[`0x002986E0`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x002C38B0`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x002C4720`](../Game-Files-And-Data-Tables/ui-typed-lists.md) (on ui typed lists)<br>[`0x00558CE0`](../Controls-And-Input/on-screen-keyboard.md) (on on screen keyboard)<br>[`0x00559E30`](../Menus-And-HUD/license-board-screen.md) (on license board screen)<br>[`0x00560210`](shared-zone-script-actors.md) |
+| [`0x0035D330`](shared-zone-script-actors.md) | is also called by | [`0x005618E0`](../Controls-And-Input/on-screen-keyboard.md) (on on screen keyboard)<br>[`0x00567B60`](../Menus-And-HUD/text-word-bank.md) (on text word bank)<br>[`0x0056A890`](../Menus-And-HUD/gambit-screen.md) (on gambit screen)<br>[`0x0056AE80`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids)<br>[`0x0056B100`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids)<br>[`0x0056BC70`](../Menus-And-HUD/gambit-screen.md) (on gambit screen) |
 
 **World, areas and travel** (explained on [debug logging](../Engine-Core/debug-logging.md), [game over](../World-Areas-And-Travel/game-over.md), [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0017D280` | is called by | `0x00314020` |
-| `0x0034AC10` | calls | `0x00314D80` |
-| `0x00352FA0` | calls | `0x00377C20` |
+| [`0x0017D280`](shared-zone-script-actors.md) | is called by | [`0x00314020`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
+| [`0x0034AC10`](shared-zone-script-actors.md) | calls | [`0x00314D80`](../Saving-Loading-And-Settings/save-data-fields.md) World transition: set destination parameter (on save data fields) |
+| [`0x00352FA0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | calls | [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
 
 </details>

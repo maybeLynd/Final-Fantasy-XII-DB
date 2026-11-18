@@ -8,8 +8,17 @@
 
 [`fonts-glyphs.tsv`](fonts-glyphs.tsv) holds one line for each `0x24`-byte glyph record of the 63 `.dat` files: 23,250 records, the
 22,440 of the 62 listed files and the 810 of `us/fontex_expand.dat`. The lines keep each file's record order, which
-is key order in 23 of the 63 files. The builder `0x001B4D70` files every record by its key (`0x001FDCC0`) and
+is key order in 23 of the 63 files. The builder `0x001B4D70` files every record by its key¹ and
 `0x001E9860` looks glyphs up by key, and no file repeats a key.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001FDCC0` |
+
+</details>
 
 The header of each file is in [Font files](fonts-files.md), which also says how the two tables hold every byte of
 each `.dat`. [Fonts](fonts.md) gives the record layout and what reads each field.
@@ -65,16 +74,20 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Graphics** (explained on [fonts files](fonts-files.md), [fonts](fonts.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001B4D70` | calls | `0x001FC060`, `0x001FDCC0`, `0x001FE020`, `0x001FE080` |
+| [`0x001B4D70`](fonts.md) (on fonts) | calls | [`0x001FC060`](fonts-files.md) (on fonts files)<br>[`0x001FDCC0`](fonts-files.md) (on fonts files)<br>[`0x001FE020`](fonts.md) (on fonts)<br>[`0x001FE080`](fonts.md) (on fonts) |
 
 **Game files and data tables** (explained on [fonts files](fonts-files.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md), [fonts](fonts.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x001B4D70` | calls | `0x001B5480`, `0x001B5750`, `0x001B58E0`, `0x0020B5F0` |
-| `0x001B4D70` | is called by | `0x001B5FE0` |
-| `0x001FDCC0` | is called by | `0x001B4D70` |
+| [`0x001B4D70`](fonts.md) (on fonts) | calls | [`0x001B5480`](fonts-files.md) (on fonts files)<br>[`0x001B5750`](fonts-files.md) (on fonts files)<br>[`0x001B58E0`](fonts-files.md) (on fonts files)<br>[`0x0020B5F0`](../Game-Files-And-Data-Tables/file-path-resolution.md) (on file path resolution) |
+| [`0x001B4D70`](fonts.md) (on fonts) | is called by | [`0x001B5FE0`](fonts-files.md) (on fonts files) |
+| [`0x001FDCC0`](fonts-files.md) (on fonts files) | is called by | [`0x001B4D70`](fonts.md) (on fonts) |
 
 </details>

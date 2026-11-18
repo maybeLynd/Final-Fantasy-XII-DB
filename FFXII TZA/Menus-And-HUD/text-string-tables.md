@@ -15,16 +15,27 @@ their layout and how a text id finds a string.
 ### The tables and the code that reads them
 
 - **Text groups.** 24 tables, groups 1 to 24: `menu_command` to `questtitle` and `menu00` to `menu02`. `0x002FA560`
-  loads a group when a menu widget asks for it (`0x00248700`) and binds it into `0x02F973C0[group]`; `0x002F9860` reads
+  loads a group when a menu widget asks for it¹ and binds it into `0x02F973C0[group]`; `0x002F9860` reads
   string `id % 1000` of group `id / 1000`, and `0x002F9920` finds a row by its own id.
 - **`battle_message.bin`.** The battle log's message templates, `battle_pack.bin` entry 2, bound to `0x02EBF018` by
-  `0x00236C30` (`0x00236C7B`-`0x00236C86`). The loose file in each tree repeats the pack entry's bytes
+  `0x00236C30`². The loose file in each tree repeats the pack entry's bytes
   ([PS2-era .bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md)).
 - **`battle_pack.bin#57`.** The text block of the bazaar table, section 57 of `battle_pack.bin`, bound to
-  `0x02EBF058` (`0x00236F6E`-`0x00236F7C`). `horidashi.bin` is the loose file of the same table in the `in`, `kr`, `cn`
+  `0x02EBF058`³. `horidashi.bin` is the loose file of the same table in the `in`, `kr`, `cn`
   and `ch` trees.
 - **Korean and Chinese tables.** `mons_act`, `mons_category`, `mons_race`, `object_data` and `target_data` ship
   only in the `kr` and `cn` trees, byte for byte the same in both, and no path in the executable names them.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00248700` |
+| ² | `0x00236C7B`-`0x00236C86` |
+| ³ | `0x00236F6E`-`0x00236F7C` |
+
+</details>
 
 The credits text, `menu03` and `menu04` (groups 25 and 26), is UTF-16 text listed on [Staff roll](staff-roll.md)
 and is not in this table. Group 27's file, `menu05`, does not ship.
@@ -32,17 +43,39 @@ and is not in this table. Group 27's file, `menu05`, does not ship.
 ### How a battle message is filled
 
 `0x00536410` takes a message's string id `& 0x7FFF` and reads that string of the table's text block through the
-table's `+0x14` sub-directory (`0x005368C2`-`0x005368D1`, `0x0053692B`-`0x0053693A`). It fills the template with the
-formatter `0x002B49F0`: through the untyped entry `0x002B4090` when `0x00254A10` returns 1 (`0x005368FB`), otherwise through
-the typed entry `0x002B40C0` (`0x0053696D`). `0x005369C0` builds the log line and `0x0035B990` posts it
+table's `+0x14` sub-directory¹. It fills the template with the
+formatter `0x002B49F0`: through the untyped entry `0x002B4090` when `0x00254A10` returns 1², otherwise through
+the typed entry `0x002B40C0`³. `0x005369C0` builds the log line and `0x0035B990` posts it
 ([Battle log](../Battle-Actions/battle-log.md)).
 
-`0x002B40C0(size, out, template, ...)` clears sixteen `0x10`-byte argument slots (`0x002B40EE`-`0x002B40FB`) and has
-`0x002B4810` type them from the template (`0x002B4108`). It fills slot i, for every slot up to the last typed one, with
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005368C2`-`0x005368D1`, `0x0053692B`-`0x0053693A` |
+| ² | `0x005368FB` |
+| ³ | `0x0053696D` |
+
+</details>
+
+`0x002B40C0(size, out, template, ...)` clears sixteen `0x10`-byte argument slots¹ and has
+`0x002B4810` type them from the template². It fills slot i, for every slot up to the last typed one, with
 its i-th variadic argument: the low 32 bits for a slot of type 1 and all eight bytes otherwise, an untyped slot
-below the last typed one included (`0x002B410D`-`0x002B41AD`). It then calls `0x002B49F0(size, out, template, slots, 1)`
-(`0x002B41AF`-`0x002B41C9`). The untyped entry `0x002B4090` hands `0x002B49F0` its variadic arguments in place, with 0
-(`0x002B409E`-`0x002B40AB`).
+below the last typed one included³. It then calls `0x002B49F0(size, out, template, slots, 1)`⁴. The untyped entry `0x002B4090` hands `0x002B49F0` its variadic arguments in place, with 0⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002B40EE`-`0x002B40FB` |
+| ² | `0x002B4108` |
+| ³ | `0x002B410D`-`0x002B41AD` |
+| ⁴ | `0x002B41AF`-`0x002B41C9` |
+| ⁵ | `0x002B409E`-`0x002B40AB` |
+
+</details>
 
 `0x00254A10` returns 1 for the locale ids 0, 7, 8, 10 and 11 and 0 for ids 1 to 6 and 9. Only the typed path acts on
 the escapes `0F 6C`, `0F 6D` and `0F 6E`, which the `us`, `de`, `es`, `fr` and `it` templates use for counts, plurals
@@ -51,8 +84,18 @@ and articles ([Text codes](text-codes.md)).
 ### The bazaar text block
 
 The bazaar goods take their names from the word banks and their descriptions from the text groups: the query filler
-`0x0031C5D0` reads the name word (`0x0031D9BF`-`0x0031DA13`) and passes the description id to `0x002F9860` (`0x0031DA29`)
+`0x0031C5D0` reads the name word¹ and passes the description id to `0x002F9860`²
 ([Bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031D9BF`-`0x0031DA13` |
+| ² | `0x0031DA29` |
+
+</details>
 
 The section's own text block holds 128 copies of one four-character string: bytes `25 25 25 25` in the `us`, `de`, `es`, `fr`, `it`, `kr`, `cn` and `ch` packs, and
 `12 8B 12 8B 12 8B 12 8B` in the `in` pack. The loose `horidashi.bin` repeats its tree's pack in `in`, `kr` and `cn`;
@@ -227,90 +270,97 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Enemy AI and gambits** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236C30` | calls | `0x00238880` |
+| [`0x00236C30`](text-string-tables.md) | calls | [`0x00238880`](../Game-Files-And-Data-Tables/authored-data-tables.md) Gambit target definition: bind and build menu lookup (on authored data tables) |
 
 **Battle actions** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236C30` | calls | `0x00237FC0` |
+| [`0x00236C30`](text-string-tables.md) | calls | [`0x00237FC0`](../Battle-Actions/action-definition-row.md) (on action definition row) |
 
 **Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x005369C0` | calls | `0x0031B860` |
+| [`0x005369C0`](enemy-names-on-screen.md) (on enemy names on screen) | calls | [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log) |
 
 **Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00254A10` | calls | `0x00229E40` |
-| `0x002AC5F0` | calls | `0x00229E40` |
+| [`0x00254A10`](text-string-tables.md) | calls | [`0x00229E40`](../Story-Events-And-Hunts/script-language-differences.md) (on script language differences) |
+| [`0x002AC5F0`](text-drawing.md) (on text drawing) | calls | [`0x00229E40`](../Story-Events-And-Hunts/script-language-differences.md) (on script language differences) |
 
 **Gameplay** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [identifier spaces](../Engine-Core/identifier-spaces.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0031C5D0` | calls | `0x00309EC0`, `0x0030AE30`, `0x0030B0E0`, `0x00322C50` |
-| `0x00536410` | calls | `0x0031C5D0` |
+| [`0x0031C5D0`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids) | calls | [`0x00309EC0`](../Enemy-AI-And-Gambits/gambit-conditions.md) (on gambit conditions)<br>[`0x0030AE30`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids)<br>[`0x0030B0E0`](../Battle-Actions/command-availability.md) (on command availability)<br>[`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) |
+| [`0x00536410`](../Battle-Actions/battle-log.md) (on battle log) | calls | [`0x0031C5D0`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids) |
 
 **Items, equipment, shops and licenses** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236C30` | calls | `0x00238660` |
+| [`0x00236C30`](text-string-tables.md) | calls | [`0x00238660`](../Items-Equipment-Shops-And-Licenses/shops.md) (on shops) |
 
-**Graphics**
+**Graphics** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [menu lists](menu-lists.md), [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [message windows](message-windows.md), [text codes](text-codes.md), [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00254A10` | is called by | `0x002B0280`, `0x002D2DB0` |
-| `0x002AC5F0` | calls | `0x003A1DB0` |
-| `0x002AC5F0` | is called by | `0x002AAE40` |
-| `0x002B40C0` | calls | `0x002B4810` |
-| `0x002F9920` | is called by | `0x0037E5B0`, `0x0037E8D0` |
-| `0x00377B60` | is called by | `0x002B7B80`, `0x002BAF80` |
-
-**Graphics** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [menu lists](menu-lists.md), [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [message windows](message-windows.md), [text codes](text-codes.md))
-
-**Graphics** (explained on [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [frame update order](../Engine-Core/frame-update-order.md))
+| [`0x00254A10`](text-string-tables.md) | is called by | [`0x002B0280`](text-drawing.md) (on text drawing)<br>[`0x002D2DB0`](widgets.md) (on widgets) |
+| [`0x002AC5F0`](text-drawing.md) (on text drawing) | calls | [`0x003A1DB0`](../PhyreEngine/the-frame.md) Render command: submit current buffer and swap (on the frame) |
+| [`0x002AC5F0`](text-drawing.md) (on text drawing) | is called by | [`0x002AAE40`](text-drawing.md) (on text drawing) |
+| [`0x002B40C0`](text-string-tables.md) | calls | [`0x002B4810`](text-codes.md) (on text codes) |
+| [`0x002F9920`](clan-primer-entries.md) (on clan primer entries) | is called by | [`0x0037E5B0`](../Game-Files-And-Data-Tables/quest-menu-files.md) (on quest menu files)<br>[`0x0037E8D0`](../Game-Files-And-Data-Tables/quest-menu-files.md) (on quest menu files) |
+| [`0x00377B60`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x002B7B80`](map-screens.md) (on map screens)<br>[`0x002BAF80`](widgets.md) (on widgets) |
 
 **Game files and data tables** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md), [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236C30` | calls | `0x003843F0` |
-| `0x002FA560` | calls | `0x002385D0` |
+| [`0x00236C30`](text-string-tables.md) | calls | [`0x003843F0`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables) |
+| [`0x002FA560`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables) | calls | [`0x002385D0`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables) |
 
 **Saving, loading and settings** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00254A10` | is called by | `0x005832B0` |
+| [`0x00254A10`](text-string-tables.md) | is called by | [`0x005832B0`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) |
 
-**World, areas and travel** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+**World, areas and travel** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md), [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md), [party control modes](../Engine-Core/party-control-modes.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236C30` | calls | `0x003847B0` |
-
-**World, areas and travel**
-
-| Function | | Functions |
-|---|---|---|
-| `0x00236C30` | calls | `0x003845F0`, `0x003846F0` |
-| `0x00236C30` | is called by | `0x00238850` |
-| `0x002F9920` | is called by | `0x003C0450`, `0x00576A50` |
-| `0x003778B0` | calls | `0x00264F90` |
-| `0x003778B0` | is called by | `0x0057FB00` |
-| `0x00377B60` | is called by | `0x0057FB00` |
-| `0x005369C0` | calls | `0x00264ED0`, `0x003148F0` |
-
-**World, areas and travel** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md))
-
-**World, areas and travel** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md), [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md), [party control modes](../Engine-Core/party-control-modes.md))
+| [`0x00236C30`](text-string-tables.md) | calls | [`0x003847B0`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables) |
+| [`0x00236C30`](text-string-tables.md) | calls | [`0x003845F0`](../Battle-Actions/action-definition-row.md) Area data: bind and rebase section descriptor (on action definition row)<br>[`0x003846F0`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables) |
+| [`0x00236C30`](text-string-tables.md) | is called by | [`0x00238850`](../Battle-Actions/action-definition-row.md) (on action definition row) |
+| [`0x002F9920`](clan-primer-entries.md) (on clan primer entries) | is called by | [`0x003C0450`](../Game-Files-And-Data-Tables/menu-map-files.md) (on menu map files)<br>[`0x00576A50`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) |
+| [`0x003778B0`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) | calls | [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list) |
+| [`0x003778B0`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) | is called by | [`0x0057FB00`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) |
+| [`0x00377B60`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x0057FB00`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) |
+| [`0x005369C0`](enemy-names-on-screen.md) (on enemy names on screen) | calls | [`0x00264ED0`](../Game-Files-And-Data-Tables/ard-area-battle-data.md) Map ref: get area ard field resource index (on ard area battle data)<br>[`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) |
 
 </details>

@@ -19,22 +19,32 @@ trigger line can be given its six coordinates by a script.
 
 `0x002368D0`, run when battle storage is set up:
 
-1. stores infinity at `0x02F973B8` and zeroes `0x02089300` (`0x002368F0`, `0x002368F8`), writes the slot count `0x0208E6A0`
-   = 32, frees a previous pool (`0x003844F0`) and allocates the pool `0x0208E688` as `32 * 0xF50` bytes under the name
-   `BtlWork` (`0x00384510`) and zeroes it;
-2. allocates the two `0x9400`-byte spawn-keep banks `0x0208E690` (`btlKeepCharWork1`) and `0x0208E698`
-   (`btlKeepCharWork2`) and zeroes both, runs `0x00383A20`, frees a previous `0x0208E680` (`0x00384500`) and nulls it
-   (`0x002369B4`), registers the static task `0x00238850` (`0x003843F0(0x13, ...)`) and runs `0x0030CF40` and `0x002EA5F0`;
-3. sets `0x0208935C` to 5.0, zeroes `0x02089340` (`0x002369FB`) and the twelve qwords at `0x02EBF1A0`, sets `0x0208D455` to
-   `0xFFFF` and `0x0208936C` to 300, and requests the twelve job boards
-   (`0x00238260(0..11)`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | stores infinity at `0x02F973B8` and zeroes `0x02089300`, writes the slot count `0x0208E6A0` = 32, frees a previous pool and allocates the pool `0x0208E688` as `32 * 0xF50` bytes under the name `BtlWork` and zeroes it; | `0x002368F0`, `0x002368F8`<br>`0x003844F0`<br>`0x00384510` |
+| 2 | allocates the two `0x9400`-byte spawn-keep banks `0x0208E690` (`btlKeepCharWork1`) and `0x0208E698` (`btlKeepCharWork2`) and zeroes both, runs `0x00383A20`, frees a previous `0x0208E680` and nulls it, registers the static task `0x00238850` (`0x003843F0(0x13, ...)`) and runs `0x0030CF40` and `0x002EA5F0`; | `0x00384500`<br>`0x002369B4` |
+| 3 | sets `0x0208935C` to 5.0, zeroes `0x02089340` and the twelve qwords at `0x02EBF1A0`, sets `0x0208D455` to `0xFFFF` and `0x0208936C` to 300, and requests the twelve job boards (`0x00238260(0..11)`). | `0x002369FB` |
 
-`0x02089300` is the battle system's up flag. Boot runs `0x002368D0` once (`0x0022A41A`), and `0x00236A40`
-sets the flag to 1 (`0x00236A44`) when the start-up state `0x0022B6E0` moves to state 1 (`0x0022B77C`).
-While it is 0 the definition installer `0x0023A570` returns 0 (`0x0023A5B5`), the fresh stats record
-`0x0023AC80` returns 0 (`0x0023ACE4`) and `0x002342F0` does nothing (`0x002342F4`) ([battle unit
+`0x02089300` is the battle system's up flag. Boot runs `0x002368D0` once¹, and `0x00236A40`
+sets the flag to 1² when the start-up state `0x0022B6E0` moves to state 1³.
+While it is 0 the definition installer `0x0023A570` returns 0⁴, the fresh stats record
+`0x0023AC80` returns 0⁵ and `0x002342F0` does nothing⁶ ([battle unit
 construction](battle-unit-construction.md), [kill
 chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A41A` |
+| ² | `0x00236A44` |
+| ³ | `0x0022B77C` |
+| ⁴ | `0x0023A5B5` |
+| ⁵ | `0x0023ACE4` |
+| ⁶ | `0x002342F4` |
+
+</details>
 
 A unit is `0xF50` (3,920) bytes; `0x00236850` returns the count and `0x00236820(i)` returns
 `[0x0208E688] + i * 0xF50` for `0 <= i < count` and null otherwise. `0x002367A0(selector)` scans the pool
@@ -47,51 +57,109 @@ word value rather than every unit.
 `0x00234480(0, actor)` walks the pool from slot 0 for the first unit whose flag bit `0x1` is clear and
 returns without doing anything when all are in use. For the free slot it:
 
-1. zeroes the whole `0xF50` bytes and sets flag bit `0x1`;
-2. writes the slot index to `+0xEA9`;
-3. stores the unit pointer at the actor's `+0x30` (`0x002134A0`) and the actor at the unit's `+0x10`;
-4. stores the actor's encoded handle (`0x003589B0`) at `+0x08`;
-5. clears flag bit `0x200000` and copies the actor's entry-group word `+0xF6` (`0x00263D30`) into the byte
-   `+0x57`.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | zeroes the whole `0xF50` bytes and sets flag bit `0x1`; |   |
+| 2 | writes the slot index to `+0xEA9`; |   |
+| 3 | stores the unit pointer at the actor's `+0x30` and the actor at the unit's `+0x10`; | `0x002134A0` |
+| 4 | stores the actor's encoded handle at `+0x08`; | `0x003589B0` |
+| 5 | clears flag bit `0x200000` and copies the actor's entry-group word `+0xF6` into the byte `+0x57`. | `0x00263D30` |
 
 ### Who gets a unit
 
 `0x00265A20(slot)` is the allocator's only caller. It walks the slot's records, `0x00358940(slot, i)` for `i`
 below the `recordCount` at `+0x20` (`0x00265A2C`-`0x00265A68`, back branch `0x00265B26`). A record passes when the
 slot's `+0x28` is 0, which holds for the primary manager only (slot index 0; `0x00265A70`-`0x00265A74`), the
-record pointer is not null (`0x00265A7A`-`0x00265A7D`) and its byte `+0x14` is `0x80` or more, that is, has bit
-`0x80` set (`0x00265A83`-`0x00265A89`).
+record pointer is not null¹ and its byte `+0x14` is `0x80` or more, that is, has bit
+`0x80` set².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265A7A`-`0x00265A7D` |
+| ² | `0x00265A83`-`0x00265A89` |
+
+</details>
 
 The first 32 records that pass enter the bind branch; for each later one the
-record's `+0x14` loses bit `0x10` instead (`0x00265A8F`-`0x00265A92`, `0x00265B11`-`0x00265B13`). Every record that
+record's `+0x14` loses bit `0x10` instead¹. Every record that
 enters the branch is counted, whether or not `0x00234480` found a slot; the branch gives the record:
 
-- a unit, `0x00234480(0, record)` (`0x00265A94`-`0x00265A9F`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265A8F`-`0x00265A92`, `0x00265B11`-`0x00265B13` |
+
+</details>
+
+- a unit, `0x00234480(0, record)`¹;
 - the frame callback `0x00233F70` at `+0x38` (`0x00265AA8`; [field runtime](field-runtime.md));
-- `0x00234A00(unit, 1)` (unit `+0x20` = 1) when the back-pointer `+0x30` is set (`0x00265AA4`-`0x00265AB4`). `0x00234480`
-  writes `+0x30` only when it finds a free unit (`0x002344E7`) and the walk does not clear it first, so after a failed
+- `0x00234A00(unit, 1)` (unit `+0x20` = 1) when the back-pointer `+0x30` is set². `0x00234480`
+  writes `+0x30` only when it finds a free unit³ and the walk does not clear it first, so after a failed
   allocation the test reads the record's earlier `+0x30`: 0 skips the call, and any other value left there is passed
-  to it, as `0x00359B80` below passes it on to `0x0031AD90` (`0x00359B85`-`0x00359B8C`);
+  to it, as `0x00359B80` below passes it on to `0x0031AD90`⁴;
 - for a class-3 actor (`+0x03 & 0xE0` = `0x60`), bits `0x100` and `0x2000` of `+0x1C` cleared
-  (`0x00265AB9`-`0x00265AC3`);
-- for every record of the branch, `+0x0E` = `(old & 0xF1) | 1` (`0x00265ACA`-`0x00265ACE`), so the class nibble
+ ⁵;
+- for every record of the branch, `+0x0E` = `(old & 0xF1) | 1`⁶, so the class nibble
   `0x00263C20` reads from that byte is 1 after the bind;
 - when byte `+0x12`, sign-extended and compared unsigned, is 0 to 3, so that `0xFF` fails
-  (`0x00265AD2`-`0x00265AD9`): `0x0031C4C0(byte +0x12)` and then
-  `0x00238FA0(record, seat byte)` with its answer (`0x00265ADB`-`0x00265AE5`);
-- `0x00359B80(record)` and, when it answers an object, the unit's `+0xED0` (`0x00265AED`-`0x00265AF5`), that
+ ⁷: `0x0031C4C0(byte +0x12)` and then
+  `0x00238FA0(record, seat byte)` with its answer⁸;
+- `0x00359B80(record)` and, when it answers an object, the unit's `+0xED0`⁹, that
   object's `+0x40`-`+0x63`
   cleared, as the qwords `+0x40`, `+0x48`, `+0x54` and `+0x5C` and the dword `+0x50`, and its byte `+0x65`
-  (`0x00265AF7`-`0x00265B0B`).
+ ¹⁰.
 
-The number of records that entered the branch is stored at the slot's `+0x1E8` (`0x00265B3B`). Records of the other four managers never get a
-unit: the walk tests the slot's `+0x28` for every record (`0x00265A70`) and stores 0 at `+0x1E8` for them, as it
-does for a slot with no records (`0x00265B4D`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265A94`-`0x00265A9F` |
+| ² | `0x00265AA4`-`0x00265AB4` |
+| ³ | `0x002344E7` |
+| ⁴ | `0x00359B85`-`0x00359B8C` |
+| ⁵ | `0x00265AB9`-`0x00265AC3` |
+| ⁶ | `0x00265ACA`-`0x00265ACE` |
+| ⁷ | `0x00265AD2`-`0x00265AD9` |
+| ⁸ | `0x00265ADB`-`0x00265AE5` |
+| ⁹ | `0x00265AED`-`0x00265AF5` |
+| ¹⁰ | `0x00265AF7`-`0x00265B0B` |
+
+</details>
+
+The number of records that entered the branch is stored at the slot's `+0x1E8`¹. Records of the other four managers never get a
+unit: the walk tests the slot's `+0x28` for every record² and stores 0 at `+0x1E8` for them, as it
+does for a slot with no records³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265B3B` |
+| ² | `0x00265A70` |
+| ³ | `0x00265B4D` |
+
+</details>
 
 `0x00238FA0(record, seat byte)` takes the record's unit with `0x0031B760(record)` and, when there is one, sets unit
-flag bit `0x4000000` (`0x00238FA0`-`0x00238FB9`). It never reads its second argument, so the byte `0x0031C4C0`
+flag bit `0x4000000`¹. It never reads its second argument, so the byte `0x0031C4C0`
 answered has no effect. No direct call or jump instruction but the bind's call at `0x00265AE5` has it as its target,
 and no pointer to it is stored in the file.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00238FA0`-`0x00238FB9` |
+
+</details>
 
 It installs no definition: the unit of a record with byte `+0x12` of 0 to 3 leaves the bind with that flag
 and no stats record. `0x00326B0A` in the seat rebuild `0x003266C0` is the one call found that can pass a party
@@ -109,8 +177,17 @@ replaced by 1, so it runs over 1 to 2047 and a handle taken before the advance s
 `0x02098E10 + slot * 0x288` must have a record pool (`+0x08`) and a payload (`+0x00`), the index
 must be below the slot's `+0x20` and the pool's own count, the slot's `+0x10` bit `0x1` must be set, the
 entry must be non-null and the actor's full word `+0x16` must equal the discriminator. `0x0031B7E0`
-then returns that actor's unit `+0x30` (`0x00263E30`) when `0x02089340` bit `0x10` is set; `0x0031B760(actor)`
+then returns that actor's unit `+0x30`¹ when `0x02089340` bit `0x10` is set; `0x0031B760(actor)`
 is the null-guarded form of the same back-pointer read.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263E30` |
+
+</details>
 
 One such handle is the target of a committed action: the commit `0x0030F760` stores it at unit `+0x710` (`0x0030F7F2`-`0x0030F82A`,
 [Action commit](../Battle-Actions/action-commit.md)).
@@ -118,77 +195,175 @@ One such handle is the target of a committed action: the commit `0x0030F760` sto
 Small predicates over the same reads serve the menus and the HUD: `0x0031FCF0(actor)` is true for a
 non-null actor with a unit; `0x0031FD20(handle)` is true when `0x02089340` bit `0x10` is set and the handle
 resolves to an actor with a unit; `0x00273780(handle)` is true for a non-zero handle that resolves;
-`0x00273750(handle)` is true when the resolved actor's class nibble (`0x00263C20`) is 1 or 2, and
+`0x00273750(handle)` is true when the resolved actor's class nibble¹ is 1 or 2, and
 `0x00273A00(handle)` when it is 5. `0x00358960(slot, ordinal)` returns the class bits `+0x03 >> 5` of a
 record of the slot `0x00263FF0` gives, and reads address 3 when the ordinal is out of range.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263C20` |
+
+</details>
+
 `0x00358960` takes the record from the list at `+0x08` of what `0x00263FF0` returns, entry `ordinal` after the count
-dword (`0x0035896E`-`0x00358981`). A null list, a negative ordinal and an ordinal at or past the count all leave the
+dword¹. A null list, a negative ordinal and an ordinal at or past the count all leave the
 record 0, so the read at `0x00358986` is of address 3.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035896E`-`0x00358981` |
+
+</details>
 
 Three more read the unit behind a handle, through `0x003588B0` and, while `0x02089340` bit `0x10` is set, `0x00263E30`:
 
 - `0x003229A0(handle)` returns bit `0x1` of the unit's `+0xE9C`, which `0x002392D0` copies from bit `0x4000` of its flag argument
-  (`0x0023932A`-`0x00239339`). It answers 0, with no lookup, while `0x02089340` bit `0x10` is clear, and 0 when
-  `0x003588B0` or `0x00263E30` answers null (`0x003229A4`-`0x003229C2`, `0x003229D2`); the read is at `0x003229C4`.
-- `0x00273910(handle)` is true when the actor's class nibble is 3 and `0x003229A0` returns 0 (`0x00273934`); the HUD's
-  `0x002BFD20` asks it (`0x002BFE2A`).
+ ¹. It answers 0, with no lookup, while `0x02089340` bit `0x10` is clear, and 0 when
+  `0x003588B0` or `0x00263E30` answers null²; the read is at `0x003229C4`.
+- `0x00273910(handle)` is true when the actor's class nibble is 3 and `0x003229A0` returns 0³; the HUD's
+  `0x002BFD20` asks it⁴.
 - `0x00322950(handle)` is true when `0x00321770(unit, 0)` returns 0: none of the unit's 40 enmity bytes (`+0x1A` of
   `[unit+0x6A0]`, for the ids `0x00322C50(2, i)` accepts) is above 0 ([Enmity](../Enemy-AI-And-Gambits/enmity.md)).
-  `0x002C7660` asks it (`0x002C780D`) right after `0x003229A0` (`0x002C77F6`). It too answers 0 while `0x02089340`
-  bit `0x10` is clear and when `0x003588B0` or `0x00263E30` gives null (`0x00322954`-`0x00322985`, `0x0032298C`).
+  `0x002C7660` asks it⁵ right after `0x003229A0`⁶. It too answers 0 while `0x02089340`
+  bit `0x10` is clear and when `0x003588B0` or `0x00263E30` gives null⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023932A`-`0x00239339` |
+| ² | `0x003229A4`-`0x003229C2`, `0x003229D2` |
+| ³ | `0x00273934` |
+| ⁴ | `0x002BFE2A` |
+| ⁵ | `0x002C780D` |
+| ⁶ | `0x002C77F6` |
+| ⁷ | `0x00322954`-`0x00322985`, `0x0032298C` |
+
+</details>
 
 `0x002392D0(actor, flags)` is where the verb `btlAtelSetEntryFlag` ends: its handler `0x00510300` jumps there with
-the popped argument as `flags` (`0x0051030C`-`0x0051031B`). It takes the unit with `0x0031B760(actor)` and does nothing
-when there is none (`0x002392E4`-`0x002392EF`). Otherwise, in this order:
+the popped argument as `flags`¹. It takes the unit with `0x0031B760(actor)` and does nothing
+when there is none². Otherwise, in this order:
 
-- with flag bit `0x10`, `0x002E83B0(actor, 0)` (`0x002392F1`-`0x002392FB`);
-- with flag bit `0x8` clear, `0x002EACD0(unit dword +0x08, 1, unit + 8, 0x7B)` (`0x00239300`-`0x00239316`);
-- with flag bit `0x1`, bit `0x1000` set in the unit's dword `+0x1F0` (`0x0023931B`-`0x00239320`);
-- bit `0x1` of the unit's dword `+0xE9C` made equal to flag bit `0x4000` (`0x0023932A`-`0x00239339`);
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0051030C`-`0x0051031B` |
+| ² | `0x002392E4`-`0x002392EF` |
+
+</details>
+
+- with flag bit `0x10`, `0x002E83B0(actor, 0)`¹;
+- with flag bit `0x8` clear, `0x002EACD0(unit dword +0x08, 1, unit + 8, 0x7B)`²;
+- with flag bit `0x1`, bit `0x1000` set in the unit's dword `+0x1F0`³;
+- bit `0x1` of the unit's dword `+0xE9C` made equal to flag bit `0x4000`⁴;
 - when byte `+0x00` of the spawn record `[unit + 0x6A0]` has neither bit `0x1` nor bit `0x4`,
-  `0x00321810(unit, v)` with `v` = 1 for flag bit `0x8000` clear and 0 for it set (`0x0023933F`-`0x00239358`). The
-  record pointer is read with no null test (`0x00239346`).
+  `0x00321810(unit, v)` with `v` = 1 for flag bit `0x8000` clear and 0 for it set⁵. The
+  record pointer is read with no null test⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002392F1`-`0x002392FB` |
+| ² | `0x00239300`-`0x00239316` |
+| ³ | `0x0023931B`-`0x00239320` |
+| ⁴ | `0x0023932A`-`0x00239339` |
+| ⁵ | `0x0023933F`-`0x00239358` |
+| ⁶ | `0x00239346` |
+
+</details>
 
 ### Release
 
 `0x00234200(_, actor)` releases the actor's unit. With no unit it runs `0x00263980` and `0x003589A0` on
 the actor and returns. Otherwise:
 
-1. it runs `0x00300140(unit, 1)` and `0x00319140(unit, 2)`; with bit `0x2` of its second argument
-   `0x00319140` calls `0x003BBC80(actor)`, which zeroes the first two qwords of every entry of the
-   64-entry table at `[0x02B457D0]` (stride `0x50`) whose first qword is the unit's actor;
-   with a null `[0x02B457D0]` it does nothing, and it returns 1 when it cleared an entry and 0 otherwise
-   (`0x003BBC90`, `0x003BBCAF`, `0x003BBCC3`);
-2. for an enemy (stats kind 1) with flag bit `0x10` set, unless a terminal status is present outside a
-   town (`0x00377C20`), and with a spawn record at `+0x6A0` (`0x00234288`), it copies the unit's position
-   `+0xE0`-`+0xEF` into the spawn record's `+0x60`
-   and the yaw `+0x160` into `+0x74`, and sets the spawn record's flag bit `0x4`
-   ([spawn placement](../Enemy-Spawning/enemy-spawning.md));
-3. it zeroes the whole slot and clears bit `0x1`; the test before the clear (`unit >= base`, else
-   `unit < base + 32 * 0xEA7900`, and `0xEA7900` is `0xF50 * 0xF50`) cannot fail for any pointer.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | it runs `0x00300140(unit, 1)` and `0x00319140(unit, 2)`; with bit `0x2` of its second argument `0x00319140` calls `0x003BBC80(actor)`, which zeroes the first two qwords of every entry of the 64-entry table at `[0x02B457D0]` (stride `0x50`) whose first qword is the unit's actor; with a null `[0x02B457D0]` it does nothing, and it returns 1 when it cleared an entry and 0 otherwise; | `0x003BBC90`, `0x003BBCAF`, `0x003BBCC3` |
+| 2 | for an enemy (stats kind 1) with flag bit `0x10` set, unless a terminal status is present outside a town, and with a spawn record at `+0x6A0`, it copies the unit's position `+0xE0`-`+0xEF` into the spawn record's `+0x60` and the yaw `+0x160` into `+0x74`, and sets the spawn record's flag bit `0x4` ([spawn placement](../Enemy-Spawning/enemy-spawning.md)); | `0x00377C20`<br>`0x00234288` |
+| 3 | it zeroes the whole slot and clears bit `0x1`; the test before the clear (`unit >= base`, else `unit < base + 32 * 0xEA7900`, and `0xEA7900` is `0xF50 * 0xF50`) cannot fail for any pointer. |   |
 
-The town test of step 2 is `0x00313F60`, a jump to `0x00377C20` (`0x00234275`), and a null stats record skips the step
-(`0x0023425B`).
+The town test of step 2 is `0x00313F60`, a jump to `0x00377C20`¹, and a null stats record skips the step².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234275` |
+| ² | `0x0023425B` |
+
+</details>
 
 `0x00319140(unit, bits)` makes two calls by the bits of its second argument: with bit `0x1` it first calls
-`0x00290B90` with the unit's dword `+0x08` (`0x0031914F`-`0x00319157`), and with bit `0x2` it then calls `0x003BBC80`
-with the unit's `+0x10`, the actor (`0x0031915C`-`0x00319166`). `0x00234200` passes 2, so only the second is made
+`0x00290B90` with the unit's dword `+0x08`¹, and with bit `0x2` it then calls `0x003BBC80`
+with the unit's `+0x10`, the actor². `0x00234200` passes 2, so only the second is made
 there. `0x00319140` sets no return value of its own.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031914F`-`0x00319157` |
+| ² | `0x0031915C`-`0x00319166` |
+
+</details>
 
 `0x00290B90(handle)` walks the list at `[[0x0209BE80] + 0x10F10]`, linked through `+0x868`. In each node whose
 dword `+0x810` equals the handle it turns a word `+0x850` of 2 into 3, and it answers 1 when any node
-matched and 0 otherwise (`0x00290B90`-`0x00290BDD`).
+matched and 0 otherwise¹.
 
-`0x003589A0(actor)` answers the actor's byte `+0x03` shifted right by 5, its top three bits
-(`0x003589A0`-`0x003589A4`). `0x00234200` reaches it by a jump (`0x00234232`), so that value is what `0x00234200`
-answers for an actor with no unit (`0x00234210`-`0x0023421B`). On the path with a unit `0x00234200` sets no
-return value before it returns (`0x002342D6`-`0x002342E0`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00290B90`-`0x00290BDD` |
+
+</details>
+
+`0x003589A0(actor)` answers the actor's byte `+0x03` shifted right by 5, its top three bits¹. `0x00234200` reaches it by a jump², so that value is what `0x00234200`
+answers for an actor with no unit³. On the path with a unit `0x00234200` sets no
+return value before it returns⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003589A0`-`0x003589A4` |
+| ² | `0x00234232` |
+| ³ | `0x00234210`-`0x0023421B` |
+| ⁴ | `0x002342D6`-`0x002342E0` |
+
+</details>
 
 ### The actor class
 
 The bits under mask `0xE0` of the actor's byte `+0x03` are its class, and the bits under mask `0xF` of byte `+0x0E` are a separate
-nibble (`0x00263C20`). The class decides what code accepts the actor:
+nibble¹. The class decides what code accepts the actor:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263C20` |
+
+</details>
 
 | Class | Test | Examples |
 |---|---|---|
@@ -200,39 +375,67 @@ nibble (`0x00263C20`). The class decides what code accepts the actor:
 
 `0x00238BF0(unit)` brings the bound actor (`+0x10`) in line with the unit's stats record and is what
 sets the class nibble and the byte `+0x0F` of a fighting actor. It does nothing for a null unit, without an actor or a
-stats record, or for a stats kind other than 0 and 1 (`0x00238BF0`-`0x00238BF3`, `0x00238C29`-`0x00238C2C`,
-`0x00238C54`-`0x00238C63`, `0x00238CCD`-`0x00238CDA`).
+stats record, or for a stats kind other than 0 and 1¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00238BF0`-`0x00238BF3`, `0x00238C29`-`0x00238C2C`, `0x00238C54`-`0x00238C63`, `0x00238CCD`-`0x00238CDA` |
+
+</details>
 
 - A party member (kind 0) gets `+0x0F` = 3 and nibble 8 when its type is 27-39, and `+0x0F` = 2 and
-  nibble 1 otherwise: `0x00269F30(actor, 3)` or `0x00269F30(actor, 2)` writes `+0x0F` (`0x00238C91`-`0x00238CC8`).
+  nibble 1 otherwise: `0x00269F30(actor, 3)` or `0x00269F30(actor, 2)` writes `+0x0F`¹.
 - An enemy (kind 1) whose spawn record byte `+0` has bit `0x20` clear turns a unit byte `+0x58` of 4 into
   1; with `+0x58` = 1 it runs `0x002659A0(actor)` and `0x0025D5E0(actor, 10)`, and raises `+0x58` to 7 when the stats
-  record is still of kind 1 and the enemy row's byte `+0x03` has bit `0x10` (`0x00238DBD`-`0x00238E02`).
+  record is still of kind 1 and the enemy row's byte `+0x03` has bit `0x10`².
 - An enemy whose spawn record has bit `0x20` set runs `0x00267CC0(actor)` and `0x0026B4A0(actor, 10)` instead
-  (`0x00238D98`-`0x00238DAE`).
+ ³.
 - The nibble is then written by `0x00269FE0(actor, n)` with the value above, or the unit's `+0x58` for
-  an enemy, when it is not 0 (`0x00238E06`-`0x00238E0D`, `0x00238E34`-`0x00238E3E`), and `0x0026AD00(actor, on)` sets `+0x13`
-  bit `0x80` for an enemy whose class row byte `+0x18 & 0xE` is 4 and clears it otherwise (`0x00238E11`-`0x00238E2F`,
-  `0x00238EC9`-`0x00238ECF`).
+  an enemy, when it is not 0⁴, and `0x0026AD00(actor, on)` sets `+0x13`
+  bit `0x80` for an enemy whose class row byte `+0x18 & 0xE` is 4 and clears it otherwise⁵.
 - The push weight comes from a signed word `w`, the party row's `+0x7A` for a party member and the class row's `+0x10`
-  for an enemy: `w / 10.0` when `w` is above 0, else `w` (`0x00238C65`-`0x00238C81`, `0x00238CE0`-`0x00238CFC`); an enemy
-  whose spawn record has bit `0x20` gets -1.0 whatever the row holds (`0x00238DB3`).
+  for an enemy: `w / 10.0` when `w` is above 0, else `w`⁶; an enemy
+  whose spawn record has bit `0x20` gets -1.0 whatever the row holds⁷.
 - The weight goes to `0x0026DAC0(actor, weight)`, and `0x002EC5B0(actor, v)` gets `0x10` for a weight below 0 and 0
-  otherwise (`0x00238E57`-`0x00238E75`).
+  otherwise⁸.
 - The scale given to `0x002E5FD0(actor, x, y, z)` is 1.0 on each axis for a party member; an enemy takes the three
   signed words `+0x0A`, `+0x0C` and `+0x0E` of its row `+0xE60`, each as `w / 100.0`, with a word of 0 read as 1.0
-  (`0x00238D04`-`0x00238D68`, `0x00238E43`-`0x00238E52`).
+ ⁹.
 - `0x0026A430(actor, a)` and `0x0026A3A0(actor, b)` get 1 and 1 for a party member; for an enemy `a` is bit `0x40` and `b`
   bit `0x10` of the class row's byte `+0x12`. `0x002E8A10(actor, c)` gets 0 for a party member and bit `0x20` of the
-  enemy row's byte `+0x03`, read through the unit's `+0xE60`, for an enemy (`0x00238C18`-`0x00238C27`,
-  `0x00238D6C`-`0x00238D94`, `0x00238E7A`-`0x00238E8D`, `0x00238EBD`-`0x00238EC4`).
+  enemy row's byte `+0x03`, read through the unit's `+0xE60`, for an enemy¹⁰.
 - Between `0x0026A3A0` and `0x002E8A10` it calls `0x002E8220(actor, 0)` and `0x00269F20(actor, unit qword +0x18, n)`, with `n`
-  the spawn record's byte `+0x12`, or 0 for a null record pointer `+0x6A0` (`0x00238E92`-`0x00238EB8`). Only a party
-  member can reach that 0: the enemy way has read through the pointer before, with no null test (`0x00238D98`).
+  the spawn record's byte `+0x12`, or 0 for a null record pointer `+0x6A0`¹¹. Only a party
+  member can reach that 0: the enemy way has read through the pointer before, with no null test¹².
 - After `0x0026AD00` it reads `0x002361B0(unit)`, calls `0x0026A7F0(actor, 0)`, `0x0026A7C0(actor, 0)` and
   `0x00269E20(actor, 0.0)`; with bit `0x2` of that answer it calls `0x0026A7C0(actor, 1)` and gives `0x00269E20(actor, f)`
   the float `f` that `0x00236210(unit)` returns, and with bit `0x8` it calls `0x0026A7F0(actor, 1)`
-  (`0x00238ED4`-`0x00238F38`). It ends with `0x0026A330(actor, 0.0)` and `0x00312700(unit)` (`0x00238F3D`-`0x00238F4D`).
+ ¹³. It ends with `0x0026A330(actor, 0.0)` and `0x00312700(unit)`¹⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00238C91`-`0x00238CC8` |
+| ² | `0x00238DBD`-`0x00238E02` |
+| ³ | `0x00238D98`-`0x00238DAE` |
+| ⁴ | `0x00238E06`-`0x00238E0D`, `0x00238E34`-`0x00238E3E` |
+| ⁵ | `0x00238E11`-`0x00238E2F`, `0x00238EC9`-`0x00238ECF` |
+| ⁶ | `0x00238C65`-`0x00238C81`, `0x00238CE0`-`0x00238CFC` |
+| ⁷ | `0x00238DB3` |
+| ⁸ | `0x00238E57`-`0x00238E75` |
+| ⁹ | `0x00238D04`-`0x00238D68`, `0x00238E43`-`0x00238E52` |
+| ¹⁰ | `0x00238C18`-`0x00238C27`, `0x00238D6C`-`0x00238D94`, `0x00238E7A`-`0x00238E8D`, `0x00238EBD`-`0x00238EC4` |
+| ¹¹ | `0x00238E92`-`0x00238EB8` |
+| ¹² | `0x00238D98` |
+| ¹³ | `0x00238ED4`-`0x00238F38` |
+| ¹⁴ | `0x00238F3D`-`0x00238F4D` |
+
+</details>
 
 The writers:
 
@@ -248,8 +451,17 @@ The writers:
 focus (`0x003590D0`, `0x003588B0`, resolved with slot 0 as the current slot), else the byte itself.
 
 `0x00263AA0(actor)` and `0x00263AB0(actor)` return the signed bytes `+0x21` and `+0x22` while `+0x0F` bit `0x40` is set, and 0
-otherwise. The minimap's list build `0x003C5130` adds them to the actor's x and z (`0x003C51F5`, `0x003C520F`), so they
+otherwise. The minimap's list build `0x003C5130` adds them to the actor's x and z¹, so they
 move the actor's marker off its position ([Map screens](../Menus-And-HUD/map-screens.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C51F5`, `0x003C520F` |
+
+</details>
 
 ### The script queries
 
@@ -258,7 +470,16 @@ Script verbs read and change a fighting actor's state through its unit and stats
 `0x00263F10`, which follows a record whose `+0x18` is 2 to the record its `+0x19` (manager) and
 `+0x1A` (ordinal) name; the others use the calling actor as it is. A member argument goes through
 `0x00264010` (a record of the current slot, or the party focus for a negative value), or through
-the roster (`0x00263750`) for `getequipitemid_468`.
+the roster¹ for `getequipitemid_468`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00263750` |
+
+</details>
 
 | Verb | Id | Helper | Result |
 |---|---|---|---|
@@ -279,34 +500,85 @@ the roster (`0x00263750`) for `getequipitemid_468`.
 record is missing or its status words `+0x3C | +0x64` carry bit `0x1`, `0x2` or `0x80000000` while the town flag
 `0x00313F60` is clear, and 1 otherwise.
 
-The handle-based helpers `0x00320CA0`, `0x003206E0` and `0x00318A90` take the actor's handle
-(`0x003589B0`), need `0x02089340` bit `0x10`, a unit and a stats record, and fail with -1 (0 for
+The handle-based helpers `0x00320CA0`, `0x003206E0` and `0x00318A90` take the actor's handle¹, need `0x02089340` bit `0x10`, a unit and a stats record, and fail with -1 (0 for
 `0x00320CA0`). `0x00318A90` refuses statuses 0, 1 and 31 with -2 and otherwise calls the add or remove
 routine as `(stats, 0, status, -1, -1, 0x13)`. `0x003206E0(handle, which, percent)` reads HP `+0x48`
 and capacity `+0x24` for `which` = 0 and MP `i16 +0x4C` and capacity `i16 +0x28` for 1; a percent of
 100 returns the capacity and any other positive percent `percent * capacity / 100`, truncated.
 
-`0x00318A90` tests the bit value `1 << (status & 31)` against `0x80000003` (`0x00318AD2`-`0x00318AD9`), so 32, 33 and
-63 are refused as well, and the routine receives the status's low byte (`0x00318B10`). Any mode other than 0 adds
-(`0x00318B14`), and a call made returns 0 (`0x00318B23`). `0x003206E0` returns -1 for a `which` other than 0 and 1
-(`0x00320726`) and the current value for a percent of 0 or less (`0x0032073C`-`0x00320740`); its product is 64-bit
-and the division signed (`0x00320752`-`0x00320774`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003589B0` |
+
+</details>
+
+`0x00318A90` tests the bit value `1 << (status & 31)` against `0x80000003`¹, so 32, 33 and
+63 are refused as well, and the routine receives the status's low byte². Any mode other than 0 adds³, and a call made returns 0⁴. `0x003206E0` returns -1 for a `which` other than 0 and 1⁵ and the current value for a percent of 0 or less⁶; its product is 64-bit
+and the division signed⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00318AD2`-`0x00318AD9` |
+| ² | `0x00318B10` |
+| ³ | `0x00318B14` |
+| ⁴ | `0x00318B23` |
+| ⁵ | `0x00320726` |
+| ⁶ | `0x0032073C`-`0x00320740` |
+| ⁷ | `0x00320752`-`0x00320774` |
+
+</details>
 
 `0x00320CA0(handle, out)` makes those tests in this order: `0x02089340` bit `0x10`, the handle through `0x003588B0`, the
-actor's unit through `0x00263E30` and the stats record `+0x698` (`0x00320CA6`-`0x00320CD3`). When all pass it writes the
-record's status words, `+0x64 | +0x3C`, to the dword `+0x00` of `out` and answers 1 (`0x00320CD5`-`0x00320CDD`); its 0
-leaves `out` unwritten (`0x00320CE8`).
+actor's unit through `0x00263E30` and the stats record `+0x698`¹. When all pass it writes the
+record's status words, `+0x64 | +0x3C`, to the dword `+0x00` of `out` and answers 1²; its 0
+leaves `out` unwritten³.
 
-`0x0031BDC0(words, slot)` reads the stats record's equipment words `+0x50` (`0x0031BD80`): slots 0-4
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320CA6`-`0x00320CD3` |
+| ² | `0x00320CD5`-`0x00320CDD` |
+| ³ | `0x00320CE8` |
+
+</details>
+
+`0x0031BDC0(words, slot)` reads the stats record's equipment words `+0x50`¹: slots 0-4
 give the word itself and slots above 8 give `0xFFFF`. Slots 5, 7 and 8 give word 0 when
 `0x00322560` reports that word 0's row in the equipment table `[0x02EBF0F8]` has byte `+0x26` equal
 to `0x11`, and word 1 otherwise; slot 6 gives the other one. `0x0035A0C0` passes slots 1-5 through
 and turns any other value into 0.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031BD80` |
+
+</details>
+
 A negative slot gives `0xFFFF` as well, since `0x0031BDD3` compares unsigned, and `0x0035A0C0` turns it into 0 the
-same way (`0x0035A0CC`). `0x0035A0C0` returns -1 for a null actor (`0x0035A0C7`) and for a `0xFFFF` word
-(`0x0035A10F`-`0x0035A116`); `0x0031BD80` gives `0xFFFF` for an actor without a unit or a stats record
-(`0x0031BD88`-`0x0031BDB3`).
+same way¹. `0x0035A0C0` returns -1 for a null actor² and for a `0xFFFF` word³; `0x0031BD80` gives `0xFFFF` for an actor without a unit or a stats record⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035A0CC` |
+| ² | `0x0035A0C7` |
+| ³ | `0x0035A10F`-`0x0035A116` |
+| ⁴ | `0x0031BD88`-`0x0031BDB3` |
+
+</details>
 
 `0x00359EA0(index, focusFirst, includeHidden)` picks a party actor: it lists the members of
 `0x0031B670` (up to four) followed by those of `0x0031B680`, drops members whose model is hidden
@@ -315,21 +587,44 @@ is set, moves the party
 focus record (`0x00264050(0)`) to the front when `focusFirst` is set and it is among the first four,
 and returns entry `index`, or null past the end.
 
-Without `includeHidden` the walk keeps an entry only when it is non-null and `0x002E9600` gives non-zero
-(`0x00359F40`-`0x00359F5B`), and zero-fills the slots it freed (`0x00359F8B`). The focus record is `0x00264050(0, -1)`
-(`0x00359F9A`-`0x00359F9F`), sought in the first four slots (`0x00359FB0`-`0x00359FBE`). The index test is signed
-(`0x0035A010`), so a negative index is not refused and reads the stack before the list (`0x0035A025`).
+Without `includeHidden` the walk keeps an entry only when it is non-null and `0x002E9600` gives non-zero¹, and zero-fills the slots it freed². The focus record is `0x00264050(0, -1)`³, sought in the first four slots⁴. The index test is signed⁵, so a negative index is not refused and reads the stack before the list⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00359F40`-`0x00359F5B` |
+| ² | `0x00359F8B` |
+| ³ | `0x00359F9A`-`0x00359F9F` |
+| ⁴ | `0x00359FB0`-`0x00359FBE` |
+| ⁵ | `0x0035A010` |
+| ⁶ | `0x0035A025` |
+
+</details>
 
 `0x00359CA0` takes the same arguments and gives the same pick, except that it filters the two lists apart and looks
 for the party focus only among the members of `0x0031B670`, so a focus member from `0x0031B680` keeps its place. Eight
 verbs use it: capturebattlemember, capturebattlemembeructop, ucmove_52b, ucmovesync_52c, ucmovecancel_52d,
 setbattlethinkstatus_52e, check_move_battlestatus and check_move_battlestatus_ignore_dead.
 
-The verb `0x308C` (`0x0050F5B0`) calls it through
+The verb `0x308C`¹ calls it through
 `0x00510870` with `focusFirst` = 1 and `includeHidden` = 0, and sets its result to 1 when a member
 was picked and `0x00262F50` accepted it, 0 otherwise.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0050F5B0` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Struct BattleUnit size=`0xF50` count=32 base=[`0x0208E688`]:
 
@@ -359,10 +654,20 @@ Globals:
 
 Every immediate-mask write and test on `+0x00` and `+0x04` in the access table
 [`battle-unit-fields.tsv`](battle-unit-fields.tsv) by bit, plus the unit reset `0x00236A60`'s register mask
-`0xFFFF7FFDFFE7FFFD` (`0x00236A9C`-`0x00236AB1`), which clears bits `0x2`, `0x80000`, `0x100000`, `0x200000000` and
-`0x800000000000`. The reset also clears `+0x00` with `0xFFFFB0E3` (`0x00236AA6`) and `+0x04` with `0xFFEFFFBB`
-(`0x00236A95`). Each bit value is a bit of the qword at `+0x00`, so values from `0x100000000` up are bits of the dword
+`0xFFFF7FFDFFE7FFFD`¹, which clears bits `0x2`, `0x80000`, `0x100000`, `0x200000000` and
+`0x800000000000`. The reset also clears `+0x00` with `0xFFFFB0E3`² and `+0x04` with `0xFFEFFFBB`³. Each bit value is a bit of the qword at `+0x00`, so values from `0x100000000` up are bits of the dword
 at `+0x04`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00236A9C`-`0x00236AB1` |
+| ² | `0x00236AA6` |
+| ³ | `0x00236A95` |
+
+</details>
 
 The Tested by column lists the functions that test the bit on the word in memory. The last column lists the
 functions that load the word into a register and test the bit with `bt` or `test` on that register or a copy of
@@ -414,6 +719,8 @@ with `bt rax, 0x1a` at `0x00301176`:
 Other writers that apply a mask held in a register are not in the table: among them `0x00312130` on bit
 `0x1000000000`, `0x00317E60` on bit `0x100000000` and `0x005102D0` on bit `0x200000000000`.
 
+</details>
+
 ## Operations
 
 - A unit is zero at both ends of its life: the allocator clears the slot before the bind and the
@@ -423,13 +730,22 @@ Other writers that apply a mask held in a register are not in the table: among t
 
 ## Modding notes
 
-- The thirty-two is a literal in `0x002368D0` and again in the bind walk (`0x00265A8F`); raising spawn counts spends
+- The thirty-two is a literal in `0x002368D0` and again in the bind walk¹; raising spawn counts spends
   against
   that budget, and there is no separate enemy pool.
 - Carry the handle at `+0x08`, not the unit pointer or the slot index: a handle stops resolving once the actor's
   discriminator advances or the manager is unbound. When the manager is bound again every discriminator restarts at
   1, so a handle kept across the unbind can name a new record.
 - An actor that ignores movement calls is one whose class is not 3; check `+0x03 >> 5`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265A8F` |
+
+</details>
 
 ## Related
 
@@ -448,9 +764,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Saving, loading and settings** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0022B6E0` | calls | `0x002EF650` |
+| [`0x0022B6E0`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) | calls | [`0x002EF650`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) |
 
 </details>
 

@@ -20,27 +20,54 @@
 ### The button
 
 `0x0017DE10` answers whether the R2 binding is held. It reads the stored word directly: `0x00197710(manager, 0, 0, 9)`
-returns slot 9 of the first profile, `[Keyboard1]`, from `0x01F80F90` (`0x0017DE2A`-`0x0017DE32`, `0x0019775A`-`0x0019776F`),
+returns slot 9 of the first profile, `[Keyboard1]`, from `0x01F80F90`¹,
 not from the published copy, which has L2 and R2 cleared ([keymap.ini](keymap-file.md)). The code is tested on the
-first keyboard slot of the input mapper `[0x00796E20() + 0xDF8]` (`0x0017DE16`-`0x0017DE1B`, `0x0079E6A0`), the pointer at
+first keyboard slot of the input mapper `[0x00796E20() + 0xDF8]`², the pointer at
 mapper `+0x118`, whose key byte `+0x30` + code - 28 it reads.
 
-`0x0079E6A0` answers 0 with no keyboard there or for a code below 28 or above 283 (`0x0079E6A0`-`0x0079E6CB`), so a
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017DE2A`-`0x0017DE32`, `0x0019775A`-`0x0019776F` |
+| ² | `0x0017DE16`-`0x0017DE1B`, `0x0079E6A0` |
+
+</details>
+
+`0x0079E6A0` answers 0 with no keyboard there or for a code below 28 or above 283¹, so a
 mouse or pad code bound to R2 never fires. It is a level, not a press; the press is made by the latch below.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079E6A0`-`0x0079E6CB` |
+
+</details>
 
 ### The latch
 
 The input arbiter `0x00253C70` keeps the toggle `0x020927E0`, a press latch `0x020927E4` and an override `0x01E0C2B4`, and
-nothing else touches them (`0x002541D4`-`0x00254258`):
+nothing else touches them¹:
 
-1. While R2 is held, the override is cleared, and on the first frame of the press the toggle flips
-   (`0x002541D4`-`0x002541FD`); the latch then stays set.
-2. When R2 is released, input snapshot bit `0x200` (`0x02F97360`) is set and `0x00862CF0` does not answer 1, the toggle and the
-   override are set to 1 (`0x0025420A`-`0x00254228`), and the latch is left set.
-3. Otherwise, when the override is set or the area's town bit is set (`0x00313F60`), the toggle is set to 0
-   (`0x0025422A`-`0x0025423B`).
-4. The latch is cleared on release only while the override is 0 (`0x00254241`-`0x00254249`).
-5. The toggle is passed to the applier `0x00252B60` (`0x00254250`-`0x00254258`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002541D4`-`0x00254258` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | While R2 is held, the override is cleared, and on the first frame of the press the toggle flips; the latch then stays set. | `0x002541D4`-`0x002541FD` |
+| 2 | When R2 is released, input snapshot bit `0x200` is set and `0x00862CF0` does not answer 1, the toggle and the override are set to 1, and the latch is left set. | `0x02F97360`<br>`0x0025420A`-`0x00254228` |
+| 3 | Otherwise, when the override is set or the area's town bit is set, the toggle is set to 0. | `0x00313F60`<br>`0x0025422A`-`0x0025423B` |
+| 4 | The latch is cleared on release only while the override is 0. | `0x00254241`-`0x00254249` |
+| 5 | The toggle is passed to the applier `0x00252B60`. | `0x00254250`-`0x00254258` |
 
 So one press of the bound keyboard key flips the toggle once. With R2 on a pad, step 2 holds the toggle at 1 while
 R2 is held, and step 3 clears it on release. After step 2 the latch is still set, so the next press clears the
@@ -48,58 +75,104 @@ override but does not flip the toggle.
 
 ### The applier
 
-`0x00252B60(toggle, force)` decides what reaches the flag (`0x00252B60`-`0x00252C7F`):
+`0x00252B60(toggle, force)` decides what reaches the flag¹:
 
-1. With input snapshot bit `0x2000000` set it does nothing (`0x00252B7A`-`0x00252B86`).
-2. When the combined action availability mask `0x002E0FA0` has bit `0x40`, bit `0x200` or bit `0x400` set, or
-   `0x00237260` answers non-zero, the toggle becomes 0 with `force` 1 (`0x00252B8C`-`0x00252BB3`). Bit `0x200` also sets
-   the quiet bit through `0x00366950` when bit `0x40` is clear (`0x00252B90`-`0x00252B9B`); `0x00237260` is asked only
-   when bits `0x40`, `0x200` and `0x400` are all clear (`0x00252BA2`-`0x00252BAF`).
-3. A `0x020927CC` of 1 does the same (`0x00252BB6`-`0x00252BC1`).
-4. The battle mode register `0x0035C6F0` can replace the toggle, in the next two steps.
-5. With bit `0x4` or `0x8` of the register set, the toggle becomes input snapshot bit `0x200`, or 0 when availability bit `0x400` is set
-   (`0x00252BCD`-`0x00252BEC`). It writes `0x0035C880(0xC, (register & 4) * 2)`, then `0x0035C880(0xC, 0)` when the toggle
-   is 0, and sets the quiet bit (`0x00252BEF`-`0x00252C0C`).
-6. Otherwise, with bit `0x1` of the register set, the toggle becomes the register's bit `0x2` (`0x00252C13`-`0x00252C25`).
-7. Only when `0x003603B0` and `0x003603C0` both answer 0 does it arm (`0x00252C28`-`0x00252C5D`). While the toggle is 1 it
-   runs the arming step `0x00366870` and passes on the armed bit from `0x003669F0` instead of the toggle. While the
-   toggle is 0 it runs the disarm step `0x003667E0`. Otherwise the toggle is passed on unarmed.
-8. It calls `0x00252C80(value, force)` (`0x00252C5F`-`0x00252C63`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00252B60`-`0x00252C7F` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | With input snapshot bit `0x2000000` set it does nothing. | `0x00252B7A`-`0x00252B86` |
+| 2 | When the combined action availability mask `0x002E0FA0` has bit `0x40`, bit `0x200` or bit `0x400` set, or `0x00237260` answers non-zero, the toggle becomes 0 with `force` 1. Bit `0x200` also sets the quiet bit through `0x00366950` when bit `0x40` is clear; `0x00237260` is asked only when bits `0x40`, `0x200` and `0x400` are all clear. | `0x00252B8C`-`0x00252BB3`<br>`0x00252B90`-`0x00252B9B`<br>`0x00252BA2`-`0x00252BAF` |
+| 3 | A `0x020927CC` of 1 does the same. | `0x00252BB6`-`0x00252BC1` |
+| 4 | The battle mode register `0x0035C6F0` can replace the toggle, in the next two steps. |   |
+| 5 | With bit `0x4` or `0x8` of the register set, the toggle becomes input snapshot bit `0x200`, or 0 when availability bit `0x400` is set. It writes `0x0035C880(0xC, (register & 4) * 2)`, then `0x0035C880(0xC, 0)` when the toggle is 0, and sets the quiet bit. | `0x00252BCD`-`0x00252BEC`<br>`0x00252BEF`-`0x00252C0C` |
+| 6 | Otherwise, with bit `0x1` of the register set, the toggle becomes the register's bit `0x2`. | `0x00252C13`-`0x00252C25` |
+| 7 | Only when `0x003603B0` and `0x003603C0` both answer 0 does it arm. While the toggle is 1 it runs the arming step `0x00366870` and passes on the armed bit from `0x003669F0` instead of the toggle. While the toggle is 0 it runs the disarm step `0x003667E0`. Otherwise the toggle is passed on unarmed. | `0x00252C28`-`0x00252C5D` |
+| 8 | It calls `0x00252C80(value, force)`. | `0x00252C5F`-`0x00252C63` |
 
 ### The flag
 
-`0x00252C80(value, force)` writes the force fight mode flag `0x01E0C2B8` (`0x00252C80`-`0x00252D05`). A value of 1 clears the
+`0x00252C80(value, force)` writes the force fight mode flag `0x01E0C2B8`¹. A value of 1 clears the
 flag (force fight mode off, the party fleeing), which is Escape Mode on. A value of 0 sets it back to 1, or to 0 when
-the area's force-fight feature is off (`0x003BA2E0`).
+the area's force-fight feature is off².
 
-Without `force` it writes a value of 1 only while the flag is non-zero and a value of 0 only while the flag is 0
-(`0x00252CBA`-`0x00252CCE`), and not at all while `0x003603B0` or `0x003603C0` answers non-zero: a flag at 1 stays 1 under a
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00252C80`-`0x00252D05` |
+| ² | `0x003BA2E0` |
+
+</details>
+
+Without `force` it writes a value of 1 only while the flag is non-zero and a value of 0 only while the flag is 0¹, and not at all while `0x003603B0` or `0x003603C0` answers non-zero: a flag at 1 stays 1 under a
 value of 0 even while the feature is off, and a flag at 0 is written 1 and then the feature value. It returns 1 when
-it writes and 0 when it does not (`0x00252CB6`, `0x00252CEA`-`0x00252CEF`).
+it writes and 0 when it does not².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00252CBA`-`0x00252CCE` |
+| ² | `0x00252CB6`, `0x00252CEA`-`0x00252CEF` |
+
+</details>
 
 The flag has one other writer. `0x00254EA0(v)` is the body of the script verb `0x334` `setforcefightmode` (handler
-`0x003444D0`, call `0x003444E2`): it writes 1 when `v` is non-zero and `0x003BA2E0` answers non-zero (`0x00254EB1`), and 0
-otherwise (`0x00254EC5`).
+`0x003444D0`, call `0x003444E2`): it writes 1 when `v` is non-zero and `0x003BA2E0` answers non-zero¹, and 0
+otherwise².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00254EB1` |
+| ² | `0x00254EC5` |
+
+</details>
 
 ### Arming
 
-The arming state is the word `0x022CBE1A`. Both steps return at once when the battle mode register has bit `0x1` set
-(`0x00366874`-`0x0036687B`, `0x003667E4`-`0x003667EB`).
+The arming state is the word `0x022CBE1A`. Both steps return at once when the battle mode register has bit `0x1` set¹.
 
-1. `0x00366870` counts frames in `0x022CBE18`. On the first frame, bit `0x1` clear, it restarts the count and starts a
-   repeating sound, block slot `0x52`, and sets bit `0x10` (`0x0036688D`-`0x003668E0`). With bit `0x10` already set, or
-   when `0x003A1180(0x52)` returns -1, it starts no sound; a sound it starts plays through
-   `0x002DF220(handle, 0x40, 0x7F)`, its handle in `0x022CBE1C` (`0x00366892`-`0x003668C2`).
-2. When the count reaches `0x022CBE08` it pins the count there and sets the armed bit, bit `0x4`, and on that frame only
-   also bit `0x8` (`0x00366902`-`0x00366918`).
-3. Every frame it clears bits `0x2` and `0x40` and sets bit `0x1` (`0x0036691C`-`0x00366928`).
-4. `0x003667E0` plays the disarm cue, block slot `0x2A` through `0x00249C60`, when the armed bit is set, `0x00265680`
-   answers non-zero and the quiet bit, bit `0x40`, is clear (`0x003667ED`-`0x0036680D`).
-5. It then stops the repeating sound if it plays, clears bits `0x1`, `0x4`, `0x8`, `0x10`, `0x20` and `0x40`, and sets bit `0x2`
-   (`0x00366812`-`0x0036685B`).
+<details>
+<summary>Where in the code</summary>
 
-`0x022CBE08` is 30 times the frame-time base `0x01DFE0B4`, set once by `0x00366B80` (`0x003670A6`-`0x003670B7`): one second
+| | Code |
+|---|---|
+| ¹ | `0x00366874`-`0x0036687B`, `0x003667E4`-`0x003667EB` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00366870` counts frames in `0x022CBE18`. On the first frame, bit `0x1` clear, it restarts the count and starts a repeating sound, block slot `0x52`, and sets bit `0x10`. With bit `0x10` already set, or when `0x003A1180(0x52)` returns -1, it starts no sound; a sound it starts plays through `0x002DF220(handle, 0x40, 0x7F)`, its handle in `0x022CBE1C`. | `0x0036688D`-`0x003668E0`<br>`0x00366892`-`0x003668C2` |
+| 2 | When the count reaches `0x022CBE08` it pins the count there and sets the armed bit, bit `0x4`, and on that frame only also bit `0x8`. | `0x00366902`-`0x00366918` |
+| 3 | Every frame it clears bits `0x2` and `0x40` and sets bit `0x1`. | `0x0036691C`-`0x00366928` |
+| 4 | `0x003667E0` plays the disarm cue, block slot `0x2A` through `0x00249C60`, when the armed bit is set, `0x00265680` answers non-zero and the quiet bit, bit `0x40`, is clear. | `0x003667ED`-`0x0036680D` |
+| 5 | It then stops the repeating sound if it plays, clears bits `0x1`, `0x4`, `0x8`, `0x10`, `0x20` and `0x40`, and sets bit `0x2`. | `0x00366812`-`0x0036685B` |
+
+`0x022CBE08` is 30 times the frame-time base `0x01DFE0B4`, set once by `0x00366B80`¹: one second
 of frames. Until it is reached `0x003669F0` answers 0, the applier passes 0, and the flag does not change.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003670A6`-`0x003670B7` |
+
+</details>
 
 Two setters skip the count. `0x00366960(on)`, run by `0x0028E580`, writes the count word `0x022CBE18` with the full
 delay and the arming word `0x022CBE1A` with `0x25` (bits `0x1`, `0x4` and `0x20`: armed at once), or clears both for 0.
@@ -113,31 +186,80 @@ a node's picture cell at (x, y) through `0x002D8D10`, scaling it and its offset 
 when `scale` is not 0.
 
 The draw (message 4) takes the node count from the dword `+0x0C` of the object at the widget's `+0x58`
-and the node pointers from the array that the widget's own qword `+0x60` points at (`0x00366CC0`). Each
+and the node pointers from the array that the widget's own qword `+0x60` points at¹. Each
 node gets a share of the delay: share =
 `[0x022CBE08]` x 128 / (count + 1), unsigned. With c = the latch's count word x 256, node i is left out
 while share x i is above c, and is drawn whole once c reaches `[0x022CBE08]` x 128 + share x i: one
-drawing with the value 5.0 and the draw record's brightness `+0x5A` at `0x80` (`0x00366CE6`-`0x00366D22`).
+drawing with the value 5.0 and the draw record's brightness `+0x5A` at `0x80`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00366CC0` |
+| ² | `0x00366CE6`-`0x00366D22` |
+
+</details>
 
 Before those tests each node's five points are written by `0x00367110`, called with the points, the
-node, the widget's word `+0x9C` and `word +0x9E >> 1`, and the brightness `+0x5A` is set to `0x80`
-(`0x00366CC0`-`0x00366CFC`). The count word is read signed, the two tests of c are signed, and a count of
-0 at the object's `+0x0C` draws nothing (`0x00366C6A`-`0x00366C7B`, `0x00366D0A`-`0x00366D19`).
+node, the widget's word `+0x9C` and `word +0x9E >> 1`, and the brightness `+0x5A` is set to `0x80`¹. The count word is read signed, the two tests of c are signed, and a count of
+0 at the object's `+0x0C` draws nothing².
 
-Between the two, q = 4 x (c - share x i) / (`[0x022CBE08]` / 2), unsigned (`0x00366D24`-`0x00366D36`). With
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00366CC0`-`0x00366CFC` |
+| ² | `0x00366C6A`-`0x00366C7B`, `0x00366D0A`-`0x00366D19` |
+
+</details>
+
+Between the two, q = 4 x (c - share x i) / (`[0x022CBE08]` / 2), unsigned¹. With
 q below `0x300` the node is drawn five times, k = 0 to 4, with the value (q - `0x80` + `0x20` x k) / 256,
-a negative value skipped (`0x00366D38`-`0x00366D4B`, `0x00366D9C`-`0x00366DBE`, `0x00366E97`-`0x00366EA0`). With q
+a negative value skipped². With q
 at `0x300` or more it is drawn once with q / 256, and the brightness is `0x80` plus the low byte b of q
-while b is below `0x80`, and `0x17F` - b from there (`0x00366D4D`-`0x00366D6A`).
+while b is below `0x80`, and `0x17F` - b from there³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00366D24`-`0x00366D36` |
+| ² | `0x00366D38`-`0x00366D4B`, `0x00366D9C`-`0x00366DBE`, `0x00366E97`-`0x00366EA0` |
+| ³ | `0x00366D4D`-`0x00366D6A` |
+
+</details>
 
 These brightness values are the ones set before the scale by the widget's `+0xD2`, which is applied
-ahead of the drawings (`0x00366D6F`-`0x00366D86`).
+ahead of the drawings¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00366D6F`-`0x00366D86` |
+
+</details>
 
 For each drawing the draw record's alpha `+0x58` is stored as ((`+0xD0` x f) >> 7) x m / 4, where f is
 2 x q while q is below `0x40` and `0x80` otherwise, and m is k for the five drawings and 4 for a single
-one (`0x00366D8B`-`0x00366D97`, `0x00366DDC`-`0x00366E10`). `0x00270260(out, points, 5, value)` gives the point
+one¹. `0x00270260(out, points, 5, value)` gives the point
 from the five that `0x00367110` wrote for the node, and `0x00366A30` draws the node there with scale 0, cx
-half the widget's word `+0x9C` and cy a quarter of its word `+0x9E` (`0x00366DC4`-`0x00366E26`).
+half the widget's word `+0x9C` and cy a quarter of its word `+0x9E`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00366D8B`-`0x00366D97`, `0x00366DDC`-`0x00366E10` |
+| ² | `0x00366DC4`-`0x00366E26` |
+
+</details>
 
 ### What reads the flag
 
@@ -147,12 +269,26 @@ distance threshold `0x00309A90`, `0x0030C010`, `0x00313A00`, and through its thu
 and the battle movement step `0x00336710`, `0x00339BF0`, `0x0033A720`, `0x0033C310` and `0x0033CEF0`. What each does with it
 is on [Force fight mode](../Engine-Core/force-fight-mode.md).
 
-`0x00253BA0` returns the flag itself when `0x003BA2E0` answers non-zero, and 0 otherwise (`0x00253BAD`). It is called from
-the battle menu's builder `0x00276650` (`0x0027668C`) and its panel procedure `0x00276D30` (`0x00276FD3`)
+`0x00253BA0` returns the flag itself when `0x003BA2E0` answers non-zero, and 0 otherwise¹. It is called from
+the battle menu's builder `0x00276650`² and its panel procedure `0x00276D30`³
 ([Battle menu](../Menus-And-HUD/battle-menu.md)). Those two readers and the writers above are the only accesses
 to `0x01E0C2B8`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00253BAD` |
+| ² | `0x0027668C` |
+| ³ | `0x00276FD3` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 ### The escape widget's fields
 
@@ -172,23 +308,55 @@ The escape widget is the `0xE0`-byte widget kept at `0x022CBE20` with procedure 
 | `+0xDA` | `u16` | ringScale | the scale of the expanding copy, in 256ths: `0x100` when the pulse starts with bit `0x8` (`0x00366F76`), `0x200` with bit `0x20` (`0x00366F65`); each update adds `0x20` up to `0x200` (`0x00366F20`-`0x00366F38`). While it is below `0x200` the draw draws each node a second time at this scale with its alpha times (`0x200` - scale) / 256 (`0x00366E35`-`0x00366E8B`) |
 | `+0xDC` | `u8[4]` | tail0DC | read and written by no function; nothing fixes its width |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The escape widget `0x00366B80` sets these when it is built (message 1, `0x003670A6`-`0x003670D6`), from the frame-time
 base `0x01DFE0B4` (1 at 30 fps, 2 at 60: `0x001EDDF2`), beside the delay `0x022CBE08`. Its update (message 2,
 `0x00366EFB`-`0x003670E8`) moves the picture's alpha `+0xD0` and brightness `+0xD2` by 128 divided by them; its draw
-reads both (`0x00366D6F`, `0x00366DDC`).
+reads both¹.
 
-The update does nothing while `0x001EDEC0` answers 0 for the widget's dword `+0xB4`
-(`0x00366EFB`-`0x00366F08`). With no pulse running and neither bit `0x1` nor bit `0x2` in the arming word
-it sets the alpha `+0xD0` to 0 at once (`0x0036701B`-`0x00367037`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00366D6F`, `0x00366DDC` |
+
+</details>
+
+The update does nothing while `0x001EDEC0` answers 0 for the widget's dword `+0xB4`¹. With no pulse running and neither bit `0x1` nor bit `0x2` in the arming word
+it sets the alpha `+0xD0` to 0 at once².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00366EFB`-`0x00366F08` |
+| ² | `0x0036701B`-`0x00367037` |
+
+</details>
 
 On message 1 the widget also calls
 `0x002432B0(widget + 0x50, [[0x0209AC30] + 8], 0xC, widget)` and copies the answer's words `+0x04`, `+0x06`
 and `+0x08` to its `+0x98`, `+0x9A` and `+0x9C`, and twice the word `+0x0A` to `+0x9E`; the answer is
-read with no null test and the four stores are skipped for a null widget (`0x00367044`-`0x0036708F`). Any
-message other than 1, 2 and 4 goes to `0x005C5230`, which answers 0
-(`0x00366BC3`).
+read with no null test and the four stores are skipped for a null widget¹. Any
+message other than 1, 2 and 4 goes to `0x005C5230`, which answers 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00367044`-`0x0036708F` |
+| ² | `0x00366BC3` |
+
+</details>
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -199,15 +367,27 @@ message other than 1, 2 and 4 goes to `0x005C5230`, which answers 0
 
 No other instruction reaches these four.
 
+</details>
+
 ## Modding notes
 
 - The flag is the opposite of the toggle: Escape Mode on is the force fight mode flag at 0, the fleeing state of
   [Force fight mode](../Engine-Core/force-fight-mode.md).
-- A script that forces a fight sets the flag through `setforcefightmode` (`0x00254EA0`); the next frame's applier
+- A script that forces a fight sets the flag through `setforcefightmode`¹; the next frame's applier
   leaves that 1 while it passes 0, writes 0 over it while it passes 1 (Escape Mode armed, `0x00252CBE`), and writes
   whatever it passes when an availability bit forces it.
 - The one-second delay is `0x022CBE08`, set from the frame-time base when the escape widget `0x00366B80` is built
-  (`0x003670B7`).
+ ².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00254EA0` |
+| ² | `0x003670B7` |
+
+</details>
 
 ## Related
 
@@ -224,14 +404,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Developer** (explained on [game application](../Engine-Core/game-application.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00796E20` | is called by | `0x001C2F50` |
+| [`0x00796E20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x001C2F50`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) |
 
 **Steam and achievements** (explained on [steam integration](../Steam-And-Achievements/steam-integration.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00796E20` | is called by | `0x008655A0` |
+| [`0x00796E20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x008655A0`](../Steam-And-Achievements/steam-integration.md) (on steam integration) |
 
 </details>

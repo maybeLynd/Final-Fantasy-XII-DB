@@ -26,33 +26,29 @@ masks, the ticks-per-frame constant is rewritten when an area unloads and by the
 ([game application](game-application.md)), with the two arguments the framework handed to the
 archive mount. It runs these in order:
 
-1. `0x0022BDF0(b, a)`: the frame-rate selection and the command line (below);
-2. `0x02064AA4` = 0 (the shared stub's result); `0x01E02814` = the language index `0x0017E270()`;
-   `0x01E0281C` = 10 (`0x0017E410`); `0x002AB7D0()`;
-3. the confirm mapping: `0x01FD4A64` = whether DecideButton (`0x0017E210`, the settings object's
-   `+0x64`) is non-zero; the masks `0x01E0C2A0`/`0x01E0C2A4` = `0x4000`/`0x2000`, swapped to
-   `0x2000`/`0x4000` when it is zero ([game settings](../Saving-Loading-And-Settings/game-settings.md));
-4. `0x00184660([0x01E0280C])`, the PS2 emulation reset `0x0036D990` (the `vf00` image `0x01EF93F0` =
-   `{0, 0, 0, 1}` and two log lines through `0x0017D280`), `0x0022CB90`, `0x0037DF90`, `0x0037E0F0`;
-   `0x01FD4A78` = the address `0x01FE0000`; `0x002DF9A0(language)`; `0x00184960(1)` (the time-base suppressor, below);
-   `0x00862BD0(language)`; the build-id files (below);
-5. a call to the return stub `0x0016D6A0` with `0x7D` after `0x00184960(1)`, a compiled-out hook; two
-   more such calls follow the state cells and precede `0x00266D10`;
-6. the main state machine's cells: `0x02064AD2` = 0, `0x02064AD4` = 1.0, the state `0x02064AD3` = 0,
-   the ticks-per-frame constant `0x02064ACC = 2 / [0x01DFE0B4]`, `0x02064AD1` = 0, `0x02064AC0`, `0x02064AC4`
-   and `0x02064AC8` = 1.0 ([frame update order](frame-update-order.md));
-7. `0x00368A90` (`0x02EC0B39` = 0, `0x02EC0B38` = `0xFF`), then the memory budget (below);
-8. `0x0037B390`, `0x00360370`, `0x00358510`, `0x00379D40`, `0x003692D0` (its byte result goes to
-   `0x003694D0(byte, 0, 0)` after `0x0036D260`, `0x00368ED0`, `0x0036ECE0` and `0x00379D00`), `0x0032EAE0`,
-   `0x0036FD70` (the stub returns 0, so always), `0x0036EFD0`, `0x0036D8B0`, a ret-stub call, the actor
-   system `0x00266D10`, `0x0036F4D0`, `0x003325C0`, `0x00259180`;
-9. the seed `0x00379CF0(0x11B9)` (below); `0x00253970`, the spawn banks `0x002368D0`, `0x002EA520`,
-   `0x00259DF0`, `0x0035B270` (the vibration slot reset, [vibration](../Controls-And-Input/vibration.md)), `0x00379E90`, `0x00379D20`, `0x0036E310`, `0x0037CCC0`, `0x0036FFF0`; the game-step
-   count `0x02064AD0` = 0; a drain loop over `0x00364200` / `0x0032E040` / `0x0035EA30(0)` gated on
-   `0x005C5230()` being non-zero never runs.
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x0022BDF0(b, a)`: the frame-rate selection and the command line (below); |   |
+| 2 | `0x02064AA4` = 0 (the shared stub's result); `0x01E02814` = the language index `0x0017E270()`; `0x01E0281C` = 10; `0x002AB7D0()`; | `0x0017E410` |
+| 3 | the confirm mapping: `0x01FD4A64` = whether DecideButton (`0x0017E210`, the settings object's `+0x64`) is non-zero; the masks `0x01E0C2A0`/`0x01E0C2A4` = `0x4000`/`0x2000`, swapped to `0x2000`/`0x4000` when it is zero ([game settings](../Saving-Loading-And-Settings/game-settings.md)); |   |
+| 4 | `0x00184660([0x01E0280C])`, the PS2 emulation reset `0x0036D990` (the `vf00` image `0x01EF93F0` = `{0, 0, 0, 1}` and two log lines through `0x0017D280`), `0x0022CB90`, `0x0037DF90`, `0x0037E0F0`; `0x01FD4A78` = the address `0x01FE0000`; `0x002DF9A0(language)`; `0x00184960(1)` (the time-base suppressor, below); `0x00862BD0(language)`; the build-id files (below); |   |
+| 5 | a call to the return stub `0x0016D6A0` with `0x7D` after `0x00184960(1)`, a compiled-out hook; two more such calls follow the state cells and precede `0x00266D10`; |   |
+| 6 | the main state machine's cells: `0x02064AD2` = 0, `0x02064AD4` = 1.0, the state `0x02064AD3` = 0, the ticks-per-frame constant `0x02064ACC = 2 / [0x01DFE0B4]`, `0x02064AD1` = 0, `0x02064AC0`, `0x02064AC4` and `0x02064AC8` = 1.0 ([frame update order](frame-update-order.md)); |   |
+| 7 | `0x00368A90` (`0x02EC0B39` = 0, `0x02EC0B38` = `0xFF`), then the memory budget (below); |   |
+| 8 | `0x0037B390`, `0x00360370`, `0x00358510`, `0x00379D40`, `0x003692D0` (its byte result goes to `0x003694D0(byte, 0, 0)` after `0x0036D260`, `0x00368ED0`, `0x0036ECE0` and `0x00379D00`), `0x0032EAE0`, `0x0036FD70` (the stub returns 0, so always), `0x0036EFD0`, `0x0036D8B0`, a ret-stub call, the actor system `0x00266D10`, `0x0036F4D0`, `0x003325C0`, `0x00259180`; |   |
+| 9 | the seed `0x00379CF0(0x11B9)` (below); `0x00253970`, the spawn banks `0x002368D0`, `0x002EA520`, `0x00259DF0`, `0x0035B270` (the vibration slot reset, [vibration](../Controls-And-Input/vibration.md)), `0x00379E90`, `0x00379D20`, `0x0036E310`, `0x0037CCC0`, `0x0036FFF0`; the game-step count `0x02064AD0` = 0; a drain loop over `0x00364200` / `0x0032E040` / `0x0035EA30(0)` gated on `0x005C5230()` being non-zero never runs. |   |
 
-The manager-init burst `0x0017D4C0` calls `0x0022A4B0` at `0x0017D5E3`, after the boot fixer (`0x0017D5CC`) and three
+The manager-init burst `0x0017D4C0` calls `0x0022A4B0` at `0x0017D5E3`, after the boot fixer¹ and three
 more calls (`0x001B1BA0`, `0x001B1C00`, `0x001B1580`; [game application](game-application.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017D5CC` |
+
+</details>
 
 `0x0022A4B0` files the start-up graphics and text requests: `0x00291C80` (the item pictures,
 [menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md)), `0x0053DD10` (it returns 1 and the result is
@@ -60,8 +56,19 @@ not used), `0x00563520` (the battle text groups 10, 20 and 14, [battle text
 tables](../Game-Files-And-Data-Tables/battle-text-tables.md)) and `0x00556500` (the License Board picture `lic_4_c`,
 [License Board screen](../Menus-And-HUD/license-board-screen.md)).
 
-Its other calls go to the return stub `0x0016D6A0` and do nothing: one after `0x00291C80` (`0x0022A4B9`), four after
-`0x0053DD10` (`0x0022A4C3`-`0x0022A4D2`) and the tail jump at the end (`0x0022A4E5`).
+Its other calls go to the return stub `0x0016D6A0` and do nothing: one after `0x00291C80`¹, four after
+`0x0053DD10`² and the tail jump at the end³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022A4B9` |
+| ² | `0x0022A4C3`-`0x0022A4D2` |
+| ³ | `0x0022A4E5` |
+
+</details>
 
 ### The random seed
 
@@ -86,13 +93,30 @@ at `0x022C2528` on a match; the loop does not stop at one), and calls `0x001EDDC
 The second argument is read on its own as well: `0x00408C30`, the settings-file loader, takes the argument vector from
 `0x0017D240` (the pointer and count at `0x01F7F480` and `0x01F7F488`). When there are at least two arguments and the second
 is `debug` (the six bytes at `0x00D121F8` with the terminator, compared at `0x00408DA1`-`0x00408DC2`), it stores 0 to the
-u16 `0x02B62DB4` (`0x00408DC4`).
+u16 `0x02B62DB4`¹.
 
-With 0 that arm begins a multimedia timer period: `timeGetDevCaps(&caps, 8)`, and only when it returns 0
-(`0x001EDE29`-`0x001EDE31`) `timeBeginPeriod(wPeriodMin)`, the period at `0x01F82E40`, `0x01F82E3C` = 1; when `timeGetDevCaps`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00408DC4` |
+
+</details>
+
+With 0 that arm begins a multimedia timer period: `timeGetDevCaps(&caps, 8)`, and only when it returns 0¹ `timeBeginPeriod(wPeriodMin)`, the period at `0x01F82E40`, `0x01F82E3C` = 1; when `timeGetDevCaps`
 fails it begins no period. With 1 it writes the time base, `0x01DFE0B8` = 2.0, `0x01DFE0BC` = 0.5, `0x01F82E38` = 1 and
 `0x01DFE0B4` = 2, runs `0x0033F020` and ends any period begun (`timeEndPeriod([0x01F82E40])` and `0x01F82E3C` = 0,
 `0x001EDE01`-`0x001EDE17`). Both arms then run `0x0032AE70`, `0x003333D0`, `0x00337A00` and `0x002BDA90`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EDE29`-`0x001EDE31` |
+
+</details>
 
 Of these, `0x00337A00` sets the formation angle step `0x02EC0F84` to `2 / (30 × [0x01DFE0B4])` ([battle
 locomotion](../Movement-And-Pathfinding/battle-locomotion.md)).
@@ -106,26 +130,65 @@ of pacer ticks the field frame waits per frame (`0x0035EC80([0x02064ACC], 0)`, a
 
 It has a second writer, the setter `0x00229F10`: the manager-unload reset `0x002695A0` (its only caller is the unload
 `0x002628B0`) rewrites `2 / [0x01DFE0B4]`, and the verb `mainloopallsyncv` (`0x18F`, `0x003464B0` →
-`0x0026DB10`) stores its popped value divided by `[0x01DFE0B4]`, or 2 divided by it when the value is negative
-(`0x0026DB12`-`0x0026DB19`), so the verb speaks in 30 fps ticks.
+`0x0026DB10`) stores its popped value divided by `[0x01DFE0B4]`, or 2 divided by it when the value is negative¹, so the verb speaks in 30 fps ticks.
 
-`0x00184960(mode)` sets the suppressor `0x01DFE0C0` to 1 (`0x001EDEF0`) and reads the mode flag `0x01F82E38` (`0x001EDE70`):
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026DB12`-`0x0026DB19` |
+
+</details>
+
+`0x00184960(mode)` sets the suppressor `0x01DFE0C0` to 1¹ and reads the mode flag `0x01F82E38`²:
 with the flag clear it keeps the suppressor and hands `mode` on; with it set and `mode` not 1 it clears the
 suppressor; with `mode` 1 it runs the `0x00229EA0` gate when `0x02092748` is non-zero and clears the suppressor when the
 gate does not return 1; when `0x02092748` is 0 or the gate returns 1 it keeps the suppressor only while byte `+0x118` of
 `0x001EBA40()` is zero.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EDEF0` |
+| ² | `0x001EDE70` |
+
+</details>
+
 Every path then passes `mode` (1 on the clearing paths and at boot) to `0x00798E90` and, with a render manager
-(`0x00189120()` non-null), tail-jumps to `0x005FEA50([manager + 8], 0x0017ECB0, mode)` (`0x001849BD`-`0x001849D0`); without one
+(`0x00189120()` non-null), tail-jumps to `0x005FEA50([manager + 8], 0x0017ECB0, mode)`¹; without one
 it returns.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001849BD`-`0x001849D0` |
+
+</details>
 
 ### The confirm button and the language
 
-`0x0022A4F0` is the only other writer of the two masks and `0x01FD4A64`; it is the Config screen's path (`0x0017E6E0` and
-`0x0023E194`). It repeats step 3: it reads DecideButton through `0x0017E210` (`0x0022A4F4`), stores whether it is non-zero
-at `0x01FD4A64` (`0x0022A510`), and stores `0x4000` / `0x2000` to the confirm and cancel masks, swapped when DecideButton
-is zero, as 16-bit stores (`0x0022A526`, `0x0022A51F`), like the boot fixer's (`0x0022A119`, `0x0022A10C`). The masks are read
+`0x0022A4F0` is the only other writer of the two masks and `0x01FD4A64`; it is the Config screen's path¹. It repeats step 3: it reads DecideButton through `0x0017E210`², stores whether it is non-zero
+at `0x01FD4A64`³, and stores `0x4000` / `0x2000` to the confirm and cancel masks, swapped when DecideButton
+is zero, as 16-bit stores⁴, like the boot fixer's⁵. The masks are read
 at 86 places, 47 for the confirm mask and 39 for the cancel mask; none of those readers asks the setting itself.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0017E6E0` and `0x0023E194` |
+| ² | `0x0022A4F4` |
+| ³ | `0x0022A510` |
+| ⁴ | `0x0022A526`, `0x0022A51F` |
+| ⁵ | `0x0022A119`, `0x0022A10C` |
+
+</details>
 
 `0x0017E270` turns the language string the settings object names
 (`[0x01DF0030 + 8 * [0x01F82D20][0]]`) into an index: `jp` 10, `en` 1, `fr` 2, `de` 3, `it` 4, `es` 5,
@@ -134,14 +197,36 @@ at 86 places, 47 for the confirm mask and 39 for the cancel mask; none of those 
 
 ### The build-id files
 
-`0x0017D990` reads two text files through the resource loader (`0x001D6F20`, `0x001D6EE0`, `0x001D6FA0`):
+`0x0017D990` reads two text files through the resource loader¹:
 `GameData/code_steam.txt` into `0x01F7F490` and `GameData/data.txt` into `0x01F7F4A0`, each as the bytes from offset 7 of
 the file up to the first space (`strcspn`); a file that fails to load logs `load failed!`.
 
-Each file goes through `0x0017D9D0(path, slot)`: it opens the file (`0x001D6F20`), reads it into a stack buffer sized from
-`0x001D6EE0`'s result plus one (`0x0017DA23`, `0x001D6FA0`), copies the `strcspn` length with `memcpy` (`0x0017DA73`), writing
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D6F20`, `0x001D6EE0`, `0x001D6FA0` |
+
+</details>
+
+Each file goes through `0x0017D9D0(path, slot)`: it opens the file¹, reads it into a stack buffer sized from
+`0x001D6EE0`'s result plus one², copies the `strcspn` length with `memcpy`³, writing
 no terminator and with no check of the length, not even against the 16 bytes between the two slots, and closes the
-file (`0x001D6E80`, `0x0017DA7B`); on a failed open it prints `load failed!` (`0x0017DA11`) and leaves its slot unwritten.
+file⁴; on a failed open it prints `load failed!`⁵ and leaves its slot unwritten.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001D6F20` |
+| ² | `0x0017DA23`, `0x001D6FA0` |
+| ³ | `0x0017DA73` |
+| ⁴ | `0x001D6E80`, `0x0017DA7B` |
+| ⁵ | `0x0017DA11` |
+
+</details>
 
 ### The memory budget
 
@@ -173,9 +258,19 @@ region, half-split, handed to `0x0036A490` ([memory and
 allocation](../Compiler-And-C-Runtime/memory-and-allocation.md)).
 
 Id 10 is never registered; `0x0037B3D0` re-sizes id 11 when `0x02ADD931` differs from `0x02ADD930`: it runs `0x00369760(11)`
-and `0x0036D160(11)`, frees the block (`0x0036D250`), takes a new one of `0x3C0000` bytes when `0x02ADD930` is 3, else
+and `0x0036D160(11)`, frees the block¹, takes a new one of `0x3C0000` bytes when `0x02ADD930` is 3, else
 `0x400000` (`0x0036D240`, the size alone with no slot bytes added), stores it at `0x01FD4A18` and registers it with that
-size and `0x100` slots (`0x0037B3FE`-`0x0037B43D`).
+size and `0x100` slots².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036D250` |
+| ² | `0x0037B3FE`-`0x0037B43D` |
+
+</details>
 
 On every call it first runs `0x0036B060(11)`, whose result it does not use, and it ends by setting `0x02ADD932` to 4
 (`0x0037B442`; [resource arenas and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md)).
@@ -189,15 +284,36 @@ Step 8 replays the PlayStation 2 boot against stubs. `0x003692D0` walks seven mo
 `0x18`, the first `sio2man.irx`): `sio2man.irx`, `sio2d.irx`, `dbcman.irx`, `pad2/ds2o.irx` twice, `mcman.irx` and
 `mcserv.irx`, each with the empty argument string `0x01CEB638`.
 
-`0x00369510(name, out, host, demo)` builds each path: the prefix `host0:/image/FF12/modules/` (`0x01EF9338`) when `host`
-is set, the empty string (`0x01EF9348`) otherwise, `DEMO/` when `demo` is set, then the name, upper-cased (the letters
-`a` to `z`) unless `host` is set, then a suffix that is the empty string on both arms (`0x01EF9340`, `0x01EF9350`); unless
-`host` is set, every `/` of the whole path then becomes `\` (`0x00369621`-`0x00369640`). Both callers (`0x0036937F`,
-`0x00369693`) give `host` and `demo` the value 0, so each path is the upper-cased name alone, such as `PAD2\DS2O.IRX`.
+`0x00369510(name, out, host, demo)` builds each path: the prefix `host0:/image/FF12/modules/`¹ when `host`
+is set, the empty string² otherwise, `DEMO/` when `demo` is set, then the name, upper-cased (the letters
+`a` to `z`) unless `host` is set, then a suffix that is the empty string on both arms³; unless
+`host` is set, every `/` of the whole path then becomes `\`⁴. Both callers⁵ give `host` and `demo` the value 0, so each path is the upper-cased name alone, such as `PAD2\DS2O.IRX`.
 
-A record is loaded only when bit `0x1` of its byte `+0x10` is clear, which holds for all seven
-(`0x00369353`-`0x0036935C`). Its argument string, each `$` turned into a terminator, goes to the loader with its length,
-or a null pointer when it is empty (`0x0036938C`-`0x003693D6`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01EF9338` |
+| ² | `0x01EF9348` |
+| ³ | `0x01EF9340`, `0x01EF9350` |
+| ⁴ | `0x00369621`-`0x00369640` |
+| ⁵ | `0x0036937F`, `0x00369693` |
+
+</details>
+
+A record is loaded only when bit `0x1` of its byte `+0x10` is clear, which holds for all seven¹. Its argument string, each `$` turned into a terminator, goes to the loader with its length,
+or a null pointer when it is empty².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00369353`-`0x0036935C` |
+| ² | `0x0036938C`-`0x003693D6` |
+
+</details>
 
 The loader `0x008628E0(path, length, arguments, &result)` stores 0 through its fourth argument and returns 0, so every
 module counts as loaded: the walk stores the loader's return value in the handle `0x022D7FC0 + 4 × h` for the record's
@@ -207,41 +323,111 @@ not negative (`0x003694A5`-`0x003694B8`; bits `0x1` and `0x2` for the two `pad2/
 
 A negative return repeats the load, except that a return of -200 or a result of 1 gives the record up the first time
 either happens in the walk and repeats the load every later time; giving up also clears the flag that lets a record
-with a non-zero byte `+0x11` load (`0x00369360`-`0x00369369`, `0x00369402`-`0x00369421`). The stub never takes these paths.
+with a non-zero byte `+0x11` load¹. The stub never takes these paths.
 
-Before the walk, `0x003692D0` makes a stub call, runs `0x00474680` and `0x004746C0(1)`, clears `0x022D7FCC` (`0x00369318`),
-resets the FF12CONFIG block with `0x00408BA0` (`0x00369323`), runs `0x00369650` and sets the three handles `0x022D7FC0` to
-`0x022D7FC8` to -1 (`0x0036932D`, `0x0036933F`). `0x00369650` performs the I/O processor reset with `ioprp300.img`
-(`0x01EF9360`): it builds that path with `0x00369510` (`0x00369693`); its other calls are stub calls (`0x0016D6A0`, and
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00369360`-`0x00369369`, `0x00369402`-`0x00369421` |
+
+</details>
+
+Before the walk, `0x003692D0` makes a stub call, runs `0x00474680` and `0x004746C0(1)`, clears `0x022D7FCC`¹,
+resets the FF12CONFIG block with `0x00408BA0`², runs `0x00369650` and sets the three handles `0x022D7FC0` to
+`0x022D7FC8` to -1³. `0x00369650` performs the I/O processor reset with `ioprp300.img`⁴: it builds that path with `0x00369510`⁵; its other calls are stub calls (`0x0016D6A0`, and
 `0x005C5230`, which returns 0), `0x003691E0` and `0x0046E000`, which also sets `0x02CA6074` and `0x02CA6114` to -1. `0x004746C0`
 is four stub calls.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00369318` |
+| ² | `0x00369323` |
+| ³ | `0x0036932D`, `0x0036933F` |
+| ⁴ | `0x01EF9360` |
+| ⁵ | `0x00369693` |
+
+</details>
 
 After the walk `0x003692D0` calls `0x008624C0`, which runs `0x00862A40` and returns 0, so the settings loader `0x00408C30`
 always runs (it is skipped only for -101, `0x0036943A`) and its result is `0x003692D0`'s return value ([game
 settings](../Saving-Loading-And-Settings/game-settings.md)); then it runs `0x0035F260`, `0x0032EA90` and the sound state reset
-`0x002DE360` (`0x00369451`), which among its stores sets the spatial-sound behind ratio `0x0215EFD0` ([spatial
-sound](../Sound-And-Music/spatial-sound.md)), and ends with a stub call with `0x65` (`0x0036945B`).
+`0x002DE360`¹, which among its stores sets the spatial-sound behind ratio `0x0215EFD0` ([spatial
+sound](../Sound-And-Music/spatial-sound.md)), and ends with a stub call with `0x65`².
 
-`0x00474680`, called first (`0x00369306`), makes two stub calls (`0x0016D6A0`) and copies the first eight bytes of the
-`memset` import stub `0x00861EC0` to `0x02CA6C88` and `0x02CA6C8C`; the only reference to `0x02CA6C88` is that write
-(`0x0047469E`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00369451` |
+| ² | `0x0036945B` |
+
+</details>
+
+`0x00474680`, called first¹, makes two stub calls² and copies the first eight bytes of the
+`memset` import stub `0x00861EC0` to `0x02CA6C88` and `0x02CA6C8C`; the only reference to `0x02CA6C88` is that write³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00369306` |
+| ² | `0x0016D6A0` |
+| ³ | `0x0047469E` |
+
+</details>
 
 `0x0036FD70` clears `0x02AD9E00` and runs `0x003696D0`, which after two stub calls walks the three handles at `0x022D7FC0` to
-`0x022D7FC8` from the last down (`0x003696F0`-`0x00369746`): it skips a negative one; for each other one it calls the stub
+`0x022D7FC8` from the last down¹: it skips a negative one; for each other one it calls the stub
 `0x005C5230(handle, 0, 0, &status)` until the answer is not negative (with `0x0035EA30(0)` between tries; the stub returns
 0, so it is called once), then `0x005C5230(handle)`, and sets the handle to -1; two more `0x005C5230` calls end it. At
 boot the module walk has left 0 in `0x022D7FC0` and `0x022D7FC4` and -1 in `0x022D7FC8`, so the first two are released.
 
-`0x003694D0` fills the two 256-byte tables `0x022C5AF0` (`0x0032EAF0`) and `0x022C59F0` (`0x0032EB10`, which also sets bit
-`0x80` of its byte `0x1F`) with 0: it passes 0 to both fillers (`0x003694D4`, `0x003694DB`), which fill with -1 only for
-a non-zero argument. It then makes a stub call with 1 when the byte `0x02B62DAA` is 1 (`0x00408B50`), else with 0.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003696F0`-`0x00369746` |
+
+</details>
+
+`0x003694D0` fills the two 256-byte tables `0x022C5AF0`¹ and `0x022C59F0` (`0x0032EB10`, which also sets bit
+`0x80` of its byte `0x1F`) with 0: it passes 0 to both fillers², which fill with -1 only for
+a non-zero argument. It then makes a stub call with 1 when the byte `0x02B62DAA` is 1³, else with 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0032EAF0` |
+| ² | `0x003694D4`, `0x003694DB` |
+| ³ | `0x00408B50` |
+
+</details>
 
 ### The subsystem resets
 
 The step-8 calls `0x00266D10` and `0x00259180` return the field's fixed tables to their boot state.
 `0x00259180` runs under arena 8 (`0x0036C1D0(8, 10)` … `0x0036C140`, which pops the arena stack at
-`0x022D89C0`); the ones that allocate select arena 6 or 9 the same way and allocate (`0x0036A100`) only
+`0x022D89C0`); the ones that allocate select arena 6 or 9 the same way and allocate¹ only
 when their pointer is null:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036A100` |
+
+</details>
 
 | Reset | What it does |
 |---|---|
@@ -266,8 +452,17 @@ when their pointer is null:
 | `0x0025A600(0.1, 1000.0)` | stores the two floats `0x02098DE0` / `0x02098DE4` |
 
 After the last call it stores three words directly: `0x022D92E0` = `0x01EF93E8` = `0x458DC800` (4537.0)
-and `0x022D9138` = 1 (`0x0025920C`, `0x00259216`, `0x00259220`). They are the presentation generator's last
+and `0x022D9138` = 1¹. They are the presentation generator's last
 sample, its state and its enable word ([Random number generators](../Random-Numbers/random-number-generators.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025920C`, `0x00259216`, `0x00259220` |
+
+</details>
 
 `0x00266D10`, the actor-system reset, runs among others `0x00314940` (`0x022C2544` = 1.0), `0x002556F0`
 (five groups of four `0x2E0`-byte records from `0x02092810`, plus one more, each through `0x003CBFF0`;
@@ -288,12 +483,31 @@ The `0x48`-byte records are the [script gauges](../Menus-And-HUD/script-gauges.m
 The eight pairs are the countdown slots: `0x14`-byte records at `0x02B5EBC0`, whose fields are laid out on
 [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md). `0x003EBAB0` (called at `0x00266D95`) sets
 each slot's start `+0x00`, target `+0x04` and value `+0x08` to 0 and stores the word `0x100` at `+0x10`, so the
-running byte `+0x10` is 0 and the expired byte `+0x11` is 1 (`0x003EBAB2`-`0x003EBB5D`).
+running byte `+0x10` is 0 and the expired byte `+0x11` is 1¹.
 
-The step `0x003EB9A0`, from the field tick `0x00314020` (`0x00314056`), runs when its gates pass
-(`0x003EB9A4`-`0x003EB9F1`) and walks all eight slots. For each slot that is running and not expired it adds the step
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EBAB2`-`0x003EBB5D` |
+
+</details>
+
+The step `0x003EB9A0`, from the field tick `0x00314020`¹, runs when its gates pass² and walks all eight slots. For each slot that is running and not expired it adds the step
 `+0x0C` times the integer `0x0035E790()` returns to the value; once the value reaches the target `+0x04` it stores
-the target as the value and sets the expired byte (`0x003EBA17`-`0x003EBA6B`).
+the target as the value and sets the expired byte³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00314056` |
+| ² | `0x003EB9A4`-`0x003EB9F1` |
+| ³ | `0x003EBA17`-`0x003EBA6B` |
+
+</details>
 
 | Slot | Record | Who drives it |
 |---|---|---|
@@ -309,22 +523,52 @@ running byte, `0x003EBA90` returns its value and `0x003EBB70` its expired byte.
 
 `0x0036F4D0` runs `0x00382910`, which clears the first word of 8 records at `0x02AED700` (stride `0xE0`), sets the
 four-float vectors `0x02AEDF70` and `0x02AEDF80` to (0, 0, 0, 1.0) and the words `0x02AEDF90`, `0x02AEDF98` and `0x02AEDF9C` to
-0 (`0x0038295A`-`0x00382980`), and builds two view records with `0x004679C0(record, width, height)`: `0x02AED4A0` for the
+0¹, and builds two view records with `0x004679C0(record, width, height)`: `0x02AED4A0` for the
 frame size `[0x022D8EAC]` × `[0x022D8EB4]` and `0x02AED500` for 2000 × 2000. Last it sets the focus render index `0x02AEDFA0`
 to -1 (`0x003829A4`; [post-processing](../Graphics/post-processing.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0038295A`-`0x00382980` |
+
+</details>
+
 A view record holds the integer size at `+0x44` / `+0x48`, the depth limits `near` = 1024 and `far` = 16,776,191 at
-`+0x4C` / `+0x50`, and `0x00229D20()` at `+0x40`. It sets `+0x00 = width × 0.5` and `+0x14 = height × -0.5`
-(`0x00467A0F`-`0x00467A26`), the depth scale `+0x28 = (far - near) × -0.5` and offset `+0x38 = (far + near) × 0.5`
-(`0x00467A2B`-`0x00467A62`), 2048 at `+0x30` / `+0x34` as the screen offset and 1.0 at `+0x3C`, and zeroes `+0x04` to
-`+0x13`, `+0x18` to `+0x27` and `+0x2C` (`0x004679FC`-`0x00467A08`, `0x00467A30`).
+`+0x4C` / `+0x50`, and `0x00229D20()` at `+0x40`. It sets `+0x00 = width × 0.5` and `+0x14 = height × -0.5`¹, the depth scale `+0x28 = (far - near) × -0.5` and offset `+0x38 = (far + near) × 0.5`², 2048 at `+0x30` / `+0x34` as the screen offset and 1.0 at `+0x3C`, and zeroes `+0x04` to
+`+0x13`, `+0x18` to `+0x27` and `+0x2C`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00467A0F`-`0x00467A26` |
+| ² | `0x00467A2B`-`0x00467A62` |
+| ³ | `0x004679FC`-`0x00467A08`, `0x00467A30` |
+
+</details>
 
 Step 4's `0x00184660` ends with `0x00248410`, which sets `0x0208ECC0` / `0x0208ECC4` to minus half of `[0x01E0C1D8]` /
 `[0x01E0C1DC]` (as floats) and, for each of the four objects at `0x0208EA20` to `0x0208EA38` that is not null, stores 0 at
-`+0x98` and that size as two 16-bit words at `+0x9C` / `+0x9E` (`0x00248454`-`0x002484EE`), and `0x0024B100`, which copies
+`+0x98` and that size as two 16-bit words at `+0x9C` / `+0x9E`¹, and `0x0024B100`, which copies
 the size into the halfwords `0x01E0C1D4` / `0x01E0C1D6`.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00248454`-`0x002484EE` |
+
+</details>
+
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 Globals written by the boot fixer:
 
@@ -364,7 +608,12 @@ Globals written by the boot fixer:
 | `0x022C2528` | `u32` |  | the -nologo flag |
 | `0x022D7FD0` | `...` |  | arena table, `0xA8` per id, 15 ids |
 
+</details>
+
 ## Shipped data
+
+<details>
+<summary>Show the shipped data</summary>
 
 | Fact | Value |
 |---|---|
@@ -393,6 +642,8 @@ shipped game, because the start-up field it clears is read only when `0x01E02804
 | `visible_effect` | what the player sees: for `-nologo`, the first title screen of a launch without the SQUARE ENIX logo and the autosave notice; for `debug`, that the shipped game shows no change |
 | `inert_when` | when the input does nothing: for `-nologo`, every later visit to the title screen in the same launch; for `debug`, always, because `0x02B62DAD` is 1 only when `0x01E02804` is not negative, and it is -1 in the image |
 
+</details>
+
 ## Operations
 
 Once per launch, inside the init job, before the startup latch closes: the frame-rate selection,
@@ -401,6 +652,9 @@ the one-time initialisers of every subsystem, and the seed. The field frame read
 constant every frame; the time base is read wherever a frame count is converted.
 
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 The generator latch and state; the time-base triple, the mode flag and its suppressor; the
 ticks-per-frame constant; the masks and the DecideButton flag; the language index; the block
@@ -414,6 +668,8 @@ The countdown slots, field by field:
 | `0x02B5EBC4`, `0x02B5EBD8`, `0x02B5EBEC`, `0x02B5EC00`, `0x02B5EC14`, `0x02B5EC28`, `0x02B5EC3C`, `0x02B5EC50` | `i32` | 0 (zero-filled tail of `.data`) | `+0x04` target of slots 0 to 7; the reset clears it together with the `f32` value `+0x08` in one 8-byte store | target: `0x003EBAB0` (`0x003EBAB2`, `0x003EBAC3`, `0x003EBAD0`, `0x003EBADD`, `0x003EBAEA`, `0x003EBAF7`, `0x003EBB04`, `0x003EBB11`); `0x003EBBB0` (`0x003EBBCB`); `0x003EBC50` (`0x003EBC74`). value: the same reset stores; `0x003EBBB0` (`0x003EBC14`); `0x003EBC50` (`0x003EBCC0`, `0x003EBCDC`); `0x003EB9A0` (`0x003EBA4A`, `0x003EBA5B`) | target: `0x003EBBB0` (`0x003EBBEF`); `0x003EBC50` (`0x003EBC9B`); `0x003EBD00` (`0x003EBD0E`); `0x003EB9A0` (`0x003EBA3A`). value: `0x003EB9A0` (`0x003EBA45`); `0x003EBA90` (`0x003EBA9E`) |
 | `0x02B5EBE4`, `0x02B5EBF8`, `0x02B5EC0C`, `0x02B5EC20`, `0x02B5EC34`, `0x02B5EC48`, `0x02B5EC5C` | `u8` | 0 (zero-filled tail of `.data`) | `+0x10` running byte of slots 1 to 7; the reset's `u16` store of `0x100` also sets the expired byte `+0x11` to 1 | running: `0x003EBAB0` (`0x003EBB27`, `0x003EBB30`, `0x003EBB39`, `0x003EBB42`, `0x003EBB4B`, `0x003EBB54`, `0x003EBB5D`); `0x003EBBB0` (`0x003EBC0F`, 0); `0x003EBC50` (`0x003EBCBB`, 0); `0x003EBD00` (`0x003EBD17`, 1); `0x003EBB90` (`0x003EBB9E`, 0). expired: the same reset stores; `0x003EBBB0` (`0x003EBC24`, `0x003EBC34`); `0x003EBC50` (`0x003EBCD0`, `0x003EBCD7`); `0x003EBD00` (`0x003EBD1D`); `0x003EB9A0` (`0x003EBA60`) | running: `0x003EB9A0` (`0x003EBA1C`). expired: `0x003EB9A0` (`0x003EBA29`); `0x003EBB70` (`0x003EBB7E`) |
 
+</details>
+
 ## Modding notes
 
 - Determinism from boot holds for the Mersenne Twister only; the loot generator is a separate
@@ -426,8 +682,17 @@ The countdown slots, field by field:
   button setting.
 - Arenas 2 to 9 keep their boot blocks. Arena 11 is re-sized by `0x0037B3D0`. Arenas 13 and 14 are freed and
   registered again, from arena 5 blocks of `0x100000` and `0x19000` bytes, by `0x0025A990` and `0x0025AA30`, which
-  the manager bind `0x0026C8C0` calls (`0x0026CA29`, `0x0026CA39`). Arena 12 is registered by the script command
+  the manager bind `0x0026C8C0` calls¹. Arena 12 is registered by the script command
   `setexpandvoicememory` (`0x0395`, `0x003E9AA0`, `0x003E9AEF`).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0026CA29`, `0x0026CA39` |
+
+</details>
 
 ## Related
 
@@ -447,14 +712,18 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Gameplay** (explained on [frame update order](frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00304440` | calls | `0x0030D9A0` |
+| [`0x00304440`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships) | calls | [`0x0030D9A0`](../Scripts-And-Script-Commands/party-during-scenes.md) Battle runtime: get mode0 to5 from flags and field bit15 (on party during scenes) |
 
 **Story, events and hunts** (explained on [actor managers](../Characters-And-Objects/actor-managers.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x0026C8C0` | calls | `0x00377440` |
+| [`0x0026C8C0`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor manager: bind loaded definition payload (on character se tables chse) | calls | [`0x00377440`](../Story-Events-And-Hunts/event-memory.md) (on event memory) |
 
 </details>

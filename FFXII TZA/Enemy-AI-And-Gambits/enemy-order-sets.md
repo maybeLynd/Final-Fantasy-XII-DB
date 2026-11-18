@@ -19,9 +19,20 @@ Slot 1 opens with a `u16` count and a `u16` that is 100 in every file, then `cou
 section. Each set fills the bytes up to the next offset exactly: twelve phase counts, 20 zero bytes, then the
 24-byte orders ([Gambits](gambits.md) has the order layout).
 
-An enemy definition names its sets by four words: `+0x50` is the list the unit starts with (`0x0023A94D`), and
-`+0x50`, `+0x52`, `+0x54` and `+0x56` are lists 0-3, which orders `0x4112`-`0x4115` switch to (`0x002FE025`). Orders
-`0x4116`-`0x4121` switch the phase, the subgroup of the set the walk starts in (`0x002FE0B3`).
+An enemy definition names its sets by four words: `+0x50` is the list the unit starts with¹, and
+`+0x50`, `+0x52`, `+0x54` and `+0x56` are lists 0-3, which orders `0x4112`-`0x4115` switch to². Orders
+`0x4116`-`0x4121` switch the phase, the subgroup of the set the walk starts in³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023A94D` |
+| ² | `0x002FE025` |
+| ³ | `0x002FE0B3` |
+
+</details>
 
 ### The weighted actions
 
@@ -30,9 +41,20 @@ count (826) and a `u16` 0, then from `+4` `count + 1` 32-bit offsets from the se
 at `+4 + 4i`), each pair bounding a run of 4-byte entries (`u16` action, `u8` weight, `u8` pad). Every shipped
 run's weights sum to 100.
 
-`0x00308EC0` draws `r = LCG % 100` and takes the first entry whose running sum is above `r` (`0x00308F61`-`0x00308F99`).
-A word whose index is not below the count comes back unchanged (`0x00308EF0`-`0x00308EFA`), and a run with no such
-entry gives `0xFFFF` (`0x00308FA4`).
+`0x00308EC0` draws `r = LCG % 100` and takes the first entry whose running sum is above `r`¹.
+A word whose index is not below the count comes back unchanged², and a run with no such
+entry gives `0xFFFF`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00308F61`-`0x00308F99` |
+| ² | `0x00308EF0`-`0x00308EFA` |
+| ³ | `0x00308FA4` |
+
+</details>
 
 The loader adds the section's address to all `count + 1` offsets (`0x00236D39`, `0x00384780`, bound at `0x0038478B`).
 [`enemy-weighted-pools.tsv`](enemy-weighted-pools.tsv) lists the 826 pools and
@@ -43,9 +65,17 @@ Pools 0-16, 37, 75, 137, 228, 229, 382-385, 388, 389, 525 and 590 are Reserve. N
 area files names one of them, in the `in` or the `ch` folder, and the index test at `0x00308EF0`-`0x00308EFA` accepts
 each.
 
-A member of weight 0 is never taken: the running sum does not rise at it and the roll is at least 0
-(`0x00308F94`-`0x00308F99`). Six pools hold 679 such members, each with action word `0x0000`, and 667 of them are in
+A member of weight 0 is never taken: the running sum does not rise at it and the roll is at least 0¹. Six pools hold 679 such members, each with action word `0x0000`, and 667 of them are in
 pool 312, which has 676 members.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00308F94`-`0x00308F99` |
+
+</details>
 
 So an order in an area file can point to a weighted list instead of a single action. These lists are kept in
 `battle_pack.bin`, each list's weights add up to 100, and the game rolls a number from 0 to 99 and takes the first
@@ -55,16 +85,44 @@ action whose running total of weights is above the roll.
 
 Each test is a relation word, a sub-selector byte `s`, an opcode byte and an `i16` operand `v` (order `+0x06`,
 `+0x08`, `+0x09`, `+0x0A` for test 1, then every 6 bytes). `0x00301AD0` runs it over the candidates the relation
-filter `0x0030BD00` admits; a relation above 10 admits no candidate (`0x0030BD2A`). The opcode picks the check through the
-jump tables `0x00303680`/`0x00303604` (`0x00301EA3`-`0x00301ECA`).
+filter `0x0030BD00` admits; a relation above 10 admits no candidate¹. The opcode picks the check through the
+jump tables `0x00303680`/`0x00303604`².
 
-An even opcode keeps the units that pass and the next odd one the units that fail (`0x00301B44`). For a highest or
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030BD2A` |
+| ² | `0x00301EA3`-`0x00301ECA` |
+
+</details>
+
+An even opcode keeps the units that pass and the next odd one the units that fail¹. For a highest or
 lowest check the even opcode takes the highest. A distance or angle check passes for the even opcode when the
 value is below `v` ("within"), and for the odd one when it is `v` or more.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00301B44` |
+
+</details>
+
 The distance of `s` = 7 is `0x0031E6F0`: the horizontal distance between the two units' positions `+0xE0` less
 each unit's collision radius, the larger of its two radii (the calls at `0x0031E70D` and `0x0031E718`), and never
-below 0 (`0x0031E750`) ([Navigation](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md)).
+below 0¹ ([Navigation](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031E750` |
+
+</details>
 
 | Opcodes | Check | Site |
 |---|---|---|
@@ -103,57 +161,150 @@ below 0 (`0x0031E750`) ([Navigation](../Movement-And-Pathfinding/navigation-mesh
 
 `0x00321320(unit, out)` first stores -1 in the output dword, and again at `0x0032134D`. It
 answers -1 for a null unit and -2 for a unit with no stats record `+0x698`; otherwise it
-calls `0x00321400(word +0x50 of the stats record, out)` and answers 0
-(`0x00321324`-`0x00321361`). The branch at `0x00321357`, taken only if the address of that
-word were 0, answers -3 (`0x00321368`).
+calls `0x00321400(word +0x50 of the stats record, out)` and answers 0¹. The branch at `0x00321357`, taken only if the address of that
+word were 0, answers -3².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00321324`-`0x00321361` |
+| ² | `0x00321368` |
+
+</details>
 
 An active enemy of opcodes 52 and 53, and a party slot of check 18 below, counts only while it is in play: a
-unit whose status words `+0x3C | +0x64` hold KO, Stone or X-Zone (`0x80000003`) is passed over unless the area's
+unit whose status words `+0x3C | +0x64` hold KO, Stone or X-Zone¹ is passed over unless the area's
 town flag is set (the calls at `0x00301D4E` and `0x00302738`, [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x80000003` |
+
+</details>
+
 Before the candidates `0x00301AD0` asks `0x003272A0()` and, when the deciding unit's `+0x24`
-is not 0, `0x0031B7E0` for that unit (`0x00301BA7`-`0x00301BB9`). A candidate is taken with
-`0x0031B760` from the list entry, must pass `0x0030BD00` and must not pass `0x0030B9B0`
-(`0x00301E1E`-`0x00301E68`).
+is not 0, `0x0031B7E0` for that unit¹. A candidate is taken with
+`0x0031B760` from the list entry, must pass `0x0030BD00` and must not pass `0x0030B9B0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00301BA7`-`0x00301BB9` |
+| ² | `0x00301E1E`-`0x00301E68` |
+
+</details>
 
 For opcodes 52 and 53 the walk is over `0x00236820(i)` for `i` below `0x00236850()`, asked
-again at every step (`0x00301D0E`-`0x00301DA5`). An enemy is kept when it holds bit `0x10` in
+again at every step¹. An enemy is kept when it holds bit `0x10` in
 its first byte, has a stats record `+0x698`, passes `0x00377C20()` when that record's dwords
 `+0x64` and `+0x3C` hold a bit of `0x80000003`, has byte `+5` of the stats record equal to
 1, holds bit `0x10` in the first byte of its record `+0x6A0`, has that record's tag `+0x15`
-equal to `v` and has a dword `+0xEA4` of 0 (`0x00301D30`-`0x00301D84`).
+equal to `v` and has a dword `+0xEA4` of 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00301D0E`-`0x00301DA5` |
+| ² | `0x00301D30`-`0x00301D84` |
+
+</details>
 
 The qword `+0x10` of a kept enemy is added to the list and the list's count `+4` goes up
-by 1 (`0x00301D86`-`0x00301D96`).
+by 1¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00301D86`-`0x00301D96` |
+
+</details>
 
 For opcodes 40 and 41 the HP missing is the cap of opcodes 46 and 47 (max HP `+0x24`,
 or `2 × +0x24` with status bit `0x10000000`, or the current HP `+0x48`, at least 1, with
-status bit `0x10000`) less the answer of `0x00308C20` (`0x00302DD4`-`0x00302E23`). Opcodes 42 and 43
-compare that answer itself (`0x00302EA0`-`0x00302EBF`).
+status bit `0x10000`) less the answer of `0x00308C20`¹. Opcodes 42 and 43
+compare that answer itself².
 
-For opcodes 48 and 49 an `s` above 2 ends the test with no unit kept (`0x0030303A`-
-`0x0030303D`). For opcodes 58 and 59 an `s` of 0 takes the count `+0xBC4` as it stands
-(`0x003031E3`-`0x003031E5`, `0x00303292`); any other `s` counts the list units `0x0030BD00`
-admits in mode `s` (`0x003031EB`-`0x0030322E`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00302DD4`-`0x00302E23` |
+| ² | `0x00302EA0`-`0x00302EBF` |
+
+</details>
+
+For opcodes 48 and 49 an `s` above 2 ends the test with no unit kept¹. For opcodes 58 and 59 an `s` of 0 takes the count `+0xBC4` as it stands²; any other `s` counts the list units `0x0030BD00`
+admits in mode `s`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030303A`-`0x0030303D` |
+| ² | `0x003031E3`-`0x003031E5`, `0x00303292` |
+| ³ | `0x003031EB`-`0x0030322E` |
+
+</details>
 
 For opcodes 64 and 65 the item is `0x003093D0` of the line's action word and the count
-`0x00309EC0(item, 0)`, both taken at the first candidate (`0x003032C4`-`0x003032E4`); the
-answer is kept in the dword `0x022BED94` for the later candidates (`0x003032F8`-`0x00303300`).
-An item of `0xFFFF` passes over the first candidate without writing `0x022BED94`
-(`0x003032D6`-`0x003032D9`), and the later candidates are judged by the value it already
+`0x00309EC0(item, 0)`, both taken at the first candidate¹; the
+answer is kept in the dword `0x022BED94` for the later candidates².
+An item of `0xFFFF` passes over the first candidate without writing `0x022BED94`³, and the later candidates are judged by the value it already
 held.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003032C4`-`0x003032E4` |
+| ² | `0x003032F8`-`0x00303300` |
+| ³ | `0x003032D6`-`0x003032D9` |
+
+</details>
 
 For opcodes 66 and 67 a committed unit is `0x00236820(i)` for a set bit `i` of the
 candidate's `+0xEA4`, when its qword `+0x780` equals the candidate's `+0x10` and
-`0x00322C50(0x14, action, 0)` answers non-zero for its action word `+0x714`
-(`0x00303380`-`0x003033C8`).
+`0x00322C50(0x14, action, 0)` answers non-zero for its action word `+0x714`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00303380`-`0x003033C8` |
+
+</details>
 
 For `s` = 1 of opcodes 66 and 67 `0x0031C500` is asked twice: for the deciding unit's
-stats, the candidate's stats and the line's action (`0x0030333F`-`0x0030335B`), and for the
-committed unit's stats, the candidate's stats and that unit's action
-(`0x003034AD`-`0x003034C4`); the two status masks it answers must share a set bit
-(`0x003034CB`). With an `s` above 3 no committed unit passes: opcode 66 keeps no unit and
-opcode 67 keeps every candidate (`0x003033E8`-`0x003033EB`, `0x003034FF`-`0x0030351E`).
+stats, the candidate's stats and the line's action¹, and for the
+committed unit's stats, the candidate's stats and that unit's action²; the two status masks it answers must share a set bit³. With an `s` above 3 no committed unit passes: opcode 66 keeps no unit and
+opcode 67 keeps every candidate⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030333F`-`0x0030335B` |
+| ² | `0x003034AD`-`0x003034C4` |
+| ³ | `0x003034CB` |
+| ⁴ | `0x003033E8`-`0x003033EB`, `0x003034FF`-`0x0030351E` |
+
+</details>
 
 The checks of opcodes 34 and 35:
 
@@ -180,28 +331,68 @@ The checks of opcodes 34 and 35:
 | 5-7, 14, 15, 22, 23 | no unit is kept | `0x00303567` |
 
 A check that needs a unit which is absent ends the whole test with no unit kept: no
-party leader for checks 19 and 21 (`0x003028C2`-`0x003028CA`, `0x003029C7`-`0x003029CF`), no
-linked unit for checks 20 and 24 (`0x00302945`-`0x0030294A`, `0x00302A76`-`0x00302A7E`) and no
-combatant `v` from `0x0031B770` for check 27 (`0x00302AE7`-`0x00302AFA`).
+party leader for checks 19 and 21¹, no
+linked unit for checks 20 and 24² and no
+combatant `v` from `0x0031B770` for check 27³.
 
-The same end is taken by opcodes 36 and 37 when `0x00320940` answers below 0
-(`0x00302C9D`-`0x00302CA4`), by opcodes 38 and 39 when `0x002367A0(s)` gives no unit
-(`0x00302D25`-`0x00302D34`) and by opcodes 26 and 27 for an `s` above 5
-(`0x00302416`-`0x00302419`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003028C2`-`0x003028CA`, `0x003029C7`-`0x003029CF` |
+| ² | `0x00302945`-`0x0030294A`, `0x00302A76`-`0x00302A7E` |
+| ³ | `0x00302AE7`-`0x00302AFA` |
+
+</details>
+
+The same end is taken by opcodes 36 and 37 when `0x00320940` answers below 0¹, by opcodes 38 and 39 when `0x002367A0(s)` gives no unit² and by opcodes 26 and 27 for an `s` above 5³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00302C9D`-`0x00302CA4` |
+| ² | `0x00302D25`-`0x00302D34` |
+| ³ | `0x00302416`-`0x00302419` |
+
+</details>
 
 Check 27 asks `0x0031B770` for combatant `v` at the first candidate and keeps the answer
-in the qword `0x022BED98` (`0x00302AE3`-`0x00302AF0`); opcodes 38 and 39 keep theirs in
-`0x022C17A8` (`0x00302D2A`). Check 26 passes when `0x0030AB40(deciding unit, target, 0)`
+in the qword `0x022BED98`¹; opcodes 38 and 39 keep theirs in
+`0x022C17A8`². Check 26 passes when `0x0030AB40(deciding unit, target, 0)`
 answers a value other than 0 and 2, the target being `0x0031B7E0` of the candidate's dword
-`+0x710` (`0x00302AB1`-`0x00302AD8`).
+`+0x710`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00302AE3`-`0x00302AF0` |
+| ² | `0x00302D2A` |
+| ³ | `0x00302AB1`-`0x00302AD8` |
+
+</details>
 
 ### The registers
 
-A register is named by a kind and an index: kind = relation word `>> 12`, index = its low byte. `0x00321190` reads it
-(`0x003211A4`-`0x003211B8`) and `0x00329E60` writes it: kinds 6 and 7, whose entries in the table at `0x00329F40` lead to
-`0x00329F38`, and any kind outside 1-10 (`0x00329E64`-`0x00329E69`) write nothing and return -1 (`0x00329F38`-`0x00329F3F`);
-kind 9 with an index above 15 and kind 10 with a null unit or an index other than 0 write nothing and return 0
-(`0x00329F03`-`0x00329F37`):
+A register is named by a kind and an index: kind = relation word `>> 12`, index = its low byte. `0x00321190` reads it¹ and `0x00329E60` writes it: kinds 6 and 7, whose entries in the table at `0x00329F40` lead to
+`0x00329F38`, and any kind outside 1-10² write nothing and return -1³;
+kind 9 with an index above 15 and kind 10 with a null unit or an index other than 0 write nothing and return 0⁴:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003211A4`-`0x003211B8` |
+| ² | `0x00329E64`-`0x00329E69` |
+| ³ | `0x00329F38`-`0x00329F3F` |
+| ⁴ | `0x00329F03`-`0x00329F37` |
+
+</details>
 
 | Kind | Register | Reader |
 |---|---|---|
@@ -215,13 +406,33 @@ kind 9 with an index above 15 and kind 10 with a null unit or an index other tha
 | 9 | battle word `i` of the sixteen at `0x0208D334`, zeroed when an area starts | `0x00321253` |
 | 10 | the unit's own register `+0xB90` (index 0) | `0x0032126F` |
 
-`0x00321190(kind, unit, index, &value)` returns 0 with the value. Kinds 1-3 give their word sign-extended
-(`0x003211C2`, `0x003211D7`, `0x003211EC`) and kind 9 its word zero-extended (`0x0032125C`). Kind 9 with an index above
-15, and kind 10 with a null unit or an index other than 0, give 0 (`0x00321253`-`0x00321290`). Any other kind gives 0
-and returns -1 (`0x0032119B`, `0x0032129B`-`0x003212A0`).
+`0x00321190(kind, unit, index, &value)` returns 0 with the value. Kinds 1-3 give their word sign-extended¹ and kind 9 its word zero-extended². Kind 9 with an index above
+15, and kind 10 with a null unit or an index other than 0, give 0³. Any other kind gives 0
+and returns -1⁴.
 
-The orders that write a register (`0x002FE660`) take it from the order's own test-1 relation word, except
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003211C2`, `0x003211D7`, `0x003211EC` |
+| ² | `0x0032125C` |
+| ³ | `0x00321253`-`0x00321290` |
+| ⁴ | `0x0032119B`, `0x0032129B`-`0x003212A0` |
+
+</details>
+
+The orders that write a register¹ take it from the order's own test-1 relation word, except
 `0x4122` and `0x4123`, which write the `+0xB90` of the unit in the deciding unit's `+0x710`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FE660` |
+
+</details>
 
 | Order | Writes |
 |---|---|
@@ -230,15 +441,34 @@ The orders that write a register (`0x002FE660`) take it from the order's own tes
 | `0x4149` | sets the register to `parameter` (`0x002FE71A`) |
 | `0x4155` | adds `parameter` (`0x002FE723`) |
 
-`0x002FE660(unit)` acts only while the unit's phase byte `+0x6B4` is 0, and returns 1 at once in a later phase
-(`0x002FE69D`). For `0x4122` and `0x4123` the register is kind 10, index 0, of the unit `0x0031B7E0` finds for the
-deciding unit's handle `+0x710` (`0x002FE6C4`-`0x002FE6D7`). It reads the register with `0x00321190` and returns -1,
-writing nothing, when that returns -1 (`0x002FE6EE`).
+`0x002FE660(unit)` acts only while the unit's phase byte `+0x6B4` is 0, and returns 1 at once in a later phase¹. For `0x4122` and `0x4123` the register is kind 10, index 0, of the unit `0x0031B7E0` finds for the
+deciding unit's handle `+0x710`². It reads the register with `0x00321190` and returns -1,
+writing nothing, when that returns -1³.
 
-It then changes the value as the table above says, with `parameter` the order's `(s16)` word `+0x02` (`0x002FE68D`),
-writes it back with `0x00329E60`, whose answer it does not test, sets the phase to 2 and returns 1
-(`0x002FE74E`-`0x002FE757`). The orders `0x4124`-`0x4154` that are not in the table return -1 after the read (`0x002FE6F8`,
-`0x002FE75E`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FE69D` |
+| ² | `0x002FE6C4`-`0x002FE6D7` |
+| ³ | `0x002FE6EE` |
+
+</details>
+
+It then changes the value as the table above says, with `parameter` the order's `(s16)` word `+0x02`¹,
+writes it back with `0x00329E60`, whose answer it does not test, sets the phase to 2 and returns 1². The orders `0x4124`-`0x4154` that are not in the table return -1 after the read³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FE68D` |
+| ² | `0x002FE74E`-`0x002FE757` |
+| ³ | `0x002FE6F8`, `0x002FE75E` |
+
+</details>
 
 ## Columns
 
@@ -268,11 +498,22 @@ writes it back with `0x00329E60`, whose answer it does not test, sets the phase 
 The `value` column reads the word `+0x02` by action:
 
 - an action: the percent chance the order is tried, `always` for 0: it is tried when
-  `value` is 0 or `0x00328370() % 100 < (s16)value` (`0x00301608`-`0x00301637`);
+  `value` is 0 or `0x00328370() % 100 < (s16)value`¹;
 - orders `0x4051`-`0x4121` except `0x4091`, and `0x414B`: the same percentage, checked by `0x00301830` with the
-  same test, `value` 0 or `0x00328370() % 100 < (s16)value` (`0x0030193B`-`0x00301962`); 0 and 100 are `always`;
-- the wait `0x4021`: seconds, `never ends` for 0 (`0x002FE7D0`);
+  same test, `value` 0 or `0x00328370() % 100 < (s16)value`²; 0 and 100 are `always`;
+- the wait `0x4021`: seconds, `never ends` for 0³;
 - any other order: its parameter.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00301608`-`0x00301637` |
+| ² | `0x0030193B`-`0x00301962` |
+| ³ | `0x002FE7D0` |
+
+</details>
 
 Both percentages, and the weighted pick, take a draw of the shared gameplay LCG modulo 100 (the calls at
 `0x0030160F`, `0x0030193F` and `0x00308F61`; [Random number generators](../Random-Numbers/random-number-generators.md)).
@@ -362,31 +603,33 @@ The functions on this page call, or are called by, functions that belong to othe
 <details>
 <summary>Show the 12 calls with 5 other topics</summary>
 
-**Damage and battle formulas**
+**Damage and battle formulas** (explained on [native limits](../Engine-Core/native-limits.md), [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [action results](../Battle-Actions/action-results.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [traps](../World-Areas-And-Travel/traps.md), [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00236820` | is called by | `0x0031B860`, `0x0031E800` |
-| `0x00236850` | is called by | `0x0031B860`, `0x0031E800`, `0x00384F40` |
-| `0x00308C20` | calls | `0x00308B90` |
-| `0x0030B9B0` | is called by | `0x00300530`, `0x003112F0` |
-| `0x00322C50` | is called by | `0x002FEF30` |
-| `0x00377C20` | is called by | `0x00300530` |
-
-**Damage and battle formulas** (explained on [native limits](../Engine-Core/native-limits.md), [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [action results](../Battle-Actions/action-results.md))
-
-**Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [traps](../World-Areas-And-Travel/traps.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+| [`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item) | is called by | [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log)<br>[`0x0031E800`](enemy-order-sets.md) Battle stats: get owning actor handle |
+| [`0x00236850`](enemy-order-sets.md) | is called by | [`0x0031B860`](../Battle-Actions/battle-log.md) Battle stats: find owning battle unit (on battle log)<br>[`0x0031E800`](enemy-order-sets.md) Battle stats: get owning actor handle<br>[`0x00384F40`](../Battle-Actions/action-results.md) (on action results) |
+| [`0x00308C20`](enemy-order-sets.md) Ai order: compute bounded selector scalar | calls | [`0x00308B90`](../Battle-Actions/action-results.md) (on action results) |
+| [`0x0030B9B0`](enemy-order-sets.md) | is called by | [`0x00300530`](../Characters-And-Objects/battle-unit-fields.md) Battle stats: modify hp and process lethal state (on battle unit fields)<br>[`0x003112F0`](../Rewards-EXP-Gil-And-Loot/gil.md) Battle formula: apply target result (on gil) |
+| [`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) | is called by | [`0x002FEF30`](../Enemy-Spawning/bestiary.md) Battle stats: rebuild effective stats and affinity state (on bestiary) |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00300530`](../Characters-And-Objects/battle-unit-fields.md) Battle stats: modify hp and process lethal state (on battle unit fields) |
 
 **Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00313A00` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00313A00`](../Battle-Actions/action-phases.md) (on action phases) |
 
 **Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00377C20` | is called by | `0x00312280` |
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00312280`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle unit: process defeat rewards and loot (on strong and weak mode) |
 
 </details>

@@ -58,52 +58,86 @@ outNear)`. It has one caller, the standard-action state machine `0x00304850`, wh
 
 A later step of the same machine copies
 them to the unit's movement block (unit `+0x80`, `0x003048EF`): near to `+0x120`, middle to `+0x124`,
-reach to `+0x128`, and sets bit `0x20` of block `+0x170` (`0x00304BF3`-`0x00304C0F`). Just before, it sets the
-block's movement mode `+0x40` to 1 (`0x00304BEC`); the movement step `0x0033BED0` runs the spacing step
-only in that mode (`0x0033BF59`-`0x0033BF5F`).
+reach to `+0x128`, and sets bit `0x20` of block `+0x170`¹. Just before, it sets the
+block's movement mode `+0x40` to 1²; the movement step `0x0033BED0` runs the spacing step
+only in that mode³.
 
-1. **The weapon row.** The weapon id is the `u16` at `+0x50` of the actor's stats record
-   (`[unit+0x698]`). The equipment row is resolved only when the id is below the equipment table's
-   count plus `0x1000` and the table at `0x02EBF0F8` is present (`0x002FEBCA`-`0x002FEC1D`).
-2. **The row address** is the table base (resolved through `0x0020E600`) plus `(id - 0x1000)` times the
-   `u16` stride at table `+8`. Otherwise the row is null; the empty hand `0xFFFF` fails the bound.
-3. **Body sizes.** For a class-3 object (byte `[object+3] & 0xE0` = `0x60`), `0x00265090` returns the
-   pair of floats at `[object+0xB8]+0x50` and `+0x54`; for any other object it leaves the outputs
-   unwritten. It is asked for the actor and for the target. The builder takes the larger of each pair and adds the two
-   (`0x002FEC34`-`0x002FEC7E`).
-4. **Inner values.** `a = 0x00320D70(actor, row, weaponRow, 0)` and `b = 0x00320D70(..., 1)`
-   (`0x002FEC83`, `0x002FEC9A`).
-5. **The reach.** `R = 0x00309300(row, weaponId)` (`0x002FECC6`).
-6. **Authored or proportional.** The bands are authored only when both `a` and `b` are non-zero: a
-   zero `a` skips the test of `b` (`0x002FECAA`), a zero `b` fails it (`0x002FECB1`); an unordered (NaN)
-   compare counts as non-zero. Authored: near = `a`, middle = `a + b`, reach = `a + b + R`
-   (`0x002FECD2`-`0x002FECD9`). Otherwise near = `0.6 R` (`0x008F3100`), middle = `0.8 R` (`0x008F3108`),
-   reach = `R` (`0x002FECDF`-`0x002FECF8`).
-7. The body-size sum is added to all three, and each output is stored only when its pointer is
-   non-null (`0x002FECFB`-`0x002FED32`). The function returns 0.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00304BF3`-`0x00304C0F` |
+| ² | `0x00304BEC` |
+| ³ | `0x0033BF59`-`0x0033BF5F` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | **The weapon row.** The weapon id is the `u16` at `+0x50` of the actor's stats record (`[unit+0x698]`). The equipment row is resolved only when the id is below the equipment table's count plus `0x1000` and the table at `0x02EBF0F8` is present. | `0x002FEBCA`-`0x002FEC1D` |
+| 2 | **The row address** is the table base (resolved through `0x0020E600`) plus `(id - 0x1000)` times the `u16` stride at table `+8`. Otherwise the row is null; the empty hand `0xFFFF` fails the bound. |   |
+| 3 | **Body sizes.** For a class-3 object (byte `[object+3] & 0xE0` = `0x60`), `0x00265090` returns the pair of floats at `[object+0xB8]+0x50` and `+0x54`; for any other object it leaves the outputs unwritten. It is asked for the actor and for the target. The builder takes the larger of each pair and adds the two. | `0x002FEC34`-`0x002FEC7E` |
+| 4 | **Inner values.** `a = 0x00320D70(actor, row, weaponRow, 0)` and `b = 0x00320D70(..., 1)`. | `0x002FEC83`, `0x002FEC9A` |
+| 5 | **The reach.** `R = 0x00309300(row, weaponId)`. | `0x002FECC6` |
+| 6 | **Authored or proportional.** The bands are authored only when both `a` and `b` are non-zero: a zero `a` skips the test of `b`, a zero `b` fails it; an unordered (NaN) compare counts as non-zero. Authored: near = `a`, middle = `a + b`, reach = `a + b + R`. Otherwise near = `0.6 R`, middle = `0.8 R`, reach = `R`. | `0x002FECAA`<br>`0x002FECB1`<br>`0x002FECD2`-`0x002FECD9`<br>`0x008F3100`<br>`0x008F3108`<br>`0x002FECDF`-`0x002FECF8` |
+| 7 | The body-size sum is added to all three, and each output is stored only when its pointer is non-null. The function returns 0. | `0x002FECFB`-`0x002FED32` |
 
 ### The reach
 
 `0x00309300` (169 bytes) takes `(actionRow, weaponId)`. It tests the weapon id as a
-class-6 (equipment) id with `0x00322C50(6, id, 0)` and resolves its row (`0x00309319`-`0x0030935E`). A null
-action row gives 0.0 (`0x00309364`). When bit `0x4000000` of the row's flag word `+0x0C` is clear,
+class-6 (equipment) id with `0x00322C50(6, id, 0)` and resolves its row¹. A null
+action row gives 0.0². When bit `0x4000000` of the row's flag word `+0x0C` is clear,
 the reach is the row's byte `+0x05`; when it is set, the reach is the equipment row's byte `+0x18`,
-or 0.0 when there is no equipment row (`0x00309377`-`0x0030938B`). The byte is divided by 10.0
-(`0x008F8180`, `0x0030939B`).
+or 0.0 when there is no equipment row³. The byte is divided by 10.0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00309319`-`0x0030935E` |
+| ² | `0x00309364` |
+| ³ | `0x00309377`-`0x0030938B` |
+| ⁴ | `0x008F8180`, `0x0030939B` |
+
+</details>
 
 ### The inner values
 
 `0x00320D70` (146 bytes) takes `(actor, actionRow, equipmentRow, component)` and tests bit `0x4000000` of the
-action row's flag word `+0x0C` (`0x00320D74`):
+action row's flag word `+0x0C`¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320D74` |
+
+</details>
 
 - **Bit `0x4000000` clear:** the action row's byte `+0x02 + component`, divided by 10.0 - `+0x02` is the near
-  value and `+0x03` the middle value (`0x00320DE1`-`0x00320DF5`).
+  value and `+0x03` the middle value¹.
 - **Bit `0x4000000` set:** the equipment row's kind byte `+0x25` (kind 0 for a null row, `0x00320DAF`). Kind 2,
-  or any kind above 5, gives 0.0 (`0x00320D93`-`0x00320DA2`). Otherwise the parameter number is the dword
+  or any kind above 5, gives 0.0². Otherwise the parameter number is the dword
   at `0x01EED288 + (component + kind * 2) * 4` (table below).
 - **The parameter's value** comes from `0x003204E0(object, number, &out)`, the object being the first
-  argument's `+0x10` (`0x00320DC4`) and `out` preset to 0.0 (`0x00320D86`); a negative return gives 0.0
-  (`0x00320DB1`-`0x00320DD1`).
+  argument's `+0x10`³ and `out` preset to 0.0⁴; a negative return gives 0.0
+ ⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320DE1`-`0x00320DF5` |
+| ² | `0x00320D93`-`0x00320DA2` |
+| ³ | `0x00320DC4` |
+| ⁴ | `0x00320D86` |
+| ⁵ | `0x00320DB1`-`0x00320DD1` |
+
+</details>
 
 | Equipment kind | Near parameter | Middle parameter |
 |---:|---:|---:|
@@ -117,17 +151,48 @@ action row's flag word `+0x0C` (`0x00320D74`):
 character parameter ids `0x09000D0E`-`0x09001819`, `0x01EED350`) and multiplies the result by the float
 at `[object+0xB8]+0x28` (the third output of `0x00265240`). Numbers 24, 26, 28 and 31 take the
 integer path instead: `0x002ECE80(object, id)` hands the same character record id, with the same null
-and -1 guards, to `0x003E6310` (`0x002ECE80`-`0x002ECEA0`), and `0x003204E0` stores the returned dword as it
-is (`0x00320580`-`0x00320590`).
+and -1 guards, to `0x003E6310`¹, and `0x003204E0` stores the returned dword as it
+is².
 
-Each of the three guards makes `0x002ECE80` answer the integer 0 (`0x002ECE9E`), and the
-id it passes on is the low word of the dword at `[object + 0xC0]`, zero-extended
-(`0x002ECE96`).
+<details>
+<summary>Where in the code</summary>
 
-`0x002ECE50` returns 0.0 when the object or `[object+0xC0]` is null or the dword there is -1 (`0x002ECE53`-`0x002ECE64`);
-otherwise it passes the low 16 bits of that dword, zero-extended (`0x002ECE66`), to `0x003E6150`, which keeps only
-those 16 bits (`0x003E615C`). That reads the parameter from the character's parameter block (`0x004FE270`)
+| | Code |
+|---|---|
+| ¹ | `0x002ECE80`-`0x002ECEA0` |
+| ² | `0x00320580`-`0x00320590` |
+
+</details>
+
+Each of the three guards makes `0x002ECE80` answer the integer 0¹, and the
+id it passes on is the low word of the dword at `[object + 0xC0]`, zero-extended².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002ECE9E` |
+| ² | `0x002ECE96` |
+
+</details>
+
+`0x002ECE50` returns 0.0 when the object or `[object+0xC0]` is null or the dword there is -1¹;
+otherwise it passes the low 16 bits of that dword, zero-extended², to `0x003E6150`, which keeps only
+those 16 bits³. That reads the parameter from the character's parameter block⁴
 and multiplies it by the float at `+0x26C` of that character's `0x740`-byte record at `0x022C6F28`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002ECE53`-`0x002ECE64` |
+| ² | `0x002ECE66` |
+| ³ | `0x003E615C` |
+| ⁴ | `0x004FE270` |
+
+</details>
 
 ### The gap to the near value
 
@@ -136,69 +201,128 @@ call is the view builder's, with target 0 ([animation-driven
 movement](../Movement-And-Pathfinding/animation-driven-movement.md); `0x0031AF77`-`0x0031AF82`).
 
 The object is the target's `+0x10`, or with target 0 the actor `0x003588B0([unit+0x710])` that the unit's focus handle
-resolves to while `0x02089340` has bit `0x10`; without an object the answer is 0.0 (`0x00320E2C`-`0x00320E56`).
+resolves to while `0x02089340` has bit `0x10`; without an object the answer is 0.0¹.
 
-It answers 0.0 for an action id `+0x714` above `0x21E` or a missing action row (`0x00320E5B`-`0x00320EBC`, `0x0032104C`). It
-finds the weapon row as the builder does in steps 1 and 2 (`0x00320EC2`-`0x00320F37`), and answers 0.0 when the action
-row's flag word has bit `0x4000000` and the weapon row is missing or has kind byte `+0x25` 2 (`0x00320F39`-`0x00320F50`).
+<details>
+<summary>Where in the code</summary>
 
-Otherwise it reads `a = 0x00320D70(unit, row, weaponRow, 0)` and `b = 0x00320D70(..., 1)` (`0x00320F6A`, `0x00320F82`) and
-answers 0.0 when either is 0 (`0x00320F87`-`0x00320F9B`).
+| | Code |
+|---|---|
+| ¹ | `0x00320E2C`-`0x00320E56` |
+
+</details>
+
+It answers 0.0 for an action id `+0x714` above `0x21E` or a missing action row¹. It
+finds the weapon row as the builder does in steps 1 and 2², and answers 0.0 when the action
+row's flag word has bit `0x4000000` and the weapon row is missing or has kind byte `+0x25` 2³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320E5B`-`0x00320EBC`, `0x0032104C` |
+| ² | `0x00320EC2`-`0x00320F37` |
+| ³ | `0x00320F39`-`0x00320F50` |
+
+</details>
+
+Otherwise it reads `a = 0x00320D70(unit, row, weaponRow, 0)` and `b = 0x00320D70(..., 1)`¹ and
+answers 0.0 when either is 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00320F6A`, `0x00320F82` |
+| ² | `0x00320F87`-`0x00320F9B` |
+
+</details>
 
 The answer is `max(0, d - a - own - other)`: `d` is the x/z distance `0x004686D0` from the unit's `+0xE0` to the
-object's position (`0x00265020`; `0x00320FEE`, `0x00321017`). `own` is the larger of the `0x00265090` pair of the unit's
-`[unit+0x10]` (`0x0030A130`, `0x00321027`; `0x0030A134`-`0x0030A14D`) and `other` the larger of the object's pair (`0x0030A160`,
-`0x00320FF6`; `0x0030A16E`-`0x0030A179`), the rule of the builder's step 3. When `a` is negative, `other` is added instead
-(`0x00320FFB`-`0x00321004`, `0x00321022`-`0x00321043`).
+object's position¹. `own` is the larger of the `0x00265090` pair of the unit's
+`[unit+0x10]`² and `other` the larger of the object's pair³, the rule of the builder's step 3. When `a` is negative, `other` is added instead⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265020`; `0x00320FEE`, `0x00321017` |
+| ² | `0x0030A130`, `0x00321027`; `0x0030A134`-`0x0030A14D` |
+| ³ | `0x0030A160`, `0x00320FF6`; `0x0030A16E`-`0x0030A179` |
+| ⁴ | `0x00320FFB`-`0x00321004`, `0x00321022`-`0x00321043` |
+
+</details>
 
 ### Spacing
 
 `0x00319110(block, p, q)` copies the 16 bytes at `p` to block `+0x80` and those at `q` to `+0x90`; a null `p` or `q` is
-read as the block's own `+0x50` (`0x00319110`-`0x00319130`).
+read as the block's own `+0x50`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00319110`-`0x00319130` |
+
+</details>
 
 `0x00338140` (839 bytes) runs per step on a movement context `ctx` built by `0x00336710`:
 `ctx+0x00` is the unit's own position (block `+0x60`), `ctx+0x30` the reference-target point (block
 `+0x90`, stored by `0x00319110`), `ctx+0x40` the target unit's live position, `ctx+0x100` and
-`ctx+0x108` both the movement block, `ctx+0xF0` the acting unit and `ctx+0xF8` the target unit
-(`0x00336733`-`0x003367BB`). Below, "the block" is that movement block.
+`ctx+0x108` both the movement block, `ctx+0xF0` the acting unit and `ctx+0xF8` the target unit¹. Below, "the block" is that movement block.
 
-1. It stops (speed `ctx+0xB0` = 0, bits `0x7FE0` of block `+0x00` cleared) and returns at once (`0x00338475`-`0x00338485`)
-   when the unit in the block's slot `+0x177` has the id held at block `+0x150` (`0x00338178`-`0x00338194`), or when the
-   unit is within 0.1 (`0x008C5F6C`, XZ) of the target's live position (`0x003381A1`-`0x003381B3`).
-2. **Mutual targets.** When the target's focus handle `[target+0x710]` resolves (`0x0031B7E0`) to the
-   acting unit and the unit's middle (block `+0x124`) is larger than the target's (target `+0x1A4`),
-   the near value used is the target's (`+0x1A0`); otherwise its own (block `+0x120`)
-   (`0x00338201`-`0x0033823F`).
-3. **Too far** when the XZ distance `d` from the unit to the reference-target point
-   (`0x0033826E`) exceeds `min(middle + 2.0, reach)` (`0x01CEBC08`, `0x00338253`-`0x0033827D`): bit `0x2` of
-   block `+0x38` (approach). **Too close** when `d < near + 0.05` (`0x008F30E8`) and `0x003341A0`
-   agrees: bit `0x4` of block `+0x38` (back off) (`0x00338281`-`0x0033829B`).
-4. Approach is dropped when the block's stop distance `+0xD0` is larger than `d`, and back-off when
-   `d` is larger than it (`0x0033829F`-`0x003382DE`). When the pair clearance test `0x0033D660` returns 0,
-   the approach bit is set (`0x003382F2`-`0x00338301`).
-5. **Approach** runs the pacing step `0x00337A50` and then `0x0033A720`; a non-zero pacing result clears
-   bits `0x7FE0` of block `+0x00` (`0x00338305`-`0x00338326`).
-6. **Back-off**, when bit `0x2` of block `+0x38` is clear and bit `0x4` set (`0x00338305`-`0x00338333`), tests a step with
-   `0x00335B60`: if it returns 0 the unit moves away at the block's speed `+0xF8` with heading `ctx+0xB4` (turn limit
-   `0x003364D0`), otherwise the back-off bit is cleared (`0x00338339`-`0x003383BC`).
-7. **Neither:** the avoidance manoeuvre `0x003343D0` runs (and `0x0033BAA0` when it starts)
-   (`0x003383C2`-`0x003383D1`).
-8. **After each of steps 5-7** (`0x003383D6`): when neither bit `0x2` nor bit `0x4` of block `+0x38` is set and bits
-   `0x7FE0` of block `+0x00` are clear, the unit stops (speed `ctx+0xB0` = 0) and turns to face the target (`ctx+0xBC`
-   takes `0x003364D0(ctx, h)`), `0x0033BC80` runs on the point (own x, 0, own z, 1.0), and bits `0x7FE0` are cleared again
-   (`0x003383D6`-`0x00338442`).
-9. The `h` of step 8 is the heading between the unit and the target's live position
-   `ctx+0x40` (`0x00203080`, `0x004687F0`, `0x003381C1`-`0x003381F7`, passed at `0x003383EC`).
+<details>
+<summary>Where in the code</summary>
 
-Step 1 reads the unit with no null test (`0x0033818B`); `0x00236820` answers null for a slot not below the count at
-`0x0208E6A0` (`0x0023682C`-`0x00236842`), so such a slot faults.
+| | Code |
+|---|---|
+| ¹ | `0x00336733`-`0x003367BB` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It stops (speed `ctx+0xB0` = 0, bits `0x7FE0` of block `+0x00` cleared) and returns at once when the unit in the block's slot `+0x177` has the id held at block `+0x150`, or when the unit is within 0.1 (`0x008C5F6C`, XZ) of the target's live position. | `0x00338475`-`0x00338485`<br>`0x00338178`-`0x00338194`<br>`0x003381A1`-`0x003381B3` |
+| 2 | **Mutual targets.** When the target's focus handle `[target+0x710]` resolves to the acting unit and the unit's middle (block `+0x124`) is larger than the target's (target `+0x1A4`), the near value used is the target's (`+0x1A0`); otherwise its own (block `+0x120`). | `0x0031B7E0`<br>`0x00338201`-`0x0033823F` |
+| 3 | **Too far** when the XZ distance `d` from the unit to the reference-target point exceeds `min(middle + 2.0, reach)`: bit `0x2` of block `+0x38` (approach). **Too close** when `d < near + 0.05` and `0x003341A0` agrees: bit `0x4` of block `+0x38` (back off). | `0x0033826E`<br>`0x01CEBC08`, `0x00338253`-`0x0033827D`<br>`0x008F30E8`<br>`0x00338281`-`0x0033829B` |
+| 4 | Approach is dropped when the block's stop distance `+0xD0` is larger than `d`, and back-off when `d` is larger than it. When the pair clearance test `0x0033D660` returns 0, the approach bit is set. | `0x0033829F`-`0x003382DE`<br>`0x003382F2`-`0x00338301` |
+| 5 | **Approach** runs the pacing step `0x00337A50` and then `0x0033A720`; a non-zero pacing result clears bits `0x7FE0` of block `+0x00`. | `0x00338305`-`0x00338326` |
+| 6 | **Back-off**, when bit `0x2` of block `+0x38` is clear and bit `0x4` set, tests a step with `0x00335B60`: if it returns 0 the unit moves away at the block's speed `+0xF8` with heading `ctx+0xB4` (turn limit `0x003364D0`), otherwise the back-off bit is cleared. | `0x00338305`-`0x00338333`<br>`0x00338339`-`0x003383BC` |
+| 7 | **Neither:** the avoidance manoeuvre `0x003343D0` runs (and `0x0033BAA0` when it starts). | `0x003383C2`-`0x003383D1` |
+| 8 | **After each of steps 5-7**: when neither bit `0x2` nor bit `0x4` of block `+0x38` is set and bits `0x7FE0` of block `+0x00` are clear, the unit stops (speed `ctx+0xB0` = 0) and turns to face the target (`ctx+0xBC` takes `0x003364D0(ctx, h)`), `0x0033BC80` runs on the point (own x, 0, own z, 1.0), and bits `0x7FE0` are cleared again. | `0x003383D6`<br>`0x003383D6`-`0x00338442` |
+| 9 | The `h` of step 8 is the heading between the unit and the target's live position `ctx+0x40` (`0x00203080`, `0x004687F0`, `0x003381C1`-`0x003381F7`, passed at `0x003383EC`). |   |
+
+Step 1 reads the unit with no null test¹; `0x00236820` answers null for a slot not below the count at
+`0x0208E6A0`², so such a slot faults.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0033818B` |
+| ² | `0x0023682C`-`0x00236842` |
+
+</details>
 
 In step 6 the step heading comes from `0x00203080(out, ctx, ctx + 0x40)` with the result's
-y set to 0 and `0x004687F0` on it; the test is `0x00335B60(ctx, heading, 0, 0.1, 0.8, 0)`
-(`0x00338339`-`0x00338382`). On a 0 answer `ctx+0xB0` takes the dword `+0xF8` of the object
+y set to 0 and `0x004687F0` on it; the test is `0x00335B60(ctx, heading, 0, 0.1, 0.8, 0)`¹. On a 0 answer `ctx+0xB0` takes the dword `+0xF8` of the object
 at `ctx+0x108`, `ctx+0xB4` takes that heading and `ctx+0xBC` takes `0x003364D0(ctx, h)`,
-h being the heading `0x004687F0` gave earlier for `0x00203080(out, ctx + 0x40, ctx)`
-(`0x003381C1`-`0x003381F7`, `0x0033838B`-`0x003383B2`).
+h being the heading `0x004687F0` gave earlier for `0x00203080(out, ctx + 0x40, ctx)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00338339`-`0x00338382` |
+| ² | `0x003381C1`-`0x003381F7`, `0x0033838B`-`0x003383B2` |
+
+</details>
 
 ### The back-off condition
 
@@ -206,31 +330,56 @@ h being the heading `0x004687F0` gave earlier for `0x00203080(out, ctx + 0x40, c
 units exist and differ, `0x0030BCB0(unit, target, 0)` is 0 (the relationship class from `0x0030AB40` is
 above 1), and the acting unit is not on the enemy side (stats byte `+0x05` not 1, or no stats record at
 `+0x698`, `0x003341F5`) or has bit `0x2` of byte
-`+0x21` of its `[unit+0xE68]` record set (`0x003341A6`-`0x0033420A`).
+`+0x21` of its `[unit+0xE68]` record set¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003341A6`-`0x0033420A` |
+
+</details>
 
 ### Pacing
 
 `0x00337A50` (442 bytes) runs only while bit `0x100` of block `+0x3C` is set, the
 acting unit's class from `0x002F8E70` is 1, the class of the unit the target is focused on is not 1, and
-the speed `ctx+0xB0` is non-zero; otherwise it clears bit `0x100` and returns 0 (`0x00337A74`-`0x00337ACB`,
-`0x00337BDF`). `0x002F8E70` returns 1 for a party-side unit (stats byte `+0x05` = 0) whose type id (byte
-`+0x04`) is outside the Esper band `0x1B`-`0x27`, and 2 inside it (`0x002F8E90`).
+the speed `ctx+0xB0` is non-zero; otherwise it clears bit `0x100` and returns 0¹. `0x002F8E70` returns 1 for a party-side unit (stats byte `+0x05` = 0) whose type id (byte
+`+0x04`) is outside the Esper band `0x1B`-`0x27`, and 2 inside it².
 
-1. The aim point is `middle + 0.7 * (reach - middle)` (`0x008F3104`, `0x00337ADF`-`0x00337AFB`); `rem` is
-   the XZ distance from the unit to the target's live position minus the aim. A negative `rem`
-   returns 0 (`0x00337B0F`).
-2. The remaining charge ticks are `([unit+0x76C] - [unit+0x768])` divided by the charge per tick
-   `0x002F9C00(unit)`. If that is not larger than `rem` divided by the fast speed (block `+0xFC`), pacing
-   is abandoned: bit `0x100` is cleared and 0 returned (`0x00337B26`-`0x00337B50`).
-3. While the elapsed ticks `[unit+0x768] / step` are fewer than `30 * [0x01DFE0B4]` (`0x00337B75`), the
-   unit stands (speed 0). After that it stands while the remaining ticks exceed `rem` divided by the
-   normal speed (block `+0xF8`), and walks at the normal speed otherwise (`0x00337B80`-`0x00337BD7`).
-   Either way it returns 1.
+<details>
+<summary>Where in the code</summary>
 
-`0x01DFE0B4` is 1 as shipped; `0x001EDDC0` sets it to 2 (`0x001EDDF2`) while setting the per-frame scale
+| | Code |
+|---|---|
+| ¹ | `0x00337A74`-`0x00337ACB`, `0x00337BDF` |
+| ² | `0x002F8E90` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | The aim point is `middle + 0.7 * (reach - middle)`; `rem` is the XZ distance from the unit to the target's live position minus the aim. A negative `rem` returns 0. | `0x008F3104`, `0x00337ADF`-`0x00337AFB`<br>`0x00337B0F` |
+| 2 | The remaining charge ticks are `([unit+0x76C] - [unit+0x768])` divided by the charge per tick `0x002F9C00(unit)`. If that is not larger than `rem` divided by the fast speed (block `+0xFC`), pacing is abandoned: bit `0x100` is cleared and 0 returned. | `0x00337B26`-`0x00337B50` |
+| 3 | While the elapsed ticks `[unit+0x768] / step` are fewer than `30 * [0x01DFE0B4]`, the unit stands (speed 0). After that it stands while the remaining ticks exceed `rem` divided by the normal speed (block `+0xF8`), and walks at the normal speed otherwise. Either way it returns 1. | `0x00337B75`<br>`0x00337B80`-`0x00337BD7` |
+
+`0x01DFE0B4` is 1 as shipped; `0x001EDDC0` sets it to 2¹ while setting the per-frame scale
 `0x01DFE0BC` to 0.5, so the standing window is 30 ticks at the shipped setting and 60 after that switch.
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EDDF2` |
+
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Field | Width | Meaning | Written by |
 |---|---|---|---|
@@ -240,6 +389,8 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit `0x100` and returns 0 
 | unit `+0x1A0` (block `+0x120`) | `f32` | near, as movement reads it | `0x00304BF6` |
 | unit `+0x1A4` (block `+0x124`) | `f32` | middle, as movement reads it | `0x00304BFF` |
 | unit `+0x1A8` (block `+0x128`) | `f32` | reach, as movement reads it | `0x00304C0F` |
+
+</details>
 
 ## Modding notes
 
@@ -280,27 +431,28 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Sound and music** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
-|---|---|---|
-| `0x00203080` | is called by | `0x00362850` |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
 
-**Scripts and script commands**
-
-| Function | | Functions |
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265020` | is called by | `0x0033FD60`, `0x00344AF0`, `0x00345180`, `0x00345830`, `0x003461B0`, `0x00346710`, `0x00346D40`, `0x00347170`, `0x00347580`, `0x003478A0`, `0x00347AB0`, `0x00347FF0` |
-| `0x00265020` | is also called by | `0x0034BE50`, `0x0034CC00`, `0x00350DD0`, `0x003516E0`, `0x003562B0`, `0x00357DE0`, `0x0050E060`, `0x0050F6E0`, `0x00510040`, `0x00510080`, `0x005100C0` |
+| [`0x00203080`](action-range.md) | is called by | [`0x00362850`](../Sound-And-Music/spatial-sound.md) (on spatial sound) |
 
 **Scripts and script commands** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [bestiary](../Enemy-Spawning/bestiary.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x004686D0` | is called by | `0x00344390`, `0x003448F0`, `0x00345630` |
+| [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) | is called by | [`0x0033FD60`](../Scripts-And-Script-Commands/party-verbs.md) (on party verbs)<br>[`0x00344AF0`](action-range.md)<br>[`0x00345180`](action-range.md)<br>[`0x00345830`](action-range.md)<br>[`0x003461B0`](action-range.md)<br>[`0x00346710`](action-range.md)<br>[`0x00346D40`](action-range.md)<br>[`0x00347170`](action-range.md)<br>[`0x00347580`](action-range.md)<br>[`0x003478A0`](action-range.md)<br>[`0x00347AB0`](action-range.md)<br>[`0x00347FF0`](action-range.md) |
+| [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) | is also called by | [`0x0034BE50`](action-range.md)<br>[`0x0034CC00`](action-range.md)<br>[`0x00350DD0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x003516E0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x003562B0`](action-range.md)<br>[`0x00357DE0`](action-range.md)<br>[`0x0050E060`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x0050F6E0`](action-range.md)<br>[`0x00510040`](action-range.md)<br>[`0x00510080`](action-range.md)<br>[`0x005100C0`](action-range.md) |
+| [`0x004686D0`](../Movement-And-Pathfinding/battle-locomotion.md) Vector3: compute xz distance (on battle locomotion) | is called by | [`0x00344390`](action-range.md)<br>[`0x003448F0`](action-range.md)<br>[`0x00345630`](action-range.md) |
 
 **Enemy spawning** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00265020` | is called by | `0x00234AF0`, `0x00234DA0`, `0x002350C0` |
+| [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) | is called by | [`0x00234AF0`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning)<br>[`0x00234DA0`](../Party/party-slots.md) Spawn: validate candidate distance to players (on party slots)<br>[`0x002350C0`](../Enemy-Spawning/enemy-spawning.md) Spawn lifecycle: check and retire by native range (on enemy spawning) |
 
 </details>

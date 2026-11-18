@@ -25,43 +25,77 @@ the kinds of equipment inside it.
 ### When a pickup is made
 
 The kill handler `0x00312280` makes the pickup after EXP, LP and gil are paid (see
-[Kill rewards](kill-rewards.md)). In order (`0x0031256B`-`0x003125B4`):
+[Kill rewards](kill-rewards.md)). In order¹:
 
-1. `0x00265020` reads the dead enemy's position from its actor (`[enemy+0x10]`, position at
-   `[actor+0xB8]`, only for an actor whose byte `+0x03` has kind 1 or 3 in its top three bits;
-   otherwise 0, 0, 0).
-2. `0x00319490(&position)` runs the placement test. A result of 0 ends the sequence with no pickup
-   (`0x00312595`-`0x00312597`).
-3. `0x003180F0(enemy, &drops)` rolls the seven drop entries (see [Loot drops](loot-drops.md)). A result of 0,
-   no item in any entry, ends the sequence (`0x003125A6`-`0x003125A8`).
-4. `0x00319CA0(&drops, &position)` creates the pickup.
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031256B`-`0x003125B4` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00265020` reads the dead enemy's position from its actor (`[enemy+0x10]`, position at `[actor+0xB8]`, only for an actor whose byte `+0x03` has kind 1 or 3 in its top three bits; otherwise 0, 0, 0). |   |
+| 2 | `0x00319490(&position)` runs the placement test. A result of 0 ends the sequence with no pickup. | `0x00312595`-`0x00312597` |
+| 3 | `0x003180F0(enemy, &drops)` rolls the seven drop entries (see [Loot drops](loot-drops.md)). A result of 0, no item in any entry, ends the sequence. | `0x003125A6`-`0x003125A8` |
+| 4 | `0x00319CA0(&drops, &position)` creates the pickup. |   |
 
 ### The placement test
 
 `0x00319490` chooses the unit that the test is made for and calls `0x003377C0(unit, position)`:
 
-- The unit is the party leader's battle unit: the focus handle `0x022C7FE0` (`0x003590D0`) resolved
-  by `0x003588B0` to its registry entry, and the unit is `[entry+0x30]` (`0x00263E30`). It is used only
-  when `0x02089340` has bit `0x10` set and the unit's first byte has bit `0x8` (`0x003194AD`-`0x003194D2`);
+- The unit is the party leader's battle unit: the focus handle `0x022C7FE0`¹ resolved
+  by `0x003588B0` to its registry entry, and the unit is `[entry+0x30]`². It is used only
+  when `0x02089340` has bit `0x10` set and the unit's first byte has bit `0x8`³;
   otherwise the unit is null.
-- `0x003377C0` returns 0 for a null unit or one without an actor (`0x003377E3`-`0x003377F6`), so in that
+- `0x003377C0` returns 0 for a null unit or one without an actor⁴, so in that
   case no pickup is made.
-- The acting unit is `0x0031ABE0([0x00236820(unit.b[+0xEA9])] + 8)` (`0x00337845`-`0x0033784D`). When
-  `0x002EA7F0(acting)` returns 0 (`0x00337858`) the neighbour check is skipped and `0x00337700` runs at
+- The acting unit is `0x0031ABE0([0x00236820(unit.b[+0xEA9])] + 8)`⁵. When
+  `0x002EA7F0(acting)` returns 0⁶ the neighbour check is skipped and `0x00337700` runs at
   once.
 - Otherwise it queries the units around the position (`0x00391D10` at `0x003378B2`, or `0x003920F0` at
-  `0x003378E6` when a coordinate is NaN, up to 32 results) and walks them (`0x00337900`-`0x00337987`).
+  `0x003378E6` when a coordinate is NaN, up to 32 results) and walks them⁷.
   - Skipped: the acting unit itself; a result whose `[+0xE68]` byte `+0x18` holds 1 in the
     three-bit field under the mask `0xE` when the leader's own field holds 4
-    (`0x0033792B`-`0x00337951`); every result while `0x00314EB0(acting)` is 0.
+   ⁸; every result while `0x00314EB0(acting)` is 0.
   - Each remaining result is classed by `0x00313F80(acting, result)`; any classed result makes the
-    function return 0 (`0x0033798D`-`0x0033799A`).
-- With no classed result it returns `0x00337700(unit, position)` (`0x003379A4`): the position must pass `0x00391410`
+    function return 0⁹.
+- With no classed result it returns `0x00337700(unit, position)`¹⁰: the position must pass `0x00391410`
   (result 0), its ground cell from `0x00384130` must not be `0xFF`, and `0x00336390(position,
   max(r1, r2), unit.b[+0x1F4])` must be non-zero, which tests `0x0026E100` at the point and at the
   four corners `x ± r`, `z ± r`. `r1`, `r2` are the leader actor's two radii from `0x00265090`.
 
-The position passed carries a fourth lane of 1.0 (`0x01CEBBA8`, `0x003194F8`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003590D0` |
+| ² | `0x00263E30` |
+| ³ | `0x003194AD`-`0x003194D2` |
+| ⁴ | `0x003377E3`-`0x003377F6` |
+| ⁵ | `0x00337845`-`0x0033784D` |
+| ⁶ | `0x00337858` |
+| ⁷ | `0x00337900`-`0x00337987` |
+| ⁸ | `0x0033792B`-`0x00337951` |
+| ⁹ | `0x0033798D`-`0x0033799A` |
+| ¹⁰ | `0x003379A4` |
+
+</details>
+
+The position passed carries a fourth lane of 1.0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x01CEBBA8`, `0x003194F8` |
+
+</details>
 
 ### The pool
 
@@ -69,24 +103,30 @@ Ten pickup slots of `0x60` bytes start at `0x02EC0FA0`; the live ones form a dou
 with head `0x02EC1360` and tail `0x02EC1368`. `0x00319B10` resets the pool: it zeroes every slot's
 state, stamp, links and handle, numbers the slots 0-9 in their first dword, clears the head and
 tail, and clears the presence table through `0x002FB250`. It runs from the area initialisation
-`0x002342F0` (`0x0023443C`) and from `0x002341C0` (`0x002341F0`).
+`0x002342F0`¹ and from `0x002341C0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023443C` |
+| ² | `0x002341F0` |
+
+</details>
 
 ### Creation and eviction
 
 `0x00319CA0(drops, position)`:
 
-1. Scans the ten slots for one whose state `+0x04` is 0 (`0x00319CC5`-`0x00319CDA`).
-2. When no slot is free it evicts the list head, the oldest pickup: unlinks it, posts presentation
-   op 5 on its handle (`0x0028F000(handle, 5, ...)`), clears its presence record (`0x002FB2A0(slot)`),
-   and zeroes its state, stamp, links and handle (`0x00319CDC`-`0x00319D3C`). That slot is reused.
-3. Links the slot at the tail, copies the 56 bytes of drop entries to `+0x20`, and sets state 1
-   (`0x00319D3F`-`0x00319D96`).
-4. Builds the 24-byte creation descriptor: the position with fourth lane 1.0, the appearance from
-   `0x00319A20(drops)`, and the chain level `0x022C3158` mapped through `0x01EED3A8` (`{0, 1, 2, 3}`,
-   so the level itself for 0-3, and 0 for a level of 4 or more) (`0x00319D9D`-`0x00319DF0`).
-5. Posts presentation op 1 and keeps the returned handle at `+0x58` (`0x00319DF4`-`0x00319E05`).
-6. When the breaks in a row `0x022C3164` are above 0 it calls `0x0016D6A0`, a `ret 0` stub that does
-   nothing (`0x00319E08`-`0x00319E10`).
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Scans the ten slots for one whose state `+0x04` is 0. | `0x00319CC5`-`0x00319CDA` |
+| 2 | When no slot is free it evicts the list head, the oldest pickup: unlinks it, posts presentation op 5 on its handle (`0x0028F000(handle, 5, ...)`), clears its presence record (`0x002FB2A0(slot)`), and zeroes its state, stamp, links and handle. That slot is reused. | `0x00319CDC`-`0x00319D3C` |
+| 3 | Links the slot at the tail, copies the 56 bytes of drop entries to `+0x20`, and sets state 1. | `0x00319D3F`-`0x00319D96` |
+| 4 | Builds the 24-byte creation descriptor: the position with fourth lane 1.0, the appearance from `0x00319A20(drops)`, and the chain level `0x022C3158` mapped through `0x01EED3A8` (`{0, 1, 2, 3}`, so the level itself for 0-3, and 0 for a level of 4 or more). | `0x00319D9D`-`0x00319DF0` |
+| 5 | Posts presentation op 1 and keeps the returned handle at `+0x58`. | `0x00319DF4`-`0x00319E05` |
+| 6 | When the breaks in a row `0x022C3164` are above 0 it calls `0x0016D6A0`, a `ret 0` stub that does nothing. | `0x00319E08`-`0x00319E10` |
 
 No drop is refused for lack of space; an older pickup is always sacrificed.
 
@@ -117,9 +157,18 @@ is the equipment class; the class list is on the
 
 ### The lifetime
 
-`0x00319600` runs every frame from the battle frame orchestrator `0x00234590` (`0x00234708`) and walks
+`0x00319600` runs every frame from the battle frame orchestrator `0x00234590`¹ and walks
 the live list. It reads the frame counter `0x0208D45C` and the step constant `-30.0` (`0x01CEBCAC`,
 loaded at `0x00319634`) scaled by the frame-rate scalar `0x01DFE0B8`:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00234708` |
+
+</details>
 
 ```c
 step = (int)(scalar * -30.0f);                    // -30 with the scalar at 1.0
@@ -131,12 +180,32 @@ if (now >= stamp - step * (60 - (7 - state))) { state += 1; 0x0028F000(handle, 2
 if (now >= stamp - step * 60) { unlink; 0x0028F000(handle, 4, ...); 0x002FB2A0(slot); zero }         // 0x00319664-0x003196E1
 ```
 
-The landing position comes from `0x0028EFC0(handle, out)` (`0x0031975E`), which forwards to the world-object part,
+The landing position comes from `0x0028EFC0(handle, out)`¹, which forwards to the world-object part,
 `0x003FA6E0([0x0209BE80] + 0x57E0, handle, out)`, before `0x002FB2D0` publishes it.
 
-An expiry also ends that frame's walk: the expired slot's next link is zeroed (`0x003196D9`) before the walk follows
-it (`0x0031977A`), so the pickups after it in the list wait for the next frame. A slot whose state is not 1 to 7 is
-passed over (`0x00319643`-`0x0031965E`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031975E` |
+
+</details>
+
+An expiry also ends that frame's walk: the expired slot's next link is zeroed¹ before the walk follows
+it², so the pickups after it in the list wait for the next frame. A slot whose state is not 1 to 7 is
+passed over³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003196D9` |
+| ² | `0x0031977A` |
+| ³ | `0x00319643`-`0x0031965E` |
+
+</details>
 
 The comparisons are unsigned (`jc` at `0x00319718` and `0x00319682`). With the scalar at 1.0 the
 thresholds are:
@@ -151,51 +220,88 @@ thresholds are:
 | 7, removed | stamp + 1800 | `0x0028F000(handle, 4, ...)` |
 
 The frame counter `0x0208D45C` is incremented by `0x0032A100` (`0x0032A135`, called from `0x00234590` at
-`0x002345CA`) only in a frame where the battle clock `0x003EBA90(0)` changed since the previous frame
-(`0x022C317C`). It is reset to 0 by `0x0032A160` from the battle-state reset `0x00237DF0` (`0x00237E37`).
+`0x002345CA`) only in a frame where the battle clock `0x003EBA90(0)` changed since the previous frame¹. It is reset to 0 by `0x0032A160` from the battle-state reset `0x00237DF0`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x022C317C` |
+| ² | `0x00237E37` |
+
+</details>
 
 The scalar `0x01DFE0B8` is 1.0 in the image and becomes 2.0 at `0x001EDDD8` together with the 60 fps
-gate `0x01F82E38` = 1 (`0x001EDDE8`). The lifetime is therefore 1800 frames at the base rate and 3600
+gate `0x01F82E38` = 1¹. The lifetime is therefore 1800 frames at the base rate and 3600
 at 60 fps: one minute either way at the 30 fps base (see the
 [game settings page](../Saving-Loading-And-Settings/game-settings.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EDDE8` |
+
+</details>
 
 ### Collection on contact
 
 The periodic unit maintenance `0x00310DB0` runs the contact test for a unit that is the controlled
 character (its handle `+0x08` equals the focus `0x022C7FE0`, `0x003273B0` at `0x003110DC`) or whose
-action word `+0x714` is `0x4165` (`0x003110E8`-`0x003110F4`):
+action word `+0x714` is `0x4165`¹:
 
-1. `0x002FB150(unit, 1.0)` returns the first presence record, in slot order, whose XZ distance
-   (`0x004686D0`) from the unit's actor position is strictly below `max(r1, r2) + 1.0`, with the
-   radii from `0x00265090`; -1 when no record is that close (`0x00311105`-`0x0031110E`).
-   - A null unit also gives -1, before any record is read (`0x002FB170`-`0x002FB175`); the tick never passes one,
-     since it has read the unit's `+0x08` at `0x003110DC` before the call.
-   - `0x00265090` writes the two radii only when the top three bits of the actor's byte `+3` are `0x60`
-     (`0x00265094`-`0x00265098`); otherwise `0x002FB150` compares against two stack slots it never sets
-     (`0x002FB1AD`-`0x002FB1C1`, `0x002FB1E5`-`0x002FB1F0`).
-   - `0x00265020` reads the position only when byte `+3` >> 5 is 1 or 3 (`0x0026502A`-`0x00265038`) and gives
-     (0, 0, 0) otherwise.
-2. `0x00469E30(stats)` posts message `0x4E` through `0x0046AB10` when `0x002F8E90()` returns 8
-   (`0x0031111B`).
-3. A party record (stats byte `+0x05` = 0) collects it: `0x00319A00(slot, unit handle)`
-   (`0x00311141`). Any other record, or no record, destroys it: `0x00319830(slot, unit handle)`
-   (`0x00311284`).
-4. For a party record the tick then rolls the chain bonus (see [Loot drops](loot-drops.md)).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003110E8`-`0x003110F4` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x002FB150(unit, 1.0)` returns the first presence record, in slot order, whose XZ distance from the unit's actor position is strictly below `max(r1, r2) + 1.0`, with the radii from `0x00265090`; -1 when no record is that close.<br>• A null unit also gives -1, before any record is read; the tick never passes one, since it has read the unit's `+0x08` at `0x003110DC` before the call.<br>• `0x00265090` writes the two radii only when the top three bits of the actor's byte `+3` are `0x60`; otherwise `0x002FB150` compares against two stack slots it never sets.<br>• `0x00265020` reads the position only when byte `+3` >> 5 is 1 or 3 and gives (0, 0, 0) otherwise. | `0x004686D0`<br>`0x00311105`-`0x0031110E`<br>`0x002FB170`-`0x002FB175`<br>`0x00265094`-`0x00265098`<br>`0x002FB1AD`-`0x002FB1C1`, `0x002FB1E5`-`0x002FB1F0`<br>`0x0026502A`-`0x00265038` |
+| 2 | `0x00469E30(stats)` posts message `0x4E` through `0x0046AB10` when `0x002F8E90()` returns 8. | `0x0031111B` |
+| 3 | A party record (stats byte `+0x05` = 0) collects it: `0x00319A00(slot, unit handle)`. Any other record, or no record, destroys it: `0x00319830(slot, unit handle)`. | `0x00311141`<br>`0x00311284` |
+| 4 | For a party record the tick then rolls the chain bonus (see [Loot drops](loot-drops.md)). |   |
 
 `0x00319920(slot, handle)`, the collect, grants every entry whose id is not `0xFFFF` with
-`0x00300B80(id, count, 1)`, the inventory add with the notification flag (`0x00319950`-`0x00319972`),
-adds 1 to the pickup counter `0x022C3174` (`0x00319974`), unlinks the slot, posts op 3 with the
-collecting unit's handle, clears the presence record and zeroes state, stamp, links and handle
-(`0x0031997A`-`0x003199E8`). `0x003197B0` is the same retirement without the grants and the counter.
+`0x00300B80(id, count, 1)`, the inventory add with the notification flag¹,
+adds 1 to the pickup counter `0x022C3174`², unlinks the slot, posts op 3 with the
+collecting unit's handle, clears the presence record and zeroes state, stamp, links and handle³. `0x003197B0` is the same retirement without the grants and the counter.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00319950`-`0x00319972` |
+| ² | `0x00319974` |
+| ³ | `0x0031997A`-`0x003199E8` |
+
+</details>
 
 ### The nearest pickup
 
 `0x00319850(unit, &out)` walks the live list and, through `0x002FB310(slot, &pos)`, takes the present
-position with the smallest squared XZ distance (`0x003A1960`) from the unit's position `+0xE0`; the
-ceiling starts at `0x02F973B8`, which `0x002368D0` sets to +inf (`0x00914700`, `0x002368F0`). It returns
-the slot, or -1 when no pickup is present. Its one caller is the movement goal decoder `0x00312730`
-(`0x003129AF`): goal `0x4165` becomes the nearest pickup's position with a stop distance of
+position with the smallest squared XZ distance¹ from the unit's position `+0xE0`; the
+ceiling starts at `0x02F973B8`, which `0x002368D0` sets to +inf². It returns
+the slot, or -1 when no pickup is present. Its one caller is the movement goal decoder `0x00312730`³: goal `0x4165` becomes the nearest pickup's position with a stop distance of
 `(max(r1, r2) + 1.0) - 0.1`, computed in that order.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003A1960` |
+| ² | `0x00914700`, `0x002368F0` |
+| ³ | `0x003129AF` |
+
+</details>
 
 ### The presence table
 
@@ -218,11 +324,24 @@ nothing when `0x0209BE80` is 0:
 | 5 | evicted | `0x003FA820(handle, 0)` |
 | 6 | end every element | `0x003FA900` |
 
-An op outside 1 to 6 does nothing either (`0x0028F017`-`0x0028F01D`), and the handle is taken as a dword (`0x0028F009`).
-Op 1 tail-jumps to `0x003FA160(manager, descriptor, descriptor +0x10, descriptor +0x14)` (`0x0028F034`-`0x0028F04B`) and
-returns its result. Ops 2 and 3 pass the dword at `arg` (`0x0028F050`, `0x0028F063`) and return the handle. Ops 4 and
-5 ignore `arg`, op 6 ignores the handle, and all three return 0 (`0x0028F076`-`0x0028F094`), as does a call that does
+An op outside 1 to 6 does nothing either¹, and the handle is taken as a dword².
+Op 1 tail-jumps to `0x003FA160(manager, descriptor, descriptor +0x10, descriptor +0x14)`³ and
+returns its result. Ops 2 and 3 pass the dword at `arg`⁴ and return the handle. Ops 4 and
+5 ignore `arg`, op 6 ignores the handle, and all three return 0⁵, as does a call that does
 nothing.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028F017`-`0x0028F01D` |
+| ² | `0x0028F009` |
+| ³ | `0x0028F034`-`0x0028F04B` |
+| ⁴ | `0x0028F050`, `0x0028F063` |
+| ⁵ | `0x0028F076`-`0x0028F094` |
+
+</details>
 
 `0x003FA160` takes the first free of 13 elements of `0x2A0` bytes at manager `+0x270` (free when
 `+0x272` bit `0x1` is clear) and fills it:
@@ -230,36 +349,73 @@ nothing.
 - state `+0x260` = 1, fall speed `+0x264` = -0.25, appearance `+0x268`, chain level `+0x26C`;
 - start position `+0x00` = the descriptor's position, rest position `+0x10` = its x and z with the
   ground height from `0x0026E350`; both y values + 0.5;
-- linked at the end of the manager's list `+0x2490`; sound `0x50` (`0x00249C60`).
+- linked at the end of the manager's list `+0x2490`; sound `0x50`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00249C60` |
+
+</details>
 
 It returns the element, or 0 when all 13 are in use. The handle is the element's address kept in a
-dword (`0x00319E05`), and `0x003FA730` reads `[handle+0x272]` before any null test.
+dword¹, and `0x003FA730` reads `[handle+0x272]` before any null test.
 `0x003FA730(manager, handle)` answers the element's state dword `+0x260` only when bit
 `0x1` of `+0x272` is set and the element is on the manager's list, walked from `+0x2490`
-along the links `+0x278`; otherwise it answers 0 (`0x003FA730`-`0x003FA75F`).
+along the links `+0x278`; otherwise it answers 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00319E05` |
+| ² | `0x003FA730`-`0x003FA75F` |
+
+</details>
 
 The element update `0x003FC510` runs the element through its states:
 
 - State 1: the element moves toward its rest height each frame, its speed `+0x264` growing by
   `0.02 × 0x01DFE0BC` per frame, and becomes state 2 on a later frame when the rest height lies
-  between the old and new y, or when y already equals it (`0x003FC839`, `0x003FC8D5`). `0x0028EFE0`
-  (`0x003FA730`) reports that state to the lifetime walk.
+  between the old and new y, or when y already equals it¹. `0x0028EFE0`
+ ² reports that state to the lifetime walk.
 - Op 2 sets the fade step `+0x288` from the table `{4096, 2730.67, 2048, 1638.4, 1365.33, 1170.29}
   × 0x01DFE0BC` indexed by the remaining count, so each blink is faster than the last. `0x01DFE0BC` is
-  1.0 in the image and 0.5 at 60 fps (`0x001EDDE0`), which halves the per-frame step.
+  1.0 in the image and 0.5 at 60 fps³, which halves the per-frame step.
 - Op 3 marks the element collected, sets a phase from `sin(0x0208F570 × π / 30)` and plays sound
   `0x46` when a unit is given. The update then shrinks the element (state 3) and sets its state to
   0 when its scale `+0x270` has reached 0.
 - `0x003FA820(handle, unit)` does nothing unless bit `0x1` of the flag word `+0x272` is
-  set and bit `0x2` is clear; it then sets bit `0x2` (`0x003FA83B`-`0x003FA851`). With bit
+  set and bit `0x2` is clear; it then sets bit `0x2`⁴. With bit
   `0x8` set or a unit given it sets bits `0x40` and `0x100` and the phase word `+0x28C`,
   which is the integer part of `sin(0x0208F570 × π / 30) × 22 + 11` shifted left by 7
-  (`0x003FA858`-`0x003FA8B6`).
+ ⁵.
 - A unit then clears bit `0x40`, sets bit `0x80` and plays sound `0x46`
-  (`0x003FA8BD`-`0x003FA8DB`). In every case that passed the two tests the unit argument
-  goes to `+0x290` and `+0x294` becomes 0 (`0x003FA8E0`, `0x003FA8E6`).
+ ⁶. In every case that passed the two tests the unit argument
+  goes to `+0x290` and `+0x294` becomes 0⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003FC839`, `0x003FC8D5` |
+| ² | `0x003FA730` |
+| ³ | `0x001EDDE0` |
+| ⁴ | `0x003FA83B`-`0x003FA851` |
+| ⁵ | `0x003FA858`-`0x003FA8B6` |
+| ⁶ | `0x003FA8BD`-`0x003FA8DB` |
+| ⁷ | `0x003FA8E0`, `0x003FA8E6` |
+
+</details>
 
 ## Layouts
+
+<details>
+<summary>Show the memory layouts</summary>
 
 `LootPickupSlot` (`0x60` bytes, offsets from the start of the record):
 
@@ -303,6 +459,8 @@ Each of the seven entries at `+0x20` of a pickup slot is 8 bytes.
 | `+0x02` | `u8[2]` | pad02 | copied with the seven entries by the pickup's creation (the 16-byte and 8-byte copies at `0x00319D78`-`0x00319D91` in `0x00319CA0`); read by no instruction; nothing fixes its width |
 | `+0x04` | `u32` | quantity | how many of the item to grant; passed to the grant call in edx |
 
+</details>
+
 ## Operations
 
 | Function | Role |
@@ -321,6 +479,9 @@ Each of the seven entries at `+0x20` of a pickup slot is 8 bytes.
 
 ## State
 
+<details>
+<summary>Show the state it keeps</summary>
+
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
 | `0x02EC0FA0` | 10 × `0x60` | the pickup slots | `0x00319B10`, `0x00319CA0`, `0x00319600`, `0x00319920`, `0x003197B0` |
@@ -332,8 +493,17 @@ Each of the seven entries at `+0x20` of a pickup slot is 8 bytes.
 
 The pool reset `0x00319B10` and the presence clear `0x002FB250` are unrolled, so they write every slot and every record at
 a fixed address. Slot n starts at `0x02EC0FA0` + n × `0x60`; the slot functions `0x00319A00` and `0x00319830` form the same
-address from a sign-extended index (`0x00319A00`-`0x00319A12`, `0x00319830`-`0x00319842`). The slot fields at their fixed
+address from a sign-extended index¹. The slot fields at their fixed
 addresses:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00319A00`-`0x00319A12`, `0x00319830`-`0x00319842` |
+
+</details>
 
 | Slot | `+0x00` slot number | `+0x04` state | `+0x10` prev | `+0x18` next | `+0x58` handle |
 |---|---|---|---|---|---|
@@ -366,12 +536,23 @@ Presence record n starts at `0x022BE7F0` + n × `0x20`. Its present byte for rec
 |---|---|---|---|---|---|
 | `0x022BE810` to `0x022BE910`, step `0x20` | `u8` | 0 (zero-filled tail) | 1 while record n holds a published pickup position | `0x002FB250`, 0 (`0x002FB257`-`0x002FB28F`); `0x002FB2D0`, 1 (`0x002FB2F8`); `0x002FB2A0`, 0 (`0x002FB2B3`) | `0x002FB2D0` (`0x002FB2E3`, equal to 1 refuses the publish); `0x002FB310` (`0x002FB31E`, 0 returns no position); `0x002FB150` (`0x002FB1E0`, walking records 0-9 with a signed count at `0x002FB214`) |
 
-`0x002FB2D0` and `0x002FB2A0` refuse a record number above 9 with an unsigned compare (`0x002FB2D3`, `0x002FB2A3`), so a
+`0x002FB2D0` and `0x002FB2A0` refuse a record number above 9 with an unsigned compare¹, so a
 negative number is refused as well. `0x002FB310` takes the number without a bound.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FB2D3`, `0x002FB2A3` |
+
+</details>
+
+</details>
 
 ## Modding notes
 
-- Ten is a literal: the scan bound in `0x00319CA0` (`0x00319CD0`) and the slot numbering in `0x00319B10`
+- Ten is a literal: the scan bound in `0x00319CA0`¹ and the slot numbering in `0x00319B10`
   must change together, with a larger array at `0x02EC0FA0`.
 - The lifetime is the `60` and the `-30.0` in `0x00319600`; the scalar `0x01DFE0B8` is the global
   frame-rate scalar and changes every timed system at once.
@@ -380,6 +561,15 @@ negative number is refused as well. `0x002FB310` takes the number without a boun
 - The appearance value is computed once at creation.
 - Eviction is silent: the evicted pickup gets op 5, which runs the same `0x003FA820(handle, 0)` as
   expiry's op 4.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00319CD0` |
+
+</details>
 
 ## Related
 

@@ -47,18 +47,47 @@ charge whatever the new order.
 `0x00304850` (2,034 bytes), called for a unit each frame, keeps its phase in the
 unit's byte `+0x6B4` (`rsi = unit + 0x6B0`, `0x0030487F`). It returns -1 when the unit's target-list
 count `+0x77C` is 0, when the action id `+0x714` is above `0x21E`, or - unless unit bit `0x1000000` is set -
-when the phase is below 9 and the target `+0x710` does not resolve (`0x00304899`-`0x003048E2`).
+when the phase is below 9 and the target `+0x710` does not resolve¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00304899`-`0x003048E2` |
+
+</details>
 
 The row the arms are given is `0x0020E600([0x02EBF138] dword +0x0C)` plus the action id `+0x714` times the table's word
-`+0x08`, in 32 bits; it is 0 when `0x02EBF138` or that answer is 0 (`0x003048E8`-`0x00304939`). With a row of 0 the scene
-test of phases 4, 9 and 10 reads the address `0x0C` (`0x00304D3F`, `0x00304F22`, `0x00304F3D`, `0x00304F62`); a null
-`0x02EBF138` is read at `+0x0C` first, unguarded, by phase 0's `0x0030EF20` (`0x0030EF3C`). A phase above 12 returns -1
-(`0x00304940`-`0x00304943`, `0x00305006`-`0x00305015`).
+`+0x08`, in 32 bits; it is 0 when `0x02EBF138` or that answer is 0¹. With a row of 0 the scene
+test of phases 4, 9 and 10 reads the address `0x0C`²; a null
+`0x02EBF138` is read at `+0x0C` first, unguarded, by phase 0's `0x0030EF20`³. A phase above 12 returns -1⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003048E8`-`0x00304939` |
+| ² | `0x00304D3F`, `0x00304F22`, `0x00304F3D`, `0x00304F62` |
+| ³ | `0x0030EF3C` |
+| ⁴ | `0x00304940`-`0x00304943`, `0x00305006`-`0x00305015` |
+
+</details>
 
 It dispatches the phase at `0x0030493C`-`0x0030495A` through the table of 13 image-relative offsets at `0x00305044`. Every
 arm but phase 12's ends with `inc byte [rsi+4]` and falls through to the next one on the same call unless it has to
 wait (returning 0); the scene arm of phase 10, while the scene state `0x022C2160` is not 5 or 6, raises the phase to 11
-and returns 0 (`0x00304F62`-`0x00304F8C`), so phase 11 runs on the next call. Phase 12 returns 1: the action is finished.
+and returns 0¹, so phase 11 runs on the next call. Phase 12 returns 1: the action is finished.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00304F62`-`0x00304F8C` |
+
+</details>
 
 | Phase | Code | What happens | Leaves when |
 |---:|---|---|---|
@@ -78,28 +107,76 @@ and returns 0 (`0x00304F62`-`0x00304F8C`), so phase 11 runs on the next call. Ph
 
 For a party-side unit (stats `+0x05` = 0), `0x0030EF20(unit, row)` of phase 0 sets the row's item aside: `+0xDC8` = the
 row's word `+0x22` when row byte `+0x1E` is 3, else `0xFFFF`, and `0x003008A0(item, -1, 0, 1, 0)` when it is not
-`0xFFFF`. It then takes the gil cost `0x00309060(unit, row index)`, kept at `+0xE58`, from the party's gil, not below 0
-(`0x00254EE0`). For any other unit it does nothing (`0x0030EF60`-`0x0030EFD8`).
+`0xFFFF`. It then takes the gil cost `0x00309060(unit, row index)`, kept at `+0xE58`, from the party's gil, not below 0¹. For any other unit it does nothing².
 
-`0x0030BC40(unit)`, which phase 10 asks (`0x00304FDD`), answers 1 when bits `0x1` and `0x4` of the unit's `+0x690` are
-both set, and 0 otherwise (`0x0030BC96`-`0x0030BCA4`). While bit `0x4` is clear it first takes the effect handle `+0x24`
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00254EE0` |
+| ² | `0x0030EF60`-`0x0030EFD8` |
+
+</details>
+
+`0x0030BC40(unit)`, which phase 10 asks¹, answers 1 when bits `0x1` and `0x4` of the unit's `+0x690` are
+both set, and 0 otherwise². While bit `0x4` is clear it first takes the effect handle `+0x24`
 of the slot the byte `+0x695` names, or -1 for a byte above `0x1F`, and when `0x00322310(handle)` answers non-zero it
-calls `0x002EB4A0(unit qword +0x10)` and sets bit `0x4` (`0x0030BC46`-`0x0030BC8F`).
+calls `0x002EB4A0(unit qword +0x10)` and sets bit `0x4`³.
 
-`0x00303830(unit, row, list)` previews the action in one of two ways (`0x00303854`-`0x00303868`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00304FDD` |
+| ² | `0x0030BC96`-`0x0030BCA4` |
+| ³ | `0x0030BC46`-`0x0030BC8F` |
+
+</details>
+
+`0x00303830(unit, row, list)` previews the action in one of two ways¹.
 With a non-zero count byte `+0x6B6` it walks that many bytes from `+0x6B9`: each names
 target stats through `0x00320A40`, and a null answer or a user with no battle unit
-(`0x0031B860` of unit `+0x698`) skips the byte (`0x00303887`-`0x003038B0`).
+(`0x0031B860` of unit `+0x698`) skips the byte².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00303854`-`0x00303868` |
+| ² | `0x00303887`-`0x003038B0` |
+
+</details>
 
 For each target it clears a `0x148`-byte result on its stack, sets bit `0x1` of the
 result's first dword when the user unit's first qword has bit `0x800000000`, and
 calls `0x00385680` and then `0x004698C0`, both as `(row index, user stats, target stats,
 result)`; the row index is `(row - first row) / row size` for the table `0x02EBF138`.
-The result's dword `+0x08` goes to the user unit's `+0xE54` (`0x003038BE`-`0x00303954`).
+The result's dword `+0x08` goes to the user unit's `+0xE54`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003038BE`-`0x00303954` |
+
+</details>
 
 With a count of 0 it walks the target list, `0x10`-byte entries from `+0x08` with the
 count at `+0x04`: each entry whose unit `0x0031B760` resolves gets
-`0x00303A00(user stats, target stats, row, index, entry + 8, 0)` (`0x00303981`-`0x003039D6`).
+`0x00303A00(user stats, target stats, row, index, entry + 8, 0)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00303981`-`0x003039D6` |
+
+</details>
 
 ### The delay threshold (phase 0, `0x00304987`-`0x003049E5`)
 
@@ -176,23 +253,64 @@ once.
 `0x00313DB0`, run every frame from `0x00234520`, keeps one shown unit at `0x02089350`. With no unit shown, it pops ids from
 the 64-entry ring at `0x022BEDA4` (read index `0x022BEDA0`, write index `0x022BEDA1`; id 0 when the two match) and
 resolves each with `0x0031B7E0`, which answers 0 while bit `0x10` of `0x02089340` is clear or `0x003588B0` finds no actor.
-An id that resolves to no unit ends the search for the frame, with that id consumed (`0x00313E11`); an empty ring ends
+An id that resolves to no unit ends the search for the frame, with that id consumed¹; an empty ring ends
 it the same way, since `0x003588B0(0)` is 0.
 
-Every unit it resolves has its bit `0x1000` cleared and its bit `0x2000` set (`0x00313E17`, `0x00313E1E`) before it is
-tested. A unit with no record at `+0x698` (`0x00313E2F`), or with KO, Stone or X-Zone (mask `0x80000003` of that
-record's `+0x64` and `+0x3C`) while `0x00377C20()` is 0 (`0x00313E37`-`0x00313E46`), is passed over and the next id is
-popped. The first living unit (or one waived by `0x00377C20()`) is stored and starts the display with
-`0x00226BE0(10, unit id, ...)` (`0x00313E48`, `0x00313E98`).
+<details>
+<summary>Where in the code</summary>
 
-That call passes fade -1 and flag -1, and at party-control level 2 (`0x0030D9A0`) a non-zero `0x0031E860(0x00327200())`
-as a one-entry handle list (`0x00313E52`-`0x00313E75`). The body then runs the apply `0x00226280`, the sound stop
-`0x002DEE70` and `0x00313A00` (`0x00313E9D`-`0x00313EA7`).
+| | Code |
+|---|---|
+| ¹ | `0x00313E11` |
+
+</details>
+
+Every unit it resolves has its bit `0x1000` cleared and its bit `0x2000` set¹ before it is
+tested. A unit with no record at `+0x698`², or with KO, Stone or X-Zone (mask `0x80000003` of that
+record's `+0x64` and `+0x3C`) while `0x00377C20()` is 0³, is passed over and the next id is
+popped. The first living unit (or one waived by `0x00377C20()`) is stored and starts the display with
+`0x00226BE0(10, unit id, ...)`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00313E17`, `0x00313E1E` |
+| ² | `0x00313E2F` |
+| ³ | `0x00313E37`-`0x00313E46` |
+| ⁴ | `0x00313E48`, `0x00313E98` |
+
+</details>
+
+That call passes fade -1 and flag -1, and at party-control level 2¹ a non-zero `0x0031E860(0x00327200())`
+as a one-entry handle list². The body then runs the apply `0x00226280`, the sound stop
+`0x002DEE70` and `0x00313A00`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030D9A0` |
+| ² | `0x00313E52`-`0x00313E75` |
+| ³ | `0x00313E9D`-`0x00313EA7` |
+
+</details>
 
 While a unit is shown and no scene is playing (state not 5 or 6; with state 5 or 6 the body returns at
 `0x00313EC8`), it is released when it dies (KO, Stone or X-Zone while `0x00377C20()` is 0) or its bit `0x2000` is
-cleared - which phase 11 does - with `0x00225CD0(10, -1)`. It is also released when it has no record at `+0x698`
-(`0x00313ED4`). The release zeroes `0x02089350` and ends with a tail jump to `0x00313A00` (`0x00313EF5`-`0x00313F13`).
+cleared - which phase 11 does - with `0x00225CD0(10, -1)`. It is also released when it has no record at `+0x698`¹. The release zeroes `0x02089350` and ends with a tail jump to `0x00313A00`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00313ED4` |
+| ² | `0x00313EF5`-`0x00313F13` |
+
+</details>
 
 While a unit is shown, `0x00313A00` sets the bits `0x1019FF` (`0x1` to `0x100`, `0x800`, `0x1000` and `0x100000`) of row
 2 of the action-availability table
@@ -210,34 +328,68 @@ slot number in `+0x694` (`0xFF` when it holds no slot).
 ### Taking a slot
 
 Phase 6 calls `0x0030CFB0(unit + 0x690, unit id, action id, unit byte +0xEA9)` with the effective action id from
-`0x00387090` (`0x00304E0B`-`0x00304E24`):
+`0x00387090`¹:
 
-1. Nothing happens when the byte `+0x694` is not `0xFF`, that is when it already holds a slot (`0x0030CFBF`-`0x0030CFCC`).
-2. A scene action (row `+0x0C` bit `0x40000000`) takes the single scene reservation, bit `0x2` of `0x022C2158`, and
-   gets no slot while that bit is already set. A Quickening or Concurrence id (`0xD0`-`0xF1`) skips
-   the reservation while the scene state `0x022C2160` is 5 or 6 (`0x0030D011`-`0x0030D046`).
-3. `0x0030D070(unit id, action id)` takes the first slot whose action id `+0x1C` is `0xFFFF`, appends
-   it to the chain, sets its three load states to 1 and stores both ids; with all 32 in use it
-   returns `0xFF` (`0x0030D070`-`0x0030D154`). The result goes to `+0x694` (`0x0030D04C`-`0x0030D056`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00304E0B`-`0x00304E24` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | Nothing happens when the byte `+0x694` is not `0xFF`, that is when it already holds a slot. | `0x0030CFBF`-`0x0030CFCC` |
+| 2 | A scene action (row `+0x0C` bit `0x40000000`) takes the single scene reservation, bit `0x2` of `0x022C2158`, and gets no slot while that bit is already set. A Quickening or Concurrence id (`0xD0`-`0xF1`) skips the reservation while the scene state `0x022C2160` is 5 or 6. | `0x0030D011`-`0x0030D046` |
+| 3 | `0x0030D070(unit id, action id)` takes the first slot whose action id `+0x1C` is `0xFFFF`, appends it to the chain, sets its three load states to 1 and stores both ids; with all 32 in use it returns `0xFF`. The result goes to `+0x694`. | `0x0030D070`-`0x0030D154`<br>`0x0030D04C`-`0x0030D056` |
 
 In step 2 the row is `0x0020E600([0x02EBF138] dword +0x0C)` plus the action id times the table's word `+0x08`, in 32 bits;
-when `0x02EBF138` is 0 or `0x0020E600` answers 0, the row pointer is 0 and the flag test reads the address `0x0C`
-(`0x0030CFD2`-`0x0030D011`). Neither `0x0030CFB0` nor `0x0030D070` reads the fourth argument (`0x0030D070` writes `r9` before
+when `0x02EBF138` is 0 or `0x0020E600` answers 0, the row pointer is 0 and the flag test reads the address `0x0C`¹. Neither `0x0030CFB0` nor `0x0030D070` reads the fourth argument (`0x0030D070` writes `r9` before
 any read of it).
 
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030CFD2`-`0x0030D011` |
+
+</details>
+
 The script verb `spattackread` (`0x29B`, `0x00348870`) calls `0x0030EEA0(handle, n)`. It forms the id `0xD0 + n` in 16
-bits, or `0xFFFF` for `n` = -1, and returns -1 when `0x0031B7E0(handle)` answers null, then -2 while `0x022C2170` is not 4
-(`0x0030EEA0`-`0x0030EEE2`). Otherwise, for the unit that call answers, it stores the id in the unit's word `+0x758`, asks
-`0x0030CFB0(unit + 0x690, unit id +0x08, id, unit byte +0xEA9)` for a slot, sets `0x022C2170` to 1 and returns 0
-(`0x0030EEE3`-`0x0030EF16`).
+bits, or `0xFFFF` for `n` = -1, and returns -1 when `0x0031B7E0(handle)` answers null, then -2 while `0x022C2170` is not 4¹. Otherwise, for the unit that call answers, it stores the id in the unit's word `+0x758`, asks
+`0x0030CFB0(unit + 0x690, unit id +0x08, id, unit byte +0xEA9)` for a slot, sets `0x022C2170` to 1 and returns 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030EEA0`-`0x0030EEE2` |
+| ² | `0x0030EEE3`-`0x0030EF16` |
+
+</details>
 
 ### Loading, once a frame
 
-`0x0030CBE0`, run every frame from `0x00234590` (`0x002346F4`), walks the chain in order. For each slot whose
+`0x0030CBE0`, run every frame from `0x00234590`¹, walks the chain in order. For each slot whose
 unit resolves (`0x0031B7E0(+0x20)`), whose action id passes `0x00322C50(0x14, id, 1)` and whose action row
 resolves (the table `[0x02EBF138]` and its base from `0x0020E600` non-null, `0x0030CC3F`-`0x0030CC83`) it first asks
-`0x0030C890` whether the loads fit (`0x0030CC92`); a slot that fails any of these is skipped and marks no later
-slot (`0x0030CC1F`, `0x0030CC39`, `0x0030CC49`, `0x0030CC5A`, `0x0030CC83`):
+`0x0030C890` whether the loads fit²; a slot that fails any of these is skipped and marks no later
+slot³:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002346F4` |
+| ² | `0x0030CC92` |
+| ³ | `0x0030CC1F`, `0x0030CC39`, `0x0030CC49`, `0x0030CC5A`, `0x0030CC83` |
+
+</details>
 
 | `0x0030C890` returns | The slot |
 |---:|---|
@@ -253,52 +405,129 @@ next three sections describe.
 
 The effect state is `+0x10`. The effect id is `0x0030A190(row)`: the row's `+0x28` for ids
 `0xD0`-`0xF1` while the scene state is 5 or 6, otherwise the row's `+0x24` unless it is `0xFFFF`,
-negative or the row has bit `0x40000000`; else -1 (`0x0030A190`-`0x0030A238`).
+negative or the row has bit `0x40000000`; else -1¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030A190`-`0x0030A238` |
+
+</details>
 
 `0x00328360(id)` returns -1 for -1 and otherwise starts the effect through `0x0042FCE0`, which counts
-the start at `0x02CA4ED4` and calls `0x002FCBF0` (`0x00328360`-`0x00328368`, `0x0042FCE0`-`0x0042FCE6`). The
+the start at `0x02CA4ED4` and calls `0x002FCBF0`¹. The
 handle goes to `+0x24`: -1 makes the state 3, 0 leaves it at 1, any other handle 2. State 2 becomes 3
-once `0x003226D0(handle)` sees `0x0024DE70` report 2 (`0x0030CCC0`-`0x0030CD05`).
+once `0x003226D0(handle)` sees `0x0024DE70` report 2².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00328360`-`0x00328368`, `0x0042FCE0`-`0x0042FCE6` |
+| ² | `0x0030CCC0`-`0x0030CD05` |
+
+</details>
 
 ### Loading the animation
 
 The animation state is `+0x14`. `0x00325B40(unit, 0x003098D0(unit, row))` asks the streamed-animation
 cache `0x003DCCF0` for the action's animation event. It asks nothing, and returns 0, when the unit lacks
-flag bit `0x10` or a stats record, or has KO, Stone or X-Zone outside a field with bit `0x8000`
-(`0x00325B40`-`0x00325B96`).
+flag bit `0x10` or a stats record, or has KO, Stone or X-Zone outside a field with bit `0x8000`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00325B40`-`0x00325B96` |
+
+</details>
 
 The answer goes to `+0x28`: 0 stays at 1, `0x80000000` gives 3, `0x80000001` gives 3 and sets unit
-flag bit `0x80000000`, any other 2. State 2 becomes 3 once `0x003DCB90` reports 3 for it (`0x0030CD1B`-`0x0030CD74`).
+flag bit `0x80000000`, any other 2. State 2 becomes 3 once `0x003DCB90` reports 3 for it¹.
 
-`0x003DCB90(id)`, which the loader reaches through the jump `0x00325B30` (`0x0030CD63`), answers 3 for a negative id and 0
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030CD1B`-`0x0030CD74` |
+
+</details>
+
+`0x003DCB90(id)`, which the loader reaches through the jump `0x00325B30`¹, answers 3 for a negative id and 0
 for an id of 0. Otherwise it takes the skill-motion entry the id's low four bits name, of the sixteen `0x14`-byte
 entries at `0x02B57F70` ([Character render records](../Graphics/character-render-records.md)), and
-answers its state byte `+0x06` when its dword `+0x08` is the id, and 0 when it is not (`0x003DCB90`-`0x003DCBBA`).
+answers its state byte `+0x06` when its dword `+0x08` is the id, and 0 when it is not².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030CD63` |
+| ² | `0x003DCB90`-`0x003DCBBA` |
+
+</details>
 
 ### Loading the scene
 
 The scene state is `+0x18`. On state 1 `0x0030CE10(unit, row)` asks for the scene
 ([Quickenings and summons](quickenings-and-summons.md)): an answer of -1 makes the state 3 at once without
-touching slot bit `0x1`, 1 makes it 2, and any other answer leaves it at 1 (`0x0030CD93`-`0x0030CDB1`). On state 2,
+touching slot bit `0x1`, 1 makes it 2, and any other answer leaves it at 1¹. On state 2,
 a unit without flag bit `0x20000000`, or
-one whose `0x00306B10` returns 1, sets slot bit `0x1` and state 3 (`0x0030CDB8`-`0x0030CDD8`).
+one whose `0x00306B10` returns 1, sets slot bit `0x1` and state 3².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030CD93`-`0x0030CDB1` |
+| ² | `0x0030CDB8`-`0x0030CDD8` |
+
+</details>
 
 ### Whether the loads fit
 
 `0x0030C890(slot, unit, row)` keeps two answers in the slot's `+0x2C`: bits `0x6` for the animation and
 bits `0x18` for the effect, each 0 (no room), 1 (fits) or 2 (nothing to load). It recomputes them only
-while either is 0, and returns 2 when both are 2, 0 when either is 0, and 1 otherwise
-(`0x0030C89F`-`0x0030C963`):
+while either is 0, and returns 2 when both are 2, 0 when either is 0, and 1 otherwise¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030C89F`-`0x0030C963` |
+
+</details>
 
 - The animation answer is `0x00325A20(unit, event)`: the same cache asked without loading
-  (`0x003DC410`), which for a motion not yet held that would fit still releases the ready entries without
-  users when no entry is free (`0x003DCE5E`), giving 0 for no room, 2 for `0x80000000` or `0x80000001`, and 1
+ ¹, which for a motion not yet held that would fit still releases the ready entries without
+  users when no entry is free², giving 0 for no room, 2 for `0x80000000` or `0x80000001`, and 1
   for any other result
-  (`0x00325A78`-`0x00325AB5`).
+ ³.
 - The effect answer is `0x0031A230(id)`: 2 for id -1, else 1 when `0x002FCAC0(id)` agrees and 0 when it
-  does not (`0x0031A230`-`0x0031A24D`). `0x002FCAC0` refuses when the effect pool's free list `0x02EC3D70` is
+  does not⁴. `0x002FCAC0` refuses when the effect pool's free list `0x02EC3D70` is
   empty, and otherwise adds the weights of every pool entry in state 1, 2, 3 or 5 and the new
-  effect's weight, and agrees when the sum is at most 24 (`0x002FCAC0`-`0x002FCB2B`).
+  effect's weight, and agrees when the sum is at most 24⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003DC410` |
+| ² | `0x003DCE5E` |
+| ³ | `0x00325A78`-`0x00325AB5` |
+| ⁴ | `0x0031A230`-`0x0031A24D` |
+| ⁵ | `0x002FCAC0`-`0x002FCB2B` |
+
+</details>
 
 ```python
 weight(id) = u16 at 0x02EC19C4 + id * 8, bits 0x1F
@@ -307,47 +536,101 @@ fits = sum(weight of the pool entries in states 1, 2, 3, 5) + weight(id) <= 24
 
 Both caches take their animation set from `0x00325AD0(unit)`: for a party-side unit (stats `+0x05` =
 0) the byte at `T + u16[T] + 4` of the table `T` = `[0x02EBF180]`, otherwise the value `0x003202F0`
-gives for the stats record (`0x00325AD0`, `0x00325A50`-`0x00325A73`).
+gives for the stats record¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00325AD0`, `0x00325A50`-`0x00325A73` |
+
+</details>
 
 ### Ready and shown
 
-Phase 7 calls `0x0030CA80(slot, unit, &show)` (`0x00304E3E`). With a non-null `show` it first writes 0 there
-(`0x0030CAFA`). It returns 1 when all three states are 3,
-and 0 at once when slot bit `0x1` is set and `0x02089340` has bit `0x400` (`0x0030CB00`-`0x0030CB4A`).
+Phase 7 calls `0x0030CA80(slot, unit, &show)`¹. With a non-null `show` it first writes 0 there². It returns 1 when all three states are 3,
+and 0 at once when slot bit `0x1` is set and `0x02089340` has bit `0x400`³.
 `show` is set only for a ready slot whose unit has neither flag bit `0x1000` nor `0x2000` (the test of
 `0x3000` at `0x0030CB58`), and then only when one
-of these holds (`0x0030CB4C`-`0x0030CBA7`):
+of these holds⁴:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00304E3E` |
+| ² | `0x0030CAFA` |
+| ³ | `0x0030CB00`-`0x0030CB4A` |
+| ⁴ | `0x0030CB4C`-`0x0030CBA7` |
+
+</details>
 
 - the row's `+0x2C` has bit `0x100`;
 - the effect id `+0x24` of the row is valid (not `0xFFFF`, not negative, row bit `0x40000000` clear) and
   `0x002FCB40(id)`, bit `0x20` of the byte at `0x02EC19C4 + id * 8`, is 1. No store sets that bit: the word is cleared
-  by the reset `0x002FC200` and written only there, with the value masked to `0x1F` (`0x002FC2E4`-`0x002FC2EE`), so this
+  by the reset `0x002FC200` and written only there, with the value masked to `0x1F`¹, so this
   case does not hold;
 - slot bit `0x1` is set.
 
-When `show` ends up 1 and `0x02089340` has bit `0x200`, `show` and the return are cleared (`0x0030CBA9`,
-`0x0030CBAD`-`0x0030CBBF`); when `show` ends up 0, or the caller passes no `show`, the return is the ready answer
-whatever bit `0x200` is (`0x0030CB4F`, `0x0030CBAB`, `0x0030CBC3`).
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002FC2E4`-`0x002FC2EE` |
+
+</details>
+
+When `show` ends up 1 and `0x02089340` has bit `0x200`, `show` and the return are cleared¹; when `show` ends up 0, or the caller passes no `show`, the return is the ready answer
+whatever bit `0x200` is².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030CBA9`, `0x0030CBAD`-`0x0030CBBF` |
+| ² | `0x0030CB4F`, `0x0030CBAB`, `0x0030CBC3` |
+
+</details>
 
 ### Releasing a slot
 
 `0x0030C970(slot)` takes a slot index. An index above `0x1F` (`0xFF` included) names no slot, and the call
-does nothing (`0x0030C983`-`0x0030C9A4`, `0x0030C9F2`). Otherwise it unlinks the slot from the chain, moving the
+does nothing¹. Otherwise it unlinks the slot from the chain, moving the
 chain's first `0x022BE978` or last `0x022BEB88` slot when the slot was one of them, and zeroes its two links, and
-then (`0x0030C9B7`-`0x0030CA42`):
+then²:
 
-1. `0x00325A00(+0x28)` releases the animation through `0x003DC780` when the value has any of bits `0x7FFFFFFE`
-   set or is 1.
-2. `0x00317EC0(+0x24)` stops the effect through `0x0042FCC0` unless the handle is -1 or 0; the stop is
-   counted at `0x02CA4ED8` and done by `0x002FCB60`.
-3. When the scene state `+0x18` is not 0, `0x00306570` clears the scene for the slot's unit, the unit
-   `0x0031B7E0` finds for the unit id `+0x20` (`0x0030CA09`-`0x0030CA14`).
-4. The slot is reset: flags `0x1F` cleared, action id `0xFFFF`, effect handle -1, animation
-   `0x80000000`, states and unit id 0.
+<details>
+<summary>Where in the code</summary>
 
-Phase 3 releases the unit's three slot bytes `+0x694`-`+0x696` (`0x00304B75`, `0x00304B86`,
-`0x00304B97`); the reset `0x003105D0` and `0x00310780` release them too (`0x00310618`, `0x0031062B`,
-`0x00310819`), as do `0x00300060`, `0x003065D0`, `0x00308270` and `0x00309990`.
+| | Code |
+|---|---|
+| ¹ | `0x0030C983`-`0x0030C9A4`, `0x0030C9F2` |
+| ² | `0x0030C9B7`-`0x0030CA42` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00325A00(+0x28)` releases the animation through `0x003DC780` when the value has any of bits `0x7FFFFFFE` set or is 1. |   |
+| 2 | `0x00317EC0(+0x24)` stops the effect through `0x0042FCC0` unless the handle is -1 or 0; the stop is counted at `0x02CA4ED8` and done by `0x002FCB60`. |   |
+| 3 | When the scene state `+0x18` is not 0, `0x00306570` clears the scene for the slot's unit, the unit `0x0031B7E0` finds for the unit id `+0x20`. | `0x0030CA09`-`0x0030CA14` |
+| 4 | The slot is reset: flags `0x1F` cleared, action id `0xFFFF`, effect handle -1, animation `0x80000000`, states and unit id 0. |   |
+
+Phase 3 releases the unit's three slot bytes `+0x694`-`+0x696`¹; the reset `0x003105D0` and `0x00310780` release them too², as do `0x00300060`, `0x003065D0`, `0x00308270` and `0x00309990`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00304B75`, `0x00304B86`, `0x00304B97` |
+| ² | `0x00310618`, `0x0031062B`, `0x00310819` |
+
+</details>
 
 ### Arrival
 
@@ -358,7 +641,19 @@ resolves, has no stats record or is in that state, and answers 0 from `0x002E960
 
 ## Layouts
 
-A presentation slot is `0x30` bytes; the 32 slots sit at `0x022C17B0` (`0x0030D078`).
+<details>
+<summary>Show the memory layouts</summary>
+
+A presentation slot is `0x30` bytes; the 32 slots sit at `0x022C17B0`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030D078` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -373,7 +668,12 @@ A presentation slot is `0x30` bytes; the 32 slots sit at `0x022C17B0` (`0x0030D0
 | `+0x28` | `u32` | animResult | the cache's answer; `0x80000000` when no animation is held (`0x0030CD30`, `0x0030CA2D`) |
 | `+0x2C` | `u32` | flags | bit `0x1` scene granted; bits `0x6` the animation answer, bits `0x18` the effect answer (`0x0030C8E2`-`0x0030C907`) |
 
+</details>
+
 ## State
+
+<details>
+<summary>Show the state it keeps</summary>
 
 | Field | Width | Meaning |
 |---|---|---|
@@ -386,6 +686,8 @@ A presentation slot is `0x30` bytes; the 32 slots sit at `0x022C17B0` (`0x0030D0
 | `0x02089350` | `void*` | the unit being shown |
 | unit `+0x694`-`+0x696` | `u8` | presentation slot numbers, `0xFF` when no slot is held |
 | `0x022BE978` / `0x022BEB88` | `PresentationSlot*` | first and last slot of the chain |
+
+</details>
 
 ## Modding notes
 
@@ -414,9 +716,11 @@ The functions on this page call, or are called by, functions that belong to othe
 
 **Random numbers** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
-| Function | | Functions |
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
 |---|---|---|
-| `0x00387130` | calls | `0x00379CD0` |
+| [`0x00387130`](action-phases.md) | calls | [`0x00379CD0`](../World-Areas-And-Travel/treasure-chests.md) (on treasure chests) |
 
 </details>
 
