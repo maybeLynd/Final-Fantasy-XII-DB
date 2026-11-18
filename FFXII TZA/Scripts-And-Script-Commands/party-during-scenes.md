@@ -60,13 +60,13 @@ nothing (`0x00346FD4`-`0x00346FDE`).
 
 `0x003B6F80(leader)` walks managers 0, 1 and 2 (`0x003B7036` loops while the manager index is at most 2) whose byte
 `+0x10` has bit `0x1` set and collects, up to 31, the handles (`0x003589B0`) of every actor with byte `+9` bit `0x10`
-set other than the leader; it clears `+9` bits `0x4` and `0x10` on every actor it visits and refreshes it
-(`0x0026D6D0`).
+set other than the leader; it clears `+9` bits `0x4` and `0x10` on every actor it visits and sets its requested speed
+to 0 with mode 2 (`0x0026D6D0` → `0x0026D6F0`).
 
 It reads `+9` of each ordinal's `0x00358940` actor without a null test (`0x003B6FFD`), so a null entry
 faults there. The leader's own handle also comes from `0x003589B0` (`0x003B6FB4`).
 
-It then hands the list to `0x003B6DE0(leader, count, handles)`. That keeps the requested count (at
+It then hands the list to `0x003B6DE0(leader handle, count, handles)`. That keeps the requested count (at
 most 32, `0x003B6E12`; a negative count becomes 0, `0x003B6E05`-`0x003B6E07`) at `0x02EBCC60` and the
 handles at `0x02EBCBE0`, and resolves each handle (`0x003588B0`). On each actor that resolves it clears
 `+9` bit `0x8` and sets bit `0x4`, so a stale mark cannot drop an actor, and stores it in the slot;

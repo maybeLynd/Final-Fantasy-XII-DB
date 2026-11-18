@@ -202,6 +202,15 @@ less and pin bits `0x3` are set, sets it to 0 (`0x002E6840`-`0x002E6846`).
 The unlinking leaves the requested head `0x0215FD78` alone; after the last entry, or at once for an empty
 list (`0x002E6715`), the pump stores 0 there (`0x002E686E`).
 
+`0x0036C5D0(handle, 1)` puts the buffer in accounting group 1 ([resource
+arena](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md)): when its header's group byte `+0x17` is
+not already 1 it takes the header's size `+0x18` from that group's total, the dword at `0x022D8E10 + 4 × group`, and
+adds it to group 1's (`0x022D8E14`) (`0x0036C5F9`-`0x0036C610`, `0x0036C60C`, `0x0036C610`); it then sets `+0x17` to 1 and
+zeroes the word `+0x3E` (`0x0036C616`, `0x0036C61A`).
+
+It does nothing for a handle of 0, one with neither of its low two bits set, one below `0x100000`, or one whose header
+`[(handle & ~3) + 8]` is null (`0x0036C5D3`-`0x0036C5F7`).
+
 `0x002EAD50(entry, id)` takes the buffer's address from `0x0036A000(+0x10)` (`0x002EAD65`), which holds the
 block in place, and calls `0x0017F000(id)` (`0x002EADB5`). It splits the id and sizes the file again
 (`0x002EADCC`, `0x002EADEA`), then files `0x0032E620(kind, index, buffer, size, record)` (`0x002EAE08`) with the
@@ -443,33 +452,110 @@ units; codes 60 to 63 go past a full turn and are not clamped.
 
 ### The bind: what binding a model to an actor does
 
-`0x002E28E0(actor, entry)` needs the actor's presentation context `[actor + 0xC0]`; without one it
-only runs its tail (`0x002EB930`). With one, it marks the actor (`+0x0D` bit `0x2`, `+0x04` = 1), takes a
-reference on the entry and clears its pending-release bit, and creates the render record with
-`0x0042FB80(entry +0x10, context +0x14C, context +0x14D)` while `0x01F7F508` holds the entry's id. The
-record's index goes to context `+0x00`, the id to `+0x04` and the entry pointer to `+0x08`.
+`0x002E28E0(actor, entry)` first calls `0x00263FF0` with the actor's byte `+0x15`, which gives the actor's manager record
+(`0x02098E10 + byte × 0x288`) used below (`0x002E290D`-`0x002E2915`). It needs the actor's presentation context
+`[actor + 0xC0]`; without one it only runs its tail, `0x002EB930(actor)` (`0x002E2920`-`0x002E2923`, `0x002E3054`-`0x002E3086`).
+With one, it calls `0x0025AB30(actor)` and `0x0025D480(actor)`, marks the actor (`+0x0D` bit `0x2`, `+0x04` = 1), takes a
+reference on the entry and clears its pending-release bit (`0x002E2959`-`0x002E2979`).
 
-Render records are `0x740` bytes from `[0x022C6F28]`; one is used only when its `+0x284` is non-zero.
-The bind copies context `+0x10 >> 4` to render `+0xC1`, stores the actor at render `+0x108`,
-calls `0x003E5E20(render, [actor + 0x30])`, copies context `+0x14F >> 3` to render `+0x413` and
-context `+0x150` to render `+0x40C`, and, for an actor with `[actor + 0x30]`, initialises its slot
+It creates the render record with `0x0042FB80(entry +0x10, context +0x14C, context +0x14D)`, the two bytes signed, while
+`0x01F7F508` holds the entry's id (`0x002E297D`-`0x002E299D`), and stores the record's index at context `+0x00`
+(`0x002E29A8`-`0x002E29AC`); the id goes to `+0x04` and the entry pointer to `+0x08` later (`0x002E2AF7`-`0x002E2B00`).
+
+Render records are `0x740` bytes from `[0x022C6F28]`; each step below on the record runs only when the context's word
+`+0x00` is not −1 and the record it selects is not null and in use (dword `+0x284` non-zero)
+(`0x002E29B9`-`0x002E29E7`). The bind copies context byte `+0x10 >> 4` to render `+0xC1` (`0x002E29A4`-`0x002E29E9`), stores
+the actor at render `+0x108` (`0x002E29EF`-`0x002E2A15`), calls `0x003E5E20(render, [actor + 0x30])` (`0x002E2A1C`-`0x002E2A46`)
+and copies context `+0x14F >> 3` to render `+0x413` (`0x002E2A4B`-`0x002E2A8C`).
+
+It then calls `0x002EA2A0(actor)` (`0x002E2A92`-`0x002E2A95`) and copies context `+0x150` to render `+0x40C`
+(`0x002E2A9A`-`0x002E2AD8`). For an actor with `[actor + 0x30]` (`0x002E2ADF`-`0x002E2AF2`), it passes
+`0x0031B750([actor + 0x30])` as the slot and the record's index from context `+0x00` as the index to the slot set-up
 with `0x003E7500`.
 
-It then reads keyed parameters of the model with `0x003E6150(render index, key)`: `0x09000606` to
-`[actor + 0xB8] + 0xE0`; `0x09000707` × 1.0 (`0x01DFE0BC`) to `+0xE4`; `0x09001F20` and `0x09002021` to
-`0x0026AA30`; `0x01002D4F`/`0x01002E50` in a town (`0x00377C20`: bit `0x8000` of the map's word in `[0x02ADD100]`), otherwise
-`0x01002143`/`0x01002244`, to `0x0026B2E0`; `0x09001D1E` to `0x00269E60`;
-`0x600A1244` (integer, `0x003E6310`) to `0x0026AF40`; and `0x09002322`, `0x09002524`, `0x09002423`, each
-× 50, to `0x0026A370`. `0x09042A2E` is read and its value never used.
+`0x003E7500(slot, index)` sets up presentation record `0x02B59D80 + slot × 0x150` ([character status
+visuals](../Graphics/character-status-visuals.md)): word `+0` = 1, dword `+4` = the render index,
+dword `+8` = 0 (`0x003E7527`-`0x003E7530`). It stores the slot in the render record's `+0x6A4` (`0x003E755A`), zeroes `0x80`
+bytes at the presentation record's `+0xC0` (`0x003E7570`) and sets up the presentation record's blocks at `+0x20` and
+`+0x70` with the index (`0x003E7561`, `0x003E7575`, `0x003E7580`, `0x003E757B`, `0x003E7590`).
+
+For an index of −1, or a render record whose `+0x284` is 0, the `+0x6A4` store goes through a null pointer instead
+(`0x003E7534`-`0x003E7557`, `0x003E755A`).
+
+Next the bind takes a float, `0x00423280(render)` for a record in use and otherwise 30.0 (`0x008F8D80`;
+`0x002E2B04`-`0x002E2B4A`), clears bit `0x40000` of render `+0x284` (`0x002E2B4D`-`0x002E2B89`) and, for an actor of kind
+`0x60` (`+3 & 0xE0`), sets the three floats at `[+0xB8] + 0x20..0x28` to 1.0 and calls `0x002E8E20`
+(`0x002E2B8F`-`0x002E2BB8`). It then calls `0x00427300(render, float)` and `0x00426E20(render)` (`0x002E2BBD`-`0x002E2C11`),
+`0x002E8FD0(actor)` and `0x002E3500(actor)` (`0x002E2C16`-`0x002E2C21`).
+
+With bit `0x1` of the actor's byte `+0x09` cleared for the two calls and then put back, it calls
+`0x002E5C90(actor, x, y, z, 1)` with the three floats at `[actor + 0xB8] + 0x00` and `0x002E5E10(actor, +0xA8, +0xAC, 1)`
+from the same block (`0x002E2C26`-`0x002E2C7C`), zeroes the block's byte `+0xDC` and calls `0x00269F90(block)`
+(`0x002E2C7F`-`0x002E2C86`).
+
+It reads keyed parameters of the model with `0x003E6150(render index, key)`, 0.0 with no context or when its dword
+`+0x00` is −1: `0x09000606` to `[actor + 0xB8] + 0xE0` (`0x002E2C8B`-`0x002E2CB3`), and `0x09000707` times the speed
+scale `[0x01DFE0BC]` (1.0, or 0.5 at 60 fps; [startup constants](../Engine-Core/startup-constants.md)) to
+`+0xE4` (`0x002E2CBB`-`0x002E2CEE`).
+
+It then calls `0x00263640(actor)` (`0x002E2CF6`), and `0x003E6BF0(render, a, a)` with a = 1.5707964 (π/2, `0x008C5F70`) and
+`0x003E6BE0(render, b, b)` with b = 1.4959966 (`0x00D0F8E8`), each followed by setting bit `0x800` of render `+0x290`
+(`0x002E2CFB`-`0x002E2D45`, `0x002E2D4F`-`0x002E2D99`). Then come `0x002E7CE0(actor, 1)` and `0x002E92F0(actor)`
+(`0x002E2DA3`-`0x002E2DB3`), `0x002EC6B0(actor, context +0x12)`, the byte signed and −1 with no context
+(`0x002E2DB8`-`0x002E2DD0`), and `0x00426FA0(render)` (`0x002E2DD5`-`0x002E2E0C`).
+
+Then it clears bit `0x1` of the actor's byte `+0x0D`, sets its `+0xF5` = `0xFF`, `+0xEC` = 0 and `+0xF0` = `0x1001`
+(`0x002E2E11`-`0x002E2E27`), calls `0x002EB0D0` unless `+0x18` is 1 (`0x002E2E15`, `0x002E2E31`-`0x002E2E57`), and calls
+`0x002652D0(manager, actor, 2)`, which only looks up the function of entry slot 2 ([script
+requests](script-requests.md)); the bind does not use its result (`0x002E2E5C`-`0x002E2E68`).
+
+After that call it reads `0x09001F20` and `0x09002021` for `0x0026AA30` (`0x002E2E6D`-`0x002E2E8D`, `0x002E2F4C`);
+`0x01002D4F`/`0x01002E50` in a town (`0x00377C20`: bit `0x8000` of the map's word in `[0x02ADD100]`), otherwise
+`0x01002143`/`0x01002244`, for `0x0026B2E0` (`0x002E2E91`-`0x002E2ED1`, `0x002E2F95`); `0x09001D1E` for `0x00269E60`
+(`0x002E2ED1`-`0x002E2EE2`, `0x002E2F57`); and `0x600A1244` (integer, `0x003E6310`) for `0x0026AF40` as 1 or 0
+(`0x002E2EEA`-`0x002E2EFF`, `0x002E2F78`-`0x002E2F85`).
+
+`0x09002322`, `0x09002524` and `0x09002423`, each × 50 (`0x008F3130`) and truncated (`cvttss2si`), go to `0x0026A370` in
+that order (`0x002E2EF7`-`0x002E2F48`, `0x002E2F9A`-`0x002E2FA5`). `0x09042A2E` is read and its value never used
+(`0x002E2EDA`-`0x002E2EE5`).
 
 `0x0026A370(actor, a, b, c)` does nothing unless the actor is of kind `0x60` (`+3 & 0xE0`); for that kind it stores the
 three bytes at `[actor + 0xB8] + 0x104`, `+0x105` and `+0x106` and jumps to `0x00268380` (`0x0026A370`-`0x0026A395`), which,
 when the presentation context `+0xC0` and its `+0x138` record are not null (`0x002683AD`-`0x002683C7`), passes the three
 bytes on to `0x003DAF20(that record, a, b, c)` (`0x00268481`-`0x002684FD`).
 
-For an actor of kind `0x60` (`+3 & 0xE0`) the bind also sets the three floats at `[+0xB8] + 0x20..0x28`
-to 1.0 and calls `0x002E8E20`. It sets `+0xF0` = `0x1001`, `+0xF5` = `0xFF`, `+0xEC` = 0, calls
-`0x002EB0D0` unless `+0x18` is 1, and files `0x002652D0(script, actor, 2)`.
+Last the bind calls `0x003E6BC0(render, 0)` and sets bit `0x800` of render `+0x290` (`0x002E2FAA`-`0x002E2FFF`), clears bit
+`0x4` of the actor's byte `+0x08` and calls `0x002E7C70(actor, 0x30B)` (`0x002E3009`-`0x002E3015`) and, for an actor of kind
+`0x60`, zeroes the dwords `+0xB4` and `+0x224` of `[actor + 0xB8]` and the byte `+0x63` of `[[actor + 0xB8] + 0xF0]`
+and calls `0x002EC3F0(actor)` and `0x002E8EE0(actor)` (`0x002E301A`-`0x002E304F`).
+
+The tail calls `0x002EB930(actor)`; then, when the actor has a context whose dword `+0x00` is not −1, it calls
+`0x00427280(render)` for a record in use and zeroes the actor's dword `+0xEC` (`0x002E3054`-`0x002E30B8`).
+
+The bind's call, `0x002EB0D0(actor, context, event, flag, f)`, does not read its first argument (`0x002EB104`). It returns
+at once for a null context or one whose dword `+0x00` is −1 ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md);
+`0x002EB0D0`-`0x002EB0F4`). Otherwise it calls `0x00269D60(context, 0, 0)` (`0x002EB0FA`-`0x002EB107`) and, when bit `0x10` of
+the context's byte `+0x11` is set, `0x002EDCC0(word +0x00, 1)`, and clears that bit (`0x002EB10C`-`0x002EB125`).
+
+Each step below that uses the render record runs only when the context's word `+0x00` is not −1 and selects a record
+of `[0x022C6F28]` that is not null and is in use (dword `+0x284` non-zero) (`0x002EB144`-`0x002EB147`,
+`0x002EB1A0`-`0x002EB1A3`, `0x002EB1DF`-`0x002EB1E2`, `0x002EB209`-`0x002EB20C`, `0x002EB258`-`0x002EB25F`, `0x002EB28D`-`0x002EB294`,
+`0x002EB2B7`-`0x002EB2BE`, `0x002EB2E7`-`0x002EB2EE`). The first hands the event to `0x00427320(record, event)`
+(`0x002EB129`-`0x002EB154`).
+
+The context's float `+0x14` of 0.0 becomes −1.0 (`0x002EB160`-`0x002EB16F`). With a negative context word `+0x2A` the
+record gets `0x00427880(record, +0x14, +0x18, +0x1C)`; otherwise it gets `0x004278B0(record, word +0x2A)` for a negative
+`+0x14` and `0x004272C0(record, +0x14, word +0x2A)` for any other (`0x002EB17D`-`0x002EB21B`). Then `+0x14`, `+0x18` and
+`+0x1C` are set to −1.0 and word `+0x2A` to −1 (`0x002EB220`-`0x002EB238`).
+
+With `flag` non-zero it calls `0x00427860(record)` (`0x002EB23F`-`0x002EB26A`); otherwise `0x004270A0(record, f)` for an `f`
+of 0 or more and `0x004272E0(record)` for any other (`0x002EB271`-`0x002EB2C9`). Last it calls
+`0x004272A0(record, bit 0x8 of byte +0x11)` (`0x002EB2CE`-`0x002EB303`) and, when that bit is set, `0x00314D30(1)`, and clears
+it (`0x002EB308`-`0x002EB318`).
+
+So the bind, which passes `0x1001`, flag 1 and −1.0 from `0x01CEBC9C` (`0x002E2E33`-`0x002E2E57`), and `0x002EB030` ([HP and
+KO](../Damage-And-Battle-Formulas/hp-and-ko.md)), which passes flag 1, reach `0x00427860`, and `0x002EB330`, which passes flag 0,
+`0x004272E0`.
 
 ### The attach slots
 
@@ -483,22 +569,60 @@ nibble of a slot's flags byte to the low four bits of `on` and keeps its low nib
 5 the two last slots; any other `which`, negative or above 5, also takes the context itself, `0x002EBCCF`).
 It stores nothing for a null actor or an actor without a context (`0x002EBCA7`-`0x002EBCBA`, `0x002EBD22`).
 
-`0x002E3110(actor, kind, n, entry, link)` attaches an entry: kind 0 → `+0x30`, 1 → `+0x60`, 2 and 4 →
-`+0x90`, 3 → `+0xC0 + n × 0x30` (n unbounded here). It returns without doing anything when the actor
-has no presentation context, when the context has no main entry (`+0x08` = 0) or for a kind above 4,
-so `bindh` and `bindc` on an actor that was never bound do nothing.
+`0x002E3110(actor, kind, n, entry, link)` attaches an entry: kind 0 → `+0x30`, 1 → `+0x60`, 2 and 4 → `+0x90`, 3
+→ `+0xC0 + n × 0x30` (n unbounded here) (`0x002E315F`-`0x002E3181`, `0x002E318E`, `0x002E31F8`-`0x002E3207`, `0x002E3212`,
+`0x002E32D0`-`0x002E32D6`).
 
-A slot already in use is detached first and its entry loses one reference (`0x002EB810`). The attach
-takes a reference, creates the render record with
-`0x0042FB80(entry +0x10, 1)`, links it to the main record with `0x002EDAA0(main, link, slot)` (kinds 2
-and 4 force link `0x7FFF`) and calls `0x002EE050(slot, 1.0, 1.0, 1.0)`. Kind 2 clears render `+0x304` bit `0x40` and kind
-4 sets it (when `0x01FD49EC` is set).
+It returns without doing anything for a null actor, when the actor has no presentation context, when the context has
+no main entry (`+0x08` = 0) or for any other kind, a negative one too (`0x002E3113`-`0x002E3145`, `0x002E3181`), so `bindh`
+and `bindc` attach nothing to an actor without a presentation context, nor to one never bound whose model has no
+replacement row (for a replacement the shared poll first binds the model as the main model, `0x00340AC2`).
+
+Kinds 2 and 4 force link `0x7FFF` (`0x002E3195`, `0x002E3219`). On the main render record, when it is in use, kind 2
+clears bit `0x40` of `+0x304`, zeroes the dword `+0x640` and sets bit `0x2000` of `+0x290`; kind 4 does the same but
+sets bit `0x40`, and only while the byte `0x01FD49EC` is set (`0x002E3187`-`0x002E31F3`, `0x002E320F`-`0x002E3254`).
+
+Kind 2 then calls `0x002EE0D0(main, 0)` and `0x002EDE70(main, 0)`, each when the context holds a main record (`+0x00` ≠
+−1) (`0x002E325E`-`0x002E328F`), and, for an actor of kind `0x60` (`+3 & 0xE0`), zeroes the dwords `+0xB4` and `+0x224`
+of `[actor + 0xB8]` and the byte `+0x63` of `[[actor + 0xB8] + 0xF0]` and calls `0x002EC3F0(actor)` and
+`0x002E8EE0(actor)` (`0x002E3294`-`0x002E32C9`).
+
+A slot already in use is detached as `0x002E3A60(slot, 1)` does: `0x0042F250`, `0x002ED470`, and its entry loses one
+reference with `0x002EB810` (`0x002E32DE`-`0x002E330E`). Every slot, in use or not, is then cleared: the high nibble of its
+flags byte `+0x10`, `+0x00` = −1, `+0x08` = 0, `0x00269D60(slot, 0, 0)` and `+0x20` = 0 (`0x002E3315`-`0x002E3330`).
+
+The attach then takes its reference on the entry (see above; `0x002E3334`-`0x002E333C`), creates the render record with
+`0x0042FB80(entry +0x10, 1, 0)` while `0x01F7F508` holds the entry's id (`0x002E3346`-`0x002E3360`) and stores the record's
+index, the id and the entry in the slot (`0x002E3367`-`0x002E3375`).
+
+When the main record is in use it sets the main record's `+0xC1` to the slot's flags `+0x10 >> 4`, which the clear has
+just made 0, so it writes 0 (`0x002E3367`, `0x002E3379`-`0x002E33B3`). It calls `0x00426E20` on the new record when it is in
+use (`0x002E33B9`-`0x002E33DF`), links it to the main record with `0x002EDAA0(main index, link, new index)` (the link as its
+low 16 bits) (`0x002E33E4`-`0x002E33EE`) and calls `0x002EE050(new index, 1.0, 1.0, 1.0)` (`0x002E33F3`-`0x002E3404`).
+
+Then it calls `0x002E8FD0(actor)` and, when the new record is in use, `0x004288B0(record, −1)` (`0x002E3409`-`0x002E343F`);
+`0x002E8FD0(actor)` also runs before the record is created (`0x002E3341`). Kind 4 ends with `0x002EDF90` on the main record
+with 1 when the context holds one (`+0x00` ≠ −1) and on the `+0x90` slot with 2 when that slot holds a record,
+each with its id `+0x04`, and kind 2 with both at 0 under the same tests (`0x002E3444`-`0x002E34D2`).
 
 `0x002E3C20(actor, kind, n)` detaches a slot (`0x002E3A60`) and refreshes the actor's visibility. It picks the
 slot as the attach does: kind 0 → `+0x30`, 1 → `+0x60`, 2 and 4 → `+0x90`, 3 → `+0xC0 + n × 0x30` (n
 unbounded); a null actor or context passes a null slot, which `0x002E3A60` ignores. For kinds 2, 3 and 4 a detach
 that found a render record (`0x002E3A60` returns 1) is followed by `0x002E42D0(actor)` (`0x002E3C9B`). Any other kind
 detaches nothing. Every path ends in the refresh, a tail jump to `0x002E8FD0(actor)` (`0x002E3CA8`, `0x002E3CEF`).
+
+`0x002E3A60(slot, flag)` answers 0 for a null slot (`0x002E3A79`) and for one whose dword `+0` is −1 (`0x002E3A7E`). With
+a slot whose dword `+0` is not −1, it first, for a non-zero flag, calls `0x0042F250(word +0)`, sets bits `0xB` of byte
+`+0x10` and sets byte `+0x11` to `(+0x11 & 0x9F) | 6` (`0x002E3A82`-`0x002E3A98`). It then calls `0x002ED470(dword +0)` and
+`0x002EB810(dword +4)`, writes −1 to both dwords and answers 1 (`0x002E3A9B`-`0x002E3AB1`).
+
+Every non-null slot is then reset: byte `+0x10` keeps its low four bits, dword `+0` = −1, qword `+8` = 0,
+`0x00269D60(slot, 0, 0)` runs and dword `+0x20` = 0 (`0x002E3AB6`-`0x002E3AD1`).
+
+`0x002E42D0(actor)` does nothing for a null actor, a null context or a context whose dword `+0x00` is −1 (`0x002E42D3`,
+`0x002E42E7`-`0x002E42EC`). Otherwise it calls `0x00427280` on the render record that the context's render index names, when
+that index, the word at `+0x00`, is not −1, the record address is non-null and the record is in use (`+0x284`
+non-zero) (`0x002E42F5`-`0x002E4314`), and in either case zeroes the actor's `+0xEC` (`0x002E4319`).
 
 ### The bind verbs
 
@@ -531,10 +655,9 @@ body weight `0x00265950(actor)`, float `[[actor + 0xC0] + 0x148]`, or 0.0 when i
 `0x003426C9`), and tail-jumps to `0x0025B470(actor, weight)` (`0x003426DE`), which re-applies the body mask's bit `0x10`
 ([Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md)).
 
-Every begin that creates a binding does nothing when the script manager's byte at
-`0x02099011 + manager × 0x288` is set (`0x00267310`, manager = actor `+0x15`); the begins of
-`bindp2_d4`, `bindh`, `bindc` and `puppetbind` then clear the active byte in their arguments so the
-poll and result skip. `bindp2_d4` also skips an actor whose `+0x18` is non-zero.
+Every begin that creates a binding creates none when the script manager's byte at `0x02099011 + manager × 0x288` is set
+(`0x00267310`, manager = actor `+0x15`); the begins of `bindp2_d4`, `bindh`, `bindc` and `puppetbind` then clear the
+active byte in their arguments so the poll and result skip. `bindp2_d4` also skips an actor whose `+0x18` is non-zero.
 
 `bindp2_d4(model, b, c)` (`0x0033F330`) pops c, b and the model and sets the state word `args + 0xA` to 0
 (`0x0033F34D`). It calls `0x002E97B0(actor)`, the context getter, and leaves its result unused (`0x0033F382`).
@@ -601,10 +724,14 @@ binds the model alone. It has the same inactive exit, state-0 waits and re-creat
 (`0x003418C5`, `0x003418DF`-`0x003418FC`), and the same state-2 wait (`0x00341932`), though neither it nor its
 begin `0x0033F330` stores state 2; a state other than 0 or 2 returns the dword at `[rsp + 0x40]` (`0x00341965`).
 
-`bindh(model)` (`0x00344F00`) zeroes the state word `args + 0xA` on both of its paths (`0x00344F28`),
-stores the bound id in `args[0]` and finds or creates the entry with holder bit = manager
-(`0x002EB540`, `0x00344F55`), keeping its handle in `args[1]`. Its result `0x00345A60` attaches it as kind
-2 with `0x002EBC90(actor, 3, 1)` (`0x00345A89`) and `0x002E3110(actor, 2, 0, entry, 0)` (`0x00345AAB`).
+`bindh(model)` (`0x00344F00`) pops the model and turns it into a bound id (`0x00267E10`, `0x002E9A60`,
+`0x00344F18`-`0x00344F1F`) and zeroes the state word `args + 0xA` (`0x00344F28`), all before the manager's-byte test, so on
+both of its paths.
+
+Past the manager's-byte exit described above (`0x00344F30`-`0x00344F39`) it stores the bound id in `args[0]` (`0x00344F4D`),
+finds or creates the entry with holder bit = manager (`0x002EB540`, `0x00344F55`), keeps its handle in `args[1]`
+(`0x002E9810`, `0x00344F5D`-`0x00344F67`) and sets the active byte to 1 (`0x00344F6A`). Its result `0x00345A60` attaches it as
+kind 2 with `0x002EBC90(actor, 3, 1)` (`0x00345A89`) and `0x002E3110(actor, 2, 0, entry, 0)` (`0x00345AAB`).
 
 `bindc(n, model, link)` clamps n to 0..1, `n < 0 ? 0 : n > 1 ? 1 : n` (`0x00343B47`-`0x00343B5D`), and its result
 `0x00344550` attaches the entry as kind 3 in slot n with `0x002EBC90(actor, n + 4, 1)` (`0x0034457E`) and the given

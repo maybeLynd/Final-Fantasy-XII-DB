@@ -1,0 +1,9 @@
+language	family	path	bytes	sha256	named_by	fst_size_matches	decodes	loaded
+ch	control	ps2data/image/ff12/ch/bin/btlctrl.ebp	32448	660A79970BE651607311E07B4426DB739EABB5B68E5784AD6AB5949A06E26B08	-	-	yes	named by no path array
+ch	control	ps2data/image/ff12/ch/bin/ctrl.ebp	11584	A5E0D056927C26197B7AF117F4EC709EE03AC4F63D9F1D267B1380CB885B3477	-	-	yes	named by no path array
+ch	control	ps2data/image/ff12/ch/bin/evctrl.ebp	38720	78E7A491E6A544F537E61600AD6DF7E9E7FB756C34E34DBB0639A343FB817F02	-	-	yes	named by no path array
+ch	control	ps2data/image/ff12/ch/bin/mapctrl.ebp	40832	2AD82EF851EB10EB2231A4E57C32FEC6731430C3633F7660B7EE25FA7DDAD091	-	-	yes	named by no path array
+in	control	ps2data/image/ff12/in/bin/btlctrl.ebp	32448	660A79970BE651607311E07B4426DB739EABB5B68E5784AD6AB5949A06E26B08	-	-	yes	named by no path array
+in	control	ps2data/image/ff12/in/bin/ctrl.ebp	11584	A5E0D056927C26197B7AF117F4EC709EE03AC4F63D9F1D267B1380CB885B3477	-	-	yes	named by no path array
+in	control	ps2data/image/ff12/in/bin/evctrl.ebp	38720	78E7A491E6A544F537E61600AD6DF7E9E7FB756C34E34DBB0639A343FB817F02	-	-	yes	named by no path array
+in	control	ps2data/image/ff12/in/bin/mapctrl.ebp	40832	2AD82EF851EB10EB2231A4E57C32FEC6731430C3633F7660B7EE25FA7DDAD091	-	-	yes	named by no path array

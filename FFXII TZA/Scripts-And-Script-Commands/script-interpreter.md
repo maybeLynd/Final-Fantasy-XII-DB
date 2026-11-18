@@ -115,10 +115,10 @@ are 1.
 
 ### Registers
 
-A script has eight persistent registers in its actor record, `I0` to `I3` at `+0x64` to `+0x70`
-(ints) and `F0` to `F3` at `+0x74` to `+0x80` (floats), reached only by the sixteen opcodes
-`0x36` to `0x45`; nothing native reads or writes them, and nothing clears them when a record is
-reused.
+A script has eight persistent registers in its actor record, `I0` to `I3` at `+0x64` to `+0x70` (ints) and `F0` to
+`F3` at `+0x74` to `+0x80` (floats), reached only by the sixteen opcodes `0x36` to `0x45`: `POPI0` to `POPI3` pop with
+`0x00267E10` and `POPF0` to `POPF3` with `0x00267DB0`, and the pushes go through `0x00267F90` and `0x00267F60`
+(`0x0026161C`-`0x0026173D`); nothing native reads or writes them, and nothing clears them when a record is reused.
 
 Three more live in the wait slot: `X` at `+8` (the target actor of a native call), `Y` at `+0xC` (the comparison value
 of the compare-and-jump opcodes and the result word of a native call) and `A` at `+0x10` (the accumulator the
@@ -137,10 +137,11 @@ the request funnel bounds-checks, and `+0x50`, the jump table the jump opcodes i
 `0x003589E0`; an operand at or past its count yields offset 0, so the PC lands on the bytecode
 base.
 
-`PUSHACT` reads word `+0xE` of entry `index × 16` of the `+0x80` table for the handle's high word
-and leaves the index at `0x02099AB8`. `PUSHTAG` takes that index, selects entry `(index + 1) × 16`,
-adds `[slot + 0]` to its dword to reach that actor's tag table and pushes its `[operand × 8 + 8]`
-dword, `0x8000` past its count: `PUSHACT n; PUSHTAG k` reads actor `n`'s tag `k`.
+`PUSHACT` reads word `+0xE` of entry `index × 16` of the `+0x80` table for the handle's high word and leaves the
+index at `0x02099AB8`. `PUSHTAG` takes that index, selects entry `(index + 1) × 16`, adds `[slot + 0]` to its dword to
+reach that actor's tag table and pushes its `[operand × 8 + 8]` dword, `0x8000` past its count
+(`0x002617C9`-`0x00261801`): `PUSHACT n; PUSHTAG k` reads actor `n`'s tag `k`; the index is not tested, so after a
+`PUSHACT` at or past the count `PUSHTAG` reads entry `0x8001 × 16` (`0x002617D0`-`0x002617DD`).
 
 ### The hundred opcodes
 
@@ -160,11 +161,11 @@ opcode its mnemonic, length, handler and effect. By family:
 | `0x12` to `0x16` | arithmetic | int when both operands are ints, float otherwise; `OPDIV` yields 0 on a zero divisor, `OPMOD` is an integer `idiv` with no zero test |
 | `0x1B` to `0x20` | registers | push or pop `A`, `X`, `Y` |
 | `0x21` to `0x29` | requests | pop channel, function and actor and file a request: kinds `REQ` / `FREQ` / `TREQ`, modes plain, start-wait (`SW`) and end-wait (`EW`) |
-| `0x2A` to `0x2C`, `0x33` | | pop their arguments and file nothing (`PREQ…`, `PREQWAIT`) |
+| `0x2A` to `0x2C`, `0x33` | | pop their arguments and file nothing (`PREQ…`, `PREQWAIT`): three ints and two, through `0x00267E10` (`0x0026121A`-`0x00261234`, `0x002615A6`-`0x002615B5`, `0x0025E64C`) |
 | `0x2D` to `0x30` | return | retire the entry and resume the caller; `N` forms recycle the entries above a popped depth; `T` forms start the next entry |
 | `0x32`, `0x34`, `0x35` | waits | `REQWAIT` parks on another actor's entry (kind 3); `REQCHG` sets an actor's override slot; `REQCANCEL` recycles entries |
 | `0x36` to `0x45` | registers | pop into or push from `I0` to `I3`, `F0` to `F3` |
-| `0x46` DVAR | | pops one value and calls the stubbed debug-variable hook `0x0016D6A0([slot + 0x28], value, &0x02099D48)`, a bare `ret` |
+| `0x46` DVAR | | pops one value and calls the stubbed debug-variable hook `0x0016D6A0([slot + 0x28], value, &0x02099D48)`, a bare `ret` (`0x00261742`-`0x0026175C`) |
 | `0x48` to `0x4B` | variables | push, pop, print and reference a variable by its descriptor |
 | `0x4C` to `0x50` | immediates | push a tag, an actor handle, a pooled int, the operand itself or a pooled float |
 | `0x51` to `0x57`, `0x5A` to `0x5C`, `0x60` | jumps | `JMP` to `base + table[operand]`; the `POPCMPY…` forms pop a value and jump on its comparison with `Y`; `POPX…` pop into `X` and jump always, if non-zero or if zero |
@@ -233,12 +234,11 @@ then writes there.
 When the arm runs again with `+0x15` non-zero it pushes byte `+0x26`, word `+0x24` and word `+0x20`,
 each zero-extended and each only below depth 63, clears `+0x15` and submits (`0x0025F712`-`0x0025F7B2`).
 
-`RET` (`0x2D`) keeps the answer of `0x003DB2A0(actor, byte +0x62)`, calls `0x003DB6E0(actor)` and takes the
-wait slot `[actor + 0xA8] + 0x28 × (s8)[actor + 0x11]` as it is after that call
-(`0x00261239`-`0x00261260`). With the actor's byte `+0x10` non-zero it lowers that byte by 1, loads the PC
-from the new wait slot and sets the stop flag to 1 (`0x00261264`-`0x0026129A`). With `+0x10` at 0 and bit
-`0x40` of `+0x14` set it sets the flag to 1 and loads no PC: the PC stays the one after the `RET`,
-while `rsi` already holds the new wait slot (`0x0026129F`, `0x002602F2`).
+`RET` (`0x2D`) keeps the answer of `0x003DB2A0(actor, byte +0x62)`, calls `0x003DB6E0(actor)` and takes the wait slot
+`[actor + 0xA8] + 0x28 × (s8)[actor + 0x11]` as it is after that call (`0x00261239`-`0x00261260`). With the actor's byte
+`+0x10` non-zero it lowers that byte by 1, loads the PC from the new wait slot and sets the stop flag to 1
+(`0x00261264`-`0x0026129A`). With `+0x10` at 0 and bit `0x40` of `+0x14` set it sets the flag to 1 and loads no PC: the PC
+stays the one after the `RET`, while `rsi` already holds the new wait slot (`0x0026129F`-`0x002612A4`, `0x002602F2`).
 
 Otherwise `RET` calls `0x0025B400(actor)`, replaces its answer by 1 when `0x003DB2A0` answered 0, and loads
 the PC from the new wait slot. The stop flag takes that value when the new wait slot's byte `+0x14` is
@@ -250,26 +250,31 @@ the PC from the new wait slot. The stop flag takes that value when the new wait 
 (`0x00261352`-`0x0026136C`), which joins `RET` at `0x00261273`. On its path for bit `0x40`, `rsi` still
 holds the old wait slot (`0x00261401`-`0x00261406`).
 
-`REQCANCEL` (`0x35`) calls `0x003DB420(actor, popped value + 1, 1)` and does not use the answer
-(`0x00261301`-`0x00261312`). `PUSHV` (`0x48`) calls `0x00267FC0(slot, actor, stack, operand)` with the operand
-zero-extended from 16 bits (`0x00261761`-`0x0026176E`).
+`REQCANCEL` (`0x35`) calls `0x003DB420(actor, popped value + 1, 1)` and does not use the answer (`0x00261301`-`0x00261312`).
+`PUSHV` (`0x48`) calls `0x00267FC0(slot, actor, stack, operand)` with the operand zero-extended from 16 bits
+(`0x00261761`-`0x0026176E`). `POPV`, `PUSHDBG` and `PUSHP` (`0x49` to `0x4B`) call `0x00267E60`, `0x00262440` and `0x00268100`
+with the same four arguments, `0x00262440` with `0x02099D48` as a fifth (`0x00261778`-`0x002617C4`).
 
-`0x5F` calls `0x00268A80(slot, actor, stack, operand, actor, 0)`, and `0x63` the same with 1 as the sixth
-argument (`0x00261BEA`-`0x00261C01`, `0x00261CA4`, `0x00261CC4`). With the skip mask non-zero and byte `+0x15`
-at 0 both first find the list: the table is at `image + 0x0020E600(image dword +0x30)`, and for an operand
-below the table's first dword the list is at `image + 0x0020E600(table dword +4 + 4 × operand)`; any
-other operand gives null (`0x00261B27`-`0x00261B55`, `0x00261C24`-`0x00261C52`).
+`0x5F` calls `0x00268A80(slot, actor, stack, operand, actor, 0)`, and `0x63` the same with 1 as the sixth argument
+(`0x00261BEA`-`0x00261C01`, `0x00261CA4`, `0x00261CC4`). With the skip mask non-zero (`0x00261B15`-`0x00261B17`,
+`0x00261C12`-`0x00261C14`) and byte `+0x15` at 0 (`0x00261B1D`-`0x00261B21`, `0x00261C1A`-`0x00261C1E`) both first find the list:
+the table is at `image + 0x0020E600(image dword +0x30)`, and for an operand below the table's first dword the list is at
+`image + 0x0020E600(table dword +4 + 4 × operand)`; any other operand gives null (`0x00261B27`-`0x00261B55`,
+`0x00261C24`-`0x00261C52`).
 
-`0x0020E620` of that address goes to the wait slot's `+0x1C`, 0 to word `+0x22` and the low byte of a
-popped int to `+0x26`, and `0x00267420(slot, wait slot + 0x18)` is called (`0x00261B57`-`0x00261B83`,
-`0x00261C54`-`0x00261C80`). A non-zero answer writes the word `0x0107` to `+0x14`, sets the stop flag to 1
-and stores the address of the instruction less its length in the wait slot; the tail adds the length
-back, so the address of the instruction itself is what the exit store `0x00261DD3` then writes there
-(`0x00261B8C`-`0x00261BB9`).
+`0x0020E620` of that address goes to the wait slot's `+0x1C`, 0 to word `+0x22` and the low byte of a popped int to
+`+0x26`, and `0x00267420(slot, wait slot + 0x18)` is called (`0x00261B57`-`0x00261B83`, `0x00261C54`-`0x00261C80`). A non-zero
+answer writes the word `0x0107` to `+0x14`, sets the stop flag to 1 and stores the address of the instruction less its
+length in the wait slot; the tail adds the length back, so the address of the instruction itself is what the exit
+store `0x00261DD3` then writes there (`0x00261B88`-`0x00261BB9`, `0x00261C85`-`0x00261C87`).
 
 An answer of 0 pushes byte `+0x26` back and makes the request (`0x00261BBE`-`0x00261BCE`,
 `0x00261C8D`-`0x00261CA8`). With `+0x15` non-zero the arm pushes byte `+0x26`, clears `+0x15` and makes the
 request (`0x00261BD0`-`0x00261BDC`, `0x00261CAD`-`0x00261CC0`).
+
+`REQWAITALL` (`0x61`) finds the list the same way whatever the skip mask, stores `0x0020E620` of it in the wait slot's
+`+0x1C` and 0 in word `+0x22`, and calls `0x002674B0(slot, wait slot + 0x18)`; a non-zero answer sets `+0x14` to 5 and
+the stop flag to 1, and 0 goes on (`0x00261CCD`-`0x00261D31`, `0x00261610`).
 
 `0x62` pops three values as ints and pushes the three ints back in their old order, so a stack that
 held three ints is left unchanged (`0x00261D36`-`0x00261D81`); a float comes back as an int, its fraction
@@ -308,10 +313,10 @@ byte `+0x11`. When it is above, nothing is recycled and no return is made: the s
 wait slot's byte `+0x14` is 1, and the stop flag is set to 1 for any other kind
 (`0x0026131F`-`0x0026132E`, `0x002613C5`-`0x002613D8`, `0x0026147E`-`0x0026148D`, `0x00261521`-`0x00261534`).
 
-Otherwise they call `0x003DB420(actor, value + 1, 0)` and `0x003DB6E0(actor)` and go on as `RET` and `RETT`
-do, with the answer of `0x003DB420` in the place of the answer of `0x003DB2A0`
-(`0x00261334`-`0x00261344`, `0x00261493`-`0x002614A3`); on the path for bit `0x40`, `rsi` still holds the old
-wait slot in both, as in `RETT` (`0x00261371`-`0x00261376`, `0x002614B5`-`0x002614BA`).
+Otherwise they call `0x003DB420(actor, value + 1, 0)` and `0x003DB6E0(actor)` and go on as `RET` and `RETT` do, with the
+answer of `0x003DB420` in the place of the answer of `0x003DB2A0` (`0x00261334`-`0x002613C2`, `0x00261493`-`0x0026151E`); on the
+path for bit `0x40`, `rsi` still holds the old wait slot in both, as in `RETT` (`0x00261371`-`0x00261376`,
+`0x002614B5`-`0x002614BA`).
 
 `REQWAIT` (`0x32`) pops the function id and then the actor. With bit `0x8000` in either it does
 nothing. Otherwise it calls `0x003DBF60(0x00358940(slot, actor), function id, -1)`; an answer of `0xFF`
@@ -325,6 +330,19 @@ calls `0x00268EA0` with the running actor, not that record; the record is not te
 (`0x002615BA`-`0x0026160B`). `PUSHACT` (`0x4D`) stores its operand in `0x02099AB8` before the range test, and
 for an operand at or past the count it stores `0x8000` there and pushes `0x8000`
 (`0x00261812`-`0x0026184B`).
+
+`PUSHI` (`0x4E`) pushes the int at `[slot + 0x68] + 4 + 4 × operand`, `PUSHII` (`0x4F`) the operand sign-extended,
+and `PUSHF` (`0x50`) the float at `[slot + 0x70] + 4 + 4 × operand`, through `0x00267F90` and `0x00267F60`; none tests
+the operand against a count (`0x00261855`-`0x00261892`).
+
+`JMP` and `JMPINTERNAL` (`0x51`, `0x60`) set the PC to the bytecode base `+0x58` plus `0x003589E0(actor, operand)`
+(`0x002618A8`-`0x002618D8`). `POPCMPYEQJMP` (`0x52`) pops an int with `0x00267E10` and jumps when it equals `Y`; `0x53` to
+`0x56` jump when it is above, at or above, below, or at or below `Y`, compared signed (`0x00261897`-`0x00261927`).
+
+`POP2CMPYBTWNJMP` (`0x57`) pops two ints and jumps when `Y` lies between them, both ends included, in either order,
+compared signed (`0x0026192C`-`0x00261998`, `0x00261610`, `0x00261946`, `0x00261953`, `0x0026195B`). `POPXJMP`, `POPXCJMP` and
+`POPXNCJMP` (`0x5A` to `0x5C`) pop an int into `X` and jump always, when it is non-zero or when it is zero
+(`0x00261A52`-`0x00261AB9`).
 
 ### Columns of script-interpreter-opcodes.tsv
 
@@ -347,15 +365,27 @@ returns 1, busy: the handler stores the address of the `CALL` less its length in
 of the `CALL` itself there, and the handler leaves
 the loop. The next frame re-fetches the same `CALL`; phase 1 skips begin and polls again.
 
-When the poll completes and the family has a result callback, it runs and the phase decides what
-is pushed: 0 or 1 pushes an implicit int 0, 2 the int in `+0xC`, and 3 or more the float in `+0xC`
-(`0x0026227A`-`0x00262355`); without a result callback an int 0 is pushed whatever the phase; a stack
-already at depth 63 gets nothing. The phase resets to 0 and the PC advances past the call.
-`CALLPOPA` then pops that value into `A`. `CALLACT` pops the target into `X` only while the phase
-is 0, so a resumed call keeps the target it started with.
+When the poll completes and the family has a result callback, it runs and the phase decides what is pushed: 0 or 1
+pushes an implicit int 0, 2 the int in `+0xC`, and 3 or more the float in `+0xC` (`0x0026227A`-`0x00262355`); without a
+result callback an int 0 is pushed whatever the phase; a stack already at depth 63 gets nothing. The phase resets to 0
+and the PC advances past the call. `CALLPOPA` then pops that value into `A`. `CALLACT` pops the target into `X` only
+while the phase is 0, so a resumed call keeps the target it started with.
 
-`SYSHALT`, a busy call and a request arm that arms its wait (`0x21` to `0x29`) are among the handlers that rewind; 21
-sites in the body subtract the instruction length to repeat an instruction, against 4 that advance.
+The handlers are `CALL` `0x0026199D`-`0x002619EA`, `CALLACT` `0x002619EF`-`0x00261A4D`, `CALLPOPA` `0x00261ABB`-`0x00261AF9` and
+`CALLACTPOPA` `0x00261AFE`-`0x00261B13`; the two `POPA` forms pop into `A` only when `0x002621D0` answers 0
+(`0x00261AEA`-`0x00261AF6`). `CALLACTPOPA` goes on in `CALLPOPA` at `0x00261ABF`, or at `0x00261AC2` with `+0x15` non-zero
+(`0x00261B02`, `0x00261B13`), and a busy answer of either `POPA` form goes to `CALLACT`'s rewind `0x00261A2F`-`0x00261A4D`
+(`0x00261AE4`).
+
+`SYSHALT`, a request arm that arms its wait (`0x21` to `0x29`), a busy call (`0x002619E4`, `0x00261A47`) and `0x5F` or
+`0x63` arming its wait (`0x00261BB3`) are the handlers that rewind: 13 of the 21 sites in the body that subtract the
+instruction length do it on the PC of the running instruction, so the tail's add leaves the PC on it.
+
+The other 8 subtract it from a PC they have just set: the returns from the PC loaded from the new wait slot
+(`0x00261273`-`0x00261297`, `0x002612D2`-`0x002612EB`, `0x002613A9`-`0x002613C2`, `0x0026144C`-`0x00261465`, `0x00261505`-`0x0026151E`),
+the jumps from the bytecode base before they add the offset (`0x002618B3`-`0x002618D5`, `0x0026196C`-`0x00261995`,
+`0x00261A68`-`0x00261A89`), so the tail's add lands on the loaded PC or on base + offset. The tail's add `0x0025E641` runs
+after every handler; the three jumps also add their offset (`0x002618D5`, `0x00261995`, `0x00261A89`).
 
 ## Layouts
 
@@ -379,7 +409,7 @@ instruction: u8 opcode, then u16 operand for 0x48..0x63
 | opcodes without a handler | 6, not used by any shipped script |
 | instructions per call before the budget raises the stop flag | 65,536 |
 | value stack | 64 entries, pushes refused at 63 |
-| rewind sites / advance sites | 21 / 4 |
+| length subtractions: repeat the instruction / land on a new PC | 13 / 8 |
 | interpreter body | 14,646 bytes, one call site |
 
 ## Operations

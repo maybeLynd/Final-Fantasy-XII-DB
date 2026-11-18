@@ -2764,6 +2764,7 @@ nal0301.mpk	bin	10	0x223B80	128	SPP1	de3d8ea8b4b23fa3	yes
 nal0301.mpk	bin	16	0x223C40	704	SP1	12924ade37ef45eb	yes
 nal0301.mpk	bin	24	0x223F40	263232	TIM2	0387a00aea5ab568	yes
 nal0301.mpk	bin	28	0x2643C0	64	NPS2	f2c2b1bc30d6d1cf	yes
+ous0100.mpk	bin	none	0xC0	0	none	-	-
 ous0101.mpk	bin	4	0x100	1984	01000000	a1ce491483afc843	yes
 ous0101.mpk	bin	8	0x900	2211392	YM00	37b3fb7ccab4dbdc	yes
 ous0101.mpk	bin	24	0x21C780	32896	TIM2	54c4a6df50efa6d8	yes
@@ -4236,6 +4237,7 @@ srb0108.mpk	bin	13	0x27B4C0	67136	EFB0	43537838812cbd22	yes
 srb0108.mpk	bin	16	0x28BB40	1280	SP1	17c77f04e34291f0	yes
 srb0108.mpk	bin	24	0x28C080	263232	TIM2	dca85dcb9f085edc	yes
 srb0108.mpk	bin	28	0x2CC500	64	NPS2	1c93ef9c5b3b5374	yes
+tst0100.mpk	bin	none	0xC0	0	none	-	-
 tst0102.mpk	bin	4	0x100	1984	01000000	a1ce491483afc843	yes
 tst0102.mpk	bin	8	0x900	202624	YM00	fe599fd7245e5114	yes
 tst0108.mpk	bin	4	0x100	1984	01000000	a1ce491483afc843	yes
