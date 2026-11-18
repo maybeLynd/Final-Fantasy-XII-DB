@@ -38,7 +38,9 @@ calls it with 0 ([frame update order](frame-update-order.md)). It runs:
    reading it: it adds the dword `0x022CA624` that `0x0035E790` answers (`0x00254CE9`-`0x00254CF8`);
 3. `0x0035BC40`, `0x003C6000`, `0x002481A0`, `0x00248030` on the four objects `0x0208EA28`, `0x0208EA40`,
    `0x0208EA48` and `0x0208EA50`, `0x00248190`, `0x002481C0` when `first`, `0x00244980` on the same four;
-4. `0x003BBA60` when the 60 fps predicate `0x001EDE80` holds;
+4. `0x003BBA60` when `0x001EDE80` answers non-zero (`0x00250896`-`0x0025089F`): always while the 60 fps flag `0x01F82E38` is 0
+   or the suppressor `0x01DFE0C0` is set, and otherwise when the frame parity `0x02064AD8` plus the step count `0x02064AA8`
+   is non-zero (`0x001EDE84`-`0x001EDEB3`);
 5. the pump `0x0028E290([0x01E0C2B0])`;
 6. `0x00367200` of `0x00184950()` when `first`, and `0x00228930`.
 

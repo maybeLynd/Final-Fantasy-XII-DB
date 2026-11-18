@@ -113,7 +113,8 @@ suppressor `0x01DFE0C0` clear (`0x00265896`-`0x0026589F`, `0x001EDDA0`-`0x001EDD
 The only stores to the flag and the multiplier sit together in `0x001EDDC0`, which sets the flag to 1 and the multiplier
 to 2 for 60 fps (`0x001EDDE8`, `0x001EDDF2`; [startup constants](../Engine-Core/startup-constants.md)), so a
 scaled count is doubled. The raw count is stored instead under any of four gates: `0x022C7F84` set, `0x001EC5E0` for
-manager 3, `0x001ED130` with `0x001EC5C0` clear for managers 1 and 2, or the three field ids `0x001ED180` names.
+manager 3, `0x001ED130` with `0x001EC5C0` clear for managers 1 and 2, or `0x001ED180` answering 1 (one of its three field
+ids with its three predicates clear, below).
 
 Its poll `0x0034DCC0` decrements that dword and finishes, returning 0, when it goes below zero
 (`0x0034DCCD`). Otherwise it reads the skip mask of the manager named by the target actor's `+0x15`

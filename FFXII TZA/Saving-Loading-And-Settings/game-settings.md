@@ -301,6 +301,8 @@ the three volumes to 100 (`0x001DBA60(1.0, channel)`), and runs the platform app
 | 29, 30 | Mouse Sensitivity | `0x0032E020`, `0x0032E030` | `0x001DF340(object, 24)`, `0x001DF340(object, 23)`, values 1-6 | `0x0017E420`, `0x0017E430` |
 | 38 | Confirm Button | `0x0017E6E0` | `0x001DF340(object, 25)` DecideButton | `0x0017E210` |
 
+`0x002DDD50()` answers bit `0x8000` of dword 0 of the settings record `[0x0215E6E0]`, as 0 or 1 (`0x002DDD50`-`0x002DDD5C`).
+
 Because the record lives in the save image, loading a save also loads these options.
 
 ### Active and Wait

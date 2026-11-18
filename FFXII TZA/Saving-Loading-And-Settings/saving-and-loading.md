@@ -44,6 +44,10 @@ through `0x003935C0` and `sprintf("%s%03d")`) in the save directory
 returns the name in the controller record at `+0x128` and null when no controller is open
 (`0x02CA99B8` = 0).
 
+`0x003935C0(buffer, size)` copies the six characters `FFXII_` from `0x00D113D4` with `0x008C2F70(buffer, 0x00D113D4, 6)`, the
+import `strncpy`, stores 0 at the byte `+0x6` to end the text and returns the buffer; for a size of 6 or less, an
+unsigned compare, it writes nothing and returns the empty string at `0x01CEB638` (`0x003935C9`-`0x003935F1`).
+
 ### The save and load screen
 
 `0x00580EB0(controller, state, popup)` moves the screen between fifteen states and opens a popup
@@ -55,7 +59,7 @@ returns the name in the controller record at `+0x128` and null when no controlle
 | 1 | runs the device check (`0x0057EA40`), in save mode when byte `+0xEA` is 0 | - (no popup) | |
 | 2 | confirms a new save | `0x15` | "Create new save data for FINAL FANTASY XII THE ZODIAC AGE?" |
 | 3 | confirms an overwrite | `0x13` | "Save data ... already exists. Overwrite it?" |
-| 4 | opens the save transaction `0x005819F0` as a child widget (`0x00244F50`, `0x00580FFF`) with the slot `+0xEB` and the save counter `+0xE4` + 1; plays sound `0x42` once per controller (`0x00580FBC`) | `0x10` | "Saving... Please do not close ..." |
+| 4 | opens the save transaction `0x005819F0` as a child widget (`0x00244F50`, `0x00580FFF`) with the slot `+0xEB` and the save counter `+0xE4` + 1, or `0xFFFFFFFF` as it is; plays sound `0x42` when the gauge `[0x02CA99C8]` exists and does not already have it running (`0x00580FAE`-`0x00580FCD`) | `0x10` | "Saving... Please do not close ..." |
 | 5 | reports the save complete | `0x16` | "Save complete." |
 | 6, 7 | the two trial-mode warnings | `0x19`, `0x1A` | "If you resume from this file, all trial mode progress will be lost. Are you sure you wish to proceed?", "Your Trial Version save data will no longer be playable. Are you sure?" |
 | 8 | queues kind 1 with the callback `0x00580840`, then kind 9: read the slot's file into the active image, `0x56690` bytes; gauge target 30 | `0x11` | "Loading..." |
@@ -68,15 +72,98 @@ returns the name in the controller record at `+0x128` and null when no controlle
 The popup table's entries are `{u32 text id, u8 kind, u8 flags, u8 sound}`; `0x002F9860` resolves a
 text id as group `id / 1000` (2 = `menu_message.bin`) and index `id % 1000`.
 
+`0x00580EB0(controller, state, popup)` does nothing for a controller of 0, nor when the state asked for is the one in
+its byte `+0xE9` (`0x00580EB0`-`0x00580EE8`). A state above `0xE` is only stored; the others go through the state table
+`0x00581268` (`0x00580EEE`-`0x00580F13`), and every state that passes both tests is stored at `+0xE9` at the end
+(`0x00581246`). The stack cookie is checked with `0x00808C40` (`0x0058124D`-`0x00581254`).
+
+State 0 runs `0x0057EC60(controller, 1)` and state 1 `0x0057EA40(controller, +0xEA == 0)`, neither with a popup
+(`0x00580F15`-`0x00580F3C`). States 2, 3, 5, 6, 7, `0xA`, `0xC`, `0xD` and `0xE` run `0x0057EC60(controller, 1)` before
+their popup, and state `0xC` first stores `0x78` in the byte `+0xE8` (`0x00580F41`-`0x00580F90`, `0x0058103D`-`0x0058104D`,
+`0x00581149`-`0x00581220`). States `0xD` and `0xE` open the popup of the third argument, and none when it is `0xFF`
+(`0x00581225`-`0x00581237`).
+
+States 4, 8 and `0xB` work on the gauge `[0x02CA99C8]` when it exists. Unless bit `0x1` of its `+0xCC` is set they play
+sound `0x42` with `0x00249C60(0x42)`, set the bit and keep the handle at `+0xE8`; then they store the operation 2, 3 or
+4 in its byte `+0xD0` (`0x00580F95`-`0x00580FD3`, `0x00581066`-`0x0058108B`, `0x00581172`-`0x00581197`). States 8 and `0xB` call
+`0x00254CB0(1)` first (`0x00581052`-`0x00581057`, `0x0058115E`-`0x00581163`).
+
+State 4 takes the counter `+0xE4` plus 1, or `0xFFFFFFFF` as it is (`0x00580FA7`, `0x00580FDA`-`0x00580FE0`). It fills a
+block on its stack with the controller, the controller's qword `+0x1C0`, the slot byte `+0xEB`, the counter and a zero
+dword, and opens the save transaction with `0x00244F50(0x4B0, 0x005819F0, record)`, the record pointing at that block; the
+new widget is kept at `+0xD0` (`0x00580FE3`-`0x00581031`).
+
+State 8 queues kind 1, the callback `0x00580840` and the low dword of the controller's address, with
+`0x00582540(queue, packet)` while the queue object `[0x02CA99C0]` exists (`0x00581092`-`0x005810B7`). It takes the active
+image `0x002EF640()` and the name `0x005837F0(1, slot)`, and while the queue exists queues kind 9 with the name copied
+into the packet, the image and the size `0x56690` (`0x005810BC`-`0x0058111E`). It then calls `0x005817D0(0x1E, 0x1C)` and
+`0x00581860(0x1E, 0x1E)` (`0x00581123`-`0x00581137`).
+
+State 9 opens only its popup (`0x00581141`). State `0xB` queues kind 1 the same way and then kind `0xC`, each with
+`0x00582540(queue, packet)` while the queue exists, and calls `0x005817D0(0x1F4, 0x1DB)` and `0x00581860(0x1F4, 0x1F4)`
+(`0x0058119E`-`0x005811F8`).
+
+`0x00583990(id, controller)` uses entry 0 of the table `0x00D23DA0` for an id of `0x1F` or more (`0x005839E0`-`0x005839E9`).
+It takes the entry's text `0x002F9860(text id)`, a second text, `0x002F9860(0x49A)` when `0x00254A10()` answers other than 0
+and `0x002F9860(0x49C)` when it answers 0, and the size in KB, the queue object's dword `+0xD0` plus `0x3FF` shifted
+right by 10, 0 with no queue object (`0x005839AB`-`0x00583A08`).
+
+The entry's kind byte says how the text is made, into one of two `0x200`-byte buffers from `+0x168` of the save/load
+controller `[0x02CA99B8]`, the one its byte `+0xC2` picks: kind 1 calls `0x002B4090(0x200, buffer, text, second)`, kind 2
+`0x002B4090(0x200, buffer, text, second, second)`, and kinds 3 and 4 `0x002B4090(0x200, buffer, text, KB)`
+(`0x00583A0D`-`0x00583AA3`). Kind 0 shows the table's text as it is; any other kind shows the buffer, which a kind above 4
+leaves unwritten (`0x00583ABB`-`0x00583AD9`).
+
+Without bit `0x10` of the flags byte the entry's sound byte is played with `0x00249C60(sound)` (`0x00583AA8`-`0x00583AB6`).
+With bit `0x1` the popup is a choice made by `0x003948B0(controller, text, style, block)`: the style is `0x2021001`, or
+`0x20210D1` with bit `0x2`, and the dword `+0x48` of the `0x50`-byte block, zeroed with `0x00861EC0(block, 0, 0x50)`,
+gets bit `0x1` for every entry but `0x14` and bits `0x1` and `0x4` with bit `0x20` (`0x00583ADC`-`0x00583B3F`).
+
+Without bit `0x1` it is a notice made by `0x003949B0(controller, text, block)`, the block, its first `0x18` bytes
+zeroed, holding 3 in its byte `+0x10` and `0x88` in its dword `+0x14`, `0xB8` with bit `0x20` (`0x00583B46`-`0x00583B7E`).
+With bit `0x8` the new popup goes through `0x002470C0(popup)` (`0x00583B83`-`0x00583B91`).
+
+Last, when the widget `[0x02CA99E0]` exists its `+0xCC` is zeroed; when it does not, the `0xD0`-byte widget with
+procedure `0x0057F7D0` is created with `0x00244F50(0xD0, 0x0057F7D0, 0)` (`0x00583B96`-`0x00583BBD`). The byte `+0xC2` becomes 1
+when it was 0 and 0 otherwise, and the opener returns the popup (`0x00583BC2`-`0x00583BE5`).
+
+`0x00583FD0(id, parent, mode)` opens a popup from the same table by the same rules, with its own size in KB,
+`0x003936B0()` plus `0x3FF` shifted right by 10, and its own buffer `0x02CA97B0`. It takes the texts with
+`0x002F9860(text id)`, `0x00254A10()` and `0x002F9860(0x49A)` or `0x002F9860(0x49C)`, and makes the text with
+`0x002B4090(0x200, 0x02CA97B0, text, ...)` for kinds 1 to 4; kind 0 shows the table's text (`0x00583FF9`-`0x005840A3`).
+
+It plays the sound with `0x00249C60(sound)` without bit `0x10` (`0x005840A7`-`0x005840B5`). With bit `0x1` it makes the
+choice with `0x00861EC0(block, 0, 0x50)` and `0x003948B0(parent, text, style, block)` as `0x00583990` does
+(`0x005840BA`-`0x00584120`). Without it the notice is made by `0x00394A90(parent, text, block)` when mode is not 0 and by
+`0x003949B0(parent, text, block)` when it is 0 (`0x00584127`-`0x0058416C`). With bit `0x8` the popup goes through
+`0x002470C0(popup)` (`0x00584171`-`0x0058417F`). Its body does not touch `[0x02CA99E0]`, and it returns the popup
+(`0x00584184`-`0x0058418C`).
+
 The three storage results reach the screen as message `0x1D`: class 3 is the card-presence poll
 (`0x0057EBB0`, queue kind 3), class `0xD` the device check (`0x0057E950`, kinds 4 and 5) and class
 `0xF` the save transaction's completion (`0x00581B70`).
+
+`0x0057E950(kind, result, pane)` acts on kinds 4 and 5 only (`0x0057E96E`-`0x0057E976`). For kind 4 with a result of 0 and
+bit `0x2` of the pane's `+0xC0` set it sends nothing: it takes the pattern from `0x00393630(buffer, 0x40)` and, when the
+queue object `0x02CA99C0` exists, copies the pattern into a kind-5 packet and queues it with `0x00582540(queue, packet)`
+(`0x0057E997`-`0x0057E9E9`).
+
+In every other case it sends `0x00247510(widget, 0x1D, message)` to the widget at the pane's `+0xC8`, the message
+holding the class `0xD`, the device byte `+0x39A` of the queue object (`0xFF` when there is none) and the result, and
+clears bit `0x1` of the pane's `+0xC0` (`0x0057E97C`-`0x0057EA1E`). It checks its stack cookie with `0x00808C40(cookie)`
+(`0x0057EA30`).
 
 `0x0057ED40` disarms the card-presence poll: when the queue's front packet has already started (queue
 `+0xDC` bit `0x1`) it sets `+0xDC` bit `0x2`, which makes the dequeue `0x00582240` return before that packet's
 callback; otherwise it empties the queue (`+0x398` = 0). It also clears bits `0x1` and `0x2` of the poll
 widget `0x02CA99D8`. The slot screen calls it when a slot is picked (sub-command `0x8001`) and on
 sub-commands `0x8100`-`0x8102`; `0x00580A80` and the load lifecycle `0x00582860` call it too.
+
+`0x00580A80(screen, message)` acts only while the state `+0xE9` is not `0xD` and the message's dword `+0x08` is not 0
+(`0x00580A86`-`0x00580A96`). It first disarms the poll with `0x0057ED40`; then for states 2, 3, 5, 6, 7, `0xA`, `0xC` and
+`0xE` (the jump table at `0x00580B0C`) it closes the popup `+0xD8` with `0x00244F00(popup)`, sets `+0xCC` of `[0x02CA99E0]`
+to 4 when that exists, and zeroes `+0xD8` (`0x00580A98`-`0x00580AE7`). For every state it ends in a jump to
+`0x00580EB0(screen, 0xD, 0)` (`0x00580AF2`-`0x00580AFF`).
 
 ### The slot list
 
@@ -119,6 +206,15 @@ and dword `+4` of the row's status record is non-zero, else 1 (`0x0057F947`-`0x0
 draw mode and `0x0057FA30`: after `0x0057FB00` it jumps straight to the slot number (`0x0057F930`). The status-5 record
 that flag bit `0x1` forces carries `+4` = 1 (`0x0057F93F`), so in save mode those rows get draw mode 0.
 
+`0x0057F8C0` then calls `0x0057FA30(row, unused, status)` (`0x0057F973`), which first calls `0x00393190(row, 0)`. Of the row's
+parts (`[row + 0x10]`) it hides `+0xD8` and `+0xD0`, clearing bit `0x1` of their `+0x08`, and shows `+0xB0` and the
+seven parts at `+0x00`, `+0x20`, `+0x28`, `+0x30`, `+0x08`, `+0x10` and `+0x18` (the byte table `0x00D23EAC`) by setting
+it (`0x0057FA42`-`0x0057FA98`).
+
+The part `+0xB0` then gets at its `+0x18` the status text: `0x002F9860(0x874)`, `0x002F9860(0x873)` or `0x002F9860(0x872)`
+for a status `[status]` of 3, 4 or 5, and the empty string `0x01CEB638` for any other; and at its `+0x20` the dword
+`0x0020E620(0)` answers, 0 less the dword `0x01F83530` (`0x0057FA9C`-`0x0057FAE7`).
+
 Every row also gets its slot number (`0x00393160`), except slot 0's row in load mode, which hides the
 six number parts listed at `0x01F2CD10` and shows its own part `+0xD0`: it clears bit `0x1` of each part's dword
 `+8` (`0x0057F9B2`) and sets that bit on part `+0xD0` (`0x0057F9CC`). The number is drawn by two calls,
@@ -140,6 +236,34 @@ six number parts listed at `0x01F2CD10` and shows its own part `+0xD0`: it clear
   `DataFace_c.tm2` (atlas `dataface_c`, sub-image 0, frame 18) at the row's top left
   ([New Game+ and New Game-](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md)).
 
+The frame of a row with bit `0x1` of `+0x57` is `0x002DC290(list, rect, colours)`: a rectangle at 2, 2 that is 4 less
+than the words `+0x08` and `+0x0A` of the row's `+0x08` in each direction, with `0x4816224A` in all four colours
+(`0x0057FB2A`-`0x0057FB8F`). Every row then goes through `0x00393190(row, 1)` (`0x0057FB94`-`0x0057FB9C`).
+
+In the row's part array `+0x10` it hides the parts `+0xD8` and `+0xB0`, shows the seven parts the byte table
+`0x00D23EAC` lists, `+0x00`, `+0x20`, `+0x28`, `+0x30`, `+0x08`, `+0x10` and `+0x18`, and hides the part `+0xD0`, by bit
+`0x1` of each part's dword `+0x08` (`0x0057FBA1`-`0x0057FBF8`).
+
+With bit `0x1` the part `+0xB8` gets the area name `0x00377B60(+0x4C)` at `+0x18` and `0x0020E620(0)`, 0 less the dword
+`0x01F83530`, at `+0x20`, is shown and is measured with `0x0029FE20(part, &width, &height)`. The part `+0xC8` is shown
+with its word `+0x0C` set to the `+0x0C` of part `+0xB8` less its own word `+0x10` (`0x0057FC12`-`0x0057FC82`).
+
+The part `+0xC0` gets the region name `0x003778B0(+0x4C)`: its word `+0x0C` takes the `+0x0C` of part `+0xB8` less the
+word `+0x10` of part `+0xC8` and its own word `+0x10`, and its word `+0x0E` the `+0x0E` of part `+0xB8`; it goes to
+`0x0029FB50(part)`, is shown, and its `+0x0C` becomes word `+0x04` of its first pointer less the width; the name goes at
+`+0x18` and `0x0020E620(0)` at `+0x20` (`0x0057FC86`-`0x0057FCD9`). Without bit `0x1` the parts `+0xC0`, `+0xC8` and `+0xB8`
+are hidden (`0x0057FCE5`-`0x0057FD0E`).
+
+The region and area texts of the list above, the demo's replacements included (`0x0057FD12`-`0x0057FD66`), go to the
+parts: `+0x90` gets the region text at `+0x18` and `0x0020E620(0)` at `+0x20`, the part `+0xA0` is hidden by clearing
+bit `0x1` of its `+0x08`, and `+0x98` gets `0x00377B60(area)` at `+0x18` and `0x0020E620(0)` at `+0x20`
+(`0x0057FD69`-`0x0057FDAE`).
+
+The play time of the list above (`0x0057FDB1`-`0x0057FDF6`, the hours cap an unsigned compare) is drawn by
+`0x00393160(row, 8, 3, 3, hours)`, `0x00393160(row, 0xB, 2, 1, minutes)` and `0x00393160(row, 0xD, 2, 1, seconds)`, with the
+part `+0x38` hidden between the first two by clearing bit `0x1` of its `+0x08` (`0x0057FDF9`-`0x0057FE4D`). The stack
+cookie is checked with `0x00808C40` (`0x0057FE52`-`0x0057FE5A`).
+
 Moving the cursor (sub-command `0x8000`) calls `0x0057EFE0(pane, header)` for a status-2 slot and hides
 the pane for any other. `0x0057EFE0` fills the status pane, whose labels are ESPER (`0x875`), CLAN RANK
 (`0x876`) and POINTS (`0x877`), from the cached header:
@@ -152,6 +276,28 @@ the pane for any other. `0x0057EFE0` fills the status pane, whose labels are ESP
   and `0x002B58B0` gives its name;
 - the clan rank row, shown when `+0x44` is non-zero and the demo flag `0x0209A2A9` (`0x00264150`) is clear:
   the rank title `0x003153F0(+0x44)` for ranks 1-12 and the points `+0x40`, capped at 99,999,999.
+
+`0x0057EFE0(pane, header)` does nothing for a pane of 0 (`0x0057EFE3`). It keeps the header at the pane's `+0x100` and
+shows the pane, or hides it for a header of 0, with `0x00247870(pane, header != 0)`; with a header of 0 it stops there
+(`0x0057EFF3`-`0x0057F014`). The roster entries are `0x0057E6D0(part, header)` on the parts at `+0xC8` to `+0xF8`
+(`0x0057F01F`-`0x0057F053`), and the gil is drawn with `0x00394850(pane, 0, 2, 8, 0, gil)`, its cap an unsigned compare
+(`0x0057F055`-`0x0057F07B`).
+
+The three rows are the pane's children `0x00394660(pane, 0)`, `0x00394660(pane, 1)` and `0x00394660(pane, 2)`. Child 0's
+parts 1 and 11 of its part array `+0x60` go to `0x0029FB50(part)` (`0x0057F080`-`0x0057F0B6`). Child 1, the Esper row, is
+hidden with `0x00247870(child, 0)` when the dword `+0x3C` is `0xFF` (`0x0057F0BB`-`0x0057F0E4`).
+
+Otherwise `0x00247870(child, 1)` shows it. Part 2 gets the byte `+0x0F` of its own `+0x20` at its `+0x39` and 1 in its
+word `+0x0A`; part 1 gets the name `0x002B58B0([row + 0x18], 0)` at `+0x18` and `0x0020E620(0)`, 0 less the dword
+`0x01F83530`, at `+0x20`; and part 0 goes to `0x0029FB50(part)` (`0x0057F0E9`-`0x0057F169`).
+
+Child 2 is hidden with `0x00247870(child, 0)` in the cases the list above gives (`0x0057F16E`-`0x0057F18E`,
+`0x0057F24C`-`0x0057F251`) and shown with `0x00247870(child, 1)` otherwise. The title `0x003153F0(rank)` is asked only for a
+rank below `0xD`; bit `0x1` of part 2's `+0x08` is set when there is a title and cleared when there is not, and with a
+title part 2 gets it at `+0x18` and `0x0020E620(0)` at `+0x20` (`0x0057F194`-`0x0057F1F7`).
+
+Parts 1 and 3 go to `0x0029FB50(part)`, and the points are drawn by `0x00394800(child, 4, 8, 3, points)`, the cap a signed
+compare (`0x0057F1FB`-`0x0057F245`).
 
 ### After a save or a load
 
@@ -208,6 +354,11 @@ and `+0xE0` (`0x00581A7F`, `0x00581A8A`), and stores 0 in the index `+0xCE`, the
 `0x00247930(record, 0x64)` and `0x00254CB0(1)` (`0x00581ACA`-`0x00581AEB`). The callback goes in as a kind-1 packet
 `{1, 0x00581B70, low 32 bits of the record}`, queued only when the queue `0x02CA99C0` exists (`0x00581B25`-`0x00581B47`).
 
+`0x00247870(widget, on)` leaves a null widget alone (`0x00247873`). For a widget with bit `0x20` of its dword `+0x40` it
+sets bit `0x2` there before `0x002473F0(widget, on)` when on is not 0, and clears it after `0x002473F0(widget, on)` when
+on is 0 (`0x00247884`-`0x002478A2`). For any other widget it only copies on's low bit into bit `0x2` of `+0x40`
+(`0x002478B1`-`0x002478BB`).
+
 Message `0xF` stores 0 in `0x02CA99B0`, calls `0x00254CB0(0)` and then `0x00247510([+0xC0], 0xF, 0xA)`
 (`0x00581A24`-`0x00581A47`); message `0x12` calls `0x00247510([+0xC0], 0x12, 0xA)` (`0x00581A1D`). Both return 0; every
 other message goes to `0x005C5230` (`0x00581A18`).
@@ -220,6 +371,22 @@ in `+0xCC` (`0x00581FF4`).
 Step 7 queues its kind-8 packet only when the queue `0x02CA99C0` exists (`0x00581F47`), named through `0x00583700`
 (`0x00581F3B`) with one descriptor (`0x00581F77`); its weight counts either way. States 5 and 6 run state 4's arm,
 the companion name of kind `+0xCE + 2` (`0x00581E9E`-`0x00581EAB`).
+
+`0x00583700(slot, flag)` answers 0 with no controller at `0x02CA99B8` (`0x0058371F`-`0x00583730`). Otherwise it formats the
+prefix `0x003935C0(buffer, 0x20)` and the slot with `0x0017D2E0(name, "%s%03d", prefix, slot)` (`0x009153E4`). With a flag
+other than 0 it formats that name again into the controller's `+0x128` with `0x0017D2E0(+0x128, "/%s", name)`
+(`0x00D23EE4`), and with a flag of 0 it copies the name there. It answers the address of `+0x128`
+(`0x00583735`-`0x005837BE`) and checks its stack cookie with `0x00808C40(cookie)` (`0x005837D0`).
+
+`0x00584610(buffer, size, kind, slot)` builds the names of `0x005837F0(kind, slot)` (The files) into its buffer
+(`0x00583826`-`0x005838BE`, `0x00584640`-`0x005846DE`). In both, kind 1 formats only when the prefix past its first two
+characters is shorter than `0x40` (`0x00583871`-`0x0058388D`, `0x00584695`-`0x005846AD`), and for a kind above 4 the stack
+buffer is copied out without having been written (`0x0058384B`-`0x0058384E`, `0x0058466F`-`0x00584672`). Both check their
+stack cookie with `0x00808C40(cookie)` (`0x0058390A`, `0x0058470A`).
+
+`0x005837F0`'s null answer and its copy to the controller's `+0x128` are at `0x0058380F`-`0x00583821` and
+`0x005838C4`-`0x005838FD`. `0x00584610` writes nothing when its size is below `0x40`, a signed compare
+(`0x00584610`-`0x00584613`); otherwise it copies the name into the buffer (`0x005846E4`-`0x005846FD`).
 
 `0x00581DA0(record, state)` performs one step and adds its weight to the progress total `+0xDC`:
 
@@ -382,11 +549,14 @@ The handlers keep their own words beside the command:
 | `0x02B41128` | `u8` | 0 (zero-filled tail of `.data`) | the save and load screen's mode as the listing command receives it: the controller's byte `+0xC1`, 0 when the screen was opened to save and 1 otherwise | `0x003BB4C0`, its second argument (`0x003BB4CE`, `0x003BB5B5`), which `0x00582040` passes from `[0x02CA99B8] + 0xC1` (`0x005821E0`, `0x005821E7`) | no reader: no RIP-relative, image-base-relative or address-forming reference reads it, the record copy that `0x003BB4C0` makes to `0x02B40FF0` ends `0x138` bytes on, and no 8-byte pointer or 4-byte RVA in the image holds its address |
 | `0x02B4112C` | `f32` | 0 (zero-filled tail of `.data`) | the time the write has waited before its close | `0x003BAEB0`: 0 (`0x003BB074`, `0x003BB0F8`), and the frame time added (`0x003BB0BB`) | `0x003BAEB0` (`0x003BB0AB`, `0x003BB0E2`) |
 
-The controller's `+0xC1` comes from the screen's creation. The request dispatcher `0x0027F5D0` keeps its request's second
-dword at `+0xD4` (`0x0027F74F`) and passes it to `0x00583930` (`0x0027F979`, `0x0027F984`), whose creation block holds it as a
-flag at `+0x08` (`0x0058394E`, `0x00583955`); the screen procedure `0x00582860` copies the flag to `+0xC1` on message 1
-(`0x005828C2`, `0x005828CB`). A request argument of 0 is the save: the dispatcher first builds the save image with
-`0x005844A0` (`0x0027F8DB`, `0x0027F953`).
+The controller's `+0xC1` comes from the screen's creation. The request dispatcher `0x0027F5D0` keeps its request's
+second dword at `+0xD4` (`0x0027F74F`) and passes it to `0x00583930` (`0x0027F979`, `0x0027F984`), whose creation block, made
+by `0x00244F50(0x5A0, 0x00582860, block)` (`0x00583974`), holds the dword 0 at `+0x00`, the flag as a qword 0 or 1 at
+`+0x08` (`0x0058394E`, `0x00583955`) and the second argument, 1 from this caller (`0x0027F97F`), the same way at `+0x10`
+(`0x00583966`); the screen procedure `0x00582860` copies the flag to `+0xC1` on message 1 (`0x005828C2`, `0x005828CB`).
+
+A request argument of 0 is the save: the dispatcher first builds the save image with `0x005844A0` (`0x0027F8DB`,
+`0x0027F953`). `0x00583930` checks its stack cookie with `0x00808C40(cookie)` (`0x00583981`).
 
 ### The slot scan
 
@@ -423,6 +593,26 @@ else returns -1.
   to `count - 1`. Each file that opens adds a `0x40`-byte row to `out`: the size at `+0x10` and the name
   at `+0x20`. It returns the number of rows.
 - Either way the return value is also stored as the status `0x02EAF8E0`.
+
+`0x0057F6B0(widget, message)` queues the scan above only while the message's dword `+0x08` is 0 or 1, an unsigned
+compare (`0x0057F6CB`-`0x0057F6D2`). Each packet goes out only when the queue object exists, the header cache is
+`[widget + 0xD8]`, and it then sets the phase byte `+0xCC` to 2 (`0x0057F6D8`-`0x0057F772`).
+
+For a larger value it queues nothing: it stores `0xA` at `+0xE0`, the device byte `+0x39A` of the queue object at
+`+0xE4` (`0xFF` with no queue object) and the value at `+0xE8`, and sets the phase `+0xCC` to 4
+(`0x0057F774`-`0x0057F7A4`). It checks its stack cookie with `0x00808C40(cookie)` (`0x0057F7B6`).
+
+The callback `0x0057F630(kind, result, widget)` stores the same three fields `+0xE0`, `+0xE4` and `+0xE8` for kind
+`0xA`, with the result at `+0xE8` (`0x0057F639`-`0x0057F661`). With a result of 0 it runs `0x0057F280(widget)` and sets the
+phase `+0xCC` to 3 when that answers 0; a result other than 0, or an answer other than 0, sets the phase to 4
+(`0x0057F667`-`0x0057F683`, `0x0057F695`). For kind 6 it runs `0x0057F280(widget)` and sets the phase to 4 when that answers
+other than 0 (`0x0057F684`-`0x0057F695`). Other kinds do nothing (`0x0057F687`).
+
+`0x0057F280(widget)` starts at the slot in byte `+0xCF` and looks for the next slot below 200 whose status record
+`0x003BB3E0(slot)` holds 2 and whose row of the header cache `[widget + 0xD8]`, `0xA0` bytes a slot, has a dword `+0x04`
+of 0 (`0x0057F28D`-`0x0057F2CD`). With no such slot it answers 1 (`0x0057F2CF`-`0x0057F2D7`). Otherwise it names the file with
+`0x005837F0(1, slot)`, queues kind 6 with the name, the slot byte and the dword 4 through `0x00582540(queue, packet)` when
+the queue object exists, stores slot + 1 at `+0xCF` and answers 0 (`0x0057F2ED`-`0x0057F34D`).
 
 ### The space requirement
 
@@ -571,6 +761,16 @@ SaveloadManager (`0x01F81260`, `0x001C18E0`) to `0x001C1720(manager, field, stor
    is non-zero with `0x002EF390(variable)` true (the active image byte `+0xC00 + variable` is 1).
 4. A matching row returns 0, so no autosave; no match returns 1.
 
+The constructor `0x001C0E20` stores the class `0x008F9B80` at `+0x00` and zeroes `+0x08`-`+0x0F`, `+0x14`-`+0x33`,
+`+0x38`-`+0x42` and `+0x44`-`+0x4B` (`0x001C0E29`-`0x001C0E5D`). Of the `0xA78` bytes `0x001C18A0` allocates for it
+(`0x001C18B7`-`0x001C18CE`), `+0x10`-`+0x13`, `+0x34`-`+0x37`, `+0x43`, `+0x4C`-`+0x4F`, `+0x70`-`+0x56F` and
+`+0xA71`-`+0xA77` keep what they held.
+
+It sets up the row vector: it zeroes the three qwords at `+0x50` and stores the allocator class `0x00902720` at `+0x68`
+through `0x001EDF00(+0x68, 0x008C5F58)`, which does not read the text `EASTL vector` it is passed (`0x001EDF00`-`0x001EDF0D`).
+It clears the byte `+0xA70`, zeroes the `0x500` bytes from `+0x570` with `0x00861EC0(+0x570, 0, 0x500)` (`memset`) and
+returns the manager (`0x001C0E61`-`0x001C0E94`).
+
 The rows come from `./GameData/disableAutosaveList/disableAutosaveList.txt` (`0x008F9AC8`):
 
 - At start-up `0x001C1710` queues the file through `0x001C1810`, with `0x001C18F0` as the callback, which
@@ -690,6 +890,34 @@ format in tenths of the full count.
 | `+0x108` | `u32` | animValue | the value the animation has reached, which the tick shows (`0x0058142B`, `0x005818CF`, `0x00581567`, `0x005815A9`, `0x005815B9`) |
 | `+0x10C` | `f32` | animFraction | animStep / animSteps (`0x00581599`), 1.0 at the end (`0x005815CB`), 0 when an animation starts (`0x00581453`, `0x005818F8`); read by no instruction |
 
+The procedure `0x00581490(gauge, message)` handles messages 1, 2, `0xF` and `0x12` and passes every other one to
+`0x005C5230(gauge, message)` (`0x0058149D`-`0x005814C4`). Messages `0xF` and `0x12` make the posts the `+0xC0` row gives
+with `0x00247510(owner, 0xF, 3)` and `0x00247510(owner, 0x12, 3)`; message `0x12` also zeroes `0x02CA99C8`
+(`0x005814C9`-`0x00581515`). Every handled message answers 0.
+
+Message 1 takes the creation record at the message's `+0x08`. It calls
+`0x002432B0(gauge + 0x50, the record's second qword, 1, gauge)` and, when the gauge is not 0, copies the words `+0x04`
+to `+0x0A` of what it returns to the gauge's `+0x98` to `+0x9E` (`0x0058165F`-`0x005816A5`). It then stores the owner, the
+gauge at `0x02CA99C8` and the number display (`0x005816AC`-`0x005816CA`).
+
+The display's words `+0x48` and `+0x4A` gain `0x200` only when below `0x10`, an unsigned compare
+(`0x005816D1`-`0x005816FB`). The qword stores set `+0xD4` to `0xFFFF` with `+0xD8` 0 and zero `+0xDC` and `+0xE0`; `+0xC8`
+becomes 0, and `0x00225580(display, 0)` is called when the display exists (`0x005816FF`-`0x00581727`); then `+0xE8` becomes
+-1, `+0xFC` 0, the byte `+0xD0` `0xFF` and `+0xCC` 0 (`0x0058172C`-`0x0058174F`).
+
+It then calls `0x0029F4B0(display, full)`, `0x00225580(display, shown)` and `0x0029F480(display, &colour, 1)` with the
+colour `0x002DD7E0(0xD1)`, then `0x00394720(gauge, 0, 0x50)`, `0x00246AD0(owner, gauge)` and `0x00247930(gauge, 0x63)`
+(`0x00581755`-`0x005817B6`).
+
+Message 2, the tick, works only when `0x001EDEC0(+0xB4)` answers other than 0 and the `+0xC8` and `+0xFC` rows let it
+(`0x00581516`-`0x0058153D`); a second read of `+0xFC` that finds 0 takes the value -1 (`0x00581543`-`0x00581550`). It adds 1
+to the step `+0xF8` and runs the animation of the `+0xF8` to `+0x10C` rows in floats and stores the value `+0x108` as
+an integer (`0x00581555`-`0x005815CB`).
+
+With bit `0x1` of `+0xC8` set the value `+0x108` is drawn as it is (`0x005815D5`-`0x005815DD`). Otherwise the creep of the
+`+0xDC` and `+0xE4` rows applies, its compare unsigned (`0x005815DF`-`0x0058161D`), and then the soft cap of the `+0xE0`
+row (`0x00581623`-`0x00581642`). Every tick that works ends in `0x00581930(gauge, value)` (`0x00581648`-`0x0058164D`).
+
 ### The card-presence poll
 
 The poll is the `0xD0`-byte widget kept at `0x02CA99D8` with procedure `0x0057EB30`.
@@ -702,6 +930,29 @@ The poll is the `0xD0`-byte widget kept at `0x02CA99D8` with procedure `0x0057EB
 | `+0xC0` | `u32` | flags | bit `0x1`: the second argument of the poll arm `0x0057EC60` (`0x0057ECC7`-`0x0057ECD1`); bit `0x2`: a presence poll is queued, set by `0x0057EC60` (`0x0057ED13`) and by the device check `0x0057EA40` after it queues its packets (`0x0057EAFE`); while bit `0x2` is set each of the three, `0x0057EA40` (`0x0057EA5D`), `0x0057EC60` (`0x0057EC7A`) and the disarm `0x0057ED40` (`0x0057ED4C`), first empties the storage queue, or marks its started front packet to skip its callback. The disarm clears bits `0x1` and `0x2` (`0x0057ED85`, `0x0057ED9B`); the construct message sets 0 (`0x0057EB74`) |
 | `+0xC4` | `u32` | pollResult | written by the presence-poll callback `0x0057EBB0`: a result of 0 sets bit `0x1` (`0x0057EBD4`); any other result clears bit `0x1` and sets bit `0x2` (`0x0057EBDD`, `0x0057EBE4`) |
 | `+0xC8` | `void*` | controller | the first argument of the poll arm `0x0057EC60`, the save and load screen that armed it (`0x0057ECD7`); 0 at construction (`0x0057EB6A`) |
+
+The procedure `0x0057EB30(widget, message)` handles messages 1 and 18 and passes every other one on with a jump to
+`0x005C5230(widget, message)` (`0x0057EB36`-`0x0057EB4D`). Message 18 zeroes `0x02CA99D8` and answers 0
+(`0x0057EB52`-`0x0057EB60`). Message 1 stores the widget at `0x02CA99D8`, zeroes `+0xC8` and `+0xC0`, calls
+`0x00244960([0x0208EA28], widget)`, `0x00247870(widget, 0)` and `0x00247930(widget, 0x64)`, and answers 0
+(`0x0057EB61`-`0x0057EB9D`).
+
+While the poll widget `[0x02CA99D8]` exists, `0x0057EC60(screen, flag)` and `0x0057EA40(widget, flag)` first settle the
+storage queue `0x02CA99C0` when bit `0x2` of the widget's `+0xC0` is set and the queue's byte `+0x398` is 1 or more:
+with bit `0x1` of the queue's `+0xDC` set they set its bit `0x2` and store 1 at `+0x398`, otherwise they store 0 at
+`+0x398` and at `+0xCC` (`0x0057EC7A`-`0x0057ECC0`, `0x0057EA5D`-`0x0057EA9F`). With no widget they do nothing (`0x0057EC74`,
+`0x0057EA57`).
+
+`0x0057EC60` then copies the flag's low bit into bit `0x1` of the widget's `+0xC0` and stores the screen at `+0xC8`
+(`0x0057ECC7`-`0x0057ECD7`). With the queue it queues a kind-1 packet with the callback `0x0057EBB0` and the low dword of
+the widget's address through `0x00582540(queue, packet)` (`0x0057ECDE`-`0x0057ED00`). It then sets bit `0x2` of `+0xC0` and,
+with the queue, queues kind 3 (`0x0057ED13`-`0x0057ED2C`).
+
+`0x0057EA40` instead stores its arguments, the caller's widget (the screen from `0x00580EB0`, `0x00580F37`, or `0x0057F360`'s
+own `0xF0`-byte widget, `0x0057F607`) and the flag, in the pane `[0x02CA99D0]` (the device-check pane under State;
+`0x0057EAA6`-`0x0057EAC2`). With the queue it queues kind 1 with the callback `0x0057E950` and the low dword of the pane's
+address (`0x0057EAC9`-`0x0057EAEB`). It then sets bit `0x2` of the poll widget's `+0xC0` and, with the queue, queues kind
+4 with `0x00582540(queue, packet)` (`0x0057EAFE`-`0x0057EB17`).
 
 ### The backdrop
 
@@ -716,6 +967,9 @@ the save and load popups.
 | `+0xC0` | `void*` | layer | the screen layer 1 the construct message opens with the descriptor `0x00D23E98` (`0x002CCCA0`, `0x0057F893`) |
 | `+0xC8` | `u32` | closing | bit `0x1` set once the layer has been closed (`0x0057F83E`); 0 at construction (the qword store at `0x0057F8A4`) |
 | `+0xCC` | `i32` | countdown | steps left before the backdrop goes: the save and load code sets 4 when its popup sequence ends (`0x0058039B`, `0x00580611` in `0x0057FE80`; `0x00580890`, `0x005809F4` in `0x00580840`; `0x00580ADD` in `0x00580A80`; `0x00580CFD` in `0x00580CD0`; `0x00582D65` in `0x00582860`; `0x0058312E` in `0x00583040`); the popup opener `0x00583990` sets 0 (`0x00583BA2`) and the construct message clears it (`0x0057F8A4`). Each step on which `0x001EDEC0`(`+0xB4`) answers non-zero lowers it; at 0 the layer closes (`0x002CCB10`), bit `0x1` of `+0xC8` is set and 14 more steps run (`0x0057F81E`-`0x0057F847`), after which the widget releases itself (`0x0057F85E`-`0x0057F869`) |
+
+`0x002CCB10` closes screen layer 1, the widget at `+0x298` of `[0x0209AC30]`, with a jump to `0x00244F00(layer)`, and only
+when the layer exists and bit `0x20` of its `+0x7C` is clear (`0x002CCB10`-`0x002CCB27`).
 
 ### Slot and list records
 

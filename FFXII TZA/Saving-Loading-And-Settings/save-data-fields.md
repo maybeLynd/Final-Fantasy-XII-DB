@@ -115,6 +115,11 @@ Struct ZoneTransitionRecord base=payload+`0x1044` size=`0x20`:
 | `+0x1E` | `u8` | flags1 | bit `0x20` cleared by `0x003145E0`, set by `0x00314530` |
 | `+0x1F` | `u8` | flags2 | bit `0x40`: the music override at `+0x1534` is in force (`0x0026A720`, `0x0026DE20`) |
 
+The reset `0x00314970` stores -1 at the dwords `0x01EED060` and `0x01EED064`, then, through `0x002EF2B0()` each time, -1 at
+the payload's `+0x1044` and `+0x1048` (destinationField and destinationEntrance) and 0 at `+0x104C`, `+0x1050` and
+`+0x1054` (previousField, previousEntrance and mode) (`0x00314974`-`0x003149C9`). It leaves `+0x14` to `+0x1F` as they
+are.
+
 With load mode 3 and the header's flag bit `0x1` clear, `0x00584210` copies the five dwords `+0x1044` to
 `+0x1057` into the header's `+0x80` to `+0x93` (`0x0058427B`-`0x005842B1`), zeroes `destinationEntrance`
 (`0x005842B7`) and stores `0x483` as `destinationField` through `0x00314DC0` (`0x005842D7`-`0x005842DF`); in
@@ -129,6 +134,9 @@ Its readers are
 `0x003148F0`, `0x00314870`, `0x00314850`, `0x003148D0`, `0x003148B0`, `0x00314910`, `0x00314530`, `0x003145E0`, `0x0026D910`, `0x0026DB30`,
 `0x0026DE20`, `0x0025ACA0`, `0x0025D9E0`, `0x00261F90`, `0x002620E0`, `0x00265920`, `0x00584210` and the field getters `0x00314A60`,
 `0x00314A80`, `0x00314AA0`, `0x00314AC0`, `0x00314AE0`, `0x00314B00`, `0x00314B20`, `0x00314B40` and `0x00314B60`.
+
+Two of the getters answer one bit of `flags1`, the byte `+0x1062` of the payload `0x002EF2B0()` answers (the record's
+`+0x1E`), as 0 or 1: `0x00314B20` bit `0x10` (`0x00314B24`-`0x00314B33`) and `0x00314B40` bit `0x2` (`0x00314B44`-`0x00314B52`).
 
 ### The image-backed state block
 
@@ -169,8 +177,12 @@ Offsets in this table are block offsets; add `0x8000` for the payload offset.
 | `+0x3844` | 4 | tab 7 family A, 30 bits: the achievements already fired ([achievement page](../Steam-And-Achievements/achievements.md)) | `0x00315910`, `0x00315E90` (`0x00316069`), `0x00316A50` (`0x00316ADB`, `0x00316B38`) | `0x003154B0`, `0x00315E90`, `0x00316A50` |
 | `+0x3848` | 4 | tab 7 family B, 30 bits | `0x00315B50` | `0x003156E0`, `0x00315B50` |
 | `+0x3868` | 4 | the points `0x00315390` ranks 1-12 against the rank table below | `0x00316BF0`, the counter store, for counter kind 17 (`0x384C` plus the kind's row offset, `0x00316C04`) | `0x00315390`, whose rank `0x00583D60` writes to the header's `+0x44` |
-| `+0x47B8` | 48 | `i32[12]`: the entry count of each class's derived inventory list | `0x00252E60` | `0x00252F70` |
+| `+0x47B8` | 48 | `i32[12]`: the entry count of each class's derived inventory list | `0x00252E60` | none: `0x00252F70` only answers its address |
 | `+0x47E8` | 8 | the play clock's block copy: `0x00254CC0` adds each frame's delta and resets it to 0 past `0xFFFFFFFF80BEFBFF`; `0x002542B0` reads it back as hours modulo 9999, minutes and seconds | `0x00254CC0`, `0x00255040` | `0x002542B0` |
+
+`0x00252F70(list)` answers the address of a list's count, the dword `+0x47B8` + 4 x list of the block `[0x020927C0]`. A
+list above 11, an unsigned compare, first passes `0x200` to the return stub `0x0016D6A0(0x200)` and then answers list
+0's address (`0x00252F74`-`0x00252F93`).
 
 ### The rank table
 

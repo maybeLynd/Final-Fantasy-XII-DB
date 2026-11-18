@@ -134,6 +134,10 @@ the name from `0x00584610` at `+0x00` and the write buffer at `+0x28` (`0x0057E3
 | `+0x70` | `u8[36]` | stash | the mode-3 stash: `+0x70` ticks, `+0x78` hours, `+0x7A` minutes, `+0x7B` seconds, `+0x7C` walked (`0x00320D50`), `+0x80` to `+0x93` the five dwords of the world-transition record (`0x00584210`; the last stored at `0x005842B1` and read back at `0x0058435C`) |
 | `+0x94` | `u8[364]` | rest | zeroed by the image clears; not written by the enumerated writers |
 
+`0x00320D50` answers the walked distance `cvttss2si([+0x5AC8]) + [+0x5ACC]` from the battle block `[0x02EBF190]`: the
+float `+0x5AC8` made an integer, with the dword `+0x5ACC` added (`0x00320D57`-`0x00320D5F`). `0x00329E40(value)` re-seats
+it: it stores the value at `+0x5ACC` and 0 at `+0x5AC8` (`0x00329E47`-`0x00329E54`).
+
 The roster loop (`0x00583DC2`-`0x00583EEB`) walks party pages 0-8 from `0x00282DF0(page)`, skips a page
 whose word `+0x60` is negative or whose flag bit `0x2` is set, and writes for each page `{+0x60 low
 byte, +0xBA, +0x86 << 4 | +0x87, flags}` with flag bit `0x1` when the page is the leader
@@ -332,6 +336,10 @@ for 04 to 06 and 15, 22,016 for 07 to 14), and give those ids no path in this bu
 
 `0x002EF300` reads them (kind 1, index `0x75` + slot), and its one caller is `debug_loadjfdata` (verb `0x209C`, `0x0050D9A0`), which
 none of the 1,114 US scripts calls. Replacing a `.sav` here changes nothing in the US game.
+
+`0x0050D9A0` takes the slot from `0x00267E10(fourth argument)` (`0x0050D9A6`-`0x0050D9B3`). It calls `0x00254CB0(1)` and
+`0x00266D00()` before the read `0x002EF300(slot)`, `0x0032E520(0)` and `0x00254CB0(0)` after it, then `0x0036FCC0()` and
+`0x0026B8E0(i)` for i = 0 to 3 (`0x0050D9B5`-`0x0050D9EC`).
 
 [`slot-image-regions.tsv`](slot-image-regions.tsv) gives every region of the sixteen images, one row per file, with its
 value and the instructions that identify it. Kind A (00 to 03) has its block at `0x2200` with member records of `0x1C4`

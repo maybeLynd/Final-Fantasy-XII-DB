@@ -29,6 +29,9 @@ slots instead (see Party membership).
 `0x0032A810` is `0x00300B80(item, delta, 0)` with the result floored at 0, and `0x0032A830` the same
 through `0x00300BA0`; both end in `0x003008A0(item, n, set, 1, mode)`, the one inventory mutator.
 
+`0x0035DF20(id)` reports busy while `0x022CA430` is non-zero for id 0, and for any other id only while the low dword of
+`0x022CA430` equals it (`0x0035DF20`-`0x0035DF37`).
+
 `0x003008A0` picks the id's descriptor record by its top nibble, `n = id >> 12`; the record's inventory
 class is `n + 5` ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)). It returns
 −1 for ids `0xFFFF` and `0x1000`, a nibble above `0xE` and an index at or past the record's count at
@@ -80,25 +83,37 @@ character open the chest: `0x00269090` hands `0x00328640` (step 1 below) the rec
 latch is not 0.
 
 It stops the opener's movement (`0x0026D6D0`) only when the opener is non-null (`0x00355892`) and disarms the issuer's
-slot 2 (`0x0025D5E0(actor, 2)`, which clears bit `0x4` of the actor's `+0x1C`); its poll `0x00355E20` waits on the
-interaction latch `0x0208CD18`.
+slot 2 (`0x0025D5E0(actor, 2)`, which clears bit `0x4` of the actor's `+0x1C`); its poll `0x00355E20` holds the script
+while the interaction latch `0x0208CD18` is 1: it answers 1 while `0x00319180`, through the jump `0x002677E0`, gives 1 for
+the actor its state holds, and 0 otherwise (`0x00355E24`-`0x00355E31`).
 
 `talktreasureafter` (`0x0414`, begin `0x00356570`, poll `0x00356A10`) waits on `0x00319180`, the latch's getter, for the
-controlled character: the begin pops the reference without using it and stores the controlled character's actor
+controlled character (`0x00319180(actor)` answers the latch for an actor with a unit and 0 otherwise,
+`0x00319184`-`0x0031919E`): the begin pops the reference without using it and stores the controlled character's actor
 (`0x003588B0(0x003590D0())`, `0x0035659E`) in its state, which the poll reads.
 
 The latch runs the opening in three steps:
 
-1. `0x00328640(record)`, while the latch is 0 and the record's first actor has a unit, copies the 32-byte record to
-   `0x0208CCF8` (opener actor at `0x0208CD00`, chest actor at `0x0208CD08`), stores the chest's id at the opener unit's
-   `+0x710`, plays motion `0x201C` on the opener (`0x002EB030`) and sets the latch to 1 (`0x003286BB`).
+1. `0x00328640(record)`, while the latch is 0 and the record's first actor has a unit (`0x0032864D`-`0x0032866A`), copies
+   the 32-byte record to `0x0208CCF8` (opener actor at `0x0208CD00`, chest actor at `0x0208CD08`, `0x0032866C`-`0x0032867A`),
+   stores at the opener unit's `+0x710` the chest's id (`0x003589B0`), or 0 with no chest actor (`0x00328681`-`0x0032869E`),
+   plays motion `0x201C` on the opener (`0x002EB030`) and sets the latch to 1 (`0x003286BB`).
 2. The opener's command step `0x00325260`, case 0, calls `0x00317850` while the latch is 1 and `0x0208CD00` is its own actor
    (`0x00325311`). `0x00317850` plays motion `0x2008` on the chest, starts the chest's effect (`0x002EACD0`, handle kept at
    `0x0208CD1C`) and clears the latch (`0x003178A3`).
-3. `0x0032A170`, once the latch is 0, hides the chest actor: it calls `0x0026DC60`, a jump to `0x002EBB80`, with the chest
-   actor and 0 (`0x0032A18B`), which clears bit `0x8` of byte `+0x10` of the actor's record at `+0xC0` and refreshes
-   the draw test (`0x002EBB96`-`0x002EBBA3`). It then plays `0x2001` on the opener, releases the
-   effect (`0x003B0770`) when the handle is valid, clears bit `0x40` of `0x02089340` and sets the handle to -1.
+3. `0x0032A170`, when the latch is 0 (`0x0032A17B`), hides the chest actor: it calls `0x0026DC60`, a jump to `0x002EBB80`,
+   with the chest actor and 0 (`0x0032A18B`), which, when the top three bits of the actor's byte `+3` are `0x60` and its
+   record at `+0xC0` is non-null (`0x002EBB80`-`0x002EBB94`), clears bit `0x8` of byte `+0x10` of that record and
+   refreshes the draw test (`0x002EBB96`-`0x002EBBA3`).
+
+In step 1 `0x00328640` zeroes the opener unit's `+0x2C` before and after `0x002EB030` and stores `0x201C` at its `+0x5C`
+(`0x003286A4`-`0x003286B4`).
+
+`0x0032A170` then plays `0x2001` on the opener (`0x002EB030`), zeroing `+0x2C` of the opener's unit (`0x00263E30`) before
+and after and storing `0x2001` at the unit's `+0x5C` (`0x0032A190`-`0x0032A1C4`). With no opener at `0x0208CD00`
+(`0x0032A19A`-`0x0032A19C`), or an opener without a unit (no test after `0x0032A1A0`), those accesses go through a null
+pointer. It releases the effect (`0x003B0770`) when the handle is neither -1 nor 0 (`0x0032A1CB`-`0x0032A1DE`), clears bit
+`0x40` of `0x02089340` and sets the handle to -1 (`0x0032A1E3`, `0x0032A1EA`).
 
 `btlAtelOpenTreasureMessage(ref)` (`0x3037`, begin `0x0050FAF0`) is the payout. It takes a message record (`0x0035E550`,
 the record at `0x022CA438`), resolves the chest record through the reference, clears the message record (`0x0035E560`),
@@ -120,6 +135,11 @@ The verb then acts on the kind `0x002FAFD0` stored. For an item (kind 0) it adds
 (kind 1) it adds a gil entry (`0x0035E500(record, 1, gil, 0)`, `0x0050FB6A`) and grants the gil through `0x003004B0(gil, 0)`
 (`0x0050FB76`). When the roll gave nothing (kind 2: an item word `0xFFFF` or a gil word of 0) it adds no entry and
 grants nothing (`0x0050FB5A`). On every path it then shows the message (`0x0035DF40`, `0x0050FBA8`).
+
+`0x0035E500(record, kind, a, b)` adds nothing to a null record or to one that already holds three entries (its word
+`+4`, `0x0035E503`-`0x0035E50F`). Kind 1 writes the 8-byte entry `{1, a}` and kind 0 the entry `{0, word a, word b}` at
+`+0xC` + 8 x count; both add one to the count, and so does any other kind, which writes no entry
+(`0x0035E511`-`0x0035E544`).
 
 The presence ledger at `0x02EC3E60` is a ring of three `{field, value bits, mask bits}` entries with
 its cursor at `0x02EC3E84` and count at `0x02EC3E88`. Its other users are the clear `0x002FA260` (called
@@ -210,12 +230,15 @@ Both verbs poll `0x0034A300`, which holds the script while `0x0030BAD0()` is 0, 
 the roster slots runs (`0x0037CB50`), raising the loading flag (`0x00314D40(1)`) on each held frame (`0x0035A250`,
 `0x0034A30B`-`0x0034A317`); it finishes once `0x0030BAD0()` is non-zero (`0x0034A321`).
 
-`takeoff_equip(item)` (`0x055B`, `0x003497B0` → `0x0030FD10`) unequips one item id from every alive
-main-character record (`0x0031A630(record, slot, 0xFFFF, 1)`). It collects the records of seats 0-8 of map 0
-(`0x00320AB0(i, 0)`) with `+5` = 0 and a selector up to 6 into `0x022C1740`; a record with any of the statuses
-`0x80000003` (`+0x64 | +0x3C`) is taken only when `0x00377C20()`, bit `0x8000` of the area's flag word, is
-non-zero (`0x0030FD40`-`0x0030FD86`). It then clears every slot of those records that holds the id
-(`0x0030FDB0`-`0x0030FDC8`), calls `0x00324380` once and returns 1 (`0x0030FDE2`-`0x0030FDEC`).
+`takeoff_equip(item)` (`0x055B`; `0x003497B0` pops the id with `0x00267E10` and jumps to `0x0030FD10`,
+`0x003497B4`-`0x003497C3`) unequips one item id from the main-character records it collects
+(`0x0031A630(record, slot, 0xFFFF, 1)`). It collects the records of seats 0-8 of map 0 (`0x00320AB0(i, 0)`) with `+5` = 0
+and a selector up to 6 into `0x022C1740`; a record with any of the statuses `0x80000003` (`+0x64 | +0x3C`; KO, Stone and
+X-Zone in the words of [battle verbs](battle-verbs.md)) is taken only when `0x00377C20()`, bit `0x8000` of the area's
+flag word, is non-zero (`0x0030FD40`-`0x0030FD86`).
+
+It then clears every slot of those records that holds the id (`0x0030FDB0`-`0x0030FDC8`), calls `0x00324380` once and
+returns 1 (`0x0030FDE2`-`0x0030FDEC`).
 
 `resetJobs(sel)` (`0x05D6`, `0x00342230` → `0x00328BD0`) refuses a selector above 5 (returns −1). It clears the
 character's equipment (`0x0031A260`), runs `0x00328990` on each board the job bytes `+0x1C3` and `+0x1C4` name, which
@@ -361,7 +384,7 @@ flag, the interaction latch `0x0208CD18`, the presence ledger, and the equipment
 The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
 <details>
-<summary>Show the 3 calls with 2 other topics</summary>
+<summary>Show the 4 calls with 3 other topics</summary>
 
 **Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [force fight mode](../Engine-Core/force-fight-mode.md))
 
@@ -375,5 +398,11 @@ The functions on this page call, or are called by, functions that belong to othe
 | Function | | Functions |
 |---|---|---|
 | `0x00377C20` | is called by | `0x00313A00` |
+
+**Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x003206E0` |
 
 </details>

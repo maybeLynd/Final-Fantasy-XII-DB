@@ -99,20 +99,23 @@ the previous zone's arc, attempts and three floats.
 Verb `0x301A` `btlAtelDecideEntryPointAuto` (`0x0050F520`) calls `0x00235720(actor)` and pushes its
 result: the winning lane, or -1. The selector:
 
-1. returns -1 when `0x00308D90()` is at or above the signed cap byte `0x0208D458` (`0x00235753`-`0x00235763`),
-   or the unit, its candidate table `[unit + 0x38]` or its lane map is null;
+1. returns -1 when `0x00308D90()` is at or above the signed cap byte `0x0208D458` (`0x00235753`-`0x00235763`), or the unit
+   `0x0031B760(actor)`, its candidate table `[unit + 0x38]` or its lane map `[unit + 0x40]` is null
+   (`0x00235776`-`0x002357A5`);
 2. computes `seconds = counter / (int)(30.0 * [0x01DFE0B8])` from `0x0032A150` (`0x002357D9`-`0x002357F9`);
-3. walks lanes 1 to `table[0] - 1`, the candidate table's count word (lane 0 is never offered; a lane
-   past the map's count, with map byte `0xFF` or record address 0 is skipped, `0x00235865`-`0x0023589B`).
-   A lane is skipped when its record has
-   died out (`+0x0A` non-zero and `+0x08 >= +0x0A`), or is committed and not retired (flag bit `0x2` set,
-   bit `0x1` clear) with a non-zero cooldown `+0x10` and `seconds - +0x0C < +0x10` unsigned;
+3. walks lanes 1 to `table[0] - 1`, the candidate table's count word (`0x00235802`-`0x00235807`, `0x002359C4`-`0x002359D9`;
+   lane 0 is never offered; a lane past the map's count, with map byte `0xFF` or record address 0 is skipped,
+   `0x00235850`-`0x0023589B`). A lane is skipped when its record:
+   - has died out (`+0x0A` non-zero and `+0x08 >= +0x0A`, `0x002358A1`-`0x002358B0`), or
+   - is committed and not retired (flag bit `0x2` set, bit `0x1` clear) with a non-zero cooldown `+0x10` and
+     `seconds - +0x0C < +0x10` unsigned (`0x002358B6`-`0x002358D7`);
 4. sets the minimum distance to `0x02089360` when the unit's flag word has bit `0x200000000000` or bit `0x2000000000000`
-   (`test qword ptr [rsi], r10` with `0x0002200000000000`, `0x002358EB`), else 0.0;
-5. for each candidate id of the lane (the table's words from `table[1 + lane]` to
-   `table[2 + lane] - 1`, a short; an id of `0x00FF` is skipped, `0x00235919`-`0x00235925`, and a -1 is passed
-   on and fails the record fetch), tries `0x00234AF0(id, &pos, minR, 0x02089364, &observed, 0)`, the call
-   at `0x00235950`, for attempts `0` to `n - 1`, `n` = `0x0208D457` read signed;
+   (`test qword ptr [rsi], r10` with `0x0002200000000000`, `0x002358EB`-`0x002358F5`), else 0.0;
+5. for each candidate id of the lane (`0x002358DD`-`0x002358E8`, `0x002358FD`-`0x002359A5`; the table's words from
+   `table[1 + lane]` to `table[2 + lane] - 1`, a short; an id of `0x00FF` is skipped, `0x00235919`-`0x00235925`, and a -1
+   makes `0x003DFD00` read the slot before the first record, `0x003DFD33`, `0x003DFD69`), tries
+   `0x00234AF0(id, &pos, minR, 0x02089364, &observed, 0)` (`0x00235950`) for attempts `0` to `n - 1`, `n` = `0x0208D457` read
+   signed;
 6. an attempt is accepted when the call returns non-zero and `observed` is below `0x02F973B8` (the
    shared maximum squared distance, `+INF` from `0x002368D0`) or unordered with it (`comiss`, `jb`,
    `0x0023595F`-`0x00235962`). Area mode never writes `observed` (`0x00234C43`-`0x00234CF2`), so its attempts test
@@ -123,10 +126,10 @@ result: the winning lane, or -1. The selector:
    is an accepted attempt. Both loops run on, so the last accepted candidate of the highest
    accepting lane wins. A negative `n` runs no attempt and still records the lane, and `n` = 0
    records no lane (`0x00235929`-`0x0023592B`);
-8. on a win it stores the position at the record's `+0x50` and `+0x60` as whole 16-byte moves
-   (`0x00235A08`, `0x00235A0F`), sets unit flag bit `0x4000000` and returns the lane. After a negative
-   `n` that position is the stack slot the attempts fill, which no attempt of this candidate
-   wrote (`0x00235981`).
+8. on a win (a lane and a record, `0x002359FF`-`0x00235A06`) it stores the position at the record's `+0x60` and `+0x50` as
+   whole 16-byte moves (`0x00235A08`, `0x00235A0F`), sets unit flag bit `0x4000000` (`0x00235A14`) and returns the lane;
+   otherwise it returns -1 (`0x00235A1D`). After a negative `n` that position is the stack slot the attempts fill, which
+   no attempt of this candidate wrote (`0x00235981`).
 
 Bit `0x2000000000000` is set once per unit by the activation `0x00233AD0` (`0x00233B8C`). The unit reset `0x00236A60`
 keeps it (mask `0xFFFF7FFDFFE7FFFD`, [battle units](../Characters-And-Objects/battle-units.md)), but the slot release
@@ -270,9 +273,10 @@ null (`0x00235613`), the lane does not resolve through the lane map (`0x0023562F
 returns 0 (`0x002356C9`). The range is `table[2 + lane] - table[1 + lane]` and the id the signed word at
 `table[table[1 + lane] + draw % range]` (`0x0023568C`-`0x002356B5`). On success it returns 1 (`0x002356D0`).
 
-`0x00236450` zeroes `out.x`, `out.y` and `out.z` first (`0x00236475`-`0x00236479`) and returns 0 when the record
-fetch fails (`0x00236486`) or the type byte, read signed, is not 0, 1 or 2 (`0x002364DB`). Types 1 and 2 draw
-four times (`0x00236588`-`0x0023660E`); `z` for type 2 is `(draw % (int)(sqrt(...) * 100)) / 100` (`0x00236569`-`0x0023657C`).
+`0x00236450` zeroes `out.x`, `out.y` and `out.z` first (`0x00236475`-`0x00236479`) and returns 0 when the record fetch
+`0x003209C0(id, &record)` fails (`0x0023647F`-`0x00236486`) or the type byte, read signed, is not 0, 1 or 2
+(`0x002364BD`-`0x002364DB`). Types 1 and 2 draw four times (`0x00236513`-`0x0023660E`); `z` for type 2 is
+`(draw % (int)(sqrt(...) * 100)) / 100` (`0x00236569`-`0x0023657C`).
 
 The offset `(x, ?, z)` goes to `0x00319390` with the record's point `+0x10` as the origin and its heading
 `+0x1C` (`0x002365C2`-`0x00236634`). That writes only `out.x` and `out.z`, so a type-1 or type-2 position

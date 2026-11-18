@@ -198,7 +198,9 @@ record and is not down (`0x003125F5`-`0x0031261D`), or at party control level 2,
 control modes](../Engine-Core/party-control-modes.md)), when it is the rider, the unit `0x0031B8C0` gives
 for the rider's seat `0x00327200` (`0x00312623`-`0x0031263C`).
 
-The unit frame refreshes it every frame (`0x00234034`, `0x00234112`, `0x00234133`). The switch is on or off; there is
+The unit frame `0x00233F70` refreshes it on every path past its entry tests (`0x00234034`, `0x00234090`, `0x00234112`,
+`0x00234133`); when it returns at those tests (no unit, `0x002671C0()` 0, no navigation dataset, flag bit `0x8` clear or
+flag bit `0x10000` set) it does not (`0x00233F8B`-`0x00233FBD`, `0x00234138`). The switch is on or off; there is
 no fade.
 
 `0x003126E0(unit)` returns 1 while the mask is 0 (`0x003126E4`-`0x003126ED`). `0x00328530` asks it for the
@@ -206,8 +208,11 @@ target and builds its target line through `0x00290320` only when it returns 1 (`
 
 ### The fallen unit's frame
 
-`0x00233F70` runs a different frame for an active unit with KO, Stone or X-Zone that is not torn down
-(`0x00234039`-`0x00234112`), and for a unit with flag bit `0x10` that has no `+0x698` record (`0x00233FD6`):
+`0x00233F70`, past its entry tests (above), runs a different frame for an active unit with KO, Stone or X-Zone (its
+`+0x698` record's `+0x64 | +0x3C` against `0x80000003`) when the field's bit `0x8000` is clear (`0x00313F60`,
+`0x00233FD8`-`0x00233FEC`; with that bit set it runs the active frame from `0x00233FEE`, [frame update
+order](../Engine-Core/frame-update-order.md)), and for a unit with flag bit `0x10` that has no `+0x698`
+record (`0x00233FD6`), at `0x00234039`-`0x00234112` and `0x00234130`-`0x00234133`:
 
 - a unit with flag bit `0x2` set runs only `0x00312700` (`0x00234039`-`0x0023403C`, `0x00234130`);
 - an enemy whose class row byte `+0x18 & 0x0E` is 4 only keeps its position up to date: with flag bit `0x2`
