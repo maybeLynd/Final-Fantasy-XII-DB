@@ -90,6 +90,13 @@ the game reads it.
 `fhmusicdata.bin`, `soundfoottable.bin`, `summoneffectdata.bin` and `test_map_ref.bin`. Each row gives the file's
 size, its SHA-256 and its first four bytes in hex; no two of the seven have the same bytes.
 
+[`ps2data-bin-families-small-files.tsv`](ps2data-bin-families-small-files.tsv) lists the 67 files no other per-file
+table holds (`charseinfo_*`, `menuhandbook`, `menuhandbook_order`, `key_signal_data`, `menubtlwndinfo`,
+`gramap_weatherinfo`, `map_ref`, `musicctrl`, `musicinfo`, `pc_skillmotion`, `test_area_ref`, `highmodelreplace`,
+`skeletonmapping` and `katano/event.bin`), one row per copy: size, SHA-256, the copies with the same bytes, first four
+bytes, and the header or record count read with the layout of the page in its `page` cell, or, for
+`menuhandbook_order`, measured from the bytes.
+
 [`ps2data-bin-families-myoshiok-files.tsv`](ps2data-bin-families-myoshiok-files.tsv) lists the 3,733 `.bin` and
 `.dat` files under `myoshiok/`, and [`ps2data-bin-families-lang-common-files.tsv`](ps2data-bin-families-lang-common-files.tsv)
 the 28 `.bin` files under `<lang>/common/`. Each row gives the file's path under `image/ff12/`, its size, every

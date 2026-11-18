@@ -145,11 +145,11 @@ Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
 |---|---|
 | archive | 89,414 entries, 48 extensions; eight are public formats |
 | `.tga` | 2 files, 6,220,818 bytes each: `warning.tga`, `sqex logo size_ffx.tga`, both in `gamedata/titleimage/in/` |
-| TGA header | both type 2, 1920 × 1080, 24 bpp, descriptor `0x20`; 18 + 1920 × 1080 × 3 = the file size |
+| TGA header | both type 2, 1920 × 1080, 24 bpp, descriptor `0x20`; 18 + 1920 × 1080 × 3 = the file size; each file has a row in [`standard-file-formats-small-files.tsv`](standard-file-formats-small-files.tsv) with its header fields |
 | `.csv` | 17 files, 209,639 bytes |
 | `ps2data/opt.csv` | 10,182 bytes, header + 459 rows; SMAA `Yes` in all 459, FlipMapOpaqueOrder in 7, ForceNoOpaqueChrFirst in 9, ForceMSAAOff in no row |
 | `ps2data/soft_particle/` | `bg` 65,112 bytes (2,373 rows; 418 maps in 433 runs), `chara` 2,187 (126 rows, ids 0–125), `common` 2,686 (147, ids 1–151), `event` 3,747 (218, ids 0–227), `magic` 6,528 (362, ids 0–396) |
-| `prefetchdata/<lang>/eventlist.csv` | 9 identical files (`us fr it es de jp kr cn ch`), 4,912 bytes, 315 records |
+| `prefetchdata/<lang>/eventlist.csv` | 9 identical files (`us fr it es de jp kr cn ch`), 4,912 bytes, 315 records; the records, in file order and numbered from 0, are the rows of [`standard-file-formats-eventlist-rows.tsv`](standard-file-formats-eventlist-rows.tsv) |
 | other CSV | `jsondata/parametersmanageruisizestruct.csv` 10,350 bytes; `prefetchdata/ff12mapjump_custom_nocrystal.csv` 64,639 bytes |
 | `.json` | 830 files, 3,230,298 bytes; 775 CRLF, 29 on one line, 26 empty; no file with a byte-order mark |
 | `jsondata/` root | `0.json` 2 bytes, `init.json` 5,746, `monstergallery.json` 337,640, `monstertoweapon.json` 50,445 |
@@ -178,6 +178,7 @@ Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
 | `menuhandbook_<family>.dat`, `menuhandbook_<family>NNN.dat` | 2,876 in `ps2data/image/ff12/myoshiok/<lang>/handbook/`: 54 unlock tables, 101 text bundles and 2,721 picture bundles; [Handbook files](handbook-files.md) |
 | `menuquest.dat` | 9, one per language's `quest/` folder; [Quest menu files](quest-menu-files.md) |
 | font `.dat` | 63 in `gamedata/d3d11/artdata/font/<lang>/`; [Font files](../Menus-And-HUD/fonts-files.md) |
+| the 19 files whose lines or header no other table reads | one row each in [`standard-file-formats-small-files.tsv`](standard-file-formats-small-files.tsv): `texlist.txt`, the four `ps2data/add_motion` texts, `parametersmanagermonstergallerystruct.txt`, the nine `eventlist.csv`, `parametersmanageruisizestruct.csv`, the two `.tga` and `sead.win.config`; size, SHA-256, the copies with the same bytes, first bytes, the header or record count read with the page's layout, and that page |
 
 ## Loader behaviour
 

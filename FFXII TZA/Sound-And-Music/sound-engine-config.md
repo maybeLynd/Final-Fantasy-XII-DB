@@ -664,6 +664,12 @@ The chunks follow the directory at `0xB0` with no gaps and end at the file's end
 Sections 5 and 7 of `eps ` each declare one preset of `0x10` bytes, and those bytes are the headers of sections 6
 and 8.
 
+[`sound-engine-config-chunks.tsv`](sound-engine-config-chunks.tsv) lists the ten directory entries in directory order:
+the tag (a trailing space written `_`), the offset, the bytes up to the next chunk or the file's end, and the header:
+for the nine table chunks the version byte `+0x00`, the `u16` `+0x02` and the `u16` count `+0x04`; for `hcam`, the
+fields of The HCA mixer switch, h00, channels `+0x01`, h02, the `u32` rate `+0x04` and enable `+0x08`. A field a
+chunk's layout does not have is written `-`.
+
 ### The voice pools
 
 The sum of the positive category sizes, 60, sizes the engine's pools (`0x007A4ED7`-`0x007A4EFD`, `0x007A5115`-`0x007A5160`):

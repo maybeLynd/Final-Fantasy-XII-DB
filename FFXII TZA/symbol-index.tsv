@@ -16156,7 +16156,7 @@ function	0x001EC760	-	Engine-Core/frame-update-order.md	-	12
 function	0x001ED020	g0111; c1006	Graphics/model-effects-and-motion-commands.md	-	6
 function	0x001ED0D0	hc1006	Graphics/model-effects-and-motion-commands.md	-	7
 function	0x001ED130	-	Characters-And-Objects/field-runtime.md	-	7
-function	0x001ED180	-	Scripts-And-Script-Commands/native-commands.md	-	8
+function	0x001ED180	-	Scripts-And-Script-Commands/native-commands.md	-	9
 function	0x001ED1E0	-	Graphics/character-rig-and-look.md	-	5
 function	0x001ED240	g0999; c1021; c1005	Graphics/model-effects-and-motion-commands.md	-	11
 function	0x001EDAD0	-	Graphics/model-effects-and-motion-commands.md	-	7
@@ -18411,7 +18411,7 @@ function	0x0025D9E0	ActorManager_RunFieldRuntimePass	Story-Events-And-Hunts/open
 function	0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	Characters-And-Objects/field-runtime.md	-	33
 function	0x0025E3F0	-	Compiler-And-C-Runtime/thunks-and-import-stubs.md	-	9
 function	0x0025E400	-	Characters-And-Objects/actor-record-fields.md	-	26
-function	0x0025E4C0	WorldActorScriptVM_InterpretBytecode	Scripts-And-Script-Commands/script-interpreter.md	-	70
+function	0x0025E4C0	WorldActorScriptVM_InterpretBytecode	Scripts-And-Script-Commands/script-interpreter.md	-	71
 function	0x00261F90	-	World-Areas-And-Travel/chocobos-and-airships.md	-	28
 function	0x002620E0	-	World-Areas-And-Travel/zone-changes-and-mapjump.md	-	20
 function	0x002621D0	VMNativeCommand_ExecuteLifecycle	Scripts-And-Script-Commands/script-interpreter.md	-	66
@@ -18643,7 +18643,7 @@ function	0x00267FC0	-	Scripts-And-Script-Commands/script-variables.md	-	9
 function	0x00268100	-	Scripts-And-Script-Commands/script-variables.md	-	8
 function	0x002681C0	-	Characters-And-Objects/actor-model-rebuild.md	-	8
 function	0x002681D0	-	Movement-And-Pathfinding/player-movement.md	-	12
-function	0x002681E0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	18
+function	0x002681E0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	19
 function	0x002682D0	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	9
 function	0x00268320	WorldPersistence_ResetBanksAndMarkInitializationState	World-Areas-And-Travel/weather.md	-	17
 function	0x00268380	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	66
@@ -19157,7 +19157,7 @@ function	0x00282F80	-	World-Areas-And-Travel/chocobos-and-airships.md	-	7
 function	0x00282FA0	-	Menus-And-HUD/menu-screens.md	-	10
 function	0x00282FC0	-	Menus-And-HUD/menu-screens.md	-	8
 function	0x002830A0	-	Menus-And-HUD/menu-screens.md	-	8
-function	0x00283270	-	Menus-And-HUD/menu-screens.md	-	23
+function	0x00283270	-	Menus-And-HUD/menu-screens.md	-	24
 function	0x00283620	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	9
 function	0x00283690	-	Story-Events-And-Hunts/story-flags.md	-	5
 function	0x00283730	-	Items-Equipment-Shops-And-Licenses/license-board.md	-	8
@@ -20568,13 +20568,13 @@ function	0x002E4E50	-	Scripts-And-Script-Commands/script-name-bindings.md	-	9
 function	0x002E4F40	-	Scripts-And-Script-Commands/party-during-scenes.md	-	12
 function	0x002E4FA0	-	PKFL-Package-Files/pkfl-packages.md	-	6
 function	0x002E4FE0	-	Graphics/character-render-records-character-render-record-accesses.tsv	-	5
-function	0x002E5030	Movement_UpdateActorFrame	Movement-And-Pathfinding/heading-speed-to-position-delta.md	-	17
+function	0x002E5030	Movement_UpdateActorFrame	Movement-And-Pathfinding/heading-speed-to-position-delta.md	-	18
 function	0x002E5180	-	Movement-And-Pathfinding/heading-speed-to-position-delta.md	-	21
 function	0x002E5380	Movement_PrepareCandidatePosition	Movement-And-Pathfinding/heading-speed-to-position-delta.md	-	8
 function	0x002E54A0	Movement_TransformAndAccumulateCandidate	Movement-And-Pathfinding/heading-speed-to-position-delta.md	-	6
 function	0x002E55C0	Movement_ClearSteeringRequest	Scripts-And-Script-Commands/party-during-scenes.md	-	12
 function	0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	Movement-And-Pathfinding/heading-speed-to-position-delta.md	-	15
-function	0x002E5750	-	Movement-And-Pathfinding/facing-and-steering.md	-	22
+function	0x002E5750	-	Movement-And-Pathfinding/facing-and-steering.md	-	23
 function	0x002E5B60	Movement_SetDesiredHeadingTurnLimit	Movement-And-Pathfinding/facing-and-steering.md	-	11
 function	0x002E5B90	-	Movement-And-Pathfinding/facing-and-steering.md	-	10
 function	0x002E5BC0	-	Scripts-And-Script-Commands/battle-verbs.md	-	11
@@ -20591,7 +20591,7 @@ function	0x002E6090	-	Enemy-Spawning/bestiary.md	-	10
 function	0x002E60C0	-	Movement-And-Pathfinding/facing-and-steering.md	-	9
 function	0x002E60F0	-	Game-Files-And-Data-Tables/character-se-tables-chse.md	-	14
 function	0x002E6300	-	Scripts-And-Script-Commands/party-during-scenes.md	-	8
-function	0x002E6310	-	Engine-Core/time-stop-and-freeze.md	-	8
+function	0x002E6310	-	Engine-Core/time-stop-and-freeze.md	-	9
 function	0x002E6330	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	12
 function	0x002E63B0	-	Scripts-And-Script-Commands/script-name-bindings.md	-	8
 function	0x002E63C0	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	6
@@ -20705,7 +20705,7 @@ function	0x002E96B0	-	Characters-And-Objects/actor-model-rebuild.md	-	9
 function	0x002E96D0	-	Characters-And-Objects/actor-model-rebuild.md	-	7
 function	0x002E9770	-	Game-Files-And-Data-Tables/resource-ownership-and-disposal.md	-	7
 function	0x002E9780	-	Movement-And-Pathfinding/heading-speed-to-position-delta.md	-	5
-function	0x002E97B0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	19
+function	0x002E97B0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	20
 function	0x002E97C0	-	Engine-Core/identifier-spaces.md	-	12
 function	0x002E9810	-	Engine-Core/identifier-spaces.md	-	11
 function	0x002E9830	-	World-Areas-And-Travel/doors-gates-and-map-changes.md	-	8
@@ -21731,7 +21731,7 @@ function	0x0031FE10	-	Enemy-Spawning/spawn-record-fields.md	-	10
 function	0x0031FE70	-	Characters-And-Objects/party-member-status-record.md	-	7
 function	0x0031FEC0	-	Characters-And-Objects/party-member-status-record.md	-	11
 function	0x0031FF70	-	Characters-And-Objects/party-member-status-record.md	-	10
-function	0x00320040	-	Characters-And-Objects/party-member-status-record.md	-	14
+function	0x00320040	-	Characters-And-Objects/party-member-status-record.md	-	15
 function	0x003200A0	-	Engine-Core/party-control-modes.md	-	11
 function	0x00320160	-	World-Areas-And-Travel/area-flags-navimapdata.md	-	10
 function	0x00320170	-	Graphics/model-asset-list.md	-	10
@@ -21934,7 +21934,7 @@ function	0x00329020	-	Engine-Core/jump-thunks.tsv	-	5
 function	0x00329080	PartyConfiguration_SetDefinitionSelectorForIndex	Scripts-And-Script-Commands/party-verbs.md	-	15
 function	0x003291B0	BattleLocomotion_ResetPathAndSetTargets	Battle-Actions/battle-orders.md	-	12
 function	0x00329210	-	Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md	-	6
-function	0x00329220	-	Party/party-table.md	-	28
+function	0x00329220	-	Party/party-table.md	-	29
 function	0x003299B0	BattleUnit_DispatchActorPresentationEvent	Damage-And-Battle-Formulas/hp-and-ko.md	-	20
 function	0x00329A10	-	World-Areas-And-Travel/chocobos-and-airships.md	-	8
 function	0x00329A20	BattleUnit_AddPrimaryResourceRecoveryAccumulator	Status-Effects-And-KO/mp.md	-	10
@@ -23772,8 +23772,8 @@ function	0x003589E0	-	Scripts-And-Script-Commands/script-interpreter.md	-	8
 function	0x00358A00	ActorScriptResource_GetBytecodeOffsetById	EBP-Script-Files/ebp-script-image.md	-	8
 function	0x00358A20	-	Movement-And-Pathfinding/player-movement.md	-	7
 function	0x00358B40	-	Movement-And-Pathfinding/player-movement.md	-	12
-function	0x00358BB0	-	Engine-Core/time-stop-and-freeze.md	-	15
-function	0x00358BC0	-	Party/party-leader.md	-	12
+function	0x00358BB0	-	Engine-Core/frame-update-order.md	-	15
+function	0x00358BC0	-	Engine-Core/frame-update-order.md	-	12
 function	0x00358C60	-	Movement-And-Pathfinding/player-movement.md	-	10
 function	0x00358CB0	-	Movement-And-Pathfinding/player-movement.md	-	22
 function	0x00358EE0	-	Movement-And-Pathfinding/player-movement.md	-	9
@@ -24311,7 +24311,7 @@ function	0x0036D280	-	Graphics/legacy-ps2-gs-layer.md	-	9
 function	0x0036D2F0	-	Graphics/legacy-ps2-gs-layer.md	-	6
 function	0x0036D400	-	Graphics/render-command-list.md	-	12
 function	0x0036D7E0	-	Graphics/graphics-thread-handshake.md	-	8
-function	0x0036D810	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
+function	0x0036D810	-	Engine-Core/frame-update-order.md	-	7
 function	0x0036D820	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
 function	0x0036D830	-	Story-Events-And-Hunts/archades-script-steps.tsv	-	15
 function	0x0036D840	-	Scripts-And-Script-Commands/party-during-scenes.md	-	9
@@ -26083,8 +26083,8 @@ function	0x003DE450	-	Graphics/script-screen-effects.md	-	5
 function	0x003DE460	-	Graphics/script-screen-effects.md	-	5
 function	0x003DE470	-	Graphics/script-screen-effects.md	-	6
 function	0x003DE480	-	Graphics/script-screen-effects.md	-	5
-function	0x003DE4C0	-	Graphics/character-lighting-and-shadows.md	-	7
-function	0x003DE5F0	-	Characters-And-Objects/actor-model-rebuild.md	-	11
+function	0x003DE4C0	-	Graphics/character-lighting-and-shadows.md	-	8
+function	0x003DE5F0	-	Graphics/character-lighting-and-shadows.md	-	11
 function	0x003DE640	-	Engine-Core/frame-update-order.md	-	8
 function	0x003DE700	-	Graphics/character-lighting-and-shadows.md	-	26
 function	0x003DE710	-	Engine-Core/startup-constants.md	-	6
@@ -27240,7 +27240,7 @@ function	0x004270A0	-	Scripts-And-Script-Commands/script-name-bindings.md	-	9
 function	0x00427100	-	Graphics/character-render-records.md	-	7
 function	0x00427280	-	Scripts-And-Script-Commands/party-verbs.md	-	12
 function	0x004272A0	-	Scripts-And-Script-Commands/script-name-bindings.md	-	8
-function	0x004272C0	-	Scripts-And-Script-Commands/script-name-bindings.md	-	8
+function	0x004272C0	-	Scripts-And-Script-Commands/script-name-bindings.md	-	9
 function	0x004272E0	-	Scripts-And-Script-Commands/script-name-bindings.md	-	9
 function	0x00427300	-	Scripts-And-Script-Commands/script-name-bindings.md	-	10
 function	0x00427320	-	PKFL-Package-Files/pkfl-packages.md	-	17
@@ -59584,7 +59584,7 @@ data	0x00DABDDC	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	0
 data	0x00DAF1B8	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	3
 data	0x00E21F90	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	0
 data	0x00FFFFFF	-	Graphics/script-screen-effects.md	-	1
-data	0x01000000	-	Scripts-And-Script-Commands/verb-arguments.md	-	59
+data	0x01000000	-	Scripts-And-Script-Commands/verb-arguments.md	-	60
 data	0x01000001	-	Scripts-And-Script-Commands/verb-arguments.md	-	33
 data	0x01000002	-	Scripts-And-Script-Commands/verb-arguments.md	-	19
 data	0x01000003	-	Scripts-And-Script-Commands/verb-arguments.md	-	6

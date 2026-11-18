@@ -45,6 +45,13 @@ in it; the viewer reads `JsonData/MonsterGallery.json`.
 - The settings: `motionIndex` 0 to 80, `motionRepeatFrame` 0 to 300 (default 240), `motionRate` 0.1 to 2.0 (0.5), `modelScale`, `cameraPitch`, `cameraYaw`, `xOffset`, `yOffset`, `cameraFov`, the ambient light's colour and intensity, two directional lights' direction, colour and intensity, the background colour, `drawBgColor` and `eyeVfxZBias` -20000 to 0 (default -7000).
 - The setter is `setMotionIndex2` in 27 lines, `setMotionIndex1` in 3, `setMotionIndex` in 1 and `dummy` in 2.
 
+[`json-configs-monstergallerystruct-rows.tsv`](json-configs-monstergallerystruct-rows.tsv) holds the 33 lines after
+the title, one row each with its seven fields, and
+[`json-configs-uisizestruct-rows.tsv`](json-configs-uisizestruct-rows.tsv) the 265 lines after the title of
+`parametersmanageruisizestruct.csv`, one row per line with its six fields: 229 trackbars with decimal places, a
+minimum and a maximum, and 36 labels with a name only; `disable` is 1 on 6 rows ([Screen
+layouts](../Menus-And-HUD/screen-layouts.md)). An empty field is written `-`.
+
 The file formats, the parser and the order in which the loaders look keys up are on
 [Standard file formats](standard-file-formats.md) and
 [Graphics settings](../Engine-Core/graphics-settings.md); this page is the shipped content.

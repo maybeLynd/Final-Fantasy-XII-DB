@@ -425,6 +425,38 @@ no material. A value the renderer sets at draw time is not a stored value and is
 - The other three, `high/n10/n1017/mws/hn1017_33`, `hn1017_43` and `monster/m11/m1134/mws/m1134`, draw with the rigid variant `CB0F9F994888730E82AD01521483E596`. Their modifier `SkinLocalTangent` writes `Vertex`, `Normal` and `Tangent` from five dynamic data blocks, and their vertex blocks carry the eight skinnable types.
 - So no stream of those three has the type `Binormal` that all 15 passes of that variant define: the match returns `0x13` in every pass, the shadow draw at `0x001F5F38` included, and the three meshes are not drawn: a character whose shadow model is one of them casts no shadow.
 
+The 93 `shaders/` model files ([`phyre-asset-files-models-shaders.tsv`](phyre-asset-files-models-shaders.tsv)) decoded
+with the `chr/` material walk, `shader_materials.py`:
+
+| table | rows | one row per |
+|---|---:|---|
+| [`phyre-asset-files-shader-material-bindings.tsv`](phyre-asset-files-shader-material-bindings.tsv) | 93 | `PMaterial` (one per file): its parameter buffer object, how many definitions the buffer holds, and the sets of values and samplers it holds |
+| [`phyre-asset-files-shader-parameters.tsv`](phyre-asset-files-shader-parameters.tsv) | 8,267 | `PShaderParameterDefinition` of a file, with its place in the material's parameter buffer |
+| [`phyre-asset-files-shader-material-textures.tsv`](phyre-asset-files-shader-material-textures.tsv) | 1,993 | texture slot of a material's parameter buffer |
+| [`phyre-asset-files-shader-parameter-sets.tsv`](phyre-asset-files-shader-parameter-sets.tsv) | 21 | distinct list of numeric parameter values |
+| [`phyre-asset-files-shader-sampler-sets.tsv`](phyre-asset-files-shader-sampler-sets.tsv) | 12 | distinct list of sampler states |
+| [`phyre-asset-files-shader-parameter-definitions.tsv`](phyre-asset-files-shader-parameter-definitions.tsv) | 297 | distinct parameter definition in the buffers |
+| [`phyre-asset-files-shader-stream-definitions.tsv`](phyre-asset-files-shader-stream-definitions.tsv) | 13,356 | `PShaderStreamDefinition` of a file |
+
+| Column | Tables | Meaning |
+|---|---|---|
+| `parameters` | material-bindings | how many definitions the material's parameter buffer holds |
+| `definition`, `name`, `parameter_type`, `data_type`, `array_count`, `size`, `buffer_offset` | parameters | the definition's place in its list and its `m_parameterType`, `m_dataType`, `m_arrayElementCount` and `m_bufferLoc` size and offset |
+| `constant_buffer_location` | parameters | `m_constantBufferLocation`, `-` for `0xFFFFFFFF` |
+| `material_slot` | parameters | the definition's place in the run of definitions the material's parameter buffer points at (`+0x14`, with the count at `+0x10`), `-` when the run does not hold it |
+| `stream`, `name`, `data_type`, `size`, `buffer_offset`, `name_hash`, `index` | stream-definitions | the definition's place in its list and its `m_dataType`, `m_bufferLoc` size and offset, `m_nameHash` and `m_index` |
+
+The other columns are those of the `chr/` tables above.
+
+- In all 93 files the definitions are, name for name, the `parameter_names` of
+  [`shader-variant-selection-effects.tsv`](shader-variant-selection-effects.tsv), and their count its `parameters`.
+- 7,768 definitions have a slot in their file's material buffer. The other 499, in 82 files, have none: `World` (82),
+  `WorldViewProjection`, `WorldViewInverse`, `WorldView`, `WorldInverse` and `BoneTransformConstantBuffer` (81 each)
+  and `BoneTransforms` (12).
+- The 1,993 texture slots, 1,353 `Texture2D` and 640 `TextureCubeMap`, name no file and no sampler state; the sampler
+  states are in the sampler sets. No parameter value is kept as hex.
+- `phyrefxaa.fx.phyre` holds no stream definition; the other 92 hold 13,356.
+
 Every map scene, `map/<area>/<map>/<map>.dae.phyre` (456 files), decoded object by object the same way, with each pointer member followed through the file's pointer fixup table to the object, import or user fixup it names:
 
 | table | rows | one row per |

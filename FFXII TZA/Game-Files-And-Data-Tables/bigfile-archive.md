@@ -351,7 +351,7 @@ all present and hashed.
 | `extension`, `first_bytes` | the part after the last dot (`-` without one), and the first four bytes as hex (`-` for an empty file) |
 | `detected_format` | the first four bytes as text when they are printable and nine or more files open with them, `text` for other plain text, `empty` for a file of 0 bytes, a label from a constant a format page states at a fixed offset, `-` otherwise |
 | `format_pages` | the pages that declare this extension in their `archive_formats` |
-| `tables`, `table_names` | how many of the database's tables name this file, by its path or by the folder, name or parent folder a table keys on, and up to four of them; a key that fits files of different content credits none; [`archive-file-tables.tsv`](archive-file-tables.tsv) names them all for the 28,096 files with more than four |
+| `tables`, `table_names` | how many of the database's tables name this file, by its path or by the folder, name or parent folder a table keys on, and up to four of them; a key that fits files of different content credits none; [`archive-file-tables.tsv`](archive-file-tables.tsv) names them all for the 28,108 files with more than four |
 | `exe_kind_id` | the kind and id whose path array holds this path ([asset paths](asset-paths.md)), `-` when none does |
 | `ah_lists` | how many prefetch lists name it ([prefetch manifests](prefetch-manifests.md)) |
 | `named_by_files`, `names_files` | how many rows of `archive-file-references.tsv` name this file, and how many it holds |
@@ -400,9 +400,8 @@ stays distinct from non-use.
 
 | Status | Extensions | Files | Meaning |
 |---|---|---|---|
-| `parsed` | 40 | 31,123 | every file is read into tables; pixels, samples and frames may stay as bytes |
-| `parsed in part` | 6 | 58,288 | `.phyre`, `.txt`, `.ebp`, `.bin`, `.mpk` and `.csv`: only some files have rows, or the rows stop at a header |
-| `listed only` | 2 | 3 | the two `.tga` files and `sead.win.config`: path, size and hash, and no parser of the contents |
+| `parsed` | 43 | 41,395 | every file is read into tables; pixels, samples and frames may stay as bytes |
+| `parsed in part` | 5 | 48,019 | `.phyre`, `.ebp`, `.bin`, `.mpk` and `.config`: only some files have rows, or the rows stop at a header |
 
 | Column | Meaning |
 |---|---|
@@ -411,7 +410,7 @@ stays distinct from non-use.
 | `read_by` | what reads the contents, and how many of the files, measured against the tables |
 | `tables` | the tables holding rows taken from those files |
 | `fields_held_raw` | the parts of the format kept as bytes or with no stated meaning, with the page section |
-| `status` | `parsed`, `parsed in part` or `listed only`, as above |
+| `status` | `parsed` or `parsed in part`, as above |
 
 `Database/Tools/catalogues/archive_format_status.py` writes the table and, after `archive_files.py`, the
 `content_status` column of `archive-files.tsv`. `fields_held_raw` stays per extension: it names fields of a format's

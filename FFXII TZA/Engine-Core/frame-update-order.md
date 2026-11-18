@@ -200,19 +200,45 @@ While the accumulator is at least 1.0, one simulation step runs:
    the permit byte; `0x02064AA8` counts the steps of this pass and is zeroed right after the loop,
    so it is non-zero only while a pass's steps run.
 
+Inside the tick, the drive pass `0x0025D9E0` hands every record of a slot whose byte `+0x10` is below `0x80` to the wait
+resolver `0x0025DF00`, one after another (`0x0025DAC1`, `0x0025DE7A`-`0x0025DEB1`), and on slot 0 runs `0x0025B740` after each
+(`0x0025DE9D`); [field runtime](../Characters-And-Objects/field-runtime.md#the-pass-body) gives its refusals and its other
+branches.
+
+For each record the wait resolver `0x0025DF00` runs, in this order: the interpreter `0x0025E4C0` (`0x0025E0D3`) when the
+record's current thread entry is in state 1 or 2, unless `0x001ED180()` holds and `0x001EDE80()` answers 0
+(`0x0025DFA0`-`0x0025DFB0`); the function at the record's `+0x38` under the tests [field
+runtime](../Characters-And-Objects/field-runtime.md#the-wait-resolver) lists, the battle unit frame `0x00233F70` for a record
+bound to a battle unit (`0x0025E222`; the per-unit frame below).
+
+Then `0x002E97B0`, `0x002681E0`, `0x002E5030` (`0x0025E39B`) and `0x002E5750` (`0x0025E3AA`) run, or, under the test at
+`0x0025E224`-`0x0025E23C`, `0x002E6310` alone (`0x0025E241`). `0x002E5180` runs later, from the tick's tail through `0x002623A0`
+(`0x00314269`, the tail paragraph of the simulation tick below).
+
 After the steps come three groups:
 
 - the camera block, only on a pass in which no whole step ran (the accumulator carried; a flag
   set at the top of the pass is cleared after every step): `0x00358640(0)`, `0x004668C0`,
   `0x00258B90(1)`, `0x003143D0`, `0x00314370(1)`, `0x0037D4C0`, `0x00314820`, `0x0036F510`, `0x0035AF20(1)`,
   `0x00358640(saved)`, so the camera and the follow still advance on a carry frame;
-- the end of the frame: `0x0035AE30` (the pad vibration output, [vibration](../Controls-And-Input/vibration.md)), `0x00360120` (the title-return gate, [game
-  over](../World-Areas-And-Travel/game-over.md)), `0x00377520` and `0x0036F530` when `0x00358370()`, the
-  accumulator gain, the controlled-character change `0x00358BC0`, `0x00226280`, `0x002E65A0`, `0x00332660`,
-  `0x003323B0`, `0x00324510`, `0x0036F2C0`, `0x0032E040`, `0x0035E9A0(0x0022BFD0)`;
+- the end of the frame: `0x0035AE30` (the pad vibration output, [vibration](../Controls-And-Input/vibration.md)), `0x00360120` (the
+  title-return gate, [game over](../World-Areas-And-Travel/game-over.md)), `0x00377520` and `0x0036F530` when `0x00358370()`,
+  the accumulator gain, the controlled-character change `0x00358BC0`, the time-stop apply `0x00226280`, `0x002E65A0`,
+  `0x00332660`, `0x003323B0`, `0x00324510`, `0x0036F2C0`, `0x0032E040`, `0x0035E9A0(0x0022BFD0)`;
 - the pacer `0x0035EC80([0x02064ACC], 0)` (a jump to `0x0035EB70`) ([startup constants](startup-constants.md)), then
   `0x0017F370(1)`, `0x00375B80(1)`, `0x00376470` and `0x00375500(7)` when `0x003583F0`, `0x0024B4F0`,
   `0x00374FD0`, `0x0037DDD0` and `0x00316930`, the end-of-frame achievement pass ([achievements](../Steam-And-Achievements/achievements.md)).
+
+The controlled-character change `0x00358BC0` is called through the thunk `0x00358BB0` (`0x0022AE3C`, a `jmp 0x00358BC0`), and
+the time-stop apply `0x00226280` ([time stop and freeze](time-stop-and-freeze.md)) through the thunk `0x0036D810`
+(`0x0022AE41`, a `jmp 0x00226280`); then, before `0x002E65A0`, the frame waits until two reads of `0x02EBA3F8` agree
+(`0x0022AE50`-`0x0022AE5E`), as states 0 and 1 do. The camera block and the step path rejoin at `0x0022ADEA` (`0x0022ADA2`
+jumps over the block when a step ran), a call to the return stub `0x0016D6A0`, which `0x0022ADF6` calls once more before
+`0x0035AE30` (`0x0022ADFB`).
+
+`0x00316930` (`0x0022AEE6`) starts with `0x00283270(1)` (`0x00316945`), which reaches the status record fill `0x00329220`
+([party member status record](../Characters-And-Objects/party-member-status-record.md)) nine times, through `0x00320040`
+(`0x00283368`, for i = 0 to 8 by `0x00283433`, and the tail jump at `0x0032008D`), so that fill runs after the pacer.
 
 With `0x0017E4E0()` non-zero the frame runs `0x002506D0` and, when `0x001EC560()`, the camera block
 (its `0x00314370(1)` and `0x0037D4C0` each only while `0x02064AA0` is 0) followed by `0x0035AE30`,

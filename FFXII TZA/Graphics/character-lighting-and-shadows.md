@@ -231,9 +231,14 @@ sets every live light's target `+0x08` to the record index of the followed actor
 when the binding actor's class bits (`+0x03 & 0xE0`) are `0x60`, its position `+0x20` from that actor
 (`0x00265020`), with w = 1.0.
 
-`0x0025AB30` undoes a binding by the actor's kind byte `+0x04`: kind 2 runs `0x003DE5F0`, which releases
-the light and clears the entry's handle, actor and focus flag; kinds 1 and 3 run `0x002E3AF0` and
-`0x002E3D00`. The start-up initialiser `0x00266D10` resets all 16 entries through `0x003DE710`.
+`0x0025AB30` undoes a binding by the actor's kind byte `+0x04`: kind 2 runs `0x003DE5F0`, which, for the entry named by
+the actor's `+0x05` when that byte is not negative (`0x003DE5F4`-`0x003DE5FA`), releases the light when the handle is not
+0 (`0x003DE613`-`0x003DE619`) and clears the entry's handle `+0x00`, its actors `+0x08` and `+0x10` and its focus byte
+`+0x05` (`0x003DE61E`-`0x003DE62A`).
+
+Kinds 1 and 3 run `0x002E3AF0` and `0x002E3D00`, and any other kind runs nothing. Every path then stores the word `0xFF00`
+at the actor's `+0x04`, so `+0x04` = 0 and `+0x05` = `0xFF` (`0x0025AB59`, `0x0025AB71`, `0x0025AB89`). The start-up
+initialiser `0x00266D10` resets all 16 entries through `0x003DE710`.
 
 ### Script ambient colours
 

@@ -71,7 +71,7 @@ ending in CRLF.
 | prefetch `.txt` files | 579 begin with a `##Total_data_Size:_…` token, no list with a spaced header; 3,506,346 name tokens in all |
 | `.ah` files | 2,564, 12,235,216 bytes, all CRLF; 2,559 begin `/Gam`, 5 (the font lists) `font` |
 | `.ah` tokens | 142,481, of which 62 (in the five font lists) are not paths |
-| `texlist.txt` | 301 bytes, 11 CRLF lines, each a `.dds.phyre` name that exists under `gamedata/d3d11/artdata/menu/` (`targetline_p`, its six `_clut_` variants, `chain_item`, `chainflash`, and `w_line01` with its `_clut_1`) |
+| `texlist.txt` | 301 bytes, 11 CRLF lines, each a `.dds.phyre` name that exists under `gamedata/d3d11/artdata/menu/` (`targetline_p`, its six `_clut_` variants, `chain_item`, `chainflash`, and `w_line01` with its `_clut_1`); one row per name in [`prefetch-manifests-texlist-rows.tsv`](prefetch-manifests-texlist-rows.tsv) |
 | `.ah` groups | `chr/weapon` 308, `chr/monster` 258, `chr_shadow/monster` 249, `chr/npc` 172, `chr_shadow/npc` 171, `chr/high` 134, `chr_shadow/high` 130, `chr/gadget` 103; 457 `_srm` lists |
 | `.ah` targets | 95,076 path tokens name a shipped file; 47,343 name a map texture path that `shared/phyremaps.txt` maps to a shipped file under `shared/map/`; the 62 font tokens each name a font whose files sit beside the list |
 
@@ -117,6 +117,8 @@ Every prefetch list, every name it holds and every entry, in three kinds of tabl
 
 - The 9,351 files hold 7,912 different contents; a file with the same bytes as an earlier one points to it and has
   no entry rows of its own.
+- The nine `common.txt` hold four more lines starting `##`: `##PhyreShader`, `##UI`, `##JSON` and `##OTHERS`, at lines
+  1, 25, 34 and 873; `section_lines` gives them.
 - Of the 61,235 different names, 61,119 name a shipped file as the archive lookup reads them (it skips leading
   `.`, `/` and `\`, turns `\` into `/` and lower-cases the rest, `0x0059F114`-`0x0059F185`), and 31 name one only
   once their doubled slashes are removed.
@@ -148,6 +150,7 @@ Every prefetch list, every name it holds and every entry, in three kinds of tabl
 | `size_token` | the list's `##Total_data_Size:_` token, which the parser drops; empty when the list has no such token |
 | `names` | the list's entries |
 | `same_bytes_as` | the earlier list with the same bytes, whose entries this one has |
+| `section_lines` | the list's lines starting `##` other than the `##Total_data_Size` token, each with its line number; `-` when it has none |
 | `name`, `text` | the name's number and the name as written |
 | `lists` | the lists that name it |
 | `target` | `file`; `file once doubled slashes and ./ are removed`; or `no shipped file` |

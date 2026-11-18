@@ -1,0 +1,13 @@
+sampler_set	materials	samplers
+S0	1	globalSamplerState:5/1/0/0/0/0/1/0/0/1024/0 normalMapSamplerState:5/1/0/0/0/0/1/0/0/1024/0 g_BrightTexState:5/1/0/0/0/0/1/0/0/1024/0
+S1	4	ColorBufferSampler:5/1/0/0/0/0/1/0/0/1024/0
+S2	1	samNearest:2/0/0/0/0/0/1/0/0/1024/0
+S3	17	ShadowMapSampler:3/1/0/0/0/0/1/0/0/1024/64 TextureSamplerSampler:5/1/1/1/0/0/1/0/0/1024/0 NormalMapSamplerSampler:5/1/1/1/0/0/1/0/0/1024/0 LinearWrapSampler:5/1/1/1/0/0/1/0/0/1024/0 DitherSampler:4/0/1/1/0/0/1/0/0/1024/0 g_samShadow:3/1/1/1/0/0/1/0/0/1024/64 g_ChrAlphaSampler:3/1/1/1/0/0/1/0/0/1024/0 LinearSamplerShadow:3/1/0/0/0/0/1/0/0/1024/0 PointSamplerShadow:2/0/0/0/0/0/1/0/0/1024/0 LinearSampler:3/1/0/0/0/0/1/0/0/1024/0 PointSampler:2/0/0/0/0/0/1/0/0/1024/0 SpecularSamplerSampler:5/1/0/0/0/0/1/0/0/1024/0 RefSamplerSampler:5/1/0/0/0/0/1/0/0/1024/0 cubeMapSamplerSampler:5/1/0/0/0/0/1/0/0/1024/0 AnimSamplerSampler:5/1/0/0/0/0/1/0/0/1024/0 RefractionSamplerSampler:5/1/0/0/0/0/1/0/0/1024/0
+S4	63	ShadowMapSampler:3/1/0/0/0/0/1/0/0/1024/64 TextureSamplerSampler:5/1/1/1/0/0/1/0/0/1024/0 g_samShadow:3/1/1/1/0/0/1/0/0/1024/64 g_ChrAlphaSampler:3/1/1/1/0/0/1/0/0/1024/0 LinearSamplerShadow:3/1/0/0/0/0/1/0/0/1024/0 PointSamplerShadow:2/0/0/0/0/0/1/0/0/1024/0 LinearSampler:3/1/0/0/0/0/1/0/0/1024/0 PointSampler:2/0/0/0/0/0/1/0/0/1024/0 NormalSpecSamplerSampler:5/1/0/0/0/0/1/0/0/1024/0 CubeMapSampler:5/1/0/0/0/0/1/0/0/1024/0 ProceduralNormalSampler:2/0/1/1/0/0/1/0/0/1024/0 WaterBgSampler:5/1/0/0/0/0/1/0/0/1024/0 WaterBgNormalSampler:5/1/1/1/0/0/1/0/0/1024/0 WaterReflectionSampler:5/1/3/3/0/0/1/0/0/1024/0 PalletTexSamplerState:2/0/1/1/1/0/1/0/0/1024/0
+S5	1	PointClampSampler:2/0/0/0/0/0/1/0/0/1024/0 LinearClampSampler:3/1/0/0/0/0/1/0/0/1024/0
+S6	1	LinearClampSampler:5/1/0/0/0/0/1/0/0/1024/0
+S7	1	ColorBufferSampler:5/1/0/0/0/0/1/0/0/1024/0 PointClampSampler:5/1/0/0/0/0/1/0/0/1024/0 PointWrapSampler:5/1/1/1/0/0/1/0/0/1024/0 g_SampleState:5/1/0/0/0/0/1/0/0/1024/0 g_SamplePoint:2/0/0/0/0/0/1/0/0/1024/0 g_SampleLinear:5/1/1/1/0/0/1/0/0/1024/0
+S8	1	ShadowMapSampler:3/1/0/0/0/0/1/0/0/1024/64 NormalMapSamplerSampler:5/1/1/1/0/0/1/0/0/1024/0 LinearWrapSampler:5/1/1/1/0/0/1/0/0/1024/0 DitherSampler:4/0/1/1/0/0/1/0/0/1024/0 LinearSampler:3/1/0/0/0/0/1/0/0/1024/0 PointSampler:2/0/0/0/0/0/1/0/0/1024/0
+S9	1	LinearSampler:5/1/0/0/0/0/1/0/0/1024/0 PointSampler:5/1/0/0/0/0/1/0/0/1024/0
+S10	1	ColorBufferSampler:5/1/0/0/0/0/1/0/0/1024/0 USMSamplerState:5/1/0/0/0/0/1/0/0/1024/0
+S11	1	globalSamplerState:5/1/0/0/0/0/1/0/0/1024/0 normalMapSamplerState:5/1/0/0/0/0/1/0/0/1024/0 YChannelState:5/1/0/0/0/0/1/0/0/1024/0 UChannelState:5/1/0/0/0/0/1/0/0/1024/0 VChannelState:5/1/0/0/0/0/1/0/0/1024/0

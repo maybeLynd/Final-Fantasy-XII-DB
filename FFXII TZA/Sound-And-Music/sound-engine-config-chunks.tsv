@@ -1,0 +1,11 @@
+entry	tag	offset	bytes	u8_00	u16_02	count_04	channels_01	rate_04	enable_08
+0	ctgr	0xB0	160	1	0x10	4	-	-	-
+1	bus_	0x150	80	2	0x10	1	-	-	-
+2	mcr_	0x1A0	160	0	0x10	3	-	-	-
+3	epsp	0x240	16	0	0x10	0	-	-	-
+4	eps_	0x250	480	0	0x10	11	-	-	-
+5	curv	0x430	80	0	0x10	1	-	-	-
+6	expr	0x480	16	0	0x10	0	-	-	-
+7	hcam	0x490	16	0	0x10	-	16	44100	0
+8	evt_	0x4A0	16	0	0x10	0	-	-	-
+9	ctgl	0x4B0	64	0	0x10	1	-	-	-
