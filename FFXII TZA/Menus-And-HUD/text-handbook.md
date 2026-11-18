@@ -94,11 +94,23 @@ Tips is one bundle everywhere.
 - [Text codes](text-codes.md) - the text codes and their placeholders.
 - [Unrequested handbook text](text-handbook-unrequested.md) - the story, world, person and knowledge books.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Platform online achievements: `0x00576E30` calls `0x00315420`; those functions are documented on
-  [jump thunks](../Engine-Core/jump-thunks.md).
-- World area: `0x00576E30` calls `0x00265270`; those functions are documented on
-  [debug menu](../Engine-Core/debug-menu.md).
+<details>
+<summary>Show the 2 calls with 2 other topics</summary>
+
+**Steam and achievements** (explained on [jump thunks](../Engine-Core/jump-thunks.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00576E30` | calls | `0x00315420` |
+
+**World, areas and travel** (explained on [debug menu](../Engine-Core/debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00576E30` | calls | `0x00265270` |
+
+</details>

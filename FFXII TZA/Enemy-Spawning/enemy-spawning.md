@@ -704,13 +704,20 @@ the position buffer at `rsp + 0x60` held. The cap byte is also compared signed.
 - [Random number generators](../Random-Numbers/random-number-generators.md): `0x00328370`.
 - [Heading, speed and position](../Movement-And-Pathfinding/heading-speed-to-position-delta.md): the sine convention.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Save load settings: `0x0025D9E0` calls `0x002EF2B0`, `0x00583920`; those functions are documented on
-  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 2 calls with 1 other topic</summary>
+
+**Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0025D9E0` | calls | `0x002EF2B0`, `0x00583920` |
+
+</details>
 
 ---
 

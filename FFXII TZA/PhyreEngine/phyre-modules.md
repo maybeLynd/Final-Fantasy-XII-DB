@@ -497,17 +497,37 @@ stores 0.
   vtables come from.
 - [Game application](../Engine-Core/game-application.md): the game's application object.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x00584740` is called by `0x002125A0`, `0x00225C40`, `0x006794D0`; `0x005CC930` is called by `0x00223190`, `0x00224570`;
-  those functions are documented on [audio manager](../Sound-And-Music/audio-manager.md),
-  [sound engine](../Sound-And-Music/sound-engine.md).
-- Core runtime: `0x005CC930` is called by `0x001E03F0`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Input: `0x00584740` is called by `0x007973D0`, `0x00797460`, `0x00797690`; `0x005CC930` is called by `0x00196480`, `0x0079D920`;
-  those functions are documented on [controllers](../Controls-And-Input/controllers.md),
-  [phyre application](phyre-application.md).
-- Save load settings: `0x001DDBA0` calls `0x001DFD40`; those functions are documented on
-  [screen mode and aspect](../Graphics/screen-mode-and-aspect.md).
+<details>
+<summary>Show the 12 calls with 4 other topics</summary>
+
+**Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md), [sound engine](../Sound-And-Music/sound-engine.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00584740` | is called by | `0x002125A0`, `0x00225C40`, `0x006794D0` |
+| `0x005CC930` | is called by | `0x00223190`, `0x00224570` |
+
+**Engine core** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005CC930` | is called by | `0x001E03F0` |
+
+**Controls and input** (explained on [controllers](../Controls-And-Input/controllers.md), [phyre application](phyre-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00584740` | is called by | `0x007973D0`, `0x00797460`, `0x00797690` |
+| `0x005CC930` | is called by | `0x00196480`, `0x0079D920` |
+
+**Saving, loading and settings** (explained on [screen mode and aspect](../Graphics/screen-mode-and-aspect.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001DDBA0` | calls | `0x001DFD40` |
+
+</details>

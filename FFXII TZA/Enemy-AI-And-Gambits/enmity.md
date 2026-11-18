@@ -175,23 +175,44 @@ enemy is null or has no table (`0x0032163E`, `0x0032165B`), and when the list is
 - [Action phases](../Battle-Actions/action-phases.md) - the frame base.
 - [Area of effect](../Battle-Actions/area-of-effect.md) - the 16-byte list layout the AI candidate list shares.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input: `0x00377C20` is called by `0x00253C70`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Presentation: `0x0031B810` is called by `0x00307E70`, `0x00313B30`; `0x00377C20` is called by `0x00307E70`, `0x003125E0`,
-  `0x00313B30`, `0x003714A0`.
-- Presentation: those functions are documented on [force fight mode](../Engine-Core/force-fight-mode.md),
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [battle units](../Characters-And-Objects/battle-units.md),
-  [add motion tables](../Graphics/add-motion-tables.md).
-- Script VM: `0x00377C20` is called by `0x00344740`, `0x00352FA0`, `0x003537D0`, `0x00355680`; those functions are documented on
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md),
-  [script censuses](../Story-Events-And-Hunts/script-censuses.md).
-- Spawn encounter lifecycle: `0x0031B810` is called by `0x00234DA0`, `0x002350C0`; those functions are documented on
-  [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 14 calls with 6 other topics</summary>
+
+**Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00253C70` |
+
+**Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00313A00` |
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B810` | is called by | `0x00307E70`, `0x00313B30` |
+| `0x00377C20` | is called by | `0x00307E70`, `0x003125E0`, `0x00313B30`, `0x003714A0` |
+
+**Graphics** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [battle units](../Characters-And-Objects/battle-units.md), [add motion tables](../Graphics/add-motion-tables.md))
+
+**Scripts and script commands** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md), [script censuses](../Story-Events-And-Hunts/script-censuses.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00344740`, `0x00352FA0`, `0x003537D0`, `0x00355680` |
+
+**Enemy spawning** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B810` | is called by | `0x00234DA0`, `0x002350C0` |
+
+</details>

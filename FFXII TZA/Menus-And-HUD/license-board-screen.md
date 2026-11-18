@@ -533,26 +533,47 @@ No other instruction reaches `0x02CA8FD8`.
 - [Dialogs](dialogs.md) - the description box and the confirm and notice boxes.
 - [Menus](menus.md) - the Licenses entry.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x00202C70` is called by `0x003F1E90`; `0x002B58B0` is called by `0x0023A570`; `0x0036A100` is called by
-  `0x00330310`, `0x003306E0`.
-- Actor entity: those functions are documented on [hud](hud.md),
-  [party control modes](../Engine-Core/party-control-modes.md),
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
-- Core runtime: `0x0022A4B0` is called by `0x0017D4C0`; `0x00244DD0` calls `0x00229DF0`, `0x00229E70`, `0x00229EA0`; `0x002465F0`
-  calls `0x001EDDA0`; those functions are documented on
-  [game application](../Engine-Core/game-application.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [global state accessors](../Engine-Core/global-state-accessors.md).
-- Movement: `0x00202C70` is called by `0x00230790`, `0x00338490`; those functions are documented on
-  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [bestiary](../Enemy-Spawning/bestiary.md).
-- Save load settings: `0x00249210` is called by `0x00582790`; those functions are documented on
-  [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md).
-- World area: `0x0036A100` is called by `0x00267930`, `0x003319D0`, `0x003EA820`; those functions are documented on
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md).
+<details>
+<summary>Show the 15 calls with 6 other topics</summary>
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00202C70` | is called by | `0x003F1E90` |
+| `0x002B58B0` | is called by | `0x0023A570` |
+| `0x0036A100` | is called by | `0x00330310`, `0x003306E0` |
+
+**Characters and objects** (explained on [hud](hud.md), [party control modes](../Engine-Core/party-control-modes.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+
+**Engine core** (explained on [game application](../Engine-Core/game-application.md), [frame update order](../Engine-Core/frame-update-order.md), [global state accessors](../Engine-Core/global-state-accessors.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022A4B0` | is called by | `0x0017D4C0` |
+| `0x00244DD0` | calls | `0x00229DF0`, `0x00229E70`, `0x00229EA0` |
+| `0x002465F0` | calls | `0x001EDDA0` |
+
+**Movement and pathfinding** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [bestiary](../Enemy-Spawning/bestiary.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00202C70` | is called by | `0x00230790`, `0x00338490` |
+
+**Saving, loading and settings** (explained on [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00249210` | is called by | `0x00582790` |
+
+**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A100` | is called by | `0x00267930`, `0x003319D0`, `0x003EA820` |
+
+</details>

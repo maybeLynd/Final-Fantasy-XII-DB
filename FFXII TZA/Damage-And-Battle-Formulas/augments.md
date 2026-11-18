@@ -235,9 +235,17 @@ Each augment's text is entry *id* of the augment text bank (text word `0x5000` +
 - [Action results](../Battle-Actions/action-results.md) - the applier that changes enemy affinities.
 - [HP and KO](hp-and-ko.md) - the HP write the HP clamp bypasses.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x002AC5F0` calls `0x00229E40`; those functions are documented on
-  [startup constants](../Engine-Core/startup-constants.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002AC5F0` | calls | `0x00229E40` |
+
+</details>

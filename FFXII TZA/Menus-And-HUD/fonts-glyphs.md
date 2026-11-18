@@ -56,12 +56,25 @@ record's own character, the key is:
 - [Font kerning pairs](fonts-kerning.md) - the pairs keyed by `kernCp`.
 - [Font expansion lists](fonts-expansion-lists.md) - the lists whose values are glyph keys.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Presentation: `0x001B4D70` calls `0x001FC060`, `0x001FDCC0`, `0x001FE020`, `0x001FE080`; those functions are documented on
-  [fonts files](fonts-files.md), [fonts](fonts.md).
-- Resource: `0x001B4D70` calls `0x001B5480`, `0x001B5750`, `0x001B58E0`, `0x0020B5F0`; `0x001B4D70` is called by `0x001B5FE0`;
-  `0x001FDCC0` is called by `0x001B4D70`; those functions are documented on [fonts files](fonts-files.md),
-  [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md), [fonts](fonts.md).
+<details>
+<summary>Show the 10 calls with 2 other topics</summary>
+
+**Graphics** (explained on [fonts files](fonts-files.md), [fonts](fonts.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001B4D70` | calls | `0x001FC060`, `0x001FDCC0`, `0x001FE020`, `0x001FE080` |
+
+**Game files and data tables** (explained on [fonts files](fonts-files.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md), [fonts](fonts.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001B4D70` | calls | `0x001B5480`, `0x001B5750`, `0x001B58E0`, `0x0020B5F0` |
+| `0x001B4D70` | is called by | `0x001B5FE0` |
+| `0x001FDCC0` | is called by | `0x001B4D70` |
+
+</details>

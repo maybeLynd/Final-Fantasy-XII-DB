@@ -691,19 +691,45 @@ record in `0x005760A0`, the sheet in `0x00575710`, the picture in `0x00575B80`),
 - [Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md): the kill counts the Bestiary slots test.
 - [Story progress](../Story-Events-And-Hunts/story-progress.md): the story counter the unlock records test.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x003148F0` is called by `0x00261F90`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Movement: `0x003148F0` is called by `0x0033A720`, `0x003ED190`, `0x003ED3F0`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
-- Save load settings: `0x00249210` is called by `0x00582790`; `0x00249410` is called by `0x00582790`; `0x00249580` is called by
-  `0x00582790`; those functions are documented on [mrp menu resource packages](mrp-menu-resource-packages.md).
-- Spawn encounter lifecycle: `0x003148F0` is called by `0x00233780`; those functions are documented on
-  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
-- World area: `0x0024A680` is called by `0x003C63A0`; `0x0032E620` is called by `0x00378540`; `0x0036A190` is called by
-  `0x00378540`; those functions are documented on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md),
-  [ps2data bin families](ps2data-bin-families.md).
+<details>
+<summary>Show the 11 calls with 5 other topics</summary>
+
+**Sound and music** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003148F0` | is called by | `0x00261F90` |
+
+**Movement and pathfinding** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003148F0` | is called by | `0x0033A720`, `0x003ED190`, `0x003ED3F0` |
+
+**Saving, loading and settings** (explained on [mrp menu resource packages](mrp-menu-resource-packages.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00249210` | is called by | `0x00582790` |
+| `0x00249410` | is called by | `0x00582790` |
+| `0x00249580` | is called by | `0x00582790` |
+
+**Enemy spawning** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003148F0` | is called by | `0x00233780` |
+
+**World, areas and travel** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [ps2data bin families](ps2data-bin-families.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0024A680` | is called by | `0x003C63A0` |
+| `0x0032E620` | is called by | `0x00378540` |
+| `0x0036A190` | is called by | `0x00378540` |
+
+</details>

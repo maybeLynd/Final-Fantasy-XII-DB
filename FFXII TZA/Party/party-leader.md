@@ -324,17 +324,32 @@ No other instruction reaches these globals. The slots' addresses are taken by `0
   town modes.
 - [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md) - the town bit.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
-  [battle units](../Characters-And-Objects/battle-units.md).
-- Save load settings: `0x002EF650` is called by `0x00280140`; those functions are documented on
-  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
-- Save load settings: `0x002EF650` calls `0x00238A80`, `0x00253A80`, `0x002EF2D0`; those functions are documented on
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 5 calls with 3 other topics</summary>
+
+**Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x003206E0` |
+
+**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002EF650` | is called by | `0x00280140` |
+
+**Saving, loading and settings** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002EF650` | calls | `0x00238A80`, `0x00253A80`, `0x002EF2D0` |
+
+</details>
 
 ---
 

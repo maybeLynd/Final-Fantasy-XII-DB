@@ -564,16 +564,35 @@ vector times the matrix's `+0x3C` into its translation row, with or without w.
 - [Authored presentation commands](authored-presentation-commands.md): the commands inside `@FMC`.
 - [Effect files](effect-files-efx-efb.md): the `EFX0010` format.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Party: `0x00265680` is called by `0x00358CB0`, `0x00358F90`; those functions are documented on
-  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md),
-  [player movement](../Movement-And-Pathfinding/player-movement.md).
-- Save load settings: `0x00314910` calls `0x002EF2B0`; those functions are documented on
-  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
-- Status periodic terminal: `0x00265680` is called by `0x00310DB0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Actor entity: `0x00266530` calls `0x00265B60`; those functions are documented on
-  [actor record](../Characters-And-Objects/actor-record.md).
+<details>
+<summary>Show the 5 calls with 4 other topics</summary>
+
+**Party** (explained on [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md), [player movement](../Movement-And-Pathfinding/player-movement.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265680` | is called by | `0x00358CB0`, `0x00358F90` |
+
+**Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00314910` | calls | `0x002EF2B0` |
+
+**Status effects and KO** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265680` | is called by | `0x00310DB0` |
+
+**Characters and objects** (explained on [actor record](../Characters-And-Objects/actor-record.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00266530` | calls | `0x00265B60` |
+
+</details>

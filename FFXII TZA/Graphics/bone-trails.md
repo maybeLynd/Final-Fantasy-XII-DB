@@ -309,15 +309,29 @@ The commands sit only in `.ca` files: 4,516 under `monster`, 4,064 under `npc`, 
 - [PS2 VIF1 and VU1 emulation](../Engine-Core/ps2-vif1-vu1-emulation.md): the packet interpreter and the
   recompiled programs.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0036A100` is called by `0x00330310`, `0x003306E0`; those functions are documented on
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
-- Script VM: `0x0036A100` is called by `0x0050D8F0`.
-- World area: `0x0036A100` is called by `0x00267930`, `0x003319D0`, `0x003EA820`; those functions are documented on
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md).
+<details>
+<summary>Show the 6 calls with 3 other topics</summary>
+
+**Characters and objects** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A100` | is called by | `0x00330310`, `0x003306E0` |
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A100` | is called by | `0x0050D8F0` |
+
+**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A100` | is called by | `0x00267930`, `0x003319D0`, `0x003EA820` |
+
+</details>

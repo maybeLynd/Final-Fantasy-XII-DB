@@ -244,25 +244,47 @@ Script verb `0x5D6` `resetJobs(member)` calls `0x00328BD0` for main characters 0
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the owned bits, LP and MP bars.
 - [Equipment row](equipment-row.md) - the no-license bit of equipment.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input: `0x00313F60` is called by `0x00253C70`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Movement: `0x00313F60` is called by `0x0031BAC0`, `0x00326D60`, `0x00329A80`, `0x003911D0`.
-- Movement: those functions are documented on [game over](../World-Areas-And-Travel/game-over.md),
-  [party slots](../Party/party-slots.md),
-  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md),
-  [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md).
-- Presentation: `0x002527B0` is called by `0x00579420`; `0x00300E40` calls `0x003125E0`; those functions are documented on
-  [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md),
-  [battle units](../Characters-And-Objects/battle-units.md).
-- Platform online achievements: `0x00283270` is called by `0x00316930`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Save load settings: `0x00283270` is called by `0x00582860`, `0x005844A0`; those functions are documented on
-  [game application](../Engine-Core/game-application.md),
-  [native limits](../Engine-Core/native-limits.md).
+<details>
+<summary>Show the 10 calls with 6 other topics</summary>
+
+**Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00313F60` | is called by | `0x00253C70` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00313F60` | is called by | `0x0031BAC0`, `0x00326D60`, `0x00329A80`, `0x003911D0` |
+
+**Movement and pathfinding** (explained on [game over](../World-Areas-And-Travel/game-over.md), [party slots](../Party/party-slots.md), [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md), [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md))
+
+**Graphics** (explained on [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002527B0` | is called by | `0x00579420` |
+| `0x00300E40` | calls | `0x003125E0` |
+
+**Steam and achievements** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00283270` | is called by | `0x00316930` |
+
+**Saving, loading and settings** (explained on [game application](../Engine-Core/game-application.md), [native limits](../Engine-Core/native-limits.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00283270` | is called by | `0x00582860`, `0x005844A0` |
+
+</details>
 
 ---
 

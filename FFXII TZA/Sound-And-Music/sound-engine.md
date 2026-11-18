@@ -454,9 +454,17 @@ No other instruction reaches these globals.
 - [Music](music.md) - the music commands.
 - [Spatial sound](spatial-sound.md) - the layer thread.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Sead: `0x007AD550` is called by `0x007A52E0`; those functions are documented on
-  [sound driver objects](sound-driver-objects.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Sead** (explained on [sound driver objects](sound-driver-objects.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x007AD550` | is called by | `0x007A52E0` |
+
+</details>

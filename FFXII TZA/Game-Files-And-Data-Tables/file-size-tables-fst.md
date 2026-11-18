@@ -233,8 +233,17 @@ a back reference or of a repeat (`0x00536E74`; `0x005370C3`), and once after eac
 - [Bigfile archive](bigfile-archive.md): where the named files are read from.
 - [Area .nmb index](ard-area-battle-data.md): the kind 26 files and the table of path arrays.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- UI: `0x0053DD10` is called by `0x003C80C0`; those functions are documented on [map screens](../Menus-And-HUD/map-screens.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Menus and HUD** (explained on [map screens](../Menus-And-HUD/map-screens.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0053DD10` | is called by | `0x003C80C0` |
+
+</details>

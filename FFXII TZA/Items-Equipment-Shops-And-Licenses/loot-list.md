@@ -106,51 +106,94 @@ The five Tufts (Peach, Green, Orange, Brown and White, `0x2104`-`0x2108`) have n
 - [Item list: every item with its name, price, sort order, icon, the action it runs and its texts](item-list.md)
 - [Treasure chests: where each chest stands, whether it appears and comes back, and what it holds with the odds of each content](../World-Areas-And-Travel/treasure-chests.md)
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0023A3B0` calls `0x0023A570`, `0x0031B760`; `0x0023A570` calls `0x00236A60`, `0x00322050`; `0x0023A570` is called
-  by `0x00300E40`, `0x003266C0`; `0x00300E40` calls `0x0023A570`, `0x0025AB30`, `0x002697E0`, `0x00300FC0`, `0x00322050`; `0x00300E40`
-  is called by `0x00233EA0`, `0x00233F70`, `0x002348E0`, `0x003266C0`; `0x003266C0` calls `0x0023A570`, `0x00263E30`, `0x00300E40`;
-  `0x003266C0` is called by `0x00233CF0`.
-- Actor entity: `0x00510160` calls `0x00237650`; those functions are documented on
-  [party control modes](../Engine-Core/party-control-modes.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
-- Actor entity: and on [force fight mode](../Engine-Core/force-fight-mode.md),
-  [native commands](../Scripts-And-Script-Commands/native-commands.md),
-  [ko and game over](../Status-Effects-And-KO/ko-and-game-over.md),
-  [battle units](../Characters-And-Objects/battle-units.md); and on
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md).
-- Combat action: `0x00300E40` calls `0x003105D0`; `0x003266C0` calls `0x003105D0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Combat formula: `0x0023A570` calls `0x0023AC80`; those functions are documented on
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
-- Movement: `0x003266C0` calls `0x00311E20`; those functions are documented on
-  [party control modes](../Engine-Core/party-control-modes.md).
-- Party: `0x003266C0` calls `0x00263750`, `0x00326500`, `0x003272F0`; `0x003266C0` is called by `0x003261D0`, `0x003273D0`; those
-  functions are documented on [debug menu](../Engine-Core/debug-menu.md),
-  [party control modes](../Engine-Core/party-control-modes.md),
-  [party verbs](../Scripts-And-Script-Commands/party-verbs.md).
-- Presentation: `0x00300E40` calls `0x003125E0`; those functions are documented on
-  [battle units](../Characters-And-Objects/battle-units.md).
-- Script VM: `0x0023A3B0` is called by `0x00510160`; `0x00344C60` calls `0x00267E10`; `0x00473C90` is called by `0x00344C60`;
-  `0x00510160` calls `0x00267E10`, `0x0037CF50`; those functions are documented on
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
-- Spawn encounter lifecycle: `0x0023A3B0` calls `0x002355A0`; `0x0023A570` calls `0x00236100`; `0x0023A570` is called by
-  `0x0023A3B0`; `0x00300E40` calls `0x00237080`; `0x00300E40` is called by `0x00234880`, `0x00234990`, `0x002350C0`, `0x00237690`;
-  `0x00510160` calls `0x0023A3B0`.
-- Spawn encounter lifecycle: those functions are documented on [battle units](../Characters-And-Objects/battle-units.md),
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md),
-  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
-- Spawn encounter lifecycle: and on [frame update order](../Engine-Core/frame-update-order.md),
-  [boss fights](../Battle-Actions/boss-fights.md).
-- World area: `0x0023A570` calls `0x00313F60`; `0x003266C0` calls `0x00313F60`, `0x00377C20`, `0x00377C70`; those functions are
-  documented on [frame update order](../Engine-Core/frame-update-order.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [party control modes](../Engine-Core/party-control-modes.md).
+<details>
+<summary>Show the 48 calls with 13 other topics</summary>
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A3B0` | calls | `0x0023A570`, `0x0031B760` |
+| `0x0023A570` | calls | `0x00236A60`, `0x00322050` |
+| `0x0023A570` | is called by | `0x00300E40`, `0x003266C0` |
+| `0x00300E40` | calls | `0x0023A570`, `0x0025AB30`, `0x002697E0`, `0x00300FC0`, `0x00322050` |
+| `0x00300E40` | is called by | `0x00233EA0`, `0x00233F70`, `0x002348E0`, `0x003266C0` |
+| `0x003266C0` | calls | `0x0023A570`, `0x00263E30`, `0x00300E40` |
+| `0x003266C0` | is called by | `0x00233CF0` |
+
+**Characters and objects** (explained on [party control modes](../Engine-Core/party-control-modes.md), [frame update order](../Engine-Core/frame-update-order.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00510160` | calls | `0x00237650` |
+
+**Characters and objects** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [native commands](../Scripts-And-Script-Commands/native-commands.md), [ko and game over](../Status-Effects-And-KO/ko-and-game-over.md), [battle units](../Characters-And-Objects/battle-units.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md))
+
+**Battle actions** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00300E40` | calls | `0x003105D0` |
+| `0x003266C0` | calls | `0x003105D0` |
+
+**Damage and battle formulas** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x0023AC80` |
+
+**Movement and pathfinding** (explained on [party control modes](../Engine-Core/party-control-modes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003266C0` | calls | `0x00311E20` |
+
+**Party** (explained on [debug menu](../Engine-Core/debug-menu.md), [party control modes](../Engine-Core/party-control-modes.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003266C0` | calls | `0x00263750`, `0x00326500`, `0x003272F0` |
+| `0x003266C0` | is called by | `0x003261D0`, `0x003273D0` |
+
+**Graphics** (explained on [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00300E40` | calls | `0x003125E0` |
+
+**Scripts and script commands** (explained on [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [force fight mode](../Engine-Core/force-fight-mode.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A3B0` | is called by | `0x00510160` |
+| `0x00344C60` | calls | `0x00267E10` |
+| `0x00473C90` | is called by | `0x00344C60` |
+| `0x00510160` | calls | `0x00267E10`, `0x0037CF50` |
+
+**Enemy spawning**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A3B0` | calls | `0x002355A0` |
+| `0x0023A570` | calls | `0x00236100` |
+| `0x0023A570` | is called by | `0x0023A3B0` |
+| `0x00300E40` | calls | `0x00237080` |
+| `0x00300E40` | is called by | `0x00234880`, `0x00234990`, `0x002350C0`, `0x00237690` |
+| `0x00510160` | calls | `0x0023A3B0` |
+
+**Enemy spawning** (explained on [battle units](../Characters-And-Objects/battle-units.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
+
+**Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md), [boss fights](../Battle-Actions/boss-fights.md))
+
+**World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md), [force fight mode](../Engine-Core/force-fight-mode.md), [party control modes](../Engine-Core/party-control-modes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x00313F60` |
+| `0x003266C0` | calls | `0x00313F60`, `0x00377C20`, `0x00377C70` |
+
+</details>

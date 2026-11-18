@@ -248,9 +248,17 @@ No other instruction reaches `0x01FD46F8`; only `0x00228922` stores to it.
 - [Keymap file](keymap-file.md) - the buttons the arbiter reads.
 - [Menu requests](../Menus-And-HUD/menus.md) - the request ids and the router.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Spawn encounter lifecycle: `0x00307140` is called by `0x00306F00`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00307140` | is called by | `0x00306F00` |
+
+</details>

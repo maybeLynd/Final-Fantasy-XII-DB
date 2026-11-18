@@ -213,26 +213,57 @@ object pointers the gates test.
 In the `route` cells of these tables, `ManagerSingleton0209BE80` names the UI manager object and
 `ManagerSub0209BE80_` with an offset its sub-object at that offset.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat AI: `0x00377C20` is called by `0x003014C0`, `0x00301AD0`, `0x00305AB0`; those functions are documented on
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [glossary](glossary.md),
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
-- Gameplay: `0x00320AB0` calls `0x0031B9F0`; `0x00377C20` is called by `0x00307D10`, `0x0030A8A0`, `0x0030C210`, `0x0030D9A0`; those
-  functions are documented on [identifier spaces](identifier-spaces.md), [force fight mode](force-fight-mode.md),
-  [enmity](../Enemy-AI-And-Gambits/enmity.md), [frame update order](frame-update-order.md).
-- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
-  [force fight mode](force-fight-mode.md).
-- Items equipment shops license: `0x00320AB0` is called by `0x002F9F20`, `0x0030A4E0`, `0x0030FAA0`, `0x0030FBE0`, `0x0030FD10`;
-  `0x00377C20` is called by `0x00309FB0`, `0x0030FD10`; those functions are documented on
-  [equipment](../Items-Equipment-Shops-And-Licenses/equipment.md), [stats](../Damage-And-Battle-Formulas/stats.md),
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
-- Rewards progression economy: `0x00320AB0` is called by `0x002F8BB0`, `0x00312280`; `0x00377C20` is called by `0x00312280`;
-  those functions are documented on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).
-- Status periodic terminal: `0x00320AB0` is called by `0x00310DB0`; `0x00377C20` is called by `0x0030E360`, `0x0030F690`,
-  `0x00310DB0`; those functions are documented on [frame update order](frame-update-order.md),
-  [force fight mode](force-fight-mode.md),
-  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
-- Actor entity: `0x003B7080` calls `0x003B6CC0`.
+<details>
+<summary>Show the 24 calls with 7 other topics</summary>
+
+**Enemy AI and gambits** (explained on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [glossary](glossary.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x003014C0`, `0x00301AD0`, `0x00305AB0` |
+
+**Gameplay** (explained on [identifier spaces](identifier-spaces.md), [force fight mode](force-fight-mode.md), [enmity](../Enemy-AI-And-Gambits/enmity.md), [frame update order](frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00320AB0` | calls | `0x0031B9F0` |
+| `0x00377C20` | is called by | `0x00307D10`, `0x0030A8A0`, `0x0030C210`, `0x0030D9A0` |
+
+**Input gameplay** (explained on [force fight mode](force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00313A00` |
+
+**Items, equipment, shops and licenses** (explained on [equipment](../Items-Equipment-Shops-And-Licenses/equipment.md), [stats](../Damage-And-Battle-Formulas/stats.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00320AB0` | is called by | `0x002F9F20`, `0x0030A4E0`, `0x0030FAA0`, `0x0030FBE0`, `0x0030FD10` |
+| `0x00377C20` | is called by | `0x00309FB0`, `0x0030FD10` |
+
+**Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00320AB0` | is called by | `0x002F8BB0`, `0x00312280` |
+| `0x00377C20` | is called by | `0x00312280` |
+
+**Status effects and KO** (explained on [frame update order](frame-update-order.md), [force fight mode](force-fight-mode.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00320AB0` | is called by | `0x00310DB0` |
+| `0x00377C20` | is called by | `0x0030E360`, `0x0030F690`, `0x00310DB0` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003B7080` | calls | `0x003B6CC0` |
+
+</details>

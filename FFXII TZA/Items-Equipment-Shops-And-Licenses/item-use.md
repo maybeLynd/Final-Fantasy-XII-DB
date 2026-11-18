@@ -104,9 +104,17 @@ The 51 item actions are action rows 82-145 except 111-123, one for each item id 
 - [MP gain and cost](../Status-Effects-And-KO/mp.md) - MP, Mist and gil costs.
 - [Licenses](licenses.md) - the party-record test, with its extra party-row test.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- UI: `0x002FFCF0` is called by `0x0031EB20`; those functions are documented on
-  [action definition row](../Battle-Actions/action-definition-row.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Menus and HUD** (explained on [action definition row](../Battle-Actions/action-definition-row.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002FFCF0` | is called by | `0x0031EB20` |
+
+</details>

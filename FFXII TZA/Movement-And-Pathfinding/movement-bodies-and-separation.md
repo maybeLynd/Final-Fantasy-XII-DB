@@ -751,14 +751,26 @@ centre, each body's placement, accumulators, counters and pair bitmap.
   access to the sector masks `0x02B57CE0` (32 sectors, two words each) through a register holding their
   address (81 rows).
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- UI: `0x003590D0` is called by `0x00299BD0`, `0x002C7660`; those functions are documented on
-  [party list](../Menus-And-HUD/party-list.md), [battle units](../Characters-And-Objects/battle-units.md).
-- Spawn encounter lifecycle: `0x00238BF0` is called by `0x0023A410`; those functions are documented on
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
+<details>
+<summary>Show the 3 calls with 2 other topics</summary>
+
+**Menus and HUD** (explained on [party list](../Menus-And-HUD/party-list.md), [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003590D0` | is called by | `0x00299BD0`, `0x002C7660` |
+
+**Enemy spawning** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00238BF0` | is called by | `0x0023A410` |
+
+</details>
 
 ---
 

@@ -268,11 +268,23 @@ against the [story progress](../Story-Events-And-Hunts/story-progress.md) word.
 - [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md): the replacement lookup.
 - [Story progress](../Story-Events-And-Hunts/story-progress.md): the value the replacement thresholds compare with.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x001D6EE0` is called by `0x00210760`; those functions are documented on
-  [audio manager](../Sound-And-Music/audio-manager.md).
-- Save load settings: `0x0019C580` is called by `0x00866200`; those functions are documented on
-  [save file format](../Saving-Loading-And-Settings/save-file-format.md).
+<details>
+<summary>Show the 2 calls with 2 other topics</summary>
+
+**Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001D6EE0` | is called by | `0x00210760` |
+
+**Saving, loading and settings** (explained on [save file format](../Saving-Loading-And-Settings/save-file-format.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0019C580` | is called by | `0x00866200` |
+
+</details>

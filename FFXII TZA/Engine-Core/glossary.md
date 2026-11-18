@@ -71,43 +71,76 @@ gives the meaning on the page it links:
 - [Identifier spaces](identifier-spaces.md): every kind of id and handle, with its range and resolver.
 - [Native limits](native-limits.md): the engine's fixed limits.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x00263C20` is called by `0x00273750`, `0x00273A00`, `0x0046BAC0`; `0x00301AD0` calls `0x002367A0`, `0x00236820`,
-  `0x00236850`, `0x0031B760`, `0x0031B770`, `0x0031B810`.
-- Actor entity: those functions are documented on [battle units](../Characters-And-Objects/battle-units.md),
-  [target selection](../Battle-Actions/target-selection.md),
-  [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [frame update order](frame-update-order.md),
-  [force fight mode](force-fight-mode.md).
-- Combat AI: `0x00301AD0` calls `0x00308C20`, `0x0030BD00`, `0x0031E6F0`, `0x0031E760`, `0x00321190`, `0x003215C0`, `0x00321630`;
-  `0x00301AD0` is called by `0x003014C0`.
-- Combat AI: those functions are documented on [gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md),
-  [enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md),
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
-  [frame update order](frame-update-order.md).
-- Combat action: `0x00263C20` is called by `0x0030AB40`; `0x00301AD0` calls `0x003093D0`, `0x0030AB40`, `0x0030B9B0`, `0x0031C500`.
-- Combat action: those functions are documented on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [action definition row](../Battle-Actions/action-definition-row.md),
-  [action results](../Battle-Actions/action-results.md),
-  [target selection](../Battle-Actions/target-selection.md).
-- Gameplay: `0x00301AD0` calls `0x00309EC0`, `0x00316CF0`, `0x0031EA90`, `0x00321320`, `0x00322C50`.
-- Gameplay: those functions are documented on [item and ability ids](item-and-ability-ids.md),
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md),
-  [enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md), [identifier spaces](identifier-spaces.md).
-- Movement: `0x00263C20` is called by `0x00335760`, `0x00338490`; those functions are documented on
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md),
-  [bestiary](../Enemy-Spawning/bestiary.md).
-- Party: `0x00301AD0` calls `0x0031B7E0`, `0x003272A0`, `0x003273B0`; those functions are documented on
-  [identifier spaces](identifier-spaces.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md),
-  [enemy spawning](../Enemy-Spawning/enemy-spawning.md).
-- Presentation: `0x00301AD0` calls `0x00322360`; those functions are documented on
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
-- UI: `0x00263C20` is called by `0x002734F0`, `0x0027D330`, `0x002BF0E0`, `0x002C7660`, `0x00322A80`, `0x003C5130`, `0x003C8B70`;
-  those functions are documented on [widgets](../Menus-And-HUD/widgets.md), [hud](../Menus-And-HUD/hud.md),
-  [battle units](../Characters-And-Objects/battle-units.md), [target selection](../Battle-Actions/target-selection.md),
-  [action availability](../Controls-And-Input/action-availability.md).
-- World area: `0x00301AD0` calls `0x00320940`, `0x00377C20`; those functions are documented on
-  [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [force fight mode](force-fight-mode.md).
+<details>
+<summary>Show the 42 calls with 13 other topics</summary>
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263C20` | is called by | `0x00273750`, `0x00273A00`, `0x0046BAC0` |
+| `0x00301AD0` | calls | `0x002367A0`, `0x00236820`, `0x00236850`, `0x0031B760`, `0x0031B770`, `0x0031B810` |
+
+**Characters and objects** (explained on [battle units](../Characters-And-Objects/battle-units.md), [target selection](../Battle-Actions/target-selection.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [frame update order](frame-update-order.md), [force fight mode](force-fight-mode.md))
+
+**Enemy AI and gambits**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00301AD0` | calls | `0x00308C20`, `0x0030BD00`, `0x0031E6F0`, `0x0031E760`, `0x00321190`, `0x003215C0`, `0x00321630` |
+| `0x00301AD0` | is called by | `0x003014C0` |
+
+**Enemy AI and gambits** (explained on [gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md), [enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [frame update order](frame-update-order.md))
+
+**Battle actions**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263C20` | is called by | `0x0030AB40` |
+| `0x00301AD0` | calls | `0x003093D0`, `0x0030AB40`, `0x0030B9B0`, `0x0031C500` |
+
+**Battle actions** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [action definition row](../Battle-Actions/action-definition-row.md), [action results](../Battle-Actions/action-results.md), [target selection](../Battle-Actions/target-selection.md))
+
+**Gameplay**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00301AD0` | calls | `0x00309EC0`, `0x00316CF0`, `0x0031EA90`, `0x00321320`, `0x00322C50` |
+
+**Gameplay** (explained on [item and ability ids](item-and-ability-ids.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md), [identifier spaces](identifier-spaces.md))
+
+**Movement and pathfinding** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [bestiary](../Enemy-Spawning/bestiary.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263C20` | is called by | `0x00335760`, `0x00338490` |
+
+**Party** (explained on [identifier spaces](identifier-spaces.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00301AD0` | calls | `0x0031B7E0`, `0x003272A0`, `0x003273B0` |
+
+**Graphics** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00301AD0` | calls | `0x00322360` |
+
+**Menus and HUD** (explained on [widgets](../Menus-And-HUD/widgets.md), [hud](../Menus-And-HUD/hud.md), [battle units](../Characters-And-Objects/battle-units.md), [target selection](../Battle-Actions/target-selection.md), [action availability](../Controls-And-Input/action-availability.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263C20` | is called by | `0x002734F0`, `0x0027D330`, `0x002BF0E0`, `0x002C7660`, `0x00322A80`, `0x003C5130`, `0x003C8B70` |
+
+**World, areas and travel** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [force fight mode](force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00301AD0` | calls | `0x00320940`, `0x00377C20` |
+
+</details>

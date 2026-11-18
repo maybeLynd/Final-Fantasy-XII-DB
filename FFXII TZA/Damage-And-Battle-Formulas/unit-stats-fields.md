@@ -68,17 +68,37 @@ a record.
 - [HP and KO](hp-and-ko.md) - current HP `+0x48`.
 - [Action results](../Battle-Actions/action-results.md) - the applier that writes the enemy adjustments.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Movement: `0x0046AB10` is called by `0x00469A50`; those functions are documented on
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
-- RNG random selection: `0x00386C70` calls `0x00379CD0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Save load settings: `0x00234ED0` is called by `0x005844A0`; `0x00235AF0` calls `0x002EF640`; those functions are documented
-  on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
-  [global state accessors](../Engine-Core/global-state-accessors.md).
-- Script VM: `0x00320AB0` is called by `0x0050FD00`, `0x0050FD50`, `0x0050FDD0`, `0x0050FE20`, `0x0050FE80`, `0x0050FED0`,
-  `0x0050FF20`; `0x00327930` is called by `0x00348B40`; those functions are documented on
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
+<details>
+<summary>Show the 12 calls with 4 other topics</summary>
+
+**Movement and pathfinding** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0046AB10` | is called by | `0x00469A50` |
+
+**Random numbers** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00386C70` | calls | `0x00379CD0` |
+
+**Saving, loading and settings** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [global state accessors](../Engine-Core/global-state-accessors.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00234ED0` | is called by | `0x005844A0` |
+| `0x00235AF0` | calls | `0x002EF640` |
+
+**Scripts and script commands** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00320AB0` | is called by | `0x0050FD00`, `0x0050FD50`, `0x0050FDD0`, `0x0050FE20`, `0x0050FE80`, `0x0050FED0`, `0x0050FF20` |
+| `0x00327930` | is called by | `0x00348B40` |
+
+</details>

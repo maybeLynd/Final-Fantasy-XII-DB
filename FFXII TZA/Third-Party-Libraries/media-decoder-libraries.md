@@ -821,13 +821,29 @@ and `0x8`, `0x10` and `0x20` for `ecx` bits `0x1`, `0x200` and `0x80000` (`0x001
   HCA decoder and Tremor.
 - [Sound banks](../Sound-And-Music/sound-banks.md): the bank files whose materials these decoders read.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Application: `0x00584740` is called by `0x001A98B0`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Platform: `0x00584740` is called by `0x00650D40`; those functions are documented on
-  [phyre post effect classes](../PhyreEngine/phyre-post-effect-classes.md).
-- Presentation: `0x001FDF70` is called by `0x00193AD0`, `0x001B4590`; those functions are documented on
-  [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md).
+<details>
+<summary>Show the 4 calls with 3 other topics</summary>
+
+**Application** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00584740` | is called by | `0x001A98B0` |
+
+**Platform** (explained on [phyre post effect classes](../PhyreEngine/phyre-post-effect-classes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00584740` | is called by | `0x00650D40` |
+
+**Graphics** (explained on [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001FDF70` | is called by | `0x00193AD0`, `0x001B4590` |
+
+</details>

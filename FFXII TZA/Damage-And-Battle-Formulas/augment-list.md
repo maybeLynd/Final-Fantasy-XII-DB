@@ -158,9 +158,17 @@ notes).
 - [Stats: how max HP, MP, Strength, Magick Power, Vitality, Speed, Attack Power, Defense, Magick Resist and evade are built, and their caps](stats.md)
 - [Battle buffs: what Battle Cry, Enrage, Magick Barrier, Perfect Defense and the other enemy abilities switch on, and how long they last](../Status-Effects-And-KO/battle-buffs.md)
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Presentation: `0x002AC2F0` is called by `0x002AAE40`; those functions are documented on
-  [message windows](../Menus-And-HUD/message-windows.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Graphics** (explained on [message windows](../Menus-And-HUD/message-windows.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002AC2F0` | is called by | `0x002AAE40` |
+
+</details>

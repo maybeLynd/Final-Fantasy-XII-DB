@@ -412,10 +412,20 @@ One row per function, 6 rows in address order.
 |---|---|
 | `member_signature` | which of the six tree functions the caller calls directly, joined by `+`: `inc` the next-node step `0x0016D6D0`, `dec` the previous-node step `0x0016D720`, `rotL` and `rotR` the rotations `0x0016D780` and `0x0016D7E0`, `ins` the insert `0x0016D840`, `era` the erase `0x0016DA60`. Six signatures occur across the 99 rows: `inc+era` 30, `dec+ins` 24, `inc+ins` 16, `ins` 16, `inc` 12 and `rotL+rotR` 1, the erase `0x0016DA60` itself; no caller uses more than two of the six |
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x001FBD80` calls `0x001A1470`; `0x001FBD80` is called by `0x0022B8C0`; `0x001FBE50` calls `0x001A1470`;
-  `0x001FBE50` is called by `0x0022B8C0`; those functions are documented on [text drawing](../Menus-And-HUD/text-drawing.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 4 calls with 1 other topic</summary>
+
+**Engine core** (explained on [text drawing](../Menus-And-HUD/text-drawing.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001FBD80` | calls | `0x001A1470` |
+| `0x001FBD80` | is called by | `0x0022B8C0` |
+| `0x001FBE50` | calls | `0x001A1470` |
+| `0x001FBE50` | is called by | `0x0022B8C0` |
+
+</details>

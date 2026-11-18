@@ -201,12 +201,20 @@ The applier writes only to the records it is given and the globals named in the 
 - [The status write](../Status-Effects-And-KO/status-changes.md)
   - what `0x0030E360` does with each add and remove.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Resource: `0x00319F50` calls `0x001D6AE0`; those functions are documented on
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Game files and data tables** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00319F50` | calls | `0x001D6AE0` |
+
+</details>
 
 ---
 

@@ -207,17 +207,41 @@ The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) unti
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the stats offsets the tests read.
 - [Elements](../Damage-And-Battle-Formulas/elements.md) - the weak and absorb bytes.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x0030FE60` is called by `0x002341C0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Items equipment shops license: `0x00309EC0` is called by `0x00317930`; those functions are documented on
-  [party table](../Party/party-table.md).
-- Platform online achievements: `0x00309EC0` is called by `0x00315E90`; those functions are documented on
-  [gil](../Rewards-EXP-Gil-And-Loot/gil.md).
-- Status periodic terminal: `0x0031B770` is called by `0x00310DB0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Script VM: `0x0031B760` is called by `0x005102D0`; those functions are documented on
-  [battle units](../Characters-And-Objects/battle-units.md).
+<details>
+<summary>Show the 5 calls with 5 other topics</summary>
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0030FE60` | is called by | `0x002341C0` |
+
+**Items, equipment, shops and licenses** (explained on [party table](../Party/party-table.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00309EC0` | is called by | `0x00317930` |
+
+**Steam and achievements** (explained on [gil](../Rewards-EXP-Gil-And-Loot/gil.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00309EC0` | is called by | `0x00315E90` |
+
+**Status effects and KO** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B770` | is called by | `0x00310DB0` |
+
+**Scripts and script commands** (explained on [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B760` | is called by | `0x005102D0` |
+
+</details>

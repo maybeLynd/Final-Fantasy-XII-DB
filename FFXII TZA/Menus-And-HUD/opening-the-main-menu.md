@@ -66,30 +66,69 @@ does nothing.
 - [Menu screens](menu-screens.md): every screen and widget procedure.
 - [Widgets](widgets.md): how a menu element is built, opened and closed.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x002E09A0` calls `0x00263FF0`; those functions are documented on
-  [debug menu](../Engine-Core/debug-menu.md).
-- Audio: `0x00280DE0` calls `0x002DEE50`; those functions are documented on
-  [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md).
-- Core runtime: `0x002E09A0` calls `0x00229F00`; `0x002E1BA0` is called by `0x0022B8C0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Input: `0x00254B50` is called by `0x00253C70`, `0x002E09A0`; `0x002E09A0` calls `0x00248F00`; `0x002E1B10` is called by
-  `0x00253C70`; `0x0037B330` is called by `0x002E09A0`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Presentation: `0x00246AC0` is called by `0x002B7B80`, `0x002BAF80`; `0x0029D340` calls `0x002DC290`; `0x0037B330` is called by
-  `0x003DD4C0`; those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
-  [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md),
-  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
-- Resource: `0x00280DE0` calls `0x0024A5A0`; `0x0037B330` is called by `0x0024AC30`; those functions are documented on
-  [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md),
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
-- Script VM: `0x002E1B10` is called by `0x0050DAB0`; those functions are documented on [menus](menus.md).
-- World area: `0x002E09A0` is called by `0x00314020`; those functions are documented on
-  [debug logging](../Engine-Core/debug-logging.md).
+<details>
+<summary>Show the 17 calls with 8 other topics</summary>
+
+**Characters and objects** (explained on [debug menu](../Engine-Core/debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E09A0` | calls | `0x00263FF0` |
+
+**Sound and music** (explained on [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00280DE0` | calls | `0x002DEE50` |
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E09A0` | calls | `0x00229F00` |
+| `0x002E1BA0` | is called by | `0x0022B8C0` |
+
+**Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00254B50` | is called by | `0x00253C70`, `0x002E09A0` |
+| `0x002E09A0` | calls | `0x00248F00` |
+| `0x002E1B10` | is called by | `0x00253C70` |
+| `0x0037B330` | is called by | `0x002E09A0` |
+
+**Graphics** (explained on [frame update order](../Engine-Core/frame-update-order.md), [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00246AC0` | is called by | `0x002B7B80`, `0x002BAF80` |
+| `0x0029D340` | calls | `0x002DC290` |
+| `0x0037B330` | is called by | `0x003DD4C0` |
+
+**Game files and data tables** (explained on [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00280DE0` | calls | `0x0024A5A0` |
+| `0x0037B330` | is called by | `0x0024AC30` |
+
+**Scripts and script commands** (explained on [menus](menus.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E1B10` | is called by | `0x0050DAB0` |
+
+**World, areas and travel** (explained on [debug logging](../Engine-Core/debug-logging.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E09A0` | is called by | `0x00314020` |
+
+</details>
 
 ---
 

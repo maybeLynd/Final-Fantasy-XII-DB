@@ -298,17 +298,32 @@ records the anchor from the actor of the character under control (`0x0033CA15`-`
   posts the request.
 - [Enmity](../Enemy-AI-And-Gambits/enmity.md) - the enmity removed at a fall.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Save load settings: `0x00236760` is called by `0x001C1720`, `0x002EF690`, `0x00583D60`; `0x002E1C20` is called by `0x005823B0`,
-  `0x00582860`.
-- Save load settings: those functions are documented on
-  [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [party data](../Party/party-data.md),
-  [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md),
-  [game application](../Engine-Core/game-application.md).
-- Platform online achievements: `0x003148F0` is called by `0x003160C0`; those functions are documented on
-  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md).
-- RNG random selection: `0x002342F0` calls `0x00328D80`; those functions are documented on
-  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
+<details>
+<summary>Show the 7 calls with 4 other topics</summary>
+
+**Saving, loading and settings**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236760` | is called by | `0x001C1720`, `0x002EF690`, `0x00583D60` |
+| `0x002E1C20` | is called by | `0x005823B0`, `0x00582860` |
+
+**Saving, loading and settings** (explained on [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [party data](../Party/party-data.md), [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md), [game application](../Engine-Core/game-application.md))
+
+**Steam and achievements** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003148F0` | is called by | `0x003160C0` |
+
+**Random numbers** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002342F0` | calls | `0x00328D80` |
+
+</details>

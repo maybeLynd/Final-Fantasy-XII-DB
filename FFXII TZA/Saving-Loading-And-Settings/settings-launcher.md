@@ -315,15 +315,32 @@ it and what the player sees are given there, and no setting takes effect, becaus
 - [Controllers: how a gamepad is found, the three kinds of controller the game builds, plugging one in during play, and the Steam Input action names](../Controls-And-Input/controllers.md)
 - [YEBIS and PPFX: the post-effect library, how the game starts and drives it, its licence check and the EnableYebis switch](../Third-Party-Libraries/yebis-ppfx-post-effects.md)
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x002256A0` is called by `0x00221940`, `0x00221C70`, `0x00221E60`, `0x002238F0`, `0x00223F40`, `0x00223FA0`, `0x002240B0`,
-  `0x00224180`, `0x00224290`, `0x00224360`, `0x00224470`, `0x00224A30`; those functions are documented on
-  [audio manager](../Sound-And-Music/audio-manager.md).
-- Presentation: `0x001DC510` is called by `0x00193AD0`; `0x002256A0` is called by `0x00182E80`; those functions are documented
-  on [game application](../Engine-Core/game-application.md).
-- UI: `0x0018CD90` is called by `0x0018EEE0`; `0x001DC510` calls `0x001DC3D0`; `0x002256A0` is called by `0x001DC3D0`; those
-  functions are documented on [graphics settings](../Engine-Core/graphics-settings.md),
-  [yebis ppfx post effects](../Third-Party-Libraries/yebis-ppfx-post-effects.md).
+<details>
+<summary>Show the 17 calls with 3 other topics</summary>
+
+**Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002256A0` | is called by | `0x00221940`, `0x00221C70`, `0x00221E60`, `0x002238F0`, `0x00223F40`, `0x00223FA0`, `0x002240B0`, `0x00224180`, `0x00224290`, `0x00224360`, `0x00224470`, `0x00224A30` |
+
+**Graphics** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001DC510` | is called by | `0x00193AD0` |
+| `0x002256A0` | is called by | `0x00182E80` |
+
+**Menus and HUD** (explained on [graphics settings](../Engine-Core/graphics-settings.md), [yebis ppfx post effects](../Third-Party-Libraries/yebis-ppfx-post-effects.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0018CD90` | is called by | `0x0018EEE0` |
+| `0x001DC510` | calls | `0x001DC3D0` |
+| `0x002256A0` | is called by | `0x001DC3D0` |
+
+</details>

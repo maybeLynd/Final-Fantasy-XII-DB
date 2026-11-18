@@ -1665,13 +1665,30 @@ The last group has the dword `+0x408` as its count `n`, and the body skips its l
 - [Post-processing](../Graphics/post-processing.md): the passes the game runs, the
   feature setters and the init bits that leave features off.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Developer: `0x00796E20` is called by `0x001C2F50`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Platform online achievements: `0x00796E20` is called by `0x008655A0`; those functions are documented on
-  [steam integration](../Steam-And-Achievements/steam-integration.md).
-- Save load settings: `0x001A5500` is called by `0x001DE5D0`; `0x001A5630` is called by `0x001DE5D0`; those functions are
-  documented on [debug logging](../Engine-Core/debug-logging.md).
+<details>
+<summary>Show the 4 calls with 3 other topics</summary>
+
+**Developer** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00796E20` | is called by | `0x001C2F50` |
+
+**Steam and achievements** (explained on [steam integration](../Steam-And-Achievements/steam-integration.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00796E20` | is called by | `0x008655A0` |
+
+**Saving, loading and settings** (explained on [debug logging](../Engine-Core/debug-logging.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001A5500` | is called by | `0x001DE5D0` |
+| `0x001A5630` | is called by | `0x001DE5D0` |
+
+</details>

@@ -593,12 +593,23 @@ an item selects it, `ref_files` the files of those items, and `class` `i` for th
 carries (a literal or a registration-table entry), `iv` for the 3 it does not, and `-` for the 21 names no item
 selects.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0036A100` is called by `0x00330310`, `0x003306E0`; those functions are documented on
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
-  [ps2data bin families](ps2data-bin-families.md).
-- Platform online achievements: `0x0056F470` calls `0x00315390`, `0x003166F0`; those functions are documented on
-  [shops](../Items-Equipment-Shops-And-Licenses/shops.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md).
+<details>
+<summary>Show the 4 calls with 2 other topics</summary>
+
+**Characters and objects** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](ps2data-bin-families.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A100` | is called by | `0x00330310`, `0x003306E0` |
+
+**Steam and achievements** (explained on [shops](../Items-Equipment-Shops-And-Licenses/shops.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0056F470` | calls | `0x00315390`, `0x003166F0` |
+
+</details>

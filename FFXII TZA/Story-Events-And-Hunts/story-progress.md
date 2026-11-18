@@ -106,24 +106,47 @@ The flag banks the story sets are on [Story flags](story-flags.md), with every i
 - [Quests](quests.md) - the quest state.
 - [Save data](../Saving-Loading-And-Settings/save-data-fields.md) - the payload layout.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Script VM: `0x00267E60` calls `0x00262440`; `0x00267E60` is called by `0x0025E4C0`; `0x0026D530` is called by `0x00267E60`;
-  those functions are documented on [script variables](../Scripts-And-Script-Commands/script-variables.md),
-  [script interpreter](../Scripts-And-Script-Commands/script-interpreter.md).
-- Combat AI: `0x002FE660` calls `0x00321190`; `0x00312170` calls `0x00321190`; `0x00321190` is called by `0x00301AD0`; those
-  functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
-  [glossary](../Engine-Core/glossary.md).
-- Combat action: `0x00312170` calls `0x0030AB40`; `0x00312170` is called by `0x00307300`, `0x0030EC00`; `0x00321190` is called by
-  `0x002FE660`, `0x00312170`; `0x00329E60` is called by `0x002FE660`, `0x00312170`.
-- Combat action: those functions are documented on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [game over](../World-Areas-And-Travel/game-over.md), [action results](../Battle-Actions/action-results.md),
-  [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md); and on
-  [action definition row](../Battle-Actions/action-definition-row.md).
-- Party: `0x002FE660` calls `0x0031B7E0`; those functions are documented on
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
+<details>
+<summary>Show the 14 calls with 5 other topics</summary>
+
+**Scripts and script commands** (explained on [script variables](../Scripts-And-Script-Commands/script-variables.md), [script interpreter](../Scripts-And-Script-Commands/script-interpreter.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00267E60` | calls | `0x00262440` |
+| `0x00267E60` | is called by | `0x0025E4C0` |
+| `0x0026D530` | is called by | `0x00267E60` |
+
+**Enemy AI and gambits** (explained on [frame update order](../Engine-Core/frame-update-order.md), [glossary](../Engine-Core/glossary.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002FE660` | calls | `0x00321190` |
+| `0x00312170` | calls | `0x00321190` |
+| `0x00321190` | is called by | `0x00301AD0` |
+
+**Battle actions**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00312170` | calls | `0x0030AB40` |
+| `0x00312170` | is called by | `0x00307300`, `0x0030EC00` |
+| `0x00321190` | is called by | `0x002FE660`, `0x00312170` |
+| `0x00329E60` | is called by | `0x002FE660`, `0x00312170` |
+
+**Battle actions** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [game over](../World-Areas-And-Travel/game-over.md), [action results](../Battle-Actions/action-results.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [action definition row](../Battle-Actions/action-definition-row.md))
+
+**Party** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002FE660` | calls | `0x0031B7E0` |
+
+</details>
 
 ---
 

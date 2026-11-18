@@ -288,13 +288,20 @@ No other instruction reaches these two.
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - status bits
   `0x1`, `0x2`, `0x8`, `0x10`, `0x20`, `0x1000000` and `0x80000000`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x00234590` calls `0x0032A100`, `0x0032A150`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 2 calls with 1 other topic</summary>
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00234590` | calls | `0x0032A100`, `0x0032A150` |
+
+</details>
 
 ---
 

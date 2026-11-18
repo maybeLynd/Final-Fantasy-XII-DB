@@ -236,9 +236,17 @@ A list is sold when its own entry or an earlier one in the ladder is the first w
 - [Save data](../Saving-Loading-And-Settings/save-data-fields.md) - the operand bank the story conditions read.
 - [Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md) - the gambits the shops sell.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x003462D0` calls `0x00229EB0`; those functions are documented on
-  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Engine core** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003462D0` | calls | `0x00229EB0` |
+
+</details>

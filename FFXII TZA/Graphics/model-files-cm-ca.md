@@ -805,45 +805,77 @@ Both walks skip a record whose `+0x38` is 0 while `0x00181DD0()` is non-zero (`0
 - [Add-motion tables](add-motion-tables.md): the skeleton mapping matched against a model's name.
 - [Model oscillators and the pose sequencer](model-oscillators-and-pose-sequencer.md): `@FCP` section 7 and the sway section.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat AI: `0x00377C20` is called by `0x003014C0`, `0x00301AD0`, `0x00305AB0`; those functions are documented on
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
-  [glossary](../Engine-Core/glossary.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
-- Combat action: `0x003204E0` is called by `0x00320D70`; `0x00377C20` is called by `0x002FFA60`, `0x002FFCF0`, `0x002FFF50`,
-  `0x00305110`, `0x00305230`, `0x00305430`, `0x00307300`, `0x0030C010`, `0x0030D160`, `0x0030D600`, `0x0030DA30`, `0x0030F760`;
-  `0x00377C20` is also called by `0x00311B20`, `0x00311CF0`, `0x00312FA0`, `0x00313CD0`, `0x00313DB0`.
-- Combat action: those functions are documented on
-  [action definition row](../Battle-Actions/action-definition-row.md),
-  [quickenings and summons](../Battle-Actions/quickenings-and-summons.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md).
-- Combat action: and on [action phases](../Battle-Actions/action-phases.md),
-  [game over](../World-Areas-And-Travel/game-over.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
-- Combat action: and on [call signatures](../Engine-Core/call-signatures.md),
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
-- Gameplay: `0x00377C20` is called by `0x00307D10`, `0x0030A8A0`, `0x0030C210`, `0x0030D9A0`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md), [enmity](../Enemy-AI-And-Gambits/enmity.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Input: `0x00377C20` is called by `0x00253C70`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Items equipment shops license: `0x00377C20` is called by `0x00309FB0`, `0x0030FD10`; those functions are documented on
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
-- Rewards progression economy: `0x00377C20` is called by `0x00312280`; those functions are documented on
-  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).
-- Status periodic terminal: `0x00377C20` is called by `0x0030E360`, `0x0030F690`, `0x00310DB0`; those functions are documented
-  on [force fight mode](../Engine-Core/force-fight-mode.md),
-  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- World area: `0x00377C20` calls `0x003148F0`; `0x00377C20` is called by `0x002342F0`; those functions are documented on
-  [party control modes](../Engine-Core/party-control-modes.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 35 calls with 12 other topics</summary>
+
+**Enemy AI and gambits** (explained on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [glossary](../Engine-Core/glossary.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x003014C0`, `0x00301AD0`, `0x00305AB0` |
+
+**Battle actions**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003204E0` | is called by | `0x00320D70` |
+| `0x00377C20` | is called by | `0x002FFA60`, `0x002FFCF0`, `0x002FFF50`, `0x00305110`, `0x00305230`, `0x00305430`, `0x00307300`, `0x0030C010`, `0x0030D160`, `0x0030D600`, `0x0030DA30`, `0x0030F760` |
+| `0x00377C20` | is also called by | `0x00311B20`, `0x00311CF0`, `0x00312FA0`, `0x00313CD0`, `0x00313DB0` |
+
+**Battle actions** (explained on [action definition row](../Battle-Actions/action-definition-row.md), [quickenings and summons](../Battle-Actions/quickenings-and-summons.md), [force fight mode](../Engine-Core/force-fight-mode.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md))
+
+**Battle actions** (explained on [action phases](../Battle-Actions/action-phases.md), [game over](../World-Areas-And-Travel/game-over.md), [frame update order](../Engine-Core/frame-update-order.md), [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+**Battle actions** (explained on [call signatures](../Engine-Core/call-signatures.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+
+**Gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [enmity](../Enemy-AI-And-Gambits/enmity.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00307D10`, `0x0030A8A0`, `0x0030C210`, `0x0030D9A0` |
+
+**Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00253C70` |
+
+**Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00313A00` |
+
+**Items, equipment, shops and licenses** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00309FB0`, `0x0030FD10` |
+
+**Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00312280` |
+
+**Status effects and KO** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x0030E360`, `0x0030F690`, `0x00310DB0` |
+
+**World, areas and travel** (explained on [party control modes](../Engine-Core/party-control-modes.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | calls | `0x003148F0` |
+| `0x00377C20` | is called by | `0x002342F0` |
+
+</details>
 
 ---
 

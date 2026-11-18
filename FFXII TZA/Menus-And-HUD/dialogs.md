@@ -296,12 +296,20 @@ No other instruction reaches `0x0208EA68`. The table's address is taken only by 
 - [Menus](menus.md) - how the screens that raise these dialogs open.
 - [License board](../Items-Equipment-Shops-And-Licenses/license-board.md) - the board the question and the description box serve.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Save load settings: `0x00245020` is called by `0x00280140`; those functions are documented on
-  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00245020` | is called by | `0x00280140` |
+
+</details>
 
 ---
 

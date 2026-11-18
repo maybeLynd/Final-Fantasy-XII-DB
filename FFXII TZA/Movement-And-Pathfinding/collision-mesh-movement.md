@@ -443,20 +443,41 @@ by every body.
 - [Scripted camera](../Graphics/scripted-camera.md): the camera records and the
   mode-1 view.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x00202C70` is called by `0x00362850`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Gameplay: `0x00203170` is called by `0x00339630`; those functions are documented on
-  [battle locomotion](battle-locomotion.md).
-- Script VM: `0x00203170` is called by `0x00356160`.
-- UI: `0x00202C70` is called by `0x002AF960`, `0x002D2600`, `0x002D28E0`, `0x003F26F0`, `0x003F2A70`; `0x00203170` is called by
-  `0x00247AE0`, `0x002D2600`, `0x002D28E0`, `0x00368010`, `0x003C5500`, `0x003F26F0`, `0x003F2A70`.
-- UI: those functions are documented on [text drawing](../Menus-And-HUD/text-drawing.md),
-  [menu lists](../Menus-And-HUD/menu-lists.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md),
-  [hud](../Menus-And-HUD/hud.md), [map screens](../Menus-And-HUD/map-screens.md).
+<details>
+<summary>Show the 15 calls with 5 other topics</summary>
+
+**Sound and music** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00202C70` | is called by | `0x00362850` |
+
+**Gameplay** (explained on [battle locomotion](battle-locomotion.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00203170` | is called by | `0x00339630` |
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00203170` | is called by | `0x00356160` |
+
+**Menus and HUD**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00202C70` | is called by | `0x002AF960`, `0x002D2600`, `0x002D28E0`, `0x003F26F0`, `0x003F2A70` |
+| `0x00203170` | is called by | `0x00247AE0`, `0x002D2600`, `0x002D28E0`, `0x00368010`, `0x003C5500`, `0x003F26F0`, `0x003F2A70` |
+
+**Menus and HUD** (explained on [text drawing](../Menus-And-HUD/text-drawing.md), [menu lists](../Menus-And-HUD/menu-lists.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [hud](../Menus-And-HUD/hud.md), [map screens](../Menus-And-HUD/map-screens.md))
+
+</details>
 
 ---
 

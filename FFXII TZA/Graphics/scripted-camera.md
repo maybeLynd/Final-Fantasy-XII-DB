@@ -559,9 +559,17 @@ write its two offset vectors (`+0xF0` eye, `+0x100` target), the evaluator `0x00
 - [Screen mode and aspect](screen-mode-and-aspect.md): the aspect the projection uses.
 - [Config screen](../Menus-And-HUD/config-screen.md): the Screen Shake row.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Gameplay: `0x00203080` is called by `0x00339630`; those functions are documented on
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Gameplay** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00203080` | is called by | `0x00339630` |
+
+</details>

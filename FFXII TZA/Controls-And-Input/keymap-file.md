@@ -242,16 +242,35 @@ no record byte from `+0x80` on. It then sets byte `+0x3B` of the input manager i
 
 - [Control names](control-names.md) - the names and codes of keys and buttons.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Display: `0x0017CF30` calls `0x00182E80`, which returns the display height; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Save load settings: `0x0017D4C0` calls `0x001C1710`, `0x001C18A0`, `0x001C18E0`; those functions are documented on
-  [game application](../Engine-Core/game-application.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Developer: `0x00796E20` is called by `0x001C2F50`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- UI: `0x00796E20` is called by `0x0018EEE0`; those functions are documented on
-  [graphics settings](../Engine-Core/graphics-settings.md).
+<details>
+<summary>Show the 6 calls with 4 other topics</summary>
+
+**Display** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017CF30` | calls | `0x00182E80`, which returns the display height |
+
+**Saving, loading and settings** (explained on [game application](../Engine-Core/game-application.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017D4C0` | calls | `0x001C1710`, `0x001C18A0`, `0x001C18E0` |
+
+**Developer** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00796E20` | is called by | `0x001C2F50` |
+
+**Menus and HUD** (explained on [graphics settings](../Engine-Core/graphics-settings.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00796E20` | is called by | `0x0018EEE0` |
+
+</details>

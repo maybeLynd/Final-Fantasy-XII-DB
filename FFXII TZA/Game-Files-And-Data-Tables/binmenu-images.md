@@ -234,25 +234,42 @@ bytes per row and writes each byte's low nibble, then its high nibble (`0x00180B
 - [File size tables](file-size-tables-fst.md): the sizes the requests allocate.
 - [File requests and the read queue](file-requests-and-the-read-queue.md): the kind-7 requests.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x00322C50` is called by `0x002367A0`, `0x0023A570`, `0x0031B810`, `0x003266C0`, `0x00329CC0`; those functions
-  are documented on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
-  [party control modes](../Engine-Core/party-control-modes.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md), [party data](../Party/party-data.md).
-- Combat formula: `0x00322C50` is called by `0x002FEF30`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Items equipment shops license: `0x00322C50` is called by `0x003096F0`, `0x0030B180`, `0x0030B4B0`, `0x0030B510`, `0x0030B570`,
-  `0x0030B630`, `0x00317930`, `0x0031A510`, `0x00323910`, `0x00323C60`, `0x00323D10`, `0x00323EC0`; `0x00322C50` is also called by
-  `0x00325F40`.
-- Items equipment shops license: those functions are documented on [stats](../Damage-And-Battle-Formulas/stats.md),
-  [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md),
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md), [party data](../Party/party-data.md),
-  [party table](../Party/party-table.md).
-- Items equipment shops license: and on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [quickening and esper list](../Battle-Actions/quickening-and-esper-list.md),
-  [command availability](../Battle-Actions/command-availability.md).
-- Save load settings: `0x00249210` is called by `0x00582790`; `0x00249410` is called by `0x00582790`; `0x00249580` is called by
-  `0x00582790`; those functions are documented on [mrp menu resource packages](mrp-menu-resource-packages.md).
+<details>
+<summary>Show the 22 calls with 6 other topics</summary>
+
+**Characters and objects** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party control modes](../Engine-Core/party-control-modes.md), [force fight mode](../Engine-Core/force-fight-mode.md), [party data](../Party/party-data.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x002367A0`, `0x0023A570`, `0x0031B810`, `0x003266C0`, `0x00329CC0` |
+
+**Damage and battle formulas** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x002FEF30` |
+
+**Items, equipment, shops and licenses**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x003096F0`, `0x0030B180`, `0x0030B4B0`, `0x0030B510`, `0x0030B570`, `0x0030B630`, `0x00317930`, `0x0031A510`, `0x00323910`, `0x00323C60`, `0x00323D10`, `0x00323EC0` |
+| `0x00322C50` | is also called by | `0x00325F40` |
+
+**Items, equipment, shops and licenses** (explained on [stats](../Damage-And-Battle-Formulas/stats.md), [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md), [party data](../Party/party-data.md), [party table](../Party/party-table.md))
+
+**Items, equipment, shops and licenses** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [quickening and esper list](../Battle-Actions/quickening-and-esper-list.md), [command availability](../Battle-Actions/command-availability.md))
+
+**Saving, loading and settings** (explained on [mrp menu resource packages](mrp-menu-resource-packages.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00249210` | is called by | `0x00582790` |
+| `0x00249410` | is called by | `0x00582790` |
+| `0x00249580` | is called by | `0x00582790` |
+
+</details>

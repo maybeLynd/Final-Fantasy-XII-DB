@@ -402,73 +402,166 @@ the bottom pane, the member panel, the bands, the description window, the status
 - [Dialogs](dialogs.md): the notice.
 - [Controls](../Controls-And-Input/controls.md): the button words and masks.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0031A300` calls `0x00236820`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Audio: `0x002814E0` calls `0x002DEE50`; those functions are documented on
-  [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md).
-- Combat AI: `0x00283270` calls `0x00327BE0`; `0x0031EA90` is called by `0x00301AD0`; those functions are documented on
-  [gambits](../Enemy-AI-And-Gambits/gambits.md), [glossary](../Engine-Core/glossary.md).
-- Combat formula: `0x002F9F20` calls `0x00320AB0`; `0x0031A510` calls `0x0031B860`; those functions are documented on
-  [subsystem update flags](../Engine-Core/subsystem-update-flags.md),
-  [native limits](../Engine-Core/native-limits.md).
-- Core runtime: `0x00244DD0` calls `0x00229DF0`, `0x00229E70`, `0x00229EA0`; `0x00254A10` calls `0x00229E40`; those functions are
-  documented on [frame update order](../Engine-Core/frame-update-order.md),
-  [global state accessors](../Engine-Core/global-state-accessors.md),
-  [startup constants](../Engine-Core/startup-constants.md).
-- Gameplay: `0x0031A510` calls `0x00322C50`; `0x0031EA90` calls `0x0031E9F0`; `0x003231F0` calls `0x0031EA90`; those functions are
-  documented on [identifier spaces](../Engine-Core/identifier-spaces.md),
-  [steal](../Damage-And-Battle-Formulas/steal.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
-- Input: `0x002814E0` calls `0x001E0F20`; `0x002C2F90` calls `0x001E0A10`; `0x002C4220` calls `0x001E0A10`; `0x002D3900` calls
-  `0x001E0A10`, `0x001E0E30`; those functions are documented on [menu lists](menu-lists.md),
-  [controls](../Controls-And-Input/controls.md).
-- Items equipment shops license: `0x0027F030` calls `0x00317B70`; `0x00283E40` calls `0x00323630`, `0x00323670`, `0x003236B0`;
-  `0x002C2320` calls `0x003231F0`; `0x002F9F20` calls `0x002F7A10`, `0x002F7EC0`, `0x00317B20`; `0x0031A300` calls `0x0031A510`;
-  `0x0031A300` is called by `0x0030FBE0`; `0x0031A510` calls `0x0030C410`, `0x0030F9A0`, `0x00317930`, `0x00318B40`; `0x0031A510` is
-  called by `0x0031A300`, `0x0031A710`.
-- Items equipment shops license: `0x0031A710` calls `0x0031A510`; `0x0031A710` is called by `0x0030FAA0`; `0x0031EA90` is called
-  by `0x00309480`, `0x003231F0`; `0x003FE720` calls `0x002F9F20`, `0x0030A4E0`; `0x003FEAD0` calls `0x0030A4E0`; `0x003FF360` calls
-  `0x002F9F20`, `0x0031A300`, `0x0031A710`, `0x003231F0`; `0x003FFA20` calls `0x0031A510`.
-- Items equipment shops license: those functions are documented on
-  [equipment list](../Items-Equipment-Shops-And-Licenses/equipment-list.md),
-  [license board screen](license-board-screen.md),
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md),
-  [equipment row](../Items-Equipment-Shops-And-Licenses/equipment-row.md).
-- Items equipment shops license: and on [equipment](../Items-Equipment-Shops-And-Licenses/equipment.md),
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md),
-  [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party table](../Party/party-table.md); and on
-  [stats](../Damage-And-Battle-Formulas/stats.md).
-- Movement: `0x0031EA90` is called by `0x003343D0`; those functions are documented on
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
-- Party: `0x00283270` is called by `0x00328BD0`; those functions are documented on
-  [party control modes](../Engine-Core/party-control-modes.md).
-- Platform online achievements: `0x00283270` is called by `0x00316930`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Presentation: `0x00244DD0` is called by `0x00579420`; `0x002526F0` is called by `0x00579420`; `0x002527B0` is called by
-  `0x00579420`; `0x00254A10` is called by `0x002B0280`, `0x002D2DB0`; `0x00264150` is called by `0x002BAF80`; `0x002D3900` is called
-  by `0x00578450`, `0x00579420`; `0x00368240` is called by `0x002D2DB0`.
-- Presentation: those functions are documented on
-  [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md),
-  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md),
-  [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Resource: `0x002814E0` calls `0x0024A5A0`; those functions are documented on
-  [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md).
-- Rewards progression economy: `0x00264150` is called by `0x002F90C0`; those functions are documented on
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
-- Save load settings: `0x00244DD0` is called by `0x00583040`; `0x00254A10` is called by `0x005832B0`; `0x002814E0` is called by
-  `0x00582860`; `0x00282DF0` is called by `0x00583D60`; `0x00283270` is called by `0x00582860`, `0x005844A0`.
-- Save load settings: those functions are documented on
-  [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md),
-  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md),
-  [game application](../Engine-Core/game-application.md),
-  [native limits](../Engine-Core/native-limits.md).
-- Script VM: `0x00264150` is called by `0x0050CC30`.
-- Story event quest hunt: `0x00283730` calls `0x0032A8A0`; `0x00283E40` calls `0x0032A8A0`; `0x002CDAE0` calls `0x0032A8A0`; those
-  functions are documented on [identifier spaces](../Engine-Core/identifier-spaces.md).
-- World area: `0x00264150` is called by `0x0057FB00`; those functions are documented on
-  [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md).
+<details>
+<summary>Show the 71 calls with 23 other topics</summary>
+
+**Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031A300` | calls | `0x00236820` |
+
+**Sound and music** (explained on [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002814E0` | calls | `0x002DEE50` |
+
+**Enemy AI and gambits** (explained on [gambits](../Enemy-AI-And-Gambits/gambits.md), [glossary](../Engine-Core/glossary.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00283270` | calls | `0x00327BE0` |
+| `0x0031EA90` | is called by | `0x00301AD0` |
+
+**Damage and battle formulas** (explained on [subsystem update flags](../Engine-Core/subsystem-update-flags.md), [native limits](../Engine-Core/native-limits.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002F9F20` | calls | `0x00320AB0` |
+| `0x0031A510` | calls | `0x0031B860` |
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md), [global state accessors](../Engine-Core/global-state-accessors.md), [startup constants](../Engine-Core/startup-constants.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00244DD0` | calls | `0x00229DF0`, `0x00229E70`, `0x00229EA0` |
+| `0x00254A10` | calls | `0x00229E40` |
+
+**Gameplay** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md), [steal](../Damage-And-Battle-Formulas/steal.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031A510` | calls | `0x00322C50` |
+| `0x0031EA90` | calls | `0x0031E9F0` |
+| `0x003231F0` | calls | `0x0031EA90` |
+
+**Controls and input** (explained on [menu lists](menu-lists.md), [controls](../Controls-And-Input/controls.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002814E0` | calls | `0x001E0F20` |
+| `0x002C2F90` | calls | `0x001E0A10` |
+| `0x002C4220` | calls | `0x001E0A10` |
+| `0x002D3900` | calls | `0x001E0A10`, `0x001E0E30` |
+
+**Items, equipment, shops and licenses**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0027F030` | calls | `0x00317B70` |
+| `0x00283E40` | calls | `0x00323630`, `0x00323670`, `0x003236B0` |
+| `0x002C2320` | calls | `0x003231F0` |
+| `0x002F9F20` | calls | `0x002F7A10`, `0x002F7EC0`, `0x00317B20` |
+| `0x0031A300` | calls | `0x0031A510` |
+| `0x0031A300` | is called by | `0x0030FBE0` |
+| `0x0031A510` | calls | `0x0030C410`, `0x0030F9A0`, `0x00317930`, `0x00318B40` |
+| `0x0031A510` | is called by | `0x0031A300`, `0x0031A710` |
+
+**Items, equipment, shops and licenses**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031A710` | calls | `0x0031A510` |
+| `0x0031A710` | is called by | `0x0030FAA0` |
+| `0x0031EA90` | is called by | `0x00309480`, `0x003231F0` |
+| `0x003FE720` | calls | `0x002F9F20`, `0x0030A4E0` |
+| `0x003FEAD0` | calls | `0x0030A4E0` |
+| `0x003FF360` | calls | `0x002F9F20`, `0x0031A300`, `0x0031A710`, `0x003231F0` |
+| `0x003FFA20` | calls | `0x0031A510` |
+
+**Items, equipment, shops and licenses** (explained on [equipment list](../Items-Equipment-Shops-And-Licenses/equipment-list.md), [license board screen](license-board-screen.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md), [equipment row](../Items-Equipment-Shops-And-Licenses/equipment-row.md))
+
+**Items, equipment, shops and licenses** (explained on [equipment](../Items-Equipment-Shops-And-Licenses/equipment.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party table](../Party/party-table.md), [stats](../Damage-And-Battle-Formulas/stats.md))
+
+**Movement and pathfinding** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031EA90` | is called by | `0x003343D0` |
+
+**Party** (explained on [party control modes](../Engine-Core/party-control-modes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00283270` | is called by | `0x00328BD0` |
+
+**Steam and achievements** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00283270` | is called by | `0x00316930` |
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00244DD0` | is called by | `0x00579420` |
+| `0x002526F0` | is called by | `0x00579420` |
+| `0x002527B0` | is called by | `0x00579420` |
+| `0x00254A10` | is called by | `0x002B0280`, `0x002D2DB0` |
+| `0x00264150` | is called by | `0x002BAF80` |
+| `0x002D3900` | is called by | `0x00578450`, `0x00579420` |
+| `0x00368240` | is called by | `0x002D2DB0` |
+
+**Graphics** (explained on [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+**Game files and data tables** (explained on [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002814E0` | calls | `0x0024A5A0` |
+
+**Rewards: EXP, LP, gil and loot** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00264150` | is called by | `0x002F90C0` |
+
+**Saving, loading and settings**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00244DD0` | is called by | `0x00583040` |
+| `0x00254A10` | is called by | `0x005832B0` |
+| `0x002814E0` | is called by | `0x00582860` |
+| `0x00282DF0` | is called by | `0x00583D60` |
+| `0x00283270` | is called by | `0x00582860`, `0x005844A0` |
+
+**Saving, loading and settings** (explained on [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [game application](../Engine-Core/game-application.md), [native limits](../Engine-Core/native-limits.md))
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00264150` | is called by | `0x0050CC30` |
+
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00283730` | calls | `0x0032A8A0` |
+| `0x00283E40` | calls | `0x0032A8A0` |
+| `0x002CDAE0` | calls | `0x0032A8A0` |
+
+**World, areas and travel** (explained on [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00264150` | is called by | `0x0057FB00` |
+
+</details>

@@ -431,10 +431,17 @@ middleware or compiler code and the boundary of that code is stated.
   end in.
 - [Runtime services](runtime-services.md): the imports these bodies reach.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Platform: `0x0079F150` calls `0x005CC930`, `0x005CD0A0`, `0x006253D0`; those functions are documented on
-  [game application](../Engine-Core/game-application.md),
-  [graphics adapters and vendor libraries](../Steam-And-Achievements/graphics-adapters-and-vendor-libraries.md).
+<details>
+<summary>Show the 3 calls with 1 other topic</summary>
+
+**Platform** (explained on [game application](../Engine-Core/game-application.md), [graphics adapters and vendor libraries](../Steam-And-Achievements/graphics-adapters-and-vendor-libraries.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0079F150` | calls | `0x005CC930`, `0x005CD0A0`, `0x006253D0` |
+
+</details>

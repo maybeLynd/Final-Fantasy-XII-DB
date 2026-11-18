@@ -107,13 +107,29 @@ address; any other field number answers 0 (`0x002C9B52`-`0x002C9BA1`, jump table
 - [Command availability](../Battle-Actions/command-availability.md) - owning and licensing an ability.
 - [License Board screen](license-board-screen.md) - the grid that rebuilds one member's bits.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Platform online achievements: `0x00282FA0` is called by `0x003162E0`, `0x00316760`; those functions are documented on
-  [achievements](../Steam-And-Achievements/achievements.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md).
-- Presentation: `0x0035D330` is called by `0x003BBD00`, `0x00506700`; those functions are documented on
-  [augments](../Damage-And-Battle-Formulas/augments.md), [battle numbers](battle-numbers.md).
-- Save load settings: `0x00282DF0` is called by `0x00583D60`; those functions are documented on
-  [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md).
+<details>
+<summary>Show the 5 calls with 3 other topics</summary>
+
+**Steam and achievements** (explained on [achievements](../Steam-And-Achievements/achievements.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00282FA0` | is called by | `0x003162E0`, `0x00316760` |
+
+**Graphics** (explained on [augments](../Damage-And-Battle-Formulas/augments.md), [battle numbers](battle-numbers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0035D330` | is called by | `0x003BBD00`, `0x00506700` |
+
+**Saving, loading and settings** (explained on [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00282DF0` | is called by | `0x00583D60` |
+
+</details>

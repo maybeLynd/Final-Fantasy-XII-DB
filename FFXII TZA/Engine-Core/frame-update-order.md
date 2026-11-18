@@ -794,12 +794,20 @@ slots' `+0x201` bytes; the eight one-byte field flags `0x02099DA0` to `0x02099DA
   every access to the camera-relative movement vector `0x022C7FD0`, which that rotation writes each tick (17
   rows).
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
-  [battle units](../Characters-And-Objects/battle-units.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x003206E0` |
+
+</details>
 
 ---
 

@@ -435,16 +435,31 @@ No other instruction reaches these words. The picks' address is taken by `0x003E
 - [Sound banks](sound-banks.md) - the `sabf` banks and the battle-voice banks.
 - [Sound effects](sound-effects.md) - the pan and volume setters.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Movement: `0x00267310` is called by `0x002E45E0`, `0x002E5750`; those functions are documented on
-  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md),
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
-- UI: `0x00229EA0` is called by `0x002468A0`, `0x00246C20`; `0x0053DD10` is called by `0x003C80C0`; those functions are
-  documented on [clan primer](../Menus-And-HUD/clan-primer.md), [widget messages](../Menus-And-HUD/widget-messages.md),
-  [map screens](../Menus-And-HUD/map-screens.md).
-- World area: `0x0036A190` is called by `0x00378540`; `0x003EBE40` is called by `0x00266D10`; those functions are documented
-  on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 7 calls with 3 other topics</summary>
+
+**Movement and pathfinding** (explained on [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00267310` | is called by | `0x002E45E0`, `0x002E5750` |
+
+**Menus and HUD** (explained on [clan primer](../Menus-And-HUD/clan-primer.md), [widget messages](../Menus-And-HUD/widget-messages.md), [map screens](../Menus-And-HUD/map-screens.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00229EA0` | is called by | `0x002468A0`, `0x00246C20` |
+| `0x0053DD10` | is called by | `0x003C80C0` |
+
+**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A190` | is called by | `0x00378540` |
+| `0x003EBE40` | is called by | `0x00266D10` |
+
+</details>

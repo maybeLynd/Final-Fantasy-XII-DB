@@ -53,62 +53,116 @@ fight. When the party leaves the area or the scene ends, they all disappear toge
 - [Actor record](actor-record.md): the record, its pool and its release.
 - [Battle units](battle-units.md): the battle side of a record.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x002628B0` calls `0x00360B50`, `0x00360DD0`, `0x003636A0`; those functions are documented on
-  [music](../Sound-And-Music/music.md), [game over](../World-Areas-And-Travel/game-over.md).
-- Combat action: `0x003589B0` is called by `0x00319F50`, `0x00325260`; those functions are documented on
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
-- Core runtime: `0x002628B0` calls `0x00229EE0`; those functions are documented on
-  [game over](../World-Areas-And-Travel/game-over.md).
-- Gameplay: `0x003589B0` is called by `0x0031ADB0`; those functions are documented on
-  [bestiary](../Enemy-Spawning/bestiary.md).
-- Input: `0x002628B0` calls `0x0035B5D0`; those functions are documented on [vibration](../Controls-And-Input/vibration.md).
-- Movement: `0x0025B070` calls `0x002E3D00`; `0x002628B0` calls `0x00263560`, `0x0026A1D0`, `0x00379070`, `0x003791C0`, `0x003792D0`,
-  `0x003DAA20`; `0x00266530` calls `0x00265FF0`, `0x00268380`; `0x0026C8C0` calls `0x0026D6F0`; `0x003589B0` is called by
-  `0x002E5610`, `0x002EBFA0`.
-- Movement: those functions are documented on [actor record](actor-record.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md).
-- Movement: and on [actor record fields](actor-record-fields.md),
-  [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md),
-  [world lock](../Scripts-And-Script-Commands/world-lock.md).
-- Party: `0x002628B0` calls `0x00358B40`, `0x00359200`; `0x0026C8C0` calls `0x003590D0`, `0x00359200`; `0x003589B0` is called by
-  `0x00269C70`, `0x00326500`, `0x00353530`, `0x0050C610`, `0x0050D2F0`.
-- Party: those functions are documented on [player movement](../Movement-And-Pathfinding/player-movement.md),
-  [actor managers](actor-managers.md), [frame update order](../Engine-Core/frame-update-order.md),
-  [party verbs](../Scripts-And-Script-Commands/party-verbs.md); and on
-  [party control modes](../Engine-Core/party-control-modes.md).
-- Presentation: `0x002628B0` calls `0x002E65A0`, `0x002E8CC0`, `0x003EB500`, `0x003EB5F0`; `0x0026C8C0` calls `0x002E83A0`,
-  `0x002EBC30`, `0x002EDA30`, `0x002EDA40`, `0x002EDA50`, `0x002EDA60`, `0x002EDA70`, `0x002EDA80`; `0x003589B0` is called by
-  `0x003A4290`, `0x003A56F0`, `0x00465120`, `0x00465690`, `0x00506700`.
-- Presentation: those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [verb table](../Scripts-And-Script-Commands/verb-table.md), [actor managers](actor-managers.md),
-  [authored expressions](../Game-Files-And-Data-Tables/authored-expressions.md).
-- Presentation: and on [effect element runtime](../Graphics/effect-element-runtime.md),
-  [effect element types](../Graphics/effect-element-types.md),
-  [battle numbers](../Menus-And-HUD/battle-numbers.md).
-- Resource: `0x002628B0` calls `0x0032E520`; those functions are documented on
-  [debug menu](../Engine-Core/debug-menu.md).
-- Save load settings: `0x002628B0` calls `0x002EF2B0`; `0x0026C8C0` calls `0x002EF2B0`; those functions are documented on
-  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
-- Script VM: `0x003589B0` is called by `0x00342150`, `0x00342D40`, `0x003438F0`, `0x00349C90`, `0x0034B5D0`, `0x0034BB80`,
-  `0x00352270`, `0x00352940`, `0x00354F20`, `0x003555F0`, `0x00357620`, `0x0050C7A0`.
-- Script VM: those functions are documented on
-  [effect anchors and targets](../Graphics/effect-anchors-and-targets.md),
-  [ebp text sections](../EBP-Script-Files/ebp-text-sections.md), [actor record](actor-record.md).
-- Story event quest hunt: `0x0026C8C0` calls `0x00377440`; those functions are documented on
-  [actor managers](actor-managers.md).
-- World area: `0x002628B0` calls `0x00378230`, `0x003DFA50`, `0x003EAA00`; `0x0026C8C0` calls `0x0026DB30`; those functions are
-  documented on [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md),
-  [ebp navigation icons](../EBP-Script-Files/ebp-navigation-icons.md),
-  [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md).
-- World area: and on [party verbs](../Scripts-And-Script-Commands/party-verbs.md).
+<details>
+<summary>Show the 66 calls with 20 other topics</summary>
+
+**Sound and music** (explained on [music](../Sound-And-Music/music.md), [game over](../World-Areas-And-Travel/game-over.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002628B0` | calls | `0x00360B50`, `0x00360DD0`, `0x003636A0` |
+
+**Battle actions** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003589B0` | is called by | `0x00319F50`, `0x00325260` |
+
+**Engine core** (explained on [game over](../World-Areas-And-Travel/game-over.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002628B0` | calls | `0x00229EE0` |
+
+**Gameplay** (explained on [bestiary](../Enemy-Spawning/bestiary.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003589B0` | is called by | `0x0031ADB0` |
+
+**Controls and input** (explained on [vibration](../Controls-And-Input/vibration.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002628B0` | calls | `0x0035B5D0` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0025B070` | calls | `0x002E3D00` |
+| `0x002628B0` | calls | `0x00263560`, `0x0026A1D0`, `0x00379070`, `0x003791C0`, `0x003792D0`, `0x003DAA20` |
+| `0x00266530` | calls | `0x00265FF0`, `0x00268380` |
+| `0x0026C8C0` | calls | `0x0026D6F0` |
+| `0x003589B0` | is called by | `0x002E5610`, `0x002EBFA0` |
+
+**Movement and pathfinding** (explained on [actor record](actor-record.md), [frame update order](../Engine-Core/frame-update-order.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md))
+
+**Movement and pathfinding** (explained on [actor record fields](actor-record-fields.md), [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md), [world lock](../Scripts-And-Script-Commands/world-lock.md))
+
+**Party**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002628B0` | calls | `0x00358B40`, `0x00359200` |
+| `0x0026C8C0` | calls | `0x003590D0`, `0x00359200` |
+| `0x003589B0` | is called by | `0x00269C70`, `0x00326500`, `0x00353530`, `0x0050C610`, `0x0050D2F0` |
+
+**Party** (explained on [player movement](../Movement-And-Pathfinding/player-movement.md), [actor managers](actor-managers.md), [frame update order](../Engine-Core/frame-update-order.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party control modes](../Engine-Core/party-control-modes.md))
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002628B0` | calls | `0x002E65A0`, `0x002E8CC0`, `0x003EB500`, `0x003EB5F0` |
+| `0x0026C8C0` | calls | `0x002E83A0`, `0x002EBC30`, `0x002EDA30`, `0x002EDA40`, `0x002EDA50`, `0x002EDA60`, `0x002EDA70`, `0x002EDA80` |
+| `0x003589B0` | is called by | `0x003A4290`, `0x003A56F0`, `0x00465120`, `0x00465690`, `0x00506700` |
+
+**Graphics** (explained on [frame update order](../Engine-Core/frame-update-order.md), [verb table](../Scripts-And-Script-Commands/verb-table.md), [actor managers](actor-managers.md), [authored expressions](../Game-Files-And-Data-Tables/authored-expressions.md))
+
+**Graphics** (explained on [effect element runtime](../Graphics/effect-element-runtime.md), [effect element types](../Graphics/effect-element-types.md), [battle numbers](../Menus-And-HUD/battle-numbers.md))
+
+**Game files and data tables** (explained on [debug menu](../Engine-Core/debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002628B0` | calls | `0x0032E520` |
+
+**Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002628B0` | calls | `0x002EF2B0` |
+| `0x0026C8C0` | calls | `0x002EF2B0` |
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003589B0` | is called by | `0x00342150`, `0x00342D40`, `0x003438F0`, `0x00349C90`, `0x0034B5D0`, `0x0034BB80`, `0x00352270`, `0x00352940`, `0x00354F20`, `0x003555F0`, `0x00357620`, `0x0050C7A0` |
+
+**Scripts and script commands** (explained on [effect anchors and targets](../Graphics/effect-anchors-and-targets.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md), [actor record](actor-record.md))
+
+**Story, events and hunts** (explained on [actor managers](actor-managers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026C8C0` | calls | `0x00377440` |
+
+**World, areas and travel** (explained on [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md), [ebp navigation icons](../EBP-Script-Files/ebp-navigation-icons.md), [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002628B0` | calls | `0x00378230`, `0x003DFA50`, `0x003EAA00` |
+| `0x0026C8C0` | calls | `0x0026DB30` |
+
+**World, areas and travel** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md))
+
+</details>
 
 ---
 

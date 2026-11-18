@@ -439,12 +439,20 @@ Other writers that apply a mask held in a register are not in the table: among t
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md): the record at `+0x698`.
 - [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md): the spawn record the release writes.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Save load settings: `0x0022B6E0` calls `0x002EF650`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Saving, loading and settings** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022B6E0` | calls | `0x002EF650` |
+
+</details>
 
 ---
 

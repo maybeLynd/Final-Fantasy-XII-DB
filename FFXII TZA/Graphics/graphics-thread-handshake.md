@@ -421,11 +421,23 @@ creation) and the priority `+0x28` (`0x00863781`), which `0x00863430` turns into
 - [Frame update order](../Engine-Core/frame-update-order.md): the frame states and the end-of-frame group.
 - [Legacy PS2 GS layer](legacy-ps2-gs-layer.md): the 512 × 448 surfaces the batch addresses.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Platform: `0x0035E700` is called by `0x007A4310`; those functions are documented on
-  [phyre application](../PhyreEngine/phyre-application.md).
-- Script VM: `0x00358320` is called by `0x0034C7E0`; those functions are documented on
-  [graphics settings](../Engine-Core/graphics-settings.md).
+<details>
+<summary>Show the 2 calls with 2 other topics</summary>
+
+**Platform** (explained on [phyre application](../PhyreEngine/phyre-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0035E700` | is called by | `0x007A4310` |
+
+**Scripts and script commands** (explained on [graphics settings](../Engine-Core/graphics-settings.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00358320` | is called by | `0x0034C7E0` |
+
+</details>

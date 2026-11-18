@@ -408,9 +408,17 @@ leader; the two source bytes.
 In the `route` cells of these tables, `Manager0209AC60` names the menu state block and `ManagerSub0209AC60_02F8` the
 description window.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Save load settings: `0x00582860` calls `0x00582790`; those functions are documented on
-  [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Saving, loading and settings** (explained on [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00582860` | calls | `0x00582790` |
+
+</details>

@@ -126,20 +126,33 @@ In the 1,114 `us` scripts:
 - [The R2 modal toggle](../Controls-And-Input/escape.md) - the FLEEING mode, which
   boss fights do not switch off.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat AI: `0x0031B760` is called by `0x00239040`, `0x003014C0`, `0x00301AD0`, `0x003087E0`, `0x0030F130`.
-- Combat AI: those functions are documented on
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
-  [glossary](../Engine-Core/glossary.md), [area of effect](area-of-effect.md),
-  [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md).
-- Input: `0x00263BE0` is called by `0x00226BE0`; `0x00263FF0` is called by `0x00226BE0`, `0x002E09A0`; `0x00358940` is called by
-  `0x00226BE0`; those functions are documented on
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- World area: `0x00358940` is called by `0x0025E400`, `0x002623A0`; those functions are documented on
-  [actor record fields](../Characters-And-Objects/actor-record-fields.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 11 calls with 4 other topics</summary>
+
+**Enemy AI and gambits**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B760` | is called by | `0x00239040`, `0x003014C0`, `0x00301AD0`, `0x003087E0`, `0x0030F130` |
+
+**Enemy AI and gambits** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [glossary](../Engine-Core/glossary.md), [area of effect](area-of-effect.md), [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md))
+
+**Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263BE0` | is called by | `0x00226BE0` |
+| `0x00263FF0` | is called by | `0x00226BE0`, `0x002E09A0` |
+| `0x00358940` | is called by | `0x00226BE0` |
+
+**World, areas and travel** (explained on [actor record fields](../Characters-And-Objects/actor-record-fields.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00358940` | is called by | `0x0025E400`, `0x002623A0` |
+
+</details>

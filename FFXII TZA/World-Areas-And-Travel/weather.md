@@ -755,20 +755,36 @@ in-image routes to `0x0026D910` are the boot setup, the field runtime pass and t
 In the `route` cells of these tables, `MapRefImageHeader` names the `map_ref.bin` header and `MapRefWeatherBlock` a
 weather block.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Platform: `0x001CCB20` calls `0x005CC930`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Save load settings: `0x0020E5A0` is called by `0x00280140`; `0x00268320` is called by `0x00280140`; `0x002EF2B0` is called by
-  `0x00280140`; those functions are documented on
-  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
-- Story event quest hunt: `0x0026C8C0` calls `0x00377440`; `0x002EF2B0` is called by `0x0032A8A0`, `0x0032A930`, `0x0032A9A0`,
-  `0x0032AA00`, `0x0032AA60`, `0x0032AAD0`, `0x0032AB60`, `0x0032ABF0`, `0x0032AC70`, `0x0032ACF0`, `0x0032AD70`, `0x0032ADF0`.
-- Story event quest hunt: those functions are documented on [actor managers](../Characters-And-Objects/actor-managers.md),
-  [identifier spaces](../Engine-Core/identifier-spaces.md),
-  [story flags](../Story-Events-And-Hunts/story-flags.md),
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
-- Story event quest hunt: and on [story flag ids](../Story-Events-And-Hunts/story-flag-ids.md),
-  [chocobos and airships](chocobos-and-airships.md), [npc names](../Characters-And-Objects/npc-names.md).
+<details>
+<summary>Show the 17 calls with 5 other topics</summary>
+
+**Platform** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001CCB20` | calls | `0x005CC930` |
+
+**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0020E5A0` | is called by | `0x00280140` |
+| `0x00268320` | is called by | `0x00280140` |
+| `0x002EF2B0` | is called by | `0x00280140` |
+
+**Story, events and hunts**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026C8C0` | calls | `0x00377440` |
+| `0x002EF2B0` | is called by | `0x0032A8A0`, `0x0032A930`, `0x0032A9A0`, `0x0032AA00`, `0x0032AA60`, `0x0032AAD0`, `0x0032AB60`, `0x0032ABF0`, `0x0032AC70`, `0x0032ACF0`, `0x0032AD70`, `0x0032ADF0` |
+
+**Story, events and hunts** (explained on [actor managers](../Characters-And-Objects/actor-managers.md), [identifier spaces](../Engine-Core/identifier-spaces.md), [story flags](../Story-Events-And-Hunts/story-flags.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
+
+**Story, events and hunts** (explained on [story flag ids](../Story-Events-And-Hunts/story-flag-ids.md), [chocobos and airships](chocobos-and-airships.md), [npc names](../Characters-And-Objects/npc-names.md))
+
+</details>

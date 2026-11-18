@@ -389,9 +389,17 @@ The award bits are only set: the one other writer of `+0x3844`, `0x00315910` cat
 - [Script verb table](../Scripts-And-Script-Commands/verb-table.md): verbs `0x5AD` and `0x11B`.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the block that holds the award bits and counters.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Spawn encounter lifecycle: `0x003148F0` is called by `0x00233780`; those functions are documented on
-  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Enemy spawning** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003148F0` | is called by | `0x00233780` |
+
+</details>

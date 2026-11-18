@@ -358,11 +358,23 @@ group owners at `0x0209A210` (`0x002695EF`-`0x0026962F`).
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md)
 - [The save payload field map](../Saving-Loading-And-Settings/save-data-fields.md)
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x002695A0` calls `0x002341C0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- RNG random selection: `0x002342F0` calls `0x00328D80`; those functions are documented on
-  [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md).
+<details>
+<summary>Show the 2 calls with 2 other topics</summary>
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002695A0` | calls | `0x002341C0` |
+
+**Random numbers** (explained on [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002342F0` | calls | `0x00328D80` |
+
+</details>

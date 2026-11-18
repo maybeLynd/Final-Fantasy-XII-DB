@@ -207,12 +207,23 @@ slot or a first dword of -1 it stores 0, 0, 0 and 1.0 (`0x002EA13F`-`0x002EA147`
 - [Party list](party-list.md): the row flash a number popup starts.
 - [Subsystem update flags](../Engine-Core/subsystem-update-flags.md): the pump that ages them.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x0053DD10` is called by `0x0022B6E0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Input: `0x0053DD10` is called by `0x002E09A0`, `0x0035FCA0`, `0x0035FDD0`, `0x0046DD50`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md),
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
+<details>
+<summary>Show the 5 calls with 2 other topics</summary>
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0053DD10` | is called by | `0x0022B6E0` |
+
+**Controls and input** (explained on [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0053DD10` | is called by | `0x002E09A0`, `0x0035FCA0`, `0x0035FDD0`, `0x0046DD50` |
+
+</details>

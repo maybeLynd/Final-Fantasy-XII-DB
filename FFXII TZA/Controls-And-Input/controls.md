@@ -614,9 +614,17 @@ No other instruction reaches `0x0209AC28`.
 - [Action availability](action-availability.md) - when a press is refused.
 - [Escape Mode](escape.md) - the R2 control.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat AI: `0x0031EB20` calls `0x00327A10`; those functions are documented on
-  [gambit screen](../Menus-And-HUD/gambit-screen.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Enemy AI and gambits** (explained on [gambit screen](../Menus-And-HUD/gambit-screen.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031EB20` | calls | `0x00327A10` |
+
+</details>

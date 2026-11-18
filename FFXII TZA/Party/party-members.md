@@ -373,23 +373,50 @@ holds only the 0 its constructor `0x001CCB20` stores (`0x001CCE34`, `0x001CCF79`
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the member records and their flag word.
 - [Zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md) - the busy mask.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat AI: `0x002367A0` is called by `0x00301AD0`; those functions are documented on
-  [glossary](../Engine-Core/glossary.md).
-- Platform: `0x001CCB20` calls `0x005CC930`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Actor entity: `0x002E8FD0` is called by `0x00265B60`, `0x002E35B0`; those functions are documented on
-  [actor record](../Characters-And-Objects/actor-record.md).
-- Input: `0x00263750` is called by `0x00226BE0`; those functions are documented on
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
-- Save load settings: `0x00236740` is called by `0x00583D60`; those functions are documented on
-  [native limits](../Engine-Core/native-limits.md).
-- UI: `0x00236820` is called by `0x0031EB20`, `0x00322A80`; those functions are documented on
-  [action definition row](../Battle-Actions/action-definition-row.md),
-  [target selection](../Battle-Actions/target-selection.md).
+<details>
+<summary>Show the 8 calls with 6 other topics</summary>
+
+**Enemy AI and gambits** (explained on [glossary](../Engine-Core/glossary.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002367A0` | is called by | `0x00301AD0` |
+
+**Platform** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001CCB20` | calls | `0x005CC930` |
+
+**Characters and objects** (explained on [actor record](../Characters-And-Objects/actor-record.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E8FD0` | is called by | `0x00265B60`, `0x002E35B0` |
+
+**Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263750` | is called by | `0x00226BE0` |
+
+**Saving, loading and settings** (explained on [native limits](../Engine-Core/native-limits.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236740` | is called by | `0x00583D60` |
+
+**Menus and HUD** (explained on [action definition row](../Battle-Actions/action-definition-row.md), [target selection](../Battle-Actions/target-selection.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236820` | is called by | `0x0031EB20`, `0x00322A80` |
+
+</details>
 
 ---
 

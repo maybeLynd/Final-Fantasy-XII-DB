@@ -440,18 +440,37 @@ The shop window is the `0x268`-byte widget with procedure `0x0057B890` that `0x0
 - [Menus](menus.md) - the request that opens the shop.
 - [Dialogs](dialogs.md) - the shared boxes.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x002465F0` calls `0x001EDDA0`; `0x00254A10` calls `0x00229E40`; `0x003F4060` calls `0x001EDEC0`; those functions
-  are documented on [global state accessors](../Engine-Core/global-state-accessors.md),
-  [startup constants](../Engine-Core/startup-constants.md).
-- Input: `0x002D3900` calls `0x001E0A10`, `0x001E0E30`; those functions are documented on
-  [controls](../Controls-And-Input/controls.md).
-- Save load settings: `0x003933F0` is called by `0x00582790`; those functions are documented on
-  [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md).
-- World area: `0x0036A100` is called by `0x00267930`, `0x003319D0`, `0x003EA820`; those functions are documented on
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md).
+<details>
+<summary>Show the 9 calls with 4 other topics</summary>
+
+**Engine core** (explained on [global state accessors](../Engine-Core/global-state-accessors.md), [startup constants](../Engine-Core/startup-constants.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002465F0` | calls | `0x001EDDA0` |
+| `0x00254A10` | calls | `0x00229E40` |
+| `0x003F4060` | calls | `0x001EDEC0` |
+
+**Controls and input** (explained on [controls](../Controls-And-Input/controls.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002D3900` | calls | `0x001E0A10`, `0x001E0E30` |
+
+**Saving, loading and settings** (explained on [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003933F0` | is called by | `0x00582790` |
+
+**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A100` | is called by | `0x00267930`, `0x003319D0`, `0x003EA820` |
+
+</details>

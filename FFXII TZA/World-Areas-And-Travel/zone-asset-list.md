@@ -335,7 +335,10 @@ a music run except field 869, `alc_z04` ([Music table](../Sound-And-Music/music-
 - [Map art](map-art.md) and [Map pack](mpk-map-pack.md)
 - [Enemy placements](../Enemy-Spawning/enemy-placements.tsv)
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
+
+<details>
+<summary>Show the list</summary>
 
 Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
 
@@ -377,3 +380,5 @@ Calls between the functions this page cites and code in other parts of the progr
 - UI: `0x00264F90` is called by `0x0029C530`; `0x00314910` is called by `0x0029C530`; `0x0032A8A0` is called by `0x00281AE0`,
   `0x0029C530`; `0x003778B0` is called by `0x0029C530`; `0x00377B60` is called by `0x0029C530`; those functions are documented
   on [menu screens](../Menus-And-HUD/menu-screens.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md).
+
+</details>

@@ -431,12 +431,24 @@ timer is below 20 ([Gambit conditions](gambit-conditions.md)).
 - [Battle orders](../Battle-Actions/battle-orders.md) - the order ids, including `0x4021`.
 - [Boss fights](../Battle-Actions/boss-fights.md) - the battle freeze.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Resource: `0x005691E0` calls `0x00249580`; those functions are documented on
-  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md).
-- Save load settings: `0x00234ED0` is called by `0x005844A0`; `0x00235AF0` calls `0x002EF640`; those functions are documented
-  on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
-  [global state accessors](../Engine-Core/global-state-accessors.md).
+<details>
+<summary>Show the 3 calls with 2 other topics</summary>
+
+**Game files and data tables** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005691E0` | calls | `0x00249580` |
+
+**Saving, loading and settings** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [global state accessors](../Engine-Core/global-state-accessors.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00234ED0` | is called by | `0x005844A0` |
+| `0x00235AF0` | calls | `0x002EF640` |
+
+</details>

@@ -405,12 +405,20 @@ A presentation slot is `0x30` bytes; the 32 slots sit at `0x022C17B0` (`0x0030D0
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - status bits
   `0x8000`, `0x100000`, `0x1000000` and `0x8000000`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- RNG random selection: `0x00387130` calls `0x00379CD0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Random numbers** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00387130` | calls | `0x00379CD0` |
+
+</details>
 
 ---
 

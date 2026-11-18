@@ -348,16 +348,27 @@ The `0x002491B0` calls sit in ten functions, at 28 sites:
 - [Fonts](../Menus-And-HUD/fonts.md): how a glyph code becomes a glyph.
 - [Text codes](../Menus-And-HUD/text-codes.md): the control and escape codes inside strings.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- RNG random selection: `0x0022A0B0` calls `0x00379CF0`; those functions are documented on
-  [startup constants](../Engine-Core/startup-constants.md).
-- Save load settings: `0x0017D4C0` calls `0x001C1710`, `0x001C18A0`, `0x001C18E0`; `0x00245020` is called by `0x0057E4D0`;
-  `0x00253970` calls `0x002EF640`.
-- Save load settings: those functions are documented on
-  [game application](../Engine-Core/game-application.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [changing areas](../World-Areas-And-Travel/changing-areas.md),
-  [global state accessors](../Engine-Core/global-state-accessors.md).
+<details>
+<summary>Show the 6 calls with 3 other topics</summary>
+
+**Random numbers** (explained on [startup constants](../Engine-Core/startup-constants.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022A0B0` | calls | `0x00379CF0` |
+
+**Saving, loading and settings**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017D4C0` | calls | `0x001C1710`, `0x001C18A0`, `0x001C18E0` |
+| `0x00245020` | is called by | `0x0057E4D0` |
+| `0x00253970` | calls | `0x002EF640` |
+
+**Saving, loading and settings** (explained on [game application](../Engine-Core/game-application.md), [frame update order](../Engine-Core/frame-update-order.md), [changing areas](../World-Areas-And-Travel/changing-areas.md), [global state accessors](../Engine-Core/global-state-accessors.md))
+
+</details>

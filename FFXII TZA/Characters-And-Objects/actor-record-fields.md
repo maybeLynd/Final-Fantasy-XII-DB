@@ -92,6 +92,50 @@ steering request through `[[+0xB8] + 0xF0]` (its mode at `+0x29`, its speed at `
 manager cleanup `0x0025B070` ends a job it keeps at `+0x74` (class 1) or `+0x220` (class 3). The
 context's own layout is the movement category's.
 
+`0x00265FF0(record)` resets the movement context, which it reads from `+0xB8`, by the record's class, `+0x03` shifted
+right by 5 (`0x0026601B`-`0x00266037`, `0x00266042`, `0x0026636A`, `0x002663A7`). Its second argument, which the initialiser
+passes as `[+0xB8]`, goes unused: `rdx` is written before any use (`0x0026629A`, `0x002663FA`). It first sets the record's
+`+0x09` to `(old & 0xE9) | 1` (`0x00266010`-`0x00266018`). Classes 0 and 4 to 7 get nothing more (`0x00266037`), and every
+class ends in `0x0026D6F0(record, 0.0, 2)`, the speed scale `[0x01DFE0BC]` times 0.0, through a tail jump
+(`0x00266507`-`0x00266526`).
+
+For class 2 it writes `(0, 0, 0, 1.0)` to the context's `+0x00` and `+0x10` (`0x00266371`-`0x00266384`) and clears bit
+`0x40` of the record's `+0x09` and `+0x0B` (`0x0026638F`, `0x00266397`).
+
+For class 1 the context's talk half-angle `+0x50` becomes 6.2832 (2 pi), `+0x54`-`+0x5B` and `+0x60` become 0, `+0x70`
+becomes 1.0 and the low three bits of `+0x5D` are cleared (`0x002663BA`-`0x002663D1`). The talk pair `+0x40` and the touch
+pair `+0x30` are each reset by `0x003DA830` and set by `0x003DA860(pair, 0, 0.01, 0.01, 1.0, 1.0)`
+(`0x002663D8`-`0x0026642B`). Then `(0, 0, 0, 1.0)` goes to `+0x00`, `+0x10` and `+0x20`, the height `+0x68` becomes -1.0
+with `+0x5C` = 1, `+0x6C` becomes 0.5 and `+0x74` 0, and bit `0x40` of the record's `+0x09` and `+0x0B` is cleared
+(`0x00266435`-`0x00266480`).
+
+For class 3 the context gets `(0, 0, 0, 1.0)` at `+0x00` and `+0x40`, 1.0 at `+0x20`, `+0x24`, `+0x28` and the margin
+`+0xFC`, `{37, 50, 37}` in `+0x104`-`+0x106`, 0 in `+0x100`, `+0x228` and `+0xDC`, and `+0x107` = `(old & 0xFD) | 1`
+(`0x00266049`-`0x002660B7`, `0x002660ED`). It also sets the record's `+0x0F` to 3 (`0x002660B3`). The steering request `+0xF0`
+points at the context's own `+0x120` (`0x002660D7`, `0x002660F4`). `0x0026AA60(record, 0.2094)` stores that angle, wrapped
+into -pi to pi, at `+0xB0` (`0x002660FB`, `0x0026AAB8`); a later store of the pair `{0.15708, 0}` replaces it
+(`0x00266227`).
+
+The blocks at `+0x140` and `+0x1C0` get the same reset: 3.1416 (pi) at their `+0x30`, `+0x34` and `+0x3C`, 0.15708 at
+`+0x38` and `+0x4C`, 0 at `+0x00`-`+0x07`, `+0x0C`-`+0x13`, `+0x1C`-`+0x23`, `+0x2C`, `+0x45`, `+0x50`, `+0x54` and
+`+0x5C`, and bit `0x80` of `+0x42` cleared; after each, bits `0x1` and `0x2` of the steering request's `+0x6A` are
+cleared (`0x00266100`-`0x0026620C`).
+
+Then `+0x10`-`+0x1C` takes a copy of the zeroed position with `+0x1C` = 1.0 (`0x00266210`-`0x00266239`). `+0xA8`-`+0xAF`
+and `+0x224` are zeroed, the height `+0xC0` and talk height `+0xC8` become 2.0, `+0xC4` and the talk depth `+0xCC`
+0.5, and `+0xDD` 0 (`0x00266232`-`0x00266274`).
+
+The body ellipse `+0x50`, the talk ellipse `+0x70` and the touch ellipse `+0x60` are reset (`0x003DA830`), `+0xDE` and
+`+0xDF` become 1, and `0x003DA860(+0x50, +0x80, 0.5, 0.5, 1.0, 1.0)` sets the body radii and the body base `+0x80` to
+0.5 and 0.5; `0x003DA890` gives the talk ellipse the body's radii with margin 0.5 and the touch ellipse with margin 0.3
+(`0x0026627B`-`0x002662EE`).
+
+It sets the talk half-angle `+0xBC` to 1.5708 (pi / 2) and zeroes `+0xA0`-`+0xA7` and `+0xD8` (`0x002662F3`-`0x00266305`),
+sets bit `0x40` of the record's `+0x09` and clears it in `+0x0B` (`0x00266310`, `0x00266318`). Then it sets `+0x98` = 0.5,
+`+0x9C` = 0.67, the speed `+0xE0` = 0.1, `+0xE4` = 0.15, and 0 in `+0x220` and `+0x108`-`+0x117`
+(`0x0026631F`-`0x00266359`). Every class-3 record also gets 0 in the two blocks' words `+0x08` and bytes `+0x44`, in the
+steering request's `+0x24` and speed `+0x7C`, and in `+0xD0`, and `+0xF8` = -1.0 (`0x00266484`-`0x002664FD`).
+
 ### The secondary context
 
 `+0xC0` = record `+0x350` for sequences 5-7. The initialiser resets its `+0x138` to 0, `+0x148` to
@@ -103,12 +147,12 @@ for a tagged entry; the frozen pass `0x0025E400` runs `0x002E5180` on a record w
 
 | Byte offset | Manager 0 | Other managers |
 |---|---|---|
-| `+0x08` | `(old & 0x9F) \| 0x11`, then bit `0x80` cleared; for class 2 `0x00265FF0` then applies `(v & 0xF5) \| 4` | `(old & 0x8F) \| 1`, then bit `0x80` cleared; the same for class 2 |
+| `+0x08` | `(old & 0x9F) \| 0x11`, then bit `0x80` cleared; `0x00265FF0` then applies `(v & 0xF5) \| 4` for classes 1 and 2 and `(v & 0xFB) \| 0xA` for class 3 (`0x0026638B`-`0x0026639B`, `0x0026645B`-`0x0026646B`, `0x0026630C`-`0x0026631C`) | `(old & 0x8F) \| 1`, then bit `0x80` cleared; the same for classes 1 to 3 |
 | `+0x0D` | `(old & 0xA2) \| 0x82`, then bit `0x20` cleared | `(old & 0x22) \| 2`, then bit `0x20` cleared |
 | `+0x14` | `(old & 0xB0) \| 0x30`; bit `0x80` for sequences 5 and 7 | the same |
-| `+0x0C` | 8: `(old & 0x70) \| 8`, then bits under mask `0x70` cleared | the same |
+| `+0x0C` | 8, or `0x18` for class 3: `(old & 0x70) \| 8`, then bits under mask `0x70` cleared; for class 3 the tail `0x0026D6F0(record, 0.0, 2)` of `0x00265FF0` then sets bit `0x10` (`0x0026D74C`) | the same |
 | `+0x0E` | set to `0xF0`, then `0x00265FF0` makes it `0xB4` for class 1 and `0xF5` for class 3; classes 0 and 2 keep `0xF0` | the same |
-| `+0x1C` | 0, `0x38`, `0x40`, `0x30004` or `0x34C85` by sequence; bits `0x100` and `0x2000` cleared for class 3 | the same |
+| `+0x1C` | 0, `0x38`, `0x40`, `0x30004` or `0x34C85` by sequence; bits `0x100` and `0x2000` cleared for class 3 by the initialiser (`0x002666ED`-`0x002666F1`) and again by `0x00265FF0` (`0x002660C2`-`0x002660CC`); for class 3 the initialiser then sets or clears bits `0x4` and `0x400` from the `+0x06` and `+0x16` resource ids (`0x00266A00`-`0x00266AA4`, [actor record](actor-record.md)) | the same |
 
 ## Related
 
@@ -116,12 +160,25 @@ for a tagged entry; the frozen pass `0x0025E400` runs `0x002E5180` on a record w
 - [Field runtime](field-runtime.md): the wait slots.
 - [Battle units](battle-units.md): the unit at `+0x30`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input: `0x00263750` is called by `0x00226BE0`; `0x00358940` is called by `0x00226BE0`; those functions are documented on
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
-- World area: `0x002E28E0` calls `0x00377C20`; `0x0037B4D0` calls `0x00377A90`, `0x00377DB0`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md), [game over](../World-Areas-And-Travel/game-over.md),
-  [actor model rebuild](actor-model-rebuild.md).
+<details>
+<summary>Show the 5 calls with 2 other topics</summary>
+
+**Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263750` | is called by | `0x00226BE0` |
+| `0x00358940` | is called by | `0x00226BE0` |
+
+**World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [game over](../World-Areas-And-Travel/game-over.md), [actor model rebuild](actor-model-rebuild.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E28E0` | calls | `0x00377C20` |
+| `0x0037B4D0` | calls | `0x00377A90`, `0x00377DB0` |
+
+</details>

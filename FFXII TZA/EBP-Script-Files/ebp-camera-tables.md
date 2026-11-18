@@ -479,10 +479,17 @@ The word's bits beside an actor field of 0 are never read: such a side keeps the
 - [Actor managers](../Characters-And-Objects/actor-managers.md): the record fields and the camera channel binds.
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md): the camera verbs.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input: `0x00263FF0` is called by `0x00226BE0`, `0x002E09A0`; those functions are documented on
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 2 calls with 1 other topic</summary>
+
+**Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263FF0` | is called by | `0x00226BE0`, `0x002E09A0` |
+
+</details>

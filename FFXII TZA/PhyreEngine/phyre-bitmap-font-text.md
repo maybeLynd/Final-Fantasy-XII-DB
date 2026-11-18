@@ -298,9 +298,18 @@ PBitmapFontCharInfo (`0x30`):
 - [Phyre modules](phyre-modules.md): the `PText` module and its registration.
 - [Phyre field schema](phyre-field-schema.md): the `PBitmapFont` and `PBitmapFontCharInfo` members.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- UI: `0x005FEFD0` is called by `0x0018EEE0`; `0x00600A60` is called by `0x0018EEE0`; those functions are documented on
-  [graphics settings](../Engine-Core/graphics-settings.md).
+<details>
+<summary>Show the 2 calls with 1 other topic</summary>
+
+**Menus and HUD** (explained on [graphics settings](../Engine-Core/graphics-settings.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005FEFD0` | is called by | `0x0018EEE0` |
+| `0x00600A60` | is called by | `0x0018EEE0` |
+
+</details>

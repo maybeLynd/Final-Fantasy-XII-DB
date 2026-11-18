@@ -570,20 +570,42 @@ The command table's columns:
   index in descriptors 0, 1 and 2 of that table (`desc1--` where descriptor 1 leaves it out) or, for a Controls
   screen row, its pane record; `reachability` the screens that show it.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Script VM: `0x00182D10` is called by `0x00341030`; `0x00182DA0` is called by `0x003413E0`; `0x00341980` calls `0x00267E10`;
-  `0x00341DD0` calls `0x0026B4E0`; `0x00408EC0` is called by `0x00341980`, `0x003447F0`; `0x0050DFC0` calls `0x0026B4E0`.
-- Script VM: those functions are documented on [controls](../Controls-And-Input/controls.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [native commands](../Scripts-And-Script-Commands/native-commands.md),
-  [verb table](../Scripts-And-Script-Commands/verb-table.md).
-- World area: `0x003318C0` calls `0x00314440`; `0x00331920` calls `0x00314440`; `0x00408B10` is called by `0x0032FC30`; `0x00408B20`
-  is called by `0x003318C0`, `0x00331920`; `0x00408B30` is called by `0x0032FC30`.
-- World area: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [game over](../World-Areas-And-Travel/game-over.md).
-- Gameplay: `0x00229ED0` is called by `0x00237DF0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 14 calls with 5 other topics</summary>
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00182D10` | is called by | `0x00341030` |
+| `0x00182DA0` | is called by | `0x003413E0` |
+| `0x00341980` | calls | `0x00267E10` |
+| `0x00341DD0` | calls | `0x0026B4E0` |
+| `0x00408EC0` | is called by | `0x00341980`, `0x003447F0` |
+| `0x0050DFC0` | calls | `0x0026B4E0` |
+
+**Scripts and script commands** (explained on [controls](../Controls-And-Input/controls.md), [force fight mode](../Engine-Core/force-fight-mode.md), [native commands](../Scripts-And-Script-Commands/native-commands.md), [verb table](../Scripts-And-Script-Commands/verb-table.md))
+
+**World, areas and travel**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003318C0` | calls | `0x00314440` |
+| `0x00331920` | calls | `0x00314440` |
+| `0x00408B10` | is called by | `0x0032FC30` |
+| `0x00408B20` | is called by | `0x003318C0`, `0x00331920` |
+| `0x00408B30` | is called by | `0x0032FC30` |
+
+**World, areas and travel** (explained on [debug menu](../Engine-Core/debug-menu.md), [frame update order](../Engine-Core/frame-update-order.md), [game over](../World-Areas-And-Travel/game-over.md))
+
+**Gameplay** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00229ED0` | is called by | `0x00237DF0` |
+
+</details>

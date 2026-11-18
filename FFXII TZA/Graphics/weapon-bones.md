@@ -95,21 +95,41 @@ One model is used by both Katana and Sword (1H) rows; the table counts it once, 
 - [Skeleton entries and bones](skeleton-entries-and-bones.md): bone points and their ids
 - [Effect anchors and targets](effect-anchors-and-targets.md): the anchor query that uses the two points
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x003A4290` calls `0x00263C30`, `0x00263FF0`, `0x00358940`, `0x003589B0`; those functions are documented on
-  [event scenes](../Scripts-And-Script-Commands/event-scenes.md),
-  [debug menu](../Engine-Core/debug-menu.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
-- Audio: `0x00421E20` is called by `0x00332C40`, `0x003B99D0`; those functions are documented on
-  [animation sounds](../Sound-And-Music/animation-sounds.md), [effect anchors and targets](effect-anchors-and-targets.md).
-- Movement: `0x003A4290` calls `0x00264670`, `0x0026E350`; those functions are documented on
-  [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md),
-  [traps](../World-Areas-And-Travel/traps.md).
-- Party: `0x003A4290` calls `0x003590D0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Resource: `0x00421E20` calls `0x002ED570`; those functions are documented on
-  [resource sections](../Game-Files-And-Data-Tables/resource-sections.md).
+<details>
+<summary>Show the 10 calls with 5 other topics</summary>
+
+**Characters and objects** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [debug menu](../Engine-Core/debug-menu.md), [frame update order](../Engine-Core/frame-update-order.md), [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003A4290` | calls | `0x00263C30`, `0x00263FF0`, `0x00358940`, `0x003589B0` |
+
+**Sound and music** (explained on [animation sounds](../Sound-And-Music/animation-sounds.md), [effect anchors and targets](effect-anchors-and-targets.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00421E20` | is called by | `0x00332C40`, `0x003B99D0` |
+
+**Movement and pathfinding** (explained on [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md), [traps](../World-Areas-And-Travel/traps.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003A4290` | calls | `0x00264670`, `0x0026E350` |
+
+**Party** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003A4290` | calls | `0x003590D0` |
+
+**Game files and data tables** (explained on [resource sections](../Game-Files-And-Data-Tables/resource-sections.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00421E20` | calls | `0x002ED570` |
+
+</details>

@@ -166,11 +166,24 @@ and stores at its `+0x6E8` the address `0x01EEC3C0` when the stats record `+0x69
 - [Battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)
   - the movement goals of the move orders.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input gameplay: `0x00253B90` is called by `0x00313A00`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- UI: `0x0031B7E0` is called by `0x0031EB20`; `0x003272A0` is called by `0x00318CD0`; those functions are documented on
-  [action definition row](action-definition-row.md), [battle menu](../Menus-And-HUD/battle-menu.md).
+<details>
+<summary>Show the 3 calls with 2 other topics</summary>
+
+**Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00253B90` | is called by | `0x00313A00` |
+
+**Menus and HUD** (explained on [action definition row](action-definition-row.md), [battle menu](../Menus-And-HUD/battle-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B7E0` | is called by | `0x0031EB20` |
+| `0x003272A0` | is called by | `0x00318CD0` |
+
+</details>

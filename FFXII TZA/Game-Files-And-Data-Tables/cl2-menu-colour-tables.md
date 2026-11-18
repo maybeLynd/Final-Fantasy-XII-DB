@@ -203,9 +203,17 @@ An alpha of `0x80` or more draws fully opaque; `0x6F` draws as
 - [File size tables (.fst)](file-size-tables-fst.md): the kind 7 path arrays and request sizes.
 - [File requests and the read queue](file-requests-and-the-read-queue.md): the request entries.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Platform: `0x0060DD70` is called by `0x00625830`; those functions are documented on
-  [gi render commands](../Graphics/gi-render-commands.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Platform** (explained on [gi render commands](../Graphics/gi-render-commands.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0060DD70` | is called by | `0x00625830` |
+
+</details>

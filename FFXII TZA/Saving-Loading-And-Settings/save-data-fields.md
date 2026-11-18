@@ -325,12 +325,20 @@ read (`r`), a write (`w`), both (`rw`) or the address taken (`addr`), and `instr
 In the payload table, `note` is `idx` where the instruction adds an index register, so `disp` is the offset at index
 0.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Story event quest hunt: `0x00314910` is called by `0x001ED240`; those functions are documented on
-  [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Story, events and hunts** (explained on [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00314910` | is called by | `0x001ED240` |
+
+</details>
 
 ---
 

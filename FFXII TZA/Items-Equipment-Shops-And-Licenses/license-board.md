@@ -173,13 +173,29 @@ and the other 276 the empty marker `0xFFFF`. The node names and LP costs are tho
 - [Licenses](licenses.md) - the node records, buying a square and the license test.
 - [Party members](../Party/party-members.md) - the catch-up that counts owned licenses.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Presentation: `0x0035D330` is called by `0x003BBD00`, `0x00506700`; those functions are documented on
-  [augments](../Damage-And-Battle-Formulas/augments.md), [battle numbers](../Menus-And-HUD/battle-numbers.md).
-- Save load settings: `0x00282DF0` is called by `0x00583D60`; those functions are documented on
-  [native limits](../Engine-Core/native-limits.md).
-- Story event quest hunt: `0x00283730` calls `0x0032A8A0`; those functions are documented on
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
+<details>
+<summary>Show the 4 calls with 3 other topics</summary>
+
+**Graphics** (explained on [augments](../Damage-And-Battle-Formulas/augments.md), [battle numbers](../Menus-And-HUD/battle-numbers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0035D330` | is called by | `0x003BBD00`, `0x00506700` |
+
+**Saving, loading and settings** (explained on [native limits](../Engine-Core/native-limits.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00282DF0` | is called by | `0x00583D60` |
+
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00283730` | calls | `0x0032A8A0` |
+
+</details>

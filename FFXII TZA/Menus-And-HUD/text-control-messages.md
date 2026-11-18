@@ -65,41 +65,71 @@ The 194 messages hold 112 choice lists, 71 argument inserts (`{arg:..}`) and 484
 - [Text codes](text-codes.md) - the text codes and their placeholders.
 - [Message windows](message-windows.md) - how the game's own script messages and choice lists are shown.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0032E400` is called by `0x0032FCA0`, `0x00330310`, `0x003306E0`; `0x003306E0` calls `0x002566E0`, `0x00263FF0`,
-  `0x0037DC30`; `0x003306E0` is called by `0x0032FCA0`.
-- Actor entity: those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
-- Actor entity: and on [ebp camera tables](../EBP-Script-Files/ebp-camera-tables.md),
-  [debug menu](../Engine-Core/debug-menu.md),
-  [ebp camera shake](../EBP-Script-Files/ebp-camera-shake.md).
-- Core runtime: `0x002AC5F0` calls `0x00229E40`; those functions are documented on
-  [startup constants](../Engine-Core/startup-constants.md).
-- Presentation: `0x002AC5F0` calls `0x003A1DB0`; `0x002AC5F0` is called by `0x002AAE40`; `0x0032E400` is called by `0x003B2310`,
-  `0x003B53C0`; `0x003306E0` calls `0x002561C0`; those functions are documented on
-  [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [message windows](message-windows.md),
-  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md).
-- Presentation: and on
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
-  [ebp camera tables](../EBP-Script-Files/ebp-camera-tables.md).
-- Resource: `0x0032E400` is called by `0x00249210`, `0x0024AC30`, `0x00259DF0`, `0x00379E90`, `0x00384420`, `0x0039C3F0`,
-  `0x003EADE0`, `0x0051ED10`; `0x003306E0` calls `0x0032E400`.
-- Resource: those functions are documented on
-  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md),
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
-  [startup constants](../Engine-Core/startup-constants.md).
-- Resource: and on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
-- Script VM: `0x0032E400` is called by `0x0050DF70`.
-- World area: `0x0032E400` is called by `0x00378540`; those functions are documented on
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
-- World area: `0x0032E400` is called by `0x00268750`, `0x003319D0`, `0x00378030`, `0x00379A10`, `0x003EA820`; those functions are
-  documented on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
-- World area: and on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md),
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md).
+<details>
+<summary>Show the 29 calls with 13 other topics</summary>
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E400` | is called by | `0x0032FCA0`, `0x00330310`, `0x003306E0` |
+| `0x003306E0` | calls | `0x002566E0`, `0x00263FF0`, `0x0037DC30` |
+| `0x003306E0` | is called by | `0x0032FCA0` |
+
+**Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+
+**Characters and objects** (explained on [ebp camera tables](../EBP-Script-Files/ebp-camera-tables.md), [debug menu](../Engine-Core/debug-menu.md), [ebp camera shake](../EBP-Script-Files/ebp-camera-shake.md))
+
+**Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002AC5F0` | calls | `0x00229E40` |
+
+**Graphics** (explained on [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [message windows](message-windows.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002AC5F0` | calls | `0x003A1DB0` |
+| `0x002AC5F0` | is called by | `0x002AAE40` |
+| `0x0032E400` | is called by | `0x003B2310`, `0x003B53C0` |
+| `0x003306E0` | calls | `0x002561C0` |
+
+**Graphics** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [ebp camera tables](../EBP-Script-Files/ebp-camera-tables.md))
+
+**Game files and data tables**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E400` | is called by | `0x00249210`, `0x0024AC30`, `0x00259DF0`, `0x00379E90`, `0x00384420`, `0x0039C3F0`, `0x003EADE0`, `0x0051ED10` |
+| `0x003306E0` | calls | `0x0032E400` |
+
+**Game files and data tables** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [startup constants](../Engine-Core/startup-constants.md))
+
+**Game files and data tables** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E400` | is called by | `0x0050DF70` |
+
+**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E400` | is called by | `0x00378540` |
+
+**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E400` | is called by | `0x00268750`, `0x003319D0`, `0x00378030`, `0x00379A10`, `0x003EA820` |
+
+**World, areas and travel** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+
+</details>

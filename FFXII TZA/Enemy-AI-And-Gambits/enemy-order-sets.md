@@ -355,20 +355,38 @@ All nine language files hold the same bytes, at `fr` `0x4900`, `de` `0x4C60`, `e
 - [Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md) - the area file.
 - [Enmity](enmity.md) - the enmity checks of opcodes 2 and 34.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat formula: `0x00236820` is called by `0x0031B860`, `0x0031E800`; `0x00236850` is called by `0x0031B860`, `0x0031E800`,
-  `0x00384F40`; `0x00308C20` calls `0x00308B90`; `0x0030B9B0` is called by `0x00300530`, `0x003112F0`; `0x00322C50` is called by
-  `0x002FEF30`; `0x00377C20` is called by `0x00300530`.
-- Combat formula: those functions are documented on [native limits](../Engine-Core/native-limits.md),
-  [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md),
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
-  [action results](../Battle-Actions/action-results.md).
-- Combat formula: and on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md),
-  [traps](../World-Areas-And-Travel/traps.md), [force fight mode](../Engine-Core/force-fight-mode.md).
-- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Rewards progression economy: `0x00377C20` is called by `0x00312280`; those functions are documented on
-  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).
+<details>
+<summary>Show the 12 calls with 5 other topics</summary>
+
+**Damage and battle formulas**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236820` | is called by | `0x0031B860`, `0x0031E800` |
+| `0x00236850` | is called by | `0x0031B860`, `0x0031E800`, `0x00384F40` |
+| `0x00308C20` | calls | `0x00308B90` |
+| `0x0030B9B0` | is called by | `0x00300530`, `0x003112F0` |
+| `0x00322C50` | is called by | `0x002FEF30` |
+| `0x00377C20` | is called by | `0x00300530` |
+
+**Damage and battle formulas** (explained on [native limits](../Engine-Core/native-limits.md), [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [action results](../Battle-Actions/action-results.md))
+
+**Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [traps](../World-Areas-And-Travel/traps.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+**Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00313A00` |
+
+**Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00312280` |
+
+</details>

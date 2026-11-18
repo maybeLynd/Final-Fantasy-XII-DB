@@ -277,38 +277,75 @@ through these.
 - [Party members](../Party/party-members.md) - what a join adds and a leave removes.
 - [Scenario presets](../Party/scenario-presets.md) - the inventories the presets set.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x00322C50` is called by `0x002367A0`, `0x0023A570`, `0x0031B810`, `0x003266C0`, `0x00329CC0`; those functions
-  are documented on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
-  [party control modes](../Engine-Core/party-control-modes.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md), [party data](../Party/party-data.md).
-- Combat AI: `0x00322C50` is called by `0x00301AD0`, `0x003215C0`, `0x00321630`, `0x00321770`, `0x00321850`, `0x003219D0`,
-  `0x00321B00`, `0x00321E40`, `0x00327A10`, `0x00327CB0`.
-- Combat AI: those functions are documented on [glossary](../Engine-Core/glossary.md),
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
-  [battle units](../Characters-And-Objects/battle-units.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [enmity](../Enemy-AI-And-Gambits/enmity.md).
-- Combat AI: and on [gambit screen](../Menus-And-HUD/gambit-screen.md),
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md).
-- Movement: `0x00322C50` is called by `0x0031BAC0`, `0x00326BB0`; those functions are documented on
-  [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md).
-- Party: `0x00322C50` is called by `0x003170E0`, `0x0031AC00`, `0x0031B510`, `0x00320800`, `0x00321100`, `0x00326500`, `0x003287A0`,
-  `0x00328DB0`, `0x00329080`; those functions are documented on
-  [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party data](../Party/party-data.md),
-  [party control modes](../Engine-Core/party-control-modes.md).
-- Presentation: `0x00312280` calls `0x0028FB80`; those functions are documented on
-  [exp lp and level ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md).
-- World area: `0x00312280` calls `0x00377C20`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Input: `0x00377C20` is called by `0x00253C70`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Core runtime: `0x00253C70` calls `0x001EDE70`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Story event quest hunt: `0x00253C70` calls `0x0032A8A0`; those functions are documented on
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
+<details>
+<summary>Show the 32 calls with 12 other topics</summary>
+
+**Characters and objects** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party control modes](../Engine-Core/party-control-modes.md), [force fight mode](../Engine-Core/force-fight-mode.md), [party data](../Party/party-data.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x002367A0`, `0x0023A570`, `0x0031B810`, `0x003266C0`, `0x00329CC0` |
+
+**Enemy AI and gambits**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x00301AD0`, `0x003215C0`, `0x00321630`, `0x00321770`, `0x00321850`, `0x003219D0`, `0x00321B00`, `0x00321E40`, `0x00327A10`, `0x00327CB0` |
+
+**Enemy AI and gambits** (explained on [glossary](../Engine-Core/glossary.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [battle units](../Characters-And-Objects/battle-units.md), [frame update order](../Engine-Core/frame-update-order.md), [enmity](../Enemy-AI-And-Gambits/enmity.md))
+
+**Enemy AI and gambits** (explained on [gambit screen](../Menus-And-HUD/gambit-screen.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+
+**Movement and pathfinding** (explained on [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x0031BAC0`, `0x00326BB0` |
+
+**Party** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party data](../Party/party-data.md), [party control modes](../Engine-Core/party-control-modes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x003170E0`, `0x0031AC00`, `0x0031B510`, `0x00320800`, `0x00321100`, `0x00326500`, `0x003287A0`, `0x00328DB0`, `0x00329080` |
+
+**Graphics** (explained on [exp lp and level ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00312280` | calls | `0x0028FB80` |
+
+**World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00312280` | calls | `0x00377C20` |
+
+**Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00253C70` |
+
+**Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00313A00` |
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00253C70` | calls | `0x001EDE70` |
+
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00253C70` | calls | `0x0032A8A0` |
+
+</details>

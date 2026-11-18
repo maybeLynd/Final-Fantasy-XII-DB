@@ -401,9 +401,17 @@ one body, one row per body in address order. Every body of a list has the form b
 | context-acquire three-argument dispatch adapters | 70 | 47 bytes: calls a getter of its own with `rcx` 0 (70 different getters) and jumps to `0x00684080` with the getter's result in `r8` |
 | optional-pointer context dispatch adapters | 70 | 80 bytes: the same getter call (70 different getters); for a null object it calls `0x0080F420` and jumps to `0x00810620` instead |
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x005CD6D0` is called by `0x002118E0`, `0x00211AC0`, `0x00219610`, `0x0021AC00`, `0x0021EEA0`, `0x00220B80`; those
-  functions are documented on [audio manager](../Sound-And-Music/audio-manager.md).
+<details>
+<summary>Show the 6 calls with 1 other topic</summary>
+
+**Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005CD6D0` | is called by | `0x002118E0`, `0x00211AC0`, `0x00219610`, `0x0021AC00`, `0x0021EEA0`, `0x00220B80` |
+
+</details>

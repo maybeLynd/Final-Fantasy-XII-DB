@@ -375,16 +375,41 @@ Class row (`0x02EBF150`):
 - [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md): the spawn record and the lane map.
 - [Bestiary](../Enemy-Spawning/bestiary.md): every shipped enemy definition with these fields decoded.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on [battle units](battle-units.md).
-- Core runtime: `0x00254A10` calls `0x00229E40`; those functions are documented on
-  [startup constants](../Engine-Core/startup-constants.md).
-- Platform online achievements: `0x00312280` calls `0x00316A50`; those functions are documented on
-  [debug menu](../Engine-Core/debug-menu.md).
-- Save load settings: `0x00254A10` is called by `0x005832B0`; those functions are documented on
-  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md).
-- Story event quest hunt: `0x00263990` calls `0x0032A930`; those functions are documented on
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
+<details>
+<summary>Show the 5 calls with 5 other topics</summary>
+
+**Combat** (explained on [battle units](battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x003206E0` |
+
+**Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00254A10` | calls | `0x00229E40` |
+
+**Steam and achievements** (explained on [debug menu](../Engine-Core/debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00312280` | calls | `0x00316A50` |
+
+**Saving, loading and settings** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00254A10` | is called by | `0x005832B0` |
+
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263990` | calls | `0x0032A930` |
+
+</details>

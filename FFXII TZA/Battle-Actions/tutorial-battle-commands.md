@@ -119,25 +119,46 @@ The table is loaded only by `0x0032A230` and the loader `0x00236C30`. The words 
 - [Command availability: why a battle command is greyed out or refused, and the refusal codes](command-availability.md)
 - [Category names: the battle command, magick school, element and equipment class name tables](category-names.md)
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat formula: `0x00322C50` is called by `0x002FEF30`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Items equipment shops license: `0x00322C50` is called by `0x003096F0`, `0x0030B180`, `0x0030B4B0`, `0x0030B510`, `0x0030B570`,
-  `0x0030B630`, `0x00317930`, `0x0031A510`, `0x00323910`, `0x00323C60`, `0x00323D10`, `0x00323EC0`; `0x00322C50` is also called by
-  `0x00325F40`.
-- Items equipment shops license: those functions are documented on [stats](../Damage-And-Battle-Formulas/stats.md),
-  [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md),
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md), [party data](../Party/party-data.md),
-  [party table](../Party/party-table.md).
-- Items equipment shops license: and on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [quickening and esper list](quickening-and-esper-list.md), [command availability](command-availability.md).
-- Movement: `0x00322C50` is called by `0x0031BAC0`, `0x00326BB0`; those functions are documented on
-  [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md).
-- Script VM: `0x003419D0` calls `0x00267E10`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Status periodic terminal: `0x00322C50` is called by `0x0030E130`, `0x0030FED0`, `0x00310DB0`; those functions are documented
-  on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 20 calls with 7 other topics</summary>
+
+**Damage and battle formulas** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x002FEF30` |
+
+**Items, equipment, shops and licenses**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x003096F0`, `0x0030B180`, `0x0030B4B0`, `0x0030B510`, `0x0030B570`, `0x0030B630`, `0x00317930`, `0x0031A510`, `0x00323910`, `0x00323C60`, `0x00323D10`, `0x00323EC0` |
+| `0x00322C50` | is also called by | `0x00325F40` |
+
+**Items, equipment, shops and licenses** (explained on [stats](../Damage-And-Battle-Formulas/stats.md), [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md), [party data](../Party/party-data.md), [party table](../Party/party-table.md))
+
+**Items, equipment, shops and licenses** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [quickening and esper list](quickening-and-esper-list.md), [command availability](command-availability.md))
+
+**Movement and pathfinding** (explained on [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x0031BAC0`, `0x00326BB0` |
+
+**Scripts and script commands** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003419D0` | calls | `0x00267E10` |
+
+**Status effects and KO** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x0030E130`, `0x0030FED0`, `0x00310DB0` |
+
+</details>

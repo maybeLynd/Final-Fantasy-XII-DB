@@ -372,14 +372,21 @@ Nothing else reads or writes these globals. The block's address is taken only by
 - [Config screen](config-screen.md) - a list whose cursor skips rows.
 - [Controls](../Controls-And-Input/controls.md) - the pad words and the mouse wheel in lists.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Save load settings: `0x00244960` is called by `0x0057E4D0`, `0x005819F0`, `0x005823B0`, `0x00582860`; `0x003678F0` is called by
-  `0x00582860`; those functions are documented on [changing areas](../World-Areas-And-Travel/changing-areas.md),
-  [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md),
-  [game application](../Engine-Core/game-application.md).
+<details>
+<summary>Show the 5 calls with 1 other topic</summary>
+
+**Saving, loading and settings** (explained on [changing areas](../World-Areas-And-Travel/changing-areas.md), [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00244960` | is called by | `0x0057E4D0`, `0x005819F0`, `0x005823B0`, `0x00582860` |
+| `0x003678F0` | is called by | `0x00582860` |
+
+</details>
 
 ---
 

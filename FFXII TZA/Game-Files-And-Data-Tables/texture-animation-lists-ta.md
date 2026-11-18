@@ -179,12 +179,25 @@ The field frame drives `0x004678E0` through `0x0036F460`, which hands it the acc
 - [File path resolution](file-path-resolution.md): the 33-multiplicative path hash the loaded-asset lookup uses.
 - [Map pack (.mpk)](../World-Areas-And-Travel/mpk-map-pack.md): the per-map data pack.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input: `0x005CD4F0` is called by `0x0079C140`, `0x007A0340`; `0x005CD820` is called by `0x0079C140`, `0x007A0340`; those
-  functions are documented on [screen mode and aspect](../Graphics/screen-mode-and-aspect.md),
-  [phyre application](../PhyreEngine/phyre-application.md).
-- Platform: `0x005CD4F0` is called by `0x0019CC50`; `0x005CD820` is called by `0x0019CC50`; those functions are documented on
-  [debug menu](../Engine-Core/debug-menu.md).
+<details>
+<summary>Show the 6 calls with 2 other topics</summary>
+
+**Controls and input** (explained on [screen mode and aspect](../Graphics/screen-mode-and-aspect.md), [phyre application](../PhyreEngine/phyre-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005CD4F0` | is called by | `0x0079C140`, `0x007A0340` |
+| `0x005CD820` | is called by | `0x0079C140`, `0x007A0340` |
+
+**Platform** (explained on [debug menu](../Engine-Core/debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005CD4F0` | is called by | `0x0019CC50` |
+| `0x005CD820` | is called by | `0x0019CC50` |
+
+</details>

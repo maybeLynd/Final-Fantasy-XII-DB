@@ -863,13 +863,25 @@ pair and `0x00675440` destroys one.
   files have each pair of user-fixup record count and user-fixup data size, by kind of file (`mesh`, `texture` or
   `neither`), with one example path (239 rows).
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x001BA860` is called by `0x002120E0`; `0x002124C0` is called by `0x00212050`, `0x00212300`; `0x005CD4F0` is called by
-  `0x00212050`, `0x002120E0`, `0x00212300`, `0x00219C40`, `0x0021B290`, `0x00220C70`, `0x00220CE0`, `0x00220D40`, `0x00221140`,
-  `0x002211B0`, `0x00221220`.
-- Audio: `0x005CD820` is called by `0x00212050`, `0x002120E0`, `0x00212300`, `0x00219C40`, `0x0021B290`, `0x00220C70`, `0x00220CE0`,
-  `0x00220D40`, `0x00221140`, `0x002211B0`, `0x00221220`; those functions are documented on
-  [audio manager](../Sound-And-Music/audio-manager.md).
+<details>
+<summary>Show the 25 calls with 2 other topics</summary>
+
+**Sound and music**
+
+| Function | | Functions |
+|---|---|---|
+| `0x001BA860` | is called by | `0x002120E0` |
+| `0x002124C0` | is called by | `0x00212050`, `0x00212300` |
+| `0x005CD4F0` | is called by | `0x00212050`, `0x002120E0`, `0x00212300`, `0x00219C40`, `0x0021B290`, `0x00220C70`, `0x00220CE0`, `0x00220D40`, `0x00221140`, `0x002211B0`, `0x00221220` |
+
+**Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005CD820` | is called by | `0x00212050`, `0x002120E0`, `0x00212300`, `0x00219C40`, `0x0021B290`, `0x00220C70`, `0x00220CE0`, `0x00220D40`, `0x00221140`, `0x002211B0`, `0x00221220` |
+
+</details>

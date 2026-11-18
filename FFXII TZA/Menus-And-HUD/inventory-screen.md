@@ -311,11 +311,18 @@ non-negative id.
 - [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md): the item counts the rows show.
 - [Widgets](widgets.md): the screen widget and focus.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Items equipment shops license: `0x003FCAD0` calls `0x00323630`, `0x00323670`; `0x003FF360` calls `0x002F9F20`, `0x0031A300`,
-  `0x0031A710`, `0x003231F0`; those functions are documented on [license board screen](license-board-screen.md),
-  [equipment](../Items-Equipment-Shops-And-Licenses/equipment.md),
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+<details>
+<summary>Show the 6 calls with 1 other topic</summary>
+
+**Items, equipment, shops and licenses** (explained on [license board screen](license-board-screen.md), [equipment](../Items-Equipment-Shops-And-Licenses/equipment.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003FCAD0` | calls | `0x00323630`, `0x00323670` |
+| `0x003FF360` | calls | `0x002F9F20`, `0x0031A300`, `0x0031A710`, `0x003231F0` |
+
+</details>

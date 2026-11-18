@@ -347,17 +347,37 @@ In the two parts:
   `n/a` for the other five instructions, whose pushes `args_push_order` gives whole.
 - `channel_byte` is that constant's low byte, and `ge80` is 1 for a channel byte of `0x80` or more (0 in every row).
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x002B7B80` calls `0x001EDEC0`; those functions are documented on
-  [global state accessors](../Engine-Core/global-state-accessors.md).
-- Input: `0x002B7B80` calls `0x00250200`; `0x00358940` is called by `0x00226BE0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
-- Platform online achievements: `0x00264790` is called by `0x003160C0`; `0x003779F0` is called by `0x003160C0`; those
-  functions are documented on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md).
-- World area: `0x00358940` is called by `0x0025E400`, `0x002623A0`; those functions are documented on
-  [actor record fields](../Characters-And-Objects/actor-record-fields.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 7 calls with 4 other topics</summary>
+
+**Engine core** (explained on [global state accessors](../Engine-Core/global-state-accessors.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002B7B80` | calls | `0x001EDEC0` |
+
+**Controls and input** (explained on [frame update order](../Engine-Core/frame-update-order.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002B7B80` | calls | `0x00250200` |
+| `0x00358940` | is called by | `0x00226BE0` |
+
+**Steam and achievements** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00264790` | is called by | `0x003160C0` |
+| `0x003779F0` | is called by | `0x003160C0` |
+
+**World, areas and travel** (explained on [actor record fields](../Characters-And-Objects/actor-record-fields.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00358940` | is called by | `0x0025E400`, `0x002623A0` |
+
+</details>

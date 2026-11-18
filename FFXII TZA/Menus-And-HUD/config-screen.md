@@ -429,11 +429,24 @@ No other instruction reaches these three.
 - [Control remapping](../Controls-And-Input/control-remapping.md) - the binding rows.
 - [Sound effects](../Sound-And-Music/sound-effects.md) - the volume categories.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input gameplay: `0x002E1CA0` is called by `0x00313A00`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Script VM: `0x002E23E0` is called by `0x00342590`; `0x00342590` calls `0x00267E10`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 3 calls with 2 other topics</summary>
+
+**Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E1CA0` | is called by | `0x00313A00` |
+
+**Scripts and script commands** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E23E0` | is called by | `0x00342590` |
+| `0x00342590` | calls | `0x00267E10` |
+
+</details>

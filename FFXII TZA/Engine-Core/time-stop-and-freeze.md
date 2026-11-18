@@ -499,17 +499,33 @@ masks and the fade ramp; the source bytes.
 
 In the `route` cells of these tables, `SystemStopRegistry` names the record block at `0x01FD4160`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat formula: `0x00377C20` is called by `0x00300530`; those functions are documented on
-  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
-- Items equipment shops license: `0x00377C20` is called by `0x00309FB0`, `0x0030FD10`; those functions are documented on
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
-- Rewards progression economy: `0x00234590` calls `0x00319600`; `0x00377C20` is called by `0x00312280`; those functions are
-  documented on [frame update order](frame-update-order.md),
-  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).
+<details>
+<summary>Show the 5 calls with 3 other topics</summary>
+
+**Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00300530` |
+
+**Items, equipment, shops and licenses** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00309FB0`, `0x0030FD10` |
+
+**Rewards: EXP, LP, gil and loot** (explained on [frame update order](frame-update-order.md), [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00234590` | calls | `0x00319600` |
+| `0x00377C20` | is called by | `0x00312280` |
+
+</details>
 
 ---
 

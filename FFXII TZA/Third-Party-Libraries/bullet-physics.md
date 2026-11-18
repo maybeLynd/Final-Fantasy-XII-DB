@@ -363,12 +363,23 @@ Five more words of the library, which run only inside a world too:
   - [`bullet-physics-pphysics-world-base-accesses.tsv`](bullet-physics-pphysics-world-base-accesses.tsv);
   - [`bullet-physics-pphysics-world-bullet-accesses.tsv`](bullet-physics-pphysics-world-bullet-accesses.tsv).
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x005CC900` is called by `0x00211840`; those functions are documented on
-  [audio manager](../Sound-And-Music/audio-manager.md).
-- Resource: `0x005CC900` is called by `0x0019F620`, `0x001D9400`; those functions are documented on
-  [game application](../Engine-Core/game-application.md),
-  [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md).
+<details>
+<summary>Show the 3 calls with 2 other topics</summary>
+
+**Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005CC900` | is called by | `0x00211840` |
+
+**Game files and data tables** (explained on [game application](../Engine-Core/game-application.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005CC900` | is called by | `0x0019F620`, `0x001D9400` |
+
+</details>

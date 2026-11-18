@@ -1193,12 +1193,23 @@ hop:
 - `note`: the nine rows that reach neither, the stack slots and home-space saves and two pointers to other objects,
   each with what it reaches instead.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input: `0x003590D0` is called by `0x00226BE0`; those functions are documented on
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
-- World area: `0x003590D0` is called by `0x0025E400`, `0x002623A0`; those functions are documented on
-  [actor record fields](../Characters-And-Objects/actor-record-fields.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 3 calls with 2 other topics</summary>
+
+**Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003590D0` | is called by | `0x00226BE0` |
+
+**World, areas and travel** (explained on [actor record fields](../Characters-And-Objects/actor-record-fields.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003590D0` | is called by | `0x0025E400`, `0x002623A0` |
+
+</details>

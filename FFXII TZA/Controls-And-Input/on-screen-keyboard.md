@@ -197,15 +197,32 @@ No other instruction reaches these two.
 - [Keymap file](keymap-file.md) - the profiles the panels read.
 - [Control names](control-names.md) - the codes behind every key.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Items equipment shops license: `0x00557DB0` calls `0x00323630`, `0x00323670`, `0x003236B0`, `0x003236F0`, `0x00323740`;
-  `0x0055DBD0` calls `0x00323630`; `0x0055E9E0` calls `0x00323630`; `0x005618E0` calls `0x00323630`, `0x00323670`, `0x003236B0`; those
-  functions are documented on [license board screen](../Menus-And-HUD/license-board-screen.md),
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
-- Presentation: `0x00557DB0` calls `0x003B2D80`; those functions are documented on
-  [license board screen](../Menus-And-HUD/license-board-screen.md).
-- Save load settings: `0x002814E0` is called by `0x00582860`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
+<details>
+<summary>Show the 12 calls with 3 other topics</summary>
+
+**Items, equipment, shops and licenses** (explained on [license board screen](../Menus-And-HUD/license-board-screen.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00557DB0` | calls | `0x00323630`, `0x00323670`, `0x003236B0`, `0x003236F0`, `0x00323740` |
+| `0x0055DBD0` | calls | `0x00323630` |
+| `0x0055E9E0` | calls | `0x00323630` |
+| `0x005618E0` | calls | `0x00323630`, `0x00323670`, `0x003236B0` |
+
+**Graphics** (explained on [license board screen](../Menus-And-HUD/license-board-screen.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00557DB0` | calls | `0x003B2D80` |
+
+**Saving, loading and settings** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002814E0` | is called by | `0x00582860` |
+
+</details>

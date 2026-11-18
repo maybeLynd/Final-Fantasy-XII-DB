@@ -587,19 +587,30 @@ obstacle grid's records, occupancy bytes, mask scratch, count and actor list.
 In the `route` cells of these tables, `NavRunStateBlock` names the dataset's header, whose offsets are decoded at
 run time.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Resource: `0x0036A190` is called by `0x00249210`, `0x0024A1D0`, `0x00259DF0`, `0x0032E7C0`, `0x00379E90`, `0x00384420`,
-  `0x0051ED10`; `0x0036C110` is called by `0x00259DF0`, `0x00384420`; `0x0036C1A0` is called by `0x00259DF0`, `0x00384420`;
-  `0x0036C660` is called by `0x00384420`.
-- Resource: those functions are documented on
-  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md),
-  [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md),
-  [startup constants](../Engine-Core/startup-constants.md).
-- Resource: and on
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
-- Audio: `0x00265020` is called by `0x00362850`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 13 calls with 4 other topics</summary>
+
+**Game files and data tables**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A190` | is called by | `0x00249210`, `0x0024A1D0`, `0x00259DF0`, `0x0032E7C0`, `0x00379E90`, `0x00384420`, `0x0051ED10` |
+| `0x0036C110` | is called by | `0x00259DF0`, `0x00384420` |
+| `0x0036C1A0` | is called by | `0x00259DF0`, `0x00384420` |
+| `0x0036C660` | is called by | `0x00384420` |
+
+**Game files and data tables** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [startup constants](../Engine-Core/startup-constants.md))
+
+**Game files and data tables** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+**Sound and music** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x00362850` |
+
+</details>

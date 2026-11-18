@@ -957,12 +957,23 @@ The kind lists `0x020910F0[kind]` are eight-byte heads, cleared with the rest of
 which does nothing and goes back to the loop. `callees` lists the calls of the case, each as address and name, or
 `indirect` with the operand of a call through memory.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat formula: `0x00265020` is called by `0x00384F40`; those functions are documented on
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md).
-- Rewards progression economy: `0x00265020` is called by `0x002FB150`, `0x00312280`; those functions are documented on
-  [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md),
-  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).
+<details>
+<summary>Show the 3 calls with 2 other topics</summary>
+
+**Damage and battle formulas** (explained on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x00384F40` |
+
+**Rewards: EXP, LP, gil and loot** (explained on [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md), [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x002FB150`, `0x00312280` |
+
+</details>

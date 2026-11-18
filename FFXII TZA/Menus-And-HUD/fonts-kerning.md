@@ -68,10 +68,23 @@ for byte. A pair applies only between glyphs whose `kernCp` is its code point ([
 - [Font files](fonts-files.md) - which `.ker` files are requested, and the round trip.
 - [Font glyphs](fonts-glyphs.md) - each glyph's `kernCp`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Presentation: `0x002AC2F0` is called by `0x002AAE40`; those functions are documented on
-  [message windows](message-windows.md).
-- Resource: `0x001B5230` is called by `0x001B6080`; those functions are documented on [fonts](fonts.md).
+<details>
+<summary>Show the 2 calls with 2 other topics</summary>
+
+**Graphics** (explained on [message windows](message-windows.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002AC2F0` | is called by | `0x002AAE40` |
+
+**Game files and data tables** (explained on [fonts](fonts.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001B5230` | is called by | `0x001B6080` |
+
+</details>

@@ -66,18 +66,35 @@ every row.
 - [Battle log](battle-log.md) - which result posts which event, and how a row becomes a line.
 - [Action results](action-results.md) - the result fields the lines describe.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Party: `0x0032A150` is called by `0x003081E0`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Presentation: `0x0032A150` is called by `0x00307E70`, `0x00308130`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Spawn encounter lifecycle: `0x0032A150` is called by `0x00233780`, `0x00235720`, `0x00235FB0`; those functions are
-  documented on [enemy respawning](../Enemy-Spawning/enemy-respawning.md),
-  [battle units](../Characters-And-Objects/battle-units.md).
-- Status periodic terminal: `0x0032A150` is called by `0x00301140`, `0x00310DB0`, `0x00385CA0`; those functions are documented
-  on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [status timers](../Status-Effects-And-KO/status-timers.md).
+<details>
+<summary>Show the 9 calls with 4 other topics</summary>
+
+**Party** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032A150` | is called by | `0x003081E0` |
+
+**Graphics** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032A150` | is called by | `0x00307E70`, `0x00308130` |
+
+**Enemy spawning** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md), [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032A150` | is called by | `0x00233780`, `0x00235720`, `0x00235FB0` |
+
+**Status effects and KO** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [frame update order](../Engine-Core/frame-update-order.md), [status timers](../Status-Effects-And-KO/status-timers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032A150` | is called by | `0x00301140`, `0x00310DB0`, `0x00385CA0` |
+
+</details>

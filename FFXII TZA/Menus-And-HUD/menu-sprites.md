@@ -317,20 +317,40 @@ folders.
 - [Battle menu](battle-menu.md) - the ON and OFF mark and the party slot hand.
 - [Dialogs](dialogs.md) - the second confirm window.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x00203170` is called by `0x003F1E90`; those functions are documented on [hud](hud.md).
-- Gameplay: `0x00203170` is called by `0x00339630`; those functions are documented on
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
-- Movement: `0x00203170` is called by `0x0022EF20`, `0x00230790`, `0x0026EB30`, `0x00334220`, `0x00334AB0`, `0x00334E00`,
-  `0x00335B60`, `0x00336E40`, `0x00338490`, `0x00339F00`, `0x0033A3D0`, `0x0033BAA0`; `0x00203170` is also called by `0x0033C310`,
-  `0x0033CBF0`, `0x0033CC80`, `0x0033D890`, `0x0033DB60`, `0x0033DFD0`, `0x003ED190`, `0x003ED3F0`.
-- Movement: those functions are documented on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md),
-  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md),
-  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md),
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md).
-- Movement: and on [bestiary](../Enemy-Spawning/bestiary.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md), [traps](../World-Areas-And-Travel/traps.md).
-- Script VM: `0x00203170` is called by `0x00356160`.
+<details>
+<summary>Show the 23 calls with 6 other topics</summary>
+
+**Characters and objects** (explained on [hud](hud.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00203170` | is called by | `0x003F1E90` |
+
+**Gameplay** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00203170` | is called by | `0x00339630` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00203170` | is called by | `0x0022EF20`, `0x00230790`, `0x0026EB30`, `0x00334220`, `0x00334AB0`, `0x00334E00`, `0x00335B60`, `0x00336E40`, `0x00338490`, `0x00339F00`, `0x0033A3D0`, `0x0033BAA0` |
+| `0x00203170` | is also called by | `0x0033C310`, `0x0033CBF0`, `0x0033CC80`, `0x0033D890`, `0x0033DB60`, `0x0033DFD0`, `0x003ED190`, `0x003ED3F0` |
+
+**Movement and pathfinding** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md))
+
+**Movement and pathfinding** (explained on [bestiary](../Enemy-Spawning/bestiary.md), [force fight mode](../Engine-Core/force-fight-mode.md), [traps](../World-Areas-And-Travel/traps.md))
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00203170` | is called by | `0x00356160` |
+
+</details>

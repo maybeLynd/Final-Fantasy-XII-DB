@@ -576,8 +576,17 @@ integer words in `.data` at `0x02CA7F40` to `0x02CA7F78` instead of in the index
   translated assembly uses, and the boot routine shared with this layer.
 - [Game application](game-application.md): the render pass list that drains the commands.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- UI: `0x00397910` is called by `0x00368010`; those functions are documented on [menu lists](../Menus-And-HUD/menu-lists.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Menus and HUD** (explained on [menu lists](../Menus-And-HUD/menu-lists.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00397910` | is called by | `0x00368010` |
+
+</details>

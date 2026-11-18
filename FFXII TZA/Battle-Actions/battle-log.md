@@ -316,11 +316,23 @@ No other instruction reaches these globals.
 - [Action results](action-results.md) - the record the dispatcher reads.
 - [Target selection](target-selection.md) - the same 24-unit distance used for targets.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x00265020` is called by `0x00362850`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Platform online achievements: `0x003148F0` is called by `0x003160C0`; those functions are documented on
-  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md).
+<details>
+<summary>Show the 2 calls with 2 other topics</summary>
+
+**Sound and music** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x00362850` |
+
+**Steam and achievements** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003148F0` | is called by | `0x003160C0` |
+
+</details>

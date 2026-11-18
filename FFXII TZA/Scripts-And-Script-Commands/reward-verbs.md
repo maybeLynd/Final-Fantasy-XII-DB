@@ -356,12 +356,24 @@ flag, the interaction latch `0x0208CD18`, the presence ledger, and the equipment
 - [Script verb table](verb-table.md): the ids and handlers.
 - See also [treasure chests](../World-Areas-And-Travel/treasure-chests.md): every shipped chest, where it stands and what it holds with the odds of each content.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input: `0x003590D0` is called by `0x00226BE0`; `0x00377C20` is called by `0x00253C70`; those functions are documented on
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 3 calls with 2 other topics</summary>
+
+**Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003590D0` | is called by | `0x00226BE0` |
+| `0x00377C20` | is called by | `0x00253C70` |
+
+**Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00313A00` |
+
+</details>

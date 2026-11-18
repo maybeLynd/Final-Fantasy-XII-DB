@@ -105,9 +105,18 @@ That table has one line per entry: `id` and `name` of the row, `part` (the label
 - [Item list: every item with its name, price, sort order, icon, the action it runs and its texts](item-list.md)
 - [Treasure chests: where each chest stands, whether it appears and comes back, and what it holds with the odds of each content](../World-Areas-And-Travel/treasure-chests.md)
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat formula: `0x003060E0` calls `0x0031B860`; `0x003064F0` calls `0x00320A40`; those functions are documented on
-  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+<details>
+<summary>Show the 2 calls with 1 other topic</summary>
+
+**Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003060E0` | calls | `0x0031B860` |
+| `0x003064F0` | calls | `0x00320A40` |
+
+</details>

@@ -550,16 +550,26 @@ product of `+0x00` and `+0x04` with `+0x78`; when they differ it releases the st
 - [Config screen](../Menus-And-HUD/config-screen.md): the display changes that end in a restart.
 - [Keymap file](../Controls-And-Input/keymap-file.md): the `My Games` folder the start-up builds.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x001C2F50` is called by `0x0017D6E0`; those functions are documented on
-  [debug menu](../Engine-Core/debug-menu.md).
-- Script VM: `0x001C3370` is called by `0x003522C0`, `0x00353080`, `0x003541B0`, `0x00354B20`, `0x00354E80`, `0x00355970`,
-  `0x00355F60`; those functions are documented on [event scenes](../Scripts-And-Script-Commands/event-scenes.md),
-  [ebp script container](../EBP-Script-Files/ebp-script-container.md),
-  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md).
+<details>
+<summary>Show the 8 calls with 2 other topics</summary>
+
+**Engine core** (explained on [debug menu](../Engine-Core/debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001C2F50` | is called by | `0x0017D6E0` |
+
+**Scripts and script commands** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [ebp script container](../EBP-Script-Files/ebp-script-container.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001C3370` | is called by | `0x003522C0`, `0x00353080`, `0x003541B0`, `0x00354B20`, `0x00354E80`, `0x00355970`, `0x00355F60` |
+
+</details>
 
 ---
 

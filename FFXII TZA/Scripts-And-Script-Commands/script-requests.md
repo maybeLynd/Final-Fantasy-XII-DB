@@ -571,31 +571,61 @@ and byte 0 to 0 (`0x002670D7`, `0x002670DD`), and the manager unload `0x002628B0
 - [Actor record](../Characters-And-Objects/actor-record.md): the fields around the pool.
 - [Script name bindings](script-name-bindings.md): the special-function footer.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Rewards progression economy: `0x003A1960` is called by `0x00319850`; those functions are documented on
-  [loot pickups](../Rewards-EXP-Gil-And-Loot/loot-pickups.md).
-- Spawn encounter lifecycle: `0x00307140` is called by `0x00306F00`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Status periodic terminal: `0x00265680` is called by `0x00310DB0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Story event quest hunt: `0x00253C70` calls `0x0032A8A0`; `0x00263990` calls `0x0032A930`; `0x0026C8C0` calls `0x00377440`; those
-  functions are documented on [identifier spaces](../Engine-Core/identifier-spaces.md),
-  [actor managers](../Characters-And-Objects/actor-managers.md).
-- UI: `0x00253C70` calls `0x00254B50`, `0x0028F970`, `0x003669D0`, `0x003C87B0`, `0x003C8990`; `0x00263990` is called by `0x002AC5F0`;
-  `0x00265680` is called by `0x00279E20`; `0x002678C0` calls `0x002509A0`; `0x0026CE60` calls `0x00253A30`; `0x003590D0` is called
-  by `0x00299BD0`, `0x002C7660`.
-- UI: those functions are documented on [identifier spaces](../Engine-Core/identifier-spaces.md),
-  [game over](../World-Areas-And-Travel/game-over.md), [controls](../Controls-And-Input/controls.md),
-  [augments](../Damage-And-Battle-Formulas/augments.md),
-  [tutorial battle commands](../Battle-Actions/tutorial-battle-commands.md).
-- UI: and on [frame update order](../Engine-Core/frame-update-order.md),
-  [actor managers](../Characters-And-Objects/actor-managers.md), [party list](../Menus-And-HUD/party-list.md),
-  [battle units](../Characters-And-Objects/battle-units.md).
-- Combat formula: `0x0030A6E0` calls `0x00320A40`; those functions are documented on
-  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+<details>
+<summary>Show the 18 calls with 8 other topics</summary>
+
+**Rewards: EXP, LP, gil and loot** (explained on [loot pickups](../Rewards-EXP-Gil-And-Loot/loot-pickups.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003A1960` | is called by | `0x00319850` |
+
+**Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00307140` | is called by | `0x00306F00` |
+
+**Status effects and KO** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265680` | is called by | `0x00310DB0` |
+
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md), [actor managers](../Characters-And-Objects/actor-managers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00253C70` | calls | `0x0032A8A0` |
+| `0x00263990` | calls | `0x0032A930` |
+| `0x0026C8C0` | calls | `0x00377440` |
+
+**Menus and HUD**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00253C70` | calls | `0x00254B50`, `0x0028F970`, `0x003669D0`, `0x003C87B0`, `0x003C8990` |
+| `0x00263990` | is called by | `0x002AC5F0` |
+| `0x00265680` | is called by | `0x00279E20` |
+| `0x002678C0` | calls | `0x002509A0` |
+| `0x0026CE60` | calls | `0x00253A30` |
+| `0x003590D0` | is called by | `0x00299BD0`, `0x002C7660` |
+
+**Menus and HUD** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md), [game over](../World-Areas-And-Travel/game-over.md), [controls](../Controls-And-Input/controls.md), [augments](../Damage-And-Battle-Formulas/augments.md), [tutorial battle commands](../Battle-Actions/tutorial-battle-commands.md))
+
+**Menus and HUD** (explained on [frame update order](../Engine-Core/frame-update-order.md), [actor managers](../Characters-And-Objects/actor-managers.md), [party list](../Menus-And-HUD/party-list.md), [battle units](../Characters-And-Objects/battle-units.md))
+
+**Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0030A6E0` | calls | `0x00320A40` |
+
+</details>
 
 ---
 

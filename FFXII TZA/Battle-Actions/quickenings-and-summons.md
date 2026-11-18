@@ -302,12 +302,23 @@ The chain's choices and the script's Quickening scene keep three more words:
 - [How a cutscene runs](../Scripts-And-Script-Commands/event-scenes.md) - scene
   manager 3 in script scenes.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x002D5EB0` calls `0x00271500`, `0x002716F0`; those functions are documented on
-  [sound effects](../Sound-And-Music/sound-effects.md).
-- Input: `0x002D5EB0` calls `0x00182DA0`, `0x001E0C10`; those functions are documented on
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [player movement](../Movement-And-Pathfinding/player-movement.md).
+<details>
+<summary>Show the 4 calls with 2 other topics</summary>
+
+**Sound and music** (explained on [sound effects](../Sound-And-Music/sound-effects.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002D5EB0` | calls | `0x00271500`, `0x002716F0` |
+
+**Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [player movement](../Movement-And-Pathfinding/player-movement.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002D5EB0` | calls | `0x00182DA0`, `0x001E0C10` |
+
+</details>

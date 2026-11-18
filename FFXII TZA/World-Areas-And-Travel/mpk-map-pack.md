@@ -1262,13 +1262,25 @@ The columns of these tables, after `pack` and the section's size:
   entries, `records` how many records parse (for tag 22 with a count per `+0x30` mode), `picTotal` the pictures of a
   tag-26 chunk and `sampleNames` its first two record names.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat AI: `0x002315E0` is called by `0x0032A4D0`; `0x0032A4D0` is called by `0x003247F0`; those functions are documented on
-  [geometry primitives](../Movement-And-Pathfinding/geometry-primitives.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Combat formula: `0x0046AB10` calls `0x0031B860`; `0x0046AB10` is called by `0x00469EC0`; those functions are documented on
-  [save and teleport crystals](save-and-teleport-crystals.md),
-  [action definition row](../Battle-Actions/action-definition-row.md).
+<details>
+<summary>Show the 4 calls with 2 other topics</summary>
+
+**Enemy AI and gambits** (explained on [geometry primitives](../Movement-And-Pathfinding/geometry-primitives.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002315E0` | is called by | `0x0032A4D0` |
+| `0x0032A4D0` | is called by | `0x003247F0` |
+
+**Damage and battle formulas** (explained on [save and teleport crystals](save-and-teleport-crystals.md), [action definition row](../Battle-Actions/action-definition-row.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0046AB10` | calls | `0x0031B860` |
+| `0x0046AB10` | is called by | `0x00469EC0` |
+
+</details>

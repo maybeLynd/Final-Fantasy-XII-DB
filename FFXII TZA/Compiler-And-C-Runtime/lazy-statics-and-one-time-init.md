@@ -384,13 +384,29 @@ footer, by name, and `class` what it initialises:
 - `COMPUTED_CONST` (1): one float, computed in the holder;
 - `EMPTY_GUARD` (1): nothing between the guard's header and footer.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Platform: `0x00798FF0` calls `0x0019A510`, `0x0079E700`; those functions are documented on
-  [bigfile archive](../Game-Files-And-Data-Tables/bigfile-archive.md).
-- Platform online achievements: `0x00798FF0` calls `0x007A0810`; those functions are documented on
-  [steam integration](../Steam-And-Achievements/steam-integration.md).
-- Save load settings: `0x00798FF0` calls `0x001DFD40`; those functions are documented on
-  [screen mode and aspect](../Graphics/screen-mode-and-aspect.md).
+<details>
+<summary>Show the 4 calls with 3 other topics</summary>
+
+**Platform** (explained on [bigfile archive](../Game-Files-And-Data-Tables/bigfile-archive.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00798FF0` | calls | `0x0019A510`, `0x0079E700` |
+
+**Steam and achievements** (explained on [steam integration](../Steam-And-Achievements/steam-integration.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00798FF0` | calls | `0x007A0810` |
+
+**Saving, loading and settings** (explained on [screen mode and aspect](../Graphics/screen-mode-and-aspect.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00798FF0` | calls | `0x001DFD40` |
+
+</details>

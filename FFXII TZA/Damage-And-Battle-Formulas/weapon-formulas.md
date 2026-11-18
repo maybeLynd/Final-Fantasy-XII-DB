@@ -236,18 +236,32 @@ its committed list:
 - [Action definition row](../Battle-Actions/action-definition-row.md) - the recipe byte of an action.
 - [Combos](../Battle-Actions/combos.md) - the combo hits of melee weapons.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Items equipment shops license: `0x0031B860` is called by `0x0031A410`, `0x0031A510`, `0x0031A630`, `0x00323910`; those
-  functions are documented on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
-- Movement: `0x0031B860` is called by `0x0033CB10`, `0x0033D890`; those functions are documented on
-  [status timers](../Status-Effects-And-KO/status-timers.md),
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
-- Rewards progression economy: `0x0031B860` is called by `0x002F8BB0`, `0x0030C650`; those functions are documented on
-  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md),
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+<details>
+<summary>Show the 8 calls with 3 other topics</summary>
+
+**Items, equipment, shops and licenses** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B860` | is called by | `0x0031A410`, `0x0031A510`, `0x0031A630`, `0x00323910` |
+
+**Movement and pathfinding** (explained on [status timers](../Status-Effects-And-KO/status-timers.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B860` | is called by | `0x0033CB10`, `0x0033D890` |
+
+**Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B860` | is called by | `0x002F8BB0`, `0x0030C650` |
+
+</details>
 
 ---
 

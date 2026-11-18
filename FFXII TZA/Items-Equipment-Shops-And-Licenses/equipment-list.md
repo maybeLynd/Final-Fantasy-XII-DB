@@ -165,25 +165,42 @@ with its slot words `+0x50` as the loadout and with the free-copy test when `fla
 - [Augments: how a unit's augments, auto-statuses and status immunities are rebuilt from its character, gear, licenses and an enemy's script](../Damage-And-Battle-Formulas/augments.md)
 - [Treasure chests: where each chest stands, whether it appears and comes back, and what it holds with the odds of each content](../World-Areas-And-Travel/treasure-chests.md)
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Script VM: `0x0023A3B0` is called by `0x00510160`; `0x00344C60` calls `0x00267E10`; `0x00473C90` is called by `0x00344C60`;
-  `0x00510160` calls `0x00267E10`, `0x0037CF50`; those functions are documented on
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
-- Spawn encounter lifecycle: `0x0023A3B0` calls `0x002355A0`; `0x0023A570` calls `0x00236100`; `0x0023A570` is called by
-  `0x0023A3B0`; `0x00300E40` calls `0x00237080`; `0x00300E40` is called by `0x00234880`, `0x00234990`, `0x002350C0`, `0x00237690`;
-  `0x00510160` calls `0x0023A3B0`.
-- Spawn encounter lifecycle: those functions are documented on [battle units](../Characters-And-Objects/battle-units.md),
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md),
-  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
-- Spawn encounter lifecycle: and on [frame update order](../Engine-Core/frame-update-order.md),
-  [boss fights](../Battle-Actions/boss-fights.md).
-- World area: `0x0023A570` calls `0x00313F60`; `0x003266C0` calls `0x00313F60`, `0x00377C20`, `0x00377C70`; those functions are
-  documented on [frame update order](../Engine-Core/frame-update-order.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [party control modes](../Engine-Core/party-control-modes.md).
+<details>
+<summary>Show the 18 calls with 5 other topics</summary>
+
+**Scripts and script commands** (explained on [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [force fight mode](../Engine-Core/force-fight-mode.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A3B0` | is called by | `0x00510160` |
+| `0x00344C60` | calls | `0x00267E10` |
+| `0x00473C90` | is called by | `0x00344C60` |
+| `0x00510160` | calls | `0x00267E10`, `0x0037CF50` |
+
+**Enemy spawning**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A3B0` | calls | `0x002355A0` |
+| `0x0023A570` | calls | `0x00236100` |
+| `0x0023A570` | is called by | `0x0023A3B0` |
+| `0x00300E40` | calls | `0x00237080` |
+| `0x00300E40` | is called by | `0x00234880`, `0x00234990`, `0x002350C0`, `0x00237690` |
+| `0x00510160` | calls | `0x0023A3B0` |
+
+**Enemy spawning** (explained on [battle units](../Characters-And-Objects/battle-units.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
+
+**Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md), [boss fights](../Battle-Actions/boss-fights.md))
+
+**World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md), [force fight mode](../Engine-Core/force-fight-mode.md), [party control modes](../Engine-Core/party-control-modes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x00313F60` |
+| `0x003266C0` | calls | `0x00313F60`, `0x00377C20`, `0x00377C70` |
+
+</details>

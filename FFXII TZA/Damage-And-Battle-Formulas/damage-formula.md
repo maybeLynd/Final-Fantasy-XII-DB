@@ -329,25 +329,50 @@ The two words of the block that no slot writes:
 - [Action results](../Battle-Actions/action-results.md) - the record the resolver fills.
 - [Combos](../Battle-Actions/combos.md) - slots 9 and 10.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x00202C70` is called by `0x00362850`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Core runtime: `0x003820C0` calls `0x00229D20`, `0x00229D60`; those functions are documented on
-  [startup constants](../Engine-Core/startup-constants.md),
-  [screen mode and aspect](../Graphics/screen-mode-and-aspect.md).
-- Items equipment shops license: `0x0031B860` is called by `0x0031A410`, `0x0031A510`, `0x0031A630`, `0x00323910`; those
-  functions are documented on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
-- Party: `0x004742A0` is called by `0x00358CB0`; those functions are documented on
-  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md).
-- Rewards progression economy: `0x0031B860` is called by `0x002F8BB0`, `0x0030C650`; those functions are documented on
-  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md),
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
-- UI: `0x00202C70` is called by `0x002AF960`, `0x002D2600`, `0x002D28E0`, `0x003F26F0`, `0x003F2A70`; those functions are
-  documented on [text drawing](../Menus-And-HUD/text-drawing.md), [menu lists](../Menus-And-HUD/menu-lists.md),
-  [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [hud](../Menus-And-HUD/hud.md).
+<details>
+<summary>Show the 15 calls with 6 other topics</summary>
+
+**Sound and music** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00202C70` | is called by | `0x00362850` |
+
+**Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md), [screen mode and aspect](../Graphics/screen-mode-and-aspect.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003820C0` | calls | `0x00229D20`, `0x00229D60` |
+
+**Items, equipment, shops and licenses** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B860` | is called by | `0x0031A410`, `0x0031A510`, `0x0031A630`, `0x00323910` |
+
+**Party** (explained on [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x004742A0` | is called by | `0x00358CB0` |
+
+**Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B860` | is called by | `0x002F8BB0`, `0x0030C650` |
+
+**Menus and HUD** (explained on [text drawing](../Menus-And-HUD/text-drawing.md), [menu lists](../Menus-And-HUD/menu-lists.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [hud](../Menus-And-HUD/hud.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00202C70` | is called by | `0x002AF960`, `0x002D2600`, `0x002D28E0`, `0x003F26F0`, `0x003F2A70` |
+
+</details>
 
 ---
 

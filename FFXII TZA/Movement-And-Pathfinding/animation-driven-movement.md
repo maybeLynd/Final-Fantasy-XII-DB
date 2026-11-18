@@ -45,27 +45,34 @@ actor gets the 64 bytes zeroed again and nothing more (`0x002ED503`-`0x002ED52A`
 `0x0031B4B0(actor, selector, view)` with a null actor skips `0x00263E30` and passes unit 0; either way it ends in a jump
 to `0x0031ADB0(unit, selector, view)` (`0x0031B4BA`-`0x0031B4DF`).
 
-Bit `0x4` writes the world position (`0x00265020`) of the actor behind the handle the view
-carried in at `+0x30`, here the render record's `+0x110` (`0x0041F311`-`0x0041F317`,
-`0x0031ADD1`, `0x0031AE7C`), into the view's `+0x10`-`+0x18` with `+0x1C` = 1.0, while the
-battle-state word `0x02089340` has bit `0x10`.
+Bit `0x4` writes the world position (`0x00265020`) of the actor behind the handle the view carried in at `+0x30`, here
+the render record's `+0x110` (`0x0041F311`-`0x0041F317`, `0x0031ADD1`), into the view's `+0x10`-`+0x18` with `+0x1C` = 1.0,
+while the battle-state word `0x02089340` has bit `0x10` and when `0x003588B0` finds an actor for that handle
+(`0x0031AE7C`-`0x0031AE87`).
 
 Bit `0x8` writes the
-reach point into `+0x20`-`+0x28`: when `0x00322280` of the view's `+0x00` holds, the target actor exists, either
-`0x02089340` has neither bit `0x200` nor bit `0x400` or the unit's `+0x698` record has byte `+5` = 1, and the
-unit's reach `0x00320E10(unit, 0)` is non-zero, it is the unit's position moved by the reach along the
-bearing to the target (the sine table at `0x01F004E0`, the unit's own heading `+0x160` when the two
-coincide) and the view's `+0x3C` takes bit `0x1`. When the `0x200`/`0x400` test or the reach fails, `+0x20`
-and `+0x28` are written as 0 and the bit stays clear.
+reach point, the point in x and z where `0x00320E10`'s gap would be 0 (the near value plus both bodies' sizes from the
+target), into `+0x20`-`+0x28` when `0x00322280` of the view's `+0x00` holds, the target actor exists, either `0x02089340`
+has neither bit `0x200` nor bit `0x400` or the unit's `+0x698` record has byte `+5` = 1 (`0x0031AF34`-`0x0031AF71`), and
+`0x00320E10(unit, 0)`'s answer (the gap to the near value, 0 on its other paths; [action
+range](../Battle-Actions/action-range.md)) is non-zero (`0x0031AF77`-`0x0031AF91`).
+
+The point is then the unit's position moved by that gap along the bearing to the target's position (`0x00265020`,
+`0x0031AFA9`), and the view's `+0x3C` takes bit `0x1` (`0x0031B060`).
+
+The bearing is `0x00861F02` of the x and z differences, or the unit's own heading `+0x160` when both are 0, and the move
+uses the sine table at `0x01F004E0` (`0x0031AFAE`-`0x0031B058`).
+
+When the `0x200`/`0x400` test fails or the gap is 0, `+0x20` and `+0x28` are written as 0 and the bit stays clear
+(`0x0031B06A`, `0x0031B0AB`).
 
 When `0x00322280` gives 0 or there is no target actor, bit `0x8` writes nothing: the view keeps the zeros it
-was cleared to, and the routine leaves bit `0x8` out of its answer (`0x0031AF14`-`0x0031AF27`, `0x0031B0B0`).
+was cleared to, and the routine leaves bit `0x8` out of its answer (`0x0031AF0A`-`0x0031AF27`, `0x0031B0B0`).
 
-Whenever bit `0x8` writes, `+0x2C` takes 1.0 (`0x0031B0BD`), and the point's y is the unit's `+0xE4`, or the
-target's y plus
-1.0 when the unit's `+0x698` record has byte `+5` = 1 and its definition `+0x28` bit `0x1`; with a
-reach of 0 the routine skips the target position and that y is 1.0 (`0x0031AF56`, `0x0031AF91`,
-`0x0031B093`-`0x0031B099`).
+Whenever bit `0x8` writes, `+0x2C` takes 1.0 (`0x0031B0BD`), and the point's y is the unit's `+0xE4`, or the target's y
+plus 1.0 when the unit's `+0x698` record has byte `+5` = 1 and the unit's class row `+0xE68` has bit `0x1` in byte
+`+0x28` (`0x0031B06F`-`0x0031B099`); with a gap of 0 the routine skips the target position and that y is 1.0 (`0x0031AF56`,
+`0x0031AF91`, `0x0031B06F`-`0x0031B0B8`).
 
 Nothing is queued when the target position, the view's `+0x10`/`+0x18`, equals the record's position `+0x140`/`+0x148`
 in x and z (`0x003E6395`-`0x003E63BB`).
@@ -103,6 +110,45 @@ Struct MoveTurnRequest  (`0x20` bytes, on the builder's stack):
 | `+0x0C` | `f32` |  | relative heading |
 | `+0x10` | `f32[3]` | unit direction |  |
 | `+0x1C` | `f32` | 1.0 |  |
+
+### The view builder's other selector bits
+
+`0x0031ADB0(unit, selector, view)` answers 0 and writes nothing for a null unit (`0x0031ADE5`-`0x0031ADEC`). Otherwise it
+takes the target actor `0x003588B0(unit dword +0x710)` while `0x02089340` has bit `0x10` (`0x0031ADF1`-`0x0031AE12`), zeroes
+the view (`0x0031AE15`-`0x0031AE32`), handles the selector's bits in the order below and answers the bits it handled,
+leaving out a bit whose write did not happen (`0x0031B48D`). Bits `0x4` and `0x8` are described above.
+
+- `0x100`: with a target actor, the view's `+0x30` = its handle `0x003589B0(target)` (`0x0031AE3D`-`0x0031AE54`).
+- `0x80`: when the unit's dword `+0x2C` is not 0, `+0x30` = that dword, over what bit `0x100` wrote (`0x0031AE36`,
+  `0x0031AE5D`-`0x0031AE69`).
+- `0x1`: with a target actor, its world position (`0x00265020`) into `+0x10`-`+0x18` and `+0x1C` = 1.0, over what bit
+  `0x4` wrote (`0x0031AEA7`-`0x0031AEC9`).
+- `0x2`: the same as bit `0x4`, again for the handle the view carried in at `+0x30`, over what bit `0x1` wrote
+  (`0x0031AED0`-`0x0031AF03`).
+- `0x10`: `+0x3C` bit `0x2` = bit `0x1` of the combo gate `0x0030C010(unit)`'s answer
+  ([combos](../Battle-Actions/combos.md); `0x0031B0C4`-`0x0031B0DE`).
+- `0x20`: `+0x3C` bit `0x4` is set when the unit's first target entry ([area of
+  effect](../Battle-Actions/area-of-effect.md), its `+0x08` at unit `+0x788`) lacks flag bit `0x100` and has code 2
+  to 5 or 7, and cleared otherwise (`0x0031B0E1`-`0x0031B117`).
+- `0x40`: `+0x3C` bit `0x8` = the unit's dword `+0x28` is not 0 (`0x0031B11A`-`0x0031B135`).
+- `0x200`: `+0x34` = 0, then, for the unit's action id, its word `+0x714`, up to `0x21E` (unsigned), whose row of the
+  action table `[0x02EBF138]` has a negative word `+0x24` and no bit `0x40000000` in its dword `+0xC`
+  (`0x0031B138`-`0x0031B2FA`), a kind from the first entry's code and the target unit `0x0031B7E0(unit dword +0x710)`
+  (`0x0031B300`-`0x0031B3A9`):
+  - code 0: 4 with entry flag bit `0x800`; otherwise 1 without a target unit, 3 when the target unit's `+0x30` is the
+    unit's `+0x08`, else 2 when the target unit's `+0x698` record exists with byte `+5` = 0, and otherwise 1 when its
+    class row `+0xE68` ([bestiary](../Enemy-Spawning/bestiary.md)) has bit `0x20` in byte `+0x12` and 2
+    when not (`0x0031B34E`-`0x0031B3A6`);
+  - code 3 or 5: 6 (`0x0031B319`-`0x0031B334`);
+  - code 2 or 4: `0x0046CBB0(target unit dword +0x08, 5, 1)` when there is a target unit ([animation
+    sounds](../Sound-And-Music/animation-sounds.md)), and `+0x34` stays 0 (`0x0031B336`-`0x0031B347`);
+  - any other code: 0.
+- `0x400`: `+0x38` = 2 when the first entry has flag bit `0x800`, else 1 (`0x0031B3B5`-`0x0031B3D0`).
+- `0x800`: while `0x02089340` has bit `0x10`, it takes the unit behind the handle at the unit's `+0x2C` and, in that
+  unit's target list (`+0x780`, count `+0x77C`), the first entry whose actor is the unit's `+0x10`; `+0x3C` bit `0x10`
+  is set for that entry's code 10 and cleared otherwise. When any of these is missing, nothing is written and the bit
+  stays out of the answer (`0x0031B3D4`-`0x0031B466`).
+- `0x1000`: `+0x3C` bit `0x20` = the unit's `+0x08` is the party-focus handle `0x003590D0()` (`0x0031B46A`-`0x0031B489`).
 
 ### The pool
 
@@ -458,9 +504,23 @@ each entry's counter, armed bytes and two accumulators.
 - [FRP container](../Graphics/model-files-cm-ca.md):
   the `@FRM` child.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
-  [battle units](../Characters-And-Objects/battle-units.md).
+<details>
+<summary>Show the 3 calls with 2 other topics</summary>
+
+**Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x003206E0` |
+
+**World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003590D0` | is called by | `0x0025E400`, `0x002623A0` |
+
+</details>

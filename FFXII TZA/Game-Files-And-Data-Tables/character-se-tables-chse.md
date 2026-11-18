@@ -258,25 +258,59 @@ again. Both bytes are 0 until the first script binding:
 - [File requests and the read queue](file-requests-and-the-read-queue.md): the reads the loader files.
 - [Languages](../Saving-Loading-And-Settings/languages.md): the locale ids that pick the `in` or `ch` copies.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
-  [battle units](../Characters-And-Objects/battle-units.md).
-- Combat AI: `0x00263E30` is called by `0x003247F0`, `0x00324F20`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md).
-- Combat formula: `0x00263E30` is called by `0x00320A70`; those functions are documented on
-  [battle log](../Battle-Actions/battle-log.md).
-- Gameplay: `0x00263E30` is called by `0x003176E0`, `0x0031ADB0`, `0x00321380`; those functions are documented on
-  [battle units](../Characters-And-Objects/battle-units.md), [bestiary](../Enemy-Spawning/bestiary.md),
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md).
-- Save load settings: `0x0032E4D0` is called by `0x00280140`; those functions are documented on
-  [resource arena and relocation](resource-arena-and-relocation.md).
-- Status periodic terminal: `0x00263E30` is called by `0x00386860`; those functions are documented on
-  [status timers](../Status-Effects-And-KO/status-timers.md).
-- Story event quest hunt: `0x0026C8C0` calls `0x00377440`; those functions are documented on
-  [actor managers](../Characters-And-Objects/actor-managers.md).
-- UI: `0x00263E30` is called by `0x0031EB20`; those functions are documented on
-  [action definition row](../Battle-Actions/action-definition-row.md).
+<details>
+<summary>Show the 11 calls with 8 other topics</summary>
+
+**Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x003206E0` |
+
+**Enemy AI and gambits** (explained on [frame update order](../Engine-Core/frame-update-order.md), [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x003247F0`, `0x00324F20` |
+
+**Damage and battle formulas** (explained on [battle log](../Battle-Actions/battle-log.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x00320A70` |
+
+**Gameplay** (explained on [battle units](../Characters-And-Objects/battle-units.md), [bestiary](../Enemy-Spawning/bestiary.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x003176E0`, `0x0031ADB0`, `0x00321380` |
+
+**Saving, loading and settings** (explained on [resource arena and relocation](resource-arena-and-relocation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E4D0` | is called by | `0x00280140` |
+
+**Status effects and KO** (explained on [status timers](../Status-Effects-And-KO/status-timers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x00386860` |
+
+**Story, events and hunts** (explained on [actor managers](../Characters-And-Objects/actor-managers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026C8C0` | calls | `0x00377440` |
+
+**Menus and HUD** (explained on [action definition row](../Battle-Actions/action-definition-row.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x0031EB20` |
+
+</details>

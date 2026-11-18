@@ -90,24 +90,35 @@ the slot and the check stays a no-op; the linker folded the two empty functions 
 - [Debug logging](debug-logging.md): `0x005CD960`, the end of one chain, is the log sink's
   construction entry.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x001243B0` is called by `0x00121030`, `0x00121E20`, `0x00210ED0`, `0x00210F60`, `0x002112D0`, `0x00211340`, `0x002254D0`,
-  `0x00225610`, `0x007A48C0`, `0x007A4A10`, `0x007A4AC0`, `0x007A4B30`; `0x001243B0` is also called by `0x007A4BB0`, `0x007A4C70`,
-  `0x007A4CA0`, `0x007A4D50`, `0x007A5A00`, `0x007A5B20`, `0x007A87C0`, `0x007AC4F0`, `0x007ACD30`, `0x007AD240`, `0x007B0F90`,
-  `0x007B31A0`.
-- Audio: `0x001243B0` is also called by `0x007BBAB0`, `0x007BDFA0`, `0x007BE0B0`, `0x007BEAF0`, `0x007BED30`, `0x007BEF30`,
-  `0x007C8890`, `0x007CA650`, `0x007CA9F0`, `0x007EEA00`, `0x007EFA30`, `0x007EFA70`; `0x001243B0` is also called by `0x007EFB60`,
-  `0x007EFC40`, `0x007EFCB0`, `0x007EFD20`, `0x007EFD90`, `0x007EFE00`, `0x007EFE70`, `0x007EFFE0`, `0x007F0060`, `0x007F0120`,
-  `0x007F0190`, `0x007F0210`.
-- Audio: `0x001243B0` is also called by `0x007F0320`, `0x007F0580`, `0x007F0660`, `0x007F0700`, `0x007F0790`, `0x007F0820`,
-  `0x007F1340`, `0x007F1A50`.
-- Audio: those functions are documented on [sound engine](../Sound-And-Music/sound-engine.md),
-  [sound effects](../Sound-And-Music/sound-effects.md), [audio manager](../Sound-And-Music/audio-manager.md),
-  [sound driver objects](../Sound-And-Music/sound-driver-objects.md), [debug logging](debug-logging.md),
-  [spatial sound](../Sound-And-Music/spatial-sound.md).
-- Audio: and on [audio effects](../Sound-And-Music/audio-effects.md),
-  [sound engine config](../Sound-And-Music/sound-engine-config.md),
-  [maths library](../Compiler-And-C-Runtime/maths-library.md).
+<details>
+<summary>Show the 56 calls with 5 other topics</summary>
+
+**Sound and music**
+
+| Function | | Functions |
+|---|---|---|
+| `0x001243B0` | is called by | `0x00121030`, `0x00121E20`, `0x00210ED0`, `0x00210F60`, `0x002112D0`, `0x00211340`, `0x002254D0`, `0x00225610`, `0x007A48C0`, `0x007A4A10`, `0x007A4AC0`, `0x007A4B30` |
+| `0x001243B0` | is also called by | `0x007A4BB0`, `0x007A4C70`, `0x007A4CA0`, `0x007A4D50`, `0x007A5A00`, `0x007A5B20`, `0x007A87C0`, `0x007AC4F0`, `0x007ACD30`, `0x007AD240`, `0x007B0F90`, `0x007B31A0` |
+
+**Sound and music**
+
+| Function | | Functions |
+|---|---|---|
+| `0x001243B0` | is also called by | `0x007BBAB0`, `0x007BDFA0`, `0x007BE0B0`, `0x007BEAF0`, `0x007BED30`, `0x007BEF30`, `0x007C8890`, `0x007CA650`, `0x007CA9F0`, `0x007EEA00`, `0x007EFA30`, `0x007EFA70` |
+| `0x001243B0` | is also called by | `0x007EFB60`, `0x007EFC40`, `0x007EFCB0`, `0x007EFD20`, `0x007EFD90`, `0x007EFE00`, `0x007EFE70`, `0x007EFFE0`, `0x007F0060`, `0x007F0120`, `0x007F0190`, `0x007F0210` |
+
+**Sound and music**
+
+| Function | | Functions |
+|---|---|---|
+| `0x001243B0` | is also called by | `0x007F0320`, `0x007F0580`, `0x007F0660`, `0x007F0700`, `0x007F0790`, `0x007F0820`, `0x007F1340`, `0x007F1A50` |
+
+**Sound and music** (explained on [sound engine](../Sound-And-Music/sound-engine.md), [sound effects](../Sound-And-Music/sound-effects.md), [audio manager](../Sound-And-Music/audio-manager.md), [sound driver objects](../Sound-And-Music/sound-driver-objects.md), [debug logging](debug-logging.md), [spatial sound](../Sound-And-Music/spatial-sound.md))
+
+**Sound and music** (explained on [audio effects](../Sound-And-Music/audio-effects.md), [sound engine config](../Sound-And-Music/sound-engine-config.md), [maths library](../Compiler-And-C-Runtime/maths-library.md))
+
+</details>

@@ -294,32 +294,55 @@ track with no shipped bank: 0, 10, 11, 12, 93 and 130.
 - [Story counter values](../Story-Events-And-Hunts/story-counter-values.md) - the values the ladders compare.
 - [Zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md) - the field id.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input: `0x0032E620` is called by `0x00291C80`; those functions are documented on
-  [startup constants](../Engine-Core/startup-constants.md).
-- Presentation: `0x0032E400` is called by `0x003B2310`, `0x003B53C0`; `0x0032E620` is called by `0x003B2310`, `0x003B53C0`;
-  `0x0036A190` is called by `0x003A7460`, `0x003A78A0`, `0x003A8020`, `0x003A9100`, `0x003A9C10`, `0x0044A620`, `0x0045FD50`,
-  `0x0046F380`, `0x004FF440`, `0x00504350`, `0x00524800`, `0x00525D50`; `0x0036A190` is also called by `0x00529200`, `0x0052A130`,
-  `0x0052ADF0`, `0x0052D3B0`, `0x0052E430`.
-- Presentation: those functions are documented on
-  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md),
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
-  [character effects](../Graphics/character-effects.md).
-- Presentation: and on [effect files efx efb](../Graphics/effect-files-efx-efb.md),
-  [effect element runtime](../Graphics/effect-element-runtime.md),
-  [effect element types](../Graphics/effect-element-types.md); and on
-  [effect anchors and targets](../Graphics/effect-anchors-and-targets.md).
-- Save load settings: `0x00261F90` calls `0x002EF2B0`; `0x0026A720` calls `0x002EF2B0`; `0x0032E620` is called by `0x002EF300`;
-  those functions are documented on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
-- UI: `0x002DEC00` is called by `0x003EF2E0`; `0x002DEE50` is called by `0x0027FB70`, `0x00280DE0`, `0x002814E0`, `0x003EF2E0`;
-  `0x00360D70` is called by `0x003EF2E0`; `0x00361630` is called by `0x003EF2E0`.
-- UI: those functions are documented on [game over](../World-Areas-And-Travel/game-over.md),
-  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md),
-  [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [clan primer](../Menus-And-HUD/clan-primer.md).
-- Movement: `0x00267310` is called by `0x002E45E0`, `0x002E5750`; those functions are documented on
-  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md),
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+<details>
+<summary>Show the 34 calls with 8 other topics</summary>
+
+**Controls and input** (explained on [startup constants](../Engine-Core/startup-constants.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E620` | is called by | `0x00291C80` |
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E400` | is called by | `0x003B2310`, `0x003B53C0` |
+| `0x0032E620` | is called by | `0x003B2310`, `0x003B53C0` |
+| `0x0036A190` | is called by | `0x003A7460`, `0x003A78A0`, `0x003A8020`, `0x003A9100`, `0x003A9C10`, `0x0044A620`, `0x0045FD50`, `0x0046F380`, `0x004FF440`, `0x00504350`, `0x00524800`, `0x00525D50` |
+| `0x0036A190` | is also called by | `0x00529200`, `0x0052A130`, `0x0052ADF0`, `0x0052D3B0`, `0x0052E430` |
+
+**Graphics** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [character effects](../Graphics/character-effects.md))
+
+**Graphics** (explained on [effect files efx efb](../Graphics/effect-files-efx-efb.md), [effect element runtime](../Graphics/effect-element-runtime.md), [effect element types](../Graphics/effect-element-types.md), [effect anchors and targets](../Graphics/effect-anchors-and-targets.md))
+
+**Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00261F90` | calls | `0x002EF2B0` |
+| `0x0026A720` | calls | `0x002EF2B0` |
+| `0x0032E620` | is called by | `0x002EF300` |
+
+**Menus and HUD**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002DEC00` | is called by | `0x003EF2E0` |
+| `0x002DEE50` | is called by | `0x0027FB70`, `0x00280DE0`, `0x002814E0`, `0x003EF2E0` |
+| `0x00360D70` | is called by | `0x003EF2E0` |
+| `0x00361630` | is called by | `0x003EF2E0` |
+
+**Menus and HUD** (explained on [game over](../World-Areas-And-Travel/game-over.md), [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [clan primer](../Menus-And-HUD/clan-primer.md))
+
+**Movement and pathfinding** (explained on [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00267310` | is called by | `0x002E45E0`, `0x002E5750` |
+
+</details>

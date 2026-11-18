@@ -162,8 +162,17 @@ Registry record, `0x02EBDBC0` + n × `0x28`, 64 records:
 - [Effect element runtime](effect-element-runtime.md): how instances are updated.
 - [Effect drawing](effect-drawing.md): how they are drawn.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x0024D540` calls `0x003B3D20`; those functions are documented on [effect drawing](effect-drawing.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Sound and music** (explained on [effect drawing](effect-drawing.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0024D540` | calls | `0x003B3D20` |
+
+</details>

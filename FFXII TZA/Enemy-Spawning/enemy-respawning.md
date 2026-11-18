@@ -528,17 +528,35 @@ In this access table, `function`, `name` and `site` give the function, its name 
 both (`rw`), `instruction` the instruction itself, and `route` `array 0x02EC13C0 reg`: a record of the table at
 `0x02EC13C0` picked by an index in a register.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
-  [battle units](../Characters-And-Objects/battle-units.md).
-- Input: `0x00313F60` is called by `0x00253C70`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Core runtime: `0x00306570` is called by `0x002341C0`; `0x0030FE60` is called by `0x002341C0`; `0x00319B10` is called by
-  `0x002341C0`; `0x0031BD60` is called by `0x002341C0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 6 calls with 3 other topics</summary>
+
+**Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x003206E0` |
+
+**Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00313F60` | is called by | `0x00253C70` |
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00306570` | is called by | `0x002341C0` |
+| `0x0030FE60` | is called by | `0x002341C0` |
+| `0x00319B10` | is called by | `0x002341C0` |
+| `0x0031BD60` | is called by | `0x002341C0` |
+
+</details>
 
 ---
 

@@ -490,13 +490,29 @@ its rig; the 32 sequencer entries at `0x02CA6CA0` with the serial `0x02CA6C94`, 
 - [Authored presentation commands](authored-presentation-commands.md): commands `0x1D`, `0x1E` and `0x3F`.
 - [Subsystem update flags](../Engine-Core/subsystem-update-flags.md): the 60 fps predicate `0x001EDE80`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Gameplay: `0x00202E10` is called by `0x00339630`; those functions are documented on
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
-- Input: `0x001EDE70` is called by `0x00253C70`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Party: `0x00380800` is called by `0x004742A0`; those functions are documented on
-  [player movement](../Movement-And-Pathfinding/player-movement.md).
+<details>
+<summary>Show the 3 calls with 3 other topics</summary>
+
+**Gameplay** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00202E10` | is called by | `0x00339630` |
+
+**Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001EDE70` | is called by | `0x00253C70` |
+
+**Party** (explained on [player movement](../Movement-And-Pathfinding/player-movement.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00380800` | is called by | `0x004742A0` |
+
+</details>

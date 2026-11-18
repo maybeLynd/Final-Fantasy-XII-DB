@@ -1878,19 +1878,38 @@ position at `+0x270` with 1.0 at `+0x27C` (`0x0052D33D`-`0x0052D34C`).
 - [PS2 VIF1 / VU1 emulation](../Engine-Core/ps2-vif1-vu1-emulation.md): the packet path
   many draw methods end in.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x00181DD0` is called by `0x00332C40`, `0x003B99D0`, `0x003D7CE0`, `0x003D7DC0`, `0x003D7E90`; `0x002628B0` calls
-  `0x00360B50`, `0x00360DD0`, `0x003636A0`.
-- Audio: those functions are documented on [animation sounds](../Sound-And-Music/animation-sounds.md),
-  [effect anchors and targets](effect-anchors-and-targets.md), [sound banks](../Sound-And-Music/sound-banks.md),
-  [effect element runtime](effect-element-runtime.md), [music](../Sound-And-Music/music.md),
-  [game over](../World-Areas-And-Travel/game-over.md).
-- Save load settings: `0x002628B0` calls `0x002EF2B0`; those functions are documented on
-  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
-- World area: `0x0036A190` is called by `0x00378540`; those functions are documented on
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
-- Gameplay: `0x00203170` is called by `0x00339630`; those functions are documented on
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
+<details>
+<summary>Show the 11 calls with 5 other topics</summary>
+
+**Sound and music**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00181DD0` | is called by | `0x00332C40`, `0x003B99D0`, `0x003D7CE0`, `0x003D7DC0`, `0x003D7E90` |
+| `0x002628B0` | calls | `0x00360B50`, `0x00360DD0`, `0x003636A0` |
+
+**Sound and music** (explained on [animation sounds](../Sound-And-Music/animation-sounds.md), [effect anchors and targets](effect-anchors-and-targets.md), [sound banks](../Sound-And-Music/sound-banks.md), [effect element runtime](effect-element-runtime.md), [music](../Sound-And-Music/music.md), [game over](../World-Areas-And-Travel/game-over.md))
+
+**Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002628B0` | calls | `0x002EF2B0` |
+
+**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A190` | is called by | `0x00378540` |
+
+**Gameplay** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00203170` | is called by | `0x00339630` |
+
+</details>

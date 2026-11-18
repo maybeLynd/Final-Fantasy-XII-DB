@@ -256,16 +256,41 @@ In these access tables, `function`, `name` and `site` give the function, its nam
 both (`rw`) or the address taken (`addr`), `instruction` the instruction itself, and `route` `embed BattleUnit+0xK`:
 the object at unit `+0xK`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on [battle units](battle-units.md).
-- Core runtime: `0x002368D0` is called by `0x0022A0B0`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- RNG random selection: `0x002342F0` calls `0x00328D80`; those functions are documented on
-  [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md).
-- Resource: `0x002368D0` calls `0x003843F0`; those functions are documented on
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
-- World area: `0x002342F0` is called by `0x00266D10`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 5 calls with 5 other topics</summary>
+
+**Combat** (explained on [battle units](battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x003206E0` |
+
+**Engine core** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002368D0` | is called by | `0x0022A0B0` |
+
+**Random numbers** (explained on [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002342F0` | calls | `0x00328D80` |
+
+**Game files and data tables** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002368D0` | calls | `0x003843F0` |
+
+**World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002342F0` | is called by | `0x00266D10` |
+
+</details>

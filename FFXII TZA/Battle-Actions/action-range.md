@@ -271,20 +271,36 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit `0x100` and returns 0 
 - [The FCP character parameter block](../Graphics/model-files-cm-ca.md)
   - the per-character parameters behind weapon-flag actions.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x00203080` is called by `0x00362850`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Script VM: `0x00265020` is called by `0x0033FD60`, `0x00344AF0`, `0x00345180`, `0x00345830`, `0x003461B0`, `0x00346710`,
-  `0x00346D40`, `0x00347170`, `0x00347580`, `0x003478A0`, `0x00347AB0`, `0x00347FF0`; `0x00265020` is also called by `0x0034BE50`,
-  `0x0034CC00`, `0x00350DD0`, `0x003516E0`, `0x003562B0`, `0x00357DE0`, `0x0050E060`, `0x0050F6E0`, `0x00510040`, `0x00510080`,
-  `0x005100C0`.
-- Script VM: `0x004686D0` is called by `0x00344390`, `0x003448F0`, `0x00345630`; those functions are documented on
-  [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
-  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md),
-  [bestiary](../Enemy-Spawning/bestiary.md).
-- Spawn encounter lifecycle: `0x00265020` is called by `0x00234AF0`, `0x00234DA0`, `0x002350C0`; those functions are
-  documented on [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 30 calls with 4 other topics</summary>
+
+**Sound and music** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00203080` | is called by | `0x00362850` |
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x0033FD60`, `0x00344AF0`, `0x00345180`, `0x00345830`, `0x003461B0`, `0x00346710`, `0x00346D40`, `0x00347170`, `0x00347580`, `0x003478A0`, `0x00347AB0`, `0x00347FF0` |
+| `0x00265020` | is also called by | `0x0034BE50`, `0x0034CC00`, `0x00350DD0`, `0x003516E0`, `0x003562B0`, `0x00357DE0`, `0x0050E060`, `0x0050F6E0`, `0x00510040`, `0x00510080`, `0x005100C0` |
+
+**Scripts and script commands** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [bestiary](../Enemy-Spawning/bestiary.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x004686D0` | is called by | `0x00344390`, `0x003448F0`, `0x00345630` |
+
+**Enemy spawning** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x00234AF0`, `0x00234DA0`, `0x002350C0` |
+
+</details>

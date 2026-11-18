@@ -361,8 +361,17 @@ the actor's `+0x20` and `+0x23` bytes, and the pool entries.
 - [Party verbs](../Scripts-And-Script-Commands/party-verbs.md): the verbs that change the party and wait on the read-in.
 - [Actor record fields](actor-record-fields.md): the actor bytes this machine writes.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on [battle units](battle-units.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Combat** (explained on [battle units](battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x003206E0` |
+
+</details>

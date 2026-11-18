@@ -1703,14 +1703,26 @@ attribute word `+0x20` is set: `0x008B1B40` the pointer the qword `0x02D3EB38` (
 - [Bullet physics](../Third-Party-Libraries/bullet-physics.md): the physics classes registered here.
 - [Bigfile archive](../Game-Files-And-Data-Tables/bigfile-archive.md): where the `.phyre` files are stored.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x007F9360` is called by `0x007F7680`, `0x007F79C0`, `0x007F7B70`, `0x007F7CC0`, `0x007F7FF0`, `0x007F8140`, `0x007F8FD0`,
-  `0x007F91B0`, `0x007FAE00`, `0x007FB400`, `0x007FB7F0`, `0x007FBF00`; `0x007F9360` is also called by `0x007FC620`, `0x007FCD80`,
-  `0x007FDA10`; those functions are documented on
-  [media decoder libraries](../Third-Party-Libraries/media-decoder-libraries.md).
-- Platform: `0x005A08E0` calls `0x005CC930`; `0x00608A40` calls `0x005CD0A0`; `0x0079F150` calls `0x005CC930`, `0x005CD0A0`,
-  `0x006253D0`; those functions are documented on [game application](../Engine-Core/game-application.md),
-  [graphics adapters and vendor libraries](../Steam-And-Achievements/graphics-adapters-and-vendor-libraries.md).
+<details>
+<summary>Show the 20 calls with 2 other topics</summary>
+
+**Sound and music** (explained on [media decoder libraries](../Third-Party-Libraries/media-decoder-libraries.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x007F9360` | is called by | `0x007F7680`, `0x007F79C0`, `0x007F7B70`, `0x007F7CC0`, `0x007F7FF0`, `0x007F8140`, `0x007F8FD0`, `0x007F91B0`, `0x007FAE00`, `0x007FB400`, `0x007FB7F0`, `0x007FBF00` |
+| `0x007F9360` | is also called by | `0x007FC620`, `0x007FCD80`, `0x007FDA10` |
+
+**Platform** (explained on [game application](../Engine-Core/game-application.md), [graphics adapters and vendor libraries](../Steam-And-Achievements/graphics-adapters-and-vendor-libraries.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005A08E0` | calls | `0x005CC930` |
+| `0x00608A40` | calls | `0x005CD0A0` |
+| `0x0079F150` | calls | `0x005CC930`, `0x005CD0A0`, `0x006253D0` |
+
+</details>

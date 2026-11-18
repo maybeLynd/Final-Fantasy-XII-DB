@@ -263,10 +263,17 @@ and calls `0x00307D10` (`0x002FF9CC`-`0x002FFA40`).
   values come from.
 - [Battle orders](../Battle-Actions/battle-orders.md) - the orders that adjust an enemy's stats.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Script VM: `0x00320AB0` is called by `0x0050FD00`, `0x0050FD50`, `0x0050FDD0`, `0x0050FE20`, `0x0050FE80`, `0x0050FED0`,
-  `0x0050FF20`; those functions are documented on
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
+<details>
+<summary>Show the 7 calls with 1 other topic</summary>
+
+**Scripts and script commands** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00320AB0` | is called by | `0x0050FD00`, `0x0050FD50`, `0x0050FDD0`, `0x0050FE20`, `0x0050FE80`, `0x0050FED0`, `0x0050FF20` |
+
+</details>

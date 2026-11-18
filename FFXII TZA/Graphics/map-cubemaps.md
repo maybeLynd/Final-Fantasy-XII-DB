@@ -244,9 +244,18 @@ Measured over the archive. [`map-cubemaps-rows.tsv`](map-cubemaps-rows.tsv) has 
   beside the cubemap intensity.
 - [Character render object](character-render-object.md): the character side of the shader bindings.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Platform: `0x0016D6D0` is called by `0x0019CC50`, `0x001B1960`; `0x0016DA60` is called by `0x0019CC50`, `0x001B1960`; those
-  functions are documented on [debug menu](../Engine-Core/debug-menu.md).
+<details>
+<summary>Show the 4 calls with 1 other topic</summary>
+
+**Platform** (explained on [debug menu](../Engine-Core/debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0016D6D0` | is called by | `0x0019CC50`, `0x001B1960` |
+| `0x0016DA60` | is called by | `0x0019CC50`, `0x001B1960` |
+
+</details>

@@ -665,22 +665,45 @@ is 0, so a second call cannot make a second widget. On message `0x12` the widget
 - [Menus](menus.md) - the router that opens screens.
 - [Dialogs](dialogs.md) - the list and confirmation widgets.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat AI: `0x0031EB20` calls `0x00327A10`; those functions are documented on [gambit screen](gambit-screen.md).
-- Combat action: `0x002778C0` calls `0x00311B20`, `0x00311CD0`; `0x0027AA70` calls `0x00311CD0`; `0x002D5EB0` calls `0x00309C00`,
-  `0x00309C40`, `0x0030DB70`; `0x0031EB20` calls `0x002F95D0`, `0x002F9820`, `0x002FFCF0`, `0x00306480`, `0x00317BC0`.
-- Combat action: those functions are documented on [call signatures](../Engine-Core/call-signatures.md),
-  [quickenings and summons](../Battle-Actions/quickenings-and-summons.md),
-  [command availability](../Battle-Actions/command-availability.md),
-  [action definition row](../Battle-Actions/action-definition-row.md).
-- Combat action: and on [force fight mode](../Engine-Core/force-fight-mode.md).
-- Status periodic terminal: `0x00265680` is called by `0x00310DB0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Story event quest hunt: `0x00254560` calls `0x0032A8A0`; those functions are documented on
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
+<details>
+<summary>Show the 14 calls with 6 other topics</summary>
+
+**Enemy AI and gambits** (explained on [gambit screen](gambit-screen.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031EB20` | calls | `0x00327A10` |
+
+**Battle actions**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002778C0` | calls | `0x00311B20`, `0x00311CD0` |
+| `0x0027AA70` | calls | `0x00311CD0` |
+| `0x002D5EB0` | calls | `0x00309C00`, `0x00309C40`, `0x0030DB70` |
+| `0x0031EB20` | calls | `0x002F95D0`, `0x002F9820`, `0x002FFCF0`, `0x00306480`, `0x00317BC0` |
+
+**Battle actions** (explained on [call signatures](../Engine-Core/call-signatures.md), [quickenings and summons](../Battle-Actions/quickenings-and-summons.md), [command availability](../Battle-Actions/command-availability.md), [action definition row](../Battle-Actions/action-definition-row.md))
+
+**Battle actions** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+**Status effects and KO** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265680` | is called by | `0x00310DB0` |
+
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00254560` | calls | `0x0032A8A0` |
+
+</details>
 
 ---
 

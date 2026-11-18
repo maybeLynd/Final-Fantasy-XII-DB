@@ -623,9 +623,17 @@ Entering a zone, as the map-art context sees it:
 - [Phyre field schema](../PhyreEngine/phyre-field-schema.md): the `PMeshInstance` fields.
 - [Render parameters and shader assets](../Graphics/render-parameters-and-shader-assets.md): the map texture paths.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Platform: `0x00584740` is called by `0x00650D40`; those functions are documented on
-  [phyre post effect classes](../PhyreEngine/phyre-post-effect-classes.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Platform** (explained on [phyre post effect classes](../PhyreEngine/phyre-post-effect-classes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00584740` | is called by | `0x00650D40` |
+
+</details>

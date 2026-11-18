@@ -221,9 +221,18 @@ and `0x0025D540(actor)`, and ends in a jump to `0x0026AE90(actor, 0)`
 - [Story flags](../Story-Events-And-Hunts/story-flags.md): the gates the icons name.
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md): `setposbynaviicon`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat action: `0x0026B0C0` is called by `0x00307300`; `0x0026B620` is called by `0x00307300`; those functions are
-  documented on [game over](../World-Areas-And-Travel/game-over.md).
+<details>
+<summary>Show the 2 calls with 1 other topic</summary>
+
+**Battle actions** (explained on [game over](../World-Areas-And-Travel/game-over.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026B0C0` | is called by | `0x00307300` |
+| `0x0026B620` | is called by | `0x00307300` |
+
+</details>

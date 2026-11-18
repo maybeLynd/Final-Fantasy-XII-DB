@@ -998,15 +998,35 @@ No other instruction reaches these four.
 - [Menu sprites](menu-sprites.md) - the `targetline_p` picture.
 - [Widgets](widgets.md) - the widget model the parts use.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat AI: `0x00307300` calls `0x003216E0`; those functions are documented on
-  [action definition row](../Battle-Actions/action-definition-row.md).
-- Rewards progression economy: `0x003F8C60` is called by `0x00290130`; those functions are documented on
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
-- Status periodic terminal: `0x0030C650` calls `0x0030FED0`; those functions are documented on
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
-- Story event quest hunt: `0x00253C70` calls `0x0032A8A0`; those functions are documented on
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
+<details>
+<summary>Show the 4 calls with 4 other topics</summary>
+
+**Enemy AI and gambits** (explained on [action definition row](../Battle-Actions/action-definition-row.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00307300` | calls | `0x003216E0` |
+
+**Rewards: EXP, LP, gil and loot** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003F8C60` | is called by | `0x00290130` |
+
+**Status effects and KO** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0030C650` | calls | `0x0030FED0` |
+
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00253C70` | calls | `0x0032A8A0` |
+
+</details>

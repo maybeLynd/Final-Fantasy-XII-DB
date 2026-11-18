@@ -349,12 +349,25 @@ and its `+0x00` is 0. Record 0's `+0x00` points to record 2, so records 2 to 31 
 - [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md): the mask that pauses the gauges.
 - [Widgets](widgets.md): the opening and closing runs.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x003E9100` is called by `0x002628B0`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- World area: `0x0024A680` is called by `0x003C63A0`; `0x003E7DF0` is called by `0x00266D10`; `0x003E90E0` is called by
-  `0x00266D10`; those functions are documented on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 4 calls with 2 other topics</summary>
+
+**Characters and objects** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003E9100` | is called by | `0x002628B0` |
+
+**World, areas and travel** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0024A680` | is called by | `0x003C63A0` |
+| `0x003E7DF0` | is called by | `0x00266D10` |
+| `0x003E90E0` | is called by | `0x00266D10` |
+
+</details>

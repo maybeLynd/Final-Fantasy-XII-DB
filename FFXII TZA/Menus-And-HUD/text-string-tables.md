@@ -218,48 +218,99 @@ Empty strings per tree: `us` 2,713, `de` 9, `es` 1, `fr` 437, `it` 2,410, `in` 1
 - [Staff roll](staff-roll.md) - the credits text of `menu03` and `menu04`.
 - [Word bank](text-word-bank.md) - the names the battle messages insert.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat AI: `0x00236C30` calls `0x00238880`; those functions are documented on
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
-- Combat action: `0x00236C30` calls `0x00237FC0`; those functions are documented on
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
-- Combat formula: `0x005369C0` calls `0x0031B860`; those functions are documented on
-  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
-- Core runtime: `0x00254A10` calls `0x00229E40`; `0x002AC5F0` calls `0x00229E40`; those functions are documented on
-  [startup constants](../Engine-Core/startup-constants.md).
-- Gameplay: `0x0031C5D0` calls `0x00309EC0`, `0x0030AE30`, `0x0030B0E0`, `0x00322C50`; `0x00536410` calls `0x0031C5D0`; those
-  functions are documented on [item and ability ids](../Engine-Core/item-and-ability-ids.md),
-  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md),
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
-- Items equipment shops license: `0x00236C30` calls `0x00238660`; those functions are documented on
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
-- Presentation: `0x00254A10` is called by `0x002B0280`, `0x002D2DB0`; `0x002AC5F0` calls `0x003A1DB0`; `0x002AC5F0` is called by
-  `0x002AAE40`; `0x002B40C0` calls `0x002B4810`; `0x002F9920` is called by `0x0037E5B0`, `0x0037E8D0`; `0x00377B60` is called by
-  `0x002B7B80`, `0x002BAF80`.
-- Presentation: those functions are documented on
-  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [menu lists](menu-lists.md),
-  [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [message windows](message-windows.md),
-  [text codes](text-codes.md).
-- Presentation: and on [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Resource: `0x00236C30` calls `0x003843F0`; `0x002FA560` calls `0x002385D0`; those functions are documented on
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md),
-  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md).
-- Save load settings: `0x00254A10` is called by `0x005832B0`; those functions are documented on
-  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md).
-- World area: `0x00236C30` calls `0x003847B0`; those functions are documented on
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
-- World area: `0x00236C30` calls `0x003845F0`, `0x003846F0`; `0x00236C30` is called by `0x00238850`; `0x002F9920` is called by
-  `0x003C0450`, `0x00576A50`; `0x003778B0` calls `0x00264F90`; `0x003778B0` is called by `0x0057FB00`; `0x00377B60` is called by
-  `0x0057FB00`; `0x005369C0` calls `0x00264ED0`, `0x003148F0`.
-- World area: those functions are documented on
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md),
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md),
-  [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md).
-- World area: and on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md),
-  [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md),
-  [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md); and on
-  [party control modes](../Engine-Core/party-control-modes.md).
+<details>
+<summary>Show the 34 calls with 15 other topics</summary>
+
+**Enemy AI and gambits** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236C30` | calls | `0x00238880` |
+
+**Battle actions** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236C30` | calls | `0x00237FC0` |
+
+**Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005369C0` | calls | `0x0031B860` |
+
+**Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00254A10` | calls | `0x00229E40` |
+| `0x002AC5F0` | calls | `0x00229E40` |
+
+**Gameplay** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031C5D0` | calls | `0x00309EC0`, `0x0030AE30`, `0x0030B0E0`, `0x00322C50` |
+| `0x00536410` | calls | `0x0031C5D0` |
+
+**Items, equipment, shops and licenses** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236C30` | calls | `0x00238660` |
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00254A10` | is called by | `0x002B0280`, `0x002D2DB0` |
+| `0x002AC5F0` | calls | `0x003A1DB0` |
+| `0x002AC5F0` | is called by | `0x002AAE40` |
+| `0x002B40C0` | calls | `0x002B4810` |
+| `0x002F9920` | is called by | `0x0037E5B0`, `0x0037E8D0` |
+| `0x00377B60` | is called by | `0x002B7B80`, `0x002BAF80` |
+
+**Graphics** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [menu lists](menu-lists.md), [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [message windows](message-windows.md), [text codes](text-codes.md))
+
+**Graphics** (explained on [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+**Game files and data tables** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md), [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236C30` | calls | `0x003843F0` |
+| `0x002FA560` | calls | `0x002385D0` |
+
+**Saving, loading and settings** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00254A10` | is called by | `0x005832B0` |
+
+**World, areas and travel** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236C30` | calls | `0x003847B0` |
+
+**World, areas and travel**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236C30` | calls | `0x003845F0`, `0x003846F0` |
+| `0x00236C30` | is called by | `0x00238850` |
+| `0x002F9920` | is called by | `0x003C0450`, `0x00576A50` |
+| `0x003778B0` | calls | `0x00264F90` |
+| `0x003778B0` | is called by | `0x0057FB00` |
+| `0x00377B60` | is called by | `0x0057FB00` |
+| `0x005369C0` | calls | `0x00264ED0`, `0x003148F0` |
+
+**World, areas and travel** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md))
+
+**World, areas and travel** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md), [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md), [party control modes](../Engine-Core/party-control-modes.md))
+
+</details>

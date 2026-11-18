@@ -180,9 +180,17 @@ The variable id of `rbn_a14`'s hunt clear is 167 or 170 (lines 2614, 2634), both
 - [Shops](../Items-Equipment-Shops-And-Licenses/shops.md) - the clan rank that counts quests.
 - [Hunts](hunts.md) - the 45 hunts, quests 128 to 172.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Spawn encounter lifecycle: `0x0026ADC0` is called by `0x00307030`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026ADC0` | is called by | `0x00307030` |
+
+</details>

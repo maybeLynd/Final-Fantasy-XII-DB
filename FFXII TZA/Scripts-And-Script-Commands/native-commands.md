@@ -307,12 +307,20 @@ skip mask byte, and the two signal bit arrays with the effect slots' signal byte
 - [Script interpreter](script-interpreter.md): the wait slot and the rewind on a busy call.
 - [Script verb table](verb-table.md): every id with its callbacks.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input gameplay: `0x002E1CA0` is called by `0x00313A00`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E1CA0` | is called by | `0x00313A00` |
+
+</details>
 
 ---
 

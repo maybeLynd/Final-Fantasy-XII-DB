@@ -276,21 +276,45 @@ No other instruction reaches `0x022C2674`.
 - [KO and Game Over](../Status-Effects-And-KO/ko-and-game-over.md) - the wipe tests over maps 1 and 3.
 - [Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md) - the fighting party an enemy can notice.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x0031BD60` is called by `0x002341C0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Platform online achievements: `0x003148F0` is called by `0x003160C0`; those functions are documented on
-  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md).
-- Save load settings: `0x003148F0` calls `0x002EF2B0`; `0x003148F0` is called by `0x00583D60`; those functions are documented
-  on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
-  [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md).
-- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
-  [battle units](../Characters-And-Objects/battle-units.md).
-- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 6 calls with 5 other topics</summary>
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031BD60` | is called by | `0x002341C0` |
+
+**Steam and achievements** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003148F0` | is called by | `0x003160C0` |
+
+**Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003148F0` | calls | `0x002EF2B0` |
+| `0x003148F0` | is called by | `0x00583D60` |
+
+**Combat** (explained on [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263E30` | is called by | `0x003206E0` |
+
+**Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00313A00` |
+
+</details>
 
 ---
 

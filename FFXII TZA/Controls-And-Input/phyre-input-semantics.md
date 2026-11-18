@@ -376,17 +376,35 @@ codes 1-3.
 - [Phyre reflection](../PhyreEngine/phyre-reflection.md) - class descriptors, type references by
   name and `PCluster::create`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Application: `0x00792350` is called by `0x0015BC40`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Audio: `0x00879750` is called by `0x00221ED0`, `0x00222390`; those functions are documented on
-  [audio manager](../Sound-And-Music/audio-manager.md).
-- Platform: `0x00792350` calls `0x005CD0A0`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Presentation: `0x0063A990` is called by `0x0018D850`, `0x001946E0`, `0x001B72B0`; those functions are documented on
-  [game application](../Engine-Core/game-application.md),
-  [random number generators](../Random-Numbers/random-number-generators.md),
-  [movies](../Graphics/movies.md).
+<details>
+<summary>Show the 7 calls with 4 other topics</summary>
+
+**Application** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00792350` | is called by | `0x0015BC40` |
+
+**Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00879750` | is called by | `0x00221ED0`, `0x00222390` |
+
+**Platform** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00792350` | calls | `0x005CD0A0` |
+
+**Graphics** (explained on [game application](../Engine-Core/game-application.md), [random number generators](../Random-Numbers/random-number-generators.md), [movies](../Graphics/movies.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0063A990` | is called by | `0x0018D850`, `0x001946E0`, `0x001B72B0` |
+
+</details>

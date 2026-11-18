@@ -402,16 +402,36 @@ and cones.
 - [The field record table](../World-Areas-And-Travel/area-flags-navimapdata.md)
   - the map-info word whose bit `0x8000` `0x00377C20` returns.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- RNG random selection: `0x003087E0` calls `0x00328370`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Audio: `0x00265020` is called by `0x00362850`; `0x003112F0` calls `0x002DF220`, `0x003A1180`; those functions are documented
-  on [frame update order](../Engine-Core/frame-update-order.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Platform online achievements: `0x00305640` calls `0x00316440`; those functions are documented on
-  [item use](../Items-Equipment-Shops-And-Licenses/item-use.md).
-- Resource: `0x00319F50` calls `0x001D6AE0`; those functions are documented on
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
+<details>
+<summary>Show the 6 calls with 4 other topics</summary>
+
+**Random numbers** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003087E0` | calls | `0x00328370` |
+
+**Sound and music** (explained on [frame update order](../Engine-Core/frame-update-order.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x00362850` |
+| `0x003112F0` | calls | `0x002DF220`, `0x003A1180` |
+
+**Steam and achievements** (explained on [item use](../Items-Equipment-Shops-And-Licenses/item-use.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00305640` | calls | `0x00316440` |
+
+**Game files and data tables** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00319F50` | calls | `0x001D6AE0` |
+
+</details>

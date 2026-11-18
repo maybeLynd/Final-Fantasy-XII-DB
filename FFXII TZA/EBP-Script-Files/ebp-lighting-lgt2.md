@@ -321,11 +321,23 @@ goes on after a match (`0x0037A8F1`, `0x0037A861`). Both return at once when the
 - [Script verb table](../Scripts-And-Script-Commands/verb-table.md): the light verbs and their use counts.
 - [Resource arenas and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md): the 32-bit address encoding the type-5 slots use.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input: `0x00266D10` calls `0x00226BE0`; those functions are documented on
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
-- Save load settings: `0x00266D10` calls `0x002EF2D0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 2 calls with 2 other topics</summary>
+
+**Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00266D10` | calls | `0x00226BE0` |
+
+**Saving, loading and settings** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00266D10` | calls | `0x002EF2D0` |
+
+</details>

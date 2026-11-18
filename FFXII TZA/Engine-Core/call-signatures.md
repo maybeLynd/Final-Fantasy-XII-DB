@@ -242,34 +242,53 @@ the ExFont drawer `0x003649A0`, `0x003656A0`, `0x00366110`, `0x002847C0`, `0x002
 - [Class hierarchy](class-hierarchy.md): how the classes and their tables are found.
 - [Jump thunks](jump-thunks.md): one-instruction forwarders, whose signature is their target's.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x00121000` calls `0x00121DB0`, `0x00124350`; `0x00121000` is called by `0x007AC4F0`; those functions are documented
-  on [media decoder libraries](../Third-Party-Libraries/media-decoder-libraries.md),
-  [audio effects](../Sound-And-Music/audio-effects.md).
-- Platform: `0x005CD4F0` is called by `0x0019CC50`; those functions are documented on [debug menu](debug-menu.md).
-- Resource: `0x0036A100` is called by `0x00249210`, `0x0024EF90`, `0x0024F240`; `0x0036A190` is called by `0x00249210`,
-  `0x0024A1D0`, `0x00259DF0`, `0x0032E7C0`, `0x00379E90`, `0x00384420`, `0x0051ED10`; `0x005CD1E0` is called by `0x001DAAC0`;
-  `0x005CD4F0` is called by `0x001A0A90`, `0x001A0BB0`, `0x001A0C50`, `0x001A1240`, `0x001D9DA0`, `0x001D9FD0`, `0x001DA220`,
-  `0x001DA970`, `0x001DADC0`, `0x0020B680`, `0x0020B9A0`, `0x0020BE50`.
-- Resource: `0x005CD4F0` is also called by `0x0020BFA0`, `0x0020C1B0`, `0x002121C0`, `0x00212600`, `0x00675460`, `0x00676450`,
-  `0x00676A70`, `0x00676BD0`, `0x00677BA0`.
-- Resource: those functions are documented on
-  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md),
-  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md),
-  [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md),
-  [startup constants](startup-constants.md).
-- Resource: and on
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md),
-  [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md).
-- Resource: and on [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md),
-  [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md),
-  [audio manager](../Sound-And-Music/audio-manager.md),
-  [memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md).
-- Resource: and on [phyre asset files](../PhyreEngine/phyre-asset-files.md),
-  [phyre reflection](../PhyreEngine/phyre-reflection.md).
-- World area: `0x0036A190` is called by `0x00378540`; those functions are documented on
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
+<details>
+<summary>Show the 37 calls with 9 other topics</summary>
+
+**Sound and music** (explained on [media decoder libraries](../Third-Party-Libraries/media-decoder-libraries.md), [audio effects](../Sound-And-Music/audio-effects.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00121000` | calls | `0x00121DB0`, `0x00124350` |
+| `0x00121000` | is called by | `0x007AC4F0` |
+
+**Platform** (explained on [debug menu](debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005CD4F0` | is called by | `0x0019CC50` |
+
+**Game files and data tables**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A100` | is called by | `0x00249210`, `0x0024EF90`, `0x0024F240` |
+| `0x0036A190` | is called by | `0x00249210`, `0x0024A1D0`, `0x00259DF0`, `0x0032E7C0`, `0x00379E90`, `0x00384420`, `0x0051ED10` |
+| `0x005CD1E0` | is called by | `0x001DAAC0` |
+| `0x005CD4F0` | is called by | `0x001A0A90`, `0x001A0BB0`, `0x001A0C50`, `0x001A1240`, `0x001D9DA0`, `0x001D9FD0`, `0x001DA220`, `0x001DA970`, `0x001DADC0`, `0x0020B680`, `0x0020B9A0`, `0x0020BE50` |
+
+**Game files and data tables**
+
+| Function | | Functions |
+|---|---|---|
+| `0x005CD4F0` | is also called by | `0x0020BFA0`, `0x0020C1B0`, `0x002121C0`, `0x00212600`, `0x00675460`, `0x00676450`, `0x00676A70`, `0x00676BD0`, `0x00677BA0` |
+
+**Game files and data tables** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [startup constants](startup-constants.md))
+
+**Game files and data tables** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md))
+
+**Game files and data tables** (explained on [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md), [audio manager](../Sound-And-Music/audio-manager.md), [memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md))
+
+**Game files and data tables** (explained on [phyre asset files](../PhyreEngine/phyre-asset-files.md), [phyre reflection](../PhyreEngine/phyre-reflection.md))
+
+**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A190` | is called by | `0x00378540` |
+
+</details>

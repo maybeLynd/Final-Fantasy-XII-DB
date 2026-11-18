@@ -40,7 +40,7 @@ auto-test walker `0x001C2F50`: an auto-test switch that is never set in retail, 
 | `eventstartsync(slot)` | `0x0165` | begin `0x0034F3C0`, poll `0x0034F6F0` | the begin pushes a 0 flag first (`0x00267F90`, `0x0034F3DA`), pops it and the slot, and keeps the manager record `0x00263FF0(m)` at scratch `+0` and the flag at `+8` (`0x0034F3E2`-`0x0034F41D`); waits while manager `+0x10` has bit `0x2` and not bit `0x1`; with bit `0x1` set the 0 flag ends the wait at once (`0x0034F703`) |
 | `eventstartsync_166(slot, flag)` | `0x0166` | begin `0x0034E460`, poll `0x0034EAB0` | the begin pops the flag and the slot and keeps the same two values as `eventstartsync`'s begin (`0x0034E478`-`0x0034E4B3`); waits while `+0x10` has bit `0x2` and not bit `0x1`, or has bits `0x1` and `0x80` while the flag is set; with bit `0x1` set, a clear flag or a clear bit `0x80` ends the wait whatever bit `0x2` holds (`0x0034EAC6`, `0x0034EACC`) |
 | `eventstartsync_167()` | `0x0167` | begin `0x0034FC50`, poll `0x0034F6F0` | the begin pushes two zeros: manager 1, flag 0 |
-| `eventdispose_f2(slot)` | `0x00F2` | begin `0x00356D40`, poll `0x0033F150` | `0x00332190(m)`: when manager `m` is busy (`+0x13`), active or loading (`+0x11` bit `0x8`) it sets `0x022C6D20[m]` to 1 (`0x003321BD`) and, when the manager is active, requests its teardown through `0x0026A5F0` (`0x003321CA`); a manager that is idle, inactive and not loading is left as it is (`0x003321B0`). A negative slot means the issuer's own manager, `[0x02099D70] + 0x28` (`0x00356DAC`), disposed only when it is 1 to 3 (`0x00356DB5`); from manager 0 or 4 the begin disposes nothing. The begin clears its flag (`0x00356D5C`) and sets it to 1 when `m` is the issuer's manager (`0x00356DBE`, `0x00356DC3`), and the poll halts the issuer (`+0x14` bit `0x40`) when it disposed itself. After a non-negative slot's dispose it calls the stub `0x0016D6A0(m)` (`0x00356D83`, `0x00356D9D`), which does nothing; on every path it then releases the depth-of-field focus with `0x00382B50(-1, 0, 0)` (`0x00356DD1`, [post-processing](../Graphics/post-processing.md)) and tail-jumps to `0x001EC4B0(m)` (`0x00356DE7`), which empties event-slot panel slot `m` (`0x0020A760`) and raises the scene-reset byte (`0x00214B30`) |
+| `eventdispose_f2(slot)` | `0x00F2` | begin `0x00356D40`, poll `0x0033F150` | `0x00332190(m)`: when manager `m` is busy (`+0x13`), active or loading (`+0x11` bit `0x8`) it sets `0x022C6D20[m]` to 1 (`0x003321BD`) and, when the manager is active, requests its teardown through `0x0026A5F0` (`0x003321CA`); a manager that is idle, inactive and not loading is left as it is (`0x003321B0`). A negative slot means the issuer's own manager, `[0x02099D70] + 0x28` (`0x00356DAC`), disposed only when it is 1 to 3 (`0x00356DB5`); from manager 0 or 4 the begin disposes nothing. The begin clears its flag (`0x00356D5C`) and sets it to 1 when `m` is the issuer's manager (`0x00356DBE`, `0x00356DC3`); a negative slot whose own manager is not 1 to 3 skips that test as well as the dispose (`0x00356DB5`, to `0x00356DC9`), so its flag stays 0. The poll halts the issuer (`+0x14` bit `0x40`) when the flag is 1. After a non-negative slot's dispose it calls the stub `0x0016D6A0(m)` (`0x00356D83`, `0x00356D9D`), which does nothing; on every path it then releases the depth-of-field focus with `0x00382B50(-1, 0, 0)` (`0x00356DD1`, [post-processing](../Graphics/post-processing.md)) and tail-jumps to `0x001EC4B0(m)` (`0x00356DE7`), which empties event-slot panel slot `m` (`0x0020A760`) and raises the scene-reset byte (`0x00214B30`) |
 
 The `eventdispose_f2` poll `0x0033F150` halts the issuer (`+0x14` bit `0x40`) and returns 1 when the begin's flag
 (scratch `+0`, set at `0x00356DC3`) is set, and returns 0 otherwise (`0x0033F150`-`0x0033F162`).
@@ -276,179 +276,328 @@ the movie player state.
 - [The world lock](world-lock.md): what holds everyone else still during a talk or scene.
 - [Native commands](native-commands.md): the skip mask that ends waits.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0032F1B0` calls `0x0037AA90`; `0x0037B230` is called by `0x0037AA90`; those functions are documented on
-  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
-- Actor entity: `0x00183070` is called by `0x0025D9E0`; `0x0025C070` calls `0x00358940`; `0x00263C30` is called by `0x0032F1B0`;
-  `0x00266C50` calls `0x00358940`, `0x003DBB60`; `0x00266C50` is called by `0x0026CE60`; `0x0026A5F0` is called by `0x0025D9E0`;
-  `0x0026CE60` calls `0x00233CF0`, `0x002572E0`, `0x00263660`, `0x00265A20`, `0x00266C50`, `0x002679F0`, `0x00268EA0`, `0x0026D3E0`,
-  `0x003587C0`, `0x00358940`, `0x003DB1F0`.
-- Actor entity: `0x0026CE60` is called by `0x0025BFB0`, `0x0032F1B0`; `0x002DF980` is called by `0x0032FCA0`; `0x002E1C40` is
-  called by `0x0025D9E0`, `0x002628B0`; `0x002E1CD0` is called by `0x0025C830`, `0x00263050`, `0x00263660`, `0x00268D10`,
-  `0x0026C5D0`; `0x002E9D90` calls `0x00263FF0`; `0x002F1A30` is called by `0x0025D9E0`; `0x00314010` is called by `0x002695A0`,
-  `0x0026CE60`; `0x00314DF0` is called by `0x002695A0`, `0x0026CE60`.
-- Actor entity: `0x0032E520` is called by `0x002628B0`; `0x0032F1B0` calls `0x00263C30`, `0x00263FF0`, `0x0026CE60`, `0x0037B230`,
-  `0x0037B290`, `0x003DE920`; `0x0032F1B0` is called by `0x0032F850`, `0x0032FA10`, `0x0032FAC0`, `0x0032FB70`, `0x00330060`,
-  `0x00330110`, `0x00330190`, `0x00330220`, `0x003302B0`, `0x003304A0`, `0x00331610`, `0x003316B0`; `0x0032F1B0` is also called by
-  `0x00331760`, `0x003317C0`, `0x00331820`, `0x00332130`.
-- Actor entity: `0x0032F240` is called by `0x0026C8C0`; `0x0032F6C0` is called by `0x0025D9E0`; `0x0032FC30` calls `0x0032FCA0`;
-  `0x0032FC30` is called by `0x0025D9E0`; `0x00332130` calls `0x00263FF0`, `0x0032F1B0`; `0x00332190` calls `0x00263FF0`; `0x0034C9A0`
-  calls `0x0032F240`; `0x0034DB30` calls `0x0025C070`; `0x0034E460` calls `0x00263FF0`; `0x0034F3C0` calls `0x00263FF0`; `0x0034FC50`
-  calls `0x00263FF0`; `0x00351C90` calls `0x00263FF0`.
-- Actor entity: `0x00354B20` calls `0x00332130`; `0x003601B0` is called by `0x002628B0`; `0x003603C0` is called by `0x0025D9E0`,
-  `0x002628B0`; `0x003604D0` is called by `0x002628B0`; `0x00360D60` is called by `0x0025D9E0`; `0x00368AA0` is called by
-  `0x002628B0`; `0x0037AA90` calls `0x0037B230`; `0x0037AA90` is called by `0x0032F1B0`; `0x0037B230` is called by `0x002628B0`,
-  `0x0032F1B0`; `0x0037B290` is called by `0x0032F1B0`.
-- Actor entity: `0x003DE920` calls `0x0037ACA0`, `0x0037ACD0`; `0x003DE920` is called by `0x002628B0`, `0x0032F1B0`.
-- Actor entity: those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
-  [script requests](script-requests.md), [party control modes](../Engine-Core/party-control-modes.md).
-- Actor entity: and on [actor managers](../Characters-And-Objects/actor-managers.md),
-  [actor lifecycle](../Characters-And-Objects/actor-lifecycle.md),
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Actor entity: and on [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md),
-  [debug menu](../Engine-Core/debug-menu.md),
-  [startup constants](../Engine-Core/startup-constants.md),
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md).
-- Actor entity: and on [ebp lighting lgt2](../EBP-Script-Files/ebp-lighting-lgt2.md),
-  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md),
-  [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md),
-  [ebp camera tables](../EBP-Script-Files/ebp-camera-tables.md).
-- Actor entity: and on [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md),
-  [ebp script container](../EBP-Script-Files/ebp-script-container.md),
-  [ebp camera shake](../EBP-Script-Files/ebp-camera-shake.md), [script variables](script-variables.md),
-  [weather](../World-Areas-And-Travel/weather.md).
-- Application: `0x00792350` is called by `0x0015BC40`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Audio: `0x00267330` is called by `0x003A1070`, `0x003A1180`; `0x0034DB30` calls `0x003608D0`; `0x003601B0` is called by
-  `0x003614E0`; `0x003601C0` is called by `0x00361460`; `0x003603C0` is called by `0x002DEF40`, `0x002DEFA0`, `0x002DF010`,
-  `0x002DF120`, `0x002DF220`, `0x002DF2C0`, `0x002DF560`; `0x00360710` calls `0x002DEDD0`; `0x003608D0` calls `0x002DE350`,
-  `0x002DEE30`.
-- Audio: those functions are documented on [sound banks](../Sound-And-Music/sound-banks.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md), [music](../Sound-And-Music/music.md),
-  [frame update order](../Engine-Core/frame-update-order.md), [map sounds](../Sound-And-Music/map-sounds.md),
-  [audio manager](../Sound-And-Music/audio-manager.md).
-- Audio: and on [scripted camera](../Graphics/scripted-camera.md),
-  [native commands](native-commands.md), [menu screens](../Menus-And-HUD/menu-screens.md).
-- Combat action: `0x0032E520` is called by `0x002FC3C0`; `0x0032ED70` is called by `0x00306BD0`; `0x0032F6C0` is called by
-  `0x00306B10`; `0x0032FC30` is called by `0x00306BD0`; `0x00332130` is called by `0x00306760`; `0x00332190` is called by
-  `0x00306570`, `0x003065D0`.
-- Combat action: those functions are documented on
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
-  [battle units](../Characters-And-Objects/battle-units.md), [action phases](../Battle-Actions/action-phases.md),
-  [party control modes](../Engine-Core/party-control-modes.md).
-- Combat action: and on [frame update order](../Engine-Core/frame-update-order.md).
-- Core runtime: `0x001C2F50` is called by `0x0017D6E0`; `0x0032E520` is called by `0x0022B6E0`, `0x0022B7E0`; `0x0034DB30` calls
-  `0x00229EB0`; `0x003603C0` is called by `0x0022A770`; `0x0053DD10` is called by `0x0022B6E0`.
-- Core runtime: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
-- Developer: `0x00796E20` is called by `0x001C2F50`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Input: `0x002273E0` calls `0x00226BE0`; `0x00267310` is called by `0x002E09A0`; `0x0053DD10` is called by `0x002E09A0`,
-  `0x0035FCA0`, `0x0035FDD0`, `0x0046DD50`; `0x00796E20` is called by `0x0017DDC0`, `0x0017DE10`, `0x0017DE60`, `0x0017DFC0`,
-  `0x00196680`, `0x00196710`, `0x001967D0`, `0x00196C40`, `0x00196DF0`, `0x00196EE0`, `0x00197160`, `0x00197990`.
-- Input: `0x00796E20` is also called by `0x00198E80`, `0x001E0920`, `0x001E0C30`, `0x001E0C50`, `0x001E0CE0`, `0x001E0D30`,
-  `0x001E0E00`, `0x001E0E70`.
-- Input: those functions are documented on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md),
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
-- Input: and on [force fight mode](../Engine-Core/force-fight-mode.md),
-  [player movement](../Movement-And-Pathfinding/player-movement.md),
-  [control remapping](../Controls-And-Input/control-remapping.md), [pause screen](../Menus-And-HUD/pause-screen.md),
-  [game application](../Engine-Core/game-application.md).
-- Input: and on [debug menu](../Engine-Core/debug-menu.md), [vibration](../Controls-And-Input/vibration.md),
-  [field camera](../Graphics/field-camera.md),
-  [on screen keyboard](../Controls-And-Input/on-screen-keyboard.md).
-- Input gameplay: `0x002E1C20` is called by `0x00313A00`; `0x002E1C40` is called by `0x00313A00`; those functions are
-  documented on [force fight mode](../Engine-Core/force-fight-mode.md).
-- Movement: `0x00267310` is called by `0x002E45E0`, `0x002E5750`; `0x002E1CD0` is called by `0x0026C3E0`; `0x003DE920` is called
-  by `0x00379080`, `0x00379110`.
-- Movement: those functions are documented on
-  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md),
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md); and on
-  [character lighting and shadows](../Graphics/character-lighting-and-shadows.md).
-- Party: `0x00267330` is called by `0x00358CB0`, `0x00359150`; `0x0026CE60` calls `0x00358BB0`; `0x003601B0` is called by
-  `0x0034CDF0`, `0x0034D4E0`, `0x00350160`, `0x00350CD0`, `0x00352AF0`; `0x003601C0` is called by `0x0034CDF0`.
-- Party: those functions are documented on
-  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md),
-  [map screens](../Menus-And-HUD/map-screens.md), [frame update order](../Engine-Core/frame-update-order.md),
-  [party verbs](party-verbs.md).
-- Platform: `0x00792350` calls `0x005CD0A0`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Platform online achievements: `0x0020CB50` is called by `0x00863240`; `0x0034C9A0` calls `0x00863240`; `0x00796E20` is called
-  by `0x008655A0`; `0x00863240` calls `0x0020CB50`, `0x0020CE00`; those functions are documented on
-  [achievements](../Steam-And-Achievements/achievements.md),
-  [steam integration](../Steam-And-Achievements/steam-integration.md).
-- Presentation: `0x0024EE60` is called by `0x003AFFB0`, `0x003B02A0`, `0x003B0980`, `0x003B2BC0`, `0x003B2D80`, `0x003B3300`;
-  `0x00263C30` is called by `0x00256F60`, `0x003A4290`, `0x003A56F0`, `0x00465120`, `0x00465690`; `0x00267310` is called by
-  `0x003DD4C0`; `0x002DF980` is called by `0x001BB2B0`; `0x002E9D90` is called by `0x0046CC70`; `0x0032E520` is called by
-  `0x003B53C0`; `0x0032F240` is called by `0x003DD4C0`.
-- Presentation: `0x0053DD10` is called by `0x004355D0`, `0x00462540`; `0x00796E20` is called by `0x00186CD0`, `0x00187950`,
-  `0x0018D160`, `0x0018D850`, `0x001CD0E0`, `0x001D1660`, `0x001D5260`.
-- Presentation: those functions are documented on
-  [effect file loading](../Graphics/effect-file-loading.md),
-  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md),
-  [effects on actors and scripts](../Graphics/effects-on-actors-and-scripts.md).
-- Presentation: and on [menu effects](../Graphics/menu-effects.md),
-  [license board screen](../Menus-And-HUD/license-board-screen.md),
-  [character effects](../Graphics/character-effects.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Presentation: and on [authored expressions](../Game-Files-And-Data-Tables/authored-expressions.md),
-  [effect element runtime](../Graphics/effect-element-runtime.md),
-  [effect element types](../Graphics/effect-element-types.md),
-  [script name bindings](script-name-bindings.md).
-- Presentation: and on [file size tables fst](../Game-Files-And-Data-Tables/file-size-tables-fst.md),
-  [character se tables chse](../Game-Files-And-Data-Tables/character-se-tables-chse.md),
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
-- Presentation: and on [game application](../Engine-Core/game-application.md),
-  [debug menu](../Engine-Core/debug-menu.md),
-  [render parameters and shader assets](../Graphics/render-parameters-and-shader-assets.md); and on
-  [debug menu commands](../Engine-Core/debug-menu-commands.md).
-- Resource: `0x001D6A70` calls `0x001DADA0`; `0x0020A760` is called by `0x0020AC30`; `0x002DF980` is called by `0x001DA290`,
-  `0x002EEEE0`; `0x0032E520` calls `0x0032E070`, `0x0046DFE0`; `0x0032E520` is called by `0x0024AC30`; `0x0034DB30` calls
-  `0x0032E520`; `0x00351880` calls `0x001D6A70`; `0x003529E0` calls `0x001D6A70`; `0x0035B840` calls `0x002DF980`; `0x0037B450` is
-  called by `0x0024AC30`; `0x00796E20` is called by `0x001A7A50`.
-- Resource: those functions are documented on
-  [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md),
-  [debug menu](../Engine-Core/debug-menu.md), [debug logging](../Engine-Core/debug-logging.md).
-- Resource: and on
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
-  [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md).
-- Save load settings: `0x002E1C20` is called by `0x005823B0`, `0x00582860`; those functions are documented on
-  [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md),
-  [game application](../Engine-Core/game-application.md).
-- UI: `0x0024EE60` is called by `0x0024B9B0`; `0x0026CE60` calls `0x00253A30`; `0x002E1C20` is called by `0x00276650`, `0x00279E20`,
-  `0x0035CF10`, `0x0035D6B0`; `0x002F1A30` is called by `0x003EF2E0`; `0x0053DD10` is called by `0x003C80C0`; `0x00796E20` is called
-  by `0x0018EEE0`.
-- UI: those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
-  [actor managers](../Characters-And-Objects/actor-managers.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [tutorial battle commands](../Battle-Actions/tutorial-battle-commands.md).
-- UI: and on [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md),
-  [action availability](../Controls-And-Input/action-availability.md), [game over](../World-Areas-And-Travel/game-over.md),
-  [map screens](../Menus-And-HUD/map-screens.md), [graphics settings](../Engine-Core/graphics-settings.md).
-- World area: `0x00314010` is called by `0x00266D10`; `0x00314D40` is called by `0x00266D10`; `0x00314DF0` is called by
-  `0x00266D10`; `0x003604D0` is called by `0x00266D10`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- World area: `0x00267310` is called by `0x00314020`; `0x0026A5F0` is called by `0x00314440`, `0x00314530`, `0x003145E0`;
-  `0x0026CE60` calls `0x002342F0`; `0x002DF980` is called by `0x00379A10`; `0x002E1C40` is called by `0x00314440`; `0x0032E520` is
-  called by `0x003145E0`; `0x0032FC30` calls `0x0025D4D0`, `0x003319D0`, `0x003EA6E0`; `0x0032FC30` is called by `0x00314020`;
-  `0x00332130` is called by `0x00378120`; `0x003522C0` calls `0x0032FC30`.
-- World area: `0x00353080` calls `0x0032FC30`; `0x003601B0` is called by `0x003145E0`; `0x0037AA90` is called by `0x003775D0`;
-  `0x003DE920` is called by `0x003775D0`, `0x00378230`; `0x0053DD10` is called by `0x003789A0`.
-- World area: those functions are documented on [debug logging](../Engine-Core/debug-logging.md),
-  [debug menu](../Engine-Core/debug-menu.md),
-  [game application](../Engine-Core/game-application.md),
-  [changing areas](../World-Areas-And-Travel/changing-areas.md).
-- World area: and on [force fight mode](../Engine-Core/force-fight-mode.md),
-  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md),
-  [frame update order](../Engine-Core/frame-update-order.md); and on
-  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md),
-  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
+<details>
+<summary>Show the 239 calls with 53 other topics</summary>
+
+**Characters and objects** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032F1B0` | calls | `0x0037AA90` |
+| `0x0037B230` | is called by | `0x0037AA90` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00183070` | is called by | `0x0025D9E0` |
+| `0x0025C070` | calls | `0x00358940` |
+| `0x00263C30` | is called by | `0x0032F1B0` |
+| `0x00266C50` | calls | `0x00358940`, `0x003DBB60` |
+| `0x00266C50` | is called by | `0x0026CE60` |
+| `0x0026A5F0` | is called by | `0x0025D9E0` |
+| `0x0026CE60` | calls | `0x00233CF0`, `0x002572E0`, `0x00263660`, `0x00265A20`, `0x00266C50`, `0x002679F0`, `0x00268EA0`, `0x0026D3E0`, `0x003587C0`, `0x00358940`, `0x003DB1F0` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026CE60` | is called by | `0x0025BFB0`, `0x0032F1B0` |
+| `0x002DF980` | is called by | `0x0032FCA0` |
+| `0x002E1C40` | is called by | `0x0025D9E0`, `0x002628B0` |
+| `0x002E1CD0` | is called by | `0x0025C830`, `0x00263050`, `0x00263660`, `0x00268D10`, `0x0026C5D0` |
+| `0x002E9D90` | calls | `0x00263FF0` |
+| `0x002F1A30` | is called by | `0x0025D9E0` |
+| `0x00314010` | is called by | `0x002695A0`, `0x0026CE60` |
+| `0x00314DF0` | is called by | `0x002695A0`, `0x0026CE60` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E520` | is called by | `0x002628B0` |
+| `0x0032F1B0` | calls | `0x00263C30`, `0x00263FF0`, `0x0026CE60`, `0x0037B230`, `0x0037B290`, `0x003DE920` |
+| `0x0032F1B0` | is called by | `0x0032F850`, `0x0032FA10`, `0x0032FAC0`, `0x0032FB70`, `0x00330060`, `0x00330110`, `0x00330190`, `0x00330220`, `0x003302B0`, `0x003304A0`, `0x00331610`, `0x003316B0` |
+| `0x0032F1B0` | is also called by | `0x00331760`, `0x003317C0`, `0x00331820`, `0x00332130` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032F240` | is called by | `0x0026C8C0` |
+| `0x0032F6C0` | is called by | `0x0025D9E0` |
+| `0x0032FC30` | calls | `0x0032FCA0` |
+| `0x0032FC30` | is called by | `0x0025D9E0` |
+| `0x00332130` | calls | `0x00263FF0`, `0x0032F1B0` |
+| `0x00332190` | calls | `0x00263FF0` |
+| `0x0034C9A0` | calls | `0x0032F240` |
+| `0x0034DB30` | calls | `0x0025C070` |
+| `0x0034E460` | calls | `0x00263FF0` |
+| `0x0034F3C0` | calls | `0x00263FF0` |
+| `0x0034FC50` | calls | `0x00263FF0` |
+| `0x00351C90` | calls | `0x00263FF0` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00354B20` | calls | `0x00332130` |
+| `0x003601B0` | is called by | `0x002628B0` |
+| `0x003603C0` | is called by | `0x0025D9E0`, `0x002628B0` |
+| `0x003604D0` | is called by | `0x002628B0` |
+| `0x00360D60` | is called by | `0x0025D9E0` |
+| `0x00368AA0` | is called by | `0x002628B0` |
+| `0x0037AA90` | calls | `0x0037B230` |
+| `0x0037AA90` | is called by | `0x0032F1B0` |
+| `0x0037B230` | is called by | `0x002628B0`, `0x0032F1B0` |
+| `0x0037B290` | is called by | `0x0032F1B0` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003DE920` | calls | `0x0037ACA0`, `0x0037ACD0` |
+| `0x003DE920` | is called by | `0x002628B0`, `0x0032F1B0` |
+
+**Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [script requests](script-requests.md), [party control modes](../Engine-Core/party-control-modes.md))
+
+**Characters and objects** (explained on [actor managers](../Characters-And-Objects/actor-managers.md), [actor lifecycle](../Characters-And-Objects/actor-lifecycle.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+**Characters and objects** (explained on [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md), [debug menu](../Engine-Core/debug-menu.md), [startup constants](../Engine-Core/startup-constants.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md))
+
+**Characters and objects** (explained on [ebp lighting lgt2](../EBP-Script-Files/ebp-lighting-lgt2.md), [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md), [ebp camera tables](../EBP-Script-Files/ebp-camera-tables.md))
+
+**Characters and objects** (explained on [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [ebp script container](../EBP-Script-Files/ebp-script-container.md), [ebp camera shake](../EBP-Script-Files/ebp-camera-shake.md), [script variables](script-variables.md), [weather](../World-Areas-And-Travel/weather.md))
+
+**Application** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00792350` | is called by | `0x0015BC40` |
+
+**Sound and music**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00267330` | is called by | `0x003A1070`, `0x003A1180` |
+| `0x0034DB30` | calls | `0x003608D0` |
+| `0x003601B0` | is called by | `0x003614E0` |
+| `0x003601C0` | is called by | `0x00361460` |
+| `0x003603C0` | is called by | `0x002DEF40`, `0x002DEFA0`, `0x002DF010`, `0x002DF120`, `0x002DF220`, `0x002DF2C0`, `0x002DF560` |
+| `0x00360710` | calls | `0x002DEDD0` |
+| `0x003608D0` | calls | `0x002DE350`, `0x002DEE30` |
+
+**Sound and music** (explained on [sound banks](../Sound-And-Music/sound-banks.md), [force fight mode](../Engine-Core/force-fight-mode.md), [music](../Sound-And-Music/music.md), [frame update order](../Engine-Core/frame-update-order.md), [map sounds](../Sound-And-Music/map-sounds.md), [audio manager](../Sound-And-Music/audio-manager.md))
+
+**Sound and music** (explained on [scripted camera](../Graphics/scripted-camera.md), [native commands](native-commands.md), [menu screens](../Menus-And-HUD/menu-screens.md))
+
+**Battle actions**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E520` | is called by | `0x002FC3C0` |
+| `0x0032ED70` | is called by | `0x00306BD0` |
+| `0x0032F6C0` | is called by | `0x00306B10` |
+| `0x0032FC30` | is called by | `0x00306BD0` |
+| `0x00332130` | is called by | `0x00306760` |
+| `0x00332190` | is called by | `0x00306570`, `0x003065D0` |
+
+**Battle actions** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [battle units](../Characters-And-Objects/battle-units.md), [action phases](../Battle-Actions/action-phases.md), [party control modes](../Engine-Core/party-control-modes.md))
+
+**Battle actions** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+**Engine core**
+
+| Function | | Functions |
+|---|---|---|
+| `0x001C2F50` | is called by | `0x0017D6E0` |
+| `0x0032E520` | is called by | `0x0022B6E0`, `0x0022B7E0` |
+| `0x0034DB30` | calls | `0x00229EB0` |
+| `0x003603C0` | is called by | `0x0022A770` |
+| `0x0053DD10` | is called by | `0x0022B6E0` |
+
+**Engine core** (explained on [debug menu](../Engine-Core/debug-menu.md), [frame update order](../Engine-Core/frame-update-order.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
+
+**Developer** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00796E20` | is called by | `0x001C2F50` |
+
+**Controls and input**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002273E0` | calls | `0x00226BE0` |
+| `0x00267310` | is called by | `0x002E09A0` |
+| `0x0053DD10` | is called by | `0x002E09A0`, `0x0035FCA0`, `0x0035FDD0`, `0x0046DD50` |
+| `0x00796E20` | is called by | `0x0017DDC0`, `0x0017DE10`, `0x0017DE60`, `0x0017DFC0`, `0x00196680`, `0x00196710`, `0x001967D0`, `0x00196C40`, `0x00196DF0`, `0x00196EE0`, `0x00197160`, `0x00197990` |
+
+**Controls and input**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00796E20` | is also called by | `0x00198E80`, `0x001E0920`, `0x001E0C30`, `0x001E0C50`, `0x001E0CE0`, `0x001E0D30`, `0x001E0E00`, `0x001E0E70` |
+
+**Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+
+**Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [player movement](../Movement-And-Pathfinding/player-movement.md), [control remapping](../Controls-And-Input/control-remapping.md), [pause screen](../Menus-And-HUD/pause-screen.md), [game application](../Engine-Core/game-application.md))
+
+**Controls and input** (explained on [debug menu](../Engine-Core/debug-menu.md), [vibration](../Controls-And-Input/vibration.md), [field camera](../Graphics/field-camera.md), [on screen keyboard](../Controls-And-Input/on-screen-keyboard.md))
+
+**Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E1C20` | is called by | `0x00313A00` |
+| `0x002E1C40` | is called by | `0x00313A00` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00267310` | is called by | `0x002E45E0`, `0x002E5750` |
+| `0x002E1CD0` | is called by | `0x0026C3E0` |
+| `0x003DE920` | is called by | `0x00379080`, `0x00379110` |
+
+**Movement and pathfinding** (explained on [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md), [character lighting and shadows](../Graphics/character-lighting-and-shadows.md))
+
+**Party**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00267330` | is called by | `0x00358CB0`, `0x00359150` |
+| `0x0026CE60` | calls | `0x00358BB0` |
+| `0x003601B0` | is called by | `0x0034CDF0`, `0x0034D4E0`, `0x00350160`, `0x00350CD0`, `0x00352AF0` |
+| `0x003601C0` | is called by | `0x0034CDF0` |
+
+**Party** (explained on [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md), [map screens](../Menus-And-HUD/map-screens.md), [frame update order](../Engine-Core/frame-update-order.md), [party verbs](party-verbs.md))
+
+**Platform** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00792350` | calls | `0x005CD0A0` |
+
+**Steam and achievements** (explained on [achievements](../Steam-And-Achievements/achievements.md), [steam integration](../Steam-And-Achievements/steam-integration.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0020CB50` | is called by | `0x00863240` |
+| `0x0034C9A0` | calls | `0x00863240` |
+| `0x00796E20` | is called by | `0x008655A0` |
+| `0x00863240` | calls | `0x0020CB50`, `0x0020CE00` |
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0024EE60` | is called by | `0x003AFFB0`, `0x003B02A0`, `0x003B0980`, `0x003B2BC0`, `0x003B2D80`, `0x003B3300` |
+| `0x00263C30` | is called by | `0x00256F60`, `0x003A4290`, `0x003A56F0`, `0x00465120`, `0x00465690` |
+| `0x00267310` | is called by | `0x003DD4C0` |
+| `0x002DF980` | is called by | `0x001BB2B0` |
+| `0x002E9D90` | is called by | `0x0046CC70` |
+| `0x0032E520` | is called by | `0x003B53C0` |
+| `0x0032F240` | is called by | `0x003DD4C0` |
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0053DD10` | is called by | `0x004355D0`, `0x00462540` |
+| `0x00796E20` | is called by | `0x00186CD0`, `0x00187950`, `0x0018D160`, `0x0018D850`, `0x001CD0E0`, `0x001D1660`, `0x001D5260` |
+
+**Graphics** (explained on [effect file loading](../Graphics/effect-file-loading.md), [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md), [effects on actors and scripts](../Graphics/effects-on-actors-and-scripts.md))
+
+**Graphics** (explained on [menu effects](../Graphics/menu-effects.md), [license board screen](../Menus-And-HUD/license-board-screen.md), [character effects](../Graphics/character-effects.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+**Graphics** (explained on [authored expressions](../Game-Files-And-Data-Tables/authored-expressions.md), [effect element runtime](../Graphics/effect-element-runtime.md), [effect element types](../Graphics/effect-element-types.md), [script name bindings](script-name-bindings.md))
+
+**Graphics** (explained on [file size tables fst](../Game-Files-And-Data-Tables/file-size-tables-fst.md), [character se tables chse](../Game-Files-And-Data-Tables/character-se-tables-chse.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+
+**Graphics** (explained on [game application](../Engine-Core/game-application.md), [debug menu](../Engine-Core/debug-menu.md), [render parameters and shader assets](../Graphics/render-parameters-and-shader-assets.md), [debug menu commands](../Engine-Core/debug-menu-commands.md))
+
+**Game files and data tables**
+
+| Function | | Functions |
+|---|---|---|
+| `0x001D6A70` | calls | `0x001DADA0` |
+| `0x0020A760` | is called by | `0x0020AC30` |
+| `0x002DF980` | is called by | `0x001DA290`, `0x002EEEE0` |
+| `0x0032E520` | calls | `0x0032E070`, `0x0046DFE0` |
+| `0x0032E520` | is called by | `0x0024AC30` |
+| `0x0034DB30` | calls | `0x0032E520` |
+| `0x00351880` | calls | `0x001D6A70` |
+| `0x003529E0` | calls | `0x001D6A70` |
+| `0x0035B840` | calls | `0x002DF980` |
+| `0x0037B450` | is called by | `0x0024AC30` |
+| `0x00796E20` | is called by | `0x001A7A50` |
+
+**Game files and data tables** (explained on [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md), [debug menu](../Engine-Core/debug-menu.md), [debug logging](../Engine-Core/debug-logging.md))
+
+**Game files and data tables** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md))
+
+**Saving, loading and settings** (explained on [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E1C20` | is called by | `0x005823B0`, `0x00582860` |
+
+**Menus and HUD**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0024EE60` | is called by | `0x0024B9B0` |
+| `0x0026CE60` | calls | `0x00253A30` |
+| `0x002E1C20` | is called by | `0x00276650`, `0x00279E20`, `0x0035CF10`, `0x0035D6B0` |
+| `0x002F1A30` | is called by | `0x003EF2E0` |
+| `0x0053DD10` | is called by | `0x003C80C0` |
+| `0x00796E20` | is called by | `0x0018EEE0` |
+
+**Menus and HUD** (explained on [frame update order](../Engine-Core/frame-update-order.md), [actor managers](../Characters-And-Objects/actor-managers.md), [force fight mode](../Engine-Core/force-fight-mode.md), [tutorial battle commands](../Battle-Actions/tutorial-battle-commands.md))
+
+**Menus and HUD** (explained on [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [action availability](../Controls-And-Input/action-availability.md), [game over](../World-Areas-And-Travel/game-over.md), [map screens](../Menus-And-HUD/map-screens.md), [graphics settings](../Engine-Core/graphics-settings.md))
+
+**World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00314010` | is called by | `0x00266D10` |
+| `0x00314D40` | is called by | `0x00266D10` |
+| `0x00314DF0` | is called by | `0x00266D10` |
+| `0x003604D0` | is called by | `0x00266D10` |
+
+**World, areas and travel**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00267310` | is called by | `0x00314020` |
+| `0x0026A5F0` | is called by | `0x00314440`, `0x00314530`, `0x003145E0` |
+| `0x0026CE60` | calls | `0x002342F0` |
+| `0x002DF980` | is called by | `0x00379A10` |
+| `0x002E1C40` | is called by | `0x00314440` |
+| `0x0032E520` | is called by | `0x003145E0` |
+| `0x0032FC30` | calls | `0x0025D4D0`, `0x003319D0`, `0x003EA6E0` |
+| `0x0032FC30` | is called by | `0x00314020` |
+| `0x00332130` | is called by | `0x00378120` |
+| `0x003522C0` | calls | `0x0032FC30` |
+
+**World, areas and travel**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00353080` | calls | `0x0032FC30` |
+| `0x003601B0` | is called by | `0x003145E0` |
+| `0x0037AA90` | is called by | `0x003775D0` |
+| `0x003DE920` | is called by | `0x003775D0`, `0x00378230` |
+| `0x0053DD10` | is called by | `0x003789A0` |
+
+**World, areas and travel** (explained on [debug logging](../Engine-Core/debug-logging.md), [debug menu](../Engine-Core/debug-menu.md), [game application](../Engine-Core/game-application.md), [changing areas](../World-Areas-And-Travel/changing-areas.md))
+
+**World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [frame update order](../Engine-Core/frame-update-order.md), [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md), [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md))
+
+</details>

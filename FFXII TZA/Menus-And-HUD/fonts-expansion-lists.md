@@ -116,23 +116,39 @@ its 1,301 glyphs by index, 0 to 1,300, and those values run from 8,213 to 65,374
 - [Font files](fonts-files.md) - which `.fex` files are requested, and the round trip.
 - [Font glyphs](fonts-glyphs.md) - the glyph records the values name.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x001BA860` is called by `0x002120E0`; those functions are documented on
-  [audio manager](../Sound-And-Music/audio-manager.md).
-- Presentation: `0x001AB570` is called by `0x001BD4A0`, `0x001BDD20`; `0x001BA860` is called by `0x001BB2B0`, `0x001BB920`; those
-  functions are documented on [character render object](../Graphics/character-render-object.md),
-  [add motion tables](../Graphics/add-motion-tables.md),
-  [file size tables fst](../Game-Files-And-Data-Tables/file-size-tables-fst.md).
-- Presentation: and on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md).
-- Resource: `0x001AB570` is called by `0x0019E7B0`; `0x001B4C00` is called by `0x001B6030`; `0x001BA860` is called by
-  `0x0019E7B0`, `0x0019EB60`, `0x001A0A90`, `0x001B5480`, `0x001B5610`, `0x001B5750`, `0x0020B680`; `0x00674A00` is called by
-  `0x001A7A50`, `0x001A9050`, `0x001B1440`, `0x001B1C10`, `0x0020BE50`, `0x0020C1B0`.
-- Resource: those functions are documented on
-  [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [fonts](fonts.md),
-  [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [fonts files](fonts-files.md),
-  [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md).
-- Resource: and on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md),
-  [sprite batcher](../Graphics/sprite-batcher.md).
+<details>
+<summary>Show the 20 calls with 6 other topics</summary>
+
+**Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001BA860` | is called by | `0x002120E0` |
+
+**Graphics** (explained on [character render object](../Graphics/character-render-object.md), [add motion tables](../Graphics/add-motion-tables.md), [file size tables fst](../Game-Files-And-Data-Tables/file-size-tables-fst.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001AB570` | is called by | `0x001BD4A0`, `0x001BDD20` |
+| `0x001BA860` | is called by | `0x001BB2B0`, `0x001BB920` |
+
+**Graphics** (explained on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md))
+
+**Game files and data tables**
+
+| Function | | Functions |
+|---|---|---|
+| `0x001AB570` | is called by | `0x0019E7B0` |
+| `0x001B4C00` | is called by | `0x001B6030` |
+| `0x001BA860` | is called by | `0x0019E7B0`, `0x0019EB60`, `0x001A0A90`, `0x001B5480`, `0x001B5610`, `0x001B5750`, `0x0020B680` |
+| `0x00674A00` | is called by | `0x001A7A50`, `0x001A9050`, `0x001B1440`, `0x001B1C10`, `0x0020BE50`, `0x0020C1B0` |
+
+**Game files and data tables** (explained on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [fonts](fonts.md), [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [fonts files](fonts-files.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md))
+
+**Game files and data tables** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [sprite batcher](../Graphics/sprite-batcher.md))
+
+</details>

@@ -114,23 +114,50 @@ Every Western tree has all 3,837 rows. The `kr` banks lack bank 2's one row; the
 - [Gambit screen](gambit-screen.md), [Battle menu](battle-menu.md) and [Party list](party-list.md) -
   screens that show the names.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x002B58B0` is called by `0x0023A570`; those functions are documented on
-  [party control modes](../Engine-Core/party-control-modes.md).
-- Combat AI: `0x00567B60` calls `0x00327C40`; those functions are documented on
-  [gambits](../Enemy-AI-And-Gambits/gambits.md).
-- Gameplay: `0x0035D330` calls `0x0031C5D0`; those functions are documented on
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md).
-- Items equipment shops license: `0x005618E0` calls `0x00323630`, `0x00323670`, `0x003236B0`; those functions are documented
-  on [license board screen](license-board-screen.md),
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
-- Presentation: `0x002B1FB0` is called by `0x002B4810`; `0x002B58B0` is called by `0x00506700`; `0x0035D330` is called by
-  `0x003BBD00`, `0x00506700`; those functions are documented on [text string tables](text-string-tables.md),
-  [battle numbers](battle-numbers.md), [augments](../Damage-And-Battle-Formulas/augments.md).
-- World area: `0x003846F0` calls `0x003846F0`; `0x003846F0` is called by `0x00236C30`, `0x00238850`, `0x0023A160`, `0x003845F0`,
-  `0x003846F0`; those functions are documented on
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md),
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
+<details>
+<summary>Show the 16 calls with 6 other topics</summary>
+
+**Characters and objects** (explained on [party control modes](../Engine-Core/party-control-modes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002B58B0` | is called by | `0x0023A570` |
+
+**Enemy AI and gambits** (explained on [gambits](../Enemy-AI-And-Gambits/gambits.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00567B60` | calls | `0x00327C40` |
+
+**Gameplay** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0035D330` | calls | `0x0031C5D0` |
+
+**Items, equipment, shops and licenses** (explained on [license board screen](license-board-screen.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005618E0` | calls | `0x00323630`, `0x00323670`, `0x003236B0` |
+
+**Graphics** (explained on [text string tables](text-string-tables.md), [battle numbers](battle-numbers.md), [augments](../Damage-And-Battle-Formulas/augments.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002B1FB0` | is called by | `0x002B4810` |
+| `0x002B58B0` | is called by | `0x00506700` |
+| `0x0035D330` | is called by | `0x003BBD00`, `0x00506700` |
+
+**World, areas and travel** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003846F0` | calls | `0x003846F0` |
+| `0x003846F0` | is called by | `0x00236C30`, `0x00238850`, `0x0023A160`, `0x003845F0`, `0x003846F0` |
+
+</details>

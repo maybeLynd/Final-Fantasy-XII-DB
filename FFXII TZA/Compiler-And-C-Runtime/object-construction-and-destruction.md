@@ -352,8 +352,17 @@ compiler and library forms by function address; each was profiled against the im
 Each of these function tables has one row per function: `address` is where it starts and `targets` the functions it
 calls or jumps to directly.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- UI: `0x002714A0` is called by `0x005520F0`; those functions are documented on [map screens](../Menus-And-HUD/map-screens.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Menus and HUD** (explained on [map screens](../Menus-And-HUD/map-screens.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002714A0` | is called by | `0x005520F0` |
+
+</details>

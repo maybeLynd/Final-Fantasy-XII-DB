@@ -163,9 +163,17 @@ past the records. In the 517 `us` tables that count lies inside the section, and
 - [Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md): the condition evaluator.
 - [Random number generators](../Random-Numbers/random-number-generators.md): the generator behind region placement and wandering.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- World area: `0x003DFDA0` is called by `0x00266D10`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003DFDA0` | is called by | `0x00266D10` |
+
+</details>

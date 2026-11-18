@@ -478,9 +478,17 @@ position, and `facing` gives the heading in radians. All 81 entries carry a spot
 - [`group-persistent-bank-accesses.tsv`](group-persistent-bank-accesses.tsv): every access to the group
   persistent bank `0x02099FF0` (`0x200` bytes): its copy out to the save (`0x0025D8E0`) and back (`0x00269A20`) (70 rows).
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- RNG random selection: `0x002342F0` calls `0x00328D80`; those functions are documented on
-  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Random numbers** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002342F0` | calls | `0x00328D80` |
+
+</details>

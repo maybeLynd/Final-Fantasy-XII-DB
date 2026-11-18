@@ -723,11 +723,23 @@ the string's address is taken only at `0x0020AF3E`.
 - [MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md): the codes in the authored-code table.
 - [Gil](../Rewards-EXP-Gil-And-Loot/gil.md): the setter the gil row calls.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Status periodic terminal: `0x00265680` is called by `0x00310DB0`; those functions are documented on
-  [frame update order](frame-update-order.md).
-- World area: `0x00314D40` is called by `0x00266D10`; those functions are documented on
-  [force fight mode](force-fight-mode.md).
+<details>
+<summary>Show the 2 calls with 2 other topics</summary>
+
+**Status effects and KO** (explained on [frame update order](frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265680` | is called by | `0x00310DB0` |
+
+**World, areas and travel** (explained on [force fight mode](force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00314D40` | is called by | `0x00266D10` |
+
+</details>

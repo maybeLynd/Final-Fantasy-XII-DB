@@ -73,44 +73,99 @@ box and the target list show it from there, and the battle log reads the same wo
 - [Battle unit construction](../Characters-And-Objects/battle-unit-construction.md): how a definition becomes a unit.
 - [HUD](hud.md): the name boxes and the rest of the overhead parts.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0023A570` calls `0x00236A60`, `0x00322050`; `0x0023A570` is called by `0x00300E40`, `0x003266C0`; `0x0024ABE0` is
-  called by `0x00272CE0`; `0x00263990` is called by `0x0025C230`, `0x0025C830`, `0x00268D10`, `0x00272CB0`, `0x00272CE0`; `0x00263A10`
-  is called by `0x00272C80`, `0x00272CE0`; `0x00269F20` is called by `0x00238BF0`; `0x00272C80` calls `0x003588B0`; `0x00272CB0`
-  calls `0x003588B0`; `0x00272CE0` calls `0x003588B0`.
-- Actor entity: `0x0027E530` calls `0x00272C80`, `0x00272CB0`; `0x002B58B0` is called by `0x0023A570`; `0x002C8BC0` calls
-  `0x00272CE0`.
-- Actor entity: those functions are documented on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [party control modes](../Engine-Core/party-control-modes.md).
-- Actor entity: and on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md),
-  [frame update order](../Engine-Core/frame-update-order.md), [npc names](../Characters-And-Objects/npc-names.md).
-- Combat formula: `0x0023A570` calls `0x0023AC80`; `0x00536310` calls `0x0031B860`; `0x005369C0` calls `0x0031B860`; those
-  functions are documented on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
-- Core runtime: `0x00254A10` calls `0x00229E40`; those functions are documented on
-  [startup constants](../Engine-Core/startup-constants.md).
-- Gameplay: `0x0023A570` calls `0x00322C50`; those functions are documented on
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
-- Presentation: `0x00254A10` is called by `0x002B0280`, `0x002D2DB0`; `0x00263990` is called by `0x002B0280`; `0x002639E0` is
-  called by `0x002B0280`; `0x002B58B0` is called by `0x00506700`; those functions are documented on
-  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [menu lists](menu-lists.md),
-  [battle numbers](battle-numbers.md).
-- Save load settings: `0x00254A10` is called by `0x005832B0`; those functions are documented on
-  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md).
-- Script VM: `0x00269F20` is called by `0x00355A00`, `0x00356B70`, `0x00357120`; those functions are documented on
-  [npc names](../Characters-And-Objects/npc-names.md).
-- Spawn encounter lifecycle: `0x0023A570` calls `0x00236100`; `0x0023A570` is called by `0x0023A3B0`; those functions are
-  documented on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md).
-- Story event quest hunt: `0x00263990` calls `0x0032A930`; `0x002639E0` calls `0x0032A930`; those functions are documented on
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
-- World area: `0x0023A570` calls `0x00313F60`; `0x005369C0` calls `0x00264ED0`, `0x003148F0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md),
-  [party control modes](../Engine-Core/party-control-modes.md).
+<details>
+<summary>Show the 41 calls with 13 other topics</summary>
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x00236A60`, `0x00322050` |
+| `0x0023A570` | is called by | `0x00300E40`, `0x003266C0` |
+| `0x0024ABE0` | is called by | `0x00272CE0` |
+| `0x00263990` | is called by | `0x0025C230`, `0x0025C830`, `0x00268D10`, `0x00272CB0`, `0x00272CE0` |
+| `0x00263A10` | is called by | `0x00272C80`, `0x00272CE0` |
+| `0x00269F20` | is called by | `0x00238BF0` |
+| `0x00272C80` | calls | `0x003588B0` |
+| `0x00272CB0` | calls | `0x003588B0` |
+| `0x00272CE0` | calls | `0x003588B0` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0027E530` | calls | `0x00272C80`, `0x00272CB0` |
+| `0x002B58B0` | is called by | `0x0023A570` |
+| `0x002C8BC0` | calls | `0x00272CE0` |
+
+**Characters and objects** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [force fight mode](../Engine-Core/force-fight-mode.md), [party control modes](../Engine-Core/party-control-modes.md))
+
+**Characters and objects** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md), [frame update order](../Engine-Core/frame-update-order.md), [npc names](../Characters-And-Objects/npc-names.md))
+
+**Damage and battle formulas** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x0023AC80` |
+| `0x00536310` | calls | `0x0031B860` |
+| `0x005369C0` | calls | `0x0031B860` |
+
+**Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00254A10` | calls | `0x00229E40` |
+
+**Gameplay** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x00322C50` |
+
+**Graphics** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [menu lists](menu-lists.md), [battle numbers](battle-numbers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00254A10` | is called by | `0x002B0280`, `0x002D2DB0` |
+| `0x00263990` | is called by | `0x002B0280` |
+| `0x002639E0` | is called by | `0x002B0280` |
+| `0x002B58B0` | is called by | `0x00506700` |
+
+**Saving, loading and settings** (explained on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00254A10` | is called by | `0x005832B0` |
+
+**Scripts and script commands** (explained on [npc names](../Characters-And-Objects/npc-names.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00269F20` | is called by | `0x00355A00`, `0x00356B70`, `0x00357120` |
+
+**Enemy spawning** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x00236100` |
+| `0x0023A570` | is called by | `0x0023A3B0` |
+
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263990` | calls | `0x0032A930` |
+| `0x002639E0` | calls | `0x0032A930` |
+
+**World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md), [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md), [party control modes](../Engine-Core/party-control-modes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x00313F60` |
+| `0x005369C0` | calls | `0x00264ED0`, `0x003148F0` |
+
+</details>

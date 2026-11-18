@@ -41,7 +41,15 @@ The loader is the `0xC8`-byte task at `0x02CA8A78` with procedure `0x0053EB90` t
 The logo picture outlives the loader. The loader's message 1 requests `sf_logo_c` (`0x00D22E80`) through `0x002493D0`
 when `0x02CA8A88` is still 0 (`0x0053ECA6`-`0x0053ECE7`). Command 6 of `0x0053F0D0` puts the picture in the next line of the
 roll's table, with line kind 3 (`0x0053F1EA`-`0x0053F209`). The finaliser task `0x0053EEA0`, on its message 1, releases the
-picture (`0x0024A680(picture, 1)`) and clears the pointer (`0x0053EF15`-`0x0053EF32`).
+picture (`0x0024A680(picture, 1)`) and clears the pointer when `0x02CA8A88` is not null (`0x0053EF15`-`0x0053EF32`).
+
+Message 1 also stores the task in `0x02CA8A78` (`0x0053EF1E`), releases the texts `0x19` and `0x1A` that `0x002F8040` finds
+resident (`0x002F83E0`, `0x0053EF39`-`0x0053EF64`), gives back the font slots 7 to 12 (`0x00365570`, `0x0053EF70`-`0x0053EF7D`),
+and calls `0x00249580(task)`, `0x00249410` on its answer and `0x00247950(task, 0)` (`0x0053EF7F`-`0x0053EF9F`). Message 2 waits
+for the task's dword `+0xC0`: once it is set, it clears `0x02CA8A78` and releases the task (`0x00245020`,
+`0x0053EEED`-`0x0053EF03`).
+
+Message 16 sets `+0xC0` to 1 (`0x0053EED1`-`0x0053EED8`); any other message goes to `0x005C5230` (`0x0053EEAA`-`0x0053EECC`).
 
 So `fsroll_initialize` holds the script until six font slots, two texts and the `sf_logo_c` logo picture are all
 loaded. The logo then appears as one line of the staff roll, and a finishing task releases it afterwards.
@@ -125,11 +133,12 @@ its first word is the render index, -1 when the actor has no model.
 | `0x002EC940(actor, v)`, `0x002EC960(binding, v)` | `motionlooppreset` `0x04B4`, `puppetmotionlooppreset` `0x04E6` | the binding's word `+0x2A`; `0x002EC940` writes it under the three tests of `0x002EC860` (`0x002EC943`-`0x002EC956`), and `0x002EC960` under the last two (`0x002EC963`-`0x002EC96A`) |
 | `0x002ECC60`, `0x002EC970`, `0x002EC8B0` | `motionstartframe` `0x00F5`, `motionloopframe` `0x00F4` | the binding's `+0x14`, `+0x18` and `+0x1C` from a frame number; a positive frame is first cut to its whole part (`cvttss2si` at `0x002ECC7E`, `0x002EC98E` and `0x002EC8CE`, then `cvtdq2ps`) and passes through `0x003DA190`, which returns its argument, and a frame of 0 or less, or NaN, is stored as given; each writes only when the actor's binding `+0xC0` is not null and its render index is not -1 (`0x002ECC66`-`0x002ECC98`, `0x002EC976`-`0x002EC9A8`, `0x002EC8B6`-`0x002EC8E8`) |
 | `0x002EC890(binding, on)` | `puppetmotionloop` `0x042C` (`0x0034C900`) | the bit `0x8` of the puppet binding's byte `+0x11`, the bit `0x002EC860` sets for `motionloop`; the binding is `0x003EB720(id)`: the record that entry `id` (0 to 31) of the pointer table `0x02B5EA20` points to, plus `0x10`, when the entry is set and that record's byte `+0x40` is set |
-| `0x002EC9C0(binding, f)`, `0x002EC900(binding, f)`, `0x002ECCB0(binding, f)` | `puppetmotionloopframe` `0x0422` (`0x00348580`), `puppetmotionstartframe` `0x0423` (`0x00348A90`) | the puppet binding's `+0x18` from the first frame and `+0x1C` from the second, the second raised to at least the first when it is 0 or more; and `+0x14` from a frame raised to at least 0. A positive frame is cut to its whole part and passes through `0x003DA190` as for `motionloopframe`, and a frame of 0 or less, or NaN, is stored as given (`cvttss2si` at `0x002EC9D1`, `0x002EC911`, `0x002ECCC1`) |
+| `0x002EC9C0(binding, f)`, `0x002EC900(binding, f)`, `0x002ECCB0(binding, f)` | `puppetmotionloopframe` `0x0422` (`0x00348580`), `puppetmotionstartframe` `0x0423` (`0x00348A90`) | the puppet binding's `+0x18` from the first frame and `+0x1C` from the second, the second raised to at least the first when it is 0 or more; and `+0x14` from a frame raised to at least 0. A positive frame is cut to its whole part and passes through `0x003DA190` as for `motionloopframe`, and a frame of 0 or less, or NaN, is stored as given (`cvttss2si` at `0x002EC9D1`, `0x002EC911`, `0x002ECCC1`); each writes only when the binding is not null and its render index, the binding's first dword, is not -1 (`0x002EC9E1`-`0x002EC9E9`, `0x002EC921`-`0x002EC929`, `0x002ECCD1`-`0x002ECCD9`) |
 | `0x002ECDC0(actor, on)`, `0x002ECE00(actor, on)` | `shows_3a` `0x003A`; `showw_39` `0x0039`, `hidew` `0x0035` | for a kind-`0x60` actor that is not a captured member (bind state `+0x18` is not 1; [party during scenes](party-during-scenes.md)): bit `0x1` of the binding's `+0x70` or `+0x40`, then the visibility refresh `0x002E8FD0`; with no binding (`+0xC0` null) both write byte `+0x10` of address 0 instead (`0x002ECDEF`, `0x002ECE2F`) |
-| `0x003EB470(bind)` | `puppetbind` `0x041B`, `puppetbindoff` `0x041A`, `debug_modelinfobindoff` `0x20A8` | releases a puppet bind: the model (`0x002ED470`), the user count `+0x1C` of the bound record (`0x002EB870`), the binding reset (`0x00265F90`), and the record goes back to the free list `0x02B5EB70` |
+| `0x003EB470(bind)` | `puppetbind` `0x041B`, `puppetbindoff` `0x041A`, `debug_modelinfobindoff` `0x20A8` | releases a puppet bind, for a non-null bind (`0x003EB470`-`0x003EB473`): the model (`0x002ED470`: for a render index other than -1 (16-bit test), the entry `[0x022C6F28] + index x 0x740` with a non-zero `+0x284` gets its `+0x108` zeroed and `0x003E5E20(entry, 0)`; then, for every index, -1 included, `0x0042FAE0` gets its low word, `0x002ED476`-`0x002ED4D2`), the user count `+0x1C` of the bound record (`0x002EB870`: one less, set back to 0 when that is 0 or below and byte `+0x19` has bit `0x1` or `0x2`; nothing for a null record, `0x002EB873`-`0x002EB888`), the binding reset (`0x00265F90`), and the record goes back to the free list `0x02B5EB70` with its byte `+0x40` cleared (`0x003EB4E7`) |
+| `0x00345430` | the begin of `ucmove` `0x009A` (its family-0 record, `0x01EEEA48`) | works on the actor `0x003588B0(0x003590D0())` (the id at `0x022C7FE0`): with none it pops three floats and does nothing else (`0x003454F3`-`0x00345514`); otherwise it takes `a = 0x00264420(actor)` and `b = 0x0030BEB0(actor)` (`0x0034546C`, `0x00345476`), pushes `0x003590B0()` as a float (`0x00267F60`), then calls `0x002ECF10(actor, a, 2)`, `0x00357A20` with the actor and the script stack, which pops the pushed value and the three floats (`0x00357A49`-`0x00357A6C`), `0x002EB430` (motion `0x1001`, `0x002EB44D`) on `0x00263F40(actor)`, `0x0026C120(actor, 2)` and, as a tail jump, `0x00269D80(actor, 1, b)` (`0x00345447`-`0x003454EE`) |
 | `0x003590B0()` | `ucmove` `0x009A`, `ucmove_52b` `0x052B` | the average of `0x022C7FF0` and `0x022C7FF4` |
-| `0x0035A8D0(v)`, `0x00363B00(mode, pos, v)` | `ucon` `0x000D`, `ucon_4a5` `0x04A5` (through `0x0026C5D0`); `0x00363B00` also `set_microphone_pos` `0x056A` | `0x0035A8D0` sets bit `0x20` of `+9` on the four party actors (`0x00263750`) for an argument of 0 and clears it for any other (`0x0035A8F2`-`0x0035A91E`) and refreshes their models and bindings; `0x00363B00` stores the mode at `0x022CBA9A` and, for mode 1, the position at `0x022CBB10` and `v` at `0x022CBAAC` |
+| `0x0035A8D0(v)`, `0x00363B00(mode, pos, v)` | `ucon` `0x000D`, `ucon_4a5` `0x04A5` (through `0x0026C5D0`); `0x00363B00` also `set_microphone_pos` `0x056A` | `0x0035A8D0` sets bit `0x20` of `+9` on the four party actors (`0x00263750`) for an argument of 0 and clears it for any other (`0x0035A8E3`-`0x0035A963`; a missing actor is skipped) and refreshes their models and bindings: on setting, `0x00233F50(actor, 1)`, `0x002ED020` and `0x0026D6D0` when `+0x30` is not null; on clearing, `0x00269D60(b, 0, 0)` for a binding `b = 0x002E97B0(actor)` that is not null and whose first dword is not -1 (`0x0035A92A`-`0x0035A932`), and `0x0026A770(actor, 0, 0)`; then `0x00226AB0` and `0x00226A50` either way (`0x0035A8F2`-`0x0035A959`); `0x00363B00` stores the mode at `0x022CBA9A` and, for mode 1, the position at `0x022CBB10` and `v` at `0x022CBAAC` |
 | `0x00378F90(on, group, n)`, `0x00379C50(map, group, n)`, `0x00379BD0(map, group, n)` | `setbgnpcstatus` `0x0406` | set or clear the flag of every background NPC whose id (16-byte entries at `[0x0209A670] + 0x1A0`, count `+0x22C`) has `id / 100` = group and `id % 100` = n, or any n for a negative one (12-byte flags at `+0x1D8`): `0x00378F90` passes `[0x0209A670]` to `0x00379C50`, which stores 1, when `on` is non-zero (`0x00378F99`) and to `0x00379BD0`, which stores 0, otherwise |
 | `0x003DF790(v)` | `fieldsign` `0x0176` | 0 gives 3, 1 gives 2, anything else 1 |
 | `0x003DF7B0(bit, show)`, `0x003DF810()` | `showfieldsign` `0x0172`, `hidefieldsign` `0x0173` | `0x003DF7B0` clears the hide bit of index `bit` in `0x02B59D18` when `show` is non-zero (`btr`, `0x003DF7BE`) and sets it when `show` is 0 (`bts`, `0x003DF7C3`): `showfieldsign` passes 1 and `hidefieldsign` 0, both with index 2 from manager 0 and 3 from the others, so bit `0x4` or `0x8` (`0x003546D0`-`0x003546D6`, `0x00354B0B`-`0x00354B13`). With no hide bit left it jumps to `0x003DF810`, which hands the highest live slot of 8 (`0x02B59CC0`) to `0x002900C0`, or clears the sign; otherwise it calls `0x0029CAB0(0, 0, 0, 0)` and zeroes the 24 bytes from `0x02B59D00` (`0x003DF7D9`-`0x003DF7FE`) |
@@ -148,7 +157,7 @@ its first word is the render index, -1 when the actor has no model.
 | `0x00237D60()` | `callgameover` `0x04D8` | `0x0035C7A0(0xB)` unless `0x0035C700` answers non-zero; returns 1 |
 | `0x0035EA00(v)` | `debug_set_syncv_mode` `0x20C4` | `0x00368AA0(2, v = 0)` and `0x022CA608` = v |
 | `0x0036F050()` | `debug_recoveriopvoice` `0x20B6` | for each of the two banks in state 2 (`0x022D9B40`, `0x022D9B41`): state 1, `0x001DC0C0(bank)` and `0x0036ED50` on its slots in state 3 |
-| `0x00377560(n)`, `0x002637B0(i)` | `debug_setmapdefaultpos` `0x202A` | puts party slot n's actor (`0x002637B0`: the id at `[0x0209A1F0 + 8 x i]`, -1 for i of 4 or more) at the map's default position (`[[0x0209A678]] + 0x28`, `+0x2C`) through `0x0026AF80` |
+| `0x00377560(n)`, `0x002637B0(i)` | `debug_setmapdefaultpos` `0x202A` | puts party slot n's actor (`0x002637B0`: the word id at `[0x0209A1F0 + 8 x i]`, -1 for an i outside 0 to 3 or a null entry) at the map's default position (`[[0x0209A678]] + 0x28`, `+0x2C`) through `0x0026AF80`; nothing for a negative n or id or a missing actor `0x003587C0(0, id)`, and x and z are 0 unless `0x02ADD0D8`, `0x0209A670` and `[[0x0209A678]]` are all non-zero, and the middle coordinate is 0 (`0x00377564`-`0x003775BB`) |
 | `0x002593D0()`, `0x00259470()` | `setinterventioncamera` `0x02B9` (through `0x00359410`) | copy the `0x860`-byte block at `0x02097D20` to `0x02098580`, and back |
 | `0x002EAA30(i)` | `set_summon_effect_filter_status` `0x0508` (through `0x003B7130`) | `0x003B5180` with entry i of the table `0x01EEBAA0`, which `0x002EA030(i)` returns for `0x003B4B60`, `0x003B50E0`, `0x003B5180` and `0x003B5470` |
 | `0x003B7130(kind, on)` | `set_summon_effect_filter_status` | with `on`: the actor of `0x0032A060()` for kind 1, else of `0x00313590()`, goes to `0x002EA9D0(actor, kind)`, with kind -1 when it does not resolve; without `on`, `0x002EAA30` |
@@ -171,14 +180,16 @@ The puppet binds are a pool of 32 records of `0x48` bytes from `0x02B5E120`: `0x
 one and `0x003EB5F0(v)` those whose byte `+0x41` is v. `0x00265F90(binding)` resets a binding: render
 index -1, the three floats at `+0x14`-`+0x1C` to -1.0 and the default flags.
 
-The two lists have head records of the same shape: the bound list at `0x02B5EB20` and the free list at `0x02B5EB70`.
-Each record links through `+0x00` (next) and `+0x08` (previous). `0x003EB750` zeroes both heads' links (`0x02B5EB20`
-and `0x02B5EB28` at `0x003EB77A` and `0x003EB773`, `0x02B5EB70` and `0x02B5EB78` at `0x003EB79B` and `0x003EB794`), their words
-`+0x40` (`0x02B5EB60` at `0x003EB781`, `0x02B5EBB0` at `0x003EB7A2`) and their bindings at `+0x10`.
+The two lists have head records of the same shape: the bound list at `0x02B5EB20` and the free list at `0x02B5EB70`. Each
+record links through `+0x00` (next) and `+0x08` (previous). `0x003EB750` zeroes both heads' links (`0x02B5EB20` and
+`0x02B5EB28` at `0x003EB77A` and `0x003EB773`, `0x02B5EB70` and `0x02B5EB78` at `0x003EB79B` and `0x003EB794`) and their words
+`+0x40` (`0x02B5EB60` at `0x003EB781`, `0x02B5EBB0` at `0x003EB7A2`), and resets their bindings at `+0x10` (`0x00265F90`,
+`0x003EB788`, `0x003EB7A9`). It also zeroes the 32 entries of the pointer table `0x02B5EA20` (`0x003EB7AE`-`0x003EB7E7`).
 
-`0x003EB750` then pushes the 32
-records onto the free list (`0x003EB81B`-`0x003EB83C`). The bind `0x003EB250` takes the free list's first record and
-puts it on the bound list. `0x003EB470`, `0x003EB500` and `0x003EB5F0` put records back on the free list.
+`0x003EB750` then takes the 32 records in turn: each gets its index in byte `+0x42`, a zero word `+0x40` and a reset
+binding `+0x10`, and is pushed onto the free list with `+0x08` pointing at the free head (`0x003EB800`-`0x003EB842`). The
+bind `0x003EB250` takes the free list's first record and puts it on the bound list. `0x003EB470`, `0x003EB500` and
+`0x003EB5F0` put records back on the free list.
 
 The field signs are 8 slots in four arrays: a text pointer at `0x02B59C40 + 8 x n`, a second pointer at
 `0x02B59C80 + 8 x n`, the live word at `0x02B59CC0 + 4 x n` and the first argument at `0x02B59CE0 + 4 x n`.
@@ -242,3 +253,21 @@ party-focus actor (`0x003590D0`, resolved by `0x003588B0`) passes `0x002EA6A0`, 
 - [Verb dispatch](verb-dispatch.md): how a call id reaches these records.
 - [Native commands](native-commands.md): what the three callbacks and the shapes mean.
 - [Script interpreter](script-interpreter.md): the call opcodes.
+
+### Calls to and from other topics
+
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
+
+<details>
+<summary>Show the 4 calls with 1 other topic</summary>
+
+**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md), [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00245020` | is called by | `0x00280140` |
+| `0x00247950` | is called by | `0x00280140` |
+| `0x00249410` | is called by | `0x00582790` |
+| `0x00249580` | is called by | `0x00582790` |
+
+</details>

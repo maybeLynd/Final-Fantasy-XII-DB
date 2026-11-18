@@ -370,9 +370,17 @@ The cache's next-entry index:
 - [Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md): the order sets of slot 1.
 - [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md): the bindings, keep bits and lane holds the trailer sets.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- UI: `0x002AC2F0` is called by `0x002AE610`, `0x002AF340`, `0x002B2150`; those functions are documented on
-  [fonts](../Menus-And-HUD/fonts.md), [text drawing](../Menus-And-HUD/text-drawing.md), [text codes](../Menus-And-HUD/text-codes.md).
+<details>
+<summary>Show the 3 calls with 1 other topic</summary>
+
+**Menus and HUD** (explained on [fonts](../Menus-And-HUD/fonts.md), [text drawing](../Menus-And-HUD/text-drawing.md), [text codes](../Menus-And-HUD/text-codes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002AC2F0` | is called by | `0x002AE610`, `0x002AF340`, `0x002B2150` |
+
+</details>

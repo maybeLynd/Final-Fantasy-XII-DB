@@ -193,14 +193,26 @@ the setter's range, so 52 flags are set.
 - [Quests](quests.md) - the quest bits just before the banks.
 - [NPC names](../Characters-And-Objects/npc-names.md) - the name pairs the Bank2048 bit chooses between.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Spawn encounter lifecycle: `0x00229B40` calls `0x00233440`; those functions are documented on
-  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
-- Combat AI: `0x00321190` is called by `0x00301AD0`; those functions are documented on
-  [glossary](../Engine-Core/glossary.md).
+<details>
+<summary>Show the 2 calls with 2 other topics</summary>
+
+**Enemy spawning** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00229B40` | calls | `0x00233440` |
+
+**Enemy AI and gambits** (explained on [glossary](../Engine-Core/glossary.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00321190` | is called by | `0x00301AD0` |
+
+</details>
 
 ---
 

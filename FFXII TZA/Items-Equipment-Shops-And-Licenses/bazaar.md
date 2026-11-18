@@ -174,48 +174,89 @@ script goods are 99-102 and 124-126.
 - [Inventory](inventory.md) - the sold tally and the bundle ids.
 - [Equipment row](equipment-row.md) - the equipment some goods give.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x00322C50` is called by `0x002367A0`, `0x0023A570`, `0x0031B810`, `0x003266C0`, `0x00329CC0`; those functions
-  are documented on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
-  [party control modes](../Engine-Core/party-control-modes.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md), [party data](../Party/party-data.md).
-- Movement: `0x00322C50` is called by `0x0031BAC0`, `0x00326BB0`; those functions are documented on
-  [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md).
-- Party: `0x00322C50` is called by `0x003170E0`, `0x0031AC00`, `0x0031B510`, `0x00320800`, `0x00321100`, `0x00326500`, `0x003287A0`,
-  `0x00328DB0`, `0x00329080`; those functions are documented on
-  [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party data](../Party/party-data.md),
-  [party control modes](../Engine-Core/party-control-modes.md).
-- Status periodic terminal: `0x00322C50` is called by `0x0030E130`, `0x0030FED0`, `0x00310DB0`; those functions are documented
-  on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Input: `0x0022B6E0` calls `0x00249C30`, `0x0035E9A0`; `0x0032E4D0` is called by `0x00291D90`; `0x00582860` calls `0x00182D40`;
-  those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
-  [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md).
-- Presentation: `0x001EDEC0` is called by `0x002B7B80`, `0x002BAF80`, `0x002BC3E0`, `0x002D2DB0`, `0x00366B80`; `0x0022B6E0` calls
-  `0x00252A20`, `0x002E65A0`, `0x0036D400`, `0x0036F2C0`, `0x0036F2F0`; `0x0032E4D0` is called by `0x003B21E0`, `0x003B25D0`;
-  `0x0032E520` is called by `0x003B53C0`.
-- Presentation: those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md),
-  [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [escape](../Controls-And-Input/escape.md),
-  [effect file loading](../Graphics/effect-file-loading.md).
-- Presentation: and on [effect element runtime](../Graphics/effect-element-runtime.md),
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
-- RNG random selection: `0x0022B6E0` calls `0x00379CD0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Resource: `0x0022B6E0` calls `0x0032E520`; `0x00280140` calls `0x0032E4D0`; `0x0032E4D0` is called by `0x003EADE0`; `0x0032E520`
-  calls `0x0032E070`, `0x0046DFE0`; `0x0032E520` is called by `0x0024AC30`.
-- Resource: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
-  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
-- World area: `0x0022B6E0` calls `0x003318C0`; `0x00280140` calls `0x00267C90`, `0x00268320`, `0x00314440`; `0x0032E520` is called
-  by `0x003145E0`; `0x0036FCC0` calls `0x00267C90`, `0x00268320`; `0x00394130` calls `0x00267C90`, `0x00268320`, `0x00314440`,
-  `0x00314DC0`; `0x00582860` calls `0x005843E0`.
-- World area: those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
-  [loading a save](../Saving-Loading-And-Settings/loading-a-save.md),
-  [script variables](../Scripts-And-Script-Commands/script-variables.md),
-  [debug menu](../Engine-Core/debug-menu.md).
-- World area: and on [changing areas](../World-Areas-And-Travel/changing-areas.md),
-  [game over](../World-Areas-And-Travel/game-over.md), [native limits](../Engine-Core/native-limits.md).
+<details>
+<summary>Show the 55 calls with 14 other topics</summary>
+
+**Characters and objects** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party control modes](../Engine-Core/party-control-modes.md), [force fight mode](../Engine-Core/force-fight-mode.md), [party data](../Party/party-data.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x002367A0`, `0x0023A570`, `0x0031B810`, `0x003266C0`, `0x00329CC0` |
+
+**Movement and pathfinding** (explained on [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x0031BAC0`, `0x00326BB0` |
+
+**Party** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party data](../Party/party-data.md), [party control modes](../Engine-Core/party-control-modes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x003170E0`, `0x0031AC00`, `0x0031B510`, `0x00320800`, `0x00321100`, `0x00326500`, `0x003287A0`, `0x00328DB0`, `0x00329080` |
+
+**Status effects and KO** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00322C50` | is called by | `0x0030E130`, `0x0030FED0`, `0x00310DB0` |
+
+**Controls and input** (explained on [frame update order](../Engine-Core/frame-update-order.md), [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022B6E0` | calls | `0x00249C30`, `0x0035E9A0` |
+| `0x0032E4D0` | is called by | `0x00291D90` |
+| `0x00582860` | calls | `0x00182D40` |
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x001EDEC0` | is called by | `0x002B7B80`, `0x002BAF80`, `0x002BC3E0`, `0x002D2DB0`, `0x00366B80` |
+| `0x0022B6E0` | calls | `0x00252A20`, `0x002E65A0`, `0x0036D400`, `0x0036F2C0`, `0x0036F2F0` |
+| `0x0032E4D0` | is called by | `0x003B21E0`, `0x003B25D0` |
+| `0x0032E520` | is called by | `0x003B53C0` |
+
+**Graphics** (explained on [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [escape](../Controls-And-Input/escape.md), [effect file loading](../Graphics/effect-file-loading.md))
+
+**Graphics** (explained on [effect element runtime](../Graphics/effect-element-runtime.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+
+**Random numbers** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022B6E0` | calls | `0x00379CD0` |
+
+**Game files and data tables**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022B6E0` | calls | `0x0032E520` |
+| `0x00280140` | calls | `0x0032E4D0` |
+| `0x0032E4D0` | is called by | `0x003EADE0` |
+| `0x0032E520` | calls | `0x0032E070`, `0x0046DFE0` |
+| `0x0032E520` | is called by | `0x0024AC30` |
+
+**Game files and data tables** (explained on [debug menu](../Engine-Core/debug-menu.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+
+**World, areas and travel**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022B6E0` | calls | `0x003318C0` |
+| `0x00280140` | calls | `0x00267C90`, `0x00268320`, `0x00314440` |
+| `0x0032E520` | is called by | `0x003145E0` |
+| `0x0036FCC0` | calls | `0x00267C90`, `0x00268320` |
+| `0x00394130` | calls | `0x00267C90`, `0x00268320`, `0x00314440`, `0x00314DC0` |
+| `0x00582860` | calls | `0x005843E0` |
+
+**World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md), [loading a save](../Saving-Loading-And-Settings/loading-a-save.md), [script variables](../Scripts-And-Script-Commands/script-variables.md), [debug menu](../Engine-Core/debug-menu.md))
+
+**World, areas and travel** (explained on [changing areas](../World-Areas-And-Travel/changing-areas.md), [game over](../World-Areas-And-Travel/game-over.md), [native limits](../Engine-Core/native-limits.md))
+
+</details>

@@ -191,16 +191,33 @@ The Esper rows hold their two attacks first, the action rows `0xB6`-`0xCF`, then
 - [Gambits: how a character's gambit list is checked top to bottom, what runs before it, the three gambit sets and the authored presets](../Enemy-AI-And-Gambits/gambits.md)
 - [Equipment: the five slots, what can be worn where, two-handed weapons, shields and ammunition, Optimise, and what happens when you equip](../Items-Equipment-Shops-And-Licenses/equipment.md)
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x00253C70` calls `0x001EDE70`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Input: `0x00253C70` calls `0x0017DE10`, `0x001E0D80`, `0x001E0F20`, `0x00250130`, `0x002501A0`, `0x00250200`, `0x00862CF0`;
-  `0x00320040` is called by `0x00253C70`.
-- Input: those functions are documented on [force fight mode](../Engine-Core/force-fight-mode.md),
-  [on screen keyboard](../Controls-And-Input/on-screen-keyboard.md), [menu lists](../Menus-And-HUD/menu-lists.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Story event quest hunt: `0x00253C70` calls `0x0032A8A0`; `0x00254560` calls `0x0032A8A0`; those functions are documented on
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
+<details>
+<summary>Show the 11 calls with 4 other topics</summary>
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00253C70` | calls | `0x001EDE70` |
+
+**Controls and input**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00253C70` | calls | `0x0017DE10`, `0x001E0D80`, `0x001E0F20`, `0x00250130`, `0x002501A0`, `0x00250200`, `0x00862CF0` |
+| `0x00320040` | is called by | `0x00253C70` |
+
+**Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [on screen keyboard](../Controls-And-Input/on-screen-keyboard.md), [menu lists](../Menus-And-HUD/menu-lists.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00253C70` | calls | `0x0032A8A0` |
+| `0x00254560` | calls | `0x0032A8A0` |
+
+</details>

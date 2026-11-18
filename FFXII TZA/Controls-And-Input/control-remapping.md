@@ -281,9 +281,18 @@ No other instruction reaches these globals. `0x01DF176C` and `0x01DF1770` are al
 - [Controls](controls.md) - the records the game polls.
 - [Control names](control-names.md) - the codes and their names.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Presentation: `0x002D45C0` is called by `0x00579420`; `0x002D48C0` is called by `0x00578450`, `0x00579420`; those functions
-  are documented on [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md).
+<details>
+<summary>Show the 3 calls with 1 other topic</summary>
+
+**Graphics** (explained on [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002D45C0` | is called by | `0x00579420` |
+| `0x002D48C0` | is called by | `0x00578450`, `0x00579420` |
+
+</details>

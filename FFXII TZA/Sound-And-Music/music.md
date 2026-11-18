@@ -240,11 +240,23 @@ and the paragraphs above name `0x02B5E0E8`, `0x02B5E0F0`, `0x02B5E110` and `0x02
 - [Zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md) - the field id and the zone setup.
 - [Chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md) - chocobo mode.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x00266D10` is called by `0x0022A0B0`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Save load settings: `0x0032E4D0` is called by `0x00280140`; those functions are documented on
-  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
+<details>
+<summary>Show the 2 calls with 2 other topics</summary>
+
+**Engine core** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00266D10` | is called by | `0x0022A0B0` |
+
+**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E4D0` | is called by | `0x00280140` |
+
+</details>

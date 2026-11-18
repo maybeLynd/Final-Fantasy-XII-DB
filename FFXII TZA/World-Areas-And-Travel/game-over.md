@@ -576,12 +576,18 @@ actors' halt class `0x16`; `0x022C3158` to `0x022C3178` after a crystal touch.
 - [Boss fights](../Battle-Actions/boss-fights.md): the jump lock that keeps a party in a fight.
 - [The screen-fade layers](../Graphics/screen-fades.md): `0x002EFA70`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat formula: `0x00307300` calls `0x002FEE20`, `0x00300CE0`, `0x0030DAE0`, `0x003112F0`, `0x00320A40`, `0x00385F60`; `0x00319F50`
-  calls `0x00300520`, `0x00385F60`; those functions are documented on
-  [area of effect](../Battle-Actions/area-of-effect.md),
-  [save and teleport crystals](save-and-teleport-crystals.md), [traps](traps.md),
-  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
+<details>
+<summary>Show the 8 calls with 1 other topic</summary>
+
+**Damage and battle formulas** (explained on [area of effect](../Battle-Actions/area-of-effect.md), [save and teleport crystals](save-and-teleport-crystals.md), [traps](traps.md), [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00307300` | calls | `0x002FEE20`, `0x00300CE0`, `0x0030DAE0`, `0x003112F0`, `0x00320A40`, `0x00385F60` |
+| `0x00319F50` | calls | `0x00300520`, `0x00385F60` |
+
+</details>

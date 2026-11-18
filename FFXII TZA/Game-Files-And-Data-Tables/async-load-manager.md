@@ -290,9 +290,17 @@ its pointer `0x01F82CC0` for PS2 file reads.
 - [Model files](../Graphics/model-files-cm-ca.md): the `.cm` files the appendix extends.
 - [Effect files](../Graphics/effect-files-efx-efb.md): the `.efx` files it appends.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Developer: `0x0017D6E0` calls `0x001C2F50`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Developer** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017D6E0` | calls | `0x001C2F50` |
+
+</details>

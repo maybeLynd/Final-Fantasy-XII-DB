@@ -493,29 +493,55 @@ The samples come from the executable with sha256
 - [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md): the status-denial verbs.
 - [Party control modes](../Engine-Core/party-control-modes.md): the town flag.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat AI: `0x00236820` is called by `0x00301AD0`, `0x00308C20`, `0x003219D0`, `0x003247F0`, `0x00324F20`; those functions are
-  documented on [glossary](../Engine-Core/glossary.md),
-  [gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md).
-- Combat action: `0x00236820` is called by `0x00306760`, `0x003083B0`, `0x0030F760`, `0x003105D0`.
-- Combat action: those functions are documented on
-  [party control modes](../Engine-Core/party-control-modes.md),
-  [gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md),
-  [identifier spaces](../Engine-Core/identifier-spaces.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Combat formula: `0x00236820` is called by `0x0031B860`, `0x0031E800`; those functions are documented on
-  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
-- Gameplay: `0x00236820` is called by `0x0030C210`; those functions are documented on
-  [enmity](../Enemy-AI-And-Gambits/enmity.md).
-- Items equipment shops license: `0x00236820` is called by `0x0031A300`; those functions are documented on
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
-- Spawn encounter lifecycle: `0x00236820` is called by `0x00308D90`; those functions are documented on
-  [battle units](../Characters-And-Objects/battle-units.md).
-- UI: `0x00236820` is called by `0x0031EB20`, `0x00322A80`; those functions are documented on
-  [action definition row](../Battle-Actions/action-definition-row.md),
-  [target selection](../Battle-Actions/target-selection.md).
+<details>
+<summary>Show the 16 calls with 8 other topics</summary>
+
+**Enemy AI and gambits** (explained on [glossary](../Engine-Core/glossary.md), [gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md), [frame update order](../Engine-Core/frame-update-order.md), [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236820` | is called by | `0x00301AD0`, `0x00308C20`, `0x003219D0`, `0x003247F0`, `0x00324F20` |
+
+**Battle actions**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236820` | is called by | `0x00306760`, `0x003083B0`, `0x0030F760`, `0x003105D0` |
+
+**Battle actions** (explained on [party control modes](../Engine-Core/party-control-modes.md), [gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md), [identifier spaces](../Engine-Core/identifier-spaces.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+**Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236820` | is called by | `0x0031B860`, `0x0031E800` |
+
+**Gameplay** (explained on [enmity](../Enemy-AI-And-Gambits/enmity.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236820` | is called by | `0x0030C210` |
+
+**Items, equipment, shops and licenses** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236820` | is called by | `0x0031A300` |
+
+**Enemy spawning** (explained on [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236820` | is called by | `0x00308D90` |
+
+**Menus and HUD** (explained on [action definition row](../Battle-Actions/action-definition-row.md), [target selection](../Battle-Actions/target-selection.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00236820` | is called by | `0x0031EB20`, `0x00322A80` |
+
+</details>

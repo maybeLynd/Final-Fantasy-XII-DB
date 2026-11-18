@@ -213,13 +213,30 @@ calls `0x0046CC70` on its emitter at `+0x5F0`.
 - [Sound variations](sound-variations.md) - the driver's own kinds, which shipped sounds do not use.
 - [Spatial sound](spatial-sound.md) - the source the emitter builds.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Resource: `0x002EDBD0` calls `0x00409660`, `0x00409F50`; `0x00421E20` calls `0x002ED570`; those functions are documented on
-  [resource sections](../Game-Files-And-Data-Tables/resource-sections.md).
-- Rewards progression economy: `0x003A1180` is called by `0x0030C650`; those functions are documented on
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
-- World area: `0x003A13F0` is called by `0x00266D10`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 5 calls with 3 other topics</summary>
+
+**Game files and data tables** (explained on [resource sections](../Game-Files-And-Data-Tables/resource-sections.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002EDBD0` | calls | `0x00409660`, `0x00409F50` |
+| `0x00421E20` | calls | `0x002ED570` |
+
+**Rewards: EXP, LP, gil and loot** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003A1180` | is called by | `0x0030C650` |
+
+**World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003A13F0` | is called by | `0x00266D10` |
+
+</details>

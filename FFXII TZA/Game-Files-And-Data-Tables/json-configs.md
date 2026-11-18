@@ -140,9 +140,17 @@ The columns come from the documents and from the loaders that read them:
 - [Fonts: the font files a language uses, their kerning pairs and expansion lists, and how digits and glyphs are laid out](../Menus-And-HUD/fonts.md)
 - [Clan Primer: the Hunts, Bestiary, Sky Pirate's Den and Traveler's Tips pages, how entries unlock, and the monster viewer](../Menus-And-HUD/clan-primer.md)
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Script VM: `0x002ED6F0` is called by `0x003580C0`; those functions are documented on
-  [party verbs](../Scripts-And-Script-Commands/party-verbs.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Scripts and script commands** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002ED6F0` | is called by | `0x003580C0` |
+
+</details>

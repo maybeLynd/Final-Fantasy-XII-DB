@@ -354,9 +354,17 @@ so the setting changes nothing on screen.
 - [Game settings](../Saving-Loading-And-Settings/game-settings.md): the Voice language and Music volume options.
 - [Screen fades](screen-fades.md): the fades around a movie.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Movement: `0x002E1CD0` is called by `0x0026C3E0`; those functions are documented on
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Movement and pathfinding** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E1CD0` | is called by | `0x0026C3E0` |
+
+</details>

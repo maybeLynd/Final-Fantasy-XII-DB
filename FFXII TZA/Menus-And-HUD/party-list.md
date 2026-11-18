@@ -617,12 +617,29 @@ member records, and `0x0035E5F0` writes from `+0x4A0` on.
 - [Controls](../Controls-And-Input/controls.md) - the button words.
 - [Widgets](widgets.md) - focus, priorities and the input turn.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat AI: `0x0031EB20` calls `0x00327A10`; those functions are documented on [gambit screen](gambit-screen.md).
-- Items equipment shops license: `0x00253690` is called by `0x002FD530`, `0x002FD880`, `0x002FEEB0`, `0x00310870`; those
-  functions are documented on [item and ability ids](../Engine-Core/item-and-ability-ids.md),
-  [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md).
-- Script VM: `0x002A1D40` is called by `0x00511280`.
+<details>
+<summary>Show the 6 calls with 3 other topics</summary>
+
+**Enemy AI and gambits** (explained on [gambit screen](gambit-screen.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031EB20` | calls | `0x00327A10` |
+
+**Items, equipment, shops and licenses** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00253690` | is called by | `0x002FD530`, `0x002FD880`, `0x002FEEB0`, `0x00310870` |
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002A1D40` | is called by | `0x00511280` |
+
+</details>

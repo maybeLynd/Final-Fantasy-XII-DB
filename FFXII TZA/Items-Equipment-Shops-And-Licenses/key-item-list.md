@@ -138,25 +138,52 @@ scene-rewards table leaves out, only `evt_t0505` holds one: it gives the Writ.
 - [Item list: every item with its name, price, sort order, icon, the action it runs and its texts](item-list.md)
 - [Treasure chests: where each chest stands, whether it appears and comes back, and what it holds with the odds of each content](../World-Areas-And-Travel/treasure-chests.md)
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Platform online achievements: `0x00309EC0` is called by `0x00315E90`; those functions are documented on
-  [gil](../Rewards-EXP-Gil-And-Loot/gil.md).
-- Presentation: `0x00300E40` calls `0x003125E0`; those functions are documented on
-  [battle units](../Characters-And-Objects/battle-units.md).
-- Script VM: `0x0023A3B0` is called by `0x00510160`; `0x00510160` calls `0x00267E10`, `0x0037CF50`; those functions are
-  documented on [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Spawn encounter lifecycle: `0x0023A3B0` calls `0x002355A0`; `0x0023A570` calls `0x00236100`; `0x0023A570` is called by
-  `0x0023A3B0`; `0x00300E40` calls `0x00237080`; `0x00300E40` is called by `0x00234880`, `0x00234990`, `0x002350C0`, `0x00237690`;
-  `0x00510160` calls `0x0023A3B0`.
-- Spawn encounter lifecycle: those functions are documented on [battle units](../Characters-And-Objects/battle-units.md),
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md),
-  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
-- Spawn encounter lifecycle: and on [frame update order](../Engine-Core/frame-update-order.md),
-  [boss fights](../Battle-Actions/boss-fights.md).
-- Story event quest hunt: `0x003BD480` calls `0x0032A8A0`; `0x003C18A0` calls `0x0032A8A0`; those functions are documented on
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
+<details>
+<summary>Show the 16 calls with 7 other topics</summary>
+
+**Steam and achievements** (explained on [gil](../Rewards-EXP-Gil-And-Loot/gil.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00309EC0` | is called by | `0x00315E90` |
+
+**Graphics** (explained on [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00300E40` | calls | `0x003125E0` |
+
+**Scripts and script commands** (explained on [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A3B0` | is called by | `0x00510160` |
+| `0x00510160` | calls | `0x00267E10`, `0x0037CF50` |
+
+**Enemy spawning**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A3B0` | calls | `0x002355A0` |
+| `0x0023A570` | calls | `0x00236100` |
+| `0x0023A570` | is called by | `0x0023A3B0` |
+| `0x00300E40` | calls | `0x00237080` |
+| `0x00300E40` | is called by | `0x00234880`, `0x00234990`, `0x002350C0`, `0x00237690` |
+| `0x00510160` | calls | `0x0023A3B0` |
+
+**Enemy spawning** (explained on [battle units](../Characters-And-Objects/battle-units.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [enemy respawning](../Enemy-Spawning/enemy-respawning.md))
+
+**Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md), [boss fights](../Battle-Actions/boss-fights.md))
+
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003BD480` | calls | `0x0032A8A0` |
+| `0x003C18A0` | calls | `0x0032A8A0` |
+
+</details>

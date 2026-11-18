@@ -53,35 +53,75 @@ An enemy's shown name does not come from this block. The definition row holds a 
 - [Enemy names on screen](enemy-names-on-screen.md) - where an enemy's name comes from.
 - [Word bank](text-word-bank.md) - the names the definitions' name words select.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0023A570` calls `0x00236A60`, `0x00322050`; `0x0023A570` is called by `0x00300E40`, `0x003266C0`; `0x002B58B0` is
-  called by `0x0023A570`.
-- Actor entity: those functions are documented on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [party control modes](../Engine-Core/party-control-modes.md).
-- Combat AI: `0x003845F0` is called by `0x00238880`; those functions are documented on
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
-- Combat action: `0x003845F0` is called by `0x00237FC0`; those functions are documented on
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
-- Combat formula: `0x0023A570` calls `0x0023AC80`; those functions are documented on
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
-- Gameplay: `0x0023A570` calls `0x00322C50`; those functions are documented on
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
-- Presentation: `0x002B58B0` is called by `0x00506700`; those functions are documented on
-  [battle numbers](battle-numbers.md).
-- Spawn encounter lifecycle: `0x0023A570` calls `0x00236100`; `0x0023A570` is called by `0x0023A3B0`; those functions are
-  documented on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md).
-- World area: `0x003845F0` is called by `0x00238640`, `0x003847B0`; those functions are documented on
-  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md),
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
-- World area: `0x0023A570` calls `0x00313F60`; `0x003845F0` calls `0x003846F0`; `0x003845F0` is called by `0x00236C30`,
-  `0x0023A160`; `0x003EA710` calls `0x0023A160`, `0x003DCF00`.
-- World area: those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md),
-  [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md).
+<details>
+<summary>Show the 20 calls with 11 other topics</summary>
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x00236A60`, `0x00322050` |
+| `0x0023A570` | is called by | `0x00300E40`, `0x003266C0` |
+| `0x002B58B0` | is called by | `0x0023A570` |
+
+**Characters and objects** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [force fight mode](../Engine-Core/force-fight-mode.md), [party control modes](../Engine-Core/party-control-modes.md))
+
+**Enemy AI and gambits** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003845F0` | is called by | `0x00238880` |
+
+**Battle actions** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003845F0` | is called by | `0x00237FC0` |
+
+**Damage and battle formulas** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x0023AC80` |
+
+**Gameplay** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x00322C50` |
+
+**Graphics** (explained on [battle numbers](battle-numbers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002B58B0` | is called by | `0x00506700` |
+
+**Enemy spawning** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x00236100` |
+| `0x0023A570` | is called by | `0x0023A3B0` |
+
+**World, areas and travel** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003845F0` | is called by | `0x00238640`, `0x003847B0` |
+
+**World, areas and travel**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0023A570` | calls | `0x00313F60` |
+| `0x003845F0` | calls | `0x003846F0` |
+| `0x003845F0` | is called by | `0x00236C30`, `0x0023A160` |
+| `0x003EA710` | calls | `0x0023A160`, `0x003DCF00` |
+
+**World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md), [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md))
+
+</details>

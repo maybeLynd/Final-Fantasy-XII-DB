@@ -151,20 +151,38 @@ scripts' copies differ only in these.
 - [Chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md) - riding chocobos and airships.
 - [Event scenes](../Scripts-And-Script-Commands/event-scenes.md) - how an event id loads a scene script.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0032FCA0` calls `0x002628B0`, `0x0032ED80`, `0x00330310`, `0x003306E0`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
-- Resource: `0x0032FCA0` calls `0x002DF980`, `0x0032E400`, `0x0032E620`; `0x00351880` calls `0x001D6A70`; `0x003529E0` calls
-  `0x001D6A70`; those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
-  [startup constants](../Engine-Core/startup-constants.md),
-  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
-- Script VM: `0x00351880` calls `0x00267E10`; `0x003529E0` calls `0x00267E10`, `0x00267F90`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [native commands](../Scripts-And-Script-Commands/native-commands.md).
-- World area: `0x0032FCA0` is called by `0x0032FC30`; those functions are documented on
-  [debug menu](../Engine-Core/debug-menu.md).
+<details>
+<summary>Show the 13 calls with 4 other topics</summary>
+
+**Characters and objects** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032FCA0` | calls | `0x002628B0`, `0x0032ED80`, `0x00330310`, `0x003306E0` |
+
+**Game files and data tables** (explained on [debug menu](../Engine-Core/debug-menu.md), [startup constants](../Engine-Core/startup-constants.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032FCA0` | calls | `0x002DF980`, `0x0032E400`, `0x0032E620` |
+| `0x00351880` | calls | `0x001D6A70` |
+| `0x003529E0` | calls | `0x001D6A70` |
+
+**Scripts and script commands** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [native commands](../Scripts-And-Script-Commands/native-commands.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00351880` | calls | `0x00267E10` |
+| `0x003529E0` | calls | `0x00267E10`, `0x00267F90` |
+
+**World, areas and travel** (explained on [debug menu](../Engine-Core/debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032FCA0` | is called by | `0x0032FC30` |
+
+</details>

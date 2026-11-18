@@ -451,10 +451,17 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the tick's per-slot pre-pass that runs the Libra toggle.
 - [Zone asset list](zone-asset-list.md): every field with its map and region name.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Resource: `0x0032FCA0` calls `0x002DF980`, `0x0032E400`, `0x0032E620`; those functions are documented on
-  [debug menu](../Engine-Core/debug-menu.md),
-  [startup constants](../Engine-Core/startup-constants.md).
+<details>
+<summary>Show the 3 calls with 1 other topic</summary>
+
+**Game files and data tables** (explained on [debug menu](../Engine-Core/debug-menu.md), [startup constants](../Engine-Core/startup-constants.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032FCA0` | calls | `0x002DF980`, `0x0032E400`, `0x0032E620` |
+
+</details>

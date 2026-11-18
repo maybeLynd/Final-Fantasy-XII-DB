@@ -528,13 +528,31 @@ below 2 GB.
 - [Text codes](../Menus-And-HUD/text-codes.md): the `0x02` and `0x03` codes in the detail text.
 - [File size tables](file-size-tables-fst.md): the kind-7 paths and sizes.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Core runtime: `0x002465F0` calls `0x001EDDA0`; those functions are documented on
-  [global state accessors](../Engine-Core/global-state-accessors.md).
-- Save load settings: `0x00249210` is called by `0x00582790`; `0x00249410` is called by `0x00582790`; `0x00249580` is called by
-  `0x00582790`; those functions are documented on [mrp menu resource packages](mrp-menu-resource-packages.md).
-- Input: `0x002D3900` calls `0x001E0A10`, `0x001E0E30`; those functions are documented on
-  [controls](../Controls-And-Input/controls.md).
+<details>
+<summary>Show the 6 calls with 3 other topics</summary>
+
+**Engine core** (explained on [global state accessors](../Engine-Core/global-state-accessors.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002465F0` | calls | `0x001EDDA0` |
+
+**Saving, loading and settings** (explained on [mrp menu resource packages](mrp-menu-resource-packages.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00249210` | is called by | `0x00582790` |
+| `0x00249410` | is called by | `0x00582790` |
+| `0x00249580` | is called by | `0x00582790` |
+
+**Controls and input** (explained on [controls](../Controls-And-Input/controls.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002D3900` | calls | `0x001E0A10`, `0x001E0E30` |
+
+</details>

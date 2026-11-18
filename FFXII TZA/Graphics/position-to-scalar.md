@@ -242,24 +242,51 @@ is non-zero (`0x00377536`), but every store to `0x02ADD0F4` writes 0 (`0x0037754
 - [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md): the dimming ramp.
 - [PS2 CPU emulation](../Engine-Core/ps2-cpu-emulation.md): the workbench the transforms use.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x002E9B80` calls `0x003588B0`; `0x0036DD80` is called by `0x0025C830`; `0x00378120` calls `0x00332130`; those
-  functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
-  [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md),
-  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
-- Input: `0x0022A770` calls `0x0017DE60`, `0x002498B0`, `0x00250180`, `0x0035AE30`, `0x0035AF20`, `0x0035E9A0`, `0x0035FF90`,
-  `0x0036FDF0`, `0x0036FF70`, `0x0036FFD0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Platform online achievements: `0x0022A770` calls `0x00316930`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Script VM: `0x00351AA0` calls `0x00267E10`; `0x00379950` is called by `0x00351AA0`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
-- World area: `0x00378120` calls `0x003C63A0`; those functions are documented on
-  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
-- World area: `0x0022A770` calls `0x00314020`; `0x00378120` is called by `0x003775D0`; those functions are documented on
-  [debug logging](../Engine-Core/debug-logging.md),
-  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md).
+<details>
+<summary>Show the 19 calls with 6 other topics</summary>
+
+**Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md), [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E9B80` | calls | `0x003588B0` |
+| `0x0036DD80` | is called by | `0x0025C830` |
+| `0x00378120` | calls | `0x00332130` |
+
+**Controls and input** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022A770` | calls | `0x0017DE60`, `0x002498B0`, `0x00250180`, `0x0035AE30`, `0x0035AF20`, `0x0035E9A0`, `0x0035FF90`, `0x0036FDF0`, `0x0036FF70`, `0x0036FFD0` |
+
+**Steam and achievements** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022A770` | calls | `0x00316930` |
+
+**Scripts and script commands** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00351AA0` | calls | `0x00267E10` |
+| `0x00379950` | is called by | `0x00351AA0` |
+
+**World, areas and travel** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00378120` | calls | `0x003C63A0` |
+
+**World, areas and travel** (explained on [debug logging](../Engine-Core/debug-logging.md), [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022A770` | calls | `0x00314020` |
+| `0x00378120` | is called by | `0x003775D0` |
+
+</details>

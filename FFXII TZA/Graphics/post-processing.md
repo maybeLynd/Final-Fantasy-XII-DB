@@ -484,13 +484,30 @@ device context).
 - [Render command list](render-command-list.md): where the command and the markers are queued.
 - [Render parameters and shader assets](render-parameters-and-shader-assets.md): the shader files.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Developer: `0x00796E20` is called by `0x001C2F50`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Platform online achievements: `0x00796E20` is called by `0x008655A0`; those functions are documented on
-  [steam integration](../Steam-And-Achievements/steam-integration.md).
-- Script VM: `0x002E30D0` is called by `0x0034DEE0`; `0x00382B50` is called by `0x00356D40`; those functions are documented on
-  [debug menu](../Engine-Core/debug-menu.md).
+<details>
+<summary>Show the 4 calls with 3 other topics</summary>
+
+**Developer** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00796E20` | is called by | `0x001C2F50` |
+
+**Steam and achievements** (explained on [steam integration](../Steam-And-Achievements/steam-integration.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00796E20` | is called by | `0x008655A0` |
+
+**Scripts and script commands** (explained on [debug menu](../Engine-Core/debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E30D0` | is called by | `0x0034DEE0` |
+| `0x00382B50` | is called by | `0x00356D40` |
+
+</details>

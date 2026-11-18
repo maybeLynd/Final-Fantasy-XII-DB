@@ -219,12 +219,20 @@ and 41,046; `dgl_n01` 222,462; `dor_b01` 18,247; `dst_a01` 67; `lus_c01` 98,482,
 - [Elements](elements.md) - the absorb and Reverse rules that decide loss or gain.
 - [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md) - the field record bit `0x8000` exception.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Resource: `0x00427320` calls `0x002ED570`; those functions are documented on
-  [resource sections](../Game-Files-And-Data-Tables/resource-sections.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Game files and data tables** (explained on [resource sections](../Game-Files-And-Data-Tables/resource-sections.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00427320` | calls | `0x002ED570` |
+
+</details>
 
 ---
 

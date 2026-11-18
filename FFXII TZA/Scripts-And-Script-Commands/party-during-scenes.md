@@ -53,12 +53,15 @@ for any other `g` (`0x0035AAA8`).
 
 ### The summon leader and followers
 
-`setupsummonforevent(n)` (`0x0193`, `0x00346FA0`) names a leader: the actor at ordinal `n` of the
-current manager, or for a negative `n` the controlled character (`0x003590D0`, `0x003588B0`).
-`0x003B6F80(leader)` walks managers 0, 1 and 2 (`0x003B7036` loops while the manager index is at most 2)
-whose byte `+0x10` has bit `0x1` set and collects, up to 31, the handles (`0x003589B0`) of every actor
-with byte `+9` bit `0x10` set other than the leader; it clears `+9` bits `0x4` and `0x10` on every
-actor it visits and refreshes it (`0x0026D6D0`).
+`setupsummonforevent(n)` (`0x0193`, `0x00346FA0`) names a leader: the actor at ordinal `n` of the current manager
+(`0x002640C0`, `0x00358940`), or for a negative `n` the controlled character (`0x003590D0`, `0x003588B0`; the pop and the
+choice, `0x00346FA9`-`0x00346FCC`). With a leader it ends with `0x003B6F80(leader)` as a tail jump, and with none it does
+nothing (`0x00346FD4`-`0x00346FDE`).
+
+`0x003B6F80(leader)` walks managers 0, 1 and 2 (`0x003B7036` loops while the manager index is at most 2) whose byte
+`+0x10` has bit `0x1` set and collects, up to 31, the handles (`0x003589B0`) of every actor with byte `+9` bit `0x10`
+set other than the leader; it clears `+9` bits `0x4` and `0x10` on every actor it visits and refreshes it
+(`0x0026D6D0`).
 
 It reads `+9` of each ordinal's `0x00358940` actor without a null test (`0x003B6FFD`), so a null entry
 faults there. The leader's own handle also comes from `0x003589B0` (`0x003B6FB4`).
@@ -128,6 +131,24 @@ the movement heading again (`0x003B7B50`), position (`0x0026B0C0`), the body `+0
 (`0x0026B720`), bit `0x20` of `+0x151` cleared (`0x0026ACE0`), presentation `+0x13` from the snapshot
 (`0x002EC680`) and the render scale (`0x002E4A40`). It returns at once for a null actor (`0x003B7B03`)
 or a null snapshot record (`0x003B7B2C`).
+
+`0x002E4A40(actor)`, the render scale, acts only while `0x00377DB0()` is non-zero and the actor's presentation record
+(`+0xC0`) is non-null with a first dword other than -1 (`0x002E4A57`-`0x002E4A8B`). The scale is 1.0 on all three axes
+(`0x01CEBBA8`) when bit `0x20` of the presentation record's byte `+0x151` is set; otherwise it is the floats `+0x50`,
+`+0x54` and `+0x58` of the presentation record's `+0x138` record (`0x00265970` returns that record plus `0x30`), read
+again after `0x002ED6A0(actor, that record)` when bit `0x10` is clear (`0x002E4AAE`-`0x002E4B06`).
+
+The first read has no null test, so a null `+0x138` record faults at `0x002E4AD9`. Each of the presentation record's
+four handles at `+0x00`, `+0x30`, `+0x60` and `+0x90` whose first dword is not -1 is passed with the scale to
+`0x002EDD70(its first word, x, y, z)` (`0x002E4B0C`-`0x002E4B90`).
+
+`0x002EDD70` stores x, y and z at `+0x380`-`+0x388` of the render record the word names and sets bit `0x8` of its
+`+0x290` only when the word is not -1, the record is non-null and its `+0x284` is non-zero (`0x002EDD70`-`0x002EDDAA`).
+
+`0x002E9560(actor)`, the render value, returns 0.0 for a null actor, a null presentation record or a first dword of -1,
+30.0 (`0x008F8D80`) when the record's first word is -1, or when, as a signed index, it names a render record
+`[0x022C6F28] + word × 0x740` whose address is null or whose `+0x284` is 0, and otherwise the value of `0x00423280` for
+that record (`0x002E9563`-`0x002E95AA`).
 
 `summongethertarget(d)` (`0x0370`, `0x00340DA0` → `0x003B8140`) pops a float. It first has `0x003B7D80`
 put back the body `+0x20` floats from the snapshot of every non-null slot of the requested count,
@@ -203,6 +224,19 @@ It reads the owner's `+0x18` without a null test (`0x00262FD0`), so a null owner
 bind the member gets `+0x18` = 1 with the owner's manager at `+0x19` and id at `+0x1A`, the owner
 gets `+0x18` = 2 with the member's; `0x002E4A40(owner)` re-applies the render scale; the owner copies
 the member's body pointers (`+0xC0` and `+0xB8`); `0x002681E0` refreshes both; it returns 1.
+
+`0x002681E0(actor)` acts only when the actor's presentation record (`+0xC0`) is non-null and the actor is class 3
+(`0x002681F3`-`0x00268201`); it reads `+0xC0` without testing the actor (`0x002681E9`), so a null actor faults there.
+
+It writes a value to word `+0x80` of the presentation record's `+0x138` record and to the presentation record's byte
+`+0x153`, only when that `+0x138` record is set (`0x00268294`-`0x002682B5`). The value comes from the presentation
+record's byte `+0x152`: 3 for 2, 5 for 3 and 2 for any other non-zero value (`0x00268215`-`0x00268226`).
+
+For a byte `+0x152` of 0 the value is 1 when the handle (`0x003589B0`) of the actor, or of the member it holds when it
+is a capturer and that member resolves (`0x00263F10`), is not the party-focus handle `0x003590D0` returns
+(`0x0026823B`-`0x00268254`, `0x0026828A`). When it is, the value is 1 when bit `0x10` of the actor's byte `+0xC` is set and
+`0x00265680()` is non-zero and 0 otherwise, then 1 when `0x002672B0()` is 0, and then 5 when `0x0037C860()` is non-zero
+(`0x00268256`-`0x00268283`).
 
 `0x002ECCF0(owner, v)` then clears presentation `+0x11` bit `0x80` and sets it again from bit `0x1`
 of `v` (`0x002ECD06`-`0x002ECD0D`), so `(owner, 1)` sets it: `0x00262F50` calls it only after a
@@ -328,263 +362,532 @@ word.
 - [The world lock](world-lock.md): what holds everyone else still during a talk or scene.
 - [Party verbs](party-verbs.md): the summon party switches.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0026B500` is called by `0x003B6CC0`, `0x003B6D60`; `0x002E8FD0` is called by `0x00265B60`, `0x002E35B0`;
-  `0x003B6F30` calls `0x003B6D60`; those functions are documented on [actor record](../Characters-And-Objects/actor-record.md).
-- Actor entity: `0x00263750` is called by `0x003266C0`, `0x0035A8D0`; `0x00263940` is called by `0x00271380`, `0x002718E0`;
-  `0x00263A30` calls `0x00358940`; `0x00263BE0` is called by `0x0035A7A0`, `0x0035A990`, `0x0046BAC0`; `0x00263CC0` is called by
-  `0x00236300`, `0x003B73B0`, `0x003B7440`, `0x003B7510`; `0x00263F40` calls `0x003587C0`; `0x00264050` calls `0x003588B0`,
-  `0x00358940`; `0x00264670` is called by `0x00236300`.
-- Actor entity: `0x002647B0` is called by `0x0035A7A0`, `0x0035A990`, `0x0046BAC0`; `0x002647C0` is called by `0x0037B4D0`;
-  `0x00265020` is called by `0x00236300`, `0x0037B4D0`, `0x003B73B0`, `0x003B7440`, `0x003B7510`; `0x00265090` is called by
-  `0x00236300`; `0x00265200` is called by `0x00236300`, `0x003B73B0`, `0x003B7440`, `0x003B7510`; `0x00265240` is called by
-  `0x003B73B0`, `0x003B7440`, `0x003B7510`.
-- Actor entity: `0x00266AD0` is called by `0x00266530`, `0x002693D0`; `0x002681E0` calls `0x003589B0`; `0x002681E0` is called by
-  `0x00266530`, `0x002693D0`; `0x002693D0` calls `0x00266AD0`, `0x002693D0`, `0x00358940`; `0x002693D0` is called by `0x0025B070`,
-  `0x002693D0`, `0x0026C5D0`; `0x00269530` calls `0x002693D0`, `0x003587C0`; `0x0026A0D0` is called by `0x0037B4D0`; `0x0026AE90` is
-  called by `0x002693D0`.
-- Actor entity: `0x0026B620` is called by `0x0037B4D0`; `0x0026C120` is called by `0x002693D0`; `0x0026D6D0` is called by
-  `0x0035A590`, `0x0035A720`, `0x0035A7A0`, `0x0035A8D0`, `0x003B6F80`; `0x002E4A40` is called by `0x002693D0`, `0x0037B4D0`;
-  `0x002E4F40` is called by `0x002693D0`; `0x002E6300` is called by `0x002693D0`; `0x002E7600` is called by `0x00263050`,
-  `0x00263230`, `0x0026C5D0`.
-- Actor entity: `0x002E8EE0` is called by `0x00263050`, `0x00263230`, `0x002693D0`, `0x0026C5D0`; `0x002E8FD0` is called by
-  `0x002EBB80`; `0x002E9560` is called by `0x002693D0`; `0x002E97B0` is called by `0x0035A720`, `0x0035A7A0`, `0x0035A8D0`,
-  `0x0037B4D0`; `0x002E9BE0` is called by `0x003B73B0`, `0x003B7440`, `0x003B7510`; `0x002EAC90` is called by `0x002693D0`,
-  `0x0037B4D0`; `0x002EB030` is called by `0x0037B4D0`.
-- Actor entity: `0x002EB430` is called by `0x002693D0`, `0x0026C5D0`; `0x002EBE50` is called by `0x00263050`, `0x00263230`,
-  `0x002693D0`, `0x0026C5D0`; `0x0030D9A0` is called by `0x00300FC0`, `0x003266C0`; `0x00341CB0` calls `0x003588B0`; `0x00346FA0`
-  calls `0x003588B0`, `0x00358940`, `0x003B6F80`; `0x00348DA0` calls `0x00263FF0`; `0x0034C3D0` calls `0x003588B0`, `0x0035AE10`;
-  `0x00352FA0` calls `0x00264050`, `0x0035AE10`.
-- Actor entity: `0x00354E10` calls `0x00263A30`; `0x003587C0` calls `0x00263FF0`; `0x003587C0` is called by `0x0025AE00`,
-  `0x00268650`, `0x0026C5D0`, `0x0026CE60`, `0x003DBDC0`, `0x003DC0D0`; `0x00358800` calls `0x00263A30`, `0x00263FF0`; `0x00358940` is
-  called by `0x0025AE00`, `0x0025B070`, `0x0025B250`, `0x0025B820`, `0x0025C070`, `0x0025C170`, `0x0025D9E0`, `0x00263A30`,
-  `0x00264010`, `0x00264050`, `0x00265A20`, `0x00266C50`.
-- Actor entity: `0x00358940` is also called by `0x00268B10`, `0x00268D10`, `0x002693D0`, `0x00269800`, `0x00269AD0`, `0x00269BA0`,
-  `0x0026B8E0`, `0x0026CE60`, `0x0026D3E0`, `0x0035A590`, `0x0035A7A0`, `0x0035A990`; `0x00358940` is also called by `0x003B6F80`,
-  `0x003DB1F0`, `0x0046BAC0`; `0x003589B0` is called by `0x00234480`, `0x0025C230`, `0x0025C830`, `0x00268650`, `0x00268D10`,
-  `0x0037B4D0`, `0x003B6F80`.
-- Actor entity: `0x003590D0` is called by `0x0025B600`, `0x0025D9E0`, `0x00263050`, `0x00263230`, `0x00263AC0`, `0x00264010`,
-  `0x00264050`, `0x0026C5D0`, `0x0026C8C0`, `0x0026DFB0`; `0x00359B80` is called by `0x00265A20`, `0x003B73B0`, `0x003B7440`,
-  `0x003B7510`; `0x0035AA50` calls `0x00263FF0`, `0x00358940`; `0x0035AE10` calls `0x00233F50`; `0x0035AE10` is called by
-  `0x00263230`, `0x0026C5D0`; `0x00377C20` is called by `0x0025C830`, `0x003266C0`.
-- Actor entity: `0x003B6D60` calls `0x003588B0`; `0x003B6DE0` calls `0x003588B0`; `0x003B6DE0` is called by `0x003B6F80`;
-  `0x003B6F30` calls `0x003B6DE0`, `0x003B7510`; `0x003B6F80` calls `0x00263FF0`, `0x00358940`, `0x003589B0`, `0x003B6DE0`; `0x003B7180`
-  calls `0x003589B0`; `0x003B72F0` calls `0x00358940`; `0x003B73B0` calls `0x00265020`, `0x00359B80`; `0x003B73B0` is called by
-  `0x003B7440`.
-- Actor entity: `0x003B7440` calls `0x00265020`, `0x00359B80`, `0x003B73B0`; `0x003B7510` calls `0x00265020`, `0x00359B80`;
-  `0x003B7770` calls `0x00263FF0`, `0x003588B0`, `0x00358940`; `0x003B7A30` calls `0x002693D0`; `0x003B7AB0` calls `0x002693D0`;
-  `0x003B7B00` calls `0x00359B80`; `0x003B7D80` calls `0x00359B80`; `0x003B7E20` calls `0x00265020`, `0x003588B0`; `0x003B7F40` calls
-  `0x00265020`; `0x00505240` calls `0x00265020`, `0x00265090`.
-- Actor entity: those functions are documented on
-  [party control modes](../Engine-Core/party-control-modes.md),
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [hud](../Menus-And-HUD/hud.md),
-  [frame update order](../Engine-Core/frame-update-order.md), [battle verbs](battle-verbs.md).
-- Actor entity: and on [target selection](../Battle-Actions/target-selection.md),
-  [script name bindings](script-name-bindings.md), [script requests](script-requests.md),
-  [identifier spaces](../Engine-Core/identifier-spaces.md),
-  [actor record fields](../Characters-And-Objects/actor-record-fields.md).
-- Actor entity: and on [actor lifecycle](../Characters-And-Objects/actor-lifecycle.md), [reward verbs](reward-verbs.md),
-  [debug menu](../Engine-Core/debug-menu.md), [party verbs](party-verbs.md),
-  [field runtime](../Characters-And-Objects/field-runtime.md), [event scenes](event-scenes.md).
-- Actor entity: and on [battle units](../Characters-And-Objects/battle-units.md),
-  [actor managers](../Characters-And-Objects/actor-managers.md),
-  [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md).
-- Audio: `0x00265020` is called by `0x00362850`; `0x003590D0` is called by `0x00362850`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Combat AI: `0x00263940` is called by `0x0032A4D0`; `0x00265090` is called by `0x0030F130`; `0x00377C20` is called by
-  `0x003014C0`, `0x00301AD0`, `0x00305AB0`.
-- Combat AI: those functions are documented on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md),
-  [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md),
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
-  [glossary](../Engine-Core/glossary.md), [battle verbs](battle-verbs.md).
-- Combat action: `0x0017F5B0` is called by `0x003065D0`; `0x00263F40` is called by `0x00307300`; `0x00265020` is called by
-  `0x002F8060`, `0x00307300`, `0x00320E10`; `0x00265090` is called by `0x002FDC30`, `0x002FEB80`; `0x00265200` is called by
-  `0x00307300`; `0x0026A0D0` is called by `0x00307300`; `0x0026B0C0` is called by `0x00307300`; `0x0026B620` is called by
-  `0x00307300`; `0x0030D9A0` is called by `0x002FFCF0`, `0x00313DB0`.
-- Combat action: `0x003589B0` is called by `0x00319F50`, `0x00325260`; `0x003590D0` is called by `0x00317E60`, `0x00319090`;
-  `0x00377C20` is called by `0x002FFA60`, `0x002FFCF0`, `0x002FFF50`, `0x00305110`, `0x00305230`, `0x00305430`, `0x00307300`,
-  `0x0030C010`, `0x0030D160`, `0x0030D600`, `0x0030DA30`, `0x0030F760`; `0x00377C20` is also called by `0x00311B20`, `0x00311CF0`,
-  `0x00312FA0`, `0x00313CD0`, `0x00313DB0`.
-- Combat action: those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [battle unit fields](../Characters-And-Objects/battle-unit-fields.md), [traps](../World-Areas-And-Travel/traps.md),
-  [animation driven movement](../Movement-And-Pathfinding/animation-driven-movement.md).
-- Combat action: and on [battle orders](../Battle-Actions/battle-orders.md),
-  [action phases](../Battle-Actions/action-phases.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [reward verbs](reward-verbs.md).
-- Combat action: and on [jump thunks](../Engine-Core/jump-thunks.md),
-  [quickenings and summons](../Battle-Actions/quickenings-and-summons.md),
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
-  [action definition row](../Battle-Actions/action-definition-row.md).
-- Combat action: and on [identifier spaces](../Engine-Core/identifier-spaces.md),
-  [call signatures](../Engine-Core/call-signatures.md), [battle verbs](battle-verbs.md).
-- Combat formula: `0x00265020` is called by `0x00384F40`; `0x00377C20` is called by `0x00300530`; those functions are
-  documented on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
-  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
-- Core runtime: `0x0053DD10` is called by `0x0022B6E0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Gameplay: `0x00265020` is called by `0x0031ADB0`, `0x00339630`; `0x002EB030` is called by `0x003299B0`; `0x0030D9A0` is called
-  by `0x00309A90`; `0x003589B0` is called by `0x0031ADB0`; `0x003590D0` is called by `0x0031ADB0`; `0x00377C20` is called by
-  `0x00307D10`, `0x0030A8A0`, `0x0030C210`, `0x0030D9A0`.
-- Gameplay: those functions are documented on [bestiary](../Enemy-Spawning/bestiary.md),
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md),
-  [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Gameplay: and on [enmity](../Enemy-AI-And-Gambits/enmity.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Input: `0x00263750` is called by `0x00226BE0`; `0x00263BE0` is called by `0x00226BE0`; `0x002647B0` is called by `0x00226BE0`;
-  `0x00358940` is called by `0x00226BE0`; `0x003590D0` is called by `0x00226BE0`; `0x00359B80` is called by `0x00226BE0`;
-  `0x00377C20` is called by `0x00253C70`; `0x0053DD10` is called by `0x002E09A0`, `0x0035FCA0`, `0x0035FDD0`, `0x0046DD50`.
-- Input: those functions are documented on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md).
-- Input: and on
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
-- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Items equipment shops license: `0x00377C20` is called by `0x00309FB0`, `0x0030FD10`; those functions are documented on
-  [reward verbs](reward-verbs.md).
-- Movement: `0x0017F5B0` is called by `0x003B7E20`; `0x0025A5F0` is called by `0x003B7E20`; `0x00262F90` calls `0x002E4A40`;
-  `0x00263750` is called by `0x0034A940`, `0x0037CF00`, `0x0037D000`; `0x00263940` is called by `0x00334C90`, `0x003357B0`,
-  `0x0033D660`, `0x00505240`; `0x00263CC0` is called by `0x002E5750`.
-- Movement: `0x00263F40` is called by `0x00300310`, `0x003003F0`, `0x00310920`, `0x00311F70`, `0x0033FFC0`, `0x00345430`,
-  `0x00349680`, `0x0037D000`, `0x003B7B00`, `0x003B7D80`, `0x003B7F40`, `0x00505240`; `0x002644C0` is called by `0x003B7F40`;
-  `0x00264670` is called by `0x003B7F40`.
-- Movement: `0x00265020` is called by `0x0024B6F0`, `0x002E45E0`, `0x002EBFA0`, `0x002EC2C0`, `0x00300310`, `0x00310920`,
-  `0x00311E20`, `0x00311F70`, `0x00326BB0`, `0x00336710`, `0x00337C10`, `0x00337D90`; `0x00265020` is also called by `0x0033CA00`,
-  `0x003B7E20`, `0x003B7F40`, `0x00505240`.
-- Movement: `0x00265090` is called by `0x002FB340`, `0x002FB500`, `0x00309B10`, `0x0030A130`, `0x00312730`, `0x00334790`,
-  `0x00334A70`, `0x00336210`, `0x00336710`, `0x00336E40`, `0x00337700`, `0x003377C0`; `0x00265090` is also called by `0x00338490`,
-  `0x00339A60`, `0x00339BF0`, `0x0033A720`, `0x0033D660`, `0x00392170`, `0x00392740`, `0x00505240`.
-- Movement: `0x00265200` is called by `0x0024B6F0`, `0x002E5750`, `0x002EBE50`, `0x002FB500`, `0x00326BB0`, `0x003343D0`,
-  `0x00336E40`, `0x00338490`, `0x0033CA00`; `0x00265240` is called by `0x00505240`; `0x002681E0` is called by `0x0025DF00`,
-  `0x0026A7F0`; `0x002693D0` calls `0x0026AE90`, `0x0026C120`, `0x002E4A40`, `0x002E6300`, `0x002EBE50`.
-- Movement: `0x0026A0D0` is called by `0x00239210`, `0x0023A070`, `0x003003F0`, `0x00310920`, `0x00310D30`, `0x00311F70`,
-  `0x0034A940`, `0x003538C0`, `0x0037D000`, `0x003B7B00`; `0x0026ACE0` is called by `0x003B7B00`, `0x003B7F40`; `0x0026AE90` calls
-  `0x002E55C0`; `0x0026AE90` is called by `0x002EAB80`, `0x00343E20`, `0x00344290`, `0x0034EBC0`, `0x0034F210`, `0x00350510`,
-  `0x00350C30`, `0x00357980`, `0x00357A20`, `0x0037D000`.
-- Movement: `0x0026B0C0` calls `0x002E4A10`, `0x002E5C70`; `0x0026B0C0` is called by `0x0026B170`, `0x0026B230`, `0x0026BA70`,
-  `0x00300310`, `0x00310920`, `0x00310D30`, `0x00311F70`, `0x0034EBC0`, `0x0034F210`, `0x00350510`, `0x00350C30`, `0x0037D000`;
-  `0x0026B0C0` is also called by `0x003B7B00`, `0x003B7F40`, `0x00505240`; `0x0026B620` calls `0x0026B6A0`.
-- Movement: `0x0026B620` is called by `0x00239210`, `0x0026C120`, `0x003003F0`, `0x00310920`, `0x00310D30`, `0x00311F70`,
-  `0x0034A940`, `0x00350510`, `0x00350C30`, `0x0037D000`, `0x003B7B00`; `0x0026B720` is called by `0x003B7B00`, `0x003B7D80`,
-  `0x00505240`; `0x0026C120` calls `0x0026B620`, `0x002E6300`, `0x002EBE50`.
-- Movement: `0x0026C120` is called by `0x002E45E0`, `0x002E55C0`, `0x002E5750`, `0x002EAB80`, `0x0033FFC0`, `0x00345430`,
-  `0x003488B0`, `0x00349680`, `0x003567D0`; `0x0026D6D0` calls `0x0026D6F0`; `0x002E4A40` calls `0x002ED6A0`; `0x002E4A40` is called
-  by `0x002E5180`, `0x0037CF00`, `0x003B7B00`, `0x003B7F40`; `0x002E6300` is called by `0x0026C120`; `0x002E7600` is called by
-  `0x002690D0`.
-- Movement: `0x002E8EE0` is called by `0x0026C120`, `0x002E28E0`, `0x002E3110`, `0x002E64E0`, `0x002EAAA0`, `0x002EBE50`; `0x002E8FD0`
-  is called by `0x002E28E0`, `0x002E3110`; `0x002E97B0` is called by `0x0025DF00`, `0x0026A490`; `0x002EB030` is called by
-  `0x003B7E20`; `0x002EB430` is called by `0x0026C3E0`, `0x0033FFC0`, `0x00345430`, `0x00349680`; `0x002EBE50` calls `0x00265200`,
-  `0x002EC3F0`; `0x002EBE50` is called by `0x002690D0`, `0x0026C120`.
-- Movement: `0x002EC680` is called by `0x003B7B00`, `0x003B7F40`; `0x002ECE50` is called by `0x003B7F40`; `0x0030D9A0` is called
-  by `0x00309AE0`, `0x00311F70`; `0x00340DA0` calls `0x003B8140`; `0x003410A0` calls `0x003B8170`; `0x003587C0` is called by
-  `0x002E45E0`, `0x002EBFA0`, `0x00377560`; `0x00358940` is called by `0x00392740`; `0x003589B0` is called by `0x002E5610`,
-  `0x002EBFA0`.
-- Movement: `0x003590D0` is called by `0x0026C3E0`, `0x0026D6F0`, `0x0026D810`, `0x002E45E0`, `0x002E5180`, `0x00319490`,
-  `0x00325D90`, `0x00326BB0`, `0x00326D60`, `0x00343E20`, `0x00345430`; `0x00359B80` is called by `0x0025DF00`, `0x003B7B00`,
-  `0x003B7D80`; `0x0035AE10` is called by `0x0026C3E0`; `0x0036D840` is called by `0x003B7E20`; `0x00377C20` is called by
-  `0x0025B470`, `0x0026C3E0`, `0x002E28E0`, `0x00310920`, `0x00313670`.
-- Movement: `0x003B6F80` calls `0x0026D6D0`; `0x003B73B0` calls `0x00263CC0`, `0x00265200`, `0x00265240`; `0x003B7440` calls
-  `0x00263CC0`, `0x00265200`, `0x00265240`; `0x003B7510` calls `0x00263CC0`, `0x00265200`, `0x00265240`; `0x003B7B00` calls
-  `0x0026A0D0`, `0x0026ACE0`, `0x0026B0C0`, `0x0026B620`, `0x0026B720`, `0x002E4A40`; `0x003B7BB0` calls `0x003B7B00`; `0x003B7C60`
-  calls `0x003B7B00`; `0x003B7D80` calls `0x0026B720`.
-- Movement: `0x003B7D80` is called by `0x003B8140`, `0x003B8170`; `0x003B7E20` calls `0x003B7F40`; `0x003B7F40` calls `0x002644C0`,
-  `0x00264670`, `0x0026ACE0`, `0x0026B0C0`, `0x002E4A40`; `0x003B7F40` is called by `0x003B7E20`; `0x003B8030` calls `0x0026B620`;
-  `0x003B8140` calls `0x003B7D80`, `0x00505240`; `0x003B8170` calls `0x003B7D80`, `0x00505240`; `0x003CC130` is called by
-  `0x00505240`; `0x003CC2F0` is called by `0x00505240`.
-- Movement: `0x00505240` calls `0x00263940`, `0x00265240`, `0x0026B0C0`, `0x0026B720`; `0x00505240` is called by `0x003B8140`,
-  `0x003B8170`.
-- Movement: those functions are documented on
-  [subsystem update flags](../Engine-Core/subsystem-update-flags.md),
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
-- Movement: and on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md),
-  [bestiary](../Enemy-Spawning/bestiary.md),
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
-- Movement: and on [battle units](../Characters-And-Objects/battle-units.md),
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
-  [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md),
-  [enemy spawning](../Enemy-Spawning/enemy-spawning.md).
-- Movement: and on [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md),
-  [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md),
-  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md).
-- Movement: and on [world lock](world-lock.md),
-  [party control modes](../Engine-Core/party-control-modes.md), [party data](../Party/party-data.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md).
-- Movement: and on [target selection](../Battle-Actions/target-selection.md),
-  [party leader](../Party/party-leader.md), [actor record fields](../Characters-And-Objects/actor-record-fields.md),
-  [ebp position entries](../EBP-Script-Files/ebp-position-entries.md).
-- Movement: and on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md),
-  [animation driven movement](../Movement-And-Pathfinding/animation-driven-movement.md),
-  [native commands](native-commands.md), [script binding lifecycle](script-binding-lifecycle.md).
-- Movement: and on [script requests](script-requests.md), [verb table](verb-table.md),
-  [player movement](../Movement-And-Pathfinding/player-movement.md), [party slots](../Party/party-slots.md),
-  [script name bindings](script-name-bindings.md).
-- Presentation: `0x00263940` is called by `0x003223C0`; `0x00263F40` is called by `0x003B70B0`; `0x00264670` is called by
-  `0x003A4290`, `0x003A56F0`, `0x003B62D0`; `0x00265020` is called by `0x002B7B80`, `0x00322360`, `0x0037AD40`, `0x003A40F0`,
-  `0x003A56F0`, `0x003C29A0`, `0x003C37B0`; `0x00265090` is called by `0x003223C0`; `0x00265200` is called by `0x003C29A0`;
-  `0x002E8FD0` calls `0x003E6A60`, `0x00428DE0`, `0x00428E10`, `0x00429020`.
-- Presentation: `0x002E8FD0` is called by `0x003B70B0`; `0x002E97B0` is called by `0x003B70B0`; `0x002ECD50` calls `0x002E8FD0`;
-  `0x002ECE50` calls `0x003E6150`; `0x0030D9A0` is called by `0x003125E0`; `0x003587C0` is called by `0x00256F60`; `0x00358940` is
-  called by `0x003A4290`, `0x003A56F0`, `0x00465120`, `0x00465690`; `0x003589B0` is called by `0x003A4290`, `0x003A56F0`,
-  `0x00465120`, `0x00465690`, `0x00506700`.
-- Presentation: `0x003590D0` is called by `0x003A4290`, `0x003A56F0`, `0x003F1A60`, `0x00426090`, `0x004264A0`, `0x004640A0`,
-  `0x004643D0`, `0x00464650`, `0x00464BD0`, `0x00465120`, `0x00465690`, `0x0046CC70`; `0x00377C20` is called by `0x00307E70`,
-  `0x003125E0`, `0x00313B30`, `0x003714A0`; `0x003B70B0` calls `0x002E8FD0`; `0x003B7770` calls `0x002E8FD0`; `0x003CC130` is called
-  by `0x00256960`, `0x0032B1C0`, `0x0032BEB0`, `0x0032CA70`.
-- Presentation: `0x003CC480` is called by `0x00256960`, `0x00256CA0`, `0x0032CA70`; `0x0053DD10` is called by `0x004355D0`,
-  `0x00462540`.
-- Presentation: those functions are documented on
-  [authored expressions](../Game-Files-And-Data-Tables/authored-expressions.md),
-  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
-- Presentation: and on [weather](../World-Areas-And-Travel/weather.md),
-  [bestiary](../Enemy-Spawning/bestiary.md), [map screens](../Menus-And-HUD/map-screens.md),
-  [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md),
-  [character render records](../Graphics/character-render-records.md).
-- Presentation: and on [party verbs](party-verbs.md), [script name bindings](script-name-bindings.md),
-  [battle units](../Characters-And-Objects/battle-units.md),
-  [effect element runtime](../Graphics/effect-element-runtime.md),
-  [effect element types](../Graphics/effect-element-types.md).
-- Presentation: and on [battle numbers](../Menus-And-HUD/battle-numbers.md), [hud](../Menus-And-HUD/hud.md),
-  [authored presentation commands](../Graphics/authored-presentation-commands.md),
-  [legacy ps2 gs layer](../Graphics/legacy-ps2-gs-layer.md).
-- Presentation: and on [character se tables chse](../Game-Files-And-Data-Tables/character-se-tables-chse.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md), [battle verbs](battle-verbs.md),
-  [add motion tables](../Graphics/add-motion-tables.md).
-- Presentation: and on [scripted camera](../Graphics/scripted-camera.md),
-  [field camera](../Graphics/field-camera.md),
-  [collision mesh movement](../Movement-And-Pathfinding/collision-mesh-movement.md).
-- Rewards progression economy: `0x00265020` is called by `0x002FB150`, `0x00312280`; `0x00265090` is called by `0x002FB150`;
-  `0x00377C20` is called by `0x00312280`; those functions are documented on
-  [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md),
-  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).
-- Spawn encounter lifecycle: `0x00265020` is called by `0x00234AF0`, `0x00234DA0`, `0x002350C0`; `0x00265200` is called by
-  `0x00234AF0`; those functions are documented on [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Status periodic terminal: `0x00377C20` is called by `0x0030E360`, `0x0030F690`, `0x00310DB0`; those functions are documented
-  on [force fight mode](../Engine-Core/force-fight-mode.md),
-  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- UI: `0x00265020` is called by `0x003C5130`; `0x00265200` is called by `0x003C5130`; `0x003590D0` is called by `0x00299BD0`,
-  `0x002C7660`; `0x0053DD10` is called by `0x003C80C0`; those functions are documented on
-  [battle units](../Characters-And-Objects/battle-units.md), [party list](../Menus-And-HUD/party-list.md),
-  [map screens](../Menus-And-HUD/map-screens.md).
-- World area: `0x00358940` is called by `0x0025E400`, `0x002623A0`; `0x003590D0` is called by `0x0025E400`, `0x002623A0`; those
-  functions are documented on [actor record fields](../Characters-And-Objects/actor-record-fields.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- World area: `0x002E4A40` calls `0x00377DB0`; `0x0030D9A0` calls `0x00377C20`; `0x00352FA0` calls `0x00377C20`; `0x00377C20` calls
-  `0x003148F0`; `0x00377C20` is called by `0x002342F0`; `0x0053DD10` is called by `0x003789A0`.
-- World area: those functions are documented on [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [party control modes](../Engine-Core/party-control-modes.md),
-  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
+<details>
+<summary>Show the 597 calls with 75 other topics</summary>
+
+**Characters and objects** (explained on [actor record](../Characters-And-Objects/actor-record.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026B500` | is called by | `0x003B6CC0`, `0x003B6D60` |
+| `0x002E8FD0` | is called by | `0x00265B60`, `0x002E35B0` |
+| `0x003B6F30` | calls | `0x003B6D60` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263750` | is called by | `0x003266C0`, `0x0035A8D0` |
+| `0x00263940` | is called by | `0x00271380`, `0x002718E0` |
+| `0x00263A30` | calls | `0x00358940` |
+| `0x00263BE0` | is called by | `0x0035A7A0`, `0x0035A990`, `0x0046BAC0` |
+| `0x00263CC0` | is called by | `0x00236300`, `0x003B73B0`, `0x003B7440`, `0x003B7510` |
+| `0x00263F40` | calls | `0x003587C0` |
+| `0x00264050` | calls | `0x003588B0`, `0x00358940` |
+| `0x00264670` | is called by | `0x00236300` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002647B0` | is called by | `0x0035A7A0`, `0x0035A990`, `0x0046BAC0` |
+| `0x002647C0` | is called by | `0x0037B4D0` |
+| `0x00265020` | is called by | `0x00236300`, `0x0037B4D0`, `0x003B73B0`, `0x003B7440`, `0x003B7510` |
+| `0x00265090` | is called by | `0x00236300` |
+| `0x00265200` | is called by | `0x00236300`, `0x003B73B0`, `0x003B7440`, `0x003B7510` |
+| `0x00265240` | is called by | `0x003B73B0`, `0x003B7440`, `0x003B7510` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00266AD0` | is called by | `0x00266530`, `0x002693D0` |
+| `0x002681E0` | calls | `0x003589B0` |
+| `0x002681E0` | is called by | `0x00266530`, `0x002693D0` |
+| `0x002693D0` | calls | `0x00266AD0`, `0x002693D0`, `0x00358940` |
+| `0x002693D0` | is called by | `0x0025B070`, `0x002693D0`, `0x0026C5D0` |
+| `0x00269530` | calls | `0x002693D0`, `0x003587C0` |
+| `0x0026A0D0` | is called by | `0x0037B4D0` |
+| `0x0026AE90` | is called by | `0x002693D0` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026B620` | is called by | `0x0037B4D0` |
+| `0x0026C120` | is called by | `0x002693D0` |
+| `0x0026D6D0` | is called by | `0x0035A590`, `0x0035A720`, `0x0035A7A0`, `0x0035A8D0`, `0x003B6F80` |
+| `0x002E4A40` | is called by | `0x002693D0`, `0x0037B4D0` |
+| `0x002E4F40` | is called by | `0x002693D0` |
+| `0x002E6300` | is called by | `0x002693D0` |
+| `0x002E7600` | is called by | `0x00263050`, `0x00263230`, `0x0026C5D0` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E8EE0` | is called by | `0x00263050`, `0x00263230`, `0x002693D0`, `0x0026C5D0` |
+| `0x002E8FD0` | is called by | `0x002EBB80` |
+| `0x002E9560` | is called by | `0x002693D0` |
+| `0x002E97B0` | is called by | `0x0035A720`, `0x0035A7A0`, `0x0035A8D0`, `0x0037B4D0` |
+| `0x002E9BE0` | is called by | `0x003B73B0`, `0x003B7440`, `0x003B7510` |
+| `0x002EAC90` | is called by | `0x002693D0`, `0x0037B4D0` |
+| `0x002EB030` | is called by | `0x0037B4D0` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002EB430` | is called by | `0x002693D0`, `0x0026C5D0` |
+| `0x002EBE50` | is called by | `0x00263050`, `0x00263230`, `0x002693D0`, `0x0026C5D0` |
+| `0x0030D9A0` | is called by | `0x00300FC0`, `0x003266C0` |
+| `0x00341CB0` | calls | `0x003588B0` |
+| `0x00346FA0` | calls | `0x003588B0`, `0x00358940`, `0x003B6F80` |
+| `0x00348DA0` | calls | `0x00263FF0` |
+| `0x0034C3D0` | calls | `0x003588B0`, `0x0035AE10` |
+| `0x00352FA0` | calls | `0x00264050`, `0x0035AE10` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00354E10` | calls | `0x00263A30` |
+| `0x003587C0` | calls | `0x00263FF0` |
+| `0x003587C0` | is called by | `0x0025AE00`, `0x00268650`, `0x0026C5D0`, `0x0026CE60`, `0x003DBDC0`, `0x003DC0D0` |
+| `0x00358800` | calls | `0x00263A30`, `0x00263FF0` |
+| `0x00358940` | is called by | `0x0025AE00`, `0x0025B070`, `0x0025B250`, `0x0025B820`, `0x0025C070`, `0x0025C170`, `0x0025D9E0`, `0x00263A30`, `0x00264010`, `0x00264050`, `0x00265A20`, `0x00266C50` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00358940` | is also called by | `0x00268B10`, `0x00268D10`, `0x002693D0`, `0x00269800`, `0x00269AD0`, `0x00269BA0`, `0x0026B8E0`, `0x0026CE60`, `0x0026D3E0`, `0x0035A590`, `0x0035A7A0`, `0x0035A990` |
+| `0x00358940` | is also called by | `0x003B6F80`, `0x003DB1F0`, `0x0046BAC0` |
+| `0x003589B0` | is called by | `0x00234480`, `0x0025C230`, `0x0025C830`, `0x00268650`, `0x00268D10`, `0x0037B4D0`, `0x003B6F80` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003590D0` | is called by | `0x0025B600`, `0x0025D9E0`, `0x00263050`, `0x00263230`, `0x00263AC0`, `0x00264010`, `0x00264050`, `0x0026C5D0`, `0x0026C8C0`, `0x0026DFB0` |
+| `0x00359B80` | is called by | `0x00265A20`, `0x003B73B0`, `0x003B7440`, `0x003B7510` |
+| `0x0035AA50` | calls | `0x00263FF0`, `0x00358940` |
+| `0x0035AE10` | calls | `0x00233F50` |
+| `0x0035AE10` | is called by | `0x00263230`, `0x0026C5D0` |
+| `0x00377C20` | is called by | `0x0025C830`, `0x003266C0` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003B6D60` | calls | `0x003588B0` |
+| `0x003B6DE0` | calls | `0x003588B0` |
+| `0x003B6DE0` | is called by | `0x003B6F80` |
+| `0x003B6F30` | calls | `0x003B6DE0`, `0x003B7510` |
+| `0x003B6F80` | calls | `0x00263FF0`, `0x00358940`, `0x003589B0`, `0x003B6DE0` |
+| `0x003B7180` | calls | `0x003589B0` |
+| `0x003B72F0` | calls | `0x00358940` |
+| `0x003B73B0` | calls | `0x00265020`, `0x00359B80` |
+| `0x003B73B0` | is called by | `0x003B7440` |
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003B7440` | calls | `0x00265020`, `0x00359B80`, `0x003B73B0` |
+| `0x003B7510` | calls | `0x00265020`, `0x00359B80` |
+| `0x003B7770` | calls | `0x00263FF0`, `0x003588B0`, `0x00358940` |
+| `0x003B7A30` | calls | `0x002693D0` |
+| `0x003B7AB0` | calls | `0x002693D0` |
+| `0x003B7B00` | calls | `0x00359B80` |
+| `0x003B7D80` | calls | `0x00359B80` |
+| `0x003B7E20` | calls | `0x00265020`, `0x003588B0` |
+| `0x003B7F40` | calls | `0x00265020` |
+| `0x00505240` | calls | `0x00265020`, `0x00265090` |
+
+**Characters and objects** (explained on [party control modes](../Engine-Core/party-control-modes.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [hud](../Menus-And-HUD/hud.md), [frame update order](../Engine-Core/frame-update-order.md), [battle verbs](battle-verbs.md))
+
+**Characters and objects** (explained on [target selection](../Battle-Actions/target-selection.md), [script name bindings](script-name-bindings.md), [script requests](script-requests.md), [identifier spaces](../Engine-Core/identifier-spaces.md), [actor record fields](../Characters-And-Objects/actor-record-fields.md))
+
+**Characters and objects** (explained on [actor lifecycle](../Characters-And-Objects/actor-lifecycle.md), [reward verbs](reward-verbs.md), [debug menu](../Engine-Core/debug-menu.md), [party verbs](party-verbs.md), [field runtime](../Characters-And-Objects/field-runtime.md), [event scenes](event-scenes.md))
+
+**Characters and objects** (explained on [battle units](../Characters-And-Objects/battle-units.md), [actor managers](../Characters-And-Objects/actor-managers.md), [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md))
+
+**Sound and music** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x00362850` |
+| `0x003590D0` | is called by | `0x00362850` |
+
+**Enemy AI and gambits**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263940` | is called by | `0x0032A4D0` |
+| `0x00265090` | is called by | `0x0030F130` |
+| `0x00377C20` | is called by | `0x003014C0`, `0x00301AD0`, `0x00305AB0` |
+
+**Enemy AI and gambits** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [glossary](../Engine-Core/glossary.md), [battle verbs](battle-verbs.md))
+
+**Battle actions**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017F5B0` | is called by | `0x003065D0` |
+| `0x00263F40` | is called by | `0x00307300` |
+| `0x00265020` | is called by | `0x002F8060`, `0x00307300`, `0x00320E10` |
+| `0x00265090` | is called by | `0x002FDC30`, `0x002FEB80` |
+| `0x00265200` | is called by | `0x00307300` |
+| `0x0026A0D0` | is called by | `0x00307300` |
+| `0x0026B0C0` | is called by | `0x00307300` |
+| `0x0026B620` | is called by | `0x00307300` |
+| `0x0030D9A0` | is called by | `0x002FFCF0`, `0x00313DB0` |
+
+**Battle actions**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003589B0` | is called by | `0x00319F50`, `0x00325260` |
+| `0x003590D0` | is called by | `0x00317E60`, `0x00319090` |
+| `0x00377C20` | is called by | `0x002FFA60`, `0x002FFCF0`, `0x002FFF50`, `0x00305110`, `0x00305230`, `0x00305430`, `0x00307300`, `0x0030C010`, `0x0030D160`, `0x0030D600`, `0x0030DA30`, `0x0030F760` |
+| `0x00377C20` | is also called by | `0x00311B20`, `0x00311CF0`, `0x00312FA0`, `0x00313CD0`, `0x00313DB0` |
+
+**Battle actions** (explained on [frame update order](../Engine-Core/frame-update-order.md), [battle unit fields](../Characters-And-Objects/battle-unit-fields.md), [traps](../World-Areas-And-Travel/traps.md), [animation driven movement](../Movement-And-Pathfinding/animation-driven-movement.md))
+
+**Battle actions** (explained on [battle orders](../Battle-Actions/battle-orders.md), [action phases](../Battle-Actions/action-phases.md), [force fight mode](../Engine-Core/force-fight-mode.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [reward verbs](reward-verbs.md))
+
+**Battle actions** (explained on [jump thunks](../Engine-Core/jump-thunks.md), [quickenings and summons](../Battle-Actions/quickenings-and-summons.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [action definition row](../Battle-Actions/action-definition-row.md))
+
+**Battle actions** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md), [call signatures](../Engine-Core/call-signatures.md), [battle verbs](battle-verbs.md))
+
+**Damage and battle formulas** (explained on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x00384F40` |
+| `0x00377C20` | is called by | `0x00300530` |
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0053DD10` | is called by | `0x0022B6E0` |
+
+**Gameplay**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x0031ADB0`, `0x00339630` |
+| `0x002EB030` | is called by | `0x003299B0` |
+| `0x0030D9A0` | is called by | `0x00309A90` |
+| `0x003589B0` | is called by | `0x0031ADB0` |
+| `0x003590D0` | is called by | `0x0031ADB0` |
+| `0x00377C20` | is called by | `0x00307D10`, `0x0030A8A0`, `0x0030C210`, `0x0030D9A0` |
+
+**Gameplay** (explained on [bestiary](../Enemy-Spawning/bestiary.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+**Gameplay** (explained on [enmity](../Enemy-AI-And-Gambits/enmity.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+**Controls and input**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263750` | is called by | `0x00226BE0` |
+| `0x00263BE0` | is called by | `0x00226BE0` |
+| `0x002647B0` | is called by | `0x00226BE0` |
+| `0x00358940` | is called by | `0x00226BE0` |
+| `0x003590D0` | is called by | `0x00226BE0` |
+| `0x00359B80` | is called by | `0x00226BE0` |
+| `0x00377C20` | is called by | `0x00253C70` |
+| `0x0053DD10` | is called by | `0x002E09A0`, `0x0035FCA0`, `0x0035FDD0`, `0x0046DD50` |
+
+**Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [force fight mode](../Engine-Core/force-fight-mode.md), [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md))
+
+**Controls and input** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+
+**Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00313A00` |
+
+**Items, equipment, shops and licenses** (explained on [reward verbs](reward-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00309FB0`, `0x0030FD10` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017F5B0` | is called by | `0x003B7E20` |
+| `0x0025A5F0` | is called by | `0x003B7E20` |
+| `0x00262F90` | calls | `0x002E4A40` |
+| `0x00263750` | is called by | `0x0034A940`, `0x0037CF00`, `0x0037D000` |
+| `0x00263940` | is called by | `0x00334C90`, `0x003357B0`, `0x0033D660`, `0x00505240` |
+| `0x00263CC0` | is called by | `0x002E5750` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263F40` | is called by | `0x00300310`, `0x003003F0`, `0x00310920`, `0x00311F70`, `0x0033FFC0`, `0x00345430`, `0x00349680`, `0x0037D000`, `0x003B7B00`, `0x003B7D80`, `0x003B7F40`, `0x00505240` |
+| `0x002644C0` | is called by | `0x003B7F40` |
+| `0x00264670` | is called by | `0x003B7F40` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x0024B6F0`, `0x002E45E0`, `0x002EBFA0`, `0x002EC2C0`, `0x00300310`, `0x00310920`, `0x00311E20`, `0x00311F70`, `0x00326BB0`, `0x00336710`, `0x00337C10`, `0x00337D90` |
+| `0x00265020` | is also called by | `0x0033CA00`, `0x003B7E20`, `0x003B7F40`, `0x00505240` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265090` | is called by | `0x002FB340`, `0x002FB500`, `0x00309B10`, `0x0030A130`, `0x00312730`, `0x00334790`, `0x00334A70`, `0x00336210`, `0x00336710`, `0x00336E40`, `0x00337700`, `0x003377C0` |
+| `0x00265090` | is also called by | `0x00338490`, `0x00339A60`, `0x00339BF0`, `0x0033A720`, `0x0033D660`, `0x00392170`, `0x00392740`, `0x00505240` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265200` | is called by | `0x0024B6F0`, `0x002E5750`, `0x002EBE50`, `0x002FB500`, `0x00326BB0`, `0x003343D0`, `0x00336E40`, `0x00338490`, `0x0033CA00` |
+| `0x00265240` | is called by | `0x00505240` |
+| `0x002681E0` | is called by | `0x0025DF00`, `0x0026A7F0` |
+| `0x002693D0` | calls | `0x0026AE90`, `0x0026C120`, `0x002E4A40`, `0x002E6300`, `0x002EBE50` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026A0D0` | is called by | `0x00239210`, `0x0023A070`, `0x003003F0`, `0x00310920`, `0x00310D30`, `0x00311F70`, `0x0034A940`, `0x003538C0`, `0x0037D000`, `0x003B7B00` |
+| `0x0026ACE0` | is called by | `0x003B7B00`, `0x003B7F40` |
+| `0x0026AE90` | calls | `0x002E55C0` |
+| `0x0026AE90` | is called by | `0x002EAB80`, `0x00343E20`, `0x00344290`, `0x0034EBC0`, `0x0034F210`, `0x00350510`, `0x00350C30`, `0x00357980`, `0x00357A20`, `0x0037D000` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026B0C0` | calls | `0x002E4A10`, `0x002E5C70` |
+| `0x0026B0C0` | is called by | `0x0026B170`, `0x0026B230`, `0x0026BA70`, `0x00300310`, `0x00310920`, `0x00310D30`, `0x00311F70`, `0x0034EBC0`, `0x0034F210`, `0x00350510`, `0x00350C30`, `0x0037D000` |
+| `0x0026B0C0` | is also called by | `0x003B7B00`, `0x003B7F40`, `0x00505240` |
+| `0x0026B620` | calls | `0x0026B6A0` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026B620` | is called by | `0x00239210`, `0x0026C120`, `0x003003F0`, `0x00310920`, `0x00310D30`, `0x00311F70`, `0x0034A940`, `0x00350510`, `0x00350C30`, `0x0037D000`, `0x003B7B00` |
+| `0x0026B720` | is called by | `0x003B7B00`, `0x003B7D80`, `0x00505240` |
+| `0x0026C120` | calls | `0x0026B620`, `0x002E6300`, `0x002EBE50` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026C120` | is called by | `0x002E45E0`, `0x002E55C0`, `0x002E5750`, `0x002EAB80`, `0x0033FFC0`, `0x00345430`, `0x003488B0`, `0x00349680`, `0x003567D0` |
+| `0x0026D6D0` | calls | `0x0026D6F0` |
+| `0x002E4A40` | calls | `0x002ED6A0` |
+| `0x002E4A40` | is called by | `0x002E5180`, `0x0037CF00`, `0x003B7B00`, `0x003B7F40` |
+| `0x002E6300` | is called by | `0x0026C120` |
+| `0x002E7600` | is called by | `0x002690D0` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E8EE0` | is called by | `0x0026C120`, `0x002E28E0`, `0x002E3110`, `0x002E64E0`, `0x002EAAA0`, `0x002EBE50` |
+| `0x002E8FD0` | is called by | `0x002E28E0`, `0x002E3110` |
+| `0x002E97B0` | is called by | `0x0025DF00`, `0x0026A490` |
+| `0x002EB030` | is called by | `0x003B7E20` |
+| `0x002EB430` | is called by | `0x0026C3E0`, `0x0033FFC0`, `0x00345430`, `0x00349680` |
+| `0x002EBE50` | calls | `0x00265200`, `0x002EC3F0` |
+| `0x002EBE50` | is called by | `0x002690D0`, `0x0026C120` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002EC680` | is called by | `0x003B7B00`, `0x003B7F40` |
+| `0x002ECE50` | is called by | `0x003B7F40` |
+| `0x0030D9A0` | is called by | `0x00309AE0`, `0x00311F70` |
+| `0x00340DA0` | calls | `0x003B8140` |
+| `0x003410A0` | calls | `0x003B8170` |
+| `0x003587C0` | is called by | `0x002E45E0`, `0x002EBFA0`, `0x00377560` |
+| `0x00358940` | is called by | `0x00392740` |
+| `0x003589B0` | is called by | `0x002E5610`, `0x002EBFA0` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003590D0` | is called by | `0x0026C3E0`, `0x0026D6F0`, `0x0026D810`, `0x002E45E0`, `0x002E5180`, `0x00319490`, `0x00325D90`, `0x00326BB0`, `0x00326D60`, `0x00343E20`, `0x00345430` |
+| `0x00359B80` | is called by | `0x0025DF00`, `0x003B7B00`, `0x003B7D80` |
+| `0x0035AE10` | is called by | `0x0026C3E0` |
+| `0x0036D840` | is called by | `0x003B7E20` |
+| `0x00377C20` | is called by | `0x0025B470`, `0x0026C3E0`, `0x002E28E0`, `0x00310920`, `0x00313670` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003B6F80` | calls | `0x0026D6D0` |
+| `0x003B73B0` | calls | `0x00263CC0`, `0x00265200`, `0x00265240` |
+| `0x003B7440` | calls | `0x00263CC0`, `0x00265200`, `0x00265240` |
+| `0x003B7510` | calls | `0x00263CC0`, `0x00265200`, `0x00265240` |
+| `0x003B7B00` | calls | `0x0026A0D0`, `0x0026ACE0`, `0x0026B0C0`, `0x0026B620`, `0x0026B720`, `0x002E4A40` |
+| `0x003B7BB0` | calls | `0x003B7B00` |
+| `0x003B7C60` | calls | `0x003B7B00` |
+| `0x003B7D80` | calls | `0x0026B720` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003B7D80` | is called by | `0x003B8140`, `0x003B8170` |
+| `0x003B7E20` | calls | `0x003B7F40` |
+| `0x003B7F40` | calls | `0x002644C0`, `0x00264670`, `0x0026ACE0`, `0x0026B0C0`, `0x002E4A40` |
+| `0x003B7F40` | is called by | `0x003B7E20` |
+| `0x003B8030` | calls | `0x0026B620` |
+| `0x003B8140` | calls | `0x003B7D80`, `0x00505240` |
+| `0x003B8170` | calls | `0x003B7D80`, `0x00505240` |
+| `0x003CC130` | is called by | `0x00505240` |
+| `0x003CC2F0` | is called by | `0x00505240` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00505240` | calls | `0x00263940`, `0x00265240`, `0x0026B0C0`, `0x0026B720` |
+| `0x00505240` | is called by | `0x003B8140`, `0x003B8170` |
+
+**Movement and pathfinding** (explained on [subsystem update flags](../Engine-Core/subsystem-update-flags.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [frame update order](../Engine-Core/frame-update-order.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md))
+
+**Movement and pathfinding** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md), [bestiary](../Enemy-Spawning/bestiary.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
+
+**Movement and pathfinding** (explained on [battle units](../Characters-And-Objects/battle-units.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md))
+
+**Movement and pathfinding** (explained on [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md), [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md), [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md))
+
+**Movement and pathfinding** (explained on [world lock](world-lock.md), [party control modes](../Engine-Core/party-control-modes.md), [party data](../Party/party-data.md), [force fight mode](../Engine-Core/force-fight-mode.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md))
+
+**Movement and pathfinding** (explained on [target selection](../Battle-Actions/target-selection.md), [party leader](../Party/party-leader.md), [actor record fields](../Characters-And-Objects/actor-record-fields.md), [ebp position entries](../EBP-Script-Files/ebp-position-entries.md))
+
+**Movement and pathfinding** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [animation driven movement](../Movement-And-Pathfinding/animation-driven-movement.md), [native commands](native-commands.md), [script binding lifecycle](script-binding-lifecycle.md))
+
+**Movement and pathfinding** (explained on [script requests](script-requests.md), [verb table](verb-table.md), [player movement](../Movement-And-Pathfinding/player-movement.md), [party slots](../Party/party-slots.md), [script name bindings](script-name-bindings.md))
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263940` | is called by | `0x003223C0` |
+| `0x00263F40` | is called by | `0x003B70B0` |
+| `0x00264670` | is called by | `0x003A4290`, `0x003A56F0`, `0x003B62D0` |
+| `0x00265020` | is called by | `0x002B7B80`, `0x00322360`, `0x0037AD40`, `0x003A40F0`, `0x003A56F0`, `0x003C29A0`, `0x003C37B0` |
+| `0x00265090` | is called by | `0x003223C0` |
+| `0x00265200` | is called by | `0x003C29A0` |
+| `0x002E8FD0` | calls | `0x003E6A60`, `0x00428DE0`, `0x00428E10`, `0x00429020` |
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E8FD0` | is called by | `0x003B70B0` |
+| `0x002E97B0` | is called by | `0x003B70B0` |
+| `0x002ECD50` | calls | `0x002E8FD0` |
+| `0x002ECE50` | calls | `0x003E6150` |
+| `0x0030D9A0` | is called by | `0x003125E0` |
+| `0x003587C0` | is called by | `0x00256F60` |
+| `0x00358940` | is called by | `0x003A4290`, `0x003A56F0`, `0x00465120`, `0x00465690` |
+| `0x003589B0` | is called by | `0x003A4290`, `0x003A56F0`, `0x00465120`, `0x00465690`, `0x00506700` |
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003590D0` | is called by | `0x003A4290`, `0x003A56F0`, `0x003F1A60`, `0x00426090`, `0x004264A0`, `0x004640A0`, `0x004643D0`, `0x00464650`, `0x00464BD0`, `0x00465120`, `0x00465690`, `0x0046CC70` |
+| `0x00377C20` | is called by | `0x00307E70`, `0x003125E0`, `0x00313B30`, `0x003714A0` |
+| `0x003B70B0` | calls | `0x002E8FD0` |
+| `0x003B7770` | calls | `0x002E8FD0` |
+| `0x003CC130` | is called by | `0x00256960`, `0x0032B1C0`, `0x0032BEB0`, `0x0032CA70` |
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x003CC480` | is called by | `0x00256960`, `0x00256CA0`, `0x0032CA70` |
+| `0x0053DD10` | is called by | `0x004355D0`, `0x00462540` |
+
+**Graphics** (explained on [authored expressions](../Game-Files-And-Data-Tables/authored-expressions.md), [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [frame update order](../Engine-Core/frame-update-order.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
+
+**Graphics** (explained on [weather](../World-Areas-And-Travel/weather.md), [bestiary](../Enemy-Spawning/bestiary.md), [map screens](../Menus-And-HUD/map-screens.md), [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md), [character render records](../Graphics/character-render-records.md))
+
+**Graphics** (explained on [party verbs](party-verbs.md), [script name bindings](script-name-bindings.md), [battle units](../Characters-And-Objects/battle-units.md), [effect element runtime](../Graphics/effect-element-runtime.md), [effect element types](../Graphics/effect-element-types.md))
+
+**Graphics** (explained on [battle numbers](../Menus-And-HUD/battle-numbers.md), [hud](../Menus-And-HUD/hud.md), [authored presentation commands](../Graphics/authored-presentation-commands.md), [legacy ps2 gs layer](../Graphics/legacy-ps2-gs-layer.md))
+
+**Graphics** (explained on [character se tables chse](../Game-Files-And-Data-Tables/character-se-tables-chse.md), [force fight mode](../Engine-Core/force-fight-mode.md), [battle verbs](battle-verbs.md), [add motion tables](../Graphics/add-motion-tables.md))
+
+**Graphics** (explained on [scripted camera](../Graphics/scripted-camera.md), [field camera](../Graphics/field-camera.md), [collision mesh movement](../Movement-And-Pathfinding/collision-mesh-movement.md))
+
+**Rewards: EXP, LP, gil and loot** (explained on [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md), [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x002FB150`, `0x00312280` |
+| `0x00265090` | is called by | `0x002FB150` |
+| `0x00377C20` | is called by | `0x00312280` |
+
+**Enemy spawning** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x00234AF0`, `0x00234DA0`, `0x002350C0` |
+| `0x00265200` | is called by | `0x00234AF0` |
+
+**Status effects and KO** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x0030E360`, `0x0030F690`, `0x00310DB0` |
+
+**Menus and HUD** (explained on [battle units](../Characters-And-Objects/battle-units.md), [party list](../Menus-And-HUD/party-list.md), [map screens](../Menus-And-HUD/map-screens.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x003C5130` |
+| `0x00265200` | is called by | `0x003C5130` |
+| `0x003590D0` | is called by | `0x00299BD0`, `0x002C7660` |
+| `0x0053DD10` | is called by | `0x003C80C0` |
+
+**World, areas and travel** (explained on [actor record fields](../Characters-And-Objects/actor-record-fields.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00358940` | is called by | `0x0025E400`, `0x002623A0` |
+| `0x003590D0` | is called by | `0x0025E400`, `0x002623A0` |
+
+**World, areas and travel**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E4A40` | calls | `0x00377DB0` |
+| `0x0030D9A0` | calls | `0x00377C20` |
+| `0x00352FA0` | calls | `0x00377C20` |
+| `0x00377C20` | calls | `0x003148F0` |
+| `0x00377C20` | is called by | `0x002342F0` |
+| `0x0053DD10` | is called by | `0x003789A0` |
+
+**World, areas and travel** (explained on [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), [force fight mode](../Engine-Core/force-fight-mode.md), [party control modes](../Engine-Core/party-control-modes.md), [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md))
+
+</details>

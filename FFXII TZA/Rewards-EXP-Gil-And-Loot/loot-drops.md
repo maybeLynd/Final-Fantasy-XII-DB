@@ -306,25 +306,47 @@ Meteorite (`0x0019`-`0x001C`, 5).
   rest of the defeat rewards.
 - [RNG streams](../Random-Numbers/random-number-generators.md) - the shared gameplay generator.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Platform online achievements: `0x00312280` calls `0x00316A50`; those functions are documented on
-  [debug menu](../Engine-Core/debug-menu.md).
-- Audio: `0x003112F0` calls `0x002DF220`, `0x003A1180`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Input: `0x00377C20` is called by `0x00253C70`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Script VM: `0x00320AB0` is called by `0x0050FD00`, `0x0050FD50`, `0x0050FDD0`, `0x0050FE20`, `0x0050FE80`, `0x0050FED0`,
-  `0x0050FF20`; `0x00377C20` is called by `0x00344740`, `0x00352FA0`, `0x003537D0`, `0x00355680`.
-- Script VM: those functions are documented on
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md),
-  [script censuses](../Story-Events-And-Hunts/script-censuses.md).
+<details>
+<summary>Show the 16 calls with 6 other topics</summary>
+
+**Steam and achievements** (explained on [debug menu](../Engine-Core/debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00312280` | calls | `0x00316A50` |
+
+**Sound and music** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003112F0` | calls | `0x002DF220`, `0x003A1180` |
+
+**Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00253C70` |
+
+**Input gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00377C20` | is called by | `0x00313A00` |
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00320AB0` | is called by | `0x0050FD00`, `0x0050FD50`, `0x0050FDD0`, `0x0050FE20`, `0x0050FE80`, `0x0050FED0`, `0x0050FF20` |
+| `0x00377C20` | is called by | `0x00344740`, `0x00352FA0`, `0x003537D0`, `0x00355680` |
+
+**Scripts and script commands** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md), [script censuses](../Story-Events-And-Hunts/script-censuses.md))
+
+</details>
 
 ---
 

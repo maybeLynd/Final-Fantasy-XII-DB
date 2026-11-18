@@ -102,33 +102,59 @@ An empty cell under a language not in `missing` is an empty string.
 - [Message windows](message-windows.md) - the window a line is shown in.
 - [NPC names](../Characters-And-Objects/npc-names.md) - the name text a caption becomes.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x00355A00` calls `0x0025D5E0`, `0x00269F20`, `0x0026B4A0`; `0x00357120` calls `0x00269F20`; those functions are
-  documented on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md),
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [script requests](../Scripts-And-Script-Commands/script-requests.md).
-- Movement: `0x00355A00` calls `0x0026AB60`, `0x0026B0C0`, `0x0026B620`, `0x0026BB00`, `0x0026BC70`, `0x0026BD50`, `0x0026BDD0`,
-  `0x0026BFF0`; those functions
-  are documented on [party control modes](../Engine-Core/party-control-modes.md),
-  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md).
-- Presentation: `0x001FDD60` is called by `0x001B4590`; those functions are documented on
-  [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md).
-- Resource: `0x00674A00` is called by `0x001A7A50`, `0x001A9050`, `0x001B1440`, `0x001B1C10`, `0x0020BE50`, `0x0020C1B0`; those
-  functions are documented on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md),
-  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md),
-  [sprite batcher](../Graphics/sprite-batcher.md).
-- Resource: and on [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md),
-  [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md).
-- Script VM: `0x002642C0` is called by `0x00355A00`; `0x00264D60` is called by `0x00348DF0`, `0x0034ADA0`, `0x00352A50`,
-  `0x00352EC0`, `0x003534F0`, `0x003545B0`, `0x00354F20`, `0x003555F0`, `0x00356B70`, `0x0050EAB0`; `0x00264D90` is called by
-  `0x00355A00`, `0x00357120`; `0x00348DF0` calls `0x00267E10`; `0x00348DF0` is called by `0x00349800`; `0x0034ADA0` calls
-  `0x00267E10`; `0x0034ADA0` is called by `0x0034B760`, `0x0034BB10`.
-- Script VM: `0x00355A00` calls `0x00267E10`; `0x00357120` calls `0x00267E10`; those functions are documented on
-  [npc names](../Characters-And-Objects/npc-names.md),
-  [archades scenes](../Story-Events-And-Hunts/archades-scenes.md),
-  [archades scripts](../Story-Events-And-Hunts/archades-scripts.md),
-  [ebp text sections](../EBP-Script-Files/ebp-text-sections.md).
-- Script VM: and on [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 39 calls with 8 other topics</summary>
+
+**Characters and objects** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [script requests](../Scripts-And-Script-Commands/script-requests.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00355A00` | calls | `0x0025D5E0`, `0x00269F20`, `0x0026B4A0` |
+| `0x00357120` | calls | `0x00269F20` |
+
+**Movement and pathfinding** (explained on [party control modes](../Engine-Core/party-control-modes.md), [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00355A00` | calls | `0x0026AB60`, `0x0026B0C0`, `0x0026B620`, `0x0026BB00`, `0x0026BC70`, `0x0026BD50`, `0x0026BDD0`, `0x0026BFF0` |
+
+**Graphics** (explained on [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x001FDD60` | is called by | `0x001B4590` |
+
+**Game files and data tables** (explained on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md), [sprite batcher](../Graphics/sprite-batcher.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00674A00` | is called by | `0x001A7A50`, `0x001A9050`, `0x001B1440`, `0x001B1C10`, `0x0020BE50`, `0x0020C1B0` |
+
+**Game files and data tables** (explained on [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md))
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002642C0` | is called by | `0x00355A00` |
+| `0x00264D60` | is called by | `0x00348DF0`, `0x0034ADA0`, `0x00352A50`, `0x00352EC0`, `0x003534F0`, `0x003545B0`, `0x00354F20`, `0x003555F0`, `0x00356B70`, `0x0050EAB0` |
+| `0x00264D90` | is called by | `0x00355A00`, `0x00357120` |
+| `0x00348DF0` | calls | `0x00267E10` |
+| `0x00348DF0` | is called by | `0x00349800` |
+| `0x0034ADA0` | calls | `0x00267E10` |
+| `0x0034ADA0` | is called by | `0x0034B760`, `0x0034BB10` |
+
+**Scripts and script commands** (explained on [npc names](../Characters-And-Objects/npc-names.md), [archades scenes](../Story-Events-And-Hunts/archades-scenes.md), [archades scripts](../Story-Events-And-Hunts/archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00355A00` | calls | `0x00267E10` |
+| `0x00357120` | calls | `0x00267E10` |
+
+**Scripts and script commands** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+</details>

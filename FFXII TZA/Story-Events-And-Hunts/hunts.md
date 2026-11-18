@@ -166,9 +166,17 @@ The progress byte is the quest's scenario flag, save `+0x1064 + quest` (`0x0046B
 - [Scene rewards: every item and gil amount the story scripts give or take, by script and function, and how each item is chosen](scene-rewards.md)
 - [NPC names: the npcdic.bin name pairs, the actor's name id, and the story flag that swaps a name](../Characters-And-Objects/npc-names.md)
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Rewards progression economy: `0x00290130` calls `0x003F4AA0`; those functions are documented on
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Rewards: EXP, LP, gil and loot** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00290130` | calls | `0x003F4AA0` |
+
+</details>

@@ -268,14 +268,29 @@ is compared.
 - [Elements](../Damage-And-Battle-Formulas/elements.md) - the element bytes.
 - [Weapon formulas](../Damage-And-Battle-Formulas/weapon-formulas.md) - recipe, knockback, combo and statuses.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0032E400` is called by `0x0032FCA0`, `0x00330310`, `0x003306E0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
-- Save load settings: `0x00235E90` is called by `0x00253A80`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Script VM: `0x0032E400` is called by `0x0050DF70`.
+<details>
+<summary>Show the 5 calls with 3 other topics</summary>
+
+**Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E400` | is called by | `0x0032FCA0`, `0x00330310`, `0x003306E0` |
+
+**Saving, loading and settings** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00235E90` | is called by | `0x00253A80` |
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E400` | is called by | `0x0050DF70` |
+
+</details>

@@ -110,18 +110,41 @@ integrator `0x002E5750` (`0x002E59CC`), on [facing and steering](../Movement-And
 - [Party verbs](party-verbs.md): the verbs that act on party members.
 - The area script pages under 14-Story-Event-Quest-Hunt/Areas, whose steps call these verbs.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Movement: `0x00267F60` is called by `0x00345430`, `0x003488B0`, `0x00349680`, `0x003548B0`; those functions are documented on
-  [native commands](native-commands.md),
-  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md).
-- Actor entity: `0x00263F40` calls `0x003587C0`; those functions are documented on
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
-- Combat action: `0x00263F40` is called by `0x00307300`; those functions are documented on
-  [game over](../World-Areas-And-Travel/game-over.md).
-- Party: `0x00263F40` is called by `0x00304180`; those functions are documented on
-  [party control modes](../Engine-Core/party-control-modes.md).
-- Presentation: `0x00263F40` is called by `0x003B70B0`; those functions are documented on
-  [party during scenes](party-during-scenes.md).
+<details>
+<summary>Show the 8 calls with 5 other topics</summary>
+
+**Movement and pathfinding** (explained on [native commands](native-commands.md), [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00267F60` | is called by | `0x00345430`, `0x003488B0`, `0x00349680`, `0x003548B0` |
+
+**Characters and objects** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263F40` | calls | `0x003587C0` |
+
+**Battle actions** (explained on [game over](../World-Areas-And-Travel/game-over.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263F40` | is called by | `0x00307300` |
+
+**Party** (explained on [party control modes](../Engine-Core/party-control-modes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263F40` | is called by | `0x00304180` |
+
+**Graphics** (explained on [party during scenes](party-during-scenes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263F40` | is called by | `0x003B70B0` |
+
+</details>

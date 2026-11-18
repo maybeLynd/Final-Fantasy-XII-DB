@@ -396,19 +396,37 @@ TIM2 file at `0x02AEE850` (`0x0039C1D0`), and `0x02AEE860` at its pixels, the he
 - [Clan Primer](../Menus-And-HUD/clan-primer.md): the handbook pages that register their glyph sheets.
 - [Fonts](../Menus-And-HUD/fonts.md): the PC font files.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input: `0x0022A4B0` calls `0x00291C80`; `0x0032E620` is called by `0x00291C80`; those functions are documented on
-  [startup constants](../Engine-Core/startup-constants.md).
-- Script VM: `0x0032E400` is called by `0x0050DF70`; `0x0032E620` is called by `0x0050DFE0`; those functions are documented on
-  [file requests and the read queue](file-requests-and-the-read-queue.md).
-- World area: `0x0032E400` is called by `0x00268750`, `0x003319D0`, `0x00378030`, `0x00379A10`, `0x003EA820`; `0x0032E620` is called
-  by `0x00268750`, `0x00378030`, `0x003EA820`; `0x0036A190` is called by `0x00268750`, `0x00377DC0`, `0x00378030`, `0x00378BC0`.
-- World area: those functions are documented on [ps2data bin families](ps2data-bin-families.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [resource arena and relocation](resource-arena-and-relocation.md),
-  [standard file formats](standard-file-formats.md).
-- World area: and on [item and ability ids](../Engine-Core/item-and-ability-ids.md),
-  [async load manager](async-load-manager.md), [graphics settings](../Engine-Core/graphics-settings.md).
+<details>
+<summary>Show the 16 calls with 5 other topics</summary>
+
+**Controls and input** (explained on [startup constants](../Engine-Core/startup-constants.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022A4B0` | calls | `0x00291C80` |
+| `0x0032E620` | is called by | `0x00291C80` |
+
+**Scripts and script commands** (explained on [file requests and the read queue](file-requests-and-the-read-queue.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E400` | is called by | `0x0050DF70` |
+| `0x0032E620` | is called by | `0x0050DFE0` |
+
+**World, areas and travel**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032E400` | is called by | `0x00268750`, `0x003319D0`, `0x00378030`, `0x00379A10`, `0x003EA820` |
+| `0x0032E620` | is called by | `0x00268750`, `0x00378030`, `0x003EA820` |
+| `0x0036A190` | is called by | `0x00268750`, `0x00377DC0`, `0x00378030`, `0x00378BC0` |
+
+**World, areas and travel** (explained on [ps2data bin families](ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [resource arena and relocation](resource-arena-and-relocation.md), [standard file formats](standard-file-formats.md))
+
+**World, areas and travel** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [async load manager](async-load-manager.md), [graphics settings](../Engine-Core/graphics-settings.md))
+
+</details>

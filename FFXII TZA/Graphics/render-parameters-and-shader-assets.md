@@ -143,9 +143,17 @@ directly or through the cascade template. The other 43 are:
 - [Standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md): the JSON
   documents as files.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Developer: `0x00200BE0` is called by `0x001C6320`; those functions are documented on
-  [json configs](../Game-Files-And-Data-Tables/json-configs.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Developer** (explained on [json configs](../Game-Files-And-Data-Tables/json-configs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00200BE0` | is called by | `0x001C6320` |
+
+</details>

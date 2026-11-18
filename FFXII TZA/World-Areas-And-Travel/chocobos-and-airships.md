@@ -799,13 +799,23 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 - [Model files](../Graphics/model-files-cm-ca.md) and [animation playback](../Graphics/animation-playback.md): the special-id table and the node link the rider's seat uses.
 - [Sound effects](../Sound-And-Music/sound-effects.md): the system sound player the ride's six ids go through.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Resource: `0x00253780` calls `0x00249180`, `0x00249580`; `0x004215A0` calls `0x002ED570`; `0x004218A0` calls `0x002ED570`;
-  `0x0042F880` calls `0x002ED570`, `0x004780B0`; `0x0046E640` calls `0x002ED570`.
-- Resource: those functions are documented on
-  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md),
-  [resource sections](../Game-Files-And-Data-Tables/resource-sections.md),
-  [character render records](../Graphics/character-render-records.md).
+<details>
+<summary>Show the 7 calls with 2 other topics</summary>
+
+**Game files and data tables**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00253780` | calls | `0x00249180`, `0x00249580` |
+| `0x004215A0` | calls | `0x002ED570` |
+| `0x004218A0` | calls | `0x002ED570` |
+| `0x0042F880` | calls | `0x002ED570`, `0x004780B0` |
+| `0x0046E640` | calls | `0x002ED570` |
+
+**Game files and data tables** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [resource sections](../Game-Files-And-Data-Tables/resource-sections.md), [character render records](../Graphics/character-render-records.md))
+
+</details>

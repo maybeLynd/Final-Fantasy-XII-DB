@@ -438,11 +438,23 @@ The countdown slots, field by field:
   Twister and its seeders.
 - [Frame update order](frame-update-order.md): the state machine whose cells are initialised here.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Gameplay: `0x00304440` calls `0x0030D9A0`; those functions are documented on
-  [frame update order](frame-update-order.md).
-- Story event quest hunt: `0x0026C8C0` calls `0x00377440`; those functions are documented on
-  [actor managers](../Characters-And-Objects/actor-managers.md).
+<details>
+<summary>Show the 2 calls with 2 other topics</summary>
+
+**Gameplay** (explained on [frame update order](frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00304440` | calls | `0x0030D9A0` |
+
+**Story, events and hunts** (explained on [actor managers](../Characters-And-Objects/actor-managers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026C8C0` | calls | `0x00377440` |
+
+</details>

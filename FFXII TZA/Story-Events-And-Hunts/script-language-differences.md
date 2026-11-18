@@ -277,69 +277,122 @@ file names `ttl_a01_e3`. It is an unused copy, because that path table has no en
 - [Standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md) - the title images and verb `0x5B4`.
 - [Languages](../Saving-Loading-And-Settings/languages.md) - the locale id and the trees each language reads.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x00355A00` calls `0x0025D5E0`, `0x00269F20`, `0x0026B4A0`; `0x00358800` calls `0x00263A30`, `0x00263FF0`.
-- Actor entity: those functions are documented on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md),
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [script requests](../Scripts-And-Script-Commands/script-requests.md),
-  [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md).
-- Actor entity: and on [debug menu](../Engine-Core/debug-menu.md).
-- Audio: `0x00354EF0` calls `0x00249CA0`, `0x002DEE70`, `0x00360D70`, `0x00363560`; those functions are documented on
-  [menu lists](../Menus-And-HUD/menu-lists.md),
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md),
-  [game over](../World-Areas-And-Travel/game-over.md).
-- Core runtime: `0x0017D6E0` calls `0x001A1460`, `0x001DB600`, `0x001E0550`, `0x001E0590`, `0x001E05E0`, `0x001E05F0`, `0x0022A490`;
-  `0x0017D6E0` is called by `0x0017CCD0`; `0x001D9080` is called by `0x0017D6E0`; `0x0033FED0` calls `0x00229E40`; `0x00473E80`
-  calls `0x00229E40`; `0x0053DD10` is called by `0x0022B6E0`.
-- Core runtime: those functions are documented on
-  [game application](../Engine-Core/game-application.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [debug menu](../Engine-Core/debug-menu.md),
-  [startup constants](../Engine-Core/startup-constants.md).
-- Developer: `0x0017D6E0` calls `0x001C2F50`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
-- Input: `0x0024A440` is called by `0x00291D90`; `0x002B5B60` calls `0x001E0B90`, `0x001E0BD0`, `0x001E0DA0`, `0x001E0DC0`;
-  `0x0053DD10` is called by `0x002E09A0`, `0x0035FCA0`, `0x0035FDD0`, `0x0046DD50`.
-- Input: those functions are documented on
-  [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md),
-  [control remapping](../Controls-And-Input/control-remapping.md), [controls](../Controls-And-Input/controls.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Input: and on
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
-- Movement: `0x00355A00` calls `0x0026AB60`, `0x0026B0C0`, `0x0026B620`, `0x0026BB00`, `0x0026BC70`, `0x0026BD50`, `0x0026BDD0`,
-  `0x0026BFF0`; `0x00379430` calls
-  `0x0026E850`, `0x0026E880`.
-- Movement: those functions are documented on
-  [party control modes](../Engine-Core/party-control-modes.md),
-  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md),
-  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md).
-- Presentation: `0x0017D6E0` calls `0x00189CE0`, `0x001BC190`, `0x001BDAC0`, `0x001CC600`, `0x0022FFE0`; `0x00229E40` is called by
-  `0x002B0280`, `0x00434CD0`, `0x00435050`; `0x0053DD10` is called by `0x004355D0`, `0x00462540`.
-- Presentation: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
-  [game application](../Engine-Core/game-application.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md).
-- Presentation: and on [effect element types](../Graphics/effect-element-types.md).
-- Resource: `0x0017D6E0` calls `0x001A1220`; `0x0024A440` calls `0x0024A1D0`, `0x0024A4E0`; `0x002A7950` calls `0x0024A440`;
-  `0x00473E80` calls `0x002DF8E0`.
-- Resource: those functions are documented on
-  [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md),
-  [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md),
-  [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md),
-  [debug menu](../Engine-Core/debug-menu.md).
-- Rewards progression economy: `0x00229E40` is called by `0x00317ED0`; those functions are documented on
-  [bestiary](../Enemy-Spawning/bestiary.md).
-- Save load settings: `0x003603E0` is called by `0x00280140`; those functions are documented on
-  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
-- Save load settings: `0x0017D6E0` calls `0x001C18E0`, `0x001C1910`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [game application](../Engine-Core/game-application.md).
-- UI: `0x00229E40` is called by `0x0028AAA0`, `0x002AC5F0`; `0x0053DD10` is called by `0x003C80C0`; those functions are
-  documented on [hud](../Menus-And-HUD/hud.md), [augments](../Damage-And-Battle-Formulas/augments.md),
-  [map screens](../Menus-And-HUD/map-screens.md).
-- World area: `0x0053DD10` is called by `0x003789A0`; those functions are documented on
-  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
+<details>
+<summary>Show the 64 calls with 22 other topics</summary>
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00355A00` | calls | `0x0025D5E0`, `0x00269F20`, `0x0026B4A0` |
+| `0x00358800` | calls | `0x00263A30`, `0x00263FF0` |
+
+**Characters and objects** (explained on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [script requests](../Scripts-And-Script-Commands/script-requests.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md))
+
+**Characters and objects** (explained on [debug menu](../Engine-Core/debug-menu.md))
+
+**Sound and music** (explained on [menu lists](../Menus-And-HUD/menu-lists.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [game over](../World-Areas-And-Travel/game-over.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00354EF0` | calls | `0x00249CA0`, `0x002DEE70`, `0x00360D70`, `0x00363560` |
+
+**Engine core**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017D6E0` | calls | `0x001A1460`, `0x001DB600`, `0x001E0550`, `0x001E0590`, `0x001E05E0`, `0x001E05F0`, `0x0022A490` |
+| `0x0017D6E0` | is called by | `0x0017CCD0` |
+| `0x001D9080` | is called by | `0x0017D6E0` |
+| `0x0033FED0` | calls | `0x00229E40` |
+| `0x00473E80` | calls | `0x00229E40` |
+| `0x0053DD10` | is called by | `0x0022B6E0` |
+
+**Engine core** (explained on [game application](../Engine-Core/game-application.md), [frame update order](../Engine-Core/frame-update-order.md), [debug menu](../Engine-Core/debug-menu.md), [startup constants](../Engine-Core/startup-constants.md))
+
+**Developer** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017D6E0` | calls | `0x001C2F50` |
+
+**Controls and input**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0024A440` | is called by | `0x00291D90` |
+| `0x002B5B60` | calls | `0x001E0B90`, `0x001E0BD0`, `0x001E0DA0`, `0x001E0DC0` |
+| `0x0053DD10` | is called by | `0x002E09A0`, `0x0035FCA0`, `0x0035FDD0`, `0x0046DD50` |
+
+**Controls and input** (explained on [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [control remapping](../Controls-And-Input/control-remapping.md), [controls](../Controls-And-Input/controls.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+**Controls and input** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00355A00` | calls | `0x0026AB60`, `0x0026B0C0`, `0x0026B620`, `0x0026BB00`, `0x0026BC70`, `0x0026BD50`, `0x0026BDD0`, `0x0026BFF0` |
+| `0x00379430` | calls | `0x0026E850`, `0x0026E880` |
+
+**Movement and pathfinding** (explained on [party control modes](../Engine-Core/party-control-modes.md), [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md), [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md))
+
+**Graphics**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017D6E0` | calls | `0x00189CE0`, `0x001BC190`, `0x001BDAC0`, `0x001CC600`, `0x0022FFE0` |
+| `0x00229E40` | is called by | `0x002B0280`, `0x00434CD0`, `0x00435050` |
+| `0x0053DD10` | is called by | `0x004355D0`, `0x00462540` |
+
+**Graphics** (explained on [debug menu](../Engine-Core/debug-menu.md), [game application](../Engine-Core/game-application.md), [frame update order](../Engine-Core/frame-update-order.md), [handbook files](../Game-Files-And-Data-Tables/handbook-files.md))
+
+**Graphics** (explained on [effect element types](../Graphics/effect-element-types.md))
+
+**Game files and data tables**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017D6E0` | calls | `0x001A1220` |
+| `0x0024A440` | calls | `0x0024A1D0`, `0x0024A4E0` |
+| `0x002A7950` | calls | `0x0024A440` |
+| `0x00473E80` | calls | `0x002DF8E0` |
+
+**Game files and data tables** (explained on [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [debug menu](../Engine-Core/debug-menu.md))
+
+**Rewards: EXP, LP, gil and loot** (explained on [bestiary](../Enemy-Spawning/bestiary.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00229E40` | is called by | `0x00317ED0` |
+
+**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003603E0` | is called by | `0x00280140` |
+
+**Saving, loading and settings** (explained on [frame update order](../Engine-Core/frame-update-order.md), [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017D6E0` | calls | `0x001C18E0`, `0x001C1910` |
+
+**Menus and HUD** (explained on [hud](../Menus-And-HUD/hud.md), [augments](../Damage-And-Battle-Formulas/augments.md), [map screens](../Menus-And-HUD/map-screens.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00229E40` | is called by | `0x0028AAA0`, `0x002AC5F0` |
+| `0x0053DD10` | is called by | `0x003C80C0` |
+
+**World, areas and travel** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0053DD10` | is called by | `0x003789A0` |
+
+</details>

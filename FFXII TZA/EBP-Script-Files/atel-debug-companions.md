@@ -192,13 +192,23 @@ native command `(k << 12) + i`.
 - [Native commands](../Scripts-And-Script-Commands/native-commands.md): the command classes.
 - [Script variables](../Scripts-And-Script-Commands/script-variables.md): the variables the `.dbg` tables list.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input: `0x00263FF0` is called by `0x00226BE0`, `0x002E09A0`; those functions are documented on
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Movement: `0x00263FF0` is called by `0x002E28E0`, `0x00392740`; those functions are documented on
-  [native limits](../Engine-Core/native-limits.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 4 calls with 2 other topics</summary>
+
+**Controls and input** (explained on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263FF0` | is called by | `0x00226BE0`, `0x002E09A0` |
+
+**Movement and pathfinding** (explained on [native limits](../Engine-Core/native-limits.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00263FF0` | is called by | `0x002E28E0`, `0x00392740` |
+
+</details>

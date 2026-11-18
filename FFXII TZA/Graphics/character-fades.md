@@ -397,36 +397,60 @@ arming call and on every unlatched call, also for a record without bit `0x800000
   the caller of the latch.
 - [Startup constants](../Engine-Core/startup-constants.md): the frame-rate multiplier.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Save load settings: `0x0026C8C0` calls `0x002EF2B0`; those functions are documented on
-  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
-- Story event quest hunt: `0x0026C8C0` calls `0x00377440`; those functions are documented on
-  [actor managers](../Characters-And-Objects/actor-managers.md).
-- World area: `0x0026C8C0` calls `0x0026DB30`; those functions are documented on
-  [party verbs](../Scripts-And-Script-Commands/party-verbs.md).
-- Combat AI: `0x0031B760` is called by `0x00239040`, `0x003014C0`, `0x00301AD0`, `0x003087E0`, `0x0030F130`; those functions are
-  documented on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
-  [glossary](../Engine-Core/glossary.md), [area of effect](../Battle-Actions/area-of-effect.md).
-- Combat AI: and on [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md).
-- Combat action: `0x0031B760` is called by `0x00303830`, `0x00306010`, `0x0030EC00`; those functions are documented on
-  [action phases](../Battle-Actions/action-phases.md), [action results](../Battle-Actions/action-results.md).
-- Gameplay: `0x0031B760` is called by `0x0030B050`, `0x0030BA30`, `0x0030BFB0`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [battle units](../Characters-And-Objects/battle-units.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
-- Spawn encounter lifecycle: `0x0031B760` is called by `0x002350C0`, `0x00235360`, `0x002354F0`, `0x002355A0`, `0x00235720`,
-  `0x00235EF0`, `0x00235F50`, `0x00235FB0`, `0x00236030`, `0x00236140`, `0x00236670`, `0x002366E0`; `0x0031B760` is also called by
-  `0x00236860`, `0x00238FC0`, `0x002391C0`, `0x002393E0`, `0x00239410`, `0x00239710`, `0x00239840`, `0x002398F0`, `0x0023A200`,
-  `0x0023A2E0`, `0x0023A3B0`, `0x0023A410`.
-- Spawn encounter lifecycle: those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [native limits](../Engine-Core/native-limits.md), [battle units](../Characters-And-Objects/battle-units.md),
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
-- Spawn encounter lifecycle: and on [enemy respawning](../Enemy-Spawning/enemy-respawning.md),
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
-  [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md); and on
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md).
+<details>
+<summary>Show the 38 calls with 10 other topics</summary>
+
+**Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026C8C0` | calls | `0x002EF2B0` |
+
+**Story, events and hunts** (explained on [actor managers](../Characters-And-Objects/actor-managers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026C8C0` | calls | `0x00377440` |
+
+**World, areas and travel** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0026C8C0` | calls | `0x0026DB30` |
+
+**Enemy AI and gambits** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [glossary](../Engine-Core/glossary.md), [area of effect](../Battle-Actions/area-of-effect.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B760` | is called by | `0x00239040`, `0x003014C0`, `0x00301AD0`, `0x003087E0`, `0x0030F130` |
+
+**Enemy AI and gambits** (explained on [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md))
+
+**Battle actions** (explained on [action phases](../Battle-Actions/action-phases.md), [action results](../Battle-Actions/action-results.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B760` | is called by | `0x00303830`, `0x00306010`, `0x0030EC00` |
+
+**Gameplay** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [battle units](../Characters-And-Objects/battle-units.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B760` | is called by | `0x0030B050`, `0x0030BA30`, `0x0030BFB0` |
+
+**Enemy spawning**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0031B760` | is called by | `0x002350C0`, `0x00235360`, `0x002354F0`, `0x002355A0`, `0x00235720`, `0x00235EF0`, `0x00235F50`, `0x00235FB0`, `0x00236030`, `0x00236140`, `0x00236670`, `0x002366E0` |
+| `0x0031B760` | is also called by | `0x00236860`, `0x00238FC0`, `0x002391C0`, `0x002393E0`, `0x00239410`, `0x00239710`, `0x00239840`, `0x002398F0`, `0x0023A200`, `0x0023A2E0`, `0x0023A3B0`, `0x0023A410` |
+
+**Enemy spawning** (explained on [frame update order](../Engine-Core/frame-update-order.md), [native limits](../Engine-Core/native-limits.md), [battle units](../Characters-And-Objects/battle-units.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
+
+**Enemy spawning** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md))
+
+</details>

@@ -328,52 +328,88 @@ No other instruction reaches these globals.
 - [Animation sounds](animation-sounds.md) - character sounds.
 - [Sound engine configuration](sound-engine-config.md) - the `curv` chunk.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Combat action: `0x00265020` is called by `0x002F8060`, `0x00307300`, `0x00320E10`; those functions are documented on
-  [traps](../World-Areas-And-Travel/traps.md), [battle unit fields](../Characters-And-Objects/battle-unit-fields.md),
-  [animation driven movement](../Movement-And-Pathfinding/animation-driven-movement.md).
-- Combat formula: `0x00265020` is called by `0x00384F40`; those functions are documented on
-  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md).
-- Gameplay: `0x00265020` is called by `0x0031ADB0`, `0x00339630`; those functions are documented on
-  [bestiary](../Enemy-Spawning/bestiary.md),
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
-- Input: `0x003692D0` calls `0x0035F260`; those functions are documented on
-  [startup constants](../Engine-Core/startup-constants.md).
-- Movement: `0x00202C70` is called by `0x00230790`, `0x00338490`; `0x00265020` is called by `0x0024B6F0`, `0x002E45E0`,
-  `0x002EBFA0`, `0x002EC2C0`, `0x00300310`, `0x00310920`, `0x00311E20`, `0x00311F70`, `0x00326BB0`, `0x00336710`, `0x00337C10`,
-  `0x00337D90`; `0x00265020` is also called by `0x0033CA00`, `0x003B7E20`, `0x003B7F40`, `0x00505240`.
-- Movement: those functions are documented on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md),
-  [bestiary](../Enemy-Spawning/bestiary.md),
-  [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md),
-  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md).
-- Movement: and on [world lock](../Scripts-And-Script-Commands/world-lock.md),
-  [battle units](../Characters-And-Objects/battle-units.md),
-  [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md),
-  [party control modes](../Engine-Core/party-control-modes.md).
-- Movement: and on [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
-  [party data](../Party/party-data.md), [force fight mode](../Engine-Core/force-fight-mode.md),
-  [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md).
-- Movement: and on [subsystem update flags](../Engine-Core/subsystem-update-flags.md),
-  [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md).
-- Rewards progression economy: `0x00265020` is called by `0x002FB150`, `0x00312280`; those functions are documented on
-  [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md),
-  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).
-- Save load settings: `0x00265920` calls `0x002EF2B0`; those functions are documented on
-  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
-- Script VM: `0x00265020` is called by `0x0033FD60`, `0x00344AF0`, `0x00345180`, `0x00345830`, `0x003461B0`, `0x00346710`,
-  `0x00346D40`, `0x00347170`, `0x00347580`, `0x003478A0`, `0x00347AB0`, `0x00347FF0`; `0x00265020` is also called by `0x0034BE50`,
-  `0x0034CC00`, `0x00350DD0`, `0x003516E0`, `0x003562B0`, `0x00357DE0`, `0x0050E060`, `0x0050F6E0`, `0x00510040`, `0x00510080`,
-  `0x005100C0`; `0x00265920` is called by `0x00356250`, `0x0050D360`.
-- Script VM: `0x002DEBF0` is called by `0x0050DA90`; `0x00360710` is called by `0x0034ECF0`; `0x00360980` is called by
-  `0x0034D3A0`; `0x00363B00` is called by `0x00340EF0`.
-- Script VM: those functions are documented on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
-  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md),
-  [weather](../World-Areas-And-Travel/weather.md),
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md); and on
-  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
-- Spawn encounter lifecycle: `0x00265020` is called by `0x00234AF0`, `0x00234DA0`, `0x002350C0`; those functions are
-  documented on [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 60 calls with 15 other topics</summary>
+
+**Battle actions** (explained on [traps](../World-Areas-And-Travel/traps.md), [battle unit fields](../Characters-And-Objects/battle-unit-fields.md), [animation driven movement](../Movement-And-Pathfinding/animation-driven-movement.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x002F8060`, `0x00307300`, `0x00320E10` |
+
+**Damage and battle formulas** (explained on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x00384F40` |
+
+**Gameplay** (explained on [bestiary](../Enemy-Spawning/bestiary.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x0031ADB0`, `0x00339630` |
+
+**Controls and input** (explained on [startup constants](../Engine-Core/startup-constants.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003692D0` | calls | `0x0035F260` |
+
+**Movement and pathfinding**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00202C70` | is called by | `0x00230790`, `0x00338490` |
+| `0x00265020` | is called by | `0x0024B6F0`, `0x002E45E0`, `0x002EBFA0`, `0x002EC2C0`, `0x00300310`, `0x00310920`, `0x00311E20`, `0x00311F70`, `0x00326BB0`, `0x00336710`, `0x00337C10`, `0x00337D90` |
+| `0x00265020` | is also called by | `0x0033CA00`, `0x003B7E20`, `0x003B7F40`, `0x00505240` |
+
+**Movement and pathfinding** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [bestiary](../Enemy-Spawning/bestiary.md), [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md), [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md))
+
+**Movement and pathfinding** (explained on [world lock](../Scripts-And-Script-Commands/world-lock.md), [battle units](../Characters-And-Objects/battle-units.md), [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md), [party control modes](../Engine-Core/party-control-modes.md))
+
+**Movement and pathfinding** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [party data](../Party/party-data.md), [force fight mode](../Engine-Core/force-fight-mode.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md))
+
+**Movement and pathfinding** (explained on [subsystem update flags](../Engine-Core/subsystem-update-flags.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md))
+
+**Rewards: EXP, LP, gil and loot** (explained on [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md), [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x002FB150`, `0x00312280` |
+
+**Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265920` | calls | `0x002EF2B0` |
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x0033FD60`, `0x00344AF0`, `0x00345180`, `0x00345830`, `0x003461B0`, `0x00346710`, `0x00346D40`, `0x00347170`, `0x00347580`, `0x003478A0`, `0x00347AB0`, `0x00347FF0` |
+| `0x00265020` | is also called by | `0x0034BE50`, `0x0034CC00`, `0x00350DD0`, `0x003516E0`, `0x003562B0`, `0x00357DE0`, `0x0050E060`, `0x0050F6E0`, `0x00510040`, `0x00510080`, `0x005100C0` |
+| `0x00265920` | is called by | `0x00356250`, `0x0050D360` |
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002DEBF0` | is called by | `0x0050DA90` |
+| `0x00360710` | is called by | `0x0034ECF0` |
+| `0x00360980` | is called by | `0x0034D3A0` |
+| `0x00363B00` | is called by | `0x00340EF0` |
+
+**Scripts and script commands** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [weather](../World-Areas-And-Travel/weather.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
+
+**Enemy spawning** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00265020` | is called by | `0x00234AF0`, `0x00234DA0`, `0x002350C0` |
+
+</details>

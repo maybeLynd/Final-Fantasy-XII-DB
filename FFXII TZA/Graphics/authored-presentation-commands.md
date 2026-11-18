@@ -392,12 +392,23 @@ among them while the game runs. `0x09`'s `finish_flag` is the word the playback 
 - [Animation sounds](../Sound-And-Music/animation-sounds.md): the sounds of `0x05`, `0x19` and `0x29`.
 - [Animation-driven movement](../Movement-And-Pathfinding/animation-driven-movement.md): command `0x1A`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Script VM: `0x0036A100` is called by `0x0050D8F0`.
-- World area: `0x0036A100` is called by `0x00267930`, `0x003319D0`, `0x003EA820`; those functions are documented on
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md).
+<details>
+<summary>Show the 4 calls with 2 other topics</summary>
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A100` | is called by | `0x0050D8F0` |
+
+**World, areas and travel** (explained on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [frame update order](../Engine-Core/frame-update-order.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0036A100` | is called by | `0x00267930`, `0x003319D0`, `0x003EA820` |
+
+</details>

@@ -132,12 +132,20 @@ page at `+0x80`, the enmity bytes and the positions travel with everything else.
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md): the record at `+0x80`.
 - [Enmity](../Enemy-AI-And-Gambits/enmity.md): the bytes at `+0x19`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Resource: `0x002368D0` calls `0x003843F0`; those functions are documented on
-  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Game files and data tables** (explained on [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002368D0` | calls | `0x003843F0` |
+
+</details>
 
 ---
 

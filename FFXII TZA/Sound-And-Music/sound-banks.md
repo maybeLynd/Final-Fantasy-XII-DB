@@ -605,21 +605,37 @@ value is `y[k] + 0x007A9E50((x - x[k]) / (x[k + 1] - x[k]), ease[k]) x (y[k + 1]
 - [Escape Mode](../Controls-And-Input/escape.md) - plays block slot `0x52` and `0x2A` through `0x003A1180`.
 - [Sound engine configuration](sound-engine-config.md) - the configuration file beside the banks.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x00266D10` calls `0x003B6ED0`; `0x002ED910` is called by `0x0037B4D0`; `0x003212E0` calls `0x00263E30`;
-  `0x0032E620` is called by `0x0032FCA0`, `0x00330310`; `0x0036F0F0` is called by `0x0037B4D0`; `0x003EAA70` is called by
-  `0x0025D9E0`.
-- Actor entity: those functions are documented on [actor record](../Characters-And-Objects/actor-record.md),
-  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
-- Movement: `0x00266D10` calls `0x00263560`, `0x002EBE40`, `0x003DAE30`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md),
-  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md).
-- Save load settings: `0x00266D10` calls `0x002EF2D0`; `0x0032E620` is called by `0x002EF300`; those functions are documented
-  on [frame update order](../Engine-Core/frame-update-order.md),
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
+<details>
+<summary>Show the 12 calls with 4 other topics</summary>
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00266D10` | calls | `0x003B6ED0` |
+| `0x002ED910` | is called by | `0x0037B4D0` |
+| `0x003212E0` | calls | `0x00263E30` |
+| `0x0032E620` | is called by | `0x0032FCA0`, `0x00330310` |
+| `0x0036F0F0` | is called by | `0x0037B4D0` |
+| `0x003EAA70` | is called by | `0x0025D9E0` |
+
+**Characters and objects** (explained on [actor record](../Characters-And-Objects/actor-record.md), [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md), [frame update order](../Engine-Core/frame-update-order.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md))
+
+**Movement and pathfinding** (explained on [frame update order](../Engine-Core/frame-update-order.md), [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md), [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00266D10` | calls | `0x00263560`, `0x002EBE40`, `0x003DAE30` |
+
+**Saving, loading and settings** (explained on [frame update order](../Engine-Core/frame-update-order.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00266D10` | calls | `0x002EF2D0` |
+| `0x0032E620` | is called by | `0x002EF300` |
+
+</details>

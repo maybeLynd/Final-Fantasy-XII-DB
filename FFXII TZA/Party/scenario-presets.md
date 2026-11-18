@@ -105,13 +105,29 @@ Scenario rows are section 60 (50 × 208 bytes, bound to `0x02EBF030` at `0x00236
 - [Gambits](../Enemy-AI-And-Gambits/gambits.md) - the gambit presets and the gambit mark.
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the member record fields a preset writes.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Movement: `0x00326500` calls `0x00311E20`; those functions are documented on
-  [party control modes](../Engine-Core/party-control-modes.md).
-- Save load settings: `0x002CFD10` is called by `0x00280140`; those functions are documented on
-  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
-- Presentation: `0x002527B0` is called by `0x00579420`; those functions are documented on
-  [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md).
+<details>
+<summary>Show the 3 calls with 3 other topics</summary>
+
+**Movement and pathfinding** (explained on [party control modes](../Engine-Core/party-control-modes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00326500` | calls | `0x00311E20` |
+
+**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002CFD10` | is called by | `0x00280140` |
+
+**Graphics** (explained on [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002527B0` | is called by | `0x00579420` |
+
+</details>

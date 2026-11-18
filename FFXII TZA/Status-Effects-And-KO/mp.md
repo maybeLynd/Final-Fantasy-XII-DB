@@ -251,12 +251,23 @@ Augment rows 91, 92 and 93 each carry 10 in word `+4`, so the three together cut
 - [Action phases](../Battle-Actions/action-phases.md) - when an action pays.
 - [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md) - the MP regime.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Input: `0x00313F60` is called by `0x00253C70`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- Spawn encounter lifecycle: `0x00313F60` is called by `0x00234DA0`, `0x002350C0`; those functions are documented on
-  [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 3 calls with 2 other topics</summary>
+
+**Controls and input** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00313F60` | is called by | `0x00253C70` |
+
+**Enemy spawning** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00313F60` | is called by | `0x00234DA0`, `0x002350C0` |
+
+</details>

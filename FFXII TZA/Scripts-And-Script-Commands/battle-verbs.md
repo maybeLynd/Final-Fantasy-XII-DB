@@ -476,10 +476,17 @@ the two script grant words; the render record's drawn state; `0x022C1F48` and `0
 - [Force fight mode](../Engine-Core/force-fight-mode.md): the toggle behind `setforcefightmode`.
 - [Script verb table](verb-table.md): the ids and handlers.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- World area: `0x00358940` is called by `0x0025E400`, `0x002623A0`; those functions are documented on
-  [actor record fields](../Characters-And-Objects/actor-record-fields.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
+<details>
+<summary>Show the 2 calls with 1 other topic</summary>
+
+**World, areas and travel** (explained on [actor record fields](../Characters-And-Objects/actor-record-fields.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00358940` | is called by | `0x0025E400`, `0x002623A0` |
+
+</details>

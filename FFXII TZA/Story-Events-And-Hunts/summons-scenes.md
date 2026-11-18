@@ -208,40 +208,73 @@ The script list's columns are `script`, `kind` and `place` (the script, `scene`,
 `functions` (the script's actors and functions), `rows` (its rows in a scripts table) and `shared_actors` (the
 shared helper actors it carries).
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0032FC30` calls `0x0032FCA0`; `0x0032FC30` is called by `0x0025D9E0`; `0x0032FCA0` calls `0x002628B0`,
-  `0x0032ED80`, `0x00330310`, `0x003306E0`.
-- Actor entity: those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md); and on
-  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
-- Combat action: `0x00306BD0` calls `0x00309230`; `0x00306BD0` is called by `0x0030CE10`; `0x00309230` is called by `0x00306BD0`;
-  `0x0032FC30` is called by `0x00306BD0`; those functions are documented on
-  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
-  [battle units](../Characters-And-Objects/battle-units.md).
-- Core runtime: `0x00354D00` calls `0x00229EA0`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Resource: `0x0032FCA0` calls `0x002DF980`, `0x0032E400`, `0x0032E620`; `0x00351880` calls `0x001D6A70`; `0x003529E0` calls
-  `0x001D6A70`; those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
-  [startup constants](../Engine-Core/startup-constants.md),
-  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
-- Script VM: `0x00264D60` is called by `0x00348DF0`, `0x0034ADA0`, `0x00352A50`, `0x00352EC0`, `0x003534F0`, `0x003545B0`,
-  `0x00354F20`, `0x003555F0`, `0x00356B70`, `0x0050EAB0`; `0x0032FC30` is called by `0x003522C0`, `0x00353080`, `0x00353590`,
-  `0x0050D0C0`; `0x00348DF0` calls `0x00267E10`; `0x00348DF0` is called by `0x00349800`; `0x00351880` calls `0x00267E10`; `0x003529E0`
-  calls `0x00267E10`, `0x00267F90`; `0x00354D00` calls `0x00267E10`.
-- Script VM: those functions are documented on [archades scenes](archades-scenes.md),
-  [archades scripts](archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md),
-  [npc names](../Characters-And-Objects/npc-names.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
-- Script VM: and on [ebp script container](../EBP-Script-Files/ebp-script-container.md),
-  [debug menu](../Engine-Core/debug-menu.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md),
-  [native commands](../Scripts-And-Script-Commands/native-commands.md).
-- World area: `0x00306BD0` calls `0x0032FC30`; `0x0032FC30` calls `0x0025D4D0`, `0x003319D0`, `0x003EA6E0`; `0x0032FC30` is called
-  by `0x00314020`; `0x0032FCA0` is called by `0x0032FC30`; `0x003522C0` calls `0x0032FC30`; `0x00353080` calls `0x0032FC30`.
-- World area: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [debug logging](../Engine-Core/debug-logging.md).
+<details>
+<summary>Show the 44 calls with 10 other topics</summary>
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032FC30` | calls | `0x0032FCA0` |
+| `0x0032FC30` | is called by | `0x0025D9E0` |
+| `0x0032FCA0` | calls | `0x002628B0`, `0x0032ED80`, `0x00330310`, `0x003306E0` |
+
+**Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md), [force fight mode](../Engine-Core/force-fight-mode.md), [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+
+**Battle actions** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [battle units](../Characters-And-Objects/battle-units.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00306BD0` | calls | `0x00309230` |
+| `0x00306BD0` | is called by | `0x0030CE10` |
+| `0x00309230` | is called by | `0x00306BD0` |
+| `0x0032FC30` | is called by | `0x00306BD0` |
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00354D00` | calls | `0x00229EA0` |
+
+**Game files and data tables** (explained on [debug menu](../Engine-Core/debug-menu.md), [startup constants](../Engine-Core/startup-constants.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0032FCA0` | calls | `0x002DF980`, `0x0032E400`, `0x0032E620` |
+| `0x00351880` | calls | `0x001D6A70` |
+| `0x003529E0` | calls | `0x001D6A70` |
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00264D60` | is called by | `0x00348DF0`, `0x0034ADA0`, `0x00352A50`, `0x00352EC0`, `0x003534F0`, `0x003545B0`, `0x00354F20`, `0x003555F0`, `0x00356B70`, `0x0050EAB0` |
+| `0x0032FC30` | is called by | `0x003522C0`, `0x00353080`, `0x00353590`, `0x0050D0C0` |
+| `0x00348DF0` | calls | `0x00267E10` |
+| `0x00348DF0` | is called by | `0x00349800` |
+| `0x00351880` | calls | `0x00267E10` |
+| `0x003529E0` | calls | `0x00267E10`, `0x00267F90` |
+| `0x00354D00` | calls | `0x00267E10` |
+
+**Scripts and script commands** (explained on [archades scenes](archades-scenes.md), [archades scripts](archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md), [npc names](../Characters-And-Objects/npc-names.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md))
+
+**Scripts and script commands** (explained on [ebp script container](../EBP-Script-Files/ebp-script-container.md), [debug menu](../Engine-Core/debug-menu.md), [force fight mode](../Engine-Core/force-fight-mode.md), [native commands](../Scripts-And-Script-Commands/native-commands.md))
+
+**World, areas and travel**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00306BD0` | calls | `0x0032FC30` |
+| `0x0032FC30` | calls | `0x0025D4D0`, `0x003319D0`, `0x003EA6E0` |
+| `0x0032FC30` | is called by | `0x00314020` |
+| `0x0032FCA0` | is called by | `0x0032FC30` |
+| `0x003522C0` | calls | `0x0032FC30` |
+| `0x00353080` | calls | `0x0032FC30` |
+
+**World, areas and travel** (explained on [debug menu](../Engine-Core/debug-menu.md), [frame update order](../Engine-Core/frame-update-order.md), [debug logging](../Engine-Core/debug-logging.md))
+
+</details>

@@ -739,13 +739,23 @@ Nothing reaches these five globals beyond the listed instructions.
 - [MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md) - the zone pictures and placements.
 - [Controls](../Controls-And-Input/controls.md) - the input words.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Save load settings: `0x00249410` is called by `0x00582790`; `0x00249580` is called by `0x00582790`; `0x00254440` is called by
-  `0x00280140`; `0x00314440` is called by `0x00280140`; `0x003145E0` calls `0x0020E500`.
-- Save load settings: those functions are documented on
-  [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md),
-  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md),
-  [changing areas](../World-Areas-And-Travel/changing-areas.md).
+<details>
+<summary>Show the 5 calls with 2 other topics</summary>
+
+**Saving, loading and settings**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00249410` | is called by | `0x00582790` |
+| `0x00249580` | is called by | `0x00582790` |
+| `0x00254440` | is called by | `0x00280140` |
+| `0x00314440` | is called by | `0x00280140` |
+| `0x003145E0` | calls | `0x0020E500` |
+
+**Saving, loading and settings** (explained on [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md), [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md), [changing areas](../World-Areas-And-Travel/changing-areas.md))
+
+</details>

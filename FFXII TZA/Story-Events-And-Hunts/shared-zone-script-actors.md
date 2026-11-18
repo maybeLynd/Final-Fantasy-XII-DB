@@ -430,57 +430,107 @@ pages show it as differing from the shared actor.
 - [Message windows](../Menus-And-HUD/message-windows.md) - the message slots and the window build.
 - [Story flag ids](story-flag-ids.md) - the map-icon flags and `0x402A`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x00352FA0` calls `0x00264050`, `0x0035AE10`; `0x00354110` calls `0x002693D0`; those functions are documented
-  on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
-- Core runtime: `0x003462D0` calls `0x00229EB0`; `0x00354D00` calls `0x00229EA0`; those functions are documented on
-  [event scenes](../Scripts-And-Script-Commands/event-scenes.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Gameplay: `0x00300B80` is called by `0x00316DF0`, `0x00323540`; `0x0035D330` calls `0x0031C5D0`; those functions are
-  documented on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md).
-- Items equipment shops license: `0x002A5330` calls `0x00300B80`; `0x00300B80` calls `0x003008A0`; `0x00300B80` is called by
-  `0x00323910`; those functions are documented on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
-  [identifier spaces](../Engine-Core/identifier-spaces.md),
-  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
-- Party: `0x00352FA0` calls `0x00263750`, `0x002647C0`; those functions are documented on
-  [debug menu](../Engine-Core/debug-menu.md),
-  [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md).
-- Presentation: `0x0035D330` is called by `0x003BBD00`, `0x00506700`; those functions are documented on
-  [augments](../Damage-And-Battle-Formulas/augments.md), [battle numbers](../Menus-And-HUD/battle-numbers.md).
-- Resource: `0x0017D280` is called by `0x0017D9D0`, `0x001B14E0`, `0x001F4340`, `0x002EEEE0`; `0x008620C0` is called by
-  `0x0032E3B0`; those functions are documented on [debug logging](../Engine-Core/debug-logging.md),
-  [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md),
-  [debug menu](../Engine-Core/debug-menu.md).
-- Resource: and on
-  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
-- Rewards progression economy: `0x00300B80` is called by `0x00319920`, `0x003F4AA0`; those functions are documented on
-  [loot pickups](../Rewards-EXP-Gil-And-Loot/loot-pickups.md),
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
-- Save load settings: `0x00254CB0` is called by `0x00280140`; those functions are documented on
-  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
-- Save load settings: `0x0017D280` is called by `0x001DE5D0`, `0x001DF350`; `0x00254CB0` is called by `0x00580840`, `0x00580EB0`,
-  `0x005819F0`; those functions are documented on [debug logging](../Engine-Core/debug-logging.md),
-  [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [party data](../Party/party-data.md).
-- UI: `0x002B4090` is called by `0x00252030`, `0x00292B70`, `0x00295D90`, `0x002A86A0`, `0x002D66D0`, `0x003CA310`, `0x003CAB00`,
-  `0x00551F00`, `0x005595E0`; `0x0035D330` is called by `0x00250270`, `0x00273E30`, `0x0027B880`, `0x0027D480`, `0x0027F210`,
-  `0x00292B70`, `0x002986E0`, `0x002C38B0`, `0x002C4720`, `0x00558CE0`, `0x00559E30`, `0x00560210`.
-- UI: `0x0035D330` is also called by `0x005618E0`, `0x00567B60`, `0x0056A890`, `0x0056AE80`, `0x0056B100`, `0x0056BC70`.
-- UI: those functions are documented on
-  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md),
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md),
-  [battle menu](../Menus-And-HUD/battle-menu.md),
-  [small bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md).
-- UI: and on [menu screens](../Menus-And-HUD/menu-screens.md),
-  [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md),
-  [party control modes](../Engine-Core/party-control-modes.md), [controls](../Controls-And-Input/controls.md).
-- UI: and on [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md),
-  [dialogs](../Menus-And-HUD/dialogs.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md).
-- World area: `0x0017D280` is called by `0x00314020`; `0x0034AC10` calls `0x00314D80`; `0x00352FA0` calls `0x00377C20`; those
-  functions are documented on [debug logging](../Engine-Core/debug-logging.md),
-  [game over](../World-Areas-And-Travel/game-over.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 58 calls with 17 other topics</summary>
+
+**Characters and objects** (explained on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00352FA0` | calls | `0x00264050`, `0x0035AE10` |
+| `0x00354110` | calls | `0x002693D0` |
+
+**Engine core** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003462D0` | calls | `0x00229EB0` |
+| `0x00354D00` | calls | `0x00229EA0` |
+
+**Gameplay** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00300B80` | is called by | `0x00316DF0`, `0x00323540` |
+| `0x0035D330` | calls | `0x0031C5D0` |
+
+**Items, equipment, shops and licenses** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [identifier spaces](../Engine-Core/identifier-spaces.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002A5330` | calls | `0x00300B80` |
+| `0x00300B80` | calls | `0x003008A0` |
+| `0x00300B80` | is called by | `0x00323910` |
+
+**Party** (explained on [debug menu](../Engine-Core/debug-menu.md), [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00352FA0` | calls | `0x00263750`, `0x002647C0` |
+
+**Graphics** (explained on [augments](../Damage-And-Battle-Formulas/augments.md), [battle numbers](../Menus-And-HUD/battle-numbers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0035D330` | is called by | `0x003BBD00`, `0x00506700` |
+
+**Game files and data tables** (explained on [debug logging](../Engine-Core/debug-logging.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [debug menu](../Engine-Core/debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017D280` | is called by | `0x0017D9D0`, `0x001B14E0`, `0x001F4340`, `0x002EEEE0` |
+| `0x008620C0` | is called by | `0x0032E3B0` |
+
+**Game files and data tables** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+
+**Rewards: EXP, LP, gil and loot** (explained on [loot pickups](../Rewards-EXP-Gil-And-Loot/loot-pickups.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00300B80` | is called by | `0x00319920`, `0x003F4AA0` |
+
+**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00254CB0` | is called by | `0x00280140` |
+
+**Saving, loading and settings** (explained on [debug logging](../Engine-Core/debug-logging.md), [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [party data](../Party/party-data.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017D280` | is called by | `0x001DE5D0`, `0x001DF350` |
+| `0x00254CB0` | is called by | `0x00580840`, `0x00580EB0`, `0x005819F0` |
+
+**Menus and HUD**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002B4090` | is called by | `0x00252030`, `0x00292B70`, `0x00295D90`, `0x002A86A0`, `0x002D66D0`, `0x003CA310`, `0x003CAB00`, `0x00551F00`, `0x005595E0` |
+| `0x0035D330` | is called by | `0x00250270`, `0x00273E30`, `0x0027B880`, `0x0027D480`, `0x0027F210`, `0x00292B70`, `0x002986E0`, `0x002C38B0`, `0x002C4720`, `0x00558CE0`, `0x00559E30`, `0x00560210` |
+
+**Menus and HUD**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0035D330` | is also called by | `0x005618E0`, `0x00567B60`, `0x0056A890`, `0x0056AE80`, `0x0056B100`, `0x0056BC70` |
+
+**Menus and HUD** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [item and ability ids](../Engine-Core/item-and-ability-ids.md), [battle menu](../Menus-And-HUD/battle-menu.md), [small bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md))
+
+**Menus and HUD** (explained on [menu screens](../Menus-And-HUD/menu-screens.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [party control modes](../Engine-Core/party-control-modes.md), [controls](../Controls-And-Input/controls.md))
+
+**Menus and HUD** (explained on [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [dialogs](../Menus-And-HUD/dialogs.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md))
+
+**World, areas and travel** (explained on [debug logging](../Engine-Core/debug-logging.md), [game over](../World-Areas-And-Travel/game-over.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017D280` | is called by | `0x00314020` |
+| `0x0034AC10` | calls | `0x00314D80` |
+| `0x00352FA0` | calls | `0x00377C20` |
+
+</details>

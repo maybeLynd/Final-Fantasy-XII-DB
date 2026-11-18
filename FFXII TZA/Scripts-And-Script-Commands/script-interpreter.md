@@ -29,32 +29,33 @@ call site, `0x0025E0D3` in that driver.
 
 ### Entry, budget and stop
 
-The interpreter keeps the manager slot in `r13`, the actor record in `r15`, the wait slot in `rsi`
-and the program counter in `r14`, loaded from the wait slot's first qword. It zeroes the shared
-stack depth at `0x02099AC0` before anything else, then checks the actor's flag byte `+0x14`: bit `0x40`
-(halted) returns 1 at once; bit `0x10` or bit `0x20` clear returns 1 after `0x0025B500(actor)`; and when
-`+0x13` bit `0x1` is set or `+0x10C` is non-zero, `+0x0B` bit `0x20` must be set or the call returns 1
-without it.
+The interpreter keeps the manager slot in `r13`, the actor record in `r15`, the wait slot in `rsi` and the program
+counter in `r14`, loaded from the wait slot's first qword.
 
-The loop has a budget of `0x10000` instructions per call (`0x0025E4FA`), which ends the call only
-through the stop rule below. Each iteration fetches the opcode byte at
-the PC; for opcodes at or above `0x47` it also pre-decodes a little-endian 16-bit operand from the
-two following bytes, which is one opcode early (`0x47` has length 1).
+It zeroes the shared stack depth at `0x02099AC0` before any test (`0x0025E4D8`), then checks the actor's flag byte
+`+0x14`: bit `0x40` (halted) returns 1 at once (`0x0025E4FF`-`0x0025E502`, `0x0025E511`); bit `0x10` clear returns 1 after
+`0x0025B500(actor)` (`0x0025E504`-`0x0025E50C`); when `+0x13` bit `0x1` is set or `+0x10C` is non-zero, `+0x0B` bit `0x20`
+must be set or the call returns 1 without that call (`0x0025E524`-`0x0025E53A`); and then bit `0x20` clear returns 1 after
+`0x0025B500(actor)` (`0x0025E53C`-`0x0025E53F`).
 
-It loads the slot's skip mask `+0x201` ([native commands](native-commands.md)) into `edx`, refuses opcodes
-above `0x63` to the stop arm,
-and jumps through the
-table at `0x00261DF8`: 100 image-relative 32-bit offsets rebased on `0x00120000`, every target inside
-the interpreter itself. 92 targets are distinct; `0x01`, `0x02`, `0x19`, `0x1A`, `0x31` and `0x47`
-share the stop arm `0x0025E60A`, `0x2A` to `0x2C` share `0x0026121A`, and `0x51` and `0x60` share
-`0x002618A8`.
+The loop has a budget of `0x10000` instructions per call (`0x0025E4FA`), which ends the call only through the stop rule
+below. Each iteration fetches the opcode byte at the PC; for opcodes at or above `0x47` it also pre-decodes a
+little-endian 16-bit operand from the two following bytes (`0x0025E5A9`-`0x0025E5C2`), which is one opcode early (`0x47`
+has length 1).
+
+It loads the slot's skip mask `+0x201` ([native commands](native-commands.md)) into `edx`, refuses opcodes above
+`0x63` to the stop arm (`0x0025E5D1`-`0x0025E5D4`), and jumps through the table at `0x00261DF8`: 100 image-relative 32-bit
+offsets rebased on `0x00120000`, every target inside the interpreter itself. 92 targets are distinct; `0x01`, `0x02`,
+`0x19`, `0x1A`, `0x31` and `0x47` share the stop arm `0x0025E60A`, `0x2A` to `0x2C` share `0x0026121A`, and `0x51` and
+`0x60` share `0x002618A8`.
 
 Two epilogues end a handler. `0x0025E60A` raises the stop request and falls into `0x0025E613`, which
 advances the PC by the instruction's length, read as a signed word at `0x01EFEA60 + opcode × 24`:
 0 for `0x00` to `0x02`, 1 for `0x03` to `0x47`, 3 for `0x48` to `0x63`.
 
-Every loop head decrements the budget counter, a signed dword (`0x0025E570`), and a negative result
-raises the stop flag (`0x0025E57B`-`0x0025E57D`). With the flag raised:
+Every loop head decrements the budget counter, a signed dword (`0x0025E570`), and a negative result raises the stop flag
+(`0x0025E57B`-`0x0025E57D`); with the counter not negative and the flag clear the head goes straight to the fetch
+(`0x0025E579`, `0x0025E586`-`0x0025E588`). With the flag raised:
 
 - an empty stack ends the call (`0x0025E58A`-`0x0025E58D`), the only jump to the exit;
 - a non-empty stack is cleared to depth 0 (`0x0025E593`-`0x0025E596`) before the next instruction runs.
@@ -119,10 +120,14 @@ A script has eight persistent registers in its actor record, `I0` to `I3` at `+0
 `0x36` to `0x45`; nothing native reads or writes them, and nothing clears them when a record is
 reused.
 
-Three more live in the wait slot: `X` at `+8` (the target actor of a native call), `Y` at
-`+0xC` (the comparison value of the compare-and-jump opcodes and the result word of a native
-call) and `A` at `+0x10` (the accumulator the `…POPA` call forms fill). The slot's `+0x14` is the
-wait kind, `+0x15` the native call's phase, and `+0x18` onward its scratch.
+Three more live in the wait slot: `X` at `+8` (the target actor of a native call), `Y` at `+0xC` (the comparison value
+of the compare-and-jump opcodes and the result word of a native call) and `A` at `+0x10` (the accumulator the
+`…POPA` call forms fill). The slot's `+0x14` is the wait kind, `+0x15` the native call's phase, and `+0x18` onward
+its scratch.
+
+`PUSHA`, `PUSHX` and `PUSHY` (`0x1B`, `0x1D`, `0x1E`) push the register as an int through the push at `0x0025E75A`, and
+`POPA`, `POPX` and `POPY` (`0x1C`, `0x1F`, `0x20`) pop one value inline into it as `0x00267E10` would: an int as it is,
+a float through `cvttss2si`, 0 for an empty stack, 0 after `0x008620C0` for any other tag (`0x0025F322`-`0x0025F48E`).
 
 The manager slot supplies the script image: `+0` the bound definition, `+0x68` the int constant
 pool and `+0x70` the float pool (`PUSHI`, `PUSHF`), `+0x78` the variable descriptors
@@ -148,7 +153,7 @@ opcode its mnemonic, length, handler and effect. By family:
 | Opcodes | Family | Effect |
 |---|---|---|
 | `0x00` NOP | | advance only |
-| `0x03` SYSHALT | halt | sets actor `+0x14` bit `0x40` and rewinds the pc to itself (`0x0025E607`); while the bit is set the entry check returns at once, and request selection clears it when it selects an entry (`0x003DB774`) |
+| `0x03` SYSHALT | halt | sets actor `+0x14` bit `0x40`, rewinds the pc to itself and runs on into the stop arm, raising the stop flag (`0x0025E5EA`-`0x0025E611`); while the bit is set the entry check returns at once, and request selection clears it when it selects an entry (`0x003DB774`) |
 | `0x04` SYSTEM | | pops and discards one value |
 | `0x05` to `0x09`, `0x10`, `0x11`, `0x17`, `0x18` | logic | pop two (or one) ints, push the logical or bitwise result; `OPSRL` is an arithmetic shift |
 | `0x0A` to `0x0F` | compare | `0x0025D740` on two operands, push 0 or 1 for `== != > < >= <=` |
@@ -167,17 +172,56 @@ opcode its mnemonic, length, handler and effect. By family:
 | `0x5F`, `0x61`, `0x63`, `0x62` | lists | request or wait on a whole actor list; `INCINITTAG` marks a channel requested without filing; while the skip mask is non-zero, `0x5F` and `0x63` first wait as wait kind 7 until no listed actor has the channel's bit set ([field runtime](../Characters-And-Objects/field-runtime.md); `0x00261B15`, `0x00261C12`, `0x00261B97`), then make the request |
 | `0x01`, `0x02`, `0x19`, `0x1A`, `0x31`, `0x47` | | no handler: the stop arm; no shipped script uses them |
 
-`REQ` (`0x21`) submits with `0x00268850(slot, actor, stack, wait slot, PC, 0, 1)` and does not use the
-answer (`0x0025F7B6`-`0x0025F7D0`). With the skip mask at 0 that call is the whole arm (`0x0025F493`). With
-the mask non-zero and the wait slot's byte `+0x15` at 0 the arm first pops the function id, the target
+`SYSTEM` (`0x04`) pops one value with `0x00267E10` and drops it; like many handlers it ends in the tail
+`0x0025E651`-`0x0025E662`, which reloads the depth and goes on to `0x0025E613` (`0x0025E649`-`0x0025E662`).
+
+`OPLOR` (`0x05`) pops two ints with `0x00267E10` and pushes 1 when either is non-zero, else 0 (`0x0025E664`-`0x0025E68C`).
+`OPLAND` to `OPAND` (`0x06` to `0x09`) pop their two ints inline by the same rules: an empty stack gives 0, a float
+entry goes through `cvttss2si` and any other tag gives 0 after a call of `0x008620C0` (`0x0025E6D8`-`0x0025E74D`,
+`0x0025E7A0`-`0x0025E7C8`). `OPLAND` pushes 1 when both are non-zero, else 0 (`0x0025E750`, `0x0025E7D0`-`0x0025E7E2`).
+
+`OPOR`, `OPEOR` and `OPAND` push the bitwise or, exclusive or and and of the two (`0x0025E86F`, `0x0025E92A`, `0x0025E9E5`;
+handlers `0x0025E7E7`-`0x0025E8A0`, `0x0025E8A2`-`0x0025E95B` and `0x0025E95D`-`0x0025EA16`). Each of the five pushes inline as
+`0x00267F90` does: tag 1, kind 6, the reserved dword 0 and the value, then the depth plus 1, with nothing stored at
+depth 63 (`0x0025E68F`-`0x0025E6D3`, `0x0025E762`-`0x0025E79B`, `0x0025E869`, `0x0025E924`, `0x0025E9DF`).
+
+`OPEQ` to `OPLSE` (`0x0A` to `0x0F`) each call `0x0025D740` and push 1 when its answer is 0 (`OPEQ`), not 0 (`OPNE`), 1
+(`OPGT`), -1 (`OPLS`), not -1 (`OPGTE`) or not 1 (`OPLSE`), and 0 otherwise, through the push at `0x0025E68F`
+(`0x0025EA18`-`0x0025EAA3`).
+
+`OPSLL` and `OPSRL` (`0x10`, `0x11`) pop the count and then the value with the inline int pop and push the value moved
+by `shl` or `sar` by `count & 0x1F`, the part of the count those instructions use; at depth 63 nothing is stored
+(`0x0025EAA8`-`0x0025EB84`, `0x0025EB86`-`0x0025EC62`).
+
+`OPADD` (`0x12`) has `0x00267560` inline: below depth 2 it calls `0x008620C0` and takes the float path
+(`0x0025EC64`-`0x0025EC6C`), and when the top two tags are both 1 it pops two ints inline and pushes their sum as an int
+(`0x0025ECBA`-`0x0025EDBE`). `OPSUB`, `OPMUL` and `OPDIV` (`0x13` to `0x15`) call `0x00267560` and on the int path pop with
+`0x00267E10` and push `first - last`, `first * last` or `first / last`, `first` being the operand pushed first
+(`0x0025EE79`-`0x0025EEA2`, `0x0025EF92`-`0x0025EFB9`, `0x0025F0AC`-`0x0025F0DE`).
+
+The float paths of the four pop both operands inline as `0x00267DB0` does, an int converted, an empty stack 0.0 after
+`0x008620C0` and any other tag 0.0 without the call, and push the result with tag 2 and kind 6, nothing at depth 63
+(`0x0025EC7F`-`0x0025EE74`, `0x0025EEA7`-`0x0025EF8D`, `0x0025EFC1`-`0x0025F0A7`, `0x0025F0E3`-`0x0025F1D1`).
+
+The float `OPDIV` pushes 0.0 for a divisor equal to 0.0 and `first / last` otherwise, a NaN divisor included
+(`0x0025F197`-`0x0025F1A3`). `OPMOD` (`0x16`) pops two ints with `0x00267E10` and pushes `first % last` as `idiv` leaves it
+in `edx` (`0x0025F1D6`-`0x0025F221`); a refused push of `OPSUB` to `OPMOD` goes to `0x0025F226`-`0x0025F22D`, of `OPADD` to
+`0x0025E61B` (`0x0025ED66`, `0x0025EE49`).
+
+`OPNOT` and `OPBNOT` (`0x17`, `0x18`) pop one int inline and push 1 when it is 0 and 0 otherwise, or `~v`
+(`0x0025F232`-`0x0025F2B6`, `0x0025F2B8`-`0x0025F320`).
+
+`REQ` (`0x21`) submits with `0x00268850(slot, actor, stack, wait slot, PC, 0, 1)` and does not use the answer
+(`0x0025F7B6`-`0x0025F7D0`). With the skip mask at 0 that call is the whole arm (`0x0025F493`-`0x0025F495`). With the mask
+non-zero and the wait slot's byte `+0x15` at 0 (`0x0025F49B`-`0x0025F49F`) the arm first pops the function id, the target
 and the channel itself: an int as it is, a float through `cvttss2si`, an empty stack 0, any other tag 0 after
 `0x008620C0(1)` (`0x0025F4A5`-`0x0025F56B`, `0x0025F5FF`-`0x0025F64E`).
 
 Bit `0x8000` in the function id or the target puts the three values back and submits (`0x0025F56E`-`0x0025F577`,
 `0x0025F677`). Otherwise the channel's low byte goes to the wait slot's `+0x26` and the arm calls
-`0x00358940(slot, target)` and `0x003DB640(that record, channel)` (`0x0025F57F`-`0x0025F593`). An answer of 0
-puts the three values back and submits (`0x0025F653`-`0x0025F70D`). The values go back channel first, and a
-value is left out once the depth is 63 or more (`0x0025F66C`, `0x0025F6AD`, `0x0025F6E1`).
+`0x00358940(slot, target)` and `0x003DB640(that record, channel)` (`0x0025F57F`-`0x0025F593`). An answer of 0 puts the three
+values back and submits (`0x0025F598`-`0x0025F59A`, `0x0025F653`-`0x0025F70D`). The values go back channel first, and a value
+is left out once the depth is 63 or more (`0x0025F66C`, `0x0025F6AD`, `0x0025F6E1`).
 
 A non-zero answer arms the wait instead of submitting: `0x0020E620(record)` goes to the wait slot's
 `+0x18`, the target's low word to `+0x24`, the function id's low word to `+0x20`, 0 to `+0x27` and the
@@ -248,6 +292,17 @@ The seventh is the mode: 1 for `0x21` to `0x23`, 2 for `0x24` to `0x26`, 3 for `
 the submit is at `0x002602D0`: an answer of 1 from `0x00268850` sets the wait slot's byte `+0x14` to 4 and
 the stop flag to 1; any other answer leaves both as they were (`0x002602E1`-`0x002602FB`, `0x00261610`).
 
+The arms run from their handler to their jump to the submit: `FREQ` `0x0025F7F2`-`0x0025FBC4`, `TREQ`
+`0x0025FBC9`-`0x0025FF9B`, `REQSW` `0x0025FFA0`-`0x002602FB`, `FREQSW` `0x00260300`-`0x002606BE`, `TREQSW` `0x002606C3`-`0x00260A81`,
+`REQEW` `0x00260A86`-`0x00260DB9`, `FREQEW` `0x00260DBE`-`0x002610B0` and `TREQEW` `0x002610B5`-`0x00261215`; `FREQ` and `TREQ`
+jump to the submit of `REQ` at `0x0025F7BF`, `REQEW` to `0x002602CB` and the other four to `0x002602D0`, the submit that
+ends the range of `REQSW`.
+
+Their wait paths call `0x00358940`, `0x003DB640` and `0x0020E620` as `REQ`'s does. `FREQEW` puts the target and the function
+id back through `0x00267F90` after an answer of 0 (`0x00260FB9`, `0x00260FC4`) and pushes all three through it on its
+`+0x15` path (`0x00261071`-`0x00261090`); its other pushes are inline. `TREQEW` pops the values through `0x00267E10` and
+puts them back through `0x00267F90` (`0x002610CA`-`0x002610E6`, `0x00261186`-`0x002611F5`).
+
 `RETN` (`0x2E`) and `RETTN` (`0x30`) pop a value and first compare `value + 1`, signed, with the actor's
 byte `+0x11`. When it is above, nothing is recycled and no return is made: the script goes on when the
 wait slot's byte `+0x14` is 1, and the stop flag is set to 1 for any other kind
@@ -299,8 +354,8 @@ already at depth 63 gets nothing. The phase resets to 0 and the PC advances past
 `CALLPOPA` then pops that value into `A`. `CALLACT` pops the target into `X` only while the phase
 is 0, so a resumed call keeps the target it started with.
 
-`SYSHALT` and a busy call are the two ways a handler rewinds; 21 sites in the body subtract the
-instruction length to repeat an instruction, against 4 that advance.
+`SYSHALT`, a busy call and a request arm that arms its wait (`0x21` to `0x29`) are among the handlers that rewind; 21
+sites in the body subtract the instruction length to repeat an instruction, against 4 that advance.
 
 ## Layouts
 

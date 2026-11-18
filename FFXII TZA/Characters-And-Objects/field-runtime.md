@@ -346,19 +346,24 @@ record +0x14: bit 0x10 drive the bound battle unit through +0x38 (0x0025DF00), b
 - [Weather](../World-Areas-And-Travel/weather.md): the lane the init core passes on.
 - [Saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md): the busy flag's writers.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Story event quest hunt: `0x002EF2B0` is called by `0x0032A8A0`, `0x0032A930`, `0x0032A9A0`, `0x0032AA00`, `0x0032AA60`,
-  `0x0032AAD0`, `0x0032AB60`, `0x0032ABF0`, `0x0032AC70`, `0x0032ACF0`, `0x0032AD70`, `0x0032ADF0`.
-- Story event quest hunt: those functions are documented on
-  [identifier spaces](../Engine-Core/identifier-spaces.md),
-  [story flags](../Story-Events-And-Hunts/story-flags.md),
-  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md),
-  [story flag ids](../Story-Events-And-Hunts/story-flag-ids.md).
-- Story event quest hunt: and on [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md),
-  [npc names](npc-names.md).
+<details>
+<summary>Show the 12 calls with 3 other topics</summary>
+
+**Story, events and hunts**
+
+| Function | | Functions |
+|---|---|---|
+| `0x002EF2B0` | is called by | `0x0032A8A0`, `0x0032A930`, `0x0032A9A0`, `0x0032AA00`, `0x0032AA60`, `0x0032AAD0`, `0x0032AB60`, `0x0032ABF0`, `0x0032AC70`, `0x0032ACF0`, `0x0032AD70`, `0x0032ADF0` |
+
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md), [story flags](../Story-Events-And-Hunts/story-flags.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [story flag ids](../Story-Events-And-Hunts/story-flag-ids.md))
+
+**Story, events and hunts** (explained on [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [npc names](npc-names.md))
+
+</details>
 
 ---
 

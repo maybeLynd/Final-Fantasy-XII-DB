@@ -451,35 +451,73 @@ Slots 6, 7, 10, 12, 14, 19 and 20 are `0x001F9FF0`, `0x001FB080`, `0x001F8C00`, 
 - [Character fades](character-fades.md): the instance's colour and fade fields.
 - [Graphics settings](../Engine-Core/graphics-settings.md): the shadow object and the character light settings.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x00229EA0` is called by `0x003638B0`; `0x002628B0` calls `0x00360B50`, `0x00360DD0`, `0x003636A0`; those functions are
-  documented on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [music](../Sound-And-Music/music.md),
-  [game over](../World-Areas-And-Travel/game-over.md).
-- Movement: `0x002628B0` calls `0x00263560`, `0x0026A1D0`, `0x00379070`, `0x003791C0`, `0x003792D0`, `0x003DAA20`; those functions
-  are documented on [frame update order](../Engine-Core/frame-update-order.md),
-  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
-  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md).
-- Party: `0x002628B0` calls `0x00358B40`, `0x00359200`; those functions are documented on
-  [player movement](../Movement-And-Pathfinding/player-movement.md),
-  [actor managers](../Characters-And-Objects/actor-managers.md).
-- Platform: `0x006336E0` is called by `0x0019CC50`; those functions are documented on
-  [debug menu](../Engine-Core/debug-menu.md).
-- Save load settings: `0x002628B0` calls `0x002EF2B0`; those functions are documented on
-  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
-- Script VM: `0x00229EA0` is called by `0x00354D00`; `0x00352DE0` calls `0x00267DB0`; `0x00353240` calls `0x00267DB0`; `0x00353AA0`
-  calls `0x00267DB0`; `0x003542E0` calls `0x00267E10`; `0x003799C0` is called by `0x003542E0`; `0x003799D0` is called by
-  `0x00352DE0`; `0x003799F0` is called by `0x00353240`; `0x00379A00` is called by `0x00353AA0`.
-- Script VM: those functions are documented on
-  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
-  [script interpreter](../Scripts-And-Script-Commands/script-interpreter.md),
-  [force fight mode](../Engine-Core/force-fight-mode.md).
-- UI: `0x00229EA0` is called by `0x002468A0`, `0x00246C20`; those functions are documented on
-  [clan primer](../Menus-And-HUD/clan-primer.md), [widget messages](../Menus-And-HUD/widget-messages.md).
-- Developer: `0x0017D6E0` calls `0x001C2F50`; those functions are documented on
-  [game application](../Engine-Core/game-application.md).
+<details>
+<summary>Show the 26 calls with 9 other topics</summary>
+
+**Sound and music** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [music](../Sound-And-Music/music.md), [game over](../World-Areas-And-Travel/game-over.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00229EA0` | is called by | `0x003638B0` |
+| `0x002628B0` | calls | `0x00360B50`, `0x00360DD0`, `0x003636A0` |
+
+**Movement and pathfinding** (explained on [frame update order](../Engine-Core/frame-update-order.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002628B0` | calls | `0x00263560`, `0x0026A1D0`, `0x00379070`, `0x003791C0`, `0x003792D0`, `0x003DAA20` |
+
+**Party** (explained on [player movement](../Movement-And-Pathfinding/player-movement.md), [actor managers](../Characters-And-Objects/actor-managers.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002628B0` | calls | `0x00358B40`, `0x00359200` |
+
+**Platform** (explained on [debug menu](../Engine-Core/debug-menu.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x006336E0` | is called by | `0x0019CC50` |
+
+**Saving, loading and settings** (explained on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002628B0` | calls | `0x002EF2B0` |
+
+**Scripts and script commands**
+
+| Function | | Functions |
+|---|---|---|
+| `0x00229EA0` | is called by | `0x00354D00` |
+| `0x00352DE0` | calls | `0x00267DB0` |
+| `0x00353240` | calls | `0x00267DB0` |
+| `0x00353AA0` | calls | `0x00267DB0` |
+| `0x003542E0` | calls | `0x00267E10` |
+| `0x003799C0` | is called by | `0x003542E0` |
+| `0x003799D0` | is called by | `0x00352DE0` |
+| `0x003799F0` | is called by | `0x00353240` |
+| `0x00379A00` | is called by | `0x00353AA0` |
+
+**Scripts and script commands** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [script interpreter](../Scripts-And-Script-Commands/script-interpreter.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+**Menus and HUD** (explained on [clan primer](../Menus-And-HUD/clan-primer.md), [widget messages](../Menus-And-HUD/widget-messages.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00229EA0` | is called by | `0x002468A0`, `0x00246C20` |
+
+**Developer** (explained on [game application](../Engine-Core/game-application.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0017D6E0` | calls | `0x001C2F50` |
+
+</details>
 
 ---
 

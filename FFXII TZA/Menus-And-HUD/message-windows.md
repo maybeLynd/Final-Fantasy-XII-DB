@@ -599,16 +599,33 @@ The draws copy the window's text record `+0xD0` whole into `0x0209C630`: `0x002A
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md) - the message verbs and their handlers.
 - [EBP text sections](../EBP-Script-Files/ebp-text-sections.md) - where the window text comes from.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Audio: `0x0024A1A0` calls `0x002DEE80`, `0x002DF0F0`; `0x002A1FB0` calls `0x0024A1A0`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md), [party list](party-list.md).
-- Rewards progression economy: `0x002A1FB0` calls `0x00253690`; those functions are documented on
-  [item and ability ids](../Engine-Core/item-and-ability-ids.md).
-- World area: `0x002E1450` is called by `0x00266D10`; those functions are documented on
-  [force fight mode](../Engine-Core/force-fight-mode.md).
+<details>
+<summary>Show the 5 calls with 3 other topics</summary>
+
+**Sound and music** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [party list](party-list.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0024A1A0` | calls | `0x002DEE80`, `0x002DF0F0` |
+| `0x002A1FB0` | calls | `0x0024A1A0` |
+
+**Rewards: EXP, LP, gil and loot** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002A1FB0` | calls | `0x00253690` |
+
+**World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x002E1450` | is called by | `0x00266D10` |
+
+</details>
 
 ---
 

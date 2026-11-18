@@ -340,12 +340,20 @@ In this access table, `function`, `name` and `site` give the function, its name 
 itself, and `route` how the payload reached it: in `rdx` at the entry of `0x0026C8C0`, which keeps it in `r15`
 (`0x0026C8F7`) and stores it to the slot's `+0x00` (`0x0026C95A`).
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Gameplay: `0x003590D0` is called by `0x0031ADB0`; those functions are documented on
-  [bestiary](../Enemy-Spawning/bestiary.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Gameplay** (explained on [bestiary](../Enemy-Spawning/bestiary.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x003590D0` | is called by | `0x0031ADB0` |
+
+</details>
 
 ---
 

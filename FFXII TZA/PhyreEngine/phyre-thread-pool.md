@@ -285,12 +285,19 @@ pool's first stop. The four earlier failure exits (`0x005A0927`, `0x005A0A3E`, `
 - [Class hierarchy](../Engine-Core/class-hierarchy.md): the RTTI the class names come from.
 - [Memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md): the heap the scratch blocks and job lists come from.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Presentation: `0x0016D680` is called by `0x00183A00`, `0x00183C60`, `0x00183EE0`, `0x001946E0`, `0x003ED8A0`, `0x003EE2D0`; those
-  functions are documented on [effect files efx efb](../Graphics/effect-files-efx-efb.md),
-  [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md),
-  [random number generators](../Random-Numbers/random-number-generators.md).
-- Presentation: and on [effect element runtime](../Graphics/effect-element-runtime.md).
+<details>
+<summary>Show the 6 calls with 2 other topics</summary>
+
+**Graphics** (explained on [effect files efx efb](../Graphics/effect-files-efx-efb.md), [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [random number generators](../Random-Numbers/random-number-generators.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0016D680` | is called by | `0x00183A00`, `0x00183C60`, `0x00183EE0`, `0x001946E0`, `0x003ED8A0`, `0x003EE2D0` |
+
+**Graphics** (explained on [effect element runtime](../Graphics/effect-element-runtime.md))
+
+</details>

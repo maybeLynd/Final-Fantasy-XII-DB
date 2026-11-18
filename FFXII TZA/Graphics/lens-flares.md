@@ -424,29 +424,59 @@ copies it to `0x0209A380`, the scene colour of the map ambient
 - [The frame](../PhyreEngine/the-frame.md): where the field frame runs the per-frame pass.
 - [Position to scalar](position-to-scalar.md): the projection matrix `0x02AEECB0`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Actor entity: `0x0024DA40` calls `0x00263C30`, `0x00263FF0`, `0x00358940`, `0x003589B0`; `0x00465690` calls `0x00263C30`,
-  `0x00263FF0`, `0x00358940`, `0x003589B0`.
-- Actor entity: those functions are documented on [event scenes](../Scripts-And-Script-Commands/event-scenes.md),
-  [debug menu](../Engine-Core/debug-menu.md),
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [identifier spaces](../Engine-Core/identifier-spaces.md).
-- Input: `0x0022B8C0` calls `0x0017DE60`, `0x00182D40`, `0x002498B0`, `0x0035AE30`, `0x0035AF10`, `0x0035AF20`, `0x0035E9A0`,
-  `0x0035FF90`, `0x0036FDF0`; `0x0022BC20` calls `0x0017DE60`, `0x002498B0`, `0x0035AE30`, `0x0035AF10`, `0x0035AF20`, `0x0035E9A0`,
-  `0x0035FF90`, `0x0036FDF0`; `0x005CD4F0` is called by `0x0079C140`, `0x007A0340`; `0x005CD820` is called by `0x0079C140`,
-  `0x007A0340`; `0x0079F150` calls `0x00797910`, `0x0079D920`, `0x0079E3D0`.
-- Input: `0x0079F150` is called by `0x0079E520`; those functions are documented on
-  [frame update order](../Engine-Core/frame-update-order.md),
-  [screen mode and aspect](screen-mode-and-aspect.md),
-  [phyre application](../PhyreEngine/phyre-application.md), [controllers](../Controls-And-Input/controllers.md),
-  [sound engine config](../Sound-And-Music/sound-engine-config.md).
-- Movement: `0x0022B0B0` calls `0x00357780`; `0x0022B8C0` calls `0x00263560`, `0x0037CF00`; `0x0022BC20` calls `0x00263560`; those
-  functions are documented on [the frame](../PhyreEngine/the-frame.md),
-  [frame update order](../Engine-Core/frame-update-order.md).
-- Party: `0x0022B8C0` calls `0x00358BB0`; `0x0022BC20` calls `0x00358BB0`; `0x00465690` calls `0x003590D0`; those functions are
-  documented on [frame update order](../Engine-Core/frame-update-order.md).
-- UI: `0x005FEFD0` is called by `0x0018EEE0`; `0x00600A60` is called by `0x0018EEE0`; those functions are documented on
-  [graphics settings](../Engine-Core/graphics-settings.md).
+<details>
+<summary>Show the 42 calls with 7 other topics</summary>
+
+**Characters and objects**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0024DA40` | calls | `0x00263C30`, `0x00263FF0`, `0x00358940`, `0x003589B0` |
+| `0x00465690` | calls | `0x00263C30`, `0x00263FF0`, `0x00358940`, `0x003589B0` |
+
+**Characters and objects** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [debug menu](../Engine-Core/debug-menu.md), [frame update order](../Engine-Core/frame-update-order.md), [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+**Controls and input**
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022B8C0` | calls | `0x0017DE60`, `0x00182D40`, `0x002498B0`, `0x0035AE30`, `0x0035AF10`, `0x0035AF20`, `0x0035E9A0`, `0x0035FF90`, `0x0036FDF0` |
+| `0x0022BC20` | calls | `0x0017DE60`, `0x002498B0`, `0x0035AE30`, `0x0035AF10`, `0x0035AF20`, `0x0035E9A0`, `0x0035FF90`, `0x0036FDF0` |
+| `0x005CD4F0` | is called by | `0x0079C140`, `0x007A0340` |
+| `0x005CD820` | is called by | `0x0079C140`, `0x007A0340` |
+| `0x0079F150` | calls | `0x00797910`, `0x0079D920`, `0x0079E3D0` |
+
+**Controls and input** (explained on [frame update order](../Engine-Core/frame-update-order.md), [screen mode and aspect](screen-mode-and-aspect.md), [phyre application](../PhyreEngine/phyre-application.md), [controllers](../Controls-And-Input/controllers.md), [sound engine config](../Sound-And-Music/sound-engine-config.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0079F150` | is called by | `0x0079E520` |
+
+**Movement and pathfinding** (explained on [the frame](../PhyreEngine/the-frame.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022B0B0` | calls | `0x00357780` |
+| `0x0022B8C0` | calls | `0x00263560`, `0x0037CF00` |
+| `0x0022BC20` | calls | `0x00263560` |
+
+**Party** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0022B8C0` | calls | `0x00358BB0` |
+| `0x0022BC20` | calls | `0x00358BB0` |
+| `0x00465690` | calls | `0x003590D0` |
+
+**Menus and HUD** (explained on [graphics settings](../Engine-Core/graphics-settings.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x005FEFD0` | is called by | `0x0018EEE0` |
+| `0x00600A60` | is called by | `0x0018EEE0` |
+
+</details>

@@ -988,9 +988,17 @@ curve *b*, counting from 0, through the offset `3 × (3 − [0x01DFE0B4]) × fra
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md): the verbs and their handlers.
 - [HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md): events `0x2005` and `0x2006`.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Gameplay: `0x0046F460` is called by `0x00339630`; those functions are documented on
-  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Gameplay** (explained on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x0046F460` | is called by | `0x00339630` |
+
+</details>

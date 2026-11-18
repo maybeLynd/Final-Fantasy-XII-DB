@@ -216,9 +216,17 @@ On both paths `0x002B32D0` ends by setting `+0x90` to the negated signed byte `+
 - [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md): the hold a flagged message keeps raised.
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md): the verbs that read the banks.
 
-### Cross-subsystem neighbours
+### Calls to and from other topics
 
-Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
-- Save load settings: `0x00245020` is called by `0x00280140`; those functions are documented on
-  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
+
+| Function | | Functions |
+|---|---|---|
+| `0x00245020` | is called by | `0x00280140` |
+
+</details>
