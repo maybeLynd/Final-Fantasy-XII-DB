@@ -1,9 +1,8 @@
----
-title: "Bin_menu images: the headerless 8-bit guest portraits and area icons pasted into menu pictures"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x0035C5B0, 0x0035C430, 0x00283270, 0x002CEAE0, 0x002CE980, 0x003C9A30, 0x003C9950, 0x003C9E50, 0x00280750, 0x00280670, 0x00181580, 0x00180C80, 0x00180A70, 0x0024A5A0, 0x022CA470, 0x0209AC30, 0x022C314C, 0x0031A7B0"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Bin_menu images
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Bin_menu images: the headerless 8-bit guest portraits and area icons pasted into menu pictures | format | Game files and data tables | Image files | The eighteen headerless bin_menu .bin images (mini_guest_face, map_efe00-06, face_guest07-16): raw 8-bit colour indices with no palette of their own, the requests that pick a file from a guest's character id or the first set area flag, the three routines that copy them row by row into a sub-image of the menu pictures mini_face_c, partytop_8_c and battle_4_c and re-upload it, the 162 shipped copies, and the size and palette rules a replacement must follow. | 0x0035C5B0, 0x0035C430, 0x00283270, 0x002CEAE0, 0x002CE980, 0x003C9A30, 0x003C9950, 0x003C9E50, 0x00280750, 0x00280670, 0x00181580, 0x00180C80, 0x00180A70, 0x0024A5A0, 0x022CA470, 0x0209AC30, 0x022C314C, 0x0031A7B0 |
 
 ## What the player sees
 

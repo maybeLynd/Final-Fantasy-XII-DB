@@ -1,9 +1,8 @@
----
-title: "Settings launcher: FFXII_TZA_GameSetting.exe, the options it writes to GameSetting.ini, the display list it builds, its reset button, and every other file the game ships beside the executable"
-kind: "system"
-category: "Saving, loading and settings"
-addresses: "0x001DE050, 0x001F3ED0, 0x0079813C, 0x0078AD20, 0x007911D0, 0x00862C70"
----
+[Home](../../README.md) / [Saving, loading and settings](README.md) / Settings launcher
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Settings launcher: FFXII_TZA_GameSetting.exe, the options it writes to GameSetting.ini, the display list it builds, its reset button, and every other file the game ships beside the executable | system | Saving, loading and settings | Settings and languages | The separate .NET settings program shipped beside the game: where it finds GameSetting.ini and keymap.ini, how it picks its language from Steam or Windows, the display adapters and resolutions it offers through DXGI, the keys and values it writes (two of which the game ignores), the reset that deletes keymap.ini, its gamepad navigation and single-instance lock, its SettingsLoc.xml strings, and what each loose file in the x64 folder is for and which program loads it. | 0x001DE050, 0x001F3ED0, 0x0079813C, 0x0078AD20, 0x007911D0, 0x00862C70 |
 
 ## What the player sees
 

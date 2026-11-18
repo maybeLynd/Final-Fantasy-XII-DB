@@ -1,9 +1,8 @@
----
-title: "Gambits screen: the three gambit sets, switching lines on and off, moving them, choosing conditions and actions, and the save to the character"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x00568B30, 0x005691E0, 0x00567D80, 0x00567F90, 0x0056B4D0, 0x0056AC50, 0x00569F90, 0x003282D0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Gambits screen
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Gambits screen: the three gambit sets, switching lines on and off, moving them, choosing conditions and actions, and the save to the character | system | Menus and HUD | Menu screens | How the Gambits screen opens from the menu or a script, its three editor panes and the rows they show, changing set and character, the ON/OFF switch, picking a line up to move it, clearing a line, the condition and action lists with their pages and refusals, the save that copies every edit into the character's selected set and rebuilds its gambit orders at once, and the script restore and tutorial steering. | 0x00568B30, 0x005691E0, 0x00567D80, 0x00567F90, 0x0056B4D0, 0x0056AC50, 0x00569F90, 0x003282D0 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "HP and KO: how damage and healing change HP, the HP floor and cap, revive from zero and what happens at KO"
-kind: "system"
-category: "Damage and battle formulas"
-addresses: "0x00300530, 0x00300520, 0x003112F0, 0x0030F340, 0x00239820, 0x0030E360, 0x00469BB0, 0x00306F00, 0x003299B0"
----
+[Home](../../README.md) / [Damage and battle formulas](README.md) / HP and KO
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| HP and KO: how damage and healing change HP, the HP floor and cap, revive from zero and what happens at KO | system | Damage and battle formulas | Stats, HP and augments | The one function every HP change goes through: its flag bits and who passes them, the gates that refuse a change, the refusal of damage to a KO, Stone or X-Zone target, the floor and the cap (max HP, doubled by Bubble, frozen by Disease), revive when a heal lands on zero HP, and the KO sequence: the fallen message, the KO status, the killer, the death count and the group ledger. | 0x00300530, 0x00300520, 0x003112F0, 0x0030F340, 0x00239820, 0x0030E360, 0x00469BB0, 0x00306F00, 0x003299B0 |
 
 ## What the player sees
 
@@ -226,3 +225,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Resource: `0x00427320` calls `0x002ED570`; those functions are documented on
   [resource sections](../Game-Files-And-Data-Tables/resource-sections.md).
+
+---
+
+[← Weapon formulas](weapon-formulas.md)

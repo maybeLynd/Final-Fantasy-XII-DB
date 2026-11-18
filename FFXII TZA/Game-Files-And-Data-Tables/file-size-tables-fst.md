@@ -1,9 +1,8 @@
----
-title: "File size tables: the per-language .fst that sizes every file by resource kind and id"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x002DF9A0, 0x02EC3EE0, 0x002DF960, 0x0032E400, 0x0032EB40, 0x002DF780, 0x0215F000, 0x01E88B00, 0x00B56AC8, 0x0032FCA0, 0x0024AC30, 0x022C51F0, 0x0032EA90, 0x0046DE50, 0x0032EC20, 0x0046E050, 0x0046DE80, 0x0046DD50, 0x00536F30, 0x00536DD0"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / File size tables
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| File size tables: the per-language .fst that sizes every file by resource kind and id | format | Game files and data tables | Archives and file loading | The FileSizeTables/FileSizeTable_&lt;lang&gt;.fst files: a headerless table of 41 resource kinds by 5,000 ids giving each file's byte size or -1, how the game picks and reads one at boot, how request sizes come from it, why a -1 entry is never read, the 41 path arrays the ids index, which kinds are sized and what each holds, the kinds with paths but no sizes, and how the twelve language files differ. | 0x002DF9A0, 0x02EC3EE0, 0x002DF960, 0x0032E400, 0x0032EB40, 0x002DF780, 0x0215F000, 0x01E88B00, 0x00B56AC8, 0x0032FCA0, 0x0024AC30, 0x022C51F0, 0x0032EA90, 0x0046DE50, 0x0032EC20, 0x0046E050, 0x0046DE80, 0x0046DD50, 0x00536F30, 0x00536DD0 |
 
 ## What the player sees
 

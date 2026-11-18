@@ -1,9 +1,8 @@
----
-title: "Asynchronous load manager: the loading thread, its request records, the four load kinds and the .efx appendix"
-kind: "system"
-category: "Game files and data tables"
-addresses: "0x01F81160, 0x001A11B0, 0x001A1220, 0x0019F620, 0x001A0AF0, 0x0019F490, 0x0019FFD0, 0x001A0A90, 0x001A0BB0, 0x001A0C50, 0x001A1230, 0x001A07B0, 0x001A0CF0, 0x001A0E50, 0x001A0F80, 0x001A09E0, 0x001A1310, 0x001A0960, 0x0019F930, 0x002DF780, 0x001D6D90, 0x001D6FB0, 0x001D6EF0, 0x001D6B40, 0x001BA860, 0x002124C0, 0x005CC900, 0x005CC8A0"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Asynchronous load manager
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Asynchronous load manager: the loading thread, its request records, the four load kinds and the .efx appendix | system | Game files and data tables | Archives and file loading | The AsyncLoadManager at 0x01F81160 that loads files off the main thread: its pool of 1,024 request records, the queue and the two ways a request enters it, the loading thread, the four kinds (a .phyre asset, a PS2 file read by name or from an open stream, a whole text file), how a finished request's callback runs on the loading thread or at a later run of the completion pump, how PS2 file reads choose between the queue and a direct read, and the table that appends a character effect file to 144 model files. | 0x01F81160, 0x001A11B0, 0x001A1220, 0x0019F620, 0x001A0AF0, 0x0019F490, 0x0019FFD0, 0x001A0A90, 0x001A0BB0, 0x001A0C50, 0x001A1230, 0x001A07B0, 0x001A0CF0, 0x001A0E50, 0x001A0F80, 0x001A09E0, 0x001A1310, 0x001A0960, 0x0019F930, 0x002DF780, 0x001D6D90, 0x001D6FB0, 0x001D6EF0, 0x001D6B40, 0x001BA860, 0x002124C0, 0x005CC900, 0x005CC8A0 |
 
 ## What the player sees
 

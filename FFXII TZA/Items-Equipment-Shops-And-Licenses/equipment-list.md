@@ -1,9 +1,8 @@
----
-title: "Equipment list: every weapon, shield, armor, accessory and ammunition row with its name, class, price, stats, elements, statuses and bonuses"
-kind: "reference"
-category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF0F8, 0x0031C5D0, 0x0031C911, 0x0031C981, 0x002FEF30, 0x0031E9F0, 0x00388409, 0x0038BE30, 0x00317B70, 0x00317930, 0x00323C60, 0x002F8FA0"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Equipment list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Equipment list: every weapon, shield, armor, accessory and ammunition row with its name, class, price, stats, elements, statuses and bonuses | reference | Items, equipment, shops and licenses | Equipment | All 557 equipment rows of the shipped battle_pack.bin, decoded field by field: the item id, the name, the slot and class with the class's shipped name, the price, Attack, reach and damage recipe for weapons, Defense and Magick Resist for armor, the evades of shields, the augment, knockback and combo, the attack element and on-hit status, the stat bonuses, held and blocked statuses, the element absorb, nullify, halve, weak and boost sets, the license, flying and sell flags, the held model, and a one-line explanation. | 0x02EBF0F8, 0x0031C5D0, 0x0031C911, 0x0031C981, 0x002FEF30, 0x0031E9F0, 0x00388409, 0x0038BE30, 0x00317B70, 0x00317930, 0x00323C60, 0x002F8FA0 |
 
 ## What it lists
 

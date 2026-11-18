@@ -1,9 +1,8 @@
----
-title: "World lock: the stop request that holds the world still for a scene or a talk, the field hold, and event time stop"
-kind: "system"
-category: "Scripts and script commands"
-addresses: "0x0034DC30, 0x00263230, 0x00263050, 0x00263480, 0x00226BE0, 0x00225CD0, 0x00377700, 0x00314A60, 0x02099DE7, 0x02099DB4"
----
+[Home](../../README.md) / [Scripts and script commands](README.md) / World lock
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| World lock: the stop request that holds the world still for a scene or a talk, the field hold, and event time stop | system | Scripts and script commands | Event scenes | How a talk or a scene holds the rest of the world still: stop request 6 and the counter that takes it, the turn toward the talk partner, the field hold and its bytes, which actors the request releases, and the event time stop request. | 0x0034DC30, 0x00263230, 0x00263050, 0x00263480, 0x00226BE0, 0x00225CD0, 0x00377700, 0x00314A60, 0x02099DE7, 0x02099DB4 |
 
 ## What the player sees
 
@@ -48,6 +47,12 @@ into `0x02099DB4` (`0x002630BE`-`0x002630EA`) and, at 0 or below, clears action-
 It then releases the leader's look (`0x002EBE50(focus, 0, 0)` and `0x002E8EE0` when `0x002E7600` is non-zero, then
 `0x002ED040(focus, 0)`); the steering pop and the other ops are on
 [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md).
+
+`0x002ED040(focus, v)` does nothing for a null actor, a null binding `+0xC0`, a first dword or word of -1, or a render
+record `[0x022C6F28] + word × 0x740` that is null or has `+0x284` 0 (`0x002ED047`-`0x002ED083`). Otherwise it stages the
+look command at the record's `+0x580` with `v` as its value (`0x003E6CD0` → `0x003E37A0`: bit `0x40000000` set, bit
+`0x80000000` = `v & 1`; [character rig and look](../Graphics/character-rig-and-look.md)) and sets the
+record's `+0x290` bit `0x800` (`0x002ED085`-`0x002ED08D`).
 
 `0x00377700` returns 1 only when the field bit and the save bit are both clear: the field bit is bit `0x1` of the
 byte `[0x02ADD100] + 8 + 3 × field + 2` (`0x0037772D`, `0x0037772F`), read only when the table exists and the field index

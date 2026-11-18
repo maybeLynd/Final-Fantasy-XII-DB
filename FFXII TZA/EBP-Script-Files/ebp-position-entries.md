@@ -1,9 +1,8 @@
----
-title: "Position entries (FF12POS3): a zone's authored points, boxes and ellipses, the accessor that copies them and the systems that read them"
-kind: "format"
-category: "EBP script files"
-addresses: "0x003320E0, 0x003DFE60, 0x02B59D48, 0x003DFD00, 0x00320940, 0x003209C0, 0x00236450, 0x00319390, 0x00312DF0, 0x00312730, 0x00301AD0, 0x003394A0, 0x0033DB60, 0x00354FB0, 0x003DFAC0, 0x00264CA0, 0x003DFA50"
----
+[Home](../../README.md) / [EBP script files](README.md) / Position entries (FF12POS3)
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Position entries (FF12POS3): a zone's authored points, boxes and ellipses, the accessor that copies them and the systems that read them | format | EBP script files | Script sections | Section 16 of a zone .ebp, magic FF12POS3 and named POSENT by the engine: a 16-byte header and 0x30-byte records holding a type (point, box or ellipse), two extents, a position and a heading. The section is bound whole into field root 0 (0x02B59D48) and read through one accessor, 0x003DFD00, by spawn placement, the enemy wander orders, the AI distance condition, two fixed-entry steering routines and the position verbs; also the older-layout reader behind getcrystalid and getanchorid, the 4,653 shipped tables and the editing rules. | 0x003320E0, 0x003DFE60, 0x02B59D48, 0x003DFD00, 0x00320940, 0x003209C0, 0x00236450, 0x00319390, 0x00312DF0, 0x00312730, 0x00301AD0, 0x003394A0, 0x0033DB60, 0x00354FB0, 0x003DFAC0, 0x00264CA0, 0x003DFA50 |
 
 ## What the player sees
 

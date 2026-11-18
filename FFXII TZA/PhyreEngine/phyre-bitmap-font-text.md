@@ -1,9 +1,8 @@
----
-title: "Phyre bitmap-font text: how PBitmapFontText lays out a string from a bitmap font, builds its quads and draws it, and the debug-information overlay that uses it"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x0067B180, 0x0067B3A0, 0x0067B530, 0x0067B4C0, 0x0067BF70, 0x0067C4F0, 0x0067C5A0, 0x0067C310, 0x0067C260, 0x0067C440, 0x0067BB30, 0x0067BD50, 0x0067BE10, 0x0067BEC0, 0x0059A600, 0x001EA3C0, 0x001EA830, 0x001EAE10, 0x01DFDE00"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Phyre bitmap-font text
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre bitmap-font text: how PBitmapFontText lays out a string from a bitmap font, builds its quads and draws it, and the debug-information overlay that uses it | system | PhyreEngine | Drawing and shaders | PhyreEngine's PText layer in the executable: the 0x270-byte PBitmapFontText object, its text buffer and ring-buffered vertex and index blocks, how a UTF-8 string becomes one quad per glyph with line feeds, kerning and a fallback for characters the font lacks, the text material with its texture, sampler and colour parameter, the draw, and the game's one user, the debug-information overlay built from PhyreText.fx.phyre and tuffysdf.fgen.phyre. | 0x0067B180, 0x0067B3A0, 0x0067B530, 0x0067B4C0, 0x0067BF70, 0x0067C4F0, 0x0067C5A0, 0x0067C310, 0x0067C260, 0x0067C440, 0x0067BB30, 0x0067BD50, 0x0067BE10, 0x0067BEC0, 0x0059A600, 0x001EA3C0, 0x001EA830, 0x001EAE10, 0x01DFDE00 |
 
 ## What the player sees
 

@@ -1,51 +1,121 @@
+[Home](../../README.md) / Graphics
+
 # Graphics
 
 Rendering, cameras, models, effects, lighting and the screen.
 
-| Page | What you will find |
-|---|---|
-| [Add-motion tables: .adm, skeletonmapping.bin and highmodelreplace.bin](add-motion-tables.md) | The files in ps2data/add_motion: the .adm tables of per-bone rotation keys that bend high-detail character models on top of their motion, with their _town variants, how add_motion_list.txt is read, how a render record is given its two tables and which one applies, the keyed and pose-slot track kinds, plus skeletonmapping.bin (bones that follow a partner skeleton) and highmodelreplace.bin (model replacements by story progress), with counts over the shipped files. |
-| [Animation playback: the player object, track pairing by bone id, the sampler, the skeleton node records, chunk links and the locomotion query](animation-playback.md) | How a character's motion reaches its bones: the 0x3A0-byte presentation entry that plays a motion (its storage, binding, reset and track states), how a track's @FMN records are paired with skeleton bones by key, the per-frame sampler, the 0x290-byte skeleton node record with its attach tree, the chunk link that ties a second skeleton to a party member's model, the final-pose composer and the locomotion query with its model gates. |
-| [Authored presentation commands: the command handlers and their ramp channels](authored-presentation-commands.md) | The presentation commands authored in model and motion data and run on a character's render record: how the stream is walked and dispatched through the pair table and the two handler banks, what each registered handler does, and the five ramp channels that commands 0x0D to 0x10 drive on the character's shadow entry, with the tick that advances them and the shadow build that consumes them. |
-| [Bone trails: the ribbon trails drawn behind weapon bones, from the model descriptor to the triangle strip](bone-trails.md) | The trails a model's trail section asks for: the 0x50-byte descriptor naming a bone and four colours, the authored command that switches trails on and off through the record hierarchy, the sixteen-entry pool, the per-frame sampling of each bone's base and tip into sixteen-sample histories with a fade of two frames in and five out, and the draw that hands the histories to a VU1 program which emits a textured, alpha-blended triangle strip, two vertices a sample. |
-| [Character effects: the ticket and instance-handle tables, the stamped ids, the trigger states and the deferred trigger write](character-effects.md) | The effect a character's model carries: the two tables of 32 records that hold effect tickets and model-effect instance handles, the id with a 22-bit serial that makes a stale handle a no-op, how a model's bind makes its instance and the record's teardown frees it, the per-frame flags the presentation pass and the draw gate trade through the handle, the trigger entry with its ten states, and the script verb charefftrigger whose request is stored in the render record and delivered by the next dirty walk. |
-| [Character fades: the ten fade channels, their owners and the coast-down latch](character-fades.md) | How a character fades in, out and through states: the ten Q12 fade channels of a render record and how one ramps, which system writes each channel (distance fade and cull, attached pieces, the time stop, statuses, the viewer-inside fade, the script colour), how the channels are multiplied and carried to the model instance and the lighting, and the coast-down latch that lets a stopping character glide to a halt. |
-| [Character render records: the record array, the pool lifecycle, parents and attachment, and render events](character-render-records.md) | The 160 character render records: the render resource root and its chunked banks, allocation, promotion, retirement and clearing, parents and children, attaching a record through the pending tie and the slot table, the dirty words, the system tail, render events and their posting, and the skill-motion cache. |
-| [Character rig and look: the seventeen procedural controllers, the staged look command and the focus point](character-rig-and-look.md) | The rig of seventeen procedural controllers a character carries on top of its animation, the two switches that turn them on and off, the record flags and script verbs behind the lip flap, nod, head shake, eyes and body shake, the status and event triggers of the Confuse, Immobilize, Float and flinch motions, the order the rig's frame solves and applies them, the staged look command that turns head-look requests into look-controller state, and the eased focus point other code reads as where a character is. |
-| [Character status visuals: how a status changes a character's colour, light, opacity and shadow](character-status-visuals.md) | The per-frame push that turns each battle unit's status word into presentation: the colour-look list where the lowest index wins, the tint, Stone, Petrify, Doom, Berserk and HP Critical looks made of private lights and the character's lighting fields, the second block that fades an Invisible character and colours the shadow under Slow and Immobilize, the rig switches for Sleep, Confuse, Immobilize and Float, and the two denial latches. |
-| [CharacterRenderObject: the per-character draw object, its model instances, shader bindings and the transform publish](character-render-object.md) | The object that draws one character: how a render record gets one and gives it back, its 0x668-byte layout and 31-slot vtable, the ready byte that gates it, the 0x318-byte shader binding record kept per mesh, the double-buffered publish of the PS2 z-bias values, matrices and fog colour, the bone palette copy, and the 0x260-byte render model instances and their draw list. |
-| [Effect anchors and targets: the target and anchor queries, target slots, and reading and renaming an owner or target](effect-anchors-and-targets.md) | Where an effect element is placed: the target and anchor queries that turn an anchor descriptor into a matrix, the point kinds, the target slots of an instance, the raw owner and target reads, and renaming an owner or target. |
-| [Effect drawing: the six display layers, drawing a group and an element, soft particles and the draw list](effect-drawing.md) | How live effects reach the screen: the six display layers and the frame points they are requested at, the draw of one group and one element, the instance flags read at draw time, widescreen and mask-border flags, soft particles, and the 40,960-entry draw list. |
-| [Effect element runtime: instances, emitters and elements, the per-step update, birth, release, child spawns and timeline tracks](effect-element-runtime.md) | How a parsed effect runs: the 0x3B0-byte effect instance and its kind list, the emitters an instance keeps and the elements each emitter owns, the update pass that runs once per simulation step, birth, the base update and type tail, the cull test that releases an element, child emitters, the 0x700 path objects, timeline tracks and the method tables. |
-| [Effect element types: the handlers of every element type, what the verified types draw or change, and the kind-0x54 mesh record](effect-element-types.md) | The 65 effect element types that have code: their birth, update, draw, setup and release handlers per type range (0x00-0x0A, 0x40-0x42, 0x60-0x74, 0x80-0x97, 0xA0-0xAB, 0xD0-0xD1) with the shipped usage of each, the shared handlers, what the point, line, sprite, grid, mesh and registry types do, the blend modes of the point and line emitters, and the layout and counts of the kind-0x54 mesh record that type 0x05 draws. |
-| [Effect file list: every effect file the game requests, by kind and id, with the actions, script verbs and models that use it and what it holds](effect-file-list.md) | All 2,051 effect files (.efx) the executable names, decoded row by row: the resource kind and id, the path and language folder, the size and whether the archive ships it, which voice and text languages use the copy, the event effect number and variant, what loads instead when the file is missing, the actions, script verbs, start-up builder or models that request it, and the chunk counts with their texture records. |
-| [Effect file loading: the battle effect slots, the loaded-file queue, filing, sharing and releasing, and the battle effect program's state](effect-file-loading.md) | How effect files are requested and kept: the 48 battle effect slots and their states, the 32-entry queue of loaded effect files, filing, sharing and releasing a loaded file, and the globals the battle effect program writes when it places its target actor or files its light. |
-| [Effect files (.efx, .efb): the effect containers, their chunk streams, the record kinds and the map effect bank](effect-files-efx-efb.md) | The .efx effect stream and the .efb map effect bank: the 16-byte stream header and the three accepted versions, the chunk grammar and its seven shipped chunk types, how the loader collects runs of chunks, copies or borrows them, rewrites older 0x600 records and rebases 0x700 records, the 0xB00 record store and its ten record kinds, the EFB blob and row table, the fixed block the map's bank is read into, and counts over the shipped files. |
-| [Effect lifecycle: from the request that names an effect to its release, and what an area change ends](effect-lifecycle.md) | The stages an effect passes through: the request that names it, the file load, the instance, its start, the per-step update and per-frame draw, the hold a time stop puts on it, the restart of a looping instance, its end, and the release of its elements, its file and its handle, with what an area change and a return to the title end; each stage linked to the page that explains it. |
-| [Effects on actors and scripts: numbered effects on actors and the script effect slots](effects-on-actors-and-scripts.md) | How actors and scripts start effects: numbered effects played on an owner and its targets with their request table, and the 32 script effect slots event scripts load and play effects through. |
-| [Field camera: the follow camera, its stick and mouse control, wall avoidance and target framing](field-camera.md) | The camera that follows the party leader in the field: the camera-record mode that runs it, the orbit of heading and height level and the curve that turns the level into pitch and distance, the stick, mouse and recentre input, Camera Auto-Rotation, the probes and sweeps that keep the camera out of walls and floors, the over-the-shoulder framing of a targeted actor, and the depth-of-field focus it requests. |
-| [Gi render commands: the Gi* command family, the command arena, render blocks and the D3D11 primitive renderer](gi-render-commands.md) | The eighteen Gi* render command classes that carry the PS2-era drawing vocabulary (scene brackets, sprites, rectangles, screen images, primitives, state toggles, VU1 packets) into the PC renderer: the ring arena they are allocated from, the prepare and filing steps, the draw list that sorts per-draw records, the GeometryInstanceOrderedObject wrapper that puts them on the ordered command list, the 0x80-byte render blocks executed on PhyreEngine's render thread, and the PrimitiveRendererD3D11 device whose vtable they call. |
-| [Graphics thread handshake: the shared command-state word, the GS register batch and the waits around them](graphics-thread-handshake.md) | How a frame hands its GS command stream over through the one dword at 0x02EBA3F8: the GS register batch 0x0036D400 writes, the three publishers that store a buffer address, a record count and 0x100 into the word, the reset burst at the start of every frame state, the settle-spin clear at the end, the vertical-sync callback that zeroes the word from the TkSyncv thread, the effect-capture bit, the fence word that nothing writes, and the list of the spin loops that cannot wait. |
-| [How a character is lit: the light inputs, the shadow casters and the shadow pool](character-lighting-and-shadows.md) | Character lighting: the 128-entry light pool and its five directional kinds, how each character's lights are chosen by scope, class and priority, the ambient contest and the per-character ambient mode and light scale, the six-light block and how the render object applies the map's character-light settings, the Phyre shadow caster defaults, and the two shadow pools a render record holds an entry in. |
-| [Legacy PS2 GS layer: the GS memory model, the map texture slot rebuild and the VU register leftovers](legacy-ps2-gs-layer.md) | What the remaster keeps of the PlayStation 2 Graphics Synthesizer model outside the VIF1 / VU1 emulation: the 512 x 448 surface seed and its three reserved surfaces, the GS page geometry of 0x003A1E50, the 4 MiB local-memory budget, the rebuild that gives the bound map's multiply used textures compact slots when the weather slot changes or a map is bound, the per-pass reset of those slots, the GS image-transfer registers, and the VU register words that recompiled microprograms use for Q and vf00. |
-| [Lens flares: the eight flare slots, the occlusion queries that measure them and the scene dimming they drive](lens-flares.md) | How a lens-flare effect element (type 0xA1, VLENSFLARE) takes one of eight flare slots, how the field frame fades each slot by its distance from the screen centre, how a GPU occlusion query measures how much of a small square at the light is visible, and how that visibility scales the flare's parts, dims the scene colour and lights the characters. |
-| [Map cubemaps: the reflection probes, cubeMapConfigs.txt and how map models pick four of them](map-cubemaps.md) | The per-map reflection probes of the remaster: the cubemap_&lt;probe&gt;_&lt;weather&gt; environment and irradiance textures a map's art carries, the cubeMapConfigs.txt file that places each probe and gives its weight and radius, the probe manager that builds them, the weighting that picks up to four probes for a point, and how map model materials receive the chosen cubemaps and weights. |
-| [Menu effects: the 64-record registry that menu screens use to spawn, place and remove effects by id](menu-effects.md) | The menu effect registry: the type-4 effect context a screen loads, the 64 records at 0x02EBDBC0 that map an id to a live effect instance, spawning with eviction of the oldest record when full, removal by id or by instance, the depth offset the Sky Pirate's Den sets per statue, the state query the License Board polls, and which screens drive it. |
-| [Model asset list: every model the game can bind, with its model file, motion lanes, remastered parts and the tables and scripts that use it](model-asset-list.md) | All 1,084 models the eleven bound-id letter classes name: each model's bound id, its PS2-era .cm file and size, the motion lane files that ship and which animation set loads each, its further motion files, the remastered .ah list with its mesh and texture count, and the bestiary definitions, party table rows and script manifests that use it; how 0x002ED6F0, the lane loader 0x002E6EB0 and 0x001BB2B0 turn a bound id into those files. |
-| [Model effects and motion commands: @FEF and the motion entries](model-effects-and-motion-commands.md) | The entries of the .cm and .ca containers that are behaviour rather than shape: the @FEF section that embeds an EFX0010 effect in 144 models, how the model row binds it and the start-up table that names the 144 files, and the motion entries @FMC (command blocks), @FMN (bone channel lists), @FMW (keyed channel data) and @FRM, with the readers that select and decode them and counts over the shipped files. |
-| [Model files (.cm, .ca): the @FRP container and its FCP, FDM, FOR, FTE, FCT and FTR entries](model-files-cm-ca.md) | The model and animation containers: the .cm and .ca files under obj_finish, the seven entries a model row binds from a .cm, the @FCP parameter block with its section table, property ids and default tables, the @FTR skeleton and how it is built, the @FOR variant records and distance LOD, the @FDM key table, the @FTE textures and @FCT four-page palettes, the draw builder's texture and palette pick, and counts over all 4,230 shipped files. |
-| [Model lifecycle: a character model from its binding to the render record's clear](model-lifecycle.md) | The stages of a model on screen: the binding that loads its file, the bind that creates its render record, the pending wait and the promotion that binds its resources, its skeleton, attachment to a parent, the per-frame dirty walk and presentation entries, the two-step removal, the record's clear and the release of the binding; each stage linked to the page that explains it. |
-| [Model oscillators and the pose sequencer: per-model procedural motion](model-oscillators-and-pose-sequencer.md) | The two kinds of motion a model makes beyond its authored motions: the oscillator record (the sway section of a model's rig) that 0x0040ACF0 steps every frame with a wind-driven phase and a directed per-record phase, its reset and sub-stepped settle, the authored command and the effect element that drive it; and the pose sequencer, eight slots per character that play authored (duration, value) sequences from @FCP section 7 and feed the add-motion pose groups and a texture patch copy, with counts over the shipped files. |
-| [Movies: the .mh seek index and the movie player's states](movies.md) | The full-motion movie files and the object that plays them: the PS2-era .mh seek index shipped beside the movie paths and never read, how a movie id maps to its path pair, and the movie player singleton's start, update, fade-out and time read-outs that the script layer drives. |
-| [Position to scalar: the distance fade colour of effect elements](position-to-scalar.md) | The function that turns an effect element's 3-D position into one distance and then into the alpha of a modulate colour: its three distance modes, the four fade kinds of the distance-fade record, the container flags that further scale the alpha (owner fade, status-display denial, the time-stop dimming ramp), and the 76 draw sites that multiply the result into what they draw. |
-| [Post-processing: the game's passes and their shader constants, the post-process command, the PPFX features and effect techniques, and the registries of named render passes](post-processing.md) | The game's own post-process chain: the twelve pass functions with the shader constants and pass records each names, how ambient occlusion and anti-aliasing pick their pass, the post-process command block and where its values come from, which PPFX features the game's initialisation leaves off, the PPFX effect catalogue with its handle layout, the two registries of named render passes, and the GPU frame-marker table. |
-| [Presentation entries: the reference container, how an entry picks its track, the choice selectors and the per-entry update](presentation-entries.md) | The presentation entries a render record plays: the reference container that holds them, how an entry picks its track, the choice selectors that steer the pick, and the update each entry runs per frame. |
-| [Render command list: the per-frame command objects, the two lists that hold them and the walks that run them](render-command-list.md) | How each render pass of a frame becomes a heap object appended to an ordered command list and an owning list, how the render pass runs the ordered list in two parts with a class mask instead of a sort, the class-filtered walks the opaque passes run from inside it, the console's ambient-occlusion-only exit, the three teardowns, the render-parameter block the execute bodies read, the character render-object manager installed beside the lists, and the two GS command buffers. |
-| [Render parameters and shader assets: the post-process shader files and the scene-parameter documents](render-parameters-and-shader-assets.md) | The shader assets the post-process chain loads by path and where their handles are kept, and the scene-parameter JSON documents (the global defaults, one per map, one per cutscene): their shipped shape, the functions that look their keys up, the cascade keys composed at run time, and the authored keys no code reads. |
-| [Screen fades: the seven fade layers, the fade verbs and the per-movie fade schedule](screen-fades.md) | The full-screen fades to black or white: the seven fade layer records and the one function that starts a fade on them, the screen-effect descriptor pool that times and draws every fade as a sorted full-screen quad, the per-tick poll that leaves a finished fade-out on screen and frees a finished fade-in, the script verbs and the engine's own fades by layer, the instant black of a cutscene skip, the 49-row fade schedule applied around each pre-rendered movie, and the effect fade verbs. |
-| [Screen mode and aspect: the aspect fit, the Super Wide bound and the display object](screen-mode-and-aspect.md) | How the game fits its picture to the window: the resolution setter and the three-branch aspect fit that sets Normal Mode or Super Wide Mode and clamps the size between 16:9 and 48:9, the aspect every renderer reads back, the 16:9 viewport and quad scaling built on it, and the display object that holds the fit beside the display-mode and window-size lists. |
-| [Script screen effects: cut-in, motion blur, soft focus and the screen blur sprites](script-screen-effects.md) | The screen effects scripts start over the finished picture: how the cut-in, motion blur and soft focus capture the frame into a render target and draw it back through the screen-effect pool, their staging blocks, play and clear bodies and per-frame builders, the motion blur fade and the held-frame path behind the item-obtained message, the four screen blur sprites of the blur verbs, what an area change and a cutscene skip reset, and how often the US scripts use each verb. |
-| [Scripted camera: the shot channels, the camera record stack, and how a camera reaches the renderer](scripted-camera.md) | The camera a script or cutscene drives, from the shot channels to the matrices the renderer reads: the per-frame channel tick, how a playing shot is published into camera record 5, the eight camera records and the active mask whose highest bit wins, the eased return to the behind camera, the eight one-frame submissions and the priority arbitration in the camera update, where the shake offsets land, the matrices it builds, and the Screen Shake option's gate. |
-| [Skeleton entries and bones: the skeleton entries of render records, the listed bones and their lookups, bone points, the motion bone list and bone-to-bone ties](skeleton-entries-and-bones.md) | The skeleton side of a character render record: the skeleton entries and their links and update order, the bones a skeleton lists and how a bone is looked up, the point a bone gives, the motion bone list a motion binds against, and tying a bone to a bone of another skeleton. |
-| [Sprite batcher: the 2D vertex batcher, its register mirror and the menu quad emitters](sprite-batcher.md) | How menu sprites, coloured rectangles and soft-edged windows are drawn: the 0x4300-byte batcher kept at 0x01F811E8 with its 64 vertex batches, its menu texture registries and its mirror of the GS registers, the two flushes that turn batches into DynGeo drawing objects, and the quad emitters that write each sprite twice, as a GS packet and as batcher vertices. |
-| [Weapon bones: every weapon model's keyed points, the blade and grip an effect anchors to, and its special-id bones](weapon-bones.md) | All 327 weapon models: each model's @FTR node keys, whether it carries j_blade (0x65E) and n_grip (0x656), the keyed points effects and trails anchor to on a held weapon, its @FCP special-id bones, and the equipment that uses it; how 0x00409250 keys a node and how the anchor query finds the two points on a child record. |
+Jump to: [Character models](#character-models) · [Visual effects](#visual-effects) · [Screen effects and movies](#screen-effects-and-movies) · [Cameras](#cameras) · [Render pipeline](#render-pipeline)
+
+## Start here
+
+Start with these pages, in this order:
+
+1. [Model files (.cm, .ca)](model-files-cm-ca.md): starts with what is on disk
+2. [Model lifecycle](model-lifecycle.md): follows one model once bound
+3. [Animation playback](animation-playback.md): shows how it is animated
+4. [Character render records](character-render-records.md): shows the record the draw reads
+5. [CharacterRenderObject](character-render-object.md): draws that record
+
+## Character models
+
+How a character's model files load, animate, light and draw.
+
+### Animation And Motion
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Animation playback](animation-playback.md) | Explanation | The animation player, track pairing by bone and the sampler. |
+| [Authored presentation commands](authored-presentation-commands.md) | Explanation | The presentation command handlers and their ramp channels. |
+| [Model oscillators and the pose sequencer](model-oscillators-and-pose-sequencer.md) | Explanation | Procedural per-model motion and the pose sequencer. |
+| [Presentation entries](presentation-entries.md) | Explanation | How a presentation entry picks its track and the choice selectors. |
+| [Skeleton entries and bones](skeleton-entries-and-bones.md) | Explanation | The skeleton entries of render records and their listed bones. |
+
+### Character Rendering
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Character render records](character-render-records.md) | Explanation | The render record array, its pool, parents and attachment. |
+| [CharacterRenderObject](character-render-object.md) | Explanation | The per-character draw object, its model instances and shader bindings. |
+| [Character fades](character-fades.md) | Explanation | The character fade channels, their owners and the coast-down latch. |
+| [Character rig and look](character-rig-and-look.md) | Explanation | The procedural controllers, the staged look command and the focus point. |
+| [Character status visuals](character-status-visuals.md) | Explanation | How a status changes a character's colour, light, opacity and shadow. |
+| [How a character is lit](character-lighting-and-shadows.md) | Explanation | The light inputs, shadow casters and shadow pool of a character. |
+
+### Model Files
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Model files (.cm, .ca)](model-files-cm-ca.md) | Format | The model file container and each entry type it holds. |
+| [Model lifecycle](model-lifecycle.md) | Lifecycle | A character model from its binding to the render record's clear. |
+| [Add-motion tables](add-motion-tables.md) | Format | The add-motion, skeleton mapping and high-model replacement tables. |
+| [Model effects and motion commands](model-effects-and-motion-commands.md) | Format | The effect and motion entries stored inside a model. |
+| [Model asset list](model-asset-list.md) | Reference table | Every model the game can bind, with its files and motion lanes. |
+| [Weapon bones](weapon-bones.md) | Reference table | Each weapon model's keyed points, blade, grip and special bones. |
+
+## Visual effects
+
+The effect files, how they run and draw, and how characters and menus use them.
+
+### Effect Elements And Drawing
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Bone trails](bone-trails.md) | Explanation | The ribbon trails drawn behind weapon bones. |
+| [Effect anchors and targets](effect-anchors-and-targets.md) | Explanation | The target and anchor queries that place an effect. |
+| [Effect drawing](effect-drawing.md) | Explanation | The display layers, drawing a group and an element, and soft particles. |
+| [Effect element runtime](effect-element-runtime.md) | Explanation | Effect instances, emitters and elements, and their per-step update. |
+| [Effect element types](effect-element-types.md) | Explanation | The handlers of each element type and what the types draw or change. |
+| [Position to scalar](position-to-scalar.md) | Explanation | The distance fade colour of effect elements. |
+
+### Effect Files
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Effect file loading](effect-file-loading.md) | Explanation | The battle effect slots and how files are filed, shared and released. |
+| [Effect files (.efx, .efb)](effect-files-efx-efb.md) | Format | The effect containers, their chunk streams and the map effect bank. |
+| [Effect file list](effect-file-list.md) | Reference table | Every effect file the game requests, and what asks for it. |
+| [Effect lifecycle](effect-lifecycle.md) | Lifecycle | From the request naming an effect to its release, and what an area change ends. |
+
+### Effects On Characters And Menus
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Character effects](character-effects.md) | Explanation | The ticket and handle tables behind effects on characters. |
+| [Effects on actors and scripts](effects-on-actors-and-scripts.md) | Explanation | Numbered effects on actors and the script effect slots. |
+| [Menu effects](menu-effects.md) | Explanation | The registry menu screens use to spawn, place and remove effects. |
+
+## Screen effects and movies
+
+What is applied to the whole picture: post-processing, fades, flares, reflections and movies.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Lens flares](lens-flares.md) | Explanation | The flare slots, their occlusion queries and the dimming they drive. |
+| [Map cubemaps](map-cubemaps.md) | Explanation | The reflection probes and how map models pick theirs. |
+| [Post-processing](post-processing.md) | Explanation | The game's post-process passes, their constants and the PPFX features. |
+| [Render parameters and shader assets](render-parameters-and-shader-assets.md) | Explanation | The post-process shader files and scene-parameter documents. |
+| [Screen fades](screen-fades.md) | Explanation | The fade layers, the fade verbs and the per-movie fade schedule. |
+| [Screen mode and aspect](screen-mode-and-aspect.md) | Explanation | The aspect fit, the Super Wide bound and the display object. |
+| [Script screen effects](script-screen-effects.md) | Explanation | Cut-in, motion blur, soft focus and the screen blur sprites. |
+| [Movies](movies.md) | Format | The movie seek index and the player's states. |
+
+## Cameras
+
+The follow camera and the scripted camera.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Field camera](field-camera.md) | Explanation | The follow camera, its stick and mouse control, and wall avoidance. |
+| [Scripted camera](scripted-camera.md) | Explanation | The shot channels, the camera stack and how a camera reaches the renderer. |
+
+## Render pipeline
+
+The command lists, threads and low-level layers that turn a frame into draw calls.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Gi render commands](gi-render-commands.md) | Explanation | The Gi command family, its arena and the D3D11 primitive renderer. |
+| [Graphics thread handshake](graphics-thread-handshake.md) | Explanation | The shared command-state word and the waits around the GS batch. |
+| [Legacy PS2 GS layer](legacy-ps2-gs-layer.md) | Explanation | The GS memory model, map texture slot rebuild and VU leftovers. |
+| [Render command list](render-command-list.md) | Explanation | The per-frame command objects and the lists that hold them. |
+| [Sprite batcher](sprite-batcher.md) | Explanation | The 2D vertex batcher and the menu quad emitters. |

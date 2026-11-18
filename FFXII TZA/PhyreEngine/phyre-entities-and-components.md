@@ -1,9 +1,8 @@
----
-title: "Phyre entities and components: PEntity, its component list, the world-matrix registry and the hooks that run on loaded components"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x006AB7E0, 0x006AC300, 0x006ACA70, 0x006ACAC0, 0x006ABEC0, 0x006ABF40, 0x006AB600, 0x006ABFA0, 0x006AB410, 0x006AADD0, 0x006AFF00, 0x006AF4F0, 0x0069ECE0, 0x01F2EB40, 0x01F2EB78, 0x02E4EAF0, 0x02E4E720, 0x0067F6F0"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Phyre entities and components
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre entities and components: PEntity, its component list, the world-matrix registry and the hooks that run on loaded components | system | PhyreEngine | Engine framework | PhyreEngine's gameplay layer in the executable: the 0x38-byte PEntity with its singly linked list of PComponent objects and its world matrix, the ordered tree at 0x01F2EB40 that maps a world matrix back to its entity, the script methods PEntity publishes (addComponent, removeComponent, getComponent, setWorldMatrix, FindEntityForWorldMatrix, FindEntityForObj), and the hooks that fix up entities and components when a cluster is loaded. | 0x006AB7E0, 0x006AC300, 0x006ACA70, 0x006ACAC0, 0x006ABEC0, 0x006ABF40, 0x006AB600, 0x006ABFA0, 0x006AB410, 0x006AADD0, 0x006AFF00, 0x006AF4F0, 0x0069ECE0, 0x01F2EB40, 0x01F2EB78, 0x02E4EAF0, 0x02E4E720, 0x0067F6F0 |
 
 ## What the player sees
 

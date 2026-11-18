@@ -1,9 +1,8 @@
----
-title: "Menu sprites: the shared picture atlases, how a sprite is found and drawn, the hand cursor, arrows and marks, and the pulsing selection bar"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x002467A0, 0x00280750, 0x0024B0C0, 0x002D8BB0, 0x002DB080, 0x002426F0, 0x00242C90, 0x00244500, 0x002445A0, 0x002445C0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Menu sprites
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Menu sprites: the shared picture atlases, how a sprite is found and drawn, the hand cursor, arrows and marks, and the pulsing selection bar | system | Menus and HUD | How menus work | How menu code draws its small pictures: the five shared atlases from texpack_ys.bin and the ten battle and party atlases, the sprite records in each picture's eXt block and the lookup by set, group and frame, the palette byte, the draw calls with their flip and rotation record, the hand cursor and its five directions, the one helper per arrow, triangle, wing, bubble and mark, the battle menu's ON and OFF, and the list selection bar with its pulse. | 0x002467A0, 0x00280750, 0x0024B0C0, 0x002D8BB0, 0x002DB080, 0x002426F0, 0x00242C90, 0x00244500, 0x002445A0, 0x002445C0 |
 
 ## What the player sees
 

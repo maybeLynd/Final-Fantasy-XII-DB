@@ -1,9 +1,8 @@
----
-title: "Save data fields: the regions of the save payload, who writes and reads each, and the access table"
-kind: "reference"
-category: "Saving, loading and settings"
-addresses: "0x002EF2B0, 0x002EF2D0, 0x00253970, 0x00253A80, 0x00229B40, 0x005843E0, 0x00584580, 0x005844A0, 0x00233440, 0x00233550, 0x0025D8E0, 0x00269A20, 0x002EF3C0, 0x002EF410, 0x00238A80, 0x00233C10, 0x002370C0, 0x00583D60"
----
+[Home](../../README.md) / [Saving, loading and settings](README.md) / Save data fields
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Save data fields: the regions of the save payload, who writes and reads each, and the access table | reference | Saving, loading and settings | Saving and loading | A map of the save image's persistent payload (the bytes after the 0x200-byte header): the span a new game clears with its script operand bank, script globals, quest arrays, zone transition record, flag banks and music override; the copy of the party block head; the image-backed state block with the navigation-map exploration table, the Clan Primer and achievement bit sets and the inventory counts; the checksum; the two group banks and spawn-keep images; the transition metadata record; and the party block. The companion table lists every payload access in the executable, by offset, function, site and instruction. | 0x002EF2B0, 0x002EF2D0, 0x00253970, 0x00253A80, 0x00229B40, 0x005843E0, 0x00584580, 0x005844A0, 0x00233440, 0x00233550, 0x0025D8E0, 0x00269A20, 0x002EF3C0, 0x002EF410, 0x00238A80, 0x00233C10, 0x002370C0, 0x00583D60 |
 
 ## What it lists
 
@@ -332,3 +331,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Story event quest hunt: `0x00314910` is called by `0x001ED240`; those functions are documented on
   [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md).
+
+---
+
+[← Save file format](save-file-format.md)

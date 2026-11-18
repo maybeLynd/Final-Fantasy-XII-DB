@@ -1,22 +1,44 @@
+[Home](../../README.md) / Sound and music
+
 # Sound and music
 
 Sound effects, music and voice playback.
 
-| Page | What you will find |
-|---|---|
-| [Animation sounds: footsteps, swings and voices authored into animations, the twelve sound types, which variation plays and where it is heard from](animation-sounds.md) | How an animation makes a sound: the three animation commands and the character's sound emitter, the twelve sound types with what each is authored for, the picker that chooses a variation and its silences from the presentation random stream, the body point each type is heard from, how the sample is found in the character's sound set with the ground type for footsteps, and the play routine's modes and gates. |
-| [Audio effects: the filters, reverbs, compressor, flanger, pitch shifter and frequency shifter the sound driver can run on a voice or a bus](audio-effects.md) | The sound driver's effect classes: their type numbers, builders and per-block bodies, the polynomial sine and cosine they share, the biquad filter with its nine shapes and coefficient formulas, the one-pole filter every voice carries, the flanger, the granular pitch shifter a music voice can carry and its switch, the Hilbert frequency shifter, the compressor with its side-chain input, the surround reverb's delay network and equaliser, and which of them the shipped game builds. |
-| [Audio manager: the five bank controllers, their bank pools, the sound objects and how a game request reaches a bank](audio-manager.md) | The game-side layer between the play calls and the sound driver: the audio manager and its five controllers, the fixed bank pools each controller takes banks from, the sound and bank objects the driver works through, how each play, stop, volume, position and listener request is routed, the load ids, the file load thread, and the pause mask that pauses sounds by kind. |
-| [Interactive music: the driver's music object, its sections, modes and layers, the commands that start, switch and end it, and its bar-beat-tick timing](interactive-music.md) | How the sound driver plays a music bank: the Magi music object and its states, the parts of a music header (sections, modes, layers, meters, custom points, start and end methods) and the classes that read them, every music command with its checks and messages, how the object is built, loaded and freed, its two sets of layer voices and what each pass hands them, the mode blend, the transition states and requests, the reverb end, how the play position, loops and timing callbacks are followed, the instruments that play in time with a music, how the game's three music versions are the three sections of every shipped music, and the bar, beat and tick arithmetic that places a transition. |
-| [Map sounds: the per-map sound list, the sounds its scripts and emitters play, and the weather ambience](map-sounds.md) | The SPP1 map sound list carried in each map pack and in each cutscene's .snd pack: its header, id list and weather table, how binding it opens every listed sound bank, the two script verbs that play an entry by number, the map's sound emitters, the ambience picked per weather slot with its fades, what unbinding keeps, and the shipped lists with their id ranges. |
-| [Music table: the file that names each area's music track, how the story changes it, and the boss-music flags](music-table.md) | The music control file musicctrl.bin and the track flag file musicinfo.bin: where each is loaded and kept, the page and run layout of the field-to-track table and its in-place rebase, the lookup with its story-counter ladder, the boss-music bit that keeps a track through chocobo and summon music, every run of the shipped table with its zones, track and ladder, and what an edit changes. |
-| [Music: which track plays in an area, the chocobo and summon tracks, the crossfade when the area changes, and the saved track override](music.md) | How the area's music is chosen and changed: the once-per-zone step and its done bit, the four sources in order (the saved override, the field-to-track table with its story ladder, then the summon and chocobo tracks unless the track is boss music), the crossfade's one length and one volume, what happens when no track is chosen, the script verbs that set, read and test the area music, and the script music stream no shipped script uses. |
-| [Sound banks: the bank files that hold every sound effect, battle voice and music track, how each is named and found, and how a sound id names a bank and a slot](sound-banks.md) | The bank container shared by sound effects, battle voices and music: its header and chunk directory and the checks the reader makes, the four bank families with their folders, name patterns and loaders, the SE block index that lists a block's sounds, the block-id rule, the 64-entry block registry, how a sound id splits into a registry slot and a sound slot, the effect-file records that open the six-digit banks, the audio manager's five controllers, and the files the PC build never opens. |
-| [Sound driver objects: the handles, fixed pools and calls through which the game creates, finds, commands and queries banks, sounds and music](sound-driver-objects.md) | How the sound driver keeps its objects: the eight-byte handle with its kind, slot and serial, the fixed pools and lists that hold banks, sounds, sequences, tracks, voices, events, music and instruments with their sizes and counts, the hash tables that find banks and sounds by number, the calls that create a bank, a sound or a music, the posters that turn a call into a command, the queries that read a playing object back, the per-tick update passes, and the driver's own heap and clock. |
-| [Sound effects: how a request to play a sound becomes a playing voice, the three volume settings, pan and fades](sound-effects.md) | The play call every sound effect goes through: the entry points and their gates, the play handle, how a sound id picks a block bank and a slot or a six-digit bank, the slot flags that block, cross-fade or reuse a sound, the per-sound volume and the three Config volume rows, the pan byte and how it maps around the listener, the six fade curves and why every volume, pan, pitch and stop ramp on a voice is linear, and how a sound is stopped. |
-| [Sound engine configuration: the start-up file that sets the sound categories, the master bus, the macros and the effect presets](sound-engine-config.md) | The file sead.win.config: where it is loaded and how the engine copies it whole, its header and chunk directory, the ten chunks with their layouts and the code that reads each field, the category sizes that size the engine's voice pools, the master bus, the three macros, the effect presets and the HCA mixer switch, the shipped values, and what a changed or missing chunk does. |
-| [Sound engine: the driver's class families, what a voice does in one tick, where its samples come from, and the diagnostics it prints](sound-engine.md) | The SQEX sound driver inside the game: its class families and the three voice kinds, what a source voice does in one 256-frame tick, which codecs feed it and that every shipped material is HCA, the 48 kHz eight-channel output and the device thread, the voice factory, pass and lifecycle, the command queue with its 54 action types, the threads and their pacing, the version and diagnostic strings, and the time-unit converter. |
-| [Sound streaming: the streaming banks, their read streams and ring buffers, and how a voice claims, seeks and reads a stream](sound-streaming.md) | How the sound driver plays a bank that is not held whole in memory: the streaming sound and music banks and the checks that create them, the one to sixteen read streams each bank owns, a stream's read states and ring buffer, how a voice or a music claims a stream, requests a material, seeks into it and reads from it, how a bank is released through the job worker, and the stream object's layout. |
-| [Sound variations: the random, ordered, cycling and switched sound kinds the driver supports, and the trigger that arms a sound](sound-variations.md) | How the sound driver chooses what to play for one sound: the class byte that selects a plain, random, ordered, cycling or switched sound, the candidate and sequence records they read, sets of candidates by group, each kind's rule with its weighted roll, rotation, cycle timer or switch range, the random seed, the trigger that arms a sequence for the next update, what a track hands its voice on each pass with its four LFOs and their ten wave shapes, and the shipped banks, where every sound is plain with at most one candidate. |
-| [Spatial sound: the listener, the shapes a sound source can take, and how distance and shape set its volume and direction](spatial-sound.md) | How a placed sound is heard: the five sound-source classes and the three the game builds, where the listener stands and faces, how each shape finds its nearest point and whether it is in range, the shared distance-to-volume and direction formula with the shipped linear curve, the distance values a sound can read, how map, character and moving sounds become sources, and the 32-millisecond pass that updates them. |
-| [Voices: the voice packs a cutscene loads, the sixty-four voice slots, the English or Japanese choice, and the verbs that play, stop and pan a line](voices.md) | How spoken lines in cutscenes play: the 64 global voice slots, one per pack sub-file, the .vpc and .vpcjp packs an event loads with both languages loaded and one chosen, the pack and cue-table formats, the cue word and its range rule, every voice verb with how often the US scripts call it, the pass that starts a line once its stream is ready, stopping, panning and volume, and the Voice volume category. |
+Jump to: [Music](#music) · [Sound effects and voices](#sound-effects-and-voices) · [The sound engine](#the-sound-engine)
+
+## Music
+
+Which music plays, how it changes and how the driver runs it.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Interactive music](interactive-music.md) | Explanation | The driver's music object: sections, modes, layers and timing. |
+| [Music](music.md) | Explanation | Which track plays in an area, crossfades and the saved override. |
+| [Music table](music-table.md) | Format | The file naming each area's track, story changes and boss-music flags. |
+
+## Sound effects and voices
+
+How individual sounds and voice lines are requested, varied and placed in space.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Animation sounds](animation-sounds.md) | Explanation | Footsteps, swings and voices authored into animations. |
+| [Sound effects](sound-effects.md) | Explanation | How a request becomes a playing voice, with volume, pan and fades. |
+| [Sound variations](sound-variations.md) | Explanation | The random, ordered, cycling and switched sound kinds, and arming a sound. |
+| [Spatial sound](spatial-sound.md) | Explanation | The listener, source shapes and how distance sets volume and direction. |
+| [Voices](voices.md) | Explanation | Cutscene voice packs, the language choice and the verbs that play a line. |
+| [Map sounds](map-sounds.md) | Format | The per-map sound list, its emitters and the weather ambience. |
+
+## The sound engine
+
+The driver underneath: its banks, objects, effects, streams and start-up configuration.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Audio effects](audio-effects.md) | Explanation | The filters, reverbs and other effects the driver can run. |
+| [Audio manager](audio-manager.md) | Explanation | The bank controllers and how a game request reaches a bank. |
+| [Sound driver objects](sound-driver-objects.md) | Explanation | The handles, pools and calls for banks, sounds and music. |
+| [Sound engine](sound-engine.md) | Explanation | The driver's class families and what a voice does each tick. |
+| [Sound streaming](sound-streaming.md) | Explanation | Streaming banks, their ring buffers and how a voice reads a stream. |
+| [Sound banks](sound-banks.md) | Format | The files holding sounds and music, and how a sound id finds one. |
+| [Sound engine configuration](sound-engine-config.md) | Format | The start-up file setting sound categories, the master bus and effect presets. |

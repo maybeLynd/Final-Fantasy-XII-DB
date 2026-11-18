@@ -1,9 +1,8 @@
----
-title: "Menu lists: the scroll list every menu uses, its rows and columns, cursor moves, scrolling and their timing, and the cursor sounds"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x002D14E0, 0x002D2DB0, 0x002D1420, 0x002D3BA0, 0x002D4B70, 0x002D4A40, 0x002D1870, 0x002D2D40"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Menu lists
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Menu lists: the scroll list every menu uses, its rows and columns, cursor moves, scrolling and their timing, and the cursor sounds | system | Menus and HUD | How menus work | The shared scroll list widget behind the Config rows, the message window's choice lists, the shop and Clan Primer lists and most other menus: how it is built and what its record sets, its grid of rows and columns, how the cursor and the visible window move and when the view scrolls, how long each scroll animation runs, the scroll-only lists with Triangle paging, the cursor sounds, and the notices the list posts to its owner. | 0x002D14E0, 0x002D2DB0, 0x002D1420, 0x002D3BA0, 0x002D4B70, 0x002D4A40, 0x002D1870, 0x002D2D40 |
 
 ## What the player sees
 
@@ -381,3 +380,7 @@ Calls between the functions this page cites and code in other parts of the progr
   `0x00582860`; those functions are documented on [changing areas](../World-Areas-And-Travel/changing-areas.md),
   [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md),
   [game application](../Engine-Core/game-application.md).
+
+---
+
+[← Widget messages](widget-messages.md) | [Confirm windows →](dialogs.md)

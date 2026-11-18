@@ -1,9 +1,8 @@
----
-title: "PhyreEngine modules: the engine libraries linked into the game, where their code lies and how they start and stop"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x02CACC90, 0x00D26BC0, 0x005A08E0, 0x005A0840, 0x005A0CB0, 0x01F2CDF0, 0x00166210, 0x006CCC10, 0x00167B90, 0x0059D550, 0x005A0D20, 0x005C5C80, 0x00608A40, 0x00654830, 0x006716D0, 0x00685AC0, 0x006A4100, 0x006C45F0, 0x006C4860, 0x006CCD60, 0x00875E10, 0x008762E0, 0x0087AE00, 0x00792350, 0x006388C0, 0x00639450"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / PhyreEngine modules
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| PhyreEngine modules: the engine libraries linked into the game, where their code lies and how they start and stop | system | PhyreEngine | Engine framework | The PhyreEngine modules in the executable: the fifteen PUtility module objects that register themselves before main on one list, the init walk that starts them and the shutdown walk and exit destructors that stop them, what each module holds by its RTTI class names, each module's entry points and function count, the namespaces that have no module object, the attribution of every function PhyreEngine code reaches to its module, and the function-to-class map kept beside the page. | 0x02CACC90, 0x00D26BC0, 0x005A08E0, 0x005A0840, 0x005A0CB0, 0x01F2CDF0, 0x00166210, 0x006CCC10, 0x00167B90, 0x0059D550, 0x005A0D20, 0x005C5C80, 0x00608A40, 0x00654830, 0x006716D0, 0x00685AC0, 0x006A4100, 0x006C45F0, 0x006C4860, 0x006CCD60, 0x00875E10, 0x008762E0, 0x0087AE00, 0x00792350, 0x006388C0, 0x00639450 |
 
 ## What the player sees
 

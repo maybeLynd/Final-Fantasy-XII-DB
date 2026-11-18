@@ -1,9 +1,8 @@
----
-title: "Gi render commands: the Gi* command family, the command arena, render blocks and the D3D11 primitive renderer"
-kind: "system"
-category: "Graphics"
-addresses: "0x01F7F4C0, 0x001A1470, 0x001A1460, 0x001A14D0, 0x001FB840, 0x0020E630, 0x01F7F4D0, 0x001F48B0, 0x001F49F0, 0x005FEA50, 0x001F4A10, 0x02CC0410, 0x005FD050, 0x00624660, 0x00D86960, 0x006C8750, 0x00607D20, 0x006106A0, 0x0060A410, 0x00607410, 0x02F8F2F8, 0x003A3740, 0x003A3A00, 0x00210570, 0x01F83580"
----
+[Home](../../README.md) / [Graphics](README.md) / Gi render commands
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Gi render commands: the Gi* command family, the command arena, render blocks and the D3D11 primitive renderer | system | Graphics | Render pipeline | The eighteen Gi* render command classes that carry the PS2-era drawing vocabulary (scene brackets, sprites, rectangles, screen images, primitives, state toggles, VU1 packets) into the PC renderer: the ring arena they are allocated from, the prepare and filing steps, the draw list that sorts per-draw records, the GeometryInstanceOrderedObject wrapper that puts them on the ordered command list, the 0x80-byte render blocks executed on PhyreEngine's render thread, and the PrimitiveRendererD3D11 device whose vtable they call. | 0x01F7F4C0, 0x001A1470, 0x001A1460, 0x001A14D0, 0x001FB840, 0x0020E630, 0x01F7F4D0, 0x001F48B0, 0x001F49F0, 0x005FEA50, 0x001F4A10, 0x02CC0410, 0x005FD050, 0x00624660, 0x00D86960, 0x006C8750, 0x00607D20, 0x006106A0, 0x0060A410, 0x00607410, 0x02F8F2F8, 0x003A3740, 0x003A3A00, 0x00210570, 0x01F83580 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Identifier spaces: the kinds of id, handle and index the engine passes between subsystems, with each kind's range, invalid values, maker, resolver and reuse"
-kind: "reference"
-category: "Engine core"
-addresses: "0x003589B0, 0x003588B0, 0x0031B7E0, 0x002E9810, 0x002E97C0, 0x002DF980, 0x002DF960, 0x0036A000, 0x003B38B0, 0x0051CC30, 0x00377190, 0x00377360, 0x0035B2F0, 0x0020E620, 0x0020E600, 0x00309440, 0x003008A0, 0x0030F760, 0x002F9860, 0x002F9920, 0x003214B0, 0x00264D60, 0x0031B9F0, 0x00252E60, 0x00252F40, 0x00247510, 0x00254B50, 0x00280A00, 0x002621D0, 0x003DC240, 0x00197160, 0x003A1180, 0x0021B5B0, 0x0032A8A0, 0x0032A930, 0x00269F40, 0x00263990, 0x00328990, 0x00322C50, 0x00387730, 0x0030E360"
----
+[Home](../../README.md) / [Engine core](README.md) / Identifier spaces
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Identifier spaces: the kinds of id, handle and index the engine passes between subsystems, with each kind's range, invalid values, maker, resolver and reuse | reference | Engine core | Glossary, ids and limits | One row per identifier kind: actor and binding handles, the serial and generation handles of the pools, arena handles and effect tickets, encoded pointers, encoded item ids, action and order ids, field ids, text ids and words, picture ids, party seats and selectors, inventory list ids, widget message ids, menu request ids, script call ids, control codes, sound ids, story flag ids, name ids, license node numbers and status ids; with each one's form, range, invalid values, the functions that make and resolve it, and what happens to old values when a slot is reused. | 0x003589B0, 0x003588B0, 0x0031B7E0, 0x002E9810, 0x002E97C0, 0x002DF980, 0x002DF960, 0x0036A000, 0x003B38B0, 0x0051CC30, 0x00377190, 0x00377360, 0x0035B2F0, 0x0020E620, 0x0020E600, 0x00309440, 0x003008A0, 0x0030F760, 0x002F9860, 0x002F9920, 0x003214B0, 0x00264D60, 0x0031B9F0, 0x00252E60, 0x00252F40, 0x00247510, 0x00254B50, 0x00280A00, 0x002621D0, 0x003DC240, 0x00197160, 0x003A1180, 0x0021B5B0, 0x0032A8A0, 0x0032A930, 0x00269F40, 0x00263990, 0x00328990, 0x00322C50, 0x00387730, 0x0030E360 |
 
 ## What it lists
 

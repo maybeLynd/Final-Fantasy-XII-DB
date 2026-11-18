@@ -1,9 +1,8 @@
----
-title: "Bestiary: every enemy definition of every area with its name, level, stats, elements, statuses, loot and rewards"
-kind: "reference"
-category: "Enemy spawning"
-addresses: "0x02EBF120, 0x02EBF150, 0x02EBF148, 0x02EBF140, 0x003EA710, 0x0023A570, 0x0023AC80, 0x002FEF30, 0x0030C470, 0x002398F0, 0x002394C0, 0x002390B0, 0x0023A3B0, 0x002F8BB0, 0x002F90C0, 0x00312280, 0x00317090, 0x00390390, 0x00390680, 0x003180F0, 0x00238BF0, 0x0031C2F0, 0x002ED6F0, 0x002DF9A0, 0x00264ED0, 0x0031C540, 0x0026D610, 0x002E6090, 0x002E28E0, 0x0042FB80, 0x00420480, 0x0041F340, 0x00504F00, 0x00504840, 0x004772E0, 0x003171C0, 0x00315820, 0x00315420, 0x005760A0, 0x003214B0, 0x002B58B0, 0x01EC73A0, 0x00D23740, 0x0038D400, 0x00315D50, 0x01EED130, 0x00316930, 0x002DFC0A"
----
+[Home](../../README.md) / [Enemy spawning](README.md) / Bestiary
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Bestiary: every enemy definition of every area with its name, level, stats, elements, statuses, loot and rewards | reference | Enemy spawning | Enemy data | All 1,146 enemy definitions of the 166 shipped area files, one line each: the area and row, the shipped name, the levels the zone scripts place it at, its model, its race and family names, HP, MP, Strength, Magick Power, Vitality, Speed, Attack, Defense, Magick Resist and evades with their growth per level, its weak, absorb, halve, nullify and potency elements, the statuses it is immune to or starts with and its augments, its steal, drop, poach and Monograph items by name, its EXP, LP, gil and clan point rewards, the Clan Primer Bestiary entry it counts for with that entry's name, the remaining definition and class row fields, and a one-line explanation. | 0x02EBF120, 0x02EBF150, 0x02EBF148, 0x02EBF140, 0x003EA710, 0x0023A570, 0x0023AC80, 0x002FEF30, 0x0030C470, 0x002398F0, 0x002394C0, 0x002390B0, 0x0023A3B0, 0x002F8BB0, 0x002F90C0, 0x00312280, 0x00317090, 0x00390390, 0x00390680, 0x003180F0, 0x00238BF0, 0x0031C2F0, 0x002ED6F0, 0x002DF9A0, 0x00264ED0, 0x0031C540, 0x0026D610, 0x002E6090, 0x002E28E0, 0x0042FB80, 0x00420480, 0x0041F340, 0x00504F00, 0x00504840, 0x004772E0, 0x003171C0, 0x00315820, 0x00315420, 0x005760A0, 0x003214B0, 0x002B58B0, 0x01EC73A0, 0x00D23740, 0x0038D400, 0x00315D50, 0x01EED130, 0x00316930, 0x002DFC0A |
 
 ## What it lists
 
@@ -149,6 +148,19 @@ raise, for every entry but the two of step 2 ([Clan Primer](../Menus-And-HUD/cla
 4. The same builder takes the entry's name from the catalog: the `i32` at `+0x00` of the 12-byte record *n*, a
    battle-text word for the Bestiary, resolved by `0x003214B0` (`0x0057617B`) and read as string 0 of its row by
    `0x002B58B0` (`0x00576185`).
+
+Phase `3` of the [action phases](../Battle-Actions/action-phases.md) calls `0x00306010` with the unit, which walks the
+unit's target list `+0x780` (count `+0x77C`, `0x0030601F`-`0x00306025`, `0x00306040`-`0x003060C5`). Each entry whose unit
+`0x0031B760` resolves, other than the unit itself (`0x00306040`-`0x00306053`), is passed with the unit to
+`0x00328530(unit, target)` (`0x0030605B`), and at most one of two entries is marked, since `0x0031B9A0` answers an entry
+only for a unit whose stats record has byte `+0x05` 1:
+
+- the target's, `0x0031B9A0(target)`, when it is not `0xFFFF` and the acting unit has a stats record `+0x698` with byte
+  `+0x05` 0 (`0x00306060`-`0x0030608A`);
+- the acting unit's, `0x0031B9A0(unit)`, when it is not `0xFFFF` and the target has one (`0x0030608F`-`0x003060B4`).
+
+A mark is `0x00253760(n)`, a jump to `0x00315A90(n)`, which stores 1 in the save byte `+0x3404` + *n* while it is 0, for
+*n* below `0x200` (`0x00315A94`-`0x00315AB7`), so `0x00315420(n)` then reads a count of 0 instead of -1.
 
 The catalog is kind-7 resource `0x354`, the Bestiary family's base id at `0x00D23740` + 2 × 5 (`0x00575C60`). The US
 build's kind-7 path array `0x01EC73A0`, which `0x002DF9A0` loads in its US case (`0x002DFC0A`) and stores at `0x0215F038` (`0x002DFF7F`), names

@@ -1,9 +1,8 @@
----
-title: "Gil: storage, the gil cap, every way gil changes, and the Plunderer and Spendthrift counters"
-kind: "system"
-category: "Rewards: EXP, LP, gil and loot"
-addresses: "0x00253690, 0x00254EE0, 0x003004B0, 0x00300500, 0x00316A50, 0x00309060, 0x002F95D0, 0x00312280, 0x003F4AA0, 0x0050FAF0, 0x002524C0"
----
+[Home](../../README.md) / [Rewards: EXP, LP, gil and loot](README.md) / Gil
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Gil: storage, the gil cap, every way gil changes, and the Plunderer and Spendthrift counters | system | Rewards: EXP, LP, gil and loot | Gil, prices and reward packages | Where gil is stored, the single setter that clamps it to 0-99,999,999 and meters every change, every function that changes gil (kills, chests, shops, quest rewards, script verbs, character joins, presets, action costs, results, debug), the gil-gained and gil-spent totals and the achievements they unlock. | 0x00253690, 0x00254EE0, 0x003004B0, 0x00300500, 0x00316A50, 0x00309060, 0x002F95D0, 0x00312280, 0x003F4AA0, 0x0050FAF0, 0x002524C0 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Character rig and look: the seventeen procedural controllers, the staged look command and the focus point"
-kind: "system"
-category: "Graphics"
-addresses: "0x003E1350, 0x003E1610, 0x00370E20, 0x003E6DA0, 0x003E00C0, 0x00427DE0, 0x0042DD90, 0x0042EE90, 0x002E8570, 0x002EDF30, 0x002EE0D0, 0x002EDE70, 0x002EDDC0, 0x002E75A0, 0x0042BDE0, 0x004718D0, 0x00471640, 0x004716A0, 0x00471150, 0x00427320, 0x00518F50, 0x003DFE70, 0x0042BED0, 0x00520430, 0x0051A890, 0x003E37F0, 0x00429920, 0x003E37E0, 0x002EC3F0, 0x003E2FD0, 0x003E3200, 0x003E2F30, 0x003E3340, 0x003E0910, 0x003E2810, 0x003E3D70, 0x00426220, 0x003E43D0, 0x003E5ED0, 0x003E5FA0, 0x003E6070, 0x003E5810, 0x004288E0, 0x0042C410"
----
+[Home](../../README.md) / [Graphics](README.md) / Character rig and look
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Character rig and look: the seventeen procedural controllers, the staged look command and the focus point | system | Graphics | Character models / Character Rendering | The rig of seventeen procedural controllers a character carries on top of its animation, the two switches that turn them on and off, the record flags and script verbs behind the lip flap, nod, head shake, eyes and body shake, the status and event triggers of the Confuse, Immobilize, Float and flinch motions, the order the rig's frame solves and applies them, the staged look command that turns head-look requests into look-controller state, and the eased focus point other code reads as where a character is. | 0x003E1350, 0x003E1610, 0x00370E20, 0x003E6DA0, 0x003E00C0, 0x00427DE0, 0x0042DD90, 0x0042EE90, 0x002E8570, 0x002EDF30, 0x002EE0D0, 0x002EDE70, 0x002EDDC0, 0x002E75A0, 0x0042BDE0, 0x004718D0, 0x00471640, 0x004716A0, 0x00471150, 0x00427320, 0x00518F50, 0x003DFE70, 0x0042BED0, 0x00520430, 0x0051A890, 0x003E37F0, 0x00429920, 0x003E37E0, 0x002EC3F0, 0x003E2FD0, 0x003E3200, 0x003E2F30, 0x003E3340, 0x003E0910, 0x003E2810, 0x003E3D70, 0x00426220, 0x003E43D0, 0x003E5ED0, 0x003E5FA0, 0x003E6070, 0x003E5810, 0x004288E0, 0x0042C410 |
 
 ## What the player sees
 

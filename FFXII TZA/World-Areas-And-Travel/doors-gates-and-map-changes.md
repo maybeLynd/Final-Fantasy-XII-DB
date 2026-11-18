@@ -1,9 +1,8 @@
----
-title: "Doors, gates and map changes: the override table the setmapid verbs write, what its floor, wall and mj bits block, the show and hide model masks and when a new map clears them"
-kind: "system"
-category: "World, areas and travel"
-addresses: "0x0209A3E0, 0x0026E880, 0x003792E0, 0x003795A0, 0x00379430, 0x00232020, 0x00230A40, 0x0022F8B0, 0x0026E300, 0x00379010, 0x0026E5F0, 0x0026E960, 0x003278D0"
----
+[Home](../../README.md) / [World, areas and travel](README.md) / Doors, gates and map changes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Doors, gates and map changes: the override table the setmapid verbs write, what its floor, wall and mj bits block, the show and hide model masks and when a new map clears them | system | World, areas and travel | Changing areas and travel | How a zone script opens a gate or raises a barrier: the 80-entry override table at 0x0209A3E0 that setmapidfloor, setmapidwall and setmapidmj lay over every collision polygon's attribute word, which movement kinds each bit blocks, the ground field, the path reset every write triggers, the route-graph edges that consult the same table, the two 64-bit masks behind showmapmodel and hidemapmodel, and the map bind that clears all of it. | 0x0209A3E0, 0x0026E880, 0x003792E0, 0x003795A0, 0x00379430, 0x00232020, 0x00230A40, 0x0022F8B0, 0x0026E300, 0x00379010, 0x0026E5F0, 0x0026E960, 0x003278D0 |
 
 ## What the player sees
 
@@ -489,3 +488,7 @@ is rebuilt from the map and its script on every load.
 - [Area flags: the navimapdata.bin record for every area, the town flag, the KO, Stone and X-Zone override and the other bits](area-flags-navimapdata.md)
 - [How a unit finds its way across the navigation mesh](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md)
 - [The map ctrl pack](mpk-map-pack.md)
+
+---
+
+[← Zone changes](zone-changes-and-mapjump.md)

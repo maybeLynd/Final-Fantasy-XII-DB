@@ -1,9 +1,8 @@
----
-title: "Save file format: the SAFH container, its zlib and RC4 layers, the save image and its header fields, the four in-memory copies and the format stamps"
-kind: "format"
-category: "Saving, loading and settings"
-addresses: "0x008666B0, 0x00866200, 0x00865840, 0x00865D90, 0x002EF640, 0x00583D60, 0x0057E310, 0x003BB220, 0x00253A80, 0x00255260, 0x00233C10, 0x002370C0, 0x00584210, 0x00862A40"
----
+[Home](../../README.md) / [Saving, loading and settings](README.md) / Save file format
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Save file format: the SAFH container, its zlib and RC4 layers, the save image and its header fields, the four in-memory copies and the format stamps | format | Saving, loading and settings | Saving and loading | What a FFXII_000 save file is from the outside in: the 12-byte SAFH container header, the body that is zlib-compressed and then RC4-encrypted under a key derived from the rotated game title, the 353,936-byte image inside it with its 512-byte header (checksum, gil, play time, slot roster, area, format constants) and payload, the four image buffers the game keeps in memory, the checksum the writer computes, the stamps the loader checks, and what loading an older or edited image does. | 0x008666B0, 0x00866200, 0x00865840, 0x00865D90, 0x002EF640, 0x00583D60, 0x0057E310, 0x003BB220, 0x00253A80, 0x00255260, 0x00233C10, 0x002370C0, 0x00584210, 0x00862A40 |
 
 ## What the player sees
 
@@ -375,3 +374,7 @@ file of the kind.
   the image (`+0x0` to `+0xB0`), one row per instruction, by 25 functions (199 rows). Its columns are those of the
   access tables on [Save data fields](save-data-fields.md#related), with `disp` measured from the start of the image;
   17 of its sites are also rows of `save-image-accesses.tsv`, with the same offset, kind and instruction.
+
+---
+
+[← Loading a save](loading-a-save.md) | [Save data fields →](save-data-fields.md)

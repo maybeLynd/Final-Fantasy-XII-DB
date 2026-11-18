@@ -1,9 +1,8 @@
----
-title: "Enemy spawning: the spawn table, how a zone picks where a monster appears, the ground height, and when it vanishes out of range"
-kind: "system"
-category: "Enemy spawning"
-addresses: "0x0023A2E0, 0x002395A0, 0x00236100, 0x002360D0, 0x0023A520, 0x0023A1D0, 0x0023A1F0, 0x00239020, 0x00235340, 0x00235330, 0x00235720, 0x00308D90, 0x00234AF0, 0x00234DA0, 0x002374E0, 0x00319390, 0x00328370, 0x002354F0, 0x00235360, 0x002355A0, 0x00236450, 0x00239840, 0x0023A3B0, 0x0023A570, 0x00233AD0, 0x00239E10, 0x0023A410, 0x003208C0, 0x00300310, 0x00239410, 0x00239210, 0x002391C0, 0x002396B0, 0x0023A200, 0x00236860, 0x00238FC0, 0x002350C0, 0x00300E40, 0x00306E60, 0x00233F70, 0x002342F0, 0x002368D0, 0x0031B810, 0x003273B0, 0x003272A0, 0x00320940, 0x003209C0, 0x003A1960, 0x005102D0"
----
+[Home](../../README.md) / [Enemy spawning](README.md) / Enemy spawning
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Enemy spawning: the spawn table, how a zone picks where a monster appears, the ground height, and when it vanishes out of range | system | Enemy spawning | Spawning and respawning | How a zone script populates an area with monsters: the lane map and the spawn table it installs, the tunables every spawning zone sets and their script defaults, the automatic placement that picks a lane and a point around the party leader with its two generation modes and its distance test, the previous-map and continuing selections that bring a banked monster back where it was, the bind, the unit's activation and the terrain probe that supplies the height, the despawn mode and the range retirement that makes a monster vanish behind the player, and what the shipped zone scripts actually author. | 0x0023A2E0, 0x002395A0, 0x00236100, 0x002360D0, 0x0023A520, 0x0023A1D0, 0x0023A1F0, 0x00239020, 0x00235340, 0x00235330, 0x00235720, 0x00308D90, 0x00234AF0, 0x00234DA0, 0x002374E0, 0x00319390, 0x00328370, 0x002354F0, 0x00235360, 0x002355A0, 0x00236450, 0x00239840, 0x0023A3B0, 0x0023A570, 0x00233AD0, 0x00239E10, 0x0023A410, 0x003208C0, 0x00300310, 0x00239410, 0x00239210, 0x002391C0, 0x002396B0, 0x0023A200, 0x00236860, 0x00238FC0, 0x002350C0, 0x00300E40, 0x00306E60, 0x00233F70, 0x002342F0, 0x002368D0, 0x0031B810, 0x003273B0, 0x003272A0, 0x00320940, 0x003209C0, 0x003A1960, 0x005102D0 |
 
 ## What the player sees
 
@@ -712,3 +711,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - Save load settings: `0x0025D9E0` calls `0x002EF2B0`, `0x00583920`; those functions are documented on
   [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
   [frame update order](../Engine-Core/frame-update-order.md).
+
+---
+
+[Enemy respawning →](enemy-respawning.md)

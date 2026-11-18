@@ -1,9 +1,8 @@
----
-title: "Phyre D3D11 draws, state and buffers: the draw and dispatch calls, topology and index formats, the state translation tables, material parameters and the buffer rings behind data blocks"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x0060E7A0, 0x001B81B0, 0x0062C9A0, 0x00671B30, 0x00674610, 0x0062EBC0, 0x01F7F5B8, 0x006BA720, 0x00622350, 0x00622450, 0x006224E0, 0x006226D0, 0x006223D0, 0x006225D0, 0x00621F80, 0x00621FA0, 0x0061ED00, 0x0061C1C0, 0x01F2DEF8, 0x01F2DEF0, 0x00616F00, 0x0061BF40, 0x0061C010, 0x0061C150, 0x00627F10, 0x00628570, 0x0062A920, 0x00618740, 0x006187A0, 0x0061C8A0, 0x02CED880, 0x01F2DE88, 0x00608DD0, 0x0060B860, 0x0060EC80, 0x00629AA0, 0x00629C70, 0x0061D260, 0x00623180, 0x006231F0, 0x00622F40, 0x00623050, 0x00622D90, 0x0061E340, 0x0062A0A0, 0x0061DFE0, 0x0061DCA0, 0x0061DD60, 0x0061DBE0, 0x0061E0B0, 0x02CEDA20, 0x02CEE3D0, 0x02CEED80, 0x02CEF730, 0x00621C00"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Phyre D3D11 draws, state and buffers
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre D3D11 draws, state and buffers: the draw and dispatch calls, topology and index formats, the state translation tables, material parameters and the buffer rings behind data blocks | system | PhyreEngine | Drawing and shaders | The lowest layer of PhyreEngine's Direct3D 11 renderer in the executable: the eight functions that issue every draw and compute dispatch on the immediate context, how a pass switch creates and binds the four shaders and the pass state and binds each shader's resources through the per-stage caches, the primitive-type to topology table with its one-entry cache, how an index data block chooses its index format and buffer, the tables that turn engine blend, compare and stencil values into D3D11 ones inside the context's pending state descriptions, material parameter writes, bind caches, the ring of buffers behind each data block with its deferred upload queue, and the helpers that unbind vertex buffers and unordered-access views. | 0x0060E7A0, 0x001B81B0, 0x0062C9A0, 0x00671B30, 0x00674610, 0x0062EBC0, 0x01F7F5B8, 0x006BA720, 0x00622350, 0x00622450, 0x006224E0, 0x006226D0, 0x006223D0, 0x006225D0, 0x00621F80, 0x00621FA0, 0x0061ED00, 0x0061C1C0, 0x01F2DEF8, 0x01F2DEF0, 0x00616F00, 0x0061BF40, 0x0061C010, 0x0061C150, 0x00627F10, 0x00628570, 0x0062A920, 0x00618740, 0x006187A0, 0x0061C8A0, 0x02CED880, 0x01F2DE88, 0x00608DD0, 0x0060B860, 0x0060EC80, 0x00629AA0, 0x00629C70, 0x0061D260, 0x00623180, 0x006231F0, 0x00622F40, 0x00623050, 0x00622D90, 0x0061E340, 0x0062A0A0, 0x0061DFE0, 0x0061DCA0, 0x0061DD60, 0x0061DBE0, 0x0061E0B0, 0x02CEDA20, 0x02CEE3D0, 0x02CEED80, 0x02CEF730, 0x00621C00 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Gaining and losing statuses: how a status is added or removed, what can refuse it, and what happens the moment it lands"
-kind: "system"
-category: "Status effects and KO"
-addresses: "0x0030E360, 0x0030B9B0, 0x0030B8E0, 0x0030B770, 0x0030B7F0, 0x00386A70, 0x003284D0, 0x0046A800, 0x00300140, 0x00300FC0"
----
+[Home](../../README.md) / [Status effects and KO](README.md) / Gaining and losing statuses
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Gaining and losing statuses: how a status is added or removed, what can refuse it, and what happens the moment it lands | system | Status effects and KO | Statuses and buffs | The one function every status change goes through: the two eligibility gates and what raises them, the Esper shortcut for KO, Stone and X-Zone, the six modes over the three status words, the duration and beat it starts, what an unchanged presence skips, the end of an applied Bubble halving HP, the statuses a new one cancels, the status reaction and the two battle messages, and what each status does on arrival or removal. | 0x0030E360, 0x0030B9B0, 0x0030B8E0, 0x0030B770, 0x0030B7F0, 0x00386A70, 0x003284D0, 0x0046A800, 0x00300140, 0x00300FC0 |
 
 ## What the player sees
 
@@ -204,3 +203,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Script VM: `0x00347F80` calls `0x00267E10`; `0x00473820` is called by `0x00347F80`; those functions are documented on
   [force fight mode](../Engine-Core/force-fight-mode.md).
+
+---
+
+[Timed statuses →](status-timers.md)

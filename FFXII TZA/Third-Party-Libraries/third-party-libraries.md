@@ -1,9 +1,8 @@
----
-title: "Third-party libraries: which libraries are linked into the executable, how each is identified and versioned, and where each lies"
-kind: "reference"
-category: "Third-party libraries"
-addresses: "0x01CBA5D0, 0x01CDB290, 0x0016F080, 0x01CEB590, 0x01F48940, 0x00D86C00, 0x00791D80, 0x00791E70, 0x00169620, 0x008B7DA0, 0x01F40380, 0x02EA58C0, 0x02EA54F0, 0x0080C5A0, 0x0080C5C0, 0x0087AF40, 0x01CC9F50, 0x01CDA260, 0x01CCA080, 0x00200BF0, 0x00200E60, 0x001FF740, 0x008C5F58, 0x0080E600, 0x002165B0"
----
+[Home](../../README.md) / [Third-party libraries](README.md) / Third-party libraries
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Third-party libraries: which libraries are linked into the executable, how each is identified and versioned, and where each lies | reference | Third-party libraries | The library list | Every third-party library statically linked into FFXII_TZA.exe: the text or table that identifies it, the version where the binary states one, its address span, its member list and what the game uses it for; with the zlib, JsonBox and Dear ImGui details, and why the ImGui context is never used. | 0x01CBA5D0, 0x01CDB290, 0x0016F080, 0x01CEB590, 0x01F48940, 0x00D86C00, 0x00791D80, 0x00791E70, 0x00169620, 0x008B7DA0, 0x01F40380, 0x02EA58C0, 0x02EA54F0, 0x0080C5A0, 0x0080C5C0, 0x0087AF40, 0x01CC9F50, 0x01CDA260, 0x01CCA080, 0x00200BF0, 0x00200E60, 0x001FF740, 0x008C5F58, 0x0080E600, 0x002165B0 |
 
 ## What it lists
 

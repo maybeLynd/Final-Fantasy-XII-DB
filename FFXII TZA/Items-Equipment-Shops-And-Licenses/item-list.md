@@ -1,9 +1,8 @@
----
-title: "Item list: every item with its name, price, sort order, icon, the action it runs and its texts"
-kind: "reference"
-category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF100, 0x0031C5D0, 0x0031C7F5, 0x0031C81A, 0x0031C83E, 0x0031C845, 0x002CFFE0, 0x0057DAD0"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Item list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Item list: every item with its name, price, sort order, icon, the action it runs and its texts | reference | Items, equipment, shops and licenses | Items and inventory | All 64 rows of the shipped item table in battle_pack.bin, decoded field by field: the item id and name, the Auto-sort order, the icon frame, the buy and sell price, and for the 51 usable items the action row that spends the item, with its power, hit, element, statuses, area, named flags, help and description lines, and a one-line explanation. | 0x02EBF100, 0x0031C5D0, 0x0031C7F5, 0x0031C81A, 0x0031C83E, 0x0031C845, 0x002CFFE0, 0x0057DAD0 |
 
 ## What it lists
 

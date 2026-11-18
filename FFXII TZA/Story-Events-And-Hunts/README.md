@@ -1,121 +1,225 @@
+[Home](../../README.md) / Story, events and hunts
+
 # Story, events and hunts
 
 Story progress, event scenes, side quests and hunts.
 
-| Page | What you will find |
-|---|---|
-| [Aerodrome airship scenes: the scene, its text and the aerodrome scripts that load it](aerodrome-airship-scenes.md) | The aerodrome airship scene script pas_z0000: its two lines in the game's own words, its actors, and the five aerodrome zone scripts, Rabanastre, Nalbina Town, Bhujerba, Archades and Balfonheim Port, that load it. |
-| [Archades scenes: each story scene with its dialogue, story counter values and what follows](archades-scenes.md) | The ten scene scripts of Archades that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and the map that follows. |
-| [Archades scripts: what each script function shows, sets, gives and starts](archades-scripts.md) | Every function of the Archades zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps and scene loads. |
-| [Balfonheim Port scenes: each story scene with its dialogue, story counter values and what follows](balfonheim-port-scenes.md) | The three scene scripts of Balfonheim Port that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and the map that follows. |
-| [Balfonheim Port scripts: what each script function shows, sets, gives and starts](balfonheim-port-scripts.md) | Every function of the Balfonheim Port zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps and scene loads. |
-| [Barheim Passage scenes: each story scene with its dialogue, story counter values and what follows](barheim-passage-scenes.md) | The scene scripts of Barheim Passage: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Barheim Passage scripts: what each script function shows, sets, gives and starts](barheim-passage-scripts.md) | Every function of the Barheim Passage zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Bhujerba scenes: each story scene with its dialogue, story counter values and what follows](bhujerba-scenes.md) | The scene scripts of Bhujerba: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Bhujerba scripts: what each script function shows, sets, gives and starts](bhujerba-scripts.md) | Every function of the Bhujerba zone and scene scripts that a player can observe, apart from the shared crystal and item-message actors counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Cerobi Steppe scripts: what each script function shows, sets, gives and starts](cerobi-steppe-scripts.md) | Every function of the Cerobi Steppe zone scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Dalmasca Estersand scenes: each story scene with its dialogue, rewards, story counter values and what follows](dalmasca-estersand-scenes.md) | The four scene scripts of Dalmasca Estersand that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the items it gives, the story counter values written with it, and the scene or map that follows. |
-| [Dalmasca Estersand scripts: what each script function shows, sets, gives and starts](dalmasca-estersand-scripts.md) | Every function of the Dalmasca Estersand zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Dalmasca Westersand scenes: each story scene with its dialogue, story counter values and what follows](dalmasca-westersand-scenes.md) | The three scene scripts of Dalmasca Westersand: the zone function that loads each one, every line it holds in the game's own words, the story flags and counter values written with it, and the scene that follows. |
-| [Dalmasca Westersand scripts: what each script function shows, sets, gives and starts](dalmasca-westersand-scripts.md) | Every function of the Dalmasca Westersand zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives, its map jumps, battle calls and scene loads. |
-| [Developer scripts: the debug menus and test scenes no path array names](developer-scripts.md) | Every function of the eighteen developer scripts under event/evt_t that a player can observe: the developers' debug menus and test scenes, with the fields they jump to, the story counter values they write, the items and party changes they make and the scenes they load, and every step of every function. |
-| [Draklor Laboratory scenes: each story scene with its dialogue, rewards, story counter values and what follows](draklor-laboratory-scenes.md) | The five scene scripts of Draklor Laboratory that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the items it gives, the story counter values written with it, and the scene or map that follows. |
-| [Draklor Laboratory scripts: what each script function shows, sets, gives and starts](draklor-laboratory-scripts.md) | Every function of the Draklor Laboratory zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives, its map jumps, battle calls and scene loads. |
-| [Dreadnought Leviathan scenes: each story scene with its dialogue, story counter values and what follows](dreadnought-leviathan-scenes.md) | The scene scripts of the Dreadnought Leviathan: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Dreadnought Leviathan scripts: what each script function shows, sets, gives and starts](dreadnought-leviathan-scripts.md) | Every function of the Dreadnought Leviathan zone and scene scripts that a player can observe, apart from the shared crystal and item-message actors counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Ending message scenes: the scene with its text and the script that loads it](ending-message-scenes.md) | The ending message scene script msg_z0001: every line it holds in the game's own words, what it gives and writes, and the Sky Fortress Bahamut zone function that loads it. |
-| [Ending message scripts: what each function of the scene shows](ending-message-scripts.md) | Every function of the ending message scene script msg_z0001 that a player can observe: the line each one shows, in the game's own words, and the function that requests it. |
-| [Eruyt Village scenes: each story scene with its dialogue, rewards, story counter values and what follows](eruyt-village-scenes.md) | The five scene scripts of Eruyt Village that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the key item it gives, the story counter values written with it, and the map that follows. |
-| [Eruyt Village scripts: what each script function shows, sets, gives and starts](eruyt-village-scripts.md) | Every function of the Eruyt Village zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps and scene loads. |
-| [Event memory: the event and summon memory heaps a field gets when its actors are bound, and the list of fields that get no event memory](event-memory.md) | What happens to two working heaps when a field's actor manager is bound: both are released, the 1 MiB event memory heap EVTMEM is made again unless the field's id is in eventmemorylist.bin, and the 100 KiB summon memory heap SMNMEM is made again unless the field record's bit `0x8000` is set, with the list's file format, its loader and its eight shipped ids. |
-| [Feywood scenes: each story scene with its dialogue, story counter values and what follows](feywood-scenes.md) | The scene scripts of The Feywood: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Feywood scripts: what each script function shows, sets, gives and starts](feywood-scripts.md) | Every function of the Feywood zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Garamsythe Waterway scenes: each story scene with its dialogue, story counter values and what follows](garamsythe-waterway-scenes.md) | The scene scripts of the Garamsythe Waterway: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Garamsythe Waterway scripts: what each script function shows, sets, gives and starts](garamsythe-waterway-scripts.md) | Every function of the Garamsythe Waterway zone and scene scripts that a player can observe, apart from the shared crystal and item-message actors counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Giruvegan scenes: each story scene with its dialogue, story counter values and what follows](giruvegan-scenes.md) | The scene scripts of Giruvegan and the Great Crystal: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Giruvegan scripts: what each script function shows, sets, gives and starts](giruvegan-scripts.md) | Every function of the Giruvegan and Great Crystal zone and scene scripts that a player can observe, apart from the shared crystal and item-message actors counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Giza Plains scenes: each story scene with its dialogue, rewards, story counter values and what follows](giza-plains-scenes.md) | The five scene scripts of Giza Plains, Penelo joining Vaan and Jinn's sunstone: the zone function that loads each one, every line it holds in the game's own words, the items it gives, the story counter values written with it, and the map that follows. |
-| [Giza Plains scripts: what each script function shows, sets, gives and starts](giza-plains-scripts.md) | Every function of the Giza Plains zone and scene scripts, the Dry and the Rains versions of the maps, that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls, scene loads and party changes. |
-| [Golmore Jungle scenes: each story scene with its dialogue, story counter values and what follows](golmore-jungle-scenes.md) | The scene scripts of Golmore Jungle: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Golmore Jungle scripts: what each script function shows, sets, gives and starts](golmore-jungle-scripts.md) | Every function of the Golmore Jungle zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Henne Mines scenes: each story scene with its dialogue, rewards, story counter values and what follows](henne-mines-scenes.md) | The six scene scripts of Henne Mines that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the Esper it gives, the story counter values written with it, and the scene or map that follows. |
-| [Henne Mines scripts: what each script function shows, sets, gives and starts](henne-mines-scripts.md) | Every function of the Henne Mines zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Hunts: every hunt with its name, petitioner, row picture, record text, the progress that shows each part and when its row is marked done](hunts.md) | All 45 hunts of the shipped us quest-menu files, decoded field by field: the quest id, its record and position, the hunt's name, the row picture with its sheet and cell, the petitioner line, the threshold that marks the row done, the record's parts with their text, the progress values at which each part appears, and a one-line explanation. |
-| [Jahara scenes: each story scene with its dialogue and the zone that loads it](jahara-scenes.md) | The three scene scripts of Jahara, the garif village: the zone function that loads each one and every line it holds in the game's own words, from Larsa's invitation to Mt Bur-Omisace to the legend of the nethicite. |
-| [Jahara scripts: what each script function shows, sets, gives and starts](jahara-scripts.md) | Every function of the Jahara zone and scene scripts, the garif village, that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps and scene loads. |
-| [Language-tree script differences: what each code change outside the English scripts does in the game](script-language-differences.md) | Every place where the code of a zone or scene script in one of the other eight language trees (in, kr, cn, ch, fr, de, it, es) differs from the us script: the seven kinds of change, what each verb does, what the changed values move or switch on screen, and why the tree needs it. |
-| [Lhusu Mines scenes: each story scene with its dialogue, story counter values and what follows](lhusu-mines-scenes.md) | The eleven scene scripts of Lhusu Mines that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and the scene that follows. |
-| [Lhusu Mines scripts: what each script function shows, sets, gives and starts](lhusu-mines-scripts.md) | Every function of the Lhusu Mines zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives, its map jumps, battle calls and scene loads. |
-| [Location title scenes: each region title scene and the field scripts that load it](titles-scenes.md) | The location title scene scripts ttl_z0000 to ttl_z0009: the event id of each, the fields of other regions whose zone scripts load it, most of them only on the party's first arrival, and the one flag a title sets. |
-| [Lowtown scenes: each story scene with its dialogue, story counter values and what follows](lowtown-scenes.md) | The scene scripts of Lowtown: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Lowtown scripts: what each script function shows, sets, gives and starts](lowtown-scripts.md) | Every function of the Lowtown zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Mosphoran Highwaste scenes: each story scene with its dialogue, rewards and what follows](mosphoran-highwaste-scenes.md) | The two scene scripts of Mosphoran Highwaste that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the Esper it gives, and the scene that follows. |
-| [Mosphoran Highwaste scripts: what each script function shows, sets, gives and starts](mosphoran-highwaste-scripts.md) | Every function of the Mosphoran Highwaste zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Mt Bur-Omisace scenes: each story scene with its dialogue, story counter values and what follows](mt-bur-omisace-scenes.md) | The five scene scripts of Mt Bur-Omisace: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and the scene or map that follows. |
-| [Mt Bur-Omisace scripts: what each script function shows, sets, gives and starts](mt-bur-omisace-scripts.md) | Every function of the Mt Bur-Omisace zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Nabreus Deadlands scenes: each story scene with its dialogue, story counter values and what follows](nabreus-deadlands-scenes.md) | The two scene scripts of Nabreus Deadlands that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the story counter value written with it, and the map that follows. |
-| [Nabreus Deadlands scripts: what each script function shows, sets, gives and starts](nabreus-deadlands-scripts.md) | Every function of the Nabreus Deadlands zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Nalbina Dungeons scenes: each story scene with its dialogue, rewards, story counter values and what follows](nalbina-dungeons-scenes.md) | The seven scene scripts of the Nalbina Dungeons: the zone function that loads each one, every line it holds in the game's own words, the items and party members it gives, the story flags and counter values written with it, and the scene or map that follows. |
-| [Nalbina Dungeons scripts: what each script function shows, sets, gives and starts](nalbina-dungeons-scripts.md) | Every function of the Nalbina Dungeons zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls, scene loads and party changes. |
-| [Nalbina Fortress scenes: each story scene with its dialogue, story counter values and what follows](nalbina-fortress-scenes.md) | The six scene scripts of Nalbina Fortress, the prologue with Reks and Basch: the zone function that loads each one, every line it holds in the game's own words, the story flags and counter values written with it, and the scene or map that follows. |
-| [Nalbina Fortress scripts: what each script function shows, sets, gives and starts](nalbina-fortress-scripts.md) | Every function of the Nalbina Fortress zone and scene scripts (the prologue with Reks and Basch) that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives, its map jumps, battle calls and scene loads. |
-| [Nalbina Town scenes: each story scene with its dialogue, story counter values and what follows](nalbina-town-scenes.md) | The scene script of Nalbina Town: the zone function that loads it, every line it holds in the game's own words, the story counter values written with it, and the map that follows. |
-| [Nalbina Town scripts: what each script function shows, sets, gives and starts](nalbina-town-scripts.md) | Every function of the Nalbina Town zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps and its scene loads. |
-| [Nam-Yensa Sandsea scenes: each story scene with its dialogue and what follows](nam-yensa-sandsea-scenes.md) | The three scene scripts of Nam-Yensa Sandsea that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, and the scene that follows. |
-| [Nam-Yensa Sandsea scripts: what each script function shows, sets, gives and starts](nam-yensa-sandsea-scripts.md) | Every function of the Nam-Yensa Sandsea zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Necrohol of Nabudis scenes: each story scene with its dialogue, Espers, flags and what follows](necrohol-of-nabudis-scenes.md) | The seven scene scripts of Necrohol of Nabudis that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the Esper it gives, the flag set with it, and the scene that follows. |
-| [Necrohol of Nabudis scripts: what each script function shows, sets, gives and starts](necrohol-of-nabudis-scripts.md) | Every function of the Necrohol of Nabudis zone and scene scripts that a player can observe, apart from the shared item-message helper counted per script: what triggers it, the lines it shows, the story flags it sets or tests, the story counter values it tests, the items and Espers it gives or takes, its map jumps, battle calls and scene loads. |
-| [Ogir-Yensa Sandsea scenes: each story scene with its dialogue, story counter values and what follows](ogir-yensa-sandsea-scenes.md) | The scene scripts of the Ogir-Yensa Sandsea: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Ogir-Yensa Sandsea scripts: what each script function shows, sets, gives and starts](ogir-yensa-sandsea-scripts.md) | Every function of the Ogir-Yensa Sandsea zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Old Archades scenes: each story scene with its dialogue, story counter values and what follows](old-archades-scenes.md) | The three scene scripts of Old Archades: the zone function that loads each one, every line it holds in the game's own words, and the story counter values written with it. |
-| [Old Archades scripts: what each script function shows, sets, gives and starts](old-archades-scripts.md) | Every function of the Old Archades zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags, name-tag flags and story counter values it sets or tests, the items and treasure chests it gives, its map jumps and its scene loads. |
-| [Opening setup scenes: the event script pre_z0000, how it is requested and what it sets](opening-setup-scenes.md) | The one event script of the pre group, pre_z0000 (event 212): the executable's preload and request of it, its lines, items and story values, and what follows it, in the form of the region scene pages. |
-| [Opening setup scripts: what each script function shows, sets, gives and starts](opening-setup-scripts.md) | Every function of the pre group's scripts that a player can observe: the opening event script pre_z0000, which sets story-state globals from the story counter, and the three pre_ zone scripts no field loads, with the treasure chests of pre_a01 and pre_b01. |
-| [Ozmone Plain scenes: each story scene with its dialogue, story counter values and what follows](ozmone-plain-scenes.md) | The two scene scripts of Ozmone Plain: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Ozmone Plain scripts: what each script function shows, sets, gives and starts](ozmone-plain-scripts.md) | Every function of the Ozmone Plain zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Paramina Rift scenes: each story scene with its dialogue, story counter values and what follows](paramina-rift-scenes.md) | The scene script of the Paramina Rift: the zone function that loads it, every line it holds in the game's own words, and the story counter value and map jump that follow it. |
-| [Paramina Rift scripts: what each script function shows, sets, gives and starts](paramina-rift-scripts.md) | Every function of the Paramina Rift zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Pharos - First Ascent scenes: each story scene with its dialogue, story counter values and what follows](pharos-first-ascent-scenes.md) | The ten scene scripts of the rbl group that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, and the scene that follows. |
-| [Pharos - First Ascent scripts: what each script function shows, sets, gives and starts](pharos-first-ascent-scripts.md) | Every function of the rbl zone and scene scripts, the maps of Pharos - First Ascent, Second Ascent, Subterra and Third Ascent apart from those of the rwf and dgl groups, that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Pharos - Third Ascent scenes: each story scene with its dialogue, Espers, story counter values and what follows](pharos-third-ascent-scenes.md) | The nine scene scripts of the dgl group, the Womb of the Sun-cryst and Heaven's Challenge, that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the Esper it gives, the story counter values written with it, and the scene or map that follows. |
-| [Pharos - Third Ascent scripts: what each script function shows, sets, gives and starts](pharos-third-ascent-scripts.md) | Every function of the dgl zone and scene scripts, the Womb of the Sun-cryst and Heaven's Challenge of Pharos - Third Ascent and Hell's Challenge of Pharos - Subterra, that a player can observe: what triggers it, the lines it shows, the story counter values it writes or tests, the items and Espers it gives or takes, its map jumps, battle calls and scene loads. |
-| [Phon Coast scenes: each story scene with its dialogue, story counter values and what follows](phon-coast-scenes.md) | The scene scripts of the Phon Coast: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Phon Coast scripts: what each script function shows, sets, gives and starts](phon-coast-scripts.md) | Every function of the Phon Coast zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Quests: the ordered and cleared state each quest keeps in the save, its progress byte and word, the verbs that change them, and the bug that clears the wrong ordered bit](quests.md) | How a quest is tracked: the save payload's ordered bits, cleared bits and clear total, the scenario flag and contract word each of 256 quests has, the field id recorded when a quest is first ordered, the OK bit, the script verbs that read and write each, the clear verb that clears another quest's ordered bit, and the clan rank count that reads the cleared bits. |
-| [Rabanastre scenes: each story scene with its dialogue, story counter values and what follows](rabanastre-scenes.md) | The scene scripts of Rabanastre: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Rabanastre scripts: what each script function shows, sets, gives and starts](rabanastre-scripts.md) | Every function of the Rabanastre zone and scene scripts that a player can observe, apart from the shared crystal and item-message actors counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Ridorana Cataract scenes: each story scene with its dialogue, story counter values and what follows](ridorana-cataract-scenes.md) | The six scene scripts of the rwf group, Ridorana Cataract and They Who Thirst Not, that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, and the scene that follows. |
-| [Ridorana Cataract scripts: what each script function shows, sets, gives and starts](ridorana-cataract-scripts.md) | Every function of the Ridorana Cataract zone and scene scripts, with They Who Thirst Not of Pharos - First Ascent, that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows, the story flags and story counter values it sets or tests, the items it gives, its map jumps, battle calls and scene loads. |
-| [Royal Palace scenes: each story scene with its dialogue, story counter values and what follows](royal-palace-scenes.md) | The scene scripts of the Royal Palace: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Royal Palace scripts: what each script function shows, sets, gives and starts](royal-palace-scripts.md) | Every function of the Royal Palace zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Salikawood scenes: each story scene with its dialogue, story counter values and what follows](salikawood-scenes.md) | The scene scripts of The Salikawood: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Salikawood scripts: what each script function shows, sets, gives and starts](salikawood-scripts.md) | Every function of the Salikawood zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Scene rewards: every item and gil amount the story scripts give or take, by script and function, and how each item is chosen](scene-rewards.md) | Each item and gil give or take in the shipping us scripts: the script, actor and function, the verb, the item with its name, the count or amount, and where the item comes from, whether written in the call, stored by the caller before it requests one of the shared give routines, or chosen from a set or a table, with what each of the seven verbs does natively. |
-| [Script calls in every script: story writes that lower the counter, save and teleport declarations, exits that choose a destination, and the verbs that steer battle AI](script-censuses.md) | Four counts over the 1,114 us scripts: the 1,759 writes to the main story counter and the few that can move it back; the 460 calls by which 83 maps declare their crystal, teleport arrival, save and anchor entrances; the 844 exits whose destination depends on a test, one row per branch; and the 32,071 calls of 32 verbs that turn battle thinking off or on, pause battle, set stance, engagement, the fighting party, the control level and foe logic, per script and actor kind. |
-| [Shared zone-script actors: the crystal, the teleport and the key-item and message helpers](shared-zone-script-actors.md) | The helper actors many zone scripts carry with identical code: the save and gate crystal (system_crystal_actor), its teleport (telepoeffectctrl), its party-facing helper (crystaldummyPC), the memory card save actor (saveactor) and the key-item and system-message helper (イベント特殊効果画面); what each function does in the game, how a caller hands it the item or message, and which zone scripts carry each one. |
-| [Sky Fortress Bahamut scenes: each story scene with its dialogue, story counter values and what follows](sky-fortress-bahamut-scenes.md) | The scene scripts of the Sky Fortress Bahamut: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Sky Fortress Bahamut scripts: what each script function shows, sets, gives and starts](sky-fortress-bahamut-scripts.md) | Every function of the Sky Fortress Bahamut zone and scene scripts that a player can observe, apart from the shared crystal and item-message actors counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Skyferry scripts: what each script function shows, sets, gives and starts](skyferry-scripts.md) | Every function of the Skyferry zone scripts that a player can observe, apart from the shared item-message helper counted per script: what triggers it, the lines it shows and who speaks them, the story flags it releases, the items it gives or takes, its map jumps and battle calls. |
-| [Sochen Cave Palace scenes: each story scene with its dialogue, story counter values and what follows](sochen-cave-palace-scenes.md) | The scene scripts of the Sochen Cave Palace: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Sochen Cave Palace scripts: what each script function shows, sets, gives and starts](sochen-cave-palace-scripts.md) | Every function of the Sochen Cave Palace zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Special move scenes: the scene script, its actors and what it shows](special-move-scenes.md) | The special move scene script spc_z0000: its actors and functions, and that it holds no text, gives nothing, writes no story flag or counter value and that the battle scene step 0x00306BD0, not a zone script, requests it for every Quickening and Concurrence. |
-| [Stilshrine of Miriam scenes: each story scene with its dialogue, story counter values and what follows](stilshrine-of-miriam-scenes.md) | The scene scripts of the Stilshrine of Miriam: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Stilshrine of Miriam scripts: what each script function shows, sets, gives and starts](stilshrine-of-miriam-scripts.md) | Every function of the Stilshrine of Miriam zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Story counter values: every value the shipped scripts write to the main story counter, and the scripts and functions that write it](story-counter-values.md) | Each of the 313 values the us scripts assign to the main story counter, with the shipping scripts, actors and functions that write it and the counter test that guards each write, the writes in code no path reaches, the writes made only by the developer menus, and how a script writes the counter. |
-| [Story flag ids: every flag id the US scripts set, release or test, by bank, with the scripts that touch it](story-flag-ids.md) | Each flag id a us script passes to the map-jump-group, talked-name and treasure verbs, as a literal or from the name arrays of the clan boards and Montblanc: its bank, whether a new game starts with it, how many times shipping scripts set, release and test it, the scripts that do each, the ids only the developer menus name, the two story-schedule ids, the flag verbs no script calls, and the starting flags no script names. |
-| [Story flags: the five banks of yes-or-no flags the save keeps, the story schedule some flag ids read instead, who sets and reads each, and the flags a new game starts with](story-flags.md) | How the game remembers what has happened: the five flag banks in the save payload with their offsets and id ranges, the accessors and their bounds, the encoded id whose bit `0x4000` reads the story schedule in mapjumpgroupflagrom.bin instead of a flag, ids 0 and 1 as always and never, what each bank holds (map-jump groups and map icons, names learned by talking, chests opened and traps fired, two script-only banks), every native setter and reader, the main menu items the schedule unlocks, and the reset that clears the banks and sets the 52 starting flags. |
-| [Story progress: the main story counter at the start of the save, the script variables that live in the save, and how scenes move the story on](story-progress.md) | Where the story stands and how it moves: the six classes of script variable and the one that is the save payload itself, read and written live, the main story counter as the payload's first word, the native code that reads it, how zone director scripts raise it behind a test of its current value, the values only the developer menus set, and where the flags and quests that sit beside it are described. |
-| [Strahl scenes: the scene, its text and the zone scripts that load it](strahl-scenes.md) | The Strahl scene script str_z0000: its two choice-list lines, its actors, and the eighteen zone scripts that load it, the private airship desks of five aerodromes and the Strahl jump actor of thirteen field maps. |
-| [Summon scenes: the scenes an Esper's summon plays, in sets of three](summons-scenes.md) | The summon scene scripts sum_a0000 to sum_m0002: the thirteen sets of three with their event ids, and the replay question six of them hold. |
-| [Tchita Uplands scripts: what each script function shows, sets, gives and starts](tchita-uplands-scripts.md) | Every function of the Tchita Uplands zone scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags it sets or tests and the story counter values it tests, the items it gives, its map jumps and scene loads. |
-| [Test battle map scripts: what each script function shows, sets, gives and starts](test-battle-maps-scripts.md) | Every function of the thirty-one bts_ test battle zone scripts that a player can observe, the fields they belong to and why no field loads them: each script places the party and foe actors for a battle, and bts_z01 holds sixteen treasure chests. |
-| [Test map scripts: what each script function shows, sets, gives and starts](test-maps-scripts.md) | Every function of the two tst_ test zone scripts that a player can observe, the fields they belong to and why no field loads them: both scripts only place the four party actors, so the table has no row and the steps table holds every step. |
-| [Title screen and location title scripts: what each script function shows, sets and starts](titles-scripts.md) | Every function of the title group's zone and scene scripts that a player can observe: the title screen, the New Game+ question after the staff roll, the Trial Mode completion screen and the location title scenes, with what triggers each function, the flags it sets and releases and the scenes it loads. |
-| [Tomb of Raithwall scenes: each story scene with its dialogue, story counter values and what follows](tomb-of-raithwall-scenes.md) | The scene scripts of The Tomb of Raithwall: the zone function that loads each one, every line it holds in the game's own words, the story counter values written with it, and what follows. |
-| [Tomb of Raithwall scripts: what each script function shows, sets, gives and starts](tomb-of-raithwall-scripts.md) | Every function of the Tomb of Raithwall zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
-| [Trial Mode scripts: what each script function shows, sets, gives and starts](trial-mode-scripts.md) | Every function of the hundred Trial Mode stage scripts that a player can observe: what triggers it, the lines it shows, the flags it sets, the reward packages and treasure chests it gives, the stage-to-stage map jumps, the boss gauge and foe removal, and the scene it loads after the last stage. |
-| [Tutorial and staff roll scenes: the gambit, license board and map tutorials and the staff roll](tutorials-scenes.md) | The scene scripts of the group men: the Gambit Screen and license board tutorials, the map hint and the staff roll, with every line they hold in the game's own words and the one field whose script loads one of them. |
-| [Victory pose scenes: the scene, what it gives and the zone scripts that load it](victory-pose-scenes.md) | The victory pose scene script pos_z0000: the Esper ids its own functions give, and the Trial Mode stages and story maps whose zone scripts load it. |
-| [Victory pose scripts: what each function of the scene gives](victory-pose-scripts.md) | Every function of the victory pose scene script pos_z0000 that a player can observe: the one function that holds item calls, the Esper ids it gives with additem, and the function that requests it. |
-| [Zertinan Caverns scenes: each story scene with its dialogue, rewards and what follows](zertinan-caverns-scenes.md) | The two scene scripts of Zertinan Caverns that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the Esper it gives, and the scene that follows. |
-| [Zertinan Caverns scripts: what each script function shows, sets, gives and starts](zertinan-caverns-scripts.md) | Every function of the Zertinan Caverns zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. |
+Jump to: [Story progress and flags](#story-progress-and-flags) · [Quests and hunts](#quests-and-hunts) · [Scenes and scripts by area](#scenes-and-scripts-by-area) · [Scripts across all areas](#scripts-across-all-areas)
+
+## Start here
+
+Start with these pages, in this order:
+
+1. [Story progress](story-progress.md): starts with the main counter
+2. [Story flags](story-flags.md): adds the yes-or-no flags
+3. [Story counter values](story-counter-values.md): lists the values the counter takes
+
+## Story progress and flags
+
+How the game tracks the story: its counter, its flags and what scenes give.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Story progress](story-progress.md) | Explanation | The main story counter, script variables in the save and how scenes advance. |
+| [Story flags](story-flags.md) | Explanation | The banks of yes-or-no flags the save keeps and who uses them. |
+| [Story counter values](story-counter-values.md) | Reference table | Every value the scripts write to the main story counter. |
+| [Scene rewards](scene-rewards.md) | Reference table | Every item and gil amount the story scripts give or take. |
+| [Story flag ids](story-flag-ids.md) | Reference table | Every story flag id the scripts set, release or test. |
+
+## Quests and hunts
+
+The state of quests and every hunt.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Quests](quests.md) | Explanation | The state each quest keeps in the save and the verbs that change it. |
+| [Hunts](hunts.md) | Reference table | Every hunt with its petitioner, record text and progress. |
+
+## Scenes and scripts by area
+
+What each area's scenes show and what its script functions do.
+
+### Archades
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Archades scenes](archades-scenes.md) | Reference table | The story scenes of Archades, with their dialogue and what follows. |
+| [Archades scripts](archades-scripts.md) | Reference table | What each script function in Archades shows, sets, gives and starts. |
+| [Cerobi Steppe scripts](cerobi-steppe-scripts.md) | Reference table | What each script function in Cerobi Steppe shows, sets, gives and starts. |
+| [Draklor Laboratory scenes](draklor-laboratory-scenes.md) | Reference table | The story scenes of Draklor Laboratory, with their dialogue and what follows. |
+| [Draklor Laboratory scripts](draklor-laboratory-scripts.md) | Reference table | What each script function in Draklor Laboratory shows, sets, gives and starts. |
+| [Old Archades scenes](old-archades-scenes.md) | Reference table | The story scenes of Old Archades, with their dialogue and what follows. |
+| [Old Archades scripts](old-archades-scripts.md) | Reference table | What each script function in Old Archades shows, sets, gives and starts. |
+
+### Balfonheim, Ridorana and the Bahamut
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Balfonheim Port scenes](balfonheim-port-scenes.md) | Reference table | The story scenes of Balfonheim Port, with their dialogue and what follows. |
+| [Balfonheim Port scripts](balfonheim-port-scripts.md) | Reference table | What each script function in Balfonheim Port shows, sets, gives and starts. |
+| [Pharos - First Ascent scenes](pharos-first-ascent-scenes.md) | Reference table | The story scenes of Pharos - First Ascent, with their dialogue and what follows. |
+| [Pharos - First Ascent scripts](pharos-first-ascent-scripts.md) | Reference table | What each script function in Pharos - First Ascent shows, sets, gives and starts. |
+| [Pharos - Third Ascent scenes](pharos-third-ascent-scenes.md) | Reference table | The story scenes of Pharos - Third Ascent, with their dialogue and what follows. |
+| [Pharos - Third Ascent scripts](pharos-third-ascent-scripts.md) | Reference table | What each script function in Pharos - Third Ascent shows, sets, gives and starts. |
+| [Ridorana Cataract scenes](ridorana-cataract-scenes.md) | Reference table | The story scenes of Ridorana Cataract, with their dialogue and what follows. |
+| [Ridorana Cataract scripts](ridorana-cataract-scripts.md) | Reference table | What each script function in Ridorana Cataract shows, sets, gives and starts. |
+| [Sky Fortress Bahamut scenes](sky-fortress-bahamut-scenes.md) | Reference table | The story scenes of Sky Fortress Bahamut, with their dialogue and what follows. |
+| [Sky Fortress Bahamut scripts](sky-fortress-bahamut-scripts.md) | Reference table | What each script function in Sky Fortress Bahamut shows, sets, gives and starts. |
+
+### Bhujerba and the Leviathan
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Bhujerba scenes](bhujerba-scenes.md) | Reference table | The story scenes of Bhujerba, with their dialogue and what follows. |
+| [Bhujerba scripts](bhujerba-scripts.md) | Reference table | What each script function in Bhujerba shows, sets, gives and starts. |
+| [Dreadnought Leviathan scenes](dreadnought-leviathan-scenes.md) | Reference table | The story scenes of Dreadnought Leviathan, with their dialogue and what follows. |
+| [Dreadnought Leviathan scripts](dreadnought-leviathan-scripts.md) | Reference table | What each script function in Dreadnought Leviathan shows, sets, gives and starts. |
+| [Lhusu Mines scenes](lhusu-mines-scenes.md) | Reference table | The story scenes of Lhusu Mines, with their dialogue and what follows. |
+| [Lhusu Mines scripts](lhusu-mines-scripts.md) | Reference table | What each script function in Lhusu Mines shows, sets, gives and starts. |
+
+### Dalmasca desert
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Dalmasca Estersand scenes](dalmasca-estersand-scenes.md) | Reference table | The story scenes of Dalmasca Estersand, with their dialogue and what follows. |
+| [Dalmasca Estersand scripts](dalmasca-estersand-scripts.md) | Reference table | What each script function in Dalmasca Estersand shows, sets, gives and starts. |
+| [Dalmasca Westersand scenes](dalmasca-westersand-scenes.md) | Reference table | The story scenes of Dalmasca Westersand, with their dialogue and what follows. |
+| [Dalmasca Westersand scripts](dalmasca-westersand-scripts.md) | Reference table | What each script function in Dalmasca Westersand shows, sets, gives and starts. |
+| [Nam-Yensa Sandsea scenes](nam-yensa-sandsea-scenes.md) | Reference table | The story scenes of Nam-Yensa Sandsea, with their dialogue and what follows. |
+| [Nam-Yensa Sandsea scripts](nam-yensa-sandsea-scripts.md) | Reference table | What each script function in Nam-Yensa Sandsea shows, sets, gives and starts. |
+| [Ogir-Yensa Sandsea scenes](ogir-yensa-sandsea-scenes.md) | Reference table | The story scenes of Ogir-Yensa Sandsea, with their dialogue and what follows. |
+| [Ogir-Yensa Sandsea scripts](ogir-yensa-sandsea-scripts.md) | Reference table | What each script function in Ogir-Yensa Sandsea shows, sets, gives and starts. |
+| [Tomb of Raithwall scenes](tomb-of-raithwall-scenes.md) | Reference table | The story scenes of Tomb of Raithwall, with their dialogue and what follows. |
+| [Tomb of Raithwall scripts](tomb-of-raithwall-scripts.md) | Reference table | What each script function in Tomb of Raithwall shows, sets, gives and starts. |
+| [Zertinan Caverns scenes](zertinan-caverns-scenes.md) | Reference table | The story scenes of Zertinan Caverns, with their dialogue and what follows. |
+| [Zertinan Caverns scripts](zertinan-caverns-scripts.md) | Reference table | What each script function in Zertinan Caverns shows, sets, gives and starts. |
+
+### Developer and test maps
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Developer scripts](developer-scripts.md) | Reference table | The debug menus and test scenes left in the scripts. |
+| [Test battle map scripts](test-battle-maps-scripts.md) | Reference table | What each script function in Test battle map shows, sets, gives and starts. |
+| [Test map scripts](test-maps-scripts.md) | Reference table | What each script function in Test map shows, sets, gives and starts. |
+
+### Feywood and Giruvegan
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Feywood scenes](feywood-scenes.md) | Reference table | The story scenes of Feywood, with their dialogue and what follows. |
+| [Feywood scripts](feywood-scripts.md) | Reference table | What each script function in Feywood shows, sets, gives and starts. |
+| [Giruvegan scenes](giruvegan-scenes.md) | Reference table | The story scenes of Giruvegan, with their dialogue and what follows. |
+| [Giruvegan scripts](giruvegan-scripts.md) | Reference table | What each script function in Giruvegan shows, sets, gives and starts. |
+
+### Nabreus Deadlands and the Necrohol
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Nabreus Deadlands scenes](nabreus-deadlands-scenes.md) | Reference table | The story scenes of Nabreus Deadlands, with their dialogue and what follows. |
+| [Nabreus Deadlands scripts](nabreus-deadlands-scripts.md) | Reference table | What each script function in Nabreus Deadlands shows, sets, gives and starts. |
+| [Necrohol of Nabudis scenes](necrohol-of-nabudis-scenes.md) | Reference table | The story scenes of Necrohol of Nabudis, with their dialogue and what follows. |
+| [Necrohol of Nabudis scripts](necrohol-of-nabudis-scripts.md) | Reference table | What each script function in Necrohol of Nabudis shows, sets, gives and starts. |
+
+### Nalbina and the Mosphoran Highwaste
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Barheim Passage scenes](barheim-passage-scenes.md) | Reference table | The story scenes of Barheim Passage, with their dialogue and what follows. |
+| [Barheim Passage scripts](barheim-passage-scripts.md) | Reference table | What each script function in Barheim Passage shows, sets, gives and starts. |
+| [Mosphoran Highwaste scenes](mosphoran-highwaste-scenes.md) | Reference table | The story scenes of Mosphoran Highwaste, with their dialogue and what follows. |
+| [Mosphoran Highwaste scripts](mosphoran-highwaste-scripts.md) | Reference table | What each script function in Mosphoran Highwaste shows, sets, gives and starts. |
+| [Nalbina Dungeons scenes](nalbina-dungeons-scenes.md) | Reference table | The story scenes of Nalbina Dungeons, with their dialogue and what follows. |
+| [Nalbina Dungeons scripts](nalbina-dungeons-scripts.md) | Reference table | What each script function in Nalbina Dungeons shows, sets, gives and starts. |
+| [Nalbina Fortress scenes](nalbina-fortress-scenes.md) | Reference table | The story scenes of Nalbina Fortress, with their dialogue and what follows. |
+| [Nalbina Fortress scripts](nalbina-fortress-scripts.md) | Reference table | What each script function in Nalbina Fortress shows, sets, gives and starts. |
+| [Nalbina Town scenes](nalbina-town-scenes.md) | Reference table | The story scenes of Nalbina Town, with their dialogue and what follows. |
+| [Nalbina Town scripts](nalbina-town-scripts.md) | Reference table | What each script function in Nalbina Town shows, sets, gives and starts. |
+
+### Opening, ending and Trial Mode
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Ending message scenes](ending-message-scenes.md) | Reference table | The ending message scene, its text and the script that loads it. |
+| [Ending message scripts](ending-message-scripts.md) | Reference table | What each function of the ending message scene shows. |
+| [Opening setup scenes](opening-setup-scenes.md) | Reference table | The opening setup scene, how it is requested and what it sets. |
+| [Opening setup scripts](opening-setup-scripts.md) | Reference table | What each script function in Opening setup shows, sets, gives and starts. |
+| [Trial Mode scripts](trial-mode-scripts.md) | Reference table | What each script function in Trial Mode shows, sets, gives and starts. |
+| [Tutorial and staff roll scenes](tutorials-scenes.md) | Reference table | The gambit, license board and map tutorials and the staff roll. |
+
+### Ozmone Plain and Golmore Jungle
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Eruyt Village scenes](eruyt-village-scenes.md) | Reference table | The story scenes of Eruyt Village, with their dialogue and what follows. |
+| [Eruyt Village scripts](eruyt-village-scripts.md) | Reference table | What each script function in Eruyt Village shows, sets, gives and starts. |
+| [Golmore Jungle scenes](golmore-jungle-scenes.md) | Reference table | The story scenes of Golmore Jungle, with their dialogue and what follows. |
+| [Golmore Jungle scripts](golmore-jungle-scripts.md) | Reference table | What each script function in Golmore Jungle shows, sets, gives and starts. |
+| [Henne Mines scenes](henne-mines-scenes.md) | Reference table | The story scenes of Henne Mines, with their dialogue and what follows. |
+| [Henne Mines scripts](henne-mines-scripts.md) | Reference table | What each script function in Henne Mines shows, sets, gives and starts. |
+| [Jahara scenes](jahara-scenes.md) | Reference table | The story scenes of Jahara, with their dialogue and what follows. |
+| [Jahara scripts](jahara-scripts.md) | Reference table | What each script function in Jahara shows, sets, gives and starts. |
+| [Ozmone Plain scenes](ozmone-plain-scenes.md) | Reference table | The story scenes of Ozmone Plain, with their dialogue and what follows. |
+| [Ozmone Plain scripts](ozmone-plain-scripts.md) | Reference table | What each script function in Ozmone Plain shows, sets, gives and starts. |
+
+### Paramina Rift and Mt Bur-Omisace
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Mt Bur-Omisace scenes](mt-bur-omisace-scenes.md) | Reference table | The story scenes of Mt Bur-Omisace, with their dialogue and what follows. |
+| [Mt Bur-Omisace scripts](mt-bur-omisace-scripts.md) | Reference table | What each script function in Mt Bur-Omisace shows, sets, gives and starts. |
+| [Paramina Rift scenes](paramina-rift-scenes.md) | Reference table | The story scenes of Paramina Rift, with their dialogue and what follows. |
+| [Paramina Rift scripts](paramina-rift-scripts.md) | Reference table | What each script function in Paramina Rift shows, sets, gives and starts. |
+| [Stilshrine of Miriam scenes](stilshrine-of-miriam-scenes.md) | Reference table | The story scenes of Stilshrine of Miriam, with their dialogue and what follows. |
+| [Stilshrine of Miriam scripts](stilshrine-of-miriam-scripts.md) | Reference table | What each script function in Stilshrine of Miriam shows, sets, gives and starts. |
+
+### Rabanastre and Giza Plains
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Garamsythe Waterway scenes](garamsythe-waterway-scenes.md) | Reference table | The story scenes of Garamsythe Waterway, with their dialogue and what follows. |
+| [Garamsythe Waterway scripts](garamsythe-waterway-scripts.md) | Reference table | What each script function in Garamsythe Waterway shows, sets, gives and starts. |
+| [Giza Plains scenes](giza-plains-scenes.md) | Reference table | The story scenes of Giza Plains, with their dialogue and what follows. |
+| [Giza Plains scripts](giza-plains-scripts.md) | Reference table | What each script function in Giza Plains shows, sets, gives and starts. |
+| [Lowtown scenes](lowtown-scenes.md) | Reference table | The story scenes of Lowtown, with their dialogue and what follows. |
+| [Lowtown scripts](lowtown-scripts.md) | Reference table | What each script function in Lowtown shows, sets, gives and starts. |
+| [Rabanastre scenes](rabanastre-scenes.md) | Reference table | The story scenes of Rabanastre, with their dialogue and what follows. |
+| [Rabanastre scripts](rabanastre-scripts.md) | Reference table | What each script function in Rabanastre shows, sets, gives and starts. |
+| [Royal Palace scenes](royal-palace-scenes.md) | Reference table | The story scenes of Royal Palace, with their dialogue and what follows. |
+| [Royal Palace scripts](royal-palace-scripts.md) | Reference table | What each script function in Royal Palace shows, sets, gives and starts. |
+
+### Salikawood, Phon Coast and Tchita Uplands
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Phon Coast scenes](phon-coast-scenes.md) | Reference table | The story scenes of Phon Coast, with their dialogue and what follows. |
+| [Phon Coast scripts](phon-coast-scripts.md) | Reference table | What each script function in Phon Coast shows, sets, gives and starts. |
+| [Salikawood scenes](salikawood-scenes.md) | Reference table | The story scenes of Salikawood, with their dialogue and what follows. |
+| [Salikawood scripts](salikawood-scripts.md) | Reference table | What each script function in Salikawood shows, sets, gives and starts. |
+| [Sochen Cave Palace scenes](sochen-cave-palace-scenes.md) | Reference table | The story scenes of Sochen Cave Palace, with their dialogue and what follows. |
+| [Sochen Cave Palace scripts](sochen-cave-palace-scripts.md) | Reference table | What each script function in Sochen Cave Palace shows, sets, gives and starts. |
+| [Tchita Uplands scripts](tchita-uplands-scripts.md) | Reference table | What each script function in Tchita Uplands shows, sets, gives and starts. |
+
+### Scenes that recur through the story
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Aerodrome airship scenes](aerodrome-airship-scenes.md) | Reference table | The aerodrome airship scene, its text and what loads it. |
+| [Location title scenes](titles-scenes.md) | Reference table | Each region title scene and the field scripts that load it. |
+| [Skyferry scripts](skyferry-scripts.md) | Reference table | What each script function in Skyferry shows, sets, gives and starts. |
+| [Special move scenes](special-move-scenes.md) | Reference table | The special move scene script, its actors and what it shows. |
+| [Strahl scenes](strahl-scenes.md) | Reference table | The Strahl scene, its text and the zone scripts that load it. |
+| [Summon scenes](summons-scenes.md) | Reference table | The scenes an Esper's summon plays. |
+| [Title screen and location title scripts](titles-scripts.md) | Reference table | What each script function in Title screen and location title shows, sets and starts. |
+| [Victory pose scenes](victory-pose-scenes.md) | Reference table | The victory pose scene, what it gives and what loads it. |
+| [Victory pose scripts](victory-pose-scripts.md) | Reference table | What each function of the victory pose scene gives. |
+
+## Scripts across all areas
+
+What is shared across every area's scripts, or differs between language trees.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Event memory](event-memory.md) | Explanation | The memory heaps a field gets when its actors are bound. |
+| [Language-tree script differences](script-language-differences.md) | Reference table | What each code change outside the English scripts does in the game. |
+| [Script calls in every script](script-censuses.md) | Reference table | Script calls across every script: story writes, save declarations and chosen exits. |
+| [Shared zone-script actors](shared-zone-script-actors.md) | Reference table | The crystal, teleport, key-item and message actors zones share. |

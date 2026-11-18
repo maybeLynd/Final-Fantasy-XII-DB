@@ -1,9 +1,8 @@
----
-title: "Texture animation lists: the .ta files that list a map texture's animation frames, how they are read and bound, and what drives the frame"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x001A5B30, 0x001A7A50, 0x001A7D50, 0x008F6768, 0x001A9770, 0x01F81168, 0x01F81178, 0x001A8BA0, 0x001A9940, 0x00677030, 0x0019CE20, 0x0019CA80, 0x001A7630, 0x001A7460, 0x001807F0, 0x001E62E0, 0x002F4520, 0x00466420, 0x004678E0, 0x004668C0, 0x02EBB6F0, 0x02EBB6E0"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Texture animation lists
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Texture animation lists: the .ta files that list a map texture's animation frames, how they are read and bound, and what drives the frame | format | Game files and data tables | Image files | The &lt;map&gt;_anime_&lt;n&gt;_d3d11.ta files: CRLF-separated texture paths naming a texture and its numbered frames, the chain that reads a map's lists in number order until one is missing, the parser that remaps each path through phyremaps.txt and binds it to an already loaded texture, how a material's TextureSampler is switched to the selected frame, how the map animation slot's clock picks the frame, the 45 shipped lists, and the rules a list must follow. | 0x001A5B30, 0x001A7A50, 0x001A7D50, 0x008F6768, 0x001A9770, 0x01F81168, 0x01F81178, 0x001A8BA0, 0x001A9940, 0x00677030, 0x0019CE20, 0x0019CA80, 0x001A7630, 0x001A7460, 0x001807F0, 0x001E62E0, 0x002F4520, 0x00466420, 0x004678E0, 0x004668C0, 0x02EBB6F0, 0x02EBB6E0 |
 
 ## What the player sees
 

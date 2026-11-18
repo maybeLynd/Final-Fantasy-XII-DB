@@ -1,9 +1,8 @@
----
-title: "Menu resource packages (.mrp): the twelve menu layout files, who loads each one and how a request becomes a relocated list file"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x00249320, 0x00249350, 0x003933F0, 0x00249210, 0x0208F578, 0x002495C0, 0x00249660, 0x002A00F0, 0x00249580, 0x02090790, 0x00249410, 0x00280980, 0x002DF9A0, 0x01E0280C, 0x003EF830, 0x00393FF0, 0x003F4840, 0x0057B780, 0x00562F90, 0x00404060, 0x00582790, 0x00579AF0, 0x00574E80, 0x002486B0, 0x002494A0"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Menu resource packages (.mrp)
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Menu resource packages (.mrp): the twelve menu layout files, who loads each one and how a request becomes a relocated list file | format | Game files and data tables | Menu and map files | The standalone mrp_menu/*.mrp files: which screen requests each of the twelve names and with which kind 7 id, the request wrappers that attach the relocation callback, the request groups that tell a screen when all its files have landed, the other carriers of the same format (mrppack_ys.bin and the map packs), the in_sdver copies, the 116 shipped files by name, and the rules for editing or adding one. | 0x00249320, 0x00249350, 0x003933F0, 0x00249210, 0x0208F578, 0x002495C0, 0x00249660, 0x002A00F0, 0x00249580, 0x02090790, 0x00249410, 0x00280980, 0x002DF9A0, 0x01E0280C, 0x003EF830, 0x00393FF0, 0x003F4840, 0x0057B780, 0x00562F90, 0x00404060, 0x00582790, 0x00579AF0, 0x00574E80, 0x002486B0, 0x002494A0 |
 
 ## What the player sees
 

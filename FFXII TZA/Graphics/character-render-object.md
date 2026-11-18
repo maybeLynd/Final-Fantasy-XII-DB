@@ -1,9 +1,8 @@
----
-title: "CharacterRenderObject: the per-character draw object, its model instances, shader bindings and the transform publish"
-kind: "system"
-category: "Graphics"
-addresses: "0x00903B68, 0x001F4DA0, 0x001F52F0, 0x001F51E0, 0x001F6E70, 0x001F6D60, 0x001F89E0, 0x001F7790, 0x0018D240, 0x001FB120, 0x001FAD50, 0x001F9A80, 0x001FA3D0, 0x001F9B20, 0x001FA1A0, 0x001FAA10, 0x001FA820, 0x001F6E50, 0x001F86D0, 0x001BD4A0, 0x001BD840, 0x001BDAB0, 0x01F81248, 0x0017F0D0, 0x0017F100, 0x0017EFC0, 0x003703A0, 0x0053AB50, 0x0053D780, 0x00504700, 0x00477F20, 0x004780C0, 0x005049E0, 0x003E55B0, 0x00189120, 0x01F7F598, 0x001F5D70"
----
+[Home](../../README.md) / [Graphics](README.md) / CharacterRenderObject
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| CharacterRenderObject: the per-character draw object, its model instances, shader bindings and the transform publish | system | Graphics | Character models / Character Rendering | The object that draws one character: how a render record gets one and gives it back, its 0x668-byte layout and 31-slot vtable, the ready byte that gates it, the 0x318-byte shader binding record kept per mesh, the double-buffered publish of the PS2 z-bias values, matrices and fog colour, the bone palette copy, and the 0x260-byte render model instances and their draw list. | 0x00903B68, 0x001F4DA0, 0x001F52F0, 0x001F51E0, 0x001F6E70, 0x001F6D60, 0x001F89E0, 0x001F7790, 0x0018D240, 0x001FB120, 0x001FAD50, 0x001F9A80, 0x001FA3D0, 0x001F9B20, 0x001FA1A0, 0x001FAA10, 0x001FA820, 0x001F6E50, 0x001F86D0, 0x001BD4A0, 0x001BD840, 0x001BDAB0, 0x01F81248, 0x0017F0D0, 0x0017F100, 0x0017EFC0, 0x003703A0, 0x0053AB50, 0x0053D780, 0x00504700, 0x00477F20, 0x004780C0, 0x005049E0, 0x003E55B0, 0x00189120, 0x01F7F598, 0x001F5D70 |
 
 ## What the player sees
 
@@ -481,3 +480,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [clan primer](../Menus-And-HUD/clan-primer.md), [widget messages](../Menus-And-HUD/widget-messages.md).
 - Developer: `0x0017D6E0` calls `0x001C2F50`; those functions are documented on
   [game application](../Engine-Core/game-application.md).
+
+---
+
+[← Character render records](character-render-records.md)

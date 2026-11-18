@@ -1,9 +1,8 @@
----
-title: "MSVC containers: the std::map tree, std::string and std::regex code linked into the executable"
-kind: "system"
-category: "Compiler and C runtime"
-addresses: "0x00714800, 0x0070D360, 0x00712F60, 0x0071E500, 0x00714DC0, 0x00714CE0, 0x00714B60, 0x00714980, 0x006FF5D0, 0x006FF840, 0x0071D170, 0x0071EE70, 0x00169270, 0x008B7940, 0x02EA5550, 0x001DFA10, 0x0020A800, 0x009058C0, 0x008C2618, 0x008C2430, 0x001A1990, 0x001A5500, 0x001A5630, 0x00865EC0, 0x001A1EA0, 0x00195940, 0x00197A50, 0x0019B580, 0x0019B990, 0x001A1920, 0x00865E30, 0x001E0360, 0x0020AFE0"
----
+[Home](../../README.md) / [Compiler and C runtime](README.md) / MSVC containers
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| MSVC containers: the std::map tree, std::string and std::regex code linked into the executable | system | Compiler and C runtime | Library and generated code | The Microsoft standard-library containers that sit in FFXII_TZA.exe beside the engine's EASTL: the std::map / std::set red-black tree with its head node, lookup, insert, erase and clear routines and its three instantiations, the std::string layout and its deallocation rule, the std::regex instantiation behind one event-path check, and the MSVCP140 imports these containers call. | 0x00714800, 0x0070D360, 0x00712F60, 0x0071E500, 0x00714DC0, 0x00714CE0, 0x00714B60, 0x00714980, 0x006FF5D0, 0x006FF840, 0x0071D170, 0x0071EE70, 0x00169270, 0x008B7940, 0x02EA5550, 0x001DFA10, 0x0020A800, 0x009058C0, 0x008C2618, 0x008C2430, 0x001A1990, 0x001A5500, 0x001A5630, 0x00865EC0, 0x001A1EA0, 0x00195940, 0x00197A50, 0x0019B580, 0x0019B990, 0x001A1920, 0x00865E30, 0x001E0360, 0x0020AFE0 |
 
 ## What the player sees
 

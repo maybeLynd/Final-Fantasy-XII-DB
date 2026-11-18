@@ -1,9 +1,8 @@
----
-title: "Battle unit construction: the party and enemy definition tables, the stats record a unit gets, the kind byte and the type partition"
-kind: "system"
-category: "Characters and objects"
-addresses: "0x0023A570, 0x0023AC80, 0x0030C470, 0x0030C650, 0x002F8F20, 0x00236100, 0x002B58B0, 0x00322050, 0x003220E0, 0x00322C50, 0x00323790, 0x0031A630, 0x00323910, 0x00327CB0, 0x00326030, 0x00327DE0, 0x002F8E90, 0x002F90C0, 0x002F8BB0, 0x0050FF20, 0x00309230, 0x00254A40"
----
+[Home](../../README.md) / [Characters and objects](README.md) / Battle unit construction
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Battle unit construction: the party and enemy definition tables, the stats record a unit gets, the kind byte and the type partition | system | Characters and objects | Battle units | How a battle unit becomes a party member or an enemy from a definition id: the installer's split on the id's high byte, the enemy path through the area's enemy table and the spawn record, the party path through the party table and the party block, the common stores, the fresh stats record with its level, equipment, licences, gambits and starting MP, the level grower and the experience curve, the handle re-key on a definition change, the kind byte at stats +5, and the partition of the type byte that the reward, availability and script code test. | 0x0023A570, 0x0023AC80, 0x0030C470, 0x0030C650, 0x002F8F20, 0x00236100, 0x002B58B0, 0x00322050, 0x003220E0, 0x00322C50, 0x00323790, 0x0031A630, 0x00323910, 0x00327CB0, 0x00326030, 0x00327DE0, 0x002F8E90, 0x002F90C0, 0x002F8BB0, 0x0050FF20, 0x00309230, 0x00254A40 |
 
 ## What the player sees
 

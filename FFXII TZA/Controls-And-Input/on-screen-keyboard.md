@@ -1,9 +1,8 @@
----
-title: "On-Screen Keyboard: the F9 overlay that shows every keyboard binding, its seven panels, the key colours and the keys that light up while held"
-kind: "system"
-category: "Controls and input"
-addresses: "0x0017DE60, 0x0027E9E0, 0x002878E0, 0x0209AC18, 0x0209AC50, 0x00287C20, 0x002891A0, 0x00289040, 0x00197790, 0x01DF0E80"
----
+[Home](../../README.md) / [Controls and input](README.md) / On-Screen Keyboard
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| On-Screen Keyboard: the F9 overlay that shows every keyboard binding, its seven panels, the key colours and the keys that light up while held | system | Controls and input | Keys, bindings and names | How the On-Screen Keyboard works: F9 opens and closes it, the task that draws it, the seven panels and the controls and keymap profiles each lists, the picture of the keyboard and mouse with each key tinted by the panel of its control, the keys that light while held, the key-cap sets chosen by keyboard layout and game language, and the refresh after a binding changes. | 0x0017DE60, 0x0027E9E0, 0x002878E0, 0x0209AC18, 0x0209AC50, 0x00287C20, 0x002891A0, 0x00289040, 0x00197790, 0x01DF0E80 |
 
 ## What the player sees
 

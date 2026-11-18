@@ -1,9 +1,8 @@
----
-title: "Concurrence list: which Concurrence a Quickening chain ends in, by how many Quickenings of each level it used"
-kind: "reference"
-category: "Battle actions"
-addresses: "0x02EBF0A0, 0x002F8D60, 0x0030DB70, 0x00313120, 0x022C2192"
----
+[Home](../../README.md) / [Battle actions](README.md) / Concurrence list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Concurrence list: which Concurrence a Quickening chain ends in, by how many Quickenings of each level it used | reference | Battle actions | Quickenings and summons | All 16 rows of the shipped yugoyaku_data table in battle_pack.bin: the Concurrence action each row gives and the three counts of first-, second- and third-level Quickenings a chain must reach for it, the order the rows are tried in, which rows can never be chosen, and the counters the chain keeps. | 0x02EBF0A0, 0x002F8D60, 0x0030DB70, 0x00313120, 0x022C2192 |
 
 ## What it lists
 

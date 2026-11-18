@@ -1,9 +1,8 @@
----
-title: "NPC name strings: every name of the npcdic.bin dictionaries in all nine languages"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x00379D20, 0x003EAC40, 0x02B5E0D8, 0x003EAC10, 0x00263990, 0x002639E0, 0x0026DEA0, 0x00272CB0, 0x00268D10, 0x00536280"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / NPC name strings
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| NPC name strings: every name of the npcdic.bin dictionaries in all nine languages | reference | Menus and HUD | Game text tables | Every string of the npcdic.bin name dictionaries side by side in the nine language trees: the first and second name of each of the 1,141 name pairs that field characters and named enemies carry, which code loads the dictionary and shows a name, how the row index gives the pair and the name, and the empty names in each language. | 0x00379D20, 0x003EAC40, 0x02B5E0D8, 0x003EAC10, 0x00263990, 0x002639E0, 0x0026DEA0, 0x00272CB0, 0x00268D10, 0x00536280 |
 
 ## What it lists
 

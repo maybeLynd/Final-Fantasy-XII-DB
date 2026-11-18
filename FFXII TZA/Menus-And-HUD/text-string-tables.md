@@ -1,9 +1,8 @@
----
-title: "String tables: every menu, help and battle message string of the st2e text tables in all nine languages"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x002FA560, 0x02F973C0, 0x002F9860, 0x002F9920, 0x00248700, 0x00236C30, 0x02EBF018, 0x00536410, 0x002B49F0, 0x002B4090, 0x002B40C0, 0x00254A10, 0x02EBF058, 0x0031C5D0, 0x002AC5F0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / String tables
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| String tables: every menu, help and battle message string of the st2e text tables in all nine languages | reference | Menus and HUD | Game text tables | Every string of the 32 st2e text tables side by side in the nine language trees: the 24 menu and help text groups, the battle message table, the bazaar table's own text block and its loose copy, and the five tables only the Korean and Chinese trees ship; which code loads and shows each, how many strings each language has, and how to read the text codes in the text. | 0x002FA560, 0x02F973C0, 0x002F9860, 0x002F9920, 0x00248700, 0x00236C30, 0x02EBF018, 0x00536410, 0x002B49F0, 0x002B4090, 0x002B40C0, 0x00254A10, 0x02EBF058, 0x0031C5D0, 0x002AC5F0 |
 
 ## What it lists
 

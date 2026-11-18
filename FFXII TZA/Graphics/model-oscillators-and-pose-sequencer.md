@@ -1,9 +1,8 @@
----
-title: "Model oscillators and the pose sequencer: per-model procedural motion"
-kind: "system"
-category: "Graphics"
-addresses: "0x003703A0, 0x003DFFE0, 0x0040ACF0, 0x0040D890, 0x0040F390, 0x0040AA20, 0x0040B3B0, 0x01EFFA30, 0x02CA4390, 0x0040ABF0, 0x00520510, 0x00520E90, 0x0054A9C0, 0x0054B1F0, 0x0052B5E0, 0x0052BBD0, 0x0040DBB0, 0x0040B780, 0x003E6F50, 0x003E7450, 0x003E6A20, 0x004772E0, 0x00477370, 0x00477480, 0x004776D0, 0x00477670, 0x00477610, 0x00477750, 0x00477B10, 0x02CA6CA0, 0x00520D30, 0x00520DF0"
----
+[Home](../../README.md) / [Graphics](README.md) / Model oscillators and the pose sequencer
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Model oscillators and the pose sequencer: per-model procedural motion | system | Graphics | Character models / Animation And Motion | The two kinds of motion a model makes beyond its authored motions: the oscillator record (the sway section of a model's rig) that 0x0040ACF0 steps every frame with a wind-driven phase and a directed per-record phase, its reset and sub-stepped settle, the authored command and the effect element that drive it; and the pose sequencer, eight slots per character that play authored (duration, value) sequences from @FCP section 7 and feed the add-motion pose groups and a texture patch copy, with counts over the shipped files. | 0x003703A0, 0x003DFFE0, 0x0040ACF0, 0x0040D890, 0x0040F390, 0x0040AA20, 0x0040B3B0, 0x01EFFA30, 0x02CA4390, 0x0040ABF0, 0x00520510, 0x00520E90, 0x0054A9C0, 0x0054B1F0, 0x0052B5E0, 0x0052BBD0, 0x0040DBB0, 0x0040B780, 0x003E6F50, 0x003E7450, 0x003E6A20, 0x004772E0, 0x00477370, 0x00477480, 0x004776D0, 0x00477670, 0x00477610, 0x00477750, 0x00477B10, 0x02CA6CA0, 0x00520D30, 0x00520DF0 |
 
 ## What the player sees
 

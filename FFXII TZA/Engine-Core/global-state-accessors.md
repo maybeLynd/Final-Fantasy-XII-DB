@@ -1,9 +1,8 @@
----
-title: "Global state accessors: every one-instruction getter of a global, with its global, width and callers"
-kind: "reference"
-category: "Engine core"
-addresses: "0x0020E600, 0x0020E620, 0x00189120, 0x002640C0, 0x006372A0, 0x003590D0, 0x001B1C00, 0x00796E20, 0x001A9930, 0x0018CA40, 0x00198790, 0x002EF640, 0x00236850, 0x001EDE70, 0x001EDDA0, 0x001EDEC0, 0x00229E70, 0x00229EA0"
----
+[Home](../../README.md) / [Engine core](README.md) / Global state accessors
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Global state accessors: every one-instruction getter of a global, with its global, width and callers | reference | Engine core | Function and class indexes | The 459 functions in the executable whose whole body is one load or address-take of one global, at most one instruction on the loaded register, and a return, listed with the global they expose, the width read, the instruction, and how many functions call each, in global-state-accessors.tsv; with the most-called getters named, the image-address encode and decode pair 0x0020E600 / 0x0020E620 over the base 0x01F83530, and the two-global predicates beside them. | 0x0020E600, 0x0020E620, 0x00189120, 0x002640C0, 0x006372A0, 0x003590D0, 0x001B1C00, 0x00796E20, 0x001A9930, 0x0018CA40, 0x00198790, 0x002EF640, 0x00236850, 0x001EDE70, 0x001EDDA0, 0x001EDEC0, 0x00229E70, 0x00229EA0 |
 
 ## What it lists
 

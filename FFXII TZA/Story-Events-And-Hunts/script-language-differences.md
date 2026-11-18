@@ -1,9 +1,8 @@
----
-title: "Language-tree script differences: what each code change outside the English scripts does in the game"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x00343610, 0x003E9570, 0x003405C0, 0x003E9320, 0x002A7950, 0x00347830, 0x002EBBB0, 0x0034A090, 0x00349800, 0x00348DF0, 0x0034D920, 0x00355570, 0x002650B0, 0x002642C0, 0x00355A00, 0x00355930, 0x0026B4E0, 0x0016D6A0, 0x00354EF0, 0x003603E0, 0x0034E340, 0x00473E80, 0x003458D0, 0x00379430, 0x0033FED0, 0x00229E40"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Language-tree script differences
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Language-tree script differences: what each code change outside the English scripts does in the game | reference | Story, events and hunts | Scripts across all areas | Every place where the code of a zone or scene script in one of the other eight language trees (in, kr, cn, ch, fr, de, it, es) differs from the us script: the seven kinds of change, what each verb does, what the changed values move or switch on screen, and why the tree needs it. | 0x00343610, 0x003E9570, 0x003405C0, 0x003E9320, 0x002A7950, 0x00347830, 0x002EBBB0, 0x0034A090, 0x00349800, 0x00348DF0, 0x0034D920, 0x00355570, 0x002650B0, 0x002642C0, 0x00355A00, 0x00355930, 0x0026B4E0, 0x0016D6A0, 0x00354EF0, 0x003603E0, 0x0034E340, 0x00473E80, 0x003458D0, 0x00379430, 0x0033FED0, 0x00229E40 |
 
 ## What it lists
 

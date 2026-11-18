@@ -1,9 +1,8 @@
----
-title: "EBP camera shake: the CML1 shake list and the SHK1 curves that make a scripted camera tremble"
-kind: "format"
-category: "EBP script files"
-addresses: "0x003316B0, 0x00331610, 0x0037DA90, 0x0037DA70, 0x003DD120, 0x003DD230, 0x003DCFB0, 0x0037D1F0, 0x0037D130, 0x0037DD50, 0x0037D4C0, 0x00382B70, 0x003820C0, 0x003CC5F0, 0x02ADD980, 0x022C6DD0, 0x022C6DF8"
----
+[Home](../../README.md) / [EBP script files](README.md) / EBP camera shake
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| EBP camera shake: the CML1 shake list and the SHK1 curves that make a scripted camera tremble | format | EBP script files | Script sections | Sections 10 and 11 of an .ebp script: the CML1 list whose rows the shake verbs name and the SHK1 bank of shakes and curves it indexes; how both are bound to an actor manager and what the load does to them, how a shake's 32 curve slots drive eight random sine oscillators and what each output moves on screen, the shipped banks in all nine language trees, and the rules an edit must follow. | 0x003316B0, 0x00331610, 0x0037DA90, 0x0037DA70, 0x003DD120, 0x003DD230, 0x003DCFB0, 0x0037D1F0, 0x0037D130, 0x0037DD50, 0x0037D4C0, 0x00382B70, 0x003820C0, 0x003CC5F0, 0x02ADD980, 0x022C6DD0, 0x022C6DF8 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Presentation entries: the reference container, how an entry picks its track, the choice selectors and the per-entry update"
-kind: "system"
-category: "Graphics"
-addresses: "0x004269A0, 0x0051F240, 0x0051F080, 0x0051F410, 0x0051F190, 0x0051BA40, 0x0051BA80, 0x0051B9F0, 0x0051B970, 0x0041CD30, 0x0041CFC0, 0x0041C9A0, 0x00417920, 0x00417110"
----
+[Home](../../README.md) / [Graphics](README.md) / Presentation entries
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Presentation entries: the reference container, how an entry picks its track, the choice selectors and the per-entry update | system | Graphics | Character models / Animation And Motion | The presentation entries a render record plays: the reference container that holds them, how an entry picks its track, the choice selectors that steer the pick, and the update each entry runs per frame. | 0x004269A0, 0x0051F240, 0x0051F080, 0x0051F410, 0x0051F190, 0x0051BA40, 0x0051BA80, 0x0051B9F0, 0x0051B970, 0x0041CD30, 0x0041CFC0, 0x0041C9A0, 0x00417920, 0x00417110 |
 
 ## What the player sees
 

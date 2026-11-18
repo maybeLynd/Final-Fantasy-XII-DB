@@ -1,9 +1,8 @@
----
-title: "Battle unit fields: the unit record offset by offset, its regions, and every reach the access table proves"
-kind: "reference"
-category: "Characters and objects"
-addresses: "0x00234480, 0x00236A60, 0x00316CD0, 0x00316CF0, 0x003839F0, 0x003839C0, 0x00383670, 0x00234200, 0x00265020, 0x00329220"
----
+[Home](../../README.md) / [Characters and objects](README.md) / Battle unit fields
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Battle unit fields: the unit record offset by offset, its regions, and every reach the access table proves | reference | Characters and objects | Battle units | The battle unit record laid out by region: the flag word and the bind fields at its head, the position and navigation state, the waypoint table and its predecessor map, the stats and spawn pointers, the action block with the committed and cancelled copies, the target buffer, the perception cache, the reserved item and gil, the definition rows and the slot index; which final page names each field; and the companion table of every access to a unit that the typed scan reached. | 0x00234480, 0x00236A60, 0x00316CD0, 0x00316CF0, 0x003839F0, 0x003839C0, 0x00383670, 0x00234200, 0x00265020, 0x00329220 |
 
 ## What it lists
 

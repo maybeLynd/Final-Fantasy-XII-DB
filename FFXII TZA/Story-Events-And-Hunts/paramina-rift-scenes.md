@@ -1,9 +1,8 @@
----
-title: "Paramina Rift scenes: each story scene with its dialogue, story counter values and what follows"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Paramina Rift scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Paramina Rift scenes: each story scene with its dialogue, story counter values and what follows | reference | Story, events and hunts | Scenes and scripts by area / Paramina Rift and Mt Bur-Omisace | The scene script of the Paramina Rift: the zone function that loads it, every line it holds in the game's own words, and the story counter value and map jump that follow it. | 0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00 |
 
 ## What it lists
 

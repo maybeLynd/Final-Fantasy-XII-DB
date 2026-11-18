@@ -1,9 +1,8 @@
----
-title: "Effect files (.efx, .efb): the effect containers, their chunk streams, the record kinds and the map effect bank"
-kind: "format"
-category: "Graphics"
-addresses: "0x003EDAD0, 0x01EFF3B0, 0x003EE2D0, 0x003ED8A0, 0x003A79C0, 0x00333C80, 0x003A7E80, 0x004FF270, 0x003A9730, 0x003A9A70, 0x003A9EF0, 0x003AA470, 0x00500980, 0x0026FB90, 0x02F8F29D, 0x0026F470, 0x0026FAD0, 0x00377DC0, 0x003788F0, 0x00378230, 0x02ADD088, 0x002FC4A0, 0x003B38B0, 0x003B29B0, 0x003B0660, 0x003B2220, 0x02EBB738"
----
+[Home](../../README.md) / [Graphics](README.md) / Effect files (.efx, .efb)
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Effect files (.efx, .efb): the effect containers, their chunk streams, the record kinds and the map effect bank | format | Graphics | Visual effects / Effect Files | The .efx effect stream and the .efb map effect bank: the 16-byte stream header and the three accepted versions, the chunk grammar and its seven shipped chunk types, how the loader collects runs of chunks, copies or borrows them, rewrites older 0x600 records and rebases 0x700 records, the 0xB00 record store and its ten record kinds, the EFB blob and row table, the fixed block the map's bank is read into, and counts over the shipped files. | 0x003EDAD0, 0x01EFF3B0, 0x003EE2D0, 0x003ED8A0, 0x003A79C0, 0x00333C80, 0x003A7E80, 0x004FF270, 0x003A9730, 0x003A9A70, 0x003A9EF0, 0x003AA470, 0x00500980, 0x0026FB90, 0x02F8F29D, 0x0026F470, 0x0026FAD0, 0x00377DC0, 0x003788F0, 0x00378230, 0x02ADD088, 0x002FC4A0, 0x003B38B0, 0x003B29B0, 0x003B0660, 0x003B2220, 0x02EBB738 |
 
 ## What the player sees
 

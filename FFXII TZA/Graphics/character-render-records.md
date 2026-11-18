@@ -1,9 +1,8 @@
----
-title: "Character render records: the record array, the pool lifecycle, parents and attachment, and render events"
-kind: "system"
-category: "Graphics"
-addresses: "0x003325D0, 0x022C6F28, 0x022C6F20, 0x022C6F30, 0x0041E3A0, 0x0041E550, 0x004269A0, 0x00426480, 0x0042FB80, 0x004279B0, 0x004278E0, 0x0041F730, 0x00420480, 0x00428710, 0x00427C90, 0x00429140, 0x004200A0, 0x00426EC0, 0x0042ED60, 0x00332660, 0x003323D0, 0x00426090, 0x00427DE0, 0x00427BD0, 0x00426420, 0x0051F9F0, 0x0051FBB0, 0x0051F6B0, 0x002ED570, 0x00409FE0, 0x0046E4D0, 0x004780C0, 0x0051BA80, 0x0051B9F0, 0x0051B970, 0x00424D80, 0x004235C0, 0x0041FCA0, 0x00424230, 0x01F00410, 0x0041CFC0, 0x004215A0, 0x0042F880, 0x0042F310, 0x0042F3B0, 0x00422310, 0x00422380, 0x01EFFFB0, 0x01F00060, 0x004219C0, 0x004218A0"
----
+[Home](../../README.md) / [Graphics](README.md) / Character render records
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Character render records: the record array, the pool lifecycle, parents and attachment, and render events | system | Graphics | Character models / Character Rendering | The 160 character render records: the render resource root and its chunked banks, allocation, promotion, retirement and clearing, parents and children, attaching a record through the pending tie and the slot table, the dirty words, the system tail, render events and their posting, and the skill-motion cache. | 0x003325D0, 0x022C6F28, 0x022C6F20, 0x022C6F30, 0x0041E3A0, 0x0041E550, 0x004269A0, 0x00426480, 0x0042FB80, 0x004279B0, 0x004278E0, 0x0041F730, 0x00420480, 0x00428710, 0x00427C90, 0x00429140, 0x004200A0, 0x00426EC0, 0x0042ED60, 0x00332660, 0x003323D0, 0x00426090, 0x00427DE0, 0x00427BD0, 0x00426420, 0x0051F9F0, 0x0051FBB0, 0x0051F6B0, 0x002ED570, 0x00409FE0, 0x0046E4D0, 0x004780C0, 0x0051BA80, 0x0051B9F0, 0x0051B970, 0x00424D80, 0x004235C0, 0x0041FCA0, 0x00424230, 0x01F00410, 0x0041CFC0, 0x004215A0, 0x0042F880, 0x0042F310, 0x0042F3B0, 0x00422310, 0x00422380, 0x01EFFFB0, 0x01F00060, 0x004219C0, 0x004218A0 |
 
 ## What the player sees
 
@@ -785,3 +784,7 @@ The record bytes between the fields the store names, by range; `+0x411` and `+0x
   `0x0020E600` / `0x0020E620`.
 - [Resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md):
   `0x003AB7F0`, which resolves a container's table.
+
+---
+
+[← Animation playback](animation-playback.md) | [CharacterRenderObject →](character-render-object.md)

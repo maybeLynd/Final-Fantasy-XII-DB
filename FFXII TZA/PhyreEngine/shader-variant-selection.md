@@ -1,9 +1,8 @@
----
-title: "Shader variant selection: the eight context-switch axes and the variant key a draw uses"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x00606A20, 0x0060B980, 0x006B8D20, 0x02E522D0, 0x02E522E0, 0x006B9050, 0x006B9120, 0x006B90A0, 0x006B9070, 0x006B93D0, 0x006B9410, 0x006B93A0, 0x006B9450, 0x006B94C0, 0x006B9630, 0x006B9B90, 0x006B89C0, 0x006B8590, 0x005FDD40, 0x01F2EBC8, 0x00D80EA8"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Shader variant selection
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Shader variant selection: the eight context-switch axes and the variant key a draw uses | system | PhyreEngine | Drawing and shaders | PhyreEngine's context switches: the eight static switch objects (NUM_LIGHTS, LOD_BLEND, INSTANCING_ENABLED, SHADER_LOD_LEVEL, ORTHO_CAMERA, INDICES_16BIT, SKINNING_ENABLED, LOW_RES_PARTICLES), how each evaluates a draw into words of the variant key, the binary search of the effect's variant table, the -D defines the same objects write, the base switch built by name at run time, and what the 93 shipped effects author. | 0x00606A20, 0x0060B980, 0x006B8D20, 0x02E522D0, 0x02E522E0, 0x006B9050, 0x006B9120, 0x006B90A0, 0x006B9070, 0x006B93D0, 0x006B9410, 0x006B93A0, 0x006B9450, 0x006B94C0, 0x006B9630, 0x006B9B90, 0x006B89C0, 0x006B8590, 0x005FDD40, 0x01F2EBC8, 0x00D80EA8 |
 
 ## What the player sees
 
@@ -364,3 +363,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [phyre reflection](phyre-reflection.md).
 - Resource: `0x00680150` is called by `0x001F4720`; those functions are documented on
   [bigfile archive](../Game-Files-And-Data-Tables/bigfile-archive.md).
+
+---
+
+[← Phyre mesh-instance draws](phyre-mesh-instance-draws.md)

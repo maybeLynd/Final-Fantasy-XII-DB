@@ -1,9 +1,8 @@
----
-title: "Sound engine configuration: the start-up file that sets the sound categories, the master bus, the macros and the effect presets"
-kind: "format"
-category: "Sound and music"
-addresses: "0x00210760, 0x007A4D50, 0x007B0F90, 0x007AE410, 0x007ADB20, 0x007AC4F0, 0x007B31A0, 0x007ACD30, 0x007AAA40, 0x007AA110, 0x007AC360, 0x007B1210"
----
+[Home](../../README.md) / [Sound and music](README.md) / Sound engine configuration
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Sound engine configuration: the start-up file that sets the sound categories, the master bus, the macros and the effect presets | format | Sound and music | The sound engine | The file sead.win.config: where it is loaded and how the engine copies it whole, its header and chunk directory, the ten chunks with their layouts and the code that reads each field, the category sizes that size the engine's voice pools, the master bus, the three macros, the effect presets and the HCA mixer switch, the shipped values, and what a changed or missing chunk does. | 0x00210760, 0x007A4D50, 0x007B0F90, 0x007AE410, 0x007ADB20, 0x007AC4F0, 0x007B31A0, 0x007ACD30, 0x007AAA40, 0x007AA110, 0x007AC360, 0x007B1210 |
 
 ## What the player sees
 

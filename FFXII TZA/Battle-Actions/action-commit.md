@@ -1,9 +1,8 @@
----
-title: "Action commit: locking in an action and target, the leader's target, the attacker mask and the idle-unit queue"
-kind: "system"
-category: "Battle actions"
-addresses: "0x0030F760, 0x00310780, 0x00313B30, 0x00308610, 0x00313CD0"
----
+[Home](../../README.md) / [Battle actions](README.md) / Action commit
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Action commit: locking in an action and target, the leader's target, the attacker mask and the idle-unit queue | system | Battle actions | How an action runs | What happens when a battle unit commits to an action - the two accepted action-id ranges, the action and target written into the unit with a copy beside them, the action's target list started, the leader's hostile target recorded on its whole group, the attacker mask and count on the target, the release on cancel, and the queue that sends idle units back to action selection, at most 8 per simulation pass. | 0x0030F760, 0x00310780, 0x00313B30, 0x00308610, 0x00313CD0 |
 
 ## What the player sees
 
@@ -83,22 +82,20 @@ first argument skips the rest, so the call changes nothing (`0x0031084D`-`0x0031
 
 ### The report
 
-`0x00313B30(unit, target, adding)` runs when the target has a stats record and is not KO, Stone or
-X-Zone (or `0x00377C20()` is non-zero), or when `adding` is 0. For a party-side unit the recipients are
-the living party members at positions 0-3 (`0x0031B810`, staged in `0x022C1788`); otherwise the unit
-itself.
+`0x00313B30(unit, target, adding)` runs when the target has a stats record and is not KO, Stone or X-Zone (or
+`0x00377C20()` is non-zero), or when `adding` is 0 (`0x00313B4F`-`0x00313B7F`). For a party-side unit the recipients are the
+living party members at positions 0-3 (`0x0031B810`, staged in `0x022C1788`); otherwise the unit itself.
 
 The target is read with no null test, its `+0x698` at `0x00313B4F` and its id `+8` at `0x00313C7A`, so a null target
 faults. A null acting unit counts as not party-side and becomes the one recipient, whose id `+8` is read at
 `0x00313C6B`, so it faults there too. A living member is one with a stats record and without the statuses
 `0x80000003` outside a town (`0x00313BD2`-`0x00313C18`).
 
-To each recipient it posts a combat-relation event to its character record through
-`0x002ED2A0(recipient id, record)`, which resolves the recipient's actor (`0x003588B0`) and hands the
-record to `0x003E6B50`. It does so only when the actor resolves, its `+0xC0` block is non-null with a first dword
-other than -1 and a first word other than `0xFFFF`, and the entry `[0x022C6F28] + word x 0x740` is non-zero with
-`+0x284` non-zero (`0x002ED2B1`-`0x002ED2F2`). Otherwise nothing is posted to that recipient and `0x00313B30` goes on
-to the next one.
+To each recipient it posts a combat-relation event to its character record through `0x002ED2A0(recipient id, record)`
+(`0x00313C82`-`0x00313C9B`), which resolves the recipient's actor (`0x003588B0`) and hands the record to `0x003E6B50`. It does
+so only when the actor resolves, its `+0xC0` block is non-null with a first dword other than -1 and a first word other
+than `0xFFFF`, and the entry `[0x022C6F28] + word x 0x740` is non-zero with `+0x284` non-zero (`0x002ED2B1`-`0x002ED2F2`).
+Otherwise nothing is posted to that recipient and `0x00313B30` goes on to the next one.
 
 The record holds:
 
@@ -192,3 +189,7 @@ No other instruction reaches `0x022BEB90`-`0x022BED93`. The reset's store is `0x
 - [Combos](combos.md) - the commit repeated for every extra hit.
 - [Gambits and enmity](../Enemy-AI-And-Gambits/gambits.md) - the gambit
   target selector that reads `+0x750`.
+
+---
+
+[← Target selection](target-selection.md) | [Action phases →](action-phases.md)

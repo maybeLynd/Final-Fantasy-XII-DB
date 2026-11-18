@@ -1,9 +1,8 @@
----
-title: "Action definition row: power, targeting, range, element and flag fields of a battle action"
-kind: "format"
-category: "Battle actions"
-addresses: "0x00237FC0, 0x00236C30, 0x00238850, 0x003845F0, 0x0020E600, 0x00385F60, 0x0031C5D0, 0x0031EB20, 0x00390AB0"
----
+[Home](../../README.md) / [Battle actions](README.md) / Action definition row
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Action definition row: power, targeting, range, element and flag fields of a battle action | format | Battle actions | Action tables | The 60-byte row every battle action is read from (magicks, technicks, items, summons, Quickenings, Foecraft, traps): where the 543 rows ship in battle_pack.bin and how they are bound at load, every field with the function that reads it, the three flag words bit by bit, and the shipped values. | 0x00237FC0, 0x00236C30, 0x00238850, 0x003845F0, 0x0020E600, 0x00385F60, 0x0031C5D0, 0x0031EB20, 0x00390AB0 |
 
 ## What the player sees
 
@@ -226,9 +225,10 @@ nothing either (`0x00312235`-`0x00312237`); otherwise the mask is ORed onto the 
 `+0xB90` of the unit, read with `0x00321190(10, target, 0, &old)` and stored with
 `0x00329E60(10, target, 0, mask | old)` (`0x00312239`-`0x0031225E`).
 
-The row comes from the table `0x02EBF138`. When that pointer is 0 or `0x0020E600` answers 0 for its section, the
-function does not end: the row pointer stays 0 (`0x0031219A`, `0x003121A7`, `0x003121CD`), and past the guards above
-the reads of `+0x3A`, `+0x13` and `+0x0C` are then of the addresses `0x3A`, `0x13` and `0x0C`.
+When the pointer at `0x02EBF138` is 0 or `0x0020E600([0x02EBF138] dword +0x0C)` answers 0, the function does not end: the
+row pointer stays 0 (`0x0031219A`-`0x003121A7`, `0x003121CD`), and past the guards above the reads of `+0x3A`, `+0x13` and
+`+0x0C` are then of the addresses `0x3A`, `0x13` and `0x0C`. Otherwise the row is the answer of a second `0x0020E600`
+call on the same section plus the action id times the table's word `+0x08`, in 32 bits (`0x003121A9`-`0x003121CB`).
 
 The 60 instructions that read the word test other bits; those that take it whole keep bit `0x2000` (`0x0030770D`, masked by a
 0-or-1 register; `0x002F8689`), bits `0x2000` and `0x4000` (`0x00312213`), bits `0x1000000` and `0x2000000` (`0x0030D3AE`), bits `0x1000`, `0x200000`, `0x1000000` and `0x2000000`

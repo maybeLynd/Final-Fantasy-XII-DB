@@ -1,9 +1,8 @@
----
-title: "Battle verbs: what a script can do to a unit's battle actions, the one commit every action passes through, and the verbs that change stance, thinking and emergency state"
-kind: "system"
-category: "Scripts and script commands"
-addresses: "0x0030F760, 0x00305AB0, 0x0030FA00, 0x00312FA0, 0x00311CF0, 0x00311B20, 0x003138D0, 0x00346EB0, 0x003460C0, 0x00346620, 0x00311E90, 0x00311F50, 0x00307D10, 0x00347970, 0x003473E0, 0x00346A10, 0x0030F2D0, 0x01EEC3C0, 0x01EEC410, 0x002ECF10, 0x0034E160, 0x0035A720, 0x00356530, 0x00344740, 0x0035AE10, 0x003419F0, 0x00357F00, 0x003DDB40, 0x01EFE9D0, 0x00510440, 0x002390B0, 0x005103B0, 0x002394C0, 0x0034CB60, 0x00341DB0, 0x0050E980, 0x00356970, 0x003444D0, 0x00305CC0, 0x003105D0, 0x0030AB40, 0x00313B30, 0x00308270, 0x002FFCF0, 0x01EEC298, 0x01EEC320, 0x01EEC370, 0x01EEC2B0, 0x01EEC2D0, 0x00317E60, 0x00342230, 0x00328BD0, 0x003137F0, 0x0030D9A0, 0x0031B8C0, 0x00426130, 0x00426C90, 0x002FEDC0, 0x00301140, 0x00313480, 0x0034E530, 0x0035A7A0, 0x00343290, 0x0030BFB0, 0x0035AB20, 0x0035A680, 0x00347460, 0x00238B70, 0x00238AE0, 0x0030FED0, 0x0030E130, 0x0030E360, 0x0030EAE0, 0x003446D0, 0x00268530"
----
+[Home](../../README.md) / [Scripts and script commands](README.md) / Battle verbs
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Battle verbs: what a script can do to a unit's battle actions, the one commit every action passes through, and the verbs that change stance, thinking and emergency state | system | Scripts and script commands | Script commands | How a zone script reaches into combat: the single commit every battle action passes through and the four native callers that feed it, how the next action is chosen, the issued command and the one verb that reaches it, the emergency verbs that set the two engagement bits and draw weapons, the reset verbs that install the default order set, the thinking switch that cancels a unit's action, the force-fight stance machine, the ability and status grants of the battle setup verbs, and the verbs that look like battle verbs and do nothing. | 0x0030F760, 0x00305AB0, 0x0030FA00, 0x00312FA0, 0x00311CF0, 0x00311B20, 0x003138D0, 0x00346EB0, 0x003460C0, 0x00346620, 0x00311E90, 0x00311F50, 0x00307D10, 0x00347970, 0x003473E0, 0x00346A10, 0x0030F2D0, 0x01EEC3C0, 0x01EEC410, 0x002ECF10, 0x0034E160, 0x0035A720, 0x00356530, 0x00344740, 0x0035AE10, 0x003419F0, 0x00357F00, 0x003DDB40, 0x01EFE9D0, 0x00510440, 0x002390B0, 0x005103B0, 0x002394C0, 0x0034CB60, 0x00341DB0, 0x0050E980, 0x00356970, 0x003444D0, 0x00305CC0, 0x003105D0, 0x0030AB40, 0x00313B30, 0x00308270, 0x002FFCF0, 0x01EEC298, 0x01EEC320, 0x01EEC370, 0x01EEC2B0, 0x01EEC2D0, 0x00317E60, 0x00342230, 0x00328BD0, 0x003137F0, 0x0030D9A0, 0x0031B8C0, 0x00426130, 0x00426C90, 0x002FEDC0, 0x00301140, 0x00313480, 0x0034E530, 0x0035A7A0, 0x00343290, 0x0030BFB0, 0x0035AB20, 0x0035A680, 0x00347460, 0x00238B70, 0x00238AE0, 0x0030FED0, 0x0030E130, 0x0030E360, 0x0030EAE0, 0x003446D0, 0x00268530 |
 
 ## What the player sees
 
@@ -49,9 +48,11 @@ engage auto-attack `0x00312FA0` (`0x003130DC`). `0x00312FA0` sets flag bit `0x40
 (`0x0030F760(unit, 0x01EEC2B0, 0x96, target, 0)`, target from `+0x28`, cleared on read), so that action
 never registers as an attacker.
 
-Before that commit `0x00312FA0` saves `+0xDC8` (word) and `+0xE58` (dword) into the 12-byte record of `0x022C1DB0`
-at index `+0xEA9` (`0x00313088`-`0x003130C7`). A commit is followed by `0x00328480(unit, 3)` and `+0x6B4` = 5
-(`0x003130E8`-`0x003130F2`); a refused commit runs `0x00308270` (`0x00313109`).
+Before that commit `0x00312FA0` saves `+0xDC8` (word) and `+0xE58` (dword) into the 12-byte record of `0x022C1DB0` at
+index `+0xEA9` (`0x00313088`-`0x003130C7`). A commit is followed by `0x00328480(unit, 3)` and `+0x6B4` = 5 (byte,
+`0x003130E8`-`0x003130F2`); a refused commit runs `0x00308270` (`0x00313109`). `0x00328480(unit, n)` does nothing when
+`0x002FA3B0` gives 0 for the unit's `+0x10`, and otherwise passes `0x003BBD00` a record of that `+0x10` (qword), n (dword)
+and a byte 1 (`0x00328493`-`0x003284BE`).
 
 `0x00308270(unit)` undoes that state, and does nothing while flag bit `0x400000` is clear (`0x00308280`): it zeroes
 `+0x28`, frees the slot `+0x695` (`0x0030C970`, then `0xFF`), restores `+0xDC8` and `+0xE58` from the `0x022C1DB0`
@@ -141,13 +142,19 @@ command only when `0x0031B7E0` resolves the unit's own handle `+8` (`0x0031392D`
 while `0x02089340` has bit `0x10`, `0x0031B7E4`), and then, issued or not, sets bit `0x1` of word `[0x02EBF190] + 0x5AD0` to
 its argument (`0x00313962`-`0x00313981`). No verb passes a script-chosen id.
 
+`0x00313760` runs only while bit `0x2` of `[0x02EBF190] + 0x5AD0` is set, the summon timer of [party control
+modes](../Engine-Core/party-control-modes.md) (`0x0031376B`-`0x00313772`). It sets `+0x5AD8` to `+0x5ADC` while
+`0x0017D3C0()` is non-zero, and otherwise to countdown channel 2's value `0x003EBA90(2)` (`0x00313774`-`0x003137A3`). Once
+channel 2 has expired (`0x003EBB70(2)`) and `0x0017D3C0()` is 0, it ends with `0x003138D0(1)` as a tail jump
+(`0x003137AB`-`0x003137C9`).
+
 ### Emergency and reset
 
 | Verb | Id | Handler | Effect |
 |---|---|---|---|
 | `setemergency` | `0x03BF` | `0x00346EB0` | `0x00311E90`: each party-slot unit 0-3 (`0x0031B810`) that has a record `+0x698` and is not KO'd, petrified or in X-Zone (statuses `0x80000003`, except in a town) is collected at `0x022C1788` (`0x00311EB8`-`0x00311EFF`) and gets dword `+4` bits `0x200` and `0x400` (`0x600`); then `0x002ECF10(actor, 1, 1)` for each of slots 0 to 3 whose actor `0x00263750` returns (an empty slot is skipped, `0x00346ECA`) |
 | `setemergency_one` | `0x0546` | `0x003460C0` | `0x00311F50` on the target unit (no KO or petrify check), then the draw |
-| the unnamed `0x05CC` | `0x05CC` | `0x00346620` | pops a mode and resolves r = `0x00263F10(actor)` (an owner bound to a captured member, `+0x18` = 2, becomes that member); `0x00311F50(r)`, then `0x002ECF10(r, 1, mode)` as a tail jump (`0x0034665F`) with the popped mode unchanged |
+| the unnamed `0x05CC` | `0x05CC` | `0x00346620` | pops a mode and resolves r = `0x00263F10(actor)` (an owner bound to a captured member, `+0x18` = 2, becomes that member: the actor `0x003587C0` finds for its byte `+0x19` and word `+0x1A`, when there is one, `0x00263F16`-`0x00263F2F`); `0x00311F50(r)`, then `0x002ECF10(r, 1, mode)` as a tail jump (`0x0034665F`) with the popped mode unchanged |
 | `resetemergency` | `0x0554` | `0x00347970` | pushes 0 and pops it back (`0x00347987`, `0x0034798F`); the mode is that value tested against 0 (`0x0034799A`), so 0; then for each of slots 0 to 3 whose actor `0x00263750` returns (an empty slot is skipped, `0x003479AD`): `0x0030F2D0`, then `0x002ECF10(actor, 0, 0)` |
 | `resetemergency_with_animetionmode(m)` | `0x0555` | `0x003473E0` | the same with a popped `m` turned into the mode: 1 for any non-zero `m`, 0 for 0 (`0x003473FD`); for each filled slot 0 to 3 (`0x0034740E`): `0x0030F2D0`, then `0x002ECF10(actor, 0, mode)` |
 | `resetemergency_one(m)` | `0x057F` | `0x00346A10` | the same for one actor with `m` itself as the mode (`0x00346A28`): on r = `0x00263F10(actor)`, `0x0030F2D0(r)`, then `0x002ECF10(r, 0, m)` as a tail jump (`0x00346A4C`) |
@@ -162,8 +169,8 @@ themselves afterwards.
 `0x00307D10` also clears them at once in a town and when the unit flees (`0x00253B90`), except for the party's chocobo
 (record byte `+4` `0x1A`, `0x00307D29`-`0x00307D3C`) and, for the flee, a unit with status `0x08000020` (`0x00307D61`): both
 are held engaged with the bits left as they are. With bit `0x200` clear the unit is engaged when `0x00307CE0(unit)` is
-non-zero and `0x0030BF20([unit +0x708])` is 0 (`0x00307DB2`-`0x00307DC9`). `0x00311E90` and `0x00311F50` set both bits with `or
-[+4], 0x600` (`0x00311F19`, `0x00311F5E`).
+non-zero and `0x0030BF20([unit +0x708])` is 0 (`0x00307DB2`-`0x00307DC9`). `0x00311E90` and `0x00311F50` set both bits with
+`or [+4], 0x600` (`0x00311F19`; `0x00311F50` only on the unit `0x0031B760` finds, `0x00311F54`-`0x00311F5E`).
 
 `0x002FEDC0`, `0x00301140` and `0x00313480` also clear bits `0x200`, `0x400` and `0x10000` (`and [+4], 0xFFFEF9FF` at
 `0x002FEDC6`, `0x00301231`, `0x003134A5`). Statuses `0x08000020` hold a unit engaged without these bits.
@@ -193,18 +200,21 @@ a record address of 0 also returns (`0x002ECF41`):
   motion at `+0xCC` if its class (top 4 bits) is 3 or 4, else the one at `+0x3B4` if that class is 3 or 4, and
   otherwise does nothing (`0x004261C2`-`0x004261F0`). It snaps when that motion's low 12 bits are `0x35` (drawing)
   with `drawn` = 1, or `0x36` (sheathing) with any other `drawn` (`0x004261FA`-`0x00426209`); otherwise nothing.
-- Any other mode: `0x00426C90(record, drawn)` sets the state at once (bit `0x1` set and bit `0x2` cleared for a
-  non-zero `drawn`, both cleared for 0), sets `+0x284` to `(+0x284 & 0x6FFFFFFF) | 0x10000000`, calls
-  `0x00426FA0(record)` (`0x00426CEE`), plays motion `0x1001` and updates `+0x294`. Mode 2 snaps through the same body.
-- `0x00426C90` then rebinds the record's attached records. When its word `+8` names a record c (not −1) whose
-  `+0x290` bit `0x100000` is clear and whose word `+0x2F2` is not 1 (`0x00426D34`, `0x00426D44`), it calls `0x0042F310`
-  with c's word `+0`, a parent p and the code `0x10A` (`0x00426DBC`).
-- Whenever word `+8` names c, whether or not c passed those tests, every record reached from c through words `+8`
-  and `+0xA` (`0x004268D0`, recursively) gets the same call under the same two tests, through `0x0042DC10` (`0x00426DDF`,
-  `0x00426DFA`).
-- p is the switched record's word `+0`, or c's word `+6` when that is not −1. When c's byte `+0x6A0`
-  (`0x003E5CF0`) is `0x1C` or more, p becomes word `+6` of p's record when that is not −1 (`0x00426D73`-`0x00426DAD`);
-  when p is −1 or p's record has `+0x284` zero, that read is of address 6 and faults (`0x00426DA3`).
+- Any other mode: `0x00426C90(record, drawn)` sets the state at once (bit `0x1` set and bit `0x2` cleared for a non-zero
+  `drawn`, both cleared for 0, `0x00426CBF`-`0x00426CD3`), sets `+0x284` to `(+0x284 & 0x6FFFFFFF) | 0x10000000`
+  (`0x00426CDA`-`0x00426CE4`), calls `0x00426FA0(record)` (`0x00426CEE`), plays motion `0x1001` with `0x00427320` and sets
+  `+0x294` to `(+0x294 & 0xFFFDFA7F) | 0x20` (`0x00426CF3`-`0x00426D0E`). Mode 2 snaps through the same body.
+- `0x00426C90` then rebinds the record's attached records. When its word `+8` names a record c (not −1; c is
+  `[0x022C6F28] + word × 0x740`, `0x00426D14`-`0x00426D2D`) whose `+0x290` bit `0x100000` is clear and whose word `+0x2F2`
+  is not 1 (`0x00426D34`-`0x00426D4C`), it calls `0x0042F310` with c's word `+0`, a parent p and the code `0x10A`
+  (`0x00426DBC`).
+- Whenever word `+8` names c, whether or not c passed those tests, every record reached from c through words `+8` and
+  `+0xA` (`0x004268D0`, recursively) gets the same call under the same two tests, through `0x0042DC10`
+  (`0x00426DC9`-`0x00426DFA`).
+- p is the switched record's word `+0`, or c's word `+6` when that is not −1 (`0x00426D4E`-`0x00426D68`). When c's byte
+  `+0x6A0` (`0x003E5CF0`, `0x00426D6E`) is `0x1C` or more, p becomes word `+6` of p's record when that is not −1
+  (`0x00426D73`-`0x00426DAD`); when p is −1 or p's record has `+0x284` zero, that read is of address 6 and faults
+  (`0x00426DA3`).
 - `0x0042F310(i, p, code)` returns when i or p is −1. It sets bit `0x40000000` of p's record `+0x284` when bit `0x4`
   of it is set, and faults when that `+0x284` is zero, reading a null record (`0x0042F347`). When i's record has a
   non-zero `+0x284` it stores p at `+0x3CE` and the code at `+0x3CC`, and sets bit `0x80000` of `+0x290` after
@@ -264,8 +274,9 @@ only with a battle unit at `+0x30`, `0x00344784`) and, when `0x00233D70` says so
 (`0x002ECA00(actor, 1)`, `0x002EB430`, `0x002ED020`; `0x003447A2`-`0x003447BC`), whether or not it has a battle unit.
 
 `0x00233D70(actor)` answers 1 when `0x0031B760` finds no battle unit, or when the unit has bit `0x10` set, a `+0x698`
-record, and either no status of `0x80000003` or a town (`0x00313F60` → `0x00377C20`); otherwise it answers 0.
-`capturepc` cancels the same way ([party during scenes](party-during-scenes.md)).
+record, and either no status of `0x80000003` in the record's `+0x3C` or `+0x64` or a town (`0x00313F60` → `0x00377C20`),
+`0x00233D74`-`0x00233DAD`; otherwise it answers 0. `capturepc` cancels the same way ([party during
+scenes](party-during-scenes.md)).
 
 `setforcefight(a)` (`0x0483`, begin `0x003419F0`, poll `0x00342CE0` → `0x00357F00`) is a state machine
 on the scratch block: the begin stores `a >= 0` at `+4`, the draw flag 0 at `+2` and `a | 0x1000000`
@@ -299,6 +310,14 @@ byte `+0xD` of `0x00263F40(actor)`, and plays a motion through `0x002EB3E0`: wit
 set (the `setforcefight` and `setforcerelax` begins always set it) the stance motion `0x01EFE9D0[a & 0xFFFFFF]` (u32
 entries, no bound check), otherwise `(actor +0x15) << 20 | a | 0x1000`. A negative argument skips
 state 5, so it draws only.
+
+`0x002E8170(actor, on)` and `0x002E4E00(u)` reach the render record `[0x022C6F28] + word × 0x740` with the tests of
+`0x002ECF10`: a null actor, a null `+0xC0`, a first dword or low word of -1, a record address of 0 or a zero `+0x284`
+stops them. `0x002E8170` sets bit `0x80000` of `+0x284` for a non-zero `on` and clears it for 0, and otherwise does
+nothing (`0x002E8173`-`0x002E81C0`).
+
+`0x002E4E00` returns 0.0 for a null u, a null `+0xC0` or a first dword of -1, -1.0 (`0x01CEBC9C`) for a low word of -1, a
+record address of 0 or a zero `+0x284`, and otherwise the value of `0x00423380` for the record (`0x002E4E03`-`0x002E4E45`).
 
 `clearforcefight` (`0x0484`, begin `0x00343770` → `0x00343290`) is `setforcefight`'s pair, and `clearforcerelax`
 (`0x02E1`) runs the same begin `0x00343290`. On a = `0x00263F40(actor)` (`0x003432B0`) it calls `0x002E9B40(a)`,

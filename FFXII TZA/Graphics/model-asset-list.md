@@ -1,9 +1,8 @@
----
-title: "Model asset list: every model the game can bind, with its model file, motion lanes, remastered parts and the tables and scripts that use it"
-kind: "reference"
-category: "Graphics"
-addresses: "0x002ED6F0, 0x002E6EB0, 0x002E6FD1, 0x00320170, 0x003202F0, 0x001BB2B0, 0x002EAD50, 0x0017F000, 0x0032E620"
----
+[Home](../../README.md) / [Graphics](README.md) / Model asset list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Model asset list: every model the game can bind, with its model file, motion lanes, remastered parts and the tables and scripts that use it | reference | Graphics | Character models / Model Files | All 1,084 models the eleven bound-id letter classes name: each model's bound id, its PS2-era .cm file and size, the motion lane files that ship and which animation set loads each, its further motion files, the remastered .ah list with its mesh and texture count, and the bestiary definitions, party table rows and script manifests that use it; how 0x002ED6F0, the lane loader 0x002E6EB0 and 0x001BB2B0 turn a bound id into those files. | 0x002ED6F0, 0x002E6EB0, 0x002E6FD1, 0x00320170, 0x003202F0, 0x001BB2B0, 0x002EAD50, 0x0017F000, 0x0032E620 |
 
 ## What it lists
 

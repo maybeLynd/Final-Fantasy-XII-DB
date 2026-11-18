@@ -1,9 +1,8 @@
----
-title: "Action phases: delay, charge time, approach, execution and the end of a battle action"
-kind: "system"
-category: "Battle actions"
-addresses: "0x00304850, 0x002FA1A0, 0x002F8410, 0x002F9C00, 0x00313DB0, 0x003105D0, 0x0030CBE0, 0x0030D070, 0x0030CA80, 0x0030C970"
----
+[Home](../../README.md) / [Battle actions](README.md) / Action phases
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Action phases: delay, charge time, approach, execution and the end of a battle action | system | Battle actions | How an action runs | The thirteen phases a committed battle action goes through, frame by frame - the random delay before it starts, the charge time and what speeds it up (Haste, Slow, Berserk, augments, the Battle Speed setting), walking into reach, Invisible wearing off, waiting for its turn to be shown, building the targets and resolving the effects, and when the action counts as finished - plus the charge that is kept when the same order is given again. | 0x00304850, 0x002FA1A0, 0x002F8410, 0x002F9C00, 0x00313DB0, 0x003105D0, 0x0030CBE0, 0x0030D070, 0x0030CA80, 0x0030C970 |
 
 ## What the player sees
 
@@ -50,27 +49,37 @@ unit's byte `+0x6B4` (`rsi = unit + 0x6B0`, `0x0030487F`). It returns -1 when th
 count `+0x77C` is 0, when the action id `+0x714` is above `0x21E`, or - unless unit bit `0x1000000` is set -
 when the phase is below 9 and the target `+0x710` does not resolve (`0x00304899`-`0x003048E2`).
 
-It dispatches the phase at `0x0030493C`-`0x0030495A` through the table of 13 image-relative offsets at
-`0x00305044`. Every arm ends with `inc byte [rsi+4]` and falls through to the next one on the same call
-unless it has to wait (returning 0); the scene arm of phase 10, while the scene state `0x022C2160` is
-not 5 or 6, raises the phase to 11 and returns 0 (`0x00304F62`-`0x00304F8C`), so phase 11 runs on the
-next call. Phase 12 returns 1: the action is finished.
+The row the arms are given is `0x0020E600([0x02EBF138] dword +0x0C)` plus the action id `+0x714` times the table's word
+`+0x08`, in 32 bits; it is 0 when `0x02EBF138` or that answer is 0 (`0x003048E8`-`0x00304939`). With a row of 0 the scene
+test of phases 4, 9 and 10 reads the address `0x0C` (`0x00304D3F`, `0x00304F22`, `0x00304F3D`, `0x00304F62`); a null
+`0x02EBF138` is read at `+0x0C` first, unguarded, by phase 0's `0x0030EF20` (`0x0030EF3C`). A phase above 12 returns -1
+(`0x00304940`-`0x00304943`, `0x00305006`-`0x00305015`).
+
+It dispatches the phase at `0x0030493C`-`0x0030495A` through the table of 13 image-relative offsets at `0x00305044`. Every
+arm but phase 12's ends with `inc byte [rsi+4]` and falls through to the next one on the same call unless it has to
+wait (returning 0); the scene arm of phase 10, while the scene state `0x022C2160` is not 5 or 6, raises the phase to 11
+and returns 0 (`0x00304F62`-`0x00304F8C`), so phase 11 runs on the next call. Phase 12 returns 1: the action is finished.
 
 | Phase | Code | What happens | Leaves when |
 |---:|---|---|---|
-| `0` | `0x0030495C` | `0x0030EF20(unit, row)` prepares the costs; `+0x690` = 0; unit flag bits `0x1000`, `0x2000`, `0x20000000`, `0x80000000`, `0x800000000` and `0x400000000000` and bits `0x80` and `0x200000` of `+0x04` cleared; the delay threshold `+0x764` set (below); the effective action id cached (`0x00387A50`) | at once |
-| `1` | `0x003049FA` | presentation event; while `+0x760` < `+0x764`, `+0x760` += `0x002F9F10()` (always 100) and wait | threshold reached, to phase 3 |
+| `0` | `0x0030495C`-`0x003049F7` | `0x0030EF20(unit, row)` (below); `+0x690` = 0; unit flag bits `0x1000`, `0x2000`, `0x20000000`, `0x80000000`, `0x800000000` and `0x400000000000` and bits `0x80` and `0x200000` of `+0x04` cleared; the delay threshold `+0x764` set (below); for action `0x9F`, a random action id from `0x00387130` kept for phases 6 and 9 (`0x00387A50`) | at once |
+| `1` | `0x003049FA`-`0x00304A46` | presentation event; while `+0x760` < `+0x764`, `+0x760` += `0x002F9F10()` (always 100) and wait | threshold reached, to phase 3 |
 | `2` | `0x00304A49` | entry point only | at once |
-| `3` | `0x00304A4C` | `0x00305230(unit, id)`; `0x0030E360(stats, 0, 24, 0, ...)` removes status 24 (Invisible); range bands `0x002FEB80`; saved charge restored (below); charge limit `+0x76C` = `0x002F8410(unit)`; `0x00469AF0` unless the saved charge was restored for the same order; movement reset `0x003291B0`; `0x00329F80`, `0x00306010`; the three presentation slots `+0x694`-`+0x696` released | at once |
-| `4` | `0x00304BA5` | presentation event; movement goal and the bands copied to the movement block (mode 1); approach point from `0x00339630`, which always answers 1 (`0x00339A24`), so the arm for a 0 answer (the target's position, stop distance 0.1, `0x00304CAF`-`0x00304CC8`) is not taken; `0x00319110`; while `+0x768` < `+0x76C`, `+0x768` += `0x002F9C00(unit)` and `+0x770` = `+0x768`; `0x0033A1E0` sets bit `0x80` of `+0x04` (in reach) | in reach and fully charged; a scene action also waits while bit `0x2` of `0x022C2158` is set (`0x00304D3F`-`0x00304D54`); otherwise a navigation step `0x00325BB0` and wait |
-| `5` | `0x00304D73` | presentation event; movement reset | at once |
-| `6` | `0x00304DA5` | for action `0x9F` unit bit `0x800000000` set; presentation event; the phase-0 flag clears again, bit `0x80` of `+0x04` set; a presentation slot asked for (`0x0030CFB0`) | at once |
-| `7` | `0x00304E2C` | `0x0030CA80` checks the slot; when it asks for the unit to be shown, the unit id goes into the 64-entry ring at `0x022BEDA4` (write index `0x022BEDA1`) and unit bit `0x1000` is set; presentation event | slot ready and unit bit `0x1000` clear |
-| `8` | `0x00304EB3` | `0x00319420(unit+0x6B0)` | at once |
-| `9` | `0x00304EBE` | `+0x770` = 0; targets built (`0x0030D160`); `0x00305430`; unit bit `0x400000000000` set; for ids other than `0xD0`-`0xF1` (the Quickenings and Concurrences, which skip both), the previews `0x00303830` and, for a scene action (row `+0x0C` bit `0x40000000`), the cost payment `0x00305640`; a scene action then starts its scene (`0x00306760`); any other action posts its resolved presentation event (`0x0030FE10`) | at once |
-| `10` | `0x00304F62` | a scene action waits while the scene state `0x022C2160` is 5 or 6, then moves on; any other action: once `+0x690` has bits `0x2` and `0x8`, unit bit `0x400000000000` is cleared and, for the controlled member with unit bit `0x40000`, bit `0x1` of `+0x690` set; bit `0x1` of `+0x690` posts event `0x2001` | scene actions: scene over; others: `0x0030BC40` returns 1 (`+0x690` bits `0x1` and `0x4`) |
-| `11` | `0x00304FE9` | unit bit `0x2000` cleared | at once |
-| `12` | `0x00304FF3` | returns 1 | - |
+| `3` | `0x00304A4C`-`0x00304BA2` | `0x00305230(unit, id)`; `0x0030E360(stats, 0, 24, 0, ...)` removes status 24 (Invisible); range bands `0x002FEB80`; saved charge restored (below); charge limit `+0x76C` = `0x002F8410(unit)`; `0x00469AF0` unless the saved charge was restored for the same order; movement reset `0x003291B0`; `0x00329F80`, `0x00306010`; the three presentation slots `+0x694`-`+0x696` released | at once |
+| `4` | `0x00304BA5`-`0x00304D70` | presentation event; movement goal and the bands copied to the movement block (mode 1); approach point from `0x00339630`, always 1 (`0x00339A24`), so the arm for 0 (`0x00304CAF`-`0x00304CC8`: the target's position, stop 0.1) is not taken; `0x00319110`; while `+0x768` < `+0x76C`, `+0x768` += `0x002F9C00(unit)` and `+0x770` = `+0x768`; bit `0x80` of `+0x04` = `0x0033A1E0`'s answer (in reach) | in reach and fully charged; a scene action also waits while bit `0x2` of `0x022C2158` is set (`0x00304D3F`-`0x00304D54`); otherwise a navigation step `0x00325BB0` and wait |
+| `5` | `0x00304D73`-`0x00304DA2` | presentation event; movement reset | at once |
+| `6` | `0x00304DA5`-`0x00304E29` | for action `0x9F` unit bit `0x800000000` set for the presentation event only; `+0x690` = 0 and the phase-0 bits cleared again (`0x800000000` among them); bit `0x80` of `+0x04` set; a presentation slot asked for (`0x0030CFB0`) | at once |
+| `7` | `0x00304E2C`-`0x00304EB0` | `0x0030CA80` checks the slot; when it asks for the unit to be shown, the unit id goes into the 64-entry ring at `0x022BEDA4` (write index `0x022BEDA1`) and unit bit `0x1000` is set; presentation event | slot ready and unit bit `0x1000` clear |
+| `8` | `0x00304EB3`-`0x00304EBB` | `0x00319420(unit+0x6B0)` | at once |
+| `9` | `0x00304EBE`-`0x00304F5F` | `+0x770` = 0; targets built (`0x0030D160`); `0x00305430`; unit bit `0x400000000000` set; for ids other than `0xD0`-`0xF1` (the Quickenings and Concurrences, which skip both), the previews `0x00303830` and, for a scene action (row `+0x0C` bit `0x40000000`), the cost payment `0x00305640`; a scene action then starts its scene (`0x00306760`); any other action posts its resolved presentation event (`0x0030FE10`) | at once |
+| `10` | `0x00304F62`-`0x00304FE6` | a scene action waits while the scene state `0x022C2160` is 5 or 6, then moves on; any other action: once `+0x690` has bits `0x2` and `0x8`, unit bit `0x400000000000` is cleared and, for the controlled member with unit bit `0x40000`, bit `0x1` of `+0x690` set; bit `0x1` of `+0x690` posts event `0x2001` | scene actions: scene over; others: `0x0030BC40` returns 1 (`+0x690` bits `0x1` and `0x4`) |
+| `11` | `0x00304FE9`-`0x00304FF0` | unit bit `0x2000` cleared | at once |
+| `12` | `0x00304FF3`-`0x00305004` | returns 1 | - |
+
+For a party-side unit (stats `+0x05` = 0), `0x0030EF20(unit, row)` of phase 0 sets the row's item aside: `+0xDC8` = the
+row's word `+0x22` when row byte `+0x1E` is 3, else `0xFFFF`, and `0x003008A0(item, -1, 0, 1, 0)` when it is not
+`0xFFFF`. It then takes the gil cost `0x00309060(unit, row index)`, kept at `+0xE58`, from the party's gil, not below 0
+(`0x00254EE0`). For any other unit it does nothing (`0x0030EF60`-`0x0030EFD8`).
 
 `0x0030BC40(unit)`, which phase 10 asks (`0x00304FDD`), answers 1 when bits `0x1` and `0x4` of the unit's `+0x690` are
 both set, and 0 otherwise (`0x0030BC96`-`0x0030BCA4`). While bit `0x4` is clear it first takes the effect handle `+0x24`
@@ -395,3 +404,14 @@ A presentation slot is `0x30` bytes; the 32 slots sit at `0x022C17B0` (`0x0030D0
 - [Combos](combos.md) - the extra hits that re-enter this sequence.
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - status bits
   `0x8000`, `0x100000`, `0x1000000` and `0x8000000`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- RNG random selection: `0x00387130` calls `0x00379CD0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+
+---
+
+[← Action commit](action-commit.md) | [Action results →](action-results.md)

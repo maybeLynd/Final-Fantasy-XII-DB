@@ -1,9 +1,8 @@
----
-title: "Word bank: every name string of the battle word banks in all nine languages, with plural forms and articles"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x02EBF170, 0x003846F0, 0x003214B0, 0x002B58B0, 0x002B4550, 0x002B49F0, 0x00567B60, 0x00558CE0, 0x0027D480, 0x002986E0, 0x00536280"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Word bank
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Word bank: every name string of the battle word banks in all nine languages, with plural forms and articles | reference | Menus and HUD | Game text tables | Every string of the fifteen word banks in battle_pack.bin (word.bin) side by side in the nine language trees: ability, item, equipment, gambit, place, character and monster-family names, the plural templates and articles the Western languages add to a name, which code reads a row's strings and inserts them into messages, how many rows and strings each language has, and how to read the plural codes. | 0x02EBF170, 0x003846F0, 0x003214B0, 0x002B58B0, 0x002B4550, 0x002B49F0, 0x00567B60, 0x00558CE0, 0x0027D480, 0x002986E0, 0x00536280 |
 
 ## What it lists
 

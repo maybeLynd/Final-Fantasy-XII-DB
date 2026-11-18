@@ -1,9 +1,8 @@
----
-title: "Sound effects: how a request to play a sound becomes a playing voice, the three volume settings, pan and fades"
-kind: "system"
-category: "Sound and music"
-addresses: "0x002DF220, 0x002DEF40, 0x002DF0F0, 0x002DEE80, 0x00224570, 0x002257E0, 0x002256F0, 0x007A9E50"
----
+[Home](../../README.md) / [Sound and music](README.md) / Sound effects
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Sound effects: how a request to play a sound becomes a playing voice, the three volume settings, pan and fades | system | Sound and music | Sound effects and voices | The play call every sound effect goes through: the entry points and their gates, the play handle, how a sound id picks a block bank and a slot or a six-digit bank, the slot flags that block, cross-fade or reuse a sound, the per-sound volume and the three Config volume rows, the pan byte and how it maps around the listener, the six fade curves and why every volume, pan, pitch and stop ramp on a voice is linear, and how a sound is stopped. | 0x002DF220, 0x002DEF40, 0x002DF0F0, 0x002DEE80, 0x00224570, 0x002257E0, 0x002256F0, 0x007A9E50 |
 
 ## What the player sees
 

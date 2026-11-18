@@ -1,9 +1,8 @@
----
-title: "Scene rewards: every item and gil amount the story scripts give or take, by script and function, and how each item is chosen"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x00345080, 0x003449A0, 0x0034A6D0, 0x0034B1E0, 0x00346930, 0x00346E30, 0x003459C0, 0x00345520, 0x0032A810"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Scene rewards
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Scene rewards: every item and gil amount the story scripts give or take, by script and function, and how each item is chosen | reference | Story, events and hunts | Story progress and flags | Each item and gil give or take in the shipping us scripts: the script, actor and function, the verb, the item with its name, the count or amount, and where the item comes from, whether written in the call, stored by the caller before it requests one of the shared give routines, or chosen from a set or a table, with what each of the seven verbs does natively. | 0x00345080, 0x003449A0, 0x0034A6D0, 0x0034B1E0, 0x00346930, 0x00346E30, 0x003459C0, 0x00345520, 0x0032A810 |
 
 ## What it lists
 

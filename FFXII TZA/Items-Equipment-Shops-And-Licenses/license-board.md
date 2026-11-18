@@ -1,9 +1,8 @@
----
-title: "License Board: the twelve job board files, the square grid each holds, and the squares every board shares"
-kind: "format"
-category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF1A0, 0x00238260, 0x02EBF038, 0x00328990, 0x0055B3F0, 0x00556F90"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / License Board
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| License Board: the twelve job board files, the square grid each holds, and the squares every board shares | format | Items, equipment, shops and licenses | Licenses | The licd board file: its 8-byte header and its 24 by 24 grid of two-byte node numbers, what a node number indexes and the empty-square value, which file each language loads and how, the six functions that read the grid, the twelve job boards with their square counts and Second Board square, the sixty squares on every board and the fourteen Quickening nodes on no board. | 0x02EBF1A0, 0x00238260, 0x02EBF038, 0x00328990, 0x0055B3F0, 0x00556F90 |
 
 ## What the player sees
 

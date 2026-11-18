@@ -1,9 +1,8 @@
----
-title: "Tutorial and staff roll scenes: the gambit, license board and map tutorials and the staff roll"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00, 0x003C9FD0, 0x0032FC30, 0x003CA140"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Tutorial and staff roll scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Tutorial and staff roll scenes: the gambit, license board and map tutorials and the staff roll | reference | Story, events and hunts | Scenes and scripts by area / Opening, ending and Trial Mode | The scene scripts of the group men: the Gambit Screen and license board tutorials, the map hint and the staff roll, with every line they hold in the game's own words and the one field whose script loads one of them. | 0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00, 0x003C9FD0, 0x0032FC30, 0x003CA140 |
 
 ## What it lists
 

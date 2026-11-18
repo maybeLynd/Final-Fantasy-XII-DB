@@ -1,9 +1,8 @@
----
-title: "Enemy AI: the order sets an enemy tries, the phase a command switches to, what an enemy notices and when an order is replaced"
-kind: "system"
-category: "Enemy AI and gambits"
-addresses: "0x00305AB0, 0x00305CC0, 0x002FDDA0, 0x0023A570, 0x003247F0, 0x00324F20, 0x00325060, 0x0030F130, 0x00308610, 0x003105D0"
----
+[Home](../../README.md) / [Enemy AI and gambits](README.md) / Enemy AI
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Enemy AI: the order sets an enemy tries, the phase a command switches to, what an enemy notices and when an order is replaced | system | Enemy AI and gambits | Enemy decisions | How an enemy chooses what to do: the order sets every unit tries in a fixed order and the built-in sets for Confuse, Berserk, an issued command and the idle follow, where an enemy's authored order set comes from, the four set variants and twelve subgroups that orders 0x4112-0x4121 switch between, the perception list of up to 32 units an enemy notices by sight, by two radii, by being hit and by Lure, when that list is rebuilt, and what cancels or replaces an order in flight. | 0x00305AB0, 0x00305CC0, 0x002FDDA0, 0x0023A570, 0x003247F0, 0x00324F20, 0x00325060, 0x0030F130, 0x00308610, 0x003105D0 |
 
 ## What the player sees
 

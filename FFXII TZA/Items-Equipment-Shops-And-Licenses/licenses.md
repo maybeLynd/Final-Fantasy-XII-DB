@@ -1,9 +1,8 @@
----
-title: "Licenses: what the License Board test asks for an action or a piece of equipment, who is never tested, Quickenings, and buying or resetting a square"
-kind: "system"
-category: "Items, equipment, shops and licenses"
-addresses: "0x00323EC0, 0x00323C60, 0x00323BB0, 0x002F8FA0, 0x00323890, 0x00323D10, 0x00323910, 0x00328BD0, 0x00328990"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Licenses
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Licenses: what the License Board test asks for an action or a piece of equipment, who is never tested, Quickenings, and buying or resetting a square | system | Items, equipment, shops and licenses | Licenses | How licenses work: who the test applies to and who always passes, the action and equipment bits that need no license, the owned-square bits every member carries and the requirement mask built from the license nodes, the four requirement kinds a node's category gives, the counted rule for Quickenings, the reasons a square can be refused, what buying a square costs and grants (LP, Quickenings, and the MP bars: how many Mist charges a member can hold), the squares each member starts with, and the resetJobs verb that refunds both boards. | 0x00323EC0, 0x00323C60, 0x00323BB0, 0x002F8FA0, 0x00323890, 0x00323D10, 0x00323910, 0x00328BD0, 0x00328990 |
 
 ## What the player sees
 
@@ -264,3 +263,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - Save load settings: `0x00283270` is called by `0x00582860`, `0x005844A0`; those functions are documented on
   [game application](../Engine-Core/game-application.md),
   [native limits](../Engine-Core/native-limits.md).
+
+---
+
+[← Equipping an item](equipping-an-item.md) | [Buying a license →](buying-a-license.md)

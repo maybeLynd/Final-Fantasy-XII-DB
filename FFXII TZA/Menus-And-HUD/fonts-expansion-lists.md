@@ -1,9 +1,8 @@
----
-title: "Font expansion lists: every expansion list of every shipped font, with the script path it belongs to and the glyphs it holds"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x001B4C00, 0x001B6030, 0x001FDB90, 0x001FDB50, 0x00674A00, 0x001B6350, 0x001E9860"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Font expansion lists
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Font expansion lists: every expansion list of every shipped font, with the script path it belongs to and the glyphs it holds | reference | Menus and HUD | Fonts and text drawing | All 127,031 values of the 14 shipped .fex font files in file order: each list's key hash, the event or plan_map path that hashes to it, each value's ordinal and the glyph it names, the two us files stored as index triples, and which lists have no path or no values. | 0x001B4C00, 0x001B6030, 0x001FDB90, 0x001FDB50, 0x00674A00, 0x001B6350, 0x001E9860 |
 
 ## What it lists
 

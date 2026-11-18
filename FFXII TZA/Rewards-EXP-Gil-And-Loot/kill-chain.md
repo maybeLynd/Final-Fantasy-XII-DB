@@ -1,9 +1,8 @@
----
-title: "Kill chain: chain count, chain level, the chain coin and resets"
-kind: "system"
-category: "Rewards: EXP, LP, gil and loot"
-addresses: "0x00317ED0, 0x003183D0, 0x0028EF00, 0x0028EF70, 0x003F9E50"
----
+[Home](../../README.md) / [Rewards: EXP, LP, gil and loot](README.md) / Kill chain
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Kill chain: chain count, chain level, the chain coin and resets | system | Rewards: EXP, LP, gil and loot | EXP, loot and progression | How kills build the chain count and chain level, the 5 %/60 % coin rolled on every link, breaks in a row, everything that resets the chain (save crystals, towns, presets), the HUD counter and the chain's globals. | 0x00317ED0, 0x003183D0, 0x0028EF00, 0x0028EF70, 0x003F9E50 |
 
 ## What the player sees
 
@@ -291,3 +290,7 @@ level rise `0x003183D0` or `0x00319920`, whose write is the pickup count (`0x003
 - [Language selection and locale ids](../Saving-Loading-And-Settings/languages.md)
 - [Who gets EXP, LP and gil from a kill](exp-lp-and-level-ups.md) - the
   defeat-reward routine that calls the chain update.
+
+---
+
+[← EXP, LP and level-ups from kills](exp-lp-and-level-ups.md) | [Loot drops →](loot-drops.md)

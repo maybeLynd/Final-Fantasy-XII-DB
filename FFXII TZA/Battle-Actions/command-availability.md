@@ -1,9 +1,8 @@
----
-title: "Command availability: why a battle command is greyed out or refused, and the refusal codes"
-kind: "system"
-category: "Battle actions"
-addresses: "0x002FFCF0, 0x0030E9C0, 0x0031A7B0, 0x00306480, 0x003060E0, 0x00323EC0, 0x00303BD0"
----
+[Home](../../README.md) / [Battle actions](README.md) / Command availability
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Command availability: why a battle command is greyed out or refused, and the refusal codes | system | Battle actions | How an action runs | The one check the battle menu, gambits, AI and the action itself all use to decide whether a unit may use an action - the order of its tests (unable to act, FLEEING, summoning while an Esper is out, Stop, Sleep, Silence, Disable, commands disabled by the battle, abilities not owned, missing items, licenses, MP, Mist charges, gil) and the refusal code each test returns. | 0x002FFCF0, 0x0030E9C0, 0x0031A7B0, 0x00306480, 0x003060E0, 0x00323EC0, 0x00303BD0 |
 
 ## What the player sees
 
@@ -156,3 +155,7 @@ A row with bit `0x80000000` of `+0x0C` stores 3 (the item count) instead.
   names.
 - [License check](../Items-Equipment-Shops-And-Licenses/licenses.md)
   - what the License Board check tests.
+
+---
+
+[Target selection →](target-selection.md)

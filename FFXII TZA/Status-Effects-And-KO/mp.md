@@ -1,9 +1,8 @@
----
-title: "MP gain and cost: how MP is gained from walking, from being hit, from hitting and from kills, what an action costs, and what pins MP to zero"
-kind: "system"
-category: "Status effects and KO"
-addresses: "0x00300CE0, 0x00307B0D, 0x002F91A0, 0x002F9240, 0x002FB6C0, 0x002F9400, 0x00309110, 0x002F95D0, 0x00305640"
----
+[Home](../../README.md) / [Status effects and KO](README.md) / MP gain and cost
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| MP gain and cost: how MP is gained from walking, from being hit, from hitting and from kills, what an action costs, and what pins MP to zero | system | Status effects and KO | KO and MP | Where MP comes from and where it goes: the walking recovery ladder keyed on current MP, the damage ladder for being hit and for hitting, the three augments each gain needs, the kill bonus from the foe's level, the rules every gain obeys, the areas that triple MP gains, the cap and the augment that pins MP to zero, the MP cost of an action with its halving, freeing and percentage cuts, and the gil channel that pays an action in gil. | 0x00300CE0, 0x00307B0D, 0x002F91A0, 0x002F9240, 0x002FB6C0, 0x002F9400, 0x00309110, 0x002F95D0, 0x00305640 |
 
 ## What the player sees
 

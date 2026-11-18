@@ -1,9 +1,8 @@
----
-title: "Phyre post-effect classes: the PhyreEngine post-effect family the game links, which classes have bodies, and the one it runs"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x00D61E50, 0x00655DC0, 0x006575E0, 0x00657680, 0x006571C0, 0x00657150, 0x006571A0, 0x00657140, 0x0065B8F0, 0x00653CD0, 0x00653B20, 0x0065B270, 0x00652940, 0x0060CD10, 0x0060B980, 0x00640280, 0x00642F50, 0x0018CD90, 0x00645DB0, 0x0065A630, 0x0065A640, 0x00191DA0, 0x0018FD70, 0x001EE8E0, 0x00649070"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Phyre post-effect classes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre post-effect classes: the PhyreEngine post-effect family the game links, which classes have bodies, and the one it runs | system | PhyreEngine | Drawing and shaders | PhyreEngine's PPostProcessing classes as the executable carries them: the 37 RTTI classes, the 36 nine-slot vtables and what each slot does, the nine classes with render bodies and the passes they draw, the inert MLAA and SSAO, the class-descriptor factories and the post-effect manager, the PFXAA the game builds and runs itself, and the shipped data, which names none of the classes. | 0x00D61E50, 0x00655DC0, 0x006575E0, 0x00657680, 0x006571C0, 0x00657150, 0x006571A0, 0x00657140, 0x0065B8F0, 0x00653CD0, 0x00653B20, 0x0065B270, 0x00652940, 0x0060CD10, 0x0060B980, 0x00640280, 0x00642F50, 0x0018CD90, 0x00645DB0, 0x0065A630, 0x0065A640, 0x00191DA0, 0x0018FD70, 0x001EE8E0, 0x00649070 |
 
 ## What the player sees
 

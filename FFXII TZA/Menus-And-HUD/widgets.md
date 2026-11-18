@@ -1,9 +1,8 @@
----
-title: "Widgets: how every menu element is built, sized, attached, focused, animated and torn down"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x002465F0, 0x00244F50, 0x00245000, 0x00248220, 0x00248030, 0x00244640, 0x00246AD0, 0x00245020"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Widgets
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Widgets: how every menu element is built, sized, attached, focused, animated and torn down | system | Menus and HUD | How menus work | The menu element object model: the one constructor and its three entry points, the 0x120-byte pool and the heap, what an object's size says about it, the 0xC0-byte header and its flag bits, parents that build children in their own memory, the tree links and posting up and down it, the per-tick update and input turn, the focus stack, opening and closing runs with the millisecond-to-frame conversion and the three tween channels, the half-rate phase counter, the widget that registers itself once, and the title asset and its consumer. | 0x002465F0, 0x00244F50, 0x00245000, 0x00248220, 0x00248030, 0x00244640, 0x00246AD0, 0x00245020 |
 
 ## What the player sees
 
@@ -682,3 +681,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [frame update order](../Engine-Core/frame-update-order.md).
 - Story event quest hunt: `0x00254560` calls `0x0032A8A0`; those functions are documented on
   [identifier spaces](../Engine-Core/identifier-spaces.md).
+
+---
+
+[← Menus](menus.md) | [Widget messages →](widget-messages.md)

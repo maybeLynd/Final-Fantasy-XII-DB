@@ -1,9 +1,8 @@
----
-title: "UI typed lists: the authored item lists menus are composed from, their nine item types, the atlas registry their sprites come from, and the one-allocation build"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x002432B0, 0x00243514, 0x00243538, 0x0024355C, 0x002497B0, 0x0029ECB0, 0x0029E7D0, 0x0029F4C0, 0x0029ED40, 0x0029ED30, 0x0029FEB0, 0x0029FBD0, 0x0029F130, 0x0029ED50, 0x002A0180, 0x0029F930, 0x002D14E0, 0x0029F5D0, 0x002435C0, 0x00243C00, 0x002482E0, 0x002A0060, 0x0024A610, 0x0024A5F0, 0x0024A5A0, 0x0024A4E0, 0x0024A440, 0x0024A480, 0x0024A1D0, 0x0024A710, 0x0208F580, 0x02090780, 0x002A00F0, 0x002A1A80, 0x00249320, 0x00249380, 0x002493D0, 0x00280980, 0x002F9920, 0x0020E600, 0x0020E620, 0x003931E0, 0x00393240, 0x0024A660"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / UI typed lists
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| UI typed lists: the authored item lists menus are composed from, their nine item types, the atlas registry their sprites come from, and the one-allocation build | format | Game files and data tables | Menu and map files | The MRP list files and mrppack_ys.bin units that lay out menu screens: the header and its relocation, the 20-byte list records, the self-sized items and their nine type codes, what each type builds and how it is drawn, the 16-byte atlas name records, the 64-slot atlas registry and how TIM2 buffers fill it, the two-level sub-image lookup, the single allocation per list, the 344 shipped list files, and the rules an edited list must keep. | 0x002432B0, 0x00243514, 0x00243538, 0x0024355C, 0x002497B0, 0x0029ECB0, 0x0029E7D0, 0x0029F4C0, 0x0029ED40, 0x0029ED30, 0x0029FEB0, 0x0029FBD0, 0x0029F130, 0x0029ED50, 0x002A0180, 0x0029F930, 0x002D14E0, 0x0029F5D0, 0x002435C0, 0x00243C00, 0x002482E0, 0x002A0060, 0x0024A610, 0x0024A5F0, 0x0024A5A0, 0x0024A4E0, 0x0024A440, 0x0024A480, 0x0024A1D0, 0x0024A710, 0x0208F580, 0x02090780, 0x002A00F0, 0x002A1A80, 0x00249320, 0x00249380, 0x002493D0, 0x00280980, 0x002F9920, 0x0020E600, 0x0020E620, 0x003931E0, 0x00393240, 0x0024A660 |
 
 ## What the player sees
 

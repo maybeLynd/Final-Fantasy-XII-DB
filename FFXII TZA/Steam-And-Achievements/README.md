@@ -1,10 +1,25 @@
+[Home](../../README.md) / Steam and achievements
+
 # Steam and achievements
 
 The Steam integration and the achievements.
 
-| Page | What you will find |
-|---|---|
-| [Achievements: the achievement list, the counters and conditions that award each one, and how an award reaches Steam](achievements.md) | The 41 achievement records with their developer tags and Steam titles, the 30 descriptors that give each tracked achievement a counter or a test, the saved counter block and award bits, the menuhandbook.bin targets and lists the tests read, the code that feeds every counter, the periodic sweep and its re-send, the script and scene awards, the path from an award to SetAchievement and StoreStats, and the Sky Pirate's Den statues that show the awards. |
-| [Driver DLL search: how the game finds and loads nvapi64.dll through the registry, the driver store and the system folder](driver-dll-search.md) | The loader the game uses for NVIDIA's NVAPI library: the Windows build test, finding the NVIDIA display adapter through SetupAPI, the order it searches the adapter's service, its driver registry values, the Khronos keys, the driver store and the system folder, the trusted-folder test before an absolute path is loaded, and the helpers it builds paths and registry reads with. |
-| [Graphics adapters and vendor libraries: which GPU the game picks, the adapter list, NVAPI and AMD ADL](graphics-adapters-and-vendor-libraries.md) | How the renderer picks a Direct3D 11 adapter from the DeviceID and LUID settings, the adapter list the display object keeps, the anti-aliasing levels probed from the device, how the game loads NVIDIA's NVAPI and AMD's ADL, the adapter-info chain that asks them for a GPU's name and temperature, and the two places that show the result. |
-| [Steam integration: how the game starts and pumps Steam, the interfaces and callbacks it uses, and what it does without Steam](steam-integration.md) | The start-up order (interface context, SteamAPI_Init, the achievement manager, the overlay listener, the relaunch check with app id 595520), the interface context and the five interface slots the game calls, the eight callbacks and their handlers, the per-window-pump SteamAPI_RunCallbacks, the stats receipt, the Steam language and user id the game reads, the teardown, and every path that changes when Steam is absent. |
+Jump to: [Steam and achievements](#steam-and-achievements) · [Graphics adapters and driver libraries](#graphics-adapters-and-driver-libraries)
+
+## Steam and achievements
+
+How the game works with Steam and how an award reaches it.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Achievements](achievements.md) | Explanation | The achievement list, what each one counts and how an award reaches Steam. |
+| [Steam integration](steam-integration.md) | Explanation | How the game starts Steam, handles its callbacks and behaves without it. |
+
+## Graphics adapters and driver libraries
+
+How the game chooses a graphics adapter and loads the vendor libraries that report on it.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Driver DLL search](driver-dll-search.md) | Explanation | Where the game looks for NVIDIA's driver library before loading it. |
+| [Graphics adapters and vendor libraries](graphics-adapters-and-vendor-libraries.md) | Explanation | Which GPU the game picks and how it asks NVIDIA and AMD libraries about it. |

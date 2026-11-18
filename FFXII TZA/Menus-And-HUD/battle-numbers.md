@@ -1,9 +1,8 @@
----
-title: "Battle numbers: the damage, healing and MP numbers, the reaction pictures and the status words that rise over units"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x003BBD00, 0x00506700, 0x00505500, 0x003BBA60, 0x003BBB60, 0x00505560, 0x00505570, 0x00505E00"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Battle numbers
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Battle numbers: the damage, healing and MP numbers, the reaction pictures and the status words that rise over units | system | Menus and HUD | Battle HUD | The numbers and words that pop up over a unit in battle: the 64-entry popup ring, the three popup kinds and who posts each, how overlapping popups are spread, the colour a number takes, how digits bounce and fade, how distance shrinks and hides them, the shared fade of the whole layer, and the record each popup keeps. | 0x003BBD00, 0x00506700, 0x00505500, 0x003BBA60, 0x003BBB60, 0x00505560, 0x00505570, 0x00505E00 |
 
 ## What the player sees
 

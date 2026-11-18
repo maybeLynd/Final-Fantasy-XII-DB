@@ -1,9 +1,8 @@
----
-title: "TIM2 images: the PS2-era .tm2 picture format, how the game reads one, and the seven-slot image registry"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x0024A1D0, 0x0024A480, 0x0024A4E0, 0x002493D0, 0x0208F580, 0x00181000, 0x00180E70, 0x00181250, 0x00181190, 0x0039BEC0, 0x00D11470, 0x02AEE810, 0x0039BF50, 0x0039BDA0, 0x003EFDF0, 0x0039BB60, 0x0039BB30, 0x0039BA30, 0x0039BAD0, 0x0039C150, 0x0039C3F0, 0x0029CAC0, 0x0029CB10, 0x0209C320, 0x0037F1F0, 0x003BC4E0, 0x00575710, 0x0020E600, 0x0020E620"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / TIM2 images
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| TIM2 images: the PS2-era .tm2 picture format, how the game reads one, and the seven-slot image registry | format | Game files and data tables | Image files | The TIM2 container behind the 447 .tm2 menu pictures, the nine menuquest.nfs glyph sheets and thousands of images embedded in packs, scripts and map files: the file and picture headers as the texture binder 0x0024A1D0 and the image registry read them, the 4-bit glyph-sheet block at picture +0x30, the eight-entry registry at 0x02AEE810 with its seven caller slots and its fillers and clearers, the shipped header values, and the rules a replacement must follow. | 0x0024A1D0, 0x0024A480, 0x0024A4E0, 0x002493D0, 0x0208F580, 0x00181000, 0x00180E70, 0x00181250, 0x00181190, 0x0039BEC0, 0x00D11470, 0x02AEE810, 0x0039BF50, 0x0039BDA0, 0x003EFDF0, 0x0039BB60, 0x0039BB30, 0x0039BA30, 0x0039BAD0, 0x0039C150, 0x0039C3F0, 0x0029CAC0, 0x0029CB10, 0x0209C320, 0x0037F1F0, 0x003BC4E0, 0x00575710, 0x0020E600, 0x0020E620 |
 
 ## What the player sees
 

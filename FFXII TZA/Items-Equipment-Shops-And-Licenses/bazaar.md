@@ -1,9 +1,8 @@
----
-title: "Bazaar: every bazaar good, the loot you must sell to unlock it, its price, what it gives, and how unlocking and buying work"
-kind: "reference"
-category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF058, 0x0030B270, 0x0030B180, 0x002FEEB0, 0x00310870, 0x0030B570, 0x002FD780"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Bazaar
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Bazaar: every bazaar good, the loot you must sell to unlock it, its price, what it gives, and how unlocking and buying work | reference | Items, equipment, shops and licenses | Shops and bazaar | Each of the 128 goods of the bazaar table: its name, price and the items it gives, the up to three loots and counts that must be sold to unlock it, whether it can come back after it is bought, and whether a script sets it instead, with the loot-sold tally, the refresh after every sale, the flag byte that shows a good, the purchase that empties the tallies, and the two script verbs that offer the Grimoires. | 0x02EBF058, 0x0030B270, 0x0030B180, 0x002FEEB0, 0x00310870, 0x0030B570, 0x002FD780 |
 
 ## What it lists
 

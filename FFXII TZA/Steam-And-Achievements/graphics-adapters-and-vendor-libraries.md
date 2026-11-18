@@ -1,9 +1,8 @@
----
-title: "Graphics adapters and vendor libraries: which GPU the game picks, the adapter list, NVAPI and AMD ADL"
-kind: "system"
-category: "Steam and achievements"
-addresses: "0x006253D0, 0x001DD170, 0x00623C10, 0x00623CB0, 0x00624490, 0x001DC650, 0x001DC7A0, 0x00628690, 0x001DF2C0, 0x00159340, 0x00158F60, 0x00158EC0, 0x00158DE0, 0x00158FE0, 0x001590B0, 0x00159180, 0x00159270, 0x0020D2B0, 0x0020D9F0, 0x0020DA50, 0x0020DAB0, 0x0020D050, 0x0020D120, 0x0020D2F0, 0x0020DE30, 0x0020CEF0, 0x0020CF90, 0x0020D720, 0x001DC9D0, 0x001DCB90, 0x01E02580, 0x01F83460"
----
+[Home](../../README.md) / [Steam and achievements](README.md) / Graphics adapters and vendor libraries
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Graphics adapters and vendor libraries: which GPU the game picks, the adapter list, NVAPI and AMD ADL | system | Steam and achievements | Graphics adapters and driver libraries | How the renderer picks a Direct3D 11 adapter from the DeviceID and LUID settings, the adapter list the display object keeps, the anti-aliasing levels probed from the device, how the game loads NVIDIA's NVAPI and AMD's ADL, the adapter-info chain that asks them for a GPU's name and temperature, and the two places that show the result. | 0x006253D0, 0x001DD170, 0x00623C10, 0x00623CB0, 0x00624490, 0x001DC650, 0x001DC7A0, 0x00628690, 0x001DF2C0, 0x00159340, 0x00158F60, 0x00158EC0, 0x00158DE0, 0x00158FE0, 0x001590B0, 0x00159180, 0x00159270, 0x0020D2B0, 0x0020D9F0, 0x0020DA50, 0x0020DAB0, 0x0020D050, 0x0020D120, 0x0020D2F0, 0x0020DE30, 0x0020CEF0, 0x0020CF90, 0x0020D720, 0x001DC9D0, 0x001DCB90, 0x01E02580, 0x01F83460 |
 
 ## What the player sees
 

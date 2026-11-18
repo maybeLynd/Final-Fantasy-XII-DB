@@ -1,9 +1,8 @@
----
-title: "Scripted camera: the shot channels, the camera record stack, and how a camera reaches the renderer"
-kind: "system"
-category: "Graphics"
-addresses: "0x003DA050, 0x002555D0, 0x0025A3B0, 0x0025A2C0, 0x0025A500, 0x0025A520, 0x02097300, 0x02098DEC, 0x00259820, 0x00257830, 0x00257520, 0x00256650, 0x003829D0, 0x02AED630, 0x003820C0, 0x02AED560, 0x00382B70, 0x0037D4C0, 0x0037D970, 0x02AEDEF0"
----
+[Home](../../README.md) / [Graphics](README.md) / Scripted camera
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Scripted camera: the shot channels, the camera record stack, and how a camera reaches the renderer | system | Graphics | Cameras | The camera a script or cutscene drives, from the shot channels to the matrices the renderer reads: the per-frame channel tick, how a playing shot is published into camera record 5, the eight camera records and the active mask whose highest bit wins, the eased return to the behind camera, the eight one-frame submissions and the priority arbitration in the camera update, where the shake offsets land, the matrices it builds, and the Screen Shake option's gate. | 0x003DA050, 0x002555D0, 0x0025A3B0, 0x0025A2C0, 0x0025A500, 0x0025A520, 0x02097300, 0x02098DEC, 0x00259820, 0x00257830, 0x00257520, 0x00256650, 0x003829D0, 0x02AED630, 0x003820C0, 0x02AED560, 0x00382B70, 0x0037D4C0, 0x0037D970, 0x02AEDEF0 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Call signatures: the arguments each function reads and passes on"
-kind: "reference"
-category: "Engine core"
-addresses: "0x0079D730, 0x00311CD0, 0x00197710, 0x0085DDE0, 0x00325EA0, 0x0030FE60, 0x0018D680, 0x0053DD10, 0x004B1190, 0x0073F920, 0x001263AD"
----
+[Home](../../README.md) / [Engine core](README.md) / Call signatures
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Call signatures: the arguments each function reads and passes on | reference | Engine core | Function and class indexes | For every one of the executable's 39,115 functions: the integer and float argument registers its body reads, its argument count, the arguments its entry stores in their home slots and the stack arguments it reads (call-signatures.tsv, call-signatures-stack-args.tsv); for each of its 137,609 calls and tail calls, the target and the argument registers that still hold the function's incoming values there (call-signatures-forwards.tsv); and the 6,882 functions that sit in a class's virtual table, whose first argument is that class's this. | 0x0079D730, 0x00311CD0, 0x00197710, 0x0085DDE0, 0x00325EA0, 0x0030FE60, 0x0018D680, 0x0053DD10, 0x004B1190, 0x0073F920, 0x001263AD |
 
 ## What it lists
 

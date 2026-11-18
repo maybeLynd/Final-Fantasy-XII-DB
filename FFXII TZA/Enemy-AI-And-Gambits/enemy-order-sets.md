@@ -1,9 +1,8 @@
----
-title: "Enemy order sets: every enemy's own order lists by area, each order's action, chance, flags and tests"
-kind: "reference"
-category: "Enemy AI and gambits"
-addresses: "0x02EBF168, 0x02EBF160, 0x00301AD0, 0x003014C0, 0x00305CC0, 0x00308EC0, 0x00301830, 0x00321190, 0x002FE660, 0x0030BD00"
----
+[Home](../../README.md) / [Enemy AI and gambits](README.md) / Enemy order sets
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Enemy order sets: every enemy's own order lists by area, each order's action, chance, flags and tests | reference | Enemy AI and gambits | Enemy decisions | Every order set of the shipped area files (.ard directory slot 1) with the enemies that use it, and every order in each set by phase: the action, battle order or weighted pick it carries, its chance or parameter, its flag bits by name, the gambit condition it matches when it matches one, and its three tests in words, with the full vocabulary of tests the selector 0x00301AD0 can run, the registers an order can read and write, and the weighted action table. | 0x02EBF168, 0x02EBF160, 0x00301AD0, 0x003014C0, 0x00305CC0, 0x00308EC0, 0x00301830, 0x00321190, 0x002FE660, 0x0030BD00 |
 
 ## What it lists
 

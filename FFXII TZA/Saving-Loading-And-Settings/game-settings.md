@@ -1,9 +1,8 @@
----
-title: "Game settings: the GameSetting.ini object and its options, the ini file's load and save, the quality presets, FrameLimit, DecideButton, the Config screen's commands, Active and Wait battle mode and the FF12CONFIG file"
-kind: "system"
-category: "Saving, loading and settings"
-addresses: "0x001DE050, 0x001DED50, 0x001DE5D0, 0x001DF350, 0x001DEE90, 0x001DFD40, 0x001DE4F0, 0x0022BDF0, 0x001EDDC0, 0x0017E6E0, 0x0022A4F0, 0x002407F0, 0x002403F0, 0x002DDE60, 0x002DE060, 0x00255290, 0x00408C30, 0x001DF2C0, 0x00628690"
----
+[Home](../../README.md) / [Saving, loading and settings](README.md) / Game settings
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Game settings: the GameSetting.ini object and its options, the ini file's load and save, the quality presets, FrameLimit, DecideButton, the Config screen's commands, Active and Wait battle mode and the FF12CONFIG file | system | Saving, loading and settings | Settings and languages | Every player option outside the save: the 31-slot settings object built at start-up from a defaults table and GameSetting.ini, the file's key=value parser and writer, the three quality presets and the ten settings they control, how FrameLimit selects the 30 or 60 fps time base, how DecideButton swaps confirm and cancel, the Config screen's set and get dispatchers and the options record they edit inside the save image (battle mode, battle speed, volumes, camera axes), what Active and Wait battle mode changes, and the FF12CONFIG file in the game archive. | 0x001DE050, 0x001DED50, 0x001DE5D0, 0x001DF350, 0x001DEE90, 0x001DFD40, 0x001DE4F0, 0x0022BDF0, 0x001EDDC0, 0x0017E6E0, 0x0022A4F0, 0x002407F0, 0x002403F0, 0x002DDE60, 0x002DE060, 0x00255290, 0x00408C30, 0x001DF2C0, 0x00628690 |
 
 ## What the player sees
 

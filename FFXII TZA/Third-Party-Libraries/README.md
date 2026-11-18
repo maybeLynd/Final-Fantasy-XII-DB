@@ -1,12 +1,27 @@
+[Home](../../README.md) / Third-party libraries
+
 # Third-party libraries
 
 Libraries compiled into the executable.
 
-| Page | What you will find |
-|---|---|
-| [Bullet Physics: the linked rigid-body library, how PhyreEngine bodies become Bullet bodies, and why nothing is simulated](bullet-physics.md) | The Bullet rigid-body library linked into the executable (the 2.77 line, bounded by its serializer names), the PhyreEngine route that would build a Bullet world and turn each PPhysicsRigidBody into a btCompoundShape and btRigidBody with stock construction defaults, the motion types and collision groups it applies, and the two static gates that keep the route from ever running: a physics manager that nothing enables and a shipped corpus with no physics objects. |
-| [EASTL strings and containers: the string, vector and tree layouts, the logging allocator and the static strings built at start-up](eastl-strings-and-containers.md) | How the executable's EASTL code is laid out and behaves: the allocator_memory_log allocator and its vtable, the three-pointer string and the shared byte that strings built empty point at, vector growth, the red-black tree shared by every set and map, and the 64 start-up initialisers that build static EASTL strings and containers, most of them JsonBox's token strings. |
-| [Lua runtime: the embedded Lua 5.2.1 interpreter, its chunk loader, its standard libraries and why no script runs](lua-runtime.md) | The Lua 5.2.1 interpreter linked into the executable with a 4-byte float lua_Number: the PhyreEngine loader that passes no mode and so accepts both source text and precompiled chunks, the 18-byte chunk header it checks, the standard libraries compiled in and the four that are registered but never opened, and the static facts that keep it idle: no code creates a lua_State and no shipped file holds a script. |
-| [Media decoder libraries: libwebm, libvpx VP8, libvorbis, Tremor, libogg and the CRI HCA decoder as the game uses them](media-decoder-libraries.md) | The decoders linked for movies and sound: libwebm's mkvparser and libvpx 1.6.0's VP8 decoder with libvorbis for the WebM movies, opened in one call that picks the video and audio tracks; and the CRI HCA decoder and Tremor with vorbisfile and libogg for the sound driver's bank materials. For each, what identifies it, its span, the entry points the game calls, and the VP8 codec interface with its control map. |
-| [Third-party libraries: which libraries are linked into the executable, how each is identified and versioned, and where each lies](third-party-libraries.md) | Every third-party library statically linked into FFXII_TZA.exe: the text or table that identifies it, the version where the binary states one, its address span, its member list and what the game uses it for; with the zlib, JsonBox and Dear ImGui details, and why the ImGui context is never used. |
-| [YEBIS and PPFX: the post-effect library, how the game starts and drives it, its licence check and the EnableYebis switch](yebis-ppfx-post-effects.md) | Silicon Studio's YEBIS post-effect library (its core is named PPFX) as linked into the game: its address span and identity, the source paths and diagnostic log it carries, the API entry points, how the renderer creates its context and runs it each frame, the licence verifier and why the shipped licence never reaches its date test, and the EnableYebis switch with its delayed form. |
+Jump to: [The library list](#the-library-list) · [Library details](#library-details)
+
+## The library list
+
+Every third-party library linked into the game and how it is identified.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Third-party libraries](third-party-libraries.md) | Reference table | Every linked library, how it is identified and what the game uses it for. |
+
+## Library details
+
+How individual linked libraries sit in the game and what it does with them.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Bullet Physics](bullet-physics.md) | Explanation | The Bullet physics library linked in and the engine route that would build a world. |
+| [EASTL strings and containers](eastl-strings-and-containers.md) | Explanation | How the game's EASTL strings, vectors and trees are laid out and behave. |
+| [Lua runtime](lua-runtime.md) | Explanation | The linked Lua interpreter: its number type, chunk loading and standard libraries. |
+| [Media decoder libraries](media-decoder-libraries.md) | Explanation | The decoders linked for WebM movies and for sound. |
+| [YEBIS and PPFX](yebis-ppfx-post-effects.md) | Explanation | The YEBIS post-effect library: its entry points and how the renderer uses it. |

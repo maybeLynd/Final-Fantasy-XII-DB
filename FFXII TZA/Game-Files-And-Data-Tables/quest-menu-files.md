@@ -1,9 +1,8 @@
----
-title: "Quest menu files: the menuquest list, petitioner strings and per-group detail tables, how they are read, and what each field shows"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x0037F4D0, 0x0037F440, 0x0037F3B0, 0x02AED490, 0x0037F1F0, 0x003800D0, 0x0037FD50, 0x0037FBA0, 0x0037FA80, 0x0037E5B0, 0x0037EFC0, 0x0037EE10, 0x0037EF70, 0x0037EAA0, 0x0037E8D0, 0x00577C30, 0x005789D0, 0x00578450, 0x0037FEA0, 0x00473D50, 0x00473DB0, 0x00473BB0, 0x00473CC0, 0x02CA6C68, 0x02CA6C70, 0x0037F7C0, 0x0037FA00, 0x0037F140"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Quest menu files
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Quest menu files: the menuquest list, petitioner strings and per-group detail tables, how they are read, and what each field shows | format | Game files and data tables | Menu and map files | The quest-menu files in each language's quest folder: menuquest.dat, the quest list with each quest's name, group and row picture; menuquest.lst, the petitioner line and picture threshold per quest; and menuquest00 to 02.bin, one per group, with each quest's detail text, its progress table and the QHD0 and QHT0 map-marker chunks. Covers the quest data widget that loads them, the Hunts rows, the detail pane and the map-data widget that read them, the shipped files and the rules an edit must keep. | 0x0037F4D0, 0x0037F440, 0x0037F3B0, 0x02AED490, 0x0037F1F0, 0x003800D0, 0x0037FD50, 0x0037FBA0, 0x0037FA80, 0x0037E5B0, 0x0037EFC0, 0x0037EE10, 0x0037EF70, 0x0037EAA0, 0x0037E8D0, 0x00577C30, 0x005789D0, 0x00578450, 0x0037FEA0, 0x00473D50, 0x00473DB0, 0x00473BB0, 0x00473CC0, 0x02CA6C68, 0x02CA6C70, 0x0037F7C0, 0x0037FA00, 0x0037F140 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Effect lifecycle: from the request that names an effect to its release, and what an area change ends"
-kind: "lifecycle"
-category: "Graphics"
-addresses: "0x003B02A0, 0x0024B270, 0x0024B9B0, 0x003A74F0, 0x003A7050, 0x003A7300, 0x0024C550, 0x0024E910, 0x002628B0, 0x003601D0"
----
+[Home](../../README.md) / [Graphics](README.md) / Effect lifecycle
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Effect lifecycle: from the request that names an effect to its release, and what an area change ends | lifecycle | Graphics | Visual effects / Effect Files | The stages an effect passes through: the request that names it, the file load, the instance, its start, the per-step update and per-frame draw, the hold a time stop puts on it, the restart of a looping instance, its end, and the release of its elements, its file and its handle, with what an area change and a return to the title end; each stage linked to the page that explains it. | 0x003B02A0, 0x0024B270, 0x0024B9B0, 0x003A74F0, 0x003A7050, 0x003A7300, 0x0024C550, 0x0024E910, 0x002628B0, 0x003601D0 |
 
 ## What the player sees
 

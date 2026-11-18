@@ -1,9 +1,8 @@
----
-title: "Random number generators: the gameplay Mersenne Twister, the shared gameplay LCG, the graphics-noise Mersenne Twister, the C runtime rand, the presentation bit-feedback generator, the emulated VU1 generator, the counter hash and the PPFX xorshift, with their constants, seeds and states"
-kind: "system"
-category: "Random numbers"
-addresses: "0x00863BF0, 0x00863C80, 0x00866B90, 0x00866D60, 0x00863D30, 0x00328370, 0x00328D80, 0x0018EE20, 0x0018D740, 0x0015BCF0, 0x003D8E50, 0x004005E0, 0x006B05E0, 0x0074BDE0, 0x004B97F0, 0x01E02828, 0x02064AFC"
----
+[Home](../../README.md) / [Random numbers](README.md) / Random number generators
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Random number generators: the gameplay Mersenne Twister, the shared gameplay LCG, the graphics-noise Mersenne Twister, the C runtime rand, the presentation bit-feedback generator, the emulated VU1 generator, the counter hash and the PPFX xorshift, with their constants, seeds and states | system | Random numbers | The generators and who uses them | Every random source in the game: the Mersenne Twister that combat and chests draw from and how it is seeded at boot, lazily and on a save load; the three-step linear congruential generator that loot, the chain, spawning and the AI share and its per-area counter seed; the second Mersenne Twister that only the noise texture uses; the C runtime rand; the bit-feedback generator behind presentation effects; the bit-feedback generator of the emulated VU1 programs; the counter hash and the xorshift128 inside the post-processing code. Each with its state address, step formula, seed and draw count. | 0x00863BF0, 0x00863C80, 0x00866B90, 0x00866D60, 0x00863D30, 0x00328370, 0x00328D80, 0x0018EE20, 0x0018D740, 0x0015BCF0, 0x003D8E50, 0x004005E0, 0x006B05E0, 0x0074BDE0, 0x004B97F0, 0x01E02828, 0x02064AFC |
 
 ## What the player sees
 

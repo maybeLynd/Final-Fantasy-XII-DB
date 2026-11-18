@@ -1,9 +1,8 @@
----
-title: "Timed statuses: how long a status lasts, when Poison, Sap and Regen tick, and what else each unit runs every frame"
-kind: "system"
-category: "Status effects and KO"
-addresses: "0x00310DB0, 0x00385DF0, 0x00386C70, 0x00385570, 0x00385CA0, 0x00386860, 0x003112F0"
----
+[Home](../../README.md) / [Status effects and KO](README.md) / Timed statuses
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Timed statuses: how long a status lasts, when Poison, Sap and Regen tick, and what else each unit runs every frame | system | Status effects and KO | Statuses and buffs | The periodic step every battle unit takes each frame: what stops it, the countdown that ends a timed status, the beat on which Poison, Sap and Regen drain or heal and the Petrify and Doom counts step, the HP Critical line, Stop freezing the other timers, the buff timers, the area drains of HP and MP, the out-of-combat healing of a disengaged enemy, and the Esper dismiss, traps, walking MP, pickups and enmity decay that follow. | 0x00310DB0, 0x00385DF0, 0x00386C70, 0x00385570, 0x00385CA0, 0x00386860, 0x003112F0 |
 
 ## What the player sees
 
@@ -205,3 +204,7 @@ the clear ([Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)); `
 - [Battle buffs](battle-buffs.md) - the buff timers.
 - [HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md) - the HP write the drains go through.
 - [MP gain and cost](mp.md) - walking MP.
+
+---
+
+[← Gaining and losing statuses](status-changes.md) | [Statuses →](statuses.md)

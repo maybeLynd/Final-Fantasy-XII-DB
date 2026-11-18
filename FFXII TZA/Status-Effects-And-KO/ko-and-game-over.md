@@ -1,9 +1,8 @@
----
-title: "KO and Game Over: what happens to a fallen unit's body, how it stands up again, and when a party wipe ends the game"
-kind: "system"
-category: "Status effects and KO"
-addresses: "0x00300FC0, 0x002372E0, 0x00237260, 0x002371B0, 0x00237140, 0x00234590, 0x0035C7B0, 0x003250F0, 0x00319F50, 0x003125E0, 0x00233F70, 0x00300E40, 0x00301140, 0x00336E40"
----
+[Home](../../README.md) / [Status effects and KO](README.md) / KO and Game Over
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| KO and Game Over: what happens to a fallen unit's body, how it stands up again, and when a party wipe ends the game | system | Status effects and KO | KO and MP | What follows KO, Stone or X-Zone once the status has landed: the defeat cleanup and the four party-wipe tests it and the field frame run, the latches and the Game Over request, the two signals from the death animation and its effect that decide when a body is hidden and torn down, the drop of a hovering body, what tearing down does to a party member and to anyone else, and how a revive stands the body up where it lay or beside the controlled character. | 0x00300FC0, 0x002372E0, 0x00237260, 0x002371B0, 0x00237140, 0x00234590, 0x0035C7B0, 0x003250F0, 0x00319F50, 0x003125E0, 0x00233F70, 0x00300E40, 0x00301140, 0x00336E40 |
 
 ## What the player sees
 

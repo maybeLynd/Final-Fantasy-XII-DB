@@ -1,9 +1,8 @@
----
-title: "PhyreEngine Lua bindings: how engine objects are pushed to and taken from Lua, the generated adapters, and what installs them"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x00682D20, 0x00684080, 0x00684090, 0x00682980, 0x00682A10, 0x006828F0, 0x00599770, 0x00599B70, 0x00812960, 0x02E41000, 0x005A0E80, 0x005A10F0, 0x005A2BA0, 0x00584E10, 0x00584C50, 0x0063F850, 0x00683FF0, 0x006841F0, 0x00682AA0, 0x00684F60, 0x00810ED0, 0x00810470, 0x005A08E0, 0x00685AC0, 0x006822E0, 0x00681F30, 0x006827C0, 0x00681C50, 0x00681D80, 0x0067E6C0"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / PhyreEngine Lua bindings
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| PhyreEngine Lua bindings: how engine objects are pushed to and taken from Lua, the generated adapters, and what installs them | system | PhyreEngine | Engine framework | The binding layer PhyreEngine links between its reflected classes and the embedded Lua interpreter: the 16-byte object userdata tagged with the PhyreObject metatable, the push routine and the 747 type-checked object accessors, the per-class binding slots in each class descriptor's vtable, the generated method-call adapters, and the start-up registration that records scripting classes in the engine's reflection but installs nothing in any Lua state. | 0x00682D20, 0x00684080, 0x00684090, 0x00682980, 0x00682A10, 0x006828F0, 0x00599770, 0x00599B70, 0x00812960, 0x02E41000, 0x005A0E80, 0x005A10F0, 0x005A2BA0, 0x00584E10, 0x00584C50, 0x0063F850, 0x00683FF0, 0x006841F0, 0x00682AA0, 0x00684F60, 0x00810ED0, 0x00810470, 0x005A08E0, 0x00685AC0, 0x006822E0, 0x00681F30, 0x006827C0, 0x00681C50, 0x00681D80, 0x0067E6C0 |
 
 ## What the player sees
 

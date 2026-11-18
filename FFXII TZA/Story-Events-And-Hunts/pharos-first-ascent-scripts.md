@@ -1,9 +1,8 @@
----
-title: "Pharos - First Ascent scripts: what each script function shows, sets, gives and starts"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x00352EA0, 0x00353390, 0x00354000, 0x00354D00, 0x003529E0, 0x00351880, 0x003449A0, 0x0034A6D0, 0x00345080, 0x003459C0, 0x0034A790, 0x00355830, 0x00349B60, 0x00510840, 0x00353770, 0x0034C030, 0x0034D4E0, 0x00377B60, 0x003778B0, 0x0034B760, 0x0034BB10, 0x0034ADA0, 0x00352190, 0x00352AF0"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Pharos - First Ascent scripts
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Pharos - First Ascent scripts: what each script function shows, sets, gives and starts | reference | Story, events and hunts | Scenes and scripts by area / Balfonheim, Ridorana and the Bahamut | Every function of the rbl zone and scene scripts, the maps of Pharos - First Ascent, Second Ascent, Subterra and Third Ascent apart from those of the rwf and dgl groups, that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps, battle calls and scene loads. | 0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x00352EA0, 0x00353390, 0x00354000, 0x00354D00, 0x003529E0, 0x00351880, 0x003449A0, 0x0034A6D0, 0x00345080, 0x003459C0, 0x0034A790, 0x00355830, 0x00349B60, 0x00510840, 0x00353770, 0x0034C030, 0x0034D4E0, 0x00377B60, 0x003778B0, 0x0034B760, 0x0034BB10, 0x0034ADA0, 0x00352190, 0x00352AF0 |
 
 ## What it lists
 

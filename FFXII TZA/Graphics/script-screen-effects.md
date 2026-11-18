@@ -1,9 +1,8 @@
----
-title: "Script screen effects: cut-in, motion blur, soft focus and the screen blur sprites"
-kind: "system"
-category: "Graphics"
-addresses: "0x020926E4, 0x0024D540, 0x00182B40, 0x02B59D20, 0x02092640, 0x0024CF50, 0x0024CEB0, 0x0024CBE0, 0x003AA6B0, 0x02B58C38, 0x02092678, 0x0024EC00, 0x0024EB20, 0x0024EA10, 0x003AAA50, 0x003DE160, 0x003DE210, 0x0036E810, 0x0024FAE0, 0x0024FA40, 0x003AB500, 0x00375B90, 0x02B58A80, 0x003DDF90, 0x0024E910"
----
+[Home](../../README.md) / [Graphics](README.md) / Script screen effects
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Script screen effects: cut-in, motion blur, soft focus and the screen blur sprites | system | Graphics | Screen effects and movies | The screen effects scripts start over the finished picture: how the cut-in, motion blur and soft focus capture the frame into a render target and draw it back through the screen-effect pool, their staging blocks, play and clear bodies and per-frame builders, the motion blur fade and the held-frame path behind the item-obtained message, the four screen blur sprites of the blur verbs, what an area change and a cutscene skip reset, and how often the US scripts use each verb. | 0x020926E4, 0x0024D540, 0x00182B40, 0x02B59D20, 0x02092640, 0x0024CF50, 0x0024CEB0, 0x0024CBE0, 0x003AA6B0, 0x02B58C38, 0x02092678, 0x0024EC00, 0x0024EB20, 0x0024EA10, 0x003AAA50, 0x003DE160, 0x003DE210, 0x0036E810, 0x0024FAE0, 0x0024FA40, 0x003AB500, 0x00375B90, 0x02B58A80, 0x003DDF90, 0x0024E910 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Resource ownership and disposal: who owns a loaded source, copy or borrow, effect tickets and contexts, the script motion slots, borrowed views, and the order things are torn down"
-kind: "system"
-category: "Game files and data tables"
-addresses: "0x0041E580, 0x0041E490, 0x00409FE0, 0x00409A60, 0x00409730, 0x00409D60, 0x00409960, 0x00409C00, 0x00427B00, 0x003B3160, 0x003B38B0, 0x003B37E0, 0x003B39E0, 0x003B3B10, 0x003B3C00, 0x0024B3A0, 0x0024F410, 0x0024F4D0, 0x003A9600, 0x003A9950, 0x003A9730, 0x003A9A70, 0x003EDAD0, 0x003AB880, 0x003AB940, 0x003AB7C0, 0x00369800, 0x02EBCD80, 0x02EBD480, 0x020910A0, 0x02F97340, 0x02B64380, 0x02B581A0, 0x02B58A60, 0x003DDA20, 0x003DD4C0, 0x003DDA70, 0x003DD850, 0x003DD420, 0x003DD380, 0x003DD740, 0x003DD770, 0x003492A0, 0x003499C0, 0x0034A6A0, 0x0032F240, 0x0032F170, 0x0032F290, 0x0032F260, 0x00267310, 0x002E4D20, 0x002E4E50, 0x003DC340, 0x003DC5B0, 0x0032E620, 0x0041FCF0, 0x00409CA0, 0x0040A1E0, 0x003A7D30, 0x004096F0, 0x0051F880, 0x005371C0, 0x00537270"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Resource ownership and disposal
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Resource ownership and disposal: who owns a loaded source, copy or borrow, effect tickets and contexts, the script motion slots, borrowed views, and the order things are torn down | system | Game files and data tables | Loaded resources | How the game keeps track of who owns loaded data: the render resource bank and its two entry modes (an owned copy or a retained external source), the effect tickets and 0x890-byte effect contexts that borrow or copy effect data, the four loaders that register sources, the 80 script motion slots behind motionread, motionreadsync and motiondispose and their states, borrowed section views, and the fixed order in which consumers, tickets, entries and backing memory are released. | 0x0041E580, 0x0041E490, 0x00409FE0, 0x00409A60, 0x00409730, 0x00409D60, 0x00409960, 0x00409C00, 0x00427B00, 0x003B3160, 0x003B38B0, 0x003B37E0, 0x003B39E0, 0x003B3B10, 0x003B3C00, 0x0024B3A0, 0x0024F410, 0x0024F4D0, 0x003A9600, 0x003A9950, 0x003A9730, 0x003A9A70, 0x003EDAD0, 0x003AB880, 0x003AB940, 0x003AB7C0, 0x00369800, 0x02EBCD80, 0x02EBD480, 0x020910A0, 0x02F97340, 0x02B64380, 0x02B581A0, 0x02B58A60, 0x003DDA20, 0x003DD4C0, 0x003DDA70, 0x003DD850, 0x003DD420, 0x003DD380, 0x003DD740, 0x003DD770, 0x003492A0, 0x003499C0, 0x0034A6A0, 0x0032F240, 0x0032F170, 0x0032F290, 0x0032F260, 0x00267310, 0x002E4D20, 0x002E4E50, 0x003DC340, 0x003DC5B0, 0x0032E620, 0x0041FCF0, 0x00409CA0, 0x0040A1E0, 0x003A7D30, 0x004096F0, 0x0051F880, 0x005371C0, 0x00537270 |
 
 ## What the player sees
 

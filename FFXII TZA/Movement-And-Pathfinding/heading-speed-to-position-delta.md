@@ -1,9 +1,8 @@
----
-title: "Movement step: how yaw, pitch and speed become a character's per-frame displacement, when motion is flat, and how animation takes the wheel"
-kind: "system"
-category: "Movement and pathfinding"
-addresses: "0x002E5030, 0x002E4380, 0x00424080, 0x002E5610, 0x002E5380, 0x002E54A0, 0x002E5C10, 0x00329B00, 0x0026D6F0, 0x0026D6A0, 0x0026A330, 0x002E55C0, 0x0026A0D0, 0x0026A060, 0x0023A070, 0x00265200, 0x00265020, 0x00267260, 0x00264460, 0x003B7730, 0x003B6ED0, 0x003B7E10, 0x003B7E20, 0x003A1D30, 0x002E9BB0, 0x002EC5B0, 0x0025DF00, 0x00263C80"
----
+[Home](../../README.md) / [Movement and pathfinding](README.md) / Movement step
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Movement step: how yaw, pitch and speed become a character's per-frame displacement, when motion is flat, and how animation takes the wheel | system | Movement and pathfinding | How actors move | The innermost movement seam: the per-frame driver that runs steering, computes the step, publishes the angles and integrates the position; the class gate every movement call shares; the spherical decomposition of yaw, pitch and speed and the flat branch that drops the pitch; the two controller flags and the runtime gate that choose flat or three-dimensional motion; the animation-state override that replaces or decays the step; the pass-through path; the two integration paths and the displacement measure; and the setters that feed the angles and the speed, including the battle unit's intent. | 0x002E5030, 0x002E4380, 0x00424080, 0x002E5610, 0x002E5380, 0x002E54A0, 0x002E5C10, 0x00329B00, 0x0026D6F0, 0x0026D6A0, 0x0026A330, 0x002E55C0, 0x0026A0D0, 0x0026A060, 0x0023A070, 0x00265200, 0x00265020, 0x00267260, 0x00264460, 0x003B7730, 0x003B6ED0, 0x003B7E10, 0x003B7E20, 0x003A1D30, 0x002E9BB0, 0x002EC5B0, 0x0025DF00, 0x00263C80 |
 
 ## What the player sees
 
@@ -220,7 +219,7 @@ call sites.
 
 `0x0026D6A0(actor, authored)` is the scaled form: `0x0026D6F0(actor, [0x01DFE0BC] * authored, authored >
 0 ? 0 : 2)`. `0x0026A330(actor, speed)` calls `0x0026D6F0(actor, speed, speed > 0)` unless
-`0x002E9780()` is set. `0x002E55C0(actor, context)` cancels: the request's mode byte `+0x29` = 0,
+`0x002E9780(actor)` is set. `0x002E55C0(actor, context)` cancels: the request's mode byte `+0x29` = 0,
 `0x0026C120(actor, 0)` when `+0x28 & 0x7F` is 2, and both speeds zeroed.
 
 ### Setting the angles
@@ -243,6 +242,52 @@ the speed from `+0x158`.
 A unit without a stats record (`+0x698` null) takes the second path (`0x0023A091`-`0x0023A094`). A null unit is sent
 there too (`0x0023A085`-`0x0023A088`), and that path's first read, unit `+0x15C` at `0x0023A0AF`, faults on it. The actor every setter gets is the unit's `+0x10`, the flag bit `0x40000` is in the
 unit's dword `+0x00` (`0x0023A0E2`), and both speed calls are tail jumps (`0x0023A0AA`, `0x0023A0FC`).
+
+The unit fields `+0x158`, `+0x15C`, `+0x160` and `+0x174` are the `+0xD8`, `+0xDC`, `+0xE0` and `+0xF4` of the
+locomotion block at unit `+0x80`, into which [battle locomotion](battle-locomotion.md) writes its speed, headings and
+pitch back: the solver `0x00336CE0` (`0x00336D95`-`0x00336DC5`, not for definition modes 1 and 3, `0x00336D36`, `0x00336D4D`)
+and `0x0033A240` (`0x0033A334`-`0x0033A35E`).
+
+`0x0033A240` skips its write-back for a unit without a stats record, one that is not an enemy (byte `+0x05` not 1), one
+without a definition record `+0xE68` (`0x0033A2A3`), one of definition mode 0, one with `+0x1F0` bit `0x1000` or
+`0x2000`, and one with bit `0x40000` set and a non-zero `+0x158` (`0x0033A289`-`0x0033A2E5`).
+
+The unit frame `0x00233F70` reaches the producer on two paths, each after the refresh `0x00236300`. On the first
+(`0x00233FF9`, producer `0x00234019`), `0x00310DB0` (`0x00234001`), `0x003247F0` (`0x00234009`) and `0x00308610` (`0x00234011`) run in
+between.
+
+`0x00308610` calls `0x0033A240` (`0x0030867A`) only when `0x0030DA30` answers 0 (`0x00308650`-`0x00308657`), and `0x00307BE0`
+(`0x00308754`) only when, besides, `0x00307DF0` answers 0, `+0x708` is not null (`0x00308682`-`0x00308693`), and `0x002FFB60`,
+which runs only with `+0x708` set, answers 0 (`0x003086FC`-`0x00308703`).
+
+For an action id `+0x714` up to `0x21E` `0x00307BE0` calls `0x00304850`, whose approach calls the solver's caller
+`0x00325BB0` (`0x00307C10`-`0x00307C19`, `0x00304D5B`), and otherwise the order table through `0x00305080` (`0x00307C20`), whose
+handlers `0x002FDA60` and `0x002FDC30` call `0x00325BB0` too (`0x002FDBE9`, `0x002FDD69`).
+
+On the second (`0x0023406A`, producer `0x0023407E`), only `0x0033A240` runs in between (`0x00234076`).
+
+The refresh, after copying the actor's angles, clears bit `0x40000` and zeroes `+0x158`, and sets the bit again only
+with a requested speed that is not 0.0 (`0x00265830`, the steering request's `+0x24`), for the focus or a unit with
+`+0x1F0` bit `0x1000` (`0x00236363`-`0x002363AA`) ([enemy spawning](../Enemy-Spawning/enemy-spawning.md)).
+
+The unit frame runs the refresh on these two paths only: not on its early returns (`0x00233F8B`-`0x00233FBD`), the path
+for a unit without drive bit `0x10` (`0x00233FC6`), the exit for a unit with bit `0x2` (`0x0023403C`), or the path that
+zeroes the speed itself (`0x002340AC`).
+
+So where the unit frame reaches the producer, which comes before the per-frame driver `0x002E5030` in the record's visit
+([field runtime](../Characters-And-Objects/field-runtime.md), steps 3 and 4), the producer writes over a script `move`'s
+speed: for a unit whose bit `0x40000` is clear when the producer runs, with the `+0x158` written since the refresh (0
+unless one of the writers named here raised it), and for a kind-0 unit while `0x02089340` has a bit of `0x600`, with 0
+whatever the bit (`0x0023A076`-`0x0023A0AA`).
+
+`0x002E9780(actor)`, the test in `0x0026A330`, answers bit `0x40` of the controller's byte `+0x11` for a class-3 actor
+with a controller `+0xC0`, and 0 otherwise (`0x002E9780`-`0x002E979D`). The verb `ignorebattlemovectrl` sets or clears
+that bit through `0x002EBC40(actor, v)`, which does nothing for another class or no controller (`0x002EBC48`, `0x002EBC54`)
+and otherwise writes `v & 1` there (`0x002EBC56`-`0x002EBC60`).
+
+So while that bit is set `0x0026A330` skips its call at `0x0026A35D` (`0x0026A341`-`0x0026A348`) and the producer's speed
+writes do nothing, while on the producer's own second path its yaw, pitch and facing writes still run
+(`0x0023A0AF`-`0x0023A0DD`).
 
 ## Layouts
 
@@ -377,3 +422,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
   [battle units](../Characters-And-Objects/battle-units.md).
+
+---
+
+[← Player movement](player-movement.md) | [Facing and steering →](facing-and-steering.md)

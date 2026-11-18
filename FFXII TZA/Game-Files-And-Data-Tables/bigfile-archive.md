@@ -1,9 +1,8 @@
----
-title: "Bigfile archive: the VBF container, how its index loads and is checked, and how a read reaches the file"
-kind: "system"
-category: "Game files and data tables"
-addresses: "0x0017CEB0, 0x0019B070, 0x001F4340, 0x001F4120, 0x001F4720, 0x001F3FD0, 0x0019AEE0, 0x001F47D0, 0x001F4250, 0x00214FC0, 0x00215290, 0x00215110, 0x0019AFE0, 0x0019A770, 0x0019A860, 0x0019AA20, 0x0080C5A0, 0x01F81110, 0x009038C8, 0x008C2140, 0x008C2EF0, 0x0017D280, 0x008098D4, 0x007A0A80, 0x001F4060, 0x002150B0, 0x001F4840, 0x00215220, 0x0019B200, 0x0019A660, 0x0019A6E0, 0x0019A9B0"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Bigfile archive
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Bigfile archive: the VBF container, how its index loads and is checked, and how a read reaches the file | system | Game files and data tables | Archives and file loading | The FFXII_TZA.vbf archive the game reads its data from: how it is mounted, the SRYK header, the index of MD5 keys, 32-byte entry records, names and the 64 KiB block-size table, the MD5 check over the index and what it does not cover, the lookup by the MD5 of a path, the pool of reader handles and how one is bound, sought and released, the thirty read records, how a read is planned block by block and inflated with zlib, the shipped counts, and the rules a repacker must follow. | 0x0017CEB0, 0x0019B070, 0x001F4340, 0x001F4120, 0x001F4720, 0x001F3FD0, 0x0019AEE0, 0x001F47D0, 0x001F4250, 0x00214FC0, 0x00215290, 0x00215110, 0x0019AFE0, 0x0019A770, 0x0019A860, 0x0019AA20, 0x0080C5A0, 0x01F81110, 0x009038C8, 0x008C2140, 0x008C2EF0, 0x0017D280, 0x008098D4, 0x007A0A80, 0x001F4060, 0x002150B0, 0x001F4840, 0x00215220, 0x0019B200, 0x0019A660, 0x0019A6E0, 0x0019A9B0 |
 
 ## What the player sees
 
@@ -452,3 +451,7 @@ To repack `FFXII_TZA.vbf` so that the game accepts it:
 
 - [How a path is resolved to bytes](file-path-resolution.md): the name normalisation and the two routes in front of the lookup.
 - [Prefetch manifests](prefetch-manifests.md): the prefetch data in the archive.
+
+---
+
+[File path resolution →](file-path-resolution.md)

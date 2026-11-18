@@ -1,9 +1,8 @@
----
-title: "Clan Primer entries: every Traveler's Tips and Bestiary entry and the four unused handbook families, with each entry's name, text, unlock rule, section and the monsters it counts"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x005760A0, 0x00571F60, 0x00571710, 0x00577550, 0x00575E80, 0x00315910, 0x003154B0, 0x00576CA0, 0x00576E30, 0x00576860, 0x00576A50, 0x00576300, 0x00315820, 0x00315420, 0x00315D50, 0x00315DC0, 0x00316930, 0x002F9920, 0x00D23740, 0x00D23750, 0x00D23688"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Clan Primer entries
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Clan Primer entries: every Traveler's Tips and Bestiary entry and the four unused handbook families, with each entry's name, text, unlock rule, section and the monsters it counts | reference | Menus and HUD | Menu screens | All 700 entries of the six handbook families, one line each: the family and the category that opens it, the entry's name and the name the index row shows, its section and that section's caption, the rule that unlocks it in plain words, the save byte or bit it uses, for the Bestiary its text slots with the condition of each, the defeat countdown, its picture, the enemy definitions whose defeats count for it and its monster viewer model; every text slot of the Traveler's Tips and Bestiary entries with its heading and text; and every section with its caption and the maps that reveal it. | 0x005760A0, 0x00571F60, 0x00571710, 0x00577550, 0x00575E80, 0x00315910, 0x003154B0, 0x00576CA0, 0x00576E30, 0x00576860, 0x00576A50, 0x00576300, 0x00315820, 0x00315420, 0x00315D50, 0x00315DC0, 0x00316930, 0x002F9920, 0x00D23740, 0x00D23750, 0x00D23688 |
 
 ## What it lists
 

@@ -1,9 +1,8 @@
----
-title: "Bullet Physics: the linked rigid-body library, how PhyreEngine bodies become Bullet bodies, and why nothing is simulated"
-kind: "system"
-category: "Third-party libraries"
-addresses: "0x0069FB10, 0x006A0310, 0x006A2320, 0x006A4A60, 0x0069F070, 0x0069EF20, 0x00698C80, 0x006883A0, 0x0069E6F0, 0x00691240, 0x0068B9E0, 0x00832390, 0x00852DB0, 0x008542B0, 0x00854080, 0x0083A3A0, 0x0083A030, 0x00854980, 0x0085E680, 0x008365C0, 0x02E4AFF0, 0x008531F0, 0x008324B0, 0x006A3E20"
----
+[Home](../../README.md) / [Third-party libraries](README.md) / Bullet Physics
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Bullet Physics: the linked rigid-body library, how PhyreEngine bodies become Bullet bodies, and why nothing is simulated | system | Third-party libraries | Library details | The Bullet rigid-body library linked into the executable (the 2.77 line, bounded by its serializer names), the PhyreEngine route that would build a Bullet world and turn each PPhysicsRigidBody into a btCompoundShape and btRigidBody with stock construction defaults, the motion types and collision groups it applies, and the two static gates that keep the route from ever running: a physics manager that nothing enables and a shipped corpus with no physics objects. | 0x0069FB10, 0x006A0310, 0x006A2320, 0x006A4A60, 0x0069F070, 0x0069EF20, 0x00698C80, 0x006883A0, 0x0069E6F0, 0x00691240, 0x0068B9E0, 0x00832390, 0x00852DB0, 0x008542B0, 0x00854080, 0x0083A3A0, 0x0083A030, 0x00854980, 0x0085E680, 0x008365C0, 0x02E4AFF0, 0x008531F0, 0x008324B0, 0x006A3E20 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "PhyreEngine asset files: the .phyre cluster header, the packed namespace, the instance data and how the loader reads and fixes up a cluster"
-kind: "format"
-category: "PhyreEngine"
-addresses: "0x0019CB20, 0x00637C50, 0x0059E070, 0x0059A3B0, 0x0059A6F0, 0x0059C180, 0x00686D00, 0x0069E780, 0x0059D550, 0x02CA9D90, 0x0059AAE0, 0x0059B430, 0x00599500, 0x0059AC00, 0x0059E300, 0x0059E780, 0x0059D6A0, 0x0059F500, 0x0059D590, 0x0059E880, 0x0059D940, 0x0059CE30, 0x0059C700, 0x0059C250, 0x00686DE0, 0x02CAA0A0, 0x00676450, 0x00675EF0, 0x00676BD0, 0x006753A0, 0x00675580, 0x006D4CF0, 0x006DA380, 0x005BFF30, 0x005FE350, 0x001605C0, 0x001615C0, 0x00167DB0, 0x001688F0"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / PhyreEngine asset files
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| PhyreEngine asset files: the .phyre cluster header, the packed namespace, the instance data and how the loader reads and fixes up a cluster | format | PhyreEngine | Asset files and animation | The .phyre file that holds every model, texture, shader and animation of the remastered art: the 84-byte cluster header, the packed namespace that names every class and field the file uses, the instance lists, user fixups, header-class tables, packed fixup tables and D3D11 buffers in stream order, the loader that checks the header, binds the file's schema to the engine's registered classes and converts each object to its runtime layout, and counts over all 35,984 shipped files. | 0x0019CB20, 0x00637C50, 0x0059E070, 0x0059A3B0, 0x0059A6F0, 0x0059C180, 0x00686D00, 0x0069E780, 0x0059D550, 0x02CA9D90, 0x0059AAE0, 0x0059B430, 0x00599500, 0x0059AC00, 0x0059E300, 0x0059E780, 0x0059D6A0, 0x0059F500, 0x0059D590, 0x0059E880, 0x0059D940, 0x0059CE30, 0x0059C700, 0x0059C250, 0x00686DE0, 0x02CAA0A0, 0x00676450, 0x00675EF0, 0x00676BD0, 0x006753A0, 0x00675580, 0x006D4CF0, 0x006DA380, 0x005BFF30, 0x005FE350, 0x001605C0, 0x001615C0, 0x00167DB0, 0x001688F0 |
 
 ## What the player sees
 

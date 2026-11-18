@@ -1,9 +1,8 @@
----
-title: "Opening setup scenes: the event script pre_z0000, how it is requested and what it sets"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Opening setup scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Opening setup scenes: the event script pre_z0000, how it is requested and what it sets | reference | Story, events and hunts | Scenes and scripts by area / Opening, ending and Trial Mode | The one event script of the pre group, pre_z0000 (event 212): the executable's preload and request of it, its lines, items and story values, and what follows it, in the form of the region scene pages. | 0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00 |
 
 ## What it lists
 

@@ -1,9 +1,8 @@
----
-title: "Force fight mode: the flag behind the fleeing state, who sets it and what fleeing changes"
-kind: "system"
-category: "Engine core"
-addresses: "0x01E0C2B8, 0x00253B90, 0x0030C0D0, 0x00253BA0, 0x00254EA0, 0x003444D0, 0x003BA2E0, 0x003BA300, 0x003BA310, 0x0050C910, 0x00266D10, 0x002628B0, 0x00252C80, 0x00252B60, 0x00253C70, 0x003603B0, 0x003603C0, 0x0035C6F0, 0x0035C880, 0x00366950, 0x003669F0, 0x003667E0, 0x00366870, 0x00276650, 0x00276D30, 0x002FFCF0, 0x00307D10, 0x00308130, 0x00308610, 0x00309A90, 0x0030C010, 0x0030FA00, 0x00313A00, 0x002E1C20, 0x002E1CA0, 0x00234590, 0x00336710, 0x00339BF0, 0x0033A720, 0x0033C310, 0x0033CEF0, 0x0033D3E0, 0x00267E10, 0x00307FF0"
----
+[Home](../../README.md) / [Engine core](README.md) / Force fight mode
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Force fight mode: the flag behind the fleeing state, who sets it and what fleeing changes | system | Engine core | Main loop and game states | The one dword that says whether the party is fighting or fleeing: its image value, the raw and the effective readers, the script verb and the R2 toggle that write it, the two enable bytes the writers respect, and every reader of the raw predicate with what it changes: command availability, combo continuation, engagement, the AI's approach distance, the battle locomotion divisors and the action availability row. | 0x01E0C2B8, 0x00253B90, 0x0030C0D0, 0x00253BA0, 0x00254EA0, 0x003444D0, 0x003BA2E0, 0x003BA300, 0x003BA310, 0x0050C910, 0x00266D10, 0x002628B0, 0x00252C80, 0x00252B60, 0x00253C70, 0x003603B0, 0x003603C0, 0x0035C6F0, 0x0035C880, 0x00366950, 0x003669F0, 0x003667E0, 0x00366870, 0x00276650, 0x00276D30, 0x002FFCF0, 0x00307D10, 0x00308130, 0x00308610, 0x00309A90, 0x0030C010, 0x0030FA00, 0x00313A00, 0x002E1C20, 0x002E1CA0, 0x00234590, 0x00336710, 0x00339BF0, 0x0033A720, 0x0033C310, 0x0033CEF0, 0x0033D3E0, 0x00267E10, 0x00307FF0 |
 
 ## What the player sees
 

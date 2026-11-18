@@ -1,9 +1,8 @@
----
-title: "Event memory: the event and summon memory heaps a field gets when its actors are bound, and the list of fields that get no event memory"
-kind: "system"
-category: "Story, events and hunts"
-addresses: "0x0026C8C0, 0x00377440, 0x00377480, 0x0025A990, 0x0025AA30, 0x02ADD0A8"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Event memory
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Event memory: the event and summon memory heaps a field gets when its actors are bound, and the list of fields that get no event memory | system | Story, events and hunts | Scripts across all areas | What happens to two working heaps when a field's actor manager is bound: both are released, the 1 MiB event memory heap EVTMEM is made again unless the field's id is in eventmemorylist.bin, and the 100 KiB summon memory heap SMNMEM is made again unless the field record's bit `0x8000` is set, with the list's file format, its loader and its eight shipped ids. | 0x0026C8C0, 0x00377440, 0x00377480, 0x0025A990, 0x0025AA30, 0x02ADD0A8 |
 
 ## What the player sees
 

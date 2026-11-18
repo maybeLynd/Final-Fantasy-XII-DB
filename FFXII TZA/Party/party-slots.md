@@ -1,9 +1,8 @@
----
-title: "Party slots: the nine seats, the five slot maps the game reads them through, and how a seat reaches its battle unit"
-kind: "system"
-category: "Party"
-addresses: "0x0031B9F0, 0x0031B810, 0x00320AB0, 0x00329CC0, 0x003266C0, 0x0030D9A0"
----
+[Home](../../README.md) / [Party](README.md) / Party slots
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Party slots: the nine seats, the five slot maps the game reads them through, and how a seat reaches its battle unit | system | Party | The party in play | How the party is seated: the nine two-byte seats of the live party, four active and five reserve, the four copies the battle, the battle menu and the rest of the game read instead, how a new game fills them, how the copies are rebuilt for summons, chocobo rides, towns and scripted party modes, and the functions that turn a seat into a stats record or a battle unit. | 0x0031B9F0, 0x0031B810, 0x00320AB0, 0x00329CC0, 0x003266C0, 0x0030D9A0 |
 
 ## What the player sees
 
@@ -292,3 +291,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [battle units](../Characters-And-Objects/battle-units.md).
 - Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
   [force fight mode](../Engine-Core/force-fight-mode.md).
+
+---
+
+[← Party members and guests](party-members.md) | [Party leader →](party-leader.md)

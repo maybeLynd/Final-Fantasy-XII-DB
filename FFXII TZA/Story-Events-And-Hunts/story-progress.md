@@ -1,9 +1,8 @@
----
-title: "Story progress: the main story counter at the start of the save, the script variables that live in the save, and how scenes move the story on"
-kind: "system"
-category: "Story, events and hunts"
-addresses: "0x002625E7, 0x002626A8, 0x0026CAF8, 0x002EF2B0, 0x00265270, 0x02098E58"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Story progress
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Story progress: the main story counter at the start of the save, the script variables that live in the save, and how scenes move the story on | system | Story, events and hunts | Story progress and flags | Where the story stands and how it moves: the six classes of script variable and the one that is the save payload itself, read and written live, the main story counter as the payload's first word, the native code that reads it, how zone director scripts raise it behind a test of its current value, the values only the developer menus set, and where the flags and quests that sit beside it are described. | 0x002625E7, 0x002626A8, 0x0026CAF8, 0x002EF2B0, 0x00265270, 0x02098E58 |
 
 ## What the player sees
 
@@ -125,3 +124,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [action definition row](../Battle-Actions/action-definition-row.md).
 - Party: `0x002FE660` calls `0x0031B7E0`; those functions are documented on
   [identifier spaces](../Engine-Core/identifier-spaces.md).
+
+---
+
+[Story flags →](story-flags.md)

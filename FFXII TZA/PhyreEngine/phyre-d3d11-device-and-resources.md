@@ -1,9 +1,8 @@
----
-title: "Phyre D3D11 device and resources: device and swap-chain creation, the texture formats, texture and buffer objects and how they are mapped, uploaded and released"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x00625830, 0x00623320, 0x00624F70, 0x006250C0, 0x00625210, 0x00623B10, 0x0061ECD0, 0x00626D90, 0x0062CD40, 0x00616210, 0x02CF7A30, 0x0061FDA0, 0x00620250, 0x00620630, 0x0061E200, 0x0061E270, 0x0061E2E0, 0x00650660, 0x00628100, 0x0060DD70, 0x0060DE00, 0x00610990, 0x006264F0, 0x00626990, 0x00609870, 0x00609950, 0x0062C820, 0x0062BCB0, 0x0062BF40, 0x0062C100, 0x006505A0, 0x005DDBB0, 0x00615550, 0x0061D960, 0x00626060, 0x006097B0, 0x0062C300, 0x006239C0, 0x00616060, 0x0061F200, 0x0061F710, 0x006209C0, 0x0061C080, 0x00615790, 0x00607FA0, 0x005F0590, 0x00623F00, 0x005D8E40"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Phyre D3D11 device and resources
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre D3D11 device and resources: device and swap-chain creation, the texture formats, texture and buffer objects and how they are mapped, uploaded and released | system | PhyreEngine | Drawing and shaders | How PhyreEngine's Direct3D 11 renderer creates its device and swap chain on the chosen adapter, the 35 texture-format objects and the DXGI formats they carry, the 2D, 3D and cube-map texture objects with their rings of Direct3D resources, the constant and structured buffers, the two pairs of dynamic upload buffers in the render context, and the helpers that create, map, upload and release them. | 0x00625830, 0x00623320, 0x00624F70, 0x006250C0, 0x00625210, 0x00623B10, 0x0061ECD0, 0x00626D90, 0x0062CD40, 0x00616210, 0x02CF7A30, 0x0061FDA0, 0x00620250, 0x00620630, 0x0061E200, 0x0061E270, 0x0061E2E0, 0x00650660, 0x00628100, 0x0060DD70, 0x0060DE00, 0x00610990, 0x006264F0, 0x00626990, 0x00609870, 0x00609950, 0x0062C820, 0x0062BCB0, 0x0062BF40, 0x0062C100, 0x006505A0, 0x005DDBB0, 0x00615550, 0x0061D960, 0x00626060, 0x006097B0, 0x0062C300, 0x006239C0, 0x00616060, 0x0061F200, 0x0061F710, 0x006209C0, 0x0061C080, 0x00615790, 0x00607FA0, 0x005F0590, 0x00623F00, 0x005D8E40 |
 
 ## What the player sees
 

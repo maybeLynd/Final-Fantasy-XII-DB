@@ -1,9 +1,8 @@
----
-title: "Model effects and motion commands: @FEF and the motion entries"
-kind: "format"
-category: "Graphics"
-addresses: "0x00504F00, 0x00504E70, 0x00504940, 0x0016D6A0, 0x0040A230, 0x00409F80, 0x02B64380, 0x0041F340, 0x003B3550, 0x0041D220, 0x0041CA70, 0x004090D0, 0x0041CD30, 0x0041BEE0, 0x0041B4E0, 0x00409190, 0x00370E00, 0x0041B550, 0x0041B650, 0x00409170, 0x00409150, 0x0041A470, 0x00418650, 0x00418700, 0x004186A0, 0x0041FCF0"
----
+[Home](../../README.md) / [Graphics](README.md) / Model effects and motion commands
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Model effects and motion commands: @FEF and the motion entries | format | Graphics | Character models / Model Files | The entries of the .cm and .ca containers that are behaviour rather than shape: the @FEF section that embeds an EFX0010 effect in 144 models, how the model row binds it and the start-up table that names the 144 files, and the motion entries @FMC (command blocks), @FMN (bone channel lists), @FMW (keyed channel data) and @FRM, with the readers that select and decode them and counts over the shipped files. | 0x00504F00, 0x00504E70, 0x00504940, 0x0016D6A0, 0x0040A230, 0x00409F80, 0x02B64380, 0x0041F340, 0x003B3550, 0x0041D220, 0x0041CA70, 0x004090D0, 0x0041CD30, 0x0041BEE0, 0x0041B4E0, 0x00409190, 0x00370E00, 0x0041B550, 0x0041B650, 0x00409170, 0x00409150, 0x0041A470, 0x00418650, 0x00418700, 0x004186A0, 0x0041FCF0 |
 
 ## What the player sees
 

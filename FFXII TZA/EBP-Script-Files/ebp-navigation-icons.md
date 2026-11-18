@@ -1,9 +1,8 @@
----
-title: "EBP navigation icons: the NAVIICN2 block a field map script carries for its minimap markers"
-kind: "format"
-category: "EBP script files"
-addresses: "0x00332100, 0x003DFDC0, 0x02B59D58, 0x003DFCC0, 0x003DFBE0, 0x003DFDD0, 0x00400CF0, 0x00400550, 0x00352430, 0x003DFA50, 0x003DFDA0, 0x0032A8A0"
----
+[Home](../../README.md) / [EBP script files](README.md) / EBP navigation icons
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| EBP navigation icons: the NAVIICN2 block a field map script carries for its minimap markers | format | EBP script files | Script sections | Section 4 of a field map's .ebp script: the NAVIICN2 icon block bound to one global, the accessors that read it, how each icon kind names a position entry of the zone script, which kinds and icons the minimap shows and where it places them, the verb that moves an actor to an icon's object, the shipped blocks, and the rules an edit must follow. | 0x00332100, 0x003DFDC0, 0x02B59D58, 0x003DFCC0, 0x003DFBE0, 0x003DFDD0, 0x00400CF0, 0x00400550, 0x00352430, 0x003DFA50, 0x003DFDA0, 0x0032A8A0 |
 
 ## What the player sees
 

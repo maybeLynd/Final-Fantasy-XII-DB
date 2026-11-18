@@ -1,9 +1,8 @@
----
-title: "ATEL debug companions: the source, message and symbol files shipped beside the four control scripts, and why the game never opens them"
-kind: "system"
-category: "EBP script files"
-addresses: "0x003306E0, 0x0032E400, 0x0032FCA0, 0x00D10990, 0x0032F6F0"
----
+[Home](../../README.md) / [EBP script files](README.md) / ATEL debug companions
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| ATEL debug companions: the source, message and symbol files shipped beside the four control scripts, and why the game never opens them | system | EBP script files | Debug files | The .sbn, .msb and .dbg files of the control scripts ctrl, btlctrl, evctrl and mapctrl in `ps2data/image/ff12/<in\|ch>/bin`: the script source text with a paged line map, the debug menu messages, and a symbol database of source files, variables, global variables and native command names. No path in the executable names them, and the sibling loader that knows their extensions asks every size with kind 0xFF, which 0x0032E400 answers with -1, then returns before registering anything. | 0x003306E0, 0x0032E400, 0x0032FCA0, 0x00D10990, 0x0032F6F0 |
 
 ## What the player sees
 

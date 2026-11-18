@@ -1,9 +1,8 @@
----
-title: "Character status visuals: how a status changes a character's colour, light, opacity and shadow"
-kind: "system"
-category: "Graphics"
-addresses: "0x003E7650, 0x02B59D80, 0x00320BB0, 0x0046FD00, 0x0046FFA0, 0x00470050, 0x004703F0, 0x004700E0, 0x0046FBB0, 0x00470AA0, 0x00470780, 0x00470590, 0x00470B70, 0x00470660, 0x00470EB0, 0x004704C0, 0x00470230, 0x0051E3A0, 0x0051DBF0, 0x0051DDC0, 0x0051DC90, 0x0051E0A0, 0x0051E170, 0x0051DE30, 0x00428CD0, 0x005044D0, 0x00428F10, 0x003ABD50, 0x003ACC10, 0x003ACAA0, 0x003E7CC0, 0x003E7C70, 0x02B59D70, 0x02B59D71, 0x01F20AA0, 0x01F21F40, 0x01F22030"
----
+[Home](../../README.md) / [Graphics](README.md) / Character status visuals
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Character status visuals: how a status changes a character's colour, light, opacity and shadow | system | Graphics | Character models / Character Rendering | The per-frame push that turns each battle unit's status word into presentation: the colour-look list where the lowest index wins, the tint, Stone, Petrify, Doom, Berserk and HP Critical looks made of private lights and the character's lighting fields, the second block that fades an Invisible character and colours the shadow under Slow and Immobilize, the rig switches for Sleep, Confuse, Immobilize and Float, and the two denial latches. | 0x003E7650, 0x02B59D80, 0x00320BB0, 0x0046FD00, 0x0046FFA0, 0x00470050, 0x004703F0, 0x004700E0, 0x0046FBB0, 0x00470AA0, 0x00470780, 0x00470590, 0x00470B70, 0x00470660, 0x00470EB0, 0x004704C0, 0x00470230, 0x0051E3A0, 0x0051DBF0, 0x0051DDC0, 0x0051DC90, 0x0051E0A0, 0x0051E170, 0x0051DE30, 0x00428CD0, 0x005044D0, 0x00428F10, 0x003ABD50, 0x003ACC10, 0x003ACAA0, 0x003E7CC0, 0x003E7C70, 0x02B59D70, 0x02B59D71, 0x01F20AA0, 0x01F21F40, 0x01F22030 |
 
 ## What the player sees
 

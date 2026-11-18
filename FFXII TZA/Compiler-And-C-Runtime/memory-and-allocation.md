@@ -1,9 +1,8 @@
----
-title: "Memory and allocation: the C runtime heap, the game's allocation wrappers, new and delete, aligned blocks and the subsystem allocators"
-kind: "system"
-category: "Compiler and C runtime"
-addresses: "0x008C2B40, 0x008C2B48, 0x008C2B60, 0x008C2B70, 0x008C2B78, 0x00210EC0, 0x00210EB0, 0x00809950, 0x0085E730, 0x0019C590, 0x0017D260, 0x00584740, 0x00584730, 0x0019C580, 0x0019C570, 0x002099D0, 0x001A5A80, 0x0016D6B0, 0x0016D6C0, 0x008F6500, 0x00902720, 0x001EDF00, 0x001EDF10, 0x001EDF80, 0x001EDFE0, 0x01F82E48, 0x00808D5C, 0x0036D240, 0x0036D250, 0x0020C610, 0x01F83448, 0x01F83440, 0x01F83441, 0x0020C6B0, 0x01F83438, 0x00792F10, 0x002679F0, 0x01E0C328, 0x00267930, 0x00267BB0, 0x00267C20, 0x006CC5A0, 0x01F2EAA8, 0x01F2EAB0, 0x01F2EA70, 0x00675460, 0x003E9AA0, 0x0025A990, 0x0025AA30, 0x0085E690"
----
+[Home](../../README.md) / [Compiler and C runtime](README.md) / Memory and allocation
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Memory and allocation: the C runtime heap, the game's allocation wrappers, new and delete, aligned blocks and the subsystem allocators | system | Compiler and C runtime | Program start-up and memory | Where the game's memory comes from: the eight heap imports and the forwarders in front of them, the game's own operator new and delete, the aligned allocation pair and the standard library's 32-byte big-block rule, the two EASTL allocator classes and their inert log record, the big blocks taken at boot, the file-cache budget and working set sized from physical memory, the actor record pool, the movie player's ring buffers, and what each path does when an allocation fails. | 0x008C2B40, 0x008C2B48, 0x008C2B60, 0x008C2B70, 0x008C2B78, 0x00210EC0, 0x00210EB0, 0x00809950, 0x0085E730, 0x0019C590, 0x0017D260, 0x00584740, 0x00584730, 0x0019C580, 0x0019C570, 0x002099D0, 0x001A5A80, 0x0016D6B0, 0x0016D6C0, 0x008F6500, 0x00902720, 0x001EDF00, 0x001EDF10, 0x001EDF80, 0x001EDFE0, 0x01F82E48, 0x00808D5C, 0x0036D240, 0x0036D250, 0x0020C610, 0x01F83448, 0x01F83440, 0x01F83441, 0x0020C6B0, 0x01F83438, 0x00792F10, 0x002679F0, 0x01E0C328, 0x00267930, 0x00267BB0, 0x00267C20, 0x006CC5A0, 0x01F2EAA8, 0x01F2EAB0, 0x01F2EA70, 0x00675460, 0x003E9AA0, 0x0025A990, 0x0025AA30, 0x0085E690 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "New Game+ and New Game- (Strong Mode and Weak Mode): how each is offered, what it changes, and how the save keeps it"
-kind: "system"
-category: "Rewards: EXP, LP, gil and loot"
-addresses: "0x0050F460, 0x0050F490, 0x00238A20, 0x00238A50, 0x02089344, 0x00239960, 0x02EBF190, 0x00236740, 0x00236780, 0x0023A2C0, 0x00316DF0, 0x0030C470, 0x00312280, 0x00583D60, 0x0057FB00, 0x0023FBE0, 0x01E0B720, 0x00394130, 0x0023A110, 0x00233C10, 0x00229B40, 0x00394460"
----
+[Home](../../README.md) / [Rewards: EXP, LP, gil and loot](README.md) / New Game+ and New Game- (Strong Mode and Weak Mode)
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| New Game+ and New Game- (Strong Mode and Weak Mode): how each is offered, what it changes, and how the save keeps it | system | Rewards: EXP, LP, gil and loot | EXP, loot and progression | The two alternative new games: where the game offers New Game+ and New Game- (the title's New Game list, the question after the staff roll, the Trial Mode completion screen), the request bits the two script verbs set, how the first area start moves them into the party block's flag word, the level-90 rule of New Game+, the EXP and EXP-display block of New Game-, the save header bits and how a loaded save keeps its mode. | 0x0050F460, 0x0050F490, 0x00238A20, 0x00238A50, 0x02089344, 0x00239960, 0x02EBF190, 0x00236740, 0x00236780, 0x0023A2C0, 0x00316DF0, 0x0030C470, 0x00312280, 0x00583D60, 0x0057FB00, 0x0023FBE0, 0x01E0B720, 0x00394130, 0x0023A110, 0x00233C10, 0x00229B40, 0x00394460 |
 
 ## What the player sees
 
@@ -66,8 +65,11 @@ The title's New Game list sets the same bits. The list is Config in mode 1 (row 
 opened by `fsttl_openconfig`, `0x005120B0` → `0x003945E0` → `0x002406F0`). Its rows `0x18`, `0x1A` and `0x19` carry the
 labels 2034, 2191 and 2190 and the help lines 3117, 3396 and 3397. The text lookup `0x002F9860` splits an id into
 bank `id / 1000` and index `id mod 1000` (`0x002F9866`-`0x002F98BD`), so these are `menu_message.bin` 34, 191 and 190
-and `help_menu.bin` 117, 396 and 397. The row builder `0x0023ED80` adds every row without a condition
-(`0x0023EE10`-`0x0023EF27`).
+and `help_menu.bin` 117, 396 and 397.
+
+The row builder `0x0023ED80` records every row's id and kind without a condition (`0x0023EE10`-`0x0023EF27`, `0x0023EE47`,
+`0x0023EE69`), but builds a widget only for kinds 1, 2, 3, 6, 8 and 10 (`0x0023EE6F`-`0x0023EE83`); these three rows are
+kind 13 and get none.
 
 `0x002406F0(a, b)` builds the screen with `0x00244F50(0x4D8, 0x0023FBE0, arguments)` only
 while `0x0208E6D8` is 0, the three construct arguments being the dword 0, its own byte

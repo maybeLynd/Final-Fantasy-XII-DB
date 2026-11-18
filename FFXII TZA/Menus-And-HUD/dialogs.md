@@ -1,9 +1,8 @@
----
-title: "Dialogs: the confirm window behind every yes-or-no question, notice and the item sort, and three single-screen boxes"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x0057C480, 0x0057C380, 0x002CDF20, 0x002CE370, 0x00566680, 0x0056F810, 0x00556F90, 0x00D23688"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Confirm windows
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Dialogs: the confirm window behind every yes-or-no question, notice and the item sort, and three single-screen boxes | system | Menus and HUD | How menus work | The shared confirm window and the boxes that sit beside it: who creates the confirm window and with which flags, what each flag bit changes (cancelling, notice mode, timed dismiss, any-button confirm, the header label, the backdrop and the confirm sound), its stages and the answers it posts back, the item screen's sort bar, the Clan Primer's category list with its four records, and the license board's description box. | 0x0057C480, 0x0057C380, 0x002CDF20, 0x002CE370, 0x00566680, 0x0056F810, 0x00556F90, 0x00D23688 |
 
 ## What the player sees
 
@@ -303,3 +302,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Save load settings: `0x00245020` is called by `0x00280140`; those functions are documented on
   [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
+
+---
+
+[← Menu lists](menu-lists.md) | [Message windows →](message-windows.md)

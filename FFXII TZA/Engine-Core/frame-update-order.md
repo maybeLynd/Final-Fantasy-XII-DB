@@ -1,9 +1,8 @@
----
-title: "Frame update order: what runs each frame for the field, the battle layer and every unit"
-kind: "system"
-category: "Engine core"
-addresses: "0x0022A490, 0x0022A580, 0x00229F00, 0x00229EA0, 0x0022B6E0, 0x0022B7E0, 0x0022A770, 0x0022B8C0, 0x0022AF50, 0x0022BC20, 0x0022B000, 0x0035EB70, 0x0035EC80, 0x00314020, 0x0025BFB0, 0x0032FC30, 0x00267310, 0x00234590, 0x0025D9E0, 0x00234520, 0x003DB1F0, 0x002623A0, 0x002EEEB0, 0x00233F70, 0x001EBA40, 0x0022BEB0, 0x00332590, 0x0037C2E0, 0x0035E7A0, 0x00265A20, 0x00267240, 0x002671C0, 0x00300FC0, 0x002341C0, 0x0023B020, 0x00238A60, 0x00238AE0, 0x00238B00, 0x00238B20, 0x00238B70, 0x0032A200, 0x0050F2E0, 0x0050F170, 0x0050F380, 0x002E09A0, 0x002E2240, 0x0035E6F0, 0x00360080, 0x0035E9F0, 0x0035E9B0, 0x00358510, 0x00358280, 0x003586A0, 0x00358550, 0x00229ED0, 0x00233700, 0x00233640, 0x002335D0, 0x0023B200, 0x0026A5B0, 0x00360710, 0x00360A50, 0x002342F0, 0x002368D0, 0x0032A170, 0x00308610, 0x003590D0, 0x0031B770, 0x0026B730, 0x0036F460, 0x0027E9E0, 0x002507C0, 0x0022BFB0, 0x00307FF0, 0x00322190, 0x0030C3F0, 0x00229E00, 0x00229DF0, 0x00250130, 0x002501A0, 0x00250200, 0x00250180, 0x00250540, 0x020927DC, 0x0022B0B0, 0x00183030"
----
+[Home](../../README.md) / [Engine core](README.md) / Frame update order
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Frame update order: what runs each frame for the field, the battle layer and every unit | system | Engine core | Main loop and game states | How one frame of the running game advances: the seven-state main loop and the handlers behind the title, the field, the full menu and the capture frames; the field frame's time accumulator that decides how many whole simulation steps run; the simulation tick's prologue, its five actor-manager slots and sixteen sub-steps, and its fixed tail; the field frame orchestrator that runs once per step for slot zero; the per-unit battle frame bound to every unit record; and the battle-state word the frame reads and writes bit by bit. | 0x0022A490, 0x0022A580, 0x00229F00, 0x00229EA0, 0x0022B6E0, 0x0022B7E0, 0x0022A770, 0x0022B8C0, 0x0022AF50, 0x0022BC20, 0x0022B000, 0x0035EB70, 0x0035EC80, 0x00314020, 0x0025BFB0, 0x0032FC30, 0x00267310, 0x00234590, 0x0025D9E0, 0x00234520, 0x003DB1F0, 0x002623A0, 0x002EEEB0, 0x00233F70, 0x001EBA40, 0x0022BEB0, 0x00332590, 0x0037C2E0, 0x0035E7A0, 0x00265A20, 0x00267240, 0x002671C0, 0x00300FC0, 0x002341C0, 0x0023B020, 0x00238A60, 0x00238AE0, 0x00238B00, 0x00238B20, 0x00238B70, 0x0032A200, 0x0050F2E0, 0x0050F170, 0x0050F380, 0x002E09A0, 0x002E2240, 0x0035E6F0, 0x00360080, 0x0035E9F0, 0x0035E9B0, 0x00358510, 0x00358280, 0x003586A0, 0x00358550, 0x00229ED0, 0x00233700, 0x00233640, 0x002335D0, 0x0023B200, 0x0026A5B0, 0x00360710, 0x00360A50, 0x002342F0, 0x002368D0, 0x0032A170, 0x00308610, 0x003590D0, 0x0031B770, 0x0026B730, 0x0036F460, 0x0027E9E0, 0x002507C0, 0x0022BFB0, 0x00307FF0, 0x00322190, 0x0030C3F0, 0x00229E00, 0x00229DF0, 0x00250130, 0x002501A0, 0x00250200, 0x00250180, 0x00250540, 0x020927DC, 0x0022B0B0, 0x00183030 |
 
 ## What the player sees
 
@@ -474,7 +473,7 @@ its length by counting.
   capture-backed frame (`0x0022BA23`, `0x0022BCCF`);
 - the field frame when it skips the tick, kind 0 with the first-step flag (`0x0022ABE5`);
 - the start-up and title states, kind 0 with force 1 (`0x0022B701`, `0x0022B803`);
-- the area unload `0x002628B0`, kind 0 with force 1, twice (`0x00262AD7`, `0x00262B2C`).
+- the manager unload `0x002628B0`, kind 0 with force 1, twice (`0x00262AD7`, `0x00262B2C`).
 
 | Taker | The task | Step routine | End routine | Length, step | Menu byte |
 |---|---|---|---|---|---|
@@ -801,3 +800,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
   [battle units](../Characters-And-Objects/battle-units.md).
+
+---
+
+[← Game application object](game-application.md) | [Time stop and freeze →](time-stop-and-freeze.md)

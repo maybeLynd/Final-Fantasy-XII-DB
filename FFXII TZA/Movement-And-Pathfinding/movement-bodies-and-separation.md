@@ -1,9 +1,8 @@
----
-title: "Movement bodies and separation: the movement body every steerable actor carries, its placement on the field, and the tick that pushes overlapping bodies apart"
-kind: "system"
-category: "Movement and pathfinding"
-addresses: "0x003DAE30, 0x002E8E20, 0x0026B2E0, 0x0026BBC0, 0x0026BF60, 0x00265390, 0x0026B170, 0x003DA8A0, 0x003DAD00, 0x002E3500, 0x00269EC0, 0x002682D0, 0x002685F0, 0x00268380, 0x003DAF20, 0x00380D30, 0x003808A0, 0x003DB1B0, 0x003DB020, 0x0046AD20, 0x003DAA40, 0x003DAC70, 0x003DAAB0, 0x003DAB50, 0x00314F30, 0x00314F50, 0x003DA5A0, 0x003DA730, 0x00314E10, 0x003DA9F0, 0x002E5180, 0x002E5380, 0x003B7730, 0x00266D10, 0x00269E60, 0x0026ABD0, 0x0026B9D0, 0x00263810, 0x0026A560, 0x0026BE00, 0x00263640, 0x002E86B0, 0x0026AB60, 0x0026BEE0, 0x0026BDD0, 0x002640E0, 0x003E58B0, 0x00239E10, 0x003204D0, 0x003204E0, 0x003E6150, 0x002E28E0"
----
+[Home](../../README.md) / [Movement and pathfinding](README.md) / Movement bodies and separation
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Movement bodies and separation: the movement body every steerable actor carries, its placement on the field, and the tick that pushes overlapping bodies apart | system | Movement and pathfinding | Collision, bodies and pathfinding | The pool of movement bodies behind every steerable actor: how a body is allocated, attached after the presentation and released with it, how its ellipse, height and base are sized from the actor's contexts, the placement record that holds the field cell, the ground height and the cell attributes, the per-frame registration into thirty-two angular sectors around the mean of all bodies, the per-tick separation pass that visits each pair once, the pair resolver with its layer, owner, vertical and ellipse tests and its weight rule, and how the push is consumed on the next candidate position. | 0x003DAE30, 0x002E8E20, 0x0026B2E0, 0x0026BBC0, 0x0026BF60, 0x00265390, 0x0026B170, 0x003DA8A0, 0x003DAD00, 0x002E3500, 0x00269EC0, 0x002682D0, 0x002685F0, 0x00268380, 0x003DAF20, 0x00380D30, 0x003808A0, 0x003DB1B0, 0x003DB020, 0x0046AD20, 0x003DAA40, 0x003DAC70, 0x003DAAB0, 0x003DAB50, 0x00314F30, 0x00314F50, 0x003DA5A0, 0x003DA730, 0x00314E10, 0x003DA9F0, 0x002E5180, 0x002E5380, 0x003B7730, 0x00266D10, 0x00269E60, 0x0026ABD0, 0x0026B9D0, 0x00263810, 0x0026A560, 0x0026BE00, 0x00263640, 0x002E86B0, 0x0026AB60, 0x0026BEE0, 0x0026BDD0, 0x002640E0, 0x003E58B0, 0x00239E10, 0x003204D0, 0x003204E0, 0x003E6150, 0x002E28E0 |
 
 ## What the player sees
 
@@ -61,12 +60,14 @@ A body lives exactly as long as its actor's presentation.
 `0x002E3D00(record)` frees the body, `0x003DAD00(body)` with the controller's `+0x138`, and stores 0 there; with no
 controller or no body it does nothing (`0x002E3D09`-`0x002E3D2D`).
 
-`0x0026A7C0(record, on)` (verb `setfloatstatus`) sets or clears the controller's `+0x151` bit `0x2` and
-re-runs `0x002682D0`; `0x0026ACE0` writes the same byte's bit `0x20`. `0x002646A0` returns an actor's body,
-`0x00264670` the ground height kept at the movement context's `+0xD4`, and `0x002644C0` and `0x00264EA0`
-the controller's `+0x151` bits `0x1` and `0x80`.
-`0x00264EA0(actor)` answers the controller's byte `+0x151 >> 7`, and 0 for an actor with no controller; the actor itself
-is not tested (`0x00264EA0`-`0x00264EB7`).
+`0x0026A7C0(record, on)` (verb `setfloatstatus`) does nothing for a null record or a null controller `+0xC0`
+(`0x0026A7C0`-`0x0026A7CF`); otherwise it clears the controller's `+0x151` bit `0x2`, sets it again when `on` is non-zero
+(`0x0026A7D1`-`0x0026A7E0`), and jumps to `0x002682D0(record)` (`0x0026A7E7`).
+
+`0x0026ACE0` writes the controller's `+0x151` bit `0x20`. `0x002646A0` returns an actor's body, `0x00264670` the ground
+height kept at the movement context's `+0xD4`, and `0x002644C0` and `0x00264EA0` the controller's `+0x151` bits `0x1` and
+`0x80`. `0x00264EA0(actor)` answers the controller's byte `+0x151 >> 7`, and 0 for an actor with no controller; the
+actor itself is not tested (`0x00264EA0`-`0x00264EB7`).
 
 ### The shape
 
@@ -172,9 +173,15 @@ position (`0x0026B0C0`); an actor of a class other than 3 is left alone (`0x0026
 `0x0026B230(record, bits)` writes `+0x107` bits `0x1` and `0x2` and re-places the
 actor when bit `0x2` changes; the verb `setposoffset` runs both.
 
-`0x0026BA70` (verb `settalkradiusoffset`)
-stores the offset, sets bit `0x1` and clears bit `0x2`, re-placing when bit `0x2` was set; `0x0026BB00` (verb
-`fieldsign`) gives it an absolute point and stores the difference from the position.
+`0x0026BA70` (verb `settalkradiusoffset`) runs `0x0026B170` and, for a class-3 actor, sets byte `+0x107` bit `0x1` of the
+movement context `+0xB8` and clears bit `0x2`, re-placing the actor at its position when bit `0x2` was set
+(`0x0026BA79`-`0x0026BAEE`); for another class neither stores anything (`0x0026B17B`, `0x0026BA84`).
+
+`0x0026BB00(record, x, y, z)` (verb `fieldsign`) takes an absolute point and branches on the class, the top three bits
+of byte `+0x03` (`0x0026BB00`-`0x0026BB0F`): for class 3 it hands `0x0026BA70(record, dx, dy, dz)` the point less the
+position, the floats `+0x00`-`+0x08` of the movement context `+0xB8` (`0x0026BB11`-`0x0026BB26`); for class 1 it stores
+the point itself at that block's `+0x10`-`+0x18`, the triple `0x00265390` returns for that class
+(`0x0026BB2B`-`0x0026BB3C`); any other class stores nothing (`0x0026BB41`).
 
 The interaction point is what `0x00265390(record, &x, &y, &z)` returns: a class-1 object's `+0x10`
 triple; for class 3 the position raised by the controller's `+0x140 + +0x144`, plus the offset when
@@ -543,6 +550,41 @@ or its dword `+0x304` has bit `0x4000` (`0x00420A10`-`0x00420A2E`).
 the body's mask word `+0x110` (`0x002E9BB0`, `0x002EC5B0`) and, for a negative `w` outside a town
 (the town flag `0x00377C20`) with actor byte `+0x15` zero, sets bit `0x10`.
 
+`0x002EC5B0(record, w)` stores the whole dword `w` at the body's `+0x110` (`0x002EC5C8`), and `0x002E9BB0(record)` reads it;
+with no controller `+0xC0` or no body `+0x138` the store is skipped and the read gives 0 (`0x002EC5B0`-`0x002EC5CE`,
+`0x002E9BB0`-`0x002E9BCF`).
+
+Its eleven call sites pass: `0x10` from the unit refresh `0x00238BF0` when the weight it hands `0x0026DAC0` is below 0,
+and 0 otherwise (`0x00238E57`-`0x00238E75`); `0x10` for a treasure chest, after its weight -1.0 (`0x003552B4`-`0x003552D7`);
+`0x10` for the verb `weight_upper_pc` (`0x00356BC0`) and 0 for `clear_weight_upper_pc` (`0x00356FD0`); 0 and then 8 in the
+pad steps of [Player movement](player-movement.md) (`0x00358E06`, `0x00358E37`); the two in `0x0025B470` above; the speed
+setters' word (`0x0026D7E9`, `0x0026D8D5`); and 0 at `0x00358B87`, below.
+
+`0x00358B40`, run at a focus change (`0x00358BF5`) and by the unload `0x002628B0` (`0x00262CEA`), does nothing unless
+`0x002671F0(0)` answers non-zero and `0x022C7FE0` holds a handle (`0x00358B46`-`0x00358B57`). It then zeroes `0x022C7FE0`
+(`0x00358B6B`), and for an actor `0x003588B0` resolves (`0x00358B78`) runs `0x0026D6D0` and writes the mask 0
+(`0x00358B7D`-`0x00358B87`).
+
+The speed setters `0x0026D6F0(actor, speed, mode)` and `0x0026D810(actor, speed)`, for an actor whose byte `+0x03 & 0xE0`
+is `0x60`, take the word without bit `0x4`. For an actor byte `+0x12` of 0-3 they set bit `0x4` at speed 0, and
+otherwise bit `0x400` when the actor is the focus `0x003588B0(0x003590D0())`, `0x0026D6F0` with mode 1 clearing bit `0x8` in
+that same focus case (`0x0026D79A`-`0x0026D7E9`, `0x0026D891`-`0x0026D8D5`).
+
+These sites and the allocator's 0 write no bit at 16 or above, so they set nothing in the union's `0xFF0000` that
+`0x00314E10` tests, once a masked byte is non-zero, before it compares the masked bytes (`0x00314E70`-`0x00314E87`). Their
+one bit of 8-15 is `0x400`, which takes bit `0x4` out of both masked bytes of a pair.
+
+Beside the allocator's 1.0 and the attach copy `0x002685F0`, `0x0026DAC0(actor, w)` writes the weight: `w` to the
+context's `+0x148` and then, when there is a body, to its `+8`; with no controller it writes nothing
+(`0x0026DAC0`-`0x0026DB03`). The unit refresh (`0x00238E5E`) and the chest (`0x003552BF`) run it.
+
+The unit teardown `0x00300FC0` runs it with -1.0 (`0x01CEBC9C`, `0x00301028`-`0x00301037`), except in mode 0 for a stats
+record of kind 0 and type `0x1B`-`0x27`, which runs `0x003105D0` and tail-jumps to `0x003138D0` instead
+(`0x00300FCF`-`0x00301005`).
+
+A body re-created by `0x002E3500` takes its weight back from the context's `+0x148` (`0x002E3568`) but starts with the
+mask 0 that the allocator writes (`0x003DA9CD`), until one of the writers above runs again.
+
 ## Layouts
 
 `MovementBody`: 128 records of `0x130` bytes at `0x02B4E4C0`.
@@ -682,9 +724,10 @@ centre, each body's placement, accumulators, counters and pair bitmap.
 
 - Layers and owners are the cheap switches: equal layers pair, equal non-zero owners never do,
   an owner of zero contacts anything.
-- The weight decides who yields: a mask bit `0x00314E10` honours gives one body the whole
-  separation; a zero weight against a positive one makes the zero-weight body take all of it, and
-  two zero weights split it evenly.
+- The weight and the masks decide who yields: of two masked bytes the larger stays put; a lone negative weight stays
+  put against any masked bytes, short of an overlap with the union's `0xFF0000`; two positive or two negative weights
+  split the separation in inverse proportion to their sizes, two zero weights split it evenly, and a zero weight
+  against a positive one takes all of it.
 - The pass is order-dependent; a port that gathers all contacts and applies them afterwards
   produces different positions from the same inputs.
 - The push lives in one subsystem and is consumed by another; keep the clear after the consume,
@@ -714,3 +757,9 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - UI: `0x003590D0` is called by `0x00299BD0`, `0x002C7660`; those functions are documented on
   [party list](../Menus-And-HUD/party-list.md), [battle units](../Characters-And-Objects/battle-units.md).
+- Spawn encounter lifecycle: `0x00238BF0` is called by `0x0023A410`; those functions are documented on
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
+
+---
+
+[← Collision-mesh movement](collision-mesh-movement.md)

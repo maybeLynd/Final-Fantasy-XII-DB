@@ -1,9 +1,8 @@
----
-title: "Party during scenes: hiding the party, the summon leader and followers, summon space, capturing a member and the event party modes"
-kind: "system"
-category: "Scripts and script commands"
-addresses: "0x003415D0, 0x00342250, 0x00341CB0, 0x002ECD50, 0x00352FA0, 0x0034C3D0, 0x00264050, 0x00263750, 0x00262F50, 0x00262F90, 0x002693D0, 0x00266AD0, 0x0035AE10, 0x0034C990, 0x003B6F30, 0x0037D120, 0x00355FE0, 0x00358800, 0x0035AA50, 0x003B6F80, 0x003B6DE0, 0x003B7770, 0x003B8030, 0x003B7A30, 0x003B79D0, 0x02EBCAC0, 0x02EBCC68, 0x0034EB30, 0x01EF2C80, 0x00505240, 0x003B7B00, 0x003B7D80, 0x003B7F40, 0x003B8140, 0x003B8170, 0x003CC2F0, 0x003B7440, 0x003B7E20, 0x003B7BB0, 0x003B7C60, 0x00359B80, 0x00269530"
----
+[Home](../../README.md) / [Scripts and script commands](README.md) / Party during scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Party during scenes: hiding the party, the summon leader and followers, summon space, capturing a member and the event party modes | system | Scripts and script commands | Event scenes | What a scene does with the party: hiding the party's bodies, the summon leader and its followers, moving the group into summon space and back, capturing a member's body with capturepc and releasing it, and the event party modes. | 0x003415D0, 0x00342250, 0x00341CB0, 0x002ECD50, 0x00352FA0, 0x0034C3D0, 0x00264050, 0x00263750, 0x00262F50, 0x00262F90, 0x002693D0, 0x00266AD0, 0x0035AE10, 0x0034C990, 0x003B6F30, 0x0037D120, 0x00355FE0, 0x00358800, 0x0035AA50, 0x003B6F80, 0x003B6DE0, 0x003B7770, 0x003B8030, 0x003B7A30, 0x003B79D0, 0x02EBCAC0, 0x02EBCC68, 0x0034EB30, 0x01EF2C80, 0x00505240, 0x003B7B00, 0x003B7D80, 0x003B7F40, 0x003B8140, 0x003B8170, 0x003CC2F0, 0x003B7440, 0x003B7E20, 0x003B7BB0, 0x003B7C60, 0x00359B80, 0x00269530 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Script binding lifecycle: a model binding from the script that names it to its release and the slot's reuse"
-kind: "lifecycle"
-category: "Scripts and script commands"
-addresses: "0x002EB540, 0x002EAE20, 0x002E25E0, 0x002E6700, 0x002EAD50, 0x002E4D20, 0x002EA6E0, 0x002E28E0, 0x002E3110, 0x002EAEB0, 0x002E65A0, 0x002E9360, 0x002E6D60"
----
+[Home](../../README.md) / [Scripts and script commands](README.md) / Script binding lifecycle
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Script binding lifecycle: a model binding from the script that names it to its release and the slot's reuse | lifecycle | Scripts and script commands | The script machine | The stages of one of the 128 model-binding entries: find-or-create on the requested list, the request pump's load, the completion and the sub-resources that make it ready, the bind and attach that hold it, the release that retires it, the per-frame update that frees it, the pressure path, and the stamp that makes old handles stop working; each stage linked to the page that explains it. | 0x002EB540, 0x002EAE20, 0x002E25E0, 0x002E6700, 0x002EAD50, 0x002E4D20, 0x002EA6E0, 0x002E28E0, 0x002E3110, 0x002EAEB0, 0x002E65A0, 0x002E9360, 0x002E6D60 |
 
 ## What the player sees
 

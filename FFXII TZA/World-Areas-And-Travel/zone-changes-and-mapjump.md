@@ -1,9 +1,8 @@
----
-title: "Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map"
-kind: "system"
-category: "World, areas and travel"
-addresses: "0x00354D00, 0x00355350, 0x00314440, 0x003145E0, 0x00314020, 0x0032FC30, 0x0032FCA0, 0x003321E0, 0x002620E0, 0x0034AD70"
----
+[Home](../../README.md) / [World, areas and travel](README.md) / Zone changes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map | system | World, areas and travel | Changing areas and travel | From the script line mapjump(map, entrance, mode) to the frame the new zone runs: the verb's wait and request, the transition record in the save data, the fade, the tick that tears the old zone down and starts the load, the pending-load and busy masks, the ready point, the scene loader, the jump-index verbs, the jump lock and the field id's file table. | 0x00354D00, 0x00355350, 0x00314440, 0x003145E0, 0x00314020, 0x0032FC30, 0x0032FCA0, 0x003321E0, 0x002620E0, 0x0034AD70 |
 
 ## What the player sees
 
@@ -464,3 +463,7 @@ and 10 further branches of those ways. `script_kind` marks the 1,910 developer r
 - [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md)
 - [How a cutscene runs](../Scripts-And-Script-Commands/event-scenes.md)
 - [The save payload field map](../Saving-Loading-And-Settings/save-data-fields.md)
+
+---
+
+[← Changing areas](changing-areas.md) | [Doors, gates and map changes →](doors-gates-and-map-changes.md)

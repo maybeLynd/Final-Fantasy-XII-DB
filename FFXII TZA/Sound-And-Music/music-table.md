@@ -1,9 +1,8 @@
----
-title: "Music table: the file that names each area's music track, how the story changes it, and the boss-music flags"
-kind: "format"
-category: "Sound and music"
-addresses: "0x00379D20, 0x003EAB60, 0x003EAB90, 0x003EAA70, 0x02B5E0D0, 0x00360C70, 0x022CBA50, 0x00361010"
----
+[Home](../../README.md) / [Sound and music](README.md) / Music table
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Music table: the file that names each area's music track, how the story changes it, and the boss-music flags | format | Sound and music | Music | The music control file musicctrl.bin and the track flag file musicinfo.bin: where each is loaded and kept, the page and run layout of the field-to-track table and its in-place rebase, the lookup with its story-counter ladder, the boss-music bit that keeps a track through chocobo and summon music, every run of the shipped table with its zones, track and ladder, and what an edit changes. | 0x00379D20, 0x003EAB60, 0x003EAB90, 0x003EAA70, 0x02B5E0D0, 0x00360C70, 0x022CBA50, 0x00361010 |
 
 ## What the player sees
 

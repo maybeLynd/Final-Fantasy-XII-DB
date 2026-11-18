@@ -1,9 +1,8 @@
----
-title: "Weapon motion list: the animation set each weapon's motion class gives a battle unit, from the WepJob_Matrix table"
-kind: "reference"
-category: "Battle actions"
-addresses: "0x02EBF180, 0x003202F0, 0x003203B0, 0x00325A20, 0x00325AD0, 0x00320170, 0x00320230"
----
+[Home](../../README.md) / [Battle actions](README.md) / Weapon motion list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Weapon motion list: the animation set each weapon's motion class gives a battle unit, from the WepJob_Matrix table | reference | Battle actions | Action tables | All 23 rows of the shipped WepJob_Matrix table in battle_pack.bin: the animation set for each weapon motion class, the weapons of each class, the bare-handed row for Brawler (augment 9), the set every party unit gets in the action caches, and the functions that read the table. | 0x02EBF180, 0x003202F0, 0x003203B0, 0x00325A20, 0x00325AD0, 0x00320170, 0x00320230 |
 
 ## What it lists
 

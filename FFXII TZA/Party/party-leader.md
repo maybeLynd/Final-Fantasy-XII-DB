@@ -1,9 +1,8 @@
----
-title: "Party leader: switching who you control, why the others follow at once, where they walk, and when control is taken away"
-kind: "system"
-category: "Party"
-addresses: "0x003272A0, 0x003594B0, 0x00358BC0, 0x00326500, 0x00263750, 0x00338490, 0x00339A60, 0x0023B040, 0x00359200, 0x00359250, 0x003592C0"
----
+[Home](../../README.md) / [Party](README.md) / Party leader
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Party leader: switching who you control, why the others follow at once, where they walk, and when control is taken away | system | Party | The party in play | How the leader works: the leader as one actor handle and the request-and-commit step that changes it, who requests a change and the default member each party control mode starts with, the four-actor roster, the follow formation every other member is placed in around the leader, the leader's battle state that locks the stick and the camera, the area waiver, and the movement locks scripts, events and the leader's state each own. | 0x003272A0, 0x003594B0, 0x00358BC0, 0x00326500, 0x00263750, 0x00338490, 0x00339A60, 0x0023B040, 0x00359200, 0x00359250, 0x003592C0 |
 
 ## What the player sees
 
@@ -336,3 +335,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - Save load settings: `0x002EF650` calls `0x00238A80`, `0x00253A80`, `0x002EF2D0`; those functions are documented on
   [item and ability ids](../Engine-Core/item-and-ability-ids.md),
   [frame update order](../Engine-Core/frame-update-order.md).
+
+---
+
+[← Party slots](party-slots.md)

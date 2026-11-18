@@ -1,9 +1,8 @@
----
-title: "Model files (.cm, .ca): the @FRP container and its FCP, FDM, FOR, FTE, FCT and FTR entries"
-kind: "format"
-category: "Graphics"
-addresses: "0x00504F00, 0x00504E70, 0x00504940, 0x004780C0, 0x0041FCF0, 0x0041F340, 0x00420480, 0x002EDBD0, 0x003E55F0, 0x004FE270, 0x004FE2F0, 0x01F265B0, 0x01F266B0, 0x003E6150, 0x003E5AD0, 0x0041E5B0, 0x004292B0, 0x003712E0, 0x00372820, 0x003713C0, 0x00409300, 0x004094D0, 0x00409250, 0x0046D560, 0x004201F0, 0x00504840, 0x005048A0, 0x0053AB50, 0x00504D30, 0x005044D0, 0x00504D20"
----
+[Home](../../README.md) / [Graphics](README.md) / Model files (.cm, .ca)
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Model files (.cm, .ca): the @FRP container and its FCP, FDM, FOR, FTE, FCT and FTR entries | format | Graphics | Character models / Model Files | The model and animation containers: the .cm and .ca files under obj_finish, the seven entries a model row binds from a .cm, the @FCP parameter block with its section table, property ids and default tables, the @FTR skeleton and how it is built, the @FOR variant records and distance LOD, the @FDM key table, the @FTE textures and @FCT four-page palettes, the draw builder's texture and palette pick, and counts over all 4,230 shipped files. | 0x00504F00, 0x00504E70, 0x00504940, 0x004780C0, 0x0041FCF0, 0x0041F340, 0x00420480, 0x002EDBD0, 0x003E55F0, 0x004FE270, 0x004FE2F0, 0x01F265B0, 0x01F266B0, 0x003E6150, 0x003E5AD0, 0x0041E5B0, 0x004292B0, 0x003712E0, 0x00372820, 0x003713C0, 0x00409300, 0x004094D0, 0x00409250, 0x0046D560, 0x004201F0, 0x00504840, 0x005048A0, 0x0053AB50, 0x00504D30, 0x005044D0, 0x00504D20 |
 
 ## What the player sees
 
@@ -845,3 +844,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - World area: `0x00377C20` calls `0x003148F0`; `0x00377C20` is called by `0x002342F0`; those functions are documented on
   [party control modes](../Engine-Core/party-control-modes.md),
   [force fight mode](../Engine-Core/force-fight-mode.md).
+
+---
+
+[Model lifecycle →](model-lifecycle.md)

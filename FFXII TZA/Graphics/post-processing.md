@@ -1,9 +1,8 @@
----
-title: "Post-processing: the game's passes and their shader constants, the post-process command, the PPFX features and effect techniques, and the registries of named render passes"
-kind: "system"
-category: "Graphics"
-addresses: "0x0018D240, 0x0018E4A0, 0x0018F6B0, 0x0018F8F0, 0x0018FE00, 0x00190260, 0x00190760, 0x00191130, 0x00191560, 0x00191E90, 0x001925D0, 0x001930F0, 0x001EE8E0, 0x0018F510, 0x00191DA0, 0x0018EEE0, 0x00193D50, 0x01F7F5F0, 0x00194310, 0x00194250, 0x006FF900, 0x006CBD20, 0x007142F0, 0x007307A0, 0x0072D820, 0x0072A320, 0x0072DCF0, 0x02EA1590, 0x01F2D6A0, 0x02CBF998, 0x005DC6F0, 0x005FDCB0, 0x005DDD60, 0x01F82C80, 0x001D62D0, 0x001D6000"
----
+[Home](../../README.md) / [Graphics](README.md) / Post-processing
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Post-processing: the game's passes and their shader constants, the post-process command, the PPFX features and effect techniques, and the registries of named render passes | system | Graphics | Screen effects and movies | The game's own post-process chain: the twelve pass functions with the shader constants and pass records each names, how ambient occlusion and anti-aliasing pick their pass, the post-process command block and where its values come from, which PPFX features the game's initialisation leaves off, the PPFX effect catalogue with its handle layout, the two registries of named render passes, and the GPU frame-marker table. | 0x0018D240, 0x0018E4A0, 0x0018F6B0, 0x0018F8F0, 0x0018FE00, 0x00190260, 0x00190760, 0x00191130, 0x00191560, 0x00191E90, 0x001925D0, 0x001930F0, 0x001EE8E0, 0x0018F510, 0x00191DA0, 0x0018EEE0, 0x00193D50, 0x01F7F5F0, 0x00194310, 0x00194250, 0x006FF900, 0x006CBD20, 0x007142F0, 0x007307A0, 0x0072D820, 0x0072A320, 0x0072DCF0, 0x02EA1590, 0x01F2D6A0, 0x02CBF998, 0x005DC6F0, 0x005FDCB0, 0x005DDD60, 0x01F82C80, 0x001D62D0, 0x001D6000 |
 
 ## What the player sees
 

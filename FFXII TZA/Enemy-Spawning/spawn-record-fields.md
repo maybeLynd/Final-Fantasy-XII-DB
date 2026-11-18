@@ -1,9 +1,8 @@
----
-title: "Spawn record fields: the keep entry behind every spawned enemy, offset by offset, its flag bits and every proven access"
-kind: "reference"
-category: "Enemy spawning"
-addresses: "0x00236100, 0x002360D0, 0x0023A570, 0x0023AC80, 0x002395A0, 0x0023A2E0, 0x00236860, 0x00237080, 0x00239840, 0x00239410, 0x002391C0, 0x002396B0, 0x0023A200, 0x0023A410, 0x00233AD0, 0x00234200, 0x002350C0, 0x00235720, 0x002355A0, 0x002354F0, 0x00235360, 0x00300530, 0x003112F0, 0x00385BA0, 0x0030FED0, 0x00300310, 0x003003F0, 0x00307300, 0x00311F70, 0x00239210, 0x00312EE0, 0x00308040, 0x00238BF0, 0x00301AD0, 0x00321530, 0x00321D30, 0x00233780, 0x00321DC0, 0x00321810"
----
+[Home](../../README.md) / [Enemy spawning](README.md) / Spawn record fields
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Spawn record fields: the keep entry behind every spawned enemy, offset by offset, its flag bits and every proven access | reference | Enemy spawning | Spawning and respawning | The 0x250-byte spawn record (the keep entry) that every enemy built from the enemy definition table is driven through: the three ways code reaches one, each field with its width, its writers and its readers, the eight flag bits with who sets, clears and tests them, the stats record that lives at +0x80, the three byte ranges nothing touches, and the access table of every lane-map and seed-route reach. | 0x00236100, 0x002360D0, 0x0023A570, 0x0023AC80, 0x002395A0, 0x0023A2E0, 0x00236860, 0x00237080, 0x00239840, 0x00239410, 0x002391C0, 0x002396B0, 0x0023A200, 0x0023A410, 0x00233AD0, 0x00234200, 0x002350C0, 0x00235720, 0x002355A0, 0x002354F0, 0x00235360, 0x00300530, 0x003112F0, 0x00385BA0, 0x0030FED0, 0x00300310, 0x003003F0, 0x00307300, 0x00311F70, 0x00239210, 0x00312EE0, 0x00308040, 0x00238BF0, 0x00301AD0, 0x00321530, 0x00321D30, 0x00233780, 0x00321DC0, 0x00321810 |
 
 ## What it lists
 
@@ -139,3 +138,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Resource: `0x002368D0` calls `0x003843F0`; those functions are documented on
   [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
+
+---
+
+[← Enemy respawning](enemy-respawning.md)

@@ -1,9 +1,8 @@
----
-title: "Authored presentation commands: the command handlers and their ramp channels"
-kind: "system"
-category: "Graphics"
-addresses: "0x0041DA90, 0x01EFFAF0, 0x02CA4410, 0x02CA4670, 0x0041D6C0, 0x0041D6D0, 0x0041CCA0, 0x004269A0, 0x002EA320, 0x002EA5F0, 0x00417AD0, 0x00417C60, 0x004173D0, 0x00417440, 0x00417460, 0x004174D0, 0x00426870, 0x00520800, 0x02B40528, 0x003B6890, 0x003B6A90, 0x003B69B0, 0x003B6A10, 0x003B6950, 0x003B5890, 0x003B5C00, 0x003B5D40, 0x003B62D0, 0x02B40524, 0x003B6930"
----
+[Home](../../README.md) / [Graphics](README.md) / Authored presentation commands
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Authored presentation commands: the command handlers and their ramp channels | system | Graphics | Character models / Animation And Motion | The presentation commands authored in model and motion data and run on a character's render record: how the stream is walked and dispatched through the pair table and the two handler banks, what each registered handler does, and the five ramp channels that commands 0x0D to 0x10 drive on the character's shadow entry, with the tick that advances them and the shadow build that consumes them. | 0x0041DA90, 0x01EFFAF0, 0x02CA4410, 0x02CA4670, 0x0041D6C0, 0x0041D6D0, 0x0041CCA0, 0x004269A0, 0x002EA320, 0x002EA5F0, 0x00417AD0, 0x00417C60, 0x004173D0, 0x00417440, 0x00417460, 0x004174D0, 0x00426870, 0x00520800, 0x02B40528, 0x003B6890, 0x003B6A90, 0x003B69B0, 0x003B6A10, 0x003B6950, 0x003B5890, 0x003B5C00, 0x003B5D40, 0x003B62D0, 0x02B40524, 0x003B6930 |
 
 ## What the player sees
 

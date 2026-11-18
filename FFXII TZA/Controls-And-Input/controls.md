@@ -1,9 +1,8 @@
----
-title: "Controls: how a key, button or stick becomes a game action, the control codes each device answers to, and how presses, holds and repeats are told apart"
-kind: "system"
-category: "Controls and input"
-addresses: "0x01F7FFE0, 0x00196FF0, 0x00197160, 0x01DF1480, 0x0035F420, 0x0035FAC0, 0x0035FBD0, 0x002498B0, 0x02F97360"
----
+[Home](../../README.md) / [Controls and input](README.md) / Controls
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Controls: how a key, button or stick becomes a game action, the control codes each device answers to, and how presses, holds and repeats are told apart | system | Controls and input | How input works | How input reaches the game: the input manager and its poll, the three bands of control codes and the device each reads, the records that turn codes into a 16-button mask and four stick bytes, the movement-key modes, the 16-frame channel history, how a press, a hold, a release and a menu repeat are made, the stick dead zone and the stick-to-direction bits, the button words the game reads each frame, the device-state count, the confirm and cancel buttons and the verbs that read them, the mouse wheel in menu lists, whether prompts show pad buttons or keys, the six controls read straight from the keymap, and what each button does in the field. | 0x01F7FFE0, 0x00196FF0, 0x00197160, 0x01DF1480, 0x0035F420, 0x0035FAC0, 0x0035FBD0, 0x002498B0, 0x02F97360 |
 
 ## What the player sees
 

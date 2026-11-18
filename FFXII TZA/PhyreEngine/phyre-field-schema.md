@@ -1,9 +1,8 @@
----
-title: "Phyre field schema: the class and member tables in every .phyre file and how the loader matches them to registered members"
-kind: "format"
-category: "PhyreEngine"
-addresses: "0x0059E070, 0x0059A3B0, 0x0059B430, 0x0059BA40, 0x0059D2D0, 0x0059AC00, 0x006393A0, 0x00632B30, 0x00632E80, 0x0063BA10, 0x00597220, 0x00632960, 0x00632A10, 0x00632A70, 0x00632BE0, 0x0062EFD0, 0x00633100, 0x006318A0, 0x00631C40, 0x00599390, 0x00595E70, 0x0059A030, 0x0016D6A0, 0x005CDAA0"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Phyre field schema
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre field schema: the class and member tables in every .phyre file and how the loader matches them to registered members | format | PhyreEngine | Asset files and animation | The packed namespace each .phyre file carries after its 84-byte header: the type table, the nine-word class records and six-word member records with their names, file offsets, widths and attribute words; how the loader checks it, finds each class and member by name in the run-time reflection data, reports differences and picks a copy routine per member; and the shipped figures, in which every class and member a file declares is registered by the executable. | 0x0059E070, 0x0059A3B0, 0x0059B430, 0x0059BA40, 0x0059D2D0, 0x0059AC00, 0x006393A0, 0x00632B30, 0x00632E80, 0x0063BA10, 0x00597220, 0x00632960, 0x00632A10, 0x00632A70, 0x00632BE0, 0x0062EFD0, 0x00633100, 0x006318A0, 0x00631C40, 0x00599390, 0x00595E70, 0x0059A030, 0x0016D6A0, 0x005CDAA0 |
 
 ## What the player sees
 

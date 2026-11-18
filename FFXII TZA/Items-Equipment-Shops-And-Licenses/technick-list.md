@@ -1,9 +1,8 @@
----
-title: "Technick list: every technick with its name, shop price, sort order, power, statuses and texts"
-kind: "reference"
-category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF0E8, 0x0031C5D0, 0x0031CEEB, 0x0031CF08, 0x00306340, 0x00323EC0, 0x002F8FA0"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Technick list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Technick list: every technick with its name, shop price, sort order, power, statuses and texts | reference | Items, equipment, shops and licenses | Magicks and technicks | All 24 rows of the shipped technick table in battle_pack.bin, decoded field by field: the technick id and name, the sort order, the icon frame, the shop price and the action row, and from that action row the cost, charge base, power, hit, element, statuses, range, area, named flags, help and description lines, and a one-line explanation. | 0x02EBF0E8, 0x0031C5D0, 0x0031CEEB, 0x0031CF08, 0x00306340, 0x00323EC0, 0x002F8FA0 |
 
 ## What it lists
 

@@ -1,9 +1,8 @@
----
-title: "Music: which track plays in an area, the chocobo and summon tracks, the crossfade when the area changes, and the saved track override"
-kind: "system"
-category: "Sound and music"
-addresses: "0x00261F90, 0x003EAA70, 0x00361010, 0x0030D9A0, 0x003614E0, 0x002DEE50, 0x0026A720, 0x0026DE20"
----
+[Home](../../README.md) / [Sound and music](README.md) / Music
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Music: which track plays in an area, the chocobo and summon tracks, the crossfade when the area changes, and the saved track override | system | Sound and music | Music | How the area's music is chosen and changed: the once-per-zone step and its done bit, the four sources in order (the saved override, the field-to-track table with its story ladder, then the summon and chocobo tracks unless the track is boss music), the crossfade's one length and one volume, what happens when no track is chosen, the script verbs that set, read and test the area music, and the script music stream no shipped script uses. | 0x00261F90, 0x003EAA70, 0x00361010, 0x0030D9A0, 0x003614E0, 0x002DEE50, 0x0026A720, 0x0026DE20 |
 
 ## What the player sees
 

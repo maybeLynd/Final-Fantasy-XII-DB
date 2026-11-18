@@ -1,9 +1,8 @@
----
-title: "Area table text: the text blocks of the enemy definition tables in the area files"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x003EA710, 0x003845F0, 0x02EBF120, 0x0023A570, 0x02EBF170, 0x002B58B0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Area table text
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Area table text: the text blocks of the enemy definition tables in the area files | reference | Menus and HUD | Game text tables | Every string of the text blocks that the st2e enemy definition tables in the area .ard files carry, in the in and ch trees that ship the files: one four-character filler string per area table, which code binds the table and where enemy names come from instead, the row count per file, and why the two language columns hold the same bytes. | 0x003EA710, 0x003845F0, 0x02EBF120, 0x0023A570, 0x02EBF170, 0x002B58B0 |
 
 ## What it lists
 

@@ -1,13 +1,36 @@
+[Home](../../README.md) / Party
+
 # Party
 
 Party members, the leader, guests, swapping members in and out, and party formation.
 
-| Page | What you will find |
-|---|---|
-| [Party data: every field of the block the save game keeps for the party, above the forty member stats records](party-data.md) | Each field of the 0x7410-byte party block behind 0x02EBF190: the magic and flag word, the forty member stats records, the owned-item counts and learned bits of every inventory class with their backups, the bazaar flags, the five slot maps and the leader selector, the walked distance, the summon and chocobo state, the party control mode words, the Traveler, Knot of Rust and Numerology counters, and the forty members' gambit banks, with each field's width, meaning, and the functions that write and read it. |
-| [Party leader: switching who you control, why the others follow at once, where they walk, and when control is taken away](party-leader.md) | How the leader works: the leader as one actor handle and the request-and-commit step that changes it, who requests a change and the default member each party control mode starts with, the four-actor roster, the follow formation every other member is placed in around the leader, the leader's battle state that locks the stick and the camera, the area waiver, and the movement locks scripts, events and the leader's state each own. |
-| [Party members and guests: who can join, how the story adds and removes them, where a guest sits, and what a join brings](party-members.md) | Who is in the party: the main and guest ranges of the forty party rows, the add and remove functions and the rule that nobody is in the party twice, where a guest is seated, the level and LP catch-up a joining member gets, what a join adds to the inventory and what a leave takes away, the commit and wait every change goes through, the script verbs and how they pick who fights, how a member's actor takes a roster slot, and every join and leave the shipped scripts perform. |
-| [Party slots: the nine seats, the five slot maps the game reads them through, and how a seat reaches its battle unit](party-slots.md) | How the party is seated: the nine two-byte seats of the live party, four active and five reserve, the four copies the battle, the battle menu and the rest of the game read instead, how a new game fills them, how the copies are rebuilt for summons, chocobo rides, towns and scripted party modes, and the functions that turn a seat into a stats record or a battle unit. |
-| [Party table: every party member, guest, Esper and the Chocobo with their starting stats, equipment, gambits, Quickenings, first-join items and model](party-table.md) | All 40 rows of the shipped party table (chr_data) in battle_pack.bin, decoded field by field: the name, kind and model of each row, the three Quickenings, the starting equipment and gambit preset, the starting HP, MP and four stats with their growth, the catch-up rule, the first-join items and gil, the actions a guest or Esper may use, the permanent statuses, immunities and augments, the summon time, and the function that reads every field. |
-| [Scenario presets: every numbered save-data set a script can load, with its party, levels, gear, gambits, licenses, gil and items](scenario-presets.md) | The 50 scenario rows and 226 party-preset rows of battle_pack.bin that a script loads by number at the next area start: for each scenario, who sits in the nine party seats, who leads, the gil and the items, magicks, technicks and key items it grants, and for each member it sets up, the level, the five pieces of gear, the gambit preset, the License Points or board, the MP share and the gambit mark. |
-| [Starting inventory: the shoki_data table the party-block reset adds to the inventory, empty in the shipped game](starting-inventory.md) | All 32 rows of the shipped shoki_data table in battle_pack.bin: the id and count the party-block reset hands to the inventory for each row, the function that reads them, and why the shipped rows add nothing, so a new party's items come from the first-join lists of the party table instead. |
+Jump to: [The party in play](#the-party-in-play) · [Party data](#party-data)
+
+## Start here
+
+Start with these pages, in this order:
+
+1. [Party members and guests](party-members.md): starts with who is in the party at all
+2. [Party slots](party-slots.md): seats those members
+3. [Party leader](party-leader.md): picks one seated member to lead
+
+## The party in play
+
+Who belongs to the party, where each member sits and who leads.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Party members and guests](party-members.md) | Explanation | Who can join, who leaves, and what joining changes for levels and inventory. |
+| [Party slots](party-slots.md) | Explanation | How the active and reserve seats work and which copies the game reads. |
+| [Party leader](party-leader.md) | Explanation | How the leader changes and how the others follow in formation. |
+
+## Party data
+
+The saved party block and the shipped tables that set up characters and scenarios.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Party data](party-data.md) | Reference table | Every field of the saved party block, including stats, items and seats. |
+| [Party table](party-table.md) | Reference table | The shipped row for each party member: model, starting gear, stats and growth. |
+| [Scenario presets](scenario-presets.md) | Reference table | The party, gil and items a script can load for a story scenario. |
+| [Starting inventory](starting-inventory.md) | Reference table | The shipped starting-item table and why a new party's items come from elsewhere. |

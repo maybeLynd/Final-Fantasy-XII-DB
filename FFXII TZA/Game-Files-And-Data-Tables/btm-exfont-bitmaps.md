@@ -1,9 +1,8 @@
----
-title: "ExFont sheets (.btm): the 4-bit glyph cells of the six staff-roll faces, how they are loaded and how a glyph finds its cell"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x00365810, 0x00D10C98, 0x022CBE00, 0x022CBBB0, 0x00364950, 0x003658F0, 0x003643A0, 0x00366080, 0x00364380, 0x003657E0, 0x00364210, 0x003649A0, 0x00474650, 0x003A1F20, 0x0053EB90, 0x0053E0B0, 0x002DF9A0, 0x0017FC00, 0x001E7F90"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / ExFont sheets (.btm)
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| ExFont sheets (.btm): the 4-bit glyph cells of the six staff-roll faces, how they are loaded and how a glyph finds its cell | format | Game files and data tables | Image files | The six headerless ExFont/font_stf_*.btm sheets: 4-bit glyph cells packed back to back and located only by the glyph tables in fontpack_fs.bin, the loader that binds them to sheet slots 7 to 12 and sets their ready bits, the glyph lookup that rounds each cell to a power of two, the staff-roll task that requests and waits for them, the twelve shipped copies, and the rules a replacement sheet must follow. | 0x00365810, 0x00D10C98, 0x022CBE00, 0x022CBBB0, 0x00364950, 0x003658F0, 0x003643A0, 0x00366080, 0x00364380, 0x003657E0, 0x00364210, 0x003649A0, 0x00474650, 0x003A1F20, 0x0053EB90, 0x0053E0B0, 0x002DF9A0, 0x0017FC00, 0x001E7F90 |
 
 ## What the player sees
 

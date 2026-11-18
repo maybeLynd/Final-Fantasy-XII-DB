@@ -1,9 +1,8 @@
----
-title: "Stats: how max HP, MP, Strength, Magick Power, Vitality, Speed, Attack Power, Defense, Magick Resist and evade are built, and their caps"
-kind: "system"
-category: "Damage and battle formulas"
-addresses: "0x002FEF30, 0x0030FED0, 0x002F8E50, 0x002F9180, 0x0031E9A0, 0x003105D0"
----
+[Home](../../README.md) / [Damage and battle formulas](README.md) / Stats
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Stats: how max HP, MP, Strength, Magick Power, Vitality, Speed, Attack Power, Defense, Magick Resist and evade are built, and their caps | system | Damage and battle formulas | Stats, HP and augments | How every combat stat of a unit is rebuilt from nothing: a party member's character row and grown values, an enemy's base plus growth times its level difference, the five equipment slots and their attribute records, the augments that add Strength, Magick Power or max HP, the caps (9,999 HP for the party, 32,767 for Espers, 99, 255 and 100), and how gaining or losing Confuse or Berserk in a rebuild cancels the action in flight. | 0x002FEF30, 0x0030FED0, 0x002F8E50, 0x002F9180, 0x0031E9A0, 0x003105D0 |
 
 ## What the player sees
 

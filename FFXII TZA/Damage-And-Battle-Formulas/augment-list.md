@@ -1,9 +1,8 @@
----
-title: "Augment list: every augment with its name, text, value, the code that reads the value, and its timer"
-kind: "reference"
-category: "Damage and battle formulas"
-addresses: "0x02EBF040, 0x0031C5D0, 0x002FEF30, 0x002F95D0, 0x002F8410, 0x00387FD0, 0x0038DD20, 0x0038DF00, 0x0038E2D0, 0x0030EA40"
----
+[Home](../../README.md) / [Damage and battle formulas](README.md) / Augment list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Augment list: every augment with its name, text, value, the code that reads the value, and its timer | reference | Damage and battle formulas | Stats, HP and augments | All 129 rows of the shipped augment table (ability_data) in battle_pack.bin, decoded field by field: the augment id, its shipped name and extra text, the value at +0x04 with the function that reads it and what it does with it (stat bonuses, MP-cost and charge-time percentages, shield block, the Potion, Ether and Phoenix Down lores), the timer slot of the three timed effects, and a one-line explanation. | 0x02EBF040, 0x0031C5D0, 0x002FEF30, 0x002F95D0, 0x002F8410, 0x00387FD0, 0x0038DD20, 0x0038DF00, 0x0038E2D0, 0x0030EA40 |
 
 ## What it lists
 

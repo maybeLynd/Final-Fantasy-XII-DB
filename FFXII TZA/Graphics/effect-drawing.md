@@ -1,9 +1,8 @@
----
-title: "Effect drawing: the six display layers, drawing a group and an element, soft particles and the draw list"
-kind: "system"
-category: "Graphics"
-addresses: "0x020910F0, 0x002F4020, 0x00258EE0, 0x00259030, 0x0024D370, 0x0024D4E0, 0x00441970, 0x02AEE910, 0x02F8F2F8, 0x02F8F2C6, 0x003A3740, 0x003A3A00, 0x0024D540"
----
+[Home](../../README.md) / [Graphics](README.md) / Effect drawing
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Effect drawing: the six display layers, drawing a group and an element, soft particles and the draw list | system | Graphics | Visual effects / Effect Elements And Drawing | How live effects reach the screen: the six display layers and the frame points they are requested at, the draw of one group and one element, the instance flags read at draw time, widescreen and mask-border flags, soft particles, and the 40,960-entry draw list. | 0x020910F0, 0x002F4020, 0x00258EE0, 0x00259030, 0x0024D370, 0x0024D4E0, 0x00441970, 0x02AEE910, 0x02F8F2F8, 0x02F8F2C6, 0x003A3740, 0x003A3A00, 0x0024D540 |
 
 ## What the player sees
 

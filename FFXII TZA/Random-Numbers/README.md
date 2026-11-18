@@ -1,8 +1,16 @@
+[Home](../../README.md) / Random numbers
+
 # Random numbers
 
 Every random number generator in the game, how each is seeded and which rolls use it.
 
-| Page | What you will find |
-|---|---|
-| [Random number generators: the gameplay Mersenne Twister, the shared gameplay LCG, the graphics-noise Mersenne Twister, the C runtime rand, the presentation bit-feedback generator, the emulated VU1 generator, the counter hash and the PPFX xorshift, with their constants, seeds and states](random-number-generators.md) | Every random source in the game: the Mersenne Twister that combat and chests draw from and how it is seeded at boot, lazily and on a save load; the three-step linear congruential generator that loot, the chain, spawning and the AI share and its per-area counter seed; the second Mersenne Twister that only the noise texture uses; the C runtime rand; the bit-feedback generator behind presentation effects; the bit-feedback generator of the emulated VU1 programs; the counter hash and the xorshift128 inside the post-processing code. Each with its state address, step formula, seed and draw count. |
-| [Which roll uses which generator: combat, chests, loot, the chain, spawning, AI, movement, script verbs and presentation, what reseeds each, and what loading a save changes](which-roll-uses-which-generator.md) | The map from every random decision to the generator it draws from: the battle formula rolls, status ticks, weather, chest presence and contents, trap arming and triggering and the script rand verbs on the gameplay Mersenne Twister; loot, the chain, the chain bonus, spawn placement, enemy levels, AI action choices and random headings on the shared LCG; the C runtime rand callers; the presentation generator's users; which of them a save load, an area change or a boot reseeds, and which rolls can and cannot influence each other. |
+Jump to: [The generators and who uses them](#the-generators-and-who-uses-them)
+
+## The generators and who uses them
+
+What produces the game's random numbers and which decisions draw on each generator.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Random number generators](random-number-generators.md) | Explanation | The generators behind the game's rolls, their constants and how each one is seeded. |
+| [Which roll uses which generator](which-roll-uses-which-generator.md) | Explanation | Which generator each random decision draws from, and what reseeds it. |

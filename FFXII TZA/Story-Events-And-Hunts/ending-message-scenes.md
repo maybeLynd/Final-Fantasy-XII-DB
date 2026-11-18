@@ -1,9 +1,8 @@
----
-title: "Ending message scenes: the scene with its text and the script that loads it"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00353080, 0x0032FCA0, 0x00348DF0, 0x00264D60"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Ending message scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Ending message scenes: the scene with its text and the script that loads it | reference | Story, events and hunts | Scenes and scripts by area / Opening, ending and Trial Mode | The ending message scene script msg_z0001: every line it holds in the game's own words, what it gives and writes, and the Sky Fortress Bahamut zone function that loads it. | 0x003529E0, 0x00353080, 0x0032FCA0, 0x00348DF0, 0x00264D60 |
 
 ## What it lists
 

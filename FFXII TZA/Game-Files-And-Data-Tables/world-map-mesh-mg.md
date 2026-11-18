@@ -1,9 +1,8 @@
----
-title: "World map mesh (.mg): the world-map geometry file, its layout and how the map screen loads and draws it"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x00562F90, 0x00563110, 0x00274780, 0x00555A50, 0x005556A0, 0x00555400, 0x00555D10, 0x00556240, 0x00555B90, 0x00555F80, 0x00552250, 0x005528C0, 0x00550540, 0x00561390, 0x0055A8A0, 0x00D231C0, 0x00D23270, 0x0024A5A0, 0x00249210, 0x002493D0, 0x002DF9A0, 0x02CA8F38, 0x02CA8F40"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / World map mesh (.mg)
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| World map mesh (.mg): the world-map geometry file, its layout and how the map screen loads and draws it | format | Game files and data tables | Menu and map files | meshdata.mg, the one .mg file: a two-entry directory of sub-meshes, each a header, a slot array, 32-byte vertices and a u16 index stream. Sub-mesh 0 is the four textured tiles of the World Map picture, bound by slot name to w_main0..3.tm2; sub-mesh 1 is a strip mesh drawn with w_shade_p.tm2 on the World Map and untextured on the license board. Covers the loader, the binder, both draw paths, the shipped file and the rules an edited file must follow. | 0x00562F90, 0x00563110, 0x00274780, 0x00555A50, 0x005556A0, 0x00555400, 0x00555D10, 0x00556240, 0x00555B90, 0x00555F80, 0x00552250, 0x005528C0, 0x00550540, 0x00561390, 0x0055A8A0, 0x00D231C0, 0x00D23270, 0x0024A5A0, 0x00249210, 0x002493D0, 0x002DF9A0, 0x02CA8F38, 0x02CA8F40 |
 
 ## What the player sees
 

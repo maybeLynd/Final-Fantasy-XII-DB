@@ -1,9 +1,8 @@
----
-title: "Message windows: the script's eight window slots, the text window and its choice lists, the message log, window pictures and the obtained-item notice"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x0215F200, 0x002E16B0, 0x002E09A0, 0x002E08C0, 0x002A2C00, 0x002A6190, 0x0209C4D0, 0x0209C510"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Message windows
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Message windows: the script's eight window slots, the text window and its choice lists, the message log, window pictures and the obtained-item notice | system | Menus and HUD | How menus work | How a script message window works: the eight script slots at 0x0215F200 and the verbs that fill them, how a window is opened, stepped each tick through its slot states and closed, the window object and its registry of eight, the typing, page-end cursor and choice list with its hidden options, start row and cancel row, the message log opened with Triangle, the more signals, the pictures a shape window shows and animates, the letterbox mask, hiding windows with the HUD, the message macros, and the obtained-item notice. | 0x0215F200, 0x002E16B0, 0x002E09A0, 0x002E08C0, 0x002A2C00, 0x002A6190, 0x0209C4D0, 0x0209C510 |
 
 ## What the player sees
 
@@ -610,3 +609,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [item and ability ids](../Engine-Core/item-and-ability-ids.md).
 - World area: `0x002E1450` is called by `0x00266D10`; those functions are documented on
   [force fight mode](../Engine-Core/force-fight-mode.md).
+
+---
+
+[← Confirm windows](dialogs.md)

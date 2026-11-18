@@ -1,21 +1,53 @@
+[Home](../../README.md) / Scripts and script commands
+
 # Scripts and script commands
 
 How area and event scripts run: the script virtual machine, its instructions, and every native command a script can call.
 
-| Page | What you will find |
-|---|---|
-| [Battle verbs: what a script can do to a unit's battle actions, the one commit every action passes through, and the verbs that change stance, thinking and emergency state](battle-verbs.md) | How a zone script reaches into combat: the single commit every battle action passes through and the four native callers that feed it, how the next action is chosen, the issued command and the one verb that reaches it, the emergency verbs that set the two engagement bits and draw weapons, the reset verbs that install the default order set, the thinking switch that cancels a unit's action, the force-fight stance machine, the ability and status grants of the battle setup verbs, and the verbs that look like battle verbs and do nothing. |
-| [Event scenes: the scene managers, loading, starting, waiting on and disposing a scene, movies and skips](event-scenes.md) | How a script runs a story scene: the three scene managers and the verbs that load, release, wait on and dispose a scene, the start hold on the load mask, the two global gates every scene verb tests, pre-rendered movies, and the skip table and masks. |
-| [Native commands: the five command tables, the begin, poll and result callbacks, the phase byte, and how a durative verb waits](native-commands.md) | What happens inside one script verb call: the lifecycle that runs begin, poll and result as one fall-through rather than three visits, the phase byte that marks a verb still running or typed for return, the five command tables and how their callbacks are populated, the instantaneous and durative shapes, the scratch dword that wait and the sync verbs count or select with, the per-manager skip mask that ends a wait early, and the handlers many verbs share. |
-| [Party during scenes: hiding the party, the summon leader and followers, summon space, capturing a member and the event party modes](party-during-scenes.md) | What a scene does with the party: hiding the party's bodies, the summon leader and its followers, moving the group into summon space and back, capturing a member's body with capturepc and releasing it, and the event party modes. |
-| [Party verbs: the eight verbs that change the battle party and the poll they share, the appearance verbs, the standard-motion verbs, and the party queries](party-verbs.md) | What a zone script can do to the party: the eight asynchronous verbs that add, remove, set and lock battle members and the one poll that waits for the read-in, the seven appearance verbs that set level of detail, shadows, character collision and the map-id flag pair on the members combat is servicing, the four standard-motion verbs that push a synthetic argument frame per roster actor, the queries that read the roster and party masks, and the capture forms that take a member's body. |
-| [Reward verbs: every script verb that adds or removes items, gil, equipment or party members, and exactly what it writes](reward-verbs.md) | The script side of rewards: the item verbs and the one inventory mutator they all reach, the gil verbs, the treasure chest sequence and the roll inside btlAtelOpenTreasureMessage that decides and grants the contents, what joining and leaving the party writes to the inventory and gil, the verbs that take away and give back everything, the quest result window, and the verbs that look like rewards but write nothing. |
-| [Script binding lifecycle: a model binding from the script that names it to its release and the slot's reuse](script-binding-lifecycle.md) | The stages of one of the 128 model-binding entries: find-or-create on the requested list, the request pump's load, the completion and the sub-resources that make it ready, the bind and attach that hold it, the release that retires it, the per-frame update that frees it, the pressure path, and the stamp that makes old handles stop working; each stage linked to the page that explains it. |
-| [Script interpreter: the hundred opcodes, the value stack, the registers and how a script waits and resumes](script-interpreter.md) | The bytecode interpreter 0x0025E4C0 that runs every zone script: who calls it each frame, the 100-entry opcode dispatch and the two coupled tables that drive it, the shared value stack at 0x02099AC0, the per-actor registers, the wait slot that lets a native call suspend and resume at the same instruction, the instruction budget and the stop rule, and what each of the hundred opcodes does, with the full table in script-interpreter-opcodes.tsv. |
-| [Script name bindings: how a script names a model by one number, the binding table with its lists and lanes, where a treasure chest is placed, and the bind verbs](script-name-bindings.md) | How a zone script names a model: the bound id and its letter class, the stamped handle checked before every use, the binding table of 128 entries on four lists (free, requested, live, retired) with find-or-create, holder bits, reference count, pins and the deferred release, the per-frame update that loads and retires entries, the 32-lane record each binding can own, what setuptreasure does in order and how a chest's spot bytes become a position and facing, and what each bind verb attaches to an actor. |
-| [Script requests: how a script function is filed on an actor's channels, selected, started, waited on and retired](script-requests.md) | The request machinery behind every scripted action: the per-actor entry pool and its channels, the REQ opcode family that files a function on another actor, the engine filers that turn touches, talks, map exits and spawns into requests through the per-slot arming mask, the three admission kinds, the highest-channel-first selection, the start of an entry, the start-wait and end-wait notifications, and the RET and cancel paths that retire an entry. |
-| [Script variables: the six storage classes behind PUSHV and POPV, where each lives and how long it lasts](script-variables.md) | How a zone script's variables are resolved: the descriptor word with its class, width, float bit and offset, the resolver 0x00262440 that turns it into an address in one of six homes (the save payload, the script image, the actor's local area, the image's msp area and the two 512-byte scratch banks), array indexing with its clamp, the width-saturating store, the reference form PUSHP hands to native verbs, and which bank survives a save, an area change or a script unload; with the counts over every script in the companion tables. |
-| [Script verb arguments: what each argument of a script verb addresses in the game](verb-arguments.md) | For 960 script verbs, one row per argument: the call id, the argument's number and type, what it addresses in the game (the actor field it sets, the table it indexes, the id space it names, the helper it reaches), the values the US scripts pass, the instructions that pop and use it, and the page that describes what it reaches; verbs with no argument get one row saying what the verb acts on. |
-| [Script verb table: every call id with its name, callbacks, shape, argument count, what it reaches and how often the US scripts use it](verb-table.md) | The reference for the 1,960 native commands a zone script can call: call id, family and command, the authored name and where it comes from, the begin, poll and result callbacks read from the five command tables, the shape each record has, the stub and empty records, the measured argument count against the catalogue's, the handler's control-flow class, the engine subsystems its handlers reach, and the number of calls in the decompiled US script corpus. |
-| [Verb dispatch: how a script's call id reaches a native handler, how arguments and results cross the value stack, and what the guards refuse](verb-dispatch.md) | The bridge from a script instruction to native code: the four call opcodes and the actor they bind, the sixteen-bit call id split into a family and a command, the family array and the three accessors with their one-sided bound, the register signatures of the begin, poll and result callbacks, the value stack that carries arguments and its silent failure modes, the pop order, packed references and actor handles, and the three result writers behind every returned value. |
-| [World lock: the stop request that holds the world still for a scene or a talk, the field hold, and event time stop](world-lock.md) | How a talk or a scene holds the rest of the world still: stop request 6 and the counter that takes it, the turn toward the talk partner, the field hold and its bytes, which actors the request releases, and the event time stop request. |
+Jump to: [The script machine](#the-script-machine) · [Script commands](#script-commands) · [Event scenes](#event-scenes)
+
+## Start here
+
+Start with these pages, in this order:
+
+1. [Script interpreter](script-interpreter.md): starts with the machine itself
+2. [Script variables](script-variables.md): adds where it keeps values
+3. [Script requests](script-requests.md): shows how functions get run
+4. [Verb dispatch](verb-dispatch.md): crosses into native code
+5. [Native commands](native-commands.md): shows verbs that take time
+
+## The script machine
+
+How scripts run: the interpreter, its variables and requests, and how a script reaches native code.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Script interpreter](script-interpreter.md) | Explanation | The opcodes, value stack and registers, and how a script waits and resumes. |
+| [Script variables](script-variables.md) | Explanation | The storage classes behind script variables and how long each lasts. |
+| [Script requests](script-requests.md) | Explanation | How a script function is filed on an actor, started and retired. |
+| [Verb dispatch](verb-dispatch.md) | Explanation | How a script's call id reaches a native handler and what the guards refuse. |
+| [Native commands](native-commands.md) | Explanation | The command tables, their callbacks and how a long-running verb waits. |
+| [Script name bindings](script-name-bindings.md) | Explanation | How a script names a model by number and the binding table behind it. |
+| [Script binding lifecycle](script-binding-lifecycle.md) | Lifecycle | A model binding from the script naming it to its release. |
+
+## Script commands
+
+What script verbs can do, what their arguments address and the verb table itself.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Battle verbs](battle-verbs.md) | Explanation | What a script can do to a unit's battle actions. |
+| [Party verbs](party-verbs.md) | Explanation | The verbs changing the battle party, appearance and standard motions. |
+| [Reward verbs](reward-verbs.md) | Explanation | Every verb adding or removing items, gil, equipment or party members. |
+| [Script verb arguments](verb-arguments.md) | Reference table | What each argument of a script verb addresses in the game. |
+| [Script verb table](verb-table.md) | Reference table | Every script call id with its name, callbacks and argument count. |
+
+## Event scenes
+
+How scenes load, run and end, and what they do to the world and the party.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Event scenes](event-scenes.md) | Explanation | Loading, starting, waiting on and disposing a scene, movies and skips. |
+| [Party during scenes](party-during-scenes.md) | Explanation | Hiding the party, the summon leader and the event party modes. |
+| [World lock](world-lock.md) | Explanation | The stop request that holds the world still for a scene or talk. |

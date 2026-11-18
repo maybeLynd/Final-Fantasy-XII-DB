@@ -1,9 +1,8 @@
----
-title: "YEBIS and PPFX: the post-effect library, how the game starts and drives it, its licence check and the EnableYebis switch"
-kind: "system"
-category: "Third-party libraries"
-addresses: "0x006DA880, 0x006DA8A0, 0x006DA8F0, 0x006DAA50, 0x006DA990, 0x006DAA70, 0x006DE780, 0x006DFF40, 0x0071D9E0, 0x006FF900, 0x0070BA00, 0x00707560, 0x006DF480, 0x006CBD20, 0x006CBEA0, 0x00193DA0, 0x0018E470, 0x00194290, 0x00194A30, 0x001F3300, 0x00167990, 0x02E5BDE0, 0x02EA0B70, 0x02EA0B3C, 0x02EA0B90, 0x00D86C00, 0x00717760, 0x0065E530, 0x006CBAA0, 0x0078A530, 0x0072A320, 0x00E21F90"
----
+[Home](../../README.md) / [Third-party libraries](README.md) / YEBIS and PPFX
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| YEBIS and PPFX: the post-effect library, how the game starts and drives it, its licence check and the EnableYebis switch | system | Third-party libraries | Library details | Silicon Studio's YEBIS post-effect library (its core is named PPFX) as linked into the game: its address span and identity, the source paths and diagnostic log it carries, the API entry points, how the renderer creates its context and runs it each frame, the licence verifier and why the shipped licence never reaches its date test, and the EnableYebis switch with its delayed form. | 0x006DA880, 0x006DA8A0, 0x006DA8F0, 0x006DAA50, 0x006DA990, 0x006DAA70, 0x006DE780, 0x006DFF40, 0x0071D9E0, 0x006FF900, 0x0070BA00, 0x00707560, 0x006DF480, 0x006CBD20, 0x006CBEA0, 0x00193DA0, 0x0018E470, 0x00194290, 0x00194A30, 0x001F3300, 0x00167990, 0x02E5BDE0, 0x02EA0B70, 0x02EA0B3C, 0x02EA0B90, 0x00D86C00, 0x00717760, 0x0065E530, 0x006CBAA0, 0x0078A530, 0x0072A320, 0x00E21F90 |
 
 ## What the player sees
 

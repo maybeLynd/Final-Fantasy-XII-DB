@@ -1,17 +1,41 @@
+[Home](../../README.md) / Damage and battle formulas
+
 # Damage and battle formulas
 
 Damage, healing, hit, evade and other battle calculations.
 
-| Page | What you will find |
-|---|---|
-| [Augment list: every augment with its name, text, value, the code that reads the value, and its timer](augment-list.md) | All 129 rows of the shipped augment table (ability_data) in battle_pack.bin, decoded field by field: the augment id, its shipped name and extra text, the value at +0x04 with the function that reads it and what it does with it (stat bonuses, MP-cost and charge-time percentages, shield block, the Potion, Ether and Phoenix Down lores), the timer slot of the three timed effects, and a one-line explanation. |
-| [Augments: how a unit's augments, auto-statuses and status immunities are rebuilt from its character, gear, licenses and an enemy's script](augments.md) | How the augment set of a unit is rebuilt after every change: the 64 innate augments of a character row, an enemy's scripted augments, one augment per armor or accessory, up to eight per owned augment license; the difference applied to the augment layer; the statuses and immunities that gear and an enemy's script add; how enemy affinity changes survive the rebuild; and the HP, MP and Mist clamps at the end. |
-| [Damage formula: how an attack or a magick is resolved, from the hit, evade, block and parry rolls to the final number](damage-formula.md) | The resolver every action, status tick and effect goes through: the scratch values it resets, the context of merged statuses and effects the slots read, the first list that rolls hit, knockback, combo, evade, block and parry when the action executes, and the committed list that builds attack, defence and scale, applies statuses, augments, criticals and elements, and finishes the HP number, with the order a weapon attack and a magick run their slots in. |
-| [Elements: weakness, absorb, half damage, immunity, elemental potency, Oil, and weather and terrain scaling](elements.md) | How the eight elements change damage: where a unit's weak, absorb, half and immune elements and its elemental potency come from (equipment, an enemy's area row), the order the affinity stage tests them for magicks and for weapon attacks, how absorb and immunity reach the final number, Oil tripling fire and Float voiding earth, and the weather and terrain scaling of magick elements that the Agate Ring turns off. |
-| [Formula recipes: every damage recipe with its slot lists and the actions and weapons that use it](formula-recipes.md) | All 109 recipes of the recipe table at 0x01EF96C0: for each, the calculator slots of its first list (run when the action executes, deciding hit, evade and knockback) and of its committed list (damage and effects), and the shipped action rows and weapon rows that select it, with their names. |
-| [Formula slots: every calculator slot with what it computes, what it reads and which recipes run it](formula-slots.md) | All 202 slots of the calculator table at 0x01EFA5C0: for each, its function and size, the recipes whose first or committed list contain it, what it computes, the stats, action-row, weapon-row, result and scratch fields it reads and writes, the statuses and augment ids it tests, and the instruction sites that show it. |
-| [HP and KO: how damage and healing change HP, the HP floor and cap, revive from zero and what happens at KO](hp-and-ko.md) | The one function every HP change goes through: its flag bits and who passes them, the gates that refuse a change, the refusal of damage to a KO, Stone or X-Zone target, the floor and the cap (max HP, doubled by Bubble, frozen by Disease), revive when a heal lands on zero HP, and the KO sequence: the fallen message, the KO status, the killer, the death count and the group ledger. |
-| [Stats: how max HP, MP, Strength, Magick Power, Vitality, Speed, Attack Power, Defense, Magick Resist and evade are built, and their caps](stats.md) | How every combat stat of a unit is rebuilt from nothing: a party member's character row and grown values, an enemy's base plus growth times its level difference, the five equipment slots and their attribute records, the augments that add Strength, Magick Power or max HP, the caps (9,999 HP for the party, 32,767 for Espers, 99, 255 and 100), and how gaining or losing Confuse or Berserk in a rebuild cancels the action in flight. |
-| [Steal: the item chances, the three Thief's Cuffs rolls and the steal messages](steal.md) | How a Steal attempt picks from an enemy's common, uncommon and rare steal items: when an enemy has nothing left to steal, the single first-hit roll at 3, 10 and 55 percent, the three independent rolls at 6, 30 and 80 percent with Thief's Cuffs, the debug value that can force an item, how a won item reaches the inventory, and which battle message each outcome posts. |
-| [Unit stats fields: every field of a unit's combat stats record, what it holds, and what writes and reads it](unit-stats-fields.md) | Each field of the 0x1C8-byte combat stats record every battle unit carries (unit +0x698), from the kind byte and the party or enemy base values to the computed stats, status words, affinities, HP and MP, equipment, augment layers, timers, experience, license points, licenses and level, with its width, its meaning and the functions that write and read it. |
-| [Weapon formulas: each weapon type's damage recipe, bow, crossbow and gun rules, critical hits, and the Numerology, Traveler, Knot of Rust and Gil Toss recipes](weapon-formulas.md) | Which damage recipe each weapon class uses and the formula it runs: the stat scale per weapon type, the 12.5 % Attack Power variance, the random axe and hammer finisher, guns ignoring Defense and the evade bands, bows and crossbows losing accuracy in strong wind (wind class 2) unless the wielder has augment 2, the ranged critical hit, unarmed attacks, and the four action recipes whose damage is not a stat formula: the Numerology streak, the Traveler walk, the Knot of Rust and Dark Matter bank, and Gil Toss. |
+Jump to: [Damage and formulas](#damage-and-formulas) · [Stats, HP and augments](#stats-hp-and-augments)
+
+## Start here
+
+Start with these pages, in this order:
+
+1. [Damage formula](damage-formula.md): resolves one hit from start to finish
+2. [Elements](elements.md): adds elemental scaling
+3. [Weapon formulas](weapon-formulas.md): covers what each weapon changes
+4. [HP and KO](hp-and-ko.md): shows what the result does to HP
+
+## Damage and formulas
+
+How hits, elements, weapons and steals are calculated, and the recipes behind them.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Damage formula](damage-formula.md) | Explanation | How an attack or magick resolves, from hit and evade rolls to the final number. |
+| [Elements](elements.md) | Explanation | How weakness, absorb, immunity, potency, Oil and weather change elemental damage. |
+| [Weapon formulas](weapon-formulas.md) | Explanation | Each weapon type's damage recipe, critical hits and special weapon rules. |
+| [Steal](steal.md) | Explanation | How a steal rolls its item chances, including the Thief's Cuffs rolls. |
+| [Formula recipes](formula-recipes.md) | Reference table | Every damage recipe and the actions and weapons that use it. |
+| [Formula slots](formula-slots.md) | Reference table | Every calculator slot: what it computes and which recipes run it. |
+
+## Stats, HP and augments
+
+How a unit's stats, HP and augments are built and where they are held.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [HP and KO](hp-and-ko.md) | Explanation | How damage and healing change HP, its limits, revives and what happens at KO. |
+| [Augments](augments.md) | Explanation | How a unit's augments and immunities are rebuilt from character, gear and licenses. |
+| [Stats](stats.md) | Explanation | How each stat is built and what its caps are. |
+| [Augment list](augment-list.md) | Reference table | Every augment with its name, value, timer and the code reading it. |
+| [Unit stats fields](unit-stats-fields.md) | Reference table | Every field of a unit's combat stats record and who reads it. |

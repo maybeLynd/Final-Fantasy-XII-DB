@@ -1,9 +1,8 @@
----
-title: "Staff roll: the ending credits, every line in order, and how the roll script lays them out"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x0053F0D0, 0x0053DD20, 0x0053E380, 0x00511980, 0x005119A0, 0x005119F0, 0x00511890, 0x00511830"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Staff roll
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Staff roll: the ending credits, every line in order, and how the roll script lays them out | system | Menus and HUD | Menu screens | The staff roll after the ending: the script men_z0005 that plays it over movie 42, the recorder that turns its fsroll calls into lines, how a line's value picks a role from menu03.bin or a name from menu04.bin, the two line modes and the logo pictures, every one of the 950 lines in order with its text in the three text sets, and the credit rows no line shows. | 0x0053F0D0, 0x0053DD20, 0x0053E380, 0x00511980, 0x005119A0, 0x005119F0, 0x00511890, 0x00511830 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Clan Primer: the Hunts, Bestiary, Sky Pirate's Den and Traveler's Tips pages, how entries unlock, and the monster viewer"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x00574CB0, 0x00574E80, 0x0056F810, 0x00571A50, 0x005701B0, 0x005771F0, 0x00577550, 0x001846F0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Clan Primer
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Clan Primer: the Hunts, Bestiary, Sky Pirate's Den and Traveler's Tips pages, how entries unlock, and the monster viewer | system | Menus and HUD | Menu screens | How the Clan Primer opens from the Party Menu and straight back into Hunts, its four categories and when each shows, the family index and entry pages, the data manager that loads catalogs, text and pictures, how Traveler's Tips, Bestiary entries and their slots, hunts and Sky Pirate's Den statues unlock, the read marks behind the new-entry badge, and the monster viewer from gallery entry to the turntable drawn only in the menu. | 0x00574CB0, 0x00574E80, 0x0056F810, 0x00571A50, 0x005701B0, 0x005771F0, 0x00577550, 0x001846F0 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Control remapping: how the Config screen binds a key, the swap when a key is already in use, the keys that cannot be bound, the default profiles and how a change reaches the game"
-kind: "system"
-category: "Controls and input"
-addresses: "0x01F80F90, 0x0023C5C0, 0x001E1050, 0x00198A00, 0x01DF13E0, 0x00195DF0, 0x00198B60, 0x00198960, 0x002414B0"
----
+[Home](../../README.md) / [Controls and input](README.md) / Control remapping
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Control remapping: how the Config screen binds a key, the swap when a key is already in use, the keys that cannot be bound, the default profiles and how a change reaches the game | system | Controls and input | Keys, bindings and names | How remapping works: where the three keyboard profiles live, the Config screen's binding rows and which profiles each row can edit, what a row shows and the key names per keyboard layout, capturing a key, the assignment with its result codes, the yes-or-no swap when the key is in use, clearing a binding, the reserved keys, publishing a profile into the records the game reads, the Circle and Cross exchange, saving on leaving the screen, restoring the defaults, and the gaps a modder can hit. | 0x01F80F90, 0x0023C5C0, 0x001E1050, 0x00198A00, 0x01DF13E0, 0x00195DF0, 0x00198B60, 0x00198960, 0x002414B0 |
 
 ## What the player sees
 

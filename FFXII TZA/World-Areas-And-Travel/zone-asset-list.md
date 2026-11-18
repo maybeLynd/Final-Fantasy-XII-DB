@@ -1,9 +1,8 @@
----
-title: "Zone asset list: every zone the area loader can enter, with the files it loads and the models and foes it brings"
-kind: "reference"
-category: "World, areas and travel"
-addresses: "0x0032FCA0, 0x00264F10, 0x00264F40, 0x00264ED0, 0x003EA820, 0x00379A10, 0x001A7A50, 0x01EF9490, 0x00264FD0, 0x003635E0, 0x00331990, 0x00377B60, 0x003778B0, 0x00264F90, 0x0029C530"
----
+[Home](../../README.md) / [World, areas and travel](README.md) / Zone asset list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Zone asset list: every zone the area loader can enter, with the files it loads and the models and foes it brings | reference | World, areas and travel | Map data | All 708 zones the US script array names: each zone's map and region name, its script and its motion and package files, the zone's own map pack and the block pack, the map sounds the block pack lists, the area and its battle data, the remastered map art with its mesh and texture count, the models of the zone script's actor manifest and the foes it places; how the area loader 0x0032FCA0 and map_ref.bin name each file. | 0x0032FCA0, 0x00264F10, 0x00264F40, 0x00264ED0, 0x003EA820, 0x00379A10, 0x001A7A50, 0x01EF9490, 0x00264FD0, 0x003635E0, 0x00331990, 0x00377B60, 0x003778B0, 0x00264F90, 0x0029C530 |
 
 ## What it lists
 

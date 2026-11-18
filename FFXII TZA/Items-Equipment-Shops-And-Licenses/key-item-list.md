@@ -1,9 +1,8 @@
----
-title: "Key item list: every key item id with its name, sort order, icon and description"
-kind: "reference"
-category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF090, 0x02EBF088, 0x02EBF080, 0x02EBF078, 0x0031C5D0, 0x0031D1B6, 0x0031D218, 0x0031D26B, 0x0031D631, 0x0031D63E"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Key item list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Key item list: every key item id with its name, sort order, icon and description | reference | Items, equipment, shops and licenses | Items and inventory | All 512 key-item ids of the shipped battle_pack.bin, decoded from the three tables the key-item class reads (m_daiji_data, g_daiji_data and q_daiji_data): the id, the table and row, the name, the sort order, the icon frame, the description text and a one-line explanation; 183 ids are named key items and 329 are Reserve rows. | 0x02EBF090, 0x02EBF088, 0x02EBF080, 0x02EBF078, 0x0031C5D0, 0x0031D1B6, 0x0031D218, 0x0031D26B, 0x0031D631, 0x0031D63E |
 
 ## What it lists
 

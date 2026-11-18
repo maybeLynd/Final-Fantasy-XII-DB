@@ -1,9 +1,8 @@
----
-title: "Elements: weakness, absorb, half damage, immunity, elemental potency, Oil, and weather and terrain scaling"
-kind: "system"
-category: "Damage and battle formulas"
-addresses: "0x0038B6A0, 0x0038BE30, 0x0038D280, 0x0038B220, 0x002FEF30, 0x0038B010, 0x0038C940, 0x0038B950, 0x0026D910, 0x00263DD0"
----
+[Home](../../README.md) / [Damage and battle formulas](README.md) / Elements
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Elements: weakness, absorb, half damage, immunity, elemental potency, Oil, and weather and terrain scaling | system | Damage and battle formulas | Damage and formulas | How the eight elements change damage: where a unit's weak, absorb, half and immune elements and its elemental potency come from (equipment, an enemy's area row), the order the affinity stage tests them for magicks and for weapon attacks, how absorb and immunity reach the final number, Oil tripling fire and Float voiding earth, and the weather and terrain scaling of magick elements that the Agate Ring turns off. | 0x0038B6A0, 0x0038BE30, 0x0038D280, 0x0038B220, 0x002FEF30, 0x0038B010, 0x0038C940, 0x0038B950, 0x0026D910, 0x00263DD0 |
 
 ## What the player sees
 
@@ -269,3 +268,7 @@ ground indices 0-17 and 0 for indices 18-31. Classes 3 and 4 match no rule.
 - [Evaluation context](damage-formula.md) - the merged augment bits.
 - [Choosing the field environment variant](../World-Areas-And-Travel/weather.md)
   - where the environment and wind classes are published.
+
+---
+
+[← Damage formula](damage-formula.md) | [Weapon formulas →](weapon-formulas.md)

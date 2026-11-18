@@ -1,9 +1,8 @@
----
-title: "Native limits: the engine's fixed counts, capacities and ranges, where each is set and what happens past it"
-kind: "reference"
-category: "Engine core"
-addresses: "0x00316CD0, 0x003247F0, 0x002FCAC0, 0x003C1A20, 0x00409210, 0x0051CC30, 0x0018AD00, 0x0021A9F0, 0x00219400, 0x00217FD0, 0x0021BDB0, 0x0021CC10, 0x007B1E10, 0x007E32E0, 0x00392200"
----
+[Home](../../README.md) / [Engine core](README.md) / Native limits
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Native limits: the engine's fixed counts, capacities and ranges, where each is set and what happens past it | reference | Engine core | Glossary, ids and limits | Limits the executable fixes, one row each: what it bounds, its exact value, whether it is a count, a highest index, a range, a width or an address bound, the instruction or table that sets it, what the engine does past it, and the page that explains the mechanism. | 0x00316CD0, 0x003247F0, 0x002FCAC0, 0x003C1A20, 0x00409210, 0x0051CC30, 0x0018AD00, 0x0021A9F0, 0x00219400, 0x00217FD0, 0x0021BDB0, 0x0021CC10, 0x007B1E10, 0x007E32E0, 0x00392200 |
 
 ## What it lists
 

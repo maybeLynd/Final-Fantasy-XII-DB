@@ -1,9 +1,8 @@
----
-title: "Control names: every key and button name the game registers, the code each one stands for, and which names are aliases of one another"
-kind: "reference"
-category: "Controls and input"
-addresses: "0x00876C80, 0x00879570, 0x02EB83B8, 0x02EB9D80"
----
+[Home](../../README.md) / [Controls and input](README.md) / Control names
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Control names: every key and button name the game registers, the code each one stands for, and which names are aliases of one another | reference | Controls and input | Keys, bindings and names | Each name in the game's two input name registries, the key names and the channel names: the code its node holds, which is the code keymap.ini stores, the registries it is in, whether it is a pad button or a keyboard key, and the other names with the same code, with how the registries are built at start-up and why the mouse-button names bind pad buttons. | 0x00876C80, 0x00879570, 0x02EB83B8, 0x02EB9D80 |
 
 ## What it lists
 

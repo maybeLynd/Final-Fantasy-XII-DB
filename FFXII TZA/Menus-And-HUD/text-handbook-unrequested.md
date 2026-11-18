@@ -1,9 +1,8 @@
----
-title: "Unrequested handbook text: the story, world, person and knowledge books no Clan Primer page opens"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x0056F810, 0x00D23688, 0x00575710, 0x0039BEC0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Unrequested handbook text
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Unrequested handbook text: the story, world, person and knowledge books no Clan Primer page opens | reference | Menus and HUD | Game text tables | Every text slot of the four handbook families that ship complete but that no Clan Primer category lists, story, world, person and knowledge: the Japanese text the same in all nine language trees and given once, why no page shows it, its bundles and entry counts, and how to read its expansion characters. | 0x0056F810, 0x00D23688, 0x00575710, 0x0039BEC0 |
 
 ## What it lists
 

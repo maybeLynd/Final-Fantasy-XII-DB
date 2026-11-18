@@ -1,9 +1,8 @@
----
-title: "Reward package list: every reward package with its gil and items, and where it is named"
-kind: "reference"
-category: "Rewards: EXP, LP, gil and loot"
-addresses: "0x02EBF070, 0x002FD530, 0x0031C5D0, 0x0031D683, 0x00322C50"
----
+[Home](../../README.md) / [Rewards: EXP, LP, gil and loot](README.md) / Reward package list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Reward package list: every reward package with its gil and items, and where it is named | reference | Rewards: EXP, LP, gil and loot | Gil, prices and reward packages | All 512 reward packages (eis_data, ids 0x9000-0x91FF) of the shipped battle_pack.bin: the gil, the two items with their shipped names and counts, the package selectors and the number of script gives that name each package, and a one-line explanation; 300 packages give something and 212 are empty. | 0x02EBF070, 0x002FD530, 0x0031C5D0, 0x0031D683, 0x00322C50 |
 
 ## What it lists
 

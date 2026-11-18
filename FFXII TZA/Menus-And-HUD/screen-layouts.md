@@ -1,9 +1,8 @@
----
-title: "Screen layouts: the UISize layout files, every key they set, the loader that binds each key to its cell, and the screens that read them"
-kind: "format"
-category: "Menus and HUD"
-addresses: "0x001C6C00, 0x001CA600, 0x001AF470, 0x001FF4F0, 0x00200B80, 0x0024B120, 0x00184660, 0x001B24B0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Screen layouts
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Screen layouts: the UISize layout files, every key they set, the loader that binds each key to its cell, and the screens that read them | format | Menus and HUD | How menus work | The UISize.json and UISize_sd.json layout files: which one the game loads and the 1920 x 1080 frame it lays out in, the loader that binds 226 keys to their cells one by one, how a missing key becomes 0, the editor schema shipped beside them, the keys no code reads, the one key code overwrites, and for every key its cell, shipped value and the screens and functions that read it, listed in screen-layouts.tsv. | 0x001C6C00, 0x001CA600, 0x001AF470, 0x001FF4F0, 0x00200B80, 0x0024B120, 0x00184660, 0x001B24B0 |
 
 ## What the player sees
 

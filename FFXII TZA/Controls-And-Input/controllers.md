@@ -1,9 +1,8 @@
----
-title: "Controllers: how a gamepad is found, the three kinds of controller the game builds, plugging one in during play, and the Steam Input action names"
-kind: "system"
-category: "Controls and input"
-addresses: "0x00797910, 0x00796230, 0x00798A40, 0x00797690, 0x00792B70, 0x00792CB0, 0x00792AB0, 0x007999E0"
----
+[Home](../../README.md) / [Controls and input](README.md) / Controllers
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Controllers: how a gamepad is found, the three kinds of controller the game builds, plugging one in during play, and the Steam Input action names | system | Controls and input | How input works | How a pad becomes a controller: the start-up device walk and its two callbacks, the device types each accepts, the duplicate test, the Steam, XInput and DirectInput controller objects and the order they are tried in, the four-pad XInput limit, the XInput library the game loads and its pad-0 button read, the DirectInput set-up and its failure rules, the eighteen Steam Input action names, and the device-arrival message that repeats the walk. | 0x00797910, 0x00796230, 0x00798A40, 0x00797690, 0x00792B70, 0x00792CB0, 0x00792AB0, 0x007999E0 |
 
 ## What the player sees
 

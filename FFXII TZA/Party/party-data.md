@@ -1,9 +1,8 @@
----
-title: "Party data: every field of the block the save game keeps for the party, above the forty member stats records"
-kind: "reference"
-category: "Party"
-addresses: "0x02EBF190, 0x00233C10, 0x002370C0, 0x0030B6A0, 0x00320A40, 0x0031B9F0, 0x00327C40"
----
+[Home](../../README.md) / [Party](README.md) / Party data
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Party data: every field of the block the save game keeps for the party, above the forty member stats records | reference | Party | Party data | Each field of the 0x7410-byte party block behind 0x02EBF190: the magic and flag word, the forty member stats records, the owned-item counts and learned bits of every inventory class with their backups, the bazaar flags, the five slot maps and the leader selector, the walked distance, the summon and chocobo state, the party control mode words, the Traveler, Knot of Rust and Numerology counters, and the forty members' gambit banks, with each field's width, meaning, and the functions that write and read it. | 0x02EBF190, 0x00233C10, 0x002370C0, 0x0030B6A0, 0x00320A40, 0x0031B9F0, 0x00327C40 |
 
 ## What it lists
 

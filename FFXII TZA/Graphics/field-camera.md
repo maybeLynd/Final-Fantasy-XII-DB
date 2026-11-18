@@ -1,9 +1,8 @@
----
-title: "Field camera: the follow camera, its stick and mouse control, wall avoidance and target framing"
-kind: "system"
-category: "Graphics"
-addresses: "0x00259990, 0x003D9930, 0x02097D30, 0x0032AEC0, 0x0032B1C0, 0x0032B390, 0x0032B4D0, 0x0032DF40, 0x0032C910, 0x0032D3D0, 0x0032D620, 0x0032DC00, 0x0032C650, 0x0032B9C0, 0x0032CF50, 0x0032C3E0, 0x0032C180, 0x0032C2B0, 0x0032BCC0, 0x0032BB00, 0x0032BEB0, 0x0032CD20, 0x0032B900, 0x0032CA70, 0x0032D250, 0x0032D000, 0x001825C0, 0x001894D0, 0x0032B600, 0x0032B790"
----
+[Home](../../README.md) / [Graphics](README.md) / Field camera
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Field camera: the follow camera, its stick and mouse control, wall avoidance and target framing | system | Graphics | Cameras | The camera that follows the party leader in the field: the camera-record mode that runs it, the orbit of heading and height level and the curve that turns the level into pitch and distance, the stick, mouse and recentre input, Camera Auto-Rotation, the probes and sweeps that keep the camera out of walls and floors, the over-the-shoulder framing of a targeted actor, and the depth-of-field focus it requests. | 0x00259990, 0x003D9930, 0x02097D30, 0x0032AEC0, 0x0032B1C0, 0x0032B390, 0x0032B4D0, 0x0032DF40, 0x0032C910, 0x0032D3D0, 0x0032D620, 0x0032DC00, 0x0032C650, 0x0032B9C0, 0x0032CF50, 0x0032C3E0, 0x0032C180, 0x0032C2B0, 0x0032BCC0, 0x0032BB00, 0x0032BEB0, 0x0032CD20, 0x0032B900, 0x0032CA70, 0x0032D250, 0x0032D000, 0x001825C0, 0x001894D0, 0x0032B600, 0x0032B790 |
 
 ## What the player sees
 

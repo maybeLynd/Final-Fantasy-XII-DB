@@ -1,9 +1,8 @@
----
-title: "Spatial sound: the listener, the shapes a sound source can take, and how distance and shape set its volume and direction"
-kind: "system"
-category: "Sound and music"
-addresses: "0x007BBFB0, 0x02EADE08, 0x007EF630, 0x00362850, 0x007F0320, 0x007F25E0, 0x002DE800, 0x007A5E50"
----
+[Home](../../README.md) / [Sound and music](README.md) / Spatial sound
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Spatial sound: the listener, the shapes a sound source can take, and how distance and shape set its volume and direction | system | Sound and music | Sound effects and voices | How a placed sound is heard: the five sound-source classes and the three the game builds, where the listener stands and faces, how each shape finds its nearest point and whether it is in range, the shared distance-to-volume and direction formula with the shipped linear curve, the distance values a sound can read, how map, character and moving sounds become sources, and the 32-millisecond pass that updates them. | 0x007BBFB0, 0x02EADE08, 0x007EF630, 0x00362850, 0x007F0320, 0x007F25E0, 0x002DE800, 0x007A5E50 |
 
 ## What the player sees
 
@@ -279,9 +278,9 @@ pan and volume step `0x00361810`, and by the two calls that hand it to the drive
 | `0x022CBB0C` | `f32` | 0 | the listener's fourth float: 1.0, or in mode 1 the fourth float of the stored position | `0x00362850`, 1.0: mode 0 (`0x003629B5`), mode 2 (`0x00362A4A`); mode 1 with the 16-byte copy (`0x00362A9A`); `0x00362F70`, 1.0 with the 16-byte store (`0x00362FCC`) | through the address `0x022CBB00`, only as part of 16-byte loads: `0x003631B0` (`0x0036327D`), `0x00362230` (`0x00362390`), `0x00363FD0` (`0x00363FE4`), `0x003623C0` (`0x00362414`, `0x003626B6`), `0x00361DE0` (`0x00361E1B`, `0x00362138`) |
 | `0x022CBA8C` | `f32` | 0 | the listener's facing, in radians: `0x00361810` subtracts it from the direction of a sound to get the sound's pan (`0x003619C6`-`0x00361A25`) | `0x00362850`: mode 0 (`0x00362925`), mode 2 (`0x00362A79`), mode 1 (`0x00362A92`); `0x00362F70`, 0 (`0x00362FC6`) | `0x00361BF0` (`0x00361C76`), `0x00361CF0` (`0x00361D7E`) and `0x003631B0` (`0x003632EB`), which pass it to `0x00361810` (`0x003619D0`); `0x00362850` (`0x00362AAC`) and `0x00362F70` (`0x0036310E`), which pass it to `0x002DF560` and `0x002DF2C0`, where `0x00211340` and `0x00210F60` overwrite that argument unread (`0x002113A2`, `0x00210FC2`) |
 
-No other instruction reaches these four. The cutscene skip masks `0x022CB9C0` and `0x022CB9D8`, `u32[6]` each, are the
-only indexed tables below them (`0x003604D0`, `0x003605A0`, `0x00360710`, `0x00360980`, `0x00360A50`), and they end at
-`0x022CB9F0`.
+No other instruction reaches these four. The music track slots `0x022CB9F0`-`0x022CBA63` ([music](music.md)) and the
+cutscene skip masks `0x022CB9C0` and `0x022CB9D8`, `u32[5]` each, `0x18` bytes apart (`0x003604D0`, `0x003605A0`, `0x00360710`,
+`0x00360980`, `0x00360A50`), are the indexed tables below them.
 
 ### The layer's pools
 

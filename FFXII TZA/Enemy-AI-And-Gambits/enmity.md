@@ -1,9 +1,8 @@
----
-title: "Enmity: the hidden threat table that decides who an enemy attacks, what raises it, how it spreads and how it decays"
-kind: "system"
-category: "Enemy AI and gambits"
-addresses: "0x003216E0, 0x00321850, 0x003219D0, 0x00321B00, 0x00321530, 0x00321D30, 0x003215C0, 0x00321630, 0x00321770"
----
+[Home](../../README.md) / [Enemy AI and gambits](README.md) / Enmity
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Enmity: the hidden threat table that decides who an enemy attacks, what raises it, how it spreads and how it decays | system | Enemy AI and gambits | Enemy decisions | How each enemy keeps one threat byte per party member: the three enmity numbers every action carries (to the target, spread to other enemies, drawn from the rest of the party), the +10 first-grudge boost and the seeding of every other member, the floor of 1, the decay of 10 every 30 steps while the enemy is not engaged, what KO, Stone, X-Zone and leaving the fight reset, the two orders that change it, and how the enemy AI reads it to pick a target. | 0x003216E0, 0x00321850, 0x003219D0, 0x00321B00, 0x00321530, 0x00321D30, 0x003215C0, 0x00321630, 0x00321770 |
 
 ## What the player sees
 

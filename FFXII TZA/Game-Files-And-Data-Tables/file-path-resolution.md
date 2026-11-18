@@ -1,9 +1,8 @@
----
-title: "File path resolution: how a file name becomes bytes through the RAM file cache or the archive, the stream reader, and what lives under .dat and .bin"
-kind: "system"
-category: "Game files and data tables"
-addresses: "0x00597970, 0x00597930, 0x0059EE90, 0x0059D920, 0x0059D4B0, 0x0059BD40, 0x0059FDA0, 0x0059FD10, 0x0059ED70, 0x00D26C60, 0x00D26C90, 0x001D6B20, 0x001D6B90, 0x001D6B70, 0x00865390, 0x001DB050, 0x01F83440, 0x01F83441, 0x001D6D20, 0x0020C1B0, 0x0020C440, 0x00674A00, 0x0020C300, 0x00217A60, 0x00217A70, 0x00217AD0, 0x0019AEE0, 0x0059A9B0, 0x001D6BB0, 0x0020BFA0, 0x0020B130, 0x001D6A20, 0x0020B680, 0x0020B5F0, 0x0020B0F0, 0x0020B840, 0x001D6AA0, 0x0020B9A0, 0x00599250, 0x00D27930, 0x00D27910, 0x00D27948, 0x00597A20, 0x00597A70, 0x0059BD80, 0x0059D900, 0x0059FBA0, 0x0059D510, 0x0020C150, 0x0020B0D0, 0x0020B150, 0x0020C560"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / File path resolution
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| File path resolution: how a file name becomes bytes through the RAM file cache or the archive, the stream reader, and what lives under .dat and .bin | system | Game files and data tables | Archives and file loading | How the game opens a file by name: the PStreamReaderFile stream and its read, seek, open and close slots, the resolver with its selector and log tags, route 1 into the RAM file cache (the upper-case key, the 33-multiplicative hash, the name filter, hits, stamps and views) and route 2 into the archive (the lower-case key and MD5), how an archive hit is copied into the cache, the cache's memory budget, insertion, eviction and view release, and the formats that share the .dat and .bin extensions. | 0x00597970, 0x00597930, 0x0059EE90, 0x0059D920, 0x0059D4B0, 0x0059BD40, 0x0059FDA0, 0x0059FD10, 0x0059ED70, 0x00D26C60, 0x00D26C90, 0x001D6B20, 0x001D6B90, 0x001D6B70, 0x00865390, 0x001DB050, 0x01F83440, 0x01F83441, 0x001D6D20, 0x0020C1B0, 0x0020C440, 0x00674A00, 0x0020C300, 0x00217A60, 0x00217A70, 0x00217AD0, 0x0019AEE0, 0x0059A9B0, 0x001D6BB0, 0x0020BFA0, 0x0020B130, 0x001D6A20, 0x0020B680, 0x0020B5F0, 0x0020B0F0, 0x0020B840, 0x001D6AA0, 0x0020B9A0, 0x00599250, 0x00D27930, 0x00D27910, 0x00D27948, 0x00597A20, 0x00597A70, 0x0059BD80, 0x0059D900, 0x0059FBA0, 0x0059D510, 0x0020C150, 0x0020B0D0, 0x0020B150, 0x0020C560 |
 
 ## What the player sees
 
@@ -350,3 +349,7 @@ flags `0x01F83440` and `0x01F83441`, and each open stream's backing fields.
 - [Bigfile archive](bigfile-archive.md): the archive lookup, its reader handles and the block reads.
 - [Prefetch manifests](prefetch-manifests.md): the token loop that resolves names with selector 5.
 - [Texture animation lists](texture-animation-lists-ta.md): the same 33-multiplicative hash.
+
+---
+
+[← Bigfile archive](bigfile-archive.md) | [File requests and the read queue →](file-requests-and-the-read-queue.md)

@@ -1,9 +1,8 @@
----
-title: "Text drawing: how a line of menu text becomes glyph quads, the drawing classes that draw them, and the border shader that outlines it"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x001E8070, 0x001E8580, 0x002142A0, 0x00213FE0, 0x00212E70, 0x00213140, 0x00214210, 0x0209D490"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Text drawing
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Text drawing: how a line of menu text becomes glyph quads, the drawing classes that draw them, and the border shader that outlines it | system | Menus and HUD | Fonts and text drawing | How a glyph becomes six vertices in a per-font batch, how the text flush turns the batches into drawing objects, the eight DynGeo drawing classes and their three shapes, the shared ten-layer draw body and its Final and Shadow variants, how menu text is drawn as a white mask, a border shader pass, the coloured glyphs and one composite quad, the pre-drawn shadow atlas path and the aspect row the shipped settings leave off, and where the painter's state is kept. | 0x001E8070, 0x001E8580, 0x002142A0, 0x00213FE0, 0x00212E70, 0x00213140, 0x00214210, 0x0209D490 |
 
 ## What the player sees
 

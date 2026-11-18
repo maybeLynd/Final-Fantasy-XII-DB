@@ -1,9 +1,8 @@
----
-title: "Enemy respawning: death counts, cooldowns, the group table that wakes a zone script, and the two-area memory"
-kind: "system"
-category: "Enemy spawning"
-addresses: "0x00300530, 0x002395A0, 0x0032A100, 0x0032A160, 0x0032A150, 0x00235F50, 0x00235FB0, 0x002366E0, 0x00236670, 0x00235720, 0x00306E60, 0x00239710, 0x0050F8C0, 0x00306F00, 0x003250F0, 0x00307110, 0x00307030, 0x003070E0, 0x00233D20, 0x0026ADC0, 0x00307140, 0x00238B70, 0x00238AE0, 0x00307090, 0x002342F0, 0x00233780, 0x002368D0, 0x00235340, 0x00235330, 0x00237DF0, 0x00233C10, 0x00233440, 0x00233550, 0x00234990, 0x002352E0, 0x00300E40, 0x002350C0, 0x00328370, 0x003148F0"
----
+[Home](../../README.md) / [Enemy spawning](README.md) / Enemy respawning
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Enemy respawning: death counts, cooldowns, the group table that wakes a zone script, and the two-area memory | system | Enemy spawning | Spawning and respawning | What happens to a spawned enemy after it dies: the death count, the second stamp and the per-entry rolled cooldown and death limit, the clock the stamp is measured on and what a runtime reset does to it, the two readers of the cooldown and how they differ, the group table that records member deaths and completes a group when every registered member is dead, the lock and the word a completed group posts for the zone script, the two spawn-keep banks that remember the last two areas and the return window that decides whether a bank is kept, and what the save image carries of all this. | 0x00300530, 0x002395A0, 0x0032A100, 0x0032A160, 0x0032A150, 0x00235F50, 0x00235FB0, 0x002366E0, 0x00236670, 0x00235720, 0x00306E60, 0x00239710, 0x0050F8C0, 0x00306F00, 0x003250F0, 0x00307110, 0x00307030, 0x003070E0, 0x00233D20, 0x0026ADC0, 0x00307140, 0x00238B70, 0x00238AE0, 0x00307090, 0x002342F0, 0x00233780, 0x002368D0, 0x00235340, 0x00235330, 0x00237DF0, 0x00233C10, 0x00233440, 0x00233550, 0x00234990, 0x002352E0, 0x00300E40, 0x002350C0, 0x00328370, 0x003148F0 |
 
 ## What the player sees
 
@@ -540,3 +539,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - Core runtime: `0x00306570` is called by `0x002341C0`; `0x0030FE60` is called by `0x002341C0`; `0x00319B10` is called by
   `0x002341C0`; `0x0031BD60` is called by `0x002341C0`; those functions are documented on
   [frame update order](../Engine-Core/frame-update-order.md).
+
+---
+
+[← Enemy spawning](enemy-spawning.md) | [Spawn record fields →](spawn-record-fields.md)

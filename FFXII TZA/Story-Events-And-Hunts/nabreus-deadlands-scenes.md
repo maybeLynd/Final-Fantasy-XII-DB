@@ -1,9 +1,8 @@
----
-title: "Nabreus Deadlands scenes: each story scene with its dialogue, story counter values and what follows"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Nabreus Deadlands scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Nabreus Deadlands scenes: each story scene with its dialogue, story counter values and what follows | reference | Story, events and hunts | Scenes and scripts by area / Nabreus Deadlands and the Necrohol | The two scene scripts of Nabreus Deadlands that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the story counter value written with it, and the map that follows. | 0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00 |
 
 ## What it lists
 

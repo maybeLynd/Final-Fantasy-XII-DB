@@ -1,9 +1,8 @@
----
-title: "Image hardening: the executable's load address, DEP, Control Flow Guard and stack cookies as built"
-kind: "system"
-category: "Compiler and C runtime"
-addresses: "0x00808EE4, 0x00809B8C, 0x00808C40, 0x00809654, 0x00809620, 0x00809728, 0x0080973C, 0x01F44830, 0x01F44838, 0x008C31C0, 0x008C31C8, 0x0016D6A0, 0x00896270, 0x00809958, 0x0059A030, 0x0059D2D0, 0x01F2CDA0, 0x02CA9D91, 0x0067F700, 0x00594EB0, 0x00594350, 0x02D3E880, 0x00165F80, 0x008B1B00"
----
+[Home](../../README.md) / [Compiler and C runtime](README.md) / Image hardening
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Image hardening: the executable's load address, DEP, Control Flow Guard and stack cookies as built | system | Compiler and C runtime | Program start-up and memory | What the PE headers and the code of FFXII_TZA.exe say about its protections: a preferred load address with relocations shipped and no ASLR opt-in, so only mandatory ASLR moves it, DEP requested with no writable and executable section, Control Flow Guard instrumentation in the runtime that the loader never switches on, live per-process stack cookies and range checks that fast-fail the process, the shared do-nothing body at 0x0016D6A0, and the teardowns that end in it, including Phyre's 12 by 12 scalar-conversion tree. | 0x00808EE4, 0x00809B8C, 0x00808C40, 0x00809654, 0x00809620, 0x00809728, 0x0080973C, 0x01F44830, 0x01F44838, 0x008C31C0, 0x008C31C8, 0x0016D6A0, 0x00896270, 0x00809958, 0x0059A030, 0x0059D2D0, 0x01F2CDA0, 0x02CA9D91, 0x0067F700, 0x00594EB0, 0x00594350, 0x02D3E880, 0x00165F80, 0x008B1B00 |
 
 ## What the player sees
 

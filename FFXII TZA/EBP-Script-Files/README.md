@@ -1,16 +1,38 @@
+[Home](../../README.md) / EBP script files
+
 # EBP script files
 
 The format of the .ebp files that hold area and event scripts.
 
-| Page | What you will find |
-|---|---|
-| [Actor manifest: the script section that lists the models its bind verbs name by position](ebp-actor-manifest.md) | Section 12 of an .ebp script: a count and a list of 32-bit bound ids, each a model number and a letter class, stored on the script's actor manager at +0x100 and read back by index whenever a bind verb is given an argument above 0xFFFFFF; the loader, the reader, the 60,939 shipped entries and their letters, and the rules for editing the table. |
-| [ATEL debug companions: the source, message and symbol files shipped beside the four control scripts, and why the game never opens them](atel-debug-companions.md) | The .sbn, .msb and .dbg files of the control scripts ctrl, btlctrl, evctrl and mapctrl in `ps2data/image/ff12/<in\|ch>/bin`: the script source text with a paged line map, the debug menu messages, and a symbol database of source files, variables, global variables and native command names. No path in the executable names them, and the sibling loader that knows their extensions asks every size with kind 0xFF, which 0x0032E400 answers with -1, then returns before registering anything. |
-| [EBP camera shake: the CML1 shake list and the SHK1 curves that make a scripted camera tremble](ebp-camera-shake.md) | Sections 10 and 11 of an .ebp script: the CML1 list whose rows the shake verbs name and the SHK1 bank of shakes and curves it indexes; how both are bound to an actor manager and what the load does to them, how a shake's 32 curve slots drive eight random sine oscillators and what each output moves on screen, the shipped banks in all nine language trees, and the rules an edit must follow. |
-| [EBP camera tables: the CML1 shot list and the CAM7 shots a script's camera verbs play](ebp-camera-tables.md) | Sections 8 and 9 of an .ebp script: the CML1 list whose rows a script's camera verbs name and the CAM7 table of shots, ease curves and paths those rows index; how both are bound to an actor manager and what the load does to them, the shot record's key and segment command stream as the player reads it, the attachment word, the curve and path evaluators, the shipped tables in all nine language trees, and the rules an edit must follow. |
-| [EBP navigation icons: the NAVIICN2 block a field map script carries for its minimap markers](ebp-navigation-icons.md) | Section 4 of a field map's .ebp script: the NAVIICN2 icon block bound to one global, the accessors that read it, how each icon kind names a position entry of the zone script, which kinds and icons the minimap shows and where it places them, the verb that moves an actor to an icon's object, the shipped blocks, and the rules an edit must follow. |
-| [EBP script container: the twenty-slot directory of every zone and event script, and the walk that hands each section to its loader](ebp-script-container.md) | The .ebp file: how a zone or event script is requested by kind and index with its companion files, read whole into a resource arena, and walked by one function that dispatches each present section of its twenty-slot directory to its own handler; the header and section table, the pending word that holds the script back until every part is bound, the teardown, and the shipped files measured over all nine language trees. |
-| [EBP script image: the section-0 header, actor directory, function and jump tables and actor lists a zone or event script runs from](ebp-script-image.md) | Section 0 of every .ebp container: the 0x90-byte header and the tables it points at (constant pools, variable descriptors, the actor directory with each actor's function table, jump table and entry-slot footer, the actor lists the group request opcodes walk, and the authored records later readers fetch), how the slot-0 handler and the bind attach it to a script manager and how each actor record is built from its directory entry, with the shipped images measured. |
-| [EBP text sections: the message bank and the field-sign caption bank a script's text ids index](ebp-text-sections.md) | Sections 2 and 3 of an .ebp script: the offset-table layout both banks share, the flag bit section 2 carries, how each bank is bound to its actor manager, the lookups that turn a text id into a string and what they fail to check, every verb that reads them and where the text ends up on screen, the shipped banks in all nine language trees, and the rules an edit must follow. |
-| [LGT2 light sets: the 0x70-byte light records and chunk tables of an event script's lighting, how they are bound into a light group and how the renderer picks them](ebp-lighting-lgt2.md) | Section 14 of an event .ebp, magic LGT2: a header, an array of 0x70-byte light records and a chain of typed chunks (range, cut list, id index, curve table). The binder 0x0037AA90 stores the chunks into one of five 0x50-byte light groups at 0x02EBF420, rewrites each record's priority byte through a six-entry table and marks the group ready; the per-frame collector 0x0037AD40 and the object light pass 0x003ACC10 read the records. Shipped in 1,260 event scripts, with the rules an edited light set must follow. |
-| [Position entries (FF12POS3): a zone's authored points, boxes and ellipses, the accessor that copies them and the systems that read them](ebp-position-entries.md) | Section 16 of a zone .ebp, magic FF12POS3 and named POSENT by the engine: a 16-byte header and 0x30-byte records holding a type (point, box or ellipse), two extents, a position and a heading. The section is bound whole into field root 0 (0x02B59D48) and read through one accessor, 0x003DFD00, by spawn placement, the enemy wander orders, the AI distance condition, two fixed-entry steering routines and the position verbs; also the older-layout reader behind getcrystalid and getanchorid, the 4,653 shipped tables and the editing rules. |
+Jump to: [Script files](#script-files) · [Script sections](#script-sections) · [Debug files](#debug-files)
+
+## Script files
+
+The directory of a zone or event script and the image its code runs from.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [EBP script container](ebp-script-container.md) | Format | The section directory of every script and how each section reaches its loader. |
+| [EBP script image](ebp-script-image.md) | Format | The header, actor directory and function tables a script runs from. |
+
+## Script sections
+
+The data sections a script can carry beside its code.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Actor manifest](ebp-actor-manifest.md) | Format | The section listing the models a script's bind verbs name. |
+| [EBP camera shake](ebp-camera-shake.md) | Format | The shake lists and curves that make a scripted camera tremble. |
+| [EBP camera tables](ebp-camera-tables.md) | Format | The shot lists a script's camera verbs play. |
+| [EBP navigation icons](ebp-navigation-icons.md) | Format | The block a map script carries for its minimap markers. |
+| [EBP text sections](ebp-text-sections.md) | Format | The message and field-sign banks a script's text ids refer to. |
+| [LGT2 light sets](ebp-lighting-lgt2.md) | Format | The light records of an event script and how the renderer picks them. |
+| [Position entries (FF12POS3)](ebp-position-entries.md) | Format | A zone's authored points, boxes and ellipses and what reads them. |
+
+## Debug files
+
+Files shipped beside the control scripts.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [ATEL debug companions](atel-debug-companions.md) | Explanation | The debug files shipped beside the control scripts, and why they go unopened. |

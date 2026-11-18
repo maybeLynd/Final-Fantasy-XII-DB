@@ -1,9 +1,8 @@
----
-title: "PS2-era .bin families: every .bin file family under ps2data, the loader that reads it and what it holds"
-kind: "reference"
-category: "Game files and data tables"
-addresses: "0x002DF9A0, 0x01E0280C, 0x0032E400, 0x0032E620, 0x00249210, 0x00249180, 0x00384420, 0x002368D0, 0x00238260, 0x002385D0, 0x01E09F68, 0x00378540, 0x00268750, 0x002467A0, 0x00246A10, 0x00280750, 0x00280670, 0x002808D0, 0x00280980, 0x00280AD0, 0x003658F0, 0x003643A0, 0x0039C3F0, 0x0039C150, 0x0036FFF0, 0x0037CCC0, 0x00259DF0, 0x003DCBC0, 0x0029CED0, 0x002C8EE0, 0x00291C80, 0x00561390"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / PS2-era .bin families
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| PS2-era .bin families: every .bin file family under ps2data, the loader that reads it and what it holds | reference | Game files and data tables | Data tables and configs | One row per .bin family in the archive's ps2data tree (146 families, 1,439 files): its locales and size, leading bytes, the resource kind and id the path arrays give it, which locale copies the executable names and which copy each of the twelve languages reads, the function that requests it, what it holds and the page that covers it. Also the shared pack directory, the 20 families no path names, and the loose battle tables that repeat battle_pack.bin entries. Every file of the &lt;lang&gt;/bin and test_battle folders is listed on its own, with its header, the copies with the same bytes, the languages that read it, and for a battle table how it compares with the pack. | 0x002DF9A0, 0x01E0280C, 0x0032E400, 0x0032E620, 0x00249210, 0x00249180, 0x00384420, 0x002368D0, 0x00238260, 0x002385D0, 0x01E09F68, 0x00378540, 0x00268750, 0x002467A0, 0x00246A10, 0x00280750, 0x00280670, 0x002808D0, 0x00280980, 0x00280AD0, 0x003658F0, 0x003643A0, 0x0039C3F0, 0x0039C150, 0x0036FFF0, 0x0037CCC0, 0x00259DF0, 0x003DCBC0, 0x0029CED0, 0x002C8EE0, 0x00291C80, 0x00561390 |
 
 ## What it lists
 

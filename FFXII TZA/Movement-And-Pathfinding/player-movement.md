@@ -1,9 +1,8 @@
----
-title: "Player movement: how the left stick moves the controlled character, the walk and run bands, the camera-relative turn, and the locks that stop it"
-kind: "system"
-category: "Movement and pathfinding"
-addresses: "0x00358C60, 0x00358CB0, 0x003594E0, 0x00358A20, 0x004742A0, 0x00264DF0, 0x0026D810, 0x002EC5B0, 0x002E9BB0, 0x0026B5A0, 0x0026A0D0, 0x002681D0, 0x00317E60, 0x00235EA0, 0x003045A0, 0x002E7E50, 0x00265680, 0x00265720, 0x00265830, 0x00267330, 0x00358B40, 0x00358BC0, 0x003593A0, 0x003590E0, 0x00359410, 0x00358EE0, 0x00358F90, 0x00359200, 0x00359250, 0x003592C0, 0x00359330, 0x0023B040, 0x0026D6D0"
----
+[Home](../../README.md) / [Movement and pathfinding](README.md) / Player movement
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Player movement: how the left stick moves the controlled character, the walk and run bands, the camera-relative turn, and the locks that stop it | system | Movement and pathfinding | How actors move | The one actor per tick that receives analogue movement: which handle the stick drives and how it changes, the stick vector with its dead zone and the four magnitude bands that pick walk or run speed, the keyboard walk toggle, the camera-relative rotation and the yaw smoothing, the per-tick application of speed, facing, desired heading and animation mode, the motion-flag word on the body, and the suppression word and four lock bytes that scripts, status and the party controller use to stop the character. | 0x00358C60, 0x00358CB0, 0x003594E0, 0x00358A20, 0x004742A0, 0x00264DF0, 0x0026D810, 0x002EC5B0, 0x002E9BB0, 0x0026B5A0, 0x0026A0D0, 0x002681D0, 0x00317E60, 0x00235EA0, 0x003045A0, 0x002E7E50, 0x00265680, 0x00265720, 0x00265830, 0x00267330, 0x00358B40, 0x00358BC0, 0x003593A0, 0x003590E0, 0x00359410, 0x00358EE0, 0x00358F90, 0x00359200, 0x00359250, 0x003592C0, 0x00359330, 0x0023B040, 0x0026D6D0 |
 
 ## What the player sees
 
@@ -331,3 +330,7 @@ lock bytes, the walk toggle and its latch; the context's speed and desired headi
 - [Facing and steering](facing-and-steering.md): the facing setter and the steering request.
 - [Movement bodies and separation](movement-bodies-and-separation.md): the motion-flag word's
   reader.
+
+---
+
+[Movement step →](heading-speed-to-position-delta.md)

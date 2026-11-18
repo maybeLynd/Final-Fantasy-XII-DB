@@ -1,9 +1,8 @@
----
-title: "PS2 CPU emulation: the in-memory PS2 register set that translated assembly runs on"
-kind: "system"
-category: "Engine core"
-addresses: "0x0036D990, 0x0022CB90, 0x0036D9E0, 0x0036D930, 0x0036D8E0, 0x0036DD80, 0x0036DD90, 0x0036DDA0, 0x00398F90, 0x00397910, 0x003970A0, 0x0025A8E0, 0x0024AD00, 0x00363FD0, 0x0026EE00, 0x0022A0B0, 0x0017D6E0, 0x003D2B60, 0x003CD840"
----
+[Home](../../README.md) / [Engine core](README.md) / PS2 CPU emulation
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| PS2 CPU emulation: the in-memory PS2 register set that translated assembly runs on | system | Engine core | PlayStation emulation | The PlayStation 2 register set the remaster keeps in memory at 0x022D8F08 and 0x01EF93F0: the 32 general-purpose registers, HI and LO, the vector unit's 31 vector registers, ACC, Q and the CLIP flag, with the start-up routine that names the layer, the clear and the register save and restore, the 252 functions that compute through it, and the three shared routines (point transform, matrix product, matrix copy) that most of the engine reaches it by. | 0x0036D990, 0x0022CB90, 0x0036D9E0, 0x0036D930, 0x0036D8E0, 0x0036DD80, 0x0036DD90, 0x0036DDA0, 0x00398F90, 0x00397910, 0x003970A0, 0x0025A8E0, 0x0024AD00, 0x00363FD0, 0x0026EE00, 0x0022A0B0, 0x0017D6E0, 0x003D2B60, 0x003CD840 |
 
 ## What the player sees
 

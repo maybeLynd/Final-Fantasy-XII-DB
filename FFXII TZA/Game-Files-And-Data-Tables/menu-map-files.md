@@ -1,9 +1,8 @@
----
-title: "Map menu files: the sloc picture files and the amap, cmap, gmap, lmap and wmap tables behind the location map and the World Map"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x02B457E0, 0x003BC450, 0x003BC2D0, 0x00253780, 0x020927D0, 0x003C1F00, 0x003C26C0, 0x003BF520, 0x003BF5E0, 0x003BE2D0, 0x003BECA0, 0x003DFBB0, 0x003DFB50, 0x003C0340, 0x003BF430, 0x003BFF20, 0x003C1070, 0x003C0380, 0x003BE680, 0x003C2320, 0x003BCDE0, 0x003BDFF0, 0x003C17E0, 0x003C1680, 0x003C1DF0, 0x003BD950, 0x003BD890, 0x003BD8F0, 0x003BD040, 0x003BD480, 0x003C08B0, 0x003BCCA0, 0x003BFE10, 0x003C0250, 0x003C1D70, 0x00254380, 0x002543A0, 0x002543D0, 0x002543F0, 0x003BEC50, 0x003C4AE0, 0x003BF920, 0x003C0450, 0x003C12B0"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Map menu files
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Map menu files: the sloc picture files and the amap, cmap, gmap, lmap and wmap tables behind the location map and the World Map | format | Game files and data tables | Menu and map files | The menumap files under worldmap/: the 48 sloc files holding each sub-location's zone pictures, their sizes and icon sets; lmap, the zones, markers, links and zoom levels of every sub-location; cmap, the sub-location directory, the per-map exploration thresholds and the guide-line schedule; gmap, the guide lines; wmap, the World Map's regions, areas, routes and Strahl destinations; amap, the area names, area maps and group-to-area table. Covers the layouts as the readers read them, the map-data widget that loads them, what each reader does on the map screens, the shipped files and the rules an edit must follow. | 0x02B457E0, 0x003BC450, 0x003BC2D0, 0x00253780, 0x020927D0, 0x003C1F00, 0x003C26C0, 0x003BF520, 0x003BF5E0, 0x003BE2D0, 0x003BECA0, 0x003DFBB0, 0x003DFB50, 0x003C0340, 0x003BF430, 0x003BFF20, 0x003C1070, 0x003C0380, 0x003BE680, 0x003C2320, 0x003BCDE0, 0x003BDFF0, 0x003C17E0, 0x003C1680, 0x003C1DF0, 0x003BD950, 0x003BD890, 0x003BD8F0, 0x003BD040, 0x003BD480, 0x003C08B0, 0x003BCCA0, 0x003BFE10, 0x003C0250, 0x003C1D70, 0x00254380, 0x002543A0, 0x002543D0, 0x002543F0, 0x003BEC50, 0x003C4AE0, 0x003BF920, 0x003C0450, 0x003C12B0 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Effect file list: every effect file the game requests, by kind and id, with the actions, script verbs and models that use it and what it holds"
-kind: "reference"
-category: "Graphics"
-addresses: "0x002DF9A0, 0x002FC860, 0x002FCFF0, 0x002DEBB0, 0x002DDE20, 0x0030A190, 0x00328360, 0x0042FCE0, 0x002FCBF0, 0x003B2310, 0x0036E320, 0x003576D0, 0x003B0660, 0x0019FFD0, 0x001A09E0"
----
+[Home](../../README.md) / [Graphics](README.md) / Effect file list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Effect file list: every effect file the game requests, by kind and id, with the actions, script verbs and models that use it and what it holds | reference | Graphics | Visual effects / Effect Files | All 2,051 effect files (.efx) the executable names, decoded row by row: the resource kind and id, the path and language folder, the size and whether the archive ships it, which voice and text languages use the copy, the event effect number and variant, what loads instead when the file is missing, the actions, script verbs, start-up builder or models that request it, and the chunk counts with their texture records. | 0x002DF9A0, 0x002FC860, 0x002FCFF0, 0x002DEBB0, 0x002DDE20, 0x0030A190, 0x00328360, 0x0042FCE0, 0x002FCBF0, 0x003B2310, 0x0036E320, 0x003576D0, 0x003B0660, 0x0019FFD0, 0x001A09E0 |
 
 ## What it lists
 

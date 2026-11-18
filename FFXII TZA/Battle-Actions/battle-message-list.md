@@ -1,9 +1,8 @@
----
-title: "Battle message list: every battle_message.bin row with its argument slots, flags and English text"
-kind: "reference"
-category: "Battle actions"
-addresses: "0x02EBF018, 0x00236C7B, 0x005369C0, 0x00469570, 0x0046AB10"
----
+[Home](../../README.md) / [Battle actions](README.md) / Battle message list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Battle message list: every battle_message.bin row with its argument slots, flags and English text | reference | Battle actions | Battle messages | All 102 rows of the battle message table (battle_message.bin, loaded as battle_pack.bin entry 2) - for each event id the four argument slots it fills (user name, target name, status, item, action, numbers), whether it is always shown or subject to the 24-unit rule, its category, whether repeats are suppressed, and its US English text. | 0x02EBF018, 0x00236C7B, 0x005369C0, 0x00469570, 0x0046AB10 |
 
 ## What it lists
 

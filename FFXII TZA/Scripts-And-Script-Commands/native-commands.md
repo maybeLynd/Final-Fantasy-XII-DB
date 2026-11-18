@@ -1,9 +1,8 @@
----
-title: "Native commands: the five command tables, the begin, poll and result callbacks, the phase byte, and how a durative verb waits"
-kind: "system"
-category: "Scripts and script commands"
-addresses: "0x002621D0, 0x003DC2D0, 0x003DC270, 0x003DC240, 0x003DC2A0, 0x02B57EF0, 0x01EED700, 0x01F281B0, 0x01F29418, 0x01F29440, 0x01F26720, 0x0016D6A0, 0x005C5230, 0x0034CF90, 0x0034DCC0, 0x00265880, 0x0034C290, 0x0034C570, 0x00353E20, 0x00353A10, 0x0033F4C0, 0x00267310, 0x02099011, 0x0026A5B0, 0x00360710, 0x00360A50, 0x0034ECF0, 0x0026B4E0, 0x0026B4C0, 0x0050D660, 0x0025C0F0, 0x0025C130, 0x0026BE50, 0x0026BE90, 0x02099DE8, 0x0209A2A0, 0x0036E290, 0x002E7080, 0x0036DFC0, 0x0036E500, 0x022D94B0"
----
+[Home](../../README.md) / [Scripts and script commands](README.md) / Native commands
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Native commands: the five command tables, the begin, poll and result callbacks, the phase byte, and how a durative verb waits | system | Scripts and script commands | The script machine | What happens inside one script verb call: the lifecycle that runs begin, poll and result as one fall-through rather than three visits, the phase byte that marks a verb still running or typed for return, the five command tables and how their callbacks are populated, the instantaneous and durative shapes, the scratch dword that wait and the sync verbs count or select with, the per-manager skip mask that ends a wait early, and the handlers many verbs share. | 0x002621D0, 0x003DC2D0, 0x003DC270, 0x003DC240, 0x003DC2A0, 0x02B57EF0, 0x01EED700, 0x01F281B0, 0x01F29418, 0x01F29440, 0x01F26720, 0x0016D6A0, 0x005C5230, 0x0034CF90, 0x0034DCC0, 0x00265880, 0x0034C290, 0x0034C570, 0x00353E20, 0x00353A10, 0x0033F4C0, 0x00267310, 0x02099011, 0x0026A5B0, 0x00360710, 0x00360A50, 0x0034ECF0, 0x0026B4E0, 0x0026B4C0, 0x0050D660, 0x0025C0F0, 0x0025C130, 0x0026BE50, 0x0026BE90, 0x02099DE8, 0x0209A2A0, 0x0036E290, 0x002E7080, 0x0036DFC0, 0x0036E500, 0x022D94B0 |
 
 ## What the player sees
 
@@ -145,6 +144,9 @@ The poll then uses the dword as a selector. `camerasync`'s poll `0x0034C570` ask
 value)` whether that camera channel is still busy, with the index of the current manager (the slot
 `0x02099D70` points at, `+0x28`), and, if so, stays running unless the skip mask of the issuer's
 manager (its `+0x15`) says otherwise.
+
+`0x003DA1A0(index, value)` answers 1 when `value` is 0 to 3, the manager `0x00263FF0(index)` has a non-null `+0xD8` and
+the word at its `+0x118 + value × 0x18` is 1, and 0 otherwise (`0x003DA1A9`-`0x003DA1D0`).
 
 The poll returns 0 at once when the channel is idle (`0x0034C591`); for a busy channel it returns
 1 while that mask is zero and 0 once it is non-zero (`0x0034C5A0`). The `+0x15` it reads is the
@@ -311,3 +313,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Input gameplay: `0x002E1CA0` is called by `0x00313A00`; those functions are documented on
   [force fight mode](../Engine-Core/force-fight-mode.md).
+
+---
+
+[← Verb dispatch](verb-dispatch.md)

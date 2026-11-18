@@ -1,9 +1,8 @@
----
-title: "Starting inventory: the shoki_data table the party-block reset adds to the inventory, empty in the shipped game"
-kind: "reference"
-category: "Party"
-addresses: "0x02EBF048, 0x0023AF50, 0x00237DF0, 0x00300BA0, 0x003008A0"
----
+[Home](../../README.md) / [Party](README.md) / Starting inventory
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Starting inventory: the shoki_data table the party-block reset adds to the inventory, empty in the shipped game | reference | Party | Party data | All 32 rows of the shipped shoki_data table in battle_pack.bin: the id and count the party-block reset hands to the inventory for each row, the function that reads them, and why the shipped rows add nothing, so a new party's items come from the first-join lists of the party table instead. | 0x02EBF048, 0x0023AF50, 0x00237DF0, 0x00300BA0, 0x003008A0 |
 
 ## What it lists
 

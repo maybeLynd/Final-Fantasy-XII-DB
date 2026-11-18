@@ -1,9 +1,8 @@
----
-title: "Weapon formulas: each weapon type's damage recipe, bow, crossbow and gun rules, critical hits, and the Numerology, Traveler, Knot of Rust and Gil Toss recipes"
-kind: "system"
-category: "Damage and battle formulas"
-addresses: "0x00385F60, 0x0038AAF0, 0x0038A110, 0x0038A1F0, 0x0038A2D0, 0x0038A3A0, 0x0038A470, 0x0038A680, 0x0038AE50, 0x0038DB50, 0x00389140, 0x00389C60, 0x0038EBE0, 0x0038D970, 0x0038ED40"
----
+[Home](../../README.md) / [Damage and battle formulas](README.md) / Weapon formulas
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Weapon formulas: each weapon type's damage recipe, bow, crossbow and gun rules, critical hits, and the Numerology, Traveler, Knot of Rust and Gil Toss recipes | system | Damage and battle formulas | Damage and formulas | Which damage recipe each weapon class uses and the formula it runs: the stat scale per weapon type, the 12.5 % Attack Power variance, the random axe and hammer finisher, guns ignoring Defense and the evade bands, bows and crossbows losing accuracy in strong wind (wind class 2) unless the wielder has augment 2, the ranged critical hit, unarmed attacks, and the four action recipes whose damage is not a stat formula: the Numerology streak, the Traveler walk, the Knot of Rust and Dark Matter bank, and Gil Toss. | 0x00385F60, 0x0038AAF0, 0x0038A110, 0x0038A1F0, 0x0038A2D0, 0x0038A3A0, 0x0038A470, 0x0038A680, 0x0038AE50, 0x0038DB50, 0x00389140, 0x00389C60, 0x0038EBE0, 0x0038D970, 0x0038ED40 |
 
 ## What the player sees
 
@@ -249,3 +248,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - Rewards progression economy: `0x0031B860` is called by `0x002F8BB0`, `0x0030C650`; those functions are documented on
   [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md),
   [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+
+---
+
+[← Elements](elements.md) | [HP and KO →](hp-and-ko.md)

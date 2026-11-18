@@ -1,9 +1,8 @@
----
-title: "Actor managers: the five manager slots at 0x02098E10, their bind, their record pool, their variable homes and their camera entry tables"
-kind: "system"
-category: "Characters and objects"
-addresses: "0x02098E10, 0x02099D70, 0x0026C8C0, 0x0026CE60, 0x00358940, 0x002679F0, 0x00264640, 0x0026ABA0, 0x0026B730, 0x00265270, 0x00264D20, 0x0026ADC0, 0x00264800, 0x0026AD10, 0x002640C0, 0x002640D0, 0x002673F0, 0x00267310, 0x003DA400, 0x003DA370, 0x003DA000, 0x003DA4D0, 0x003DA570, 0x003DA2D0, 0x003DD230, 0x003DCF60, 0x003DD1F0, 0x003DD320, 0x0026B790, 0x0026B800, 0x0026B870, 0x003DA500"
----
+[Home](../../README.md) / [Characters and objects](README.md) / Actor managers
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Actor managers: the five manager slots at 0x02098E10, their bind, their record pool, their variable homes and their camera entry tables | system | Characters and objects | Field actors | The five actor manager slots the world tick walks: what a slot holds, how a loaded definition payload is bound into one and its record pool allocated, the six pointers the script interpreter resolves script variables through, the fail-closed accessors over the operand bank and the two scratch banks, the sub-step and request bytes the tick and the field pass read, and the two arrays of four camera drivers with their reverse lookups; the four access tables beside the page list every verified reach into a slot. | 0x02098E10, 0x02099D70, 0x0026C8C0, 0x0026CE60, 0x00358940, 0x002679F0, 0x00264640, 0x0026ABA0, 0x0026B730, 0x00265270, 0x00264D20, 0x0026ADC0, 0x00264800, 0x0026AD10, 0x002640C0, 0x002640D0, 0x002673F0, 0x00267310, 0x003DA400, 0x003DA370, 0x003DA000, 0x003DA4D0, 0x003DA570, 0x003DA2D0, 0x003DD230, 0x003DCF60, 0x003DD1F0, 0x003DD320, 0x0026B790, 0x0026B800, 0x0026B870, 0x003DA500 |
 
 ## What the player sees
 
@@ -347,3 +346,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Gameplay: `0x003590D0` is called by `0x0031ADB0`; those functions are documented on
   [bestiary](../Enemy-Spawning/bestiary.md).
+
+---
+
+[← Actor record](actor-record.md) | [Actor lifecycle →](actor-lifecycle.md)

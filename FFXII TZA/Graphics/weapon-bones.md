@@ -1,9 +1,8 @@
----
-title: "Weapon bones: every weapon model's keyed points, the blade and grip an effect anchors to, and its special-id bones"
-kind: "reference"
-category: "Graphics"
-addresses: "0x00409250, 0x00422380, 0x003E5AD0, 0x003A4290, 0x00426770"
----
+[Home](../../README.md) / [Graphics](README.md) / Weapon bones
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Weapon bones: every weapon model's keyed points, the blade and grip an effect anchors to, and its special-id bones | reference | Graphics | Character models / Model Files | All 327 weapon models: each model's @FTR node keys, whether it carries j_blade (0x65E) and n_grip (0x656), the keyed points effects and trails anchor to on a held weapon, its @FCP special-id bones, and the equipment that uses it; how 0x00409250 keys a node and how the anchor query finds the two points on a child record. | 0x00409250, 0x00422380, 0x003E5AD0, 0x003A4290, 0x00426770 |
 
 ## What it lists
 

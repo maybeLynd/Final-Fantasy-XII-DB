@@ -1,9 +1,8 @@
----
-title: "Small .bin tables: footstep sounds, controller vibration, battle window sizes, the button legend, quest window texts and summon colours"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x00378540, 0x002E9D90, 0x00379E90, 0x0035B3E0, 0x0035B650, 0x0035B2F0, 0x0035AF20, 0x0035AE30, 0x0034AC30, 0x0035C5B0, 0x0035C3F0, 0x0027BDE0, 0x0027DED0, 0x0029DC90, 0x0029DA70, 0x0029DBE0, 0x0029E330, 0x00473D20, 0x00473B90, 0x00473C90, 0x003B53C0, 0x003B5340, 0x0036FBB0, 0x0036F9F0, 0x02ADD0C0, 0x02EC0B68, 0x022CA460, 0x0209C4A0, 0x02CA6C60, 0x02AD9B60"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Small .bin tables
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Small .bin tables: footstep sounds, controller vibration, battle window sizes, the button legend, quest window texts and summon colours | format | Game files and data tables | Data tables and configs | Six small PS2-era tables the game reads whole and uses in place: soundfoottable.bin (FOOT), eventvib.bin (VIB0), menubtlwndinfo.bin (bwind), key_signal_data.bin (signe), questbase.bin (QST1) and summoneffectdata.bin. For each, its kind and id, its requester, the byte layout as the reader takes it, what the reader does with each field, the shipped values and what an edit must keep. | 0x00378540, 0x002E9D90, 0x00379E90, 0x0035B3E0, 0x0035B650, 0x0035B2F0, 0x0035AF20, 0x0035AE30, 0x0034AC30, 0x0035C5B0, 0x0035C3F0, 0x0027BDE0, 0x0027DED0, 0x0029DC90, 0x0029DA70, 0x0029DBE0, 0x0029E330, 0x00473D20, 0x00473B90, 0x00473C90, 0x003B53C0, 0x003B5340, 0x0036FBB0, 0x0036F9F0, 0x02ADD0C0, 0x02EC0B68, 0x022CA460, 0x0209C4A0, 0x02CA6C60, 0x02AD9B60 |
 
 ## What the player sees
 

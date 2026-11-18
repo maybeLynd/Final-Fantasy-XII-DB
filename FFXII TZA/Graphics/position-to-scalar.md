@@ -1,9 +1,8 @@
----
-title: "Position to scalar: the distance fade colour of effect elements"
-kind: "system"
-category: "Graphics"
-addresses: "0x002F1F40, 0x002F1D90, 0x0039B550, 0x0039ABF0, 0x0039AF70, 0x00398F90, 0x02F97348, 0x02AEECB0, 0x02AEEA20, 0x02AED5F0, 0x003ED0E0, 0x003ECF70, 0x0026EE00, 0x003A3FD0, 0x0042FB20, 0x003E7DE0, 0x0024BFD0, 0x020926E8, 0x00442550"
----
+[Home](../../README.md) / [Graphics](README.md) / Position to scalar
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Position to scalar: the distance fade colour of effect elements | system | Graphics | Visual effects / Effect Elements And Drawing | The function that turns an effect element's 3-D position into one distance and then into the alpha of a modulate colour: its three distance modes, the four fade kinds of the distance-fade record, the container flags that further scale the alpha (owner fade, status-display denial, the time-stop dimming ramp), and the 76 draw sites that multiply the result into what they draw. | 0x002F1F40, 0x002F1D90, 0x0039B550, 0x0039ABF0, 0x0039AF70, 0x00398F90, 0x02F97348, 0x02AEECB0, 0x02AEEA20, 0x02AED5F0, 0x003ED0E0, 0x003ECF70, 0x0026EE00, 0x003A3FD0, 0x0042FB20, 0x003E7DE0, 0x0024BFD0, 0x020926E8, 0x00442550 |
 
 ## What the player sees
 

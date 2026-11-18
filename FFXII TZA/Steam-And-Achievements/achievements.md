@@ -1,9 +1,8 @@
----
-title: "Achievements: the achievement list, the counters and conditions that award each one, and how an award reaches Steam"
-kind: "system"
-category: "Steam and achievements"
-addresses: "0x01DFE410, 0x00D10460, 0x00D10550, 0x00316A50, 0x00315E90, 0x003166F0, 0x00316760, 0x00316BF0, 0x003165C0, 0x00316930, 0x003162E0, 0x01EED070, 0x00316440, 0x003160C0, 0x003161A0, 0x00315420, 0x00309EC0, 0x008632B0, 0x0020CE60, 0x00352250, 0x0034C9A0, 0x0020CB50, 0x00906290, 0x003158B0, 0x022C2550, 0x00316810, 0x00572920, 0x003154B0, 0x00315390, 0x020927C0"
----
+[Home](../../README.md) / [Steam and achievements](README.md) / Achievements
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Achievements: the achievement list, the counters and conditions that award each one, and how an award reaches Steam | system | Steam and achievements | Steam and achievements | The 41 achievement records with their developer tags and Steam titles, the 30 descriptors that give each tracked achievement a counter or a test, the saved counter block and award bits, the menuhandbook.bin targets and lists the tests read, the code that feeds every counter, the periodic sweep and its re-send, the script and scene awards, the path from an award to SetAchievement and StoreStats, and the Sky Pirate's Den statues that show the awards. | 0x01DFE410, 0x00D10460, 0x00D10550, 0x00316A50, 0x00315E90, 0x003166F0, 0x00316760, 0x00316BF0, 0x003165C0, 0x00316930, 0x003162E0, 0x01EED070, 0x00316440, 0x003160C0, 0x003161A0, 0x00315420, 0x00309EC0, 0x008632B0, 0x0020CE60, 0x00352250, 0x0034C9A0, 0x0020CB50, 0x00906290, 0x003158B0, 0x022C2550, 0x00316810, 0x00572920, 0x003154B0, 0x00315390, 0x020927C0 |
 
 ## What the player sees
 

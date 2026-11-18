@@ -1,9 +1,8 @@
----
-title: "Effect element runtime: instances, emitters and elements, the per-step update, birth, release, child spawns and timeline tracks"
-kind: "system"
-category: "Graphics"
-addresses: "0x0024B270, 0x020910F0, 0x02F97348, 0x02EBEF88, 0x0024ED80, 0x00258D70, 0x0024B9B0, 0x003A7050, 0x003A8390, 0x0043EF40, 0x00441B30, 0x002F3BC0, 0x002F2D60, 0x002F3910, 0x002F2530, 0x002F4020, 0x005004C0, 0x002F31C0, 0x005002E0, 0x003A8950, 0x003A8AE0, 0x003A4290, 0x003A2B20"
----
+[Home](../../README.md) / [Graphics](README.md) / Effect element runtime
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Effect element runtime: instances, emitters and elements, the per-step update, birth, release, child spawns and timeline tracks | system | Graphics | Visual effects / Effect Elements And Drawing | How a parsed effect runs: the 0x3B0-byte effect instance and its kind list, the emitters an instance keeps and the elements each emitter owns, the update pass that runs once per simulation step, birth, the base update and type tail, the cull test that releases an element, child emitters, the 0x700 path objects, timeline tracks and the method tables. | 0x0024B270, 0x020910F0, 0x02F97348, 0x02EBEF88, 0x0024ED80, 0x00258D70, 0x0024B9B0, 0x003A7050, 0x003A8390, 0x0043EF40, 0x00441B30, 0x002F3BC0, 0x002F2D60, 0x002F3910, 0x002F2530, 0x002F4020, 0x005004C0, 0x002F31C0, 0x005002E0, 0x003A8950, 0x003A8AE0, 0x003A4290, 0x003A2B20 |
 
 ## What the player sees
 

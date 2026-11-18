@@ -1,15 +1,14 @@
----
-title: "Quests: the ordered and cleared state each quest keeps in the save, its progress byte and word, the verbs that change them, and the bug that clears the wrong ordered bit"
-kind: "system"
-category: "Story, events and hunts"
-addresses: "0x0046B3F0, 0x0046B290, 0x0046B490, 0x0046B350, 0x0046B380, 0x0046B240, 0x0046B1A0"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Quests
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Quests: the ordered and cleared state each quest keeps in the save, its progress byte and word, the verbs that change them, and the bug that clears the wrong ordered bit | system | Story, events and hunts | Quests and hunts | How a quest is tracked: the save payload's ordered bits, cleared bits and clear total, the scenario flag and contract word each of 256 quests has, the field id recorded when a quest is first ordered, the OK bit, the script verbs that read and write each, the clear verb that clears another quest's ordered bit, and the clan rank count that reads the cleared bits. | 0x0046B3F0, 0x0046B290, 0x0046B490, 0x0046B350, 0x0046B380, 0x0046B240, 0x0046B1A0 |
 
 ## What the player sees
 
 - Taking on a quest marks it as ordered; finishing it marks it as cleared and adds one to the total of
   quests cleared.
-- Each quest also keeps a small progress value and a word the scripts use for its contract.
+- Each quest also keeps a small progress value and a word that records the field where it was ordered.
 - Finishing a quest numbered above 7 also unmarks one of the first eight quests (finishing quest 13 unmarks quest
   5), through a slip in how the game finds the bit. On its own that would leave the finished quest marked as
   ordered, but every shipped script that finishes a quest unmarks it first ([the quests](#the-quests)).
@@ -49,7 +48,7 @@ and the story flag banks begin at `+0x1384`.
 | `0x1D5` `getquestcleartotal` | `0x00341050` | `0x0046B0B0` | the total |
 | `0x2B3` `setquestscenarioflag(q, v)` | `0x00351140` | `0x0046B490` | the scenario flag = *v*; the handler keeps *q* and *v* between 0 and 255 (`0x00351155`-`0x0035117B`) |
 | `0x2B4` `getquestscenarioflag(q)` | `0x00351F90` | `0x0046B180` | the scenario flag |
-| `0x2B5` `setquestcontract(q, v)` | `0x00351560` | `0x0046B350` | the contract word = *v* (`0x0046B364`) |
+| `0x2B5` `setquestcontract(q, v)` | `0x00351560` | `0x0046B350` | the contract word = *v* (`0x0046B364`); the handler keeps *q* between 0 and 255 (`0x0035157F`-`0x0035158E`) |
 | `0x2B6` `getquestcontract(q)` | `0x00351C40` | `0x0046B0D0` | the contract word |
 | `0x2BC` `setquestok(q, v)` | `0x00353B20` | `0x0046B380` | OK bit *q* set or cleared (`0x0046B3B5`, `0x0046B3D1`) |
 | `0x2BD` `isquestok(q)` | `0x00353E80` | `0x0046B1F0` | OK bit *q* |
@@ -72,6 +71,11 @@ Kind 9 stores the low word of `v` in word *q* of the sixteen at `0x0208D334` onl
 *q* of 0 (`0x00329F1C`-`0x00329F29`); both return 0 also when they write nothing (`0x00329F31`-`0x00329F37`). Kinds 6 and 7,
 and any kind outside 1-10, write nothing and return -1 (`0x00329F38`-`0x00329F3F`). The registers are listed on [Enemy
 order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md#the-registers).
+
+None of the 1,114 decoded `us` listings calls `setquestcontract` or `getquestcontract` ([verb
+table](../Scripts-And-Script-Commands/verb-table.md)). With those scripts a contract word is written only when
+`setquestorder` or kind 4 of `0x00329E60` sets a clear ordered bit (the verbs table above); a negative field id is
+stored as 0 (`0x00314903`), and the word of a quest never ordered is not written.
 
 ### The wrong ordered bit
 

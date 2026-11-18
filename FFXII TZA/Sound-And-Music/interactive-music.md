@@ -1,9 +1,8 @@
----
-title: "Interactive music: the driver's music object, its sections, modes and layers, the commands that start, switch and end it, and its bar-beat-tick timing"
-kind: "system"
-category: "Sound and music"
-addresses: "0x007C82D0, 0x007CAB80, 0x007C1620, 0x007C9E70, 0x007C91F0, 0x007CA7C0, 0x007C5760, 0x007F3570"
----
+[Home](../../README.md) / [Sound and music](README.md) / Interactive music
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Interactive music: the driver's music object, its sections, modes and layers, the commands that start, switch and end it, and its bar-beat-tick timing | system | Sound and music | Music | How the sound driver plays a music bank: the Magi music object and its states, the parts of a music header (sections, modes, layers, meters, custom points, start and end methods) and the classes that read them, every music command with its checks and messages, how the object is built, loaded and freed, its two sets of layer voices and what each pass hands them, the mode blend, the transition states and requests, the reverb end, how the play position, loops and timing callbacks are followed, the instruments that play in time with a music, how the game's three music versions are the three sections of every shipped music, and the bar, beat and tick arithmetic that places a transition. | 0x007C82D0, 0x007CAB80, 0x007C1620, 0x007C9E70, 0x007C91F0, 0x007CA7C0, 0x007C5760, 0x007F3570 |
 
 ## What the player sees
 

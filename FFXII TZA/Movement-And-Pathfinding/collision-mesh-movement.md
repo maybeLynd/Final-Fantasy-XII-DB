@@ -1,9 +1,8 @@
----
-title: "Collision-mesh movement: how a body is swept across the collision polygons, pushed out of walls and kept off closed edges, and the point queries on the same mesh"
-kind: "system"
-category: "Movement and pathfinding"
-addresses: "0x00380C40, 0x002327D0, 0x0022EF20, 0x00380A70, 0x0022D7E0, 0x0022E7D0, 0x0022E340, 0x00231E40, 0x002324F0, 0x0022F9B0, 0x0022F250, 0x00232760, 0x0022DE60, 0x0022EAC0, 0x00381D90, 0x003810B0, 0x00380E00, 0x00380EB0, 0x00231690, 0x00230C10, 0x003D97E0, 0x00232160, 0x00231890, 0x00231820, 0x00231900, 0x0026E350, 0x0026E3C0, 0x02088FE0, 0x020891F0, 0x02089280, 0x020892C0"
----
+[Home](../../README.md) / [Movement and pathfinding](README.md) / Collision-mesh movement
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Collision-mesh movement: how a body is swept across the collision polygons, pushed out of walls and kept off closed edges, and the point queries on the same mesh | system | Movement and pathfinding | Collision, bodies and pathfinding | How a moving body crosses the map's collision part: the cell lists and their four banks, the body's footprint frame, the sweep that cuts a move into sub-steps, pushes the body out of walls with an ellipsoid penetration test and walks it from polygon to polygon, the edge and vertex push-out that keeps its footprint off closed edges, the flood over neighbouring cells for big bodies, the contact normal and distance of a wall record, and the point queries that find the floor and its height under a point. | 0x00380C40, 0x002327D0, 0x0022EF20, 0x00380A70, 0x0022D7E0, 0x0022E7D0, 0x0022E340, 0x00231E40, 0x002324F0, 0x0022F9B0, 0x0022F250, 0x00232760, 0x0022DE60, 0x0022EAC0, 0x00381D90, 0x003810B0, 0x00380E00, 0x00380EB0, 0x00231690, 0x00230C10, 0x003D97E0, 0x00232160, 0x00231890, 0x00231820, 0x00231900, 0x0026E350, 0x0026E3C0, 0x02088FE0, 0x020891F0, 0x02089280, 0x020892C0 |
 
 ## What the player sees
 
@@ -215,22 +214,23 @@ its centre, with `a0`-`a2` the three rows. `0x0022D7E0(query)` walks the list:
   from sizes stored as 4.12 fixed point and a matrix from the map's table at `+0x188`, and it is then
   tested as a wall record.
 
-`0x00230790(record, map, shape)` writes 1 to the record's dwords `+0` and `+4` and takes
-the matrix `[map + 0x188] + 0x40 × word +2` of the shape (`0x002307C8`-`0x002307E8`). The
-sizes are the shape's signed words `+4`, `+6` and `+8`, each as `word × (1 / 4096)`, called
-a, b and c below; the three are also copied to `0x022D91B0` (`0x002307F2`-`0x0023082D`).
+`0x00230790(record, map, shape)` writes 1 to the record's dwords `+0x00` and `+0x04` and takes the matrix
+`[map + 0x188] + 0x40 × signed word +2` of the shape (`0x002307C8`-`0x002307E8`). The sizes are the shape's signed words
+`+4`, `+6` and `+8`, each as `word × (1 / 4096)`, called a, b and c below (`0x002307F2`-`0x00230813`). One 16-byte copy
+puts four floats at `0x022D91B0` (`0x0023082D`): a, b, c and, at `0x022D91BC`, a stack dword the function never writes,
+times 1 / 4096.
 
-`0x00202C70(record + 0x10, matrix)` fills the record's matrix; its rows at `+0x10`,
-`+0x20` and `+0x30` are then each made `row / length(row)` and given a w of 0, with
-`0x00861F14` called once for each row on the sum of its squares and with
-no test for a zero length (`0x00230836`-`0x0023094A`), and `0x00202D50(record + 0x50,
-record + 0x10)` fills the second matrix at `+0x50` (`0x0023094F`-`0x00230956`).
+`0x00202C70(record + 0x10, matrix)` fills the record's matrix; its rows at `+0x10`, `+0x20` and `+0x30`, the floats
+`+0x10`-`+0x3C`, are then each made `row × (1 / length(row))` and given a w of 0 (the first row through a pointer to
+`+0x10`, at its `+0x00`-`+0x0C`), with `0x00861F14` called once for each row on the sum of its squares and with no test
+for a zero length (`0x00230836`-`0x0023094A`), and `0x00202D50(record + 0x50, record + 0x10)` fills the second matrix at
+`+0x50` (`0x0023094F`-`0x00230956`).
 
-Two local matrices started by `0x00203170` then take the sizes. The first holds a at
-`+0x00`, (c + 0.5) / 2 at `+0x14`, b at `+0x28` and (c - 0.5) / 2 at `+0x34`; the second
-holds 1 / a, 2 / (c + 0.5), 1 / b and -(c - 0.5) / 2 at the same offsets
-(`0x0023096F`-`0x002309E7`). `0x00202D70(record + 0x10, record + 0x10, first)` and
-`0x00202D70(record + 0x50, second, record + 0x50)` end the build (`0x002309F1`, `0x00230A01`).
+Two local matrices set to the identity by `0x00203170(m)` (`0x0023095B`-`0x0023096A`) then take the sizes. The first holds a
+at `+0x00`, (c + 0.5) / 2 at `+0x14`, b at `+0x28` and (c - 0.5) / 2 at `+0x34`; the second holds 1 / a, 2 / (c +
+0.5), 1 / b and -(c - 0.5) / 2 at the same offsets (`0x0023096F`-`0x002309E7`).
+`0x00202D70(record + 0x10, record + 0x10, first)` and `0x00202D70(record + 0x50, second, record + 0x50)` end the build
+(`0x002309F1`, `0x00230A01`).
 
 Every hit whose depth is strictly greater than `+0x30` becomes the deepest, with its id at `+0x34`.
 `0x0022E7D0` answers 0, skipping the polygon, when the centre lies outside the third edge (`v[2]` to
@@ -298,6 +298,11 @@ the caller had it. The move is the normal times `0.1 / |normal|` (`0x003D9861`-`
 On a miss (a negative id) the normal is `{0, 0, 0, 1}` and the 16 bytes at `aux` are zeroed
 (`0x003D98F4`-`0x003D9905`); a hit leaves `aux` alone. The follow camera's `0x0032CF50` passes kind 4 (`0x0032CF9B`).
 
+`0x00230B60(part, hit, start, end, kind, w)` answers -1 for a null part or a part whose first qword is null
+(`0x00230B7C`-`0x00230B88`). Otherwise it fills a query on its stack with copies of `start` and `end`, the `hit` pointer,
+the address of the ray cast `0x0022CC50`, `w`, and `kind` as the word `+0x46` that the ray casts read, runs
+`0x0022F430(part, query)` (`0x00230B8A`-`0x00230BD8`) and answers the query's signed word `+0x42`, the id (`0x00230BDD`).
+
 The follow camera (`0x0032AEC0`, reached from the mode-1 camera view `0x00259990`, [scripted
 camera](../Graphics/scripted-camera.md)) is the caller of all three: `0x0032BCC0`,
 `0x0032BEB0` and `0x0032CA70` use `0x00230C00`, `0x0032BCC0` and `0x0032CA70` use `0x00231690`, and `0x0032CF50`
@@ -316,11 +321,11 @@ point inside the shape gets a zero normal and no push.
 The shape is the record's dword `+0x00`: 0 sphere, 1 cylinder, 2 box (`0x00381DBB`-`0x00381DEB`). Any other value
 takes no excess and leaves `out` as the caller passed it, and that is then mapped and normalised like an excess
 (`0x00381DCB`). The map into the frame uses all four floats of `p`, w included (`0x00381DB6`); before the map back the
-excess's w is set to 0 (`0x00381E82`), and `0x00380800` gives a zero vector for a length below `1e-6`
-(`0x0038083F`-`0x0038084C`).
+excess's w is set to 0 (`0x00381E82`).
 
-`0x00380800(out, in)` copies the w of its input to the output unchanged
-(`0x00380881`-`0x00380889`).
+`0x00380800(out, in)` takes the length of `in`, `0x00861F14(x^2 + y^2 + z^2)` (`0x0038080A`-`0x0038083A`), and writes `out`'s
+floats `+0x00`-`+0x08` as `in` times `1 / length`, or as 0 for a length below `1e-6` (`0x00908E10`)
+(`0x0038083F`-`0x0038087C`); it copies the w `+0xC` of its input to the output unchanged (`0x00380881`-`0x00380889`).
 
 `0x003810B0(record, p)` returns the distance from the shape in world units: the local point scaled by
 `(|l| - 1) / |l|` for a sphere outside it, the radial and vertical parts beyond 1 for a cylinder,
@@ -452,3 +457,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - UI: those functions are documented on [text drawing](../Menus-And-HUD/text-drawing.md),
   [menu lists](../Menus-And-HUD/menu-lists.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md),
   [hud](../Menus-And-HUD/hud.md), [map screens](../Menus-And-HUD/map-screens.md).
+
+---
+
+[← Facing and steering](facing-and-steering.md) | [Movement bodies and separation →](movement-bodies-and-separation.md)

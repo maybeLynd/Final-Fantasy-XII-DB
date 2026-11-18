@@ -1,9 +1,8 @@
----
-title: "Combos: combo chance, the hit-count roll, low-HP bonus and how each extra hit is re-committed"
-kind: "system"
-category: "Battle actions"
-addresses: "0x00388550, 0x00388660, 0x0030FA00, 0x0030C010, 0x00308610, 0x00307300, 0x00385680, 0x003105D0"
----
+[Home](../../README.md) / [Battle actions](README.md) / Combos
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Combos: combo chance, the hit-count roll, low-HP bonus and how each extra hit is re-committed | system | Battle actions | How an action runs | How a weapon attack becomes a combo - the chance from the weapon's combo byte (x0.7, or x1.8 with the multiple-hits augment), the extra-hit count rolled once on the first hit with odds that rise as the attacker's HP falls, the caps, how every further hit re-commits the same action, what stops a combo (fleeing, a KO'd target, special sequences) and what a running combo blocks. | 0x00388550, 0x00388660, 0x0030FA00, 0x0030C010, 0x00308610, 0x00307300, 0x00385680, 0x003105D0 |
 
 ## What the player sees
 
@@ -123,7 +122,7 @@ when all of these hold (`0x00308768`-`0x0030879F`):
   0, that is `0x01E0C2B8` is non-zero);
 - the first target entry exists (unit `+0x780`) and its flags have bit `0x400`.
 
-`0x0030FA00` (146 bytes) asks the gate `0x0030C010`;
+`0x0030FA00` (146 bytes) asks the gate `0x0030C010` (`0x0030FA20`);
 when it passes, it commits the same action again - `0x0030F760(unit, [+0x708], [+0x714], [+0x710], 1)` -
 and on success increments `+0x6B7`, restores `+0x6B8` and sets the action phase `+0x6B4` to 5
 (`0x0030FA3B`-`0x0030FA80`).

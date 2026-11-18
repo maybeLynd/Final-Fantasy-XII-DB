@@ -1,9 +1,8 @@
----
-title: "Legacy PS2 GS layer: the GS memory model, the map texture slot rebuild and the VU register leftovers"
-kind: "system"
-category: "Graphics"
-addresses: "0x0036D280, 0x0036D2F0, 0x022D8EAC, 0x022D8EB4, 0x022D8EA8, 0x003A1E50, 0x00466190, 0x00466220, 0x00467AA0, 0x00467AD0, 0x00467B00, 0x00467B10, 0x002F7380, 0x0026E290, 0x0026E8D0, 0x0209A670, 0x0209A6E8, 0x0209A708, 0x002F4520, 0x00244200, 0x004B9870, 0x01E02830, 0x02064B00"
----
+[Home](../../README.md) / [Graphics](README.md) / Legacy PS2 GS layer
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Legacy PS2 GS layer: the GS memory model, the map texture slot rebuild and the VU register leftovers | system | Graphics | Render pipeline | What the remaster keeps of the PlayStation 2 Graphics Synthesizer model outside the VIF1 / VU1 emulation: the 512 x 448 surface seed and its three reserved surfaces, the GS page geometry of 0x003A1E50, the 4 MiB local-memory budget, the rebuild that gives the bound map's multiply used textures compact slots when the weather slot changes or a map is bound, the per-pass reset of those slots, the GS image-transfer registers, and the VU register words that recompiled microprograms use for Q and vf00. | 0x0036D280, 0x0036D2F0, 0x022D8EAC, 0x022D8EB4, 0x022D8EA8, 0x003A1E50, 0x00466190, 0x00466220, 0x00467AA0, 0x00467AD0, 0x00467B00, 0x00467B10, 0x002F7380, 0x0026E290, 0x0026E8D0, 0x0209A670, 0x0209A6E8, 0x0209A708, 0x002F4520, 0x00244200, 0x004B9870, 0x01E02830, 0x02064B00 |
 
 ## What the player sees
 

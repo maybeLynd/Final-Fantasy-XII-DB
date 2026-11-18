@@ -1,9 +1,8 @@
----
-title: "Phyre input semantics: the type, axis and pad-button names of the engine's input sources, how a source turns them into codes, and the one path that reads them"
-kind: "reference"
-category: "Controls and input"
-addresses: "0x02EB8260, 0x02EB82D8, 0x02EB8348, 0x02EB8270, 0x02EB82E0, 0x02EB8350, 0x0079CFB0, 0x0079E2C0, 0x0079DA10, 0x00873FB0, 0x00873FE0, 0x00874080, 0x00874120, 0x00874170, 0x00873100, 0x008760A0, 0x00876490, 0x008768A0, 0x00879750"
----
+[Home](../../README.md) / [Controls and input](README.md) / Phyre input semantics
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre input semantics: the type, axis and pad-button names of the engine's input sources, how a source turns them into codes, and the one path that reads them | reference | Controls and input | Engine input registries | Each named object of PhyreEngine's three input-semantic registries (the input types, the axes and the pad buttons): its class, code, registry, initialiser, teardown and every function that writes or reads it, with the input-source classes that point at them, how a source resolves its semantics to codes and falls back, the evaluator that reads a source against the devices, and why the shipped game never runs it. | 0x02EB8260, 0x02EB82D8, 0x02EB8348, 0x02EB8270, 0x02EB82E0, 0x02EB8350, 0x0079CFB0, 0x0079E2C0, 0x0079DA10, 0x00873FB0, 0x00873FE0, 0x00874080, 0x00874120, 0x00874170, 0x00873100, 0x008760A0, 0x00876490, 0x008768A0, 0x00879750 |
 
 ## What it lists
 

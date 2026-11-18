@@ -1,9 +1,8 @@
----
-title: "Summon scenes: the scenes an Esper's summon plays, in sets of three"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00, 0x00306BD0, 0x0032FC30, 0x00309230, 0x00D103B0"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Summon scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Summon scenes: the scenes an Esper's summon plays, in sets of three | reference | Story, events and hunts | Scenes and scripts by area / Scenes that recur through the story | The summon scene scripts sum_a0000 to sum_m0002: the thirteen sets of three with their event ids, and the replay question six of them hold. | 0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00, 0x00306BD0, 0x0032FC30, 0x00309230, 0x00D103B0 |
 
 ## What it lists
 

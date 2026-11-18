@@ -1,9 +1,8 @@
----
-title: "Sound variations: the random, ordered, cycling and switched sound kinds the driver supports, and the trigger that arms a sound"
-kind: "system"
-category: "Sound and music"
-addresses: "0x007B2F70, 0x007BD370, 0x007E5160, 0x007E58D0, 0x007E6360, 0x007E67C0, 0x007BD240, 0x007E7540"
----
+[Home](../../README.md) / [Sound and music](README.md) / Sound variations
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Sound variations: the random, ordered, cycling and switched sound kinds the driver supports, and the trigger that arms a sound | system | Sound and music | Sound effects and voices | How the sound driver chooses what to play for one sound: the class byte that selects a plain, random, ordered, cycling or switched sound, the candidate and sequence records they read, sets of candidates by group, each kind's rule with its weighted roll, rotation, cycle timer or switch range, the random seed, the trigger that arms a sequence for the next update, what a track hands its voice on each pass with its four LFOs and their ten wave shapes, and the shipped banks, where every sound is plain with at most one candidate. | 0x007B2F70, 0x007BD370, 0x007E5160, 0x007E58D0, 0x007E6360, 0x007E67C0, 0x007BD240, 0x007E7540 |
 
 ## What the player sees
 

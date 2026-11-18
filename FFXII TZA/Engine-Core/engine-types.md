@@ -1,9 +1,8 @@
----
-title: "Engine types: every identified engine type with its purpose, its owner page and its lifetime"
-kind: "reference"
-category: "Engine core"
-addresses: ""
----
+[Home](../../README.md) / [Engine core](README.md) / Engine types
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Engine types: every identified engine type with its purpose, its owner page and its lifetime | reference | Engine core | Glossary, ids and limits | 901 engine types whose purpose is established, one row each in engine-types.tsv with the type's size, its category, what it is for, the page that documents it, and where it lives, what creates it and what releases it; engine-types-fields.tsv gives every field of 895 of them. |  |
 
 ## What it lists
 

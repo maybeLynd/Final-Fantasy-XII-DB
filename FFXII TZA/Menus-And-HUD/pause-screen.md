@@ -1,9 +1,8 @@
----
-title: "Pause screen: the overlay shown while the game window is in the background, the inactive-window hold that brings it up, and what is paused while it is open"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x00228380, 0x00228490, 0x002284F0, 0x002282F0, 0x00229590, 0x0017E720, 0x00183200, 0x00182FF0, 0x00181E10, 0x00180120, 0x001EC5A0, 0x0017E500"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Pause when the window loses focus
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Pause screen: the overlay shown while the game window is in the background, the inactive-window hold that brings it up, and what is paused while it is open | system | Menus and HUD | Menu screens | How the game pauses when its window loses focus: the inactive-window task that starts when the window is not in front, the opener the field input runs every frame and its conditions, the overlay widget with its debug names PauseMenu Create and PauseMenu Open, its stages from the fade-in to the release, the menus and buttons it blocks, the audio, behind-camera and framework pause it sets and restores, and how the cancel button ends the hold. | 0x00228380, 0x00228490, 0x002284F0, 0x002282F0, 0x00229590, 0x0017E720, 0x00183200, 0x00182FF0, 0x00181E10, 0x00180120, 0x001EC5A0, 0x0017E500 |
 
 ## What the player sees
 

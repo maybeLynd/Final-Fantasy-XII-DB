@@ -1,9 +1,8 @@
----
-title: "Reward selector list: every package selector and the packages it chooses between"
-kind: "reference"
-category: "Rewards: EXP, LP, gil and loot"
-addresses: "0x02EBF068, 0x002FD640, 0x0031C5D0, 0x0031D712, 0x00322C50"
----
+[Home](../../README.md) / [Rewards: EXP, LP, gil and loot](README.md) / Reward selector list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Reward selector list: every package selector and the packages it chooses between | reference | Rewards: EXP, LP, gil and loot | Gil, prices and reward packages | All 256 package selectors (questreward_data, ids 0xA000-0xA0FF) of the shipped battle_pack.bin: the first and second id triple of each, with what each named reward package gives, and a one-line explanation; 45 selectors name a package and 211 are empty. | 0x02EBF068, 0x002FD640, 0x0031C5D0, 0x0031D712, 0x00322C50 |
 
 ## What it lists
 

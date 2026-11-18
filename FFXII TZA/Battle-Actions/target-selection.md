@@ -1,9 +1,8 @@
----
-title: "Target selection: which targets the battle menu lists, the 24-unit range and the KO exception"
-kind: "system"
-category: "Battle actions"
-addresses: "0x0031EB20, 0x00322A80, 0x003230E0, 0x00322490, 0x0046B870, 0x0046B690, 0x0046BAC0, 0x002FFA60, 0x002FFB60"
----
+[Home](../../README.md) / [Battle actions](README.md) / Target selection
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Target selection: which targets the battle menu lists, the 24-unit range and the KO exception | system | Battle actions | How an action runs | How the battle menu builds the menu's target list for an action - allies, foes and self from the action's flags, the 24-unit horizontal range measured from the character you control, KO'd and stoned allies listed from anywhere for actions that can affect them, greyed entries, the default cursor - and what is checked again once the action is under way. | 0x0031EB20, 0x00322A80, 0x003230E0, 0x00322490, 0x0046B870, 0x0046B690, 0x0046BAC0, 0x002FFA60, 0x002FFB60 |
 
 ## What the player sees
 
@@ -296,3 +295,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - Core runtime: `0x00234590` calls `0x0032A100`, `0x0032A150`; those functions are documented on
   [frame update order](../Engine-Core/frame-update-order.md),
   [force fight mode](../Engine-Core/force-fight-mode.md).
+
+---
+
+[← Command availability](command-availability.md) | [Action commit →](action-commit.md)

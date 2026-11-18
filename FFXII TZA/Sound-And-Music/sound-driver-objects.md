@@ -1,9 +1,8 @@
----
-title: "Sound driver objects: the handles, fixed pools and calls through which the game creates, finds, commands and queries banks, sounds and music"
-kind: "system"
-category: "Sound and music"
-addresses: "0x007B2CB0, 0x007B1660, 0x007B72B0, 0x007B2200, 0x007A87C0, 0x007A7010, 0x007A9160, 0x007DF790"
----
+[Home](../../README.md) / [Sound and music](README.md) / Sound driver objects
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Sound driver objects: the handles, fixed pools and calls through which the game creates, finds, commands and queries banks, sounds and music | system | Sound and music | The sound engine | How the sound driver keeps its objects: the eight-byte handle with its kind, slot and serial, the fixed pools and lists that hold banks, sounds, sequences, tracks, voices, events, music and instruments with their sizes and counts, the hash tables that find banks and sounds by number, the calls that create a bank, a sound or a music, the posters that turn a call into a command, the queries that read a playing object back, the per-tick update passes, and the driver's own heap and clock. | 0x007B2CB0, 0x007B1660, 0x007B72B0, 0x007B2200, 0x007A87C0, 0x007A7010, 0x007A9160, 0x007DF790 |
 
 ## What the player sees
 

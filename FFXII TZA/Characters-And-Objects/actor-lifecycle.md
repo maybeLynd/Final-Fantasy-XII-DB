@@ -1,9 +1,8 @@
----
-title: "Actor lifecycle: an actor record from its manager's bind to the release, and when its handle stops working"
-kind: "lifecycle"
-category: "Characters and objects"
-addresses: "0x0026C8C0, 0x002679F0, 0x00266530, 0x003589B0, 0x003588B0, 0x002628B0, 0x0025B070, 0x002659D0"
----
+[Home](../../README.md) / [Characters and objects](README.md) / Actor lifecycle
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Actor lifecycle: an actor record from its manager's bind to the release, and when its handle stops working | lifecycle | Characters and objects | Field actors | The stages of an actor: the manager slot's bind of its definition payload, the record pool built from the payload's sequences, each record's initialiser, the handle, the battle unit a battle actor gets, the holds a time stop or the world lock put on it, the manager's two-phase release with the per-slot state it resets, and the discriminator that makes old handles stop resolving; each stage linked to the page that explains it. | 0x0026C8C0, 0x002679F0, 0x00266530, 0x003589B0, 0x003588B0, 0x002628B0, 0x0025B070, 0x002659D0 |
 
 ## What the player sees
 
@@ -110,3 +109,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [ebp navigation icons](../EBP-Script-Files/ebp-navigation-icons.md),
   [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md).
 - World area: and on [party verbs](../Scripts-And-Script-Commands/party-verbs.md).
+
+---
+
+[← Actor managers](actor-managers.md) | [Field runtime →](field-runtime.md)

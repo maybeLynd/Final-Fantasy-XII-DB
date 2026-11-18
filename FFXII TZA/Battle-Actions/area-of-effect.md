@@ -1,9 +1,8 @@
----
-title: "Area of effect: radius, cone and line targeting, which side an area hits, and the target list"
-kind: "system"
-category: "Battle actions"
-addresses: "0x0030D160, 0x0030AB40, 0x002FFF50, 0x0031A990, 0x00316CF0, 0x00316CD0, 0x00316D70"
----
+[Home](../../README.md) / [Battle actions](README.md) / Area of effect
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Area of effect: radius, cone and line targeting, which side an area hits, and the target list | system | Battle actions | How an action runs | How a battle action turns its one chosen target into everyone it hits - the radius byte, a circle on the target or on the user, cones and lines, the side rule that follows the chosen target and ignores Confuse, which units an area skips, the whole-party flag and the 32-entry target list. | 0x0030D160, 0x0030AB40, 0x002FFF50, 0x0031A990, 0x00316CF0, 0x00316CD0, 0x00316D70 |
 
 ## What the player sees
 

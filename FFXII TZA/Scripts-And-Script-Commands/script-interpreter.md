@@ -1,9 +1,8 @@
----
-title: "Script interpreter: the hundred opcodes, the value stack, the registers and how a script waits and resumes"
-kind: "system"
-category: "Scripts and script commands"
-addresses: "0x0025E4C0, 0x0025DF00, 0x0025D9E0, 0x00261DF8, 0x01EFEA60, 0x02099AC0, 0x00267E10, 0x00267DB0, 0x00267F90, 0x00267F60, 0x0025D740, 0x00267560, 0x002621D0, 0x003589E0, 0x008620C0, 0x0025B500, 0x0025E60A, 0x0025E613"
----
+[Home](../../README.md) / [Scripts and script commands](README.md) / Script interpreter
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Script interpreter: the hundred opcodes, the value stack, the registers and how a script waits and resumes | system | Scripts and script commands | The script machine | The bytecode interpreter 0x0025E4C0 that runs every zone script: who calls it each frame, the 100-entry opcode dispatch and the two coupled tables that drive it, the shared value stack at 0x02099AC0, the per-actor registers, the wait slot that lets a native call suspend and resume at the same instruction, the instruction budget and the stop rule, and what each of the hundred opcodes does, with the full table in script-interpreter-opcodes.tsv. | 0x0025E4C0, 0x0025DF00, 0x0025D9E0, 0x00261DF8, 0x01EFEA60, 0x02099AC0, 0x00267E10, 0x00267DB0, 0x00267F90, 0x00267F60, 0x0025D740, 0x00267560, 0x002621D0, 0x003589E0, 0x008620C0, 0x0025B500, 0x0025E60A, 0x0025E613 |
 
 ## What the player sees
 
@@ -370,3 +369,7 @@ from.
 | `functions_using_registers` | how many of the script's functions hold at least one of the sixteen register opcodes `0x36` to `0x45`: 0 to 92; 0 on 326 scripts |
 | `read_before_write_in_some_function` | the registers that at least one function reads (`PUSH`) before it writes them (`POP`), separated by semicolons: `I1` on 93 scripts, `F0;F1;F2;F3` on 2, `F0` on 1, empty on the other 1,018 |
 | `per_opcode` | the count of each register opcode in the script, as `MNEMONIC=count` separated by spaces (for example `POPI0=15 PUSHI0=23`); the counts add up to `register_opcodes` on every row, and the cell is empty on the 326 scripts that hold no register opcode |
+
+---
+
+[Script variables →](script-variables.md)

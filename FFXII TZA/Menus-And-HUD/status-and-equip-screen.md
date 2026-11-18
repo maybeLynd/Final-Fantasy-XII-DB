@@ -1,9 +1,8 @@
----
-title: "Status and Equip screen: the panes of each, the buttons, where the numbers come from, moving to another member, and the way from Equip to a worn piece"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x002C2320, 0x002C2280, 0x002C2C50, 0x002C59D0, 0x002C1E20, 0x002C1000, 0x003FF360, 0x003FDFE0, 0x002C1A80"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Status and Equip screen
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Status and Equip screen: the panes of each, the buttons, where the numbers come from, moving to another member, and the way from Equip to a worn piece | system | Menus and HUD | Menu screens | The Party Menu's Status and Equip entries, one screen procedure with a mode bit: what each mode builds (the status list, the stat panel, the member panel, the member row with experience and LP, the Equip commands, the slot pane and the equipment list), the buttons and their masks, the records each number is read from, stepping to another member and the refresh it runs, the ammunition rule that holds the player on a member, what closes the screen, and the path from the Equip command to the setter. | 0x002C2320, 0x002C2280, 0x002C2C50, 0x002C59D0, 0x002C1E20, 0x002C1000, 0x003FF360, 0x003FDFE0, 0x002C1A80 |
 
 ## What the player sees
 

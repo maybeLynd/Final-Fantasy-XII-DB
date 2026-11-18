@@ -1,9 +1,8 @@
----
-title: "Item and ability ids: the sixteen-bit id space, the fifteen inventory classes, the thirty-two-class validator and the query record"
-kind: "system"
-category: "Engine core"
-addresses: "0x00309440, 0x01EEBCC0, 0x0030B6A0, 0x00322C50, 0x00323054, 0x00309EC0, 0x0030AE30, 0x0030ADC0, 0x00309F30, 0x003008A0, 0x002FD150, 0x002FD8D0, 0x002FD420, 0x002FD970, 0x002FD530, 0x002FD640, 0x002FD780, 0x002FD880, 0x00325F40, 0x00252E60, 0x002535D0, 0x0031C5D0, 0x0031E598, 0x0035D330, 0x0035D380, 0x0035E070, 0x00236C30, 0x003845F0, 0x0020E600, 0x00254EE0, 0x00253690, 0x0046A630, 0x00512CD0, 0x02EBF190"
----
+[Home](../../README.md) / [Engine core](README.md) / Item and ability ids
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Item and ability ids: the sixteen-bit id space, the fifteen inventory classes, the thirty-two-class validator and the query record | system | Engine core | Glossary, ids and limits | How one sixteen-bit number names an item, a piece of equipment, a loot, a magick, a technick, a gambit condition, a key item, a quickening, a reward package, a bazaar good or an amount of gil: the top nibble selects one of fifteen inventory class descriptors, the descriptor's handlers keep a count or a bit per id in the party block, a thirty-two-class validator bounds every id against its authored table, and one query record of 0x98 bytes answers every menu's name, description and quantity question. Also the empty id 0xFFFF and its one-byte twin 0xFF. | 0x00309440, 0x01EEBCC0, 0x0030B6A0, 0x00322C50, 0x00323054, 0x00309EC0, 0x0030AE30, 0x0030ADC0, 0x00309F30, 0x003008A0, 0x002FD150, 0x002FD8D0, 0x002FD420, 0x002FD970, 0x002FD530, 0x002FD640, 0x002FD780, 0x002FD880, 0x00325F40, 0x00252E60, 0x002535D0, 0x0031C5D0, 0x0031E598, 0x0035D330, 0x0035D380, 0x0035E070, 0x00236C30, 0x003845F0, 0x0020E600, 0x00254EE0, 0x00253690, 0x0046A630, 0x00512CD0, 0x02EBF190 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Script requests: how a script function is filed on an actor's channels, selected, started, waited on and retired"
-kind: "system"
-category: "Scripts and script commands"
-addresses: "0x00268850, 0x003DBB60, 0x003DBBF0, 0x003DBAE0, 0x003DB790, 0x003DBCF0, 0x003DB7A0, 0x003DB6E0, 0x003DBDC0, 0x003DB2A0, 0x003DB420, 0x003DC050, 0x003DBF60, 0x003DC0D0, 0x003DC1B0, 0x003DB580, 0x003587C0, 0x00358A00, 0x002652D0, 0x00266BD0, 0x0026B4A0, 0x0025D5E0, 0x0025C230, 0x0025C830, 0x0025BAD0, 0x00268D10, 0x0025B600, 0x0025B2E0, 0x00269640, 0x00269860, 0x00268EA0, 0x00266C50, 0x00268B10, 0x00269BA0, 0x00266530, 0x0025DF00, 0x00263230, 0x00263050, 0x0025B500, 0x01E0C328, 0x00314020, 0x003DB1F0, 0x00267310"
----
+[Home](../../README.md) / [Scripts and script commands](README.md) / Script requests
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Script requests: how a script function is filed on an actor's channels, selected, started, waited on and retired | system | Scripts and script commands | The script machine | The request machinery behind every scripted action: the per-actor entry pool and its channels, the REQ opcode family that files a function on another actor, the engine filers that turn touches, talks, map exits and spawns into requests through the per-slot arming mask, the three admission kinds, the highest-channel-first selection, the start of an entry, the start-wait and end-wait notifications, and the RET and cancel paths that retire an entry. | 0x00268850, 0x003DBB60, 0x003DBBF0, 0x003DBAE0, 0x003DB790, 0x003DBCF0, 0x003DB7A0, 0x003DB6E0, 0x003DBDC0, 0x003DB2A0, 0x003DB420, 0x003DC050, 0x003DBF60, 0x003DC0D0, 0x003DC1B0, 0x003DB580, 0x003587C0, 0x00358A00, 0x002652D0, 0x00266BD0, 0x0026B4A0, 0x0025D5E0, 0x0025C230, 0x0025C830, 0x0025BAD0, 0x00268D10, 0x0025B600, 0x0025B2E0, 0x00269640, 0x00269860, 0x00268EA0, 0x00266C50, 0x00268B10, 0x00269BA0, 0x00266530, 0x0025DF00, 0x00263230, 0x00263050, 0x0025B500, 0x01E0C328, 0x00314020, 0x003DB1F0, 0x00267310 |
 
 ## What the player sees
 
@@ -597,3 +596,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [battle units](../Characters-And-Objects/battle-units.md).
 - Combat formula: `0x0030A6E0` calls `0x00320A40`; those functions are documented on
   [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+
+---
+
+[← Script variables](script-variables.md) | [Verb dispatch →](verb-dispatch.md)

@@ -1,9 +1,8 @@
----
-title: "Aerodrome airship scenes: the scene, its text and the aerodrome scripts that load it"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x0032FCA0"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Aerodrome airship scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Aerodrome airship scenes: the scene, its text and the aerodrome scripts that load it | reference | Story, events and hunts | Scenes and scripts by area / Scenes that recur through the story | The aerodrome airship scene script pas_z0000: its two lines in the game's own words, its actors, and the five aerodrome zone scripts, Rabanastre, Nalbina Town, Bhujerba, Archades and Balfonheim Port, that load it. | 0x003529E0, 0x00351880, 0x0032FCA0 |
 
 ## What it lists
 

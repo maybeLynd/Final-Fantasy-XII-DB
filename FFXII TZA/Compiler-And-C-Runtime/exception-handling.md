@@ -1,9 +1,8 @@
----
-title: "Exception handling: x64 unwind data, funclets and the C++ EH tables"
-kind: "system"
-category: "Compiler and C runtime"
-addresses: "0x02F98000, 0x00861EB4, 0x00808BA8, 0x00808F64, 0x00861ED8, 0x00861ECC, 0x00861EAE, 0x0080926C, 0x00715C70, 0x0016D6A0, 0x006DA980, 0x00809054, 0x008090C0, 0x008A5C0A, 0x005CD1E0, 0x007A3770, 0x005CCBF0, 0x00194B00, 0x008F34F0, 0x008968C8, 0x00896BE0, 0x001952E0, 0x01DEAAA0, 0x0019A4F0"
----
+[Home](../../README.md) / [Compiler and C runtime](README.md) / Exception handling
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Exception handling: x64 unwind data, funclets and the C++ EH tables | system | Compiler and C runtime | Program start-up and memory | How exceptions and unwinding work in FFXII_TZA.exe: the .pdata and UNWIND_INFO records and the four handlers they name, the FuncInfo record with its unwind, try-block and IP-to-state maps, the cleanup and catch funclets in .text$x and what they jump to, the nine __try scopes, the one exception type the image throws itself, and the stream-sentry destructor clones the unwind maps reach. | 0x02F98000, 0x00861EB4, 0x00808BA8, 0x00808F64, 0x00861ED8, 0x00861ECC, 0x00861EAE, 0x0080926C, 0x00715C70, 0x0016D6A0, 0x006DA980, 0x00809054, 0x008090C0, 0x008A5C0A, 0x005CD1E0, 0x007A3770, 0x005CCBF0, 0x00194B00, 0x008F34F0, 0x008968C8, 0x00896BE0, 0x001952E0, 0x01DEAAA0, 0x0019A4F0 |
 
 ## What the player sees
 

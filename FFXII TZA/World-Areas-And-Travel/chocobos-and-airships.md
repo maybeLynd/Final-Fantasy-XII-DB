@@ -1,9 +1,8 @@
----
-title: "Chocobos and airships: riding a chocobo, the ride timer and its dismount, and aerodrome travel"
-kind: "system"
-category: "World, areas and travel"
-addresses: "0x00303D90, 0x00303EE0, 0x00303EC0, 0x0030D9A0, 0x003135C0, 0x00303F00, 0x003514D0, 0x00347230, 0x00347820, 0x00347C60, 0x00356630, 0x00355910, 0x0033F650, 0x0050F8A0, 0x0037CFF0, 0x0037CFC0, 0x0037D100, 0x00304440, 0x00234590, 0x00303CC0, 0x00336390, 0x0017D380, 0x0017D3A0, 0x0031B8C0, 0x00311E20, 0x0035CFA0, 0x0035C960, 0x0035CA70, 0x003CA310, 0x003CA860, 0x00304680, 0x00304060, 0x00304140, 0x00237DF0, 0x0034EE20, 0x0034DD90, 0x0032AB60, 0x003EBA90, 0x003EBB70, 0x003EBC50, 0x003EBD00, 0x002E73C0, 0x002EB030, 0x00263750, 0x00306760, 0x005843E0, 0x002EF3C0, 0x002EF410, 0x00261F90, 0x002DEE50, 0x003611F0, 0x0026A7F0, 0x00342E50, 0x00265680, 0x001D50D0, 0x005C5230, 0x003CA280, 0x003CA2B0, 0x003CA1C0, 0x003CA1E0, 0x0028FD70, 0x003CAE00, 0x003CA530, 0x003CB0C0, 0x003CB150, 0x003CAB00, 0x003CA200, 0x003200A0, 0x003045A0, 0x00304790, 0x003047C0, 0x002E28C0, 0x002E26F0, 0x002EDAA0, 0x0042F310, 0x0042F3B0, 0x0025D480, 0x00249C60, 0x0035C630, 0x003EB9A0, 0x00314020, 0x003EBAB0, 0x003EBB90, 0x003EBBB0, 0x0030D8B0, 0x004215A0, 0x003E5AD0, 0x0046E640, 0x00370390, 0x01EECFC0, 0x02B5EBC0, 0x022CA624, 0x02064AB0"
----
+[Home](../../README.md) / [World, areas and travel](README.md) / Chocobos and airships
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Chocobos and airships: riding a chocobo, the ride timer and its dismount, and aerodrome travel | system | World, areas and travel | Changing areas and travel | What riding a chocobo is to the engine: one mode bit in the party block and one story flag, the three-minute ride timer and the turbo timer in the shared timer slots, the dismount task that fades, swaps the party back and clears the flag, the menu's Dismount command and the ground test behind it, the mode ladder that tells riding from the other modes, the music the ride selects, who lends a chocobo and what each asks for, the verbs the keeper, wild-chocobo and crystal scripts use, how a save carries the riding bit, and airship travel, which has no verb of its own and is a gil charge, a scene a private cabin can skip and map jumps in the aerodrome scripts. | 0x00303D90, 0x00303EE0, 0x00303EC0, 0x0030D9A0, 0x003135C0, 0x00303F00, 0x003514D0, 0x00347230, 0x00347820, 0x00347C60, 0x00356630, 0x00355910, 0x0033F650, 0x0050F8A0, 0x0037CFF0, 0x0037CFC0, 0x0037D100, 0x00304440, 0x00234590, 0x00303CC0, 0x00336390, 0x0017D380, 0x0017D3A0, 0x0031B8C0, 0x00311E20, 0x0035CFA0, 0x0035C960, 0x0035CA70, 0x003CA310, 0x003CA860, 0x00304680, 0x00304060, 0x00304140, 0x00237DF0, 0x0034EE20, 0x0034DD90, 0x0032AB60, 0x003EBA90, 0x003EBB70, 0x003EBC50, 0x003EBD00, 0x002E73C0, 0x002EB030, 0x00263750, 0x00306760, 0x005843E0, 0x002EF3C0, 0x002EF410, 0x00261F90, 0x002DEE50, 0x003611F0, 0x0026A7F0, 0x00342E50, 0x00265680, 0x001D50D0, 0x005C5230, 0x003CA280, 0x003CA2B0, 0x003CA1C0, 0x003CA1E0, 0x0028FD70, 0x003CAE00, 0x003CA530, 0x003CB0C0, 0x003CB150, 0x003CAB00, 0x003CA200, 0x003200A0, 0x003045A0, 0x00304790, 0x003047C0, 0x002E28C0, 0x002E26F0, 0x002EDAA0, 0x0042F310, 0x0042F3B0, 0x0025D480, 0x00249C60, 0x0035C630, 0x003EB9A0, 0x00314020, 0x003EBAB0, 0x003EBB90, 0x003EBBB0, 0x0030D8B0, 0x004215A0, 0x003E5AD0, 0x0046E640, 0x00370390, 0x01EECFC0, 0x02B5EBC0, 0x022CA624, 0x02064AB0 |
 
 ## What the player sees
 
@@ -258,6 +257,20 @@ has three dashes and gets no dash back. While turbo is on the chocobo's speed is
 computes `speed * [0x01CEBC08]`, the chocobo definition's speed times `[0x01CEBC08]` = 2.0, when bit `0x2` is set
 (`0x003045D5`-`0x003045DA`;
 [player movement](../Movement-And-Pathfinding/player-movement.md)).
+
+`0x003045A0` works on roster entry 3, the actor `0x0031ABF0(3)` returns (a jump to `0x00263750`, `0x003045AD`-`0x003045CA`). Its
+speed `0x003204E0(actor, 1)` is the model parameter `0x09000202` (`0x01EED324`, `0x0032052D`-`0x00320538`) times the time base
+`[0x01DFE0BC]` (1.0, or 0.5 at 60 fps; [startup constants](../Engine-Core/startup-constants.md);
+`0x003205AD`-`0x003205B9`) and, for an actor of kind `0x60`, times the actor's scale, the third float of `0x00265240`
+(`0x00265240`-`0x00265248`, `0x00320541`-`0x0032057A`).
+
+For an actor of any other kind `0x00265240` writes no float, and `0x003204E0` takes a stack slot it never writes, its own
+home slot `[rsp + 0x68]`, as the scale (`0x0032055C`-`0x0032057A`).
+
+The one direct way to `0x003045A0` is the riding arm of `0x00235EA0` (`0x00235EB1`), whose direct calls are in `0x00358A20`,
+as the walk ratio's divisor when the controlled character has an actor (`0x00358A37`-`0x00358A51`), and in `0x00358CB0`, for
+the placement's speed past its manager, skip-flag and placement tests (`0x00358CC7`-`0x00358D19`; [player
+movement](../Movement-And-Pathfinding/player-movement.md)).
 
 The dash drains in slot 2 at the ticker's rate, from `[0x01DFE0B8] x 10.0` to 0 (10.0 with the image value 1.0;
 20.0 when FrameLimit 1 makes `0x001EDDC0` store 2.0 there, `0x001EDDD8`), and `0x00304440` ends it in its step 3 when

@@ -1,9 +1,8 @@
----
-title: "Title screen and location title scripts: what each script function shows, sets and starts"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x00354D00, 0x003529E0, 0x00351880, 0x003449A0, 0x0034A6D0, 0x00345080, 0x003459C0, 0x0034A790, 0x00355830, 0x00349B60, 0x00510840, 0x00353770, 0x0034C030, 0x0034D4E0, 0x00377B60, 0x003778B0, 0x0034ADA0, 0x0034B760, 0x0034BB10, 0x00352190, 0x00352AF0"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Title screen and location title scripts
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Title screen and location title scripts: what each script function shows, sets and starts | reference | Story, events and hunts | Scenes and scripts by area / Scenes that recur through the story | Every function of the title group's zone and scene scripts that a player can observe: the title screen, the New Game+ question after the staff roll, the Trial Mode completion screen and the location title scenes, with what triggers each function, the flags it sets and releases and the scenes it loads. | 0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x00354D00, 0x003529E0, 0x00351880, 0x003449A0, 0x0034A6D0, 0x00345080, 0x003459C0, 0x0034A790, 0x00355830, 0x00349B60, 0x00510840, 0x00353770, 0x0034C030, 0x0034D4E0, 0x00377B60, 0x003778B0, 0x0034ADA0, 0x0034B760, 0x0034BB10, 0x00352190, 0x00352AF0 |
 
 ## What it lists
 

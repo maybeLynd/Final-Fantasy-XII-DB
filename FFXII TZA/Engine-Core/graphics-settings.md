@@ -1,9 +1,8 @@
----
-title: "Graphics settings: the render settings block, its scene-config keys, its defaults and the shader constants it feeds"
-kind: "system"
-category: "Engine core"
-addresses: "0x02CB7FD0, 0x00162410, 0x005DC720, 0x005DC580, 0x005DC430, 0x008AB7C0, 0x001C7940, 0x001C3D50, 0x001FF740, 0x001C51D0, 0x00200B50, 0x00200B80, 0x00200BE0, 0x001F0AD0, 0x001EF6D0, 0x00187950, 0x006084B0, 0x005DEC50, 0x00604750, 0x001D1660, 0x001CD0E0, 0x001846B0, 0x001846F0, 0x00193F70, 0x00194300, 0x00194250, 0x00194290, 0x001A9930, 0x0018EEE0, 0x00193D50, 0x001C5750, 0x001A9AA0, 0x001A9A70, 0x001A9AD0, 0x001A7770, 0x001A9ED0, 0x001802E0, 0x001A9DA0, 0x001A9D70, 0x001A9B30, 0x001A7E40, 0x001A97F0, 0x005DDDB0, 0x00214C30, 0x00214B90, 0x001CC800, 0x001CC920, 0x001F38B0, 0x01FD3AE6"
----
+[Home](../../README.md) / [Engine core](README.md) / Graphics settings
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Graphics settings: the render settings block, its scene-config keys, its defaults and the shader constants it feeds | system | Engine core | Main loop and game states | The static block at 0x02CB7FD0 that holds the remaster's render settings: the two constructors that write its defaults, the two scene-config loaders that overwrite thirty of them from named keys, the eight shadow-map matrices and the derived shadow scalars written into it every frame, the snapshot the frame builder compares against the last one before it rewrites the shader constant buffer, the post-process and shadow objects the other keys land in, the second run of character-light settings outside the block, the developer-menu rows that step the fields, and the tonemap byte the scene config switches. | 0x02CB7FD0, 0x00162410, 0x005DC720, 0x005DC580, 0x005DC430, 0x008AB7C0, 0x001C7940, 0x001C3D50, 0x001FF740, 0x001C51D0, 0x00200B50, 0x00200B80, 0x00200BE0, 0x001F0AD0, 0x001EF6D0, 0x00187950, 0x006084B0, 0x005DEC50, 0x00604750, 0x001D1660, 0x001CD0E0, 0x001846B0, 0x001846F0, 0x00193F70, 0x00194300, 0x00194250, 0x00194290, 0x001A9930, 0x0018EEE0, 0x00193D50, 0x001C5750, 0x001A9AA0, 0x001A9A70, 0x001A9AD0, 0x001A7770, 0x001A9ED0, 0x001802E0, 0x001A9DA0, 0x001A9D70, 0x001A9B30, 0x001A7E40, 0x001A97F0, 0x005DDDB0, 0x00214C30, 0x00214B90, 0x001CC800, 0x001CC920, 0x001F38B0, 0x01FD3AE6 |
 
 ## What the player sees
 

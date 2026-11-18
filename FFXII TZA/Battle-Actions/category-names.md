@@ -1,9 +1,8 @@
----
-title: "Category names: the battle command, magick school, element and equipment class name tables"
-kind: "reference"
-category: "Battle actions"
-addresses: "0x02EBF128, 0x02EBF110, 0x02EBF050, 0x02EBF0B0, 0x0031C5D0, 0x00322C50"
----
+[Home](../../README.md) / [Battle actions](README.md) / Category names
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Category names: the battle command, magick school, element and equipment class name tables | reference | Battle actions | Action tables | All rows of the four shipped name tables in battle_pack.bin that only name things: the 21 battle commands (comac_data, class 21), the 5 magick schools (mgccategory_data, class 24), the 8 elements (attribute_data, class 27) and the 32 equipment classes (sobicategory_data, class 28), each with its name, its help text and the query arm that reads it. | 0x02EBF128, 0x02EBF110, 0x02EBF050, 0x02EBF0B0, 0x0031C5D0, 0x00322C50 |
 
 ## What it lists
 

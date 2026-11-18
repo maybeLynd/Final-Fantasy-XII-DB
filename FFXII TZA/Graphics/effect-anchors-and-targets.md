@@ -1,9 +1,8 @@
----
-title: "Effect anchors and targets: the target and anchor queries, target slots, and reading and renaming an owner or target"
-kind: "system"
-category: "Graphics"
-addresses: "0x020910F0, 0x02F97348, 0x003A4290, 0x003A40F0, 0x003A6FC0, 0x003A6C30, 0x003A69F0, 0x0057A040, 0x004220F0, 0x0046F4B0, 0x003E5700, 0x003E5600, 0x003E5810, 0x01EFAC60, 0x0209A71C"
----
+[Home](../../README.md) / [Graphics](README.md) / Effect anchors and targets
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Effect anchors and targets: the target and anchor queries, target slots, and reading and renaming an owner or target | system | Graphics | Visual effects / Effect Elements And Drawing | Where an effect element is placed: the target and anchor queries that turn an anchor descriptor into a matrix, the point kinds, the target slots of an instance, the raw owner and target reads, and renaming an owner or target. | 0x020910F0, 0x02F97348, 0x003A4290, 0x003A40F0, 0x003A6FC0, 0x003A6C30, 0x003A69F0, 0x0057A040, 0x004220F0, 0x0046F4B0, 0x003E5700, 0x003E5600, 0x003E5810, 0x01EFAC60, 0x0209A71C |
 
 ## What the player sees
 

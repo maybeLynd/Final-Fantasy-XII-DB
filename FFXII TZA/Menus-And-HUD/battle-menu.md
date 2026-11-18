@@ -1,9 +1,8 @@
----
-title: "Battle menu: the command lists, the party HP and MP list, the help line, the boss and overhead gauges, and how a chosen command is issued"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x00279E20, 0x00276D30, 0x002778C0, 0x0027E050, 0x0027C3D0, 0x00311B20, 0x0029BE50, 0x002C8310"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Battle menu
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Battle menu: the command lists, the party HP and MP list, the help line, the boss and overhead gauges, and how a chosen command is issued | system | Menus and HUD | Battle HUD | How the battle screen's menu is built and driven: the manager, panel, list widget and pages, the top command list and its sub-lists with their shipped names and help, the input, how a row becomes the next list, a menu target list or an issued action, the Dismiss confirmation, the refusal texts on the help line, the party list's HP and MP, the boss gauge and the overhead HP gauges, and the layout keys each part reads. | 0x00279E20, 0x00276D30, 0x002778C0, 0x0027E050, 0x0027C3D0, 0x00311B20, 0x0029BE50, 0x002C8310 |
 
 ## What the player sees
 

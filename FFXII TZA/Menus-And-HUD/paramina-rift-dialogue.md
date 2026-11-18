@@ -1,9 +1,8 @@
----
-title: "Paramina Rift dialogue: every line and caption of the Paramina Rift scripts in all nine languages"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x00348DF0, 0x0034ADA0, 0x00264D60, 0x00264D90, 0x00355A00, 0x00357120, 0x002AC825, 0x002AC957, 0x002AD151, 0x001E9D20, 0x001FDD60, 0x00674A00, 0x001B6350"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Paramina Rift dialogue
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Paramina Rift dialogue: every line and caption of the Paramina Rift scripts in all nine languages | reference | Menus and HUD | Dialogue / Paramina Rift and Mt Bur-Omisace | Every string of sections 2 and 3 of the Paramina Rift zone and scene scripts side by side in the nine language trees: the lines the message verbs show and the captions the field signs show, keyed by script, section and text id as the Paramina Rift scripts table names them, with the row count per language, where the languages differ, the strings drawn with the alternate font and the choice lists. | 0x00348DF0, 0x0034ADA0, 0x00264D60, 0x00264D90, 0x00355A00, 0x00357120, 0x002AC825, 0x002AC957, 0x002AD151, 0x001E9D20, 0x001FDD60, 0x00674A00, 0x001B6350 |
 
 ## What it lists
 

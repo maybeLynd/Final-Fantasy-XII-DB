@@ -1,9 +1,8 @@
----
-title: "Lua runtime: the embedded Lua 5.2.1 interpreter, its chunk loader, its standard libraries and why no script runs"
-kind: "system"
-category: "Third-party libraries"
-addresses: "0x00683C30, 0x00812F70, 0x00810180, 0x0081DF50, 0x0081D790, 0x0082BE30, 0x0082E910, 0x0082E490, 0x00684D10, 0x00686280, 0x00684F60, 0x00685AC0, 0x006844C0, 0x02E41570, 0x02E41578, 0x00685F60, 0x01CCB3E0, 0x01CCB470, 0x00824340, 0x01CCBA90, 0x00818AC0, 0x00825660, 0x00681840, 0x008216A0, 0x008162F0, 0x00827600"
----
+[Home](../../README.md) / [Third-party libraries](README.md) / Lua runtime
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Lua runtime: the embedded Lua 5.2.1 interpreter, its chunk loader, its standard libraries and why no script runs | system | Third-party libraries | Library details | The Lua 5.2.1 interpreter linked into the executable with a 4-byte float lua_Number: the PhyreEngine loader that passes no mode and so accepts both source text and precompiled chunks, the 18-byte chunk header it checks, the standard libraries compiled in and the four that are registered but never opened, and the static facts that keep it idle: no code creates a lua_State and no shipped file holds a script. | 0x00683C30, 0x00812F70, 0x00810180, 0x0081DF50, 0x0081D790, 0x0082BE30, 0x0082E910, 0x0082E490, 0x00684D10, 0x00686280, 0x00684F60, 0x00685AC0, 0x006844C0, 0x02E41570, 0x02E41578, 0x00685F60, 0x01CCB3E0, 0x01CCB470, 0x00824340, 0x01CCBA90, 0x00818AC0, 0x00825660, 0x00681840, 0x008216A0, 0x008162F0, 0x00827600 |
 
 ## What the player sees
 

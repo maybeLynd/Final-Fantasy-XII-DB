@@ -1,9 +1,8 @@
----
-title: "Special move scenes: the scene script, its actors and what it shows"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x0032FCA0, 0x00306BD0, 0x0032FC30, 0x00309230"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Special move scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Special move scenes: the scene script, its actors and what it shows | reference | Story, events and hunts | Scenes and scripts by area / Scenes that recur through the story | The special move scene script spc_z0000: its actors and functions, and that it holds no text, gives nothing, writes no story flag or counter value and that the battle scene step 0x00306BD0, not a zone script, requests it for every Quickening and Concurrence. | 0x0032FCA0, 0x00306BD0, 0x0032FC30, 0x00309230 |
 
 ## What it lists
 

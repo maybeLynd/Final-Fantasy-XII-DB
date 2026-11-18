@@ -1,9 +1,8 @@
----
-title: "Movies: the .mh seek index and the movie player's states"
-kind: "format"
-category: "Graphics"
-addresses: "0x01F81218, 0x001B7F20, 0x001B82F0, 0x001B7F30, 0x001B8400, 0x001B83B0, 0x001B82A0, 0x001B7D30, 0x001B7690, 0x001B77B0, 0x001B77E0, 0x00184810, 0x001848A0, 0x001848E0, 0x0035B840, 0x0035B8D0, 0x0035B740, 0x0035B7D0, 0x002DF980, 0x01ECB4D0"
----
+[Home](../../README.md) / [Graphics](README.md) / Movies
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Movies: the .mh seek index and the movie player's states | format | Graphics | Screen effects and movies | The full-motion movie files and the object that plays them: the PS2-era .mh seek index shipped beside the movie paths and never read, how a movie id maps to its path pair, and the movie player singleton's start, update, fade-out and time read-outs that the script layer drives. | 0x01F81218, 0x001B7F20, 0x001B82F0, 0x001B7F30, 0x001B8400, 0x001B83B0, 0x001B82A0, 0x001B7D30, 0x001B7690, 0x001B77B0, 0x001B77E0, 0x00184810, 0x001848A0, 0x001848E0, 0x0035B840, 0x0035B8D0, 0x0035B740, 0x0035B7D0, 0x002DF980, 0x01ECB4D0 |
 
 ## What the player sees
 

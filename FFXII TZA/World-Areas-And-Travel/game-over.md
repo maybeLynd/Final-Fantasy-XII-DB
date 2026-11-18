@@ -1,9 +1,8 @@
----
-title: "Game over: what a party wipe does, the GAME OVER screen, and the return to the title map"
-kind: "system"
-category: "World, areas and travel"
-addresses: "0x00234590, 0x0035C7A0, 0x0035C7B0, 0x00227370, 0x002E1B10, 0x00254850, 0x00254E50, 0x002805D0, 0x0027EFA0, 0x002E09A0, 0x00254B50, 0x0028F970, 0x00280A00, 0x00252B40, 0x0027FB70, 0x00280140, 0x003EF750, 0x003EF830, 0x003EFAA0, 0x003EF2E0, 0x003EEEC0, 0x003EF4A0, 0x003EF050, 0x003EF680, 0x003EF770, 0x003EF290, 0x00361630, 0x00360C20, 0x003611F0, 0x00360D70, 0x002DDCA0, 0x002EFA70, 0x00285EC0, 0x00285EA0, 0x003603E0, 0x003603D0, 0x0034EB20, 0x00360120, 0x003601D0, 0x003321E0, 0x0022A770, 0x0022BC20, 0x00228C70, 0x0027F2E0, 0x00264B90, 0x00377AB0, 0x00377A90, 0x0037B4D0, 0x00356500, 0x00359C60, 0x0030F4B0, 0x00237CA0, 0x0034AAB0, 0x002FEAC0, 0x00314DC0, 0x00314D80, 0x0034AC10"
----
+[Home](../../README.md) / [World, areas and travel](README.md) / Game over
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Game over: what a party wipe does, the GAME OVER screen, and the return to the title map | system | World, areas and travel | Changing areas and travel | What happens after the last party member falls: the request the field frame posts and the second route a menu death takes, the executor that opens the game-over screen, the task tree that fades the field out, shows the GAME OVER image and the press-to-continue prompt, and fades to black, the request for the title map and the byte it really sets, the main-loop check that tears the field down and returns to the title screen, what is not reloaded, and where a load afterwards puts the party, including the save-crystal entrance alias. | 0x00234590, 0x0035C7A0, 0x0035C7B0, 0x00227370, 0x002E1B10, 0x00254850, 0x00254E50, 0x002805D0, 0x0027EFA0, 0x002E09A0, 0x00254B50, 0x0028F970, 0x00280A00, 0x00252B40, 0x0027FB70, 0x00280140, 0x003EF750, 0x003EF830, 0x003EFAA0, 0x003EF2E0, 0x003EEEC0, 0x003EF4A0, 0x003EF050, 0x003EF680, 0x003EF770, 0x003EF290, 0x00361630, 0x00360C20, 0x003611F0, 0x00360D70, 0x002DDCA0, 0x002EFA70, 0x00285EC0, 0x00285EA0, 0x003603E0, 0x003603D0, 0x0034EB20, 0x00360120, 0x003601D0, 0x003321E0, 0x0022A770, 0x0022BC20, 0x00228C70, 0x0027F2E0, 0x00264B90, 0x00377AB0, 0x00377A90, 0x0037B4D0, 0x00356500, 0x00359C60, 0x0030F4B0, 0x00237CA0, 0x0034AAB0, 0x002FEAC0, 0x00314DC0, 0x00314D80, 0x0034AC10 |
 
 ## What the player sees
 

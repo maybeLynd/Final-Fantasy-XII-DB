@@ -1,9 +1,8 @@
----
-title: "Inventory screen: the category rows, the item tabs and their rows, the help line, moving an item to a new place, and the tab strip"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x00565E00, 0x005651E0, 0x00564C80, 0x00564E10, 0x005641F0, 0x00564D30, 0x00565BD0, 0x00564650, 0x005674B0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Inventory screen
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Inventory screen: the category rows, the item tabs and their rows, the help line, moving an item to a new place, and the tab strip | system | Menus and HUD | Menu screens | The Inventory entry of the main menu: the category rows and when each appears, the per-category tab panes and how their rows are built and painted, the help line for the item under the cursor, picking an item up and dropping it elsewhere to change the stored order, the cursor that returns to the last item, the widest-name measure, and the tab strip the screen shares with other menus. | 0x00565E00, 0x005651E0, 0x00564C80, 0x00564E10, 0x005641F0, 0x00564D30, 0x00565BD0, 0x00564650, 0x005674B0 |
 
 ## What the player sees
 

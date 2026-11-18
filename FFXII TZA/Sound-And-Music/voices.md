@@ -1,9 +1,8 @@
----
-title: "Voices: the voice packs a cutscene loads, the sixty-four voice slots, the English or Japanese choice, and the verbs that play, stop and pan a line"
-kind: "system"
-category: "Sound and music"
-addresses: "0x02B5D0B0, 0x003EA0D0, 0x003E9F80, 0x003E9C10, 0x003E9780, 0x003581B0, 0x002DDE20, 0x002DF690"
----
+[Home](../../README.md) / [Sound and music](README.md) / Voices
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Voices: the voice packs a cutscene loads, the sixty-four voice slots, the English or Japanese choice, and the verbs that play, stop and pan a line | system | Sound and music | Sound effects and voices | How spoken lines in cutscenes play: the 64 global voice slots, one per pack sub-file, the .vpc and .vpcjp packs an event loads with both languages loaded and one chosen, the pack and cue-table formats, the cue word and its range rule, every voice verb with how often the US scripts call it, the pass that starts a line once its stream is ready, stopping, panning and volume, and the Voice volume category. | 0x02B5D0B0, 0x003EA0D0, 0x003E9F80, 0x003E9C10, 0x003E9780, 0x003581B0, 0x002DDE20, 0x002DF690 |
 
 ## What the player sees
 

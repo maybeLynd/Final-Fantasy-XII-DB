@@ -1,9 +1,8 @@
----
-title: "Equipment: the five slots, what can be worn where, two-handed weapons, shields and ammunition, Optimise, and what happens when you equip"
-kind: "system"
-category: "Items, equipment, shops and licenses"
-addresses: "0x0031A630, 0x0031A510, 0x0031A410, 0x00317930, 0x00318B40, 0x002F7EC0, 0x002F9F20, 0x002F7A10, 0x002F7C80, 0x0030FBE0, 0x0030FAA0"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Equipment
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Equipment: the five slots, what can be worn where, two-handed weapons, shields and ammunition, Optimise, and what happens when you equip | system | Items, equipment, shops and licenses | Equipment | How equipping works: the five slot words of a member record, the setters and when they move the worn counts and rebuild the stats, the eligibility test and its order (slot, free copy, pairing, license), why taking something off always succeeds, how the off hand and the main hand are reconciled for shields, two-handed weapons and ammunition, the takeaway and giveback verbs and the stashed loadout, the Optimise builder and its rules per slot, and the starting gear. | 0x0031A630, 0x0031A510, 0x0031A410, 0x00317930, 0x00318B40, 0x002F7EC0, 0x002F9F20, 0x002F7A10, 0x002F7C80, 0x0030FBE0, 0x0030FAA0 |
 
 ## What the player sees
 
@@ -320,3 +319,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
 - Save load settings: `0x00237DF0` is called by `0x00238A80`; those functions are documented on
   [item and ability ids](../Engine-Core/item-and-ability-ids.md).
+
+---
+
+[Equipping an item →](equipping-an-item.md)

@@ -1,9 +1,8 @@
----
-title: "File requests and the read queue: the request slots, how a load is queued, sized, read in parts and completed, and how a caller waits, asks or cancels"
-kind: "system"
-category: "Game files and data tables"
-addresses: "0x0032E450, 0x022C31C0, 0x022C51C0, 0x022C51C8, 0x022C51D0, 0x01EED498, 0x0032EA90, 0x022C51F0, 0x0032E400, 0x002DF960, 0x0032E620, 0x003EB0D0, 0x0032E870, 0x0032E990, 0x0032EC40, 0x0032E780, 0x0032E7C0, 0x0032E070, 0x0032E040, 0x0032E520, 0x0032E4D0, 0x0032E590, 0x0032E2F0, 0x0032E330, 0x0032E370, 0x0032E3B0, 0x0046E030, 0x002DF780, 0x002DF6C0, 0x0046DFE0, 0x0046E0E0, 0x0215EFF4, 0x0035E810, 0x022CA5E0, 0x0035EA30, 0x003EADD0, 0x02B5E0E0, 0x0046DD50, 0x003E9780, 0x003BB790, 0x0050DFE0, 0x00249180, 0x022C5AF0, 0x022C59F0, 0x0032EA50, 0x0032ECE0, 0x0032ED20, 0x0051ED10, 0x0051EDB0, 0x002DF7B0, 0x0024AC30, 0x00365810, 0x002EF300, 0x00324510, 0x003DC5B0, 0x003EB100"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / File requests and the read queue
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| File requests and the read queue: the request slots, how a load is queued, sized, read in parts and completed, and how a caller waits, asks or cancels | system | Game files and data tables | Archives and file loading | How the game asks for a file and gets it: the pool of 64 request slots and its pending and free lists, the builder that takes a kind and index or a path, the request id, the size lookup, the pump's six states from queued to delivered or failed, chunked reads of 512 KB parts while the BGM stream reader is armed, the delivery, failure and cancel callbacks, the full-queue stall, the drain and the asking form, the in-flight test and the cancel, which kinds the call sites pass, and the shipped constant requests. | 0x0032E450, 0x022C31C0, 0x022C51C0, 0x022C51C8, 0x022C51D0, 0x01EED498, 0x0032EA90, 0x022C51F0, 0x0032E400, 0x002DF960, 0x0032E620, 0x003EB0D0, 0x0032E870, 0x0032E990, 0x0032EC40, 0x0032E780, 0x0032E7C0, 0x0032E070, 0x0032E040, 0x0032E520, 0x0032E4D0, 0x0032E590, 0x0032E2F0, 0x0032E330, 0x0032E370, 0x0032E3B0, 0x0046E030, 0x002DF780, 0x002DF6C0, 0x0046DFE0, 0x0046E0E0, 0x0215EFF4, 0x0035E810, 0x022CA5E0, 0x0035EA30, 0x003EADD0, 0x02B5E0E0, 0x0046DD50, 0x003E9780, 0x003BB790, 0x0050DFE0, 0x00249180, 0x022C5AF0, 0x022C59F0, 0x0032EA50, 0x0032ECE0, 0x0032ED20, 0x0051ED10, 0x0051EDB0, 0x002DF7B0, 0x0024AC30, 0x00365810, 0x002EF300, 0x00324510, 0x003DC5B0, 0x003EB100 |
 
 ## What the player sees
 
@@ -420,3 +419,7 @@ counter `0x022CA5E0` and the BGM stream reader at `0x02B5E0E0`.
 - [File path resolution](file-path-resolution.md): how a path becomes bytes.
 - [File size tables](file-size-tables-fst.md): where the kind and index sizes come from.
 - [Music](../Sound-And-Music/music.md): the BGM stream that makes requests chunked.
+
+---
+
+[← File path resolution](file-path-resolution.md) | [Resource lifecycle →](resource-lifecycle.md)

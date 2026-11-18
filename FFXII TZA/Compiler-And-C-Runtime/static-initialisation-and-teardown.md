@@ -1,9 +1,8 @@
----
-title: "Static initialisation and teardown: the start-up order, the C and C++ initialiser tables, atexit registration and the quit path"
-kind: "system"
-category: "Compiler and C runtime"
-addresses: "0x00808EE4, 0x00808D78, 0x02EAECF8, 0x008C5680, 0x008C56A0, 0x008C31D0, 0x008C5678, 0x00808C90, 0x00808D4C, 0x00809124, 0x00808D5C, 0x00808B90, 0x00808B40, 0x00808988, 0x02EAED08, 0x02EAED20, 0x007A3770, 0x007980A0, 0x0079887F, 0x005A0840, 0x005A08E0, 0x00879570, 0x00876C80, 0x008768A0, 0x005DC6F0, 0x005FDCB0, 0x001EDF00, 0x006E0220, 0x00616210, 0x00662C00, 0x008C56B0, 0x02EAED3C"
----
+[Home](../../README.md) / [Compiler and C runtime](README.md) / Static initialisation and teardown
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Static initialisation and teardown: the start-up order, the C and C++ initialiser tables, atexit registration and the quit path | system | Compiler and C runtime | Program start-up and memory | How FFXII_TZA.exe builds its global objects before WinMain and registers their teardowns: the entry point and runtime start-up routine, the three-entry C table and the 1,172-entry C++ table with their null bounds, what the C++ initialisers construct (Phyre input semantics, render-pass and format name registries, EASTL allocators, half-float constants), how atexit forwards every registration to the runtime's process table, the shapes of the 2,582 registered teardowns, why a normal quit never runs them, and the TLS directory without callbacks. | 0x00808EE4, 0x00808D78, 0x02EAECF8, 0x008C5680, 0x008C56A0, 0x008C31D0, 0x008C5678, 0x00808C90, 0x00808D4C, 0x00809124, 0x00808D5C, 0x00808B90, 0x00808B40, 0x00808988, 0x02EAED08, 0x02EAED20, 0x007A3770, 0x007980A0, 0x0079887F, 0x005A0840, 0x005A08E0, 0x00879570, 0x00876C80, 0x008768A0, 0x005DC6F0, 0x005FDCB0, 0x001EDF00, 0x006E0220, 0x00616210, 0x00662C00, 0x008C56B0, 0x02EAED3C |
 
 ## What the player sees
 

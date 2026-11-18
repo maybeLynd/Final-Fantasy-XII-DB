@@ -1,9 +1,8 @@
----
-title: "Gambit conditions: every target condition with its id, what it tests, which target it picks and its shipped name"
-kind: "reference"
-category: "Enemy AI and gambits"
-addresses: "0x02EBF0D8, 0x00238880, 0x00301AD0, 0x003087E0, 0x00308C20, 0x0031D034, 0x0031D0BE, 0x00327DE0"
----
+[Home](../../README.md) / [Enemy AI and gambits](README.md) / Gambit conditions
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Gambit conditions: every target condition with its id, what it tests, which target it picks and its shipped name | reference | Enemy AI and gambits | Party gambits | All 256 gambit target conditions of battle_pack.bin section 7, ids 0x6000-0x60FF: for each, the name and help text the game shows, whether it looks at foes, allies or the character, the test it runs, the second test some conditions make on the character, the rule that picks one target when several match, its place on the gambit menu, and the instructions that show it. | 0x02EBF0D8, 0x00238880, 0x00301AD0, 0x003087E0, 0x00308C20, 0x0031D034, 0x0031D0BE, 0x00327DE0 |
 
 ## What it lists
 

@@ -1,9 +1,8 @@
----
-title: "Phyre frame: from the frame tick to the drawn picture, the per-draw mask and the GS register batch"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x0022B0B0, 0x022C7F90, 0x00358450, 0x00358510, 0x0036D400, 0x003A1D50, 0x004FE420, 0x003A1DB0, 0x0036F360, 0x02EBEFC0, 0x00184460, 0x00864F30, 0x00864E90, 0x00678B50, 0x0016D6A0"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Phyre frame
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre frame: from the frame tick to the drawn picture, the per-draw mask and the GS register batch | system | PhyreEngine | Drawing and shaders | What the game's draw does once PhyreEngine's frame tick has handed over: the draw routine and its two draws per frame, the per-draw pass mask at 0x022C7F90 that switches each pass, the PS2 Graphics Synthesizer register batch every frame mode writes, the two 512-record command buffers it is written into and flipped, the menu viewport scaled from 512 x 448, and the camera state the GiBeginEff render command copies when it is prepared. | 0x0022B0B0, 0x022C7F90, 0x00358450, 0x00358510, 0x0036D400, 0x003A1D50, 0x004FE420, 0x003A1DB0, 0x0036F360, 0x02EBEFC0, 0x00184460, 0x00864F30, 0x00864E90, 0x00678B50, 0x0016D6A0 |
 
 ## What the player sees
 
@@ -263,3 +262,7 @@ The members below are the ones the code of this page's classes uses or the refle
 - [PS2 VIF1 and VU1 emulation](../Engine-Core/ps2-vif1-vu1-emulation.md): the GIF tag and the GS replay.
 - [Phyre application](phyre-application.md): PhyreEngine's application class.
 - [Phyre post-effect classes](phyre-post-effect-classes.md): PhyreEngine's post-effect library.
+
+---
+
+[← PhyreEngine application framework](phyre-application.md) | [Phyre mesh-instance draws →](phyre-mesh-instance-draws.md)

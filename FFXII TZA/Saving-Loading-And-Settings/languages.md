@@ -1,9 +1,8 @@
----
-title: "Languages: the Language setting, the nine language codes, the locale id each maps to, the data folder it selects, the Windows-locale default, and the confirm and cancel buttons"
-kind: "system"
-category: "Saving, loading and settings"
-addresses: "0x0017E270, 0x001DE050, 0x0022A0B0, 0x00229E40, 0x00229E50, 0x00254A10, 0x002DF9A0, 0x0017E210"
----
+[Home](../../README.md) / [Saving, loading and settings](README.md) / Languages
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Languages: the Language setting, the nine language codes, the locale id each maps to, the data folder it selects, the Windows-locale default, and the confirm and cancel buttons | system | Saving, loading and settings | Settings and languages | How the game picks its language: the Language setting in the GameSetting.ini object, its ten-entry code table, the converter that turns a code into the locale id the rest of the game reads, the per-locale data folder and file size table that id selects, the Windows Region Format language the setting defaults to on a fresh install and the Steam language that replaces it, the locale-dependent rules in text and script code, and the DecideButton setting that swaps confirm and cancel. | 0x0017E270, 0x001DE050, 0x0022A0B0, 0x00229E40, 0x00229E50, 0x00254A10, 0x002DF9A0, 0x0017E210 |
 
 ## What the player sees
 

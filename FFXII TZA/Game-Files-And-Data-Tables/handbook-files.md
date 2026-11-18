@@ -1,9 +1,8 @@
----
-title: "Handbook files: the hctg, hchk, hdat and himg files behind Clan Primer entries, how each is read, and what each field shows"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x005771F0, 0x00576F50, 0x00575870, 0x00575C30, 0x00575A50, 0x00575710, 0x00575B80, 0x005778F0, 0x00575D10, 0x00575DD0, 0x00576030, 0x005760A0, 0x00576740, 0x00576A50, 0x00577550, 0x00575E80, 0x00576860, 0x00576E30, 0x00576300, 0x00577A40, 0x00574900, 0x00D23740, 0x02CA9738"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Handbook files
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Handbook files: the hctg, hchk, hdat and himg files behind Clan Primer entries, how each is read, and what each field shows | format | Game files and data tables | Menu and map files | The menuhandbook files of the six handbook families: the hctg family catalog with its entry records, section captions, page map and Bestiary slot counts; the hchk unlock tables; the hdat text bundles with their glyph sheets, gated text slots and line programs; the himg picture bundles; how the data manager turns an entry into kind-7 resource ids and reads each field; the shipped files; and the rules an edit must keep. | 0x005771F0, 0x00576F50, 0x00575870, 0x00575C30, 0x00575A50, 0x00575710, 0x00575B80, 0x005778F0, 0x00575D10, 0x00575DD0, 0x00576030, 0x005760A0, 0x00576740, 0x00576A50, 0x00577550, 0x00575E80, 0x00576860, 0x00576E30, 0x00576300, 0x00577A40, 0x00574900, 0x00D23740, 0x02CA9738 |
 
 ## What the player sees
 

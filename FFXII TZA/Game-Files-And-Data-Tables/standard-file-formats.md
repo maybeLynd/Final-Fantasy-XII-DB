@@ -1,9 +1,8 @@
----
-title: "Standard file formats: the TGA, CSV, JSON, WebM, C-header and PS2 icon files the game ships, and which of them it reads"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x00473E80, 0x01F26568, 0x001D8D60, 0x001EE820, 0x001A9050, 0x001A7A50, 0x00674A00, 0x0024C970, 0x0024F240, 0x0024EF90, 0x001D9A40, 0x00200BF0, 0x001C3760, 0x001C7360, 0x001C7520, 0x00202930, 0x001C61F0, 0x001C53F0, 0x001C5F20, 0x001C76E0, 0x001C5930, 0x001C5750, 0x001C6E20, 0x001C2F50, 0x00582790, 0x00249210, 0x005832B0, 0x002DF9A0, 0x01E461F0, 0x002DF980, 0x001B7F30"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Standard file formats
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Standard file formats: the TGA, CSV, JSON, WebM, C-header and PS2 icon files the game ships, and which of them it reads | format | Game files and data tables | Data tables and configs | The archive files in public formats: two TGA title images, seventeen CSV tables, 830 JSON documents, forty WebM movies, six C headers, the PS2 memory-card icon pair and the PS2 boot descriptor. For each, its shipped counts and sizes, the function that opens it and what that function does with the bytes, and which files no path in the executable names. | 0x00473E80, 0x01F26568, 0x001D8D60, 0x001EE820, 0x001A9050, 0x001A7A50, 0x00674A00, 0x0024C970, 0x0024F240, 0x0024EF90, 0x001D9A40, 0x00200BF0, 0x001C3760, 0x001C7360, 0x001C7520, 0x00202930, 0x001C61F0, 0x001C53F0, 0x001C5F20, 0x001C76E0, 0x001C5930, 0x001C5750, 0x001C6E20, 0x001C2F50, 0x00582790, 0x00249210, 0x005832B0, 0x002DF9A0, 0x01E461F0, 0x002DF980, 0x001B7F30 |
 
 ## What the player sees
 

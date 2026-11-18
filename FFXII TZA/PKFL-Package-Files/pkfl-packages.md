@@ -1,9 +1,8 @@
----
-title: "PKFL packages: the per-area .mot, .snd, .vpc and .vpcjp containers, their offset and size directory, and the slot readers"
-kind: "format"
-category: "PKFL package files"
-addresses: "0x0032FCA0, 0x0032FC30, 0x0032F430, 0x022C6E70, 0x022C6E98, 0x022C6EE8, 0x022C6EC0, 0x0032F260, 0x0032F290, 0x0032F2C0, 0x0032F2F0, 0x0032F3A0, 0x0032F320, 0x0032F360, 0x003DD4C0, 0x003DF440, 0x003DF2C0, 0x003E9F80, 0x003E9EF0, 0x002DF980, 0x003DDA20, 0x0034AB50, 0x00347B00, 0x003DD8D0, 0x003DD980, 0x003DEC90, 0x003EA0D0, 0x0036B970, 0x003499C0, 0x003DD770"
----
+[Home](../../README.md) / [PKFL package files](README.md) / PKFL packages
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| PKFL packages: the per-area .mot, .snd, .vpc and .vpcjp containers, their offset and size directory, and the slot readers | format | PKFL package files | The package format | The PKFL container every area's motion, sound and voice package uses: an 8-byte header and a directory of offset and size pairs, payloads on 0x800 boundaries; how the area loader reads each package's directory into a fixed table, the seven slot readers and their callers, how a slot's payload is requested, the 10,314 shipped packages and what their slots hold, and the rules a package must follow. Every package and every used slot is listed with its decoded payload, the script steps that load and play it, what no script loads, and what a slot number out of range does. | 0x0032FCA0, 0x0032FC30, 0x0032F430, 0x022C6E70, 0x022C6E98, 0x022C6EE8, 0x022C6EC0, 0x0032F260, 0x0032F290, 0x0032F2C0, 0x0032F2F0, 0x0032F3A0, 0x0032F320, 0x0032F360, 0x003DD4C0, 0x003DF440, 0x003DF2C0, 0x003E9F80, 0x003E9EF0, 0x002DF980, 0x003DDA20, 0x0034AB50, 0x00347B00, 0x003DD8D0, 0x003DD980, 0x003DEC90, 0x003EA0D0, 0x0036B970, 0x003499C0, 0x003DD770 |
 
 ## What the player sees
 

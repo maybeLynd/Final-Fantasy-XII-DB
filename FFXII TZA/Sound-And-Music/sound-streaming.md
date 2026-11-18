@@ -1,9 +1,8 @@
----
-title: "Sound streaming: the streaming banks, their read streams and ring buffers, and how a voice claims, seeks and reads a stream"
-kind: "system"
-category: "Sound and music"
-addresses: "0x007B1AB0, 0x007B1E10, 0x007E2C50, 0x007E2BC0, 0x007E4310, 0x007E3450, 0x007E48D0, 0x007B6C50"
----
+[Home](../../README.md) / [Sound and music](README.md) / Sound streaming
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Sound streaming: the streaming banks, their read streams and ring buffers, and how a voice claims, seeks and reads a stream | system | Sound and music | The sound engine | How the sound driver plays a bank that is not held whole in memory: the streaming sound and music banks and the checks that create them, the one to sixteen read streams each bank owns, a stream's read states and ring buffer, how a voice or a music claims a stream, requests a material, seeks into it and reads from it, how a bank is released through the job worker, and the stream object's layout. | 0x007B1AB0, 0x007B1E10, 0x007E2C50, 0x007E2BC0, 0x007E4310, 0x007E3450, 0x007E48D0, 0x007B6C50 |
 
 ## What the player sees
 

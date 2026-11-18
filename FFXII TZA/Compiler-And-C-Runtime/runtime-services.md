@@ -1,9 +1,8 @@
----
-title: "Runtime services: what the game asks Windows and the C runtime for, its crash dumps, threads and debug output"
-kind: "system"
-category: "Compiler and C runtime"
-addresses: "0x00808D78, 0x007A3770, 0x007980A0, 0x0079AD50, 0x0079B1E0, 0x008A5AD0, 0x005CCBF0, 0x005CCD00, 0x005CCAB0, 0x005CCBA0, 0x005CD1E0, 0x00863430, 0x006DF480, 0x006DF3A0, 0x005CC980, 0x005CC930, 0x00781EC0, 0x0071D9E0, 0x01F40128, 0x02EA0B88, 0x008C2120"
----
+[Home](../../README.md) / [Compiler and C runtime](README.md) / Runtime services
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Runtime services: what the game asks Windows and the C runtime for, its crash dumps, threads and debug output | system | Compiler and C runtime | Program start-up and memory | The executable's dependence on the platform: the import table by DLL and how code reaches every slot, the start-up chain from the C runtime entry to the game's main body, the two crash-dump writers and the fatal-error box, the thread creators with their affinity, priority and naming, the debug channel the sound and post-effect libraries write to, the timer set-up, the text conversion it does not import, and the C runtime routines linked into the image. | 0x00808D78, 0x007A3770, 0x007980A0, 0x0079AD50, 0x0079B1E0, 0x008A5AD0, 0x005CCBF0, 0x005CCD00, 0x005CCAB0, 0x005CCBA0, 0x005CD1E0, 0x00863430, 0x006DF480, 0x006DF3A0, 0x005CC980, 0x005CC930, 0x00781EC0, 0x0071D9E0, 0x01F40128, 0x02EA0B88, 0x008C2120 |
 
 ## What the player sees
 

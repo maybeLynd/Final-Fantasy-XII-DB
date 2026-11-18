@@ -1,9 +1,8 @@
----
-title: "Changing areas: the steps from a jump request to the new zone running"
-kind: "operation"
-category: "World, areas and travel"
-addresses: "0x00314440, 0x003145E0, 0x00314020, 0x0032FC30, 0x0032FCA0, 0x002620E0, 0x00314530"
----
+[Home](../../README.md) / [World, areas and travel](README.md) / Changing areas
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Changing areas: the steps from a jump request to the new zone running | operation | World, areas and travel | Changing areas and travel | The order in which the game moves the party to another zone: the request every jump passes through, staging with the transition record and the autosave test, the fade, the tick that tears the old zone down, the zone's file loads, the navigation bind that releases the start hold, and the start work of the new zone, each step linked to the page that explains it. | 0x00314440, 0x003145E0, 0x00314020, 0x0032FC30, 0x0032FCA0, 0x002620E0, 0x00314530 |
 
 ## What the player sees
 
@@ -163,3 +162,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
   [zone changes and mapjump](zone-changes-and-mapjump.md),
   [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md).
+
+---
+
+[Zone changes →](zone-changes-and-mapjump.md)

@@ -1,9 +1,8 @@
----
-title: "Area flags: the navimapdata.bin record for every area, the town flag, the KO, Stone and X-Zone override and the other bits"
-kind: "system"
-category: "World, areas and travel"
-addresses: "0x00377C20, 0x00377480, 0x00377A40, 0x00377BA0, 0x003779F0, 0x00377700, 0x00377C70, 0x00378540"
----
+[Home](../../README.md) / [World, areas and travel](README.md) / Area flags
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Area flags: the navimapdata.bin record for every area, the town flag, the KO, Stone and X-Zone override and the other bits | system | World, areas and travel | Map data | The 3-byte per-area record shipped in navimapdata.bin: which areas count as towns, the bit that lets a KO'd, Stoned or X-Zoned character stay in play, the MP regime, the Map entry, the area-name flag, the party hold flag and the default leader, the seven accessor functions that read them, the two save-data overrides and counts over the shipped records. | 0x00377C20, 0x00377480, 0x00377A40, 0x00377BA0, 0x003779F0, 0x00377700, 0x00377C70, 0x00378540 |
 
 ## What the player sees
 

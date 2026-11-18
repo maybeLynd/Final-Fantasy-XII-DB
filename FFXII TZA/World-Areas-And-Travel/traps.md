@@ -1,9 +1,8 @@
----
-title: "Traps: how walking onto a trap fires it, the trap table, the two outcomes and their odds, and re-arming by settrapresource"
-kind: "system"
-category: "World, areas and travel"
-addresses: "0x002F8060, 0x002FB8C0, 0x002FB3B0, 0x002FA230, 0x002FA740, 0x002FAEC0, 0x002341C0, 0x002641B0, 0x00265770, 0x00355400, 0x002E9A60, 0x00263F80, 0x002EB7A0, 0x003EC630, 0x002EBD60, 0x002E3DC0, 0x002FB560, 0x003EC5B0, 0x003EC720, 0x003EC770, 0x00355E00, 0x003EC6C0, 0x003EB720, 0x002ED3A0, 0x003EC700, 0x002E7410, 0x002F82F0, 0x0030C300, 0x00234590, 0x00310DB0, 0x00322C50, 0x002EACD0, 0x00385F60, 0x003112F0, 0x0046A9D0, 0x0046AB10, 0x00320A30, 0x0032AD70, 0x0032AA60, 0x00379CD0, 0x003A1920, 0x00265020, 0x0031B810, 0x003148F0, 0x00377C20, 0x00237DF0, 0x00233C10, 0x0038CD60"
----
+[Home](../../README.md) / [World, areas and travel](README.md) / Traps
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Traps: how walking onto a trap fires it, the trap table, the two outcomes and their odds, and re-arming by settrapresource | system | World, areas and travel | Chests, traps and weather | The traps a field carries: the trap table in the zone script and its twelve-byte records, the arming walk the settrapresource verb runs at field load with its arm chance and its world markers, the per-field live mask kept in a ring of three, who can spring a trap and who is caught in its radius, the horizontal proximity test, the hard-coded roll between the two authored actions, the action rows a trap can name and what they do, the battle message, Libra's reveal of the markers, counts over the shipped traps, and the list of all 489 with their map, region, place, odds, actions and reach. | 0x002F8060, 0x002FB8C0, 0x002FB3B0, 0x002FA230, 0x002FA740, 0x002FAEC0, 0x002341C0, 0x002641B0, 0x00265770, 0x00355400, 0x002E9A60, 0x00263F80, 0x002EB7A0, 0x003EC630, 0x002EBD60, 0x002E3DC0, 0x002FB560, 0x003EC5B0, 0x003EC720, 0x003EC770, 0x00355E00, 0x003EC6C0, 0x003EB720, 0x002ED3A0, 0x003EC700, 0x002E7410, 0x002F82F0, 0x0030C300, 0x00234590, 0x00310DB0, 0x00322C50, 0x002EACD0, 0x00385F60, 0x003112F0, 0x0046A9D0, 0x0046AB10, 0x00320A30, 0x0032AD70, 0x0032AA60, 0x00379CD0, 0x003A1920, 0x00265020, 0x0031B810, 0x003148F0, 0x00377C20, 0x00237DF0, 0x00233C10, 0x0038CD60 |
 
 ## What the player sees
 

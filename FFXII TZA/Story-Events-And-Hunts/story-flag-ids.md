@@ -1,9 +1,8 @@
----
-title: "Story flag ids: every flag id the US scripts set, release or test, by bank, with the scripts that touch it"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x0032AB60, 0x0032A8A0, 0x0032ABF0, 0x0032ADF0, 0x0032AAD0, 0x00377970"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Story flag ids
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Story flag ids: every flag id the US scripts set, release or test, by bank, with the scripts that touch it | reference | Story, events and hunts | Story progress and flags | Each flag id a us script passes to the map-jump-group, talked-name and treasure verbs, as a literal or from the name arrays of the clan boards and Montblanc: its bank, whether a new game starts with it, how many times shipping scripts set, release and test it, the scripts that do each, the ids only the developer menus name, the two story-schedule ids, the flag verbs no script calls, and the starting flags no script names. | 0x0032AB60, 0x0032A8A0, 0x0032ABF0, 0x0032ADF0, 0x0032AAD0, 0x00377970 |
 
 ## What it lists
 

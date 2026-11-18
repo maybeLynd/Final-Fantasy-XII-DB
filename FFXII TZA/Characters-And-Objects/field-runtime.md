@@ -1,9 +1,8 @@
----
-title: "Field runtime: how a frame drives every actor's script through the manager slots and the wait slots"
-kind: "system"
-category: "Characters and objects"
-addresses: "0x0025D9E0, 0x00314020, 0x0025DF00, 0x0025E4C0, 0x00358940, 0x002620E0, 0x00261F90, 0x0025E400, 0x00583920, 0x003590D0, 0x003588B0, 0x0032FC30, 0x00233AA0, 0x00269860, 0x003DBF60, 0x003DC050, 0x003DB2A0, 0x002674B0, 0x003DB640, 0x00267420, 0x00267310, 0x0020E600, 0x0020E620, 0x00269800"
----
+[Home](../../README.md) / [Characters and objects](README.md) / Field runtime
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Field runtime: how a frame drives every actor's script through the manager slots and the wait slots | system | Characters and objects | Field actors | The per-frame pass that walks the actor manager slots and drives each actor's script: who calls it and how many sub-steps a frame runs, the refusals that stop a pass, the branches of the pass body, the party roster loop and the whole-field settled fold, the wait resolver between the pass and the bytecode interpreter with its wait kinds and parked flag, the wait slots the interpreter arms, the field-settled sequence that runs when nothing is pending, and the two globals the rest of the frame reads. | 0x0025D9E0, 0x00314020, 0x0025DF00, 0x0025E4C0, 0x00358940, 0x002620E0, 0x00261F90, 0x0025E400, 0x00583920, 0x003590D0, 0x003588B0, 0x0032FC30, 0x00233AA0, 0x00269860, 0x003DBF60, 0x003DC050, 0x003DB2A0, 0x002674B0, 0x003DB640, 0x00267420, 0x00267310, 0x0020E600, 0x0020E620, 0x00269800 |
 
 ## What the player sees
 
@@ -360,3 +359,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [story flag ids](../Story-Events-And-Hunts/story-flag-ids.md).
 - Story event quest hunt: and on [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md),
   [npc names](npc-names.md).
+
+---
+
+[← Actor lifecycle](actor-lifecycle.md) | [Battle units →](battle-units.md)

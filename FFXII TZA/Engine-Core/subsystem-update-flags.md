@@ -1,9 +1,8 @@
----
-title: "Subsystem update flags: the enable word that switches the sixteen interface update groups on or off each frame"
-kind: "system"
-category: "Engine core"
-addresses: "0x0028E290, 0x002507C0, 0x00289970, 0x001EDE80, 0x003F8B40, 0x002917E0, 0x0028C4C0, 0x0028D1C0, 0x003F6BB0, 0x003F7050, 0x003F9F40, 0x00291B90, 0x003F6100, 0x003F24D0, 0x003F24A0, 0x0030C300, 0x003F80D0, 0x00296860, 0x00290CF0, 0x00290EB0, 0x003F8EC0, 0x003F31B0, 0x003FA790, 0x002C6180, 0x0028C870, 0x002547C0, 0x00253970, 0x00184960, 0x00184950, 0x00226280, 0x0036D840"
----
+[Home](../../README.md) / [Engine core](README.md) / Subsystem update flags
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Subsystem update flags: the enable word that switches the sixteen interface update groups on or off each frame | system | Engine core | Main loop and game states | One dword at 0x01E0C464, all ones in the shipped image and written by nothing, that the interface pump tests sixteen times a frame to decide which update groups of the UI manager object run: the sixteen groups in their frame order with their masks, the extra gates each carries, the sub-object of the manager each handler receives, where the pump sits inside the field frame, and the second word that enables the one group gated twice. | 0x0028E290, 0x002507C0, 0x00289970, 0x001EDE80, 0x003F8B40, 0x002917E0, 0x0028C4C0, 0x0028D1C0, 0x003F6BB0, 0x003F7050, 0x003F9F40, 0x00291B90, 0x003F6100, 0x003F24D0, 0x003F24A0, 0x0030C300, 0x003F80D0, 0x00296860, 0x00290CF0, 0x00290EB0, 0x003F8EC0, 0x003F31B0, 0x003FA790, 0x002C6180, 0x0028C870, 0x002547C0, 0x00253970, 0x00184960, 0x00184950, 0x00226280, 0x0036D840 |
 
 ## What the player sees
 

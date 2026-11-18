@@ -1,9 +1,8 @@
----
-title: "License list: every License Board square with its name, kind, LP cost, what it grants, who starts with it and the boards that hold it"
-kind: "reference"
-category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF038, 0x0031C5D0, 0x0031DF90, 0x0031DFAB, 0x00323890, 0x002F8FA0, 0x0023AE68, 0x00556FE7"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / License list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| License list: every License Board square with its name, kind, LP cost, what it grants, who starts with it and the boards that hold it | reference | Items, equipment, shops and licenses | Licenses | All 361 license nodes of the shipped battle_pack.bin, decoded field by field: the node and name, the kind text, the LP cost, the category with its requirement kind and refusal rule, the party members who start owning it, the ids it grants with their shipped names, the job boards that hold the square, and a one-line explanation. | 0x02EBF038, 0x0031C5D0, 0x0031DF90, 0x0031DFAB, 0x00323890, 0x002F8FA0, 0x0023AE68, 0x00556FE7 |
 
 ## What it lists
 

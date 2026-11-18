@@ -1,9 +1,8 @@
----
-title: "Verb dispatch: how a script's call id reaches a native handler, how arguments and results cross the value stack, and what the guards refuse"
-kind: "system"
-category: "Scripts and script commands"
-addresses: "0x0025E4C0, 0x002621D0, 0x003DC2D0, 0x003DC270, 0x003DC240, 0x003DC2A0, 0x02B57EF0, 0x01EED700, 0x01F281B0, 0x01F29418, 0x01F29440, 0x01F26720, 0x00267E10, 0x00267DB0, 0x00267F90, 0x00267F60, 0x02099AC0, 0x002650B0, 0x00268100, 0x00261806, 0x0026B4E0, 0x0026B4C0, 0x002651A0, 0x0016D6A0, 0x008620C0, 0x003538F0, 0x00342A80"
----
+[Home](../../README.md) / [Scripts and script commands](README.md) / Verb dispatch
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Verb dispatch: how a script's call id reaches a native handler, how arguments and results cross the value stack, and what the guards refuse | system | Scripts and script commands | The script machine | The bridge from a script instruction to native code: the four call opcodes and the actor they bind, the sixteen-bit call id split into a family and a command, the family array and the three accessors with their one-sided bound, the register signatures of the begin, poll and result callbacks, the value stack that carries arguments and its silent failure modes, the pop order, packed references and actor handles, and the three result writers behind every returned value. | 0x0025E4C0, 0x002621D0, 0x003DC2D0, 0x003DC270, 0x003DC240, 0x003DC2A0, 0x02B57EF0, 0x01EED700, 0x01F281B0, 0x01F29418, 0x01F29440, 0x01F26720, 0x00267E10, 0x00267DB0, 0x00267F90, 0x00267F60, 0x02099AC0, 0x002650B0, 0x00268100, 0x00261806, 0x0026B4E0, 0x0026B4C0, 0x002651A0, 0x0016D6A0, 0x008620C0, 0x003538F0, 0x00342A80 |
 
 ## What the player sees
 
@@ -203,3 +202,7 @@ The value stack `0x02099AC0`, the family array `0x02B57EF0`, and the issuer's wa
 - [Native commands](native-commands.md): the lifecycle, the tables and the durative verbs.
 - [Script verb table](verb-table.md): every id, name and handler.
 - [Script variables](script-variables.md): the storage classes a reference names.
+
+---
+
+[← Script requests](script-requests.md) | [Native commands →](native-commands.md)

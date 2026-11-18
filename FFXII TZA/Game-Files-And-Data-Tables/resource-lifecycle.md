@@ -1,9 +1,8 @@
----
-title: "Resource lifecycle: a loaded block from its request to the free, with registration, borrowing, moves and disposal"
-kind: "lifecycle"
-category: "Game files and data tables"
-addresses: "0x0032E620, 0x0032E400, 0x0036A100, 0x0036A190, 0x0036BFE0, 0x0041E490, 0x00409D60, 0x003B37E0, 0x00369860"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Resource lifecycle
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Resource lifecycle: a loaded block from its request to the free, with registration, borrowing, moves and disposal | lifecycle | Game files and data tables | Loaded resources | The stages a loaded resource passes through: the request sized from the file-size table, the arena allocation and its pressure path, the queued read and delivery, registration as a render source, borrowing by effects and views, the move compaction can make and its repair, disposal in its fixed order, and the owner's free; each stage linked to the page that explains it. | 0x0032E620, 0x0032E400, 0x0036A100, 0x0036A190, 0x0036BFE0, 0x0041E490, 0x00409D60, 0x003B37E0, 0x00369860 |
 
 ## What the player sees
 
@@ -114,3 +113,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [standard file formats](standard-file-formats.md).
 - World area: and on [item and ability ids](../Engine-Core/item-and-ability-ids.md),
   [async load manager](async-load-manager.md), [graphics settings](../Engine-Core/graphics-settings.md).
+
+---
+
+[← File requests and the read queue](file-requests-and-the-read-queue.md)

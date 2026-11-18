@@ -1,9 +1,8 @@
----
-title: "Party verbs: the eight verbs that change the battle party and the poll they share, the appearance verbs, the standard-motion verbs, and the party queries"
-kind: "system"
-category: "Scripts and script commands"
-addresses: "0x0034D4E0, 0x00350CD0, 0x00350160, 0x00352AF0, 0x0034C030, 0x00352190, 0x00351A40, 0x003506A0, 0x0034CDF0, 0x0034C370, 0x003596B0, 0x0037CB50, 0x003601B0, 0x003601C0, 0x003596D0, 0x00359BA0, 0x00359C00, 0x00359740, 0x00320800, 0x0031B510, 0x00322350, 0x003271D0, 0x0033FD60, 0x00340700, 0x00341190, 0x00341B90, 0x00342360, 0x00342830, 0x00342B30, 0x0031B5A0, 0x0031B670, 0x0031B680, 0x0026AD60, 0x0026A430, 0x002EC680, 0x002ECD80, 0x002E8730, 0x0034F060, 0x0034F890, 0x00350050, 0x003507B0, 0x003580C0, 0x0035AE10, 0x00263750, 0x0034B4B0, 0x0034F5A0, 0x00353780, 0x00353CB0, 0x00353460, 0x0034E7D0, 0x003542C0, 0x003546F0, 0x00341E60, 0x003426F0, 0x003430C0, 0x00342280, 0x003408E0, 0x00340E00, 0x003410C0, 0x00342910, 0x00342EC0, 0x0034CCD0, 0x0034E3E0, 0x02EBF190, 0x0037C3C0, 0x002E6BD0"
----
+[Home](../../README.md) / [Scripts and script commands](README.md) / Party verbs
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Party verbs: the eight verbs that change the battle party and the poll they share, the appearance verbs, the standard-motion verbs, and the party queries | system | Scripts and script commands | Script commands | What a zone script can do to the party: the eight asynchronous verbs that add, remove, set and lock battle members and the one poll that waits for the read-in, the seven appearance verbs that set level of detail, shadows, character collision and the map-id flag pair on the members combat is servicing, the four standard-motion verbs that push a synthetic argument frame per roster actor, the queries that read the roster and party masks, and the capture forms that take a member's body. | 0x0034D4E0, 0x00350CD0, 0x00350160, 0x00352AF0, 0x0034C030, 0x00352190, 0x00351A40, 0x003506A0, 0x0034CDF0, 0x0034C370, 0x003596B0, 0x0037CB50, 0x003601B0, 0x003601C0, 0x003596D0, 0x00359BA0, 0x00359C00, 0x00359740, 0x00320800, 0x0031B510, 0x00322350, 0x003271D0, 0x0033FD60, 0x00340700, 0x00341190, 0x00341B90, 0x00342360, 0x00342830, 0x00342B30, 0x0031B5A0, 0x0031B670, 0x0031B680, 0x0026AD60, 0x0026A430, 0x002EC680, 0x002ECD80, 0x002E8730, 0x0034F060, 0x0034F890, 0x00350050, 0x003507B0, 0x003580C0, 0x0035AE10, 0x00263750, 0x0034B4B0, 0x0034F5A0, 0x00353780, 0x00353CB0, 0x00353460, 0x0034E7D0, 0x003542C0, 0x003546F0, 0x00341E60, 0x003426F0, 0x003430C0, 0x00342280, 0x003408E0, 0x00340E00, 0x003410C0, 0x00342910, 0x00342EC0, 0x0034CCD0, 0x0034E3E0, 0x02EBF190, 0x0037C3C0, 0x002E6BD0 |
 
 ## What the player sees
 

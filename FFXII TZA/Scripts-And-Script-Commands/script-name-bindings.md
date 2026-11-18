@@ -1,9 +1,8 @@
----
-title: "Script name bindings: how a script names a model by one number, the binding table with its lists and lanes, where a treasure chest is placed, and the bind verbs"
-kind: "system"
-category: "Scripts and script commands"
-addresses: "0x002E97C0, 0x002E9810, 0x0215FDA0, 0x02161DA0, 0x002EA320, 0x002E25E0, 0x002E9360, 0x002EB540, 0x002EAE20, 0x002E99C0, 0x002E4C20, 0x002E3E20, 0x002E3DC0, 0x002E3E90, 0x002EAF70, 0x002EB810, 0x002EBD60, 0x002EAEB0, 0x002E65A0, 0x002E6D60, 0x002E6700, 0x002EAD50, 0x002E4D20, 0x002EA6E0, 0x002E60F0, 0x002ED6F0, 0x002ED950, 0x002E9A60, 0x002EB7A0, 0x0032E400, 0x002E2660, 0x002EB5E0, 0x002EB9D0, 0x002E9920, 0x002EB690, 0x002EAFA0, 0x002EB890, 0x002E3F00, 0x002E4000, 0x002E6880, 0x002E6EB0, 0x002E4E50, 0x002E6900, 0x002E9470, 0x002ECAB0, 0x002ECA30, 0x002ECBA0, 0x00354400, 0x00354A40, 0x00355210, 0x002FAED0, 0x002FAF60, 0x0026E060, 0x002650B0, 0x0026A320, 0x002E28E0, 0x002E3110, 0x002EBC90, 0x002E3C20, 0x0037CB90, 0x0033F330, 0x00340380, 0x003409F0, 0x00342640, 0x003418B0, 0x00344F00, 0x00345A60, 0x003460F0, 0x00343B00, 0x00344550, 0x00343A30, 0x00344200, 0x003463F0, 0x003EB190, 0x00340FA0, 0x003414A0, 0x00341840, 0x00340450, 0x00340EC0, 0x0034B8D0, 0x0050D810, 0x0037B4D0, 0x00267310, 0x00314D40, 0x008F8180, 0x008F6D54, 0x01CEBC78, 0x002ECFD0, 0x00347DD0, 0x002E9C30"
----
+[Home](../../README.md) / [Scripts and script commands](README.md) / Script name bindings
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Script name bindings: how a script names a model by one number, the binding table with its lists and lanes, where a treasure chest is placed, and the bind verbs | system | Scripts and script commands | The script machine | How a zone script names a model: the bound id and its letter class, the stamped handle checked before every use, the binding table of 128 entries on four lists (free, requested, live, retired) with find-or-create, holder bits, reference count, pins and the deferred release, the per-frame update that loads and retires entries, the 32-lane record each binding can own, what setuptreasure does in order and how a chest's spot bytes become a position and facing, and what each bind verb attaches to an actor. | 0x002E97C0, 0x002E9810, 0x0215FDA0, 0x02161DA0, 0x002EA320, 0x002E25E0, 0x002E9360, 0x002EB540, 0x002EAE20, 0x002E99C0, 0x002E4C20, 0x002E3E20, 0x002E3DC0, 0x002E3E90, 0x002EAF70, 0x002EB810, 0x002EBD60, 0x002EAEB0, 0x002E65A0, 0x002E6D60, 0x002E6700, 0x002EAD50, 0x002E4D20, 0x002EA6E0, 0x002E60F0, 0x002ED6F0, 0x002ED950, 0x002E9A60, 0x002EB7A0, 0x0032E400, 0x002E2660, 0x002EB5E0, 0x002EB9D0, 0x002E9920, 0x002EB690, 0x002EAFA0, 0x002EB890, 0x002E3F00, 0x002E4000, 0x002E6880, 0x002E6EB0, 0x002E4E50, 0x002E6900, 0x002E9470, 0x002ECAB0, 0x002ECA30, 0x002ECBA0, 0x00354400, 0x00354A40, 0x00355210, 0x002FAED0, 0x002FAF60, 0x0026E060, 0x002650B0, 0x0026A320, 0x002E28E0, 0x002E3110, 0x002EBC90, 0x002E3C20, 0x0037CB90, 0x0033F330, 0x00340380, 0x003409F0, 0x00342640, 0x003418B0, 0x00344F00, 0x00345A60, 0x003460F0, 0x00343B00, 0x00344550, 0x00343A30, 0x00344200, 0x003463F0, 0x003EB190, 0x00340FA0, 0x003414A0, 0x00341840, 0x00340450, 0x00340EC0, 0x0034B8D0, 0x0050D810, 0x0037B4D0, 0x00267310, 0x00314D40, 0x008F8180, 0x008F6D54, 0x01CEBC78, 0x002ECFD0, 0x00347DD0, 0x002E9C30 |
 
 ## What the player sees
 
@@ -542,6 +541,14 @@ stored back (`0x00340A2D`-`0x00340A4A`).
 When the entry is ready it looks up a body replacement with
 `0x0037CB90(model, b, c)`, b and c read back as signed bytes from context `+0x14C` and `+0x14D` (`0x002657E0`,
 `0x00263FC0`, `0x00340A69`-`0x00340A7F`; 1 and 0 for an actor not of kind `0x60` or without a context).
+
+The model rebuild's state 19 reads the same two bytes through `0x002657E0` and `0x00263FC0` (`0x0037BD90`, `0x0037BD86`;
+[actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md)).
+
+The debug verbs `debug_tty_modellocalno` (`0x0050D860`) and `debug_tty_modelclutno` (`0x0050D780`) read `+0x14C` and
+`+0x14D` respectively, as signed bytes, for an actor that is found, of kind `0x60`, with `0x002EA6A0` answering non-zero
+and a non-null context (`0x0050D899`-`0x0050D8C2`, `0x0050D7BC`-`0x0050D7E2`), and print the value with `"%d "` through
+`0x0017D280` (`0x0050D8D0`, `0x0050D7F0`).
 
 `0x0037CB90` takes the first row of the replacement table `[0x02ADD940]` that matches (count
 `[0x02ADD938]`, rows of `0x30` bytes: model, b, c, a pair count at `+0xC`, four value slots at `+0x10`

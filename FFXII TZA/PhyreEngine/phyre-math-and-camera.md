@@ -1,9 +1,8 @@
----
-title: "Phyre math and camera: the matrix helpers, the renderer's camera matrices, node and bounds transforms, and the light and shadow terms"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x005DFCD0, 0x005DFDE0, 0x005EB670, 0x006107F0, 0x00185AF0, 0x001871B0, 0x0060CE50, 0x006A0E10, 0x006045E0, 0x005FD810, 0x005DC040, 0x0060E410, 0x0067F280, 0x005FF5A0, 0x006C18D0, 0x00606BE0, 0x006073D0, 0x0018A4A0, 0x01F2ED48, 0x01F2EDA8"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Phyre math and camera
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre math and camera: the matrix helpers, the renderer's camera matrices, node and bounds transforms, and the light and shadow terms | system | PhyreEngine | Drawing and shaders | The small vector and matrix helpers PhyreEngine's renderer is built from (point and vector transforms, transposes, the affine inverse), how a camera's world and view matrices are set on the renderer, how a node's world matrix and a mesh instance's world bounding box are computed, the look-at script method of PWorldMatrix, and the light attenuation, light and shadow compatibility and shadow-split values handed to shaders. | 0x005DFCD0, 0x005DFDE0, 0x005EB670, 0x006107F0, 0x00185AF0, 0x001871B0, 0x0060CE50, 0x006A0E10, 0x006045E0, 0x005FD810, 0x005DC040, 0x0060E410, 0x0067F280, 0x005FF5A0, 0x006C18D0, 0x00606BE0, 0x006073D0, 0x0018A4A0, 0x01F2ED48, 0x01F2EDA8 |
 
 ## What the player sees
 

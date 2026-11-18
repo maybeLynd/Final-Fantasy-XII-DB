@@ -1,9 +1,8 @@
----
-title: "Loot pickups: the ten-slot pool, creation and eviction, the one-minute lifetime and blink, collection on contact, and the pickup object"
-kind: "system"
-category: "Rewards: EXP, LP, gil and loot"
-addresses: "0x00319CA0, 0x00319600, 0x00319920, 0x003197B0, 0x002FB150, 0x00319850, 0x00319A20, 0x00319B10, 0x0028F000, 0x003FA160, 0x003FC510"
----
+[Home](../../README.md) / [Rewards: EXP, LP, gil and loot](README.md) / Loot pickups
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Loot pickups: the ten-slot pool, creation and eviction, the one-minute lifetime and blink, collection on contact, and the pickup object | system | Rewards: EXP, LP, gil and loot | EXP, loot and progression | How a defeated enemy's loot becomes a pickup on the ground: the placement test, the pool of ten pickups and the eviction of the oldest, the frame-counted lifetime with its five blink steps, who collects a pickup on contact and who destroys it, the nearest-pickup search used by movement orders, and the HUD object that draws it. | 0x00319CA0, 0x00319600, 0x00319920, 0x003197B0, 0x002FB150, 0x00319850, 0x00319A20, 0x00319B10, 0x0028F000, 0x003FA160, 0x003FC510 |
 
 ## What the player sees
 
@@ -387,3 +386,7 @@ negative number is refused as well. `0x002FB310` takes the number without a boun
 - [Kill rewards: what an enemy's death triggers, when it gives nothing, and the order of chain, EXP, LP, gil, loot and counters](kill-rewards.md)
 - [Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus](loot-drops.md)
 - [Kill chain: chain count, chain level, the chain coin and resets](kill-chain.md)
+
+---
+
+[← Loot drops](loot-drops.md)

@@ -1,9 +1,8 @@
----
-title: "Location title scenes: each region title scene and the field scripts that load it"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00, 0x0032FC30, 0x003CA140, 0x00309230"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Location title scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Location title scenes: each region title scene and the field scripts that load it | reference | Story, events and hunts | Scenes and scripts by area / Scenes that recur through the story | The location title scene scripts ttl_z0000 to ttl_z0009: the event id of each, the fields of other regions whose zone scripts load it, most of them only on the party's first arrival, and the one flag a title sets. | 0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00, 0x0032FC30, 0x003CA140, 0x00309230 |
 
 ## What it lists
 

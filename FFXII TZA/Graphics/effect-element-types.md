@@ -1,9 +1,8 @@
----
-title: "Effect element types: the handlers of every element type, what the verified types draw or change, and the kind-0x54 mesh record"
-kind: "system"
-category: "Graphics"
-addresses: "0x002F2D60, 0x002F2530, 0x00500470, 0x00442550, 0x0039C550, 0x004427D0, 0x0039C4C0, 0x0039D890, 0x0039D970, 0x0039D5A0, 0x0039D6C0, 0x01EFAC20, 0x02AEE900, 0x02AEE908, 0x004490D0, 0x00501A50, 0x00502280, 0x00502EA0, 0x004434D0, 0x00444340, 0x00449AB0, 0x004355D0, 0x00377190, 0x02ADBFE0, 0x00377230, 0x004640A0, 0x003AB960, 0x0047BE20, 0x003D7FF0, 0x00465690, 0x00465CD0, 0x003D92C0, 0x02092628, 0x00436D00, 0x003AA280"
----
+[Home](../../README.md) / [Graphics](README.md) / Effect element types
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Effect element types: the handlers of every element type, what the verified types draw or change, and the kind-0x54 mesh record | system | Graphics | Visual effects / Effect Elements And Drawing | The 65 effect element types that have code: their birth, update, draw, setup and release handlers per type range (0x00-0x0A, 0x40-0x42, 0x60-0x74, 0x80-0x97, 0xA0-0xAB, 0xD0-0xD1) with the shipped usage of each, the shared handlers, what the point, line, sprite, grid, mesh and registry types do, the blend modes of the point and line emitters, and the layout and counts of the kind-0x54 mesh record that type 0x05 draws. | 0x002F2D60, 0x002F2530, 0x00500470, 0x00442550, 0x0039C550, 0x004427D0, 0x0039C4C0, 0x0039D890, 0x0039D970, 0x0039D5A0, 0x0039D6C0, 0x01EFAC20, 0x02AEE900, 0x02AEE908, 0x004490D0, 0x00501A50, 0x00502280, 0x00502EA0, 0x004434D0, 0x00444340, 0x00449AB0, 0x004355D0, 0x00377190, 0x02ADBFE0, 0x00377230, 0x004640A0, 0x003AB960, 0x0047BE20, 0x003D7FF0, 0x00465690, 0x00465CD0, 0x003D92C0, 0x02092628, 0x00436D00, 0x003AA280 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Augments: how a unit's augments, auto-statuses and status immunities are rebuilt from its character, gear, licenses and an enemy's script"
-kind: "system"
-category: "Damage and battle formulas"
-addresses: "0x0030FED0, 0x0030E130, 0x0030E360, 0x002390B0, 0x002394C0, 0x0030E060, 0x00323890"
----
+[Home](../../README.md) / [Damage and battle formulas](README.md) / Augments
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Augments: how a unit's augments, auto-statuses and status immunities are rebuilt from its character, gear, licenses and an enemy's script | system | Damage and battle formulas | Stats, HP and augments | How the augment set of a unit is rebuilt after every change: the 64 innate augments of a character row, an enemy's scripted augments, one augment per armor or accessory, up to eight per owned augment license; the difference applied to the augment layer; the statuses and immunities that gear and an enemy's script add; how enemy affinity changes survive the rebuild; and the HP, MP and Mist clamps at the end. | 0x0030FED0, 0x0030E130, 0x0030E360, 0x002390B0, 0x002394C0, 0x0030E060, 0x00323890 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Enemy names on screen: the steps from the definition's name word to the overhead name box, the target list and the battle log"
-kind: "operation"
-category: "Menus and HUD"
-addresses: "0x0023A570, 0x002B58B0, 0x00269F20, 0x00263990, 0x00272CE0, 0x002B58F0, 0x002C8A60, 0x002C8BC0, 0x0027E530, 0x00272CB0, 0x00272C80, 0x005369C0, 0x00536310, 0x00536280"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Enemy names on screen
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Enemy names on screen: the steps from the definition's name word to the overhead name box, the target list and the battle log | operation | Menus and HUD | Battle HUD | The order in which an enemy's name reaches the screen: the definition row's name word, the text and ordinal the unit's construction stores on its actor, the display-name resolver and the NPC name id that overrides the text, the overhead name box with its ordinal letter, the battle menu's target list, the battle log's own name lookup, and the text codes that insert names; with the cases where the field and the log show different names, each step linked to the page that explains it. | 0x0023A570, 0x002B58B0, 0x00269F20, 0x00263990, 0x00272CE0, 0x002B58F0, 0x002C8A60, 0x002C8BC0, 0x0027E530, 0x00272CB0, 0x00272C80, 0x005369C0, 0x00536310, 0x00536280 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "EBP script image: the section-0 header, actor directory, function and jump tables and actor lists a zone or event script runs from"
-kind: "format"
-category: "EBP script files"
-addresses: "0x0032F850, 0x0026C8C0, 0x0026CE60, 0x00266530, 0x00266C50, 0x00358A00, 0x003589E0, 0x002652D0, 0x002674B0, 0x00267930, 0x00267BB0, 0x00267C20, 0x002641B0, 0x002642C0, 0x00264390, 0x00264AE0, 0x00264B90, 0x00264870, 0x002658B0, 0x003B7210, 0x0035A270, 0x00265770, 0x022C6C28, 0x022C6D18"
----
+[Home](../../README.md) / [EBP script files](README.md) / EBP script image
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| EBP script image: the section-0 header, actor directory, function and jump tables and actor lists a zone or event script runs from | format | EBP script files | Script files | Section 0 of every .ebp container: the 0x90-byte header and the tables it points at (constant pools, variable descriptors, the actor directory with each actor's function table, jump table and entry-slot footer, the actor lists the group request opcodes walk, and the authored records later readers fetch), how the slot-0 handler and the bind attach it to a script manager and how each actor record is built from its directory entry, with the shipped images measured. | 0x0032F850, 0x0026C8C0, 0x0026CE60, 0x00266530, 0x00266C50, 0x00358A00, 0x003589E0, 0x002652D0, 0x002674B0, 0x00267930, 0x00267BB0, 0x00267C20, 0x002641B0, 0x002642C0, 0x00264390, 0x00264AE0, 0x00264B90, 0x00264870, 0x002658B0, 0x003B7210, 0x0035A270, 0x00265770, 0x022C6C28, 0x022C6D18 |
 
 ## What the player sees
 

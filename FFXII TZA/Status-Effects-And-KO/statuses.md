@@ -1,9 +1,8 @@
----
-title: "Statuses: every status with its name, help text, duration, the statuses it cancels and blocks, and what it does when it lands"
-kind: "reference"
-category: "Status effects and KO"
-addresses: "0x02EBF118, 0x00236D94, 0x00387730, 0x003876D0, 0x0030E68A, 0x00387E5D, 0x0030E8C4"
----
+[Home](../../README.md) / [Status effects and KO](README.md) / Statuses
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Statuses: every status with its name, help text, duration, the statuses it cancels and blocks, and what it does when it lands | reference | Status effects and KO | Statuses and buffs | All 32 battle statuses of battle_pack.bin section 15 by id: the name and help line the game shows, the default duration and the Poison, Sap, Regen, Petrify and Doom beat, the statuses each one removes when it lands and the ones that keep it from landing, whether it counts as harmful, which Remedy cures it, whether it can be cast again while present, whether only party members can have it, and what its arrival or removal does. | 0x02EBF118, 0x00236D94, 0x00387730, 0x003876D0, 0x0030E68A, 0x00387E5D, 0x0030E8C4 |
 
 ## What it lists
 
@@ -113,3 +112,7 @@ Nine more masks are each used at one to four sites, and 50 sites test the combin
   Doom do on their beat.
 - [Augments](../Damage-And-Battle-Formulas/augments.md) - the augment ids named here and the immunity word.
 - [Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md) - the conditions that test statuses.
+
+---
+
+[← Timed statuses](status-timers.md)

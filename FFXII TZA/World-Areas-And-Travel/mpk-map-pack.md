@@ -1,9 +1,8 @@
----
-title: "MPK map pack: the sections of a map file, the two packs a field loads, how the loader splits and binds them, and what each section holds"
-kind: "format"
-category: "World, areas and travel"
-addresses: "0x00331990, 0x00378A60, 0x00378030, 0x0036B980, 0x00378BC0, 0x003775D0, 0x00378120, 0x00378230, 0x002F6AB0, 0x003E8940, 0x003E8230, 0x00363B40, 0x003631B0, 0x00379870, 0x003C63A0, 0x0037AA90"
----
+[Home](../../README.md) / [World, areas and travel](README.md) / MPK map pack
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| MPK map pack: the sections of a map file, the two packs a field loads, how the loader splits and binds them, and what each section holds | format | World, areas and travel | Map data | One .mpk per zone under plan_master/map_ctrl: a count of 32, 32 section sizes and the sections back to back, each behind a 0x40-byte slot. Entering a field requests two packs, the field's own and its block's, carves each into 32 arena blocks in place, keeps sound, world (YM00), navigation, actor control, lights, pictures and placements, and frees the rest; the YM00, ACTL, SP1, WD and MRP containers are laid out here with their consumers, with counts over the 550 shipped packs. | 0x00331990, 0x00378A60, 0x00378030, 0x0036B980, 0x00378BC0, 0x003775D0, 0x00378120, 0x00378230, 0x002F6AB0, 0x003E8940, 0x003E8230, 0x00363B40, 0x003631B0, 0x00379870, 0x003C63A0, 0x0037AA90 |
 
 ## What the player sees
 

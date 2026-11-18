@@ -1,9 +1,8 @@
----
-title: "Bone trails: the ribbon trails drawn behind weapon bones, from the model descriptor to the triangle strip"
-kind: "system"
-category: "Graphics"
-addresses: "0x00520160, 0x00425E70, 0x003E6770, 0x0042F250, 0x02CA8420, 0x0051C270, 0x0051CC30, 0x0051CC10, 0x0051BC10, 0x0051CDC0, 0x0051C380, 0x0051C3C0, 0x0051BC70, 0x00422170, 0x003711D0, 0x005409C0, 0x0053F490, 0x003A35E0, 0x01F2A220"
----
+[Home](../../README.md) / [Graphics](README.md) / Bone trails
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Bone trails: the ribbon trails drawn behind weapon bones, from the model descriptor to the triangle strip | system | Graphics | Visual effects / Effect Elements And Drawing | The trails a model's trail section asks for: the 0x50-byte descriptor naming a bone and four colours, the authored command that switches trails on and off through the record hierarchy, the sixteen-entry pool, the per-frame sampling of each bone's base and tip into sixteen-sample histories with a fade of two frames in and five out, and the draw that hands the histories to a VU1 program which emits a textured, alpha-blended triangle strip, two vertices a sample. | 0x00520160, 0x00425E70, 0x003E6770, 0x0042F250, 0x02CA8420, 0x0051C270, 0x0051CC30, 0x0051CC10, 0x0051BC10, 0x0051CDC0, 0x0051C380, 0x0051C3C0, 0x0051BC70, 0x00422170, 0x003711D0, 0x005409C0, 0x0053F490, 0x003A35E0, 0x01F2A220 |
 
 ## What the player sees
 

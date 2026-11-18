@@ -1,9 +1,8 @@
----
-title: "Graphics thread handshake: the shared command-state word, the GS register batch and the waits around them"
-kind: "system"
-category: "Graphics"
-addresses: "0x02EBA3F8, 0x0036D400, 0x0036F360, 0x003A2D80, 0x003A2E30, 0x0036F2F0, 0x0036F2C0, 0x0036D7E0, 0x0022BFD0, 0x0035E9A0, 0x0035EC90, 0x00369100, 0x02EAF6D8, 0x003749F0, 0x00376050, 0x02F8F2E0, 0x00D10F88, 0x022D8EAC, 0x022D8EB4, 0x008636E0, 0x00863610, 0x00863520, 0x00863540, 0x00368C80, 0x00368C10, 0x00368DD0, 0x00369080, 0x00368F70, 0x022CFEF4, 0x022CFEE8, 0x022CFEEC, 0x022CFEF0, 0x022D7FB4"
----
+[Home](../../README.md) / [Graphics](README.md) / Graphics thread handshake
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Graphics thread handshake: the shared command-state word, the GS register batch and the waits around them | system | Graphics | Render pipeline | How a frame hands its GS command stream over through the one dword at 0x02EBA3F8: the GS register batch 0x0036D400 writes, the three publishers that store a buffer address, a record count and 0x100 into the word, the reset burst at the start of every frame state, the settle-spin clear at the end, the vertical-sync callback that zeroes the word from the TkSyncv thread, the effect-capture bit, the fence word that nothing writes, and the list of the spin loops that cannot wait. | 0x02EBA3F8, 0x0036D400, 0x0036F360, 0x003A2D80, 0x003A2E30, 0x0036F2F0, 0x0036F2C0, 0x0036D7E0, 0x0022BFD0, 0x0035E9A0, 0x0035EC90, 0x00369100, 0x02EAF6D8, 0x003749F0, 0x00376050, 0x02F8F2E0, 0x00D10F88, 0x022D8EAC, 0x022D8EB4, 0x008636E0, 0x00863610, 0x00863520, 0x00863540, 0x00368C80, 0x00368C10, 0x00368DD0, 0x00369080, 0x00368F70, 0x022CFEF4, 0x022CFEE8, 0x022CFEEC, 0x022CFEF0, 0x022D7FB4 |
 
 ## What the player sees
 

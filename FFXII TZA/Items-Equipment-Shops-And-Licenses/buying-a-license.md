@@ -1,9 +1,8 @@
----
-title: "Buying a license: the steps from the Licenses menu to the owned square and the lit neighbours"
-kind: "operation"
-category: "Items, equipment, shops and licenses"
-addresses: "0x00560910, 0x0055BFF0, 0x00323600, 0x0055A1F0, 0x0055D978, 0x003235C0, 0x00323910, 0x00323D10, 0x0030FED0, 0x0055F3E0, 0x0055DD70"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Buying a license
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Buying a license: the steps from the Licenses menu to the owned square and the lit neighbours | operation | Items, equipment, shops and licenses | Licenses | The order in which the game sells a License Board square: the member pick and the board or the chooser, the grid and each square's answer, the detail panel, the take request and its refusals, the question for the square's rule, the purchase that charges the LP and sets the owned bit, the Quickening and Mist effects, the stats rebuild, and the screen's pan, light-up, sweep and notices; with the refused, unique and Second Board cases, each step linked to the page that explains it. | 0x00560910, 0x0055BFF0, 0x00323600, 0x0055A1F0, 0x0055D978, 0x003235C0, 0x00323910, 0x00323D10, 0x0030FED0, 0x0055F3E0, 0x0055DD70 |
 
 ## What the player sees
 
@@ -116,3 +115,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - UI: those functions are documented on [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md),
   [license board screen](../Menus-And-HUD/license-board-screen.md), [clan primer](../Menus-And-HUD/clan-primer.md),
   [menu screens](../Menus-And-HUD/menu-screens.md), [stats](../Damage-And-Battle-Formulas/stats.md).
+
+---
+
+[← Licenses](licenses.md)

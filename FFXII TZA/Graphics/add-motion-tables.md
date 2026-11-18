@@ -1,9 +1,8 @@
----
-title: "Add-motion tables: .adm, skeletonmapping.bin and highmodelreplace.bin"
-kind: "format"
-category: "Graphics"
-addresses: "0x001BDC40, 0x001BDD20, 0x001BE1A0, 0x01F81250, 0x001BE420, 0x001BE430, 0x00863110, 0x002EDF90, 0x003714A0, 0x00377C20, 0x0017FFB0, 0x004776D0, 0x0046D380, 0x0036FFF0, 0x02AD9E30, 0x02AD9E38, 0x00372820, 0x003703A0, 0x0037CCC0, 0x02ADD940, 0x02ADD938, 0x0037CB90"
----
+[Home](../../README.md) / [Graphics](README.md) / Add-motion tables
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Add-motion tables: .adm, skeletonmapping.bin and highmodelreplace.bin | format | Graphics | Character models / Model Files | The files in ps2data/add_motion: the .adm tables of per-bone rotation keys that bend high-detail character models on top of their motion, with their _town variants, how add_motion_list.txt is read, how a render record is given its two tables and which one applies, the keyed and pose-slot track kinds, plus skeletonmapping.bin (bones that follow a partner skeleton) and highmodelreplace.bin (model replacements by story progress), with counts over the shipped files. | 0x001BDC40, 0x001BDD20, 0x001BE1A0, 0x01F81250, 0x001BE420, 0x001BE430, 0x00863110, 0x002EDF90, 0x003714A0, 0x00377C20, 0x0017FFB0, 0x004776D0, 0x0046D380, 0x0036FFF0, 0x02AD9E30, 0x02AD9E38, 0x00372820, 0x003703A0, 0x0037CCC0, 0x02ADD940, 0x02ADD938, 0x0037CB90 |
 
 ## What the player sees
 

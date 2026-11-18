@@ -1,9 +1,8 @@
----
-title: "Strahl scenes: the scene, its text and the zone scripts that load it"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x0032FCA0"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Strahl scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Strahl scenes: the scene, its text and the zone scripts that load it | reference | Story, events and hunts | Scenes and scripts by area / Scenes that recur through the story | The Strahl scene script str_z0000: its two choice-list lines, its actors, and the eighteen zone scripts that load it, the private airship desks of five aerodromes and the Strahl jump actor of thirteen field maps. | 0x003529E0, 0x00351880, 0x0032FCA0 |
 
 ## What it lists
 

@@ -1,9 +1,8 @@
----
-title: "Script gauges: the counter and timer gauge an event opens and the verbs that set it"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x00408300, 0x00406E80, 0x00407F90, 0x004073B0, 0x00408140, 0x00407720, 0x00407290, 0x004076B0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Script gauges
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Script gauges: the counter and timer gauge an event opens and the verbs that set it | system | Menus and HUD | Battle HUD | The on-screen gauge an event script opens with initgauge: the gauge window and its counter or timer child, the verbs that set its value, maximum, thresholds, colours, type and ramps, how a timer is written as hours, minutes and seconds, what pauses it, how the HUD switch hides and restores it, and the counter object the boss gauge's bars are built on. | 0x00408300, 0x00406E80, 0x00407F90, 0x004073B0, 0x00408140, 0x00407720, 0x00407290, 0x004076B0 |
 
 ## What the player sees
 

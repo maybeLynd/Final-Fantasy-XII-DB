@@ -1,9 +1,8 @@
----
-title: "Magick list: every magick with its name, school, shop price, sort order, MP cost, power, element, statuses and texts"
-kind: "reference"
-category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF0F0, 0x0031C5D0, 0x0031CD4C, 0x0031CD69, 0x0031CDBE, 0x0031CDC5, 0x02EBF110, 0x00306340, 0x00323EC0, 0x002F8FA0"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Magick list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Magick list: every magick with its name, school, shop price, sort order, MP cost, power, element, statuses and texts | reference | Items, equipment, shops and licenses | Magicks and technicks | All 81 rows of the shipped magick table in battle_pack.bin, decoded field by field: the magick id and name, the sort order, the icon frame, the shop price and the action row, and from that action row the school with its shipped name, the MP cost, charge base, power, hit, element, statuses, range, area, named flags, help and description lines, and a one-line explanation. | 0x02EBF0F0, 0x0031C5D0, 0x0031CD4C, 0x0031CD69, 0x0031CDBE, 0x0031CDC5, 0x02EBF110, 0x00306340, 0x00323EC0, 0x002F8FA0 |
 
 ## What it lists
 

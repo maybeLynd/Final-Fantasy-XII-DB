@@ -1,9 +1,8 @@
----
-title: "Font kerning pairs: every kerning pair of every shipped font, with its two characters and its adjustment"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x001B5230, 0x001B6080, 0x001FDC10, 0x001FDDD0, 0x002AC2F0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Font kerning pairs
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Font kerning pairs: every kerning pair of every shipped font, with its two characters and its adjustment | reference | Menus and HUD | Fonts and text drawing | All 39,237 kerning pairs of the 34 shipped .ker font files in file order: each pair's left and right code point with their characters and its pen adjustment, which files the game requests, how many pairs each font carries and how the adjustments are spread. | 0x001B5230, 0x001B6080, 0x001FDC10, 0x001FDDD0, 0x002AC2F0 |
 
 ## What it lists
 

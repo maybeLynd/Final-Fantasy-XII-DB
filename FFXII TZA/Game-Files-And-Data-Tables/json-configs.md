@@ -1,9 +1,8 @@
----
-title: "JSON configs: every key of the jsondata documents, the code that reads it and what it sets, and the monster viewer's entries"
-kind: "reference"
-category: "Game files and data tables"
-addresses: "0x00200BF0, 0x001FF740, 0x001C7940, 0x001C3D50, 0x001C6320, 0x001C6C00, 0x001CA600, 0x001C76E0, 0x001C3760, 0x00194400, 0x001EBB60, 0x002C530B"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / JSON configs
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| JSON configs: every key of the jsondata documents, the code that reads it and what it sets, and the monster viewer's entries | reference | Game files and data tables | Data tables and configs | All 717 keys of the shipped jsondata documents (area and cutscene scene settings, UI sizes, font palettes, the defaults in init.json, the monster viewer and the unread monster-to-weapon table), each with the documents that carry it, the values it takes, the loader that reads it, where the value goes, how it is converted and what it does; and the monster viewer's Common entry and 384 monster entries with their model, motion, camera and lights. | 0x00200BF0, 0x001FF740, 0x001C7940, 0x001C3D50, 0x001C6320, 0x001C6C00, 0x001CA600, 0x001C76E0, 0x001C3760, 0x00194400, 0x001EBB60, 0x002C530B |
 
 ## What it lists
 

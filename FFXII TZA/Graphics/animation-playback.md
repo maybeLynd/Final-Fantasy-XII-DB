@@ -1,9 +1,8 @@
----
-title: "Animation playback: the player object, track pairing by bone id, the sampler, the skeleton node records, chunk links and the locomotion query"
-kind: "system"
-category: "Graphics"
-addresses: "0x0041F340, 0x0051BA80, 0x0041CB90, 0x0041D220, 0x0041CA70, 0x0041CF00, 0x0041CD30, 0x0041BEE0, 0x0041B550, 0x00370E00, 0x00373540, 0x00418880, 0x003712E0, 0x00372820, 0x00373DC0, 0x00373D00, 0x00373EA0, 0x00373F40, 0x00370390, 0x00373160, 0x003703A0, 0x00373860, 0x00372610, 0x00372280, 0x004256E0, 0x00422D90, 0x004094D0, 0x00409300, 0x0046E640, 0x004219C0, 0x004215A0"
----
+[Home](../../README.md) / [Graphics](README.md) / Animation playback
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Animation playback: the player object, track pairing by bone id, the sampler, the skeleton node records, chunk links and the locomotion query | system | Graphics | Character models / Animation And Motion | How a character's motion reaches its bones: the 0x3A0-byte presentation entry that plays a motion (its storage, binding, reset and track states), how a track's @FMN records are paired with skeleton bones by key, the per-frame sampler, the 0x290-byte skeleton node record with its attach tree, the chunk link that ties a second skeleton to a party member's model, the final-pose composer and the locomotion query with its model gates. | 0x0041F340, 0x0051BA80, 0x0041CB90, 0x0041D220, 0x0041CA70, 0x0041CF00, 0x0041CD30, 0x0041BEE0, 0x0041B550, 0x00370E00, 0x00373540, 0x00418880, 0x003712E0, 0x00372820, 0x00373DC0, 0x00373D00, 0x00373EA0, 0x00373F40, 0x00370390, 0x00373160, 0x003703A0, 0x00373860, 0x00372610, 0x00372280, 0x004256E0, 0x00422D90, 0x004094D0, 0x00409300, 0x0046E640, 0x004219C0, 0x004215A0 |
 
 ## What the player sees
 
@@ -588,3 +587,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [force fight mode](../Engine-Core/force-fight-mode.md).
 - Save load settings: `0x0019C580` is called by `0x00866200`; those functions are documented on
   [save file format](../Saving-Loading-And-Settings/save-file-format.md).
+
+---
+
+[← Model lifecycle](model-lifecycle.md) | [Character render records →](character-render-records.md)

@@ -1,9 +1,8 @@
----
-title: "Map sounds: the per-map sound list, the sounds its scripts and emitters play, and the weather ambience"
-kind: "format"
-category: "Sound and music"
-addresses: "0x003635E0, 0x00363750, 0x00363E40, 0x00346260, 0x00346990, 0x003638B0, 0x00363B40, 0x002DF070, 0x022CBAF8"
----
+[Home](../../README.md) / [Sound and music](README.md) / Map sounds
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Map sounds: the per-map sound list, the sounds its scripts and emitters play, and the weather ambience | format | Sound and music | Sound effects and voices | The SPP1 map sound list carried in each map pack and in each cutscene's .snd pack: its header, id list and weather table, how binding it opens every listed sound bank, the two script verbs that play an entry by number, the map's sound emitters, the ambience picked per weather slot with its fades, what unbinding keeps, and the shipped lists with their id ranges. | 0x003635E0, 0x00363750, 0x00363E40, 0x00346260, 0x00346990, 0x003638B0, 0x00363B40, 0x002DF070, 0x022CBAF8 |
 
 ## What the player sees
 
@@ -175,8 +174,9 @@ from the volume last sent (`0x00362CE6`-`0x00362D0A`):
 |---|---|---|---|---|---|
 | `0x022CBA93` | `u8` | 0 (zero-filled tail) | the ambience volume last sent to the playing handle | `0x00362C60`, after sending (`0x00362D0A`); `0x00363840` (`0x00363883`) and `0x00363A20` (`0x00363A62`), the volume each starts the ambience with; `0x00362F70`, 0 (`0x00362FE5`) | `0x00362C60` (`0x00362CED`) |
 
-No other instruction reaches it. The indexed accesses near it are the cutscene skip masks `0x022CB9C0` and `0x022CB9D8`,
-`u32[6]` each, which end at `0x022CB9F0` (`0x003604D0`, `0x003605A0`, `0x00360710`, `0x00360980`, `0x00360A50`).
+No other instruction reaches it. The indexed tables below it are the music track slots `0x022CB9F0`-`0x022CBA63`
+([music](music.md)), four of `0x18` bytes, and the cutscene skip masks `0x022CB9C0` and `0x022CB9D8`, `u32[5]` each,
+`0x18` bytes apart (`0x003604D0`, `0x003605A0`, `0x00360710`, `0x00360980`, `0x00360A50`).
 
 `0x00363E40(frames)` stops the ambience:
 

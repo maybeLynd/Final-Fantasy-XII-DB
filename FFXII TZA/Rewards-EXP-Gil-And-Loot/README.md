@@ -1,17 +1,42 @@
+[Home](../../README.md) / Rewards: EXP, LP, gil and loot
+
 # Rewards: EXP, LP, gil and loot
 
 What a defeated enemy gives: EXP, LP and gil, loot drops and pickups, the kill chain, levelling up and the gil cap.
 
-| Page | What you will find |
-|---|---|
-| [EXP, LP and level-ups from kills: who receives them, the formulas, the split, the doublers and the EXP table](exp-lp-and-level-ups.md) | How a defeated enemy's EXP and LP are computed from its level and its two reward rows, which party members receive them, how EXP is divided and LP is not, the effects that double, zero or convert them, the caps, the EXP-per-level formula with its values, and where the totals are stored. |
-| [Gil: storage, the gil cap, every way gil changes, and the Plunderer and Spendthrift counters](gil.md) | Where gil is stored, the single setter that clamps it to 0-99,999,999 and meters every change, every function that changes gil (kills, chests, shops, quest rewards, script verbs, character joins, presets, action costs, results, debug), the gil-gained and gil-spent totals and the achievements they unlock. |
-| [Kill chain: chain count, chain level, the chain coin and resets](kill-chain.md) | How kills build the chain count and chain level, the 5 %/60 % coin rolled on every link, breaks in a row, everything that resets the chain (save crystals, towns, presets), the HUD counter and the chain's globals. |
-| [Kill rewards: what an enemy's death triggers, when it gives nothing, and the order of chain, EXP, LP, gil, loot and counters](kill-rewards.md) | The statuses whose arrival on an enemy starts the defeat sequence, the reward gate (party kills, party-applied Poison and Petrify, the no-reward flag), and every step in order: chain, kill and species counters, EXP and LP, the reward display, gil, the drop and the score counter, with the achievements they feed. |
-| [Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus](loot-drops.md) | How a defeated enemy's loot is rolled: which drop-chance row the chain selects, slot and quantity rolls, the drop-table layouts with shipped rows, the developer 100 % drop override, and the HP/MP/Protect/Shell chain bonus on pickup. |
-| [Loot pickups: the ten-slot pool, creation and eviction, the one-minute lifetime and blink, collection on contact, and the pickup object](loot-pickups.md) | How a defeated enemy's loot becomes a pickup on the ground: the placement test, the pool of ten pickups and the eviction of the oldest, the frame-counted lifetime with its five blink steps, who collects a pickup on contact and who destroys it, the nearest-pickup search used by movement orders, and the HUD object that draws it. |
-| [New Game+ and New Game- (Strong Mode and Weak Mode): how each is offered, what it changes, and how the save keeps it](strong-and-weak-mode.md) | The two alternative new games: where the game offers New Game+ and New Game- (the title's New Game list, the question after the staff roll, the Trial Mode completion screen), the request bits the two script verbs set, how the first area start moves them into the party block's flag word, the level-90 rule of New Game+, the EXP and EXP-display block of New Game-, the save header bits and how a loaded save keeps its mode. |
-| [Price list: every script price id with its gil amount or sale count and the scripts that ask for it](price-list.md) | All 128 price ids (price_data, ids 0xB000-0xB07F) of the shipped battle_pack.bin: the gil amount of each, or for the 31 trophy trade limits the number of times a package sells, the number of getprice calls in the us event scripts that name it and the scripts they are in, and a one-line explanation; 41 ids are named by a script, and eight more calls pass the id in a script variable. |
-| [Reward package list: every reward package with its gil and items, and where it is named](reward-package-list.md) | All 512 reward packages (eis_data, ids 0x9000-0x91FF) of the shipped battle_pack.bin: the gil, the two items with their shipped names and counts, the package selectors and the number of script gives that name each package, and a one-line explanation; 300 packages give something and 212 are empty. |
-| [Reward selector list: every package selector and the packages it chooses between](reward-selector-list.md) | All 256 package selectors (questreward_data, ids 0xA000-0xA0FF) of the shipped battle_pack.bin: the first and second id triple of each, with what each named reward package gives, and a one-line explanation; 45 selectors name a package and 211 are empty. |
-| [Stat growth on level-up: HP, MP, Strength, Magick Power, Vitality and Speed per level, starting stats, and the level-up notices](stat-growth-per-level.md) | What changes when a character gains a level: the shared HP/MP growth table with its random bonus, the per-character Strength, Magick Power, Vitality and Speed growth bytes with each character's values, the starting stats and starting gil, the cap of 99, who can set a level, and the level-up message, popup and sound. |
+Jump to: [EXP, loot and progression](#exp-loot-and-progression) · [Gil, prices and reward packages](#gil-prices-and-reward-packages)
+
+## Start here
+
+Start with these pages, in this order:
+
+1. [Kill rewards](kill-rewards.md): sets out what a kill triggers
+2. [EXP, LP and level-ups from kills](exp-lp-and-level-ups.md): takes the EXP and LP part
+3. [Kill chain](kill-chain.md): explains the chain that loot depends on
+4. [Loot drops](loot-drops.md): rolls the drop
+5. [Loot pickups](loot-pickups.md): follows that loot on the ground
+
+## EXP, loot and progression
+
+What kills and level-ups give, and how a New Game+ or New Game- run changes it.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Kill rewards](kill-rewards.md) | Explanation | What an enemy's death triggers and in what order rewards are given. |
+| [EXP, LP and level-ups from kills](exp-lp-and-level-ups.md) | Explanation | Who gets EXP and LP from a kill, the formulas and doublers. |
+| [Kill chain](kill-chain.md) | Explanation | How the chain count and level build, the chain coin, and what resets them. |
+| [Loot drops](loot-drops.md) | Explanation | How drops are rolled and how the chain bonus changes them. |
+| [Loot pickups](loot-pickups.md) | Explanation | The pool of loot on the ground, its lifetime and how it is collected. |
+| [New Game+ and New Game- (Strong Mode and Weak Mode)](strong-and-weak-mode.md) | Explanation | How New Game+ and New Game- are offered, what they change and how saves keep them. |
+| [Stat growth on level-up](stat-growth-per-level.md) | Explanation | How HP, MP and stats grow per level, and the level-up notices. |
+
+## Gil, prices and reward packages
+
+How gil changes, and the shipped price and reward tables.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Gil](gil.md) | Explanation | How gil is stored and capped, and every way it changes. |
+| [Price list](price-list.md) | Reference table | Every script price id with its gil amount or sale count. |
+| [Reward package list](reward-package-list.md) | Reference table | Every reward package with its gil and items. |
+| [Reward selector list](reward-selector-list.md) | Reference table | Every package selector and the packages it chooses between. |

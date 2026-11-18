@@ -1,9 +1,8 @@
----
-title: "Draklor Laboratory scenes: each story scene with its dialogue, rewards, story counter values and what follows"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Draklor Laboratory scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Draklor Laboratory scenes: each story scene with its dialogue, rewards, story counter values and what follows | reference | Story, events and hunts | Scenes and scripts by area / Archades | The five scene scripts of Draklor Laboratory that zone scripts load: the zone function that loads each one, every line it holds in the game's own words, the items it gives, the story counter values written with it, and the scene or map that follows. | 0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00 |
 
 ## What it lists
 

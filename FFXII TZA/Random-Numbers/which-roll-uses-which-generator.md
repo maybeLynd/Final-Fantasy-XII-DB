@@ -1,9 +1,8 @@
----
-title: "Which roll uses which generator: combat, chests, loot, the chain, spawning, AI, movement, script verbs and presentation, what reseeds each, and what loading a save changes"
-kind: "system"
-category: "Random numbers"
-addresses: "0x00379CD0, 0x00379CE0, 0x00328370, 0x022C256C, 0x02EB3870, 0x008C3098, 0x003D8E50, 0x0022A410, 0x005843D3, 0x00234320"
----
+[Home](../../README.md) / [Random numbers](README.md) / Which roll uses which generator
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Which roll uses which generator: combat, chests, loot, the chain, spawning, AI, movement, script verbs and presentation, what reseeds each, and what loading a save changes | system | Random numbers | The generators and who uses them | The map from every random decision to the generator it draws from: the battle formula rolls, status ticks, weather, chest presence and contents, trap arming and triggering and the script rand verbs on the gameplay Mersenne Twister; loot, the chain, the chain bonus, spawn placement, enemy levels, AI action choices and random headings on the shared LCG; the C runtime rand callers; the presentation generator's users; which of them a save load, an area change or a boot reseeds, and which rolls can and cannot influence each other. | 0x00379CD0, 0x00379CE0, 0x00328370, 0x022C256C, 0x02EB3870, 0x008C3098, 0x003D8E50, 0x0022A410, 0x005843D3, 0x00234320 |
 
 ## What the player sees
 
@@ -43,6 +42,7 @@ has 98 call sites in 66 functions; the float thunk 9 call sites in one function.
 | script verb `rand_29` (`0x29`, one argument `n`): `(draw × n) >> 32` | `0x00354BF0` | `0x00354C08` |
 | boot frame modes 0 and 1: one draw per dispatch, discarded | `0x0022B6E0`, `0x0022B7E0` | `0x0022B706`, `0x0022B7EB` |
 | shake oscillator: sixteen float draws per step, eight in a loop over the channel accumulators (`0x0037D291`) and eight single draws, scaled by `0x01DFE0BC` | `0x0037D1F0` | `0x0037D291`-`0x0037D420` |
+| Shades of Black (`0x9F`): the action it turns into, `draw % count` over the rows with byte `+0x1E` = 1 and `(byte +0x2C & 7)` = 1, kept at `+0x10` of the unit's 64-byte record ([status timers](../Status-Effects-And-KO/status-timers.md)) | `0x00387130`, called from `0x00387A50` (`0x00387AD9`) in phase 0 of `0x00304850` | `0x003871E8`-`0x003871F6` (one of the 83 sites above) |
 
 ### Rolls on the shared gameplay LCG
 

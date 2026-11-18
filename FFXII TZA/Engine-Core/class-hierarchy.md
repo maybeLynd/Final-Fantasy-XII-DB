@@ -1,9 +1,8 @@
----
-title: "Class hierarchy: the C++ classes the executable names through RTTI and what they are"
-kind: "system"
-category: "Engine core"
-addresses: "0x008C5760, 0x00D86960, 0x00903B68, 0x009007E8, 0x009010B8, 0x00904328, 0x00D360A0, 0x005C5230, 0x0016D6A0, 0x0016D680, 0x008F9B80, 0x008F3640"
----
+[Home](../../README.md) / [Engine core](README.md) / Class hierarchy
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Class hierarchy: the C++ classes the executable names through RTTI and what they are | system | Engine core | Function and class indexes | How the 2,286 vtables in the executable carry their class name, base classes and virtual slots through the MSVC run-time type information left in the image, what the 2,248 named classes are (PhyreEngine, the SQEX sound driver, Yebis, Bullet, the C++ library, and 134 in the global namespace: the game's own, the Steam callback templates, type_info and four TAsyncUpdate templates over Phyre resources), which bodies are shared across hundreds of vtables, how a constructor stamps its vtable, and why the gameplay systems are not among the classes; the full table is class-hierarchy.tsv. | 0x008C5760, 0x00D86960, 0x00903B68, 0x009007E8, 0x009010B8, 0x00904328, 0x00D360A0, 0x005C5230, 0x0016D6A0, 0x0016D680, 0x008F9B80, 0x008F3640 |
 
 ## What the player sees
 

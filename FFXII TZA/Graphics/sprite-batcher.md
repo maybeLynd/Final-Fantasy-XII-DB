@@ -1,9 +1,8 @@
----
-title: "Sprite batcher: the 2D vertex batcher, its register mirror and the menu quad emitters"
-kind: "system"
-category: "Graphics"
-addresses: "0x01F811E8, 0x001B1C00, 0x001B1BA0, 0x001ADD30, 0x001B06D0, 0x001B0A20, 0x001B0CE0, 0x001B22F0, 0x001B2410, 0x001B03D0, 0x001B0190, 0x001B0100, 0x001B1910, 0x001B1440, 0x001B1C10, 0x00181460, 0x002DAF30, 0x002DD1E0, 0x00248EB0, 0x00248E10, 0x002DD350, 0x002DD4C0, 0x002DD420, 0x0215E6D0, 0x002D9DB0, 0x002DA2D0, 0x002DA7C0, 0x002DAC70, 0x002DBDD0, 0x002DC7F0, 0x002DD090, 0x00392A10"
----
+[Home](../../README.md) / [Graphics](README.md) / Sprite batcher
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Sprite batcher: the 2D vertex batcher, its register mirror and the menu quad emitters | system | Graphics | Render pipeline | How menu sprites, coloured rectangles and soft-edged windows are drawn: the 0x4300-byte batcher kept at 0x01F811E8 with its 64 vertex batches, its menu texture registries and its mirror of the GS registers, the two flushes that turn batches into DynGeo drawing objects, and the quad emitters that write each sprite twice, as a GS packet and as batcher vertices. | 0x01F811E8, 0x001B1C00, 0x001B1BA0, 0x001ADD30, 0x001B06D0, 0x001B0A20, 0x001B0CE0, 0x001B22F0, 0x001B2410, 0x001B03D0, 0x001B0190, 0x001B0100, 0x001B1910, 0x001B1440, 0x001B1C10, 0x00181460, 0x002DAF30, 0x002DD1E0, 0x00248EB0, 0x00248E10, 0x002DD350, 0x002DD4C0, 0x002DD420, 0x0215E6D0, 0x002D9DB0, 0x002DA2D0, 0x002DA7C0, 0x002DAC70, 0x002DBDD0, 0x002DC7F0, 0x002DD090, 0x00392A10 |
 
 ## What the player sees
 

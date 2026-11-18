@@ -1,9 +1,8 @@
----
-title: "Character effects: the ticket and instance-handle tables, the stamped ids, the trigger states and the deferred trigger write"
-kind: "system"
-category: "Graphics"
-addresses: "0x003B3160, 0x003B3400, 0x003B3550, 0x003B3300, 0x003B2F90, 0x003B39E0, 0x003B38B0, 0x003B37E0, 0x003B3B10, 0x003B33D0, 0x003B3080, 0x003B33A0, 0x003B3C00, 0x003B3480, 0x0024FE70, 0x003401D0, 0x002E73C0, 0x003E6AA0, 0x00427DE0, 0x0024B9B0, 0x0024D770, 0x02EBCD80, 0x02EBD480"
----
+[Home](../../README.md) / [Graphics](README.md) / Character effects
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Character effects: the ticket and instance-handle tables, the stamped ids, the trigger states and the deferred trigger write | system | Graphics | Visual effects / Effects On Characters And Menus | The effect a character's model carries: the two tables of 32 records that hold effect tickets and model-effect instance handles, the id with a 22-bit serial that makes a stale handle a no-op, how a model's bind makes its instance and the record's teardown frees it, the per-frame flags the presentation pass and the draw gate trade through the handle, the trigger entry with its ten states, and the script verb charefftrigger whose request is stored in the render record and delivered by the next dirty walk. | 0x003B3160, 0x003B3400, 0x003B3550, 0x003B3300, 0x003B2F90, 0x003B39E0, 0x003B38B0, 0x003B37E0, 0x003B3B10, 0x003B33D0, 0x003B3080, 0x003B33A0, 0x003B3C00, 0x003B3480, 0x0024FE70, 0x003401D0, 0x002E73C0, 0x003E6AA0, 0x00427DE0, 0x0024B9B0, 0x0024D770, 0x02EBCD80, 0x02EBD480 |
 
 ## What the player sees
 

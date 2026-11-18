@@ -1,9 +1,8 @@
----
-title: "Map screens: the World Map, the location map, the map overlay and the minimap, and the map data and story flags they read"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x00253C70, 0x002B6350, 0x002B9D30, 0x003BC450, 0x003BC2D0, 0x003C18A0, 0x003C5910, 0x003C4070"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Map screens
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Map screens: the World Map, the location map, the map overlay and the minimap, and the map data and story flags they read | system | Menus and HUD | Menu screens | The game's maps: the World Map menu entry and its host, the location map opened with Display Map, the map overlay toggled with Map Transparency, their shared two-page container and its open request, the map-data widget and the menumap files it loads, what a page draws, which story flags, visits and owned maps decide what is shown, the minimap drawn during play from the zone's own picture, and when each object lives. | 0x00253C70, 0x002B6350, 0x002B9D30, 0x003BC450, 0x003BC2D0, 0x003C18A0, 0x003C5910, 0x003C4070 |
 
 ## What the player sees
 

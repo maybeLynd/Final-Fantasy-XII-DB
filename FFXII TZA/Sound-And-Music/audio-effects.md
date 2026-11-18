@@ -1,9 +1,8 @@
----
-title: "Audio effects: the filters, reverbs, compressor, flanger, pitch shifter and frequency shifter the sound driver can run on a voice or a bus"
-kind: "system"
-category: "Sound and music"
-addresses: "0x007D1500, 0x007D1C80, 0x007D9770, 0x007D9C60, 0x007DA2E0, 0x007DACF0, 0x007D8BE0, 0x007D3CB0"
----
+[Home](../../README.md) / [Sound and music](README.md) / Audio effects
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Audio effects: the filters, reverbs, compressor, flanger, pitch shifter and frequency shifter the sound driver can run on a voice or a bus | system | Sound and music | The sound engine | The sound driver's effect classes: their type numbers, builders and per-block bodies, the polynomial sine and cosine they share, the biquad filter with its nine shapes and coefficient formulas, the one-pole filter every voice carries, the flanger, the granular pitch shifter a music voice can carry and its switch, the Hilbert frequency shifter, the compressor with its side-chain input, the surround reverb's delay network and equaliser, and which of them the shipped game builds. | 0x007D1500, 0x007D1C80, 0x007D9770, 0x007D9C60, 0x007DA2E0, 0x007DACF0, 0x007D8BE0, 0x007D3CB0 |
 
 ## What the player sees
 

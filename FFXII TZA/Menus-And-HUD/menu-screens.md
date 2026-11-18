@@ -1,9 +1,8 @@
----
-title: "Menu screens: every menu widget procedure, the screen it belongs to, what installs it and the resources it loads"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x00280DE0, 0x00281ED0, 0x0027FB70, 0x0027F5D0, 0x00254B50, 0x00280980, 0x00244F50, 0x00245000, 0x002800F0, 0x00283270, 0x0027F210"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Menu screen reference
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Menu screens: every menu widget procedure, the screen it belongs to, what installs it and the resources it loads | reference | Menus and HUD | How menus work | All 267 menu widget procedures in the game, found from every construction site: for each one its size, installer and install site, parent, the screen it belongs to with that screen's shipped name, the layout records and files it loads, and the final page that documents it; how the Party Menu entries and the request router reach each screen; the 123 procedures no single screen claims, listed in menu-screens.tsv; and the menu state block [0x0209AC30] field by field. | 0x00280DE0, 0x00281ED0, 0x0027FB70, 0x0027F5D0, 0x00254B50, 0x00280980, 0x00244F50, 0x00245000, 0x002800F0, 0x00283270, 0x0027F210 |
 
 ## What it lists
 

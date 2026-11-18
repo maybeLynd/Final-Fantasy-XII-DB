@@ -1,9 +1,8 @@
----
-title: "Battle orders: the internal order ids 0x4000-0x4166, their handlers and what each order does"
-kind: "reference"
-category: "Battle actions"
-addresses: "0x01EEC460, 0x00305080, 0x00301830, 0x002FDDA0, 0x002FDA60, 0x002FDC30"
----
+[Home](../../README.md) / [Battle actions](README.md) / Battle orders
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Battle orders: the internal order ids 0x4000-0x4166, their handlers and what each order does | reference | Battle actions | Action tables | Every internal battle order id from 0x4000 to 0x4166 - moves, waits, adding and removing statuses, setting and clearing augment bits, stat adjustments, flag and register changes - with the handler the order table sends it to, its parameter, the status or augment it names, and the availability chance check AI order lists apply. | 0x01EEC460, 0x00305080, 0x00301830, 0x002FDDA0, 0x002FDA60, 0x002FDC30 |
 
 ## What it lists
 

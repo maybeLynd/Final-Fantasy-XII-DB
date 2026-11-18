@@ -1,9 +1,8 @@
----
-title: "Escape Mode: the R2 toggle that makes the party run from battle, what it switches off, and why it takes a second to engage"
-kind: "system"
-category: "Controls and input"
-addresses: "0x0017DE10, 0x00253C70, 0x00252B60, 0x00252C80, 0x00366870, 0x01E0C2B8"
----
+[Home](../../README.md) / [Controls and input](README.md) / Escape Mode
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Escape Mode: the R2 toggle that makes the party run from battle, what it switches off, and why it takes a second to engage | system | Controls and input | Escape Mode and vibration | How Escape Mode works: the R2 binding it reads, the latch that makes each press of the bound keyboard key flip it, while R2 on a pad keeps it on only as long as it is held, the towns and action availability bits that switch it off, the applier and the battle-mode overrides, the force fight mode flag it clears, the one-second arming counter and the sound that runs while it arms, and the game systems that read the flag. | 0x0017DE10, 0x00253C70, 0x00252B60, 0x00252C80, 0x00366870, 0x01E0C2B8 |
 
 ## What the player sees
 

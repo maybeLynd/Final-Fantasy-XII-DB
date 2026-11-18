@@ -1,9 +1,8 @@
----
-title: "Party table: every party member, guest, Esper and the Chocobo with their starting stats, equipment, gambits, Quickenings, first-join items and model"
-kind: "reference"
-category: "Party"
-addresses: "0x02EBF130, 0x0023AC80, 0x0030C470, 0x0030C650, 0x002FEF30, 0x0023A570, 0x00316DF0, 0x00317480, 0x003060E0, 0x0031C2F0"
----
+[Home](../../README.md) / [Party](README.md) / Party table
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Party table: every party member, guest, Esper and the Chocobo with their starting stats, equipment, gambits, Quickenings, first-join items and model | reference | Party | Party data | All 40 rows of the shipped party table (chr_data) in battle_pack.bin, decoded field by field: the name, kind and model of each row, the three Quickenings, the starting equipment and gambit preset, the starting HP, MP and four stats with their growth, the catch-up rule, the first-join items and gil, the actions a guest or Esper may use, the permanent statuses, immunities and augments, the summon time, and the function that reads every field. | 0x02EBF130, 0x0023AC80, 0x0030C470, 0x0030C650, 0x002FEF30, 0x0023A570, 0x00316DF0, 0x00317480, 0x003060E0, 0x0031C2F0 |
 
 ## What it lists
 

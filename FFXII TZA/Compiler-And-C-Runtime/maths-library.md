@@ -1,9 +1,8 @@
----
-title: "Maths library: the C runtime maths imports, the inline SSE maths and the floating-point setup"
-kind: "system"
-category: "Compiler and C runtime"
-addresses: "0x008C2BB8, 0x00861F14, 0x0016A270, 0x02EADEF0, 0x007D0F60, 0x007D1140, 0x007E9030, 0x007EF1E0, 0x007F25E0, 0x007F1EC0, 0x00809900, 0x00809920, 0x0080A270, 0x0080B8A0, 0x01F44858, 0x0033CB70, 0x0033CEF0, 0x004686D0, 0x003A1960, 0x0031E620, 0x0038EAF0, 0x006E5A20, 0x0077A8C0, 0x008C2D18, 0x00380190"
----
+[Home](../../README.md) / [Compiler and C runtime](README.md) / Maths library
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Maths library: the C runtime maths imports, the inline SSE maths and the floating-point setup | system | Compiler and C runtime | Library and generated code | Which maths routines FFXII_TZA.exe uses and where they come from: the 45 scalar functions imported from the system C runtime and how often each is called, the only four scalar square-root instructions, the sound engine's four-wide vector routines, the runtime's four-wide exponential and power routines and their CPU-level dispatch, the angle wrap and ground-plane distance helpers, the floating-point control calls, and the angle constants the image does and does not carry. | 0x008C2BB8, 0x00861F14, 0x0016A270, 0x02EADEF0, 0x007D0F60, 0x007D1140, 0x007E9030, 0x007EF1E0, 0x007F25E0, 0x007F1EC0, 0x00809900, 0x00809920, 0x0080A270, 0x0080B8A0, 0x01F44858, 0x0033CB70, 0x0033CEF0, 0x004686D0, 0x003A1960, 0x0031E620, 0x0038EAF0, 0x006E5A20, 0x0077A8C0, 0x008C2D18, 0x00380190 |
 
 ## What the player sees
 

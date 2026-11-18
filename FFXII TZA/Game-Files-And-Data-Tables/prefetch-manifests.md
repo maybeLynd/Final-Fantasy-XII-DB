@@ -1,9 +1,8 @@
----
-title: "Prefetch and asset-header manifests: the text lists that preload files into the file cache, and the .ah lists that name the parts of a model, map or font"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x001DA0F0, 0x008F4438, 0x0018A330, 0x001DA610, 0x001DA290, 0x001D9FD0, 0x001D9A40, 0x001D9EC0, 0x001D9DA0, 0x001DA9E0, 0x001DA090, 0x0020C1A0, 0x001DAAC0, 0x001DADC0, 0x009005E8, 0x0019EB60, 0x0019E7B0, 0x0019EF20, 0x001A0BB0, 0x001A07B0, 0x001A0F80, 0x001A7A50, 0x001B44A0, 0x001BB2B0, 0x001BE730, 0x0020C300, 0x001DAD60, 0x001D9400, 0x001D9930, 0x001D99C0, 0x001DA970, 0x0019EF40, 0x0019DA30, 0x0019E740, 0x0019EE50, 0x0063DA50, 0x00677CE0, 0x001B14E0, 0x001B07A0, 0x001B1800, 0x002E98F0, 0x0017F000"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Prefetch and asset-header manifests
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Prefetch and asset-header manifests: the text lists that preload files into the file cache, and the .ah lists that name the parts of a model, map or font | format | Game files and data tables | Archives and file loading | The plain-text manifests the game reads by whitespace-separated tokens: the prefetch lists (common.txt at start-up, one per map on map entry, one per event, eventList.csv's event schedule, the add-on folder) and the background thread that opens their names into the RAM file cache under protected stamps; and the .ah asset-header lists that name, in order, the .phyre files of every model, map, font and procedural texture set and load each of them, with the AssetListManager pools and the pass that resolves asset imports once a list has loaded; the prefetch manager's language folder, lists and event watch; and the menu TexList.txt. Includes the shipped counts and the rules both formats impose. | 0x001DA0F0, 0x008F4438, 0x0018A330, 0x001DA610, 0x001DA290, 0x001D9FD0, 0x001D9A40, 0x001D9EC0, 0x001D9DA0, 0x001DA9E0, 0x001DA090, 0x0020C1A0, 0x001DAAC0, 0x001DADC0, 0x009005E8, 0x0019EB60, 0x0019E7B0, 0x0019EF20, 0x001A0BB0, 0x001A07B0, 0x001A0F80, 0x001A7A50, 0x001B44A0, 0x001BB2B0, 0x001BE730, 0x0020C300, 0x001DAD60, 0x001D9400, 0x001D9930, 0x001D99C0, 0x001DA970, 0x0019EF40, 0x0019DA30, 0x0019E740, 0x0019EE50, 0x0063DA50, 0x00677CE0, 0x001B14E0, 0x001B07A0, 0x001B1800, 0x002E98F0, 0x0017F000 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Actor record fields: the record offset by offset, its flag bytes, and the movement and secondary contexts"
-kind: "reference"
-category: "Characters and objects"
-addresses: "0x00266530, 0x00266AD0, 0x003DB580, 0x00265020, 0x0026AE90, 0x002E4A10, 0x0025DF00"
----
+[Home](../../README.md) / [Characters and objects](README.md) / Actor record fields
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Actor record fields: the record offset by offset, its flag bytes, and the movement and secondary contexts | reference | Characters and objects | Field actors | The access tables of the actor record and its two interior contexts: the accesses reached from every holder of a record, by function, site, offset and instruction; the record's regions and the fields the actor record page names; the movement context at record +0x120 with the position at its head; and the secondary context at record +0x350. | 0x00266530, 0x00266AD0, 0x003DB580, 0x00265020, 0x0026AE90, 0x002E4A10, 0x0025DF00 |
 
 ## What it lists
 

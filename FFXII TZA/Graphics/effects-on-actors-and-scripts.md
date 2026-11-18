@@ -1,9 +1,8 @@
----
-title: "Effects on actors and scripts: numbered effects on actors and the script effect slots"
-kind: "system"
-category: "Graphics"
-addresses: "0x0024B270"
----
+[Home](../../README.md) / [Graphics](README.md) / Effects on actors and scripts
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Effects on actors and scripts: numbered effects on actors and the script effect slots | system | Graphics | Visual effects / Effects On Characters And Menus | How actors and scripts start effects: numbered effects played on an owner and its targets with their request table, and the 32 script effect slots event scripts load and play effects through. | 0x0024B270 |
 
 ## What the player sees
 

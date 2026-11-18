@@ -1,9 +1,8 @@
----
-title: "Steam integration: how the game starts and pumps Steam, the interfaces and callbacks it uses, and what it does without Steam"
-kind: "system"
-category: "Steam and achievements"
-addresses: "0x007980A0, 0x01DFE0D0, 0x001F3E10, 0x001F3AE0, 0x0020CD30, 0x0020C730, 0x01F83450, 0x0020CCC0, 0x008655E0, 0x008655A0, 0x007A0810, 0x008653B0, 0x00865510, 0x007A3110, 0x0020C940, 0x0020C8C0, 0x0020CB20, 0x0020CE60, 0x0020CE10, 0x0020CD80, 0x00865660, 0x007A0C60, 0x001F3ED0, 0x0017D990, 0x00798FF0"
----
+[Home](../../README.md) / [Steam and achievements](README.md) / Steam integration
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Steam integration: how the game starts and pumps Steam, the interfaces and callbacks it uses, and what it does without Steam | system | Steam and achievements | Steam and achievements | The start-up order (interface context, SteamAPI_Init, the achievement manager, the overlay listener, the relaunch check with app id 595520), the interface context and the five interface slots the game calls, the eight callbacks and their handlers, the per-window-pump SteamAPI_RunCallbacks, the stats receipt, the Steam language and user id the game reads, the teardown, and every path that changes when Steam is absent. | 0x007980A0, 0x01DFE0D0, 0x001F3E10, 0x001F3AE0, 0x0020CD30, 0x0020C730, 0x01F83450, 0x0020CCC0, 0x008655E0, 0x008655A0, 0x007A0810, 0x008653B0, 0x00865510, 0x007A3110, 0x0020C940, 0x0020C8C0, 0x0020CB20, 0x0020CE60, 0x0020CE10, 0x0020CD80, 0x00865660, 0x007A0C60, 0x001F3ED0, 0x0017D990, 0x00798FF0 |
 
 ## What the player sees
 

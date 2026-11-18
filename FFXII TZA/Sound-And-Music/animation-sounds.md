@@ -1,9 +1,8 @@
----
-title: "Animation sounds: footsteps, swings and voices authored into animations, the twelve sound types, which variation plays and where it is heard from"
-kind: "system"
-category: "Sound and music"
-addresses: "0x00520C50, 0x00520D00, 0x0046CC70, 0x0046C250, 0x0046C6E0, 0x0046C8F0, 0x002E9D90, 0x003A6E60"
----
+[Home](../../README.md) / [Sound and music](README.md) / Animation sounds
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Animation sounds: footsteps, swings and voices authored into animations, the twelve sound types, which variation plays and where it is heard from | system | Sound and music | Sound effects and voices | How an animation makes a sound: the three animation commands and the character's sound emitter, the twelve sound types with what each is authored for, the picker that chooses a variation and its silences from the presentation random stream, the body point each type is heard from, how the sample is found in the character's sound set with the ground type for footsteps, and the play routine's modes and gates. | 0x00520C50, 0x00520D00, 0x0046CC70, 0x0046C250, 0x0046C6E0, 0x0046C8F0, 0x002E9D90, 0x003A6E60 |
 
 ## What the player sees
 

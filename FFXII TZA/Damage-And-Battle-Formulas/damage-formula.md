@@ -1,9 +1,8 @@
----
-title: "Damage formula: how an attack or a magick is resolved, from the hit, evade, block and parry rolls to the final number"
-kind: "system"
-category: "Damage and battle formulas"
-addresses: "0x00385F60, 0x00385680, 0x003847C0, 0x003849B0, 0x003848E0, 0x003896B0, 0x0038B950, 0x0038B010, 0x0038D280, 0x0038F890"
----
+[Home](../../README.md) / [Damage and battle formulas](README.md) / Damage formula
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Damage formula: how an attack or a magick is resolved, from the hit, evade, block and parry rolls to the final number | system | Damage and battle formulas | Damage and formulas | The resolver every action, status tick and effect goes through: the scratch values it resets, the context of merged statuses and effects the slots read, the first list that rolls hit, knockback, combo, evade, block and parry when the action executes, and the committed list that builds attack, defence and scale, applies statuses, augments, criticals and elements, and finishes the HP number, with the order a weapon attack and a magick run their slots in. | 0x00385F60, 0x00385680, 0x003847C0, 0x003849B0, 0x003848E0, 0x003896B0, 0x0038B950, 0x0038B010, 0x0038D280, 0x0038F890 |
 
 ## What the player sees
 
@@ -349,3 +348,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - UI: `0x00202C70` is called by `0x002AF960`, `0x002D2600`, `0x002D28E0`, `0x003F26F0`, `0x003F2A70`; those functions are
   documented on [text drawing](../Menus-And-HUD/text-drawing.md), [menu lists](../Menus-And-HUD/menu-lists.md),
   [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [hud](../Menus-And-HUD/hud.md).
+
+---
+
+[Elements →](elements.md)

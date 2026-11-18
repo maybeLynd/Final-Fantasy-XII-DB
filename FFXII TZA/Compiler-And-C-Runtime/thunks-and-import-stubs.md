@@ -1,9 +1,8 @@
----
-title: "Thunks and import stubs: jump forwarders, argument-adjusting tail calls, import stubs and the import table"
-kind: "system"
-category: "Compiler and C runtime"
-addresses: "0x008C2000, 0x01DEAB00, 0x00861E90, 0x00808888, 0x0080F2BC, 0x00861EAE, 0x00861EB4, 0x00861ED8, 0x00809958, 0x008C31C0, 0x00313F60, 0x00377C20, 0x00291D40, 0x0028E8B0, 0x002BE020, 0x0028FB40, 0x005A5850, 0x0016D6C0, 0x002A2BF0, 0x0025E3F0"
----
+[Home](../../README.md) / [Compiler and C runtime](README.md) / Thunks and import stubs
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Thunks and import stubs: jump forwarders, argument-adjusting tail calls, import stubs and the import table | system | Compiler and C runtime | Library and generated code | The one-jump functions of FFXII_TZA.exe and how code reaches imported functions: the 763 five-byte forwarders (their rule and reach are on Jump thunks), the tail calls that drop or rewrite an argument on the way, the 120 import stubs and where they sit, the import address table and the direct calls through it, the guard-check stub just past it, and how all of this changes a caller count or a hook. | 0x008C2000, 0x01DEAB00, 0x00861E90, 0x00808888, 0x0080F2BC, 0x00861EAE, 0x00861EB4, 0x00861ED8, 0x00809958, 0x008C31C0, 0x00313F60, 0x00377C20, 0x00291D40, 0x0028E8B0, 0x002BE020, 0x0028FB40, 0x005A5850, 0x0016D6C0, 0x002A2BF0, 0x0025E3F0 |
 
 ## What the player sees
 

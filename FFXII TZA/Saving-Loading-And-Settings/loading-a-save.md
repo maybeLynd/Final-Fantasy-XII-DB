@@ -1,9 +1,8 @@
----
-title: "Loading a save: the steps from choosing a slot to the party standing where it saved"
-kind: "operation"
-category: "Saving, loading and settings"
-addresses: "0x00580EB0, 0x00582860, 0x00280A00, 0x00280140, 0x00285E60, 0x00394400, 0x00394130, 0x00512130, 0x00255260, 0x002EF640, 0x002EF650, 0x00233C10, 0x002CFD10, 0x00268320, 0x00267C90, 0x00314530, 0x00360D50, 0x002DE050, 0x00584210"
----
+[Home](../../README.md) / [Saving, loading and settings](README.md) / Loading a save
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Loading a save: the steps from choosing a slot to the party standing where it saved | operation | Saving, loading and settings | Saving and loading | The order in which a load runs: the save and load screen opened from the title or a save crystal, the slot read into the active image, the load-complete call that binds the party block, the screen's post-load calls, the area controller's restore steps the game logs by name and the options the loaded save brings with it; and how New Game differs: its own widget keeps the title's options across the image reset. | 0x00580EB0, 0x00582860, 0x00280A00, 0x00280140, 0x00285E60, 0x00394400, 0x00394130, 0x00512130, 0x00255260, 0x002EF640, 0x002EF650, 0x00233C10, 0x002CFD10, 0x00268320, 0x00267C90, 0x00314530, 0x00360D50, 0x002DE050, 0x00584210 |
 
 ## What the player sees
 
@@ -262,3 +261,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [game over](../World-Areas-And-Travel/game-over.md).
 - Spawn encounter lifecycle: `0x005843E0` calls `0x00233550`; those functions are documented on
   [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
+
+---
+
+[← Saving and loading](saving-and-loading.md) | [Save file format →](save-file-format.md)

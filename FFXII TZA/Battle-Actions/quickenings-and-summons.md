@@ -1,9 +1,8 @@
----
-title: "Quickenings and summons: the one-at-a-time scene for summons, Esper attacks, Quickenings and chocobo mounting"
-kind: "system"
-category: "Battle actions"
-addresses: "0x0030CE10, 0x00306BD0, 0x00306B10, 0x00306760, 0x003065D0, 0x00306570, 0x00306BB0"
----
+[Home](../../README.md) / [Battle actions](README.md) / Quickenings and summons
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Quickenings and summons: the one-at-a-time scene for summons, Esper attacks, Quickenings and chocobo mounting | system | Battle actions | Quickenings and summons | Which battle actions play as a special scene (summons, Dismiss, the Espers' finishing attacks, Quickenings, Concurrences, Mount and Dismount), why only one can run at a time and a second one waits, the stages from claiming the scene to ending it, what the battle stops doing while it plays, and when an Esper attack's damage lands. | 0x0030CE10, 0x00306BD0, 0x00306B10, 0x00306760, 0x003065D0, 0x00306570, 0x00306BB0 |
 
 ## What the player sees
 
@@ -172,11 +171,15 @@ costs none.
 
 ### Esper attack damage
 
-`0x0030EC00(unit, id)` resolves the action against every target in the list
-(`0x00385F60` into a local result), applies its enmity (`0x003216E0`), runs `0x00312170` and `0x00317670`, and adds the result's
-`+0x24` to the slot of the target's index `+0xEA9` in the list at `0x022C1F50` (unit at `0x022C1F58 + i*16`,
-value at `0x022C1F60 + i*16`; header = the attacker's stats) (`0x0030EC61`-`0x0030ED45`). The HP is written
-only at the end.
+`0x0030EC00(unit, id)` does nothing for an id above `0x21E` or a target count `+0x77C` of 0 or less
+(`0x0030EC1E`-`0x0030EC48`).
+
+Otherwise it resolves the action against every target in the list `+0x780` (`0x0030EC56`-`0x0030ED58`; a target without a
+battle unit `0x0031B760` is passed over, `0x0030EC6B`-`0x0030EC76`) (`0x00385F60` into a local result), applies its enmity
+(`0x003216E0`), runs `0x00312170` and `0x00317670`, and adds the result's `+0x24` to the slot of the target's index `+0xEA9`
+in the list at `0x022C1F50` (unit at `0x022C1F58 + i*16`, value at `0x022C1F60 + i*16`; header = the attacker's stats
+`+0x698`, stored when the header is still 0, `0x0030ED34`-`0x0030ED45`) (`0x0030EC61`-`0x0030ED45`). The HP is written only at
+the end.
 
 ### Ending
 
@@ -234,7 +237,7 @@ Mist pool (stats `+0x06`) when the Quickening starts, a `u16`, and at `+0x02` th
 Quickenings in the chain have cost, a `u8`:
 
 1. `0x0030D720` (from `0x003066EB` and `0x0030686D`) clears them and the three level
-   counters `0x022C2192`-`0x022C2194` ([Concurrence list](concurrence-list.md)).
+   counters `0x022C2192`-`0x022C2194` (`0x0030D731`, `0x0030D738`; [Concurrence list](concurrence-list.md)).
 2. `0x0030D550` (from `0x00306872`) clears the
    entries again and stores each fighting member's pool (`0x0030D5BC`-`0x0030D5EF`).
 3. The chain step `0x00313120` adds the

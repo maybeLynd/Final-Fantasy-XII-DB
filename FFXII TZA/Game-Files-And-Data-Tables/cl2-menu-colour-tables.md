@@ -1,9 +1,8 @@
----
-title: "Location-map colour tables (.cl2): the CLT2 palettes some location maps draw with"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x003C1F00, 0x003C26C0, 0x003C2190, 0x02B457E0, 0x0024A9E0, 0x0024A480, 0x0024A1D0, 0x00181000, 0x00180E70, 0x0017F3B0, 0x008C5B34, 0x02CF7480, 0x00163D00, 0x003BC2D0"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Location-map colour tables (.cl2)
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Location-map colour tables (.cl2): the CLT2 palettes some location maps draw with | format | Game files and data tables | Image files | The loca_*.cl2 files: a one-picture TIM2-shaped container holding only a palette, how the map-data widget's pane loader picks one per map entry from menumap_common.bin, how the reader hands its palette and colour count to every picture of the entry's menumap_sub file, how the upload turns it into an RGBA8 texture with PS2 alpha rescaled, the 20 shipped files, and the rules an edited table must keep. | 0x003C1F00, 0x003C26C0, 0x003C2190, 0x02B457E0, 0x0024A9E0, 0x0024A480, 0x0024A1D0, 0x00181000, 0x00180E70, 0x0017F3B0, 0x008C5B34, 0x02CF7480, 0x00163D00, 0x003BC2D0 |
 
 ## What the player sees
 

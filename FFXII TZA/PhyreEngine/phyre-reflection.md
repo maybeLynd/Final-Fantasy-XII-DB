@@ -1,9 +1,8 @@
----
-title: "Phyre reflection: how PhyreEngine describes its classes at run time, registers their members and creates instances"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x00632D80, 0x00632C90, 0x00632E80, 0x005A7ED0, 0x001603E0, 0x00639450, 0x00639160, 0x0063E410, 0x006388C0, 0x006311D0, 0x0063BA10, 0x00632960, 0x00632FB0, 0x00632A10, 0x00632A70, 0x00632BE0, 0x0062EFD0, 0x0062F080, 0x00597220, 0x0063C0C0, 0x006B66C0, 0x006B67D0, 0x006B67F0, 0x0063A990, 0x00639510, 0x0063C910, 0x00639A60, 0x00639C80, 0x0063CB80, 0x00633390, 0x0063D550, 0x0063D640, 0x006B6700, 0x00633240, 0x005847E0, 0x00584730, 0x02CF8260, 0x01F2E330, 0x01F2E780, 0x02CF8270, 0x02CF8470, 0x02CF8570"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Phyre reflection
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre reflection: how PhyreEngine describes its classes at run time, registers their members and creates instances | system | PhyreEngine | Engine framework | PhyreEngine's run-time class reflection in the executable: the 0x100-byte class descriptor and its registration in a namespace and a by-name type tree, the member records that give each field's name, type, offset and attribute word, array members and annotations, the default instance and the two masks built per class, how PCluster::create sizes and initialises instances, how descriptors are torn down, and the data files that list the generated functions and the per-class field accesses. | 0x00632D80, 0x00632C90, 0x00632E80, 0x005A7ED0, 0x001603E0, 0x00639450, 0x00639160, 0x0063E410, 0x006388C0, 0x006311D0, 0x0063BA10, 0x00632960, 0x00632FB0, 0x00632A10, 0x00632A70, 0x00632BE0, 0x0062EFD0, 0x0062F080, 0x00597220, 0x0063C0C0, 0x006B66C0, 0x006B67D0, 0x006B67F0, 0x0063A990, 0x00639510, 0x0063C910, 0x00639A60, 0x00639C80, 0x0063CB80, 0x00633390, 0x0063D550, 0x0063D640, 0x006B6700, 0x00633240, 0x005847E0, 0x00584730, 0x02CF8260, 0x01F2E330, 0x01F2E780, 0x02CF8270, 0x02CF8470, 0x02CF8570 |
 
 ## What the player sees
 

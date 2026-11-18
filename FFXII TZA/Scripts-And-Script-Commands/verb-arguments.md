@@ -1,9 +1,8 @@
----
-title: "Script verb arguments: what each argument of a script verb addresses in the game"
-kind: "reference"
-category: "Scripts and script commands"
-addresses: "0x00267E10, 0x00267DB0, 0x00267F90, 0x00267F60, 0x0026B4E0, 0x0026B4C0, 0x003DDB40, 0x01EFE9D0"
----
+[Home](../../README.md) / [Scripts and script commands](README.md) / Script verb arguments
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Script verb arguments: what each argument of a script verb addresses in the game | reference | Scripts and script commands | Script commands | For 960 script verbs, one row per argument: the call id, the argument's number and type, what it addresses in the game (the actor field it sets, the table it indexes, the id space it names, the helper it reaches), the values the US scripts pass, the instructions that pop and use it, and the page that describes what it reaches; verbs with no argument get one row saying what the verb acts on. | 0x00267E10, 0x00267DB0, 0x00267F90, 0x00267F60, 0x0026B4E0, 0x0026B4C0, 0x003DDB40, 0x01EFE9D0 |
 
 ## What it lists
 

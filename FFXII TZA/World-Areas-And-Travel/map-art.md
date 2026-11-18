@@ -1,9 +1,8 @@
----
-title: "Map art: the remaster's map models, the map-art context, its per-map files and the calls the map draw makes"
-kind: "system"
-category: "World, areas and travel"
-addresses: "0x01F81168, 0x001A9930, 0x001A98B0, 0x001A2130, 0x001A9ED0, 0x001A7A50, 0x001A3160, 0x001A5B30, 0x001A92C0, 0x001A9050, 0x001A6A20, 0x001A7F10, 0x001E1670, 0x001A7600, 0x001A7A10, 0x001E5080, 0x001A4DB0, 0x001A9BF0, 0x001E59B0, 0x001AA120, 0x001A9B70, 0x001E5790, 0x001AA240, 0x001E69A0, 0x001A9DD0, 0x001809A0, 0x001C0A90, 0x001BF8B0, 0x001A9CD0, 0x001A53F0, 0x001A7E40, 0x001A40B0"
----
+[Home](../../README.md) / [World, areas and travel](README.md) / Map art
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Map art: the remaster's map models, the map-art context, its per-map files and the calls the map draw makes | system | World, areas and travel | Map data | How the PC remaster draws a field with its own models: the map-art context kept at 0x01F81168, the asset list it requests when a zone's pack names the map, the load that pairs each PMeshInstance with a YM00 instance by the number in its name and builds two MapRenderObjects per instance, the per-map option files opt.csv, NoModelGroupMaps.txt and proceduralTextureConfigs.txt, the paletted textures rebuilt from the PS2 palette data, and the bridge calls through which the map draw culls, binds and draws each instance. | 0x01F81168, 0x001A9930, 0x001A98B0, 0x001A2130, 0x001A9ED0, 0x001A7A50, 0x001A3160, 0x001A5B30, 0x001A92C0, 0x001A9050, 0x001A6A20, 0x001A7F10, 0x001E1670, 0x001A7600, 0x001A7A10, 0x001E5080, 0x001A4DB0, 0x001A9BF0, 0x001E59B0, 0x001AA120, 0x001A9B70, 0x001E5790, 0x001AA240, 0x001E69A0, 0x001A9DD0, 0x001809A0, 0x001C0A90, 0x001BF8B0, 0x001A9CD0, 0x001A53F0, 0x001A7E40, 0x001A40B0 |
 
 ## What the player sees
 

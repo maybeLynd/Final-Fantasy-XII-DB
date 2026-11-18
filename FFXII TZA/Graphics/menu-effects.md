@@ -1,9 +1,8 @@
----
-title: "Menu effects: the 64-record registry that menu screens use to spawn, place and remove effects by id"
-kind: "system"
-category: "Graphics"
-addresses: "0x02EBDBC0, 0x02EBE5C0, 0x003B29B0, 0x003B2B40, 0x003B28F0, 0x003B2D80, 0x003B2BC0, 0x003B2AA0, 0x003B2930, 0x003B2CA0, 0x003B2CE0, 0x003B2F50, 0x0024C460, 0x0024C550, 0x0024F610, 0x0024B270, 0x0024FCF0, 0x0039B620, 0x0039B550"
----
+[Home](../../README.md) / [Graphics](README.md) / Menu effects
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Menu effects: the 64-record registry that menu screens use to spawn, place and remove effects by id | system | Graphics | Visual effects / Effects On Characters And Menus | The menu effect registry: the type-4 effect context a screen loads, the 64 records at 0x02EBDBC0 that map an id to a live effect instance, spawning with eviction of the oldest record when full, removal by id or by instance, the depth offset the Sky Pirate's Den sets per statue, the state query the License Board polls, and which screens drive it. | 0x02EBDBC0, 0x02EBE5C0, 0x003B29B0, 0x003B2B40, 0x003B28F0, 0x003B2D80, 0x003B2BC0, 0x003B2AA0, 0x003B2930, 0x003B2CA0, 0x003B2CE0, 0x003B2F50, 0x0024C460, 0x0024C550, 0x0024F610, 0x0024B270, 0x0024FCF0, 0x0039B620, 0x0039B550 |
 
 ## What the player sees
 

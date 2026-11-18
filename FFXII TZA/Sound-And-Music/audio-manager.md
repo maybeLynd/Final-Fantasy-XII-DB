@@ -1,9 +1,8 @@
----
-title: "Audio manager: the five bank controllers, their bank pools, the sound objects and how a game request reaches a bank"
-kind: "system"
-category: "Sound and music"
-addresses: "0x00210AF0, 0x002105E0, 0x00212710, 0x0021E570, 0x00221D60, 0x00211840, 0x00212970, 0x00210FF0"
----
+[Home](../../README.md) / [Sound and music](README.md) / Audio manager
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Audio manager: the five bank controllers, their bank pools, the sound objects and how a game request reaches a bank | system | Sound and music | The sound engine | The game-side layer between the play calls and the sound driver: the audio manager and its five controllers, the fixed bank pools each controller takes banks from, the sound and bank objects the driver works through, how each play, stop, volume, position and listener request is routed, the load ids, the file load thread, and the pause mask that pauses sounds by kind. | 0x00210AF0, 0x002105E0, 0x00212710, 0x0021E570, 0x00221D60, 0x00211840, 0x00212970, 0x00210FF0 |
 
 ## What the player sees
 

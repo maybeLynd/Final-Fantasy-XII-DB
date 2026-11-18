@@ -1,9 +1,8 @@
----
-title: "Screen fades: the seven fade layers, the fade verbs and the per-movie fade schedule"
-kind: "system"
-category: "Graphics"
-addresses: "0x022BDD60, 0x002EFA70, 0x002EF910, 0x00375900, 0x00375A20, 0x00375AE0, 0x00375470, 0x00374950, 0x00375500, 0x003740B0, 0x01EFAC20, 0x002EFE10, 0x002EFE40, 0x002EFE50, 0x002EFE60, 0x0037DDD0, 0x0037DEA0, 0x02EBF008, 0x00360710, 0x002EFD80, 0x002EFDC0"
----
+[Home](../../README.md) / [Graphics](README.md) / Screen fades
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Screen fades: the seven fade layers, the fade verbs and the per-movie fade schedule | system | Graphics | Screen effects and movies | The full-screen fades to black or white: the seven fade layer records and the one function that starts a fade on them, the screen-effect descriptor pool that times and draws every fade as a sorted full-screen quad, the per-tick poll that leaves a finished fade-out on screen and frees a finished fade-in, the script verbs and the engine's own fades by layer, the instant black of a cutscene skip, the 49-row fade schedule applied around each pre-rendered movie, and the effect fade verbs. | 0x022BDD60, 0x002EFA70, 0x002EF910, 0x00375900, 0x00375A20, 0x00375AE0, 0x00375470, 0x00374950, 0x00375500, 0x003740B0, 0x01EFAC20, 0x002EFE10, 0x002EFE40, 0x002EFE50, 0x002EFE60, 0x0037DDD0, 0x0037DEA0, 0x02EBF008, 0x00360710, 0x002EFD80, 0x002EFDC0 |
 
 ## What the player sees
 

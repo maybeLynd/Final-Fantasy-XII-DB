@@ -1,9 +1,8 @@
----
-title: "Phyre thread pool: the PThreadPool the engine starts, its work-stealing worker threads and the job batches nothing submits"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x006AA280, 0x006AA180, 0x006AA3A0, 0x006AA1B0, 0x006AA600, 0x006AA200, 0x006BA880, 0x006BAB40, 0x006BAED0, 0x006BB110, 0x006BB000, 0x006BAAD0, 0x006BADF0, 0x006BB070, 0x006BB0A0, 0x006BA940, 0x006CE5B0, 0x00D81200, 0x00D7C860, 0x00D8A730, 0x02E4E610, 0x02E5C938, 0x01F2EB30"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Phyre thread pool
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre thread pool: the PThreadPool the engine starts, its work-stealing worker threads and the job batches nothing submits | system | PhyreEngine | Engine framework | PhyreEngine's PThreadPool as the executable carries it: the choice between the work-stealing pool and the immediate pool by processor count, the start and stop the module walk runs, the PhyreEngineWorkerThread threads with their scratch memory, the double-buffered job lists split between workers and stolen through a shared cursor, the add, kick and wait slots, and the fact that no code ever submits a job, so the workers sleep for the whole session. | 0x006AA280, 0x006AA180, 0x006AA3A0, 0x006AA1B0, 0x006AA600, 0x006AA200, 0x006BA880, 0x006BAB40, 0x006BAED0, 0x006BB110, 0x006BB000, 0x006BAAD0, 0x006BADF0, 0x006BB070, 0x006BB0A0, 0x006BA940, 0x006CE5B0, 0x00D81200, 0x00D7C860, 0x00D8A730, 0x02E4E610, 0x02E5C938, 0x01F2EB30 |
 
 ## What the player sees
 

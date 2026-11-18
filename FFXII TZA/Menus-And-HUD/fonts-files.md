@@ -1,9 +1,8 @@
----
-title: "Font files: every shipped font data file with its size, its form, its place in the font list and its .dat header"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x001B44A0, 0x001B4930, 0x001B4D70, 0x001B4E19, 0x001B5230, 0x001B4C00, 0x001B58E0, 0x001B6230, 0x001EA3C0, 0x001E8070, 0x001E9D20, 0x001E8580, 0x001FDCC0, 0x003643A0, 0x00365810, 0x003649A0, 0x002D8690, 0x0067D3B0, 0x0055BAC0, 0x0029FEB0, 0x0029FBD0, 0x0029FF60, 0x00365B30, 0x002DD5D0, 0x002D8910, 0x002B3400, 0x0039BAD0, 0x0017FBC0, 0x0017FB90, 0x0039BEC0, 0x0039C150, 0x003BC4E0, 0x0037F1F0, 0x00575710, 0x005599D0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Font files
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Font files: every shipped font data file with its size, its form, its place in the font list and its .dat header | reference | Menus and HUD | Fonts and text drawing | All 180 files of the font folder: the 116 font data files of the five language folders (fontlist.ah, .dat, .ker and .fex), each with its size, its form, its place in the font list, whether the game requests it and every .dat header field, and the 64 Phyre texture files (the 62 glyph atlases and the two .fgen bitmap fonts) with their texture size, pixel format and loader; with the glyph, kerning and expansion-list tables beside it, these rows hold every byte of every data file; beside them every file's SHA-256 and the 95 character records of each bitmap font. The menu layouts and the License Board pick ExFont faces 2 to 4, and a screen's glyph sheet and slot tie fonts 1, 3, 4, 5 and 6 to their text. | 0x001B44A0, 0x001B4930, 0x001B4D70, 0x001B4E19, 0x001B5230, 0x001B4C00, 0x001B58E0, 0x001B6230, 0x001EA3C0, 0x001E8070, 0x001E9D20, 0x001E8580, 0x001FDCC0, 0x003643A0, 0x00365810, 0x003649A0, 0x002D8690, 0x0067D3B0, 0x0055BAC0, 0x0029FEB0, 0x0029FBD0, 0x0029FF60, 0x00365B30, 0x002DD5D0, 0x002D8910, 0x002B3400, 0x0039BAD0, 0x0017FBC0, 0x0017FB90, 0x0039BEC0, 0x0039C150, 0x003BC4E0, 0x0037F1F0, 0x00575710, 0x005599D0 |
 
 ## What it lists
 

@@ -1,9 +1,8 @@
----
-title: "Driver DLL search: how the game finds and loads nvapi64.dll through the registry, the driver store and the system folder"
-kind: "system"
-category: "Steam and achievements"
-addresses: "0x0015BB30, 0x0015B820, 0x0015A240, 0x0015A330, 0x0015B5F0, 0x0015A650, 0x0015A9B0, 0x0015A780, 0x0015AC50, 0x0015AE60, 0x0015B110, 0x0015B440, 0x0015B550, 0x0015B070, 0x00159CA0, 0x00159B10, 0x00159AA0, 0x00159420, 0x00159580, 0x001595F0, 0x00159F90, 0x0015A0E0, 0x01CC6BE8, 0x02EAECE0"
----
+[Home](../../README.md) / [Steam and achievements](README.md) / Driver DLL search
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Driver DLL search: how the game finds and loads nvapi64.dll through the registry, the driver store and the system folder | system | Steam and achievements | Graphics adapters and driver libraries | The loader the game uses for NVIDIA's NVAPI library: the Windows build test, finding the NVIDIA display adapter through SetupAPI, the order it searches the adapter's service, its driver registry values, the Khronos keys, the driver store and the system folder, the trusted-folder test before an absolute path is loaded, and the helpers it builds paths and registry reads with. | 0x0015BB30, 0x0015B820, 0x0015A240, 0x0015A330, 0x0015B5F0, 0x0015A650, 0x0015A9B0, 0x0015A780, 0x0015AC50, 0x0015AE60, 0x0015B110, 0x0015B440, 0x0015B550, 0x0015B070, 0x00159CA0, 0x00159B10, 0x00159AA0, 0x00159420, 0x00159580, 0x001595F0, 0x00159F90, 0x0015A0E0, 0x01CC6BE8, 0x02EAECE0 |
 
 ## What the player sees
 
@@ -104,10 +103,16 @@ name matches.
   match whose copy fails (`0x00159E60` returns 0) moves on to the next name (`0x0015AE1B`-`0x0015AE1E`). The key is
   then closed (`0x0015AE29`).
 - `0x0015AE60(name, root, keys)` opens each key for reading and walks its value names with `RegEnumValueW`
-  until error `0x103`, returning the first value name that matches.
+  until error `0x103`, returning a copy (`0x00159E60`, `0x0015B015`) of the first value name that matches.
+- `0x0015AE60` returns 0 when `Advapi32.dll`, `RegOpenKeyExW`, `RegEnumValueW` or `RegCloseKey` cannot be found
+  (`0x0015AEDA`, `0x0015AEFF`, `0x0015AF2B`, `0x0015AF57`); each is kept at `0x02EAEB38`, `0x02EAEB40`, `0x02EAEB48` and `0x02EAEB58`
+  once found (`0x0015AED0`, `0x0015AEF5`, `0x0015AF21`, `0x0015AF4D`).
 - `0x0015AE60`: the list `keys` ends at a null entry (`0x0015AF67`); each key opens with access `0x20019`
   (`0x0015AF75`), and a key that does not open is skipped (`0x0015AF8E`). An error other than `0x103` moves on
-  to the next index (`0x0015B022`); the first match ends the walk over keys (`0x0015B045`).
+  to the next index (`0x0015B022`); the first match whose copy succeeds ends the walk over keys (`0x0015B045`), and a
+  match whose copy fails (`0x00159E60` returns 0) moves on to the next index (`0x0015B01D`-`0x0015B028`).
+- `0x0015AE60` frees the buffer (`0x0015B02D`) and closes each key it opened (`0x0015B03B`) after its walk; a key whose
+  `0x10000`-byte buffer cannot be allocated is closed without a walk (`0x0015AFA8`).
 - `0x0015AE60` reads the names into a `0x10000`-byte buffer (`0x0015AF97`), whose first `0x8000` bytes are
   cleared before each read (`0x0015AFC7`), with a length of `0x7FFF` characters (`0x0015AFBC`), and matches
   each with `0x001595F0` (`0x0015B009`).

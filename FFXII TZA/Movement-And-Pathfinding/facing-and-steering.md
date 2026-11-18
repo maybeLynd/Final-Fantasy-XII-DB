@@ -1,9 +1,8 @@
----
-title: "Facing and steering: how a character turns, the steering request and its two slots, scripted moves and turns, and what resumes after a cutscene"
-kind: "system"
-category: "Movement and pathfinding"
-addresses: "0x0026B5A0, 0x0026B620, 0x0026B6A0, 0x0026C090, 0x002E5E10, 0x002E5F90, 0x002E5FB0, 0x00265200, 0x0026A0D0, 0x0026A060, 0x0026AE90, 0x002E45E0, 0x002E55C0, 0x0026AE30, 0x0026ADF0, 0x0026B450, 0x0026A640, 0x00269C30, 0x0026AF10, 0x00357A20, 0x00357980, 0x0026C120, 0x002E5750, 0x002690D0, 0x0026C330, 0x0026C300, 0x002E60C0, 0x003A1C50, 0x003A19C0, 0x003A1AD0, 0x002EBE50, 0x002E8EE0, 0x002EC3F0, 0x002EC2C0, 0x002EBFA0, 0x002EC140, 0x002EC1C0, 0x002EC380, 0x0026A8E0, 0x0026A870, 0x0026A950, 0x0026AAD0, 0x002E5B60, 0x002E5B90, 0x0026A1A0, 0x00269F90, 0x002627C0, 0x002EAB80, 0x002EAAA0, 0x00263230, 0x00263050, 0x0026AFE0, 0x003EC040, 0x002EA780, 0x00263CC0, 0x00265600, 0x00264460, 0x0025DF00, 0x003A1BB0, 0x0026D630, 0x00265580"
----
+[Home](../../README.md) / [Movement and pathfinding](README.md) / Facing and steering
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Facing and steering: how a character turns, the steering request and its two slots, scripted moves and turns, and what resumes after a cutscene | system | Movement and pathfinding | How actors move | The three angles a steerable actor carries and the two wraps that fold them into a single turn; the facing writer and what a facing change costs; the steering request record, its two inline slots and the depth-one push and pop that let a character resume its walk after a scripted interruption; the steer toward a target with its speed ramps, arrival test and near flag; the five turn modes the per-frame integrator runs, including the untimed and timed turns and the animation-driven turn; the look-at shapes; and the verbs that drive all of it. | 0x0026B5A0, 0x0026B620, 0x0026B6A0, 0x0026C090, 0x002E5E10, 0x002E5F90, 0x002E5FB0, 0x00265200, 0x0026A0D0, 0x0026A060, 0x0026AE90, 0x002E45E0, 0x002E55C0, 0x0026AE30, 0x0026ADF0, 0x0026B450, 0x0026A640, 0x00269C30, 0x0026AF10, 0x00357A20, 0x00357980, 0x0026C120, 0x002E5750, 0x002690D0, 0x0026C330, 0x0026C300, 0x002E60C0, 0x003A1C50, 0x003A19C0, 0x003A1AD0, 0x002EBE50, 0x002E8EE0, 0x002EC3F0, 0x002EC2C0, 0x002EBFA0, 0x002EC140, 0x002EC1C0, 0x002EC380, 0x0026A8E0, 0x0026A870, 0x0026A950, 0x0026AAD0, 0x002E5B60, 0x002E5B90, 0x0026A1A0, 0x00269F90, 0x002627C0, 0x002EAB80, 0x002EAAA0, 0x00263230, 0x00263050, 0x0026AFE0, 0x003EC040, 0x002EA780, 0x00263CC0, 0x00265600, 0x00264460, 0x0025DF00, 0x003A1BB0, 0x0026D630, 0x00265580 |
 
 ## What the player sees
 
@@ -203,36 +202,48 @@ While `+0x29` is non-zero the wait resolver `0x0025DF00` re-issues `0x0026D6F0(a
 
 ### Steering toward the target
 
-`0x002E45E0(actor, context)` runs from the movement step's driver when `+0x29` is 1 to 4. Each frame:
+`0x002E45E0(actor, context)`, the steering update, runs from the per-frame driver `0x002E5030` when that driver does not
+refuse the actor (byte `+0x18` 1, a null controller `+0xC0` or its byte `+0x14F` bit `0x1`, a class other than 3,
+`0x002E5048`-`0x002E507F`) and the steering request's mode byte `+0x29` is 1 to 4 (`0x002E50A0`-`0x002E50B8`). Each frame:
 
-1. the target point: kind 0 is the stored position with reach `+0x20`; kind 1 resolves the actor
-   (`0x003587C0` with the manager index `+0x00`, or `0x003590D0` → `0x003588B0` when the actor number
-   `+0x04` is negative, `0x002E4641`-`0x002E465C`), reads its position, and
-   adds to the reach both bodies' radii (`0x003DA6A0`: `sqrt(0x003DA730(a)) + a.+0x5C` for each over the
-   two `+0x50` sub-blocks); an unresolvable actor target is the origin;
-2. the bearing (`0x003A19C0`): yaw `atan2(dx, dz)` and pitch `atan2(dy, sqrt(dx^2 + dz^2))`, looped
-   into range; the desired yaw `+0xA4` and pitch `+0xA0` each approach them by at most the caps
-   `+0x50` and `+0x54` (`0x003A1AD0`: wrap the difference, step by `min(|diff|, cap)` and snap when
-   below the cap, then loop the result into range, `0x003A1B70`-`0x003A1B8A`);
-3. when the manager's skip flag (`0x00267310(actor +0x15)`) is set, `0x0026AFE0` places the actor on the
-   target at once;
-4. the remaining distance is `distance - reach`, three-dimensional (`0x003A1920`) when `0x00264460` or
-   actor byte `+0x08` bit `0x4` says so, else flat (`0x004686D0`);
-5. the ramp, with `v = +0x24` and `a = +0x2C`, by mode (`0x002E47BD`-`0x002E47CE`); `v` then goes to the
-   context's `+0xD0` and `+0xF8`:
+1. the target point, by the selected request's kind byte `+0x2A` (`0x002E4610`-`0x002E463B`):
+   - kind 0 is the stored position with reach `+0x20` (`0x002E46C6`-`0x002E46CD`);
+   - kind 1 resolves the actor (`0x003587C0` with the manager index `+0x00`, or `0x003590D0` → `0x003588B0` when the actor
+     number `+0x04` is negative, `0x002E4641`-`0x002E4664`), reads its position (`0x00265020`, `0x002E467C`), and adds to the
+     reach both bodies' radii (`0x003DA6A0`: `sqrt(0x003DA730(a)) + a.+0x5C` for each over the two `+0x50` sub-blocks,
+     `0x002E4681`-`0x002E469E`);
+   - an unresolvable actor target is the origin, with the reach `+0x20` alone (`0x002E46A5`-`0x002E46BF`);
+   - any other kind leaves the reach at 0 and the target point a 16-byte local that this path never writes; steps 2 to
+     7 still run on it;
+2. the bearing (`0x003A19C0`, `0x002E46D2`-`0x002E46E1`): yaw `atan2(dx, dz)` and pitch `atan2(dy, sqrt(dx^2 + dz^2))`,
+   looped into range; the desired yaw `+0xA4` and pitch `+0xA0` each approach them by at most the request's caps
+   `+0x50` and `+0x54` (`0x003A1AD0`: wrap the difference, step by `min(|diff|, cap)` and snap when below the cap, then
+   loop the result into range, `0x003A1B70`-`0x003A1B8A`; `0x002E46E6`-`0x002E4722`):
+   - the new yaw and pitch are stored after step 4 (`0x002E4797`, `0x002E479F`);
+3. when the stepRequest byte `+0x201` of the actor's manager record (`0x02098E10 + 0x288 *` actor byte `+0x15`, read by
+   `0x00267310`) is non-zero, `0x0026AFE0` places the actor on the target at once (`0x002E4727`-`0x002E4751`);
+4. the remaining distance is `distance - reach`, three-dimensional (`0x003A1920`) when `0x00264460` or actor byte `+0x08`
+   bit `0x4` says so, else flat (`0x004686D0`) (`0x002E4756`-`0x002E478E`);
+5. the ramp, with `v = +0x24` and `a = +0x2C` of the request, by its mode `+0x29` (`0x002E47A7`-`0x002E47CE`); `v` then
+   goes to the context's `+0xD0` and `+0xF8` (`0x002E48B5`, `0x002E48C0`), and `+0xF8` keeps it after arrival:
    - mode 1 leaves `v`;
-   - mode 2 uses the distance from the start snapshot `d0`, and when `max(a, d0) < v^2 / 2a` sets
-     `v = max(a, sqrt(2a * max(a, d0)))` (`0x002E4823`-`0x002E4850`);
-   - mode 3 takes the remaining distance `rem` and, when `max(a, rem) < v^2 / 2a`, sets
-     `v = max(a, sqrt(2a * rem))`, with `rem` itself under the root (`0x002E4861`-`0x002E4895`);
-   - mode 4 runs the mode 2 step, then the mode 3 step on the new `v` (`0x002E485B`);
-6. actor byte `+0x0D` bit `0x10` (near) is set when `[0x02164200] * +0x24 > remaining` and cleared otherwise
-   (`0x002E48CA`, `0x002E48D0`); `0x02164200` is 3.0 at run time: its only writer is the setter `0x002EBE40`, called by
-   `0x00266D10` at boot and by the verb `debug_charmovestopvelrratio` (`0x0050D320`);
-7. arrival, when `[0x01DFE0B8] * v > remaining`: for a position target (`+0x2A` = 0) a zero reach
-   snaps the actor onto it (`0x0026AFE0`) and `+0x24`, `+0xD0` and `+0x2C` are zeroed; for every
-   target `+0x29` = 0, a movement mode 2 is torn down (`0x0026C120(actor, 0)`), and `+0x24` and
-   `+0xD0` are zeroed again.
+   - mode 2 measures `d0`, the distance from the context's start snapshot `+0x30` (written by `0x0026AF10`), the way
+     step 4 does (`0x00264460`, `0x003A1920` or `0x004686D0`, `0x002E47D4`-`0x002E4823`), and when `max(a, d0) < v^2 / 2a` sets
+     `v = max(a, sqrt(2a * max(a, d0)))`, the root by `0x003A1D30` (`0x002E4823`-`0x002E4850`);
+   - mode 3 sets `v = max(a, sqrt(|2a * rem|))` when `max(a, rem) < v^2 / 2a`, `rem` being the remaining distance: the
+     root `0x003A1D30` is `sqrtf(fabs(x))`, so a negative `rem` inside the reach still gives a speed
+     (`0x002E4861`-`0x002E4895`);
+   - mode 4 runs the mode 2 step, then the mode 3 step on the new `v` (`0x002E4854`-`0x002E485F`);
+6. actor byte `+0x0D` bit `0x10` (near) is set when `[0x02164200] * +0x24 > remaining`, with the request's `+0x24`
+   before the ramp, and cleared otherwise (`0x002E4899`-`0x002E48D0`); `0x02164200` is 3.0 at run time: its only writer is
+   the setter `0x002EBE40`, called by `0x00266D10` at boot and by the verb `debug_charmovestopvelrratio` (`0x0050D320`);
+7. arrival, when `[0x01DFE0B8] * v > remaining` (`0x002E48D4`-`0x002E48F3`):
+   - for a position target (`+0x2A` = 0) a zero reach `+0x20` snaps the actor onto it (`0x0026AFE0`), and the request's
+     `+0x24` and `+0x2C` and the context's `+0xD0` are zeroed (`0x002E48F9`-`0x002E4944`); `0x002E4903` skips this for any
+     other kind;
+   - for every target `+0x29` = 0 (`0x002E494E`), a movement mode 2 (`+0x28` & `0x7F`) is torn down
+     (`0x0026C120(actor, 0)`, `0x002E4951`-`0x002E4969`), and `+0x24` and `+0xD0` are zeroed, for a position target a second
+     time (`0x002E4975`, `0x002E4978`).
 
 The classical `v = sqrt(2 a d)` with `a` floored in keeps a stopping distance from going negative.
 At 60 fps the arrival scale `[0x01DFE0B8]` is 2.0 and the speed is halved, `speed * [0x01DFE0BC]` (`0x0026D6A0`), so in
@@ -286,8 +297,8 @@ the two floats of its third argument to the heading and pitch instead. Otherwise
 |---|---|
 | 1 | the facing advances by the spin rate `+0x3C` (set by `0x002E60C0`, verb `setvelrotangzx`), through `0x0026B5A0` |
 | 2 | the facing approaches the desired heading `+0xA4` (`0x00263CC0`, which reads `+0xA4` for class 3, `+0x38` for class 1 and gives 0.0 for a null actor or any other class) by at most the step (`0x003A1AD0`), through `0x0026B5A0` |
-| 3 | the facing approaches the target `+0x34`: by the step, or, when `+0x28` bit `0x80` is set (an untimed turn), by the frame-counted path: first, when `0x00265510(actor)` is non-zero and `0x00265530(actor)` is at most the `0x00265630` index, `0x0026C070(actor, 0)` and, for a controller whose first dword is not -1, `0x003DDAD0(actor, controller byte +0x12, 0x1000000)`; then, for a controller whose first dword is 0 or above (signed), `0x003EC040`'s animation-driven step, otherwise `0x003A1AD0`, and on both `0x0026C300(actor, index + 1)`; the skip flag snaps to the target; when the facing equals the target, `0x0026C120(actor, 0)` |
-| 4 | timed interpolation from the start heading `+0x38` to `+0x34`: `t = +0x78 / +0x68`, `heading = start + wrap(target - start) * t`; when the index is not below the total (signed), or when the skip flag forces it, the final heading and `0x0026C120(actor, 0)`; both ways end with `0x0026C300(actor, index + 1)`, the index being the total on the skip-flag way; the index is the float `+0x78` truncated (`0x00265630`) and the total the word `+0x68` sign-extended (`0x00265660`) |
+| 3 | the facing approaches the target `+0x34`: by the step, or, when `+0x28` bit `0x80` is set (an untimed turn), by the frame-counted path: first, when `0x00265510(actor)` is non-zero and `0x00265530(actor)` is at most the `0x00265630` index, `0x0026C070(actor, 0)` and, for a controller whose first dword is not -1, `0x003DDAD0(actor, controller byte +0x12, 0x1000000)`; then, for a controller whose first dword is 0 or above (signed), `0x003EC040`'s animation-driven step, otherwise `0x003A1AD0`, and on both `0x0026C300(actor, index + 1)`; a non-zero stepRequest byte (`0x00267310(actor byte +0x15)`, `0x002E5A37`) snaps it to the target; when the facing equals the target, `0x0026C120(actor, 0)` |
+| 4 | timed interpolation from the start heading `+0x38` to `+0x34`: `t = +0x78 / +0x68`, `heading = start + wrap(target - start) * t`; when the index is not below the total (signed), or when a non-zero stepRequest byte (`0x00267310`, `0x002E5890`) forces it, the final heading and `0x0026C120(actor, 0)`; both ways end with `0x0026C300(actor, index + 1)`, the index being the total on the stepRequest way; the index is the float `+0x78` truncated (`0x00265630`) and the total the word `+0x68` sign-extended (`0x00265660`) |
 | 5 | waits while `0x002EA780` reports the render record's turn still running (`0x003E6AF0` non-zero and `0x002EA910` = 1); when it stops, `0x0026C120(actor, 0)` (`0x002E5A63`-`0x002E5A6E`); `0x002EA780` also gives 0, ending the wait at once, for a null actor, an actor without a controller at `+0xC0`, a render id of -1, a render record address that computes to null or a render record whose `+0x284` is 0 (`0x002EA789`-`0x002EA7C3`) |
 
 By address, `0x002E5750` returns at once when the actor's byte `+0x18` is 1, or when the controller `+0xC0` is present
@@ -336,7 +347,7 @@ not below the total, a signed test, it calls `0x0026B6A0(actor, target, 0)` and 
 `0x0026B6A0(actor, v, 0)` with `v = start + w * (index / total)`, `w` the one-pass wrap of `target - start` as in mode
 1; `(float) index / (float) total` is formed first, each float from a signed dword (`0x002E588A`-`0x002E5926`).
 
-Both ways of mode 4 end with `0x0026C300(actor, index + 1)`, the index being the total on the skip-flag way
+Both ways of mode 4 end with `0x0026C300(actor, index + 1)`, the index being the total on the stepRequest way
 (`0x002E592B`-`0x002E5931`). With a total of 0, an index of 0 or above takes the first way and a negative index gives
 `index / 0.0`.
 
@@ -665,3 +676,7 @@ The access table has one row per instruction:
   writing a slot directly;
 - `note`: for a `ctor` row the slot written, otherwise the kind of record the function's argument holds where its
   callers show it.
+
+---
+
+[← Movement step](heading-speed-to-position-delta.md) | [Collision-mesh movement →](collision-mesh-movement.md)

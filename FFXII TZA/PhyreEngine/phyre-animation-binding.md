@@ -1,9 +1,8 @@
----
-title: "Animation channel binding: how an animation curve finds its target and how rotation, scale and translation become a bone matrix"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x005C0820, 0x005C1160, 0x005C0C90, 0x005C0B60, 0x005C72A0, 0x005A7E90, 0x005C6020, 0x005C61A0, 0x01F2CE40, 0x01CEBBA8, 0x00D317D8, 0x00D31768, 0x005AF3B0, 0x005C0E00, 0x005C1000, 0x00D31850, 0x00D31868, 0x005B2D60"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Animation channel binding
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Animation channel binding: how an animation curve finds its target and how rotation, scale and translation become a bone matrix | system | PhyreEngine | Asset files and animation | PhyreEngine's PAnimation channel binding: the nineteen channel semantics, the six binder classes that turn a named channel target into a target record (data member, shader parameter, method, function, scene node, mesh-instance node), the per-frame composer that folds rotation, scale and translation channels into a matrix and hands other channels to memcpy or a setter, the additive and weighted slot marking, and the two shipped map clusters that use it. | 0x005C0820, 0x005C1160, 0x005C0C90, 0x005C0B60, 0x005C72A0, 0x005A7E90, 0x005C6020, 0x005C61A0, 0x01F2CE40, 0x01CEBBA8, 0x00D317D8, 0x00D31768, 0x005AF3B0, 0x005C0E00, 0x005C1000, 0x00D31850, 0x00D31868, 0x005B2D60 |
 
 ## What the player sees
 

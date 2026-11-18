@@ -1,9 +1,8 @@
----
-title: "Clan Primer text: every Bestiary and Traveler's Tips text slot in all nine languages"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x005771F0, 0x00575D10, 0x00576300, 0x00574900, 0x00575710, 0x00575782, 0x00D23770, 0x0017FA90, 0x0017FBC0, 0x00576E30"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Clan Primer text
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Clan Primer text: every Bestiary and Traveler's Tips text slot in all nine languages | reference | Menus and HUD | Game text tables | Every text slot of the Bestiary and Traveler's Tips handbook bundles side by side in the nine language trees: the class line, the observations and the lore slots of each of the 384 Bestiary entries and the 16 Traveler's Tips pages, which code loads a bundle and shows its lines, which bundle file holds each entry in each language, and how to read the page breaks, symbols and expansion characters. | 0x005771F0, 0x00575D10, 0x00576300, 0x00574900, 0x00575710, 0x00575782, 0x00D23770, 0x0017FA90, 0x0017FBC0, 0x00576E30 |
 
 ## What it lists
 

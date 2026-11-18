@@ -1,9 +1,8 @@
----
-title: "Shared zone-script actors: the crystal, the teleport and the key-item and message helpers"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x00352C80, 0x00356500, 0x00351CE0, 0x00351940, 0x003462D0, 0x0034AC10, 0x00264CE0, 0x00344630, 0x003449A0, 0x003459C0, 0x0034A6D0, 0x0034ABF0, 0x0034B1E0, 0x0034A2C0, 0x002E2120, 0x002E16B0, 0x002A2C00, 0x002A5330, 0x0039BB20, 0x0039C150, 0x002F9860, 0x00300B80, 0x00349800, 0x0034A420, 0x00349BF0, 0x0034B760, 0x0034BB10, 0x00354D00, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x003567F0, 0x00352FA0, 0x00354110, 0x0050C860, 0x0050ED70, 0x0050EF50"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Shared zone-script actors
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Shared zone-script actors: the crystal, the teleport and the key-item and message helpers | reference | Story, events and hunts | Scripts across all areas | The helper actors many zone scripts carry with identical code: the save and gate crystal (system_crystal_actor), its teleport (telepoeffectctrl), its party-facing helper (crystaldummyPC), the memory card save actor (saveactor) and the key-item and system-message helper (イベント特殊効果画面); what each function does in the game, how a caller hands it the item or message, and which zone scripts carry each one. | 0x00352C80, 0x00356500, 0x00351CE0, 0x00351940, 0x003462D0, 0x0034AC10, 0x00264CE0, 0x00344630, 0x003449A0, 0x003459C0, 0x0034A6D0, 0x0034ABF0, 0x0034B1E0, 0x0034A2C0, 0x002E2120, 0x002E16B0, 0x002A2C00, 0x002A5330, 0x0039BB20, 0x0039C150, 0x002F9860, 0x00300B80, 0x00349800, 0x0034A420, 0x00349BF0, 0x0034B760, 0x0034BB10, 0x00354D00, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x003567F0, 0x00352FA0, 0x00354110, 0x0050C860, 0x0050ED70, 0x0050EF50 |
 
 ## What it lists
 

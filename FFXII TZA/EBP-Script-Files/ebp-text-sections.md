@@ -1,9 +1,8 @@
----
-title: "EBP text sections: the message bank and the field-sign caption bank a script's text ids index"
-kind: "format"
-category: "EBP script files"
-addresses: "0x00330190, 0x00330220, 0x0026C880, 0x0026C8A0, 0x00264D60, 0x00264D90, 0x002673A0, 0x01CEB638, 0x00348DF0, 0x0034ADA0, 0x0050EAB0, 0x002E1E00, 0x002E0540, 0x00265680, 0x002E16B0, 0x002A2C00, 0x002B32D0, 0x00269F20, 0x00355A00, 0x00357120, 0x00356B70, 0x022C6CA0, 0x022C6CC8"
----
+[Home](../../README.md) / [EBP script files](README.md) / EBP text sections
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| EBP text sections: the message bank and the field-sign caption bank a script's text ids index | format | EBP script files | Script sections | Sections 2 and 3 of an .ebp script: the offset-table layout both banks share, the flag bit section 2 carries, how each bank is bound to its actor manager, the lookups that turn a text id into a string and what they fail to check, every verb that reads them and where the text ends up on screen, the shipped banks in all nine language trees, and the rules an edit must follow. | 0x00330190, 0x00330220, 0x0026C880, 0x0026C8A0, 0x00264D60, 0x00264D90, 0x002673A0, 0x01CEB638, 0x00348DF0, 0x0034ADA0, 0x0050EAB0, 0x002E1E00, 0x002E0540, 0x00265680, 0x002E16B0, 0x002A2C00, 0x002B32D0, 0x00269F20, 0x00355A00, 0x00357120, 0x00356B70, 0x022C6CA0, 0x022C6CC8 |
 
 ## What the player sees
 

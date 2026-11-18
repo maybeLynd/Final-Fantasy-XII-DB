@@ -1,9 +1,8 @@
----
-title: "Formula slots: every calculator slot with what it computes, what it reads and which recipes run it"
-kind: "reference"
-category: "Damage and battle formulas"
-addresses: "0x01EFA5C0, 0x01EF96C0, 0x00385F60, 0x00385680, 0x003847C0, 0x0016D6A0"
----
+[Home](../../README.md) / [Damage and battle formulas](README.md) / Formula slots
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Formula slots: every calculator slot with what it computes, what it reads and which recipes run it | reference | Damage and battle formulas | Damage and formulas | All 202 slots of the calculator table at 0x01EFA5C0: for each, its function and size, the recipes whose first or committed list contain it, what it computes, the stats, action-row, weapon-row, result and scratch fields it reads and writes, the statuses and augment ids it tests, and the instruction sites that show it. | 0x01EFA5C0, 0x01EF96C0, 0x00385F60, 0x00385680, 0x003847C0, 0x0016D6A0 |
 
 ## What it lists
 

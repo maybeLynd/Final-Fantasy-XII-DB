@@ -1,9 +1,8 @@
----
-title: "Lens flares: the eight flare slots, the occlusion queries that measure them and the scene dimming they drive"
-kind: "system"
-category: "Graphics"
-addresses: "0x02ADBB40, 0x02ADBB30, 0x02ADBB34, 0x00376350, 0x00376990, 0x00376470, 0x00376AC0, 0x00376D80, 0x00376A80, 0x00377010, 0x00377100, 0x00377130, 0x00377160, 0x003770D0, 0x00377090, 0x003769F0, 0x00376A20, 0x00376A50, 0x01F811F0, 0x001B29F0, 0x001B2630, 0x001B2680, 0x001849E0, 0x001B26F0, 0x001B2A30, 0x001B27E0, 0x00184AA0, 0x00184A70, 0x001B26D0, 0x001F3A00, 0x0017ED50, 0x0017E7E0, 0x00461090, 0x00461270, 0x00461250"
----
+[Home](../../README.md) / [Graphics](README.md) / Lens flares
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Lens flares: the eight flare slots, the occlusion queries that measure them and the scene dimming they drive | system | Graphics | Screen effects and movies | How a lens-flare effect element (type 0xA1, VLENSFLARE) takes one of eight flare slots, how the field frame fades each slot by its distance from the screen centre, how a GPU occlusion query measures how much of a small square at the light is visible, and how that visibility scales the flare's parts, dims the scene colour and lights the characters. | 0x02ADBB40, 0x02ADBB30, 0x02ADBB34, 0x00376350, 0x00376990, 0x00376470, 0x00376AC0, 0x00376D80, 0x00376A80, 0x00377010, 0x00377100, 0x00377130, 0x00377160, 0x003770D0, 0x00377090, 0x003769F0, 0x00376A20, 0x00376A50, 0x01F811F0, 0x001B29F0, 0x001B2630, 0x001B2680, 0x001849E0, 0x001B26F0, 0x001B2A30, 0x001B27E0, 0x00184AA0, 0x00184A70, 0x001B26D0, 0x001F3A00, 0x0017ED50, 0x0017E7E0, 0x00461090, 0x00461270, 0x00461250 |
 
 ## What the player sees
 

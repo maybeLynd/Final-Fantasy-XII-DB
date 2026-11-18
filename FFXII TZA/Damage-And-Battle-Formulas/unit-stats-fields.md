@@ -1,9 +1,8 @@
----
-title: "Unit stats fields: every field of a unit's combat stats record, what it holds, and what writes and reads it"
-kind: "reference"
-category: "Damage and battle formulas"
-addresses: "0x002FEF30, 0x0030FED0, 0x0030E360, 0x00300530, 0x0030C470"
----
+[Home](../../README.md) / [Damage and battle formulas](README.md) / Unit stats fields
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Unit stats fields: every field of a unit's combat stats record, what it holds, and what writes and reads it | reference | Damage and battle formulas | Stats, HP and augments | Each field of the 0x1C8-byte combat stats record every battle unit carries (unit +0x698), from the kind byte and the party or enemy base values to the computed stats, status words, affinities, HP and MP, equipment, augment layers, timers, experience, license points, licenses and level, with its width, its meaning and the functions that write and read it. | 0x002FEF30, 0x0030FED0, 0x0030E360, 0x00300530, 0x0030C470 |
 
 ## What it lists
 

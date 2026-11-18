@@ -1,9 +1,8 @@
----
-title: "Phyre arrays: the PArray and PSharray containers, their ownership bit and the generated resize, copy and set-external bodies"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x005B4E00, 0x005EFB10, 0x006065E0, 0x006045B0, 0x0063B9B0, 0x0062A870, 0x0060F400, 0x005C9740, 0x005C8BF0, 0x005C8CA0, 0x0060C3F0, 0x0060CC60, 0x006C7A40, 0x006C7D00, 0x00673130, 0x005AA3C0, 0x005DE950, 0x005C0090, 0x001C19A0, 0x001C2720, 0x0063DCA0, 0x005C4CC0"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Phyre arrays
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre arrays: the PArray and PSharray containers, their ownership bit and the generated resize, copy and set-external bodies | system | PhyreEngine | Engine framework | How PhyreEngine stores its reflected arrays: the 16-byte PArray&lt;T&gt; and the PSharray&lt;T&gt; whose size follows its inline element, both with a count word whose top bit marks storage the array does not own, the PString tagged pointer, the member-record vtables through which the reflection layer counts, resizes and repoints an array, and the per-element-type template bodies the compiler generated for them. | 0x005B4E00, 0x005EFB10, 0x006065E0, 0x006045B0, 0x0063B9B0, 0x0062A870, 0x0060F400, 0x005C9740, 0x005C8BF0, 0x005C8CA0, 0x0060C3F0, 0x0060CC60, 0x006C7A40, 0x006C7D00, 0x00673130, 0x005AA3C0, 0x005DE950, 0x005C0090, 0x001C19A0, 0x001C2720, 0x0063DCA0, 0x005C4CC0 |
 
 ## What the player sees
 

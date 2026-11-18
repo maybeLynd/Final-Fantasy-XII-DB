@@ -1,9 +1,8 @@
----
-title: "Party members and guests: who can join, how the story adds and removes them, where a guest sits, and what a join brings"
-kind: "system"
-category: "Party"
-addresses: "0x003172E0, 0x003170E0, 0x00328B20, 0x003288F0, 0x00316DF0, 0x00317480, 0x00323540, 0x003261D0, 0x00328DB0, 0x00269C70, 0x00322350"
----
+[Home](../../README.md) / [Party](README.md) / Party members and guests
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Party members and guests: who can join, how the story adds and removes them, where a guest sits, and what a join brings | system | Party | The party in play | Who is in the party: the main and guest ranges of the forty party rows, the add and remove functions and the rule that nobody is in the party twice, where a guest is seated, the level and LP catch-up a joining member gets, what a join adds to the inventory and what a leave takes away, the commit and wait every change goes through, the script verbs and how they pick who fights, how a member's actor takes a roster slot, and every join and leave the shipped scripts perform. | 0x003172E0, 0x003170E0, 0x00328B20, 0x003288F0, 0x00316DF0, 0x00317480, 0x00323540, 0x003261D0, 0x00328DB0, 0x00269C70, 0x00322350 |
 
 ## What the player sees
 
@@ -391,3 +390,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - UI: `0x00236820` is called by `0x0031EB20`, `0x00322A80`; those functions are documented on
   [action definition row](../Battle-Actions/action-definition-row.md),
   [target selection](../Battle-Actions/target-selection.md).
+
+---
+
+[Party slots →](party-slots.md)

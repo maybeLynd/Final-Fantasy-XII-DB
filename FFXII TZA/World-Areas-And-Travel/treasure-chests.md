@@ -1,9 +1,8 @@
----
-title: "Treasure chests: where each chest stands, whether it appears and comes back, and what it holds with the odds of each content"
-kind: "system"
-category: "World, areas and travel"
-addresses: "0x00354400, 0x00354A40, 0x00355210, 0x002650B0, 0x00265155, 0x002FAED0, 0x002FAF60, 0x002FAFD0, 0x002FB430, 0x002F7FA0, 0x002FA470, 0x0050FAF0, 0x00355830, 0x00356570, 0x0050F850, 0x0023B2A0, 0x0032AA60, 0x0032AD70, 0x00353750, 0x00353BD0, 0x00354540, 0x002F8060, 0x003272A0, 0x00379CD0, 0x00300B80, 0x003004B0, 0x003148F0, 0x02EC3E60"
----
+[Home](../../README.md) / [World, areas and travel](README.md) / Treasure chests
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Treasure chests: where each chest stands, whether it appears and comes back, and what it holds with the odds of each content | system | World, areas and travel | Chests, traps and weather | Every treasure chest the game ships: how a zone script binds a chest to its 24-byte record, the presence roll when a chest is set out and the opened flag that keeps a one-time chest away, the payout roll when the chest is opened (gil or one of two items, with the Treasure Hunter set the Diamond Armlet unlocks), the chests that share a flag, counts of the shipped chests by region, and the list of all 1,966 with map, region, place, flag, chance and every possible content with its odds. | 0x00354400, 0x00354A40, 0x00355210, 0x002650B0, 0x00265155, 0x002FAED0, 0x002FAF60, 0x002FAFD0, 0x002FB430, 0x002F7FA0, 0x002FA470, 0x0050FAF0, 0x00355830, 0x00356570, 0x0050F850, 0x0023B2A0, 0x0032AA60, 0x0032AD70, 0x00353750, 0x00353BD0, 0x00354540, 0x002F8060, 0x003272A0, 0x00379CD0, 0x00300B80, 0x003004B0, 0x003148F0, 0x02EC3E60 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Menu graphics containers (.as7): the compressed page archives behind item pictures and character silhouettes"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x0024AA00, 0x00248500, 0x02090788, 0x02091090, 0x00291C80, 0x0209BEA0, 0x00291D90, 0x00292050, 0x00292390, 0x01E0C470, 0x01E0C474, 0x002C8EE0, 0x0209E638, 0x002CEB40, 0x002CEFD0, 0x002CEE00, 0x0024A440, 0x0024A1D0, 0x002C9040, 0x0029F580"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Menu graphics containers (.as7)
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Menu graphics containers (.as7): the compressed page archives behind item pictures and character silhouettes | format | Game files and data tables | Image files | The big-endian A7 containers in bin_menu: a page directory and a shared static dictionary, the LZ page codec 0x00248500 and its walker 0x0024AA00, how the item-picture path decodes one 64 x 96 page into the itemgra_c atlas with an Item_Clut palette, how the silhouette path decodes 258 pages into each of two TIM2 images, the 18 shipped files, and the rules an edited container must keep. | 0x0024AA00, 0x00248500, 0x02090788, 0x02091090, 0x00291C80, 0x0209BEA0, 0x00291D90, 0x00292050, 0x00292390, 0x01E0C470, 0x01E0C474, 0x002C8EE0, 0x0209E638, 0x002CEB40, 0x002CEFD0, 0x002CEE00, 0x0024A440, 0x0024A1D0, 0x002C9040, 0x0029F580 |
 
 ## What the player sees
 

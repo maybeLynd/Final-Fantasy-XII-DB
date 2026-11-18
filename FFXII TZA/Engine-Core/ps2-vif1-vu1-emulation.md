@@ -1,9 +1,8 @@
----
-title: "PS2 VIF1 and VU1 emulation: the packet decoder, the recompiled microprograms and the GS replay"
-kind: "system"
-category: "Engine core"
-addresses: "0x0022C970, 0x0022C940, 0x0022BFF0, 0x0022C8D0, 0x0022C930, 0x0022CC40, 0x0022CC30, 0x0037DF90, 0x0037E0F0, 0x008631E0, 0x008631D0, 0x001DB840, 0x001DB550, 0x001DB660, 0x001DB3D0, 0x001FB840, 0x001DB7E0, 0x003A34D0, 0x003A35E0, 0x003A33B0, 0x003A2F70, 0x0020E630, 0x0020F310, 0x00210320, 0x0020F3E0, 0x0020FCA0, 0x00210230, 0x0020EA50, 0x0020FE70, 0x0020FBA0, 0x0020EC80, 0x0020EB60, 0x0020F250, 0x004EF860, 0x00476C80"
----
+[Home](../../README.md) / [Engine core](README.md) / PS2 VIF1 and VU1 emulation
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| PS2 VIF1 and VU1 emulation: the packet decoder, the recompiled microprograms and the GS replay | system | Engine core | PlayStation emulation | The second PlayStation 2 layer the remaster keeps: a VIF1 command decoder at 0x0022C970 over a 16 KB emulated VU1 memory, 57 vector-unit microprograms recompiled to x64 and installed by MPG as function pointers, the 77 packet templates two boot hubs build and the registrars that build packets per draw, the GiVmax render command that runs a packet at emit time and collects its GS output, and the GS replay that turns GIF packets into D3D11 vertices and indices for twenty honoured GS registers. | 0x0022C970, 0x0022C940, 0x0022BFF0, 0x0022C8D0, 0x0022C930, 0x0022CC40, 0x0022CC30, 0x0037DF90, 0x0037E0F0, 0x008631E0, 0x008631D0, 0x001DB840, 0x001DB550, 0x001DB660, 0x001DB3D0, 0x001FB840, 0x001DB7E0, 0x003A34D0, 0x003A35E0, 0x003A33B0, 0x003A2F70, 0x0020E630, 0x0020F310, 0x00210320, 0x0020F3E0, 0x0020FCA0, 0x00210230, 0x0020EA50, 0x0020FE70, 0x0020FBA0, 0x0020EC80, 0x0020EB60, 0x0020F250, 0x004EF860, 0x00476C80 |
 
 ## What the player sees
 

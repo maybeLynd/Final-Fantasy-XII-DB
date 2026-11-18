@@ -1,9 +1,8 @@
----
-title: "Victory pose scripts: what each function of the scene gives"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x00345080"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Victory pose scripts
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Victory pose scripts: what each function of the scene gives | reference | Story, events and hunts | Scenes and scripts by area / Scenes that recur through the story | Every function of the victory pose scene script pos_z0000 that a player can observe: the one function that holds item calls, the Esper ids it gives with additem, and the function that requests it. | 0x00345080 |
 
 ## What it lists
 

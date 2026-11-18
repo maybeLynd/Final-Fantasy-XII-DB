@@ -1,9 +1,8 @@
----
-title: "Authored expressions: the 16-byte value records in effect data, their operand kinds, curves and six operators, the random spread, and the colour forms"
-kind: "system"
-category: "Game files and data tables"
-addresses: "0x004314E0, 0x00431350, 0x00431080, 0x003A6E60, 0x004309C0, 0x00430540, 0x004307C0, 0x003D8E50, 0x0039B630, 0x0039B6E0, 0x0042FDB0, 0x00431430, 0x00430370, 0x00430B90, 0x004308D0, 0x0020E600, 0x01EF93E8, 0x022D9138, 0x01EF93FC, 0x022D8F40"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Authored expressions
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Authored expressions: the 16-byte value records in effect data, their operand kinds, curves and six operators, the random spread, and the colour forms | system | Game files and data tables | Data tables and configs | How a number authored in effect data becomes a value: the 16-byte expression record with two operands, the constant, reference and curve operand kinds, the linear and B-spline curves over (x, y) pairs with an optional period, the six operators that add a random spread from the presentation generator, the integer and float evaluators, the four-record colour evaluator and the float RGB evaluator, and the edge cases authored data has to respect. | 0x004314E0, 0x00431350, 0x00431080, 0x003A6E60, 0x004309C0, 0x00430540, 0x004307C0, 0x003D8E50, 0x0039B630, 0x0039B6E0, 0x0042FDB0, 0x00431430, 0x00430370, 0x00430B90, 0x004308D0, 0x0020E600, 0x01EF93E8, 0x022D9138, 0x01EF93FC, 0x022D8F40 |
 
 ## What the player sees
 

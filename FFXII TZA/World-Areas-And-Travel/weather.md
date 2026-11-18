@@ -1,9 +1,8 @@
----
-title: "Weather: the three weather slots of an area, the change roll on entering, the setweatherslot verb, the MWeather table, what the slot does to the sky, the map and combat, and the environment variant it selects"
-kind: "system"
-category: "World, areas and travel"
-addresses: "0x0026D910, 0x0025ACA0, 0x0025ABA0, 0x002658B0, 0x002620E0, 0x00265920, 0x003565C0, 0x003777C0, 0x002E3D40, 0x0040AAD0, 0x0026E8D0, 0x00264F10"
----
+[Home](../../README.md) / [World, areas and travel](README.md) / Weather
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Weather: the three weather slots of an area, the change roll on entering, the setweatherslot verb, the MWeather table, what the slot does to the sky, the map and combat, and the environment variant it selects | system | World, areas and travel | Chests, traps and weather | Every area has three authored weather slots; entering a map rolls whether the current slot is kept, using the probabilities the zone script authors, after the zone's setup script has had the chance to choose the slot itself; the result is kept in the save. Applying a slot publishes the area's environment variant from map_ref.bin (the combat environment class and the terrain boolean), the 9-bit MWeather entry that sets the map wind's preset, azimuth and elevation (the model sway, not the sky) and the strong-wind combat class, and the per-slot map models, textures and effects. | 0x0026D910, 0x0025ACA0, 0x0025ABA0, 0x002658B0, 0x002620E0, 0x00265920, 0x003565C0, 0x003777C0, 0x002E3D40, 0x0040AAD0, 0x0026E8D0, 0x00264F10 |
 
 ## What the player sees
 

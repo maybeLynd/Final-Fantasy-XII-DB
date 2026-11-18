@@ -1,9 +1,8 @@
----
-title: "Authored data tables: the 64-slot registry that holds the battle_pack.bin tables, the area .ard tables and the license boards, how each is bound, and how rows are found"
-kind: "system"
-category: "Game files and data tables"
-addresses: "0x02EBF008, 0x02EBF200, 0x0208E680, 0x002368D0, 0x003843F0, 0x00384420, 0x00238850, 0x00236C30, 0x003845F0, 0x003846F0, 0x00237FC0, 0x00238160, 0x00238660, 0x00238880, 0x003847B0, 0x00384510, 0x0023A160, 0x003EA710, 0x003EA820, 0x00238260, 0x00233E00, 0x00238390, 0x0055BFF0, 0x0055B3F0, 0x003236B0, 0x00233C10, 0x00238A80, 0x00324510, 0x0020E600, 0x0020E620, 0x003876D0, 0x00322C50, 0x00309440, 0x01EEBCF8, 0x0032A230, 0x0208D300, 0x0208D308, 0x0208D310, 0x0208D318"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Authored data tables
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Authored data tables: the 64-slot registry that holds the battle_pack.bin tables, the area .ard tables and the license boards, how each is bound, and how rows are found | system | Game files and data tables | Data tables and configs | The registry of 64 pointer slots at 0x02EBF008 through which the game reaches its authored data: which battle_pack.bin entry, area .ard section or license board each slot holds, the boot and area-change loads that fill them, the binders that turn stored offsets into addresses, the shared table header, the inline row formula and its 32-bit arithmetic, the encoded battle id classes and the table each one is checked against, the lookup grids built at bind time, how the twelve license boards load, and the runtime blocks and dead cells that share the array. | 0x02EBF008, 0x02EBF200, 0x0208E680, 0x002368D0, 0x003843F0, 0x00384420, 0x00238850, 0x00236C30, 0x003845F0, 0x003846F0, 0x00237FC0, 0x00238160, 0x00238660, 0x00238880, 0x003847B0, 0x00384510, 0x0023A160, 0x003EA710, 0x003EA820, 0x00238260, 0x00233E00, 0x00238390, 0x0055BFF0, 0x0055B3F0, 0x003236B0, 0x00233C10, 0x00238A80, 0x00324510, 0x0020E600, 0x0020E620, 0x003876D0, 0x00322C50, 0x00309440, 0x01EEBCF8, 0x0032A230, 0x0208D300, 0x0208D308, 0x0208D310, 0x0208D318 |
 
 ## What the player sees
 

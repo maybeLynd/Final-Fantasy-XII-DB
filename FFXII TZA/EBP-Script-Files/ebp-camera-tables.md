@@ -1,9 +1,8 @@
----
-title: "EBP camera tables: the CML1 shot list and the CAM7 shots a script's camera verbs play"
-kind: "format"
-category: "EBP script files"
-addresses: "0x0032FA10, 0x0032FAC0, 0x002561C0, 0x003DA1F0, 0x0032F3D0, 0x005C5230, 0x00256530, 0x002572E0, 0x003DA400, 0x003DA330, 0x003DA300, 0x00258350, 0x00255410, 0x002554E0, 0x003CC5F0, 0x003CC740, 0x003CC890, 0x0032ED80, 0x02092800, 0x022C6D58, 0x022C6D80, 0x00258190, 0x002ED430, 0x002E7F10, 0x002ED130, 0x002EA890"
----
+[Home](../../README.md) / [EBP script files](README.md) / EBP camera tables
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| EBP camera tables: the CML1 shot list and the CAM7 shots a script's camera verbs play | format | EBP script files | Script sections | Sections 8 and 9 of an .ebp script: the CML1 list whose rows a script's camera verbs name and the CAM7 table of shots, ease curves and paths those rows index; how both are bound to an actor manager and what the load does to them, the shot record's key and segment command stream as the player reads it, the attachment word, the curve and path evaluators, the shipped tables in all nine language trees, and the rules an edit must follow. | 0x0032FA10, 0x0032FAC0, 0x002561C0, 0x003DA1F0, 0x0032F3D0, 0x005C5230, 0x00256530, 0x002572E0, 0x003DA400, 0x003DA330, 0x003DA300, 0x00258350, 0x00255410, 0x002554E0, 0x003CC5F0, 0x003CC740, 0x003CC890, 0x0032ED80, 0x02092800, 0x022C6D58, 0x022C6D80, 0x00258190, 0x002ED430, 0x002E7F10, 0x002ED130, 0x002EA890 |
 
 ## What the player sees
 

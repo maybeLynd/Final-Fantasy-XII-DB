@@ -1,9 +1,8 @@
----
-title: "Party marks: which party member cannot wear an item or has learned a magick or technick, the bitmap behind the marks, and when it is rebuilt"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x002826F0, 0x00282A40, 0x00282F10, 0x00282EE0, 0x003FCAD0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Party marks
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Party marks: which party member cannot wear an item or has learned a magick or technick, the bitmap behind the marks, and when it is rebuilt | system | Menus and HUD | Menu screens | The bit per party member and per equipment, magick and technick id that the menus read to mark a list row: where the bitmap is kept, how an id becomes its byte, how the Party Menu rebuilds it for every member and a license purchase for one, which test decides each bit (wearing for equipment, owning and licensing for magicks and technicks), and how the equipment list turns a bit into the mark it shows. | 0x002826F0, 0x00282A40, 0x00282F10, 0x00282EE0, 0x003FCAD0 |
 
 ## What the player sees
 

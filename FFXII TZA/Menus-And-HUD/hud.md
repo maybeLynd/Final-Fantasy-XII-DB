@@ -1,9 +1,8 @@
----
-title: "HUD: the interface manager and its pool, the target lines, the target ring and the selection marker, and the calls other systems make into it"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x0028F8B0, 0x00291750, 0x0028F2F0, 0x00273A30, 0x00273B40, 0x00291320, 0x002917E0, 0x0028EAB0, 0x00290370, 0x0028CA40, 0x00271AB0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / HUD
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| HUD: the interface manager and its pool, the target lines, the target ring and the selection marker, and the calls other systems make into it | system | Menus and HUD | Battle HUD | The battle HUD's owner object at [0x0209BE80]: how it is built and torn down, the part each offset holds, the 32 KB pool its target objects come from and the first-fit search over it, the target lines between a unit and its target with their states and the Target Lines setting, the target ring under the targeted unit with its colour by kind, the selection marker, the other line marks, the keyframe tracks HUD animations read, and the small entry points other systems call. | 0x0028F8B0, 0x00291750, 0x0028F2F0, 0x00273A30, 0x00273B40, 0x00291320, 0x002917E0, 0x0028EAB0, 0x00290370, 0x0028CA40, 0x00271AB0 |
 
 ## What the player sees
 
@@ -215,6 +214,20 @@ Two callers ask for lines:
 - the battle menu's list `0x0027DE30(unit, row)`, for the target `0x00272E10` gives the row, with the kind from
   `0x00321060` (`0x0027DE82`), handed to `0x00290320` (`0x0027DE99`); a row with no target closes the unit's
   lines (`0x00290B90`, `0x0027DE6F`).
+
+`0x00328530` answers the byte -1 (`0xFF` in `al`) when the unit or the target is null, when `0x003126E0` refuses the
+target or when `0x0031AA30(unit, 0, word +0x714, out)` answers below 0 (`0x00328540`-`0x0032857B`, `0x0032862D`). Otherwise it
+answers the byte 0 (`0x00328620`): with a kind (the dword at `out`) of 0 (`0x00328581`-`0x00328589`), with no line from
+`0x00290320` (`0x003285A5`-`0x003285A9`), and after a line. A line goes to the empty stub `0x0016D6A0` with the dword
+`0x0031AA30` wrote at `out+4`, unless that dword is -1 (`0x003285AB`-`0x003285B6`).
+
+After a line, when the unit's stats record `+0x698` exists with byte `+0x05` 0 (`0x003285BB`-`0x003285CD`), the target's
+id `+8` differs from the unit's dword `+0x74C` (`0x003285CF`-`0x003285D8`), `0x0030BCB0(unit, target, 0)` is 0 (the
+relationship class from `0x0030AB40` is above 1) and `0x0030BCD0(unit)` is not (for such a unit, bit `0x4` of the stats
+record's first dword) (`0x003285DA`-`0x003285F6`), the target's id is stored in `+0x74C` (`0x00328612`-`0x00328615`).
+
+On that path the line goes to `0x0016D6A0` again, or for the first time when the `out+4` dword was -1, unless the unit's
+qword `+0x708` is non-null with a negative word `+4` (`0x003285F8`-`0x0032860D`).
 
 ### Line states
 

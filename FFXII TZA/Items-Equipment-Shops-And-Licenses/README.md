@@ -1,23 +1,68 @@
+[Home](../../README.md) / Items, equipment, shops and licenses
+
 # Items, equipment, shops and licenses
 
 The inventory, equipment and its stats, shops and prices, and the license board.
 
-| Page | What you will find |
-|---|---|
-| [Bazaar: every bazaar good, the loot you must sell to unlock it, its price, what it gives, and how unlocking and buying work](bazaar.md) | Each of the 128 goods of the bazaar table: its name, price and the items it gives, the up to three loots and counts that must be sold to unlock it, whether it can come back after it is bought, and whether a script sets it instead, with the loot-sold tally, the refresh after every sale, the flag byte that shows a good, the purchase that empties the tallies, and the two script verbs that offer the Grimoires. |
-| [Buying a license: the steps from the Licenses menu to the owned square and the lit neighbours](buying-a-license.md) | The order in which the game sells a License Board square: the member pick and the board or the chooser, the grid and each square's answer, the detail panel, the take request and its refusals, the question for the square's rule, the purchase that charges the LP and sets the owned bit, the Quickening and Mist effects, the stats rebuild, and the screen's pan, light-up, sweep and notices; with the refused, unique and Second Board cases, each step linked to the page that explains it. |
-| [Equipment list: every weapon, shield, armor, accessory and ammunition row with its name, class, price, stats, elements, statuses and bonuses](equipment-list.md) | All 557 equipment rows of the shipped battle_pack.bin, decoded field by field: the item id, the name, the slot and class with the class's shipped name, the price, Attack, reach and damage recipe for weapons, Defense and Magick Resist for armor, the evades of shields, the augment, knockback and combo, the attack element and on-hit status, the stat bonuses, held and blocked statuses, the element absorb, nullify, halve, weak and boost sets, the license, flying and sell flags, the held model, and a one-line explanation. |
-| [Equipment row: every field of a weapon, shield, armor, accessory or ammunition data row and its bonus record](equipment-row.md) | The 52-byte row of the equipment table and the 24-byte bonus record it points at: the name, the slot and flag byte, the class byte that sets the item's group and what it can be paired with, the price, the group-specific fields (a weapon's reach, recipe, attack, knockback, combo, evade, element, statuses, charge time and model; a shield's evades; an armor piece's Defense, Magick Resist and augment), the bonus record's stats, statuses and elements, and the classes the shipped table holds. |
-| [Equipment: the five slots, what can be worn where, two-handed weapons, shields and ammunition, Optimise, and what happens when you equip](equipment.md) | How equipping works: the five slot words of a member record, the setters and when they move the worn counts and rebuild the stats, the eligibility test and its order (slot, free copy, pairing, license), why taking something off always succeeds, how the off hand and the main hand are reconciled for shields, two-handed weapons and ammunition, the takeaway and giveback verbs and the stashed loadout, the Optimise builder and its rules per slot, and the starting gear. |
-| [Equipping an item: the steps from picking a piece in the equip menu to the rebuilt stats](equipping-an-item.md) | The order in which the game equips one piece from the equip menu: the list and its refusal marks, the setter, the eligibility test and the license test, the worn copy moved from the old piece to the new, the hands reconciled, the stats rebuilt and the unit refreshed, and when the setter reloads the fighting units' models; with what happens for a refused piece, a two-handed weapon, a shield, ammunition and taking a piece off, each step linked to the page that explains it. |
-| [Inventory: how items, equipment, loot, magicks, technicks, gambits and key items are stored and counted, what changes them, and the gil purse](inventory.md) | How the game keeps what the party owns: the encoded id and its top nibble, the fifteen descriptor records and the storage each uses (a count word with owned and equipped parts capped at 99, or one bit), the bundle and gil ids that expand into other grants, the one change function and its four channels, the first-acquisition marks, the ever-owned bits and the loot-sold tallies, every feature that changes the inventory, the writers that bypass the change function, and the gil purse with its cap. |
-| [Item list: every item with its name, price, sort order, icon, the action it runs and its texts](item-list.md) | All 64 rows of the shipped item table in battle_pack.bin, decoded field by field: the item id and name, the Auto-sort order, the icon frame, the buy and sell price, and for the 51 usable items the action row that spends the item, with its power, hit, element, statuses, area, named flags, help and description lines, and a one-line explanation. |
-| [Key item list: every key item id with its name, sort order, icon and description](key-item-list.md) | All 512 key-item ids of the shipped battle_pack.bin, decoded from the three tables the key-item class reads (m_daiji_data, g_daiji_data and q_daiji_data): the id, the table and row, the name, the sort order, the icon frame, the description text and a one-line explanation; 183 ids are named key items and 329 are Reserve rows. |
-| [License Board: the twelve job board files, the square grid each holds, and the squares every board shares](license-board.md) | The licd board file: its 8-byte header and its 24 by 24 grid of two-byte node numbers, what a node number indexes and the empty-square value, which file each language loads and how, the six functions that read the grid, the twelve job boards with their square counts and Second Board square, the sixty squares on every board and the fourteen Quickening nodes on no board. |
-| [License list: every License Board square with its name, kind, LP cost, what it grants, who starts with it and the boards that hold it](license-list.md) | All 361 license nodes of the shipped battle_pack.bin, decoded field by field: the node and name, the kind text, the LP cost, the category with its requirement kind and refusal rule, the party members who start owning it, the ids it grants with their shipped names, the job boards that hold the square, and a one-line explanation. |
-| [Licenses: what the License Board test asks for an action or a piece of equipment, who is never tested, Quickenings, and buying or resetting a square](licenses.md) | How licenses work: who the test applies to and who always passes, the action and equipment bits that need no license, the owned-square bits every member carries and the requirement mask built from the license nodes, the four requirement kinds a node's category gives, the counted rule for Quickenings, the reasons a square can be refused, what buying a square costs and grants (LP, Quickenings, and the MP bars: how many Mist charges a member can hold), the squares each member starts with, and the resetJobs verb that refunds both boards. |
-| [Loot list: every loot id with its name, price, sell price, sort order and description](loot-list.md) | All 512 rows of the shipped loot table (eventitem_data) in battle_pack.bin, decoded field by field: the loot id and name, the sort order, the icon frame, the price and the half price a shop pays for it, the description text, and a one-line explanation; 235 rows are named loot and 277 are Reserve rows. |
-| [Magick list: every magick with its name, school, shop price, sort order, MP cost, power, element, statuses and texts](magick-list.md) | All 81 rows of the shipped magick table in battle_pack.bin, decoded field by field: the magick id and name, the sort order, the icon frame, the shop price and the action row, and from that action row the school with its shipped name, the MP cost, charge base, power, hit, element, statuses, range, area, named flags, help and description lines, and a one-line explanation. |
-| [Shops: every shop with its name, its stock lists and the story or clan-rank condition that opens each list](shops.md) | Each of the 57 shops of the shop table: its displayed name, the ladder of stock lists it holds, the condition each list waits on (no condition, a story progress value or a clan rank), the items, equipment, magicks, technicks, gambits and loot each list sells, how the menu picks the first list the player qualifies for and shows it with every list below it, and how the clan rank is worked out. |
-| [Technick list: every technick with its name, shop price, sort order, power, statuses and texts](technick-list.md) | All 24 rows of the shipped technick table in battle_pack.bin, decoded field by field: the technick id and name, the sort order, the icon frame, the shop price and the action row, and from that action row the cost, charge base, power, hit, element, statuses, range, area, named flags, help and description lines, and a one-line explanation. |
-| [Using an item: how a Potion is an action that costs an item, when the item is taken, given back or kept, and why enemies never spend items](item-use.md) | How an item is spent in battle: the action row whose category byte marks it as an item and names the item it uses, the reservation taken when the action starts, the consume that keeps it spent and the refund that gives it back when the action is cancelled, the gil reservation that works the same way, the record kind that lets enemies use items for free, and the 51 shipped item actions. |
+Jump to: [Equipment](#equipment) · [Items and inventory](#items-and-inventory) · [Licenses](#licenses) · [Magicks and technicks](#magicks-and-technicks) · [Shops and bazaar](#shops-and-bazaar)
+
+## Start here
+
+Start with these pages, in this order:
+
+1. [Equipment](equipment.md): sets out the slots and their rules
+2. [Equipping an item](equipping-an-item.md): follows one piece being equipped
+3. [Licenses](licenses.md): shows the test those pieces must pass
+4. [Buying a license](buying-a-license.md): follows one square being bought
+
+## Equipment
+
+What can be worn, what equipping does and the data behind each piece.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Equipment](equipment.md) | Explanation | The slots, what can be worn, Optimise and what equipping does. |
+| [Equipping an item](equipping-an-item.md) | Walkthrough | Each step from picking a piece in the menu to the rebuilt stats. |
+| [Equipment row](equipment-row.md) | Format | Every field of an equipment data row and its bonus record. |
+| [Equipment list](equipment-list.md) | Reference table | Every weapon, shield, armor, accessory and ammunition with its stats and bonuses. |
+
+## Items and inventory
+
+How everything the party owns is stored and used, and the shipped item, key item and loot lists.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Inventory](inventory.md) | Explanation | How owned items of every kind are stored, counted and changed. |
+| [Using an item](item-use.md) | Explanation | How a Potion is an action, and when the item is taken or kept. |
+| [Item list](item-list.md) | Reference table | Every item with its name, price, action and texts. |
+| [Key item list](key-item-list.md) | Reference table | Every key item with its name, icon and description. |
+| [Loot list](loot-list.md) | Reference table | Every loot item with its name, prices and description. |
+
+## Licenses
+
+The License Board, what its test asks and how a square is bought.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Licenses](licenses.md) | Explanation | What the License Board test asks, who skips it, and resetting squares. |
+| [Buying a license](buying-a-license.md) | Walkthrough | Each step from the Licenses menu to the owned square and lit neighbours. |
+| [License Board](license-board.md) | Format | The job boards, the grid each holds and the shared squares. |
+| [License list](license-list.md) | Reference table | Every License Board square with its cost, grant and boards. |
+
+## Magicks and technicks
+
+The shipped list of each kind.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Magick list](magick-list.md) | Reference table | Every magick with its school, price, MP cost, power and statuses. |
+| [Technick list](technick-list.md) | Reference table | Every technick with its price, power, statuses and texts. |
+
+## Shops and bazaar
+
+What can be bought, where and what unlocks it.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Bazaar](bazaar.md) | Reference table | Every bazaar good, the loot that unlocks it and its price. |
+| [Shops](shops.md) | Reference table | Every shop, its stock lists and what opens each list. |

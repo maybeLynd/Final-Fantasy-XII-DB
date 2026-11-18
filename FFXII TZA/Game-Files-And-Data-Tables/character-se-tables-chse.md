@@ -1,9 +1,8 @@
----
-title: "Character sound tables (chse): the per-model table that names the sound blocks and battle-voice bank a model's animation sounds play from"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x002EA530, 0x021641A8, 0x002ED950, 0x002EA6E0, 0x002E60F0, 0x002ED910, 0x003212E0, 0x0036F0F0, 0x002E9D90, 0x002DF9A0"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Character sound tables (chse)
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Character sound tables (chse): the per-model table that names the sound blocks and battle-voice bank a model's animation sounds play from | format | Game files and data tables | Data tables and configs | The charseinfo_&lt;letter&gt;.bin files: one CHSE table per model class with one 16-byte row per model number, giving three SE block ids and a battle-voice bank; the boot loader that reads all eight, the row lookup by bound id, the block loads and the voice-bank fallback that read the rows, how animation sounds pick a slot, the 943 shipped rows, and the rules an edited table must follow. | 0x002EA530, 0x021641A8, 0x002ED950, 0x002EA6E0, 0x002E60F0, 0x002ED910, 0x003212E0, 0x0036F0F0, 0x002E9D90, 0x002DF9A0 |
 
 ## What the player sees
 

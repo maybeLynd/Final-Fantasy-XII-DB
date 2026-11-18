@@ -1,9 +1,8 @@
----
-title: "How a character is lit: the light inputs, the shadow casters and the shadow pool"
-kind: "system"
-category: "Graphics"
-addresses: "0x02B3F528, 0x02B3F508, 0x003AB960, 0x003ABD00, 0x003ABD50, 0x003ACC10, 0x003ACAA0, 0x003AD540, 0x003AE0E0, 0x003AD830, 0x003AE4C0, 0x003ADC40, 0x003AED20, 0x002E8610, 0x02CA8110, 0x004FD4B0, 0x001F9B20, 0x006C0EB0, 0x006C15D0, 0x01F2EDC8, 0x02B40528, 0x003B6890, 0x003B56D0, 0x003B6000, 0x003B6900, 0x003B6B80, 0x003B5980, 0x02B3F570, 0x003AF340, 0x003AFBE0, 0x003AFD00, 0x003E73B0, 0x00426340, 0x002E8950, 0x002E89B0, 0x002E88A0, 0x002E8900"
----
+[Home](../../README.md) / [Graphics](README.md) / How a character is lit
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| How a character is lit: the light inputs, the shadow casters and the shadow pool | system | Graphics | Character models / Character Rendering | Character lighting: the 128-entry light pool and its five directional kinds, how each character's lights are chosen by scope, class and priority, the ambient contest and the per-character ambient mode and light scale, the six-light block and how the render object applies the map's character-light settings, the Phyre shadow caster defaults, and the two shadow pools a render record holds an entry in. | 0x02B3F528, 0x02B3F508, 0x003AB960, 0x003ABD00, 0x003ABD50, 0x003ACC10, 0x003ACAA0, 0x003AD540, 0x003AE0E0, 0x003AD830, 0x003AE4C0, 0x003ADC40, 0x003AED20, 0x002E8610, 0x02CA8110, 0x004FD4B0, 0x001F9B20, 0x006C0EB0, 0x006C15D0, 0x01F2EDC8, 0x02B40528, 0x003B6890, 0x003B56D0, 0x003B6000, 0x003B6900, 0x003B6B80, 0x003B5980, 0x02B3F570, 0x003AF340, 0x003AFBE0, 0x003AFD00, 0x003E73B0, 0x00426340, 0x002E8950, 0x002E89B0, 0x002E88A0, 0x002E8900 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Opening the main menu: the steps from Triangle to the open menu, and back when it closes"
-kind: "operation"
-category: "Menus and HUD"
-addresses: "0x002E1B10, 0x002E09A0, 0x00254B50, 0x00280A00, 0x00252B40, 0x00280D20, 0x00280DE0, 0x00246AD0, 0x00281ED0, 0x002E1BA0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Opening the main menu
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Opening the main menu: the steps from Triangle to the open menu, and back when it closes | operation | Menus and HUD | How menus work | The order in which the game opens the main menu: the post to the one-slot mailbox, the once-a-tick delivery and its drops, the router's refusals and the close of what is open, the generic route and its widgets, the main menu's build and opening run, the main loop's capture and wait while the menu is open, an entry's screen, and the close that hands back to the field; with the refused, overwritten and scripted cases, each step linked to the page that explains it. | 0x002E1B10, 0x002E09A0, 0x00254B50, 0x00280A00, 0x00252B40, 0x00280D20, 0x00280DE0, 0x00246AD0, 0x00281ED0, 0x002E1BA0 |
 
 ## What the player sees
 
@@ -91,3 +90,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - Script VM: `0x002E1B10` is called by `0x0050DAB0`; those functions are documented on [menus](menus.md).
 - World area: `0x002E09A0` is called by `0x00314020`; those functions are documented on
   [debug logging](../Engine-Core/debug-logging.md).
+
+---
+
+[Menus →](menus.md)

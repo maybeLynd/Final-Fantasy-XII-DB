@@ -1,9 +1,8 @@
----
-title: "EXP, LP and level-ups from kills: who receives them, the formulas, the split, the doublers and the EXP table"
-kind: "system"
-category: "Rewards: EXP, LP, gil and loot"
-addresses: "0x00312280, 0x002F8BB0, 0x002F90C0, 0x002F8F20, 0x0023A570, 0x0028FB80"
----
+[Home](../../README.md) / [Rewards: EXP, LP, gil and loot](README.md) / EXP, LP and level-ups from kills
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| EXP, LP and level-ups from kills: who receives them, the formulas, the split, the doublers and the EXP table | system | Rewards: EXP, LP, gil and loot | EXP, loot and progression | How a defeated enemy's EXP and LP are computed from its level and its two reward rows, which party members receive them, how EXP is divided and LP is not, the effects that double, zero or convert them, the caps, the EXP-per-level formula with its values, and where the totals are stored. | 0x00312280, 0x002F8BB0, 0x002F90C0, 0x002F8F20, 0x0023A570, 0x0028FB80 |
 
 ## What the player sees
 
@@ -232,3 +231,7 @@ level 21 at 61,056, level 31 at 223,374, level 51 at 1,249,590, level 71 at 4,07
 - [Kill chain: chain count, chain level, the chain coin and resets](kill-chain.md)
 - [Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus](loot-drops.md)
 - [New Game+ and New Game-](strong-and-weak-mode.md) - the two alternative new games.
+
+---
+
+[← Kill rewards](kill-rewards.md) | [Kill chain →](kill-chain.md)

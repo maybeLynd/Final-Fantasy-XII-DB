@@ -1,9 +1,8 @@
----
-title: "Keymap file: keymap.ini, the control config file, when it is read and written, its names in slot order, and the shipped defaults"
-kind: "format"
-category: "Controls and input"
-addresses: "0x00197EE0, 0x00195060, 0x00198000, 0x00196550, 0x001965E0, 0x00198B60, 0x001993B0, 0x01DF11E0"
----
+[Home](../../README.md) / [Controls and input](README.md) / Keymap file
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Keymap file: keymap.ini, the control config file, when it is read and written, its names in slot order, and the shipped defaults | format | Controls and input | Keys, bindings and names | The keyboard control file keymap.ini: where it lives, the one read at input start-up and the checks that throw a file away, the line grammar the parser accepts, the 28 names that are the slots of each of three profiles, the control codes the values hold, the two times the game writes the file, the Circle and Cross exchange, and the shipped default bindings of all three profiles. | 0x00197EE0, 0x00195060, 0x00198000, 0x00196550, 0x001965E0, 0x00198B60, 0x001993B0, 0x01DF11E0 |
 
 ## What the player sees
 

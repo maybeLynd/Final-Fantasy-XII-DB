@@ -1,9 +1,8 @@
----
-title: "Battle locomotion: how a combat unit picks its step and heading, the turn limiter, spacing and avoidance, detour and stall recovery, and the corridor probes"
-kind: "system"
-category: "Movement and pathfinding"
-addresses: "0x00325BB0, 0x0033A720, 0x00339DF0, 0x0033B6F0, 0x00337470, 0x00335180, 0x0033CC80, 0x0033A240, 0x0033D890, 0x00337C10, 0x00336CE0, 0x00336710, 0x003394A0, 0x0033BED0, 0x00339BF0, 0x003364D0, 0x0033CB70, 0x00334120, 0x0033A570, 0x00338140, 0x0033D660, 0x003343D0, 0x0033C870, 0x00334E00, 0x0033E1F0, 0x0033C200, 0x0033BD70, 0x00334950, 0x003347C0, 0x0033C310, 0x0033BFB0, 0x00339F00, 0x0033CEF0, 0x0033D200, 0x0033CE60, 0x0033CDE0, 0x0033BAA0, 0x0033BC80, 0x00334AB0, 0x00334C30, 0x00335B60, 0x003357B0, 0x0033D3E0, 0x00335E50, 0x0033A3D0, 0x00335F90, 0x00391410, 0x00312730, 0x00253B90, 0x0030A130"
----
+[Home](../../README.md) / [Movement and pathfinding](README.md) / Battle locomotion
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Battle locomotion: how a combat unit picks its step and heading, the turn limiter, spacing and avoidance, detour and stall recovery, and the corridor probes | system | Movement and pathfinding | How actors move | The solver that moves a battle unit each step: the navigation step that routes it and builds the solver context, the two solver variants chosen by the unit's definition, the quadratic arrival curve that sets the step distance, the heading turn limiter with its three angles and two rates, the six steering modes a countdown runs, the spacing and avoidance pass with its randomised manoeuvre, the detour and stall recoveries, the corridor probes that test a step against moving units, walls and the obstacle grid, the order goal decoder, and what the solver writes back. | 0x00325BB0, 0x0033A720, 0x00339DF0, 0x0033B6F0, 0x00337470, 0x00335180, 0x0033CC80, 0x0033A240, 0x0033D890, 0x00337C10, 0x00336CE0, 0x00336710, 0x003394A0, 0x0033BED0, 0x00339BF0, 0x003364D0, 0x0033CB70, 0x00334120, 0x0033A570, 0x00338140, 0x0033D660, 0x003343D0, 0x0033C870, 0x00334E00, 0x0033E1F0, 0x0033C200, 0x0033BD70, 0x00334950, 0x003347C0, 0x0033C310, 0x0033BFB0, 0x00339F00, 0x0033CEF0, 0x0033D200, 0x0033CE60, 0x0033CDE0, 0x0033BAA0, 0x0033BC80, 0x00334AB0, 0x00334C30, 0x00335B60, 0x003357B0, 0x0033D3E0, 0x00335E50, 0x0033A3D0, 0x00335F90, 0x00391410, 0x00312730, 0x00253B90, 0x0030A130 |
 
 ## What the player sees
 
@@ -568,15 +567,22 @@ speed 0.
 The point the starting call finds goes to a stack slot and is not kept (`0x0033C963`); the finish draws again into
 `+0x50` and ignores that call's result (`0x0033C8A8`). With neither case it answers 0 (`0x0033C995`).
 
-`0x00334E00(ctx, out)`: for a goal of kind 1 it searches around the target position `+0x40` at
-`radius + target radius + 0.1`. For any other goal it first tests the goal `+0x20` itself
-(`0x003377C0`): on the mesh it returns the goal, or the position with result 0 when within 0.1, with
-no random draw; only an off-mesh goal starts the search around it at `+0xAC - 0.1`.
+`0x00334E00(ctx, out)`: for a goal of kind 1 (the dword `+0x40` of the block `+0x108`) it searches around the target
+position `+0x40` at `radius + target radius + 0.1`, `+0xA0 + +0xA4 + 0.1` (`0x00334E26`-`0x00334E58`). For any other goal
+it first tests the goal `+0x20` itself (`0x003377C0` with the unit `+0xF0`, `0x00334E5A`-`0x00334E6C`): on the mesh it
+returns the goal with result 1, or the position with result 0 when the flat distance `0x004686D0` is below 0.1, with no
+random draw (`0x00334E6E`-`0x00334E96`); only an off-mesh goal starts the search around it at `+0xAC - 0.1`
+(`0x00334E9B`-`0x00334EAD`).
 
-The search
-tries eight directions, two rounds of four at right angles from a random start (`rand() % 360`
-degrees), keeping the first that is on the mesh and reachable (`0x0033D3E0` not 1); it falls back
-to the unit's own position with result 0.
+The search tries eight directions in two rounds, each from its own random start, `rand() % 360` degrees, `rand()`
+being the import `[0x008C3098]` (`0x00334F50`-`0x00334F86`, `0x003350D8`), stepping a right angle four times
+(`0x003350C3`-`0x003350CD`); each angle is wrapped into `[-pi, pi]` (`0x00334F90`-`0x0033502A`), and the direction is the axis
+`0x01F004C0` turned about y (`0x00203170`, `0x00202F00`, `0x00202B70`), with the radius as its length (`0x00202FE0`) and the
+centre as its origin (`0x00202B10`, `0x0033502E`-`0x00335082`).
+
+It keeps the first point on the mesh (`0x003377C0`) that is reachable from the centre (`0x0033D3E0` with the class
+`+0x174` not 1), with result 1 (`0x00335087`-`0x003350BD`, `0x00335163`); it falls back to the unit's own position with
+result 0 (`0x003350DE`-`0x003350E1`). The point goes to `out` (`0x0033513A`).
 
 `0x0033E1F0` re-rolls the step scale `+0x108` to `2.5 + (rand() % 100) / 100` for a definition mode
 2 unit, clears the mode and countdown (the orbit bit stays), sets `+0x10` to 256.0, zeroes the
@@ -594,6 +600,20 @@ The low nibble of `+0x38` becomes 1 when `rand() % 3` is 1, else 0 (`0x0033E29C`
 
 Besides `0x0033C870` (`0x0033C8F5`) it runs from the block reset `0x0033C9B0(block)`, which builds a context with
 `0x00336710(ctx, block, 0)` and calls it (`0x0033C9D4`-`0x0033C9DE`).
+
+The context builder is also reached outside the per-unit frame `0x00233F70`; two such routes start in the world tick
+`0x00314020`. Its slot-0 step `0x00234520`, when `0x02089340 & 5` is not 1 and `0x00383C80()` answers non-zero, runs the queue
+drain `0x00313CD0` (`0x00234582`), which runs `0x00305AB0(unit, 0)` for queued units (`0x00313D89`); from there `0x00305CC0`
+(`0x00305BA5`), `0x003014C0` (`0x00305DD2`), `0x00301830` (`0x003015DA`), `0x0033A120` (`0x003019E4`) and `0x00336710` (`0x0033A14C`)
+follow, each a conditional call, the last two only for actions `0x4124` and `0x4022`.
+
+On this route `0x00301830` hands `0x0033A120` a stack copy of the block with `+0x80`, `+0x90` and `+0xD0` rewritten by
+`0x00312730`, and the context is built from that copy with `t` = 1 (`0x00301857`-`0x003019E4`, `0x0033A13E`). The stick path's
+`0x00317E60` resets the focus unit's block (`0x00317EA4`; [player movement](player-movement.md)).
+
+The action reset `0x003105D0` runs the block reset only for a unit with a stats record (`0x003105D0`-`0x003105E9`,
+`0x00310758`), both inside the frame, from `0x00308610` (`0x003086B2`, `0x003087C1`) and `0x00300E40` (`0x00300E61`), and outside
+it, from `0x00300140` when its second argument is not 0 (`0x00300149`-`0x0030014D`), under `0x00234590` (`0x002346BE`).
 
 `0x0033C200(ctx)` runs for a unit (`+0xF0`; without one it answers 0) under order `0x4124` or `0x4022` with a
 battle in progress (`0x002F8E70(unit) & 7`, `0x0033C219`-`0x0033C256`): `0x0033BD70` and `0x0033C310` can claim the step.
@@ -625,6 +645,10 @@ distance `0x004686D0`, `w[r]` the route's x and z at `+0x210 + 8 × r` and the n
 
 A taken point also zeroes the stall counter `+0x14` and answers 1 (`0x0033BEB0`-`0x0033BEC8`); a sample whose x and
 z equal the destination `+0x30` ends the search with 0 (`0x0033BE5E`-`0x0033BE78`).
+
+`0x00322360(unit)` reads the position of the unit's actor `+0x10` through `0x00265020` (`0x00322375`-`0x0032238B`), which
+copies it for a non-null actor of class 1 or 3 and otherwise gives 0, 0 and 0, and answers
+`0x003223C0(actor, position)`, the box test, with the position's fourth float set to 0 (`0x00322390`-`0x003223A1`).
 
 `0x003347C0(out, ctx, length)` walks from the position along the same waypoints, those of the object at context
 `+0x108`, each with y 0. It first counts the regions of the route: from the start region `+0x184` it follows the link
@@ -727,7 +751,7 @@ Five predicates test a step. Every non-zero exit returns a literal small integer
 |---|---|
 | `0x0033D3E0(A, B, class)` (the straight walk) | 0 when `A` is off the mesh or the walk reaches `B`'s region through portals open to `class` (`0x0026E300` 1, or 0 with the mask bit) and the segment crosses each portal (`0x00468880`); 1 when `B` is off the mesh or a region has no crossable portal: blocked |
 | `0x00335E50(A, B, w, class)` (the width walk) | 1 when the walk offset by `+w`, the walk offset by `-w`, or the lateral segment across `B` from `+w` to `-w` is blocked |
-| `0x00335B60(ctx, angle, pitch, distance, tolerance, flags)` (forward step clearance) | 0 at once for a zero distance; otherwise 0 usable; 1 rejected by the obstruction query returning 1, the mode-3 segment test `0x00318CA0`, the width walk at `0.9 * +0x10C` (or the straight walk with flags bit `0x8`), the grid query `0x00391410`, or the terrain test `0x0026E100`; 2 only when the obstruction query returned 2 |
+| `0x00335B60(ctx, angle, pitch, distance, tolerance, flags)` (forward step clearance) | 0 at once for a zero distance; otherwise 0 usable; 1 rejected by the obstruction query returning 1, the class-3 segment test `0x00318CA0`, the width walk at `0.9 * +0x10C` (or the straight walk with flags bit `0x8`), the grid query `0x00391410`, or the terrain test `0x0026E100`; 2 only when the obstruction query returned 2 |
 | `0x003357B0(A, B, radius, unit, exclude, flags)` (dynamic obstruction) | 0 at once unless `flags` bit `0x20` is set or the asker's actor is active (`0x002EA7F0`); otherwise 0 nothing in the corridor; 1 a candidate accepted as blocking; 2 candidates counted but no blocker. The candidates come from the grid's actor list (`0x00391D10` for a point, `0x003920F0(..., 32, ~(flags >> 4) & 8 \| 0x14)` for a segment, at most 32); a unit of definition mode 1 against a mode-4 asker, the excluded unit and the asker itself are skipped; the rest pass the kind filters of `flags` bits under mask `0x5E`, then `0x00314EB0` and `0x00313F80` decide blocking (results 1-3 count as candidates, others as blockers) |
 | `0x0033A3D0(A, B)` (path width) | 1 when the walk `B` to `A` is clear, or when a half-way lateral detour at `+-45` degrees is fully clear; 0 only when the direct walk and both detours have a blocked leg |
 | `0x00335F90(ctx)` (corridor blocked) | 1 when the width walk at `0.9 * +0x10C`, the straight walk, or, for class 3, the segment test blocks; else 0 |
@@ -746,33 +770,82 @@ answers 0. The sums come from `0x00202B10(out, a, b)` and the differences from `
 floats (`0x00335ECB`-`0x00335F62`).
 
 The probes read the mover class `+0x174` afresh at each test. The forward clearance clamps its
-tolerance to `[0.2, 0.8]` (callers hand in 0.8) and divides the distance by `cos(pitch)` for a
-non-zero pitch; callers hand in distances of 0.1 or 1.0.
+tolerance to `[0.2, 0.8]` and divides the distance by `cos(pitch)` for a non-zero pitch; its callers hand in their own
+distances and tolerances, the heading search's at `0x0033B09A` the probe distance and `1 - attempts / 10`.
+
+`0x00335B60(ctx, angle, pitch, distance, tolerance, flags)` answers 0 at once for a zero distance
+(`0x00335B98`-`0x00335BA4`); the steps above on the tolerance and the pitch are `0x00335BB4`-`0x00335BE4` (`0x00861F08`, for a
+non-zero pitch). The direction is the axis `0x01F004C0` turned about x by `-pitch` and then about y by the angle wrapped
+by `0x0033CB70` (`0x00203170`, `0x00202E90`, `0x00202B70`, `0x00202F00`, `0x00335BE8`-`0x00335C55`).
+
+From the position it builds three points with `0x00202FE0` and `0x00202B10`, `+0x110` being the block `+0x108`'s: the far
+point at `distance + +0x110` (`0x00335C5A`-`0x00335C88`), the near point at `distance` (`0x00335C8D`-`0x00335CB4`) and the
+obstruction point at `+0x110 - +0x110 * tolerance + distance` (`0x00335CB9`-`0x00335CFC`).
+
+The tests run in order, each answering 1 when it blocks (`0x00335D91`): the obstruction query
+`0x003357B0(ctx, obstruction point, +0x110 * tolerance, unit +0xF0, exclude +0xE0, f)`, the context's unit and its
+target's actor, `f` being `(flags & 4 | 0x10) << 2 | flags & 2`, at 1 (`0x00335D01`-`0x00335D41`); for class 3 the segment
+test `0x00318CA0(ctx, far point, 0, 0)` at non-zero (`0x00335D43`-`0x00335D68`); with flags bit `0x8` the straight walk
+`0x0033D3E0(ctx, near point, class)` at 1, else the width walk `0x00335E50(ctx, near point, 0.9 * +0x10C, class)`
+(`0x008FCC8C`) at non-zero (`0x00335D6A`-`0x00335DB7`).
+
+Then the grid query `0x00391410(ctx, obstruction point, tolerance * +0x110)` at non-zero (`0x00335DB9`-`0x00335DDC`) and the
+terrain test `0x0032A6A0`, a jump to `0x0026E100`, on the far point with the class and `class == 3`, at 0
+(`0x00335DDE`-`0x00335E04`). Past them it answers 2 when the obstruction query returned 2, else 0 (`0x00335E06`-`0x00335E10`).
 
 ### The order goal decoder
 
-`0x00312730(unit, order, outTarget, outGoal, outReach)` turns an order word at `+0x714` into a goal:
+`0x00312730(unit, order, outTarget, outGoal, outReach)` turns an order word at `+0x714` into a goal. It reads the id as
+the record's word `+0x00` and the parameter as its signed word `+0x02` (`0x00312742`-`0x00312748`), and takes `r`, the
+larger of the two floats `0x00265090` gives for the unit's actor (`0x0031275A`-`0x0031277A`); for an actor that is not class
+3 `0x00265090` writes nothing and `0x00312730` has not set the two stack slots, so `r` is then whatever they held.
 
-- `0x4000`-`0x401F` index `0x00312DF0` with the order's parameter word;
-- `0x4020` uses the spawn record's `+0x50` for a kind-1 unit;
-- `0x4022`, for a kind-0 unit whose group leader `0x0031B7E0(unit dword +0x24)` exists, gives the unit's
-  own `+0x120` as the first output and that leader's `+0xD0` as the second (`0x0031289E`-`0x003128E4`);
-- `0x4023` calls `0x00312DF0` with the `+0xD0` of the target of `+0x710` and a range of the parameter
-  plus the target's `0x0030A130` size, or 0 for a parameter of 0 (`0x00312804`-`0x00312856`);
-- `0x4024` the party leader;
-- `0x4026`-`0x4035` the unit of definition selector `order - 0x4026` (`0x002367A0`).
+Ids `0x4000`-`0x4024` go through a byte table (`0x00312798`-`0x003127C5`), `0x4026`-`0x4035` go to `0x002367A0`
+(`0x0031278C`-`0x00312792`), and ids above `0x4035` are compared with the five higher sources (`0x00312780`-`0x00312786`,
+`0x0031297D`-`0x003129A3`).
 
-`0x4124`, `0x4125`, `0x414A`, `0x414E` and `0x4165` are five higher sources; `0x4021`, `0x4025` and
-everything else reject. The reach returned starts from `r`, the larger of the actor's two radii:
+A source answers 1 with a point in `outTarget` and `outGoal`, for most sources the same 16 bytes (the goal written to
+`outTarget` and copied), for `0x4022` and `0x4124` two different ones (below), and its reach in `outReach` when that
+is not null (`0x00312890`, `0x00312905`, `0x0031295E`, `0x003129E9`, `0x00312A39`, `0x00312A8A`, `0x00312ACD`). It answers 0
+(`0x00312AD4`) when `0x00312DF0` answers below 0 (`0x0031285D`, `0x00312A6F`) or another test of its arm fails, as listed
+below. The sources:
 
-- `r` alone for `0x4000`-`0x4020` and `0x4125` (`0x00312A86`);
+- `0x4000`-`0x401F` call `0x00312DF0` with no centre, the number order - `0x3FFF`, which `0x00312DF0` turns into a centre
+  through `0x00320940`, answering -1 when that answers below 0 (`0x00312EA3`-`0x00312EB7`), and a range of the parameter
+  (`0x003127C7`-`0x003127D2`, `0x00312A60`-`0x00312A6F`);
+- `0x4020`, for a kind-1 unit, calls `0x00312DF0` around the spawn record's `+0x50` with a range of the parameter
+  (`0x003127D7`-`0x003127FF`);
+- `0x4022`, for a kind-0 unit (`0x003128A5`-`0x003128B4`) when the unit `0x0031B7E0` resolves from the unit's dword `+0x24`
+  exists, writes the unit's own `+0x120` to `outTarget` and that unit's `+0xD0` to `outGoal` (`0x0031289E`-`0x003128E4`);
+- `0x4023` calls `0x00312DF0` with the `+0xD0` of the target of `+0x710`, which must exist (`0x00312812`-`0x00312815`), and
+  a range of the parameter plus the target's `0x0030A130` size, truncated to a whole number (`cvttss2si r8d, xmm0` at
+  `0x00312851`), or 0 for a parameter of 0 (`0x00312804`-`0x0031285D`);
+- `0x4024` the party leader (`0x003272A0`, `0x00312913`);
+- `0x4026`-`0x4035` the unit of definition selector `order - 0x4026` (`0x002367A0`, `0x00312970`-`0x00312976`).
+
+For `0x4024`, `0x4026`-`0x4035` and `0x414A` the other unit must exist and not be the unit itself; its `+0xD0` is both
+the target and the goal (`0x00312918`-`0x0031293D`). The five higher sources:
+
+- `0x4124`: the unit `0x0031B7E0` resolves from the unit's dword `+0x24` must exist and not be the unit
+  (`0x00312A94`-`0x00312AA1`); `outTarget` is the unit's own `+0x120` and `outGoal` its `+0x130` (`0x00312A91`-`0x00312ABC`);
+- `0x4125`: `0x00312DF0` around the unit's own `+0xD0` with a range of 20 (`0x00312A50`-`0x00312A6F`);
+- `0x414A`: the unit `0x0031B7E0` resolves from the unit's dword `+0x24`, through the arm of `0x4024`
+  (`0x00312A43`-`0x00312A4B`);
+- `0x414E`: the position `0x00265390` gives for the actor `0x0031ABE0(unit dword +0x710)`, which must exist
+  (`0x003129F3`-`0x00312A25`);
+- `0x4165`: `0x00319850(unit, outTarget)`, which must not answer below 0 (`0x003129A9`-`0x003129C7`).
+
+`0x4021`, `0x4025` and everything else reject. The reach returned is:
+
+- `r` alone for `0x4000`-`0x4020` and `0x4125` (`0x00312A81`-`0x00312A86`);
 - `r` plus the other unit's `0x0030A130` size plus the parameter for `0x4024`, `0x4026`-`0x4035` and
-  `0x414A` (`0x0031294A`-`0x00312967`);
-- `r`, plus the target's size only when the parameter is 0, for `0x4023` (`0x0031287C`-`0x00312895`);
-- the unit's dword `+0x154` for `0x4124` (`0x00312AC5`);
-- 0 for `0x414E` (`0x00312A33`);
-- `r + 1.0 - 0.1` for `0x4165` (`0x003129D5`-`0x003129E5`);
-- for `0x4022` it is `0x00309B10(unit)`, the unit's larger radius plus 0.1, plus `0x00309A90()`.
+  `0x414A` (`0x00312941`-`0x00312967`);
+- `r`, plus the target's size only when the parameter is 0, for `0x4023` (`0x00312873`-`0x00312895`);
+- the unit's dword `+0x154` for `0x4124` (`0x00312AC0`-`0x00312ACB`);
+- 0 for `0x414E` (`0x00312A2A`-`0x00312A33`);
+- `r + 1.0 - 0.1` for `0x4165` (`0x003129CC`-`0x003129E5`);
+- for `0x4022` it is `0x00309B10(unit) + 0x00309A90()`, where `0x00309B10(unit)` is `max(a, b) + 0.1` for the unit's two
+  `0x00265090` floats a and b (`0x003128E8`-`0x0031290A`).
 
 `0x00312DF0` draws up to nine random points (`0x00312E40`-`0x00312E47`), answering 0 when
 `0x00317DE0(unit, point, flag)` accepts one (`0x00312E9F`) and -2 when it accepts none (`0x00312EBC`). `0x00317DE0`
@@ -1017,30 +1090,42 @@ floats `+0xE0` and `+0xE8`, read through the context's block pointer `+0x108` (`
 Either heading is stored at `+0xBC`, and the place byte becomes `[0x022C7CE9] + 1` (`0x0033E1BC`-`0x0033E1C4`). `0x0033DFD0`'s
 own instructions store nothing at the pitch `+0xB8`.
 
-The mode 3 body `0x0033DB60` drives one walk on the same count and phase words, lowering `0x022C7CE4` by one a call while it
-is above 0 (`0x0033DD0F`).
+The mode 3 body `0x0033DB60` drives one walk on the same count and phase words, lowering `0x022C7CE4` by one a call while
+it is above 0 (`0x0033DCFB`-`0x0033DD0F`), and branches on the phase `0x022C7CE6` (`0x0033DD16`-`0x0033DD3F`).
 
-Its desired heading `+0xB4` (`0x0033DC70`) is the bearing to a point 11 (`0x00915B9C`,
-`0x004692F0`) from field point `0x20` (`0x00320940(0x20)`, `0x0033DB95`), on the line from that point to the unit
-turned by 0.0091 radians, one way while `0x022C7CE7` is 0 and the other way otherwise (`0x0033DBD8`, `0x00D10ACC`,
-`0x00D10B14`). `0x022C7CE8` is read after that store: its quarter turns (`0x0033DC80`, times 90 degrees) place a
-second point 11 from the field point (`0x0033DCD6`-`0x0033DCF6`), which phase 2's distance test reads
-(`0x0033DDE5`-`0x0033DDF8`).
+Its desired heading `+0xB4` is the bearing to a point 11 (`0x00915B9C`, `0x004692F0`) from field point `0x20`
+(`0x00320940(0x20)`, `0x0033DB8C`-`0x0033DBC3`), on the line from that point to the unit (`0x00203080`, `0x0033DBCA`) turned by
+0.0091 radians, one way while `0x022C7CE7` is 0 and the other way otherwise (`0x00D10ACC`, `0x00D10B14`; `0x0033CB70`,
+`0x00203170`, `0x00202F00`, `0x00202B70`, `0x0033DBD8`-`0x0033DC29`), level, placed with `0x00202B10` and taken as a bearing with
+`0x00203080` and `0x004687F0` (`0x0033DC2E`-`0x0033DC70`).
 
-Each phase
-sets the speed `+0xB0` from the full speed, `+0xF8` of `[unit+0x108]`; the target is the unit at `+0xF0`:
+The bearing of the unturned line (`0x004687F0`, `0x0033DBD3`) is not used, and the pitch `+0xB8` is set to 0 (`0x0033DC7A`).
 
-- phase 0: speed 0; when the count is 0 and the target's order word is `0x21F` or above or is `0x96`, or the target's
-  `+0x76C` less its `+0x768` is 6000 or more, `rand()` decides whether `0x022C7CE7` flips (`0x0033DF11`, `0x0033DF34`),
-  `0x022C7CE8` steps one quarter turn, up while `0x022C7CE7` is 0, within 0 to 3 (`0x0033DF4F`, `0x0033DF61`), and the phase
-  becomes 1 with 60 frames (`0x0033DF6C`, `0x0033DF73`);
-- phase 1: speed `(60 - count) / 60` of full (`0x0033DE84`), and phase 2 at a count of 0 (`0x0033DEC1`);
-- phase 2: full speed; when the distance `0x004686D0` returns is below 30 frames of travel at full speed (`0x0033DE19`,
-  `0x01CEBB70`) the phase becomes 3 with 60 frames (`0x0033DE26`, `0x0033DE2D`), and when the target no longer passes the
-  phase 0 test it becomes 4 with 60 (`0x0033DE78`, `0x0033DF73`);
-- phase 3: speed `count / 60` of full; at 0 the phase returns to 0 with the count `0x02EC0F80`, `240 x [0x01DFE0B4]` (`0x0033DDCB`,
-  `0x0033DDD2`);
-- phase 4: the same slowing; at 0 phase and count return to 0 (`0x0033DD7B`, `0x0033DD82`).
+`0x022C7CE8` is read after that store: its quarter turns, times 90 degrees through `0x0033CB70`, turn the axis `0x01F004C0`
+about y (`0x00203170`, `0x00202F00`, `0x00202B70`) to place a second point 11 from the field point (`0x004692F0`, `0x00202B10`,
+`0x0033DC80`-`0x0033DCF6`), which phase 2's distance test reads (`0x0033DDE5`-`0x0033DDF8`).
+
+Phases 1, 3 and 4 set the speed `+0xB0` as a share of the full speed, `+0xF8` of the context's block `+0x108`, over 60
+(`0x008F6D54`); phase 0 stores 0 and phase 2 the full speed, and a phase above 4 sets no speed and goes to the end store
+(`0x0033DD3C`-`0x0033DD3F`). The test reads the context's own unit `+0xF0`: it passes while that unit's order word
+`+0x714` is `0x21F` or above or is `0x96`, or its `+0x76C` less its `+0x768` is 6000 or more:
+
+- phase 0 (`0x0033DECD`-`0x0033DF73`): `+0xB0` = 0 (`0x0033DED9`); when the test passes and the count `0x022C7CE4` is 0
+  (`0x0033DEDF`-`0x0033DF0F`), `rand()` (`[0x008C3098]`) decides whether `0x022C7CE7` flips (`0x0033DF11`-`0x0033DF34`),
+  `0x022C7CE8` steps one quarter turn, up while `0x022C7CE7` is 0, wrapping from below 0 to 3 and from 4 to 0
+  (`0x0033DF3A`-`0x0033DF61`), and the phase becomes 1 with 60 frames (`0x0033DF67`-`0x0033DF73`);
+- phase 1 (`0x0033DE84`-`0x0033DEC8`): `+0xB0` = `(60 - count) / 60` of full, and phase 2 at a count `0x022C7CE4` of 0;
+- phase 2 (`0x0033DDDE`-`0x0033DE7F`): `+0xB0` = full speed (`0x0033DDEF`); when the distance `0x004686D0` returns to the
+  second point is below 30 frames of travel at full speed (`0x01CEBB70`, `0x0033DDF8`-`0x0033DE24`) the phase becomes 3 with
+  60 frames (`0x0033DE26`, `0x0033DE2D`), and when the test fails it becomes 4 with 60, after the change to 3 if both hold
+  (`0x0033DE34`-`0x0033DE7F`, `0x0033DF73`);
+- phase 3 (`0x0033DD8E`-`0x0033DDD9`): `+0xB0` = `count / 60` of full; at a count `0x022C7CE4` of 0 the phase returns to 0
+  with the count `0x02EC0F80`, `240 x [0x01DFE0B4]`;
+- phase 4 (`0x0033DD45`-`0x0033DD89`): the same slowing of `+0xB0`; at a count `0x022C7CE4` of 0 phase and count return to
+  0.
+
+After the phase it stores at the limited heading `+0xBC` the bearing from the unit to the field point (`0x00203080`,
+`0x004687F0`, `0x0033DF7A`-`0x0033DF93`).
 
 The six words:
 

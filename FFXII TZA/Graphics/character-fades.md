@@ -1,9 +1,8 @@
----
-title: "Character fades: the ten fade channels, their owners and the coast-down latch"
-kind: "system"
-category: "Graphics"
-addresses: "0x003E5D60, 0x003E5D00, 0x003E5D30, 0x003E4370, 0x00428940, 0x004293C0, 0x00520180, 0x002E8B10, 0x00428C40, 0x002E84B0, 0x002E8500, 0x0033F530, 0x0033FAD0, 0x0042E1F0, 0x0042F880, 0x0042E850, 0x0042D7A0, 0x003E48E0, 0x003E4240, 0x003E4730, 0x003E4780, 0x003E51F0, 0x0042CBF0, 0x004FD4B0, 0x002E83A0, 0x002EBC30, 0x0042ED30, 0x00424080, 0x004256E0, 0x01DFE0B4, 0x01F82E38"
----
+[Home](../../README.md) / [Graphics](README.md) / Character fades
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Character fades: the ten fade channels, their owners and the coast-down latch | system | Graphics | Character models / Character Rendering | How a character fades in, out and through states: the ten Q12 fade channels of a render record and how one ramps, which system writes each channel (distance fade and cull, attached pieces, the time stop, statuses, the viewer-inside fade, the script colour), how the channels are multiplied and carried to the model instance and the lighting, and the coast-down latch that lets a stopping character glide to a halt. | 0x003E5D60, 0x003E5D00, 0x003E5D30, 0x003E4370, 0x00428940, 0x004293C0, 0x00520180, 0x002E8B10, 0x00428C40, 0x002E84B0, 0x002E8500, 0x0033F530, 0x0033FAD0, 0x0042E1F0, 0x0042F880, 0x0042E850, 0x0042D7A0, 0x003E48E0, 0x003E4240, 0x003E4730, 0x003E4780, 0x003E51F0, 0x0042CBF0, 0x004FD4B0, 0x002E83A0, 0x002EBC30, 0x0042ED30, 0x00424080, 0x004256E0, 0x01DFE0B4, 0x01F82E38 |
 
 ## What the player sees
 

@@ -1,16 +1,45 @@
+[Home](../../README.md) / Controls and input
+
 # Controls and input
 
 Controller, keyboard and mouse input and how it reaches the game.
 
-| Page | What you will find |
-|---|---|
-| [Action availability: the shared table that keeps menus and buttons shut during scenes, movies and battle moments, who holds each row and what each bit blocks](action-availability.md) | How the game decides that a menu or a button may not be used right now: the 16-row table of 32-bit masks, the set, clear and bulk writers, the combined mask and its movie exception, the owner of every row (movie and event-skip verbs, the menu-disable verb, battle selection, quest windows, the screen mask, user control, the menu-request family, crossfades, the pause menu), what each combined bit blocks, the projection onto menu requests, and the resets at area unload and field start. |
-| [Control names: every key and button name the game registers, the code each one stands for, and which names are aliases of one another](control-names.md) | Each name in the game's two input name registries, the key names and the channel names: the code its node holds, which is the code keymap.ini stores, the registries it is in, whether it is a pad button or a keyboard key, and the other names with the same code, with how the registries are built at start-up and why the mouse-button names bind pad buttons. |
-| [Control remapping: how the Config screen binds a key, the swap when a key is already in use, the keys that cannot be bound, the default profiles and how a change reaches the game](control-remapping.md) | How remapping works: where the three keyboard profiles live, the Config screen's binding rows and which profiles each row can edit, what a row shows and the key names per keyboard layout, capturing a key, the assignment with its result codes, the yes-or-no swap when the key is in use, clearing a binding, the reserved keys, publishing a profile into the records the game reads, the Circle and Cross exchange, saving on leaving the screen, restoring the defaults, and the gaps a modder can hit. |
-| [Controllers: how a gamepad is found, the three kinds of controller the game builds, plugging one in during play, and the Steam Input action names](controllers.md) | How a pad becomes a controller: the start-up device walk and its two callbacks, the device types each accepts, the duplicate test, the Steam, XInput and DirectInput controller objects and the order they are tried in, the four-pad XInput limit, the XInput library the game loads and its pad-0 button read, the DirectInput set-up and its failure rules, the eighteen Steam Input action names, and the device-arrival message that repeats the walk. |
-| [Controls: how a key, button or stick becomes a game action, the control codes each device answers to, and how presses, holds and repeats are told apart](controls.md) | How input reaches the game: the input manager and its poll, the three bands of control codes and the device each reads, the records that turn codes into a 16-button mask and four stick bytes, the movement-key modes, the 16-frame channel history, how a press, a hold, a release and a menu repeat are made, the stick dead zone and the stick-to-direction bits, the button words the game reads each frame, the device-state count, the confirm and cancel buttons and the verbs that read them, the mouse wheel in menu lists, whether prompts show pad buttons or keys, the six controls read straight from the keymap, and what each button does in the field. |
-| [Escape Mode: the R2 toggle that makes the party run from battle, what it switches off, and why it takes a second to engage](escape.md) | How Escape Mode works: the R2 binding it reads, the latch that makes each press of the bound keyboard key flip it, while R2 on a pad keeps it on only as long as it is held, the towns and action availability bits that switch it off, the applier and the battle-mode overrides, the force fight mode flag it clears, the one-second arming counter and the sound that runs while it arms, and the game systems that read the flag. |
-| [Keymap file: keymap.ini, the control config file, when it is read and written, its names in slot order, and the shipped defaults](keymap-file.md) | The keyboard control file keymap.ini: where it lives, the one read at input start-up and the checks that throw a file away, the line grammar the parser accepts, the 28 names that are the slots of each of three profiles, the control codes the values hold, the two times the game writes the file, the Circle and Cross exchange, and the shipped default bindings of all three profiles. |
-| [On-Screen Keyboard: the F9 overlay that shows every keyboard binding, its seven panels, the key colours and the keys that light up while held](on-screen-keyboard.md) | How the On-Screen Keyboard works: F9 opens and closes it, the task that draws it, the seven panels and the controls and keymap profiles each lists, the picture of the keyboard and mouse with each key tinted by the panel of its control, the keys that light while held, the key-cap sets chosen by keyboard layout and game language, and the refresh after a binding changes. |
-| [Phyre input semantics: the type, axis and pad-button names of the engine's input sources, how a source turns them into codes, and the one path that reads them](phyre-input-semantics.md) | Each named object of PhyreEngine's three input-semantic registries (the input types, the axes and the pad buttons): its class, code, registry, initialiser, teardown and every function that writes or reads it, with the input-source classes that point at them, how a source resolves its semantics to codes and falls back, the evaluator that reads a source against the devices, and why the shipped game never runs it. |
-| [Vibration: the pad vibration that scenes and effects play, the request slots and their steps, the Vibration Function setting, and how the levels reach an XInput or Steam pad](vibration.md) | How the game vibrates a pad: the 32 request slots and their handles, starting a pattern from the eventvib.bin table (vibplay) or from an effect sequence, the stepping of the two tracks into two levels, pausing by mask, the hand-off to the pad channel, the Vibration Function setting, the fade-out after long vibration, the last-device rule, and the XInput and Steam calls that make the motors turn. |
+Jump to: [How input works](#how-input-works) · [Keys, bindings and names](#keys-bindings-and-names) · [Escape Mode and vibration](#escape-mode-and-vibration) · [Engine input registries](#engine-input-registries)
+
+## How input works
+
+How devices are found, how their input reaches the game and what can block it.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Action availability](action-availability.md) | Explanation | How the game decides a menu or button cannot be used right now. |
+| [Controllers](controllers.md) | Explanation | How a pad is detected and which controller object ends up handling it. |
+| [Controls](controls.md) | Explanation | How input reaches the game, from codes to the button mask and stick bytes. |
+
+## Keys, bindings and names
+
+How keys and buttons are bound, stored, shown and named.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Control remapping](control-remapping.md) | Explanation | How the Config screen's binding rows edit the keyboard profiles. |
+| [On-Screen Keyboard](on-screen-keyboard.md) | Explanation | How the On-Screen Keyboard opens with F9 and what its panels show. |
+| [Keymap file](keymap-file.md) | Format | The keymap.ini file: its rules, slots and what makes the game discard it. |
+| [Control names](control-names.md) | Reference table | Each input name the game knows and the code keymap.ini stores for it. |
+
+## Escape Mode and vibration
+
+Escape Mode's binding and latch, and how a pad vibrates.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Escape Mode](escape.md) | Explanation | How Escape Mode's R2 binding, latch and shutoffs work. |
+| [Vibration](vibration.md) | Explanation | How the game starts, steps and pauses pad vibration patterns. |
+
+## Engine input registries
+
+Every named input object of the engine's input registries.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Phyre input semantics](phyre-input-semantics.md) | Reference table | Each named engine input object: its class, code and who reads it. |

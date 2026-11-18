@@ -1,9 +1,8 @@
----
-title: "Script variables: the six storage classes behind PUSHV and POPV, where each lives and how long it lasts"
-kind: "system"
-category: "Scripts and script commands"
-addresses: "0x00262440, 0x00267FC0, 0x00267E60, 0x00268100, 0x0026D530, 0x002650B0, 0x00264E30, 0x0026C8C0, 0x0026CE60, 0x0026DB30, 0x00268320, 0x0025D8E0, 0x00269A20, 0x0032F240, 0x02099DF0, 0x02099FF0, 0x0209AC10"
----
+[Home](../../README.md) / [Scripts and script commands](README.md) / Script variables
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Script variables: the six storage classes behind PUSHV and POPV, where each lives and how long it lasts | system | Scripts and script commands | The script machine | How a zone script's variables are resolved: the descriptor word with its class, width, float bit and offset, the resolver 0x00262440 that turns it into an address in one of six homes (the save payload, the script image, the actor's local area, the image's msp area and the two 512-byte scratch banks), array indexing with its clamp, the width-saturating store, the reference form PUSHP hands to native verbs, and which bank survives a save, an area change or a script unload; with the counts over every script in the companion tables. | 0x00262440, 0x00267FC0, 0x00267E60, 0x00268100, 0x0026D530, 0x002650B0, 0x00264E30, 0x0026C8C0, 0x0026CE60, 0x0026DB30, 0x00268320, 0x0025D8E0, 0x00269A20, 0x0032F240, 0x02099DF0, 0x02099FF0, 0x0209AC10 |
 
 ## What the player sees
 
@@ -29,16 +28,16 @@ bit  0x08000000  float: the value is pushed with tag 2 instead of tag 1
 mask 0xF0000000  width: 0 u8, 1 s8, 2 u16, 3 s16, 4 s32, 5 f32
 ```
 
-For classes 0 to 5 the address is the class's base plus the offset. For class 7 the offset
-names an array header in the image: the element descriptor at `+0`, the dimension count at `+4`
-(u16) and the dimensions from `+8`.
+For classes 0 to 5 the address is the class's base plus the offset (`0x002625E7`-`0x00262641`). For class 7 the offset
+names an array header in the image (`0x00262496`-`0x002624B7`): the element descriptor at `+0`, the dimension count at
+`+4` (u16) and the dimensions from `+8`.
 
-The resolver pops one index per dimension from the value
-stack, last dimension `d[n − 1]` first, and folds them row-major with `stride = 1`, then for
-`k = n − 1 … 0`: `i = min(max(pop(), 0), d[k] − 1); flat += i × stride; stride ×= d[k]`
-(`0x002624D2`-`0x00262537`), so a negative index reads element 0 and a large one the last element.
-An empty stack gives the index 0 (`0x002624D8`), and an entry whose tag is neither 1 nor 2 calls `0x008620C0` and
-gives 0 as well (`0x002624F3`-`0x002624FB`).
+The resolver pops one index per dimension from the value stack, last dimension `d[n − 1]` first, and folds them
+row-major with `stride = 1`, then for `k = n − 1 … 0`:
+`i = min(max(pop(), 0), d[k] − 1); flat += i × stride; stride ×= d[k]` (`0x002624D2`-`0x00262537`), so a negative
+index reads element 0 and a large one the last element. With a dimension count of 0 it pops nothing and the flat index
+stays 0 (`0x002624BA`-`0x002624C0`). An empty stack gives the index 0 (`0x002624D8`), and an entry whose tag is neither 1
+nor 2 calls `0x008620C0` and gives 0 as well (`0x002624F3`-`0x002624FB`).
 
 The resolver takes a popped entry's tag from the byte at stack `+4 + position` and its
 value from the dword at stack `+0x184 + 4 × position` (`0x002624E4`). A tag-1 value is used as it is
@@ -46,14 +45,15 @@ value from the dword at stack `+0x184 + 4 × position` (`0x002624E4`). A tag-1 v
 (`0x00262571`).
 
 It then resolves the element descriptor's class as above; an element class of 6 or 7 has no case and falls to
-base 0, the bare offset as an address (`0x00262552`-`0x00262555`). The flat index is returned separately and
+base 0, the bare offset as an address (`0x00262552`-`0x00262555`; the local class calls the callback here too,
+`0x002625AB`). The flat index is returned separately and
 the caller scales it by the element width.
 
-The resolver fills a `0x30`-byte record for its caller: `+0` the constant 6, `+4` the kind (1 int,
-2 float, from bit `0x8000000` of the element descriptor), `+8` the actor's `u16` at `+0` (`0x00262676`-`0x0026267A`),
-`+0xA` the variable index, `+0xC` the descriptor, `+0x10` the base address
-plus offset, `+0x18` the element descriptor (the descriptor itself for classes 0 to 6) and `+0x1C` the flat index.
-It returns the element's class in `eax` (`0x00262665`), which `POPV` tests.
+The resolver fills a `0x30`-byte record for its caller: `+0` the constant 6, `+4` the kind (1 int, 2 float, from bit
+`0x8000000` of the element descriptor, `0x00262644`-`0x00262657`), `+8` the actor's `u16` at `+0` (`0x00262676`-`0x0026267A`),
+`+0xA` the variable index and `+0xC` the descriptor (`0x0026248D`, `0x00262492`), `+0x10` the base address plus offset
+(`0x00262661`), `+0x18` the element descriptor (the descriptor itself for classes 0 to 6, `0x0026266E`) and `+0x1C` the
+flat index (`0x00262672`). It returns the element's class in `eax` (`0x00262665`), which `POPV` tests.
 
 ### The six homes
 
@@ -534,3 +534,7 @@ image's file and local areas, and the two banks.
 - [Script interpreter](script-interpreter.md): the opcodes and the value stack.
 - [Verb dispatch](verb-dispatch.md): how a verb receives a reference.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the payload the globals live in.
+
+---
+
+[← Script interpreter](script-interpreter.md) | [Script requests →](script-requests.md)

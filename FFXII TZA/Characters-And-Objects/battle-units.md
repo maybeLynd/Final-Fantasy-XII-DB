@@ -1,9 +1,8 @@
----
-title: "Battle units: the pool of combat slots, who gets one, the actor class bits, the handle and the flag word"
-kind: "system"
-category: "Characters and objects"
-addresses: "0x002368D0, 0x00234480, 0x00265A20, 0x00234200, 0x00236820, 0x00236850, 0x002367A0, 0x002134A0, 0x00263E30, 0x0031B760, 0x003589B0, 0x003588B0, 0x0031B7E0, 0x002659D0, 0x00265020, 0x00263C20, 0x00263D30, 0x00351610, 0x00238BF0, 0x00269FE0, 0x00269F30, 0x002659A0, 0x00267CC0, 0x0026AD00, 0x00263AC0, 0x00234D40, 0x0035A1C0, 0x0035A060, 0x0031C1A0, 0x0035A0C0, 0x0031BDC0, 0x004737A0, 0x004737D0, 0x00473690, 0x00318A90, 0x003206E0, 0x0030C3C0, 0x00237430, 0x00359EA0, 0x0031FCF0, 0x0031FD20, 0x00273780, 0x00273750, 0x00273A00, 0x00358960, 0x003BBC80"
----
+[Home](../../README.md) / [Characters and objects](README.md) / Battle units
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Battle units: the pool of combat slots, who gets one, the actor class bits, the handle and the flag word | system | Characters and objects | Battle units | The fixed pool of battle units that everything fighting in a field draws from: its size and allocation, the walk that binds a unit to every eligible actor of the primary manager and what happens when the pool is full, the two-way link between unit and actor, the encoded handle that names a unit and the resolver that decodes it, the release that scrubs a slot, the three-bit actor class that decides what an actor may do, and the unit flag word bit by bit with every writer the access table proves. | 0x002368D0, 0x00234480, 0x00265A20, 0x00234200, 0x00236820, 0x00236850, 0x002367A0, 0x002134A0, 0x00263E30, 0x0031B760, 0x003589B0, 0x003588B0, 0x0031B7E0, 0x002659D0, 0x00265020, 0x00263C20, 0x00263D30, 0x00351610, 0x00238BF0, 0x00269FE0, 0x00269F30, 0x002659A0, 0x00267CC0, 0x0026AD00, 0x00263AC0, 0x00234D40, 0x0035A1C0, 0x0035A060, 0x0031C1A0, 0x0035A0C0, 0x0031BDC0, 0x004737A0, 0x004737D0, 0x00473690, 0x00318A90, 0x003206E0, 0x0030C3C0, 0x00237430, 0x00359EA0, 0x0031FCF0, 0x0031FD20, 0x00273780, 0x00273750, 0x00273A00, 0x00358960, 0x003BBC80 |
 
 ## What the player sees
 
@@ -69,8 +68,10 @@ enters the branch is counted, whether or not `0x00234480` found a slot; the bran
 
 - a unit, `0x00234480(0, record)` (`0x00265A94`-`0x00265A9F`);
 - the frame callback `0x00233F70` at `+0x38` (`0x00265AA8`; [field runtime](field-runtime.md));
-- `0x00234A00(unit, 1)` (unit `+0x20` = 1) when the back-pointer `+0x30` is set (`0x00265AA4`-`0x00265AB4`), which
-  is how the walk notices a silent allocation failure;
+- `0x00234A00(unit, 1)` (unit `+0x20` = 1) when the back-pointer `+0x30` is set (`0x00265AA4`-`0x00265AB4`). `0x00234480`
+  writes `+0x30` only when it finds a free unit (`0x002344E7`) and the walk does not clear it first, so after a failed
+  allocation the test reads the record's earlier `+0x30`: 0 skips the call, and any other value left there is passed
+  to it, as `0x00359B80` below passes it on to `0x0031AD90` (`0x00359B85`-`0x00359B8C`);
 - for a class-3 actor (`+0x03 & 0xE0` = `0x60`), bits `0x100` and `0x2000` of `+0x1C` cleared
   (`0x00265AB9`-`0x00265AC3`);
 - for every record of the branch, `+0x0E` = `(old & 0xF1) | 1` (`0x00265ACA`-`0x00265ACE`), so the class nibble
@@ -444,3 +445,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Save load settings: `0x0022B6E0` calls `0x002EF650`; those functions are documented on
   [frame update order](../Engine-Core/frame-update-order.md).
+
+---
+
+[← Field runtime](field-runtime.md)

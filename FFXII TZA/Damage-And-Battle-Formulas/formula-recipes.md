@@ -1,9 +1,8 @@
----
-title: "Formula recipes: every damage recipe with its slot lists and the actions and weapons that use it"
-kind: "reference"
-category: "Damage and battle formulas"
-addresses: "0x01EF96C0, 0x01EFA5C0, 0x00385F60, 0x00385680"
----
+[Home](../../README.md) / [Damage and battle formulas](README.md) / Formula recipes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Formula recipes: every damage recipe with its slot lists and the actions and weapons that use it | reference | Damage and battle formulas | Damage and formulas | All 109 recipes of the recipe table at 0x01EF96C0: for each, the calculator slots of its first list (run when the action executes, deciding hit, evade and knockback) and of its committed list (damage and effects), and the shipped action rows and weapon rows that select it, with their names. | 0x01EF96C0, 0x01EFA5C0, 0x00385F60, 0x00385680 |
 
 ## What it lists
 

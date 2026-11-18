@@ -1,9 +1,8 @@
----
-title: "PhyreEngine application framework: how the game process starts, runs its frames and shuts down"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x007A3770, 0x007980A0, 0x00792350, 0x02EA5368, 0x0079E520, 0x0079B300, 0x0079F150, 0x007A4190, 0x007A4250, 0x007A4310, 0x007A3110, 0x007A0340, 0x00793E8C, 0x0079C140, 0x0079D920, 0x00798FF0, 0x0079B160, 0x0079B190, 0x0079EDD0, 0x007A42D0, 0x007A42E0, 0x0017E030, 0x0017E050, 0x01CB2508, 0x01CB2480, 0x02EA5245, 0x02EA5220, 0x02EA5228, 0x02EA5230, 0x007A0180, 0x00799980"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / PhyreEngine application framework
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| PhyreEngine application framework: how the game process starts, runs its frames and shuts down | system | PhyreEngine | Engine framework | The PhyreEngine framework layer the game runs inside: the start-up function that brings up Steam, the settings, the single-instance mutex, the engine modules and the window, the run setup that calls the game's initApplication and initScene slots and starts the update thread, the per-frame update that calls the input, animate, resize and render slots, the window procedure's deferred requests, and the close, shutdown and restart paths. | 0x007A3770, 0x007980A0, 0x00792350, 0x02EA5368, 0x0079E520, 0x0079B300, 0x0079F150, 0x007A4190, 0x007A4250, 0x007A4310, 0x007A3110, 0x007A0340, 0x00793E8C, 0x0079C140, 0x0079D920, 0x00798FF0, 0x0079B160, 0x0079B190, 0x0079EDD0, 0x007A42D0, 0x007A42E0, 0x0017E030, 0x0017E050, 0x01CB2508, 0x01CB2480, 0x02EA5245, 0x02EA5220, 0x02EA5228, 0x02EA5230, 0x007A0180, 0x00799980 |
 
 ## What the player sees
 
@@ -561,3 +560,7 @@ Calls between the functions this page cites and code in other parts of the progr
   `0x00355F60`; those functions are documented on [event scenes](../Scripts-And-Script-Commands/event-scenes.md),
   [ebp script container](../EBP-Script-Files/ebp-script-container.md),
   [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md).
+
+---
+
+[Phyre frame →](the-frame.md)

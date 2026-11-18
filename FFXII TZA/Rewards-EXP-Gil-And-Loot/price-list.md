@@ -1,9 +1,8 @@
----
-title: "Price list: every script price id with its gil amount or sale count and the scripts that ask for it"
-kind: "reference"
-category: "Rewards: EXP, LP, gil and loot"
-addresses: "0x02EBF060, 0x0031C5D0, 0x0031D7B0, 0x0034B000, 0x0032A880, 0x0030A0F0"
----
+[Home](../../README.md) / [Rewards: EXP, LP, gil and loot](README.md) / Price list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Price list: every script price id with its gil amount or sale count and the scripts that ask for it | reference | Rewards: EXP, LP, gil and loot | Gil, prices and reward packages | All 128 price ids (price_data, ids 0xB000-0xB07F) of the shipped battle_pack.bin: the gil amount of each, or for the 31 trophy trade limits the number of times a package sells, the number of getprice calls in the us event scripts that name it and the scripts they are in, and a one-line explanation; 41 ids are named by a script, and eight more calls pass the id in a script variable. | 0x02EBF060, 0x0031C5D0, 0x0031D7B0, 0x0034B000, 0x0032A880, 0x0030A0F0 |
 
 ## What it lists
 

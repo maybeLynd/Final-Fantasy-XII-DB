@@ -1,9 +1,8 @@
----
-title: "Generated function families: the small compiler- and template-generated bodies, their instruction forms and member lists"
-kind: "reference"
-category: "Compiler and C runtime"
-addresses: "0x0016D6A0, 0x00584730, 0x00210EC0, 0x00808B90, 0x00861EC0, 0x007DF6D0, 0x003844F0, 0x00633390, 0x005A2B80, 0x005BEC00, 0x006B2950, 0x006B2970, 0x005A4830, 0x0030DCB0, 0x003008A0, 0x005CDAA0"
----
+[Home](../../README.md) / [Compiler and C runtime](README.md) / Generated function families
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Generated function families: the small compiler- and template-generated bodies, their instruction forms and member lists | reference | Compiler and C runtime | Library and generated code | The families of small functions in the executable that share one instruction sequence and differ only in constants, offsets and call targets: what a family is, the body of each family with an example, which member counts the image reproduces, the shared runtime functions the families call, the reflection descriptor adapters behind PhyreEngine's class descriptors (slot 5 and slot 11), and the member list of every family beside the page. | 0x0016D6A0, 0x00584730, 0x00210EC0, 0x00808B90, 0x00861EC0, 0x007DF6D0, 0x003844F0, 0x00633390, 0x005A2B80, 0x005BEC00, 0x006B2950, 0x006B2970, 0x005A4830, 0x0030DCB0, 0x003008A0, 0x005CDAA0 |
 
 ## What it lists
 

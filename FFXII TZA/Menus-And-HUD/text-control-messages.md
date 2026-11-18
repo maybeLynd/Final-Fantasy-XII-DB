@@ -1,9 +1,8 @@
----
-title: "Control script messages: the debug menu text of the .msb files beside the four control scripts"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x003306E0, 0x0032E400, 0x002AC5F0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Control script messages
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Control script messages: the debug menu text of the .msb files beside the four control scripts | reference | Menus and HUD | Game text tables | Every message of the four .msb files shipped beside the control scripts ctrl, btlctrl, evctrl and mapctrl: the Japanese debug menus and notices of the development build, which the game never opens, with the message count per file, why the in and ch trees hold the same bytes, and how to read the choice lists, sizes and colours in the text. | 0x003306E0, 0x0032E400, 0x002AC5F0 |
 
 ## What it lists
 

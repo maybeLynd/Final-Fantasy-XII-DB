@@ -1,9 +1,8 @@
----
-title: "Debug logging: the log call, its sink and the console prints the shipped game still runs"
-kind: "system"
-category: "Engine core"
-addresses: "0x005CDAA0, 0x005CDB90, 0x005CDA30, 0x005CD9C0, 0x008AADA0, 0x0019C5D0, 0x0017D280, 0x0016D670, 0x0018A320, 0x00809C50, 0x0036FCC0, 0x0017D9D0"
----
+[Home](../../README.md) / [Engine core](README.md) / Debug logging
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Debug logging: the log call, its sink and the console prints the shipped game still runs | system | Engine core | Debug tools | The three ways the executable formats text: the PhyreEngine log call 0x005CDAA0 that formats every message into a 16 KB stack buffer and hands it with a channel number to a sink whose only action is a debugger break on channel 4, the vsprintf wrapper 0x0019C5D0, and the plain printf 0x0017D280 that writes boot and script-debug messages to a standard output no window shows; with the sink's lazy construction, the C runtime options word, and the count of channels the 245 log sites pass. | 0x005CDAA0, 0x005CDB90, 0x005CDA30, 0x005CD9C0, 0x008AADA0, 0x0019C5D0, 0x0017D280, 0x0016D670, 0x0018A320, 0x00809C50, 0x0036FCC0, 0x0017D9D0 |
 
 ## What the player sees
 

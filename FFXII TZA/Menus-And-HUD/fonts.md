@@ -1,9 +1,8 @@
----
-title: "Fonts: the font files a language uses, their kerning pairs and expansion lists, and how digits and glyphs are laid out"
-kind: "format"
-category: "Menus and HUD"
-addresses: "0x001B44A0, 0x001B4D70, 0x001B5230, 0x001FDC10, 0x001FDDD0, 0x001B4C00, 0x002AC2F0, 0x002AE610, 0x0017FBC0, 0x0017FB90, 0x0039BAD0, 0x0039BEC0"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Fonts
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Fonts: the font files a language uses, their kerning pairs and expansion lists, and how digits and glyphs are laid out | format | Menus and HUD | Fonts and text drawing | The PC font files: how a language picks its font list, the font data header and 0x24-byte glyph records with the flag word that asks for kerning and expansion files, the kerning pair and expansion list layouts and their loaders, how a kerning pair is looked up between two glyphs, how a glyph's advance is computed, why every digit of a number takes the width of a zero, and how a text code becomes a glyph index. | 0x001B44A0, 0x001B4D70, 0x001B5230, 0x001FDC10, 0x001FDDD0, 0x001B4C00, 0x002AC2F0, 0x002AE610, 0x0017FBC0, 0x0017FB90, 0x0039BAD0, 0x0039BEC0 |
 
 ## What the player sees
 

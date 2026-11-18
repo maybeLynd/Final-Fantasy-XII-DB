@@ -1,9 +1,8 @@
----
-title: "Story flags: the five banks of yes-or-no flags the save keeps, the story schedule some flag ids read instead, who sets and reads each, and the flags a new game starts with"
-kind: "system"
-category: "Story, events and hunts"
-addresses: "0x0032A8A0, 0x00377970, 0x0032AB60, 0x0032ABF0, 0x0032AD70, 0x0032AA60, 0x00379160, 0x002EF2D0"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Story flags
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Story flags: the five banks of yes-or-no flags the save keeps, the story schedule some flag ids read instead, who sets and reads each, and the flags a new game starts with | system | Story, events and hunts | Story progress and flags | How the game remembers what has happened: the five flag banks in the save payload with their offsets and id ranges, the accessors and their bounds, the encoded id whose bit `0x4000` reads the story schedule in mapjumpgroupflagrom.bin instead of a flag, ids 0 and 1 as always and never, what each bank holds (map-jump groups and map icons, names learned by talking, chests opened and traps fired, two script-only banks), every native setter and reader, the main menu items the schedule unlocks, and the reset that clears the banks and sets the 52 starting flags. | 0x0032A8A0, 0x00377970, 0x0032AB60, 0x0032ABF0, 0x0032AD70, 0x0032AA60, 0x00379160, 0x002EF2D0 |
 
 ## What the player sees
 
@@ -202,3 +201,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
 - Combat AI: `0x00321190` is called by `0x00301AD0`; those functions are documented on
   [glossary](../Engine-Core/glossary.md).
+
+---
+
+[← Story progress](story-progress.md) | [Story counter values →](story-counter-values.md)

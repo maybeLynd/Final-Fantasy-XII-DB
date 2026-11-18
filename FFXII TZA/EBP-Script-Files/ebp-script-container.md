@@ -1,9 +1,8 @@
----
-title: "EBP script container: the twenty-slot directory of every zone and event script, and the walk that hands each section to its loader"
-kind: "format"
-category: "EBP script files"
-addresses: "0x003304A0, 0x0032FCA0, 0x0032FC30, 0x00330310, 0x0032E400, 0x0032E620, 0x002DF980, 0x002DF9A0, 0x0036A100, 0x0036C660, 0x00332250, 0x022C6E48, 0x022C6C00, 0x0032F1B0, 0x0032ED80, 0x0032F430, 0x0032F850, 0x00330190, 0x00330220, 0x00332100, 0x00330060, 0x0032FA10, 0x0032FAC0, 0x00331610, 0x003316B0, 0x0032FB70, 0x00330110, 0x003320E0, 0x00332110, 0x003320D0, 0x0032ED70, 0x00332130"
----
+[Home](../../README.md) / [EBP script files](README.md) / EBP script container
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| EBP script container: the twenty-slot directory of every zone and event script, and the walk that hands each section to its loader | format | EBP script files | Script files | The .ebp file: how a zone or event script is requested by kind and index with its companion files, read whole into a resource arena, and walked by one function that dispatches each present section of its twenty-slot directory to its own handler; the header and section table, the pending word that holds the script back until every part is bound, the teardown, and the shipped files measured over all nine language trees. | 0x003304A0, 0x0032FCA0, 0x0032FC30, 0x00330310, 0x0032E400, 0x0032E620, 0x002DF980, 0x002DF9A0, 0x0036A100, 0x0036C660, 0x00332250, 0x022C6E48, 0x022C6C00, 0x0032F1B0, 0x0032ED80, 0x0032F430, 0x0032F850, 0x00330190, 0x00330220, 0x00332100, 0x00330060, 0x0032FA10, 0x0032FAC0, 0x00331610, 0x003316B0, 0x0032FB70, 0x00330110, 0x003320E0, 0x00332110, 0x003320D0, 0x0032ED70, 0x00332130 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Battle buffs: what Battle Cry, Enrage, Magick Barrier, Perfect Defense and the other enemy abilities switch on, and how long they last"
-kind: "system"
-category: "Status effects and KO"
-addresses: "0x0030E130, 0x0030EA40, 0x00387020, 0x00385570, 0x002FDDA0, 0x003112F0, 0x00386AE0, 0x003279B0"
----
+[Home](../../README.md) / [Status effects and KO](README.md) / Battle buffs
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Battle buffs: what Battle Cry, Enrage, Magick Barrier, Perfect Defense and the other enemy abilities switch on, and how long they last | system | Status effects and KO | Statuses and buffs | The temporary augment layer +0x68 that enemy abilities and enemy AI orders switch on: the function that sets and clears it, the self tests the shipped AI pairs with every switch, what each of the nineteen shipped ids does in battle, the 120-second timers of Paling, Magick Shield and White Wind and the messages when they rise and fall, Shift's random weakness, and the gambit-slot ids that only gear and licenses set. | 0x0030E130, 0x0030EA40, 0x00387020, 0x00385570, 0x002FDDA0, 0x003112F0, 0x00386AE0, 0x003279B0 |
 
 ## What the player sees
 

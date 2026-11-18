@@ -1,9 +1,8 @@
----
-title: "Actor record: the record every field actor is driven through, its pool, its classes, its sub-objects and its lifetime"
-kind: "system"
-category: "Characters and objects"
-addresses: "0x002679F0, 0x00266530, 0x00266AD0, 0x00266BD0, 0x003DB580, 0x003DB550, 0x003DBF60, 0x003DB2A0, 0x003DB640, 0x00358940, 0x0025B070, 0x002628B0, 0x003697F0, 0x00265020, 0x00263C20, 0x003589B0, 0x002659D0, 0x00269FC0, 0x0026BED0, 0x0026B480, 0x0026AD90, 0x0026AB50, 0x0026A140, 0x0026AD40, 0x00269EE0, 0x00269F60, 0x00265060, 0x002638F0, 0x002E9BE0, 0x002638C0, 0x00269DD0, 0x003EC5F0, 0x003EC690, 0x003DC710, 0x003605A0, 0x003E9970, 0x003B6C20, 0x003DEE10, 0x003DEC90, 0x0036DE70, 0x0036E080, 0x002A7A40, 0x002E2300, 0x00368AA0, 0x003EBD70, 0x003604D0, 0x0025A280, 0x002E63D0, 0x003EA200, 0x003E9100, 0x002E1630, 0x0036A280, 0x002E06F0, 0x0035AB50, 0x002ECBE0, 0x002EBDE0, 0x002697A0, 0x0033F650, 0x0025BAD0, 0x0025BE50, 0x0025C230, 0x0025C830, 0x0025B7E0, 0x002675C0"
----
+[Home](../../README.md) / [Characters and objects](README.md) / Actor record
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Actor record: the record every field actor is driven through, its pool, its classes, its sub-objects and its lifetime | system | Characters and objects | Field actors | The record behind every actor a manager owns: how the pool is sized and carved from the loaded script payload's per-sequence counts and the eight-entry descriptor table, the class and sequence byte, what the initialiser writes into a fresh record, the interior sub-objects (movement context, secondary context, request entry pool, wait slots) and where each class puts them, the request entry lists and the channel masks, the handle fields, and the two-phase release that frees the pool. | 0x002679F0, 0x00266530, 0x00266AD0, 0x00266BD0, 0x003DB580, 0x003DB550, 0x003DBF60, 0x003DB2A0, 0x003DB640, 0x00358940, 0x0025B070, 0x002628B0, 0x003697F0, 0x00265020, 0x00263C20, 0x003589B0, 0x002659D0, 0x00269FC0, 0x0026BED0, 0x0026B480, 0x0026AD90, 0x0026AB50, 0x0026A140, 0x0026AD40, 0x00269EE0, 0x00269F60, 0x00265060, 0x002638F0, 0x002E9BE0, 0x002638C0, 0x00269DD0, 0x003EC5F0, 0x003EC690, 0x003DC710, 0x003605A0, 0x003E9970, 0x003B6C20, 0x003DEE10, 0x003DEC90, 0x0036DE70, 0x0036E080, 0x002A7A40, 0x002E2300, 0x00368AA0, 0x003EBD70, 0x003604D0, 0x0025A280, 0x002E63D0, 0x003EA200, 0x003E9100, 0x002E1630, 0x0036A280, 0x002E06F0, 0x0035AB50, 0x002ECBE0, 0x002EBDE0, 0x002697A0, 0x0033F650, 0x0025BAD0, 0x0025BE50, 0x0025C230, 0x0025C830, 0x0025B7E0, 0x002675C0 |
 
 ## What the player sees
 
@@ -469,3 +468,7 @@ Struct ActorResourceEntry size=`0x14`:
 In the descriptor table's rows, `function`, `name` and `site` give the function, its name and the instruction's
 address, `disp` the offset in the entry, `kind` `r` (a read), `instruction` the instruction itself, and `route`
 `array 0x01E0C328 reg`: an entry of the table at `0x01E0C328` that a register selects.
+
+---
+
+[Actor managers →](actor-managers.md)

@@ -1,9 +1,8 @@
----
-title: "Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus"
-kind: "system"
-category: "Rewards: EXP, LP, gil and loot"
-addresses: "0x003180F0, 0x003185D0, 0x003186F0, 0x00318820, 0x00318960, 0x00318510, 0x00319530, 0x00310DB0"
----
+[Home](../../README.md) / [Rewards: EXP, LP, gil and loot](README.md) / Loot drops
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus | system | Rewards: EXP, LP, gil and loot | EXP, loot and progression | How a defeated enemy's loot is rolled: which drop-chance row the chain selects, slot and quantity rolls, the drop-table layouts with shipped rows, the developer 100 % drop override, and the HP/MP/Protect/Shell chain bonus on pickup. | 0x003180F0, 0x003185D0, 0x003186F0, 0x00318820, 0x00318960, 0x00318510, 0x00319530, 0x00310DB0 |
 
 ## What the player sees
 
@@ -93,6 +92,11 @@ drop data is the record at `[unit+0xE60]`.
    matches an earlier entry adds its quantity to the nearest earlier match and is emptied, so every
    duplicate ends in the earliest entry with that item. Empty entries get quantity 0
    (`0x003182D7`-`0x0031834F`); the function returns 1 if any entry holds an item.
+
+In the six functions `0x003180F0`, `0x00318820`, `0x00318960`, `0x003185D0`, `0x003186F0` and `0x00318510`, the instructions that
+address the chain's state `0x022C3158`-`0x022C317B` ([kill chain](kill-chain.md#state)) directly are the reads at
+`0x00318116`, `0x0031815C`, `0x003181D2` and `0x003189D6`. The roll's one direct caller is `0x00312280` (`0x003125A1`), and
+`0x00318960`'s is `0x00318820` (`0x003188AB`).
 
 ### The individual rolls
 
@@ -321,3 +325,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
   [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md),
   [script censuses](../Story-Events-And-Hunts/script-censuses.md).
+
+---
+
+[← Kill chain](kill-chain.md) | [Loot pickups →](loot-pickups.md)

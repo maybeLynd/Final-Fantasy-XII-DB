@@ -1,9 +1,8 @@
----
-title: "Story counter values: every value the shipped scripts write to the main story counter, and the scripts and functions that write it"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x00265270, 0x0026CAF8, 0x02098E58, 0x002EF2B0"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Story counter values
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Story counter values: every value the shipped scripts write to the main story counter, and the scripts and functions that write it | reference | Story, events and hunts | Story progress and flags | Each of the 313 values the us scripts assign to the main story counter, with the shipping scripts, actors and functions that write it and the counter test that guards each write, the writes in code no path reaches, the writes made only by the developer menus, and how a script writes the counter. | 0x00265270, 0x0026CAF8, 0x02098E58, 0x002EF2B0 |
 
 ## What it lists
 
@@ -144,3 +143,7 @@ Actor and function names are the ones the scripts carry.
   bank the counter opens.
 - [Script bytecode](../EBP-Script-Files/ebp-script-image.md) - `PUSHII`, `POPV`
   and the jump opcodes.
+
+---
+
+[← Story flags](story-flags.md)

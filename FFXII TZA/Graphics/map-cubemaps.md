@@ -1,9 +1,8 @@
----
-title: "Map cubemaps: the reflection probes, cubeMapConfigs.txt and how map models pick four of them"
-kind: "system"
-category: "Graphics"
-addresses: "0x01F811C8, 0x001AD440, 0x001A5B30, 0x001ABC80, 0x001ABCE0, 0x001AC810, 0x001AA840, 0x001AC480, 0x001AD130, 0x001ACF80, 0x001AC4B0, 0x001ABF50, 0x001AA3D0, 0x001AD470, 0x001AC670, 0x001AC720, 0x001AC6F0, 0x001E4000, 0x001AD670, 0x001E6480, 0x001E6040"
----
+[Home](../../README.md) / [Graphics](README.md) / Map cubemaps
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Map cubemaps: the reflection probes, cubeMapConfigs.txt and how map models pick four of them | system | Graphics | Screen effects and movies | The per-map reflection probes of the remaster: the cubemap_&lt;probe&gt;_&lt;weather&gt; environment and irradiance textures a map's art carries, the cubeMapConfigs.txt file that places each probe and gives its weight and radius, the probe manager that builds them, the weighting that picks up to four probes for a point, and how map model materials receive the chosen cubemaps and weights. | 0x01F811C8, 0x001AD440, 0x001A5B30, 0x001ABC80, 0x001ABCE0, 0x001AC810, 0x001AA840, 0x001AC480, 0x001AD130, 0x001ACF80, 0x001AC4B0, 0x001ABF50, 0x001AA3D0, 0x001AD470, 0x001AC670, 0x001AC720, 0x001AC6F0, 0x001E4000, 0x001AD670, 0x001E6480, 0x001E6040 |
 
 ## What the player sees
 

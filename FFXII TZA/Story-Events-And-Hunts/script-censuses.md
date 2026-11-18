@@ -1,9 +1,8 @@
----
-title: "Script calls in every script: story writes that lower the counter, save and teleport declarations, exits that choose a destination, and the verbs that steer battle AI"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x00342490, 0x00343010, 0x00343470, 0x00352C80, 0x003532D0, 0x00264CA0, 0x02099FF0, 0x0026DB30, 0x00355680, 0x002677F0, 0x0034E260, 0x00265680, 0x003456C0, 0x00233D20, 0x0034A590"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Script calls in every script
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Script calls in every script: story writes that lower the counter, save and teleport declarations, exits that choose a destination, and the verbs that steer battle AI | reference | Story, events and hunts | Scripts across all areas | Four counts over the 1,114 us scripts: the 1,759 writes to the main story counter and the few that can move it back; the 460 calls by which 83 maps declare their crystal, teleport arrival, save and anchor entrances; the 844 exits whose destination depends on a test, one row per branch; and the 32,071 calls of 32 verbs that turn battle thinking off or on, pause battle, set stance, engagement, the fighting party, the control level and foe logic, per script and actor kind. | 0x00342490, 0x00343010, 0x00343470, 0x00352C80, 0x003532D0, 0x00264CA0, 0x02099FF0, 0x0026DB30, 0x00355680, 0x002677F0, 0x0034E260, 0x00265680, 0x003456C0, 0x00233D20, 0x0034A590 |
 
 ## What it lists
 

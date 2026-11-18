@@ -1,9 +1,8 @@
----
-title: "Config screen: the Config, Graphics Settings and Controls rows, what each change runs, and where each setting is saved"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x0023FBE0, 0x002407F0, 0x0023BD40, 0x0017DB90, 0x001D1660, 0x0023CE10, 0x0215E6E0, 0x01F82D20"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Config screen
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Config screen: the Config, Graphics Settings and Controls rows, what each change runs, and where each setting is saved | system | Menus and HUD | Menu screens | The three settings screens: how Config opens and leads to Graphics Settings and Controls, every row with its shipped label and the setting it edits, what a change runs at once (vibration, screen shake, camera axes, speed multiplier, soundtrack, volume categories, graphics presets, display buffer, the confirm-button swap), the rows whose change waits for a confirm dialog or a restart, Restore Defaults and the Max. LP and Max. Gil rows, which rows step per press and which repeat, and where each setting is stored and when it is written. | 0x0023FBE0, 0x002407F0, 0x0023BD40, 0x0017DB90, 0x001D1660, 0x0023CE10, 0x0215E6E0, 0x01F82D20 |
 
 ## What the player sees
 

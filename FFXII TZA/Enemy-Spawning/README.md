@@ -1,10 +1,33 @@
+[Home](../../README.md) / Enemy spawning
+
 # Enemy spawning
 
 When and where enemies appear, respawn and are removed.
 
-| Page | What you will find |
-|---|---|
-| [Bestiary: every enemy definition of every area with its name, level, stats, elements, statuses, loot and rewards](bestiary.md) | All 1,146 enemy definitions of the 166 shipped area files, one line each: the area and row, the shipped name, the levels the zone scripts place it at, its model, its race and family names, HP, MP, Strength, Magick Power, Vitality, Speed, Attack, Defense, Magick Resist and evades with their growth per level, its weak, absorb, halve, nullify and potency elements, the statuses it is immune to or starts with and its augments, its steal, drop, poach and Monograph items by name, its EXP, LP, gil and clan point rewards, the Clan Primer Bestiary entry it counts for with that entry's name, the remaining definition and class row fields, and a one-line explanation. |
-| [Enemy respawning: death counts, cooldowns, the group table that wakes a zone script, and the two-area memory](enemy-respawning.md) | What happens to a spawned enemy after it dies: the death count, the second stamp and the per-entry rolled cooldown and death limit, the clock the stamp is measured on and what a runtime reset does to it, the two readers of the cooldown and how they differ, the group table that records member deaths and completes a group when every registered member is dead, the lock and the word a completed group posts for the zone script, the two spawn-keep banks that remember the last two areas and the return window that decides whether a bank is kept, and what the save image carries of all this. |
-| [Enemy spawning: the spawn table, how a zone picks where a monster appears, the ground height, and when it vanishes out of range](enemy-spawning.md) | How a zone script populates an area with monsters: the lane map and the spawn table it installs, the tunables every spawning zone sets and their script defaults, the automatic placement that picks a lane and a point around the party leader with its two generation modes and its distance test, the previous-map and continuing selections that bring a banked monster back where it was, the bind, the unit's activation and the terrain probe that supplies the height, the despawn mode and the range retirement that makes a monster vanish behind the player, and what the shipped zone scripts actually author. |
-| [Spawn record fields: the keep entry behind every spawned enemy, offset by offset, its flag bits and every proven access](spawn-record-fields.md) | The 0x250-byte spawn record (the keep entry) that every enemy built from the enemy definition table is driven through: the three ways code reaches one, each field with its width, its writers and its readers, the eight flag bits with who sets, clears and tests them, the stats record that lives at +0x80, the three byte ranges nothing touches, and the access table of every lane-map and seed-route reach. |
+Jump to: [Spawning and respawning](#spawning-and-respawning) · [Enemy data](#enemy-data)
+
+## Start here
+
+Start with these pages, in this order:
+
+1. [Enemy spawning](enemy-spawning.md): starts with how enemies get placed
+2. [Enemy respawning](enemy-respawning.md): follows them through death and back
+3. [Spawn record fields](spawn-record-fields.md): details the record both of those use
+
+## Spawning and respawning
+
+How a zone places its enemies, what follows their deaths and the record each spawned enemy runs on.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Enemy spawning](enemy-spawning.md) | Explanation | How a zone picks where enemies appear, at what height, and when they vanish. |
+| [Enemy respawning](enemy-respawning.md) | Explanation | What happens after an enemy dies: cooldowns, group completions and the two-area memory. |
+| [Spawn record fields](spawn-record-fields.md) | Reference table | The record behind each spawned enemy, field by field, with its flag bits. |
+
+## Enemy data
+
+The stats, elements, loot and rewards of every enemy definition in the shipped area files.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Bestiary](bestiary.md) | Reference table | Every enemy definition's stats, elements, statuses, loot and rewards. |

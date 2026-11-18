@@ -1,9 +1,8 @@
----
-title: "Model lifecycle: a character model from its binding to the render record's clear"
-kind: "lifecycle"
-category: "Graphics"
-addresses: "0x002E28E0, 0x0042FB80, 0x004279B0, 0x0042ED60, 0x00428710, 0x00429140, 0x00427C90, 0x004200A0, 0x0041F730"
----
+[Home](../../README.md) / [Graphics](README.md) / Model lifecycle
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Model lifecycle: a character model from its binding to the render record's clear | lifecycle | Graphics | Character models / Model Files | The stages of a model on screen: the binding that loads its file, the bind that creates its render record, the pending wait and the promotion that binds its resources, its skeleton, attachment to a parent, the per-frame dirty walk and presentation entries, the two-step removal, the record's clear and the release of the binding; each stage linked to the page that explains it. | 0x002E28E0, 0x0042FB80, 0x004279B0, 0x0042ED60, 0x00428710, 0x00429140, 0x00427C90, 0x004200A0, 0x0041F730 |
 
 ## What the player sees
 
@@ -80,3 +79,7 @@ Calls between the functions this page cites and code in other parts of the progr
   [native commands](../Scripts-And-Script-Commands/native-commands.md).
 - World area: `0x002E28E0` calls `0x00377C20`; those functions are documented on
   [force fight mode](../Engine-Core/force-fight-mode.md).
+
+---
+
+[← Model files (.cm, .ca)](model-files-cm-ca.md) | [Animation playback →](animation-playback.md)

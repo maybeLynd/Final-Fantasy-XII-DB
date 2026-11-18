@@ -1,9 +1,8 @@
----
-title: "Shop screens: Buy, Sell and Bazaar, the tabs and rows each shows, the price paid, and how a trade reaches the inventory"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x0057B800, 0x0057B890, 0x0057BD40, 0x0056DD50, 0x0057CF20, 0x0056D370, 0x0056E700, 0x0057A620"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Shop screens
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Shop screens: Buy, Sell and Bazaar, the tabs and rows each shows, the price paid, and how a trade reaches the inventory | system | Menus and HUD | Menu screens | How a shop opens from a script, the Buy, Sell and Bazaar command rows and when Sell and Bazaar are greyed, the tabs each mode shows and how empty tabs drop out, how the rows and prices are built (the buy price as listed, half of it on a sale), the refusals, the quantity window, the trade commit and its gil roll, the new bazaar goods notice, and the equip offer and bazaar grant window after a purchase. | 0x0057B800, 0x0057B890, 0x0057BD40, 0x0056DD50, 0x0057CF20, 0x0056D370, 0x0056E700, 0x0057A620 |
 
 ## What the player sees
 

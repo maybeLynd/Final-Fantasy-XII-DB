@@ -1,9 +1,8 @@
----
-title: "Tutorial battle commands: the tutorial_data groups that limit which commands and actions Vaan and Penelo may choose in the battle menu"
-kind: "reference"
-category: "Battle actions"
-addresses: "0x02EBF020, 0x0032A230, 0x0032A320, 0x0032A3E0, 0x0031EB20, 0x0027E050"
----
+[Home](../../README.md) / [Battle actions](README.md) / Tutorial battle commands
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Tutorial battle commands: the tutorial_data groups that limit which commands and actions Vaan and Penelo may choose in the battle menu | reference | Battle actions | Action tables | All 6 rows and 5 groups of the shipped tutorial_data table in battle_pack.bin: for each group, the party member a row limits and the actions or the Gambits command that member may still choose; how the battle menu builder applies a group to its command and action rows and greys out everything else with reason 0x2B. | 0x02EBF020, 0x0032A230, 0x0032A320, 0x0032A3E0, 0x0031EB20, 0x0027E050 |
 
 ## What it lists
 

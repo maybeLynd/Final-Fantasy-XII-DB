@@ -1,9 +1,8 @@
----
-title: "Victory pose scenes: the scene, what it gives and the zone scripts that load it"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x0032FCA0, 0x00345080"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Victory pose scenes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Victory pose scenes: the scene, what it gives and the zone scripts that load it | reference | Story, events and hunts | Scenes and scripts by area / Scenes that recur through the story | The victory pose scene script pos_z0000: the Esper ids its own functions give, and the Trial Mode stages and story maps whose zone scripts load it. | 0x003529E0, 0x00351880, 0x0032FCA0, 0x00345080 |
 
 ## What it lists
 

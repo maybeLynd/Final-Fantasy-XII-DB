@@ -1,9 +1,8 @@
----
-title: "Battle and menu text tables: the word banks in battle_pack.bin, the st2e string tables behind menu and help text, and how a text id becomes a string"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x003214B0, 0x002B58B0, 0x02EBF170, 0x002F9860, 0x002F9920, 0x02EC3D80, 0x02F973C0, 0x01E09F68, 0x002385D0, 0x002FA560, 0x002F7660, 0x00238640, 0x002F83E0, 0x00248700, 0x0053EB90, 0x01CEB638, 0x003846F0, 0x003845F0, 0x002AC2F0, 0x002491B0, 0x00563520, 0x00292260, 0x002922C0, 0x00292190, 0x002F7680, 0x002F79C0"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Battle and menu text tables
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Battle and menu text tables: the word banks in battle_pack.bin, the st2e string tables behind menu and help text, and how a text id becomes a string | format | Game files and data tables | Data tables and configs | Where the names and help lines of the battle system and menus are stored: the fifteen word banks of battle_pack.bin addressed by a bank:row word, the packed string rows they hold, the 28 text groups loaded on demand from st2e string-table files and addressed by group × 1000 + row or by the row's own id, the text block inside an st2e string table, the glyph codes the strings use in each language, and the shipped counts. | 0x003214B0, 0x002B58B0, 0x02EBF170, 0x002F9860, 0x002F9920, 0x02EC3D80, 0x02F973C0, 0x01E09F68, 0x002385D0, 0x002FA560, 0x002F7660, 0x00238640, 0x002F83E0, 0x00248700, 0x0053EB90, 0x01CEB638, 0x003846F0, 0x003845F0, 0x002AC2F0, 0x002491B0, 0x00563520, 0x00292260, 0x002922C0, 0x00292190, 0x002F7680, 0x002F79C0 |
 
 ## What the player sees
 

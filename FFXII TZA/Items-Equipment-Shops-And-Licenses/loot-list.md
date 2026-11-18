@@ -1,9 +1,8 @@
----
-title: "Loot list: every loot id with its name, price, sell price, sort order and description"
-kind: "reference"
-category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF098, 0x0031C5D0, 0x0031CBA3, 0x0031CBC1, 0x0031CBE0, 0x0031CBE7, 0x0031CBFA, 0x0031CC01, 0x0057DBC2"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Loot list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Loot list: every loot id with its name, price, sell price, sort order and description | reference | Items, equipment, shops and licenses | Items and inventory | All 512 rows of the shipped loot table (eventitem_data) in battle_pack.bin, decoded field by field: the loot id and name, the sort order, the icon frame, the price and the half price a shop pays for it, the description text, and a one-line explanation; 235 rows are named loot and 277 are Reserve rows. | 0x02EBF098, 0x0031C5D0, 0x0031CBA3, 0x0031CBC1, 0x0031CBE0, 0x0031CBE7, 0x0031CBFA, 0x0031CC01, 0x0057DBC2 |
 
 ## What it lists
 

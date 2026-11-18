@@ -1,9 +1,8 @@
----
-title: "Ending message scripts: what each function of the scene shows"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x00348DF0, 0x00349800, 0x0034A090, 0x00264D60"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Ending message scripts
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Ending message scripts: what each function of the scene shows | reference | Story, events and hunts | Scenes and scripts by area / Opening, ending and Trial Mode | Every function of the ending message scene script msg_z0001 that a player can observe: the line each one shows, in the game's own words, and the function that requests it. | 0x00348DF0, 0x00349800, 0x0034A090, 0x00264D60 |
 
 ## What it lists
 

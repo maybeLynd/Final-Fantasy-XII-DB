@@ -1,9 +1,8 @@
----
-title: "Steal: the item chances, the three Thief's Cuffs rolls and the steal messages"
-kind: "system"
-category: "Damage and battle formulas"
-addresses: "0x00390390, 0x00385F60, 0x003847C0, 0x0030FED0, 0x0023A570, 0x00385BA0, 0x003112F0, 0x00469EC0, 0x0046A870, 0x0017D450"
----
+[Home](../../README.md) / [Damage and battle formulas](README.md) / Steal
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Steal: the item chances, the three Thief's Cuffs rolls and the steal messages | system | Damage and battle formulas | Damage and formulas | How a Steal attempt picks from an enemy's common, uncommon and rare steal items: when an enemy has nothing left to steal, the single first-hit roll at 3, 10 and 55 percent, the three independent rolls at 6, 30 and 80 percent with Thief's Cuffs, the debug value that can force an item, how a won item reaches the inventory, and which battle message each outcome posts. | 0x00390390, 0x00385F60, 0x003847C0, 0x0030FED0, 0x0023A570, 0x00385BA0, 0x003112F0, 0x00469EC0, 0x0046A870, 0x0017D450 |
 
 ## What the player sees
 

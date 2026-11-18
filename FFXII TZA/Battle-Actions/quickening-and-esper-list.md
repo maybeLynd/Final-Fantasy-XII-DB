@@ -1,9 +1,8 @@
----
-title: "Quickening and Esper list: the thirty-two class-17 ids of the Quickenings, the Espers and Second Board, with their names and the code that reads them"
-kind: "reference"
-category: "Battle actions"
-addresses: "0x02EBF0C8, 0x0031C5D0, 0x0031D814, 0x00306340, 0x003064F0, 0x00325F40, 0x00252E60, 0x00323D10"
----
+[Home](../../README.md) / [Battle actions](README.md) / Quickening and Esper list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Quickening and Esper list: the thirty-two class-17 ids of the Quickenings, the Espers and Second Board, with their names and the code that reads them | reference | Battle actions | Quickenings and summons | All 32 rows of the shipped menkyo_data table in battle_pack.bin (ids 0xC000-0xC01F, inventory class 17): the name of each id, the Quickening or summon action that names it, the License Board node its presence bit opens, the three words no function uses, and why the menu path that would read one of them is never taken. | 0x02EBF0C8, 0x0031C5D0, 0x0031D814, 0x00306340, 0x003064F0, 0x00325F40, 0x00252E60, 0x00323D10 |
 
 ## What it lists
 

@@ -1,9 +1,8 @@
----
-title: "Render command list: the per-frame command objects, the two lists that hold them and the walks that run them"
-kind: "system"
-category: "Graphics"
-addresses: "0x01F7F5E0, 0x01F7F5E8, 0x00186CD0, 0x0018B480, 0x0018AD00, 0x0018C9E0, 0x0018B4E0, 0x0018CA40, 0x0018AFF0, 0x0018C610, 0x00212CC0, 0x0018B100, 0x0018B1B0, 0x0018B510, 0x0018B030, 0x0018B070, 0x0018B0B0, 0x0018B040, 0x0018B810, 0x0018C8F0, 0x00187950, 0x0022A580, 0x001F28B0, 0x00193D50, 0x01DFE0C4, 0x001BDA50, 0x003A1D50, 0x003A1DB0, 0x004FE420, 0x02EBEFC0"
----
+[Home](../../README.md) / [Graphics](README.md) / Render command list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Render command list: the per-frame command objects, the two lists that hold them and the walks that run them | system | Graphics | Render pipeline | How each render pass of a frame becomes a heap object appended to an ordered command list and an owning list, how the render pass runs the ordered list in two parts with a class mask instead of a sort, the class-filtered walks the opaque passes run from inside it, the console's ambient-occlusion-only exit, the three teardowns, the render-parameter block the execute bodies read, the character render-object manager installed beside the lists, and the two GS command buffers. | 0x01F7F5E0, 0x01F7F5E8, 0x00186CD0, 0x0018B480, 0x0018AD00, 0x0018C9E0, 0x0018B4E0, 0x0018CA40, 0x0018AFF0, 0x0018C610, 0x00212CC0, 0x0018B100, 0x0018B1B0, 0x0018B510, 0x0018B030, 0x0018B070, 0x0018B0B0, 0x0018B040, 0x0018B810, 0x0018C8F0, 0x00187950, 0x0022A580, 0x001F28B0, 0x00193D50, 0x01DFE0C4, 0x001BDA50, 0x003A1D50, 0x003A1DB0, 0x004FE420, 0x02EBEFC0 |
 
 ## What the player sees
 

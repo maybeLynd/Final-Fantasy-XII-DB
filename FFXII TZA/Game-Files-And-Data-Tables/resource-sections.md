@@ -1,9 +1,8 @@
----
-title: "Resource sections: how a section inside a loaded resource is found by tag and name, the @FRP container, resource entries and their two storage modes, and the banked resource tables"
-kind: "system"
-category: "Game files and data tables"
-addresses: "0x00409C30, 0x00409210, 0x02B62E20, 0x00409780, 0x00409660, 0x00409930, 0x00409A30, 0x004096C0, 0x00409600, 0x0051EE00, 0x003AB7F0, 0x0036B130, 0x02B62E10, 0x0041E500, 0x004090D0, 0x00409F50, 0x002ED570, 0x0051FF30, 0x00409F70, 0x0040A210, 0x0051F9F0, 0x00409F10, 0x0046E250, 0x00477EE0, 0x0041E3A0, 0x0033263C, 0x00408F30, 0x00408FA0"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Resource sections
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Resource sections: how a section inside a loaded resource is found by tag and name, the @FRP container, resource entries and their two storage modes, and the banked resource tables | system | Game files and data tables | Loaded resources | How the engine reaches a piece of data inside a loaded resource: the tag and 32-byte name match with its @ALL and NULL wildcards and the 31-character name limit, the @FRP container header with its version 0 and version 1 offset tables, the section search and its -1 sentinel, the child selector, resource entries with an inline or handle-and-cache base and the re-resolve flag, the handle decoding, and the banked resource tables that hold entries as rows: their descriptor, row lookup, refresh walk and the three tables the render root builds. | 0x00409C30, 0x00409210, 0x02B62E20, 0x00409780, 0x00409660, 0x00409930, 0x00409A30, 0x004096C0, 0x00409600, 0x0051EE00, 0x003AB7F0, 0x0036B130, 0x02B62E10, 0x0041E500, 0x004090D0, 0x00409F50, 0x002ED570, 0x0051FF30, 0x00409F70, 0x0040A210, 0x0051F9F0, 0x00409F10, 0x0046E250, 0x00477EE0, 0x0041E3A0, 0x0033263C, 0x00408F30, 0x00408FA0 |
 
 ## What the player sees
 

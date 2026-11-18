@@ -1,9 +1,8 @@
----
-title: "Nalbina Town scripts: what each script function shows, sets, gives and starts"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x0034DFA0, 0x00354D00, 0x003529E0, 0x00351880, 0x003449A0, 0x0034A6D0, 0x003459C0, 0x00377B60, 0x003778B0, 0x0034ADA0, 0x0034B760, 0x0034BB10"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Nalbina Town scripts
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Nalbina Town scripts: what each script function shows, sets, gives and starts | reference | Story, events and hunts | Scenes and scripts by area / Nalbina and the Mosphoran Highwaste | Every function of the Nalbina Town zone and scene scripts that a player can observe, apart from the shared crystal and item-message helpers counted per script: what triggers it, the lines it shows and who speaks them, the story flags and story counter values it sets or tests, the items it gives or takes, its map jumps and its scene loads. | 0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x0034DFA0, 0x00354D00, 0x003529E0, 0x00351880, 0x003449A0, 0x0034A6D0, 0x003459C0, 0x00377B60, 0x003778B0, 0x0034ADA0, 0x0034B760, 0x0034BB10 |
 
 ## What it lists
 

@@ -1,9 +1,8 @@
----
-title: "Saving and loading: the save slots and their files, the save screen's states, the six-step save transaction, the storage queue, the file layer's read and write rules, the area-change autosave and what a load runs"
-kind: "system"
-category: "Saving, loading and settings"
-addresses: "0x00580EB0, 0x005819F0, 0x00581DA0, 0x00581B70, 0x00582040, 0x003BB920, 0x003BB9B0, 0x003BB2F0, 0x00866A00, 0x00862590, 0x00866AD0, 0x0057E4D0, 0x0057E310, 0x00582860, 0x00862130, 0x0057FE80, 0x0057F8C0, 0x0057EFE0, 0x00580CD0, 0x00580840, 0x003BA990, 0x008621E0, 0x003BA680, 0x003BB790, 0x001C1720, 0x02B407C0"
----
+[Home](../../README.md) / [Saving, loading and settings](README.md) / Saving and loading
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Saving and loading: the save slots and their files, the save screen's states, the six-step save transaction, the storage queue, the file layer's read and write rules, the area-change autosave and what a load runs | system | Saving, loading and settings | Saving and loading | How a manual save and a load are carried out: the slot files and their names, the save and load screen's state machine and its popups, the transaction that zeroes the image header on disk, runs three deletes that name the save directory itself and so remove no file, writes the whole image and then stamps the header, the storage queue and the worker commands behind it, the stream primitives that make a short read report zero, the autosave the game writes to slot 0 when an area changes, and the lifecycle that normalises a loaded image. It also covers the slot list and its status table, the slot scan that reads every slot's header, the save-data check the title screen runs, and the shipped list of area changes that do not autosave. | 0x00580EB0, 0x005819F0, 0x00581DA0, 0x00581B70, 0x00582040, 0x003BB920, 0x003BB9B0, 0x003BB2F0, 0x00866A00, 0x00862590, 0x00866AD0, 0x0057E4D0, 0x0057E310, 0x00582860, 0x00862130, 0x0057FE80, 0x0057F8C0, 0x0057EFE0, 0x00580CD0, 0x00580840, 0x003BA990, 0x008621E0, 0x003BA680, 0x003BB790, 0x001C1720, 0x02B407C0 |
 
 ## What the player sees
 
@@ -471,6 +470,17 @@ When the machine is idle the widget reads the result: 0 sets `0x01EFAC10` to 1; 
 command 9 once more and then sets `0x01EFAC10` to 1 or 0 from the second result. Either way it calls
 `0x0036FD70` and closes itself.
 
+The title script `ttl_a01` waits until the status is 0 or 1 and passes it to `fsttl_opencommand` (`0x00511F90`, then
+`0x00394530`). When the title asset `0x02AEE4C0` exists and no title command consumer is open (`0x00394543`-`0x00394557`),
+`0x00394530` builds the consumer `0x003939B0`, which stores the byte at its `+0xC0` (`0x00393A18`) and reads it once, on the
+tick that sets up its command list after the asset's `+0xC0` bit `0x1` is set, to move that list to that row
+(`0x00393A80`-`0x00393A9F`, `0x00393BC8`-`0x00393BD6`; [widgets](../Menus-And-HUD/widgets.md)).
+
+With a consumer already open the value is not stored (`0x003945A4`, `0x003945BB`). Nothing else reads the status:
+`0x01EFAC10` is read only by `0x00394440` and by the test for 2 in `0x00394600`. The New Game list (Config in mode 1) takes
+its rows from `0x01E0B720` without a condition (`0x0023ED80`, `0x0023EE10`-`0x0023EF27`), so New Game+ and New Game- are
+offered either way ([strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md)).
+
 ### The file layer
 
 The worker reads and writes through a byte vector (`0x01F44D40` begin, `0x01F44D48` end, `0x01F44D50`
@@ -858,3 +868,7 @@ it.
 - [Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map](../World-Areas-And-Travel/zone-changes-and-mapjump.md)
 - [`storage-byte-stream-vector-01f44d40-accesses.tsv`](storage-byte-stream-vector-01f44d40-accesses.tsv): every
   access to the file worker's byte vector `0x01F44D40` (its begin, end and capacity pointers) (23 rows).
+
+---
+
+[Loading a save →](loading-a-save.md)

@@ -1,9 +1,8 @@
----
-title: "Action availability: the shared table that keeps menus and buttons shut during scenes, movies and battle moments, who holds each row and what each bit blocks"
-kind: "system"
-category: "Controls and input"
-addresses: "0x0215F1C0, 0x002E1C20, 0x002E1CA0, 0x002E1CD0, 0x002E0FA0, 0x00254500, 0x01E0C2C0, 0x00313A00"
----
+[Home](../../README.md) / [Controls and input](README.md) / Action availability
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Action availability: the shared table that keeps menus and buttons shut during scenes, movies and battle moments, who holds each row and what each bit blocks | system | Controls and input | How input works | How the game decides that a menu or a button may not be used right now: the 16-row table of 32-bit masks, the set, clear and bulk writers, the combined mask and its movie exception, the owner of every row (movie and event-skip verbs, the menu-disable verb, battle selection, quest windows, the screen mask, user control, the menu-request family, crossfades, the pause menu), what each combined bit blocks, the projection onto menu requests, and the resets at area unload and field start. | 0x0215F1C0, 0x002E1C20, 0x002E1CA0, 0x002E1CD0, 0x002E0FA0, 0x00254500, 0x01E0C2C0, 0x00313A00 |
 
 ## What the player sees
 

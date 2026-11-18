@@ -1,9 +1,8 @@
----
-title: "Kill rewards: what an enemy's death triggers, when it gives nothing, and the order of chain, EXP, LP, gil, loot and counters"
-kind: "system"
-category: "Rewards: EXP, LP, gil and loot"
-addresses: "0x0030E360, 0x00312280, 0x003171C0, 0x00315820, 0x00317090, 0x003112F0"
----
+[Home](../../README.md) / [Rewards: EXP, LP, gil and loot](README.md) / Kill rewards
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Kill rewards: what an enemy's death triggers, when it gives nothing, and the order of chain, EXP, LP, gil, loot and counters | system | Rewards: EXP, LP, gil and loot | EXP, loot and progression | The statuses whose arrival on an enemy starts the defeat sequence, the reward gate (party kills, party-applied Poison and Petrify, the no-reward flag), and every step in order: chain, kill and species counters, EXP and LP, the reward display, gil, the drop and the score counter, with the achievements they feed. | 0x0030E360, 0x00312280, 0x003171C0, 0x00315820, 0x00317090, 0x003112F0 |
 
 ## What the player sees
 
@@ -126,6 +125,12 @@ The achievement ids come from `0x00D10550 + kind*4`, and each record's first dwo
   Hooking it sees each enemy defeat once, with the killer.
 - To make an enemy pay nothing, set bit `0x8` of its unit byte `+0xE9A`. Actions whose result carries `+0x2C`
   bit `0x80000` do this already.
+- The calculator's slots 190, 196 and 162 ([slot list](../Damage-And-Battle-Formulas/formula-slots.md)) set that bit
+  (`0x0039017E`, `0x003907C8`, `0x0038F6DA`). They end the committed lists of recipe 9 (Warp, Warp Mote and Kill), 58
+  (Poach) and 88 (Cannibalize) ([recipes](../Damage-And-Battle-Formulas/formula-recipes.md)).
+- Each runs only when no earlier slot of its list stops the list (`0x003863D7`-`0x003863DE`): the hit roll of slot 40
+  (recipe 9, `0x0038968D`-`0x003896A0`) or 47 (Poach, `0x00389BB1`-`0x00389BC0`), slot 14 when a Poach target lacks HP
+  Critical (`0x003889C0`-`0x003889D8`), or slot 0 when a Poach or Cannibalize target has Safety (`0x00387F40`-`0x00387F56`).
 - Conqueror's 48,000 LP threshold is absent from the `de`, `es`, `fr`, `it` and `us` handbook copies, which no
   path array names; the `in` and `ch` copies the game reads hold it, so every language needs 48,000 LP.
 - The score per enemy is the first word of its two reward rows, the same rows that hold its EXP, LP and
@@ -137,3 +142,7 @@ The achievement ids come from `0x00D10550 + kind*4`, and each record's first dwo
 - [EXP, LP and level-ups from kills: who receives them, the formulas, the split, the doublers and the EXP table](exp-lp-and-level-ups.md)
 - [Gil: storage, the gil cap, every way gil changes, and the Plunderer and Spendthrift counters](gil.md)
 - [Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus](loot-drops.md)
+
+---
+
+[EXP, LP and level-ups from kills →](exp-lp-and-level-ups.md)

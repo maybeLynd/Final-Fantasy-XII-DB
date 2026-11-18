@@ -1,9 +1,8 @@
----
-title: "Animation-driven movement: how an authored animation command steps and turns a character toward its target"
-kind: "system"
-category: "Movement and pathfinding"
-addresses: "0x00520C10, 0x003E6340, 0x0041F2F0, 0x002ED500, 0x0031ADB0, 0x00424370, 0x003AF2B0, 0x003AED70, 0x003AF320, 0x0041D220, 0x00423B10, 0x003E6E60, 0x003E6EF0, 0x003AF220, 0x003AEF90, 0x003E68B0, 0x003E6A70, 0x003AEF20, 0x003AEF50, 0x0025DF00, 0x002E5750, 0x0026B6A0, 0x0026B520, 0x002651C0"
----
+[Home](../../README.md) / [Movement and pathfinding](README.md) / Animation-driven movement
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Animation-driven movement: how an authored animation command steps and turns a character toward its target | system | Movement and pathfinding | How actors move | The lunge and swing-round an attack animation asks for: the authored command that names a movement profile, the request the command handler builds from the battle unit's target, the global pool of 128 requests and the per-character lists they hang on, the profile tables in every animation container with their speed and turn-rate curves, the once-a-frame consumer that sums a clamped step and a turn, and the actor update that feeds both into the movement step and the facing. | 0x00520C10, 0x003E6340, 0x0041F2F0, 0x002ED500, 0x0031ADB0, 0x00424370, 0x003AF2B0, 0x003AED70, 0x003AF320, 0x0041D220, 0x00423B10, 0x003E6E60, 0x003E6EF0, 0x003AF220, 0x003AEF90, 0x003E68B0, 0x003E6A70, 0x003AEF20, 0x003AEF50, 0x0025DF00, 0x002E5750, 0x0026B6A0, 0x0026B520, 0x002651C0 |
 
 ## What the player sees
 
@@ -24,15 +23,15 @@ commands](../Graphics/authored-presentation-commands.md))
 is handled by `0x00520C10`: when the record's presentation entry (`0x00422D50`) has a motion section
 (`+0x370`) it calls `0x003E6340(record, mode)` on its own record argument with the command's word
 `+2`, and it returns 0 either way (`0x00520C40`). The builder returns at
-once without a list owner (`0x003E6E60` = 0).
+once without a list owner (`0x003E6E60` = 0, `0x003E636A`-`0x003E6372`).
 
 `0x00422D50` is called with the same record argument (`0x00520C20`): it answers null when the record's
 `+0xC4` is -1 (`0x00422D56`) and otherwise tail-jumps to `0x0051B9E0` with the pointer at `+0xDA8` of
 `0x0020E600` of the record's `+0x10` and the record's `+0xC4` (`0x00422D6A`-`0x00422D84`), so the gate and
 the request both start from the argument.
 
-Otherwise it asks the unit for a view: `0x0041F2F0(record,
-0x0C, view)` zeroes 64 bytes, stamps `+0x00` with the record's word `+0xCC` and `+0x30` with its
+Otherwise it asks the unit for a view: `0x0041F2F0(record, 0x0C, view)` (`0x003E6390`) zeroes 64 bytes, stamps `+0x00`
+with the record's word `+0xCC` and `+0x30` with its
 `+0x110` (the builder reads both before it zeroes the view again, `0x0031ADD1`-`0x0031AE32`),
 and hands the view to the battle
 unit's view builder (`0x002ED500` → `0x0031ADB0`) with selector bits `0x4` and `0x8`.
@@ -68,22 +67,30 @@ target's y plus
 reach of 0 the routine skips the target position and that y is 1.0 (`0x0031AF56`, `0x0031AF91`,
 `0x0031B093`-`0x0031B099`).
 
-Nothing is queued when the target position equals the record's position `+0x140`/`+0x148` in x and
-z.
+Nothing is queued when the target position, the view's `+0x10`/`+0x18`, equals the record's position `+0x140`/`+0x148`
+in x and z (`0x003E6395`-`0x003E63BB`).
 
-Otherwise the request is built: for mode `0x10` and modes 3 and 4 the direction is the unit
-vector from the target position to the record's position in x and z, its y 0 (`0x003E63FE`,
-`0x003E64E2`), a step away from the target, with
-distance 1.0; for every other mode it is the vector from the record to the reach point, with the
-distance `|vector|` kept only when the view's `+0x3C` has bit `0x1` and zeroed otherwise (with the
-reach point unset the vector points at the world origin and only the turn acts).
+Otherwise the request is built. For mode `0x10` and modes 3 and 4 (`0x003E63DB`-`0x003E63DE`, `0x003E642E`-`0x003E643D`) the
+direction is the unit vector from the target position to the record's position in x and z, its y 0 (`0x003E63FE`,
+`0x003E64E2`), a step away from the target, with distance 1.0 (`0x003E63E0`-`0x003E6419`, `0x003E64C3`-`0x003E64F3`).
 
-The relative heading is the angle from the record's facing frame
-`+0x180` to the target position (`0x00424370`, an `atan2` taken only when both transformed x and z
-are non-zero, `atan2f(x, z)` at `0x00424436`; a target on a frame axis gives 0.0, the zero loaded at
-`0x0042441C`); mode `0x0A` with record byte `+0x2AF` = 3 and a
-non-negative heading takes the long way round (heading minus `2pi`). The request goes to the
-record's list at `+0x550` (`0x003AED70`).
+For every other mode it is the vector from the record's `+0x140`-`+0x148` to the reach point, the view's
+`+0x20`-`+0x28`, in all three axes, with the distance `|vector|` (`0x00861F14`) kept only when the view's `+0x3C` has
+bit `0x1` and zeroed otherwise (`0x003E6443`-`0x003E64C1`); with the reach point unset (its x and z 0,
+`0x0031B06A`-`0x0031B0AB`) the vector points at the world's vertical axis, at the origin itself when bit `0x8` wrote
+nothing, and with the distance 0 only the turn acts.
+
+Every direction is the vector times `1 / |vector|` (`0x00861F14`, `0x003E6522`-`0x003E6583`).
+
+The relative heading is the angle from the record's facing frame `+0x180` to the target position,
+`0x00424370(record + 0x180, view + 0x10)` (`0x003E6406`, `0x003E64AA`, `0x003E64EE`; an `atan2` taken only when both
+transformed x and z are non-zero, `atan2f(x, z)` at `0x00424436`; a target on a frame axis gives 0.0, the zero loaded at
+`0x0042441C`).
+
+Mode `0x0A` (`0x003E64F8`-`0x003E6514`, adding the `-2pi` at `0x00915624`) with record byte `+0x2AF` = 3 and a non-negative
+heading takes the long way round (`heading - 2pi`). The request goes to the record's list at `+0x550`,
+`0x003AED70(record + 0x550, request)` (`0x003E6589`), after the mode word `+0x02` (`0x003E6389`), `+0x08` = 0 on each path
+(`0x003E63F3`, `0x003E649F`, `0x003E64D6`), and word `+0x00` = 0 and `+0x1C` = 1.0 last (`0x003E654B`-`0x003E655B`).
 
 Struct MoveTurnRequest  (`0x20` bytes, on the builder's stack):
 
@@ -122,18 +129,18 @@ so only the newest request turns.
 
 ### The knockback request
 
-`0x003AED70` has a second producer. The knockback impulse `0x00323350(attacker, victim, distance, flag)`
-(from `0x00307300`) builds a request on its stack: mode `0xE`, or `0xF` with the flag; the distance;
-`+8` = 0; the relative heading as the bearing from the victim to the attacker minus the victim's
-heading `+0x160`, wrapped; the direction `(victim -
-attacker) / hypot` in x and z, away from the attacker; `w` = 1.0.
+`0x003AED70` has a second producer. The knockback impulse `0x00323350(attacker, victim, distance, flag)`, called from
+`0x00307300` (`0x00307B04`), does nothing when the attacker is the victim (`0x00323350`-`0x00323353`), nor when either of
+`0x02089340` bits `0x200` and `0x400` is set together with a victim `+0x698` record with byte `+5` = 0, victim byte `+0`
+bit `0x10`, and the record's dwords `+0x3C | +0x64` clear of `0x80000003` (or `0x00377C20()` set, through `0x00313F60`)
+(`0x00323378`-`0x003233C7`), nor at a zero distance between the two in x and z (`0x003233CD`-`0x00323419`).
 
-A zero distance between the two skips it, as does either of `0x02089340` bits `0x200` and `0x400` together with a victim
-`+0x698` record with byte
-`+5` = 0, victim byte `+0` bit `0x10`, and status words `+0x3C | +0x64` clear of `0x80000003` (or
-`0x00377C20()` set).
+Otherwise it builds a request on its stack: word `+0x00` = 0; mode `0xE`, or `0xF` with the flag; the distance; `+8` =
+0; the relative heading as the bearing `0x00861F02` (`atan2f`) from the victim to the attacker minus the victim's
+heading `+0x160`, wrapped into -pi to pi; the direction `(victim - attacker) / hypot` in x and z with y 0, away from
+the attacker; `+0x1C` = 1.0 (`0x0032341F`-`0x003234FD`).
 
-The request goes through `0x002E70E0(victim handle, request)`, which needs the victim actor's byte
+The request goes through `0x002E70E0(victim handle, request)` (`0x00323503`), which needs the victim actor's byte
 `+0x0D` bit `0x2` and a valid render record, to `0x003E65E0(record, request)`: for modes `0xE` and `0xF`,
 with `0x003E56C0()` null or its byte `+0x111` zero the heading is zeroed, otherwise a heading beyond
 90 degrees either way is flipped by `pi` and wrapped; then `0x003AED70` as usual. Modes 14 and 15 are

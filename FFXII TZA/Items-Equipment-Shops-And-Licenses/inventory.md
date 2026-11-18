@@ -1,9 +1,8 @@
----
-title: "Inventory: how items, equipment, loot, magicks, technicks, gambits and key items are stored and counted, what changes them, and the gil purse"
-kind: "system"
-category: "Items, equipment, shops and licenses"
-addresses: "0x01EEBCC0, 0x003008A0, 0x002FD150, 0x002FD420, 0x00300B80, 0x0030B6A0, 0x003047F0, 0x00253690, 0x00254EE0, 0x003004B0"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Inventory
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Inventory: how items, equipment, loot, magicks, technicks, gambits and key items are stored and counted, what changes them, and the gil purse | system | Items, equipment, shops and licenses | Items and inventory | How the game keeps what the party owns: the encoded id and its top nibble, the fifteen descriptor records and the storage each uses (a count word with owned and equipped parts capped at 99, or one bit), the bundle and gil ids that expand into other grants, the one change function and its four channels, the first-acquisition marks, the ever-owned bits and the loot-sold tallies, every feature that changes the inventory, the writers that bypass the change function, and the gil purse with its cap. | 0x01EEBCC0, 0x003008A0, 0x002FD150, 0x002FD420, 0x00300B80, 0x0030B6A0, 0x003047F0, 0x00253690, 0x00254EE0, 0x003004B0 |
 
 ## What the player sees
 

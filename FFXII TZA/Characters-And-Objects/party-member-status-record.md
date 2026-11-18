@@ -1,9 +1,8 @@
----
-title: "Party member status record: the snapshot the menus and HUD read a party member through, field by field"
-kind: "system"
-category: "Characters and objects"
-addresses: "0x00329220, 0x0031FE70, 0x00320040, 0x0031FEC0, 0x0031FF70, 0x0031B9F0, 0x0031FDA0, 0x003879C0, 0x0030C2C0, 0x003135E0, 0x00313800, 0x00303EE0, 0x00327200, 0x0030A310, 0x002F8F20, 0x00387090, 0x003A1960, 0x00324020, 0x00263C20, 0x00313F60"
----
+[Home](../../README.md) / [Characters and objects](README.md) / Party member status record
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Party member status record: the snapshot the menus and HUD read a party member through, field by field | system | Characters and objects | Battle units | The 192-byte record that the status screen, the party menu, the licence board, the save screen and the HUD read a party member from: who builds it, from which fields of the party stats record, its battle unit and its party row, every field it carries with its source, the flag word that says whether the member is KO'd, engaged, idle, selected or out of range, the experience curve behind the points to the next level, and which screen reads which field. | 0x00329220, 0x0031FE70, 0x00320040, 0x0031FEC0, 0x0031FF70, 0x0031B9F0, 0x0031FDA0, 0x003879C0, 0x0030C2C0, 0x003135E0, 0x00313800, 0x00303EE0, 0x00327200, 0x0030A310, 0x002F8F20, 0x00387090, 0x003A1960, 0x00324020, 0x00263C20, 0x00313F60 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Equipping an item: the steps from picking a piece in the equip menu to the rebuilt stats"
-kind: "operation"
-category: "Items, equipment, shops and licenses"
-addresses: "0x003FF360, 0x003FFA20, 0x0031A510, 0x00317930, 0x00323C60, 0x00318B40, 0x0030FED0, 0x00324470, 0x00324380"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Equipping an item
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Equipping an item: the steps from picking a piece in the equip menu to the rebuilt stats | operation | Items, equipment, shops and licenses | Equipment | The order in which the game equips one piece from the equip menu: the list and its refusal marks, the setter, the eligibility test and the license test, the worn copy moved from the old piece to the new, the hands reconciled, the stats rebuilt and the unit refreshed, and when the setter reloads the fighting units' models; with what happens for a refused piece, a two-handed weapon, a shield, ammunition and taking a piece off, each step linked to the page that explains it. | 0x003FF360, 0x003FFA20, 0x0031A510, 0x00317930, 0x00323C60, 0x00318B40, 0x0030FED0, 0x00324470, 0x00324380 |
 
 ## What the player sees
 
@@ -216,3 +215,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - World area: `0x00313F60` is called by `0x00234590`; `0x00324470` calls `0x00313F60`; those functions are documented on
   [force fight mode](../Engine-Core/force-fight-mode.md),
   [frame update order](../Engine-Core/frame-update-order.md).
+
+---
+
+[← Equipment](equipment.md) | [Licenses →](licenses.md)

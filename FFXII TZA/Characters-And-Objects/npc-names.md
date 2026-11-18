@@ -1,9 +1,8 @@
----
-title: "NPC names: the npcdic.bin name pairs, the actor's name id, and the story flag that swaps a name"
-kind: "system"
-category: "Characters and objects"
-addresses: "0x003EAC40, 0x003EAC70, 0x003EAC10, 0x003EABE0, 0x00263990, 0x002639E0, 0x0026DEA0, 0x00269F40, 0x0034B9A0, 0x0034C170, 0x002E16B0, 0x00379D20, 0x00272CB0, 0x00272CE0, 0x00268D10, 0x00536310, 0x00536280, 0x00267410, 0x005369C0, 0x00272C80"
----
+[Home](../../README.md) / [Characters and objects](README.md) / NPC names
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| NPC names: the npcdic.bin name pairs, the actor's name id, and the story flag that swaps a name | system | Characters and objects | Field actors | How a field character's name tag is chosen: the name id every actor carries, the pair of strings that id selects in npcdic.bin, the story flag with the same number that switches to the second string once the player has talked to that character, the two script verbs that assign a name id, and the shipped dictionaries for the nine languages. | 0x003EAC40, 0x003EAC70, 0x003EAC10, 0x003EABE0, 0x00263990, 0x002639E0, 0x0026DEA0, 0x00269F40, 0x0034B9A0, 0x0034C170, 0x002E16B0, 0x00379D20, 0x00272CB0, 0x00272CE0, 0x00268D10, 0x00536310, 0x00536280, 0x00267410, 0x005369C0, 0x00272C80 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Object construction and destruction: vtable installs, deleting destructors, deallocators and owned buffers"
-kind: "system"
-category: "Compiler and C runtime"
-addresses: "0x00809950, 0x00210EB0, 0x0019C590, 0x00584730, 0x0019C570, 0x0016D6A0, 0x007AD450, 0x0085E710, 0x00210EC0, 0x001D70A0, 0x00195530, 0x0086CE50, 0x01CD6268, 0x0015BC40, 0x00792350, 0x001EDF00, 0x005CA130, 0x00627750, 0x00623F50, 0x0019CA20, 0x001A4250"
----
+[Home](../../README.md) / [Compiler and C runtime](README.md) / Object construction and destruction
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Object construction and destruction: vtable installs, deleting destructors, deallocators and owned buffers | system | Compiler and C runtime | Program start-up and memory | The compiler's object code in FFXII_TZA.exe: constructors that install the base vtable and then their own, the scalar deleting destructor and its flag in edx, the two-bit form in which bit 0x4 sends the sized delete to a do-nothing body, the deallocator chains to free and _aligned_free, destructors that rewind to the base vtable (the 26 PInputSource classes named by RTTI), the counted buffer whose top bit marks borrowed storage, and EASTL allocators that free through their own vtable. | 0x00809950, 0x00210EB0, 0x0019C590, 0x00584730, 0x0019C570, 0x0016D6A0, 0x007AD450, 0x0085E710, 0x00210EC0, 0x001D70A0, 0x00195530, 0x0086CE50, 0x01CD6268, 0x0015BC40, 0x00792350, 0x001EDF00, 0x005CA130, 0x00627750, 0x00623F50, 0x0019CA20, 0x001A4250 |
 
 ## What the player sees
 

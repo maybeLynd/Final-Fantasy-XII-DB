@@ -1,9 +1,8 @@
----
-title: "Glossary: the database's words for engine objects, records, ids, handles, pools and files, each with the page that explains it"
-kind: "reference"
-category: "Engine core"
-addresses: ""
----
+[Home](../../README.md) / [Engine core](README.md) / Glossary
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Glossary: the database's words for engine objects, records, ids, handles, pools and files, each with the page that explains it | reference | Engine core | Glossary, ids and limits | 153 terms the pages use across subsystems: what the thing is in a sentence or two, the other names the pages give it, and the page and section that explain it in full; with the words that name more than one thing told apart. |  |
 
 ## What it lists
 

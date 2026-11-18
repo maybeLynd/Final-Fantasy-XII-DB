@@ -1,9 +1,8 @@
----
-title: "Asset paths: every file the game asks for by resource kind and id, with its path, size and whether the archive ships it"
-kind: "reference"
-category: "Game files and data tables"
-addresses: "0x002DF9A0, 0x0215F000, 0x0032E620, 0x002DF960, 0x002DF980, 0x002ED6F0, 0x01ED7630, 0x01ED7740, 0x001F4340"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Asset paths
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Asset paths: every file the game asks for by resource kind and id, with its path, size and whether the archive ships it | reference | Game files and data tables | Archives and file loading | All 21,834 entries of the 41 per-kind path arrays the executable installs for the US build: each resource kind and id with the archive path the game builds for it, the size the US size table gives, and whether FFXII_TZA.vbf holds that file with its archived size; 10,521 sized entries, of which 10,499 ship, and how the arrays are found, where each ends and where the size table and the archive disagree; and, for every other language, the arrays its arm installs in place of the US ones, with one array no arm installs. | 0x002DF9A0, 0x0215F000, 0x0032E620, 0x002DF960, 0x002DF980, 0x002ED6F0, 0x01ED7630, 0x01ED7740, 0x001F4340 |
 
 ## What it lists
 

@@ -1,9 +1,8 @@
----
-title: "Hunts: every hunt with its name, petitioner, row picture, record text, the progress that shows each part and when its row is marked done"
-kind: "reference"
-category: "Story, events and hunts"
-addresses: "0x0037E5B0, 0x002F9920, 0x0037EFC0, 0x0037E8D0, 0x0037EF70, 0x0037EE10, 0x00578450, 0x00577C30, 0x003FFB00, 0x002639E0"
----
+[Home](../../README.md) / [Story, events and hunts](README.md) / Hunts
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Hunts: every hunt with its name, petitioner, row picture, record text, the progress that shows each part and when its row is marked done | reference | Story, events and hunts | Quests and hunts | All 45 hunts of the shipped us quest-menu files, decoded field by field: the quest id, its record and position, the hunt's name, the row picture with its sheet and cell, the petitioner line, the threshold that marks the row done, the record's parts with their text, the progress values at which each part appears, and a one-line explanation. | 0x0037E5B0, 0x002F9920, 0x0037EFC0, 0x0037E8D0, 0x0037EF70, 0x0037EE10, 0x00578450, 0x00577C30, 0x003FFB00, 0x002639E0 |
 
 ## What it lists
 
@@ -36,6 +35,28 @@ The `us` zone scripts make 56 such calls, with the quest id written in the call 
 The `mark` column joins each mark to its [Bestiary](../Enemy-Spawning/bestiary.md) rows and their placements by name. 38 hunts have a step labelled with the mark, and its `location` word is the field id of a map zone, which the location map looks up among its zones (`0x003BC160`, `0x003C0380`; [Map menu files](../Game-Files-And-Data-Tables/menu-map-files.md), lmap `fieldId`).
 
 Seven hunts have no such step. The five steps of 153 carry location 0. The one step of 159, 167, 169, 170, 171 and 172 is labelled Montblanc, Rikken or Whitecap Wench, and the hunt map marks that step's zone. Their marks are the foes their record names; hunt 172's Belito is a ruse, and the foe is Ba'Gamnan.
+
+Each mark is a unit actor of its map's zone script, named `NM_` and the mark's Japanese name for 40 hunts (Ixion's is
+`NM_ダークファイア`) and `BOSS_` for the marks of hunts 165, 167, 170, 171 and 172; Gilgamesh is five actors in
+each of `lus_c01` and `lus_e01`. It is entered like any placement ([Enemy
+spawning](../Enemy-Spawning/enemy-spawning.md)).
+
+The Rogue Tomato shows the gate: the battle setup of `dst_a01` copies the hunt's global `g_btl_nm_パック` into a
+file word (line 58), and `NM_はぐれトマト.spawn00` checks it every frame and, once it is 1, enters group 0, or
+group 1 while scratch1 word `+0x20` is set (lines 1891-1910); every other mark enters group 0.
+
+Some marks test more than their gate: the weather (Ring Wyrm, Lindwyrm, Fafnir, Gil Snapper), the distance from their
+entry point (Vorpal Bunny, Behemoth King), play time (Marilith) or a roll (Ixion). The Vorpal Bunny's `respawn00`
+enters at a position it recorded from itself (`btlAtelSetEntryPositionForce`, `gol_b01` line 2379). The table
+`enemy-placement-conditions.tsv` of the enemy spawning page gives each mark's tests.
+
+Three marks also test the party in their spawn conditions. Deathscythe enters once a party slot of character kind 0 or
+1 has HP that is not 0 and under 10% of its maximum (`btlAtelGet*FromPartySlot`, `bds_b01` lines 2149-2158), and
+Orthros once battle-member bits `0x2`, `0x4` and `0x20` are all set (`getbattlemembermask`, `grm_e04` lines 572-575).
+
+Mindflayer enters when the summed current MP of the party slots of character kind 0 or 1 is at least 90% of their
+summed maximum, a test its spawn function makes once (`hne_a04` lines 1172-1184). The rare games Velelu (`bog_b03`)
+and Dustia (`wdl_a02`) read the party the same way.
 
 ### The key item a mark leaves
 

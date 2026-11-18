@@ -1,9 +1,8 @@
----
-title: "Font glyphs: every glyph record of every shipped font, with its character, atlas rectangle, advance and kerning code point"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x001B4D70, 0x001FDCC0, 0x001E9860, 0x002AA5C7, 0x002AC4EC, 0x002AC527"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Font glyphs
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Font glyphs: every glyph record of every shipped font, with its character, atlas rectangle, advance and kerning code point | reference | Menus and HUD | Fonts and text drawing | All 23,250 glyph records of the 63 shipped .dat font files in file order: each record's key, its character, its UTF-8 word, its rectangle in the atlas, its two advance words and its kerning code point, with the fields named as on the Fonts page; which fonts key their glyphs by index and which by code point. | 0x001B4D70, 0x001FDCC0, 0x001E9860, 0x002AA5C7, 0x002AC4EC, 0x002AC527 |
 
 ## What it lists
 

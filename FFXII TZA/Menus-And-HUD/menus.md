@@ -1,9 +1,8 @@
----
-title: "Menus: how a menu screen is asked for and opened, the one-slot mailbox, the refusals that keep a menu shut, and what a menu hands back"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x00254B50, 0x0215F1A0, 0x002E1B10, 0x002E1A60, 0x002E0DA0, 0x002E09A0, 0x00280A00, 0x0027FB70"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Menus
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Menus: how a menu screen is asked for and opened, the one-slot mailbox, the refusals that keep a menu shut, and what a menu hands back | system | Menus and HUD | How menus work | How menus are requested: the request ids and the router that opens each one, the refusals by latch and action availability, the one-slot mailbox and the posts that fill it, the script verbs that open menus and their selector table, the drain that delivers a request once per tick, the full-screen hold while a menu is open and the close acknowledgement, what a menu hands back to the script, and the request ids nothing posts. | 0x00254B50, 0x0215F1A0, 0x002E1B10, 0x002E1A60, 0x002E0DA0, 0x002E09A0, 0x00280A00, 0x0027FB70 |
 
 ## What the player sees
 
@@ -231,3 +230,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Input gameplay: `0x002E1C20` is called by `0x00313A00`; those functions are documented on
   [force fight mode](../Engine-Core/force-fight-mode.md).
+
+---
+
+[← Opening the main menu](opening-the-main-menu.md) | [Widgets →](widgets.md)

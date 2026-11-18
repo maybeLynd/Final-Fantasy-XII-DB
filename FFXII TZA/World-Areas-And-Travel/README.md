@@ -1,19 +1,49 @@
+[Home](../../README.md) / World, areas and travel
+
 # World, areas and travel
 
 Areas and zone changes, the per-area map information table, weather, save crystals, teleports, chocobos and airships.
 
-| Page | What you will find |
-|---|---|
-| [Area flags: the navimapdata.bin record for every area, the town flag, the KO, Stone and X-Zone override and the other bits](area-flags-navimapdata.md) | The 3-byte per-area record shipped in navimapdata.bin: which areas count as towns, the bit that lets a KO'd, Stoned or X-Zoned character stay in play, the MP regime, the Map entry, the area-name flag, the party hold flag and the default leader, the seven accessor functions that read them, the two save-data overrides and counts over the shipped records. |
-| [Changing areas: the steps from a jump request to the new zone running](changing-areas.md) | The order in which the game moves the party to another zone: the request every jump passes through, staging with the transition record and the autosave test, the fade, the tick that tears the old zone down, the zone's file loads, the navigation bind that releases the start hold, and the start work of the new zone, each step linked to the page that explains it. |
-| [Chocobos and airships: riding a chocobo, the ride timer and its dismount, and aerodrome travel](chocobos-and-airships.md) | What riding a chocobo is to the engine: one mode bit in the party block and one story flag, the three-minute ride timer and the turbo timer in the shared timer slots, the dismount task that fades, swaps the party back and clears the flag, the menu's Dismount command and the ground test behind it, the mode ladder that tells riding from the other modes, the music the ride selects, who lends a chocobo and what each asks for, the verbs the keeper, wild-chocobo and crystal scripts use, how a save carries the riding bit, and airship travel, which has no verb of its own and is a gil charge, a scene a private cabin can skip and map jumps in the aerodrome scripts. |
-| [Doors, gates and map changes: the override table the setmapid verbs write, what its floor, wall and mj bits block, the show and hide model masks and when a new map clears them](doors-gates-and-map-changes.md) | How a zone script opens a gate or raises a barrier: the 80-entry override table at 0x0209A3E0 that setmapidfloor, setmapidwall and setmapidmj lay over every collision polygon's attribute word, which movement kinds each bit blocks, the ground field, the path reset every write triggers, the route-graph edges that consult the same table, the two 64-bit masks behind showmapmodel and hidemapmodel, and the map bind that clears all of it. |
-| [Game over: what a party wipe does, the GAME OVER screen, and the return to the title map](game-over.md) | What happens after the last party member falls: the request the field frame posts and the second route a menu death takes, the executor that opens the game-over screen, the task tree that fades the field out, shows the GAME OVER image and the press-to-continue prompt, and fades to black, the request for the title map and the byte it really sets, the main-loop check that tears the field down and returns to the title screen, what is not reloaded, and where a load afterwards puts the party, including the save-crystal entrance alias. |
-| [Map art: the remaster's map models, the map-art context, its per-map files and the calls the map draw makes](map-art.md) | How the PC remaster draws a field with its own models: the map-art context kept at 0x01F81168, the asset list it requests when a zone's pack names the map, the load that pairs each PMeshInstance with a YM00 instance by the number in its name and builds two MapRenderObjects per instance, the per-map option files opt.csv, NoModelGroupMaps.txt and proceduralTextureConfigs.txt, the paletted textures rebuilt from the PS2 palette data, and the bridge calls through which the map draw culls, binds and draws each instance. |
-| [MPK map pack: the sections of a map file, the two packs a field loads, how the loader splits and binds them, and what each section holds](mpk-map-pack.md) | One .mpk per zone under plan_master/map_ctrl: a count of 32, 32 section sizes and the sections back to back, each behind a 0x40-byte slot. Entering a field requests two packs, the field's own and its block's, carves each into 32 arena blocks in place, keeps sound, world (YM00), navigation, actor control, lights, pictures and placements, and frees the rest; the YM00, ACTL, SP1, WD and MRP containers are laid out here with their consumers, with counts over the 550 shipped packs. |
-| [Save crystals and gate crystals: the heal, the save menu, teleporting and the two bits that switch them off](save-and-teleport-crystals.md) | What happens when the player confirms at a crystal: the full heal and what it restores, the save menu request and how the save screen is opened and waited for, the teleport menu, the Teleport Stone, the flash and the ordinary map jump that carries the party, the arrival presentation in the destination zone, the crystal number that tells a save crystal from a gate crystal, and the two bits in the save image that switch saving and teleporting off, with every other bit of that flag byte and the script verbs that set them. |
-| [Traps: how walking onto a trap fires it, the trap table, the two outcomes and their odds, and re-arming by settrapresource](traps.md) | The traps a field carries: the trap table in the zone script and its twelve-byte records, the arming walk the settrapresource verb runs at field load with its arm chance and its world markers, the per-field live mask kept in a ring of three, who can spring a trap and who is caught in its radius, the horizontal proximity test, the hard-coded roll between the two authored actions, the action rows a trap can name and what they do, the battle message, Libra's reveal of the markers, counts over the shipped traps, and the list of all 489 with their map, region, place, odds, actions and reach. |
-| [Treasure chests: where each chest stands, whether it appears and comes back, and what it holds with the odds of each content](treasure-chests.md) | Every treasure chest the game ships: how a zone script binds a chest to its 24-byte record, the presence roll when a chest is set out and the opened flag that keeps a one-time chest away, the payout roll when the chest is opened (gil or one of two items, with the Treasure Hunter set the Diamond Armlet unlocks), the chests that share a flag, counts of the shipped chests by region, and the list of all 1,966 with map, region, place, flag, chance and every possible content with its odds. |
-| [Weather: the three weather slots of an area, the change roll on entering, the setweatherslot verb, the MWeather table, what the slot does to the sky, the map and combat, and the environment variant it selects](weather.md) | Every area has three authored weather slots; entering a map rolls whether the current slot is kept, using the probabilities the zone script authors, after the zone's setup script has had the chance to choose the slot itself; the result is kept in the save. Applying a slot publishes the area's environment variant from map_ref.bin (the combat environment class and the terrain boolean), the 9-bit MWeather entry that sets the map wind's preset, azimuth and elevation (the model sway, not the sky) and the strong-wind combat class, and the per-slot map models, textures and effects. |
-| [Zone asset list: every zone the area loader can enter, with the files it loads and the models and foes it brings](zone-asset-list.md) | All 708 zones the US script array names: each zone's map and region name, its script and its motion and package files, the zone's own map pack and the block pack, the map sounds the block pack lists, the area and its battle data, the remastered map art with its mesh and texture count, the models of the zone script's actor manifest and the foes it places; how the area loader 0x0032FCA0 and map_ref.bin name each file. |
-| [Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map](zone-changes-and-mapjump.md) | From the script line mapjump(map, entrance, mode) to the frame the new zone runs: the verb's wait and request, the transition record in the save data, the fade, the tick that tears the old zone down and starts the load, the pending-load and busy masks, the ready point, the scene loader, the jump-index verbs, the jump lock and the field id's file table. |
+Jump to: [Changing areas and travel](#changing-areas-and-travel) · [Chests, traps and weather](#chests-traps-and-weather) · [Map data](#map-data)
+
+## Start here
+
+Start with these pages, in this order:
+
+1. [Changing areas](changing-areas.md): walks through a whole area change
+2. [Zone changes](zone-changes-and-mapjump.md): names the verbs behind it
+3. [Doors, gates and map changes](doors-gates-and-map-changes.md): shows what can block or change a map
+
+## Changing areas and travel
+
+How the party moves between areas: jumps, doors, crystals, rides and a wipe's return to the title map.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Changing areas](changing-areas.md) | Walkthrough | Each step from a jump request to the new zone running. |
+| [Zone changes](zone-changes-and-mapjump.md) | Explanation | The jump verbs, the loading flags and the moment the new zone is ready. |
+| [Doors, gates and map changes](doors-gates-and-map-changes.md) | Explanation | How the map override table blocks floors, walls and exits and hides models. |
+| [Chocobos and airships](chocobos-and-airships.md) | Explanation | Riding a chocobo, its timer and dismount, and aerodrome travel. |
+| [Game over](game-over.md) | Explanation | What a party wipe does, the GAME OVER screen and the return to the title. |
+| [Save crystals and gate crystals](save-and-teleport-crystals.md) | Explanation | How crystals heal, open the save menu and teleport, and what switches them off. |
+
+## Chests, traps and weather
+
+The chests, traps and weather of an area and how each is decided.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Traps](traps.md) | Explanation | How a trap fires, what it can do and how traps re-arm. |
+| [Treasure chests](treasure-chests.md) | Explanation | Where chests stand, whether they appear and what they hold. |
+| [Weather](weather.md) | Explanation | An area's weather slots, the change roll and what weather affects. |
+
+## Map data
+
+The files and per-area records behind every map.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Area flags](area-flags-navimapdata.md) | Explanation | The per-area record behind town status, KO overrides and other bits. |
+| [Map art](map-art.md) | Explanation | The remaster's map models and the files the map draw uses. |
+| [MPK map pack](mpk-map-pack.md) | Format | The sections of a map file and how the loader binds them. |
+| [Zone asset list](zone-asset-list.md) | Reference table | Every zone the game can enter, with its files, models and foes. |

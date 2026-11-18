@@ -1,9 +1,8 @@
----
-title: "Party control modes: the summon, chocobo, town and event-party levels and who may set them"
-kind: "system"
-category: "Engine core"
-addresses: "0x0030D9A0, 0x00377C20, 0x00377C70, 0x003148F0, 0x003135C0, 0x00303EC0, 0x003072C0, 0x00307280, 0x003135E0, 0x00313550, 0x0035C620, 0x00303EE0, 0x00303D90, 0x003072E0, 0x00307240, 0x003072A0, 0x00307200, 0x0034E1F0, 0x0034FE80, 0x0050FFB0, 0x00355C40, 0x00356A30, 0x00347230, 0x00347820, 0x003514D0, 0x00355910, 0x00356630, 0x00351B40, 0x00355FE0, 0x00356DF0, 0x00351E50, 0x00356370, 0x003573A0, 0x0037C8F0, 0x0037C860, 0x003CA2E0, 0x0037C870, 0x0037C900, 0x0037C890, 0x0037C8B0, 0x0037CFF0, 0x0037CFC0, 0x0037D100, 0x0037D110, 0x0037D120, 0x00306760, 0x00328BD0, 0x00313840, 0x00584210, 0x00304680, 0x0035CA70, 0x0030D8B0, 0x002EA8E0, 0x002EA8B0, 0x003E7CC0, 0x003E7C70, 0x00313600, 0x00313730, 0x00313650, 0x00304180, 0x00304400, 0x00304060, 0x00304140, 0x0016D6A0, 0x00233AA0, 0x00233CF0, 0x0025D9E0, 0x0037C730, 0x0026CE60, 0x0037C980, 0x0037CA00, 0x0037CA80, 0x00326500, 0x003266C0, 0x00327850, 0x00327200, 0x003594B0, 0x00234590, 0x00300FC0, 0x0023B040, 0x00253C70, 0x00309A90, 0x00303CC0, 0x00303F00, 0x00304440, 0x00313590, 0x002EF3C0, 0x002EF410, 0x003139D0, 0x00304790, 0x003047C0, 0x0030DA10, 0x00237DF0, 0x003EBC50, 0x003EBD00, 0x002E73C0, 0x002EB030, 0x00314D40, 0x003139C0, 0x003138D0"
----
+[Home](../../README.md) / [Engine core](README.md) / Party control modes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Party control modes: the summon, chocobo, town and event-party levels and who may set them | system | Engine core | Main loop and game states | The level from 0 to 5 that 0x0030D9A0 computes from four bits of the party block and the current area's town flag; the script verbs and engine paths that set each bit and the side effects of the setters; the predicates and readers that ask for the level; the enter and leave handlers the transition dispatcher runs from its five-row table; what the level changes in the focus row and the party selection maps; and how the word is carried across an area change, restored and reset. | 0x0030D9A0, 0x00377C20, 0x00377C70, 0x003148F0, 0x003135C0, 0x00303EC0, 0x003072C0, 0x00307280, 0x003135E0, 0x00313550, 0x0035C620, 0x00303EE0, 0x00303D90, 0x003072E0, 0x00307240, 0x003072A0, 0x00307200, 0x0034E1F0, 0x0034FE80, 0x0050FFB0, 0x00355C40, 0x00356A30, 0x00347230, 0x00347820, 0x003514D0, 0x00355910, 0x00356630, 0x00351B40, 0x00355FE0, 0x00356DF0, 0x00351E50, 0x00356370, 0x003573A0, 0x0037C8F0, 0x0037C860, 0x003CA2E0, 0x0037C870, 0x0037C900, 0x0037C890, 0x0037C8B0, 0x0037CFF0, 0x0037CFC0, 0x0037D100, 0x0037D110, 0x0037D120, 0x00306760, 0x00328BD0, 0x00313840, 0x00584210, 0x00304680, 0x0035CA70, 0x0030D8B0, 0x002EA8E0, 0x002EA8B0, 0x003E7CC0, 0x003E7C70, 0x00313600, 0x00313730, 0x00313650, 0x00304180, 0x00304400, 0x00304060, 0x00304140, 0x0016D6A0, 0x00233AA0, 0x00233CF0, 0x0025D9E0, 0x0037C730, 0x0026CE60, 0x0037C980, 0x0037CA00, 0x0037CA80, 0x00326500, 0x003266C0, 0x00327850, 0x00327200, 0x003594B0, 0x00234590, 0x00300FC0, 0x0023B040, 0x00253C70, 0x00309A90, 0x00303CC0, 0x00303F00, 0x00304440, 0x00313590, 0x002EF3C0, 0x002EF410, 0x003139D0, 0x00304790, 0x003047C0, 0x0030DA10, 0x00237DF0, 0x003EBC50, 0x003EBD00, 0x002E73C0, 0x002EB030, 0x00314D40, 0x003139C0, 0x003138D0 |
 
 ## What the player sees
 
@@ -257,6 +256,18 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
   level 0.
 - `0x00303E90` returns `0x0031E860(3)`, the handle of the mount in slot 3, when `0x0030D9A0()` is 2 and 0 otherwise;
   `0x003200A0` calls it (`0x00320116`).
+
+The direct calls to `0x0023A570(unit, id)` come from three functions. The slot maps' call above (`0x00326B0A`), made for a
+seat's roster actor (`0x00326A4A`) with a unit (`0x00326A5E`) whose present id differs from the seat's word
+(`0x00326A64`-`0x00326A82`), is the only one that can pass a party id; their loop walks seats 0 to 3 only (`0x00326B15`).
+`0x00300E40(unit, n)`, which calls the unit teardown `0x00300FC0(unit, 1)` at its start (`0x00300E59`), passes `0xFFFF`
+(`0x00300F75`) for a unit without a stats record `+0x698` or whose record's byte `+5` is not 0 (`0x00300EDA`-`0x00300EEC`).
+
+`0x0023A3B0(actor, n)`, which the begin `0x00510160` of `btlAtelSetUnit` calls with the value `n` it pops through
+`0x00267E10` (`0x00510173`-`0x0051017D`), returns for an actor without a unit (`0x0023A3CF`). Otherwise it first runs
+`0x002355A0` (`0x0023A3D4`), which can set the unit's bit `0x4000000` (`0x002356E2`), and passes `n | 0x100`, or `0xFFFF`
+for `n` = `0xFF` (`0x0023A3D9`-`0x0023A3F1`); `0x0023A570` installs an `n | 0x100` id only while that bit is set
+(`0x0023A641`-`0x0023A648`).
 
 ### Carried across an area change, restored and reset
 

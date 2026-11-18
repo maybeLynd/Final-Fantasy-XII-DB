@@ -1,9 +1,8 @@
----
-title: "Party list: the member rows on the HUD, the rolling HP and MP numbers, the action bar, the status mark, choosing a new leader and picking a member as a target"
-kind: "system"
-category: "Menus and HUD"
-addresses: "0x0029BE50, 0x0029A0A0, 0x00299090, 0x002986E0, 0x00297C10, 0x002973E0, 0x00271960, 0x00272F80, 0x00296BE0, 0x00297170, 0x0029B870, 0x00297640"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Party list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Party list: the member rows on the HUD, the rolling HP and MP numbers, the action bar, the status mark, choosing a new leader and picking a member as a target | system | Menus and HUD | Battle HUD | How the party list at the side of the screen is built and kept: the list widget and its four row widgets, what each row shows and how it changes (the member's name, the HP digits that roll to a new value, the MP frame by bar count, the cycling status mark and name, the summon gauge, the flashes when a number pops up), the action bar beside each row with the action's name and charge, the two modes that turn the list into a cursor (choosing a new party leader and picking a party member as a battle target), the buttons each mode answers and the sounds it plays. | 0x0029BE50, 0x0029A0A0, 0x00299090, 0x002986E0, 0x00297C10, 0x002973E0, 0x00271960, 0x00272F80, 0x00296BE0, 0x00297170, 0x0029B870, 0x00297640 |
 
 ## What the player sees
 

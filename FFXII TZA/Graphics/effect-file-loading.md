@@ -1,9 +1,8 @@
----
-title: "Effect file loading: the battle effect slots, the loaded-file queue, filing, sharing and releasing, and the battle effect program's state"
-kind: "system"
-category: "Graphics"
-addresses: "0x0024B270, 0x00258D70, 0x002F2D60"
----
+[Home](../../README.md) / [Graphics](README.md) / Effect file loading
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Effect file loading: the battle effect slots, the loaded-file queue, filing, sharing and releasing, and the battle effect program's state | system | Graphics | Visual effects / Effect Files | How effect files are requested and kept: the 48 battle effect slots and their states, the 32-entry queue of loaded effect files, filing, sharing and releasing a loaded file, and the globals the battle effect program writes when it places its target actor or files its light. | 0x0024B270, 0x00258D70, 0x002F2D60 |
 
 ## What the player sees
 

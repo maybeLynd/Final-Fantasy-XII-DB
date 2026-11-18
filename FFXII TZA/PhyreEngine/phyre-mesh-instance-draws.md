@@ -1,9 +1,8 @@
----
-title: "Phyre mesh-instance draws: the segment loop, the bone palette, the per-draw parameter blocks, the light and shadow parameter values and the preprocess ring buffer"
-kind: "system"
-category: "PhyreEngine"
-addresses: "0x0060B980, 0x005FF090, 0x005FF200, 0x005EB370, 0x00600B30, 0x005FECF0, 0x00600F30, 0x00670920, 0x00600BE0, 0x00606C60, 0x02CB6360, 0x006B6410, 0x006B64F0, 0x006B6510, 0x006B6690, 0x006B64C0, 0x007A12B0, 0x02E52270, 0x005DDAE0, 0x0060EC30"
----
+[Home](../../README.md) / [PhyreEngine](README.md) / Phyre mesh-instance draws
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Phyre mesh-instance draws: the segment loop, the bone palette, the per-draw parameter blocks, the light and shadow parameter values and the preprocess ring buffer | system | PhyreEngine | Drawing and shaders | How PhyreEngine draws one mesh instance in the executable: 0x0060B980 walks the mesh's segments, picks each segment's material, technique and shader variant, builds the bone-matrix palette, sizes and fills the per-draw parameter blocks, and the evaluator 0x00600F30 writes the light, shadow, vertex-stream and LOD values a shader asks for by parameter type; with the 2 MiB PPreprocessRingBuffer that holds large palettes and dynamic-mesh data, and the variant usage counter that never runs. | 0x0060B980, 0x005FF090, 0x005FF200, 0x005EB370, 0x00600B30, 0x005FECF0, 0x00600F30, 0x00670920, 0x00600BE0, 0x00606C60, 0x02CB6360, 0x006B6410, 0x006B64F0, 0x006B6510, 0x006B6690, 0x006B64C0, 0x007A12B0, 0x02E52270, 0x005DDAE0, 0x0060EC30 |
 
 ## What the player sees
 
@@ -425,3 +424,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Movement: `0x006C0520` is called by `0x00268380`; those functions are documented on
   [actor record fields](../Characters-And-Objects/actor-record-fields.md).
+
+---
+
+[← Phyre frame](the-frame.md) | [Shader variant selection →](shader-variant-selection.md)

@@ -1,29 +1,73 @@
+[Home](../../README.md) / Engine core
+
 # Engine core
 
 The main loop and per-frame update, startup and the values set at boot, the developer tuning console, logging, the object model and the engine's shared state.
 
-| Page | What you will find |
-|---|---|
-| [Call signatures: the arguments each function reads and passes on](call-signatures.md) | For every one of the executable's 39,115 functions: the integer and float argument registers its body reads, its argument count, the arguments its entry stores in their home slots and the stack arguments it reads (call-signatures.tsv, call-signatures-stack-args.tsv); for each of its 137,609 calls and tail calls, the target and the argument registers that still hold the function's incoming values there (call-signatures-forwards.tsv); and the 6,882 functions that sit in a class's virtual table, whose first argument is that class's this. |
-| [Class hierarchy: the C++ classes the executable names through RTTI and what they are](class-hierarchy.md) | How the 2,286 vtables in the executable carry their class name, base classes and virtual slots through the MSVC run-time type information left in the image, what the 2,248 named classes are (PhyreEngine, the SQEX sound driver, Yebis, Bullet, the C++ library, and 134 in the global namespace: the game's own, the Steam callback templates, type_info and four TAsyncUpdate templates over Phyre resources), which bodies are shared across hundreds of vtables, how a constructor stamps its vtable, and why the gameplay systems are not among the classes; the full table is class-hierarchy.tsv. |
-| [Debug logging: the log call, its sink and the console prints the shipped game still runs](debug-logging.md) | The three ways the executable formats text: the PhyreEngine log call 0x005CDAA0 that formats every message into a 16 KB stack buffer and hands it with a channel number to a sink whose only action is a debugger break on channel 4, the vsprintf wrapper 0x0019C5D0, and the plain printf 0x0017D280 that writes boot and script-debug messages to a standard output no window shows; with the sink's lazy construction, the C runtime options word, and the count of channels the 245 log sites pass. |
-| [Debug menu commands: every developer-console row id with its label, arm, kind, field, step and bound](debug-menu-commands.md) | All 282 command ids of the developer console's dispatcher 0x001D1660, ids 12 to 293: the label the menu prints, the arm the dispatch table at 0x001D4C1C selects, what kind of control the arm is, the field it steps or the function it calls, the step magnitude and the wrap or clamp, in debug-menu-commands.tsv. |
-| [Debug menu: the developer console object, its fifteen pages, its command dispatcher and the retail rows that still reach it](debug-menu.md) | The developer menu the remaster still carries: the settings object and its 293 row labels, the fifteen pages of row ids, the row renderer and the two per-id tables it reads, the dispatcher that runs one of 226 command arms by id and the shape of the arms, the single byte that would open the menu and that nothing in the shipped game sets, and the sixteen graphics rows of the retail Config screen that reach the dispatcher anyway. |
-| [Engine types: every identified engine type with its purpose, its owner page and its lifetime](engine-types.md) | 901 engine types whose purpose is established, one row each in engine-types.tsv with the type's size, its category, what it is for, the page that documents it, and where it lives, what creates it and what releases it; engine-types-fields.tsv gives every field of 895 of them. |
-| [Force fight mode: the flag behind the fleeing state, who sets it and what fleeing changes](force-fight-mode.md) | The one dword that says whether the party is fighting or fleeing: its image value, the raw and the effective readers, the script verb and the R2 toggle that write it, the two enable bytes the writers respect, and every reader of the raw predicate with what it changes: command availability, combo continuation, engagement, the AI's approach distance, the battle locomotion divisors and the action availability row. |
-| [Frame update order: what runs each frame for the field, the battle layer and every unit](frame-update-order.md) | How one frame of the running game advances: the seven-state main loop and the handlers behind the title, the field, the full menu and the capture frames; the field frame's time accumulator that decides how many whole simulation steps run; the simulation tick's prologue, its five actor-manager slots and sixteen sub-steps, and its fixed tail; the field frame orchestrator that runs once per step for slot zero; the per-unit battle frame bound to every unit record; and the battle-state word the frame reads and writes bit by bit. |
-| [Game application object: the root object, its vtable and the boot order](game-application.md) | The root object of the running game: the static GameApplication at 0x01F7E350, its PhyreEngine base class and the thirty-one slot vtable it overrides, the archive mount and the window set-up the framework calls at start, the init job that builds the managers and closes the startup latch, the frame tick that drives the per-frame pump of thirteen singletons and the game step, and the pause flag and time scale the framework reads through it. |
-| [Global state accessors: every one-instruction getter of a global, with its global, width and callers](global-state-accessors.md) | The 459 functions in the executable whose whole body is one load or address-take of one global, at most one instruction on the loaded register, and a return, listed with the global they expose, the width read, the instruction, and how many functions call each, in global-state-accessors.tsv; with the most-called getters named, the image-address encode and decode pair 0x0020E600 / 0x0020E620 over the base 0x01F83530, and the two-global predicates beside them. |
-| [Glossary: the database's words for engine objects, records, ids, handles, pools and files, each with the page that explains it](glossary.md) | 153 terms the pages use across subsystems: what the thing is in a sentence or two, the other names the pages give it, and the page and section that explain it in full; with the words that name more than one thing told apart. |
-| [Graphics settings: the render settings block, its scene-config keys, its defaults and the shader constants it feeds](graphics-settings.md) | The static block at 0x02CB7FD0 that holds the remaster's render settings: the two constructors that write its defaults, the two scene-config loaders that overwrite thirty of them from named keys, the eight shadow-map matrices and the derived shadow scalars written into it every frame, the snapshot the frame builder compares against the last one before it rewrites the shader constant buffer, the post-process and shadow objects the other keys land in, the second run of character-light settings outside the block, the developer-menu rows that step the fields, and the tonemap byte the scene config switches. |
-| [Identifier spaces: the kinds of id, handle and index the engine passes between subsystems, with each kind's range, invalid values, maker, resolver and reuse](identifier-spaces.md) | One row per identifier kind: actor and binding handles, the serial and generation handles of the pools, arena handles and effect tickets, encoded pointers, encoded item ids, action and order ids, field ids, text ids and words, picture ids, party seats and selectors, inventory list ids, widget message ids, menu request ids, script call ids, control codes, sound ids, story flag ids, name ids, license node numbers and status ids; with each one's form, range, invalid values, the functions that make and resolve it, and what happens to old values when a slot is reused. |
-| [Item and ability ids: the sixteen-bit id space, the fifteen inventory classes, the thirty-two-class validator and the query record](item-and-ability-ids.md) | How one sixteen-bit number names an item, a piece of equipment, a loot, a magick, a technick, a gambit condition, a key item, a quickening, a reward package, a bazaar good or an amount of gil: the top nibble selects one of fifteen inventory class descriptors, the descriptor's handlers keep a count or a bit per id in the party block, a thirty-two-class validator bounds every id against its authored table, and one query record of 0x98 bytes answers every menu's name, description and quantity question. Also the empty id 0xFFFF and its one-byte twin 0xFF. |
-| [Jump thunks: every one-instruction forwarder, its target, and who reaches which of the two](jump-thunks.md) | The 763 functions in the executable whose whole body is one jump to another function, and the 86 terminate landing pads that share one import stub; jump-thunks.tsv lists 568 of the forwarders and 85 of the pads with the target, the direct callers of the thunk and of the target, and whether the thunk's address is held in a data table; with how each forwarder is reached, the ten two-step chains in the table, the one forwarder that presets an argument before jumping, and the shared ret stub 0x0016D6A0 that both the Control Flow Guard slot and 2,528 call sites name. |
-| [Native limits: the engine's fixed counts, capacities and ranges, where each is set and what happens past it](native-limits.md) | Limits the executable fixes, one row each: what it bounds, its exact value, whether it is a count, a highest index, a range, a width or an address bound, the instruction or table that sets it, what the engine does past it, and the page that explains the mechanism. |
-| [Party control modes: the summon, chocobo, town and event-party levels and who may set them](party-control-modes.md) | The level from 0 to 5 that 0x0030D9A0 computes from four bits of the party block and the current area's town flag; the script verbs and engine paths that set each bit and the side effects of the setters; the predicates and readers that ask for the level; the enter and leave handlers the transition dispatcher runs from its five-row table; what the level changes in the focus row and the party selection maps; and how the word is carried across an area change, restored and reset. |
-| [PS2 CPU emulation: the in-memory PS2 register set that translated assembly runs on](ps2-cpu-emulation.md) | The PlayStation 2 register set the remaster keeps in memory at 0x022D8F08 and 0x01EF93F0: the 32 general-purpose registers, HI and LO, the vector unit's 31 vector registers, ACC, Q and the CLIP flag, with the start-up routine that names the layer, the clear and the register save and restore, the 252 functions that compute through it, and the three shared routines (point transform, matrix product, matrix copy) that most of the engine reaches it by. |
-| [PS2 VIF1 and VU1 emulation: the packet decoder, the recompiled microprograms and the GS replay](ps2-vif1-vu1-emulation.md) | The second PlayStation 2 layer the remaster keeps: a VIF1 command decoder at 0x0022C970 over a 16 KB emulated VU1 memory, 57 vector-unit microprograms recompiled to x64 and installed by MPG as function pointers, the 77 packet templates two boot hubs build and the registrars that build packets per draw, the GiVmax render command that runs a packet at emit time and collects its GS output, and the GS replay that turns GIF packets into D3D11 vertices and indices for twenty honoured GS registers. |
-| [Startup constants: the random seed, the frame-rate constant, the memory budget and the confirm button mapping](startup-constants.md) | What the boot fixer sets at start and the rest of the game reads, with the later writers of some of it: the Mersenne Twister seeded from a literal and reseeded from the wall clock only on a save load, the frame-rate time base and the ticks-per-frame constant derived from FrameLimit, the confirm and cancel button masks derived from DecideButton, the language index, the two build-id files, the eleven heap blocks of the memory budget and the nine arenas registered from them, and the order in which the boot fixer runs the engine's one-time initialisers. |
-| [Subsystem update flags: the enable word that switches the sixteen interface update groups on or off each frame](subsystem-update-flags.md) | One dword at 0x01E0C464, all ones in the shipped image and written by nothing, that the interface pump tests sixteen times a frame to decide which update groups of the UI manager object run: the sixteen groups in their frame order with their masks, the extra gates each carries, the sub-object of the manager each handler receives, where the pump sits inside the field frame, and the second word that enables the one group gated twice. |
-| [Time stop and freeze: how menus, cutscenes, Stop magicks and skippable scenes halt actors](time-stop-and-freeze.md) | The twenty-eight request slots that freeze parts of the world: who raises and releases each one, the two permission records the builder writes per request and what each exempts, the start that marks every actor, the apply that ANDs all slots into one pair and drives the global switches, the per-actor pass that folds the marks into seven live stop sets and the hooks each set fires, the cancel, the area-unload sweep and the reset. |
-| [Vtable methods: every virtual slot in the executable with its class and the function it names](vtable-methods.md) | All 25,797 vtable slots of the 2,286 RTTI-named vtables, one row each with the function address, the decorated and plain class name, the vtable address, the slot index, how many classes share the function and whether the target is a function, a leaf function or a jump thunk, in vtable-methods.tsv; 4,271 of the 6,882 functions belong to exactly one class and can be named by it. |
+Jump to: [Main loop and game states](#main-loop-and-game-states) · [Glossary, ids and limits](#glossary-ids-and-limits) · [Function and class indexes](#function-and-class-indexes) · [Debug tools](#debug-tools) · [PlayStation emulation](#playstation-emulation)
+
+## Start here
+
+Start with these pages, in this order:
+
+1. [Game application object](game-application.md): starts with the root object
+2. [Frame update order](frame-update-order.md): shows what it runs each frame
+3. [Time stop and freeze](time-stop-and-freeze.md): shows what can pause that frame
+
+## Main loop and game states
+
+What runs each frame, what starts the game, and the states that stop or change it.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Game application object](game-application.md) | Explanation | The game's root object, its vtable and the boot order. |
+| [Frame update order](frame-update-order.md) | Explanation | What runs each frame for the field, the battle layer and every unit. |
+| [Time stop and freeze](time-stop-and-freeze.md) | Explanation | How menus, cutscenes, Stop magicks and skippable scenes halt actors. |
+| [Force fight mode](force-fight-mode.md) | Explanation | The flag behind the fleeing state and what fleeing changes. |
+| [Graphics settings](graphics-settings.md) | Explanation | The render settings block, its keys, defaults and shader constants. |
+| [Party control modes](party-control-modes.md) | Explanation | The summon, chocobo, town and event-party levels and who sets them. |
+| [Startup constants](startup-constants.md) | Explanation | The random seed, frame-rate constant, memory budget and confirm button. |
+| [Subsystem update flags](subsystem-update-flags.md) | Explanation | The word switching interface update groups on or off each frame. |
+
+## Glossary, ids and limits
+
+Reference for the terms used here, the game's ids and the engine's fixed limits.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Item and ability ids](item-and-ability-ids.md) | Explanation | The id space behind items and abilities, and its validator. |
+| [Engine types](engine-types.md) | Reference table | Every identified engine type with its purpose and owner page. |
+| [Glossary](glossary.md) | Reference table | The words used here for engine objects, each with the page explaining it. |
+| [Identifier spaces](identifier-spaces.md) | Reference table | The kinds of id and handle passed around, with ranges and invalid values. |
+| [Native limits](native-limits.md) | Reference table | The engine's fixed counts and ranges, and what happens past them. |
+
+## Function and class indexes
+
+Lookup tables of functions, classes and virtual slots.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Class hierarchy](class-hierarchy.md) | Explanation | The C++ classes the executable names and what they are. |
+| [Call signatures](call-signatures.md) | Reference table | The arguments each function reads and passes on. |
+| [Global state accessors](global-state-accessors.md) | Reference table | Every one-instruction getter of a global, with its callers. |
+| [Jump thunks](jump-thunks.md) | Reference table | Every one-instruction forwarder and its target. |
+| [Vtable methods](vtable-methods.md) | Reference table | Every virtual slot with its class and function. |
+
+## Debug tools
+
+The log call and the developer console left in the game.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [Debug logging](debug-logging.md) | Explanation | The log call, its sink and the console prints still in the game. |
+| [Debug menu](debug-menu.md) | Explanation | The developer console object, its pages and the rows still reachable. |
+| [Debug menu commands](debug-menu-commands.md) | Reference table | Every developer-console row with its label and what it sets. |
+
+## PlayStation emulation
+
+How translated PS2 code and its graphics microprograms still run.
+
+| Page | Kind | What it helps you understand |
+|---|---|---|
+| [PS2 CPU emulation](ps2-cpu-emulation.md) | Explanation | The in-memory PS2 register set translated assembly runs on. |
+| [PS2 VIF1 and VU1 emulation](ps2-vif1-vu1-emulation.md) | Explanation | The packet decoder, recompiled microprograms and GS replay. |

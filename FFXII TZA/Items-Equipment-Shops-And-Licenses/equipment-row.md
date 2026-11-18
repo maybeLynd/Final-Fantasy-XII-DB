@@ -1,9 +1,8 @@
----
-title: "Equipment row: every field of a weapon, shield, armor, accessory or ammunition data row and its bonus record"
-kind: "format"
-category: "Items, equipment, shops and licenses"
-addresses: "0x02EBF0F8, 0x00238160, 0x0031E9F0, 0x0031E9A0, 0x0031C5D0, 0x002FEF30, 0x0030FED0, 0x00317930"
----
+[Home](../../README.md) / [Items, equipment, shops and licenses](README.md) / Equipment row
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Equipment row: every field of a weapon, shield, armor, accessory or ammunition data row and its bonus record | format | Items, equipment, shops and licenses | Equipment | The 52-byte row of the equipment table and the 24-byte bonus record it points at: the name, the slot and flag byte, the class byte that sets the item's group and what it can be paired with, the price, the group-specific fields (a weapon's reach, recipe, attack, knockback, combo, evade, element, statuses, charge time and model; a shield's evades; an armor piece's Defense, Magick Resist and augment), the bonus record's stats, statuses and elements, and the classes the shipped table holds. | 0x02EBF0F8, 0x00238160, 0x0031E9F0, 0x0031E9A0, 0x0031C5D0, 0x002FEF30, 0x0030FED0, 0x00317930 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Area battle data (.ard and .nmb): the per-area file of enemy definitions, class rows, stat rows, gambit order sets, motion overrides and preloaded models, and its companion"
-kind: "format"
-category: "Game files and data tables"
-addresses: "0x003EA6E0, 0x00264ED0, 0x003EA820, 0x003EA710, 0x0023A160, 0x003845F0, 0x003846F0, 0x02B5E0B8, 0x02B5E0C0, 0x003DCF00, 0x02B58178, 0x003DCA30, 0x02B58188, 0x02B58180, 0x003DCBC0, 0x003EA650, 0x0035A3A0, 0x0035AC60, 0x002628B0, 0x0025AFC0, 0x0037C910, 0x0037C3F0, 0x003DC8D0, 0x02B580B0, 0x0032FC30, 0x02EBF150, 0x02EBF168, 0x02EBF120, 0x02EBF148, 0x02EBF140, 0x003EA6B0"
----
+[Home](../../README.md) / [Game files and data tables](README.md) / Area battle data (.ard and .nmb)
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Area battle data (.ard and .nmb): the per-area file of enemy definitions, class rows, stat rows, gambit order sets, motion overrides and preloaded models, and its companion | format | Game files and data tables | Data tables and configs | The FF12AR03 .ard file each area ships: its eight-slot section directory, the four st2e tables that become the area's enemy definitions, class rows and base and growth stat rows, the gambit order-set directory, the per-area motion-file overrides, and the trailer list of script models the game preloads for the area and keeps loaded through an area change; how and when the game loads and unloads it, what it rewrites, and the 166 shipped files; and the .nmb beside each, one short entry per enemy definition, whose only constant-kind request belongs to a builder that never starts. | 0x003EA6E0, 0x00264ED0, 0x003EA820, 0x003EA710, 0x0023A160, 0x003845F0, 0x003846F0, 0x02B5E0B8, 0x02B5E0C0, 0x003DCF00, 0x02B58178, 0x003DCA30, 0x02B58188, 0x02B58180, 0x003DCBC0, 0x003EA650, 0x0035A3A0, 0x0035AC60, 0x002628B0, 0x0025AFC0, 0x0037C910, 0x0037C3F0, 0x003DC8D0, 0x02B580B0, 0x0032FC30, 0x02EBF150, 0x02EBF168, 0x02EBF120, 0x02EBF148, 0x02EBF140, 0x003EA6B0 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Skeleton entries and bones: the skeleton entries of render records, the listed bones and their lookups, bone points, the motion bone list and bone-to-bone ties"
-kind: "system"
-category: "Graphics"
-addresses: "0x00426090, 0x002ED570, 0x0046E4D0, 0x00424D80, 0x00422310, 0x00422380, 0x004218A0"
----
+[Home](../../README.md) / [Graphics](README.md) / Skeleton entries and bones
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Skeleton entries and bones: the skeleton entries of render records, the listed bones and their lookups, bone points, the motion bone list and bone-to-bone ties | system | Graphics | Character models / Animation And Motion | The skeleton side of a character render record: the skeleton entries and their links and update order, the bones a skeleton lists and how a bone is looked up, the point a bone gives, the motion bone list a motion binds against, and tying a bone to a bone of another skeleton. | 0x00426090, 0x002ED570, 0x0046E4D0, 0x00424D80, 0x00422310, 0x00422380, 0x004218A0 |
 
 ## What the player sees
 

@@ -1,9 +1,8 @@
----
-title: "Text codes: every text code inside the game's strings, what it does and what follows it"
-kind: "reference"
-category: "Menus and HUD"
-addresses: "0x002AC5F0, 0x002AE334, 0x002AE3FC, 0x002AE370, 0x002AC2F0, 0x003FFDF0, 0x002AEB20, 0x002A8C50"
----
+[Home](../../README.md) / [Menus and HUD](README.md) / Text codes
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Text codes: every text code inside the game's strings, what it does and what follows it | reference | Menus and HUD | Game text tables | Every control byte and every 0x0F escape code the text interpreter handles: how a string is read and how long each code is, what each control byte and escape does to the text being drawn (layout, size, colour, inserted names and numbers, icons, ruby text, choice lists, the pager), the codes no shipped text uses, and how often each code appears in each shipped text source and language. | 0x002AC5F0, 0x002AE334, 0x002AE3FC, 0x002AE370, 0x002AC2F0, 0x003FFDF0, 0x002AEB20, 0x002A8C50 |
 
 ## What it lists
 

@@ -1,9 +1,8 @@
----
-title: "Action list: every attack, magick, technick, item use, summon, Quickening, Concurrence, Foecraft move and trap with its cost, power, element, statuses, area and texts"
-kind: "reference"
-category: "Battle actions"
-addresses: "0x02EBF138, 0x0031C5D0, 0x0031DBB1, 0x0031DBBE, 0x002F9860, 0x00305F10, 0x003093D0, 0x00320D70"
----
+[Home](../../README.md) / [Battle actions](README.md) / Action list
+
+| title | kind | category | group | summary | addresses |
+|---|---|---|---|---|---|
+| Action list: every attack, magick, technick, item use, summon, Quickening, Concurrence, Foecraft move and trap with its cost, power, element, statuses, area and texts | reference | Battle actions | Action tables | All 543 action rows of the shipped battle_pack.bin, decoded field by field: the action id and name, its kind, MP or Mist cost, charge time base, power, hit, damage recipe, element, status chance and statuses, ranges, reach and area, knockback, enmity, effect and cinematic ids, the command list page and row, the three flag words with their documented bits named, the help and description lines, and a one-line explanation. | 0x02EBF138, 0x0031C5D0, 0x0031DBB1, 0x0031DBBE, 0x002F9860, 0x00305F10, 0x003093D0, 0x00320D70 |
 
 ## What it lists
 
