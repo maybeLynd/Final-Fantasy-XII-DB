@@ -401,7 +401,7 @@ Each row is a function this page names (left), whether it calls the functions on
 |---|---|---|
 | [`0x0022B6E0`](bazaar.md) | calls | [`0x00249C30`](../Battle-Actions/action-definition-row.md) (on action definition row)<br>[`0x0035E9A0`](../Engine-Core/frame-update-order.md) (on frame update order) |
 | [`0x0032E4D0`](../Graphics/effect-file-loading.md) (on effect file loading) | is called by | [`0x00291D90`](../Game-Files-And-Data-Tables/as7-menu-graphics.md) (on as7 menu graphics) |
-| [`0x00582860`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x00182D40`](../Engine-Core/time-stop-and-freeze.md) (on time stop and freeze) |
+| [`0x00582860`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x00182D40`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
 
 **Graphics** (explained on [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [escape](../Controls-And-Input/escape.md), [effect file loading](../Graphics/effect-file-loading.md), [effect element runtime](../Graphics/effect-element-runtime.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
 
@@ -409,7 +409,7 @@ Each row is a function this page names (left), whether it calls the functions on
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x001EDEC0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) | is called by | [`0x002B7B80`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x002BAF80`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002BC3E0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002D2DB0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00366B80`](../Controls-And-Input/escape.md) (on escape) |
+| [`0x001EDEC0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) | is called by | [`0x002B7B80`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x002BAF80`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002BC3E0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002D2DB0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00366B80`](../Controls-And-Input/escape.md) (on escape) |
 | [`0x0022B6E0`](bazaar.md) | calls | [`0x00252A20`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x002E65A0`](../Scripts-And-Script-Commands/script-binding-lifecycle.md) (on script binding lifecycle)<br>[`0x0036D400`](../Graphics/render-command-list.md) (on render command list)<br>[`0x0036F2C0`](../Graphics/graphics-thread-handshake.md) (on graphics thread handshake)<br>[`0x0036F2F0`](../Graphics/graphics-thread-handshake.md) Graphics sync: wait backend state100 clear and reset shared state (on graphics thread handshake) |
 | [`0x0032E4D0`](../Graphics/effect-file-loading.md) (on effect file loading) | is called by | [`0x003B21E0`](../Graphics/effect-file-loading.md) (on effect file loading)<br>[`0x003B25D0`](../Graphics/effect-file-loading.md) (on effect file loading) |
 | [`0x0032E520`](../Graphics/effect-file-loading.md) (on effect file loading) | is called by | [`0x003B53C0`](../Game-Files-And-Data-Tables/small-bin-tables.md) (on small bin tables) |
@@ -431,7 +431,7 @@ Each row is a function this page names (left), whether it calls the functions on
 | [`0x0022B6E0`](bazaar.md) | calls | [`0x0032E520`](../Graphics/effect-file-loading.md) (on effect file loading) |
 | [`0x00280140`](bazaar.md) | calls | [`0x0032E4D0`](../Graphics/effect-file-loading.md) (on effect file loading) |
 | [`0x0032E4D0`](../Graphics/effect-file-loading.md) (on effect file loading) | is called by | [`0x003EADE0`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue) |
-| [`0x0032E520`](../Graphics/effect-file-loading.md) (on effect file loading) | calls | [`0x0032E070`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue)<br>[`0x0046DFE0`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue) |
+| [`0x0032E520`](../Graphics/effect-file-loading.md) (on effect file loading) | calls | [`0x0032E070`](../Saving-Loading-And-Settings/saving-and-loading-transaction.md) (on saving and loading transaction)<br>[`0x0046DFE0`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue) |
 | [`0x0032E520`](../Graphics/effect-file-loading.md) (on effect file loading) | is called by | [`0x0024AC30`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue) |
 
 **World, areas and travel** (explained on [frame update order](../Engine-Core/frame-update-order.md), [loading a save](../Saving-Loading-And-Settings/loading-a-save.md), [script variables](../Scripts-And-Script-Commands/script-variables.md), [debug menu](../Engine-Core/debug-menu.md), [changing areas](../World-Areas-And-Travel/changing-areas.md), [game over](../World-Areas-And-Travel/game-over.md), [native limits](../Engine-Core/native-limits.md))

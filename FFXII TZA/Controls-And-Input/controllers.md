@@ -72,6 +72,79 @@ Both callbacks return 1 for every device, whatever its type, so the listing goes
 
 </details>
 
+`0x007973D0(listed)`, for a listed device, opens the keyboard with that device's instance GUID (`+0x04`): `CreateDevice`
+(slot `+0x18` of `[0x02EA5370]`), `SetDataFormat` (slot `+0x58`) with `0x01CC7150`, `SetCooperativeLevel` (slot `+0x68`)
+with the window `[0x02EA5248]` and flags 6, then `Acquire` (slot `+0x38`), whose answer is not tested¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007973D4`-`0x00797432` |
+
+</details>
+
+A negative `CreateDevice` answer ends the set-up¹; a negative `SetDataFormat` answer or `0x80004001` from
+`SetCooperativeLevel` ends it with the device left unreleased², and so does a null allocation
+after `Acquire`³. It then builds the object in `0x338` bytes from `0x00584740(0x338)` and calls
+`0x007927C0(object, device)`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007973F3` |
+| ² | `0x00797409`, `0x00797428` |
+| ³ | `0x00797447` |
+| ⁴ | `0x00797435`-`0x00797451` |
+
+</details>
+
+`0x007927C0(object, device)` first points the node `+0x08` at itself, sets the vtable `0x01CB23C0` at `+0x00`, points
+`+0x18` and `+0x20` at `+0x18`, keeps the device at `+0x28` and links the node to the end of the live list `0x01F401E8`
+through its last-node word `0x01F401F0`¹. It then sets its own vtable `0x01CB2430`, clears three
+`0x100`-byte areas at `+0x231`, `+0x30` and `+0x130` with `0x00861EC0(area, 0, 0x100)`, and stores 0 in the byte
+`+0x230` and `0xFF` in the byte `+0x331`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007927C6`-`0x00792815` |
+| ² | `0x0079280E`-`0x00792859` |
+
+</details>
+
+`0x00792870(object, block)`, the mouse object, does the same in the same order, with the block at `+0x28`, then sets its
+own vtable `0x01CB23F8`¹. The block is the `0x10` bytes `0x00797460` takes from `0x00584740(0x10)`: a
+byte at `+0x00` and the opened mouse device at `+0x08`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00792886`-`0x007928D0` |
+| ² | `0x00797637`-`0x0079764B` |
+
+</details>
+
+It builds six `0x48`-byte entries at `+0x30` through `0x00808FE4(+0x30, 0x48, 6, 0x00792D90, 0x0016D6A0)`¹, and zeroes the byte `+0x1E6`, the qword `+0x1E8`, the dword `+0x1F0` and three bytes each at
+`+0x1E0`, `+0x1E3` and `+0x1F4`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007928D3`-`0x007928F3` |
+| ² | `0x007928F8`-`0x00792933` |
+
+</details>
+
 ### One pad
 
 `0x00797690(device)` decides what to build¹:
@@ -128,13 +201,39 @@ call fails, whose cooperative level answers "not implemented", or whose controll
 
 </details>
 
+`0x00796280(object, device)`, the `EnumObjects` callback, acts on an object whose type dword `+0x18` has bit `0x1` or
+`0x2`, an axis¹. It calls the device's `SetProperty` (slot `+0x30`) with property 4, the range,
+and a `0x18`-byte record: header size `0x10`, the object type as the id, how 2, minimum -255 and maximum 255².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00796293`-`0x0079629B` |
+| ² | `0x0079629D`-`0x007962D9` |
+
+</details>
+
+A negative answer returns 0, which ends the listing; every other case returns 1, and both paths check the stack cookie
+with `0x00808C40(cookie)`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007962DC`-`0x00796301` |
+
+</details>
+
 ### What the controllers share
 
-All three constructors call the base `0x00792940`, which links the object into the list `0x01F401E8` and zeroes
-`0x244` bytes at `+0x1D0`¹. The DirectInput and XInput constructors then copy the listed
-device's description, `0x244` bytes, into `+0x1D0`², so its instance
-GUID is at `+0x1D4`, the field step 2 compares. The Steam constructor `0x00792B70` copies no description, so a Steam
-controller holds no GUID. The XInput controller adds its user index at `+0x458`³.
+All three constructors call the base `0x00792940`, which links the object into the list `0x01F401E8` and zeroes `0x244`
+bytes at `+0x1D0` with `0x00861EC0(+0x1D0, 0, 0x244)`¹. The DirectInput and XInput constructors
+then copy the listed device's description, `0x244` bytes, into `+0x1D0`², so its instance GUID is at `+0x1D4`, the field step 2 compares. The Steam constructor
+`0x00792B70` copies no description, so a Steam controller holds no GUID. The XInput controller adds its user index at
+`+0x458`³.
 
 <details>
 <summary>Where in the code</summary>
@@ -178,16 +277,42 @@ and its destructor `0x007935C0` unacquires and releases the device when `+0x28` 
 
 </details>
 
-The base also builds four
-`0x48`-byte entries at `+0xB0` with `0x00792D90`¹, which points each entry's two links at itself and sets
-its floats `+0x1C` to 1.0 and `+0x24` to 0.005.
+The base also builds four `0x48`-byte entries at `+0xB0` through `0x00808FE4(+0xB0, 0x48, 4, 0x00792D90, 0x0016D6A0)`¹. `0x00792D90(entry)` points the entry's links `+0x00` and `+0x08` at the entry, zeroes the qword
+`+0x10`, the dwords `+0x18` and `+0x2C`, the word `+0x30`, the byte `+0x32` and the qwords `+0x38` and `+0x40`, and
+writes the floats 1.0 and 0.005 as qwords at `+0x1C` and `+0x24`, so the dwords `+0x20` and `+0x28` are 0².
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x007929BD` |
+| ¹ | `0x007929AA`-`0x007929CD` |
+| ² | `0x00792D90`-`0x00792DBD` |
+
+</details>
+
+The base `0x00792940(object, device)` first points the node `+0x08` at itself, sets the vtable `0x01CB23C0` at `+0x00` and
+points `+0x18` and `+0x20` at `+0x18`, and after the link sets `0x01CB24C8`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00792956`-`0x007929A0` |
+
+</details>
+
+It zeroes the bytes `+0xA8` to `+0xAA`, 17 bytes from `+0x30` and 17 from `+0x41`, the eight qwords `+0x58` to
+`+0x90`, the word `+0x98`, the byte `+0x9A`, the bytes `+0x9C` to `+0xA7`, and `+0x414` to `+0x453` except the byte
+`+0x44F`, which no instruction here writes¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007929A3`-`0x00792A83` |
 
 </details>
 
@@ -277,7 +402,7 @@ head pointing at itself in the file.
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x01F401F0` | `void*` | `0x01F401E8` | the live list's last node | `0x007927C0` (`0x00792815`); `0x00792870` (`0x007928C2`); `0x00792940` (`0x00792992`); through the nodes, when the last one is unlinked: `0x00797460` (`0x007975A2`) and the shutdown `0x00799860` (`0x007998AA`) | `0x007927C0` (`0x007927F4`); `0x00792870` (`0x007928AA`); `0x00792940` (`0x0079297A`) |
-| `0x01F40200` | `void*` | `0x01F401F8` | the retired list's last node | `0x00797460` (`0x007975C8`); through the nodes, when the shutdown `0x007998E0` unlinks the last one (`0x0079994A`) | `0x00797460` (`0x007975B0`) |
+| `0x01F40200` | `void*` | `0x01F401F8` | the retired list's last node | `0x00797460` (`0x007975C8`); through the nodes, when `0x007998E0` unlinks the last one (`0x0079994A`) | `0x00797460` (`0x007975B0`) |
 | `0x02EA58B8` | `void*` | 0 | the mouse object. When a mouse is set up again, `0x00797460` unlinks the old one's six `0x48`-byte entries from `+0x30` that still name it (`0x00797489`-`0x00797593`), moves it from the live list to the retired list (`0x00797597`-`0x007975C8`), builds a new one and stores it here; the retired objects are destroyed only at shutdown (`0x007998E0`) | `0x00797460` (`0x00797671`) | `0x00797460` (`0x00797479`) |
 | `0x01F3DA04` | `u8` | 1 | lets the XInput controller's poll `0x007A2140` run (`0x007A2194`-`0x007A219B`). On Windows 7 (`GetVersionExA` platform 2, version 6.1) with an XInput pad marked in `0x02EA5379`, the poll calls `0x00799A80`, which clears it and notes the clock's second in `0x01F4012C`, then sets it again once more than `0x01F40188` (1) second has passed and clears `0x02EA5379`, so it happens once (`0x00799A80`-`0x00799B06`) | `0x00799A80`: 0 (`0x00799AD8`), 1 (`0x00799AFF`) | `0x007A2140` (`0x007A2194`) |
 | `0x02EA537A` | `u8` | 0 | Set to 1 at `0x007975CF`, which runs only when `0x02EA58B8` already names a mouse object (`0x00797480`-`0x00797483`), so a first set-up leaves it 0. The input poll `0x007A2440`, which the window's update slot `0x007A3110` runs on the application's input object, then binds that object to the first controller of kind 0, the mouse (`0x0079A430`, through `0x00796FC0(0, 0)`; the mouse class `0x01CB23F8` answers 0 from slot 1, `0x005C5230`), and clears it; the poll also binds when the object holds no mouse at `+0x150` (`0x007A2446`-`0x007A246B`) | `0x00797460`, 1 (`0x007975CF`); `0x007A2440`, 0 (`0x007A246B`) | `0x007A2440` (`0x007A245D`) |
@@ -292,6 +417,35 @@ that `0x00797910` hands DirectInput¹ is the 8-byte interface pointer, below `0x
 | | Code |
 |---|---|
 | ¹ | `0x00797942` |
+
+</details>
+
+`0x007998E0()` calls slot `+0x08` of the Steam controller interface `[0x02EA9508]` when there is one, then, when
+`[0x02EA5370]` is set, releases that DirectInput interface (slot `+0x10`) and zeroes `0x02EA5370`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007998EA`-`0x00799910` |
+
+</details>
+
+It then empties the retired list `0x01F401F8`: each object is unlinked, its node pointed at itself, and destroyed
+through its vtable slot `+0x00` with the argument 1¹. It returns 0². `0x007998E0`
+itself does not touch the live list; the shutdown `0x00799860` empties it the same way³ and then
+jumps to `0x007998E0`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00799917`-`0x00799962` |
+| ² | `0x00799964` |
+| ³ | `0x00799880`-`0x007998C2` |
+| ⁴ | `0x007998CE` |
 
 </details>
 

@@ -771,7 +771,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x00244DD0`](status-and-equip-screen.md) | calls | [`0x00229DF0`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x00229E70`](../Engine-Core/global-state-accessors.md) (on global state accessors)<br>[`0x00229EA0`](../Graphics/effect-drawing.md) (on effect drawing) |
+| [`0x00244DD0`](hud.md) (on hud) | calls | [`0x00229DF0`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x00229E70`](../Engine-Core/global-state-accessors.md) (on global state accessors)<br>[`0x00229EA0`](../Graphics/effect-drawing.md) (on effect drawing) |
 | [`0x00254A10`](text-string-tables.md) (on text string tables) | calls | [`0x00229E40`](../Story-Events-And-Hunts/script-language-differences.md) (on script language differences) |
 
 **Gameplay** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md), [steal](../Damage-And-Battle-Formulas/steal.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md))
@@ -847,7 +847,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x00244DD0`](status-and-equip-screen.md) | is called by | [`0x00579420`](status-and-equip-screen.md) |
+| [`0x00244DD0`](hud.md) (on hud) | is called by | [`0x00579420`](status-and-equip-screen.md) |
 | [`0x002526F0`](status-and-equip-screen.md) | is called by | [`0x00579420`](status-and-equip-screen.md) |
 | [`0x002527B0`](dialogs.md) (on dialogs) | is called by | [`0x00579420`](status-and-equip-screen.md) |
 | [`0x00254A10`](text-string-tables.md) (on text string tables) | is called by | [`0x002B0280`](text-drawing.md) (on text drawing)<br>[`0x002D2DB0`](widgets.md) (on widgets) |
@@ -877,7 +877,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x00244DD0`](status-and-equip-screen.md) | is called by | [`0x00583040`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
+| [`0x00244DD0`](hud.md) (on hud) | is called by | [`0x00583040`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 | [`0x00254A10`](text-string-tables.md) (on text string tables) | is called by | [`0x005832B0`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) |
 | [`0x002814E0`](status-and-equip-screen.md) | is called by | [`0x00582860`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 | [`0x00282DF0`](menu-screens.md) (on menu screens) | is called by | [`0x00583D60`](../Saving-Loading-And-Settings/save-file-format.md) Save image: finalize header and checksum (on save file format) |
@@ -907,6 +907,6 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x00264150`](status-and-equip-screen.md) | is called by | [`0x0057FB00`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) |
+| [`0x00264150`](status-and-equip-screen.md) | is called by | [`0x0057FB00`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 
 </details>

@@ -405,7 +405,7 @@ Each row is a function this page names (left), whether it calls the functions on
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x00225CD0`](../Engine-Core/time-stop-and-freeze.md) (on time stop and freeze) | calls | [`0x00182D40`](../Engine-Core/time-stop-and-freeze.md) (on time stop and freeze)<br>[`0x00182D60`](../Engine-Core/time-stop-and-freeze.md) (on time stop and freeze)<br>[`0x00182DA0`](../Saving-Loading-And-Settings/game-settings.md) (on game settings) |
+| [`0x00225CD0`](../Engine-Core/time-stop-and-freeze.md) (on time stop and freeze) | calls | [`0x00182D40`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x00182D60`](../Engine-Core/time-stop-and-freeze.md) (on time stop and freeze)<br>[`0x00182DA0`](../Saving-Loading-And-Settings/game-settings.md) (on game settings) |
 | [`0x002273B0`](world-lock.md) | calls | [`0x00226BE0`](world-lock.md) |
 | [`0x00263230`](world-lock.md) | calls | [`0x00226BE0`](world-lock.md) |
 | [`0x00263480`](world-lock.md) | calls | [`0x00226BE0`](world-lock.md) |

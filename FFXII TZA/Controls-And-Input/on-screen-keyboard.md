@@ -214,6 +214,20 @@ codes 132-152 in place of Escape, F1-F12, the accent key and 1-7.
 
 </details>
 
+`0x00197800(x, index)` ignores its first argument x. It asks `0x001D50D0()` for the debug settings object before it tests
+the index¹, and with either table it answers -1 for a negative index, a signed test, or one
+above `0x6A`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00197809`-`0x0019781F` |
+| ² | `0x00197821`-`0x00197828`, `0x0019783E`-`0x00197845`, `0x0019785B` |
+
+</details>
+
 Each update colours the picture in two passes:
 
 | Step | What happens | Where in the code |
@@ -221,15 +235,29 @@ Each update colours the picture in two passes:
 | 1 | `0x00289040` lights every cell whose key is held (`0x001E0E70` on the cell's index, `0x002890C7`) and gives the others the base colour.<br>• It walks the picture's cells, counted by bits `0x3FFFC` of the picture's `+0x50` (`(+0x50 >> 2) & 0xFFFF`, `0x00289085`, `0x0028916D`-`0x00289179`); a cell's index is the word `+0x0A` of its data.<br>• A held cell gets colour entry 1 and bit `0x1` set in its flag word; any other cell gets colour entry 10, the base colour, and that bit cleared. The entry's 16 colour bytes `+0x28`-`+0x37` are copied to the cell's sprite.<br>• The colour entries are the pointer list at `+0x10` of the block `0x002AB860` returns, `[0x0209CC40]` + `0x1098`. | `0x002890C3`<br>`0x002890D4`-`0x002890D8`<br>`0x002890DE`-`0x002890E2`<br>`0x002890F6`-`0x0028916A` |
 | 2 | `0x002891A0` gives every key bound in any profile to a panel's control that panel's colour, unless it is held (`0x00287D10`, indexes below `0x68` only). `0x00289830` does the same for the movement keys of an active movement-key block, in the colour of panel 3.<br>• `0x00287D10(picture, slots, colour entry, count, group)` reads all three profiles for every panel, also for panels 1, 2 and 7, which list only the first; panel n's keys take colour entry n + 1.<br>• `0x002891A0` calls it for panels 1 to 5, then panel 7's Start and its group 2 slots, then panel 6, and then calls `0x00289830` with entry 4, so a key bound to controls of two panels shows the colour of the later call. | `0x001E0DC0`<br>`0x00287D50`-`0x00287E35`<br>`0x00289281`-`0x00289365` |
 
-`0x001E0E70` sends codes 1 and 3 to the mouse device¹ and any other code to the keyboard².
+`0x001E0E70(index)` answers 0 for an index above `0x80`, an unsigned compare¹. It turns the index
+into a code with `0x00197800(0x00198790(), index)`, then calls `0x0079E6D0(mapper, code)` for code 1 or 3 and
+`0x0079E6A0(mapper, code, 0)` for any other, both on the input mapper `[0x00796E20() + 0xDF8]`, and answers the low byte².
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x0079E6D0` |
-| ² | `0x0079E6A0` |
+| ¹ | `0x001E0E78`-`0x001E0E7E` |
+| ² | `0x001E0E80`-`0x001E0ECE` |
+
+</details>
+
+`0x0079E6D0(mapper, code)` answers 0 when the pointer `+0x150` is null or the code is not 1 to 3, and otherwise whether
+the byte `+0x1E0 + code - 1` of the object at `+0x150` is not 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079E6D0`-`0x0079E6F3` |
 
 </details>
 
@@ -267,6 +295,19 @@ the layout set.
 | German, `0x407` | `7` |
 | any other | `9` |
 
+`0x001E0B90()` calls `GetKeyboardLayout(0)`¹, keeps the low 12 bits and answers 1 for `0x40C`, 2 for `0x407`
+and 0 for any other².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008C29B8` |
+| ² | `0x001E0B96`-`0x001E0BC2` |
+
+</details>
+
 `0x00285F60` turns the game language from `0x0017E270` into the language set: `fr` 6, `de` 5, `it` 4, `es` 3, `kr` 0,
 `ch` 2, `cn` 1, and `en`, `jp` and anything else 9.
 
@@ -287,6 +328,132 @@ first pass (`0x00247730(keyboard, 0)`; `0x00558D14`-`0x00558D3D`, `0x0056190D`-`
 | `0x02CA8FE8` | `void*` | 0 | the second panel's cell: `0x00561830`, from `0x0055DBD0` (`0x0055DC96`) and `0x0055E9E0` (`0x0055EDC8`), builds a `0xF8`-byte panel with procedure `0x005618E0` and stores the panel here, keeping the old value when the build fails (`0x00561885`-`0x005618A4`) | `0x00561830` (`0x005618A4`); `0x005618E0`, 0 (`0x00561923`) | `0x002878E0` (`0x00287BEC`); `0x00561830` (`0x00561899`) |
 
 No other instruction reaches these two.
+
+`0x00561830(view)` does nothing while the view's `+0x138` is set¹. Otherwise it builds the panel
+with `0x00244F50(0xF8, 0x005618E0, record)`, whose record's `+0x08` points at a block holding the view, keeps the answer
+at `+0x138` and, when it is not null, in `0x02CA8FE8`, and opens it with `0x00246AD0([0x0208EA28], panel)`, even when the
+build failed². It checks its stack cookie with `0x00808C40(cookie)`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00561845`-`0x00561850` |
+| ² | `0x00561852`-`0x005618B9` |
+| ³ | `0x005618C6` |
+
+</details>
+
+The panel's procedure `0x005618E0(panel, message)` handles messages 1, 2 and 18 and passes every other to
+`0x005C5230(panel, message)`¹. Message 1 lays the panel out with
+`0x002432B0(panel + 0x50, [[0x0209AC30] + 0x58], 2, panel)` and, unless the panel is null², copies
+the answer's words `+0x04` to `+0x0A` to `+0x98`-`+0x9E`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005618EA`-`0x00561908` |
+| ² | `0x005619CD`-`0x005619D0` |
+| ³ | `0x0056198B`-`0x005619EC` |
+
+</details>
+
+It takes the view from the block at the message's `+0x08`: the view goes to `+0xC0`, its dword `+0x160` to `+0xC8`,
+its byte `+0x558` to `+0xEC` and bit `0x400` of its `+0x570` to bit `0x1` of `+0xF0`¹. It gives
+the panel the animation descriptor at `+0x48` with `0x00247570(panel, d)`, d being `0x00D23058` when bit `0x800` of the
+view's `+0x570` is set and `0x00D23030` otherwise².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005619F3`-`0x00561A2F` |
+| ² | `0x00561A35`-`0x00561A4B` |
+
+</details>
+
+With the row `0x00282DF0(+0xC8)` returns it fills the widget `[[+0x60] + 0x30]`: `0x002B58B0(text, 0)` for the `+0x18` of
+the `0x0035D330(2, row word +0x60)` answer at `+0x18`, and `0x0020E620(0)` at `+0x20`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00561A50`-`0x00561A8A` |
+
+</details>
+
+The widget `[[+0x60] + 0x38]` gets `0x002C9BD0(row word +0x60)` at its word `+0x0A` and the byte `+0x07` of that 8-byte
+entry of its own table `+0x20` at `+0x39`¹. Then
+`0x0029FF60([[+0x60] + 0x18], panel + 0xCC, 0x20, value, 0, 0)` gets the row's dword `+0xB0` as the value².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00561A8D`-`0x00561AAE` |
+| ² | `0x00561AB2`-`0x00561ADF` |
+
+</details>
+
+For the widget `[[+0x60] + 0x40]` it takes `a` from `0x00323670(byte)` and `b` from `0x00323630(byte)` on the row's byte
+`+0x60`, and `c` as `0xFE` when bit `0x1` of `+0xF0` is set and from `0x003236B0(byte)` otherwise; when `b` is not
+`0xFF` and equals `c`, `b` becomes `a` and `a` becomes `c`¹. Bit `0x1` of that widget's dword
+`+0x08` is set when the first `a` was not `0xFF` and cleared otherwise².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00561AE4`-`0x00561B32` |
+| ² | `0x00561B35`-`0x00561B41` |
+
+</details>
+
+When that bit is set the widget gets `0x00556380(row word, a, b, c)` at `+0x18`, `0x0020E620(0)` at `+0x20` and
+`0x002DD7E0(0)` at `+0x24`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00561B45`-`0x00561B7A` |
+
+</details>
+
+Last it clears bit `0x1` of the dword `+0x08` of the widget `[[+0x60] + 0x48]`, calls `0x00247930(panel, 0x5F)`, and
+moves the panel and an open keyboard `[0x0209AC18]` to the second draw pass with `0x00247730(x, 1)`¹. Message 2 repeats only the row and the `0x0029FF60` call: `0x00282DF0(+0xC8)` and
+`0x0029FF60([[+0x60] + 0x18], panel + 0xCC, 0x20, value, 0, 0)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00561B7D`-`0x00561BC3` |
+| ² | `0x00561945`-`0x0056197D` |
+
+</details>
+
+Message 18 is the destroy described in State¹. Every handled message answers 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0056190D`-`0x00561936` |
+| ² | `0x0056193C`, `0x00561982`, `0x00561BC8` |
+
+</details>
 
 </details>
 
@@ -318,7 +485,7 @@ No other instruction reaches these two.
 The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
 <details>
-<summary>Show the 12 calls with 3 other topics</summary>
+<summary>Show the 16 calls with 7 other topics</summary>
 
 **Items, equipment, shops and licenses** (explained on [license board screen](../Menus-And-HUD/license-board-screen.md), [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md))
 
@@ -346,5 +513,37 @@ Each row is a function this page names (left) and the functions from this topic 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
 | [`0x002814E0`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) | is called by | [`0x00582860`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
+
+**Characters and objects** (explained on [party control modes](../Engine-Core/party-control-modes.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x002B58B0`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables) | is called by | [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) |
+
+**Developer** (explained on [game application](../Engine-Core/game-application.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00796E20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x001C2F50`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) |
+
+**Gameplay** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md))
+
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0035D330`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors) | calls | [`0x0031C5D0`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids) |
+
+**Steam and achievements** (explained on [steam integration](../Steam-And-Achievements/steam-integration.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00796E20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x008655A0`](../Steam-And-Achievements/steam-integration.md) (on steam integration) |
 
 </details>

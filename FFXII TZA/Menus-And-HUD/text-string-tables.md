@@ -358,9 +358,9 @@ Each row is a function this page names (left), whether it calls the functions on
 | [`0x00236C30`](text-string-tables.md) | calls | [`0x003845F0`](../Battle-Actions/action-definition-row.md) Area data: bind and rebase section descriptor (on action definition row)<br>[`0x003846F0`](../Game-Files-And-Data-Tables/authored-data-tables.md) (on authored data tables) |
 | [`0x00236C30`](text-string-tables.md) | is called by | [`0x00238850`](../Battle-Actions/action-definition-row.md) (on action definition row) |
 | [`0x002F9920`](clan-primer-entries.md) (on clan primer entries) | is called by | [`0x003C0450`](../Game-Files-And-Data-Tables/menu-map-files.md) (on menu map files)<br>[`0x00576A50`](../Game-Files-And-Data-Tables/handbook-files.md) (on handbook files) |
-| [`0x003778B0`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) | calls | [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list) |
-| [`0x003778B0`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) | is called by | [`0x0057FB00`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) |
-| [`0x00377B60`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x0057FB00`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) |
+| [`0x003778B0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list) |
+| [`0x003778B0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) | is called by | [`0x0057FB00`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
+| [`0x00377B60`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x0057FB00`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 | [`0x005369C0`](enemy-names-on-screen.md) (on enemy names on screen) | calls | [`0x00264ED0`](../Game-Files-And-Data-Tables/ard-area-battle-data.md) Map ref: get area ard field resource index (on ard area battle data)<br>[`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) |
 
 </details>

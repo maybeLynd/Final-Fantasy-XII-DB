@@ -42,7 +42,7 @@ do no more than that.
 | `1` | construct, with the creator's `a` and `b` | `0x002465F0` |
 | `2` | per-tick update | the drain `0x00248030` |
 | `3`, `4`, `5` | draw: before the widget's content, after it, after the children | the draw pass `0x00245E60` (`0x002462D0`, `0x0024635A`, `0x002463BC`) |
-| `6`, `7` | activated, deactivated | `0x002473F0(widget, on)` (`0x0024740C`-`0x00247418`), repeated down the subtree; a widget changes only when it has bit `0x2` and its bit `0x1` differs from `on`: the bit is then set to `on` and the message sent when it has a procedure (`0x00247423`-`0x0024744E`). The descent goes through `0x00247490`, which applies the same test to each child and does not go below a child it leaves unchanged (`0x002474AB`-`0x002474F4`) |
+| `6`, `7` | activated, deactivated | `0x002473F0(widget, on)` (`0x0024740C`-`0x00247418`), repeated down the subtree as the list after this table gives |
 | `8`, `9` | focus gained, focus lost | `0x00244830` |
 | `10`, `11` | input turn for the focus widget; 11 while a widget up its chain is running | `0x002481C0`; also `0x002286B0` |
 | `12` | command to an owner: `a` is a sub-command, `b` its argument | `0x00247510` (101 calls in 67 functions) and 11 other sites |
@@ -60,6 +60,14 @@ do no more than that.
 | `26` | per-element query; the reply is used | `0x002D2600`, `0x002D28E0` |
 
 No procedure answers ids 27 or 28.
+
+`0x002473F0(widget, on)` sends messages 6 and 7:
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It builds a record that carries only the id, 6 when `on` is not 0 and 7 when it is, so the record's `a` and `b` are not set. | `0x0024740C`-`0x0024741B` |
+| 2 | It changes the widget only when its `+0x40` bit `0x2` is set and its `+0x40` bit `0x1` differs from `on`: that bit is then set to `on` and the message sent when the widget has a procedure. Otherwise it returns at once. | `0x00247423`-`0x0024744E`<br>`0x00247426`, `0x0024742F` |
+| 3 | After a change it descends to each child from `+0x18` through each `+0x20` through `0x00247490`, which applies the same test to each child, passes the same record on and does not go below a child it leaves unchanged. | `0x00247414`, `0x00247450`-`0x00247476`<br>`0x002474CD`, `0x002474E0`<br>`0x002474AB`-`0x002474F4` |
 
 ### Command sub-codes (message 12)
 

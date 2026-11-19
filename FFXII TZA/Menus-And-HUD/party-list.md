@@ -105,9 +105,8 @@ The member records are the `0xC0`-byte records at `0x022C8080 + i x 0xC0`¹, des
 
 </details>
 
-`0x0035BB70`, run by the field set-up `0x00253A30`¹ and the teardown `0x003C5E50`², clears the
-whole `0x348`-byte block from `0x022C8060`, keeps only the bits `0xFFFC02EC` of the mode word `0x022C83E8`, runs
-`0x002419B0()`, closes the leader-choice window in `0x022CA428` and the window `0x0035E070` keeps in `0x022CA430`³, and ends in `0x002A1E90`, which closes the widget in `[0x0209C4C8]`.
+`0x0035BB70`, run by the field set-up `0x00253A30`¹ and the teardown `0x003C5E50`², does these in
+order:
 
 <details>
 <summary>Where in the code</summary>
@@ -116,7 +115,43 @@ whole `0x348`-byte block from `0x022C8060`, keeps only the bits `0xFFFC02EC` of 
 |---|---|
 | ¹ | `0x00253A3E` |
 | ² | `0x003C5EA7` |
-| ³ | `0x00244F00` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It clears the whole `0x348`-byte block from `0x022C8060` and keeps only the bits `0xFFFC02EC` of the mode word `0x022C83E8`. | `0x00861EC0`, `0x0035BB85`<br>`0x0035BB8A` |
+| 2 | It runs `0x002419B0()`, which closes the slot-1 confirm window ([Dialogs](dialogs.md)). | `0x0035BB99` |
+| 3 | It closes the leader-choice window in `0x022CA428` when it is there and its `+0x7C` lacks bit `0x20`: it sets the window's `+0xC4` bit `0x2`, in its `+0x7C` sets bit `0x800` and puts 1 in bits 22-31, keeping the other bits, hands it to `0x00244F00` and clears `0x022CA428`. | `0x0035BBA5`-`0x0035BBAF`<br>`0x0035BBB1`<br>`0x0035BBB8`-`0x0035BBC2`<br>`0x0035BBC5`<br>`0x0035BBCA` |
+| 4 | It closes the window `0x0035E070` keeps in `0x022CA430` under the same two tests: it first hands that window's `+0xC0` widget to `0x002A27F0`, then makes the same `+0x7C` change, hands the window to `0x00244F00` and clears `0x022CA430`. | `0x0035BBD5`-`0x0035BBE5`<br>`0x0035BBE7`-`0x0035BBEE`<br>`0x0035BBF8`-`0x0035BC05`<br>`0x0035BC0B`<br>`0x0035BC10` |
+| 5 | It ends in `0x002A1E90`, which closes the widget in `[0x0209C4C8]` only when that is not 0 and its `+0x7C` bit `0x20` is clear: it sets the widget's `+0x40` bit `0x10000` and hands it to `0x00244F00`. `0x002A1E90` does not clear `0x0209C4C8` itself; the window's message 18 does when `0x00245020` releases it. | `0x0035BC20`<br>`0x002A1E97`-`0x002A1EA0`<br>`0x002A1EA2`<br>`0x002A1EA9`<br>`0x002A2000`-`0x002A2002` |
+
+The `+0x7C` change in steps 3 and 4 makes a closing run that `0x00244DD0` starts from state 0 or 3 last 1 ms, 0 frames¹. `0x002A27F0` acts only on a widget that is not 0 and that passes the registry's low-32-bit
+test: the dword at `0x0209C4D0` + 8 x its signed byte `+0x3B8` must equal the low 32 bits of its address². It then makes the same `+0x7C` change³ and hands the widget to
+`0x00244F00`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00244EB0`-`0x00244ED4` |
+| ² | `0x002A27F0`-`0x002A280F` |
+| ³ | `0x002A2811`-`0x002A281E` |
+| ⁴ | `0x002A2821` |
+
+</details>
+
+With the bit `0x10000` of step 5, a run that `0x00244DD0` starts from state 0 or 3 takes the default close descriptor
+`0x009151AC`¹, and a run from state 2 gets its length `+0x70` set to 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00244E53`-`0x00244E59` |
+| ² | `0x00244E62`-`0x00244E6A` |
 
 </details>
 
@@ -1167,7 +1202,7 @@ member records, and `0x0035E5F0` writes from `+0x4A0` on.
 The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
 <details>
-<summary>Show the 6 calls with 3 other topics</summary>
+<summary>Show the 7 calls with 4 other topics</summary>
 
 **Enemy AI and gambits** (explained on [gambit screen](gambit-screen.md))
 
@@ -1192,5 +1227,13 @@ Each row is a function this page names (left) and the functions from this topic 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
 | [`0x002A1D40`](party-list.md) | is called by | [`0x00511280`](party-list.md) |
+
+**Saving, loading and settings** (explained on [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00245020`](widgets.md) (on widgets) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
 
 </details>

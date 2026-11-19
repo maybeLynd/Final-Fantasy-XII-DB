@@ -516,7 +516,7 @@ Each row is a function this page names (left), whether it calls the functions on
 | Function named on this page | | Functions from this topic |
 |---|---|---|
 | [`0x003603E0`](script-language-differences.md) | is called by | [`0x00280140`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
-| [`0x0017D6E0`](../Engine-Core/game-application.md) (on game application) | calls | [`0x001C18E0`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x001C1910`](../Engine-Core/game-application.md) (on game application) |
+| [`0x0017D6E0`](../Engine-Core/game-application.md) (on game application) | calls | [`0x001C18E0`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x001C1910`](../Engine-Core/game-application.md) (on game application) |
 
 **Menus and HUD** (explained on [hud](../Menus-And-HUD/hud.md), [augments](../Damage-And-Battle-Formulas/augments.md), [map screens](../Menus-And-HUD/map-screens.md))
 

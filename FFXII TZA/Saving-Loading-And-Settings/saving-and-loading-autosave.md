@@ -313,3 +313,154 @@ and the boss whose fight it tracks, and the rule in words. What the rows show:
 - [Loading a save: the steps from choosing a slot to the party standing where it saved](loading-a-save.md)
 - [Save file format: the SAFH container, its zlib and RC4 layers, the save image and its header fields, the four in-memory copies and the format stamps](save-file-format.md)
 - [Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map](../World-Areas-And-Travel/zone-changes-and-mapjump.md)
+
+### Calls to and from other topics
+
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
+
+<details>
+<summary>Show the 151 calls with 30 other topics</summary>
+
+**Characters and objects** (explained on [force fight mode](../Engine-Core/force-fight-mode.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00236760`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) | is called by | [`0x00300E40`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) Battle unit: teardown and despawn (on equipping an item) |
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md), [game application](../Engine-Core/game-application.md), [debug menu](../Engine-Core/debug-menu.md), [global state accessors](../Engine-Core/global-state-accessors.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00182D40`](saving-and-loading-autosave.md) | is called by | [`0x0022B8C0`](../Graphics/graphics-thread-handshake.md) (on graphics thread handshake) |
+| [`0x001831A0`](saving-and-loading-autosave.md) | is called by | [`0x0017D4C0`](../Engine-Core/startup-constants.md) (on startup constants) |
+| [`0x001C1710`](saving-and-loading-autosave.md) | is called by | [`0x0017D4C0`](../Engine-Core/startup-constants.md) (on startup constants) |
+| [`0x001C18A0`](saving-and-loading-autosave.md) | is called by | [`0x0017D4C0`](../Engine-Core/startup-constants.md) (on startup constants) |
+| [`0x001C18E0`](saving-and-loading-autosave.md) | is called by | [`0x0017D4C0`](../Engine-Core/startup-constants.md) (on startup constants)<br>[`0x0017D6E0`](../Engine-Core/game-application.md) (on game application) |
+| [`0x00265270`](../Menus-And-HUD/clan-primer-entries.md) Field data: get variable0 (on clan primer entries) | is called by | [`0x001EC760`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x00582860`](saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x001EDEC0`](saving-and-loading-screen.md) (on saving and loading screen) |
+
+**Controls and input** (explained on [controls](../Controls-And-Input/controls.md), [game application](../Engine-Core/game-application.md), [force fight mode](../Engine-Core/force-fight-mode.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00182D40`](saving-and-loading-autosave.md) | calls | [`0x001986E0`](../Controls-And-Input/controls.md) (on controls)<br>[`0x00198790`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x00236760`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) | is called by | [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x00265270`](../Menus-And-HUD/clan-primer-entries.md) Field data: get variable0 (on clan primer entries) | is called by | [`0x00253C70`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x0027F5D0`](saving-and-loading-transaction.md) (on saving and loading transaction) | calls | [`0x002D66A0`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x00582860`](saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x00182D40`](saving-and-loading-autosave.md) |
+
+**Steam and achievements** (explained on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [achievements](../Steam-And-Achievements/achievements.md), [loading a save](loading-a-save.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00265270`](../Menus-And-HUD/clan-primer-entries.md) Field data: get variable0 (on clan primer entries) | is called by | [`0x003154B0`](../Menus-And-HUD/clan-primer-entries.md) (on clan primer entries)<br>[`0x003161A0`](../Steam-And-Achievements/achievements.md) (on achievements) |
+| [`0x00584210`](save-data-fields.md) Save load: normalize loaded runtime state and reseed rng (on save data fields) | calls | [`0x00316810`](../Steam-And-Achievements/achievements.md) (on achievements) |
+
+**Graphics** (explained on [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [debug menu](../Engine-Core/debug-menu.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00247870`](saving-and-loading-transaction.md) (on saving and loading transaction) | is called by | [`0x00579420`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
+| [`0x00265270`](../Menus-And-HUD/clan-primer-entries.md) Field data: get variable0 (on clan primer entries) | is called by | [`0x001CD0E0`](../Engine-Core/graphics-settings.md) (on graphics settings) |
+| [`0x002CC9B0`](saving-and-loading-autosave.md) | is called by | [`0x002BAF80`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x002CC9C0`](saving-and-loading-autosave.md) | is called by | [`0x002BAF80`](../Menus-And-HUD/widgets.md) (on widgets) |
+
+**Random numbers** (explained on [startup constants](../Engine-Core/startup-constants.md))
+
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00584210`](save-data-fields.md) Save load: normalize loaded runtime state and reseed rng (on save data fields) | calls | [`0x00379CF0`](../Engine-Core/startup-constants.md) (on startup constants) |
+
+**Game files and data tables** (explained on [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [debug menu](../Engine-Core/debug-menu.md), [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [verb table](../Scripts-And-Script-Commands/verb-table.md), [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x001C1810`](saving-and-loading-autosave.md) | calls | [`0x001A0A90`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A0BB0`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager)<br>[`0x001A1220`](../Game-Files-And-Data-Tables/async-load-manager.md) (on async load manager) |
+| [`0x00265270`](../Menus-And-HUD/clan-primer-entries.md) Field data: get variable0 (on clan primer entries) | is called by | [`0x001DA220`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x001DA970`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests) |
+| [`0x0027F5D0`](saving-and-loading-transaction.md) (on saving and loading transaction) | calls | [`0x0024A5A0`](../Game-Files-And-Data-Tables/binmenu-images.md) (on binmenu images) |
+| [`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump) | calls | [`0x0032E520`](../Graphics/effect-file-loading.md) (on effect file loading) |
+| [`0x00582790`](saving-and-loading-autosave.md) | calls | [`0x00249210`](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md) (on mrp menu resource packages)<br>[`0x00249580`](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md) (on mrp menu resource packages)<br>[`0x003933F0`](../Menus-And-HUD/clan-primer.md) (on clan primer)<br>[`0x00393460`](../Game-Files-And-Data-Tables/tim2-images.md) (on tim2 images) |
+
+**Scripts and script commands** (explained on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [debug logging](../Engine-Core/debug-logging.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x001831A0`](saving-and-loading-autosave.md) | is called by | [`0x00354D00`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump) |
+| [`0x00236760`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) | is called by | [`0x0050F540`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) |
+| [`0x003BB420`](../World-Areas-And-Travel/changing-areas.md) (on changing areas) | is called by | [`0x0050C670`](../Engine-Core/debug-logging.md) (on debug logging)<br>[`0x0050C8D0`](saving-and-loading-autosave.md)<br>[`0x0050C990`](saving-and-loading-autosave.md)<br>[`0x0050EEA0`](saving-and-loading-transaction.md) (on saving and loading transaction)<br>[`0x0050F0A0`](saving-and-loading-transaction.md) (on saving and loading transaction) |
+| [`0x003BB430`](saving-and-loading-autosave.md) | is called by | [`0x0050C960`](saving-and-loading-autosave.md)<br>[`0x0050ED50`](saving-and-loading-autosave.md) |
+
+**Enemy spawning** (explained on [native limits](../Engine-Core/native-limits.md))
+
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x005843E0`](../World-Areas-And-Travel/chocobos-and-airships.md) World transition snapshot: restore persistence pair for active slot (on chocobos and airships) | calls | [`0x00233550`](save-data-fields.md) Spawn keep: restore persistence bank (on save data fields) |
+
+**Story, events and hunts** (explained on [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00265270`](../Menus-And-HUD/clan-primer-entries.md) Field data: get variable0 (on clan primer entries) | is called by | [`0x001ED240`](../Graphics/model-effects-and-motion-commands.md) G0999; (on model effects and motion commands) |
+| [`0x00265270`](../Menus-And-HUD/clan-primer-entries.md) Field data: get variable0 (on clan primer entries) | is called by | [`0x00377970`](../Story-Events-And-Hunts/story-flags.md) (on story flags) |
+
+**Menus and HUD** (explained on [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [force fight mode](../Engine-Core/force-fight-mode.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [subsystem update flags](../Engine-Core/subsystem-update-flags.md), [battle menu](../Menus-And-HUD/battle-menu.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [party list](../Menus-And-HUD/party-list.md), [map screens](../Menus-And-HUD/map-screens.md), [hud](../Menus-And-HUD/hud.md), [menu screens](../Menus-And-HUD/menu-screens.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md), [cl2 menu colour tables](../Game-Files-And-Data-Tables/cl2-menu-colour-tables.md), [widget messages](../Menus-And-HUD/widget-messages.md), [party member status record](../Characters-And-Objects/party-member-status-record.md), [controls](../Controls-And-Input/controls.md), [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [clan primer](../Menus-And-HUD/clan-primer.md), [text handbook unrequested](../Menus-And-HUD/text-handbook-unrequested.md), [on screen keyboard](../Controls-And-Input/on-screen-keyboard.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00244960`](loading-a-save.md) (on loading a save) | is called by | [`0x0023ED80`](../Menus-And-HUD/config-screen.md) (on config screen)<br>[`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00276D30`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002778C0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00279E20`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x0027AD70`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x00298250`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x002985D0`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x0029BB40`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x0029C770`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x0029C850`](saving-and-loading-autosave.md)<br>[`0x0029C9D0`](../Menus-And-HUD/party-list.md) (on party list) |
+| [`0x00244960`](loading-a-save.md) (on loading a save) | is also called by | [`0x002B6350`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x002B9D30`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x002BDCE0`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x002BFB40`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x002C9BF0`](../Menus-And-HUD/shop-screens.md) (on shop screens)<br>[`0x003CA310`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships)<br>[`0x003CA860`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships)<br>[`0x003CAE00`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships)<br>[`0x003CB0C0`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships)<br>[`0x003CB650`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x003F8790`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x00551E00`](loading-a-save.md) (on loading a save) |
+| [`0x00244960`](loading-a-save.md) (on loading a save) | is also called by | [`0x00551F00`](loading-a-save.md) (on loading a save)<br>[`0x005528C0`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x00567200`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x0056C170`](../Menus-And-HUD/menu-screens.md) (on menu screens) |
+| [`0x00245020`](../Menus-And-HUD/widgets.md) (on widgets) | is called by | [`0x00253780`](../Game-Files-And-Data-Tables/ps2data-bin-families.md) (on ps2data bin families)<br>[`0x002778C0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00279E20`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x0027AD70`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x0027EFA0`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x0027FB70`](../Story-Events-And-Hunts/tutorials-scenes.md) (on tutorials scenes)<br>[`0x0028B860`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x0028F2F0`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x00296670`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x002985D0`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x0029A0A0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x0029C850`](saving-and-loading-autosave.md) |
+| [`0x00245020`](../Menus-And-HUD/widgets.md) (on widgets) | is also called by | [`0x002BF3D0`](../Game-Files-And-Data-Tables/ui-typed-lists.md) (on ui typed lists)<br>[`0x002BF4F0`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x002BFB40`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x002C0870`](../Engine-Core/subsystem-update-flags.md) (on subsystem update flags)<br>[`0x003CA310`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships)<br>[`0x003CB410`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x003CB4F0`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x003CB650`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x005519E0`](../Game-Files-And-Data-Tables/as7-menu-graphics.md) (on as7 menu graphics)<br>[`0x00552250`](../Game-Files-And-Data-Tables/world-map-mesh-mg.md) (on world map mesh mg)<br>[`0x005528C0`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x00558BB0`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables) |
+| [`0x00247870`](saving-and-loading-transaction.md) (on saving and loading transaction) | is called by | [`0x00276960`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00279E20`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x0027DCA0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00297880`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x0029A0A0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002BE450`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x002BF690`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x002C0400`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x002C3560`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x002C4720`](../Game-Files-And-Data-Tables/ui-typed-lists.md) (on ui typed lists)<br>[`0x002CC2A0`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x003C5910`](../Menus-And-HUD/map-screens.md) (on map screens) |
+| [`0x00247870`](saving-and-loading-transaction.md) (on saving and loading transaction) | is also called by | [`0x00553F40`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x005542D0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x005771F0`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables)<br>[`0x0057E6D0`](saving-and-loading-screen.md) (on saving and loading screen) |
+| [`0x0027F5D0`](saving-and-loading-transaction.md) (on saving and loading transaction) | calls | [`0x0028E790`](../Menus-And-HUD/map-screens.md) (on map screens) |
+| [`0x002CA110`](saving-and-loading-autosave.md) | is called by | [`0x002C2320`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen)<br>[`0x00558FB0`](../Menus-And-HUD/license-board-screen.md) (on license board screen)<br>[`0x00560910`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables)<br>[`0x00561390`](../Graphics/menu-effects.md) (on menu effects)<br>[`0x00565E00`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables) |
+| [`0x002CC9B0`](saving-and-loading-autosave.md) | is called by | [`0x005528C0`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x005542D0`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x002CC9C0`](saving-and-loading-autosave.md) | is called by | [`0x0027FB70`](../Story-Events-And-Hunts/tutorials-scenes.md) (on tutorials scenes)<br>[`0x00281ED0`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x005528C0`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x005542D0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x0056F810`](../Menus-And-HUD/dialogs.md) (on dialogs) |
+| [`0x0036FD80`](saving-and-loading-autosave.md) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x003BB420`](../World-Areas-And-Travel/changing-areas.md) (on changing areas) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x003BB430`](saving-and-loading-autosave.md) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x00582860`](saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x002814E0`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
+
+**World, areas and travel** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [game application](../Engine-Core/game-application.md), [changing areas](../World-Areas-And-Travel/changing-areas.md), [native limits](../Engine-Core/native-limits.md), [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [debug menu](../Engine-Core/debug-menu.md), [script variables](../Scripts-And-Script-Commands/script-variables.md), [game over](../World-Areas-And-Travel/game-over.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump) | is called by | [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x001831A0`](saving-and-loading-autosave.md) | is called by | [`0x00314530`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: requeue current field for restore (on zone changes and mapjump) |
+| [`0x0020E500`](saving-and-loading-autosave.md) | is called by | [`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump) |
+| [`0x00236760`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) | is called by | [`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump)<br>[`0x005843E0`](../World-Areas-And-Travel/chocobos-and-airships.md) World transition snapshot: restore persistence pair for active slot (on chocobos and airships)<br>[`0x00584580`](save-data-fields.md) World transition snapshot: capture persistence pair for active slot (on save data fields) |
+| [`0x00265270`](../Menus-And-HUD/clan-primer-entries.md) Field data: get variable0 (on clan primer entries) | is called by | [`0x001EDCD0`](../Graphics/model-effects-and-motion-commands.md) M1126 (on model effects and motion commands)<br>[`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump)<br>[`0x003EAA70`](../Sound-And-Music/sound-banks.md) (on sound banks) |
+| [`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump) | calls | [`0x00229B40`](save-data-fields.md) World transition snapshot: capture runtime state (on save data fields)<br>[`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list)<br>[`0x00265270`](../Menus-And-HUD/clan-primer-entries.md) Field data: get variable0 (on clan primer entries)<br>[`0x00287D00`](../Scripts-And-Script-Commands/script-variables.md) (on script variables)<br>[`0x00584580`](save-data-fields.md) World transition snapshot: capture persistence pair for active slot (on save data fields) |
+| [`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump) | is called by | [`0x00314440`](../World-Areas-And-Travel/changing-areas.md) (on changing areas) |
+| [`0x00394450`](saving-and-loading-autosave.md) | is called by | [`0x005843E0`](../World-Areas-And-Travel/chocobos-and-airships.md) World transition snapshot: restore persistence pair for active slot (on chocobos and airships) |
+| [`0x00582860`](saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x005843E0`](../World-Areas-And-Travel/chocobos-and-airships.md) World transition snapshot: restore persistence pair for active slot (on chocobos and airships) |
+| [`0x00584210`](save-data-fields.md) Save load: normalize loaded runtime state and reseed rng (on save data fields) | calls | [`0x00269A20`](save-data-fields.md) World persistence: import group persistent bank (on save data fields)<br>[`0x00314DC0`](loading-a-save.md) World transition: set active or pending field id (on loading a save) |
+| [`0x005843E0`](../World-Areas-And-Travel/chocobos-and-airships.md) World transition snapshot: restore persistence pair for active slot (on chocobos and airships) | calls | [`0x00269A20`](save-data-fields.md) World persistence: import group persistent bank (on save data fields) |
+
+</details>

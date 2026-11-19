@@ -200,6 +200,21 @@ sets row 7 through `0x002E2240(1)`¹. On close, `0x00229510` clears row 7 throug
 
 </details>
 
+### The Start handler
+
+The Start handler `0x002287D0` runs these steps in order:
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It reads the combined mask `0x002E0FA0()` first. | `0x002287E0` |
+| 2 | It answers 0 at once while `0x003603B0()` or `0x003603C0()` answers non-zero. | `0x002287ED`-`0x00228810` |
+| 3 | It answers 1 while `0x00229EA0()`, the frame mode, is 5 or 6, while the event-skip task `[0x0209AC30] + 0xC8` is set, and while `0x00280120()` answers 0. | `0x00228817`-`0x00228842` |
+| 4 | A signed byte `+0xDED` of `[0x0209AC30]` above 0, 1 to 127, loses 1, and the answer is 1 as well. | `0x00228844`-`0x0022885E` |
+| 5 | The request is 1 when `0x00227D70()` answers 1 and bit `0x20000` of the combined mask is clear; otherwise 2 when `0x003641F0()` answers 1 or 2 and bit `0x10000` is clear; otherwise 0, a plain press. | `0x0022886A`-`0x00228897` |
+| 6 | It goes on only past the gate that [The Start handler's gate](#the-start-handlers-gate) gives, and answers 0 otherwise. | `0x002288AE`-`0x002288BD`, `0x002288D9` |
+| 7 | When `0x00265680()` answers non-zero, the arm is 3, and bit `0x1000` of the combined mask makes the handler answer 0 without calling `0x00228700`. When it answers 0, the arm comes from bits `0x80000` and `0x2000`, as [What each bit blocks](#what-each-bit-blocks) gives. | `0x002288BF`-`0x002288D9` |
+| 8 | The handler's answer is then `0x00228700(arm, request)`'s. | `0x0022890D`-`0x00228911`, `0x002288DB` |
+
 ### What each bit blocks
 
 | Bit | Blocks |
@@ -215,10 +230,26 @@ sets row 7 through `0x002E2240(1)`¹. On close, `0x00229510` clears row 7 throug
 
 No reader tests bits `0x80`, `0x4000`, `0x8000` or `0x100000`.
 
-Bits `0x2000` and `0x80000` do not block anything: they steer Start's event-skip arm. Bit `0x80000` must be set for that arm to run
-at all¹, which is why the movie busy bit clears it. Inside the Start handler `0x002287D0`, with bit `0x80000` set, the arm it passes to `0x00228700` is 1 only when bit `0x2000` is set and
-`0x003606B0` finds a non-zero word among `0x022CB9C4`, `0x022CB9C8` and `0x022CB9CC`, and 2 otherwise². `0x00360880` walks the same three words, takes the lowest set bit of each and runs that skip
-through `0x00360710`.
+The audio hold `0x00229AF0()` first stores 0 at the dword `0x01E027FC`¹. With bit `0x200000` of `0x002E0FA0()`
+set it ends in a jump to `0x002E1020(1)`². With the bit clear it ends in a jump to
+`0x002DF370(0x3F, 1, 1)` when `0x00226BD0(0xF)` answers 0, and returns otherwise³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00229AF4` |
+| ² | `0x00229AFE`-`0x00229B12` |
+| ³ | `0x00229B17`-`0x00229B39` |
+
+</details>
+
+Bits `0x2000` and `0x80000` do not block anything: they steer Start's event-skip arm. When `0x00265680()` answers 0, bit
+`0x80000` must be set for that arm to run¹, which is why the movie busy bit clears it. Inside the Start
+handler `0x002287D0`, in that case the arm it passes to `0x00228700` is 1 only when bit `0x2000` is set and `0x003606B0()`
+finds a non-zero word among `0x022CB9C4`, `0x022CB9C8` and `0x022CB9CC`, and 2 otherwise². `0x00360880`
+walks the same three words, takes the lowest set bit of each and runs that skip through `0x00360710`.
 
 <details>
 <summary>Where in the code</summary>

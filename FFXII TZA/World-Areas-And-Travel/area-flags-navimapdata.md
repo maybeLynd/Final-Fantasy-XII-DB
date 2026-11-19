@@ -197,12 +197,8 @@ selector can tell 1 from 0 or 3 from 2.
 
 ### The Map entry
 
-Bits `0xFFF` are the area's entry in the in-game Map. `0x003779F0` masks the word with `0xFFF` and returns
--1 when the result is `0xFFF`¹, so a missing table and an authored `0xFFF` are
-the same answer. Nine functions call it: the Map screen builders `0x003C5E50`, `0x003C17E0`, `0x003C60F0`,
-`0x003C8670` and `0x00576A50`, the per-map record helpers `0x002550E0`, `0x002551B0` and `0x00255200`, and the
-handbook check `0x003160C0`, which walks the handbook's map list at `[0x022C2550] + 8` and treats the
-current area's entry as already seen².
+Bits `0xFFF` are the area's entry in the in-game Map. `0x003779F0` masks the word with `0xFFF` and returns -1 when the
+result is `0xFFF`¹, so a missing table and an authored `0xFFF` are the same answer.
 
 <details>
 <summary>Where in the code</summary>
@@ -210,7 +206,36 @@ current area's entry as already seen².
 | | Code |
 |---|---|
 | ¹ | `0x00377A23`-`0x00377A32` |
-| ² | `0x003160FA` |
+
+</details>
+
+Nine functions call it: the minimap's teardown `0x003C5E50` and the write-backs `0x003C60F0` and `0x003C8670`; `0x003C17E0`,
+which tests whether a field's map counts as explored; `0x00576A50`, which picks a Clan Primer section's caption; the
+per-map record helpers `0x002550E0`, `0x002551B0` and `0x00255200`; and the handbook check `0x003160C0`, which walks the
+handbook's map list at `[0x022C2550] + 8` and treats the current area's entry as already seen¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003160FA` |
+
+</details>
+
+The teardown and the two write-backs copy the explored mask `0x02B45978` back into the area's Map record¹ only for entries 1 to `0x180`: each skips entry
+0², `0x002551B0` gives no record above `0x180`³, and the teardown copies
+only while bit `0x1` of `0x02B45A00` is set⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003C5E86`-`0x003C5E97`, `0x003C6116`-`0x003C6127`, `0x003C8695`-`0x003C86A6` |
+| ² | `0x003C5E76`, `0x003C6106`, `0x003C8685` |
+| ³ | `0x002551C5` |
+| ⁴ | `0x003C5E59` |
 
 </details>
 

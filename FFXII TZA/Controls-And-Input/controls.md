@@ -46,9 +46,9 @@ The manager is a `0x40`-byte object whose pointer is at `0x01F7FFE0`. `0x0019875
 ### One poll
 
 The device poll runs from the vsync callback `0x0035EC90`, installed at `0x0035E943`, through `0x0035FCA0` and `0x0035F420`.
-`0x0035F420` reaches the manager's poll `0x00196FF0(manager, frame)` through `0x00862670`¹, which jumps to
-`0x001E09B0`, which tail-jumps to the poll at `0x001E09D3`. Its next call, `0x00862680`², jumps to `0x001E09E0`,
-which tail-jumps to the return stub `0x0016D6A0`³ and so does nothing. The poll runs in this order:
+`0x0035F420` reaches the manager's poll `0x00196FF0(manager, frame)` through `0x00862670(device, 0x022CB680)`¹,
+which jumps to `0x001E09B0`; that returns at once when `0x00198790()` answers 0, and otherwise asks again and tail-jumps
+to the poll with the manager and the frame².
 
 <details>
 <summary>Where in the code</summary>
@@ -56,8 +56,21 @@ which tail-jumps to the return stub `0x0016D6A0`³ and so does nothing. The poll
 | | Code |
 |---|---|
 | ¹ | `0x0035F467` |
-| ² | `0x0035F473` |
-| ³ | `0x001E0A03` |
+| ² | `0x001E09B9`-`0x001E09D3` |
+
+</details>
+
+Its next call, `0x00862680(0x022CB6C0)`¹, jumps to `0x001E09E0`, which makes the same `0x00198790()` test² and tail-jumps to the return stub `0x0016D6A0(manager, 0x022CB6C0)`³, and
+so does nothing. The poll runs in this order:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035F473` |
+| ² | `0x001E09E9`-`0x001E09F1` |
+| ³ | `0x001E09F3`-`0x001E0A03` |
 
 </details>
 
@@ -69,6 +82,19 @@ which tail-jumps to the return stub `0x0016D6A0`³ and so does nothing. The poll
 | 4 | It starts the 18-byte frame: a button mask of `0xFFFF`, four stick bytes of `0x80` and twelve zero bytes. | `0x00197085`-`0x001970A9` |
 | 5 | It runs the translator `0x00197160` over the five records at `0x01DF1480`, then over the three at `0x01F80550` when mode bit `0x2` is set, and the three at `0x01F80970` when bit `0x1` or `0x4` is set. | `0x001970B0`<br>`0x001970C8`-`0x001970FE` |
 | 6 | It copies the frame out. | `0x0019711D` |
+
+After the rebuild `0x00196290()`, `0x00196680` calls `0x007A0B50(mapper, key)` on the input mapper `[0x00796E20() + 0xDF8]`
+for each profile's four left-stick keys, in the order LY_N, LX_P, LY_P, LX_N, read at `+0x0C`, `+0x00`, `+0x08` and
+`+0x04` of `0x01F80FE0 + 0x70 * p`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0019668A`-`0x001966F6` |
+
+</details>
 
 ### Control codes
 
@@ -155,8 +181,10 @@ is in its fourth value, which this arm does not read.
 </details>
 
 The two extra blocks turn movement keys into direction buttons. Mode bit `0x2` makes `0x00196DF0` build three records at
-`0x01F80550` whose Up, Right, Down and Left are each profile's movement keys. Mode bits `0x1` and `0x4` build the same at
-`0x01F80970` with L2 and R2 added¹; bit `0x4` also clears the right-stick keys of records 2-4².
+`0x01F80550` whose Up, Right, Down and Left are each profile's movement keys. Mode bits `0x1` and `0x4` build the same
+at `0x01F80970` with L2 and R2 added¹; bit `0x4` also zeroes axis entries 0 and 1 of records 2-4
+and writes their entries 2 and 3 as `{2, 4, RX_P, RX_N}` and `{2, 4, RY_P, RY_N}`, the profile's group 1 slots 0 to 3
+at `0x01F80FD0 + 0x70 * p`², so the right-stick keys move stick bytes 2 and 3.
 
 <details>
 <summary>Where in the code</summary>
@@ -164,7 +192,7 @@ The two extra blocks turn movement keys into direction buttons. Mode bit `0x2` m
 | | Code |
 |---|---|
 | ¹ | `0x00196EE0`, `0x00196C40` |
-| ² | `0x00196D34` |
+| ² | `0x00196D34`-`0x00196DBB` |
 
 </details>
 
@@ -183,9 +211,9 @@ Each poll writes one 36-byte frame into a 16-frame ring at `+0x44` of the channe
 
 | Step | What happens | Where in the code |
 |---|---|---|
-| 1 | The sixteen per-button bytes are the frame's stick and pressure bytes in the order of `0x01EF9238`. The frame is ring slot `byte 0 & 0xF`. The mask word it reads at `0x022CB642` has every bit set, because `0x00862660` stores `0xFFFFFFFF` at `0x022CB640` first: frame word `+0x02` becomes `0xFFFF`.<br>• So every byte is copied from the manager's frame `0x022CB680`, and the stores of `0x80` and 0 for a clear bit never run.<br>• After the three steps, `0x0035F420` calls the return stub `0x0016D6A0` and the vibration step `0x0035F590` ([Vibration](vibration.md); `0x0035F537`, `0x0035F548`), and stores the device state in byte 0 of the frame last. | `0x0035F487`-`0x0035F4A0`<br>`0x0035F44A`-`0x0035F456`<br>`0x0035F4D0`-`0x0035F4E8`<br>`0x0035F4F0`-`0x0035F4F8`<br>`0x0035F572` |
-| 2 | `0x0035FAC0` makes the held mask from the frame's mask: a button is held when its bit is clear. Up with Down (`0x50`) and Left with Right (`0xA0`) cancel each other. It writes held, pressed and released for set 0, the buttons, and held for set 1.<br>• Set 0's held word is frame `+0x04`, pressed `+0x0C` and released `+0x10`, against the held word of the frame before; set 1's held word is `+0x06`. With bit `0x2` of channel byte `+0x09` set it writes only set 1's word; otherwise it also runs the repeats of set 0, `0x0035FBD0`. | `0x0035FB50`-`0x0035FB5A`<br>`0x0035FB6D`-`0x0035FB7E`<br>`0x0035FB92`-`0x0035FBBD`<br>`0x0035FB66`, `0x0035FB92`-`0x0035FBB4`<br>`0x0035FBBD`<br>`0x0035FB88`-`0x0035FB8D`<br>`0x0035FBB8` |
-| 3 | `0x0035F760` snaps a stick inside a radius of `0x20` to the centre. A left stick past `0x68` adds the Up, Right, Down or Left bit to set 1, which is the buttons plus the left stick as directions. | `0x0035F7BD`, `0x0035F83F`<br>`0x0035F8AE` |
+| 1 | The sixteen per-button bytes are the frame's stick and pressure bytes in the order of `0x01EF9238`: byte `+0x14 + i` takes `0x022CB682 + t[i]`, t being that table. The frame is ring slot `byte 0 & 0xF`. The mask word it reads at `0x022CB642` has every bit set, because `0x00862660(device, 0x022CB640)` stores `0xFFFFFFFF` there first: frame word `+0x02` becomes `0xFFFF`.<br>• So every byte is copied from the manager's frame `0x022CB680`, and the stores of `0x80` and 0 for a clear bit never run.<br>• After the three steps, `0x0035F420` calls the return stub `0x0016D6A0(device, 0x022CB640)` and the vibration step `0x0035F590(device, record, 0x022CB640)`, which [Vibration](vibration.md) gives as `0x0035F590`, and stores the device state in byte 0 of the frame, `+0x44 + 0x24 * slot`, last, taking the ring slot again. | `0x0035F4C3`-`0x0035F508`<br>`0x0035F487`-`0x0035F4A0`<br>`0x0035F44A`-`0x0035F456`<br>`0x0035F4D0`-`0x0035F4E8`<br>`0x0035F4F0`-`0x0035F4F8`<br>`0x0035F537`, `0x0035F548`<br>`0x0035F54D`-`0x0035F572` |
+| 2 | `0x0035FAC0(record, 0x022CB640, 0x022CB680)`, called at `0x0035F517`, makes the held mask from the frame's mask: a button is held when its bit is clear. Up with Down (`0x50`) and Left with Right (`0xA0`) cancel each other. It writes held, pressed and released for set 0, the buttons, and held for set 1.<br>• Set 0's held word is frame `+0x04`, pressed `+0x0C` and released `+0x10`, against the held word of the frame before; set 1's held word is `+0x06`. With bit `0x2` of channel byte `+0x09` set it writes only set 1's word; otherwise it also runs the repeats of set 0, `0x0035FBD0`. | `0x0035FB50`-`0x0035FB5A`<br>`0x0035FB6D`-`0x0035FB7E`<br>`0x0035FB92`-`0x0035FBBD`<br>`0x0035FB66`, `0x0035FB92`-`0x0035FBB4`<br>`0x0035FBBD`<br>`0x0035FB88`-`0x0035FB8D`<br>`0x0035FBB8` |
+| 3 | `0x0035F760(record, 0x022CB640, 0x022CB680)`, called at `0x0035F529`, snaps a stick inside a radius of `0x20` to the centre. A left stick past `0x68` adds the Up, Right, Down or Left bit to set 1, which is the buttons plus the left stick as directions. | `0x0035F7BD`, `0x0035F83F`<br>`0x0035F8AE` |
 
 Byte 0 of a frame is the device state, the second argument of `0x0035F420`¹. `0x0035FCA0` passes 1, the
 answer of `0x0053DD10`, which always returns 1². `0x0035EEB0(channel, i, back)` reads per-button
@@ -401,6 +429,19 @@ pacing through `0x002D4F70` (1-10) and `0x002D4F90` (1-5).
 
 </details>
 
+`0x002D4F70(n)` stores n in the notch threshold `0x01E0CF84` for n from 1 to 10 and keeps the old value for any other n¹. `0x002D4F90(n)` stores n in the read period `0x01E0CF88` and zeroes the count `0x0209E65C` for n
+from 1 to 5, and stores nothing for any other n².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002D4F70`-`0x002D4F7F` |
+| ² | `0x002D4F90`-`0x002D4F9E` |
+
+</details>
+
 `0x002C2F90` and `0x002C4220` move grid cursors for `0x002C1A80`, the input step shared by the Party Menu's member list¹, the Status and Equip screen², the gambit editor³ and `0x0055C740`:
 
 <details>
@@ -555,6 +596,20 @@ run in this order, and the availability bits are those of [Action availability](
 | Up or Down, or wheel notches | L1 not held, two of the nine members `0x00320040(3, i)` returns have `+0x60` not negative and flag bit `0x2` clear or flag `0x4008` is set, `0x02092730` is 0 or 5 | request 3; with the area's bit `0x8000` the wheel total is cleared first (`0x00254052`-`0x002540D2`) |
 | confirm or Square, or a pending pick | `0x02092730` is 0 | the interaction (`0x00254132`-`0x0025415A`), or request 1 (`0x002541A4`-`0x002541C7`) |
 
+`0x002E25B0(request)` answers 0 while the byte `0x0215F1A1` is set and, for request 2 only, while bit `0x1` of
+`0x002E0FA0()` is set; otherwise it answers 1¹. `0x003669D0()` reads the word `0x022CBE1A`: it
+answers 0 while bit `0x1` is clear, 1 with bit `0x1` set and bit `0x4` clear, and 2 with both set².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E25B4`-`0x002E25D5` |
+| ² | `0x003669D0`-`0x003669E8` |
+
+</details>
+
 The helpers the arms call:
 
 - `0x003C9570` returns the pick at `+0xCC` of the object in `0x02B47730` while its `+0xC0` bit `0x8` is set, and
@@ -595,11 +650,15 @@ The helpers the arms call:
 - `0x002736B0()`, from the HUD's `0x002C6F70` and `0x002C64C0`, answers 1 only when `0x00267720()` answers 1, hold-mask
   bit `0x10` is clear, `0x0028FA00()` and `0x00273950()` pass, and `0x0209A2C0` holds no handle or one whose class-1 or class-3
   actor has `+0x0C` bit `0x2` set³.
-- `0x0028FA00()` needs the HUD part `+0x10F80` with word `+0x1D7A` bit `0x8` clear⁴ and
+- `0x0025B4C0(handle)` takes the actor from `0x003588B0(handle)` and answers 0 for no actor. The class is the byte `+0x03`
+  over 32, `[actor + 3] >> 5`; for class 1 or 3 it answers bit `0x2` of the byte `+0x0C` as 0 or 1, and 0 for any
+  other class⁴.
+- `0x0028FA00()` needs the HUD part `+0x10F80` with word `+0x1D7A` bit `0x8` clear⁵ and
   `+0x1D78` times the controlled character's byte `+0x14` in the part's list `+0x1D70` above `0x3FFF`, or
   `+0x1D78` above `0x7F` when the character is not listed.
-- `0x00252DE0`, from the area unload `0x002628B0`, clears `0x02092730` and `0x02092734` and sets `0x020927C8` and `0x020927CC`
-  to 1⁵.
+- `0x00252DE0`, from the area unload `0x002628B0`, runs `0x002B6260()`, `0x003C5E50()` and `0x003BBCF0()`, clears `0x02092730` and
+  `0x02092734` and sets `0x020927C8` and `0x020927CC` to 1⁶, runs `0x00366A00()` and ends in a jump to
+  `0x0028F2A0()`⁷.
 
 <details>
 <summary>Where in the code</summary>
@@ -609,8 +668,10 @@ The helpers the arms call:
 | ¹ | `0x0025412B` |
 | ² | `0x003669D0` |
 | ³ | `0x0025B4C0` |
-| ⁴ | `0x0028FA16`-`0x0028FA25` |
-| ⁵ | `0x00252DF5`-`0x00252E0B` |
+| ⁴ | `0x0025B4C8`-`0x0025B4F2` |
+| ⁵ | `0x0028FA16`-`0x0028FA25` |
+| ⁶ | `0x00252DE4`-`0x00252E0B` |
+| ⁷ | `0x00252E15`-`0x00252E1E` |
 
 </details>
 
@@ -686,6 +747,17 @@ cycle above).
 | `+0xD0` | `u32` | closeWay | how the cursor last closed, 0 on construction (`0x003C9229`): 1 a target confirmed or a pick taken (`0x003C8EFD`, and `0x003C8A50` for 1 and 2), 3 cancelled (`0x003C8DE2`, `0x003C8990`), 4 the target was lost or Escape Mode armed (`0x003C9051`), 5 Left found no target, before or wrapping round (`0x003C8C61`), 6 Right found no target (`0x003C8D36`); `0x003C8A50`(n) stores the others as given (`0x003C8AB8`). `0x003C87B0` picks the next target from it (`0x003C880D`): the nearest for 0 and 4, the nearest as well for 1, 3 and 7 unless the list holds a handle 0, since `+0xC4` is 0 by then (`0x003C8841`-`0x003C8860`), no target for 2, for 5 the rightmost when Left is in the pressed word `0x02F9736A` and the leftmost when it is not, and for 6 the leftmost when Right is in it and the rightmost when it is not (`0x003C889D`-`0x003C88BB`) |
 | `+0xD4` | `u8[4]` | tail0D4 | read and written by no function; nothing fixes its width |
 
+`0x0028F260(handle)` stores the handle as a dword at `[0x0209BE80] + 0xAA60`, and stores nothing while `0x0209BE80` is 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0028F260`-`0x0028F26C` |
+
+</details>
+
 </details>
 
 ## State
@@ -725,7 +797,16 @@ The static initialisers `0x0015C0D0` and `0x0015BF20`, which run from the C++ in
 code 53 (`Key_Z`), button 2, R3, gets code 51 (`Key_X`), and the others 0. They also copy `0x100` bytes from `0x01F7FFF0`
 into each record's axis entries at `+0x40`.
 
-The builders rewrite all sixteen codes of each record of their block, profile *p* for record *p*:
+The builders rewrite all sixteen codes of each record of their block, profile *p* for record *p*¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00196C81`-`0x00196D2E`, `0x00196E20`-`0x00196EC1`, `0x00196F10`-`0x00196FC6` |
+
+</details>
 
 - `0x00196DF0` (mode bit `0x2`, block `0x01F80550`; `0x00196E32`-`0x00196E54`): Up, Right, Down and Left, buttons 4-7, get the
   profile's left-stick keys LY_N, LX_P, LY_P and LX_N, read at `0x01F80FEC`, `0x01F80FE0`, `0x01F80FE8` and `0x01F80FE4` +
@@ -733,6 +814,19 @@ The builders rewrite all sixteen codes of each record of their block, profile *p
 - `0x00196EE0` (mode bit `0x1`; `0x00196F2D`-`0x00196F59`) and `0x00196C40` (mode bit `0x4`; `0x00196C9B`-`0x00196CC1`), block
   `0x01F80970`: the same, and L2 and R2, buttons 8 and 9, get the profile's group 0 slots 8 and 9, at `0x01F80FB0` and
   `0x01F80FB4` + `0x70` × *p*.
+
+After each record every builder calls `0x0079AE90(mapper, key, 0)` on the input mapper `[0x00796E20() + 0xDF8]` for each
+of the profile's four left-stick keys and drops the answers¹. `0x00196C40` checks its stack cookie with `0x00808C40(cookie)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00196CC5`-`0x00196D1B`, `0x00196E58`-`0x00196EAE`, `0x00196F5D`-`0x00196FB3` |
+| ² | `0x00196DC4` |
+
+</details>
 
 The poll runs the builders on a pass with the manager's `+0x3B` set, before it translates¹.
 The mode setters `0x00198670`, `0x00198690`, `0x001986B0`, `0x001986E0`, `0x00198710` and `0x00198730` store `+0x3A` and set
@@ -830,6 +924,20 @@ presses that the gambit screen and the licence board use, and cleared by `0x0024
 
 </details>
 
+`0x00249840` zeroes the whole 24-byte block `0x02F973A0`-`0x02F973B7` in three qword stores, the forced stick bytes
+`0x02F973B4`-`0x02F973B7` with it¹. `0x002D66A0(buttons)` stores nothing for a zero word; otherwise
+it writes the word to `0x02F973AC`, `0x02F973B0` and `0x02F973AE`, in that order².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00249842`-`0x00249850` |
+| ² | `0x002D66A0`-`0x002D66B6` |
+
+</details>
+
 ### Channel 1's button words
 
 `0x002498B0` builds channel 1's eight words at `0x02F97374`-`0x02F97383` the same way as channel 0's, from the base
@@ -889,7 +997,7 @@ The toggle and the set are skipped while bit `0x40000` of `0x002E0FA0()` is set�
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x022CB3B8` | `i32[2]` | 0 | the device each channel reads: -1 for both, and nothing stores another value; `0x0035FCA0` passes it to `0x0053DD10`, which answers 1 whatever it is | `0x0035F260` (`0x0035F27E`) | through the address: `0x0035F420` (`0x0035F441`, `0x0035F451`), `0x0035FCA0` (`0x0035FCC3`, `0x0035FCE3`), `0x0035FDD0` (`0x0035FDF7`, `0x0035FDFE`) |
+| `0x022CB3B8` | `i32[2]` | 0 | the device each channel reads, which `0x0035F420` takes at the record's byte `+0x02` (`0x0035F43A`-`0x0035F451`): -1 for both, and nothing stores another value; `0x0035FCA0` passes it to `0x0053DD10`, which answers 1 whatever it is | `0x0035F260` (`0x0035F27E`) | through the address: `0x0035F420` (`0x0035F441`, `0x0035F451`), `0x0035FCA0` (`0x0035FCC3`, `0x0035FCE3`), `0x0035FDD0` (`0x0035FDF7`, `0x0035FDFE`) |
 | `0x022CB6C0`, `0x022CB6C8` | `u8[8]` each | 0 | a 16-byte block that stays 0: `0x0035F420` hands its address to `0x00862680`, which reaches the return stub `0x0016D6A0` through `0x001E09E0` and writes nothing (`0x0035F46C`), and `0x003600C0` copies it to `0x02F97350` each game frame (`0x00249C06`) | `0x0035F260`, 0 (`0x0035F403`, `0x0035F40A`) | `0x003600C0` (`0x003600C0`) |
 | `0x022CB700` | `i32` | 0 | 2 | `0x0035F260` (`0x0035F28C`, `0x0035F2B9`) | no instruction |
 | `0x022CB704` | `i32` | 0 | the channel `0x0035F260` is setting up, 1 when it returns | `0x0035F260` (`0x0035F28C`, `0x0035F2D3`) | no instruction |
@@ -1099,7 +1207,7 @@ No other instruction reaches `0x0209AC28`.
 The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
 <details>
-<summary>Show the 1 call with 1 other topic</summary>
+<summary>Show the 3 calls with 3 other topics</summary>
 
 **Enemy AI and gambits** (explained on [gambit screen](../Menus-And-HUD/gambit-screen.md))
 
@@ -1108,5 +1216,21 @@ Each row is a function this page names (left) and the functions from this topic 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
 | [`0x0031EB20`](../Battle-Actions/action-definition-row.md) Battle menu: build command entry list (on action definition row) | calls | [`0x00327A10`](../Menus-And-HUD/widgets.md) Gambit config: classify action target pair compatibility (on widgets) |
+
+**Developer** (explained on [game application](../Engine-Core/game-application.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00796E20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x001C2F50`](../Game-Files-And-Data-Tables/standard-file-formats.md) (on standard file formats) |
+
+**Steam and achievements** (explained on [steam integration](../Steam-And-Achievements/steam-integration.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00796E20`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x008655A0`](../Steam-And-Achievements/steam-integration.md) (on steam integration) |
 
 </details>

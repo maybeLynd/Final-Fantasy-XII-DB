@@ -1027,3 +1027,123 @@ it.
 - [Loading a save: the steps from choosing a slot to the party standing where it saved](loading-a-save.md)
 - [Save file format: the SAFH container, its zlib and RC4 layers, the save image and its header fields, the four in-memory copies and the format stamps](save-file-format.md)
 - [Widgets: how every menu element is built, sized, attached, focused, animated and torn down](../Menus-And-HUD/widgets.md)
+
+### Calls to and from other topics
+
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
+
+<details>
+<summary>Show the 89 calls with 20 other topics</summary>
+
+**Characters and objects** (explained on [party control modes](../Engine-Core/party-control-modes.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x002B58B0`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables) | is called by | [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) |
+
+**Sound and music** (explained on [sound banks](../Sound-And-Music/sound-banks.md), [sound driver objects](../Sound-And-Music/sound-driver-objects.md), [audio manager](../Sound-And-Music/audio-manager.md), [force fight mode](../Engine-Core/force-fight-mode.md), [message windows](../Menus-And-HUD/message-windows.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00225580`](saving-and-loading-screen.md) | is called by | [`0x00222740`](../Sound-And-Music/sound-banks.md) (on sound banks)<br>[`0x00222F20`](../Sound-And-Music/sound-banks.md) (on sound banks)<br>[`0x00223190`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x00223DA0`](saving-and-loading-screen.md)<br>[`0x00224570`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x00224C40`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x00224E40`](saving-and-loading-screen.md)<br>[`0x00224F10`](saving-and-loading-screen.md)<br>[`0x002251B0`](../Sound-And-Music/audio-manager.md) (on audio manager)<br>[`0x002252C0`](saving-and-loading-screen.md) |
+| [`0x0024A1A0`](../Menus-And-HUD/message-windows.md) (on message windows) | calls | [`0x002DEE80`](../Sound-And-Music/sound-effects.md) (on sound effects)<br>[`0x002DF0F0`](../Sound-And-Music/sound-effects.md) (on sound effects) |
+| [`0x00581350`](saving-and-loading-screen.md) | calls | [`0x0024A1A0`](../Menus-And-HUD/message-windows.md) (on message windows) |
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md), [startup constants](../Engine-Core/startup-constants.md), [global state accessors](../Engine-Core/global-state-accessors.md))
+
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x002465F0`](../Menus-And-HUD/widgets.md) (on widgets) | calls | [`0x001EDDA0`](../Graphics/effect-lifecycle.md) (on effect lifecycle) |
+| [`0x00254A10`](../Menus-And-HUD/text-string-tables.md) (on text string tables) | calls | [`0x00229E40`](../Story-Events-And-Hunts/script-language-differences.md) (on script language differences) |
+| [`0x0057F7D0`](saving-and-loading-screen.md) | calls | [`0x001EDEC0`](saving-and-loading-screen.md) |
+| [`0x0057FE80`](saving-and-loading-screen.md) | calls | [`0x001EDEC0`](saving-and-loading-screen.md) |
+| [`0x00581490`](saving-and-loading-screen.md) | calls | [`0x001EDEC0`](saving-and-loading-screen.md) |
+| [`0x00582860`](saving-and-loading-screen.md) | calls | [`0x001EDEC0`](saving-and-loading-screen.md) |
+
+**Gameplay** (explained on [item and ability ids](../Engine-Core/item-and-ability-ids.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0031C5D0`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids) | calls | [`0x00309EC0`](../Enemy-AI-And-Gambits/gambit-conditions.md) (on gambit conditions)<br>[`0x0030AE30`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids)<br>[`0x0030B0E0`](../Battle-Actions/command-availability.md) (on command availability)<br>[`0x00322C50`](../Engine-Core/item-and-ability-ids.md) Battle encoded id: is valid for class (on item and ability ids) |
+| [`0x0035D330`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors) | calls | [`0x0031C5D0`](../Engine-Core/item-and-ability-ids.md) (on item and ability ids) |
+
+**Controls and input** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00582860`](saving-and-loading-screen.md) | calls | [`0x00182D40`](saving-and-loading-autosave.md) (on saving and loading autosave) |
+
+**Graphics** (explained on [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [escape](../Controls-And-Input/escape.md), [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [battle numbers](../Menus-And-HUD/battle-numbers.md), [btm exfont bitmaps](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md), [sprite batcher](../Graphics/sprite-batcher.md), [widgets](../Menus-And-HUD/widgets.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [hud](../Menus-And-HUD/hud.md), [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x001EDEC0`](saving-and-loading-screen.md) | is called by | [`0x002B7B80`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x002BAF80`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002BC3E0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002D2DB0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00366B80`](../Controls-And-Input/escape.md) (on escape) |
+| [`0x00225580`](saving-and-loading-screen.md) | is called by | [`0x0029A930`](../Menus-And-HUD/party-list.md) (on party list) |
+| [`0x00247510`](saving-and-loading-screen.md) | is called by | [`0x002D2DB0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00579420`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
+| [`0x00247870`](saving-and-loading-transaction.md) (on saving and loading transaction) | is called by | [`0x00579420`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
+| [`0x00254A10`](../Menus-And-HUD/text-string-tables.md) (on text string tables) | is called by | [`0x002B0280`](../Menus-And-HUD/text-drawing.md) (on text drawing)<br>[`0x002D2DB0`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x00264150`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) | is called by | [`0x002BAF80`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x0029F480`](saving-and-loading-screen.md) | is called by | [`0x0029A930`](../Menus-And-HUD/party-list.md) (on party list) |
+| [`0x002B58B0`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables) | is called by | [`0x00506700`](../Menus-And-HUD/battle-numbers.md) (on battle numbers) |
+| [`0x002D46F0`](saving-and-loading-screen.md) | is called by | [`0x00579420`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
+| [`0x002DC290`](saving-and-loading-screen.md) | calls | [`0x003A1DB0`](../PhyreEngine/the-frame.md) Render command: submit current buffer and swap (on the frame) |
+| [`0x002DC290`](saving-and-loading-screen.md) | is called by | [`0x00392CE0`](../Graphics/sprite-batcher.md) (on sprite batcher) |
+| [`0x002DD7E0`](saving-and-loading-screen.md) | is called by | [`0x00245170`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002455A0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x0029A930`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x002B8EE0`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x002BCB00`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x002D0650`](../Graphics/sprite-batcher.md) (on sprite batcher)<br>[`0x003FB3E0`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x003FBA80`](../Game-Files-And-Data-Tables/prefetch-manifests.md) (on prefetch manifests)<br>[`0x004048E0`](../Game-Files-And-Data-Tables/menu-map-files.md) (on menu map files)<br>[`0x00506700`](../Menus-And-HUD/battle-numbers.md) (on battle numbers) |
+| [`0x0035D330`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors) | is called by | [`0x003BBD00`](../Random-Numbers/which-roll-uses-which-generator.md) (on which roll uses which generator)<br>[`0x00506700`](../Menus-And-HUD/battle-numbers.md) (on battle numbers) |
+| [`0x00377B60`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x002B7B80`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x002BAF80`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x00394660`](saving-and-loading-screen.md) | is called by | [`0x00578450`](../Game-Files-And-Data-Tables/quest-menu-files.md) (on quest menu files) |
+| [`0x00394720`](saving-and-loading-screen.md) | is called by | [`0x00579420`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
+| [`0x0057FB00`](saving-and-loading-screen.md) | calls | [`0x002DC290`](saving-and-loading-screen.md) |
+
+**Rewards: EXP, LP, gil and loot** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00264150`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) | is called by | [`0x002F90C0`](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md) Reward: compute license points for recipient (on exp lp and level ups) |
+
+**Scripts and script commands** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [shared zone script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00254CB0`](loading-a-save.md) (on loading a save) | is called by | [`0x0050D9A0`](save-file-format.md) (on save file format)<br>[`0x0050ED70`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors)<br>[`0x0050EEA0`](saving-and-loading-transaction.md) (on saving and loading transaction)<br>[`0x0050EF50`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors)<br>[`0x0050F0A0`](saving-and-loading-transaction.md) (on saving and loading transaction) |
+| [`0x00264150`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) | is called by | [`0x0050CC30`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
+| [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list) | is called by | [`0x00357450`](saving-and-loading-screen.md)<br>[`0x0050CDE0`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) |
+
+**World, areas and travel** (explained on [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md), [changing areas](../World-Areas-And-Travel/changing-areas.md), [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [native limits](../Engine-Core/native-limits.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00264150`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) | is called by | [`0x0057FB00`](saving-and-loading-screen.md) |
+| [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list) | is called by | [`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump)<br>[`0x003778B0`](saving-and-loading-screen.md)<br>[`0x003C0450`](../Game-Files-And-Data-Tables/menu-map-files.md) (on menu map files)<br>[`0x0057FB00`](saving-and-loading-screen.md) |
+| [`0x0029FB50`](saving-and-loading-screen.md) | is called by | [`0x0057FB00`](saving-and-loading-screen.md) |
+| [`0x0029FE20`](../Menus-And-HUD/text-drawing.md) (on text drawing) | is called by | [`0x0057FB00`](saving-and-loading-screen.md) |
+| [`0x002DC290`](saving-and-loading-screen.md) | is called by | [`0x0057FB00`](saving-and-loading-screen.md) |
+| [`0x002EF640`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) | is called by | [`0x00229B40`](save-data-fields.md) World transition snapshot: capture runtime state (on save data fields)<br>[`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump)<br>[`0x005843E0`](../World-Areas-And-Travel/chocobos-and-airships.md) World transition snapshot: restore persistence pair for active slot (on chocobos and airships) |
+| [`0x003778B0`](saving-and-loading-screen.md) | calls | [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list) |
+| [`0x003778B0`](saving-and-loading-screen.md) | is called by | [`0x0057FB00`](saving-and-loading-screen.md) |
+| [`0x00377B60`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x0057FB00`](saving-and-loading-screen.md) |
+| [`0x00393160`](saving-and-loading-screen.md) | is called by | [`0x0057FB00`](saving-and-loading-screen.md) |
+| [`0x00393190`](saving-and-loading-screen.md) | is called by | [`0x0057FB00`](saving-and-loading-screen.md) |
+| [`0x0057F8C0`](saving-and-loading-screen.md) | calls | [`0x0057FB00`](saving-and-loading-screen.md) |
+| [`0x0057FB00`](saving-and-loading-screen.md) | calls | [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list)<br>[`0x003778B0`](saving-and-loading-screen.md) |
+| [`0x00582860`](saving-and-loading-screen.md) | calls | [`0x005843E0`](../World-Areas-And-Travel/chocobos-and-airships.md) World transition snapshot: restore persistence pair for active slot (on chocobos and airships) |
+
+</details>

@@ -39,8 +39,19 @@ them ([Controls](controls.md)).
 ### The binding rows
 
 The Config screen `0x0023CE10` builds 41 rows from the table at `0x0208E6E0`, which `0x002414B0` fills, 0x14 bytes each:
-`{index, type, text, help, columns}`. A row of type 1 or 2 with columns is a binding row, `0x0023C5C0`, and
-`0x001E0650` turns its index into a group and slot:
+`{index, type, text, help, columns}`. A row of type 1 or 2 with columns is a binding row, `0x0023C5C0`. A row of type 4
+gets the widget `0x0023E710(value, 0)` builds from the row's `+0x10`, 28 for row 36 and 38 for row 38¹: `0x00244F50(0xF0, 0x0023E770, record)`, the record holding the dword 0, the value and the second
+argument's low byte². `0x001E0650` turns a binding row's index into a group and slot:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0023D03D`-`0x0023D042` |
+| ² | `0x0023E723`-`0x0023E74B` |
+
+</details>
 
 | Rows | Controls | Profiles |
 |---|---|---|
@@ -248,6 +259,18 @@ the assigner's refusal², and notice 4 a row whose `+0xE8` is 0³.
 | ¹ | `0x0023D25A`-`0x0023D297` |
 | ² | `0x0023C7B9` |
 | ³ | `0x0023C8CF` |
+
+</details>
+
+`0x001E08F0()` answers 3 when `0x00198790()` answers a manager and `0x001965E0(manager)` answers non-zero in its low byte,
+and 0 otherwise¹: notice 3, "Key assignment not complete".
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E08F4`-`0x001E091B` |
 
 </details>
 

@@ -583,7 +583,7 @@ when it turned them off². The list widget then³:
 |---|---|---|
 | 1 | sets the list's confirm sound `+0xFC` to `0x12` for on or `0x13` for off, which the list's step plays once the widget answers the confirm with 0; | `0x00278569`, `0x00278577`<br>`0x002D4114`-`0x002D4154` |
 | 2 | runs its page tasks through `0x00274BD0(head, first, 0xFF)`, the rebuild `0x0027D740` of each open page whose `+0x1528` bit `0x400` is set (Refreshing an open list, above); | `0x00278592` |
-| 3 | sets the countdown `+0x2DB4` to 6 and answers 0; this path does not call the close `0x00244F00`, which the answer `0x1B` does. | `0x002785A3`<br>`0x002785AA`<br>`0x00278632` |
+| 3 | sets the countdown `+0x2DB4` to 6 and answers 0; this path does not call the close request `0x00244F00`, which the answer `0x1B` does. | `0x002785A3`<br>`0x002785AA`<br>`0x00278632` |
 
 The countdown drops by one on each update (messages 10 and 11) that reaches `0x00277F7A`, and stops at 0¹. While it is not 0 and the page's `+0x1528` bit `0x20000` is set, the list's `+0xE4` bit `0x20` is set², and the list's step then does not pass a confirm press on³. The page build
 (message 31) sets bit `0x20000` for menu kind 9, list `0x18`, and clears it for every other kind⁴, so on the top list the countdown runs without blocking a press.
@@ -996,7 +996,7 @@ The verbs reach the gauge through one-jump stubs:
 |---|---|---|
 | `bossgaugeopen` (`0x00349B60` → `0x003EC7F0`) | `0x00405270` | sets `+0xC8` bit `0x1`, unless bit `0x2` or `0x20` is set |
 | `bossgaugeclose` (`0x00349F80` → `0x003EC7C0`) | `0x00404E10` | once (`+0xC2` bit `0x1`): turns the bars off (`0x00406DD0`), closes the window (`0x00244F00`) when a value is still above 0, or else releases each bar or marks it closing |
-| HUD hide (`0x0035D0E0`) | `0x00405150` | closes the window (`0x00244DD0`) and remembers it in `+0xC8` bit `0x4` |
+| HUD hide (`0x0035D0E0`) | `0x00405150` | closes the window (`0x00244DD0`) unless its `+0x40` bit `0x100000` is set, and sets `+0xC8` bit `0x4`; with no window, only when bit `0x1` is set |
 | HUD show (`0x0035D1B0`) | `0x004052D0` | reopens it (`0x00246AD0`) when bit `0x4` is set |
 | pause mask `0x0215F1B3` | `0x00404D70`, `0x00404DC0` | sets or clears `+0xC8` bit `0x80` ([Script gauges](script-gauges.md)) |
 

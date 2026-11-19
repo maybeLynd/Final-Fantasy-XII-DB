@@ -287,7 +287,7 @@ The chain counter is a widget in the HUD sub-object at `+0x57E0`. The HUD keeps 
 
 </details>
 
-  For 0 it stores 0 at `+0x7C78` and clears bits `0x8` and `0x1`¹, then releases
+  For 0 it stores 0 at `+0x7C78` and clears bits `0x8` and `0x1`¹, then closes
   with `0x00244F00` each of three parts that `0x00273A20` answers non-zero for: `+0x57E0` when bit `0x1`
   of the byte `+0x58A4` is clear, `+0x58B0` when the word `+0x5972` is 0 and `+0x5980` when the word
   `+0x5A42` is 0².

@@ -145,11 +145,12 @@ open: it does nothing while `+0x60` is set and sets it after the move¹. The ope
 - the rectangle `+0x10`-`+0x16`, read at `0x002E18C3`-`0x002E18E0`; only its flag `+0x3A` is cleared¹;
 - the `askpos` rows `+0x24` and `+0x28` and the cancel switch `+0x39`, read at `0x002E1978`-`0x002E1981`; only their flag
   `+0x3B` is cleared, by the same word write as `+0x3A`²;
-- the choice byte `+0x38`, the style `+0x3D` (read at `0x002E174B`) and the `messync` bits `+0x3E`;
-- mask `0xFE` of `+0x44`; the open clears bit `0x1` only³, and no setter writes the others (`0x002E2160`
+- the choice byte `+0x38`, which the drain's close path zeroes³, the style `+0x3D` (read at
+  `0x002E174B`) and the `messync` bits `+0x3E`;
+- mask `0xFE` of `+0x44`; the open clears bit `0x1` only⁴, and no setter writes the others (`0x002E2160`
   stores `value & 1`);
 - the `setshapeanime` animation `+0x46`-`+0x4B` and `+0x50`-`+0x53`, which only `0x003E9440` writes
- ⁴ and only `0x003E9320` reads⁵;
+ ⁵ and only `0x003E9320` reads⁶;
 - the bytes `+0x45`, `+0x4D`-`+0x4F` and `+0x64`-`+0x67`, which no instruction reads or writes.
 
 <details>
@@ -159,9 +160,10 @@ open: it does nothing while `+0x60` is set and sets it after the move¹. The ope
 |---|---|
 | ¹ | `0x002E19A1` |
 | ² | `0x002E19A1` |
-| ³ | `0x002E19AF` |
-| ⁴ | `0x003E9451`-`0x003E9468` |
-| ⁵ | `0x003E9380`-`0x003E9391` |
+| ³ | `0x002E0A71`, `0x002E0A9B` |
+| ⁴ | `0x002E19AF` |
+| ⁵ | `0x003E9451`-`0x003E9468` |
+| ⁶ | `0x003E9380`-`0x003E9391` |
 
 </details>
 
@@ -272,18 +274,30 @@ It also sets `0x022C7F88` to 1¹.
 
 ### Closing
 
-`0x002E08C0(slot)` closes a slot's window: it starts the window's closing run¹, sets state 6, calls
-`0x002F1C50([0x0215F1B6])` when `+0x40` is -1, and writes `0xFE` to `+0x40`. Once the window reports its run over
-(`0x002A28B0`, bit `0x200` of its `+0x40` clear), the drain destroys it with `0x002A2830`, clears the slot and sets
-state 7².
+`0x002E08C0(slot)` closes a slot's window: it hands the window to `0x002A2720`, below, sets state 6, calls
+`0x002F1C50([0x0215F1B6])` when `+0x40` is -1, and writes `0xFE` to `+0x40`. Once `0x002A28B0` answers 0 for the window,
+which it does when the window's `+0x40` bit `0x200` is clear or the window fails the registry test below¹, the drain sets state 7, hands the window to `0x002A2830`, clears the slot's window and writes 0
+to its choice byte `+0x38`².
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x002A2720` |
-| ² | `0x002E0A2E`-`0x002E0A64` |
+| ¹ | `0x002A28C6`-`0x002A28DD` |
+| ² | `0x002E0A2E`-`0x002E0A64`, `0x002E0A8C`-`0x002E0A9B` |
+
+</details>
+
+`0x002A2830` destroys a window that passes the registry test through `0x00245020` only while its `+0x40` bit `0x400` is
+clear¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A2846`-`0x002A2858` |
 
 </details>
 
@@ -314,39 +328,72 @@ destroys at once every window whose `+0x3F` is n¹.
 
 </details>
 
-`0x002A2720(window)` acts only on the window its slot `+0x3B8` names in the table `0x0209C4D0`¹; `0x002A27C0`
-makes the same test². It starts the closing run³ unless bit `0x100000` of `+0x40` or bit
-`0x20` of `+0x7C` is set, and, for a window that keeps a log, clears the log rows (`0x0209C700`, `0x280` bytes) and the
-published text `0x0209C980`/`0x0209C988`.
+`0x002A2720(window)` returns at once for a null window¹ and otherwise acts only when its entry, the dword at
+`0x0209C4D0` + 8 x its signed byte `+0x3B8`, equals the low 32 bits of the window's address, returning with nothing
+written when it does not². It calls the close `0x00244DD0` unless bit `0x100000` of `+0x40` or
+bit `0x20` of `+0x7C` is set³.
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x002A2742` |
-| ² | `0x002A27D6` |
-| ³ | `0x00244DD0` |
+| ¹ | `0x002A2723` |
+| ² | `0x002A272E`-`0x002A274A` |
+| ³ | `0x002A274C`-`0x002A275E` |
 
 </details>
 
-`0x002A27C0` asks a window to close: it sets bit `0x40` of `+0x40`, then runs the closing run when bits `0x1` and `0x20` are set and
-otherwise sends message 15 and destroys it at once¹. `0x002A27F0` closes with a run of 1 ms, which is 0
-frames.
+Whether or not it calls the close, it zeroes the window's count of log rows `+0x3C2`¹. Only for a window
+that keeps a log, bit `0x10000` of `+0x3E8`, does it clear the `0x280` bytes of log rows at `0x0209C700`² and the published text `0x0209C980`/`0x0209C988`³.
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x00245020` |
+| ¹ | `0x002A278D` |
+| ² | `0x002A2763`-`0x002A277E` |
+| ³ | `0x002A2783`-`0x002A27A1` |
+
+</details>
+
+`0x002A27C0` hands a window to `0x00244F00` only when it passes the same test¹: `0x00244F00` sets bit
+`0x40` of `+0x40`², hands the window to the close `0x00244DD0` when bits `0x1` and `0x20` are both set³, and otherwise sends message 15 when its procedure `+0x00` is set and tears it down now⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A27D6`-`0x002A27DF` |
+| ² | `0x00244F0A` |
+| ³ | `0x00244F11`-`0x00244F20` |
+| ⁴ | `0x00244F25`-`0x00244F39` |
+
+</details>
+
+`0x002A27F0` makes `0x002A2720`'s registry test¹, on a window that is not 0². A window that passes
+it gets its `+0x7C` bit `0x800` set and 1 in bits 22-31³ and goes to `0x00244F00`⁴,
+so a closing run that `0x00244DD0` starts from state 0 or 3 lasts 1 ms, which is 0 frames⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A2806` |
+| ² | `0x002A27F3` |
+| ³ | `0x002A2811`-`0x002A281E` |
+| ⁴ | `0x002A2821` |
+| ⁵ | `0x00244EB0`-`0x00244ED4` |
 
 </details>
 
 ### The window object
 
 `0x002A2C00(request)` builds the window as a `0x410`-byte widget with procedure `0x002A6190`¹. Message 1
-registers it in the first free entry of the eight pointers at `0x0209C4D0` and keeps the index at `+0x3B8`². Every entry point first checks that the entry still holds the window³.
+registers it in the first free entry of the eight pointers at `0x0209C4D0` and keeps the index at `+0x3B8`².
 
 <details>
 <summary>Where in the code</summary>
@@ -355,7 +402,19 @@ registers it in the first free entry of the eight pointers at `0x0209C4D0` and k
 |---|---|
 | ¹ | `0x002A2C10` |
 | ² | `0x002A6202`-`0x002A623E` |
-| ³ | `0x002A2720`, `0x002A27C0`, `0x002A2830`, `0x002A28B0`, `0x002A2BB0` |
+
+</details>
+
+Every entry point, `0x002A2720`, `0x002A27C0`, `0x002A27F0`, `0x002A2830`, `0x002A28B0` and `0x002A2BB0`, returns for a null
+window and otherwise checks that the low dword of the window's entry, the dword at `0x0209C4D0` + 8 x its signed byte
+`+0x3B8`, equals the low 32 bits of the window's address¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A2723`, `0x002A27C3`, `0x002A27F3`, `0x002A2833`, `0x002A28B3`, `0x002A2BB3`, `0x002A2742`, `0x002A27D6`, `0x002A2806`, `0x002A2846`, `0x002A28C6`, `0x002A2BCA` |
 
 </details>
 
@@ -373,15 +432,18 @@ step `0x00253970` runs once and which also clears the eight picture slots at `0x
 
 </details>
 
-`0x002A2BB0` answers 1 while a live window has a procedure or a run in progress. `0x002A3090` builds a window for the
-obtained-item notice and the talking-message host¹.
+`0x002A2BB0` answers 1 for a window that passes the registry test¹ whose procedure `+0x00` is set or whose
+`+0x7C` state nibble is not 0, state 1 included², and 0 for any other. `0x002A3090` builds a
+window for the obtained-item notice and the talking-message host³.
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x0035E4C5`, `0x00474271` |
+| ¹ | `0x002A2BCA` |
+| ² | `0x002A2BD5`-`0x002A2BDE` |
+| ³ | `0x0035E4C5`, `0x00474271` |
 
 </details>
 
@@ -546,8 +608,9 @@ without bit `0x40000`, `0x8` with a cancel row, after moving the list there with
 
 ### The message log
 
-A conversation window (kind 16, which the open marks with bit `0x1000` of `+0x3E8`, `0x002A721E`) keeps its pages as rows of `0x28` bytes at `0x0209C700` unless bit `0x4000` is set; bit `0x10000` of `+0x3E8` records that it keeps them¹, and the closing start `0x002A2720` clears the rows of a window with bit `0x10000` set². Its mode is
-bits `0x700` of `+0x3E8`:
+A conversation window (kind 16, which the open marks with bit `0x1000` of `+0x3E8`, `0x002A721E`) keeps its pages as
+rows of `0x28` bytes at `0x0209C700` unless bit `0x4000` is set; bit `0x10000` of `+0x3E8` records that it keeps them¹, and `0x002A2720` clears the rows of a window with bit `0x10000` set that passes the registry
+test². Its mode is bits `0x700` of `+0x3E8`:
 
 <details>
 <summary>Where in the code</summary>
@@ -555,7 +618,7 @@ bits `0x700` of `+0x3E8`:
 | | Code |
 |---|---|
 | ¹ | `0x002A733A`-`0x002A735C` |
-| ² | `0x002A2763`, `0x002A277E` |
+| ² | `0x002A2742`, `0x002A2763`, `0x002A277E` |
 
 </details>
 
@@ -762,11 +825,11 @@ window's messages 15 and 18 close and destroy it. Its layout keys are on [screen
 
 The HUD switch `0x00251F40` ([HUD](hud.md)) hides and shows windows with the rest of the HUD:
 
-- `0x0035D0E0` walks the widget tree from `0x0208EA28`¹ and starts the closing run² of every
+- `0x0035D0E0` walks the widget tree from `0x0208EA28`¹ and hands to `0x002A2720` every
   window with parts (`+0x44` bits under mask `0x180000` equal to `0x100000`, set by `0x002A2AD0`) whose `+0x40` bit `0x100000` is clear
- ³. With bit `0x80` of `[0x020927EC]` it takes every window with parts⁴ and then every text window
+ ². With bit `0x80` of `[0x020927EC]` it takes every window with parts³ and then every text window
   (`0x180000`, `0x0035E580`). It then marks slot 6's window inactive (`0x002E2010(6, 0)`).
-- `0x0035D1B0` reopens them the same way⁵ and marks slot 6's window active (`0x002E2010(6, 1)`).
+- `0x0035D1B0` reopens them the same way⁴ and marks slot 6's window active (`0x002E2010(6, 1)`).
 
 <details>
 <summary>Where in the code</summary>
@@ -774,15 +837,23 @@ The HUD switch `0x00251F40` ([HUD](hud.md)) hides and shows windows with the res
 | | Code |
 |---|---|
 | ¹ | `0x0035D280` |
-| ² | `0x002A2720` |
-| ³ | `0x0035E5C0` |
-| ⁴ | `0x0035E5A0` |
-| ⁵ | `0x0035D2D0`, `0x00246AC0` |
+| ² | `0x0035E5C0` |
+| ³ | `0x0035E5A0` |
+| ⁴ | `0x0035D2D0`, `0x00246AC0` |
 
 </details>
 
-`0x002A2720` itself skips a window whose `+0x40` bit `0x100000` is set, so `setmeswinhidestatus(slot, 2)` keeps a window up
-while the HUD is off.
+`0x002A2720` itself does not start the closing run of a window whose `+0x40` bit `0x100000` is set¹, so `setmeswinhidestatus(slot, 2)` keeps a window up while the HUD is off. Its other stores do
+not depend on the bit, as Closing says.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002A274C`-`0x002A2753` |
+
+</details>
 
 ### Message macros
 

@@ -685,7 +685,7 @@ Each row is a function this page names (left), whether it calls the functions on
 | [`0x002FAFD0`](treasure-chests.md) | is called by | [`0x0050FAF0`](treasure-chests.md) |
 | [`0x003004B0`](../Rewards-EXP-Gil-And-Loot/gil.md) (on gil) | is called by | [`0x0050FAF0`](treasure-chests.md) |
 | [`0x00300B80`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors) | is called by | [`0x0050FAF0`](treasure-chests.md) |
-| [`0x003148F0`](treasure-chests.md) World transition: get active or pending field id | is called by | [`0x0033F310`](treasure-chests.md)<br>[`0x00357450`](../Story-Events-And-Hunts/archades-scripts.md) (on archades scripts) |
+| [`0x003148F0`](treasure-chests.md) World transition: get active or pending field id | is called by | [`0x0033F310`](treasure-chests.md)<br>[`0x00357450`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 | [`0x0032AA60`](treasure-chests.md) Persistent flag: query bank512 low | is called by | [`0x00354540`](treasure-chests.md) |
 | [`0x0032AD70`](treasure-chests.md) Persistent flag: set bank512 low | is called by | [`0x00353750`](treasure-chests.md)<br>[`0x00353BD0`](treasure-chests.md) |
 | [`0x00353750`](treasure-chests.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
@@ -740,7 +740,7 @@ Each row is a function this page names (left) and the functions from this topic 
 |---|---|---|
 | [`0x003148F0`](treasure-chests.md) World transition: get active or pending field id | is called by | [`0x0029C530`](zone-asset-list.md) (on zone asset list)<br>[`0x003C5F00`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x003C80C0`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x003F92B0`](../Menus-And-HUD/text-drawing.md) (on text drawing)<br>[`0x003F9720`](../Menus-And-HUD/hud.md) (on hud) |
 | [`0x003272A0`](treasure-chests.md) Battle unit: get party leader | is called by | [`0x00318CD0`](../Menus-And-HUD/battle-menu.md) (on battle menu) |
-| [`0x003778B0`](zone-asset-list.md) (on zone asset list) | is called by | [`0x0029C530`](zone-asset-list.md) (on zone asset list) |
+| [`0x003778B0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) | is called by | [`0x0029C530`](zone-asset-list.md) (on zone asset list) |
 | [`0x00377B60`](area-flags-navimapdata.md) (on area flags navimapdata) | is called by | [`0x0029C530`](zone-asset-list.md) (on zone asset list) |
 
 </details>

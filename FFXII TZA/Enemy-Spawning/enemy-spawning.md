@@ -1146,7 +1146,11 @@ meaning and the phrase for the tested value, a roll by its range, and a script w
 meanings table below gives one and otherwise once per row by its writers. Of the test cells, 965 story, 159
 weather, 1,825 count, 1,944 random and 9,537 other cells hold a test; the rest hold `-`.
 
-[`enemy-spawn-word-meanings.tsv`](enemy-spawn-word-meanings.tsv) gives what 174 script words mean in the game, one
+A script word's meaning of more than one clause prints as its first clause, with the word's name and "in full in
+enemy-spawn-word-meanings.tsv" beside it. A cell's tests are joined with "; ", so where a global word's meaning holds
+"; " that would split a test, it prints as ", ".
+
+[`enemy-spawn-word-meanings.tsv`](enemy-spawn-word-meanings.tsv) gives what 225 script words mean in the game, one
 row per script and word, read in the scripts that store them: the Barheim Passage battery charge stage, the clear
 flag that some maps set once their foes defeated reach the total of their lanes' death limits, the Feywood clear
 bits behind the Behemoth King, the Oversoul flag and the Helvinek flag in the Necrohol of Nabudis, and the way the
@@ -1159,8 +1163,14 @@ behind the Larva Eater, the Reapers and Vishno, the Brainpans' lane count and th
 maps it gives the group word the bank keeps for each lane (`file +0x000D`), with the rule each map uses when the
 bank keeps none.
 
-Its columns are `script`, `variable`, `map_name`, `meaning` (the phrase the terms table prints, with the word's
-name beside it), `how_set` (the steps that store it and what it changes) and `evidence` (the listing lines).
+It also gives the lane word `file +0x000C` of 51 maps: the lane the foe being placed enters by, from the bank, from a
+walk over the lanes' entry points by their ground distance from the party leader and their angle off its facing, from
+the automatic selector or from the map's own rule. Each row names the foes that use each source, with the tests that
+let them use it, the test that accepts the lane and the group the foe then enters as.
+
+Its columns are `script`, `variable`, `map_name`, `meaning`, `how_set` and `evidence`. `meaning` is the phrase the
+terms table prints with the word's name beside it, or, for a meaning of more than one clause, whose first clause it
+prints; `how_set` gives the steps that store the word and what it changes, and `evidence` the listing lines.
 
 ### Columns of enemy-placement-conditions.tsv
 
@@ -1265,7 +1275,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x0025D9E0`](../Story-Events-And-Hunts/opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields)<br>[`0x00583920`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x0025D9E0`](../Story-Events-And-Hunts/opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) | calls | [`0x002EF2B0`](../Saving-Loading-And-Settings/save-data-fields.md) (on save data fields)<br>[`0x00583920`](../Saving-Loading-And-Settings/saving-and-loading-transaction.md) (on saving and loading transaction) |
 
 </details>
 

@@ -71,8 +71,8 @@ What each offset holds:
 | Offset | Part |
 |---|---|
 | `+0x00000` | four `0x20`-byte member cells of the party list, `0x0028F830(i)` = object + `i` x `0x20` ([Party list](party-list.md)) |
-| `+0x00080` | the rolling-counter list the party list registers in; `0x0028F590` returns its address, or 0 with no HUD |
-| `+0x000A0` | the line sprites and name labels along the zone script's lists 0 and 1; the pump updates it (`0x003F8EC0`) while bit `0x100` of `+0x10F68` is set, from the field set-up `0x003C5F00` (`0x0028FAF0`) to its teardown `0x003C5E50` (`0x0028FA70`) (The set-up and update, The labels and The sprites of the part at +0xA0, below) |
+| `+0x00080` | the rolling-counter list the party list registers in; `0x0028F590` returns its address, or 0 with no HUD; the field set-up's `0x0028FAF0` resets it with `0x004FE3C0` while `[0x0209BE80]` is not 0 (`0x0028FAFE`, `0x0028FB27`, `0x0028FB31`) |
+| `+0x000A0` | the line sprites and name labels along the zone script's lists 0 and 1; the pump updates it (`0x003F8EC0`) while bit `0x100` of `+0x10F68` is set, from the field set-up `0x003C5F00` (`0x0028FAF0`) to its teardown `0x003C5E50` (`0x0028FA70`); `0x0028FAF0` also runs it once itself (`0x0028FB18`) (The set-up and update, The labels and The sprites of the part at +0xA0, below) |
 | `+0x05380` | the part EXP, LP and combo numbers go to ([Combos](../Battle-Actions/combos.md)) |
 | `+0x057E0` | the world-object manager ([Loot pickups](../Rewards-EXP-Gil-And-Loot/loot-pickups.md)) |
 | `+0x07EA0` | the selection marker, below |
@@ -272,7 +272,7 @@ Bits of `+0x10F68` that change what the HUD does:
 | `0x2` | the pump, from `0x0030C300` | group 7 of the pump |
 | `0x8` | `0x00290370` | a target ring is waiting to be built (`0x0028E2EE`) |
 | `0x10`, `0x400` | `0x0028E940(id)`, with the id at `+0x10F60` | the battle menu is built on the next pump (`0x00290CF0`) |
-| `0x100` | `0x0028FAF0`; cleared by `0x0028FA70` | group 12 runs (`0x003F8EC0(+0xA0)`) |
+| `0x100` | `0x0028FAF0`, which does nothing while `[0x0209BE80]` is 0 (`0x0028FAFE`), sets the bit (`0x0028FB00`), runs `0x003F8EC0(+0xA0)` once itself (`0x0028FB18`) and, when `[0x0209BE80]` read again is still not 0 (`0x0028FB27`), resets the counter list `+0x80` through `0x004FE3C0`, which zeroes its qwords `+0x80`, `+0x88` and `+0x90` without walking the list (`0x0028FB31`, `0x004FE3C2`-`0x004FE3C9`); cleared by `0x0028FA70` | group 12 runs (`0x003F8EC0(+0xA0)`) |
 | `0x800` | `0x00290960(1)`, the last step of the field set-up `0x003C5F00` (`0x003C5FA5`), run by `0x00253A30`; cleared by `0x002908C0`, which also closes each `+0x10F30` mark through `0x003F6FD0` and moves a mark left in state 3 to state 4 (`0x002908D0`-`0x00290924`), from the matching teardown `0x003C5E50` (`0x003C5EF2`) | the `+0x10F30` marks are built only while it is set (`0x00291027`) |
 | `0x2000` | `0x002906D0`; cleared by `0x00290610` | `0x00290CF0` and `0x0028F970` do nothing |
 
@@ -1196,16 +1196,40 @@ block², as the pane's child³. The manager itself is built once, from the start
 
 </details>
 
-`0x002BDB60` hides the pane with a closing run that does not release it (`0x00244DD0` at `0x002BDBE3`; the run ends in
-the teardown only for a widget closed through `0x00244F00`, `0x002449BC`-`0x002449CB`), and `0x002BDC00` opens it again
-under the main root¹.
+`0x002BDB60` hides the pane and the log's second pane `+0x1078` with closing runs that do not release them. It does
+nothing when `+0x1080` holds no pane¹; otherwise:
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x002BDC94` |
+| ¹ | `0x002BDB66`-`0x002BDB71` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It sets the `+0x40` bit `0x10000` of the pane and of the second pane, each when present, to whether `0x002544B0()` answers 1. | `0x002BDB77`-`0x002BDBC1` |
+| 2 | It stops the log's steps itself, setting bit `0x1` of the log's `+0x40B6` when `+0x1058` holds the log. | `0x002BDBC8`-`0x002BDBD4` |
+| 3 | It calls `0x00244DD0` on the pane and then on the second pane, a tail jump; `0x00244DD0` returns at once for a null widget. | `0x002BDBE3`<br>`0x002BDBE8`-`0x002BDBF4`<br>`0x00244DD3` |
+
+It sets no `+0x40` bit `0x40` on either, the bit with which the tick walker `0x00244980` tears an active widget down
+once its closing run has ended¹. `0x00244F00` sets that bit², as do `0x00241940`, when
+the widget's `+0x3C4` bit `0x2` is set³, and `0x002419B0` for the slot-1 confirm window of
+[Dialogs](dialogs.md) when `0x0208EA68` holds one and its `+0x7C` bit `0x20` is clear⁴. The
+walker's exits are listed in [Widgets](widgets.md). `0x002BDC00` opens the pane again under the main root⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0024498C`-`0x002449CB` |
+| ² | `0x00244F0A` |
+| ³ | `0x00241952`-`0x0024195B` |
+| ⁴ | `0x002419C0`-`0x002419E1` |
+| ⁵ | `0x002BDC94` |
 
 </details>
 
@@ -1534,21 +1558,23 @@ The part at `+0x7FB0` holds six `0x110`-byte records, one per unit whose level w
 
 ### The set-up and update of the part at +0xA0
 
-`0x003F8D20`, reached through `0x0028FB40` (from `0x00253825`), sets the part up once. It loads the `partytop_8_c`
-picture into `+0x52B8`¹ and uploads it. It keeps the marker cell's rectangle at `+0x00`-`+0x0C`² and the cell's palette at `+0x52C4`³. Then it sets bit `0x1` of
-`+0x52C6`⁴, which the draw `0x003F8C70` tests first.
+`0x003F8D20`, reached through `0x0028FB40` (from `0x00253825`), sets the part up once, while bit `0x1` of `+0x52C6` is clear¹:
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x0024A5A0`, `0x003F8D51` |
-| ² | `0x002711E0`, `0x003F8E51`-`0x003F8E73` |
-| ³ | `0x003F8E78` |
-| ⁴ | `0x003F8E5B` |
+| ¹ | `0x003F8D35`-`0x003F8D3F` |
 
 </details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | It looks up the `partytop_8_c` picture by name and keeps it in `+0x52B8`. With no such picture it leaves 0 there and returns with bit `0x1` of `+0x52C6` clear, so the next call tries again. | `0x0024A5A0`<br>`0x003F8D51`<br>`0x003F8D58`-`0x003F8D5B` |
+| 2 | It registers the picture's pixels and its palette under the name only when `0x00181540` does not find the name already registered. | `0x00181250`<br>`0x00181000`<br>`0x003F8D6D`-`0x003F8D74` |
+| 3 | It keeps the marker cell's rectangle, inset by 6, at `+0x00`-`+0x0C`: `0x002711E0` runs with n = 6. The four floats are the cell's word `+0` plus 3 over tw, its word `+2` plus 3 over th, the low 12 bits of its dword `+4` less 6 over tw and bits 12-23 of it less 6 over th, with tw and th the sizes in the picture's TEX0 `+0x30`. | `0x003F8DDB`-`0x003F8E09`<br>`0x003F8E51`-`0x003F8E73`<br>`0x003F8DE5` |
+| 4 | Between those stores it sets bit `0x1` of `+0x52C6`, which the draw `0x003F8C70` tests first. Last it keeps the cell's palette number, formed from its byte `+0x07` as for the label records above, at `+0x52C4`. | `0x003F8E5B`<br>`0x003F8E0E`-`0x003F8E4D`<br>`0x003F8E78` |
 
 `0x00275490(out, a, b, t)` writes a + (b - a) x t for x, y and z and 1.0 in w¹.
 
@@ -1563,8 +1589,9 @@ picture into `+0x52B8`¹ and uploads it. It keeps the marker cell's rectangle at
 
 Each frame `0x003F8EC0` keeps a point at `+0x10` that follows the controlled character. It copies the position on the
 first frame (`0x003F8F1E`, bit `0x2` of `+0x52C6`) and then moves halfway to it (`0x00275490` at `0x003F8F3D`). With no
-controlled character it clears bit `0x2`¹. It sets the sprite count `+0x52C0` to 0 and the label search
-start `+0x52B0` to the list head². `0x003F9720` measures the lines from the point³ and moves `+0x52B0` past each label it finds⁴.
+controlled character it clears bit `0x2`¹ and returns². Otherwise it sets the sprite count
+`+0x52C0` to 0 and the label search start `+0x52B0` to the list head³. `0x003F9720` measures the
+lines from the point⁴ and moves `+0x52B0` past each label it finds⁵.
 
 <details>
 <summary>Where in the code</summary>
@@ -1572,9 +1599,10 @@ start `+0x52B0` to the list head². `0x003F9720` measures the lines from the poi
 | | Code |
 |---|---|
 | ¹ | `0x003F8EF2` |
-| ² | `0x003F8F86`, `0x003F8F7F` |
-| ³ | `0x003F903B`, `0x003F9AA1` |
-| ⁴ | `0x003F99C0` |
+| ² | `0x003F8F0B` |
+| ³ | `0x003F8F86`, `0x003F8F7F` |
+| ⁴ | `0x003F903B`, `0x003F9AA1` |
+| ⁵ | `0x003F99C0` |
 
 </details>
 
@@ -1592,8 +1620,10 @@ Next to its markers the part at `+0xA0` writes a name: an area's name, or text `
 - It copies the text into `+0x130` through `0x003F92B0`⁹, which takes the area name from `0x00377870`
  ¹⁰ or text `0x3EC` from `0x002F9860`¹¹. It lays the text out with `0x002B3400`¹² and
   sets `+0x23C` bits `0x1` and `0x2`¹³.
-- After the passes `0x003F8EC0` sets the alpha `+0x33` to 0 on each label that no marker claimed again, the ones
-  without bit `0x2`¹⁴. `0x003F8C70` hands each listed label to `0x003F14D0`¹⁵.
+- After the passes `0x003F8EC0` sets the alpha `+0x33` to 0 on each label that no marker claimed again, the ones without
+  bit `0x2`¹⁴. `0x003F8C70` hands to `0x003F14D0` each listed label whose `+0x23C` has bits `0x1` and `0x2`
+  both set¹⁵, and no label while bit `0x1` of `+0x52C6` is clear or the sprite count `+0x52C0`
+  is 0 or less¹⁶.
 
 <details>
 <summary>Where in the code</summary>
@@ -1614,13 +1644,18 @@ Next to its markers the part at `+0xA0` writes a name: an area's name, or text `
 | ¹² | `0x003F9A67` |
 | ¹³ | `0x003F9A78` |
 | ¹⁴ | `0x003F8FB9` |
-| ¹⁵ | `0x003F8CF3` |
+| ¹⁵ | `0x003F8CE0`-`0x003F8CF3` |
+| ¹⁶ | `0x003F8C8F`, `0x003F8C99` |
 
 </details>
 
 ### The sprites of the part at +0xA0
 
-The part at `+0xA0` keeps 64 sprites of `0x100` bytes at its `+0x20`. `0x003F9390` places them along the lines of the zone script's lists 0 and 1¹, and `0x003F8C70` hands them to the depth list on each draw (The draw pass above), so they have the layout every function of that table reads.
+The part at `+0xA0` keeps 64 sprites of `0x100` bytes at its `+0x20`. `0x003F9390` places them along the lines of the
+zone script's lists 0 and 1¹. On each draw `0x003F8C70` hands the first `+0x52C0` of them to the first depth
+list through `0x003F1290`, reading the count again after each one², and none while bit `0x1` of
+`+0x52C6` is clear or `+0x52C0` is 0 or less³. So they have the layout every function in the
+table of the draw pass above reads.
 
 <details>
 <summary>Where in the code</summary>
@@ -1628,6 +1663,8 @@ The part at `+0xA0` keeps 64 sprites of `0x100` bytes at its `+0x20`. `0x003F939
 | | Code |
 |---|---|
 | ¹ | `0x003F9720` |
+| ² | `0x003F8CB0`-`0x003F8CCE` |
+| ³ | `0x003F8C7F`-`0x003F8C99` |
 
 </details>
 

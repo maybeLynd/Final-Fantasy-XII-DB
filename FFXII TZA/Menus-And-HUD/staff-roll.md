@@ -348,7 +348,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x0053E380`](staff-roll.md) | calls | [`0x001EDEC0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) |
+| [`0x0053E380`](staff-roll.md) | calls | [`0x001EDEC0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 
 **Controls and input** (explained on [startup constants](../Engine-Core/startup-constants.md))
 
@@ -364,7 +364,7 @@ Each row is a function this page names (left), whether it calls the functions on
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x001EDEC0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) | is called by | [`0x002B7B80`](map-screens.md) (on map screens)<br>[`0x002BAF80`](widgets.md) (on widgets)<br>[`0x002BC3E0`](widgets.md) (on widgets)<br>[`0x002D2DB0`](widgets.md) (on widgets)<br>[`0x00366B80`](../Controls-And-Input/escape.md) (on escape) |
+| [`0x001EDEC0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) | is called by | [`0x002B7B80`](map-screens.md) (on map screens)<br>[`0x002BAF80`](widgets.md) (on widgets)<br>[`0x002BC3E0`](widgets.md) (on widgets)<br>[`0x002D2DB0`](widgets.md) (on widgets)<br>[`0x00366B80`](../Controls-And-Input/escape.md) (on escape) |
 | [`0x00249FD0`](../Game-Files-And-Data-Tables/ui-typed-lists.md) (on ui typed lists) | calls | [`0x003A1DB0`](../PhyreEngine/the-frame.md) Render command: submit current buffer and swap (on the frame) |
 | [`0x00249FD0`](../Game-Files-And-Data-Tables/ui-typed-lists.md) (on ui typed lists) | is called by | [`0x002B8EE0`](map-screens.md) (on map screens) |
 | [`0x002D8BB0`](staff-roll.md) | is called by | [`0x0053E0B0`](staff-roll.md) |
@@ -386,7 +386,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x001EDEC0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) | is called by | [`0x00582860`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
+| [`0x001EDEC0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) | is called by | [`0x00582860`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 
 **Scripts and script commands** (explained on [force fight mode](../Engine-Core/force-fight-mode.md), [btm exfont bitmaps](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md), [verb table](../Scripts-And-Script-Commands/verb-table.md))
 

@@ -639,7 +639,7 @@ Each row is a function this page names (left), whether it calls the functions on
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x0017D4C0`](../Engine-Core/startup-constants.md) (on startup constants) | calls | [`0x001C1710`](../Engine-Core/game-application.md) (on game application)<br>[`0x001C18A0`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x001C18E0`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x0017D4C0`](../Engine-Core/startup-constants.md) (on startup constants) | calls | [`0x001C1710`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x001C18A0`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x001C18E0`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
 | [`0x00245020`](../Menus-And-HUD/widgets.md) (on widgets) | is called by | [`0x0057E4D0`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
 | [`0x00253970`](battle-text-tables.md) | calls | [`0x002EF640`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) (on strong and weak mode) |
 

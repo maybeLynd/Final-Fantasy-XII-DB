@@ -92,7 +92,7 @@ Each row is a function this page names (left), whether it calls the functions on
 | Function named on this page | | Functions from this topic |
 |---|---|---|
 | [`0x00246AC0`](opening-the-main-menu.md) | is called by | [`0x002B7B80`](map-screens.md) (on map screens)<br>[`0x002BAF80`](widgets.md) (on widgets) |
-| [`0x0029D340`](opening-the-main-menu.md) | calls | [`0x002DC290`](../Engine-Core/ps2-cpu-emulation.md) (on ps2 cpu emulation) |
+| [`0x0029D340`](opening-the-main-menu.md) | calls | [`0x002DC290`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 | [`0x0037B330`](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md) (on resource arena and relocation) | is called by | [`0x003DD4C0`](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) (on resource ownership and disposal) |
 
 **Game files and data tables** (explained on [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))

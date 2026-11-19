@@ -1518,7 +1518,7 @@ clears the cell².
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x00474100` |
-| `+0x0C0` | `void*` | window | the message window the construct message opens for the copied text with `0x002A3090` (`0x00474271`, stored at `0x00474276`); message 18 closes it with `0x002A27C0` (`0x0047412C`) |
+| `+0x0C0` | `void*` | window | the message window the construct message opens for the copied text with `0x002A3090` (`0x00474271`, stored at `0x00474276`); message 18 hands it to `0x002A27C0` (`0x0047412C`), which closes it through `0x00244F00` only while its `0x0209C4D0` entry's low dword equals the low 32 bits of its address (`0x002A27D6`) |
 | `+0x0C8` | `char[256]` | text | the construct message's text a, copied without its terminator (`0x004741D4`-`0x004741E0`) and measured by `0x002B3050` (`0x004741FC`) |
 | `+0x1C8` | `u32[4]` | box | the four dwords of the construct message's b (`0x00474210`-`0x0047422B`); the draw message passes `+0x1D0` and `+0x1D4` to `0x001829C0` (`0x00474160`-`0x0047416C`) |
 

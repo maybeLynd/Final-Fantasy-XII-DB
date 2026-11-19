@@ -312,9 +312,172 @@ The four blank control bytes scale with the text size and letter spacing¹.
 | `0F 8` | inserts the name for a 16-bit id (`0x002639E0`) |
 | `0F >` | inserts the name of the speaking character (`0x00263990`) |
 | `0F ?` | draws one glyph from three bands of the payload (`0x002AE11A`-`0x002AE177`) |
-| `0F 40`-`0F 6B` but `0F V` and `0F _` (below) | an inline icon: the letter picks the sprite; R, S, Z, `[` and `\` follow the controller type (`0x002AEB20`, `0x009165F0`, `0x00916670`) |
+| `0F 40`-`0F 6B` but `0F V` and `0F _` (below) | an inline icon: the letter picks the sprite; R, S, Z, `[` and `\`, and every icon while `0x001E0C10()` answers non-zero, follow the controller type (`0x002AEB20`, `0x002AEC11`, `0x009165F0`, `0x00916670`) |
 | `0F *` | ruby text: a short text drawn at 0.65 of the size (`0x009166F0`), centred above the next bytes (`0x002AD47C`) |
 | `0F !` | switches to the alternate font record (`0x002AD151`) |
+
+`0x002AEB20(state, text, pen)`, text being the address of the text pointer, takes the icon as the letter `[[text]]` less
+`0x40`, and a value from `0x20` goes through `0x002AB8F0(icon)`, after which the variant bit is 0¹. The icons `0x12`, `0x13`, `0x1A`, `0x1B` and `0x1C`, and every icon while `0x001E0C10()`² answers non-zero, are the first group: they take a sprite from the table `0x009165F0` when `0x001E0C30()`
+answers 2 and from `0x00916670` when it does not, at `4 * icon + v`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AEB79`, `0x002AEBA4`-`0x002AEBD5` |
+| ² | `0x002AEB74` |
+| ³ | `0x002AEBF9`-`0x002AEC7B` |
+
+</details>
+
+The five first-group icons come from the list `0x009167D0` and a fifth entry on the stack. v is `(0x0208F574 >> 4) & 3`
+when bit `0x2` of the byte after the letter is set, and 0 when it is clear. `0x001E0C30()` is called twice and only the
+second answer is used¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AEC15`, `0x002AEC1A` |
+
+</details>
+
+Any other icon takes the byte at `0x01E0CE30 + icon` while the dword `0x022C7F84` is not 0 and `0x00228480()` answers 0, and
+the byte at `0x01E0CE10 + icon` otherwise¹; its sprite is `0x2A + byte`,
+for a byte below `0x89`². A first-group sprite must be below `0x2A`³.
+The sprites are 24-byte records from `[0x0209CC40]`. A sprite out of range draws nothing: `0x002AECB1` and `0x002AEE3C` jump
+to `0x002AF2FC`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AEC80`-`0x002AECA3`, `0x002AEE1D`-`0x002AEE26` |
+| ² | `0x002AECAB`-`0x002AECC8` |
+| ³ | `0x002AEE31`-`0x002AEE51` |
+
+</details>
+
+The last part of the sprite, the pointer array `+0x10` at the count in bits 2-17 of the record's first dword less 1,
+gives the size: the width `0x0209CC60` is `[part + 0x10] * [state + 0x34] * [state + 0x38]` and the height `0x0209CC64` is
+`[part + 0x12] * [state + 0x34] * [state + 0x3C]`, both part words unsigned. The advance `0x0209CC68` is the width plus
+the float `+0x4C`, or the signed byte `+0xA9` when that is not 0, which is then cleared¹.
+Nothing is drawn while `0x0209CC48` is 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AECCC`-`0x002AED3D` |
+| ² | `0x002AED4D`-`0x002AED55` |
+
+</details>
+
+The left edge is `pen.x - [part + 0x0C] * xs`, with `[part + 0x0C]` a signed word, and the top is
+`pen.y - height + ([state + 0xAB] + [state + 0x44]) * ys`, with two signed bytes, where xs and ys are the size `+0x34`
+times the scales `+0x38` and `+0x3C`¹. With a non-zero dword `[0x0209CC40] + 0x10D4` it first
+runs `0x002B4730(1)` and zeroes that dword².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AED5B`-`0x002AEDB6` |
+| ² | `0x002AED8C`-`0x002AEDCC` |
+
+</details>
+
+While `0x002DDC50()` answers non-zero and `0x00180150()` answers 0, the icons 0, 1, 8 and 9 are drawn at 0.8¹
+of their width: the left edge moves right by `(W - 0.8 * W) * 0.25`², W being `[part + 0x10] * xs` of the
+last part, and each drawn part moves right again by `(w - 0.8 * w) * 0.25`, w being its own `[part + 0x10] * xs`; the
+advance keeps its full width³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008F3108` |
+| ² | `0x01CEBB68` |
+| ³ | `0x002AEBD7`-`0x002AEBF5`, `0x002AEDD6`-`0x002AEE08`, `0x002AEFC0`-`0x002AEFDC` |
+
+</details>
+
+The texture comes from `0x0039BB00(0)` for the first group and from the low dword of `0x002441E0()`, sign-extended, for
+the others¹. A sprite of one part draws nothing but still runs `0x002B4730(1)`²; the exits for a sprite out of range or a zero `0x0209CC48` skip it.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AEE0D`-`0x002AEE5B` |
+| ² | `0x002AEE5E`-`0x002AEE6F`, `0x002AF2E0` |
+
+</details>
+
+For each part it appends to the command list `[0x0209CC50]` a header of two qwords at `+0x00` and `+0x10`, each tagged 6
+at `+0x08` and `+0x18`, built from the texture's qword `+0x30` and the page the part's byte `+0x39` picks, and the
+list pointer moves on `0x20`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AEEC0`-`0x002AEF50`, `0x002AEF7F` |
+
+</details>
+
+The record holds the text colour bytes `+0x30` to `+0x33` at `+0x00`-`+0x0C`; the corner, the left edge plus
+`[part + 0x0C] * xs` at `+0x10` and the top plus `([part + 0x0E] + [part + 0x12]) * ys` at `+0x14`, with
+`[part + 0x0E]` a signed word; 1.0 at `+0x18`, `+0x1C`, `+0x38` and `+0x3C`; the width and height at `+0x20` and
+`+0x24`; at `+0x2C` 0 when `xs` (times 0.8 for a narrowed icon) and `ys` are both 1.0 and 1 otherwise; and at `+0x30`
+and `+0x34` the 12-bit fields of the dword `+4` of the entry `[part + 0x20] + 8 * [part + 0x0A]`, `[part + 0x0A]` a
+signed word¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AEF54`-`0x002AF085` |
+
+</details>
+
+It then calls `0x0017FC90(1.0, 1.0, 1.0, 1.0)`, stores that entry's words `+0` and `+2` at `+0x40` and `+0x44` and 0 at
+`+0x48`, and moves the list pointer `0x0209CC50` on `0x50`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AF08D`-`0x002AF109` |
+
+</details>
+
+After the record it calls `0x002DD860(...)` for two corners, `0x00181560()`, fills four vertex colours from
+`+0x30`-`+0x33`, and calls `0x001819A0(...)`, `0x00181870(3)`, `0x002DD8B0(...)`, `0x00181460(quad, 4)`, `0x001816B0(0x44)`,
+`0x00181910([state + 0xB8])` and `0x00181330()`¹. Every part but the last is drawn², and `0x002B4730(1)` runs after the last³. It checks its stack cookie
+with `0x00808C40(cookie)`⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002AF110`-`0x002AF277` |
+| ² | `0x002AF27C`-`0x002AF2B8` |
+| ³ | `0x002AF2E0`-`0x002AF2E5` |
+| ⁴ | `0x002AF308` |
+
+</details>
 
 ### Pager escapes
 
@@ -634,7 +797,7 @@ reads past those options; their codes are counted separately.
 The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
 <details>
-<summary>Show the 1 call with 1 other topic</summary>
+<summary>Show the 2 calls with 2 other topics</summary>
 
 **Movement and pathfinding** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 
@@ -643,5 +806,13 @@ Each row is a function this page names (left) and the functions from this topic 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
 | [`0x001EDDA0`](../Graphics/effect-lifecycle.md) (on effect lifecycle) | is called by | [`0x0025DF00`](../Characters-And-Objects/field-runtime.md) World actor: update runtime and script execution state (on field runtime) |
+
+**Party** (explained on [player movement](../Movement-And-Pathfinding/player-movement.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x001E0C10`](text-codes.md) | is called by | [`0x003594E0`](../Movement-And-Pathfinding/player-movement.md) (on player movement) |
 
 </details>

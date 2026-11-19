@@ -521,7 +521,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x002B7B80`](../Menus-And-HUD/map-screens.md) (on map screens) | calls | [`0x001EDEC0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) |
+| [`0x002B7B80`](../Menus-And-HUD/map-screens.md) (on map screens) | calls | [`0x001EDEC0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 
 **Controls and input** (explained on [frame update order](../Engine-Core/frame-update-order.md), [time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
 

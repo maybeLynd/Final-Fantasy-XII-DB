@@ -906,7 +906,7 @@ Each row is a function this page names (left) and the functions from this topic 
 |---|---|---|
 | [`0x002465F0`](widgets.md) (on widgets) | calls | [`0x001EDDA0`](../Graphics/effect-lifecycle.md) (on effect lifecycle) |
 | [`0x00254A10`](text-string-tables.md) (on text string tables) | calls | [`0x00229E40`](../Story-Events-And-Hunts/script-language-differences.md) (on script language differences) |
-| [`0x003F4060`](widgets.md) (on widgets) | calls | [`0x001EDEC0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) |
+| [`0x003F4060`](widgets.md) (on widgets) | calls | [`0x001EDEC0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 
 **Controls and input** (explained on [controls](../Controls-And-Input/controls.md))
 

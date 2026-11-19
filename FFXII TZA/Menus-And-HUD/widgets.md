@@ -124,6 +124,7 @@ Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, a
 | `0x2000` | has had a child attached, or a child's priority changed: the children are re-sorted (`0x00244990`) |
 | `0x4000` | borrowed storage |
 | `0x8000` | use the default animation descriptor |
+| `0x10000` | the close takes the default closing half `0x009151AC` for a closing run (`0x00244E53`-`0x00244E59`) and sets `+0x70` to 0 before it turns an opening run back (`0x00244E62`-`0x00244E6A`) |
 | `0x20000` | generation parity |
 | `0x40000` | skip the per-tick update |
 | `0x1000000` | drawn in the second draw pass (`0x00247730`) |
@@ -463,28 +464,50 @@ passes, up to the first with bit `0x200` or to the root, must have bits `0x1` an
 code takes most of theirs from the table of `0x28`-byte descriptors at `0x009158C0`, entry `i` through `0x002735E0(i)`
 (for example `0x0029BEE8`, `0x0028B92A`).
 
-`0x00244DD0(widget)` closes it, the mirror image: a backward run from descriptor `+0x14`, length 0 when `0x00181C90`
-returns 1, state 4, then message 15¹.
+`0x00244DD0(widget)` closes a widget:
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | A null widget returns at once. It sets the rate as the open does: 1.0, or one over the game's speed steps in the field at game speed. | `0x00244DD3`<br>`0x00244DE1`-`0x00244E0F` |
+| 2 | An inactive widget (`+0x40` bit `0x1` clear) gets state 1 at once, with no run. | `0x00244E1A`-`0x00244E27` |
+| 3 | From states 0 and 3 it starts a backward run at the frame counter `0x0208F570`.<br>• It sets `+0x40` bit `0x200`, takes the default descriptor's closing half `0x009151AC` when bit `0x10000` is set, or the closing half of its own descriptor, `+0x48` + `0x14`, otherwise, and stores it at `+0x68`, the start at `+0x74` and 1.0 at `+0x78`.<br>• The length is that half's word `+0x02`, the descriptor's word `+0x16`, in milliseconds, 0 when `0x00181C90` returns 1; when `+0x7C` bit `0x800` is set it is `+0x7C >> 22` instead, whatever `0x00181C90` answered, and the bit is cleared. `ms x 60 / 1000` frames go to `+0x70`. | `0x00244E47`-`0x00244E95`<br>`0x00244E9C`-`0x00244EBF`<br>`0x00244EC2`-`0x00244ED4` |
+| 4 | From state 2 it reverses an opening run in place.<br>• The start becomes `2 x 0x0208F570 - +0x70 - +0x74`, with `+0x70` set to 0 first when `+0x40` bit `0x10000` is set. | `0x00244E62`-`0x00244E7B` |
+| 5 | Both runs set state 4. After a run or the inactive path it sets `+0x7C` bits `0x30` and sends message 15 to the procedure `+0x00` when it is not null.<br>• In states 1 and 4-15 it stops after the rate: no run, no state change and no message 15. | `0x00244ED7`-`0x00244EDB`<br>`0x01E0C0F8`<br>`0x00244EDF`-`0x00244EF5`<br>`0x00244E3E`-`0x00244E41` |
+
+Every tick the walker `0x00244970`, a jump to `0x00244980`, walks the widget tree:
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | An inactive widget (`+0x40` bit `0x1` clear) is not stepped: the walker goes straight to its children. | `0x0024498C`-`0x0024498E` |
+| 2 | An active widget first has its children re-sorted when it has bit `0x2000`, and is then stepped with `0x00246C20`, which sends message 25 first, steps one tween channel (messages 22 and 17, 21, 23), and ends a run with message 19 (forward) or 20 (backward). | `0x00244990`-`0x0024499F`<br>`0x002449A9`<br>`0x0024701E`-`0x0024706B` |
+| 3 | Then it walks the widget's children in sibling order, from `+0x18` through each `+0x20`. | `0x002449F4`-`0x00244A0F` |
+
+When `0x00246C20` answers non-zero and the state nibble of `+0x7C` is then 1¹, as it is when a
+closing run has just ended², the walker skips step 3 for that widget in that tick and takes one
+of three exits:
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x00244EF5` |
+| ¹ | `0x002449AE`-`0x002449BA` |
+| ² | `0x0024704D`-`0x00247074` |
 
 </details>
 
-Every tick the walker `0x00244970` steps each active widget with `0x00246C20`, which sends message 25 first, steps one tween
-channel (messages 22 and 17, 21, 23), and ends a run with message 19 (forward) or 20 (backward)¹. When a closing run ends, a widget with bit `0x40` set is torn down².
+- With `+0x40` bit `0x40` set it tears the widget down through `0x00245020`¹.
+- Otherwise, with bit `0x20` set, it runs `0x002473F0(widget, 0)` and clears bit `0x2`².
+- With neither bit it only clears bit `0x2`³.
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x0024701E`-`0x0024706B` |
-| ² | `0x002449C3` |
+| ¹ | `0x002449BC`-`0x002449CB` |
+| ² | `0x002449D0`-`0x002449DE` |
+| ³ | `0x002449E8`-`0x002449EB` |
 
 </details>
 
@@ -588,7 +611,7 @@ The Party Menu's member rows, the Status and Equip rows and the license board us
 
 | Step | What happens | Where in the code |
 |---|---|---|
-| 1 | `0x00244F00` asks for the close: with bits `0x1` and `0x20` set it starts a closing run, otherwise it sends message 15 and tears the widget down now. | `0x00244F0A`-`0x00244F39` |
+| 1 | `0x00244F00` asks for the close of a widget that is not 0 and first sets its `+0x40` bit `0x40`, close requested.<br>• With bits `0x1` and `0x20` of `+0x40` both set it hands the widget to the close `0x00244DD0`, which starts a closing run from state 0 or 3 and turns an opening run back from state 2.<br>• Otherwise it sends message 15 only when the widget's procedure `+0x00` is set and tears the widget down now through `0x00245020`. | `0x00244F00`-`0x00244F03`<br>`0x00244F0A`<br>`0x00244F11`-`0x00244F20`<br>`0x00244E2C`-`0x00244E41`<br>`0x00915058`<br>`0x00244F25`-`0x00244F34`<br>`0x00244F39` |
 | 2 | `0x00245020` gives up the focus, sends message 18 to the widget and every descendant, and releases it. A widget with bit `0x20` is instead deactivated and marked for release on the next tick.<br>• A null widget is left alone. The focus is given up through `0x002448D0`, which does the same for every descendant, and then `0x00244700(widget, 1)` takes every copy of the widget off the focus stack; the release is a tail jump to `0x002482E0`.<br>• The deferred path is `0x002473F0(widget, 0)`, then bit `0x2` cleared and bit `0x400` set. | `0x002473B0`<br>`0x00245072`-`0x0024509B`<br>`0x00245023`<br>`0x00245032`-`0x0024503F`<br>`0x00245085`<br>`0x0024508A`-`0x0024509B` |
 | 3 | The release `0x002482E0` releases the children, unlinks the widget, frees its array, sends message 24 when the procedure is set, clears `+0x40` bit `0x400` and the low four bits of `+0x7C`, has `0x00228450` zero `[0x01FD4948]+0xC8` when that holds the widget, clears the procedure, frees the storage (a borrowed widget instead has bit `0x4000` and byte `+0xA2` cleared) and jumps to `+0x08` when set. | `0x00248308`-`0x00248405` |
 
@@ -941,7 +964,7 @@ No other instruction reaches these cells. The focus stack's base `0x0208EAC0` is
 The new-game widget `0x00394130` ([loading a save](../Saving-Loading-And-Settings/loading-a-save.md)) keeps itself in
 `0x02AEE4D0`. The result callback of verb `0x705D`, `fsttl_newgamestart`, reaches it through `0x00394640` (a
 jump at `0x00512130`), which builds the `0xF0`-byte widget with `0x00244F50(0xF0, 0x00394130, 0)` only while `0x02AEE4D0`
-is 0, so a second call cannot make a second widget. On message `0x12` the widget frees the title asset kept at
+is 0, so a second call cannot make a second widget. On message `0x12` the widget closes the title asset kept at
 `0x02AEE4C0`, when there is one¹, clears `0x02AEE4D0`² and passes the message on to `0x005C5230`.
 
 <details>

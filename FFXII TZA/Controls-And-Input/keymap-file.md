@@ -87,6 +87,18 @@ the manager³.
 The file is written by `0x001993B0`, from the Config screen (`0x001E0F40`, called at `0x0023D263`) and when the game shuts
 down (`0x0017D670`, from `0x0017CDC0`). A first run with no file therefore ends by writing the defaults.
 
+`0x001E0F40()` ends in a jump to `0x001993B0(manager)` when `0x00198790()` answers a manager, and does nothing when it
+answers 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E0F44`-`0x001E0F63` |
+
+</details>
+
 The file is read only once, at start-up, into three keyboard profiles. During play the game copies those profiles into
 the input records that turn key presses into button presses, and the Config screen and shutdown write them back to the
 file.
@@ -475,7 +487,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x0017D4C0`](../Engine-Core/startup-constants.md) (on startup constants) | calls | [`0x001C1710`](../Engine-Core/game-application.md) (on game application)<br>[`0x001C18A0`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x001C18E0`](../Engine-Core/frame-update-order.md) (on frame update order) |
+| [`0x0017D4C0`](../Engine-Core/startup-constants.md) (on startup constants) | calls | [`0x001C1710`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x001C18A0`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x001C18E0`](../Saving-Loading-And-Settings/saving-and-loading-autosave.md) (on saving and loading autosave) |
 
 **Developer** (explained on [game application](../Engine-Core/game-application.md))
 

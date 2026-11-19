@@ -847,7 +847,7 @@ Each row is a function this page names (left), whether it calls the functions on
 | Function named on this page | | Functions from this topic |
 |---|---|---|
 | [`0x0022A4B0`](../Game-Files-And-Data-Tables/tim2-images.md) (on tim2 images) | is called by | [`0x0017D4C0`](../Engine-Core/startup-constants.md) (on startup constants) |
-| [`0x00244DD0`](status-and-equip-screen.md) (on status and equip screen) | calls | [`0x00229DF0`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x00229E70`](../Engine-Core/global-state-accessors.md) (on global state accessors)<br>[`0x00229EA0`](../Graphics/effect-drawing.md) (on effect drawing) |
+| [`0x00244DD0`](hud.md) (on hud) | calls | [`0x00229DF0`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x00229E70`](../Engine-Core/global-state-accessors.md) (on global state accessors)<br>[`0x00229EA0`](../Graphics/effect-drawing.md) (on effect drawing) |
 | [`0x002465F0`](widgets.md) (on widgets) | calls | [`0x001EDDA0`](../Graphics/effect-lifecycle.md) (on effect lifecycle) |
 
 **Movement and pathfinding** (explained on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [bestiary](../Enemy-Spawning/bestiary.md))

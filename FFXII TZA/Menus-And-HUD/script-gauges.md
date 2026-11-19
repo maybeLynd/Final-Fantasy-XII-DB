@@ -355,9 +355,9 @@ value outside 1 to 4 into 0⁴.
 - The same two functions set or clear bit `0x80` of the boss-gauge manager's `+0xC8` (`[0x02B62D88]`,
   `0x00404D90`-`0x00404DB1` and `0x00404DE0`-`0x00404E01`), unless its bit `0x20` is set.
 - The HUD switch hides the message windows through `0x0035D0E0` and shows them through `0x0035D1B0`
-  ([HUD](hud.md)). `0x0035D0E0` also runs `0x004082D0`, which starts the gauge child's closing run with the
-  message at `0x01E0C0F8` unless the child's `+0x40` bit `0x100000` is set²: `setgaugehidestatus(2)` sets
-  that bit and 0 or 1 clears it, so with 2 the gauge stays on screen while the HUD is hidden.
+  ([HUD](hud.md)). `0x0035D0E0` also runs `0x004082D0`, which calls the close `0x00244DD0` on the gauge child unless the
+  child's `+0x40` bit `0x100000` is set²: `setgaugehidestatus(2)` sets that bit and 0 or 1 clears it, so
+  with 2 the gauge stays on screen while the HUD is hidden.
 - `0x0035D1B0` runs `0x00408AA0`, which restarts its opening run with message 14
  ³ when the script has the gauge shown (`+0xD8` bit `0x4` set and bit `0x8` clear, the state
   `setgaugeshowstatus(1)` leaves, `0x00408399`-`0x0040839F`; `0x004082D0` closes the child without touching these bits, so

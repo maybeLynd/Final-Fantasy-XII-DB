@@ -415,7 +415,7 @@ Each row is a function this page names (left), whether it calls the functions on
 | [`0x00237DF0`](../Enemy-Spawning/enemy-respawning.md) (on enemy respawning) | calls | [`0x00229ED0`](../Saving-Loading-And-Settings/game-settings.md) (on game settings)<br>[`0x0032A160`](../Enemy-Spawning/enemy-respawning.md) (on enemy respawning) |
 | [`0x002DDE60`](../Saving-Loading-And-Settings/game-settings.md) (on game settings) | calls | [`0x00229E40`](../Story-Events-And-Hunts/script-language-differences.md) (on script language differences) |
 | [`0x002EF650`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) | is called by | [`0x0022B6E0`](../Items-Equipment-Shops-And-Licenses/bazaar.md) (on bazaar) |
-| [`0x00394130`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) | calls | [`0x001EDEC0`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) |
+| [`0x00394130`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) | calls | [`0x001EDEC0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 
 **Gameplay** (explained on [frame update order](../Engine-Core/frame-update-order.md), [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [identifier spaces](../Engine-Core/identifier-spaces.md))
 
@@ -503,7 +503,7 @@ Each row is a function this page names (left) and the functions from this topic 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
 | [`0x00312280`](strong-and-weak-mode.md) Battle unit: process defeat rewards and loot | calls | [`0x0028FB80`](../Menus-And-HUD/hud.md) (on hud) |
-| [`0x0057FB00`](strong-and-weak-mode.md) | calls | [`0x002DC290`](../Engine-Core/ps2-cpu-emulation.md) (on ps2 cpu emulation) |
+| [`0x0057FB00`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x002DC290`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 
 **Random numbers** (explained on [loot drops](loot-drops.md))
 
@@ -618,7 +618,7 @@ Each row is a function this page names (left), whether it calls the functions on
 | [`0x00312280`](strong-and-weak-mode.md) Battle unit: process defeat rewards and loot | calls | [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) |
 | [`0x00329CC0`](strong-and-weak-mode.md) Battle slot map: initialize mapping classes | calls | [`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) |
 | [`0x00394130`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save) | calls | [`0x00267C90`](../Saving-Loading-And-Settings/loading-a-save.md) (on loading a save)<br>[`0x00268320`](../World-Areas-And-Travel/weather.md) World persistence: reset banks and mark initialization state (on weather)<br>[`0x00314440`](../World-Areas-And-Travel/changing-areas.md) (on changing areas)<br>[`0x00314DC0`](../Saving-Loading-And-Settings/loading-a-save.md) World transition: set active or pending field id (on loading a save) |
-| [`0x0057FB00`](strong-and-weak-mode.md) | calls | [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list)<br>[`0x003778B0`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) |
+| [`0x0057FB00`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list)<br>[`0x003778B0`](../Saving-Loading-And-Settings/saving-and-loading-screen.md) (on saving and loading screen) |
 | [`0x00583D60`](../Saving-Loading-And-Settings/save-file-format.md) Save image: finalize header and checksum (on save file format) | calls | [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list)<br>[`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) |
 
 </details>

@@ -505,6 +505,6 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x002D5EB0`](concurrence-list.md) (on concurrence list) | calls | [`0x00182DA0`](../Saving-Loading-And-Settings/game-settings.md) (on game settings)<br>[`0x001E0C10`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x002D5EB0`](concurrence-list.md) (on concurrence list) | calls | [`0x00182DA0`](../Saving-Loading-And-Settings/game-settings.md) (on game settings)<br>[`0x001E0C10`](../Menus-And-HUD/text-codes.md) (on text codes) |
 
 </details>

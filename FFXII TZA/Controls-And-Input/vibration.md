@@ -64,10 +64,93 @@ a handle first compares the generation, so a stale handle does nothing:
 | verb `vibplay` `0x23D`, handler `0x0034AC30` | `0x0035B650(pattern, 2)` through `0x00379F20`, unless `0x00267310` answers non-zero for the actor's byte `+0x15` |
 | verb `vibstop` `0x23E`, handler `0x0034B0F0` | frees the eight recorded handles (`0x0035B460`) |
 | `0x0034B3C0` | answers whether a recorded handle is playing or paused (`0x0035B380`), or frees them when `0x00267310` answers non-zero |
-| effect sequence element of kind 3 (`0x004FF2C0`) | `0x005372D0`: on the element's frame, with fewer than four running, `0x0035B2F0(pattern, 0)` and `0x0035B580(handle, 1)`, strength `0x00537410`'s answer over 127 |
+| effect sequence element of kind 3 (`0x004FF2C0`) | `0x005372D0`: on the element's frame, with fewer than four running, `0x0035B2F0(pattern, 0)` and `0x0035B580(handle, 1)`, strength the level `0x00537410` stores, over 127, or, when `0x00537410` answers 0, `0x0035B1A0(handle)` and the count back down (`0x005373D0`-`0x005373DC`) |
 
 Each frame `0x0046E990` and `0x0046EDD0` set the strength of a sequence's running vibrations again from `0x00537410` and
 free those that have stopped; `0x0046EE70` frees all of a sequence's vibrations.
+
+`0x00537410(entry, out)` takes one of the `0x40`-byte entries that `0x005372D0` fills from the sequence's `+0x20`: the
+handle at `+0x0C`, at `+0x10` the answer of `0x003A3FD0` or `0x003A6BA0` (-1 for other values of the element's byte
+`+0x11`), `[0x02F97348]` at `+0x18`, the element at `+0x20` and the sequence at `+0x28`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00537392`-`0x005373C4` |
+
+</details>
+
+It stores the level through `out` and answers 1, or stores 0 and answers 0¹. The level starts at `0x7F`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005374F1`-`0x005374F3`, `0x005375A0`-`0x005375A2` |
+| ² | `0x00537440` |
+
+</details>
+
+The element's byte `+0x11` picks a point: 3 takes the 16 bytes at `+0x30` of what
+`0x003A8240(word +0x08 of the sequence, the element's word +0x12)` answers¹; 1 and 2 take the 16
+bytes at `+0x30` of a stack buffer passed to `0x00421E20(record, 0x100, 0, buffer)`, whose answer is not tested²; 0 and values above 3 take no point³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053745A`-`0x0053747C` |
+| ² | `0x00537575`-`0x00537596` |
+| ³ | `0x00537446`-`0x00537458` |
+
+</details>
+
+For 1 and 2 the entry's dword `+0x10` must not be -1, and either the word `+0x36A` of the entry's `+0x18` has bit
+`0x800` or `0x002E9B80(0x003590D0())` equals that dword, with `0x003590D0()` not 0¹. The record is
+`[0x022C6F28]` + `0x740` × the entry's word `+0x10`, sign-extended; a word of `0xFFFF`, or a zero dword `+0x284` in the
+record, gives level 0². Any other failed test, or a null answer of `0x003A8240`, gives level 0
+too³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0053751D`-`0x00537548` |
+| ² | `0x0053754A`-`0x00537573` |
+| ³ | `0x005375A0`-`0x005375A2` |
+
+</details>
+
+A point is kept at the entry's `+0x30` and goes to `0x00361CF0(work, out, point, 20.0, 0.05)`¹,
+which rewrites the level through `out`, ending with level × the dword `[0x022CBA94]` / 127, rounded toward zero².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00537478`-`0x0053749E` |
+| ² | `0x00361DA8`-`0x00361DC4` |
+
+</details>
+
+On every path that answers 1 the level then becomes `(int)(level * byte * 0.0078125)`, the byte being one that
+`0x002F1F40(...)` fills¹. It checks its stack cookie with `0x00808C40(cookie)`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x005374A3`-`0x005374F1` |
+| ² | `0x00537503` |
+
+</details>
 
 ### Stepping
 
@@ -204,9 +287,8 @@ non-zero or zero `+0x99` as the right motor to `XInputSetState`¹. The Steam con
 
 The DirectInput controller gets vtable `0x01CB2638` from its constructor `0x00792AB0`¹, and none of its
 methods (`0x00794280`, `0x00290180`, `0x00799F40`, `0x0079D670`, `0x0079D730` and the update `0x007A1A50`) reads `+0x98` or
-`+0x99`. Its update and `0x007A15A0` call only `Poll`, `Acquire` and `GetDeviceState` on the device and
-`GetDeviceStatus` on DirectInput², so a DirectInput pad gets no
-vibration.
+`+0x99`. Its update calls only `Poll`, `Acquire` and `GetDeviceState` on the device and `GetDeviceStatus` on
+DirectInput², so a DirectInput pad gets no vibration.
 
 <details>
 <summary>Where in the code</summary>
@@ -214,7 +296,57 @@ vibration.
 | | Code |
 |---|---|
 | ¹ | `0x00792AC8` |
-| ² | `0x007A1A97`, `0x007A1AA7`, `0x007A1ADB`, `0x007A1698` |
+| ² | `0x007A1A97`; `0x007A1AA7`, `0x007A1ABB`; `0x007A1B4B`; `0x007A1ADB` |
+
+</details>
+
+`0x007A15A0(controller)` walks the list at the controller's `+0x18`, the next entry at each entry's `+0x00`, until a
+link is null or comes back to the controller's `+0x18`¹. It calls no
+device method; its one call is the `+0x40` case below.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A15AF`-`0x007A15C3`, `0x007A1613`-`0x007A1623` |
+
+</details>
+
+For an entry whose pointer `+0x38` is set it reads the byte there: the byte `+0x31` becomes 1 when the kept state
+`+0x30` was 0 and the byte is 1, and 0 otherwise; the byte `+0x32` becomes 1 when the kept state was 1 and the byte is
+0, and 0 otherwise; and the byte is kept at `+0x30`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A15C5`-`0x007A15FE` |
+
+</details>
+
+For an entry with only a pointer `+0x40` it calls `0x0079A5F0(entry, value)` with the dword there¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A1600`-`0x007A160E` |
+
+</details>
+
+`0x0079CEC0(object)` answers the position, 0 to 17, of the object among the objects of the list `0x01F401E8` whose kind,
+vtable slot `+0x08`, is 2, and -1 when it is not among the first 18; it walks the list again for each position, and a
+null argument answers their count when that is below 18¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0079CEDD`-`0x0079CF4D` |
 
 </details>
 
@@ -383,3 +515,20 @@ In this access table, `function`, `name` and `site` give the function, its name 
 `disp` the offset from the handle the pointer has reached (0 in every row), `kind` a read (`r`) or a write (`w`),
 `instruction` the instruction itself, and `route` `route-seeded STATIC 0x022C8030 base+0x0`: the handle array at
 `0x022C8030`.
+
+### Calls to and from other topics
+
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
+
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Gameplay** (explained on [bestiary](../Enemy-Spawning/bestiary.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x003590D0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) | is called by | [`0x0031ADB0`](../Movement-And-Pathfinding/animation-driven-movement.md) (on animation driven movement) |
+
+</details>

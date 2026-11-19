@@ -78,19 +78,16 @@ Message 12 takes three sub-commands:
 
 </details>
 
-`0x00563FC0(id)` closes a category's pane unless the pane is null or has `+0x7C` bit `0x20` set: it sets the pane's
-`+0x40` bit `0x40` and either hides it (`0x00244DD0`, when bits `0x1` and `0x20` are set) or sends it message `0x00915058`
-and releases it¹. Message 18 returns to the menu
-(`0x002814E0(0x4B8)`) and clears `[0x0209AC30] + 0x168`.
+`0x00563FC0(id)` closes a category's pane unless the pane is null or has `+0x7C` bit `0x20` set; it hands the pane to
+`0x00244F00`:
 
-<details>
-<summary>Where in the code</summary>
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `0x00244F00` sets the pane's `+0x40` bit `0x40`. | `0x00244F0A` |
+| 2 | With bits `0x1` and `0x20` of `+0x40` both set it hands the pane to the close `0x00244DD0`, which starts a closing run from state 0 or 3 and turns an opening run back from state 2. Because of bit `0x40`, the pane is released through `0x00245020` when such a run ends ([Widgets](widgets.md)). | `0x00244F11`-`0x00244F20`<br>`0x00244E2C`-`0x00244E41` |
+| 3 | Otherwise it sends the pane message 15 only when its procedure `+0x00` is set and releases it through `0x00245020` either way. | `0x00915058`<br>`0x00244F25`-`0x00244F34`<br>`0x00244F39` |
 
-| | Code |
-|---|---|
-| ¹ | `0x00245020` |
-
-</details>
+Message 18 returns to the menu (`0x002814E0(0x4B8)`) and clears `[0x0209AC30] + 0x168`.
 
 ### The tab panes
 

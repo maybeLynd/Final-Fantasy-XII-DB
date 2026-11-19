@@ -288,10 +288,11 @@ and `0x00319257`, and each branches away on that answer.
 
 </details>
 
-The Game Over arm, bit `0x2` of `0x022C83E8`, is cleared only at boot, by `0x0035C560`, which zeroes the `0x23C8` bytes
-from `0x022C8060` and then sets bit `0x20`¹, and by the field teardown `0x0035BB70`: its
-`and 0xFFFC02EC` at `0x0035BB8A` clears bits `0x1`, `0x2`, `0x10`, `0x100` and `0x400`-`0x20000`, so the three arms and
-the posted bit `0x100` together. `0x0035C560` is called from `0x00253970`², `0x0035BB70` from `0x00253A30`³ and from `0x003C5E50`⁴.
+The Game Over arm, bit `0x2` of `0x022C83E8`, is cleared by two functions only. At boot `0x0035C560` zeroes the `0x23C8`
+bytes from `0x022C8060` and then sets bit `0x20`¹. At the field set-up and teardown `0x0035BB70`
+clears it: its `and 0xFFFC02EC` at `0x0035BB8A` clears bits `0x1`, `0x2`, `0x10`, `0x100` and `0x400`-`0x20000`, so the
+three arms and the posted bit `0x100` together. `0x0035C560` is called from `0x00253970`², `0x0035BB70` from
+`0x00253A30`³ and from `0x003C5E50`⁴.
 
 <details>
 <summary>Where in the code</summary>

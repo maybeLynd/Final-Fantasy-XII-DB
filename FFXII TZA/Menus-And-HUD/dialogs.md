@@ -390,7 +390,7 @@ window, the object at `+0xD8`, to `0x0057C340` when it is not null and then clea
 That window is the one `0x0057C380` returned to the picker¹. `0x0057C340` returns at once
 for a null window². When the window's dword `+0x630` has bit `0x4000` it calls
 `0x002CCB30(word [[window + 0x48] + 0x16])` and zeroes the window's own `+0xD8`³; in
-every case it then releases the window with `0x00244F00`⁴.
+every case it then closes the window with `0x00244F00`⁴.
 
 <details>
 <summary>Where in the code</summary>
@@ -600,8 +600,9 @@ The table `0x0208EA60` holds one 8-byte window pointer per slot. `0x00241D40` st
 |---|---|---|---|---|---|
 | `0x0208EA68` | `void*` | 0 (zero-filled tail) | slot 1: the second confirm window opened under a root other than `[0x0208EA38]` and `[0x0208EA50]`, 0 when no such window is open | `0x00241D40`: the window (`0x00241E48`), 0 when it closes (`0x0024257E`); `0x002419B0`, 0 after it closes the window (`0x00241A04`, `0x00241A31`) | `0x002419B0` (`0x002419B6`); `0x00241A50(slot)` (`0x00241A5C`), with 1 from the battle menu (`0x0027C4D2`) and with a variable slot from `0x0027A353` and `0x00229095` |
 
-`0x002419B0`, run by `0x0035BB70` at the field set-up and teardown¹, closes the slot-1 window unless its
-`+0x7C` bit `0x20` is set: it hides it² when bits `0x1` and `0x20` of `+0x40` are set, and otherwise sends it message 15³ and releases it⁴.
+`0x002419B0`, run by `0x0035BB70` at the field set-up and teardown¹, closes the slot-1 window only when
+`0x0208EA68` is not 0² and the window's `+0x7C` bit `0x20` is clear³;
+otherwise it returns and leaves `0x0208EA68` unchanged:
 
 <details>
 <summary>Where in the code</summary>
@@ -609,11 +610,18 @@ The table `0x0208EA60` holds one 8-byte window pointer per slot. `0x00241D40` st
 | | Code |
 |---|---|
 | ¹ | `0x0035BB99` |
-| ² | `0x00244DD0` |
-| ³ | `0x00915058` |
-| ⁴ | `0x00245020` |
+| ² | `0x002419BD`-`0x002419C0` |
+| ³ | `0x002419C2`-`0x002419C6` |
 
 </details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | When bit `0x400` of its `+0x3C4` is set it first runs `0x002CCC30`, which closes screen layer kind 1 at `[[0x0209AC30]+0x298]` only when there is one and its `+0x7C` bit `0x20` is clear: it sets the layer's `+0x7C` bit `0x800` and puts 1 in bits 22-31 and hands it to `0x00244F00`. | `0x002419C8`-`0x002419D4`<br>`0x002CCC3E`-`0x002CCC48`<br>`0x002CCC4A`-`0x002CCC54`<br>`0x002CCC65` |
+| 2 | It sets the window's `+0x40` bit `0x40`, close requested. In its `+0x7C` it sets bit `0x800` and puts 1 in bits 22-31, keeping the other bits. A closing run that `0x00244DD0` then starts from state 0 or 3 takes that 1 ms as its length, 0 frames, and clears bit `0x800`. | `0x002419E1`<br>`0x002419DE`-`0x002419EF`<br>`0x00244EB0`-`0x00244ED4` |
+| 3 | When bits `0x1` and `0x20` of `+0x40` are both set it hands the window to the close `0x00244DD0`. That close starts a closing run from state 0 or 3 and turns an opening run back from state 2. Because of bit `0x40`, the tick walker `0x00244980` releases the window when the run ends in state 1. | `0x002419F2`-`0x002419FF`<br>`0x00244E2C`-`0x00244E41`<br>`0x002449B2`-`0x002449CB` |
+| 4 | Otherwise it sends the window message 15 only when its procedure `+0x00` is set, and releases it either way. | `0x00915058`<br>`0x00241A15`-`0x00241A27`<br>`0x00245020`<br>`0x00241A29`-`0x00241A2C` |
+| 5 | On both of these paths it sets `0x0208EA68` to 0. | `0x00241A04`, `0x00241A31` |
 
 No other instruction reaches `0x0208EA68`. The table's address is taken only by `0x00241A50`.
 

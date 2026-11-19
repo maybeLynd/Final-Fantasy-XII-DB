@@ -174,9 +174,9 @@ The callback `0x00581B70(kind, error, record)` accepts only the kind the current
 - States 5 and 6 share state 4's arm, and no call reaches them: the dispatcher's two callers² ask for steps 1, 2, 3, 4, 7 and 8, and for 4 + index only while the index is below 1
   (`0x00581C94`-`0x00581CA0`, after the increment at `0x00581C81`).
 - On the last completion, or on any error, it posts message `0x1D` with class `0xF`, the device
-  byte from the queue's `+0x39A` and the error code to the controller, and releases the record.
+  byte from the queue's `+0x39A` and the error code to the controller, and closes the record.
   The device byte is `0xFF` when no queue exists³. The message goes through
-  `0x00247510([+0xC0], 0x1D, message)`⁴ and the release is `0x00244F00(record)`⁵.
+  `0x00247510([+0xC0], 0x1D, message)`⁴ and the close request is `0x00244F00(record)`⁵.
 - On success it first runs `0x005813E0`⁶.
 - On an error it also restores the image's `+0x50` from `+0xD4` and raises bit `0x4` in the gauge's
   flags.
@@ -847,3 +847,156 @@ The queue is the `0x720`-byte widget kept at `0x02CA99C0` with procedure `0x0058
 - [Save file format: the SAFH container, its zlib and RC4 layers, the save image and its header fields, the four in-memory copies and the format stamps](save-file-format.md)
 - [`storage-byte-stream-vector-01f44d40-accesses.tsv`](storage-byte-stream-vector-01f44d40-accesses.tsv): every
   access to the file worker's byte vector `0x01F44D40` (its begin, end and capacity pointers) (23 rows).
+
+### Calls to and from other topics
+
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
+
+<details>
+<summary>Show the 130 calls with 28 other topics</summary>
+
+**Characters and objects** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00583920`](saving-and-loading-transaction.md) | is called by | [`0x0025D9E0`](../Story-Events-And-Hunts/opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) |
+
+**Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md))
+
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x003939B0`](saving-and-loading-transaction.md) | calls | [`0x00229AB0`](saving-and-loading-transaction.md)<br>[`0x002DEC00`](../Sound-And-Music/music-table.md) (on music table)<br>[`0x002DEE50`](../Sound-And-Music/music-table.md) (on music table) |
+
+**Engine core** (explained on [frame update order](../Engine-Core/frame-update-order.md), [game application](../Engine-Core/game-application.md), [global state accessors](../Engine-Core/global-state-accessors.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x002465F0`](../Menus-And-HUD/widgets.md) (on widgets) | calls | [`0x001EDDA0`](../Graphics/effect-lifecycle.md) (on effect lifecycle) |
+| [`0x0036FD70`](saving-and-loading-transaction.md) | is called by | [`0x0022A0B0`](languages.md) (on languages) |
+| [`0x003939B0`](saving-and-loading-transaction.md) | calls | [`0x001EDE70`](../Menus-And-HUD/map-screens.md) (on map screens) |
+| [`0x003BAEB0`](saving-and-loading-transaction.md) | calls | [`0x0017D270`](saving-and-loading-transaction.md) |
+| [`0x00582860`](saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x001EDEC0`](saving-and-loading-screen.md) (on saving and loading screen) |
+
+**Controls and input** (explained on [controls](../Controls-And-Input/controls.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [player movement](../Movement-And-Pathfinding/player-movement.md), [game over](../World-Areas-And-Travel/game-over.md), [frame update order](../Engine-Core/frame-update-order.md))
+
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0027F5D0`](saving-and-loading-transaction.md) | calls | [`0x002D66A0`](../Controls-And-Input/controls.md) (on controls) |
+| [`0x0032E070`](saving-and-loading-transaction.md) | calls | [`0x0035E810`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue)<br>[`0x0046DD50`](../Game-Files-And-Data-Tables/file-size-tables-fst.md) (on file size tables fst) |
+| [`0x003939B0`](saving-and-loading-transaction.md) | calls | [`0x001E0C10`](../Menus-And-HUD/text-codes.md) (on text codes)<br>[`0x001E0FB0`](../World-Areas-And-Travel/game-over.md) (on game over) |
+| [`0x00582860`](saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x00182D40`](saving-and-loading-autosave.md) (on saving and loading autosave) |
+
+**Party** (explained on [party verbs](../Scripts-And-Script-Commands/party-verbs.md))
+
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00583D60`](save-file-format.md) Save image: finalize header and checksum (on save file format) | calls | [`0x003271D0`](../Scripts-And-Script-Commands/party-verbs.md) Party focus: get preferred definition selector (on party verbs) |
+
+**Steam and achievements** (explained on [shops](../Items-Equipment-Shops-And-Licenses/shops.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md))
+
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00583D60`](save-file-format.md) Save image: finalize header and checksum (on save file format) | calls | [`0x00315390`](../Items-Equipment-Shops-And-Licenses/shops.md) (on shops)<br>[`0x003166F0`](../Steam-And-Achievements/achievements.md) (on achievements) |
+
+**Graphics** (explained on [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00247510`](saving-and-loading-screen.md) (on saving and loading screen) | is called by | [`0x002D2DB0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00579420`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
+| [`0x00247870`](saving-and-loading-transaction.md) | is called by | [`0x00579420`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
+| [`0x0032E070`](saving-and-loading-transaction.md) | calls | [`0x003E9780`](../Sound-And-Music/voices.md) (on voices) |
+
+**Game files and data tables** (explained on [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [debug menu](../Engine-Core/debug-menu.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x0027F5D0`](saving-and-loading-transaction.md) | calls | [`0x0024A5A0`](../Game-Files-And-Data-Tables/binmenu-images.md) (on binmenu images) |
+| [`0x0032E070`](saving-and-loading-transaction.md) | calls | [`0x002DF6C0`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue)<br>[`0x0032E330`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue)<br>[`0x0032E370`](../Game-Files-And-Data-Tables/file-size-tables-fst.md) (on file size tables fst)<br>[`0x0032E3B0`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue)<br>[`0x0032EC40`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue)<br>[`0x0046DFE0`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue)<br>[`0x0046E030`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue)<br>[`0x0046E0E0`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue) |
+| [`0x0032E070`](saving-and-loading-transaction.md) | is called by | [`0x0032E520`](../Graphics/effect-file-loading.md) (on effect file loading)<br>[`0x0032E870`](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md) (on file requests and the read queue) |
+| [`0x0036FD50`](saving-and-loading-transaction.md) | is called by | [`0x0032E070`](saving-and-loading-transaction.md) |
+| [`0x003BB790`](saving-and-loading-transaction.md) | is called by | [`0x0032E070`](saving-and-loading-transaction.md) |
+
+**Scripts and script commands** (explained on [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [shared zone script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md), [widgets](../Menus-And-HUD/widgets.md), [debug logging](../Engine-Core/debug-logging.md), [native commands](../Scripts-And-Script-Commands/native-commands.md), [force fight mode](../Engine-Core/force-fight-mode.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00254CB0`](loading-a-save.md) (on loading a save) | is called by | [`0x0050D9A0`](save-file-format.md) (on save file format)<br>[`0x0050ED70`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors)<br>[`0x0050EEA0`](saving-and-loading-transaction.md)<br>[`0x0050EF50`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors)<br>[`0x0050F0A0`](saving-and-loading-transaction.md) |
+| [`0x0036FD70`](saving-and-loading-transaction.md) | is called by | [`0x0050C980`](saving-and-loading-transaction.md) |
+| [`0x00394440`](saving-and-loading-transaction.md) | is called by | [`0x00511F30`](saving-and-loading-transaction.md) |
+| [`0x00394530`](saving-and-loading-transaction.md) | is called by | [`0x00511F90`](saving-and-loading-transaction.md) |
+| [`0x003BB2C0`](saving-and-loading-transaction.md) | is called by | [`0x0050C860`](../Story-Events-And-Hunts/shared-zone-script-actors.md) (on shared zone script actors) |
+| [`0x003BB380`](saving-and-loading-transaction.md) | is called by | [`0x0050C5E0`](saving-and-loading-transaction.md) |
+| [`0x003BB3B0`](saving-and-loading-transaction.md) | is called by | [`0x0050C950`](saving-and-loading-transaction.md) |
+| [`0x003BB420`](../World-Areas-And-Travel/changing-areas.md) (on changing areas) | is called by | [`0x0050C670`](../Engine-Core/debug-logging.md) (on debug logging)<br>[`0x0050C8D0`](saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x0050C990`](saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x0050EEA0`](saving-and-loading-transaction.md)<br>[`0x0050F0A0`](saving-and-loading-transaction.md) |
+| [`0x003BB430`](saving-and-loading-autosave.md) (on saving and loading autosave) | is called by | [`0x0050C960`](saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x0050ED50`](saving-and-loading-autosave.md) (on saving and loading autosave) |
+| [`0x003BB730`](saving-and-loading-transaction.md) | is called by | [`0x0050ECD0`](saving-and-loading-transaction.md) |
+| [`0x00511F30`](saving-and-loading-transaction.md) | calls | [`0x0026B4E0`](../Scripts-And-Script-Commands/verb-dispatch.md) (on verb dispatch) |
+| [`0x00511F90`](saving-and-loading-transaction.md) | calls | [`0x00267E10`](../Scripts-And-Script-Commands/script-interpreter.md) (on script interpreter) |
+
+**Story, events and hunts** (explained on [identifier spaces](../Engine-Core/identifier-spaces.md))
+
+Each row is a function this page names (left) and the functions from this topic it calls (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00583D60`](save-file-format.md) Save image: finalize header and checksum (on save file format) | calls | [`0x0032A8A0`](../World-Areas-And-Travel/zone-asset-list.md) Persistent flag: query primary or authored threshold gate (on zone asset list) |
+
+**Menus and HUD** (explained on [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [force fight mode](../Engine-Core/force-fight-mode.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [subsystem update flags](../Engine-Core/subsystem-update-flags.md), [battle menu](../Menus-And-HUD/battle-menu.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [party list](../Menus-And-HUD/party-list.md), [map screens](../Menus-And-HUD/map-screens.md), [hud](../Menus-And-HUD/hud.md), [menu screens](../Menus-And-HUD/menu-screens.md), [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [controls](../Controls-And-Input/controls.md), [game over](../World-Areas-And-Travel/game-over.md), [license board screen](../Menus-And-HUD/license-board-screen.md), [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md), [gambit screen](../Menus-And-HUD/gambit-screen.md), [inventory screen](../Menus-And-HUD/inventory-screen.md), [text handbook unrequested](../Menus-And-HUD/text-handbook-unrequested.md), [party member status record](../Characters-And-Objects/party-member-status-record.md), [on screen keyboard](../Controls-And-Input/on-screen-keyboard.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00244960`](loading-a-save.md) (on loading a save) | is called by | [`0x0023ED80`](../Menus-And-HUD/config-screen.md) (on config screen)<br>[`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00276D30`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002778C0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00279E20`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x0027AD70`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x00298250`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x002985D0`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x0029BB40`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x0029C770`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x0029C850`](saving-and-loading-autosave.md) (on saving and loading autosave)<br>[`0x0029C9D0`](../Menus-And-HUD/party-list.md) (on party list) |
+| [`0x00244960`](loading-a-save.md) (on loading a save) | is also called by | [`0x002B6350`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x002B9D30`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x002BDCE0`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x002BFB40`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x002C9BF0`](../Menus-And-HUD/shop-screens.md) (on shop screens)<br>[`0x003CA310`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships)<br>[`0x003CA860`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships)<br>[`0x003CAE00`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships)<br>[`0x003CB0C0`](../World-Areas-And-Travel/chocobos-and-airships.md) (on chocobos and airships)<br>[`0x003CB650`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x003F8790`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x00551E00`](loading-a-save.md) (on loading a save) |
+| [`0x00244960`](loading-a-save.md) (on loading a save) | is also called by | [`0x00551F00`](loading-a-save.md) (on loading a save)<br>[`0x005528C0`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x00567200`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x0056C170`](../Menus-And-HUD/menu-screens.md) (on menu screens) |
+| [`0x002465F0`](../Menus-And-HUD/widgets.md) (on widgets) | is called by | [`0x00247AE0`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x00247510`](saving-and-loading-screen.md) (on saving and loading screen) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002C59D0`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen)<br>[`0x003EEEC0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00557B90`](../Menus-And-HUD/license-board-screen.md) (on license board screen)<br>[`0x00561390`](../Graphics/menu-effects.md) (on menu effects)<br>[`0x0056B4D0`](../Menus-And-HUD/gambit-screen.md) (on gambit screen)<br>[`0x0056E140`](../Menus-And-HUD/inventory-screen.md) (on inventory screen)<br>[`0x0056F810`](../Menus-And-HUD/dialogs.md) (on dialogs) |
+| [`0x00247870`](saving-and-loading-transaction.md) | is called by | [`0x00276960`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00279E20`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x0027DCA0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x00297880`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x0029A0A0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002BE450`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x002BF690`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x002C0400`](../Menus-And-HUD/party-list.md) (on party list)<br>[`0x002C3560`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x002C4720`](../Game-Files-And-Data-Tables/ui-typed-lists.md) (on ui typed lists)<br>[`0x002CC2A0`](../Menus-And-HUD/menu-screens.md) (on menu screens)<br>[`0x003C5910`](../Menus-And-HUD/map-screens.md) (on map screens) |
+| [`0x00247870`](saving-and-loading-transaction.md) | is also called by | [`0x00553F40`](../Menus-And-HUD/map-screens.md) (on map screens)<br>[`0x005542D0`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x005771F0`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables)<br>[`0x0057E6D0`](saving-and-loading-screen.md) (on saving and loading screen) |
+| [`0x0027F5D0`](saving-and-loading-transaction.md) | calls | [`0x0028E790`](../Menus-And-HUD/map-screens.md) (on map screens) |
+| [`0x0036FD70`](saving-and-loading-transaction.md) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x0036FD80`](saving-and-loading-autosave.md) (on saving and loading autosave) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x00393630`](saving-and-loading-transaction.md) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x003936B0`](saving-and-loading-transaction.md) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x003BB420`](../World-Areas-And-Travel/changing-areas.md) (on changing areas) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x003BB430`](saving-and-loading-autosave.md) (on saving and loading autosave) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x003BB730`](saving-and-loading-transaction.md) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x003BB740`](saving-and-loading-transaction.md) | is called by | [`0x00252030`](../Menus-And-HUD/widgets.md) (on widgets) |
+| [`0x003BB790`](saving-and-loading-transaction.md) | calls | [`0x003BA7B0`](saving-and-loading-transaction.md) |
+| [`0x00582860`](saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x002814E0`](../Menus-And-HUD/status-and-equip-screen.md) (on status and equip screen) |
+| [`0x008620D0`](saving-and-loading-transaction.md) | is called by | [`0x003BA7B0`](saving-and-loading-transaction.md) |
+| [`0x008620E0`](saving-and-loading-transaction.md) | is called by | [`0x003BA7B0`](saving-and-loading-transaction.md) |
+| [`0x008624D0`](saving-and-loading-transaction.md) | is called by | [`0x003BA7B0`](saving-and-loading-transaction.md) |
+| [`0x00862590`](saving-and-loading-transaction.md) | is called by | [`0x003BA7B0`](saving-and-loading-transaction.md) |
+| [`0x008625D0`](saving-and-loading-transaction.md) | is called by | [`0x003BA7B0`](saving-and-loading-transaction.md) |
+
+**World, areas and travel** (explained on [native limits](../Engine-Core/native-limits.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md), [party control modes](../Engine-Core/party-control-modes.md), [changing areas](../World-Areas-And-Travel/changing-areas.md))
+
+Each row is a function this page names (left), whether it calls the functions on the right or is called by them, and those functions from this topic. Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00582860`](saving-and-loading-screen.md) (on saving and loading screen) | calls | [`0x005843E0`](../World-Areas-And-Travel/chocobos-and-airships.md) World transition snapshot: restore persistence pair for active slot (on chocobos and airships) |
+| [`0x00583D60`](save-file-format.md) Save image: finalize header and checksum (on save file format) | calls | [`0x00264F90`](../World-Areas-And-Travel/zone-asset-list.md) Map ref: get persistence group id (on zone asset list)<br>[`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) |
+| [`0x005844A0`](save-data-fields.md) Save transition: prepare runtime image for capture (on save data fields) | is called by | [`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump) |
+
+</details>
