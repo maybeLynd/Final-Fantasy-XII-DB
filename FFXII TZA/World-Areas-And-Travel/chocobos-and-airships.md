@@ -901,6 +901,32 @@ that bit and runs `0x0025D540`², then:
 
 </details>
 
+`0x002E28D0(actor)` jumps to the detach `0x002E6B10(actor)`. For a non-null actor with a secondary record whose render id
+is not -1¹, the detach calls `0x0042F250` with the render id's low word, runs `0x002E8E20(actor)`,
+calls `0x002E5C90(actor, x, y, z, 1)` with the three floats at `+0x00`-`+0x08` of the movement context `+0xB8`, and
+`0x002E5E10(actor, +0xA8, +0xAC, 1)` with that context's two floats².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E6B19`-`0x002E6B2D` |
+| ² | `0x002E6B3E`-`0x002E6B82` |
+
+</details>
+
+On every path it then clears the secondary's `+0x14F` bit `0x1` when the actor has one and ends in `0x002E8FD0(actor)`¹; a null actor skips the calls but still reads address `0xC0` there.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E6B8C`-`0x002E6BA7` |
+
+</details>
+
 The script verb `attachinfo` (`0x0026A140`, [actor record](../Characters-And-Objects/actor-record.md)) sets the vectors for the
 next attach. The ride's path (`0x00304060` to `0x002E28C0`) sets no vectors, and the previous attach cleared them, so the
 rider sits where slot 15 of the chocobo's model puts it
@@ -1247,7 +1273,7 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
 <details>
-<summary>Show the 7 calls with 2 other topics</summary>
+<summary>Show the 10 calls with 3 other topics</summary>
 
 **Game files and data tables** (explained on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md), [resource sections](../Game-Files-And-Data-Tables/resource-sections.md), [character render records](../Graphics/character-render-records.md))
 
@@ -1260,5 +1286,14 @@ Each row is a function this page names (left) and the functions from this topic 
 | [`0x004218A0`](../Graphics/skeleton-entries-and-bones.md) (on skeleton entries and bones) | calls | [`0x002ED570`](../Graphics/skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
 | [`0x0042F880`](../Graphics/character-render-records.md) (on character render records) | calls | [`0x002ED570`](../Graphics/skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones)<br>[`0x004780B0`](../Graphics/animation-playback.md) (on animation playback) |
 | [`0x0046E640`](../Graphics/animation-playback.md) (on animation playback) | calls | [`0x002ED570`](../Graphics/skeleton-entries-and-bones.md) Resource table: resolve entry by index (on skeleton entries and bones) |
+
+**Characters and objects** (explained on [actor record](../Characters-And-Objects/actor-record.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x002E8FD0`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: refresh presentation visibility (on party during scenes) | is called by | [`0x00265B60`](../Characters-And-Objects/actor-record.md) (on actor record)<br>[`0x002E35B0`](../Menus-And-HUD/clan-primer.md) (on clan primer) |
+| [`0x0042F250`](../Menus-And-HUD/clan-primer.md) (on clan primer) | is called by | [`0x002E35B0`](../Menus-And-HUD/clan-primer.md) (on clan primer) |
 
 </details>

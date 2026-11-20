@@ -17,6 +17,9 @@ A boss or story fight is not marked by one setting. The area's script builds it 
 - **Exits.** A script can lock the zone exits; the exit triggers then do nothing.
 - **The boss gauge** is opened by the script. Almost every script that opens it also puts an enemy in
   a group.
+- **Which fight it is** follows from the area and the story counter ([Story
+  progress](../Story-Events-And-Hunts/story-progress.md)). The script of `grm_g01`, for one, switches on the
+  counter when the area starts, and after the win it sets the counter to 33 before it leaves the map.
 
 ## How it works
 
@@ -123,20 +126,15 @@ enemy-side unit in group 0.
 
 ### The battle freeze
 
-`0x00238B70(on)` sets or clears bit `0x20` of the battle flags `0x02089340` and sends message `0x30B`¹ to every unit with bit `0x10` of its first byte. `0x00238AE0(on)` sets or clears bit `0x80`.
-The script commands `suspendbattle` (`0x0035AB20`: both on, then `0x0035A590`) and `resumebattle`
-(`0x0035A6F0`: `0x00473830(0, 1)`, both off, `0x00267D40(2)`) use the same pair. While bit `0x20` is set, a running
-action is cancelled with reason 2 ([Target selection](target-selection.md)) and idle units are not
-sent back to choose actions ([Action commit](action-commit.md)).
+`0x00238B70(on)` sets or clears bit `0x20` of the battle flags `0x02089340` and, through `0x002E7C10`, clears the aim of
+every unit with bit `0x10` of its first byte that passes the checks of `0x002E7C10` ([character rig and
+look](../Graphics/character-rig-and-look.md#solve-bodies)); `0x002E7C10` never reads the `0x30B` that
+`0x00238B70` passes as its third argument.
+`0x00238AE0(on)` sets or clears bit `0x80`. The script commands `suspendbattle` (`0x0035AB20`: both on, then `0x0035A590`)
+and `resumebattle` (`0x0035A6F0`: `0x00473830(0, 1)`, both off, `0x00267D40(2)`) use the same pair.
 
-<details>
-<summary>Where in the code</summary>
-
-| | Code |
-|---|---|
-| ¹ | `0x002E7C10` |
-
-</details>
+While bit `0x20` is set, a running action is cancelled with reason 2 ([Target selection](target-selection.md)) and
+idle units are not sent back to choose actions ([Action commit](action-commit.md)).
 
 `0x00473830(value, mode)` takes the manager from `0x00263FF0(0)` and returns at once when bit `0x1` of the manager's byte
 `+0x10` is clear¹. Otherwise it walks the indices from the manager's word `+0x1DE` up to, not

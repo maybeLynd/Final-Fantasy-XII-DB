@@ -460,8 +460,10 @@ Three calls run on every completion, each with argument 1¹:
   capability inhibitions ([party roster and control
   suppression](../Party/party-leader.md)), then `0x00359200(on, 2)`,
   `0x00359330(2, 1, on)` and `0x0026BD20(2, on == 0)`;
-- `0x00238B70(on)` sets or clears `0x02089340` bit `0x20` and, for every battle-unit slot whose byte `+0`
-  has bit `0x10`, posts `0x002E7C10(actor, actor, 0x30B, 0)`;
+- `0x00238B70(on)` sets or clears `0x02089340` bit `0x20` and, for every battle-unit slot whose byte `+0` has bit `0x10`,
+  calls `0x002E7C10(actor, actor, 0x30B, 0)`, which clears the actor's aim when the actor passes its checks ([character
+  rig and look](../Graphics/character-rig-and-look.md#solve-bodies)); `0x002E7C10` never reads its
+  third argument;
 - `0x00238AE0(on)` sets or clears `0x02089340` bit `0x80`.
 
 The ten calls¹ give `n` = 0, 3, 4, 5, 6, 7, 8, 11, 12 and 20, a bit index, so they set or

@@ -290,6 +290,17 @@ held clear, clears `+0x290` bit `0x1` and moves the record to the end of the act
 
 </details>
 
+`0x0041FCF0` clears `+0x304` bits `0x4000` and `0x1`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041FD1F` |
+
+</details>
+
 The shadow entry is `0x003B56D0` of the record's index¹. `0x0042C410` gets the record and the
 record array, and tail bit `0x1` goes back to its earlier value after it². Each move sets
 tail flag bit `0x20`³. The promoter reads the next pending index before the work, and at the end
@@ -890,7 +901,16 @@ So a weapon's blade and grip are the bones keyed `0x65E` and `0x656`, named `j_b
 ### The dirty words
 
 Requests reach a record as bits in two dwords, `+0x290` and `+0x294`. `0x00427DE0(flag)` services them
-in five walks of the active list, in fixed order, skipping records with `+0x284` bit `0x40000000`:
+in five walks of the active list, in fixed order; walks 1 to 4 skip records with `+0x284` bit `0x40000000`¹, and walk 5 takes every record:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00427E23`, `0x00428101`, `0x004281B3`, `0x00428521` |
+
+</details>
 
 1. `+0x290` bits `0x20000000`, `0x40000000`, `0x4`, `0x8`, `0x2000000`, then one of `0x80000`, `0x40000` or `0x100000`, then `0x800000`, `0x1000000`, `0x1000`, `0x400000`, and `+0x294` bit `0x4000000`;
 2. `+0x290` bits `0x200`, `0x400`, `0x20000`, `0x800`;
@@ -1254,7 +1274,7 @@ are the ones the functions on this page use:
 | `+0x118` | `u32` |  | shadow entry handle (pool at `0x02B3F570`) |
 | `+0x210` | `f32[4]` |  | colour, 1.0 after a clear |
 | `+0x220` | `f32[4]` |  | second colour, 1.0 after a clear |
-| `+0x284` | `u32` |  | state flags (bit `0x4000` character-model directory, bit `0x40000000` skipped by the dirty walk) |
+| `+0x284` | `u32` |  | state flags (bit `0x4000` character-model directory, bit `0x40000000` skipped by dirty walks 1 to 4) |
 | `+0x290` | `u32` |  | dirty word 1 |
 | `+0x294` | `u32` |  | dirty word 2 |
 | `+0x400` | `void*` |  | the model's @FCP data |

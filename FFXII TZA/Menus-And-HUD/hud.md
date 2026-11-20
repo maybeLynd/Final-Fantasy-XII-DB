@@ -1615,15 +1615,16 @@ Next to its markers the part at `+0xA0` writes a name: an area's name, or text `
   `+0x4020`².
 - Before its two passes `0x003F8EC0` clears bit `0x2` of `+0x23C` on every listed label³. The passes are
   `0x003F9720(part, 0)`⁴ and `0x003F9720(part, 1)`⁵, over the zone script's lists 0 and 1.
-- For each marker `0x003F9720` takes a label whose `+0x23C` bit `0x1` is clear⁶. It sets
-  `+0x238` and `+0x23A`⁷ and appends the label to the list⁸.
-- It copies the text into `+0x130` through `0x003F92B0`⁹, which takes the area name from `0x00377870`
- ¹⁰ or text `0x3EC` from `0x002F9860`¹¹. It lays the text out with `0x002B3400`¹² and
-  sets `+0x23C` bits `0x1` and `0x2`¹³.
+- For each line of list 1 whose style id names a record⁶, `0x003F9720` takes a label whose
+  `+0x23C` bit `0x1` is clear⁷. It sets
+  `+0x238` and `+0x23A`⁸ and appends the label to the list⁹.
+- It copies the text into `+0x130` through `0x003F92B0`¹⁰, which takes the area name from `0x00377870`
+ ¹¹ or text `0x3EC` from `0x002F9860`¹². It lays the text out with `0x002B3400`¹³ and
+  sets `+0x23C` bits `0x1` and `0x2`¹⁴.
 - After the passes `0x003F8EC0` sets the alpha `+0x33` to 0 on each label that no marker claimed again, the ones without
-  bit `0x2`¹⁴. `0x003F8C70` hands to `0x003F14D0` each listed label whose `+0x23C` has bits `0x1` and `0x2`
-  both set¹⁵, and no label while bit `0x1` of `+0x52C6` is clear or the sprite count `+0x52C0`
-  is 0 or less¹⁶.
+  bit `0x2`¹⁵. `0x003F8C70` hands to `0x003F14D0` each listed label whose `+0x23C` has bits `0x1` and `0x2`
+  both set¹⁶, and no label while bit `0x1` of `+0x52C6` is clear or the sprite count `+0x52C0`
+  is 0 or less¹⁷.
 
 <details>
 <summary>Where in the code</summary>
@@ -1635,17 +1636,18 @@ Next to its markers the part at `+0xA0` writes a name: an area's name, or text `
 | ³ | `0x003F8F60` |
 | ⁴ | `0x003F8F90` |
 | ⁵ | `0x003F8F9D` |
-| ⁶ | `0x003F9270`, `0x003F9961` |
-| ⁷ | `0x003F9972`, `0x003F997F` |
-| ⁸ | `0x003F99A8`, `0x003F9A2F`, `0x003F9A36` |
-| ⁹ | `0x003F9A4E` |
-| ¹⁰ | `0x003F9314` |
-| ¹¹ | `0x003F935C` |
-| ¹² | `0x003F9A67` |
-| ¹³ | `0x003F9A78` |
-| ¹⁴ | `0x003F8FB9` |
-| ¹⁵ | `0x003F8CE0`-`0x003F8CF3` |
-| ¹⁶ | `0x003F8C8F`, `0x003F8C99` |
+| ⁶ | `0x003F98F3`-`0x003F9905` |
+| ⁷ | `0x003F9270`, `0x003F9961` |
+| ⁸ | `0x003F9972`, `0x003F997F` |
+| ⁹ | `0x003F99A8`, `0x003F9A2F`, `0x003F9A36` |
+| ¹⁰ | `0x003F9A4E` |
+| ¹¹ | `0x003F9314` |
+| ¹² | `0x003F935C` |
+| ¹³ | `0x003F9A67` |
+| ¹⁴ | `0x003F9A78` |
+| ¹⁵ | `0x003F8FB9` |
+| ¹⁶ | `0x003F8CE0`-`0x003F8CF3` |
+| ¹⁷ | `0x003F8C8F`, `0x003F8C99` |
 
 </details>
 
@@ -1665,6 +1667,24 @@ table of the draw pass above reads.
 | ¹ | `0x003F9720` |
 | ² | `0x003F8CB0`-`0x003F8CCE` |
 | ³ | `0x003F8C7F`-`0x003F8C99` |
+
+</details>
+
+`0x003F9720` reads each entry through `0x002649B0` and its style through `0x002648F0`¹, as the
+[minimap](map-screens.md#the-minimap) does. Consecutive entries with the same style id, byte `+0x1D`, make one line,
+which ends when that byte changes, at the end of the list or after 15 entries². An
+entry is left out when it is null³ or when `0x002648F0` answers non-zero and the style's byte 1, the gate of
+its word 1, is 0⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003F9858`, `0x003F9BBC` |
+| ² | `0x003F986E`-`0x003F988E`, `0x003F9D5F` |
+| ³ | `0x003F9BAF` |
+| ⁴ | `0x003F9BBC`-`0x003F9BC9` |
 
 </details>
 

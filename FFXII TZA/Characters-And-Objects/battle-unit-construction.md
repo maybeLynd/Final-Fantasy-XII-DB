@@ -359,13 +359,26 @@ not `+0xE70` or `+0xE78`, so a unit that was an enemy keeps those two pointers a
 | 5 | kind 0: equipment slots 0-4 from the row's words `+0x0A`, `+0x0C`, `+0x0E`, `+0x10`, `+0x12`; the gambit preset `0x00327CB0(record, row word +0x14)`, `0x00326030([0x02EBF190], index)` and `0x00327DE0([0x02EBF190] + 8 + index * 0x1C8)`; and record `+0x00` bit `0x4` when the row's byte `+0x2C` has bit `0x40`; | `0x0031A630` |
 | 6 | kind 1: equipment slot 0 from the row's word `+0x16`, slot 1 from `+0x1C`, slots 2-4 `0xFFFF`. |   |
 
+The New Game fill `0x00237DF0` and the scenario set `0x00239960` each build all 40 party records, record i from row i¹. The installer `0x0023A570` builds a spawn record's stats at its `+0x80`
+when `0x00236100` finds the record and its first byte has bits `0x1` and `0x4` clear (`0x0023A776`-`0x0023A7A9`; [spawn
+record fields](../Enemy-Spawning/spawn-record-fields.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00237E00`-`0x00237E30`, `0x00239AA0`-`0x00239ACE` |
+
+</details>
+
 ### The level grower
 
 `0x0030C470(record, level, baseLevel)` starts from level 0 and grows up:
 
 | Step | What happens | Where in the code |
 |---|---|---|
-| 1 | `+0x1C2` = 0, then by kind:<br>• kind 0: the base values come from the party row named by `+0x04`: `+0x08` = word `+0x16`, `+0x0C` = word `+0x1A`, `+0x10`, `+0x14`, `+0x18`, `+0x1C` = the floats of bytes `+0x1E`, `+0x21`, `+0x24`, `+0x27`, `+0x20` = the larger of byte `+0x46` and the licence rank `0x00324100(record)`;<br>• kind 1: only `+0x88` = `baseLevel` (1 from the initialiser, the minimum level from `0x002398F0`, 0 from the four other callers);<br>• any other kind returns; |   |
+| 1 | `+0x1C2` = 0, then by kind:<br>• kind 0: the base values come from the party row named by `+0x04`: `+0x08` = word `+0x16`, `+0x0C` = word `+0x1A`, `+0x10`, `+0x14`, `+0x18`, `+0x1C` = the floats of bytes `+0x1E`, `+0x21`, `+0x24`, `+0x27`, `+0x20` = the larger of byte `+0x46` and the licence rank `0x00324100(record)`;<br>• kind 1: only `+0x88` = `baseLevel` (1 from the initialiser, the minimum level from `0x002398F0`, 0 from the four other callers: the scenario set `0x00239960`, the Esper summon, New Game+ and the catch-up, `0x00239BED`, `0x003069EE`, `0x00316E3D`, `0x0031762C`);<br>• any other kind returns; |   |
 | 2 | `0x0030C650(record, level, 2)` grows to the level ([stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md)); |   |
 | 3 | `+0x18C` = `min(0x002F8F20(level - 1), 99999999)`, the experience of the level reached ([EXP, LP and level ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md)); |   |
 | 4 | when the status masks `0x0208D320` or `0x0208D324` are non-zero, the statuses in their union are removed (`0x0030F690(record, union)`); HP and MP are reconciled to their capacities; | `0x0030F340`, `0x0030F5A0` |

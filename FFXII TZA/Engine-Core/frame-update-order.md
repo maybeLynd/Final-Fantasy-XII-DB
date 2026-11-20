@@ -891,6 +891,38 @@ zeroes the four party-roster pointers `0x0209A1F0`-`0x0209A20F`; then, with or w
 runs the unload `0x002628B0` for each set bit from 4 down to 0, clearing each bit after its call. A
 menu frame therefore never stops queued area preparation or the roster clear.
 
+The unload `0x002628B0(m)` has two direct callers: this queue¹ and `0x0032FCA0`², which `0x0032FC30`
+runs for every m³. It takes m in `ecx` and indexes the slot table `0x02098E10` with it, with no bounds test⁴. Its first four instructions, 16 bytes⁵, store `rbx`, `rbp` and `rsi`
+and push `rdi`; its first RIP-relative operand is the stack cookie it reads at `0x002628C4`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025C036` |
+| ² | `0x0032FCF6` |
+| ³ | `0x0032FC7B` |
+| ⁴ | `0x002628D3`-`0x002628E9` |
+| ⁵ | `0x002628B0`-`0x002628BF` |
+
+</details>
+
+`0x0032FC30(m, id)` has eight direct call sites, and [titles
+scenes](../Story-Events-And-Hunts/titles-scenes.md) gives the id each passes. The manager each one unloads:
+
+- `0x003140BA`, the deferred mode request above: 0;
+- `0x0025DAED`, in the actor drive pass `0x0025D9E0`: 1;
+- `0x00306C56` in `0x00306BD0`, `0x003535A3` in `summoneventread`'s handler `0x00353590` and `0x003CA07C` in the menu scene step
+  `0x003C9FD0`: 3;
+- `0x00352304` and `0x003530CF`, the end handlers `0x003522C0` and `0x00353080` of the `eventread` pair: the script's slot
+  plus 1, held to 1-3;
+- `0x0050D115`, the poll `0x0050D0C0` of `debug_eventload`, which the [debug menu](debug-menu.md) lists: the kind it was
+  given, any but 4.
+
+So, through these sites, manager 0 is unloaded only in the tick prologue, by the queue or the deferred mode request;
+every other site unloads manager 1, 2 or 3, except `debug_eventload`, which passes on any kind but 4.
+
 The slot loops work on the five actor-manager slots at `0x02098E10`, stride `0x288`, and their
 shape depends on the mode:
 
@@ -1419,7 +1451,7 @@ For any other n `0x0031B4F0(n)` answers 0¹.
 | `0x4` | the orchestrator when the clock counter did not move | the orchestrator | the clock stood still this step |
 | `0x8` | toggled by the orchestrator's reset loop | the same | reset-loop parity against `0x00253B90` |
 | `0x10` | the area initialisation `0x002342F0` | `0x002341C0`; `0x002368D0` | an area is live; the party and menu resolvers test it |
-| `0x20` | `0x00238B70(1)`, which also posts message `0x30B` (`0x002E7C10`) to every unit with byte bit `0x10` in the unit table at `[0x0208E688]` (stride `0xF50`, count `0x0208E6A0`); called from `0x00306F00`, `0x00359A30` and `0x0035AB20` | `0x00238B70(0)`, from `0x0035A6F0`, which posts the same message to the same units: the loop `0x00238B96`-`0x00238BDB` runs for either argument, with the unit's `+0x10` pointer as both first arguments and 0 as the fourth; `0x002342F0` | |
+| `0x20` | `0x00238B70(1)`, which also clears the aim of every unit with byte bit `0x10` in the unit table at `[0x0208E688]` (stride `0xF50`, count `0x0208E6A0`) that passes the checks of `0x002E7C10`, a model record in use among them ([character rig and look](../Graphics/character-rig-and-look.md#solve-bodies)); called from `0x00306F00`, `0x00359A30` and `0x0035AB20` | `0x00238B70(0)`, from `0x0035A6F0`, which clears the same aims: the loop `0x00238B96`-`0x00238BDB` runs for either argument, with the unit's `+0x10` pointer as both first arguments and 0 as the fourth, so `0x003E6C10` stores -1 in the record's word `+0x24C` (`0x003E6C8F`-`0x003E6C98`); the third, `0x30B`, is never read; `0x002342F0` | |
 | `0x40` | `0x0032A200`, which also runs `0x003B0770` when `0x0208CD1C` is neither -1 nor 0 (`0x0032A20A`-`0x0032A210`) and sets it to -1 | `0x0032A170`, the treasure verb's close, when `0x0208CD18` is 0 (`0x0032A174`): it runs `0x0026DC60([0x0208CD08], 0)`, takes the unit of the actor at `0x0208CD00` (`0x00263E30`), zeroes its `+0x2C`, plays motion `0x2001` on its `+0x10` actor (`0x002EB030`), zeroes `+0x2C` again and stores `0x2001` at `+0x5C` (`0x0032A18B`-`0x0032A1C4`), then the same `0x003B0770` tail (`0x0032A1CB`-`0x0032A1EA`); `0x002342F0` | the treasure-open verb's begin |
 | `0x80` | `0x00238AE0(1)`, from the same three callers as bit `0x20` | `0x00238AE0(0)`, from `0x0035A6F0`; `0x002342F0` | |
 | `0x100` | `0x00300FC0` when the torn-down unit's id is `0x003590D0()` (request `0x17`); the orchestrator's `0x17` latch | the latch; `0x002342F0` | the leader is incapacitated |
@@ -1610,7 +1642,7 @@ slots' `+0x201` bytes; the eight one-byte field flags `0x02099DA0` to `0x02099DA
 | `0x0208D344` | `u16[4]` | 0 (zero-filled tail of `.data`) | words 8 to 11 of the sixteen `u16` words at `0x0208D334`. `0x00329E60` and the script verb's `0x00328D90` store word `n` and `0x00321190` and `0x0031B4F0` read it, each only for `n` from 0 to 15 (an unsigned bound: `cmp` with 15 and `ja` at `0x00329F03`, `0x00321253`, `0x00328D90` and `0x0031B4F0`) | `0x00322190`, 0 (`0x003221A0`, one 8-byte store); `0x00329E60` (`0x00329F0C`, the word `n`); `0x00328D90` (`0x00328D9F`, the word `n`) | `0x00321190` (`0x0032125C`, the word `n`); `0x0031B4F0` (`0x0031B4FF`, the word `n`) |
 | `0x0208D34C` | `u16[4]` | 0 (zero-filled tail of `.data`) | words 12 to 15 of the sixteen `u16` words at `0x0208D334`. `0x00329E60` and the script verb's `0x00328D90` store word `n` and `0x00321190` and `0x0031B4F0` read it, each only for `n` from 0 to 15 (an unsigned bound: `cmp` with 15 and `ja` at `0x00329F03`, `0x00321253`, `0x00328D90` and `0x0031B4F0`) | `0x00322190`, 0 (`0x003221A7`, one 8-byte store); `0x00329E60` (`0x00329F0C`, the word `n`); `0x00328D90` (`0x00328D9F`, the word `n`) | `0x00321190` (`0x0032125C`, the word `n`); `0x0031B4F0` (`0x0031B4FF`, the word `n`) |
 | `0x02099DA0` | `u8` | 0 (zero-filled tail of `.data`) | 1 for one load after script verb `011C` `lock_charmotion_once`: while it is set the actor-resource load arm `0x0025AFC0` skips `0x002E4000(0, 1)` and `0x002E3E20(0, 1)` (`0x0025AFFB`-`0x0025B017`) and then clears it | `0x0026AF70`, 1 (the verb's handler `0x0034D350` passes `ecx` = 1); `0x0025AFC0`, 0 (`0x0025B02F`); `0x002628B0` (`0x00262D4B`, `0x00262D8F`); the start-up initialiser `0x00266D10`, 0 (`0x00266DF7`) | `0x0025AFC0` (`0x0025AFFB`), `0x00261F90` (`0x00261FDA`), `0x002628B0` (`0x00262D63`) |
-| `0x02099DA1` | `u8` | 0 (zero-filled tail of `.data`) | a veto on the primary battle simulation: `0x002671C0` answers 1 only while it is 0 (`0x002671DF`-`0x002671E7`). Each writer recomputes it with a `cmovne` after testing bit `0x8` of `0x02099847` | `0x002628B0` (`0x00262EAD`), the start-up initialiser `0x00266D10` (`0x0026706D`), `0x0026A2A0` (`0x0026A304`), the definition bind `0x0026C8C0` (`0x0026CD1F`) | `0x002671C0` (`0x002671E1`) |
+| `0x02099DA1` | `u8` | 0 (zero-filled tail of `.data`) | a veto on the primary battle simulation: `0x002671C0` answers 1 only while it is 0 (`0x002671DF`-`0x002671E7`). Each writer recomputes it: 1 when bit `0x8` of byte `+0x17` is set in any of the five slots of [actor managers](../Characters-And-Objects/actor-managers.md) (`0x02098E27`, `0x020990AF`, `0x02099337`, `0x020995BF`, `0x02099847`, five tests each followed by a `cmovne`), else 0 | `0x002628B0` (`0x00262EAD`), the start-up initialiser `0x00266D10` (`0x0026706D`), `0x0026A2A0` (`0x0026A304`), the definition bind `0x0026C8C0` (`0x0026CD1F`) | `0x002671C0` (`0x002671E1`) |
 | `0x02099DA2` | `u8` | 0 (zero-filled tail of `.data`) | a byte held at 0 between the veto and the near-fade decision | the start-up initialiser `0x00266D10`, 0 (`0x00267166`, `esi` = 0 since `0x00266D3E`) | its one RIP-relative reference is that store |
 | `0x02099DA3` | `u8` | 0 (zero-filled tail of `.data`) | the character near-fade decision `0x0025D950` publishes before it jumps to `0x002E8700`: 1 when bit `0x400000000` of the map flags `0x00226B10(0)` is set and `0x002E15F0()` is 0, replaced by `0x02099DA5` while `0x02099DA4` is set (`0x0025D958`-`0x0025D9AD`) | `0x0025D950` (`0x0025D958`, `0x0025D980`, `0x0025D9AD`) | `0x0025D950` (`0x0025D976`, `0x0025D98B`); the getter `0x00263FB0` |
 | `0x02099DA4` | `u8` | 0 (zero-filled tail of `.data`) | 1 while script verb `0552` `set_force_char_nearfade` forces the near-fade decision `0x02099DA3` to `0x02099DA5`; 0 after `0553` `clear_force_char_nearfade` | `0x0026AB50` (`cl`: 1 from the `0552` handler `0x00356030`, 0 from the `0553` handler `0x003563C0`); `0x002628B0` (`0x00262A24`); the start-up initialiser `0x00266D10`, 0 (`0x00266D47`) | `0x0025D950` (`0x0025D99E`) |

@@ -214,6 +214,37 @@ The puppet binds are a pool of 32 records of `0x48` bytes from `0x02B5E120`: `0x
 one and `0x003EB5F0(v)` those whose byte `+0x41` is v. `0x00265F90(binding)` resets a binding: render
 index -1, the three floats at `+0x14`-`+0x1C` to -1.0 and the default flags.
 
+`0x002628B0(m)` runs the two releases only while the manager's byte `+0x10` has bit `0x1`¹: `0x003EB500` for
+manager 0², and `0x003EB5F0(m)` for every manager, for manager 0 after `0x003EB500` on every path³. For manager 0 it first runs, before that test, `0x003EC5F0`⁴, which runs `0x003EB6C0(i)` (below)
+for i from 0 to 15, each when `0x00377C20()` answers 0⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00262930` |
+| ² | `0x002629BC`, `0x00262B3F` |
+| ³ | `0x00262D27` |
+| ⁴ | `0x00262905` |
+| ⁵ | `0x003EC5F8`-`0x003EC612` |
+
+</details>
+
+`0x003EB500` zeroes the 32 entries of the pointer table `0x02B5EA20`¹; `0x003EB5F0` leaves the table
+as it is. `0x003EB6C0(i)` releases the record in table entry i with `0x003EB470` and zeroes the entry, for an i from 0 to
+31 and a non-null entry².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EB5AD`-`0x003EB5E7` |
+| ² | `0x003EB6C4`-`0x003EB6EA` |
+
+</details>
+
 The two lists have head records of the same shape: the bound list at `0x02B5EB20` and the free list at `0x02B5EB70`. Each
 record links through `+0x00` (next) and `+0x08` (previous). `0x003EB750` zeroes both heads' links (`0x02B5EB20` and
 `0x02B5EB28` at `0x003EB77A` and `0x003EB773`, `0x02B5EB70` and `0x02B5EB78` at `0x003EB79B` and `0x003EB794`) and their words

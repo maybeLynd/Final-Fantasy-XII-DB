@@ -106,16 +106,16 @@ less the two totals the rebuild publishes, rounded up to a whole page. With both
 360,448 words: 1.375 MiB, 176 pages. The surface size is fixed, so the budget does not depend on
 the display resolution.
 
-Each pass of the slot handler `0x002F4520` starts with `0x00467A70`¹, which sets the
-cursor `0x02CA5FF8` back to the reservation `0x02CA5FF4` and zeroes `0x02CA5FFC` and `0x02CA6000`;
-`0x00467A90` returns the cursor.
+Once its refusals are passed¹, each pass of the slot handler `0x002F4520` calls `0x00467A70`², which sets the cursor `0x02CA5FF8` back to the reservation `0x02CA5FF4` and zeroes `0x02CA5FFC` and
+`0x02CA6000`; `0x00467A90` returns the cursor.
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x002F45D9` |
+| ¹ | `0x002F458B`-`0x002F45B9` |
+| ² | `0x002F45D9` |
 
 </details>
 
@@ -190,7 +190,7 @@ each `0xE0`-byte record of the map's tag-24 array (`[+0x1D0]`, count `+0x220`).
 
 </details>
 
-The slot handler `0x002F4520` first calls `0x00467B60`¹, which stores
+The slot handler `0x002F4520` calls `0x00467B60`¹, which stores
 `int(−16 × log2|20 − c|)` in the high dword of `0x02EBB6C8`, with `c` the float at `0x02AED570`, the
 working camera's `+0x10`. `0x00467BB0` zeroes the same qword at start-up; these two stores are the only
 instructions that name it.
@@ -240,8 +240,9 @@ of 0 it returns at once³.
 </details>
 
 That handler is `0x002F4520`, installed by the map set-up
-`0x002F6AB0`¹; it starts by setting `+0x00` of every slot record to 0 and `+0x20` to
-`0xFF`².
+`0x002F6AB0`¹. It returns at once when the map's data `+0x158` is 0, its `+0x234` is 0 or the pass's draw
+list is empty²; otherwise, after `0x00467A70` and `0x00467A90`, it sets `+0x00` of every slot
+record to 0 and `+0x20` to `0xFF`³.
 
 <details>
 <summary>Where in the code</summary>
@@ -249,7 +250,8 @@ That handler is `0x002F4520`, installed by the map set-up
 | | Code |
 |---|---|
 | ¹ | `0x002F6B43` |
-| ² | `0x002F45F0`-`0x002F4617` |
+| ² | `0x002F458B`-`0x002F45B9` |
+| ³ | `0x002F45F0`-`0x002F4617` |
 
 </details>
 
@@ -638,11 +640,11 @@ Slot record (map `+0x218`, count `+0x228`), `0x28` bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u64` |  | cleared at allocation and by `0x002F4520` every pass |
+| `+0x00` | `u64` |  | cleared at allocation and by `0x002F4520` on every pass it does not refuse |
 | `+0x08` | `u64` |  | cleared at allocation |
 | `+0x10` | `u64` |  | cleared at allocation |
 | `+0x18` | `u64` |  | cleared at allocation |
-| `+0x20` | `u8` |  | 0 at allocation, `0xFF` from `0x002F4520` every pass |
+| `+0x20` | `u8` |  | 0 at allocation, `0xFF` from `0x002F4520` on every pass it does not refuse |
 | `+0x21` | `-` |  | never written |
 
 ```
@@ -761,7 +763,7 @@ no instruction loads that pointer.
 | `0x02AEED20` | `u64` | 0 | the TEX0 value of the fourth entry: `0x620110000` with base page `0x3700` | `0x0039D200` (`0x0039D2F3`, in its loop over the entries from `0x02AEED10` to `0x02AEED4F`, then `0x0039D3C2`) | `0x0039D200` (`0x0039D3AF`); the entry readers by index, entry 3: `0x00374280` (`0x00374349`), `0x003745C0` (`0x003746AB`) and `0x00375280` (`0x0037538C`) for a descriptor kind of 6 (they take kinds 3 to 6 as entries 0 to 3), `0x004FD4B0` (`0x004FDABB`) for a signed 3-bit index of 3, `0x00431830` (`0x00431896`) for a byte `+0xA8` of 3 |
 | `0x02AEED30` | `u64` | 0 | the TEX0 value of the fifth entry: `0x620110000` with base page `0x3300` | `0x0039D200` (`0x0039D2F3`, then `0x0039D3DC`) | `0x0039D200` (`0x0039D3C9`); `0x00431830` (`0x00431896`) for a byte `+0xA8` of 4 |
 | `0x02EBB6C0` | `u64` | 0 | zeroed at start-up beside `0x02EBB6C8` | `0x00467BB0` (`0x00467BDA`) | no instruction names it apart from that store |
-| `0x01EEBAE8` | `u32` | 10000 (`0x2710`) | the last entry of the pass's draw list: the `u16` at `[map + 0x1E0 + 0x18 × pass]` + 2 × (count − 1), the count being the dword `+0x10` of that list (`0x002F4774`-`0x002F4785`), stored before `0x001808A0` each pass | `0x002F4520` (`0x002F4789`) | no instruction names it apart from that store |
+| `0x01EEBAE8` | `u32` | 10000 (`0x2710`) | the last entry of the pass's draw list: the `u16` at `[map + 0x1E0 + 0x18 × pass]` + 2 × (count − 1), the count being the dword `+0x10` of that list (`0x002F4774`-`0x002F4785`), stored before `0x001808A0` on each pass that is not refused (`0x002F458B`-`0x002F45B9`) | `0x002F4520` (`0x002F4789`) | no instruction names it apart from that store |
 
 `0x01EEBAE4` and `0x022BE7DC`, set together by `0x002F4510` (from `0x001D1660`), bound the record indices of a pass: an entry
 is drawn only when it is not below `0x022BE7DC` and not above `0x01EEBAE4`, both signed compares¹.

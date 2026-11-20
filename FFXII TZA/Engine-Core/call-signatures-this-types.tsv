@@ -56,7 +56,7 @@ addr	name	derived_arity	int_regs	classes	class_names	slots
 0x0019BE30	FUN_0019be30	4	rcx,rdx,r8,r9	1	std::basic_filebuf<char,struct std::char_traits<char> >	10
 0x0019BF10	FUN_0019bf10	3	rcx,rdx,r8	1	std::basic_filebuf<char,struct std::char_traits<char> >	11
 0x0019BFF0	FUN_0019bff0	3	rcx,rdx,r8	1	std::basic_filebuf<char,struct std::char_traits<char> >	12
-0x0019C0E0	FUN_0019c0e0	2	rcx,rdx	1	std::basic_filebuf<char,struct std::char_traits<char> >	13
+0x0019C0E0	FUN_0019c0e0	1	rcx	1	std::basic_filebuf<char,struct std::char_traits<char> >	13
 0x0019C130	FUN_0019c130	1	rcx	1	std::basic_filebuf<char,struct std::char_traits<char> >	7
 0x0019C490	FUN_0019c490	1	rcx	1	std::basic_filebuf<char,struct std::char_traits<char> >	6
 0x0019DF00	FUN_0019df00	2	rcx,rdx	1	AssetListManager	0
@@ -191,7 +191,7 @@ addr	name	derived_arity	int_regs	classes	class_names	slots
 0x001FA3D0	CharacterRenderObject_SubmitMaterialsWithFadeMode	4	rcx,rdx,r8,r9	1	CharacterRenderObject	16
 0x001FA810	FUN_001fa810	2	rcx,rdx	1	CharacterRenderObject	21
 0x001FA820	FUN_001fa820	2	rcx,rdx	1	CharacterRenderObject	30
-0x001FAA10	FUN_001faa10	3	rcx,rdx,r8	1	CharacterRenderObject	26
+0x001FAA10	FUN_001faa10	2	rcx,rdx	1	CharacterRenderObject	26
 0x001FAD40	FUN_001fad40	2	rcx,rdx	1	CharacterRenderObject	25
 0x001FAFB0	FUN_001fafb0	4	rcx,rdx,r8,r9	1	CharacterRenderObject	18
 0x001FB070	FUN_001fb070	2	rcx,rdx	1	CharacterRenderObject	4
@@ -322,7 +322,7 @@ addr	name	derived_arity	int_regs	classes	class_names	slots
 0x00222000	FUN_00222000	1	rcx	2	AudioBank;StreamAudioBank	2
 0x00222340	FUN_00222340	3	rdx,r8	5	AudioBank;MusicAudioBank;SepAudioBank;ShoutAudioBank;StreamAudioBank	9
 0x00222550	FUN_00222550	2	rcx,rdx	5	AudioBank;SebAudioBank;SepAudioBank;ShoutAudioBank;StreamAudioBank	0
-0x00222BD0	FUN_00222bd0	3	rcx,r8	1	MusicAudioBank	2
+0x00222BD0	FUN_00222bd0	1	rcx	1	MusicAudioBank	2
 0x00222C00	FUN_00222c00	2	rcx,rdx	1	MusicAudioBank	0
 0x00222C70	FUN_00222c70	1	rcx	1	MusicAudioBank	10
 0x00222D30	FUN_00222d30	3	rcx,rdx,r8	1	SepAudioBank	6
@@ -5180,7 +5180,7 @@ addr	name	derived_arity	int_regs	classes	class_names	slots
 0x00725140	FUN_00725140	0	-	1	PPFX::IGPUDevice	37
 0x00725280	FUN_00725280	1	rcx	1	PPFX::IGPUDevice	38
 0x007252A0	FUN_007252a0	2	rcx,rdx	1	PPFX::IGPUDevice	39
-0x00725340	FUN_00725340	4	rcx,rdx,r8,r9	1	PPFX::IGPUDevice	40
+0x00725340	FUN_00725340	3	rcx,rdx,r8	1	PPFX::IGPUDevice	40
 0x007254A0	FUN_007254a0	2	rcx,rdx	1	PPFX::IGPUDevice	41
 0x007254C0	FUN_007254c0	1	rcx	1	PPFX::IGPUDevice	42
 0x007254D0	FUN_007254d0	2	rcx,rdx	1	PPFX::IGPUDevice	43
@@ -5535,7 +5535,7 @@ addr	name	derived_arity	int_regs	classes	class_names	slots
 0x007A3AA0	FUN_007a3aa0	1	rcx	1	Phyre::VTS::ScreenStateWindow	3
 0x007A3AF0	FUN_007a3af0	2	rcx,rdx	1	Phyre::VTS::ScreenStateBorderless	5
 0x007A3B20	FUN_007a3b20	2	rcx,rdx	1	Phyre::VTS::ScreenStateFullScreen	5
-0x007A3BA0	FUN_007a3ba0	3	rcx,rdx,r8	1	Phyre::VTS::ScreenStateFullScreenLoseFocus	5
+0x007A3BA0	FUN_007a3ba0	2	rcx,rdx	1	Phyre::VTS::ScreenStateFullScreenLoseFocus	5
 0x007A3BF0	FUN_007a3bf0	2	rcx,rdx	1	Phyre::VTS::ScreenStateOnChangeFullScreen	5
 0x007A3C10	FUN_007a3c10	2	rcx,rdx	1	Phyre::VTS::ScreenStateWindow	5
 0x007A3CD0	FUN_007a3cd0	1	rcx	1	Phyre::VTS::ScreenStateBase	4

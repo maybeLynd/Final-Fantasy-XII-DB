@@ -276,8 +276,8 @@ Each row is a function this page names (left), whether it calls the functions on
 | Function named on this page | | Functions from this topic |
 |---|---|---|
 | [`0x0022A0B0`](../Saving-Loading-And-Settings/languages.md) (on languages) | calls | [`0x002368D0`](authored-data-tables.md) Battle storage: initialize work arrays (on authored data tables) |
-| [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) |
-| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container) |
+| [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) | is called by | [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container) |
+| [`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container) |
 
 **Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md), [game application](../Engine-Core/game-application.md))
 

@@ -143,7 +143,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x00263C20`](glossary.md) Actor runtime: get class nibble | is called by | [`0x002734F0`](glossary.md)<br>[`0x0027D330`](../Menus-And-HUD/widgets.md) (on widgets)<br>[`0x002BF0E0`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x002C7660`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x00322A80`](../Battle-Actions/target-selection.md) (on target selection)<br>[`0x003C5130`](../Characters-And-Objects/battle-units.md) (on battle units)<br>[`0x003C8B70`](../Menus-And-HUD/menus.md) (on menus) |
+| [`0x00263C20`](glossary.md) Actor runtime: get class nibble | is called by | [`0x002734F0`](glossary.md)<br>[`0x0027D330`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x002BF0E0`](../Menus-And-HUD/hud.md) (on hud)<br>[`0x002C7660`](../Menus-And-HUD/battle-menu.md) (on battle menu)<br>[`0x00322A80`](../Battle-Actions/target-selection.md) (on target selection)<br>[`0x003C5130`](../Characters-And-Objects/battle-units.md) (on battle units)<br>[`0x003C8B70`](../Menus-And-HUD/menus.md) (on menus) |
 
 **World, areas and travel** (explained on [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [force fight mode](force-fight-mode.md))
 

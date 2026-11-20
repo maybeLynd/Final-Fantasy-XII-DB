@@ -246,6 +246,17 @@ then copy the listed device's description, `0x244` bytes, into `+0x1D0`², so it
 
 </details>
 
+The XInput controller's poll `0x007A2140` passes that index to `XInputGetState`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007A21A1`-`0x007A21C0` |
+
+</details>
+
 The base stores its second argument at `+0x28`¹. The DirectInput constructor `0x00792AB0` passes the
 device that `CreateDevice` opened²; the Steam and XInput constructors pass the value 0³. Each constructor then sets its own vtable, `0x01CB2638` for DirectInput, `0x01CB26B8` for
 Steam and `0x01CB2678` for XInput⁴, and returns the object⁵. The XInput constructor also zeroes `+0x45C`-`+0x46B`⁶.

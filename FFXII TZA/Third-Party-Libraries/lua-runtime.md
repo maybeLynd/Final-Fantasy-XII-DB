@@ -307,6 +307,24 @@ returns 1⁵.
 
 </details>
 
+`io.open`, `os.remove`¹ and `os.rename`² take their names with `0x00812500(L, arg, 0)`,
+`luaL_checklstring` with a null length: it answers the string from `0x00811530` and raises `%s expected, got %s`³ for an argument that is not one⁴. Each passes the name as it is to the narrow
+`fopen`, `remove` or `rename` (`0x0082571C`, `0x00826ACF`, `0x00826B31`; [runtime
+services](../Compiler-And-C-Runtime/runtime-services.md)). Their `luaL_Reg` entries are `open` at `0x01CCC0F0`,
+`remove` at `0x01CCC340` and `rename` at `0x01CCC350`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00826AB0` |
+| ² | `0x00826B00` |
+| ³ | `0x01CCA200` |
+| ⁴ | `0x00812514`-`0x00812565` |
+
+</details>
+
 ### Objects and the collector
 
 Every collectable object is created by `luaC_newobj`¹. It allocates through `0x00823670`²,

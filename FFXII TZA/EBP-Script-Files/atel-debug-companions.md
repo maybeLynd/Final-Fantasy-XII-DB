@@ -2,7 +2,7 @@
 
 | title | kind | category | group | summary | addresses |
 |---|---|---|---|---|---|
-| ATEL debug companions: the source, message and symbol files shipped beside the four control scripts, and why the game never opens them | system | EBP script files | Debug files | The .sbn, .msb and .dbg files of the control scripts ctrl, btlctrl, evctrl and mapctrl in `ps2data/image/ff12/<in\|ch>/bin`: the script source text with a paged line map, the debug menu messages, and a symbol database of source files, variables, global variables and native command names. No path in the executable names them, and the sibling loader that knows their extensions asks every size with kind 0xFF, which 0x0032E400 answers with -1, then returns before registering anything. | 0x003306E0, 0x0032E400, 0x0032FCA0, 0x00D10990, 0x0032F6F0 |
+| ATEL debug companions: the source, message and symbol files shipped beside the four control scripts, and why the game never opens them | system | EBP script files | Debug files | The .sbn, .msb and .dbg files of the control scripts ctrl, btlctrl, evctrl and mapctrl in `ps2data/image/ff12/<in\|ch>/bin`: the script source text with a paged line map, the debug menu messages, and a symbol database of source files, variables, global variables and native command names. No path in the executable names them, and the sibling loader that knows their extensions never runs, its one call in 0x0032FCA0 sitting behind a flag that is always 0; even when called it asks every size with kind 0xFF, which 0x0032E400 answers with -1, then returns before registering anything. | 0x003306E0, 0x0032E400, 0x0032FCA0, 0x00D10990, 0x0032F6F0 |
 
 ## What the player sees
 
@@ -32,8 +32,10 @@ occurs twice more, as the end of the section group name `.rdata$zzzdbg`¹ and in
 
 ### The sibling loader stops at its first query
 
-`0x003306E0`, called from `0x0032FCA0`¹, builds sibling names for a script by putting those
-extensions on its path (the first six at `0x0033078D` to `0x00330A59`).
+`0x003306E0` never runs: its one call, in `0x0032FCA0`¹, sits behind a flag that is always 0. The flag is 0
+after two mode tests or else the answer of `0x005C5230`, which returns 0², so `0x0032FCA0` always
+takes its other branch³. The rest of this section is what its body would do: it builds sibling
+names for a script by putting those extensions on its path (the first six at `0x0033078D` to `0x00330A59`).
 
 <details>
 <summary>Where in the code</summary>
@@ -41,6 +43,8 @@ extensions on its path (the first six at `0x0033078D` to `0x00330A59`).
 | | Code |
 |---|---|
 | ¹ | `0x00330029` |
+| ² | `0x0032FCC2`-`0x0032FCF1` |
+| ³ | `0x0033000C`-`0x00330027` |
 
 </details>
 
@@ -107,7 +111,8 @@ given³.
 
 </details>
 
-So `0x003306E0` returns without registering any file, and no string in the executable names these files.
+So `0x003306E0` would return without registering any file even if it ran, and no string in the executable names these
+files.
 
 `0x003306E0(slot, tag value, a, b)` first keeps the answer of `0x00263FF0(slot)` and builds the base path
 with `0x0032E3F0(a, b, buffer, 0x103)`¹. The base path takes `bin`; nine copies

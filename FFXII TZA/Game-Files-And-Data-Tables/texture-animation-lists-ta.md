@@ -17,8 +17,21 @@ clock sets the speed and looping.
 ## Where it comes from
 
 The files are in the archive at `gamedata/d3d11/artdata/map/<area>/<map>/<map>_anime_<n>_d3d11.ta`.
-When a map's art loads, the map-art routine `0x001A5B30` zeroes the list counter (context `+0x264`)
-and calls `0x001A7D50`, which builds the name from the prefix
+
+When a map's art loads with an asset list (context `+0x78`; a null list skips this, `0x001A5CEF`), the map-art routine
+`0x001A5B30` releases the previous list text held at `0x01F81178` and clears that pointer¹, zeroes
+the list counter (context `+0x264`, `0x001A6956`) and calls `0x001A7D50`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A693A`-`0x001A694B` |
+
+</details>
+
+`0x001A7D50` builds the name from the prefix
 `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_anime_` (written by `0x001A7A50` at context `+0x141`),
 the counter and `D3D11` with `"%s%d_%s.ta"`¹, increments the counter, and files a
 whole-file text request whose completion is `0x001A9770` and whose result lands in `0x01F81178`.

@@ -184,7 +184,7 @@ byte `+0x2C`, bits `0x18`, says when: 1 on the first activation only, 2 on every
 
 | Step | What happens | Where in the code |
 |---|---|---|
-| 1 | It takes the two other active main characters with the highest levels, record `+0x1C2`. | `0x00317540`-`0x003175B4` |
+| 1 | It takes the two other active main characters with the highest levels, record `+0x1C2`: of the 40 records it skips the member itself, a record without bit `0x10`, one whose kind byte `+0x05` is not 0 and one whose row byte `+0x04` is above 6. | `0x00317540`-`0x003175B4`<br>`0x00317543`-`0x00317557` |
 | 2 | The level becomes their average level, at least 1, plus the row's byte `+0x2E`, through `0x0030C470`. | `0x00317600`-`0x0031762C` |
 | 3 | The LP at `+0x190` becomes the row's word `+0x44` plus their average LP, counting the licences they own, minus the cost of the licences the member owns; the result is kept between 0 and 99,999. | `0x003237C0`<br>`0x003175DF`, `0x00317614`-`0x00317652` |
 

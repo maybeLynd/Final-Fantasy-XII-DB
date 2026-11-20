@@ -378,7 +378,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
 
 **Saving, loading and settings** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 

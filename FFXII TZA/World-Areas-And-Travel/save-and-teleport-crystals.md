@@ -161,9 +161,8 @@ id `0xC012 + i` passes `0x0030B0E0`.
 
 </details>
 
-Both loops treat each record in a fixed order: first the statuses, through `0x0030F690` only when the
-chosen sets together are not empty¹, then HP², then MP³⁴. Each of the three returns at once for a
-null record. The mask bits:
+Both loops treat each record in a fixed order: first the statuses, through `0x0030F690` only when the chosen sets
+together are not empty¹, then HP², then MP³⁴. Each of the three returns at once for a null record.
 
 <details>
 <summary>Where in the code</summary>
@@ -177,10 +176,27 @@ null record. The mask bits:
 
 </details>
 
+Their first two instructions, 9 bytes, are that test: `test rcx, rcx` and a `je` with a 32-bit offset to the
+function's `ret`¹. `0x0030F340(record)` and
+`0x0030F5A0(record)` take the record alone. `0x0030F690(record, mask)` takes the record in `rcx` and the status bits in
+`edx`², and runs the table's `0x0030E360` call for each bit set in it, 0 to 31³. The
+bits of `0x0030F4B0`'s mask:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0030F690`-`0x0030F693`, `0x0030F340`-`0x0030F343`, `0x0030F5A0`-`0x0030F5A3` |
+| ² | `0x0030F6A8` |
+| ³ | `0x0030F6C0`-`0x0030F72B` |
+
+</details>
+
 | Mask bit | What is restored | Function |
 |---|---|---|
 | 1 | HP to its maximum (`+0x24`, doubled under status bit `0x10000000`; `max(HP, 1)` under status bit `0x10000`); an Esper record at or below 0 HP also gets `0x003243F0(unit)` | `0x0030F340` via `0x00300530(record, delta, 0, 0x217)` |
-| 2 | MP to its capacity (`+0x28`, 0 while layer bytes `+0x6C` or `+0x7C` carry bit `0x80`): when the current MP `+0x4C` differs, `0x00300CE0(record, capacity - MP, 0x217)` (`0x0030F5FD`), then, while the capacity is above `+0x06`, `0x00300BC0(record, capacity - [+0x06], 0x217)` (`0x0030F617`); then the secondary word `+0x06` to capacity times `+0x37`, or to the capacity alone when `+0x37` is 0 (`0x0030F637`), through `0x00300BC0` with the difference when `+0x06` differs (`0x0030F64D`-`0x0030F679`) | `0x0030F5A0` via `0x00300CE0` and `0x00300BC0` |
+| 2 | MP to its capacity (`+0x28`, 0 while layer bytes `+0x6C` or `+0x7C` carry bit `0x80`): when the current MP `+0x4C` differs, `0x00300CE0(record, capacity - MP, 0x217)` (`0x0030F5FD`), then, when the capacity is above `+0x06`, `0x00300BC0(record, capacity - [+0x06], 0x217)` (`0x0030F617`); then the secondary word `+0x06` to capacity times `+0x37`, or to the capacity alone when `+0x37` is 0 (`0x0030F637`), through `0x00300BC0` with the difference when `+0x06` differs (`0x0030F64D`-`0x0030F679`) | `0x0030F5A0` via `0x00300CE0` and `0x00300BC0` |
 | 4 | the statuses in set A, `[0x0208D320]` | `0x0030F690` → `0x0030E360(record, 0, status, 0, 0, 0x217, 0)` per bit, then `0x0030FED0(record, 0x217)` |
 | 8 | the statuses in set B, `[0x0208D324]` | the same |
 | 16 | statuses 2, 6, 8 and 10 (`0x544`) in addition | the same |

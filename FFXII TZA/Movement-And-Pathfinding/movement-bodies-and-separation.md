@@ -474,9 +474,16 @@ property ids `09 00 DD FF`):
   `0x00265240` (`0x00320545`-`0x0032057A`; [action range](../Battle-Actions/action-range.md)), and then by
   `[0x01DFE0BC]`⁹, `p * scale * [0x01DFE0BC]`, where `p` is already the slot times `+0x26C`
   (`0x002ECE50` jumps to `0x003E6150`, `0x002ECE69`).
+- In a rebuild that binds a new model, state 2's bind¹⁰ runs before state 22's `0x00233AD0` (`0x0037C0C5`, its
+  one call; [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md)), so an active unit whose bit `0x8` is
+  clear ends with the unit's `+0x184`. A seat change clears that bit: `0x0023A570` first resets the unit with `0x00236A60`
+  ([battle unit construction](../Characters-And-Objects/battle-unit-construction.md)).
+- For the ride chocobo, `m1178`, a party unit with section 9 slot 1 = 0.166667 and `@FOR` scale 1.0, that `+0x184` is
+  0.166667 times the actor scale and `[0x01DFE0BC]`: with the actor scale at its default 1.0, 0.166667, or 0.0833333 at
+  FrameLimit 1.
 - `+0xE0`, the speed the move verbs push, is property `0x09000606`, section 9 float slot 6, `slot6 * +0x26C`:
   `0x003E6150` scales it the same way, `+0x26C * slot6`, and it is stored without the `[0x01DFE0BC]` factor
- ¹⁰.
+ ¹¹.
 
 <details>
 <summary>Where in the code</summary>
@@ -492,7 +499,8 @@ property ids `09 00 DD FF`):
 | ⁷ | `0x0023A006`-`0x0023A012` |
 | ⁸ | `0x00239E33`-`0x00239E5F`, `0x00239EB5`-`0x00239ECC` |
 | ⁹ | `0x003205AD`-`0x003205B9` |
-| ¹⁰ | `0x002E2CA1`-`0x002E2CB3` |
+| ¹⁰ | `0x0037B7C7` |
+| ¹¹ | `0x002E2CA1`-`0x002E2CB3` |
 
 </details>
 
@@ -1200,6 +1208,36 @@ or its dword `+0x304` has bit `0x4000`¹.
 | | Code |
 |---|---|
 | ¹ | `0x00420A10`-`0x00420A2E` |
+
+</details>
+
+`0x002EF1B0(index, v)` also calls `0x00420A10(record, v)`, for the live record of `index` when `0x003EC580(index)` answers
+non-zero¹. Its one call is in the monster viewer's turn `0x001EC060` ([frame update
+order](../Engine-Core/frame-update-order.md#the-menu-frame-and-the-monster-viewer)): while the viewer's
+byte `+0x118` is set and its dword `+0x134` is not -1, it passes the word `+0x134` and `v` = 0.012 when the viewer's
+dword `+0x224` is `0x10`, else 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002EF1C3`-`0x002EF1F3` |
+| ² | `0x001EC072`-`0x001EC09D`, `0x001EC401`-`0x001EC42F` |
+
+</details>
+
+These also store to the render record's `+0x23C`: `0x003EC3D0`¹, the locomotion selector `0x004256E0`², `0x00422C20`³ and `0x0042C8F0`'s copies into a child⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC4CF` |
+| ² | `0x004257C2`, `0x004257D8` |
+| ³ | `0x00422CC1` |
+| ⁴ | `0x0042C98B`, `0x0042C9F9` |
 
 </details>
 

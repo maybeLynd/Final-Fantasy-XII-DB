@@ -576,7 +576,7 @@ share the `i16` state word `0x022C8010`, which the world tick advances once per 
 
 | Step | What happens | Where in the code |
 |---|---|---|
-| 1 | sets battle flags `0x02089340` bit `0x20` (`0x00238B70(1)`, which also calls `0x002E7C10(actor, actor, 0x30B, 0)` for every unit in use with flag bit `0x10`) and bit `0x80` (`0x00238AE0(1)`); |   |
+| 1 | sets battle flags `0x02089340` bit `0x20` (`0x00238B70(1)`) and bit `0x80` (`0x00238AE0(1)`); `0x00238B70` also clears, through `0x002E7C10`, the aim of every unit in use with flag bit `0x10` that passes the checks of `0x002E7C10` ([character rig and look](../Graphics/character-rig-and-look.md#solve-bodies)); |   |
 | 2 | releases each record of manager 0's ordinal window (first `+0x1DE`, count `+0x1D6`, when bit `0x1` of `+0x10` is set before the walk) that holds a unit at `+0x30` (`0x0035A590`: `0x0026D6D0`, `0x00233F50(record, 1)`, `0x002ED020`); |   |
 | 3 | clears the keep bit `0x10` of `+0x19` in all 128 binding entries and zeroes dword `+0x40` of the 32 lane records; | `0x002E63D0`<br>`0x002E6570` |
 | 4 | for every record of slot 0 with `+0x14` bit `0x80` and a tag of 4 or more (`0x002647B0` = 0), takes its readiness `0x002EA6A0` and releases its model with the per-`+0x04` teardown `0x0025AB30`; context `+0x11` bit `0x1` records that readiness, and is cleared for every other record. |   |

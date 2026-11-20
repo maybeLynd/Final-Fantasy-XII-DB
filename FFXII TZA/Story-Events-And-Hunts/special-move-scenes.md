@@ -147,9 +147,9 @@ Each row is a function this page names (left), whether it calls the functions on
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | calls | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) |
+| [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | calls | [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container) |
 | [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | is called by | [`0x0025D9E0`](opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) |
-| [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) | calls | [`0x002628B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x0032ED80`](../EBP-Script-Files/ebp-camera-shake.md) (on ebp camera shake)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
+| [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container) | calls | [`0x002628B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x0032ED80`](../EBP-Script-Files/ebp-camera-shake.md) (on ebp camera shake)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
 
 **Battle actions** (explained on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), [battle units](../Characters-And-Objects/battle-units.md))
 
@@ -168,7 +168,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) | calls | [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) |
+| [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container) | calls | [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) |
 
 **Scripts and script commands** (explained on [event scenes](../Scripts-And-Script-Commands/event-scenes.md), [ebp script container](../EBP-Script-Files/ebp-script-container.md), [debug menu](../Engine-Core/debug-menu.md))
 
@@ -176,7 +176,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | is called by | [`0x003522C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00353080`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00353590`](tutorials-scenes.md) (on tutorials scenes)<br>[`0x0050D0C0`](../Engine-Core/debug-menu.md) (on debug menu) |
+| [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | is called by | [`0x003522C0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00353080`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x00353590`](../Engine-Core/frame-update-order.md) (on frame update order)<br>[`0x0050D0C0`](../Engine-Core/debug-menu.md) (on debug menu) |
 
 **World, areas and travel** (explained on [debug menu](../Engine-Core/debug-menu.md), [frame update order](../Engine-Core/frame-update-order.md), [debug logging](../Engine-Core/debug-logging.md))
 
@@ -187,6 +187,6 @@ Each row is a function this page names (left), whether it calls the functions on
 | [`0x00306BD0`](summons-scenes.md) Battle action: initialize global special sequence mode (on summons scenes) | calls | [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) |
 | [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | calls | [`0x0025D4D0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x003319D0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x003EA6E0`](opening-setup-scripts.md) (on opening setup scripts) |
 | [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) | is called by | [`0x00314020`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
-| [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) | is called by | [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) |
+| [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container) | is called by | [`0x0032FC30`](tutorials-scenes.md) (on tutorials scenes) |
 
 </details>

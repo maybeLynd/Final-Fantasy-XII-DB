@@ -16,11 +16,14 @@ sees is drawn by the interpreter itself; it only decides what the engine is aske
 
 ### Who runs it
 
-Once per frame the field runtime pass `0x0025D9E0` walks the actor manager slots
-(`0x02098E10 + index × 0x288`) and runs `0x0025DF00(slot, actor)` for each world actor. That driver
-selects the actor's current wait slot, `[actor + 0xA8] + (s8)[actor + 0x11] × 0x28`, and acts on
-its kind byte `+0x14`: kinds 1 and 2 enter the interpreter, `0x0025E4C0(slot, actor, waitSlot)`,
-with `0x02099D80` set to the actor for the duration.
+The world tick runs the field runtime pass `0x0025D9E0(slot)` on the actor manager slots (`0x02098E10 + index × 0x288`),
+one slot per call, in up to sixteen sub-steps a frame ([field
+runtime](../Characters-And-Objects/field-runtime.md#who-runs-the-pass)), and the pass runs `0x0025DF00(slot, actor)` for the
+slot's actors as [the pass body](../Characters-And-Objects/field-runtime.md#the-pass-body) sets out.
+
+That driver selects the actor's current wait slot, `[actor + 0xA8] + (s8)[actor + 0x11] × 0x28`, and acts on its kind
+byte `+0x14`: kinds 1 and 2 enter the interpreter, `0x0025E4C0(slot, actor, waitSlot)`, with `0x02099D80` set to the actor
+for the duration.
 
 Kinds 3 to 7 are waits on another actor's
 entry, a notification, a channel bit or a list ([script requests](script-requests.md)), and a
@@ -917,9 +920,9 @@ instruction: u8 opcode, then u16 operand for 0x48..0x63
 
 ## Operations
 
-Per frame: the field runtime pass runs the driver for every actor; the driver runs the
-interpreter for every actor whose wait slot is kind 1 or 2. Per call: gate, then budget, fetch,
-dispatch, advance or rewind, until a loop head finds the stop flag raised and the stack empty; a stop
+Per frame: the world tick runs the field runtime pass on the manager slots and the pass runs the driver for their
+actors; the driver runs the interpreter for every actor whose wait slot is kind 1 or 2. Per call: gate, then budget,
+fetch, dispatch, advance or rewind, until a loop head finds the stop flag raised and the stack empty; a stop
 instruction, a wait, a busy native call, a return and the spent budget can raise the flag.
 
 ## State

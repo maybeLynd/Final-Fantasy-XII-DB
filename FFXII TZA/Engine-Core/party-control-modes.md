@@ -302,7 +302,7 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
     instead the controlled member's seat⁸ holding the town's row, and when that seat or the
     leader's entry is not among entries 0 to 3 all four become -1⁹;
     level 5 does the same after restoring the third map and rewrites only the first two;
-  - each changed entry goes through `0x0023A570`, then `0x00326500` runs and the active count
+  - each changed entry goes through `0x0023A570`, then `0x00326500` runs on every path¹⁰ and the active count
     `0x022C2670` is recounted.
 - the field frame orchestrator `0x00234590` sets battle-state bit `0x800` at level 1 unless the summoner's
   unit is in play; the unit teardown `0x00300FC0` at level 1 runs `0x003138D0(0)` and the lock
@@ -312,28 +312,28 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
   raises every lock bit); the input arbiter `0x00253C70` tests level 2.
   - At level 2 the evaluator skips the leader's derivation and publishes its start mask (all ones under
     `0x02089340` bit `0x40`, else 0; `0x0023B050`-`0x0023B06C`); at level 1 a missing summoner unit leaves the mask
-    as it is¹⁰.
+    as it is¹¹.
 - `0x00309A90`, the approach distance ([battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)): 24.0 while the party is fighting (`0x00253B90()` = 0, [force fight
   mode](force-fight-mode.md)), else 3.8 at level 1 and 2.2 at any other level while fleeing.
-- `0x00303CC0`: at level 2 only, the walkable-ground test `0x00336390` at the mount's position¹¹
-  with the larger of the rider's two `0x00265090` radii¹², which allows a dismount; it
-  returns 0 at any other level and when the mount or the rider has no actor¹³.
+- `0x00303CC0`: at level 2 only, the walkable-ground test `0x00336390` at the mount's position¹²
+  with the larger of the rider's two `0x00265090` radii¹³, which allows a dismount; it
+  returns 0 at any other level and when the mount or the rider has no actor¹⁴.
 - `0x00303F00` grants a turbo at level 2 only and with a non-zero charge count (bits `0xC` of `+0x5AE0`,
   `0x00303F82`-`0x00303F92`), lowering that two-bit count by one, or refilling it to 3 while `0x0017D3A0()`
-  holds¹⁴.
-- the ride's frame step `0x00304440` runs only while `+0x5AE0` bit `0x1` is set¹⁵;
+  holds¹⁵.
+- the ride's frame step `0x00304440` runs only while `+0x5AE0` bit `0x1` is set¹⁶;
   it refreshes `+0x5AE4` from channel 1 (`0x003EBA90(1)`, or 180.0
   while `0x0017D380()` holds) and `+0x5AE8` from channel 2, then ends the ride (`0x00311E20`,
   `0x0035CFA0(1)`) only when `0x00303CC0()` passes, channel 1 has expired (`0x003EBB70(1)`), `0x0017D380()`
   is 0, the level is 2 and `0x0031B8C0(3)` is non-null.
 - after that the same step ends the turbo when channel 2 has expired (`0x003EBB70(2)`) and `+0x5AE0` bit `0x2`
-  is on: presentation request 3 on the roster entry-3 actor¹⁶, `+0x5AEC` = 0, event `0x2001` to
-  that actor (`0x002EB030`, skipped when there is no actor) and that bit cleared¹⁷.
+  is on: presentation request 3 on the roster entry-3 actor¹⁷, `+0x5AEC` = 0, event `0x2001` to
+  that actor (`0x002EB030`, skipped when there is no actor) and that bit cleared¹⁸.
 - `0x00313590`: at level 1, `0x0031E860(3)`, the actor handle of roster slot 3 (the Esper): `0x00263750(3)`, then
   `0x003589B0` of that actor, or 0 when the slot is empty ([identifier spaces](identifier-spaces.md)); at any other
   level 0.
 - `0x00303E90` returns `0x0031E860(3)`, the handle of the mount in slot 3, when `0x0030D9A0()` is 2 and 0 otherwise;
-  `0x003200A0` calls it¹⁸.
+  `0x003200A0` calls it¹⁹.
 
 <details>
 <summary>Where in the code</summary>
@@ -349,15 +349,16 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
 | ⁷ | `0x00377C20` |
 | ⁸ | `0x003272F0` |
 | ⁹ | `0x0032683F`-`0x003268EE` |
-| ¹⁰ | `0x0023B191`-`0x0023B194` |
-| ¹¹ | `0x00265020` |
-| ¹² | `0x00303D21`-`0x00303D6C` |
-| ¹³ | `0x00303D06`, `0x00303D1F` |
-| ¹⁴ | `0x00303FCD`-`0x00303FFD` |
-| ¹⁵ | `0x0030444B`-`0x00304452` |
-| ¹⁶ | `0x002E73C0` |
-| ¹⁷ | `0x003044EC`-`0x00304584` |
-| ¹⁸ | `0x00320116` |
+| ¹⁰ | `0x00326B1E` |
+| ¹¹ | `0x0023B191`-`0x0023B194` |
+| ¹² | `0x00265020` |
+| ¹³ | `0x00303D21`-`0x00303D6C` |
+| ¹⁴ | `0x00303D06`, `0x00303D1F` |
+| ¹⁵ | `0x00303FCD`-`0x00303FFD` |
+| ¹⁶ | `0x0030444B`-`0x00304452` |
+| ¹⁷ | `0x002E73C0` |
+| ¹⁸ | `0x003044EC`-`0x00304584` |
+| ¹⁹ | `0x00320116` |
 
 </details>
 

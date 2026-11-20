@@ -31,6 +31,25 @@
 
 </details>
 
+`0x002964D0` first runs `0x002962D0` and `0x0035BC40`¹; with no member it answers 0 and builds
+nothing². It builds the widget with `0x00244F50(0xB68, 0x0029BE50, 0)`³, sets bit `0x8000` of its
+`+0x40` when `0x002544B0` answers 1⁴, the counterpart of the close's bit `0x10000`, opens it with
+`0x00246AC0`⁵ and answers it, 0 when the allocation fails⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002964D4`, `0x002964D9` |
+| ² | `0x002964E5` |
+| ³ | `0x00296502` |
+| ⁴ | `0x0029650F`-`0x00296519` |
+| ⁵ | `0x00296523` |
+| ⁶ | `0x0029650A`, `0x00296528` |
+
+</details>
+
 On a chocobo ride¹ it closes both, and while action availability bit `0x400` is set it closes the list
 and shows the widget `0x0029C530` at `[0x0209C300]` instead². `0x00290E10` closes the list and `0x00296A70` the widget beside it;
 `0x002970C0` closes `[0x0209C300]`. Each close first sets bit `0x10000` of the widget's `+0x40` when `0x002544B0` answers 1.
@@ -1119,6 +1138,43 @@ listed when its type `+0x60` is not negative and its handle `+0x04` is not 0. Th
 
 </details>
 
+It writes nothing and returns at once when `0x003C5FF0()` answers 0, when bit `0x1` of `0x022C83EC` or bit `0x100` of
+`0x022C83E8` is set, or when `0x02092730` is `0xB` or `0x18`¹. After building list `0x1A` it stops
+when `0x003272E0()`, the controlled character `0x022C7FE0`, is 0². It copies the controlled
+character into `0x022C806C`³. A request through `0x003594B0` reaches `0x022C7FE0` only at the
+once-a-frame commit `0x00358BC0` ([Party leader](../Party/party-leader.md)), so a rebuild run between them copies the
+old character.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035BC7C`-`0x0035BCB8` |
+| ² | `0x0035BD1E`-`0x0035BD25` |
+| ³ | `0x0035BD82`-`0x0035BD95` |
+
+</details>
+
+`0x0035BC40` is `0x0035BC50(1)`. Its callers are the UI tick `0x002507C0`¹, the Party Menu's member list
+`0x00285290`² and the party-list builder `0x002964D0`³. `0x0035BC50(0)` comes from the leader change
+`0x0035BAA0`⁴, the leader-choice widget `0x0035D6B0`⁵ and the request-3 handler `0x0035D980`⁶. The argument is read once⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00250818` |
+| ² | `0x00285590` |
+| ³ | `0x002964D9` |
+| ⁴ | `0x0035BAC4` |
+| ⁵ | `0x0035D771` |
+| ⁶ | `0x0035D999`, `0x0035DA1B` |
+| ⁷ | `0x0035BEC1` |
+
+</details>
+
 The rebuild also builds two lists with the list builder `0x0031EB20`
 ([Target selection](../Battle-Actions/target-selection.md)): code `0x1A` into `0x022C83F0` (count) and `0x022C83F8`
 (entries), and code `0x14`, the living party-side units, into `0x022C8478` and `0x022C8480`, keeping only the units
@@ -1163,6 +1219,18 @@ answers non-zero; the rebuild then calls `0x002547D0(1)` instead².
 |---|---|
 | ¹ | `0x0035BF38`, `0x0035BF3F` |
 | ² | `0x0035BE98`-`0x0035BEBC` |
+
+</details>
+
+In that case it also leaves list `0x14` as it was, whatever `arg` is: the branch comes before the argument's test and
+jumps past the list¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035BEBC` |
 
 </details>
 

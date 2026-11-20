@@ -341,11 +341,12 @@ The labels and help come from the battle command table, class `0x15` (21 rows), 
 
 The list widget reads the pressed word ([Controls](../Controls-And-Input/controls.md), `0x00277ACD`):
 
-- Square closes the menu in every state¹.
-- Outside a target list, left and right step to the previous or next party member when more than one is in the party
- ². `0x0027C280(handle, step)` keeps the members whose record has flag bits `0x1` and `0x8` clear, puts
+- Square closes the menu whenever the panel's `+0x2FF0` bit `0x100` is clear¹.
+- Outside a target list, left and right step to the previous or next party member, under the conditions below
+ ². `0x0027C280(handle, step)` keeps those units of list `0x14`³ that have a
+  position in the party and whose record has its flag bits `0x1` and `0x8` clear⁴, then puts
   them in party order (`0x00273600`, an insertion sort of `{key, value}` pairs) and steps round them.
-- In a target list, L1 and R1 step the target category³ among the tabs the manager allows.
+- In a target list, L1 and R1 step the target category⁵ among the tabs the manager allows.
 - The row cursor, confirm and cancel come from the page's list, which posts `0x8000`, `0x8001` and `0x8002` to the list
   widget in the convention of [Dialogs](dialogs.md).
 
@@ -354,11 +355,89 @@ The list widget reads the pressed word ([Controls](../Controls-And-Input/control
 
 | | Code |
 |---|---|
-| ¹ | `0x00277ADE`-`0x00277B15` |
+| ¹ | `0x00277AB1`, `0x00277ADE`-`0x00277B15` |
 | ² | `0x00277BFF`, `0x0027C280` |
-| ³ | `0x0027B430`, `0x0027C730` |
+| ³ | `0x0035D4E0` |
+| ⁴ | `0x0027C2A2`-`0x0027C325` |
+| ⁵ | `0x0027B430`, `0x0027C730` |
 
 </details>
+
+A left or right step waits in the list widget's `i16` `+0x2DB6`. Each input turn (messages 10 and 11) first clears the
+panel's `+0x2FF0` bit `0x10000` unless the current page's `+0x40` bit `0x200` is set¹; while
+that bit, or bit `0x800` or `0x2000`, is set, the turn skips the list's step `0x002D3900`². While the panel's bit `0x100` is set it then answers 0³, and a Square press ends the turn
+before the word is read⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00277A64`-`0x00277A9B` |
+| ² | `0x00277F30`-`0x00277F3B`, `0x00277F75` |
+| ³ | `0x00277AB1` |
+| ⁴ | `0x00277B1A` |
+
+</details>
+
+The word is cleared in a target list, whose panel has bit `0x400` from its build¹, and in a
+list of kind 5-7 or 10-19, or when list `0x14` of the party block `0x022C8060` ([Party
+list](party-list.md#the-rebuilds-counts-and-lists)) holds one unit or none². Otherwise bit
+`0x20` of the pressed word gives +1 and bit `0x80` gives -1³; a step that is not 0 is stored⁴, and a turn without one leaves the word as it was.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027A49C`, `0x00277C29` |
+| ² | `0x00277B34`-`0x00277B75` |
+| ³ | `0x00277B56`-`0x00277B66` |
+| ⁴ | `0x00277B6C` |
+
+</details>
+
+On message 10, when the word is not 0, more than one unit is in list `0x14` and neither of the widget's two pages has
+bit `0x200` in its `+0x40`¹, the widget passes message 35 `{a = the step, b = 0}` to its own
+procedure when its pointer `+0x00` is not 0², and clears the word either way and answers 0³. Message 11, and a message 10 that stops at a page's bit `0x200`, keep it for a later message
+10⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00277B7D`-`0x00277BEA` |
+| ² | `0x00277BF0`-`0x00277C16` |
+| ³ | `0x00277C18`, `0x00277C20` |
+| ⁴ | `0x00277B82`, `0x00277BC6`, `0x00277BEA` |
+
+</details>
+
+Message 35¹ moves the menu to the member the step reaches; messages 31 and 30 go to the
+widget's own procedure only when its pointer `+0x00` is not 0²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002780E8`-`0x002782FD` |
+| ² | `0x00278220`, `0x00278245` |
+
+</details>
+
+| Step | What happens | Where in the code |
+|---|---|---|
+| 1 | `new = 0x0027C280(member, a)`, the member being the current page's `+0x4C8`; a member not among those kept counts as one past the last, and with none kept new is the member itself. The low three bits of the widget's `+0xDE` become 5, or 6 for a step below 0; | `0x002780FC`<br>`0x0027C363`-`0x0027C382`, `0x0027C2B0`, `0x0027C344`<br>`0x00278108`-`0x0027812E` |
+| 2 | the panel's `+0x2FE0` becomes new, and the [party list](#the-party-list) highlights its slot (`0x00296AF0`, `0x00278146`; a member not in the list clears it instead); | `0x00278135` |
+| 3 | the cursor of the current page's list `[page + 0x1510]` is kept in the cursor block `[panel + 0x2FE8]` at `+0x14 + 4 * kind` and `+0x16 + 4 * kind`, as `0x0027D330` keeps it ([Widgets](widgets.md)); | `0x0027814B`-`0x002781F5` |
+| 4 | message 36 `{new, 0}` goes to the widget's ancestors; the menu keeps it as its member `+0x61BC` ([Widgets](widgets.md)); | `0x00275440`, `0x002781FE` |
+| 5 | message 31 `{list kind, new}` goes to the widget; it clears `+0x2DB6`, makes the other page current and calls `0x0027E050` with that page, the kind, the widget's word `+0xDC` and new; | `0x00278229`<br>`0x00279192`<br>`0x0027921C`<br>`0x002793E8`-`0x002793FA` |
+| 6 | message 30 `{2, 0}`, the 16 bytes at `0x00915BC0`, goes to the widget; | `0x0027822E`-`0x0027824E` |
+| 7 | message 38 `{new, 1}` goes to the ancestors, then message 48 `{1, 0}` when more than one unit is in list `0x14` and the kind is not 5-7 or 10-19, and `{0, 0}` otherwise; | `0x0027826B`<br>`0x00278277`-`0x002782B0` |
+| 8 | `0x0028EA90(1)` clears bit `0x200` of `[0x0209BE80] + 0x10F68`; it is `0x0028EA90(0)`, which sets the bit, in a list of kind 1, when `0x002732E0(new)` answers a record whose word `+0x5C` is `0xFFFF`; | `0x002782B5`-`0x002782E1` |
+| 9 | the panel's `+0x2FF0` bit `0x10000` is set, and sound `0xA` plays. | `0x002782E6`<br>`0x00249C60`, `0x002782F6` |
 
 ### Target tabs
 
@@ -441,7 +520,33 @@ matrix, point)` projects a point and divides by its depth; `0x00272250` turns th
 
 ### Refreshing an open list
 
-`0x0027D740(page)` rebuilds an open page while its `+0x1528` bit `0x400` is set:
+`0x0027D740(page)` rebuilds an open page while its `+0x1528` bit `0x400` is set. On entry it sets the cursor `+0x153C`
+from the list's cursor `[page + 0x1510]`: (the signed words `+0xF2` + `+0xF4`) times byte `+0xEC`, plus the signed
+bytes `+0xEE` and `+0xED`¹. It notes the saved row `+0x504`, the list's `+0x44`, when the list
+has rows and that row is below the count, else -1².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027D773`-`0x0027D80D` |
+| ² | `0x0027D7E9`-`0x0027D809` |
+
+</details>
+
+It also stores the tutorial group word `+0x153A`, sign-extended, at `+0x4C4`, the list's `+0x04`, and at `+0x1538` the
+stashed slot-0 item id of the unit `+0x1518`, as the [party member status
+record](../Characters-And-Objects/party-member-status-record.md) gives it¹. Then:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027D819`-`0x0027D836` |
+
+</details>
 
 | Step | What happens | Where in the code |
 |---|---|---|
@@ -450,6 +555,7 @@ matrix, point)` projects a point and divides by its depth; `0x00272250` turns th
 | 3 | Otherwise the rows are filtered and ordered. Once bit `0x4000` is set the list keeps its old order (`0x002727F0`: rows still present first, in their old order, then the new ones). The first rebuild sets bit `0x4000`, after sorting the rows by where their units stand across the picture, left to right, when bit `0x1000` is set. | `0x0027BB70`<br>`0x002729A0` |
 | 4 | The cursor stays on the same unit, or is clamped to the last row; bits `0x80800` are set when the row count or the cursor changed. |   |
 | 5 | With bit `0x8000` set, when the cursor had to move and the list is empty, or, on any rebuild but the first ordering (rows kept in their old order, or stored as they are under bit `0x40000`: `0x0027DA9F`), the row now under the cursor is another unit, the saved copy of the list and the cursor are put back and bit `0x100000` is set. | `0x0027DB06`-`0x0027DB55` |
+| 6 | On a target list whose noted row is 0 or more and holds a unit (a non-zero row dword), every rebuilt row holding that unit stores its index in `+0x504`, so the last one wins; with no such row `+0x504` keeps what the last copy of the list into the page left there, the copy of steps 2 and 3 or the saved copy of step 5. | `0x0027DB5F`-`0x0027DB93` |
 
 The key of each row in `0x002729A0` is the horizontal frame coordinate `0x00249110` gives for the unit's position
 under the camera matrix `0x02AEDDB0`¹; no distance is computed. `0x0035BC50` sorts its list
@@ -871,7 +977,10 @@ The party list `0x0029BE50` (`0xB68` bytes, at `[0x0209BE80] + 0x10F78`) draws o
 | MP | `0x0029A8E0` | `+0x2C` |
 | MP bars | `0x0029A930` | `+0x38` over `+0x87` bars; the first `+0x86` bars pulse, with sound `0x48` or `0x49` when that count changes |
 
-The battle menu highlights the acting member's slot¹ and clears it². How the rows are built
+The battle menu highlights the acting member's slot¹ and clears it². `0x00296AF0` goes to the
+clear itself for a member not in the party list³, and writes nothing when bit `0x8` of `+0xB4A`
+is set and the member's row position equals `+0x15A`⁴; otherwise it stores the member's index
+at `+0xB58` and sets bit `0x4` of `+0xB4A`⁵. How the rows are built
 and animated, the rolling numbers, and the modes in which the rows become the target cursor are on
 [Party list](party-list.md).
 
@@ -882,6 +991,9 @@ and animated, the rolling numbers, and the modes in which the rows become the ta
 |---|---|
 | ¹ | `0x00296AF0` |
 | ² | `0x00296B80` |
+| ³ | `0x00296B09`-`0x00296B13` |
+| ⁴ | `0x00296B20`-`0x00296B58` |
+| ⁵ | `0x00296B5A`-`0x00296B66` |
 
 </details>
 
@@ -1100,6 +1212,70 @@ The label widths come from a pre-pass, `0x00273E30`, which scene and action code
 ### The list widget's page tasks
 
 The list widget (`0x2DC0` bytes, procedure `0x002778C0`) keeps four `0x20`-byte page-task records at `+0x2D30`, each `{function, argument, previous, next}`, linked from `+0xE0`; the stepper `0x00274BD0` calls each record's function in turn and unlinks a record whose function answers 1.
+
+The panel builds the list widget at its `+0x220`¹. `+0xE8`, set with `+0xE0` to record 0 (the
+`+0x2D40` row below), is where the stepper resumes. Each message 2 runs the stepper once from `+0xE8` and keeps its
+answer there²: for one record, or with `0xFF` while the current page's `+0x1528` has bit
+`0x2000`. The stepper stops when it comes back to the first record it kept³, so with records
+that answer 0 such a run calls each once.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00276DC0`-`0x00276DE6` |
+| ² | `0x00278A4A`-`0x00278A9D` |
+| ³ | `0x00274C10`-`0x00274C13` |
+
+</details>
+
+The stepper takes each next record from `+0x18`, or the head argument when that link is null¹,
+and passes over a record whose function is null². The first record it kept is the first whose
+function answers other than 1, or, when a record answering 1 is unlinked before that, the record that followed it³. It answers the record where it stopped⁴, or `first` when `n` is 0 or less⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00274C15`-`0x00274C1F` |
+| ² | `0x00274C23`-`0x00274C26` |
+| ³ | `0x00274C2D`-`0x00274C69` |
+| ⁴ | `0x00274C7C` |
+| ⁵ | `0x00274C99` |
+
+</details>
+
+On message 12, a Confirm (`0x8001`) runs it with `0xFF`¹ unless the panel's `+0x2FF0` bit `0x100` is set², and again after the classifier's `0x17` or `0x19` ([from a row to an action](#from-a-row-to-an-action));
+both keep the answer in `+0xE8`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00278390` |
+| ² | `0x0027830E` |
+| ³ | `0x00278395`, `0x00278597` |
+
+</details>
+
+The four records' functions always answer 0¹, so the stepper unlinks none of them. Records 0
+and 2 carry the low 32 bits of their page's address and records 1 and 3 carry 0²; the stepper
+passes the dword³, and `0x0027D740` zero-extends it and uses it as the page⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027DBE8`, `0x005C5230` |
+| ² | `0x0027797D`, `0x00277992` |
+| ³ | `0x00274C28` |
+| ⁴ | `0x0027D761` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

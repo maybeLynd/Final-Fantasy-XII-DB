@@ -991,21 +991,24 @@ Related).
 - `0x00676450` steps through the list's `+0x70` objects from `+0x58` by the instance size `+0x38` of the
   descriptor at `+0x50`⁹. The name is the pointer at `+0x30` with bit `0x1`
   cleared¹⁰; the cluster is stored before that test¹¹.
+- So a name must start at an even address: one at an odd address is read from the byte before it. When that byte ends
+  the previous string, the name is empty, and every empty name after the first is already registered and gives `0x12`.
+  Only a pointer of 0 or 1 gives `0x15`¹².
 - The key is the hash at `+0x20` and the name at `+0x28`, after the node at `+0x08` is pointed at itself
-  again¹². On first use, under the guard `0x02D3EC9C`, the registry anchor
+  again¹³. On first use, under the guard `0x02D3EC9C`, the registry anchor
   `0x01F2EA70` gets its six links pointed at itself and the exit routine `0x008B1C00` goes to `0x00808B90`
- ¹³.
+ ¹⁴.
 - Under the lock (`0x005CD4F0`, released by `0x005CD820`), `0x006750C0` looks the reference up, a hit giving
-  `0x12`; on a miss `0x006750C0` itself links the node at the end of its walk¹⁴ and
-  `0x0067F700` rebalances the tree¹⁵. After the last reference it returns 0
- ¹⁶.
+  `0x12`; on a miss `0x006750C0` itself links the node at the end of its walk¹⁵ and
+  `0x0067F700` rebalances the tree¹⁶. After the last reference it returns 0
+ ¹⁷.
 - The registry orders keys with `0x00675EF0`: by hash, then, when both names contain `#`, by the text
   after the last `#` (case-sensitive) and then by the part before it (length first, then
   case-insensitive), and otherwise by the whole names case-insensitively.
-- `0x00675EF0` compares the hashes unsigned¹⁷, finds the last `#` with `strrchr`
- ¹⁸ and compares the suffixes byte by byte¹⁹. It calls
+- `0x00675EF0` compares the hashes unsigned¹⁸, finds the last `#` with `strrchr`
+ ¹⁹ and compares the suffixes byte by byte²⁰. It calls
   `_strnicmp` for equal-length prefixes and `_stricmp` for whole names with the second key's name first
- ²⁰, so those two return the reverse of a first-key compare.
+ ²¹, so those two return the reverse of a first-key compare.
 
 <details>
 <summary>Where in the code</summary>
@@ -1023,15 +1026,16 @@ Related).
 | ⁹ | `0x00676476`-`0x00676486` |
 | ¹⁰ | `0x006764B4`-`0x006764BF` |
 | ¹¹ | `0x006764B0` |
-| ¹² | `0x006764C8`-`0x006764E7` |
-| ¹³ | `0x0067650C`-`0x0067656D` |
-| ¹⁴ | `0x0067516D`-`0x0067517F` |
-| ¹⁵ | `0x006764FA`-`0x006765A4` |
-| ¹⁶ | `0x006765D2` |
-| ¹⁷ | `0x00675F05`-`0x00675F1A` |
-| ¹⁸ | `0x00675F38`, `0x00675F4A` |
-| ¹⁹ | `0x00675F70`-`0x00675F86` |
-| ²⁰ | `0x00675F8D`-`0x00675FB2`, `0x00675FD7`-`0x00675FDF` |
+| ¹² | `0x006764C2` |
+| ¹³ | `0x006764C8`-`0x006764E7` |
+| ¹⁴ | `0x0067650C`-`0x0067656D` |
+| ¹⁵ | `0x0067516D`-`0x0067517F` |
+| ¹⁶ | `0x006764FA`-`0x006765A4` |
+| ¹⁷ | `0x006765D2` |
+| ¹⁸ | `0x00675F05`-`0x00675F1A` |
+| ¹⁹ | `0x00675F38`, `0x00675F4A` |
+| ²⁰ | `0x00675F70`-`0x00675F86` |
+| ²¹ | `0x00675F8D`-`0x00675FB2`, `0x00675FD7`-`0x00675FDF` |
 
 </details>
 

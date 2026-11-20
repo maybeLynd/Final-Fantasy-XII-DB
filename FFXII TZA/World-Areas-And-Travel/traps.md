@@ -370,7 +370,7 @@ byte `+0x40` is set, and 0 otherwise².
 </details>
 
 The markers are its slots 0 to 15: `0x003EC5B0` binds the marker resource only for `i` below 16¹, and
-`0x003EC5F0` releases slots 0 to 15².
+`0x003EC5F0` releases slots 0 to 15 through `0x003EB6C0`, each when the area is not a town².
 
 <details>
 <summary>Where in the code</summary>
@@ -378,7 +378,7 @@ The markers are its slots 0 to 15: `0x003EC5B0` binds the marker resource only f
 | | Code |
 |---|---|
 | ¹ | `0x003EC5CB` |
-| ² | `0x003EC601`-`0x003EC612` |
+| ² | `0x00377C20`, `0x003EC5F8`-`0x003EC612` |
 
 </details>
 
@@ -678,6 +678,6 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) | calls | [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) |
+| [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container) | calls | [`0x002DF980`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list)<br>[`0x0032E620`](../Graphics/effect-file-list.md) (on effect file list) |
 
 </details>

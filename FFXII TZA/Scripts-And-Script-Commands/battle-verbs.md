@@ -832,10 +832,12 @@ and `0x0030C650` ([stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growt
 (`0x01A7`, `0x0034CB60`) is `0x002E8540(actor, v)`, the drawn-weapon state, and `ignorebattlemovectrl`
 (`0x04E7`, `0x00341DB0`) is `0x002EBC40(actor, v)`.
 
-`suspendbattle` (`0x0069`) and `suspendbattle_resetmotion` (`0x0586`) share `0x00356970`, which runs
-the pause `0x0035AB20` and the motion reset `0x0035A680`. The pause sets `0x02089340` bits `0x20`
-(`0x00238B70(1)`, which also sends motion `0x30B` through `0x002E7C10` to every flagged entry of
-`[0x0208E688]`) and `0x80` (`0x00238AE0(1)`), then calls `0x0035A590`.
+`suspendbattle` (`0x0069`) and `suspendbattle_resetmotion` (`0x0586`) share `0x00356970`, which runs the pause
+`0x0035AB20` and the motion reset `0x0035A680`. The pause sets `0x02089340` bits `0x20` (`0x00238B70(1)`) and `0x80`
+(`0x00238AE0(1)`), then calls `0x0035A590`. `0x00238B70` also clears, through `0x002E7C10`, the aim of every flagged entry of
+`[0x0208E688]` that passes the checks of `0x002E7C10` ([character rig and
+look](../Graphics/character-rig-and-look.md#solve-bodies)); the `0x30B` it passes as the third
+argument is never read.
 
 The motion reset calls `0x002EB430`
 on every actor of the scene range that has a battle unit, when scene byte `+0x10` bit `0x1` is set

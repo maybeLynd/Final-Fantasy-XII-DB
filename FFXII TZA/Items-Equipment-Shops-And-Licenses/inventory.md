@@ -89,7 +89,7 @@ its query `0x002FD8D0` answers four kinds: 0 owned minus worn, 1 owned, 2 worn, 
 
 | Step | What happens | Where in the code |
 |---|---|---|
-| 1 | It refuses `0xFFFF`, Unarmed `0x1000`, nibble F, and an index not below the record's id count. | `0x003008C0`-`0x0030092C` |
+| 1 | It refuses `0xFFFF`, Unarmed `0x1000`, nibble F, and an index not below the record's id count; a refused id answers -1. | `0x003008C0`-`0x0030092C`<br>`0x003008C5`, `0x00300929` |
 | 2 | It reads the old value and calls the record's change handler, `+0x48`. | `0x00300931`-`0x00300960` |
 | 3 | On channel 1, when the value goes from 0 or less to more than 0, it sets the first-acquisition marks in the party block's flag word `+4`, below. | `0x00300968`-`0x00300B5A` |
 
@@ -110,6 +110,21 @@ The packed handler has four channels, chosen by `channel`¹:
 | `1` | owned | not below worn, not above 99 | `0x002FD2AD`-`0x002FD37C` |
 | `2` | worn | 0 to owned | `0x002FD23C`-`0x002FD2A5` |
 | `3` | the region-two byte | 0 to 99 | `0x002FD1BF`-`0x002FD237` |
+
+Of the 39 direct calls of `0x003008A0`, four pass channel 3: the sale¹ and the bazaar purchase's reset of a
+good's three loots (`0x0030B220`, `0x0030B23B`, `0x0030B256`; [Bazaar](bazaar.md)). The worn-copy wrappers pass channel 2², `0x00300490` passes 4³, and every other call passes 1. No instruction or data word
+holds the function's address.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003108E8` |
+| ² | `0x0030C45C`, `0x0030F9EB` |
+| ³ | `0x003004A2` |
+
+</details>
 
 A rise on channel 1 also sets the item's ever-owned bit¹. A relative channel-1 change with
 `flags` bit `0x1` posts the obtain message through `0x0046A630`, in both handlers².

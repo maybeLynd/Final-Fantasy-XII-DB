@@ -158,7 +158,7 @@ the second, `r8` or `xmm2` the third, `r9` or `xmm3` the fourth. Arity is the hi
 (`0x0079D752 movd xmm0, [rcx+0x414]`), so its arguments are `rcx` and `rdx`, arity 2.
 
 A function can leave a lower position unread: `0x00197710` overwrites `ecx` with `movzx ecx, r8b`
-before any read and reads `dl`, `r8b` and `r9b`, so it lists `rdx,r8,r9` at arity 4. 7,059 functions
+before any read and reads `dl`, `r8b` and `r9b`, so it lists `rdx,r8,r9` at arity 4. 6,998 functions
 have such an unread position below their arity.
 
 ### Stack arguments
@@ -265,10 +265,10 @@ so that its first argument is that class's `this`:
 | Fact | Value |
 |---|---|
 | Functions | 39,115 |
-| Arity 0 / 1 / 2 / 3 / 4 | 10,661 / 8,220 / 11,172 / 4,774 / 4,288 |
+| Arity 0 / 1 / 2 / 3 / 4 | 10,690 / 9,014 / 10,433 / 4,715 / 4,263 |
 | Read a float argument register | 1,316 |
 | Store an argument in its home slot | 1,334 |
-| Leave a position below their arity unread | 7,059 |
+| Leave a position below their arity unread | 6,998 |
 | Read a stack argument | 1,670 |
 | Read their own stack through a loop-advanced pointer | 59 |
 | Call and tail-call sites | 137,609 |

@@ -78,9 +78,9 @@ Each row is a function this page names (left), whether it calls the functions on
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
+| [`0x0032E400`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
 | [`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) | calls | [`0x002566E0`](../EBP-Script-Files/ebp-script-container.md) (on ebp script container)<br>[`0x00263FF0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x0037DC30`](../EBP-Script-Files/ebp-script-container.md) (on ebp script container) |
-| [`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) |
+| [`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) | is called by | [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container) |
 
 **Engine core** (explained on [startup constants](../Engine-Core/startup-constants.md))
 

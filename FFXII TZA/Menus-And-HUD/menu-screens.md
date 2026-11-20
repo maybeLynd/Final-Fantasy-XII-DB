@@ -580,18 +580,20 @@ The generic request host `0x0027FB70` (built by `0x00280A00` for the router `0x0
 | the special-attack window | `0x002D5EB0` | `0x002D5030`, from `0x0028E970` (`0x00254C18`) |
 | party leader choice, "Select a new party leader." (`0x86E`) | `0x0035D6B0` | `0x0035D080` (`0x00254C26`) |
 
-`0x0035D6B0` keeps itself in `0x022CA428` and sets `+0xC0` to `0x18` when it opens. Each step message (2) on which
+`0x0035D6B0` keeps itself in `0x022CA428` and sets `+0xC0` to `0x18` when it opens (message 1); message 18 clears
+`0x022CA428`¹. Each step message (2) on which
 `0x001EDEC0(+0xB4)` answers nonzero counts `+0xC0` down; at 0 it calls `0x0035C660` once, which opens the question
 box (`0x00241C90`, flags `0x4FB`, root `[0x0208EA28]`) with text `0x86E` "Select a new party leader." in mode 3 of
 `0x02092730` and `0x86F` "All members of the party have fallen. ..." in any other. A `0x8100` answer closes the
-window¹.
+window².
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x00244F00` |
+| ¹ | `0x0035D703` |
+| ² | `0x00244F00` |
 
 </details>
 

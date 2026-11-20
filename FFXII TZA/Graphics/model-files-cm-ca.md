@@ -23,12 +23,23 @@ entries are found by tag and name in the `@FRP` container (see
 [resource sections](../Game-Files-And-Data-Tables/resource-sections.md), which covers the container
 header, its version 0 and version 1 offset tables and the section search).
 
-A character render record is bound to its model by `0x0041FCF0`, which passes the model's bank index
-(record `+0x408`) to `0x0041F340`. That routine:
+A character render record is bound to its model by `0x0041FCF0`, which passes the model's bank index (record `+0x408`)
+to `0x0041F340`: once per entry of the model's `@FLD` section, with that entry's 0x30-byte name and its index¹, storing the entry count in word `+0xC2`, or, for a model without `@FLD`, once with the
+record's name `+0x3C` and `+0xC2` = 1². That routine:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0041FFA0`-`0x0041FFE8` |
+| ² | `0x0041FF59`-`0x0041FF81` |
+
+</details>
 
 | Step | What happens | Where in the code |
 |---|---|---|
-| 1 | finds the `@FTR` entry by tag and the record's name, sizes the skeleton and builds it in a new [skeleton entry](skeleton-entries-and-bones.md) at root `+0xD98` (`0x0046E4D0` → `0x00372820`); | `0x00409660`<br>`0x003712E0` |
+| 1 | finds the `@FTR` entry by tag and the name it is given, sizes the skeleton and builds it in a new [skeleton entry](skeleton-entries-and-bones.md) at root `+0xD98` (`0x0046E4D0` → `0x00372820`); | `0x00409660`<br>`0x003712E0` |
 | 2 | makes a render model instance in the table at root `+0xDA0` with `0x004780C0`, which calls `0x00504F00`, and keeps the row's index in the record's word `+0x90`; |   |
 | 3 | when the model's bank entry has an effect ticket, makes the record's effect context from it (`0x003B3550`, kept at record `+0x288` and row `+0x240`). |   |
 
@@ -436,6 +447,20 @@ record +0x18   f32   the model's scale
 record +(i+1) x 0x20   part i's selector bytes
 ```
 
+`0x00504840(block, key)` answers the scale `+0x18` of the first record whose key byte is `key`, or `[0x01CEBBA8]`, 1.0,
+for a null block, no records or no match¹; it forms the records' address in 32 bits². In `m1178.cm`, the ride chocobo's model, the block at file offset `0x149B0` holds one record,
+key 1, scale 1.0, so its `+0x26C` is 1.0 for any key.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00504840`-`0x0050489C` |
+| ² | `0x0050485D`-`0x00504868` |
+
+</details>
+
 ### @FDM, the key table
 
 | Offset | Type | Name | Meaning |
@@ -691,13 +716,16 @@ not name is given by its offsets, as hex bytes.
 - A match calls `0x00423B10(record, data, (id & 0xF000) | ([+0x2FA] + index))`, with the data
   `0x004096F0` gives for the entry of word `+0x2F8` in the root's descriptor `+0xD90`
  ¹³, and returns its result.
-- No match runs `0x00422C20(record)`¹⁴, which releases the presentation entries `+0xC4` and
-  `+0xC8`¹⁵, setting each to -1¹⁶ and, after `+0xC4`, word `+0xCC`
-  to `0xFFFF`¹⁷; it then clears `+0x68`, `+0xD8`, `+0xE0`, `+0xF0`, `+0xF8` and `+0x23C` and bit
-  `0x40` of byte `+0xC0`, and stores `0x0020E620(0)` at `+0x69C`¹⁸.
-- Without own entries, or for an id below `0x1000`, a `direct` of 0 returns −1¹⁹; otherwise
+- No match runs `0x00422C20(record)`¹⁴:
+  - each presentation entry `+0xC4` and `+0xC8` that is not -1¹⁵ is released¹⁶ and set to -1¹⁷, and for `+0xC4` word `+0xCC` to `0xFFFF`¹⁸;
+  - it then clears `+0x68`, `+0xD8`, `+0xE0`, `+0xF0`, `+0xF8` and `+0x23C` and bit `0x40` of byte `+0xC0`, and stores
+    `0x0020E620(0)` at `+0x69C`¹⁹;
+  - when the skeleton entry `+0x18` is not -1 and `0x002ED570` answers non-zero for it, with the qword `+0xD98` of the
+    answer of `0x0020E600(+0x10)` as first argument, it clears bit `0x8` of that entry's first dword
+   ²⁰.
+- Without own entries, or for an id below `0x1000`, a `direct` of 0 returns −1²¹; otherwise
   it calls `0x00423B10(record, address, id)` with the address `0x0020E600` decodes from `source` `+0x390`
-  and returns its result²⁰.
+  and returns its result²².
 
 <details>
 <summary>Where in the code</summary>
@@ -718,12 +746,14 @@ not name is given by its offsets, as hex bytes.
 | ¹² | `0x00429315`-`0x0042931B` |
 | ¹³ | `0x0042933A`-`0x0042936E` |
 | ¹⁴ | `0x00429378` |
-| ¹⁵ | `0x00422C50`, `0x00422C7E` |
-| ¹⁶ | `0x00422C55`, `0x00422C83` |
-| ¹⁷ | `0x00422C5B` |
-| ¹⁸ | `0x00422C8D`-`0x00422CC1` |
-| ¹⁹ | `0x00429398` |
-| ²⁰ | `0x004293B5` |
+| ¹⁵ | `0x00422C3D`, `0x00422C6B` |
+| ¹⁶ | `0x00422C50`, `0x00422C7E` |
+| ¹⁷ | `0x00422C55`, `0x00422C83` |
+| ¹⁸ | `0x00422C5B` |
+| ¹⁹ | `0x00422C8D`-`0x00422CCF` |
+| ²⁰ | `0x00422CCC`-`0x00422CFA` |
+| ²¹ | `0x00429398` |
+| ²² | `0x004293B5` |
 
 </details>
 

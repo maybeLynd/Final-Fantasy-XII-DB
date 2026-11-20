@@ -223,12 +223,13 @@ the call `0x003319D0(id)` behind `0x005C5230(5)`, which returns 0, does not runÂ
 
 | Step | What happens | Where in the code |
 |---|---|---|
-| 1 | tears down the manager's previous script (`0x0032ED80`, below) and records the id at `0x022C6D28` and `0x022C6D40`; |   |
+| 1 | runs the manager unload ([frame update order](../Engine-Core/frame-update-order.md#the-simulation-tick)), tears down the manager's previous script (`0x0032ED80`, below) and records the id at `0x022C6D28` and `0x022C6D40`; | `0x0032FCF4`-`0x0032FD11` |
 | 2 | picks the kind and index from the table above; |   |
-| 3 | for managers 0 to 3, requests the companion files: index + 1 into the `0x88`-byte buffer `0x022C6E70` (pending bit `0x2000`), and, for managers 1 to 3, index + 2 into `0x022C6E98` (bit `0x1000`); |   |
-| 4 | for managers 1 to 3, requests index + 3 of kind 8 into the `0x208`-byte buffer `0x022C6EE8` (bit `0x8000`) and the same index of kind 37 into `0x022C6EC0` (bit `0x4000`); each request is made only when `0x0032E400` reports a size; |   |
-| 5 | pushes the arena the image will live in: 5 for manager 0, `0xD` for managers 1 and 2 and `0xE` for manager 3 when that arena is enabled, otherwise 5; | `0x0036B200` |
-| 6 | calls `0x00330310` to read the script itself. |   |
+| 3 | when `0x0032E400` gives the script a size above 0, hands its path to the event-slot name setter ([debug menu](../Engine-Core/debug-menu.md#the-pages-and-the-renderer); `0x0032FD48`-`0x0032FD64`); |   |
+| 4 | pushes the arena the image will live in: 5 for managers 0 and 4, `0xD` for managers 1 and 2 and `0xE` for manager 3 when that arena is enabled, otherwise 5; | `0x0036B200`<br>`0x0032FDF9`-`0x0032FE4F` |
+| 5 | for managers 0 to 3, requests the companion files: index + 1 into the `0x88`-byte buffer `0x022C6E70` (pending bit `0x2000`), and, for managers 1 to 3, index + 2 into `0x022C6E98` (bit `0x1000`); |   |
+| 6 | for managers 1 to 3, requests index + 3 of kind 8 into the `0x208`-byte buffer `0x022C6EE8` (bit `0x8000`) and the same index of kind 37 into `0x022C6EC0` (bit `0x4000`); each request is made only when `0x0032E400` gives a size of 0 or more, and for a file it does not request it clears the first byte of that buffer instead, all four for manager 4; | `0x0032FE54`-`0x00330004` |
+| 7 | calls `0x00330310` to read the script itself (the other reader, `0x003306E0`, sits behind a flag that is always 0, `0x0033000C`-`0x00330027`; [ATEL debug companions](atel-debug-companions.md)), then pops the arena. | `0x00330035`, `0x00330043` |
 
 Kind 37's table is the `in` tree's (`0x01ECBCF0`; the `ch` tree's `0x01EA4D00` for language codes
 7, 8 and 11), so its index + 3 names a `.vpcjp` file such as

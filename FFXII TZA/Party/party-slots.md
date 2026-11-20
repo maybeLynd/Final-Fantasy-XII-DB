@@ -153,18 +153,21 @@ saving map 4³. Then it adjusts the four active seats by the party control mode 
 | 1, summon | seat 3 holds the Esper (`0x003137E0`); of seats 0-2 only the summoner's is kept, the map-0 seat `0x00313800` finds for the summoner's row among all nine, when it is seat 0, 1 or 2; a summoner in seat 3, in seats 4-8 or not found keeps no seat, and the others are emptied | `0x003269D2`-`0x00326A32` |
 | 2, chocobo | seat 3 of maps 1 and 4 holds party row 26, the chocobo, and the other seats of map 1 are emptied; map 2 keeps only the rider's seat (`0x00327200`) when it is seat 0, 1 or 2, and its seat 3 is emptied in every case (`0x003269AB`) | `0x00326991`-`0x003269D0` |
 | 3, town | map 4 is restored; the area's leader (`0x00377C70`) fills its seat of maps 1, 2 and 4, or seat 3, and the other seats of maps 1 and 2 are emptied | `0x003268F3`-`0x0032698C` |
-| 4, event party | only the leader's seat is kept, in maps 1, 2 and 4 | `0x0032683F`-`0x003268EE` |
-| 5, second event party | map 4 is restored; only the leader's seat is kept, in maps 1 and 2 | `0x00326783`-`0x0032683A` |
+| 4, event party | only the leader's seat is kept, in maps 1, 2 and 4, as the leader's byte with a high byte of 0 | `0x0032683F`-`0x003268EE` |
+| 5, second event party | map 4 is restored; only the leader's seat is kept, in maps 1 and 2, as the leader's byte with a high byte of 0 | `0x00326783`-`0x0032683A` |
 
-In modes 4 and 5 the leader's seat is that of the leader selector `+0x5AA4`, or with the area's town bit the area's leader at the controlled
-member's seat¹.
+In modes 4 and 5 the leader's seat is the first of map 0's nine seats whose low byte is the leader selector `+0x5AA4`,
+and the leader's byte is that selector; with the area's town bit the seat is the controlled member's and the byte the
+area's leader¹. A selector of `0xFF`, or one found in seats 4-8 or not
+at all, leaves seats 0 to 3 of those maps empty².
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x003267B7`-`0x003267E8`, `0x0032686E`-`0x0032689F` |
+| ¹ | `0x0032678A`-`0x003267E8`, `0x00326846`-`0x0032689F` |
+| ² | `0x00326800`-`0x00326838`, `0x003268A5`-`0x003268EC` |
 
 </details>
 

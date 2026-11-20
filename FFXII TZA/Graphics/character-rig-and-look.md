@@ -938,16 +938,23 @@ The cosine and sine of the eased front angle are stored at `+0x00` and `+0x14` (
 
 </details>
 
-- `0x002E7C10(actor, target, …, keep)` aims an actor's record at another's: it hands
+- `0x002E7C10(actor, target, …, keep)` aims an actor's record at another's. It returns without a store when:
+  - the actor is null, its `+0xC0` object is null or that object's dword `+0x00` is -1¹;
+  - the target is null, its `+0xC0` object is null or that object's dword `+0x00` is -1²;
+  - the actor's `+0xC0` object's word `+0x00` is `0xFFFF`³;
+  - the record `[0x022C6F28]` + that signed word × `0x740` is 0⁴, or its dword `+0x284` is 0⁵.
+- Otherwise it jumps to the record form `0x003E6C10(record, target, …, keep)`⁶, with the target `+0xC0`
+  object's dword `+0x00` as `target`.
+- When the record's `+0x18` is not -1 and its model record resolves⁷, `0x003E6C10` hands
   `{3, own index, own index, target index}` to `0x00512F30` on the record's `+0x650` block (a kind-3 request, below; a
-  target equal to the record clears the aim), and it stores the target in word `+0x24C` when `keep` is set, else −1.
-  Its record form `0x003E6C10(record, target, …, keep)` does the same.
+  target equal to the record clears the aim). On every path it stores the target in word `+0x24C` when `keep` is set,
+  else −1⁸.
 - `0x003E6B50(record, request)` is `0x00512F30` on the record's `+0x650` block: it adds `0x650` to `rcx` and jumps to
-  `0x00512F30`¹. Its one direct reach, with no stored address, is the jump in
+  `0x00512F30`⁹. Its one direct reach, with no stored address, is the jump in
   `0x002ED2A0(handle, event)` (`0x002ED2F2`; [action commit](../Battle-Actions/action-commit.md)).
 - `0x002ED2A0` jumps only when the actor `0x003588B0(handle)` has a context `+0xC0` whose dword `+0x00` is not -1 and
   whose word `+0x00`, `index`, is not `0xFFFF`, and the character record `[0x022C6F28] + index * 0x740`, with `index`
-  read signed, is not null and has a non-zero dword `+0x284`². It passes that record and the
+  read signed, is not null and has a non-zero dword `+0x284`¹⁰. It passes that record and the
   event.
 
 <details>
@@ -955,8 +962,16 @@ The cosine and sine of the eased front angle are stored at `+0x00` and `+0x14` (
 
 | | Code |
 |---|---|
-| ¹ | `0x003E6B50`-`0x003E6B57` |
-| ² | `0x002ED2B1`-`0x002ED2E8` |
+| ¹ | `0x002E7C13`, `0x002E7C1F`, `0x002E7C24` |
+| ² | `0x002E7C29`, `0x002E7C35`, `0x002E7C3C` |
+| ³ | `0x002E7C45` |
+| ⁴ | `0x002E7C59` |
+| ⁵ | `0x002E7C62` |
+| ⁶ | `0x002E7C62` |
+| ⁷ | `0x003E6C36`-`0x003E6C66` |
+| ⁸ | `0x003E6C8F`-`0x003E6C98` |
+| ⁹ | `0x003E6B50`-`0x003E6B57` |
+| ¹⁰ | `0x002ED2B1`-`0x002ED2E8` |
 
 </details>
 

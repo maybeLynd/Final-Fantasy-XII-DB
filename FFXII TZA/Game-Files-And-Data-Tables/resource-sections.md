@@ -199,6 +199,17 @@ Any other version gives NULL².
 
 </details>
 
+The only tag the selector compares is the container's `@FRP`¹; the child it returns may carry any tag.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004090DA` |
+
+</details>
+
 ### Banked resource tables
 
 A resource entry is a row in a bank owned by a table descriptor. `0x002ED570(descriptor, index)`:

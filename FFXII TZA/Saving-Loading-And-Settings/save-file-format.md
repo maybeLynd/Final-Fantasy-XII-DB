@@ -52,6 +52,18 @@ and the name probe `0x008621E0` read `0x02EAF6E0` directly, as the first `%s` of
 
 </details>
 
+Both formats are UTF-16 strings, so the directory, `%s`, is wide and the name, `%S`, narrow. `0x008666B0` opens the
+joined path with `_wfopen_s`¹, the import [game settings](game-settings.md) names at `0x001DED8A`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x008666E5` |
+
+</details>
+
 `0x00862A40` keeps a path already at `0x02EAF6E0` while `GetFileAttributesW` reports it as a directory (bit `0x10`);
 otherwise it zeroes the `0x200` bytes there and builds the path again¹. It returns with
 `0x02EAF6E0` left empty when `SHGetFolderPathW` fails². It joins the pieces with `0x00408ED0`, 256

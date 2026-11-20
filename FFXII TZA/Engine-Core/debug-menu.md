@@ -640,7 +640,7 @@ shipped game:
 | `debug_eventload` `0x202D` | begin `0x0050D030`, poll `0x0050D0C0` | kind 4 goes to `0x00314410(id)`, which, while `0x01EED060` is negative, requests a teardown (`0x0026A5F0(4)`) and stores the id there; any other kind is the scene load request `0x0032FC30(kind, id)`; the poll holds while `0x0032E520(1)` reports a load |
 | `debug_isnewcharsep` `0x2070` | `0x0050CAD0` | pushes `0x003A1640(v)`, which is `v < -1` |
 | `debug_isopen_total_menu` `0x2085` | `0x0050D200` | pushes `0x002E05A0()`: the menu mode `0x02092730` is neither 0 nor 5 |
-| `debug_isopen_menu` `0x2081` | `0x0050D220` | pushes `0x002E05E0()`: the same, or any of the 8 records at `0x0215F200` (stride `0x68`) live with its byte `+0x38` or bit `0x1` of `+0x3E` set |
+| `debug_isopen_menu` `0x2081` | `0x0050D220` | pushes `0x002E05E0()`: 1 when any of the 8 records at `0x0215F200` (stride `0x68`) is live with its byte `+0x38` or bit `0x1` of `+0x3E` set, or when the menu mode `0x02092730` is neither 0 nor 5 (`0x002E0631`-`0x002E0643`) |
 | `debug_switchstatusdisplay` `0x2036` | `0x0050DA20` | jumps to `0x002E2290`, which jumps to `0x00255020`: flips `0x020927E8` and hands it to `0x00251F40`, which returns at once while bits `0x40` and `0x80` of `0x01E0C320` are both set, and otherwise runs one set of calls for a positive value and another for 0 |
 | `debug_switchmonsterhpgauge` `0x206A` | `0x0050C890` | jumps to `0x00254FE0`: flips `0x01E0C2A8` and hands it to `0x0028FFE0(0, v)`, as 0 while bit `0x400` of `0x002E0FA0()` is set |
 

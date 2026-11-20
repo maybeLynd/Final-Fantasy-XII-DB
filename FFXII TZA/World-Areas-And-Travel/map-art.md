@@ -146,11 +146,9 @@ the count is 0 or more, it sets `+0x41A` and posts `0x001A3160` to the job manag
 
 ### Matching models to instances
 
-`0x001A5B30` first rebuilds the texture table `+0x448`¹, clears the set `+0xB0`² and the key vector `+0x4C8`, and sets `+0x3D8` when the map part of the name (`+0x247`)
-is in the NoModelGroupMaps set. It registers the cube-map textures with the probe manager
-(`0x001ABC80`, `0x001ABCE0`, stored by `0x001AD7B0` and `0x001AD6E0`; `0x001AAC50` builds a probe variant
-record with six texture slots), then allocates the slot array `+0x88`: 16 bytes per instance, a
-pointer for the main view and one for the sub view.
+`0x001A5B30` first rebuilds the texture table `+0x448`¹, clears the set `+0xB0`² and the key vector `+0x4C8`, and sets `+0x3D8` to 1 when the map part of the name (`+0x247`) is in the
+NoModelGroupMaps set and to 0 when it is not³. With a null asset list `+0x78` it goes from
+there to the closing calls below⁴.
 
 <details>
 <summary>Where in the code</summary>
@@ -159,13 +157,43 @@ pointer for the main view and one for the sub view.
 |---|---|
 | ¹ | `0x001A7F10` |
 | ² | `0x001A5810` |
+| ³ | `0x001A5C96`-`0x001A5C9C` |
+| ⁴ | `0x001A5CE7`-`0x001A5CEF` |
 
 </details>
+
+With a list it registers the cube-map textures with the probe manager
+(`0x001ABC80`, `0x001ABCE0`, stored by `0x001AD7B0` and `0x001AD6E0`; `0x001AAC50` builds a probe variant
+record with six texture slots), then allocates the slot array `+0x88`: 16 bytes per instance, a
+pointer for the main view and one for the sub view.
 
 It then walks every `PMeshInstance` (class descriptor `0x02CB6E80`) of every asset in the list. An
 instance whose name `m_name` (`+0x80`) has more than eight characters is matched to the YM00
 instance whose index is the decimal number starting at its ninth character; a number outside 0 to
-count - 1 skips it. For a match:
+count - 1 skips it. The name is read from the pointer at `+0x80` with bit `0x1` cleared¹, so
+one at an odd address is read from the byte before it, as for [asset
+references](../PhyreEngine/phyre-asset-files.md#asset-references-and-idmapstxt).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A624C`-`0x001A625D` |
+
+</details>
+
+For a match the steps below run, the second to fourth only while the index's main-view pointer in `+0x88` is still 0,
+so for its first instance¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001A6337`-`0x001A633B` |
+
+</details>
 
 - `0x001EE1D0` gives the instance a material array of its own, allocated from the pool `[0x01F81170]`
  ¹.
@@ -180,6 +208,9 @@ count - 1 skips it. For a match:
   view; a later instance with the same index is appended to both³. Its destructor `0x001E1C90`
   (from `0x001E1D90`) unregisters it from `0x01F82D60`⁴, frees its five vectors (`+0x18`, `+0x38`,
   `+0x58`, `+0x78`, `+0x98`) and ends with `0x00212C80`.
+- Each `MapRenderObject` starts its vectors `+0x18`, `+0x58`, `+0x78` and `+0x98` with one entry, the instance and 0,
+  1 and 0⁵; `+0x38` starts empty. `0x001E1670` also sets bit `0x2` of the instance's own dword
+  `+0x58` when its mesh's count `+0x70`, masked with `0x7FFFFFFF`, is non-zero⁶.
 
 <details>
 <summary>Where in the code</summary>
@@ -190,6 +221,8 @@ count - 1 skips it. For a match:
 | ² | `0x001E1670` |
 | ³ | `0x001A7850` |
 | ⁴ | `0x001F8B30` |
+| ⁵ | `0x001E17EE`-`0x001E18C0` |
+| ⁶ | `0x001E18C5`-`0x001E18D1` |
 
 </details>
 
@@ -209,10 +242,9 @@ adds one per insert³.
 
 </details>
 
-`0x001E1670` takes the free set's first slot, the node at `0x01F82D90`, while that size is non-zero¹.
-It lowers the size², unlinks the node and frees its `0x28` bytes through the set's allocator `0x01F82DB0`³, inserts the slot into the in-use set⁴, and stores the slot at `+0x10` and the object at the
-slot's `+0x08`⁵. The destructor `0x001E1C90` hands the slot to `0x001F8B30`⁶, which
-moves it back into the free set⁷.
+`0x001E1670` takes the free set's first slot, the node at `0x01F82D90`, when that size is non-zero¹. It lowers the size², unlinks the node and frees its `0x28` bytes through the set's allocator
+`0x01F82DB0`³, inserts the slot into the in-use set⁴, and stores the slot at `+0x10` and the
+object at the slot's `+0x08`⁵. The destructor `0x001E1C90` hands the slot to `0x001F8B30`⁶, which moves it back into the free set⁷.
 
 <details>
 <summary>Where in the code</summary>
@@ -226,6 +258,22 @@ moves it back into the free set⁷.
 | ⁵ | `0x001E19F6`, `0x001E1A0C` |
 | ⁶ | `0x001E1CB7` |
 | ⁷ | `0x001F8BCB` |
+
+</details>
+
+With the free set empty, `0x001E1670` stores 0 at `+0x10`¹, calls the return stub
+`0x0016D6A0` and writes the object through that 0, to address 8². Its one call is `0x001A655C`,
+made only when the 0x268-byte allocation succeeds³, so the 20000 slots hold at most 10,000
+indices with both objects.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E1981`, `0x001E19F3`-`0x001E19F6` |
+| ² | `0x001E1A03`-`0x001E1A0C` |
+| ³ | `0x001A6548`-`0x001A6554` |
 
 </details>
 
@@ -269,16 +317,17 @@ string over the static byte `0x02EBA2E0`⁵ whose allocator `+0x58` is the vtabl
 
 </details>
 
-For every slot `0x001A5B30` then runs, on both objects, `0x001E4000` (the shader parameter handles of
-every material, one 0x220-byte record each, and the ready byte `+0x250`) and looks up the entry of the
-model's main texture, the `TextureSampler` texture of its first material¹:
+For every slot that holds a main-view object¹ `0x001A5B30` then runs, on both objects, `0x001E4000`
+(the shader parameter handles of every material, one 0x220-byte record each, and the ready byte `+0x250`) and looks up
+the entry of the model's main texture, the `TextureSampler` texture of its first material²:
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x001E3F70` |
+| ¹ | `0x001A66FB`-`0x001A6702` |
+| ² | `0x001E3F70` |
 
 </details>
 
@@ -287,9 +336,11 @@ model's main texture, the `TextureSampler` texture of its first material¹:
 - `0x001E6110(object, specular)` does the same with `EnableSpecularMap` and `SpecularMap`;
 - the main texture is kept at `+0x260`.
 
-The load ends by restarting the texture-animation chain¹, loading the probe placements
-(`0x001AC480`, which also sets `0x01DFE191` when a probe exists), requesting the procedural texture
-configuration² and resetting every sway entry³.
+With an asset list the load then releases the texture-animation list text held at `0x01F81178`, zeroes `+0x264` and
+restarts the texture-animation chain¹². On every path it then loads the probe
+placements³, sets `0x01DFE191` to 1 when the probe manager `[0x01F811C8]` has a non-empty vector `+0xE8` and
+to 0 otherwise⁴, requests the procedural texture configuration⁵ when the
+procedural-texture context `[0x01F81258]` is set⁶, and resets every sway entry⁷.
 
 <details>
 <summary>Where in the code</summary>
@@ -297,8 +348,12 @@ configuration² and resetting every sway entry³.
 | | Code |
 |---|---|
 | ¹ | `0x001A7D50` |
-| ² | `0x001C0A90` |
-| ³ | `0x001A7770` |
+| ² | `0x001A693A`-`0x001A6965` |
+| ³ | `0x001AC480` |
+| ⁴ | `0x001A6982`-`0x001A699B` |
+| ⁵ | `0x001C0A90` |
+| ⁶ | `0x001A69A2`-`0x001A69BC` |
+| ⁷ | `0x001A7770` |
 
 </details>
 
@@ -730,9 +785,21 @@ the eight corners and returns their minimum and maximum.
 
 </details>
 
-`0x001E2AF0` then runs `0x001E4F70(object, bounds)`: with no matrix at the object's `+0x10` it tests the bounds as they
-are, otherwise it rebuilds them from that matrix's columns through `0x001854C0` first, and in both cases passes
-them to the clip test `0x001E4B80`.
+`0x001E2AF0` calls `0x001E4F70(bounds, matrix)` on the instance's bounds¹. It passes the matrix as it is when
+the bounds have no matrix at `+0x10`, and otherwise first combines it through `0x001854C0` with a 4x4 built from the
+twelve floats of the matrix at the bounds' `+0x10`²; in both cases it passes the bounds and
+that matrix to the clip test `0x001E4B80`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E2D11` |
+| ² | `0x001E4F82`-`0x001E5033` |
+| ³ | `0x001E505D`-`0x001E5063` |
+
+</details>
 
 ### Drawing an instance
 
@@ -762,12 +829,19 @@ PS2 state:
 - `0x00180830`⁵ passes a mode built from bits `0x10` and `0x20` of the record's flag word `+0x0C`;
   `0x001A9DD0` stores 3, 2, 1 or 0 at `+0xD0` for 1, 2, 3 or 0, and 0 for any other value. The store is 64 bits
   wide, so `+0xD4` is zeroed with it⁶.
-- `0x00180730`⁷ passes a mode from 0 to 4, chosen from bits `0x80`, `0x100`, `0x8000` and `0x20000000` of the
+- When the mesh of the object's first instance has a matrix-index array⁷, it copies the qword
+  `+0x60` of each named index's 0x70-byte entry into a stack array of 64 at `rbp + 0x1C0`, below the stack cookie at
+  `rbp + 0x3C0`⁸, passes it to `0x00180980`⁹ and then passes 0 to
+  `0x00180990`¹⁰.
+- The copy takes the count as it is: a count above `0x40` only selects the argument of the return stub `0x0016D6A0`
+ ¹¹ and writes past the array into the cookie. Without the array the pass hands the qword
+  `+0x60` of the instance's own entry to `0x00180990`¹².
+- `0x00180730`¹³ passes a mode from 0 to 4, chosen from bits `0x80`, `0x100`, `0x8000` and `0x20000000` of the
   record's flag word, with its vectors and matrices. `0x001A9B70` passes 1 to 4 through and any other
   value as 0; `0x001E5790` stores it at `+0xD8` and copies the data the mode uses (layout below).
-- `0x00180650`⁸ draws the object at once (its vtable slot `+0x08`), or stores it in the
-  draw map `+0x4E8` under its key from `+0x4C8`⁹. An object whose `+0xB8` is set and whose
-  `+0xBC` is 0 is also appended to the list `+0x90`¹⁰, which `0x00180A30` draws through
+- `0x00180650`¹⁴ draws the object at once (its vtable slot `+0x08`), or stores it in the
+  draw map `+0x4E8` under its key from `+0x4C8`¹⁵. An object whose `+0xB8` is set and whose
+  `+0xBC` is 0 is also appended to the list `+0x90`¹⁶, which `0x00180A30` draws through
   `0x001A8F80` while `+0x2E5` is set.
 
 <details>
@@ -781,10 +855,48 @@ PS2 state:
 | ⁴ | `0x001E69A0`, `0x001E69A9`, `0x001E6A32`, `0x001E6A3E` |
 | ⁵ | `0x002F4E13` |
 | ⁶ | `0x001A9DD0`-`0x001A9E04` |
-| ⁷ | `0x002F5149` |
-| ⁸ | `0x002F5225` |
-| ⁹ | `0x001A94C0` |
-| ¹⁰ | `0x001A4FE0` |
+| ⁷ | `0x00180310`, `0x001E3E50` |
+| ⁸ | `0x002F5070`-`0x002F509D`, `0x002F4541` |
+| ⁹ | `0x002F50A9` |
+| ¹⁰ | `0x002F50AE`-`0x002F50B9` |
+| ¹¹ | `0x002F5055`-`0x002F5063` |
+| ¹² | `0x002F50B2`-`0x002F50B9` |
+| ¹³ | `0x002F5149` |
+| ¹⁴ | `0x002F5225` |
+| ¹⁵ | `0x001A94C0` |
+| ¹⁶ | `0x001A4FE0` |
+
+</details>
+
+`0x00180990` jumps to `0x001E6E70(object, M)`. Only when one of M's floats `+0x30` to `+0x38` differs from the object's
+`+0x244` to `+0x24C` does it copy the three there and set its byte `+0x240` to 1¹; a null M
+counts as 0.0, 0.0, 0.0². It then calls `0x001EF060(instance, M)` for each instance in the
+object's `+0x18` vector³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001E6EBA`-`0x001E6EF3` |
+| ² | `0x001E6E92`-`0x001E6EB4` |
+| ³ | `0x001E6EFA`-`0x001E6F35` |
+
+</details>
+
+`0x001EF060` writes the twelve floats of the matrix at the instance's `[+0x08]` as `-f4`, `-f5`, `f6`, `-f0`, `-f8`,
+`-f9`, `f10`, `-f1`, `-f12`, `-f13`, `f14` and `f2`, `fk` being M's float k¹, and stores that
+matrix's pointer at `+0x10` of the instance's bounds when its bounds pointer `+0x38` is non-null². A null M writes -1.0 as the second and fourth of those floats, 1.0 as the seventh and 0 as
+the rest³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x001EF08A`-`0x001EF166` |
+| ² | `0x001EF16C`-`0x001EF171` |
+| ³ | `0x001EF0EC`-`0x001EF11B`, `0x001EF126`-`0x001EF166` |
 
 </details>
 
@@ -1035,6 +1147,7 @@ offset, its asset lists and the zones that draw the map.
 
 | Bit | Read by | Effect |
 |---|---|---|
+| `0x1` | `0x001E2AF0` (`0x001E2CB3`-`0x001E2CC1`) | with byte `+0xC34` of the render manager set, the [shadow pass](../Graphics/character-render-object.md#the-ordered-draw), an instance without it is skipped |
 | `0x2` | `0x001E5080` | the model counts as in view |
 | `0x4` | `0x00180600` (`0x001E5250`) | left out while the tag-24 entry's `+0xC8` exceeds 1.0 |
 | `0x8` | `0x00180460` (`0x001E4B40`) | keep the YM00 placement row |

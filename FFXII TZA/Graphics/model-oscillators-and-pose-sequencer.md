@@ -247,7 +247,9 @@ last, a link whose bone is `0xFFFF` passed over; the bones are the `0x290`-byte 
 
 </details>
 
-`0x003E4140(rig, x, y, z)`, from `0x0042C410` and `0x0042C8F0` with the record's three scale factors¹, gives the oscillator record their mean through `0x004158F0`, which stores it at `+0x10` and its
+`0x003E4140(rig, x, y, z)`, from `0x0042C410` with the record's three scale factors¹
+and from `0x0042C8F0` with the same three products as set out below, gives the oscillator record their mean through
+`0x004158F0`, which stores it at `+0x10` and its
 reciprocal at `+0x14` and scales values kept in the entries' chains by it, except that the innermost `0x50`-byte
 elements take `1 + (mean - 1) × 0.3` of their `+0x0C`; it gives `z` to controller 8² and `y` to controller
 6³.
@@ -260,6 +262,20 @@ elements take `1 + (mean - 1) × 0.3` of their `+0x0C`; it gives `z` to controll
 | ¹ | `0x003E5770`, `0x003E5790`, `0x003E57B0` |
 | ² | `0x005175B0` |
 | ³ | `0x004717D0` |
+
+</details>
+
+`0x0042C8F0` takes the three products from the record's parent when the record has one and byte `+5` of the block the
+rig's first handle names¹ is set, and otherwise from the record, each times the record's `+0x170`,
+`+0x174` or `+0x178` when it has a parent and its byte `+0x3C` is `0x77`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020E600` |
+| ² | `0x0042CADD`-`0x0042CB53` |
 
 </details>
 

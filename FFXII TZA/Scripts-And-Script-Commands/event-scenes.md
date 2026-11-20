@@ -254,6 +254,22 @@ through `0x003604A0`.
 
 </details>
 
+An entry's mask index `+1` is its manager¹, so `skipstart` sets the bit in the word
+of its issuer's manager². The player's skip `0x00360880` ([action
+availability](../Controls-And-Input/action-availability.md#what-each-bit-blocks)) runs, in each of mask indexes 1 to 3 that
+holds an armed entry, the lowest one, and no other mask index³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0036053D`, `0x00360604`-`0x0036061B` |
+| ² | `0x003609E0`-`0x003609F3` |
+| ³ | `0x0036088A`-`0x003608BE` |
+
+</details>
+
 `skipexec(i)` (`0x0539`, `0x0034ECF0` → `0x00360710`, for the issuer's manager byte `+0x15`) runs only for a manager other
 than 0 whose slot is live with bit `0x80` of its `+0x10` clear (`0x00267330` answers 0, `0x00360758`) and whose entry is
 armed (`+0xC` non-zero, `0x00360768`); otherwise it returns 0 and changes nothing.
@@ -405,18 +421,18 @@ fade `0x002EFA70(4, 8, 1, 0)` ([screen fades](../Graphics/screen-fades.md)) and 
 </details>
 
 The manager unload `0x002628B0(m)` ([frame update order](../Engine-Core/frame-update-order.md)), which
-`0x0025BFB0` runs for each manager whose bit is set in `0x02099ABC` (`0x0025C030`-`0x0025C036`; `eventdispose` sets it through
-`0x0026A5F0`, `0x0026A61C`-`0x0026A620`), calls `0x003603F0`¹ and then `0x003605A0`², both only while
-the manager's byte `+0x10` has bit `0x1`³.
+`0x0025BFB0` runs for each manager whose bit is set in `0x02099ABC`, from manager 4 down to 0¹, calls `0x003603F0`² and then `0x003605A0`³, both only while the manager's
+byte `+0x10` has bit `0x1`⁴.
 
 <details>
 <summary>Where in the code</summary>
 
 | | Code |
 |---|---|
-| ¹ | `0x0026293F` |
-| ² | `0x00262946` |
-| ³ | `0x0026292C`-`0x00262930` |
+| ¹ | `0x0025BFD1`, `0x0025C030`-`0x0025C052` |
+| ² | `0x0026293F` |
+| ³ | `0x00262946` |
+| ⁴ | `0x0026292C`-`0x00262930` |
 
 </details>
 
@@ -580,10 +596,10 @@ Each row is a function this page names (left), whether it calls the functions on
 | [`0x00263C30`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) | is called by | [`0x0032F1B0`](event-scenes.md) Actor resource: finalize manager runtime after loads |
 | [`0x00266C50`](../EBP-Script-Files/ebp-script-image.md) (on ebp script image) | calls | [`0x00358940`](party-during-scenes.md) Actor manager: get record by ordinal (on party during scenes)<br>[`0x003DBB60`](script-requests.md) (on script requests) |
 | [`0x00266C50`](../EBP-Script-Files/ebp-script-image.md) (on ebp script image) | is called by | [`0x0026CE60`](../Characters-And-Objects/actor-managers.md) Actor system: initialize manager runtime (on actor managers) |
-| [`0x0026A5F0`](event-scenes.md) | is called by | [`0x0025D9E0`](../Story-Events-And-Hunts/opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) |
+| [`0x0026A5F0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump) | is called by | [`0x0025D9E0`](../Story-Events-And-Hunts/opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) |
 | [`0x0026CE60`](../Characters-And-Objects/actor-managers.md) Actor system: initialize manager runtime (on actor managers) | calls | [`0x00233CF0`](../Engine-Core/party-control-modes.md) (on party control modes)<br>[`0x002572E0`](../EBP-Script-Files/ebp-camera-tables.md) (on ebp camera tables)<br>[`0x00263660`](../Characters-And-Objects/actor-managers.md) (on actor managers)<br>[`0x00265A20`](../Engine-Core/frame-update-order.md) Actor system: bind battle units for eligible records (on frame update order)<br>[`0x00266C50`](../EBP-Script-Files/ebp-script-image.md) (on ebp script image)<br>[`0x002679F0`](../EBP-Script-Files/ebp-script-image.md) Actor storage: allocate and initialize records (on ebp script image)<br>[`0x00268EA0`](script-requests.md) (on script requests)<br>[`0x0026D3E0`](script-variables.md) (on script variables)<br>[`0x003587C0`](script-requests.md) (on script requests)<br>[`0x00358940`](party-during-scenes.md) Actor manager: get record by ordinal (on party during scenes)<br>[`0x003DB1F0`](../Engine-Core/frame-update-order.md) (on frame update order) |
 | [`0x0026CE60`](../Characters-And-Objects/actor-managers.md) Actor system: initialize manager runtime (on actor managers) | is called by | [`0x0025BFB0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x0032F1B0`](event-scenes.md) Actor resource: finalize manager runtime after loads |
-| [`0x002DF980`](event-scenes.md) | is called by | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) |
+| [`0x002DF980`](event-scenes.md) | is called by | [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container) |
 | [`0x002E1C40`](event-scenes.md) | is called by | [`0x0025D9E0`](../Story-Events-And-Hunts/opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts)<br>[`0x002628B0`](event-scenes.md) |
 | [`0x002E1CD0`](../Controls-And-Input/action-availability.md) (on action availability) | is called by | [`0x0025C830`](../Menus-And-HUD/text-npc-names.md) (on text npc names)<br>[`0x00263050`](world-lock.md) (on world lock)<br>[`0x00263660`](../Characters-And-Objects/actor-managers.md) (on actor managers)<br>[`0x00268D10`](script-requests.md) (on script requests)<br>[`0x0026C5D0`](../Controls-And-Input/action-availability.md) (on action availability) |
 | [`0x002E9D90`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) (on character se tables chse) | calls | [`0x00263FF0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) |
@@ -596,7 +612,7 @@ Each row is a function this page names (left), whether it calls the functions on
 | [`0x0032F1B0`](event-scenes.md) Actor resource: finalize manager runtime after loads | is also called by | [`0x00331760`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x003317C0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x00331820`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump)<br>[`0x00332130`](event-scenes.md) |
 | [`0x0032F240`](event-scenes.md) | is called by | [`0x0026C8C0`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor manager: bind loaded definition payload (on character se tables chse) |
 | [`0x0032F6C0`](event-scenes.md) | is called by | [`0x0025D9E0`](../Story-Events-And-Hunts/opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) |
-| [`0x0032FC30`](../Story-Events-And-Hunts/tutorials-scenes.md) (on tutorials scenes) | calls | [`0x0032FCA0`](../Sound-And-Music/voices.md) Actor resource: begin manager resource set load (on voices) |
+| [`0x0032FC30`](../Story-Events-And-Hunts/tutorials-scenes.md) (on tutorials scenes) | calls | [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container) |
 | [`0x0032FC30`](../Story-Events-And-Hunts/tutorials-scenes.md) (on tutorials scenes) | is called by | [`0x0025D9E0`](../Story-Events-And-Hunts/opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts) |
 | [`0x00332130`](event-scenes.md) | calls | [`0x00263FF0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets)<br>[`0x0032F1B0`](event-scenes.md) Actor resource: finalize manager runtime after loads |
 | [`0x00332190`](event-scenes.md) | calls | [`0x00263FF0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) |
@@ -801,7 +817,7 @@ Each row is a function this page names (left), whether it calls the functions on
 | [`0x00314DF0`](event-scenes.md) | is called by | [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) |
 | [`0x003604D0`](event-scenes.md) | is called by | [`0x00266D10`](../Engine-Core/frame-update-order.md) (on frame update order) |
 | [`0x00267310`](../Graphics/effect-file-list.md) (on effect file list) | is called by | [`0x00314020`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) (on movement bodies and separation) |
-| [`0x0026A5F0`](event-scenes.md) | is called by | [`0x00314440`](../World-Areas-And-Travel/changing-areas.md) (on changing areas)<br>[`0x00314530`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: requeue current field for restore (on zone changes and mapjump)<br>[`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump) |
+| [`0x0026A5F0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) (on zone changes and mapjump) | is called by | [`0x00314440`](../World-Areas-And-Travel/changing-areas.md) (on changing areas)<br>[`0x00314530`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: requeue current field for restore (on zone changes and mapjump)<br>[`0x003145E0`](../World-Areas-And-Travel/zone-changes-and-mapjump.md) World transition: stage field transition (on zone changes and mapjump) |
 | [`0x0026CE60`](../Characters-And-Objects/actor-managers.md) Actor system: initialize manager runtime (on actor managers) | calls | [`0x002342F0`](../Enemy-Spawning/enemy-respawning.md) (on enemy respawning) |
 | [`0x002DF980`](event-scenes.md) | is called by | [`0x00379A10`](../World-Areas-And-Travel/zone-asset-list.md) (on zone asset list) |
 | [`0x002E1C40`](event-scenes.md) | is called by | [`0x00314440`](../World-Areas-And-Travel/changing-areas.md) (on changing areas) |

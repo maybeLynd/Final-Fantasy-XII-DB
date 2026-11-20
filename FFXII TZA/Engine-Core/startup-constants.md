@@ -477,6 +477,18 @@ Among its own stores the reset zeroes the byte `0x02099DA2` (`0x00267166`, `sil`
 RIP-relative, image-base-relative or address-forming reference names it, and the bytes beside it, `0x02099DA1` and
 `0x02099DA3`, are read and written one byte at a time.
 
+The reset also zeroes the sixteen map-exit group owners at `0x0209A210`, the slots of `setmapjumpgroup`, with the
+cleared `rsi`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00266D3E`, `0x00266E01`-`0x00266E1F` |
+
+</details>
+
 The `0x48`-byte records are the [script gauges](../Menus-And-HUD/script-gauges.md)' record pool, which `0x003E7DF0`
 (called at `0x00266E3D`) builds; its layout is on that page.
 

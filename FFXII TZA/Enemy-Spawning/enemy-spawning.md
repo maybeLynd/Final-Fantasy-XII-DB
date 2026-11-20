@@ -1147,10 +1147,12 @@ meanings table below gives one and otherwise once per row by its writers. Of the
 weather, 1,825 count, 1,944 random and 9,537 other cells hold a test; the rest hold `-`.
 
 A script word's meaning of more than one clause prints as its first clause, with the word's name and "in full in
-enemy-spawn-word-meanings.tsv" beside it. A cell's tests are joined with "; ", so where a global word's meaning holds
+enemy-spawn-word-meanings.tsv" beside it. A meaning that gives one case per actor, or whose printed text is itself a
+condition, is not printed: the word's name stands with "in full in enemy-spawn-word-meanings.tsv" alone. A cell's
+tests are joined with "; ", so where a global word's meaning holds
 "; " that would split a test, it prints as ", ".
 
-[`enemy-spawn-word-meanings.tsv`](enemy-spawn-word-meanings.tsv) gives what 225 script words mean in the game, one
+[`enemy-spawn-word-meanings.tsv`](enemy-spawn-word-meanings.tsv) gives what 313 script words mean in the game, one
 row per script and word, read in the scripts that store them: the Barheim Passage battery charge stage, the clear
 flag that some maps set once their foes defeated reach the total of their lanes' death limits, the Feywood clear
 bits behind the Behemoth King, the Oversoul flag and the Helvinek flag in the Necrohol of Nabudis, and the way the
@@ -1167,6 +1169,11 @@ It also gives the lane word `file +0x000C` of 51 maps: the lane the foe being pl
 walk over the lanes' entry points by their ground distance from the party leader and their angle off its facing, from
 the automatic selector or from the map's own rule. Each row names the foes that use each source, with the tests that
 let them use it, the test that accepts the lane and the group the foe then enters as.
+
+It also gives 88 more words of 48 maps, among them the lane word of 5 more maps, the entry points and coordinates the
+point walks measure the party leader from, counts of respawns and of passes, three-bit roll masks, the party's MP and
+HP, copies of hunt and arrival words taken at the battle setup, the Battery Mimic's gauge flag, the Oversoul count,
+the battle logic flag the chocobo maps keep and the stage of the Shadowseer battle.
 
 Its columns are `script`, `variable`, `map_name`, `meaning`, `how_set` and `evidence`. `meaning` is the phrase the
 terms table prints with the word's name beside it, or, for a meaning of more than one clause, whose first clause it

@@ -168,8 +168,10 @@ At state 1 the overlay prints `PauseMenu Open` and¹:
 - unless the frame mode `0x00229EA0` is 5, sets byte 0 (`0x00183200(1)`, `0x0018A820`) and byte 2 (`0x00182FF0(1)`,
   `0x0018A830`) of the three-byte running object `[0x01F7F5D8]`¹, whose byte 0 the frame tick reads to
   choose the pump's mode;
-- when the monster viewer's settings byte `+0x118` is set², sets its `+0x26E` and the flag
-  `0x800000` of the render record of its id `+0x134` (`0x00181E10(1)`, `0x001EBC70`, `0x002EF250`).
+- when the monster viewer's settings byte `+0x118` is set², sets its `+0x26E` and bit
+  `0x800000` of `+0x0C` of its id `+0x134`'s current presentation entry, which stops that entry's per-entry update
+  ([presentation entries](../Graphics/presentation-entries.md)) (`0x00181E10(1)`, `0x001EBC70`,
+  `0x002EF250`, `0x00422D50`); with no live render record or no current entry it sets nothing³.
 
 <details>
 <summary>Where in the code</summary>
@@ -178,6 +180,7 @@ At state 1 the overlay prints `PauseMenu Open` and¹:
 |---|---|
 | ¹ | `0x0018A7D0` |
 | ² | `0x00181DD0`, `0x001EBA40` |
+| ³ | `0x002EF263`, `0x002EF270` |
 
 </details>
 

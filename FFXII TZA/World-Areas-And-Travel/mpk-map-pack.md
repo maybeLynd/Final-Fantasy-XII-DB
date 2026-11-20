@@ -298,10 +298,28 @@ shipped section the chunk is exactly 0x10 + count × the record size.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | kind | 1: the default near and far (`0x002F59AC`); 3: near and far from `+0x04` and `+0x08` (`0x002F5946`, `0x002F594B`); 0: the previous group's pair; stored at the group entry's `+0xC8` and `+0xCC` (`0x002F59BA`, `0x002F59CA`); kind 1 is also tested at `0x002F5219` and `0x002F6670` |
+| `+0x00` | `u32` | kind | chooses the near and far of the group entry, below the block |
 | `+0x04` | `f32` | near | 0.1 in 834 records, -1.0 in 1,150 |
 | `+0x08` | `f32` | far | -1.0 in 927 records, 60.0 in 469 |
 | `+0x0C` | `f32` | value | copied to the group entry's `+0xD0` (`0x002F6FB1`-`0x002F6FB6`); -1.0 in 4,182 records |
+
+A clip group's kind sets the near and far stored at the group entry's `+0xC8` and `+0xCC`¹:
+kind 1 the default pair², kind 3 the group's `+0x04` and `+0x08`, after range tests that can put other
+values in their place³, and other kinds, 0 among them, the tag-11 view near and far `0x0209A6EC`
+and `0x0209A6F0`, which the loop takes again for each group⁴. Kind 1 is also tested at
+`0x002F5219` and `0x002F6670`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F59BA`, `0x002F59CA` |
+| ² | `0x002F59AC` |
+| ³ | `0x002F5942`-`0x002F59AA` |
+| ⁴ | `0x002F58FC`, `0x002F5909` |
+
+</details>
 
 In every section group 0 is of kind 0 and group 1 of kind 1; the other 4,361 groups are of kind 3.
 
