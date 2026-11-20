@@ -435,6 +435,7 @@ out, 3 hidden) with its count `0x022CBE8A` out of `0x022CBE88`. `0x00368360` mov
 | `+0x10C` | `u32` | holdTime | frame of the last held tick (`0x0208F574`) |
 | `+0x110` | `u16[2]` | masks | confirm and cancel masks |
 | `+0x120` | `fn*` | painter | the row painter |
+| `+0x128` | `fn*` | after | when not 0, called after the painter for each shown row with the data `+0xD8`, the content's `+0x50`, the row's rectangle and the row (`0x002D283B`-`0x002D2857`; in `0x002D28E0` only when the painter returned non-zero, `0x002D2C15`, `0x002D2C70`-`0x002D2C8B`); `0x002D14E0` leaves it 0 (the `0x150` bytes cleared by `memset`, `0x00246626`) |
 | `+0x13C` | `i32` | margin | top margin |
 
 </details>

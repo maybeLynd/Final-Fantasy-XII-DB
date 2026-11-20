@@ -118,6 +118,49 @@ eff = (attr & ~mask[w]) | (value[w] & mask[w]);
 Because the mj entry is applied after the floor entry, an mj override of a bit beats a floor override of
 the same bit on every polygon tagged with that mj group.
 
+An mj override closes a walking exit only through walking. The exit test `0x0025B600` ([script
+requests](../Scripts-And-Script-Commands/script-requests.md)) takes the mj group from the word `+0x88` of the focus
+actor's movement body¹ and the group's owner actor from the table `0x0209A210`²; it reads no entry of the override table.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025B688`-`0x0025B698` |
+| ² | `0x0025B6AD`-`0x0025B6B4` |
+
+</details>
+
+A movement kind whose bit the mj entry sets cannot enter the group's polygons¹, so the body's `+0x88` does
+not take the group. `0x003808A0` records the group of the polygon the body stands on after every move or placement ([the
+ground field](#the-ground-field-and-bit-0x1000)), so a body that already stands on one of the group's polygons when
+the entry is set keeps the group, and `0x0025B600` can still file the exit's request.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00230A40` |
+
+</details>
+
+The focus actor does not always move as kind 0. When it is not riding (kind 5), it moves as kind 1 while `0x002672B0()`
+is 0, and while its `+0x0C` bit `0x10` is set and `0x00265680()` is non-zero ([player
+movement](../Movement-And-Pathfinding/player-movement.md#the-animation-mode-word)); `0x0025B600` itself runs only
+while `0x00265680()` is non-zero¹. So an mj entry has to close kind 1 as well as kinds 0 and 5 to keep the
+exit shut in every state of the focus actor.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0025B66B` |
+
+</details>
+
 ### The writers and the path reset
 
 Apart from the map bind `0x0026E960`, which clears the table, four functions write it, and each calls `0x003278D0`:
@@ -729,6 +772,23 @@ is rebuilt from the map and its script on every load.
 - [Area flags: the navimapdata.bin record for every area, the town flag, the KO, Stone and X-Zone override and the other bits](area-flags-navimapdata.md)
 - [How a unit finds its way across the navigation mesh](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md)
 - [The map ctrl pack](mpk-map-pack.md)
+
+### Calls to and from other topics
+
+The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
+
+<details>
+<summary>Show the 1 call with 1 other topic</summary>
+
+**Status effects and KO** (explained on [frame update order](../Engine-Core/frame-update-order.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00265680`](../Story-Events-And-Hunts/script-censuses.md) (on script censuses) | is called by | [`0x00310DB0`](../Battle-Actions/action-results.md) Battle unit: run periodic combat maintenance (on action results) |
+
+</details>
 
 ---
 

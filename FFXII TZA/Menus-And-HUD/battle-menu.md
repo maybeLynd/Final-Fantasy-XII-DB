@@ -548,14 +548,42 @@ record](../Characters-And-Objects/party-member-status-record.md) gives it¹. The
 
 </details>
 
+1. A command or action list is rebuilt with `0x0031EB20`; an action list (page kind 11) keeps the cursor on the row
+   with the same id, and the cursor is clamped to the last row.
+
+   Such a list also counts as changed for step 4 when the value `0x0027C220` gives for the row under the cursor differs
+   from the one before the rebuild¹: for page kinds 6 to 11, a marked row's byte
+   (`+0x54`, or `+0x56` for kind 11) through `0x0027C150` and `0x002F9860`, else 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027D84E`, `0x0027D939`-`0x0027D94C` |
+
+</details>
 | Step | What happens | Where in the code |
 |---|---|---|
-| 1 | A command or action list is rebuilt with `0x0031EB20`; an action list (page kind 11) keeps the cursor on the row with the same id, and the cursor is clamped to the last row. |   |
 | 2 | A target list (bit `0x2000`) is rebuilt from a copy of the page (`0x00272400`, which copies dwords `+0x00`, `+0x40` and `+0x44`, bytes `+0x08`-`+0x3F` and the eight-byte rows, leaving `+0x04` and `+0x48`-`+0x4F` as they were). With bit `0x40000` set the rebuilt rows are stored as they are. | `0x0027D9FE` |
 | 3 | Otherwise the rows are filtered and ordered. Once bit `0x4000` is set the list keeps its old order (`0x002727F0`: rows still present first, in their old order, then the new ones). The first rebuild sets bit `0x4000`, after sorting the rows by where their units stand across the picture, left to right, when bit `0x1000` is set. | `0x0027BB70`<br>`0x002729A0` |
-| 4 | The cursor stays on the same unit, or is clamped to the last row; bits `0x80800` are set when the row count or the cursor changed. |   |
+| 4 | The cursor stays on the same unit, or is clamped to the last row; bits `0x80800` are set when the row count or the cursor changed, or on a command or action list when the value of step 1 changed. | `0x0027DBC9`-`0x0027DBD6` |
 | 5 | With bit `0x8000` set, when the cursor had to move and the list is empty, or, on any rebuild but the first ordering (rows kept in their old order, or stored as they are under bit `0x40000`: `0x0027DA9F`), the row now under the cursor is another unit, the saved copy of the list and the cursor are put back and bit `0x100000` is set. | `0x0027DB06`-`0x0027DB55` |
 | 6 | On a target list whose noted row is 0 or more and holds a unit (a non-zero row dword), every rebuilt row holding that unit stores its index in `+0x504`, so the last one wins; with no such row `+0x504` keeps what the last copy of the list into the page left there, the copy of steps 2 and 3 or the saved copy of step 5. | `0x0027DB5F`-`0x0027DB93` |
+
+On the kept-order path (bit `0x4000` set, `0x0027DA3A`) that copy carries no rebuilt `+0x44`: `0x002727F0` copies the new
+list's header into a stack copy at `[rsp + 0x1080]` (dword `+0x00`, bytes `+0x08`-`+0x3F`, dword `+0x40`;
+`0x0027281A`-`0x00272854`) and never writes its `+0x44`, and `0x00272400` then copies that copy's `+0x44` into the page¹. No store of `0x0027D740` sets that stack dword, so with no row of step 6
+`+0x504` takes whatever it held.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0027DA7A`-`0x0027DA9F`, `0x00272433`-`0x00272438` |
+
+</details>
 
 The key of each row in `0x002729A0` is the horizontal frame coordinate `0x00249110` gives for the unit's position
 under the camera matrix `0x02AEDDB0`¹; no distance is computed. `0x0035BC50` sorts its list

@@ -594,7 +594,8 @@ writes into `{x, 1.0, z, 1.0}`, which stays 1.0 when no map is bound or no polyg
 </details>
 
 The radius comes from `0x00265090(actor, &a, &b)`, which writes the two floats only for a class-3 actor¹; for another class the two stack slots keep what they held. The facing comes from
-`0x00265200(actor)`. Both are 0 for an anchor with no actor².
+`0x00265200(actor)` ([facing and steering](facing-and-steering.md#three-angles-and-two-wraps)). Both are 0 for an anchor
+with no actor².
 
 <details>
 <summary>Where in the code</summary>
@@ -608,7 +609,7 @@ The radius comes from `0x00265090(actor, &a, &b)`, which writes the two floats o
 
 Without an anchor and with nothing recorded (`0x022C7D10` = 0, `0x00336F79`-`0x00336F80`), `+0x20` takes the unit's
 position, `0x002646C0` of the unit `+0x10`'s actor or `{0, 0, 0, 1}` without one, and `+0x30` its facing
-`0x00265200(actor)` or 0, with result 0¹.
+`0x00265200(actor)` ([facing and steering](facing-and-steering.md#three-angles-and-two-wraps)) or 0, with result 0¹.
 
 <details>
 <summary>Where in the code</summary>

@@ -65,9 +65,9 @@ Each row is a function this page names (left), whether it calls the functions on
 | [`0x00263990`](enemy-names-on-screen.md) | is called by | [`0x0025C230`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x0025C830`](text-npc-names.md) (on text npc names)<br>[`0x00268D10`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x00272CB0`](enemy-names-on-screen.md)<br>[`0x00272CE0`](../Characters-And-Objects/npc-names.md) (on npc names) |
 | [`0x00263A10`](../Characters-And-Objects/npc-names.md) (on npc names) | is called by | [`0x00272C80`](enemy-names-on-screen.md)<br>[`0x00272CE0`](../Characters-And-Objects/npc-names.md) (on npc names) |
 | [`0x00269F20`](enemy-names-on-screen.md) | is called by | [`0x00238BF0`](../Movement-And-Pathfinding/movement-bodies-and-separation.md) Battle unit: refresh actor runtime from definition (on movement bodies and separation) |
-| [`0x00272C80`](enemy-names-on-screen.md) | calls | [`0x003588B0`](map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
-| [`0x00272CB0`](enemy-names-on-screen.md) | calls | [`0x003588B0`](map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
-| [`0x00272CE0`](../Characters-And-Objects/npc-names.md) (on npc names) | calls | [`0x003588B0`](map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
+| [`0x00272C80`](enemy-names-on-screen.md) | calls | [`0x003588B0`](../Characters-And-Objects/actor-record.md) Actor handle: resolve registry entry by packed id (on actor record) |
+| [`0x00272CB0`](enemy-names-on-screen.md) | calls | [`0x003588B0`](../Characters-And-Objects/actor-record.md) Actor handle: resolve registry entry by packed id (on actor record) |
+| [`0x00272CE0`](../Characters-And-Objects/npc-names.md) (on npc names) | calls | [`0x003588B0`](../Characters-And-Objects/actor-record.md) Actor handle: resolve registry entry by packed id (on actor record) |
 | [`0x0027E530`](battle-menu.md) (on battle menu) | calls | [`0x00272C80`](enemy-names-on-screen.md)<br>[`0x00272CB0`](enemy-names-on-screen.md) |
 | [`0x002B58B0`](../Game-Files-And-Data-Tables/battle-text-tables.md) (on battle text tables) | is called by | [`0x0023A570`](../Characters-And-Objects/battle-unit-construction.md) Battle unit: apply unit definition (on battle unit construction) |
 | [`0x002C8BC0`](hud.md) (on hud) | calls | [`0x00272CE0`](../Characters-And-Objects/npc-names.md) (on npc names) |

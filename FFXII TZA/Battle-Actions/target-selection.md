@@ -221,8 +221,7 @@ returns 0². A listed record's entry is the dword
 `0x0046B4C0` (code `0x1A`) first clears bit `0x2` of byte `+0x09` of every record of the active actor managers 0-3, as
 the two lists above do: each record `0x00358940(manager, i)` of each `0x00263FF0(m)` with bit `0x1` of `+0x10`, for `i`
 from `+0x1DE` while below `+0x1DE + +0x1D6`¹. It then calls `0x0046BAC0(m, 1)` for the managers
-`m` 0-2², which applies the 24-unit test through `0x00322480`, a jump to `0x00322490` (out of
-range: `+0x0A` bit `0x2`).
+`m` 0-2².
 
 <details>
 <summary>Where in the code</summary>
@@ -231,6 +230,35 @@ range: `+0x0A` bit `0x2`).
 |---|---|
 | ¹ | `0x0046B4DA`-`0x0046B52A` |
 | ² | `0x0046B530`-`0x0046B541` |
+
+</details>
+
+With mode 1, `0x0046BAC0` first lists, with no range test, every record of the manager's class-1 run (from the word
+`+0x1DA` for the count `+0x1D2`) whose dword `+0x1C` has bit `0x4`, whose byte `+0x0E` has bits `0x40` and `0x80` and
+whose byte `+0x0C` has bit `0x2`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046BB0C`-`0x0046BB7C` |
+
+</details>
+
+It then walks the class-3 records under the conditions above, except that a record for which `0x00263BE0` returns 1
+passes when its dword `+0x1C` has bit `0x4` or `0x400`¹. Each such record gets the 24-unit test
+through `0x00322480`, a jump to `0x00322490` (out of range: `+0x0A` bit `0x2`), and an in-range record is listed only when
+`0x00317D80` answers non-zero, else it gets `+0x0A` bit `0x1`². The count `+0x1F8` covers both
+walks.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046BC05`-`0x0046BC12` |
+| ² | `0x0046BCE2`-`0x0046BD3C` |
 
 </details>
 

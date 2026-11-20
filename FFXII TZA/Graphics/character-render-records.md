@@ -898,6 +898,164 @@ The point ids `0x100` and up name bones directly. For `0x00422310` and `0x004223
 So a weapon's blade and grip are the bones keyed `0x65E` and `0x656`, named `j_blade` and `n_grip`. A rider sits on
 `n_hara`, key `0x1E`, unless the mount's model has its own bone for special id 15.
 
+### Position from the movement context
+
+A class-3 actor's record takes its position from the actor's movement context `+0xB8`, not from its movement body's
+`+0x30`.
+
+`0x002E6000(actor, flag)` returns for a null actor, a null controller `+0xC0`, a controller whose dword `+0x00` is -1,
+an actor whose byte `+0x03 & 0xE0` is not `0x60` and a controller whose byte `+0x14F` has bit `0x1`¹. Otherwise it passes the controller's word `+0x00`, the record id, with x = context `+0x00`, y
+= context `+0x04` plus `0x00263910(actor)` and z = context `+0x08`, to `0x003EC3D0(id, x, y, z, flag)`². `0x00263910` answers the controller's `+0x140` plus its `+0x144`, or 0.0 with no controller³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E6000`-`0x002E603F` |
+| ² | `0x002E6046`-`0x002E6067` |
+| ³ | `0x0026391F`-`0x00263937` |
+
+</details>
+
+`0x002E6000` has two callers: the tick's tail post `0x002E5180` with flag 0¹ and the placement
+`0x002E5C90` with its own flag (`0x002E5DBB`-`0x002E5DC1`; [facing and
+steering](../Movement-And-Pathfinding/facing-and-steering.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E5344`-`0x002E5349` |
+
+</details>
+
+`0x003EC3D0` is the position twin of the facing setter `0x003EC260`. It returns for id -1 and for a record
+`[0x022C6F28] + id * 0x740` whose `+0x284` is 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC3D4`-`0x003EC404` |
+
+</details>
+
+A record whose `+0x290` bit `0x100000` is clear and whose word `+0x06` is not -1 takes no position: with `+0x284` bit
+`0x8000000` set it returns, otherwise its `+0x140` to `+0x148` are zeroed and `+0x14C` is set to 1.0¹. Any other record takes x, y and z at `+0x140` to `+0x148`, with 1.0 at `+0x14C` and `+0x284`
+bit `0x200` cleared, when one of them differs from the stored value².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC40A`-`0x003EC455` |
+| ² | `0x003EC456`-`0x003EC4A5` |
+
+</details>
+
+Then, when `flag` or the dword `0x02B5EC90` is non-zero, `0x003EC3D0` sets `+0x304` bit `0x4000`, zeroes `+0x23C`, calls
+`0x004288B0(record, -1)` unless `+0x284` bit `0x20000` is set, and tail-jumps to `0x003B3CA0(+0x288, 0x1E)` when `+0x288`
+is not -1¹. A scan of every RIP-relative operand in the code finds `0x003EC4AF` as the only
+instruction that addresses `0x02B5EC90`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003EC4AF`-`0x003EC4FB` |
+
+</details>
+
+`0x004288B0(record, v)` sets `+0x290` bit `0x400`; for v = -1 it also sets `+0x284` bit `0x20000` and zeroes the byte
+`+0x40A`, and for another v it adds v to `+0x40A`¹. The setter's other caller, `0x003EB8E0`², passes flag 1 and the word `+0x10` of its object, after refusing a null object and one whose dword
+`+0x10` is negative³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004288B0`-`0x004288D7` |
+| ² | `0x003EB8FB` |
+| ³ | `0x003EB8E4`-`0x003EB8F3` |
+
+</details>
+
+`0x00420A40(record, parent)` returns at once while `+0x284` bit `0x200` is set¹. After the local
+matrix ([parents and children](#parents-and-children)) it builds the model transform at `+0x180`: the rotation from
+the angles `+0x120` to `+0x128`² combined³ with a diagonal matrix of
+the record's scale⁴, `+0x140` to `+0x148` as the
+translation row `+0x1B0` to `+0x1B8`⁵, and then the local matrix⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00420A5F`-`0x00420A6F` |
+| ² | `0x0046D380`, `0x00420C08` |
+| ³ | `0x0046D350`, `0x00420C17` |
+| ⁴ | `0x003E5770`, `0x003E5790`, `0x003E57B0`; `0x00420B9B`-`0x00420BFB` |
+| ⁵ | `0x00420C1C`-`0x00420C44` |
+| ⁶ | `0x0046D350`, `0x00420C4A` |
+
+</details>
+
+`0x00420A40` has four direct callers: the root step callback `0x0042C410`¹, the transform commit `0x00427BD0`², the child step callback `0x0042C8F0`³, and `0x0042CF70`⁴, the child callback of the
+walk `0x00425FB0(0x0042D7A0, 0x0042CF70, ...)` that `0x00426500` runs⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0042C4F3` |
+| ² | `0x00427C22` |
+| ³ | `0x0042CA05` |
+| ⁴ | `0x0042CFCE` |
+| ⁵ | `0x00426507`-`0x00426515` |
+
+</details>
+
+The character draw pass `0x004264A0` walks the records with `0x00425FB0(0x0042D050, 0x0042CBF0, ...)`¹,
+and neither of its callbacks is among those callers. So a root's transform is composed in a simulation step² or by the commit at the end of the frame³, not by the draw.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004264D5`-`0x004264EA` |
+| ² | `0x0042C410` |
+| ³ | `0x00427BD0` |
+
+</details>
+
+`0x00373030(entry, matrix)` copies the matrix (`0x0046D100`, a jump to `0x00202C70`) to `+0x1F0` of the object that the
+entry's dword `+0x84` decodes to¹². Its callers are `0x0042C410`³,
+`0x0042C8F0`⁴ and `0x00427BD0`⁵.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0020E600` |
+| ² | `0x00373036`-`0x00373053` |
+| ³ | `0x0042C53D` |
+| ⁴ | `0x0042CAA4` |
+| ⁵ | `0x00427C59` |
+
+</details>
+
+[Frame update order](../Engine-Core/frame-update-order.md#the-field-frame) gives the frame in which a
+posted position is drawn.
+
 ### The dirty words
 
 Requests reach a record as bits in two dwords, `+0x290` and `+0x294`. `0x00427DE0(flag)` services them

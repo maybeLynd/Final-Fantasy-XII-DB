@@ -188,7 +188,7 @@ Each row is a function this page names (left), whether it calls the functions on
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x002E9B80`](effect-anchors-and-targets.md) (on effect anchors and targets) | calls | [`0x003588B0`](../Menus-And-HUD/map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
+| [`0x002E9B80`](effect-anchors-and-targets.md) (on effect anchors and targets) | calls | [`0x003588B0`](../Characters-And-Objects/actor-record.md) Actor handle: resolve registry entry by packed id (on actor record) |
 | [`0x002E9FE0`](../Engine-Core/time-stop-and-freeze.md) (on time stop and freeze) | is called by | [`0x0025B820`](../Characters-And-Objects/field-runtime.md) (on field runtime)<br>[`0x0025C230`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x0025C830`](../Menus-And-HUD/text-npc-names.md) (on text npc names)<br>[`0x003DF6F0`](../Characters-And-Objects/actor-record.md) (on actor record)<br>[`0x0046BAC0`](../Battle-Actions/target-selection.md) (on target selection) |
 
 **Sound and music** (explained on [animation sounds](../Sound-And-Music/animation-sounds.md))

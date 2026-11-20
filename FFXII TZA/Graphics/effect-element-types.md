@@ -1905,6 +1905,33 @@ The releases `0x00464050` (`0x40`), `0x00464B80` (`0x41`), `0x00465120` (`0xD0`)
 free the slot through `0x00377360(handle)`, which finds it in the registry's live list (head
 `0x02ADBFC8`, tail `0x02ADBFD0`, links at `+0x10` and `+0x18`), lowers the count `0x02ADBFC0`, clears the
 handle and unlinks it.
+ `0x00465120` first undoes `0xD0`'s changes. Unless `+0x232` has none of the bits `0x712`¹, it
+ walks the characters the way the apply does, by the same kind byte `+0x230`, and calls `0x00465510(element, id)` for
+ each.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00465126`-`0x00465135` |
+
+</details>
+
+On the character's render record (`[0x022C6F28] + id x 0x740`, when its `+0x284` is not 0) that sets the colour
+`+0x220`-`+0x22C` to 1.0 for bit `0x2` without `0x8`, clears `+0x4A0` bit `0x2` for bit `0x10` without `0x20`, and
+calls `0x00428AF0(record, 0, 1, 0x60)` for bit `0x100`, `0x003E5E50(record, 0)` for bit `0x200` and `0x00428CD0(record, 0)`
+for bit `0x400`¹. The free of `+0x23C` follows².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00465510`-`0x00465672` |
+| ² | `0x004654D3`-`0x004654DE` |
+
+</details>
 
 `0x00464050` first releases a non-zero dword `+0x244` through `0x003ABCA0` and zeroes it, then frees the
 registry handle `+0x24C`; `0x00464B80` does the same with `+0x234` through `0x003B42B0` and the registry handle
@@ -2788,19 +2815,8 @@ are drawn even when the instance's flag byte `+0x36A` bit `0x1` is clear (the ru
   `0x020926C0 x= 1 + w x (c / 128 - 1)`: `c` is the four colour bytes of `0x0042FDB0([+0x20] + 0x80, [+0x44])`
   and `w` the alpha byte of the `0x002F1F40` fade over 128 while bit `0x80` is set, else 0; bit `0x80` is then cleared
  ².
-- `0xD1` draws nothing (its draw is `0x0016D6A0`). Its update tail `0x003D92C0` publishes the element at
-  `0x02092628`³; `0x00258B90`, which the field frame runs with its camera work
-  ([frame update order](../Engine-Core/frame-update-order.md)), copies its `0x340` bytes into the
-  block at `0x02096FA0`, keeps that block's address at `0x020972E0` and clears the pointer
- ⁴.
-- It makes the copy only when `0x001EDDA0` answers 0⁵. On a frame with nothing
-  published it puts the kept address `0x020972E0` back at `0x02092628` and goes on with no new copy, and
-  returns at once when that is null too⁶.
-- Before the copy, `0x00258B90` looks at the mode byte `0x02092630`. Mode 0 goes on unless the function's
-  argument is 1. Mode 1 goes on only when the byte `+0x370` of `[0x02096A18]` is set and its `+0x366` is 0 or
-  not above `+0x367`. Any other mode goes on⁷. Going on is `0x003D9150`, the copy
-  and the clearing of `0x02092628`; a return before it leaves `0x02092628` as it stands
- ⁸.
+- The apply first sets bit `0x80` of the effect flag word `0x020926E4`³. After the bit `0x1` work it returns
+  unless `+0x232` has one of the bits `0x712`⁴.
 
 <details>
 <summary>Where in the code</summary>
@@ -2809,12 +2825,49 @@ are drawn even when the instance's flag byte `+0x36A` bit `0x1` is clear (the ru
 |---|---|
 | ¹ | `0x004656DB` |
 | ² | `0x004656C6`-`0x0046578F` |
-| ³ | `0x003D9698` |
-| ⁴ | `0x00258CC4`-`0x00258D4D` |
-| ⁵ | `0x00258C36`-`0x00258C46` |
-| ⁶ | `0x00258C4A`-`0x00258C66` |
-| ⁷ | `0x00258C68`-`0x00258CB1` |
-| ⁸ | `0x00258CB7`-`0x00258D4D` |
+| ³ | `0x004656CB` |
+| ⁴ | `0x00465796`-`0x004657A6` |
+
+</details>
+
+  It hands `0x00465CD0` a colour, with bit `0x2` the four bytes of `0x0042FDB0([+0x20] + 0xD0, [+0x44])` mixed the same
+  way¹, and two floats, with bit `0x10` `0x004309C0([+0x20] + 0x130, [+0x44])` and
+  `0x004309C0([+0x20] + 0x120, [+0x44]) x w`, else 0².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x004657B8`-`0x0046580B` |
+| ² | `0x0046581A`-`0x00465840` |
+
+</details>
+- `0xD1` draws nothing (its draw is `0x0016D6A0`). Its update tail `0x003D92C0` publishes the element at
+  `0x02092628`¹; `0x00258B90`, which the field frame runs with its camera work
+  ([frame update order](../Engine-Core/frame-update-order.md)), copies its `0x340` bytes into the
+  block at `0x02096FA0`, keeps that block's address at `0x020972E0` and clears the pointer
+ ².
+- It makes the copy only when `0x001EDDA0` answers 0³. On a frame with nothing
+  published it puts the kept address `0x020972E0` back at `0x02092628` and goes on with no new copy, and
+  returns at once when that is null too⁴.
+- Before the copy, `0x00258B90` looks at the mode byte `0x02092630`. Mode 0 goes on unless the function's
+  argument is 1. Mode 1 goes on only when the byte `+0x370` of `[0x02096A18]` is set and its `+0x366` is 0 or
+  not above `+0x367`. Any other mode goes on⁵. Going on is `0x003D9150`, the copy
+  and the clearing of `0x02092628`; a return before it leaves `0x02092628` as it stands
+ ⁶.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x003D9698` |
+| ² | `0x00258CC4`-`0x00258D4D` |
+| ³ | `0x00258C36`-`0x00258C46` |
+| ⁴ | `0x00258C4A`-`0x00258C66` |
+| ⁵ | `0x00258C68`-`0x00258CB1` |
+| ⁶ | `0x00258CB7`-`0x00258D4D` |
 
 </details>
 

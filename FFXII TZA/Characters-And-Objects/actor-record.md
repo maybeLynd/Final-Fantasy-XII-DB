@@ -26,11 +26,12 @@ record count at `+0x20` ([actor managers](actor-managers.md)):
 |---|---|---|
 | 1 | the payload's table at payload `+[0x14]` holds a `u16` count of sequences followed by a `u16` per sequence; the pool's payload size is the sum over sequences of the descriptor's size, rounded up to 16, times that count; |   |
 | 2 | the header is `(count * 8 + 0x17) & ~0xF` bytes and is allocated twice over: the block is `2 * header + payload` bytes from the allocator at `[slot + 0x88]`, zeroed, with the count at `+0x00`; `[slot + 0x1F0]` keeps `block + header`; | `0x00267A79`<br>`0x00267A8B` |
-| 3 | records are carved from `block + 2 * header` in sequence order; the pointer table at `block + 8` receives each, and each record's byte `+0x03` becomes `(class << 5) \| sequence`; the slot's per-class counts at `+0x1D0` (four `u16`) are added up and their running offsets written to `+0x1D8`; |   |
+| 3 | records are carved from `block + 2 * header` in sequence order; the pointer table at `block + 8` receives each, and each record's byte `+0x03` becomes `(class << 5) \| sequence`; the slot's per-class counts at `+0x1D0` (four `u16`) are added up, and `0x00267B3A`-`0x00267B61` write their running offsets: `+0x1D8` = 0, `+0x1DA` = the class-0 count, `+0x1DC` = classes 0-1, `+0x1DE` = classes 0-2; |   |
 | 4 | `0x00266530(slot, block, i)` initialises every record, for `i` from 0 to the count `+0x20` less one (`0x00267B63`-`0x00267B82`, the call at `0x00267B79`), and the block is returned. The per-class counts are added to the words already at `+0x1D0`, and the byte `+0x03` keeps the sequence's low five bits. | `0x00267B89`<br>`0x00267AD4`<br>`0x00267AE8`-`0x00267B13` |
 
 `0x0046BA50(m)` returns `[slot + 0x1F0]` of manager `m`¹ when the slot's `+0x10` bit `0x1` is set, and
-otherwise an empty table at `0x02CA6050`, whose count it zeroes; render and effect code walks records through it².
+otherwise an empty table at `0x02CA6050`, whose first dword it zeroes; `0x0046BA90(m)` returns the count `[slot + 0x1F8]`,
+or 0².
 
 <details>
 <summary>Where in the code</summary>
@@ -38,12 +39,86 @@ otherwise an empty table at `0x02CA6050`, whose count it zeroes; render and effe
 | | Code |
 |---|---|
 | ¹ | `0x00263FF0` |
-| ² | `0x0031F607`, `0x0035E644`, `0x00465344`, `0x00465A84` |
+| ² | `0x0046BA9F`, `0x0046BAAA` |
 
 </details>
 
-`0x00358940(slot, ordinal)` returns `[block + 8 + ordinal * 8]` for an ordinal below the count. The
-descriptor table at `0x01E0C328` has eight entries of `{u8 class, u8 sub, u16 size}`:
+The table holds dword handles, not records: four sites call `0x0046BA90` and then `0x0046BA50` (`0x0031F5F9`/`0x0031F607`,
+`0x0035E63A`/`0x0035E644`, `0x00465339`/`0x00465344`, `0x00465A79`/`0x00465A84`), and the walker at `0x0031F607` reads each entry as
+a dword¹ and resolves it through `0x003588B0`² when its pointer `[rsp + 0xC0]` is
+set and `0x02089340` bit `0x10` is set (`0x0031F618`-`0x0031F63E`, up to 512 entries).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0031F640`, `0x0031F6DD` |
+| ² | `0x0031F642` |
+
+</details>
+
+Five builders fill the table and write its count `+0x1F8`¹
+for a slot whose `+0x10` bit `0x1` is set, and 0 for another, each walking the class-3 ordinals from `+0x1DE` for the
+count `+0x1D6` through `0x00358940`. A listed record's handle is
+`((word +0x16 & 0x7FF) << 4 | manager) << 16 | ordinal`, the fields `0x003588B0` takes apart for a non-zero handle². What each builder leaves out first:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046B7D7`, `0x0046B9B7`, `0x0046BCA5`, `0x0046BE5E`, `0x0046BF3D` |
+| ² | `0x003588B6`, `0x003588CB`-`0x003588DC` |
+
+</details>
+
+- `0x0046B690` and `0x0046B870`: a record `0x002647B0` answers 1 for (`+0x12` from 0 to 3; `0x0046B74B`, `0x0046B92B`) or whose
+  `+0x18` is 1, then the others [target selection](../Battle-Actions/target-selection.md#actor-manager-lists) lists;
+- `0x0046BAC0(m, mode)`: with mode 1 it first lists the class-1 ordinals from `+0x1DA` for `+0x1D2` whose `+0x1C` bit
+  `0x4`, `+0x0E` bits `0x40` and `0x80` and `+0x0C` bit `0x2` are set¹; on the class-3 range it
+  skips as `0x0046B690` does², then chooses between `0x00322480` and `0x00322490` by mode
+ ³;
+- `0x0046BD60(m)`: a record whose `+0x18` is 1, whose class nibble is 6 or whose `+0x0E` bit `0x20` is clear, then the
+  others [map screens](../Menus-And-HUD/map-screens.md#minimap-markers) lists⁴;
+- `0x0046BE80(m)`: a record whose `+0x18` is 1, whose `+0xC0`⁵ is null or starts with -1, or whose `+0x09`
+  bit `0x2` is set⁶; its handle takes the manager from `+0x15` and the ordinal from the word
+  `+0x00`⁷.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0046BB12`-`0x0046BB76` |
+| ² | `0x0046BBB4`-`0x0046BBC5` |
+| ³ | `0x0046BC4D`-`0x0046BD08` |
+| ⁴ | `0x0046BDC3`-`0x0046BE17` |
+| ⁵ | `0x002E97B0` |
+| ⁶ | `0x0046BEDD`-`0x0046BEF9` |
+| ⁷ | `0x0046BEFB`-`0x0046BF17` |
+
+</details>
+
+`0x00358940(slot, ordinal)` returns `[block + 8 + ordinal * 8]`, the block being `[slot + 0x08]`, for an ordinal from 0
+to below the count `[block + 0]`, and null for any other ordinal or a slot with no block¹. The
+builders use its answer with no null test in their loops: `+0x09` &= `0xFD` at `0x0046B6DC` and `0x0046B8BC`, `+0x0A` = 0
+at `0x0046B740` and `0x0046BBB0`, and reads of `+0x18` at `0x0046BDC3` and `0x0046BEDD`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00358940`-`0x0035895D` |
+
+</details>
+
+So the table count, the slot's `+0x20` and the class word `+0x1D6` must agree. The class-3 arming `0x00269800` passes
+each answer to `0x00269860`, which returns for a null record ([field
+runtime](field-runtime.md#the-all-records-loop-and-the-trigger-bit)).
+
+The descriptor table at `0x01E0C328` has eight entries of `{u8 class, u8 sub, u16 size}`:
 
 | Sequence | Class | Sub | Size | Movement context | Secondary context | Request entries | Wait slots |
 |---|---|---|---|---|---|---|---|
@@ -104,7 +179,7 @@ neither¹. A separate nibble, bits
 | 2 | it writes `+0x00` = `i`, `+0x10` = 0, `+0x12` = `0xFF`, `+0x15` = the slot index, `+0x16` = 1, `+0x118` = `0x3C0000`, `+0x102` = `0xFFFF`, `+0x04` = `0xFF00`, `+0x20` = `0xFF`, and `+0xF8` = the empty string at `0x02F8F2A0`, whose first four bytes it writes 0; | `0x0026669B` |
 | 3 | it writes `+0x100` = 0, `+0x18` = `0xFFFF0000`, `+0x104` = `0xFFFF`, `+0x106` = 0, `+0x0F` = 0, `+0x21` = 0, `+0x0A` = 0, the entry-group word `+0xF6` = 0, and zeroes `+0x28`, `+0x30`, `+0x38`, `+0x10C` and `+0x114`; |   |
 | 4 | it sets the flag bytes: `+0x14` = `(old & 0xB0) \| 0x30`, `+0x0D` = `(old & 0xA2) \| 0x82` and `+0x08` = `(old & 0x9F) \| 0x11` on manager 0 (`(old & 0x22) \| 2` and `(old & 0x8F) \| 1` elsewhere);<br>• then `+0x0D` bit `0x20` and `+0x08` bit `0x80` cleared, `+0x0B` &= `0xC0`, `+0x0C` = 8, `+0x09` bits `0x20` and `0x80` cleared, `+0x13` &= `0x3C`, `+0x0E` \|= `0xF0` then `&= 0xF0`, and for class 3 `+0x1C` bits `0x100` and `0x2000` cleared; | `0x0026661B`-`0x002666AC` |
-| 5 | it binds the script entry: `+0x02` = 1, or 2 while `i` is below the payload's count word at `+[0x14] + 2`; `+0x40` = the entry at payload `+[0x18] + 4 + i * 0x20` (`0x30` when the payload's word `+0` is 8 or more); `+0x48` and `+0x50` = payload + the resolved dwords at entry `+0x10` and `+0x14`, `+0x58` = payload + entry `+0x08`; |   |
+| 5 | it binds the script entry: `+0x02` = 1, or 2 while `i` is below the payload's count word at `+[0x14] + 2` (only compared, `0x00266705`); `+0x40` = the entry at payload `+[0x18] + 4 + i * 0x20` (`0x30` when the payload's word `+0` is 8 or more), with no bound on `i`; `+0x48` and `+0x50` = payload + the resolved dwords at entry `+0x10` and `+0x14`, `+0x58` = payload + entry `+0x08`; | `0x0026656A`, `0x00266710`-`0x00266734` |
 | 6 | a tagged entry (byte `+0x06` negative and not `0xFF`) registers the record in the pointer table at `0x0209A1F0` by its low 7 bits (`[0x120000 + rax * 8 + 0x1F7A1F0]`, `0x00266758`-`0x0026677C`): tags 0-3 are the party roster entries the field runtime walks ([field runtime](field-runtime.md)), and tags 4 and above the sixteen pointers from `0x0209A210` that `0x0026CE60` clears on slot 0; |   |
 | 7 | the new record gets `+0x12` = the tag and `+0x0F` = 2 for tags 0-3, 3 above. The eviction at `0x00266754`-`0x00266771` tests this record's own `+0x12`, which step 2 set to `0xFF`, so it does not run, and the record the table held keeps its `+0x12` and `+0x0F`; | `0x00266612` |
 | 8 | it builds the request entry free list and clears bytes `+0x00`-`+0x16` of the first `+0x88` (channel count) wait slots, which covers every slot only because the two counts are both 8 or both 6; | `0x003DB580` |
@@ -113,6 +188,10 @@ neither¹. A separate nibble, bits
 | 11 | it issues the initial resource requests through `0x003DBB60(record, channel, id, 2, 0)`, counting each request on the last channel in `+0x10`. On channel `channels - 1` it issues the `+0x20` id (only when the payload word `+0` is 10 or more; from `+0xE6`, else the entry row's word `+0x20` when the row's count is 16 or more), then id 0, then the `+0x14` id (`+0xDA`, else row `+0x14` when the count is over 9); |   |
 | 12 | on channel 0 it issues the `+0x04` id (`+0xCA`, else row `+0x04` when the count is over 1), not counted. A negative row word (sign-extended, then tested for its sign: `0x00266921`-`0x00266924`, `0x00266994`-`0x00266997`, `0x002669E3`-`0x002669E6`) or an absent row word issues nothing; an override word other than `0xFFFF` is zero-extended and always issues; |   |
 | 13 | for a class-3 actor it sets `+0x1C` bit `0x4` from the `+0x06` id (`+0xCC`, else row `+0x06` when the count is over 2), running `0x00268EA0` when `+0x0B` bit `0x8` is set, else clears bit `0x4`; then bit `0x400` from the `+0x16` id (`+0xDC`, else row `+0x16` when the count is over 10) with the same call, and setting bit `0x400` clears bit `0x4` again; else clears bit `0x400`. It ends with `0x003DB280(record)`. |   |
+
+Over the 769 field scripts (`plan_map`), read as `0x00266530` binds them, sequence 7 holds 4,054 entries, 2,202 of them
+named `monster_` and none of those tagged; its 724 tagged entries are the party controllers `PC00`-`PC03` (tags 0-3,
+181 each), and the other sequences hold 2,224 tagged entries.
 
 ### The request entry lists
 

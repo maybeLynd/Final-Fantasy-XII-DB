@@ -460,7 +460,7 @@ Each row is a function this page names (left), whether it calls the functions on
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x002E9B80`](effect-anchors-and-targets.md) (on effect anchors and targets) | calls | [`0x003588B0`](../Menus-And-HUD/map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
+| [`0x002E9B80`](effect-anchors-and-targets.md) (on effect anchors and targets) | calls | [`0x003588B0`](../Characters-And-Objects/actor-record.md) Actor handle: resolve registry entry by packed id (on actor record) |
 | [`0x0036DD80`](position-to-scalar.md) | is called by | [`0x0025C830`](../Menus-And-HUD/text-npc-names.md) (on text npc names) |
 | [`0x00378120`](../World-Areas-And-Travel/mpk-map-pack.md) (on mpk map pack) | calls | [`0x00332130`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
 

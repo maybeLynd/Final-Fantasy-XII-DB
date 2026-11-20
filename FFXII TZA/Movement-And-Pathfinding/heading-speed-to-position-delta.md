@@ -455,7 +455,8 @@ On the second (`0x0023406A`, producer `0x0023407E`), only `0x0033A240` runs in b
 </details>
 
 The refresh, after copying the actor's angles, clears bit `0x40000` and zeroes `+0x158`, and sets the bit again only
-with a requested speed that is not 0.0 (`0x00265830`, the steering request's `+0x24`), for the focus or a unit with
+with a requested speed that is not 0.0 (`0x00265830`, the steering request's `+0x24`; [battle
+locomotion](battle-locomotion.md#detour-and-stall-recovery)), for the focus or a unit with
 `+0x1F0` bit `0x1000`¹ ([enemy spawning](../Enemy-Spawning/enemy-spawning.md)).
 
 <details>

@@ -510,12 +510,12 @@ Each row is a function this page names (left), whether it calls the functions on
 |---|---|---|
 | [`0x002F8060`](traps.md) Battle unit: try trigger nearby authored field action (on traps) | calls | [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes) |
 | [`0x003148F0`](treasure-chests.md) World transition: get active or pending field id | is called by | [`0x0025D9E0`](../Story-Events-And-Hunts/opening-setup-scripts.md) Actor manager: run field runtime pass (on opening setup scripts)<br>[`0x00329CC0`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle slot map: initialize mapping classes (on strong and weak mode) |
-| [`0x003272A0`](treasure-chests.md) Battle unit: get party leader | calls | [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse)<br>[`0x003588B0`](../Menus-And-HUD/map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
+| [`0x003272A0`](treasure-chests.md) Battle unit: get party leader | calls | [`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse)<br>[`0x003588B0`](../Characters-And-Objects/actor-record.md) Actor handle: resolve registry entry by packed id (on actor record) |
 | [`0x0032FCA0`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin manager resource set load (on ebp script container) | calls | [`0x002628B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes)<br>[`0x0032ED80`](../EBP-Script-Files/ebp-camera-shake.md) (on ebp camera shake)<br>[`0x00330310`](../EBP-Script-Files/ebp-script-container.md) Actor resource: begin primary payload load (on ebp script container)<br>[`0x003306E0`](../EBP-Script-Files/atel-debug-companions.md) (on atel debug companions) |
 | [`0x00354400`](treasure-chests.md) | calls | [`0x0026E060`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings) |
 | [`0x00355210`](treasure-chests.md) | calls | [`0x0026E060`](../Scripts-And-Script-Commands/script-name-bindings.md) (on script name bindings) |
-| [`0x00355830`](treasure-chests.md) | calls | [`0x0025D5E0`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x003588B0`](../Menus-And-HUD/map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
-| [`0x00356570`](treasure-chests.md) | calls | [`0x003588B0`](../Menus-And-HUD/map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
+| [`0x00355830`](treasure-chests.md) | calls | [`0x0025D5E0`](../Scripts-And-Script-Commands/script-requests.md) (on script requests)<br>[`0x003588B0`](../Characters-And-Objects/actor-record.md) Actor handle: resolve registry entry by packed id (on actor record) |
+| [`0x00356570`](treasure-chests.md) | calls | [`0x003588B0`](../Characters-And-Objects/actor-record.md) Actor handle: resolve registry entry by packed id (on actor record) |
 
 **Sound and music** (explained on [frame update order](../Engine-Core/frame-update-order.md))
 

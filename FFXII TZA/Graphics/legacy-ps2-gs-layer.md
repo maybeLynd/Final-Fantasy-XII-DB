@@ -290,6 +290,65 @@ when the count is positive¹ and clears the slot.
 `+0xD0` with the first and writes the fourth integer into the bits under mask `0xFF00000000000000` of the GS FOG register
 (`0x0A`); the point projector `0x00272180` and the map screen code `0x003C29A0` use the second.
 
+### The texture record bank
+
+YM00 tags 14 and 26 build the bank at the map's `[+0x150]` with `0x00467D20(bank, chunk)` ([map
+pack](../World-Areas-And-Travel/mpk-map-pack.md)). The chunk starts with a count dword and that many index dwords from
+`+0x04`; the low 24 bits of each, times 16, place a record in the chunk, whose TIM2 image is at `+0x30`. The bank
+keeps the chunk at `+0x18`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00467D36` |
+
+</details>
+
+A first pass adds up the picture counts, the word at TIM2 `+0x06`¹. The old record array
+`+0x08` is freed², the total goes to the bank's `+0x00`³, and a zeroed array of
+`total * 0x60` bytes from arena 6 takes its place⁴.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00467D54`-`0x00467DB4` |
+| ² | `0x003EC8A0`, `0x00467DC6` |
+| ³ | `0x00467DD0` |
+| ⁴ | `0x00467DD2`-`0x00467DF9` |
+
+</details>
+
+A second pass fills one record per picture, the records in index order and each record's pictures in turn, numbering
+on from one record to the next¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00467E30`-`0x00468037` |
+
+</details>
+
+`0x00536080(tim2, j)` finds picture `j`: it answers null for `j` at or past the count, and otherwise starts after the
+TIM2 header (`+0x10`, or `+0x80` when byte `+0x05` is not 0) and steps over `j` pictures by each one's size dword
+`+0x00`¹. The fields each record gets are in [the texture record layout](#layouts). Its
+pointers are stored as `0x0020E620(p)`, the 32-bit `p` less the dword `0x01F83530`².
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00536080`-`0x005360BB` |
+| ² | `0x0020E620`-`0x0020E628` |
+
+</details>
+
 ### The slot rebuild
 
 `0x002F7380(map)` works on the map's texture records (a bank at `[+0x150]`: count at `+0x00`,
@@ -314,6 +373,18 @@ one whose `+0x0C` word is 0 is not counted by that run.
 |---|---|
 | ¹ | `0x002F73DE`-`0x002F740A`, `0x002F7465`-`0x002F7474` |
 | ² | `0x002F753F`-`0x002F7542` |
+
+</details>
+
+Only the records after the first are tested against `+0x224`: step 4's first increment goes to the index the instance
+names, up to `0x3FFF`, so an index at or past the bank count writes past the array¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002F74E5`-`0x002F7500` |
 
 </details>
 
@@ -616,16 +687,34 @@ Recompiled VU1 microprograms keep VU registers in fixed globals next to the emul
 <details>
 <summary>Show the memory layouts</summary>
 
-Texture record (map `+0x150` bank, from [`+0x08`]), `0x60` bytes:
+Texture record (map `+0x150` bank, from [`+0x08`]), `0x60` bytes, one per TIM2 picture¹:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00467D20` |
+
+</details>
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | psm | GS pixel format |
-| `+0x05` | `u8` | levels | capped at 7 by `0x00466190` |
-| `+0x06` | `u16` | width | halved per level |
-| `+0x08` | `u16` | height | halved per level |
-| `+0x0C` | `u16` | continues | non-zero: counted with the record before it |
-| `+0x0E` | `i16` | count, then slot | reference count during step 4; slot or `0xFFFF` after step 5 |
+| `+0x00` | `u8` | psm | GS pixel format: byte `0x00D12520` + 4 * (picture `+0x13` - 1)      `0x00467E9C`-`0x00467EAC` |
+| `+0x01` | `u8` | 0 | written when the picture has a palette (byte `+0x12` not 0)    `0x00467FD0` |
+| `+0x02` | `u8` | buffer width | `0x003A1FE0`(width, psm): the width rounded up to 128 for psm `0x13`, `0x14`, `0x1B`, `0x24` or `0x2C` and to 64 for the others, / 64  `0x00467EAE`-`0x00467EB3` |
+| `+0x03` | `u8` | log2 of the width when it is a power of two: the top set bit of 2w-1 less | `0x00467EBB`-`0x00467F07` the highest clear bit below it, or 0; `+0x04` the same from the height        `0x00467F0B`-`0x00467F53` |
+| `+0x05` | `u8` | levels | picture `+0x11`; capped at 7 by `0x00466190`                       `0x00467F69`-`0x00467F6E` |
+| `+0x06` | `u16` | width | picture `+0x14`; halved per level                              `0x00467E8A`-`0x00467E8F` |
+| `+0x08` | `u16` | height | picture `+0x16`; halved per level                              `0x00467E94`-`0x00467E98` |
+| `+0x0A` | `u16` | colours | picture `+0x0E`, with a palette                                `0x00467FD4`-`0x00467FD9` |
+| `+0x0C` | `u16` | continues | the picture's index in its TIM2; non-zero: counted with the record before it                                             `0x00467F7B` |
+| `+0x0E` | `i16` | count, then slot | 0 when built; reference count during step 4; slot or `0xFFFF` after step 5 |
+| `+0x10` | `u32` | 0x0020E620(0) | `0x00467F87` |
+| `+0x14` | `u32` | image | `0x0020E620`(picture + word `+0x0C`)                               `0x00467F57`-`0x00467F64` |
+| `+0x18` | `u32` | palette | `0x0020E620`(picture + dword `+0x08` + word `+0x0C`) with a palette, else `0x0020E620`(0)                                             `0x00467F78`, `0x00467FB9`-`0x00467FCD` |
+| `+0x1C` | `u32` | 0x0020E620(picture) | `0x00467F84`-`0x00467F8F` |
+| `+0x20` | `u32[16]` | 0x0020E620(0); tag 12 then stores 0x0020E620 of a slot of the array | `0x00467F92`-`0x00467FB1` [`0x02CA6018`], registered by `0x003CCB60`, at 4 * its chunk entry's `+0x08`    `0x004682B4`-`0x004682EB` |
 
 Instance record (map `+0x178`, tag 30 of the map pack), `0x30` bytes:
 

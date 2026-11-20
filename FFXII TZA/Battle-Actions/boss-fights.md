@@ -240,7 +240,7 @@ Each row is a function this page names (left) and the functions from this topic 
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x00263BE0`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00226BE0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock) |
+| [`0x00263BE0`](target-selection.md) (on target selection) | is called by | [`0x00226BE0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock) |
 | [`0x00263FF0`](../Graphics/effect-anchors-and-targets.md) (on effect anchors and targets) | is called by | [`0x00226BE0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock)<br>[`0x002E09A0`](../Menus-And-HUD/menus.md) (on menus) |
 | [`0x00358940`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor manager: get record by ordinal (on party during scenes) | is called by | [`0x00226BE0`](../Scripts-And-Script-Commands/world-lock.md) (on world lock) |
 

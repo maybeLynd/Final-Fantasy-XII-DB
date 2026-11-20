@@ -656,6 +656,122 @@ command, it then calls `0x00188730(manager)`⁴.
 
 </details>
 
+### The feedback pass
+
+`0x006F6D80(effects, source)` is the feedback pass. It clears the byte `+0xD33` on entry, sets it to 1 at the end and
+returns 0¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006F6DFA`, `0x006F72B8`-`0x006F72BA` |
+
+</details>
+
+It works with three textures. The target is the feedback tone-map texture `+0x1C0`; when that is null, it is a texture
+of the view's feedback buffer `[+0x1B8]` (one per view, indexed by the view `+0x1F0`), at index `c & 1`, where `c` is
+the view's dword in the array `+0x1E8`¹. The same pick gives the current feedback texture, and
+the index `(c - 1) & 1` gives the previous one². An index not below the buffer's count `+0x3C`
+gives a null texture, and so does a null `+0x1B8`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006F6DF0`-`0x006F6E53` |
+| ² | `0x006F6E57`-`0x006F6EE4` |
+
+</details>
+
+It binds the target¹ and calls `0x00769FC0` with the source, the target's size (`+0x5C`,
+`+0x60`) and these effect values²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00722E80`, `0x006F6FF5` |
+| ² | `0x006F6F41`-`0x006F7163` |
+
+</details>
+
+- the exposure ratio `+0x728 / +0x6D8`, or `+0x728 / (+0x728 * +0x6DC)` when the byte `+0x48C` is set;
+- the ratio `+0x348 / +0x34C`;
+- the floats `+0x998` to `+0x9A8`, with `+0x99C` and `+0x9A0` passed as 0 when the byte `+0x994` is 0;
+- whether the byte `+0x55B` is 0;
+- `+0x74C`, `+0x73C`, `+0x7A0` and `+0x110`.
+
+It then takes the object `0x007142F0` returns and calls `0x00714560`. When the byte `+0x1C8` is 0, it binds the current
+feedback texture¹. Last, it calls `0x00743B70` with that object, the previous texture, the
+target, the current texture and two weights²:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006F7175`-`0x006F71CD` |
+| ² | `0x006F72B3` |
+
+</details>
+
+```python
+a = +0x978
+b = +0x97C;  if b < 0:  b = 1 - a  # 0x006F71D2-0x006F71ED
+if +0x980 > 0:  # 0x006F71F2-0x006F7230
+    e = +0x6D4 / +0x980                              (the time step over the rate)
+    a = powf(a, e)
+    b = 1 - powf(1 - b, e)
+```
+
+Its other arguments are the block `+0x824` when the byte `+0x926` is set (else null), the block `+0x864` when the byte
+`+0x927` is set (else null), and the float `+0x984`, or `+0x348` when `+0x984` is 0 or less¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006F7234`-`0x006F7268` |
+
+</details>
+
+Initialize sets `+0x978` to 0¹. The setter `0x0070B000(effects, a, b, rate)` sets `+0x978`, `+0x97C` and
+`+0x980`²; it is reached only by the jump at `0x006DC7A7` in `0x006DC7A0`, which passes the global
+block `[0x02EA0B70]` and which no call, jump or stored pointer in the executable names. So while `+0x978` keeps its 0,
+`a` is 0 whenever `+0x980` is 0 or less or the time step `+0x6D4` is above 0.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00704BBB` |
+| ² | `0x0070B002`-`0x0070B01B` |
+
+</details>
+
+`0x006F7330(effects, source)` does the first half of the pass on another target. It clears `+0xD33`, takes its target
+from `0x0070B150(effects)`¹, binds it², and calls `0x00769FC0` with the source, that target's size
+and the same effect values³. It then returns 0 with `+0xD33` set to 1⁴, with no
+blend with an earlier frame.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x006F7382` |
+| ² | `0x006F743B` |
+| ³ | `0x006F75FB` |
+| ⁴ | `0x006F7600`-`0x006F7602` |
+
+</details>
+
 ### The licence check
 
 `0x006DFF40` refuses with "License text is not set." when no text was given. Otherwise it has `0x0071C550`
@@ -1081,6 +1197,46 @@ instruction calls it directly. Each of the eight is called only from inside the 
 
 </details>
 
+### Reading the luminance back
+
+`0x00780590(object, flag)` is `CTextureUtil::GetResult_UpdateInternalLuminance`, the name its own warning gives
+(`0x00DAC250`, logged with the file `..\src\GPU\GPUTextureLuminance.cpp`). It is one of the three callers of `0x0077FFE0`
+([above](#bodies-outside-the-member-lists)). It returns 0 and does nothing else when the float `+0x7C` is 0 or above¹. Otherwise the mode `+0x68` picks what runs before `0x007804C0(object)`², and it
+returns 0:
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007805A7`-`0x007805B9` |
+| ² | `0x0078073A` |
+
+</details>
+
+- Mode 2 calls `0x0077FFE0(object)` until it answers 0, after one "CPU may be blocked." warning (line `0x589`) when the
+  log levels `0x01F3BA80` and `0x01F3BA8C` are 1 or more¹.
+- Mode 5 runs the same loop and gives the warning (line `0x626`, under the same log levels) only before the second
+  call².
+- Modes 3 and 4 ask each of the `+0x44` objects in the pointer array `+0x48` for a value through its slot `+0x58`,
+  with the flag as the third argument, and cap each answer at `0xFF`, a negative answer kept³.
+- Mode 4 then stores four bytes: with three or more objects, `+0xA2`, `+0xA1`, `+0xA0` and `+0xA3` take answers 0, 1,
+  2 and 3; with fewer, `+0xA0`, `+0xA1` and `+0xA2` take answer 0 and `+0xA3` takes answer 1⁴.
+  Mode 3 stores none of them.
+- Mode 1 and any other mode go straight to `0x007804C0`.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x007805D5`-`0x0078060E` |
+| ² | `0x0078062E`-`0x0078066E` |
+| ³ | `0x00780675`-`0x007806D9` |
+| ⁴ | `0x007806EF`-`0x00780729` |
+
+</details>
+
 ## Layouts
 
 <details>
@@ -1335,7 +1491,7 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x970` | `i32` | colourSpaceB | 0 from Initialize (the qword at `0x0070500C`); the second value `0x0070B2A0` compares |
 | `+0x974` | `u8` | dofEnable | the depth-of-field enable: `0x00708710` stores the game's enable byte when `+0x130` is set and returns 0, else stores 0 and returns 1 (`0x00708710`-`0x00708733`), setting `+0x6FD` in both cases (`0x00708717`); read by the depth-of-field update `0x006FC760` |
 | `+0x975` | `u8` | feedbackEnable | the feedback enable of SetFeedbackEnable (`0x0070AFE7`), 0 when `+0x13E` is clear (`0x0070AFD5`); read by the internal process and `0x0070B150` |
-| `+0x978` | `f32` | feedbackParam978 | 0 from Initialize (`0x00704BBB`), written by nothing else; read by `0x006F6D80` (`0x006F71DE`) |
+| `+0x978` | `f32` | feedbackParam978 | 0 from Initialize (`0x00704BBB`); also the setter `0x0070B000`'s second argument (`0x0070B002`), reached only from `0x006DC7A0`, which no call, jump or stored pointer names; read by `0x006F6D80` (`0x006F71DE`) |
 | `+0x9CC` | `f32` | lensParam9CC | π from Initialize (`0x00704582`); read by `0x006F4C40`, the internal process and `0x006FD760` |
 | `+0x9F0` | `f32[2]` | pair9F0 | the third float pair of `0x00709FB0` (`0x00709FE6`, from its sixth argument); (0, 0) from Initialize (`0x0070479A`) |
 | `+0xA4C` | `i32` | sampleCountA4C | `0x0070A510`'s count argument clamped to 3..8, a negative value kept (`0x0070A526`-`0x0070A57F`); read by UpdateParameters_Base |

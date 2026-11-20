@@ -420,13 +420,15 @@ The constants 20091 and 35468 (stored as -30068) at `0x03001350` and `0x03001340
 Five more kernels lie among the others but no instruction and no stored pointer in any section refers
 to them:
 
-- `0x001274D0` copies a block 32 bytes wide, four rows per pass.
-- `0x00129870` computes three sums of absolute differences of a 16-byte-wide block at offsets 0, 1 and
+- `0x001274D0` copies a block 32 bytes wide, four rows per pass, as `0x00125770` does but with 64-bit strides.
+- `0x00129870` computes three sums of absolute differences of a 16x16 block at offsets 0, 1 and
   2, the operation of an encoder's motion search.
-- `0x0012A290` runs a butterfly over eight rows of eight 16-bit values.
-- `0x0012B980` and `0x00147B00` are 8x8 transforms built on 14-bit cosine constants: the pairs 15137 and
-  6270, 16069 and 3196, 13623 and 9102 (tables from `0x030015A0` and from `0x03001A60`), and 23170, twice
-  11585¹. VP8 itself uses only the 4x4 transform.
+- `0x0012A290` is an 8x8 Hadamard transform: three add and subtract butterfly stages over eight rows of eight 16-bit
+  values, a transpose, and the same stages again.
+- `0x0012B980` is an 8x8 inverse transform that adds its result to the destination block, and `0x00147B00` an 8x8 forward
+  transform; both are built on 14-bit cosine constants: the pairs 15137 and 6270, 16069 and 3196, 13623 and 9102
+  (tables from `0x030015A0` and from `0x03001A60`) and 23170¹, and `0x00147B00` also on 11585
+ ². VP8 itself uses only the 4x4 transform.
 
 <details>
 <summary>Where in the code</summary>
@@ -434,8 +436,11 @@ to them:
 | | Code |
 |---|---|
 | ¹ | `0x03001380`, `0x03001A20` |
+| ² | `0x03001A40`, `0x03001A50` |
 
 </details>
+
+All five have rows in the kernels table linked below.
 
 The other kernels from `0x00125770` to `0x00158C97` that are in neither list are not reached either:
 no rel32 call, jump or conditional branch in `.text`, no rip-relative operand in any listed function and

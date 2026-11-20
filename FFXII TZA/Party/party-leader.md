@@ -279,7 +279,7 @@ The pass runs in this order:
 
 | Step | What happens | Where in the code |
 |---|---|---|
-| 1 | It returns at once when `0x00383C80()` answers 0. The leader is the answer of `0x003272A0()`; its position comes from `0x002646C0` on its actor `+0x10` and its heading from `0x00265200`. With no leader or no actor the position is the constant `0x008C5FD0` (0, 0, 0, 1.0) and the heading 0. | `0x003384D5`-`0x003384DC`<br>`0x00338513`-`0x0033857C` |
+| 1 | It returns at once when `0x00383C80()` answers 0. The leader is the answer of `0x003272A0()`; its position comes from `0x002646C0` on its actor `+0x10` and its heading from `0x00265200` ([facing and steering](../Movement-And-Pathfinding/facing-and-steering.md#three-angles-and-two-wraps)). With no leader or no actor the position is the constant `0x008C5FD0` (0, 0, 0, 1.0) and the heading 0. | `0x003384D5`-`0x003384DC`<br>`0x00338513`-`0x0033857C` |
 | 2 | Each follower's slot `+0x20` is the answer of `0x004687F0` for the vector `0x00203080` makes from the slot's position and the leader's, handed on through `0x0033CB70` and raised by 2π when negative. With no follower the pass ends here. | `0x00338634`-`0x0033866B`<br>`0x00338694`-`0x00338697` |
 
    The slot's position `+0x10` is stored just before: the follower's position from `0x002646C0`, or

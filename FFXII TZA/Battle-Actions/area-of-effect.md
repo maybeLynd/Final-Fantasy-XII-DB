@@ -515,7 +515,8 @@ the target's first qword¹.
 </details>
 
 Action `0x1C7` first moves that target onto the user¹. It reads the user's position
-with `0x00265020(user's actor, &x, &y, &z)` and heading with `0x00265200(user's actor)`, and the target's position
+with `0x00265020(user's actor, &x, &y, &z)` and heading with `0x00265200(user's actor)` ([facing and
+steering](../Movement-And-Pathfinding/facing-and-steering.md#three-angles-and-two-wraps)), and the target's position
 with `0x00265020(target's actor, &x, &y, &z)`.
 
 <details>

@@ -195,9 +195,9 @@ of another field.
 
 ### Who reaches a unit through a pointer
 
-[`native-limits-battle-unit-consumers.tsv`](native-limits-battle-unit-consumers.tsv) has the 445 functions of
+[`native-limits-battle-unit-consumers.tsv`](native-limits-battle-unit-consumers.tsv) has the 444 functions of
 [`battle-unit-fields.tsv`](../Characters-And-Objects/battle-unit-fields.tsv), with the route each reaches a unit by and how
-many fields it uses. 379 of them are not in the site table: they depend on the record's layout and not on the count.
+many fields it uses. 378 of them are not in the site table: they depend on the record's layout and not on the count.
 43 read the slot number.
 
 ### Columns of native-limits-battle-unit-dependencies.tsv
@@ -303,7 +303,7 @@ Each row is a function this page names (left), whether it calls the functions on
 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
-| [`0x003247F0`](../Enemy-AI-And-Gambits/enemy-ai.md) Battle unit: rebuild perception candidate cache (on enemy ai) | calls | [`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item)<br>[`0x00236850`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets)<br>[`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse)<br>[`0x003588B0`](../Menus-And-HUD/map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
+| [`0x003247F0`](../Enemy-AI-And-Gambits/enemy-ai.md) Battle unit: rebuild perception candidate cache (on enemy ai) | calls | [`0x00236820`](../Items-Equipment-Shops-And-Licenses/equipping-an-item.md) (on equipping an item)<br>[`0x00236850`](../Enemy-AI-And-Gambits/enemy-order-sets.md) (on enemy order sets)<br>[`0x00263E30`](../Game-Files-And-Data-Tables/character-se-tables-chse.md) Actor work: get battle unit raw (on character se tables chse)<br>[`0x003588B0`](../Characters-And-Objects/actor-record.md) Actor handle: resolve registry entry by packed id (on actor record) |
 | [`0x003247F0`](../Enemy-AI-And-Gambits/enemy-ai.md) Battle unit: rebuild perception candidate cache (on enemy ai) | is called by | [`0x00233F70`](../Enemy-Spawning/enemy-respawning.md) Battle unit: update lifecycle and combat frame (on enemy respawning) |
 
 **Sound and music** (explained on [audio manager](../Sound-And-Music/audio-manager.md), [debug logging](debug-logging.md), [sound driver objects](../Sound-And-Music/sound-driver-objects.md), [sound streaming](../Sound-And-Music/sound-streaming.md))

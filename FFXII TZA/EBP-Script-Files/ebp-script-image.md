@@ -77,7 +77,7 @@ All multi-byte fields are little-endian.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | nameOff | into the name pool: the actor's name |
+| `+0x00` | `u32` | nameOff | from the name pool start `+0x4C`: the actor's name, ASCII or CP932 |
 | `+0x04` | `u16` | type | actor type 0..7 |
 | `+0x06` | `u16` | partySlot | `0xFF`, or `0x80`..0x83 for a party member's script |
 | `+0x08` | `u32` | codeStart | bytecode base -> actor record `+0x58` |
@@ -104,6 +104,9 @@ each one's footer holds 15 entry slots, not 18.
 
 </details>
 
+A function's `nameOff` is from the name pool `+0x4C` as well: all 1,412,541 function entries name a string there, and
+768,115 do not from the image start; `codeStart` + `codeOff` lies inside the length `+0x04` in all.
+
 ### Actor lists
 
 ```python
@@ -128,6 +131,8 @@ Measured over the section 0 of all 10,036 containers; `us` figures in brackets.
 | authors | 30 distinct (29); 17 `us` author fields are empty or not printable |
 | type counts | 8 entries in all; each equals the directory's count of that type, entries sorted by type |
 | directory entries | 237,662 (26,390): type 0 79,325, 6 71,712, 7 36,603, 5 35,865, 1 13,995, 3 162 |
+| directory | ends inside `+0x04` in all 10,036; every entry's name resolves from `+0x4C`: 237,662, 170,306 ASCII and 67,356 CP932 |
+| type-7 `monster_` entries | 19,818, none with a party tag `0x80`-`0xFE` |
 | party-member entries | 26,532 (2,948) |
 | functions | 1,412,541 (156,895); at most 140 per actor; function 0 is `init` at code offset 0 in every entry |
 | jump targets | 16,515,827 (1,834,423); at most 6,519 per actor |

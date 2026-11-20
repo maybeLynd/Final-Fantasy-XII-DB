@@ -43,9 +43,18 @@ to it (below); `0x0026B6A0` writes nothing for a class other than 1 and 3¹.
 
 Its movement context at `+0xB8` holds a pitch at `+0xA0`, a desired heading
 (yaw) at `+0xA4` and the facing at `+0xA8`. The facing is what the rest of the engine reads:
-`0x00265200` returns `+0xA8` for class 3 and `+0x38` for class 1 (a placed object), 0 otherwise, and
-has 37 call sites. The yaw and the pitch drive the step ([movement
+`0x00265200` returns 0 for a null actor¹, `+0xA8` for class 3 and `+0x38` for class 1 (a placed
+object), 0 otherwise, and has 37 call sites. The yaw and the pitch drive the step ([movement
 step](heading-speed-to-position-delta.md)).
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00265203`, `0x00265233` |
+
+</details>
 
 Two normalisers fold an angle into a single turn, and they are different functions:
 
@@ -425,6 +434,21 @@ and passes it to the render record⁴.
 | ² | `0x0026B014`-`0x0026B03A` |
 | ³ | `0x002E5D9E`-`0x002E5DB1` |
 | ⁴ | `0x002E6000` |
+
+</details>
+
+An actor of a class other than 3 gets only the `0x002E6000` call¹. While the context's byte
+`+0x107` has bit `0x2`, the point the placement sees is moved by the context's offset `+0x40`/`+0x44`/`+0x48`², and the placed point has the offset taken off again before it is written back³; the offset is the one the [movement step](heading-speed-to-position-delta.md) applies on its
+three-dimensional path.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x002E5CB8`-`0x002E5CC0` |
+| ² | `0x002E5D06`-`0x002E5D28` |
+| ³ | `0x002E5D68`-`0x002E5DB1` |
 
 </details>
 

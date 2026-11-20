@@ -125,7 +125,8 @@ through the record pointer, read again². It sets bit `0x1` of the unit's dword 
 
 </details>
 
-When bit `0x8` was set before the clear, it also takes `0x00265200(actor)`, passes that float through
+When bit `0x8` was set before the clear, it also takes `0x00265200(actor)` ([facing and
+steering](../Movement-And-Pathfinding/facing-and-steering.md#three-angles-and-two-wraps)), passes that float through
 `0x0031ACC0(actor, float)`, stores the result at the unit's `+0x160` and `+0x15C`, and calls
 `0x002EACD0(unit dword +0x08, 1, unit + 8, 0x7B)`¹.
 

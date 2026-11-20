@@ -504,7 +504,7 @@ Each row is a function this page names (left), whether it calls the functions on
 | Function named on this page | | Functions from this topic |
 |---|---|---|
 | [`0x0024E910`](effect-lifecycle.md) (on effect lifecycle) | is called by | [`0x002628B0`](../Scripts-And-Script-Commands/event-scenes.md) (on event scenes) |
-| [`0x003B8670`](effect-file-loading.md) (on effect file loading) | calls | [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes)<br>[`0x0026A430`](effect-file-loading.md) (on effect file loading)<br>[`0x002EB740`](character-effects.md)<br>[`0x003588B0`](../Menus-And-HUD/map-screens.md) Actor handle: resolve registry entry by packed id (on map screens) |
+| [`0x003B8670`](effect-file-loading.md) (on effect file loading) | calls | [`0x00265020`](../Scripts-And-Script-Commands/party-during-scenes.md) Actor: get world position (on party during scenes)<br>[`0x0026A430`](effect-file-loading.md) (on effect file loading)<br>[`0x002EB740`](character-effects.md)<br>[`0x003588B0`](../Characters-And-Objects/actor-record.md) Actor handle: resolve registry entry by packed id (on actor record) |
 
 **Sound and music** (explained on [animation sounds](../Sound-And-Music/animation-sounds.md), [force fight mode](../Engine-Core/force-fight-mode.md), [effect drawing](effect-drawing.md), [sound effects](../Sound-And-Music/sound-effects.md), [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md), [effect anchors and targets](effect-anchors-and-targets.md))
 

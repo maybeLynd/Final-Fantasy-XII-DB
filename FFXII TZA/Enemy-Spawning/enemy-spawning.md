@@ -220,7 +220,8 @@ further test, so a 0 return can leave that point in the caller's buffer (the sel
 
 It needs the
 party leader (`0x003272A0`: the focus handle's unit, with `0x02089340` bit `0x10` set and the unit's flag
-bit `0x8`), takes the leader's position¹ and heading², and branches on the
+bit `0x8`), takes the leader's position¹ and heading (`0x00265200`, [facing and
+steering](../Movement-And-Pathfinding/facing-and-steering.md#three-angles-and-two-wraps)), and branches on the
 record's first byte:
 
 <details>
@@ -229,7 +230,6 @@ record's first byte:
 | | Code |
 |---|---|
 | ¹ | `0x00265020` |
-| ² | `0x00265200` |
 
 </details>
 
@@ -707,8 +707,9 @@ non-null and of kind 1 and bit `0x10` of the byte `+0x03` of the row at the unit
 
 The refresh `0x00236300(unit)`, with which `0x00239E10` ends, copies the byte `+0xEA9` to `+0x1F7`¹
 and takes three floats from the actor at `+0x10`: `0x00263CC0(actor)` into `+0x15C`, `0x00263C80(actor)` into `+0x174` and
-`0x00265200(actor)` into `+0x160`². It clears bit `0x40000` of the flags and stores a dword 0 at
-`+0x158`³.
+`0x00265200(actor)` into `+0x160` (`0x0023631A`-`0x0023634A`; [facing and
+steering](../Movement-And-Pathfinding/facing-and-steering.md#three-angles-and-two-wraps)). It clears bit `0x40000`
+of the flags and stores a dword 0 at `+0x158`².
 
 <details>
 <summary>Where in the code</summary>
@@ -716,13 +717,13 @@ and takes three floats from the actor at `+0x10`: `0x00263CC0(actor)` into `+0x1
 | | Code |
 |---|---|
 | ¹ | `0x0023630A`-`0x00236314` |
-| ² | `0x0023631A`-`0x0023634A` |
-| ³ | `0x00236352`-`0x00236359` |
+| ² | `0x00236352`-`0x00236359` |
 
 </details>
 
 It then sets bit `0x40000` again in two cases. When `0x003273B0(unit dword +0x08)` answers non-zero, the bit is set if
-`0x00265830(actor)` is not 0.0 (a value that is not a number counts as not 0.0), and `0x00311E20()` is called either way¹. When bit `0x1000` of the dword `+0x1F0` is set, the bit is set on the same test of
+`0x00265830(actor)` ([battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md#detour-and-stall-recovery))
+is not 0.0 (a value that is not a number counts as not 0.0), and `0x00311E20()` is called either way¹. When bit `0x1000` of the dword `+0x1F0` is set, the bit is set on the same test of
 `0x00265830(actor)`².
 
 <details>
@@ -893,7 +894,8 @@ The scripts of each language tree call it with `(1, 0, 0)` 4,937 times and
 The per-unit frame `0x00233F70` (the actor record's `+0x38` callback, [field
 runtime](../Characters-And-Objects/field-runtime.md))
 calls `0x002350C0(actor)` at `0x00234022` for a bound unit with flag bits `0x8` and `0x10` whose status gate passes (the
-actor is the pointer at unit `+0x10`, `0x0023401E`; the frame first needs `0x002671C0()`, a loaded navigation dataset and
+actor is the pointer at unit `+0x10`, `0x0023401E`; the frame first needs `0x002671C0()` ([frame update
+order](../Engine-Core/frame-update-order.md#the-per-unit-frame)), a loaded navigation dataset and
 unit flag bit `0x10000` clear, `0x00233F91`-`0x00233FBD`).
 
 `0x002350C0` returns 0 unless the actor record's `+0x0D` bit `0x40` is set (`0x002672F0`, the drive loop's "scheduled this

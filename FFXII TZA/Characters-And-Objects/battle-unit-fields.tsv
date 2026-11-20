@@ -2206,16 +2206,14 @@ function	name	site	disp	kind	instruction	route	note
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304CE3	0x768	r	cmp dword ptr [rsi + 0xb8], eax	arg0 from 0x00307BE0 at 0x00307C19	
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304CF9	0x768	rw	add dword ptr [rsi + 0xb8], eax	arg0 from 0x00307BE0 at 0x00307C19	
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304CFF	0x768	r	mov eax, dword ptr [rsi + 0xb8]	arg0 from 0x00307BE0 at 0x00307C19	
-0x00307B60	BattleUnit_AdvanceActionState	0x00307C2D	0x768	r	cmp dword ptr [rbx + 0x768], eax	sweep	a read of the field at this instruction, in a function that none of the other rows' routes reaches
 0x00307BE0	BattleUnit_AdvanceActionState	0x00307C2D	0x768	r	cmp dword ptr [rbx + 0x768], eax	arg0 from 0x00308610 at 0x00308754	
 0x003105D0	BattleUnit_CancelAndResetCurrentAction	0x003106F9	0x768	w	mov qword ptr [rbx + 0x768], rbp	arg0 from 0x00300140 at 0x0030014D	
-0x00339C40	BattleLocomotion_ComputeStepDistance	0x00339CAB	0x768	r	cmp dword ptr [rcx + 0x768], eax	sweep	a read of the field at this instruction, in a function that none of the other rows' routes reaches
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339CAB	0x768	r	cmp dword ptr [rcx + 0x768], eax	sweep	a read of the field at this instruction, in a function that none of the other rows' routes reaches
 0x00236A60	BattleUnit_ResetStateForReuse	0x00236B63	0x76C	w	mov qword ptr [rdi + 0x76c], rsi	arg0 from 0x0023A570 at 0x0023A5B0	
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304B0B	0x76C	w	mov dword ptr [rsi + 0xbc], eax	arg0 from 0x00307BE0 at 0x00307C19	
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304CDD	0x76C	r	mov eax, dword ptr [rsi + 0xbc]	arg0 from 0x00307BE0 at 0x00307C19	
-0x00307B60	BattleUnit_AdvanceActionState	0x00307C27	0x76C	r	mov eax, dword ptr [rbx + 0x76c]	sweep	a read of the field at this instruction, in a function that none of the other rows' routes reaches
 0x00307BE0	BattleUnit_AdvanceActionState	0x00307C27	0x76C	r	mov eax, dword ptr [rbx + 0x76c]	arg0 from 0x00308610 at 0x00308754	
-0x00339C40	BattleLocomotion_ComputeStepDistance	0x00339CA5	0x76C	r	mov eax, dword ptr [rcx + 0x76c]	sweep	a read of the field at this instruction, in a function that none of the other rows' routes reaches
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339CA5	0x76C	r	mov eax, dword ptr [rcx + 0x76c]	sweep	a read of the field at this instruction, in a function that none of the other rows' routes reaches
 0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF9DA	0x770	w	mov dword ptr [r14 + 0x770], ebp	0x0031B860	
 0x00300140	BattleUnit_ResetActionControlForStatusTransition	0x00300163	0x770	w	mov dword ptr [rbx + 0x770], r8d	arg0 from 0x00233EA0 at 0x00233EC2	
 0x00300E40	BattleUnit_TeardownAndDespawn	0x00300E75	0x770	w	mov dword ptr [rdi + 0x770], esi	arg0 from 0x00233EA0 at 0x00233F37	

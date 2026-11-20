@@ -426,8 +426,9 @@ for the rider's seat `0x00327200`³.
 
 </details>
 
-The unit frame `0x00233F70` refreshes it on every path past its entry tests¹; when it returns at those tests (no unit, `0x002671C0()` 0, no navigation dataset, flag bit `0x8` clear or
-flag bit `0x10000` set) it does not². The switch is on or off; there is
+The unit frame `0x00233F70` refreshes it on every path past its entry tests¹; when it returns at those tests (no unit, `0x002671C0()` 0 ([frame update
+order](../Engine-Core/frame-update-order.md#the-per-unit-frame)), no navigation dataset, flag bit `0x8`
+clear or flag bit `0x10000` set) it does not². The switch is on or off; there is
 no fade.
 
 <details>

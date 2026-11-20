@@ -2,7 +2,7 @@
 
 | title | kind | category | group | summary | addresses |
 |---|---|---|---|---|---|
-| Call signatures: the arguments each function reads and passes on | reference | Engine core | Function and class indexes | For every one of the executable's 39,115 functions: the integer and float argument registers its body reads, its argument count, the arguments its entry stores in their home slots and the stack arguments it reads (call-signatures.tsv, call-signatures-stack-args.tsv); for each of its 137,609 calls and tail calls, the target and the argument registers that still hold the function's incoming values there (call-signatures-forwards.tsv); and the 6,882 functions that sit in a class's virtual table, whose first argument is that class's this. | 0x0079D730, 0x00311CD0, 0x00197710, 0x0085DDE0, 0x00325EA0, 0x0030FE60, 0x0018D680, 0x0053DD10, 0x004B1190, 0x0073F920, 0x001263AD |
+| Call signatures: the arguments each function reads and passes on | reference | Engine core | Function and class indexes | For every one of the executable's 39,115 functions: the integer and float argument registers its body reads, its argument count, the arguments its entry stores in their home slots and the stack arguments it reads (call-signatures.tsv, call-signatures-stack-args.tsv), and its first eight bytes (call-signatures-heads.tsv); for each of its 137,609 calls and tail calls, the target and the argument registers that still hold the function's incoming values there (call-signatures-forwards.tsv); and the 6,882 functions that sit in a class's virtual table, whose first argument is that class's this. | 0x0079D730, 0x00311CD0, 0x00197710, 0x0085DDE0, 0x00325EA0, 0x0030FE60, 0x0018D680, 0x0053DD10, 0x004B1190, 0x0073F920, 0x001263AD |
 
 ## What it lists
 
@@ -260,6 +260,30 @@ so that its first argument is that class's `this`:
 | `class_names` | those tables' classes, separated by `;` |
 | `slots` | the slot indices it occupies, separated by `,` |
 
+### First bytes
+
+[`call-signatures-heads.tsv`](call-signatures-heads.tsv), one row per function:
+
+| Column | Meaning |
+|---|---|
+| `addr` | the function's entry address |
+| `first8` | the eight bytes at the entry, as the executable holds them |
+| `insns` | the instructions that cover those bytes, decoded in order from the entry and joined by `; `, a relative target written as its address |
+| `boundary` | the offset of the first instruction boundary at or past byte 8 |
+| `rel` | the covering instructions whose bytes depend on where they sit, in order: `rip` for a `rip`-relative operand, `rel8` or `rel32` for a relative branch or call by its displacement width, `-` for none |
+
+The first instruction boundary at or past byte 8 lies 8 to 18 bytes from the entry: at 8 in 5,648 functions, 9 in
+6,546, 10 in 10,798, 11 in 3,426, 12 in 6,029, 13 in 2,008, 14 in 1,867, 15 in 2,732, 16 in 44, 17 in 13 and 18 in 4.
+
+15,355 heads hold a `rip`-relative operand or a relative branch or call among their covering instructions (`rip`
+6,443, `rel32` 4,084, `rip,rel32` 3,266, `rel8` 1,427, `rel8,rip` 95, `rip,rel8` 34, `rel8,rel32` 6); those bytes are
+fixed for this executable and change when the code is moved. `0x00377C20` begins `sub rsp, 0x28; call 0x003148F0`
+(boundary 9, `rel32`), and `0x0031B760` is a whole function in its first 8 bytes:
+`test rcx, rcx; jne 0x0031B768; xor eax, eax; ret`.
+
+`Database/Tools/catalogues/function_heads.py` writes the table from the shipped executable, one row for each `addr` of
+`call-signatures.tsv`.
+
 ## Data
 
 | Fact | Value |
@@ -292,7 +316,7 @@ the ExFont drawer `0x003649A0`, `0x003656A0`, `0x00366110`, `0x002847C0`, `0x002
 The functions on this page call, or are called by, functions that belong to other parts of the game. Each topic below lists those calls and the pages that explain the other side.
 
 <details>
-<summary>Show the 37 calls with 9 other topics</summary>
+<summary>Show the 68 calls with 17 other topics</summary>
 
 **Sound and music** (explained on [media decoder libraries](../Third-Party-Libraries/media-decoder-libraries.md), [audio effects](../Sound-And-Music/audio-effects.md))
 
@@ -330,5 +354,47 @@ Each row is a function this page names (left) and the functions from this topic 
 | Function named on this page | | Functions from this topic |
 |---|---|---|
 | [`0x0036A190`](../Game-Files-And-Data-Tables/resource-lifecycle.md) (on resource lifecycle) | is called by | [`0x00378540`](../World-Areas-And-Travel/area-flags-navimapdata.md) (on area flags navimapdata) |
+
+**Damage and battle formulas** (explained on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00300530`](../Characters-And-Objects/battle-unit-fields.md) Battle stats: modify hp and process lethal state (on battle unit fields) |
+
+**Input gameplay** (explained on [force fight mode](force-fight-mode.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00313A00`](../Battle-Actions/action-phases.md) (on action phases) |
+
+**Rewards: EXP, LP, gil and loot** (explained on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x00312280`](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md) Battle unit: process defeat rewards and loot (on strong and weak mode) |
+
+**Enemy spawning** (explained on [enemy respawning](../Enemy-Spawning/enemy-respawning.md), [frame update order](frame-update-order.md), [native limits](native-limits.md), [battle units](../Characters-And-Objects/battle-units.md), [party control modes](party-control-modes.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md), [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [battle unit construction](../Characters-And-Objects/battle-unit-construction.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x003148F0`](../World-Areas-And-Travel/treasure-chests.md) World transition: get active or pending field id (on treasure chests) | is called by | [`0x00233780`](../Enemy-Spawning/enemy-respawning.md) Spawn: swap or push banks (on enemy respawning) |
+| [`0x0031B760`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning) | is called by | [`0x002350C0`](../Enemy-Spawning/enemy-spawning.md) Spawn lifecycle: check and retire by native range (on enemy spawning)<br>[`0x00235360`](../Enemy-Spawning/spawn-record-fields.md) Spawn: select continuous entry (on spawn record fields)<br>[`0x002354F0`](../Enemy-Spawning/enemy-spawning.md) Spawn: select previous map entry (on enemy spawning)<br>[`0x002355A0`](../Enemy-Spawning/enemy-spawning.md) Spawn: prepare random candidate for current entry (on enemy spawning)<br>[`0x00235720`](../Enemy-Spawning/enemy-spawning.md) Spawn: select and prepare automatic entry (on enemy spawning)<br>[`0x00235EF0`](../Enemy-Spawning/enemy-respawning.md) Spawn entry: get death limit (on enemy respawning)<br>[`0x00235F50`](../Enemy-Spawning/enemy-respawning.md) Spawn entry: get death count (on enemy respawning)<br>[`0x00235FB0`](../Enemy-Spawning/enemy-respawning.md) Spawn entry: get elapsed ticks since last death (on enemy respawning)<br>[`0x00236030`](call-signatures.md) Spawn entry: get candidate unit id<br>[`0x00236140`](../Enemy-Spawning/spawn-record-fields.md) Spawn entry: get script selection (on spawn record fields)<br>[`0x00236670`](../Enemy-Spawning/enemy-respawning.md) Spawn entry: query range reentry pending (on enemy respawning)<br>[`0x002366E0`](../Enemy-Spawning/enemy-respawning.md) Spawn entry: get respawn cooldown ticks (on enemy respawning) |
+| [`0x0031B760`](../Enemy-Spawning/enemy-spawning.md) (on enemy spawning) | is also called by | [`0x00236860`](../Enemy-Spawning/spawn-record-fields.md) Spawn entry: reset transient state (on spawn record fields)<br>[`0x00238FC0`](../Enemy-Spawning/enemy-spawning.md) Battle unit: set native lifecycle mode (on enemy spawning)<br>[`0x002391C0`](../Enemy-Spawning/spawn-record-fields.md) Spawn entry: set range retire inhibit tag (on spawn record fields)<br>[`0x002393E0`](../Characters-And-Objects/battle-units.md) Spawn unit: set lane candidate table (on battle units)<br>[`0x00239410`](../Enemy-Spawning/enemy-spawning.md) Spawn entry: set current candidate state (on enemy spawning)<br>[`0x00239710`](../Enemy-Spawning/enemy-respawning.md) Spawn group: configure unit membership and mode (on enemy respawning)<br>[`0x00239840`](../Enemy-Spawning/enemy-spawning.md) Spawn unit: bind entry and mark cap tracked (on enemy spawning)<br>[`0x002398F0`](../Scripts-And-Script-Commands/reward-verbs.md) (on reward verbs)<br>[`0x0023A200`](../Enemy-Spawning/spawn-record-fields.md) Spawn entry: configure fresh lifecycle float mode (on spawn record fields)<br>[`0x0023A2E0`](../Enemy-Spawning/enemy-spawning.md) Spawn unit: set entry map and reset transient entries (on enemy spawning)<br>[`0x0023A3B0`](../Items-Equipment-Shops-And-Licenses/item-list.md) (on item list)<br>[`0x0023A410`](../Enemy-Spawning/spawn-record-fields.md) Spawn unit: finalize spawn entry activation (on spawn record fields) |
+
+**Status effects and KO** (explained on [force fight mode](force-fight-mode.md), [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md), [frame update order](frame-update-order.md))
+
+Each row is a function this page names (left) and the functions from this topic that call it (right). Each function's name is given where the database has one, and the link goes to the page that explains it.
+
+| Function named on this page | | Functions from this topic |
+|---|---|---|
+| [`0x00377C20`](../Scripts-And-Script-Commands/party-during-scenes.md) (on party during scenes) | is called by | [`0x0030E360`](identifier-spaces.md) Battle stats: change status and process side effects (on identifier spaces)<br>[`0x0030F690`](../Damage-And-Battle-Formulas/augments.md) Battle stats: remove statuses from mask and recompute (on augments)<br>[`0x00310DB0`](../Battle-Actions/action-results.md) Battle unit: run periodic combat maintenance (on action results) |
 
 </details>

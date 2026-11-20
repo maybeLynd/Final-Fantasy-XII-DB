@@ -282,7 +282,7 @@ for a locked actor too; only an actor that accepts input (`0x00264DF0`: byte `+0
 | Step | What happens | Where in the code |
 |---|---|---|
 | 1 | unless `lock` bit `0x1`: `0x002EC5B0(actor, 0)`, the speed `0x0026D810(actor, speed)`, and `0x00317E60()` through its thunk `0x00268620` when the speed is positive; | `0x00358E16`-`0x00358E1B` |
-| 2 | when the steering request's speed `0x00265830` is 0: `0x002EC5B0(actor, 8)`; otherwise:<br>• unless `lock` bit `0x2`, the facing: toward the render record's turn target when `0x002E9B60` names one (`0x003EC040(id, yaw, 2, 1)`, direction 2 and mode 1, so the entry's rate `+0x28`, `0x00358E50`-`0x00358E5D`), else from the current facing toward `yaw` by at most `pi/8` (`0x003A1AD0(facing, yaw, 0.3927)`), through `0x0026B5A0`;<br>• unless `lock` bit `0x4`, the desired heading `0x0026A0D0(actor, yaw)`, wrapped into the context's `+0xA4`; |   |
+| 2 | when the steering request's speed `0x00265830` ([battle locomotion](battle-locomotion.md#detour-and-stall-recovery)) is 0: `0x002EC5B0(actor, 8)`; otherwise:<br>• unless `lock` bit `0x2`, the facing: toward the render record's turn target when `0x002E9B60` names one (`0x003EC040(id, yaw, 2, 1)`, direction 2 and mode 1, so the entry's rate `+0x28`, `0x00358E50`-`0x00358E5D`), else from the current facing toward `yaw` by at most `pi/8` (`0x003A1AD0(facing, yaw, 0.3927)`), through `0x0026B5A0`;<br>• unless `lock` bit `0x4`, the desired heading `0x0026A0D0(actor, yaw)`, wrapped into the context's `+0xA4`; |   |
 | 3 | the animation mode `0x002681D0(actor)`, which the zero-speed case of step 2 reaches with no facing or heading call. | `0x00358E3C` |
 
 `0x0026D810(actor, speed)` (class 3 only) writes the steering request's `+0x24` and the context's
@@ -343,7 +343,7 @@ controller, picks a mode from the controller's byte
 
 | `+0x152` | Mode |
 |---|---|
-| 0, the focus actor | 0, or 1 with actor `+0x0C` bit `0x10` and a live stick; 1 when `0x002672B0()` is 0; 5 while riding (`0x00303EC0`) |
+| 0, the focus actor | 0, or 1 with actor `+0x0C` bit `0x10` while `0x00265680()` is non-zero (`0x00268256`-`0x0026826A`); 1 when `0x002672B0()` is 0 (`0x00268270`-`0x00268277`); 5 while riding, which overrides both (`0x0037C860`, a jump to `0x00303EC0`; `0x0026827A`-`0x00268283`) |
 | 0, any other actor | 1 |
 | 2 | 3 |
 | 3 | 5 |

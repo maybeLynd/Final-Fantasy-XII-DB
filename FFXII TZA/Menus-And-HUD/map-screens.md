@@ -645,7 +645,7 @@ switch through `0x00255020`, and `setnavimapindex`² only passes its argument to
 The actors come from a list the minimap tick rebuilds first: `0x003C6000` calls `0x0035D070`¹, which runs
 `0x0035E5F0(0x022C8060)`. That builds the lists of actor managers 0 to 2 (`0x0046B560(2)`) and copies them in order, at most
 128: handles to `0x022C8500`², actors to `0x022C8700`³, the total at `0x022C8B00`⁴,
-and each manager's start and count at `0x022C8B02 + i` and `0x022C8B04 + i`.
+and each manager's start at `0x022C8B02 + i` and its whole count, before the cut to 128, at `0x022C8B04 + i`⁵.
 
 <details>
 <summary>Where in the code</summary>
@@ -656,6 +656,19 @@ and each manager's start and count at `0x022C8B02 + i` and `0x022C8B04 + i`.
 | ² | `0x0035D500` |
 | ³ | `0x0035D4F0` |
 | ⁴ | `0x0035D510` |
+| ⁵ | `0x0035E654`, `0x0035E657` |
+
+</details>
+
+The two runs overlap: manager 2's start, written last, lands on manager 0's count, so after the build `0x022C8B04` holds
+manager 2's start and only managers 1 and 2 keep their counts¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x022C8B05`, `0x022C8B06` |
 
 </details>
 

@@ -491,6 +491,70 @@ jumps over the block when a step ran), a call to the return stub `0x0016D6A0`, w
 
 </details>
 
+The draw `0x0022B0B0(0, 0)` at `0x0022A82D` runs before the steps¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0022ABD8` |
+
+</details>
+
+In a step the drive pass commits each moved actor's position into its movement context (`0x002E5610`, through
+`0x002E5030`), the tick's tail posts it to the render record's `+0x140` (`0x002E5180` to `0x002E6000` to `0x003EC3D0`), and
+`0x003323D0` composes the record's model transform from it (`0x00426090` to `0x0042C410` to `0x00420A40`; [character render
+records](../Graphics/character-render-records.md#position-from-the-movement-context)). The camera
+block posts again through the frozen pass `0x0025E400` but composes nothing.
+
+So a position that reaches the movement context before a frame's steps is first drawn by the next frame's draw, and
+one written after them, at the rejoin `0x0022ADEA`, by the draw of the frame after that. That holds while the post
+itself marks nothing, as the tail's post does with flag 0 and `0x02B5EC90` at 0; the end of the frame composes only the
+roots that carry `+0x294` bit `0x2000000`¹.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00427BD0` |
+
+</details>
+
+`0x00358290()` answers bit `0x2` of the word `0x022C7F92`, the high word of draw 0's entry in the table at `0x022C7F90`¹. `0x00358450(draw, on)` ORs `0xF` into that high word of its draw's entry², and
+`0x00358560(v)` sets bit `0x2` of `0x022C7F92` to `v & 1`³.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x00358290`-`0x0035829C` |
+| ² | `0x00358462` |
+| ³ | `0x00358560`-`0x00358574` |
+
+</details>
+
+`movieplay` passes 0¹ and `movieend` passes 1². The table's functions
+set the bit in one other place, `0x00358450` for draw 0³, which `0x00358420` and `0x00358510` call⁴ from `0x00262870`⁵ and `0x0022A0B0`⁶. So from `movieplay` until `movieend` or one of
+those calls, the field frame skips `0x003323D0`⁷ and its steps compose no record transform.
+
+<details>
+<summary>Where in the code</summary>
+
+| | Code |
+|---|---|
+| ¹ | `0x0035B7D0`, `0x0035B80D` |
+| ² | `0x0035B8D0`, `0x0035B949` |
+| ³ | `0x00358462` |
+| ⁴ | `0x0035842B`, `0x0035851B` |
+| ⁵ | `0x0026288C` |
+| ⁶ | `0x0022A3A3` |
+| ⁷ | `0x0022ABFE`-`0x0022AC07` |
+
+</details>
+
 `0x00316930`¹ starts with `0x00283270(1)`², which reaches the status record fill `0x00329220`
 ([party member status record](../Characters-And-Objects/party-member-status-record.md)) nine times, through `0x00320040`
 (`0x00283368`, for i = 0 to 8 by `0x00283433`, and the tail jump at `0x0032008D`), so that fill runs after the pacer.

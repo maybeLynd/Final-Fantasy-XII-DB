@@ -635,7 +635,8 @@ byte `+0x10` bit `0x4` takes the move bit: it is cleared¹ and then rewritten fr
 Then `0x002E5030(actor, moveBit, &move)` runs the movement step with the summed move as the
 pass-through vector when the bit is set ([movement step](heading-speed-to-position-delta.md)), and
 `0x002E5750(actor, turnBit, &turn)` runs the integrator: with the bit set it adds `turn.y` to the
-facing (`0x00265200` + `turn.y` → `0x0026B6A0(actor, angle, 0)`) and `turn.x` to the pitch (`0x002651C0` +
+facing (`0x00265200`, [facing and steering](facing-and-steering.md#three-angles-and-two-wraps), + `turn.y` →
+`0x0026B6A0(actor, angle, 0)`) and `turn.x` to the pitch (`0x002651C0` +
 `turn.x` → `0x0026B520`), instead of the steering modes ([facing and
 steering](facing-and-steering.md)).
 
